@@ -1,0 +1,163 @@
+<!doctype HTML public "-//W3C//DTD HTML 4.0 Frameset//EN">
+
+<html>
+
+<!--(==============================================================)-->
+<!--(Document created with RoboEditor. )============================-->
+<!--(==============================================================)-->
+
+<head>
+
+<title>Tray Icon Rule</title>
+
+<!--(Meta)==========================================================-->
+
+<meta http-equiv=content-type content="text/html; charset=windows-1252">
+<meta name=topic-check-list content="Added To TOC">
+<meta name=generator content="RoboHELP by eHelp Corporation - www.ehelp.com">
+<meta name=generator-major-version content=0.1>
+<meta name=generator-minor-version content=1>
+<meta name=filetype content=kadov>
+<meta name=filetype-version content=1>
+<meta name=page-count content=1>
+<meta name=layout-height content=3154>
+<meta name=layout-width content=985>
+
+
+<!--(Links)=========================================================-->
+
+<link rel="StyleSheet" href="..\help.css">
+
+
+
+</head>
+
+<!--(Body)==========================================================-->
+
+
+<body>
+
+<!-- Conditional Headers -->
+
+<div style="x-condition: PRO;">
+<div id=helpHeader>
+<div id=helpHeaderImg
+	style="x-condition: PRO;
+			/*begin!kadov{{*/ x-right: 951px;
+			x-bottom: 682px; /*}}end!kadov*/ ">
+<p>&nbsp;</p>
+</div>
+
+<p class=helpHeader>Omea Pro Help: Reference: Tray Icon Rule Dialog </p>
+</div>
+</div>
+
+<div style="x-condition: READER;">
+<div id=helpHeader>
+<div id=helpHeaderImg
+	style="x-condition: READER;
+			/*begin!kadov{{*/ x-right: 951px;
+			x-bottom: 682px; /*}}end!kadov*/ ">
+<p>&nbsp;</p>
+</div>
+
+<p class=helpHeader>Omea Reader Help: Reference: Tray Icon Rule Dialog</p>
+</div>
+</div>
+
+<div id=mainContent>
+<h1>New Tray Icon  Rule/Edit Tray Icon Rule Dialog</h1>
+
+<p>You can access this dialog from the <a href="manage_rules.html">Manage Rules</a> 
+ dialog, <strong>Tray Icon</strong> tab:</p>
+
+<ul>
+	
+	<li class=kadov-p><em style="font-style: italic;">New</em> button (launches the
+    <strong>New Tray Icon Rule</strong> dialog)</li>
+	
+	<li class=kadov-p><em style="font-style: italic;">Edit</em> button (launches the <strong>Edit Tray Icon Rule</strong> dialog)
+ </li>
+</ul>
+
+<p>The <strong>New Tray Icon Rule/Edit Tray Icon Rule</strong> dialog is used to create/edit such resource handling 
+ rules as changing Omea's tray icon if the specified conditions and exceptions are met. The precondition for all tray icon rules is that the resources which this rule handles are not read. The same dialog is used for creating a new Tray Icon Rule and editing an 
+ existing Tray Icon Rule. The only difference to the look of the dialog is the title.</p>
+<p><img src="../images/sshots/dialogs/shared/new_edit_tray_icon_rule.png" alt="New Tray Icon Rule and Edit Tray Icon Rule dialogs" width="835" height="475"></p>
+<p>&nbsp;
+  </p>
+  <P class="caption">New Tray Icon Rule and Edit Tray Icon Rule dialogs</P>
+		   <h2>Dialog Components</h2>
+
+<h3>Rule Name Field</h3>
+
+<p>Field to specify/edit the rule name</p>
+
+
+<h3>Active for</h3>
+
+<p>Field to set for which type of resources the rule is to be applied. 
+ This field is, actually, a link to call another dialog - <a href="Choose_Recourse_Types_Dialog.htm"><i>Choose Resource Type</i></a>. </p>
+
+<h3>Conditions/Exceptions</h3>
+
+<p>These fields are used to set conditions/exceptions for the rule to be activated/skipped, respectively. Set conditions/exceptions are listed in the corresponding fields. The predefined condition in this dialog is &quot;Resource is not read&quot;.</p>
+
+<p>The conditions are shown as short sentences. Some of the sentences have a hyperlink phrase inside. Pressing the link shows a dialog to enter some text/value for the condition.</p>
+<p>Press the <strong>Add</strong> button to add new Condition/Exception. Pressing <strong>Add</strong> button calls the <a href="select_conditions.html">Select Condition(s) dialog</a>. The dialog is similar for both Conditions and Exceptions areas and includes several groups of conditions. Press <strong>Delete</strong> (<img src="../images/iconsMarks/ico_delete_condition_except.png" width="16" height="16" class="linkIcon">) in the conditions/exceptions field to delete the selected condition/exception in the list. </p>
+<h3>Icon</h3>
+
+<p>This field provides a preview space in which you can see the file selected as a Tray Icon. Now you can select the icon files from those provided in Omea  and those which you have on your local system.</p>
+<p> Select one of the two available tray icons sources and press the <strong>Browse&#8230;</strong> button.</p>
+<ul>
+  <ul>
+    <li> If you have selected the <strong>From file</strong> option, the <strong>Open</strong> dialog appears in which you can navigate to the folder where the files which you want to use as tray icons are stored. Select the file and click <strong>OK</strong>. Please note that the files should have <em>.ico</em> extension.</li>
+    <li>If you have selected the <strong>From Omea </strong>option, <strong>Available Icons</strong> dialog opens showing all icons which are used and available in Omea's interface at the moment. </li>
+  </ul>
+</ul>
+<h3>Show/Hide Buttons</h3>
+<p>You can use the Show (<img src="../images/iconsMarks/ico_hide.png" width="16" height="16" class="linkIcon">) and Hide (<img src="../images/iconsMarks/ico_show.png" width="23" height="12" class="linkIcon">) buttons to expand or collapse the <strong>Conditions</strong> or <strong>Exceptions</strong> fields. </p>
+<h2>Tray Icons Rules Usage Examples</h2>
+<p>The tray icons can be very useful for you if you want to keep track of the incoming resources such as for example, feeds and newsgroups posts (these items are not read), tasks, messages received from the specified Contacts. </p>
+<p>Once you define one or several tray icon rules, Omea's tray icon <img src="../images/helpUI/ico_product.png" width="28" height="28" class="linkIcon"> changes to the icon which you have selected in the <strong>New  Tray Icon Rule</strong> dialog. </p>
+<a name=sshot></a>
+<img src="../images/sshots/shared/tray_icon.png" width="549" height="247" alt="Tray Icon example">
+<p class="caption">Tray Icon example </p>
+<p>If Omea tray icon is changed, you can move the mouse pointer to it and see which tray icon rule is active and the number of items which are unread. </p>
+<p>The order in which Omea processes the tray icon rules depends on: </p>
+<ul>
+  <li>priority of how the rules are defined in the Manage Rules dialog </li>
+  <li>status of resources which you have specified as conditions and exceptions in the <strong>New/Edit Tray Icon Rule</strong> dialogs </li>
+</ul>
+<p>So if you have several Tray Icon Rules, the tray icons alter as you read the items and  their status is changed to &#8220;Read&#8221;. </p>
+<p>You can track this behavior by the <em>Change tray icon when one resource becomes read</em> option in <a href="outlook_general.html">Omea's General Options</a>. This option controls the behavior of tray icons which you have selected in tray icon rules. When checked, <span style="x-condition: READER;">Omea Reader's</span><span 
+ style="x-condition: PRO;">Omea Pro's</span> tray icon specified in tray icon rules <em>will change when you have read</em> (and/or marked as <em>Read</em>) <em>at least one resource</em> which is specified as condition in the tray icon rule <em>to the different tray icon</em> (if you have more than one tray icon rules; you can change the order of the tray icon rules in <a href="manage_rules.html">Manage Rules</a> dialog) <em>or to usual Omea's icon</em> when all tray icon rules have been applied. </p>
+<h2>Pins</h2>
+<p>You can now use pins if you want Omea to reuse the conditions which you have once defined in any of the dialogs for defining rules. To pin the condition, just click the <strong>Pin </strong> button (<img src="../images/iconsMarks/ico_pinned_condition.png" width="15" height="15" class="linkIcon">). Once you pin some condition, it will always appear in the <strong>Rules Manager</strong> dialog if you click the <strong>New</strong> button in appropriate tab. Such condition as &#8220;Resource is not read&#8221; is always pre-pined in the <strong>New Tray Icon Rule</strong> dialog. </p>
+<img src="../images/sshots/dialogs/shared/new_tray_icon_rule_pined_condition.png" width="413" height="189" alt="Pined Condition example" >
+<p class="caption">Pined Condition in the New Tray Icon Rule dialog</p>
+ <div class="note">
+ 
+
+<div class="noteImg"
+	style="/*begin!kadov{{*/ x-right: 944px; x-bottom: 3017px; /*}}end!kadov*/ ">
+    <p>&nbsp;</p>
+  </div>
+    <p class="note">The pre pined conditions are not intended for existing in Omea &#8220;forever&#8221; and you can easily delete them by pressing the <strong>Delete</strong> button in the <strong>Conditions</strong> field but you may find them rather useful when you become more familiar with the Rules. </p>
+ </div>
+ <p>If you use some condition or exception often, you can easily pin it for later use by pressing the pin condition  </img> button (<img src="../images/iconsMarks/ico_pinned_condition.png" width="15" height="15" class="linkIcon">) in order not to specify it again in the future. </p>
+ <div id="seealso">
+  <p class="seealso"><strong>See also:</strong></p>
+  <ol>
+    <li class="kadov-p"><a href="outlook_general.html">Omea Options:General</a></li>
+	<li class="kadov-p"><a href="manage_rules.html">Manage Rules dialog</a></li>
+	<li><a href="new_edit_rule.html">New Action Rule/Edit Action Rule dialog</a></li>
+    <li><a href="../organizing/using_rules.html">Organizing: Using Rules</a>
+      <!-- LAST SPELLCHECK: 31 Aug 2004 -->
+</li>
+  </ol>
+</div>
+</div>
+</body>
+
+</html>

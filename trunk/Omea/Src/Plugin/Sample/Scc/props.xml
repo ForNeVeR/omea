@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+  <copyright company="JetBrains">
+  Copyright © 2003-2008 JetBrains s.r.o.
+  You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
+  </copyright>
+-->
+<props namespace="JetBrains.Omea.SamplePlugins.SccPlugin" static="1" visibility="internal" prefix="jetbrains.scc" summary="Definitions for the resource types and property types used by the plugin.">
+	<resourcetype name="Repository" dnTemplate="Name" resourceContainer="1" noIndex="1" />
+	<resourcetype name="ChangeSet" displayName="Changeset" dnTemplate="Subject" canBeUnread="1" />
+	<resourcetype name="Folder" dnTemplate="Name" resourceContainer="1" noIndex="1" />
+	<resourcetype name="FileChange" internal="1" noIndex="1" />
+	<resourcetype name="UserToRepositoryMap" internal="1" noIndex="1" />
+	<resourcetype name="LinkRegex" internal="1" noIndex="1" />
+	<prop name="RepositoryType" dataType="String" internal="1" />
+	<prop name="ChangeSetNumber" dataType="Int" />
+	<prop name="Client" propName="P4Client" dataType="String" />
+	<prop name="AffectsFolder" dataType="Link" internal="1" countUnread="1" />
+	<prop name="ChangeType" dataType="String" />
+	<prop name="Revision" dataType="Int" />
+	<prop name="Diff" dataType="LongString" internal="1" />
+	<prop name="Change" dataType="Link" internal="1" directedLink="1" summary="Links a ChangeSet to individual FileChange resources contained in it." />
+	<prop name="Binary" dataType="Bool" internal="1" />
+	<prop name="ChangeSetRepository" dataType="Link" internal="1" />
+	<prop name="P4IgnoreChanges" dataType="LongString" internal="1" />
+	<prop name="P4WebUrl" dataType="LongString" internal="1" />
+	<prop name="P4ServerPort" dataType="LongString" internal="1" />
+	<prop name="PathsToWatch" dataType="LongString" internal="1" />
+	<prop name="LastRevision" dataType="Int" />
+	<prop name="UserRepository" dataType="Link" internal="1">
+		<linkRestriction fromtype="UserToRepositoryMap" totype="Repository" mincount="1" maxcount="1" />
+	</prop>
+	<prop name="UserContact" dataType="Link" internal="1">
+		<linkRestriction fromtype="UserToRepositoryMap" totype="Contact" mincount="1" maxcount="1" />
+	</prop>
+	<prop name="UserId" dataType="String" internal="1" />
+	<prop name="RepositoryUrl" dataType="String" internal="1" />
+	<prop name="RepositoryRoot" dataType="String" internal="1" />
+	<prop name="UserName" dataType="String" internal="1" />
+	<prop name="Password" dataType="String" internal="1" />
+	<prop name="RegexMatch" dataType="String" internal="1" />
+	<prop name="RegexReplace" dataType="String" internal="1" />
+	<prop name="LastError" dataType="String" internal="1" />
+	<prop name="ShowSubfolderContents" dataType="Bool" internal="1" />
+</props>

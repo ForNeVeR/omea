@@ -1,0 +1,86 @@
+The archive contains the sources of wvWare 1.0.0 adapted by JetBrains
+for use in the OmniaMea project. The archive also includes the project
+file for Visual Studio 2003 (Visual C++ 7.1) that we use to build
+wvWare.exe.
+
+The following external dependencies are required to build the project:
+
+ - zlib 1.2.1 DLL
+   http://www.zlib.net/zlib121-dll.zip
+   (assumed to be installed in C:\Src\zlib)
+
+ - libpng 1.2.5
+   http://prdownloads.sourceforge.net/png-mng/lpng125.zip?download
+   (assumed to be installed in C:\Src\libpng-1.2.5, compiled using
+   the Visual C++ project file included in the distribution)
+
+ - libiconv 1.9.1
+   http://ftp.gnu.org/pub/gnu/libiconv/libiconv-1.9.1.tar.gz
+   (assumed to be installed in C:\Src\libiconv-1.9.1, compiled as
+   a static library using the NMAKE makefile included in the distribution:
+   nmake -f Makefile.msvc MFLAGS=-MD NO_NLS=1
+   )
+
+
+The following changes have been made by JetBrains:
+
+03 Jun 2005 Dmitry Jemerov <yole@jetbrains.com>
+
+	* Integrated wvWare fixes from abiword-2.2.7.
+
+	* pap.c (wvAssembleSimplePAP): Add bounds check for apap->ilfo.
+
+
+13 Aug 2004 Dmitry Jemerov <yole@jetbrains.com>
+
+	* wvparse.c (wvInitParser), wvWare.c (main): Better detection 
+	  of non-Word documents (exit code -5).
+
+01 Aug 2004 Dmitry Jemerov <yole@jetbrains.com>
+
+	* escher.c (wvGetFSPContainer), fopt.c (wvGetFAnchor): Correct 
+	  processing of anchor atoms in Escher drawings.
+
+    * wv.h (struct _DgContainer), escher.c (wvGetDgContainer,
+      wvInitDgContainer, wvReleaseDgContainer): Support SpContainer 
+      elements nested directly in DgContainer elements.
+
+    * wvWare.c (mySpecCharProc): Do not abort processing on embedded
+      OLE2 objects.
+
+    * wv.h (struct wvParseStruct), escher.c (wv0x08): Parse Escher
+      drawings only once, and not every time a drawing is encountered
+      in the document.
+
+
+27 Jul 2004	Dmitry Jemerov <yole@jetbrains.com>
+
+	* wvWare.vcproj: Added #define HAVE_MMAP.
+
+	* wvWare.c (main): New return code -2 for password-protected
+	  files if the password has not been supplied.
+
+	* wvWare.c (main): Added exception handler to make sure
+	  that wvWare.exe crashes are not visible to the user but
+	  instead are reported through the OmniaMea crash reporting
+	  mechanism.
+
+
+12 Jul 2004	Dmitry Jemerov <yole@jetbrains.com>
+	
+	* magick/memory.c: changed "Export" to "extern" (build fix)
+	
+	* magick/png.c: Removed duplicate '#include "config.h"'.
+
+	* magick/utility.c: Added #include <direct.h> for Visual C++.
+
+	* field.c: Added #include <sys/stat.h> and a prototype for
+	  strcasecmp.
+
+	* wvConfig.c: Added prototype for strcasecmp.
+
+	* wvConfig.c (exstartElement): Added bounds check to fix crash
+	  when handling TT_ROWSPAN.
+
+	* wvWare.c: Added prototype for strcasecmp and #defines for
+	  constants to be used when config.h is not present.

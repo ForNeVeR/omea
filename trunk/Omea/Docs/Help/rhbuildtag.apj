@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<rhpml majorversion="1" minorversion="0">
+	<buildtags>
+		<buildtag>
+			<name>READER</name>
+			<colorref>16711680</colorref>
+			<comments/>
+		</buildtag>
+		<buildtag>
+			<name>INCOMPLETE</name>
+			<colorref>255</colorref>
+			<comments/>
+		</buildtag>
+		<buildtag>
+			<name>PRO</name>
+			<colorref>65280</colorref>
+			<comments/>
+		</buildtag>
+		<buildtag>
+			<name>HIDDEN</name>
+			<colorref>8421504</colorref>
+			<comments/>
+		</buildtag>
+	</buildtags>
+</rhpml>

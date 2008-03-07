@@ -1,0 +1,3 @@
+extracted from Imagemagick for the cases where it is not
+available, to do remove everything that is not strictly
+necessary to make it smaller.

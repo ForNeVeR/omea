@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+  <copyright company="JetBrains">
+  Copyright © 2003-2008 JetBrains s.r.o.
+  You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
+  </copyright>
+-->
+<omniamea-plugin>
+	<resource-icons namespace="OmniaMea.InstantMessaging.Trillian.icons">
+		<icon type="TrillianConversation" name="trillian.ico" />
+		<icons type="TrillianAccount">
+			<icon name="icq.ico" />
+			<icon name="aim.ico">
+				<prop name="Protocol" value="AIM" />
+			</icon>
+		</icons>
+	</resource-icons>
+</omniamea-plugin>

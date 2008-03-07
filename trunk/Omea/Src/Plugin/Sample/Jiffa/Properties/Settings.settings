@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+  <copyright company="JetBrains">
+  Copyright © 2003-2008 JetBrains s.r.o.
+  You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
+  </copyright>
+-->
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="JetBrains.Omea.Jiffa.Properties" GeneratedClassName="Settings">
+	<Profiles />
+	<Settings>
+		<Setting Name="Jiffa_JiraSoap_JiraSoapServiceService" Type="(Web Service URL)" Scope="Application">
+			<Value Profile="(Default)">http://www.jetbrains.net/jira/rpc/soap/jirasoapservice-v2</Value>
+		</Setting>
+	</Settings>
+</SettingsFile>

@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>JetBrains.Build.JScript</name>
+    </assembly>
+    <members>
+        <member name="T:JetBrains.Build.JScript">
+            <summary>
+            An MSBuild task that compiles the IL projects.
+            </summary>
+        </member>
+        <member name="M:JetBrains.Build.JScript.AddMoreCommandLineCommands(Microsoft.Build.Tasks.CommandLineBuilderExtension)">
+            <summary>
+            Adds JScript-specific command-line commands not handled by the base class.
+            </summary>
+            <param name="commandLine">The command line to popuplate.</param>
+        </member>
+        <member name="M:JetBrains.Build.JScript.AddMoreCommandLineCommands_TargetType(Microsoft.Build.Tasks.CommandLineBuilderExtension)">
+            <summary>
+            The target type command line commands.
+            </summary>
+            <param name="commandLine">The command line to popuplate.</param>
+        </member>
+        <member name="M:JetBrains.Build.JScript.CommandLineAppendWhenTrue(Microsoft.Build.Tasks.CommandLineBuilderExtension,System.String,System.String)">
+            <summary>
+            Carries out an internal <c>CommandLineBuilderExtension.AppendWhenTrue</c> method.
+            </summary>
+        </member>
+        <member name="M:JetBrains.Build.JScript.AddReferencesToCommandLine(Microsoft.Build.Tasks.CommandLineBuilderExtension)">
+            <summary>
+            Taken form the CSC compiler.
+            </summary>
+        </member>
+        <member name="M:JetBrains.Build.JScript.AddResponseFileCommands(Microsoft.Build.Tasks.CommandLineBuilderExtension)">
+            <summary>
+            Fills the specified <see cref="T:Microsoft.Build.Tasks.CommandLineBuilderExtension"></see> with the switches and other information that can go into a response file.
+            </summary>
+            
+            <param name="commandLine">The <see cref="T:Microsoft.Build.Tasks.CommandLineBuilderExtension"></see> to fill with switches and other information.</param>
+        </member>
+        <member name="M:JetBrains.Build.JScript.GenerateFullPathToTool">
+            <summary>
+            Returns the fully qualified path to the executable file.
+            </summary>
+            
+            <returns>
+            The fully qualified path to the executable file.
+            </returns>
+            
+        </member>
+        <member name="P:JetBrains.Build.JScript.Autoref">
+            <summary>
+            Automatically reference assemblies based on imported namespaces and fully-qualified names (on by default).
+            </summary>
+        </member>
+        <member name="P:JetBrains.Build.JScript.Fast">
+            <summary>
+            Disable language features to allow better code generation.
+            </summary>
+        </member>
+        <member name="P:JetBrains.Build.JScript.NoStandardLib">
+            <summary>
+            Do not import standard library (mscorlib.dll) and change autoref default to off.
+            </summary>
+        </member>
+        <member name="P:JetBrains.Build.JScript.Platform">
+            <summary>
+            Limit which platforms this code can run on; must be x86, Itanium, x64, or anycpu, which is the default.
+            </summary>
+        </member>
+        <member name="P:JetBrains.Build.JScript.WarningLevel">
+            <summary>
+            Set warning level (0-4).
+            </summary>
+        </member>
+        <member name="P:JetBrains.Build.JScript.ToolName">
+            <summary>
+            Gets the name of the executable file to run.
+            </summary>
+            
+            <returns>
+            The name of the executable file to run.
+            </returns>
+            
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+  <copyright company="JetBrains">
+  Copyright © 2003-2008 JetBrains s.r.o.
+  You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
+  </copyright>
+-->
+<!-- Includes just the file tasks that override the MS standard tasks for safe file copying. -->
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<UsingTask TaskName="JetBrains.Build.Common.Tasks.Copy" AssemblyFile="JetBrains.Build.Common.dll" />
+	<UsingTask TaskName="JetBrains.Build.Common.Tasks.Delete" AssemblyFile="JetBrains.Build.Common.dll" />
+</Project>

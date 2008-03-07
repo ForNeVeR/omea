@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+  <copyright company="JetBrains">
+  Copyright © 2003-2008 JetBrains s.r.o.
+  You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
+  </copyright>
+-->
+<props namespace="JetBrains.Omea.RSSPlugin" static="1" visibility="internal" ownerPlugin="1" defaultDataType="String">
+	<prop name="RSSItem" dataType="Link" countUnread="1" directedLink="1" displayName="Posts" reverseDisplayName="Weblog">
+		<linkRestriction fromtype="RSSFeed" totype="RSSItem" />
+	</prop>
+	<prop name="URL">
+		<unique resourcetype="RSSSearchEngine" />
+	</prop>
+	<prop name="OriginalName" internal="1" />
+	<prop name="Link" />
+	<prop name="GUID" internal="1" />
+	<prop name="HomePage" />
+	<prop name="Description" />
+	<prop name="Language" />
+	<prop name="FeedComment" dataType="Link" internal="1" directedLink="1">
+		<linkRestriction fromtype="RSSFeed" totype="RSSItem" />
+	</prop>
+	<prop name="FeedComment2Feed" dataType="Link" internal="1" directedLink="1" />
+	<prop name="ItemComment" dataType="Link" internal="1" directedLink="1" />
+	<prop name="ItemCommentFeed" dataType="Link" internal="1" directedLink="1">
+		<linkRestriction fromtype="RSSItem" totype="RSSFeed" maxcount="1" />
+	</prop>
+	<prop name="CommentRSS" internal="1" />
+	<prop name="WfwComment" internal="1" />
+	<prop name="CommentURL" internal="1" />
+	<prop name="AutoUpdateComments" dataType="Bool" internal="1" />
+	<prop name="EnclosureURL" />
+	<prop name="EnclosureSize" dataType="Int" />
+	<prop name="EnclosureType" />
+	<prop name="EnclosureFailureReason" dataType="LongString" internal="1" />
+	<prop name="EnclosureTempFile" dataType="LongString" internal="1" />
+	<prop name="HttpUserName" internal="1" />
+	<prop name="HttpPassword" internal="1" />
+	<prop name="ETag" internal="1" />
+	<prop name="UpdateStatus" internal="1" />
+	<prop name="LastError" />
+	<prop name="IsPaused" dataType="Bool" internal="1" />
+	<prop name="UpdatePeriod" internal="1" />
+	<prop name="UpdateFrequency" dataType="Int" internal="1" />
+	<prop name="RSSCategory" displayName="Pub. Category" />
+	<prop name="LastUpdateTime" dataType="Date" internal="1" />
+	<prop name="DownloadDate" displayName="Download Date" dataType="Date" />
+	<prop name="Transient" dataType="Int" internal="1" />
+	<prop name="CommentCount" dataType="Int" />
+	<prop name="SelectedRSSItem" dataType="Link" internal="1">
+		<linkRestriction fromtype="RSSFeed" totype="RSSItem" maxcount="1" />
+	</prop>
+	<prop name="Summary" dataType="LongString" internal="1" />
+	<prop name="DefaultDesktopAlertRule" dataType="Bool" internal="1" />
+	<prop name="Weblog" dataType="Link" directedLink="1" displayName="Weblog" reverseDisplayName="Author" />
+	<prop name="ImageTitle" dataType="LongString" internal="1" />
+	<prop name="ImageURL" dataType="LongString" internal="1" />
+	<prop name="ImageLink" dataType="LongString" internal="1" />
+	<prop name="Author" />
+	<prop name="AuthorEmail" dataType="Link">
+		<linkRestriction fromtype="RSSFeed" totype="EmailAccount" maxcount="1" />
+	</prop>
+	<prop name="DeletedItemHashList" dataType="StringList" internal="1" />
+	<prop name="IndexInFeed" dataType="Int" internal="1" />
+	<prop name="LastItemIndex" dataType="Int" internal="1" />
+	<prop name="LinkList" dataType="StringList" internal="1" />
+	<prop name="ImageContent" dataType="Blob" internal="1" />
+	<prop name="RSSSourceTag" displayName="RSS Source" />
+	<prop name="RSSSourceTagUrl" dataType="LongString" internal="1" />
+	<prop name="RSSSearchPhrase" dataType="LongString" internal="1" />
+	<prop name="EnclosureDownloadingState" dataType="Int" displayName="Enclosure Downloading State" />
+	<prop name="EnclosurePath" dataType="LongString" internal="1" />
+	<prop name="EnclosureDownloadedSize" dataType="Int" internal="1" />
+	<prop name="PubDate" dataType="Date" />
+	<prop name="DateModified" dataType="Date" />
+	<prop name="RssLongBodyCRC" dataType="Int" internal="1" />
+	<prop name="UniqueLinks" dataType="Int" internal="1" />
+	<prop name="MarkReadOnLeave" dataType="Bool" internal="1" />
+	<prop name="AutoFollowLink" dataType="Bool" internal="1" />
+	<prop name="DisableCompression" dataType="Bool" internal="1" />
+	<prop name="AllowEqualPosts" dataType="Bool" internal="1" />
+	<prop name="LinkBase" dataType="String" internal="1" />
+	<resourcetype name="RSSFeed" displayName="RSS/ATOM Feed" dnTemplate="Name UpdateStatus" noIndex="1" internal="1" />
+	<resourcetype name="RSSItem" displayName="RSS/ATOM Post" dnTemplate="Core.Subject" canBeUnread="1" />
+	<resourcetype name="RSSFeedGroup" displayName="Feed Folder" dnTemplate="Name" resourceContainer="1" noIndex="1" internal="1" />
+	<resourcetype name="RSSSearchEngine" displayName="RSSSearchEngine" dnTemplate="Name" noIndex="1" internal="1" />
+</props>

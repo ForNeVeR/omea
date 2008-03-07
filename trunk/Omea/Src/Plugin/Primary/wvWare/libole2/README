@@ -1,0 +1,11 @@
+This fork of LibOLE2 is taken directly from the 
+GNOME CVS repository.  Once Dom Lachowicz and Michael Meeks agree on the
+future of libole2, this will cease being a forked copy of libole2.
+
+You can browse their source at http://cvs.gnome.org/lxr/source/libole2/ or
+check it out from the GNOME CVS repository.  The module name is libole2, 
+and you can find GNOME CVS instructions at 
+http://cvs.gnome.org/lxr/source/libole2/.
+
+Dom Lachowicz & Jamie Montgomerie
+[doml@appligent.com] [jamie@montgomerie.net]

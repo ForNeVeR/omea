@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+  <copyright company="JetBrains">
+  Copyright © 2003-2008 JetBrains s.r.o.
+  You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
+  </copyright>
+-->
+<omniamea-plugin>
+	<actions namespace="JetBrains.Omea.FilePlugin">
+		<popup-menu>
+			<group id="ItemOpenActions">
+				<action name="Open" class="FileOpenAction" />
+				<action name="New Folder" type="FileFolder" class="CreateNewFolderAction" />
+				<action name="Rename" class="FileRenameAction" />
+				<action name="Locate on Disk" class="LocateOnDiskAction" />
+				<action name="Send by Mail" class="SendFileAction" />
+			</group>
+			<group id="ItemModifyActions">
+				<action name="File Folders..." class="InvokeFileFoldersOptionsPaneAction" />
+			</group>
+			<group submenu="Index Files" id="FileFolderModeActions" type="FileFolder">
+				<action name="Immediately" type="FileFolder" class="SetIndexModeAction">
+					<param type="int" value="0" />
+				</action>
+				<action name="On Startup" type="FileFolder" class="SetIndexModeAction">
+					<param type="int" value="1" />
+				</action>
+				<action name="Do not index" type="FileFolder" class="SetIndexModeAction">
+					<param type="int" value="2" />
+				</action>
+			</group>
+		</popup-menu>
+		<double-click>
+			<action type="FileFolder" class="SelectFolderAction" />
+			<action class="FileOpenAction" />
+		</double-click>
+		<toolbar iconprefix="FilePlugin.Icons">
+			<group id="FileActions">
+				<action icon="FolderClosed.ico" tab="Files" tooltip="File Folders options" class="InvokeFileFoldersOptionsPaneAction" />
+			</group>
+		</toolbar>
+		<composite>
+			<component id="Delete" tab="Files" class="DeleteAction" />
+		</composite>
+	</actions>
+</omniamea-plugin>

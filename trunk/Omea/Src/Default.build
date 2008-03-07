@@ -1,0 +1,75 @@
+<?xml version="1.0" ?>
+<project name="DevRun" default="DevRun.Build" currentframework="net-1.1">
+	<description>Omea Local Build File, Main Entry.</description>
+	<!-- Main Folders-->
+	<property name="build.base.dir" value="..\.." overwrite="false" />
+	<property name="build.dir.debug" value="${build.base.dir}\bin" overwrite="false" />
+	<property name="build.dir.release" value="${build.base.dir}\bin" overwrite="false" />
+	<property name="build.dir.obfuscated" value="${build.base.dir}\bin" overwrite="false" />
+	<!-- Debug/Release Config and Dirs -->
+	<property name="build.debug" value="true" overwrite="false" />
+	<property name="build.dir" value="${path::get-full-path(build.dir.debug)}" if="${build.debug}"
+		overwrite="false" />
+	<property name="build.dir" value="${path::get-full-path(build.dir.release)}" unless="${build.debug}"
+		overwrite="false" />
+	<!---->
+	<property name="archive.dir" value="${build.base.dir}\archive" overwrite="false" />
+	<property name="draco" value="false" overwrite="false" />
+	<property name="map.dir" value="${build.base.dir}\maps" overwrite="false" />
+	<property name="site.dir" value="${build.base.dir}\site" overwrite="false" />
+	<!---->
+	<property name="omea.start" value="false" overwrite="false" />
+	<property name="omea.notext" value="false" overwrite="false" />
+	<property name="build.omea.reader" value="false" overwrite="false" />
+	<property name="build.omea.pro" value="true" overwrite="false" />
+	<property name="build.getlatest" value="true" overwrite="false" />
+	<property name="build.compiletools" value="true" overwrite="false" />
+	<!---->
+	<target name="DevRun.Build">
+		<call target="DevRun.GetLastest" if="${build.getlatest}" />
+		<call target="DevRun.Compile" />
+		<call target="DevRun.CompileTools" if="${build.compiletools}" />
+		<call target="DevRun.RegisterPlugins" />
+		<call target="DevRun.RunOmea" if="${omea.start}" />
+	</target>
+	<target name="DevRun.Compile">
+		<call target="debugbuild" />
+	</target>
+	<target name="DevRun.RegisterPlugins">
+		<exec program="${build.dir}\RegisterPlugin.exe">
+			<arg path="${build.dir}" />
+		</exec>
+	</target>
+	<target name="DevRun.RunOmea">
+		<exec program="${environment::get-variable('comspec')}">
+			<arg value="/c" />
+			<arg value="start" />
+			<arg path="${build.dir.debug}\OmeaPro.exe" />
+			<arg value="-notext" if="${omea.notext}" />
+		</exec>
+	</target>
+	<target name="DevRun.GetLastest">
+		<exec program="p4">
+			<arg value="sync" />
+		</exec>
+	</target>
+	<target name="DevRun.CompileTools">
+		<nant buildfile="..\Tools\Tools.build" inheritall="true" />
+	</target>
+	<include buildfile="Omniamea.build" />
+	<!---->
+	<!---->
+	<!---->
+	<!-- Helper Targets for Setting the Parameters Manually -->
+	<target name="c" depends="DevRun.Build" />	<!-- Performs the compilation. Add to the end if other commands are specified. Must be the last -->
+	<target name="r">	<!-- Starts Omea after compilation. -->
+		<property name="omea.start" value="true" />
+	</target>
+	<target name="n">	<!-- Starts Omea without the text index -->
+		<property name="omea.notext" value="true" />
+	</target>
+	<target name="d">	<!-- Clears the output folder -->
+		<delete dir="${build.dir.release}" failonerror="false" />
+		<delete dir="${build.dir.debug}" failonerror="false" />
+	</target>
+</project>

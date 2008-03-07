@@ -1,0 +1,173 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+  <copyright company="JetBrains">
+  Copyright © 2003-2008 JetBrains s.r.o.
+  You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
+  </copyright>
+-->
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<PropertyGroup>
+		<ProjectType>Local</ProjectType>
+		<ProductVersion>8.0.50727</ProductVersion>
+		<SchemaVersion>2.0</SchemaVersion>
+		<ProjectGuid>{8217E2D8-0020-4BE1-9318-61C7AE5239DE}</ProjectGuid>
+		<SccProjectName></SccProjectName>
+		<SccLocalPath></SccLocalPath>
+		<SccProvider></SccProvider>
+		<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+		<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+		<ApplicationIcon></ApplicationIcon>
+		<AssemblyKeyContainerName></AssemblyKeyContainerName>
+		<AssemblyName>SccPlugin</AssemblyName>
+		<AssemblyOriginatorKeyFile></AssemblyOriginatorKeyFile>
+		<DefaultClientScript>JScript</DefaultClientScript>
+		<DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+		<DefaultTargetSchema>IE50</DefaultTargetSchema>
+		<DelaySign>false</DelaySign>
+		<OutputType>Library</OutputType>
+		<RootNamespace>SccPlugin</RootNamespace>
+		<RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+		<StartupObject></StartupObject>
+		<FileUpgradeFlags></FileUpgradeFlags>
+		<UpgradeBackupLocation></UpgradeBackupLocation>
+		<SccAuxPath></SccAuxPath>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+		<OutputPath>bin\Debug\</OutputPath>
+		<AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+		<BaseAddress>285212672</BaseAddress>
+		<CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+		<ConfigurationOverrideFile></ConfigurationOverrideFile>
+		<DefineConstants>DEBUG;TRACE</DefineConstants>
+		<DocumentationFile></DocumentationFile>
+		<DebugSymbols>true</DebugSymbols>
+		<FileAlignment>4096</FileAlignment>
+		<NoStdLib>false</NoStdLib>
+		<NoWarn></NoWarn>
+		<Optimize>false</Optimize>
+		<RegisterForComInterop>false</RegisterForComInterop>
+		<RemoveIntegerChecks>false</RemoveIntegerChecks>
+		<TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+		<WarningLevel>4</WarningLevel>
+		<DebugType>full</DebugType>
+		<ErrorReport>prompt</ErrorReport>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+		<OutputPath>bin\Release\</OutputPath>
+		<AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+		<BaseAddress>285212672</BaseAddress>
+		<CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+		<ConfigurationOverrideFile></ConfigurationOverrideFile>
+		<DefineConstants>TRACE</DefineConstants>
+		<DocumentationFile></DocumentationFile>
+		<DebugSymbols>false</DebugSymbols>
+		<FileAlignment>4096</FileAlignment>
+		<NoStdLib>false</NoStdLib>
+		<NoWarn></NoWarn>
+		<Optimize>true</Optimize>
+		<RegisterForComInterop>false</RegisterForComInterop>
+		<RemoveIntegerChecks>false</RemoveIntegerChecks>
+		<TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+		<WarningLevel>4</WarningLevel>
+		<DebugType>none</DebugType>
+		<ErrorReport>prompt</ErrorReport>
+	</PropertyGroup>
+	<ItemGroup>
+		<Reference Include="OpenAPI">
+			<Name>OpenAPI</Name>
+			<HintPath>..\..\..\bin\Debug\OpenAPI.dll</HintPath>
+		</Reference>
+		<Reference Include="System">
+			<Name>System</Name>
+		</Reference>
+		<Reference Include="System.Data">
+			<Name>System.Data</Name>
+		</Reference>
+		<Reference Include="System.Drawing">
+			<Name>System.Drawing</Name>
+		</Reference>
+		<Reference Include="System.Web">
+			<Name>System.Web</Name>
+		</Reference>
+		<Reference Include="System.Windows.Forms">
+			<Name>System.Windows.Forms</Name>
+		</Reference>
+		<Reference Include="System.Xml">
+			<Name>System.XML</Name>
+		</Reference>
+	</ItemGroup>
+	<ItemGroup>
+		<Compile Include="AssemblyInfo.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="ChangeSetDisplayPane.cs">
+			<SubType>UserControl</SubType>
+		</Compile>
+		<Compile Include="P4RepositoryOptions.cs">
+			<SubType>Form</SubType>
+		</Compile>
+		<Compile Include="P4RepositoryType.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="P4Runner.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Props.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="RegexOptions.cs">
+			<SubType>Form</SubType>
+		</Compile>
+		<Compile Include="RepositoryType.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="SccActions.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="SccDeveloperPane.cs">
+			<SubType>UserControl</SubType>
+		</Compile>
+		<Compile Include="SccOptionsPane.cs">
+			<SubType>UserControl</SubType>
+		</Compile>
+		<Compile Include="SccPlugin.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="SvnRepositoryOptions.cs">
+			<SubType>Form</SubType>
+		</Compile>
+		<Compile Include="SvnRepositoryType.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="SvnRunner.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<EmbeddedResource Include="changeset.ico" />
+		<EmbeddedResource Include="ChangeSetDisplayPane.resx">
+			<DependentUpon>ChangeSetDisplayPane.cs</DependentUpon>
+		</EmbeddedResource>
+		<EmbeddedResource Include="ClosedFolder.ico" />
+		<EmbeddedResource Include="OpenFolder.ico" />
+		<EmbeddedResource Include="P4RepositoryOptions.resx">
+			<DependentUpon>P4RepositoryOptions.cs</DependentUpon>
+		</EmbeddedResource>
+		<EmbeddedResource Include="RegexOptions.resx">
+			<DependentUpon>RegexOptions.cs</DependentUpon>
+		</EmbeddedResource>
+		<EmbeddedResource Include="repository.ico" />
+		<EmbeddedResource Include="SccDeveloperPane.resx">
+			<DependentUpon>SccDeveloperPane.cs</DependentUpon>
+		</EmbeddedResource>
+		<EmbeddedResource Include="SccOptionsPane.resx">
+			<DependentUpon>SccOptionsPane.cs</DependentUpon>
+		</EmbeddedResource>
+		<EmbeddedResource Include="SvnRepositoryOptions.resx">
+			<DependentUpon>SvnRepositoryOptions.cs</DependentUpon>
+		</EmbeddedResource>
+	</ItemGroup>
+	<Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+	<PropertyGroup>
+		<PreBuildEvent></PreBuildEvent>
+		<PostBuildEvent></PostBuildEvent>
+	</PropertyGroup>
+</Project>

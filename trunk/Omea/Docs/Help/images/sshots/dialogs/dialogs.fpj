@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<rhpml majorversion="1" minorversion="0">
+	<folders>
+		<folder>
+			<name>pro</name>
+		</folder>
+		<folder>
+			<name>reader</name>
+		</folder>
+		<folder>
+			<name>shared</name>
+		</folder>
+	</folders>
+	<topics/>
+</rhpml>

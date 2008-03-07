@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin" type="text/css"?>
+<?xml-stylesheet href="chrome://omeaconnector/skin/omeaconnector.css" type="text/css"?>
+
+<?xul-overlay href="overlay-common.xul" ?>
+
+<!DOCTYPE overlay SYSTEM "chrome://omeaconnector/locale/omeaconnector.dtd">
+
+<overlay id="omeaconnector-ms" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+  <commandset id="commands">
+    <!-- Get these commands from common overlay -->
+    <commandset id="omeaconnector-commandset" />
+  </commandset>
+
+  <broadcasterset id="navBroadcasters">
+    <broadcaster checked="true"
+                 id="jetbrains-view-toolbar-command"
+                 oncommand="goToggleToolbar( 'jetbrains-toolbar', 'jetbrains-view-toolbar-command' )"/>
+  </broadcasterset>
+
+  <menupopup id="view_toolbars_popup">
+    <menuitem label="&jetbrains.toolbar.name;"
+              accesskey="&jetbrains.toolbar.key;"
+              class="menuitem-iconic"
+              type="checkbox"
+              position="3"
+              observes="jetbrains-view-toolbar-command"/>
+  </menupopup>
+
+  <toolbox id="navigator-toolbox">
+    <toolbar class="chromeclass-toolbar"
+             id="jetbrains-toolbar"
+             inherits="collapsed,hidden"
+             tbalign="stretch"
+             persist="collapsed,hidden"
+             grippytooltiptext="&jetbrains.toolbar.name;"
+             toolbarname="&jetbrains.toolbar.name;">
+      <!-- Get these buttons from common overlay -->
+      <toolbarbutton id="omeaconnector-subscribeRSS-toolbar"/>
+      <toolbarbutton id="omeaconnector-annotateURL-toolbar"/>
+      <toolbarbutton id="omeaconnector-createClipping-toolbar"/>
+    </toolbar>
+  </toolbox>
+
+  <!-- Include special script for toolbar text control -->  
+  <script type="application/x-javascript"><![CDATA[
+    var toolbarObserver = {
+      _domain: "browser.chrome.toolbar_style",
+      _styles: ["pictures", "text", null],
+      _prefs: Components.classes["@mozilla.org/preferences-service;1"].getService(Components.interfaces.nsIPrefService).getBranch(null).QueryInterface(Components.interfaces.nsIPrefBranchInternal),
+
+      init: function()
+      {
+        this._prefs.addObserver( this._domain, this, false );
+        if( this._prefs.getIntPref( this._domain ) != 2 )
+          this.observe( this._prefs, "nsPref:changed", this._domain );
+      },
+
+      observe: function( subject, topic, name )
+      {
+        if( topic == "nsPref:changed" && name == this._domain ) {
+          var style = this._styles[ this._prefs.getIntPref( name ) ];
+          var toolbar = document.getElementById( 'jetbrains-toolbar' );
+          toolbar.setAttribute( "buttonstyle", style );
+
+          var elements = toolbar.getElementsByTagName( "toolbarbutton" );
+          for (var i = 0; i < elements.length; i++)
+          {
+            elements[i].setAttribute( "buttonstyle", style );
+          }
+        }
+      },
+    }
+    toolbarObserver.init();
+  ]]></script>
+
+  <!-- Main menu -->
+  <menupopup id="taskPopup">
+    <menu id="omeaconnector-mainmenu"
+          label="&omeaconnector.mainmenu.label;"
+          accesskey="&omeaconnector.mainmenu.key;"
+          insertbefore="sep_switchprofile">
+      <menupopup id="omeaconnector-mainmenu-popup"/>
+    </menu>
+  </menupopup>
+</overlay>

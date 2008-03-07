@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+  <copyright company="JetBrains">
+  Copyright © 2003-2008 JetBrains s.r.o.
+  You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
+  </copyright>
+-->
+<VisualStudioProject>
+	<CSHARP ProjectType="Local" ProductVersion="7.10.3077" SchemaVersion="2.0" ProjectGuid="{505C70AE-5E38-4FA1-A707-70D4570687F7}" SccProjectName="Perforce Project" SccLocalPath="." SccProvider="MSSCCI:Perforce SCM">
+		<Build>
+			<Settings ApplicationIcon="" AssemblyKeyContainerName="" AssemblyName="CategoryHotkeys" AssemblyOriginatorKeyFile="" DefaultClientScript="JScript" DefaultHTMLPageLayout="Grid" DefaultTargetSchema="IE50" DelaySign="false" OutputType="Library" PreBuildEvent="" PostBuildEvent="" RootNamespace="CategoryHotkeys" RunPostBuildEvent="OnBuildSuccess" StartupObject="">
+				<Config Name="Debug" AllowUnsafeBlocks="false" BaseAddress="285212672" CheckForOverflowUnderflow="false" ConfigurationOverrideFile="" DefineConstants="DEBUG;TRACE" DocumentationFile="" DebugSymbols="true" FileAlignment="4096" IncrementalBuild="false" NoStdLib="false" NoWarn="" Optimize="false" OutputPath="bin\Debug\" RegisterForComInterop="false" RemoveIntegerChecks="false" TreatWarningsAsErrors="false" WarningLevel="4" />
+				<Config Name="Release" AllowUnsafeBlocks="false" BaseAddress="285212672" CheckForOverflowUnderflow="false" ConfigurationOverrideFile="" DefineConstants="TRACE" DocumentationFile="" DebugSymbols="false" FileAlignment="4096" IncrementalBuild="false" NoStdLib="false" NoWarn="" Optimize="true" OutputPath="bin\Release\" RegisterForComInterop="false" RemoveIntegerChecks="false" TreatWarningsAsErrors="false" WarningLevel="4" />
+			</Settings>
+			<References>
+				<Reference Name="System" AssemblyName="System" HintPath="..\..\..\..\..\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.dll" />
+				<Reference Name="System.Data" AssemblyName="System.Data" HintPath="..\..\..\..\..\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Data.dll" />
+				<Reference Name="System.XML" AssemblyName="System.Xml" HintPath="..\..\..\..\..\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.XML.dll" />
+				<Reference Name="OpenAPI" AssemblyName="OpenAPI" HintPath="..\..\OpenAPI\bin\Debug\OpenAPI.dll" />
+				<Reference Name="System.Windows.Forms" AssemblyName="System.Windows.Forms" HintPath="..\..\..\..\..\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Windows.Forms.dll" />
+				<Reference Name="System.Drawing" AssemblyName="System.Drawing" HintPath="..\..\..\..\..\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Drawing.dll" />
+			</References>
+		</Build>
+		<Files>
+			<Include>
+				<File RelPath="AssemblyInfo.cs" SubType="Code" BuildAction="Compile" />
+				<File RelPath="AssignHotkeysDlg.cs" SubType="Form" BuildAction="Compile" />
+				<File RelPath="AssignHotkeysDlg.resx" DependentUpon="AssignHotkeysDlg.cs" BuildAction="EmbeddedResource" />
+				<File RelPath="CategoryHotkeysPlugin.cs" SubType="Code" BuildAction="Compile" />
+				<File RelPath="HotkeyControl.cs" SubType="Component" BuildAction="Compile" />
+			</Include>
+		</Files>
+	</CSHARP>
+</VisualStudioProject>

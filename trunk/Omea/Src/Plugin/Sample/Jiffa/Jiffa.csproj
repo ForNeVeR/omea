@@ -1,0 +1,316 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+  <copyright company="JetBrains">
+  Copyright © 2003-2008 JetBrains s.r.o.
+  You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
+  </copyright>
+-->
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+	<PropertyGroup>
+		<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+		<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+		<ProductVersion>9.0.21022</ProductVersion>
+		<SchemaVersion>2.0</SchemaVersion>
+		<ProjectGuid>{454F6B30-E759-454B-95BD-0D14F3378CA6}</ProjectGuid>
+		<OutputType>Library</OutputType>
+		<AppDesignerFolder>Properties</AppDesignerFolder>
+		<RootNamespace>JetBrains.Omea.Jiffa</RootNamespace>
+		<AssemblyName>Jiffa</AssemblyName>
+		<FileUpgradeFlags></FileUpgradeFlags>
+		<UpgradeBackupLocation></UpgradeBackupLocation>
+		<OldToolsVersion>2.0</OldToolsVersion>
+		<PublishUrl>publish\</PublishUrl>
+		<Install>true</Install>
+		<InstallFrom>Disk</InstallFrom>
+		<UpdateEnabled>false</UpdateEnabled>
+		<UpdateMode>Foreground</UpdateMode>
+		<UpdateInterval>7</UpdateInterval>
+		<UpdateIntervalUnits>Days</UpdateIntervalUnits>
+		<UpdatePeriodically>false</UpdatePeriodically>
+		<UpdateRequired>false</UpdateRequired>
+		<MapFileExtensions>true</MapFileExtensions>
+		<ApplicationRevision>0</ApplicationRevision>
+		<ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+		<IsWebBootstrapper>false</IsWebBootstrapper>
+		<UseApplicationTrust>false</UseApplicationTrust>
+		<BootstrapperEnabled>true</BootstrapperEnabled>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+		<DebugSymbols>true</DebugSymbols>
+		<DebugType>full</DebugType>
+		<Optimize>false</Optimize>
+		<OutputPath>bin\Debug\</OutputPath>
+		<DefineConstants>DEBUG;TRACE</DefineConstants>
+		<ErrorReport>prompt</ErrorReport>
+		<WarningLevel>4</WarningLevel>
+		<GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+		<DebugType>pdbonly</DebugType>
+		<Optimize>true</Optimize>
+		<OutputPath>bin\Release\</OutputPath>
+		<DefineConstants>TRACE</DefineConstants>
+		<ErrorReport>prompt</ErrorReport>
+		<WarningLevel>4</WarningLevel>
+	</PropertyGroup>
+	<ItemGroup>
+		<Reference Include="CookComputing.XmlRpc, Version=0.9.0.0, Culture=neutral, PublicKeyToken=a7d6e17aa302004d">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>..\..\..\..\Bin\CookComputing.XmlRpc.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="GUIControls, Version=1.0.2418.3554, Culture=neutral">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>..\..\..\..\Bin\GUIControls.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="JetBrainsShared, Version=1.0.2418.38984, Culture=neutral">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>..\..\..\..\Bin\JetBrainsShared.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="Microsoft.JScript" />
+		<Reference Include="MshtmlBrowserControl, Version=2.0.1046.1, Culture=neutral">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>..\..\..\..\Bin\MshtmlBrowserControl.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="Nntp, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>..\..\..\..\Bin\Nntp.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="OmniaMeaBase, Version=1.0.2494.36850, Culture=neutral">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>..\..\..\..\Bin\OmniaMeaBase.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="OpenAPI, Version=1.0.2418.38983, Culture=neutral">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>..\..\..\..\Bin\OpenAPI.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="System" />
+		<Reference Include="System.Data" />
+		<Reference Include="System.Drawing" />
+		<Reference Include="System.EnterpriseServices" />
+		<Reference Include="System.Web.Services" />
+		<Reference Include="System.Windows.Forms" />
+		<Reference Include="System.Xml" />
+	</ItemGroup>
+	<ItemGroup>
+		<Compile Include="Constants.cs" />
+		<Compile Include="IssueView.cs">
+			<SubType>Form</SubType>
+		</Compile>
+		<Compile Include="IssueView.designer.cs">
+			<DependentUpon>IssueView.cs</DependentUpon>
+		</Compile>
+		<Compile Include="Jiffa.cs" />
+		<Compile Include="JiraComponent.cs" />
+		<Compile Include="JiraCustomField.cs" />
+		<Compile Include="JiraIssueType.cs" />
+		<Compile Include="JiraPriority.cs" />
+		<Compile Include="JiraProject.cs" />
+		<Compile Include="JiraServer.cs" />
+		<Compile Include="JiraStatus.cs" />
+		<Compile Include="JiraUser.cs" />
+		<Compile Include="Properties\AssemblyInfo.cs" />
+		<Compile Include="Properties\Resources.Designer.cs">
+			<AutoGen>True</AutoGen>
+			<DesignTime>True</DesignTime>
+			<DependentUpon>Resources.resx</DependentUpon>
+		</Compile>
+		<Compile Include="Properties\Settings.Designer.cs">
+			<AutoGen>True</AutoGen>
+			<DesignTimeSharedInput>True</DesignTimeSharedInput>
+			<DependentUpon>Settings.settings</DependentUpon>
+		</Compile>
+		<Compile Include="ResourceObject.cs" />
+		<Compile Include="Res\Stringtable.Designer.cs">
+			<AutoGen>True</AutoGen>
+			<DesignTime>True</DesignTime>
+			<DependentUpon>Stringtable.resx</DependentUpon>
+		</Compile>
+		<Compile Include="ServerPropertiesSheet.cs">
+			<SubType>Form</SubType>
+		</Compile>
+		<Compile Include="ServerPropertiesSheet.Designer.cs">
+			<DependentUpon>ServerPropertiesSheet.cs</DependentUpon>
+		</Compile>
+		<Compile Include="Settings.cs" />
+		<Compile Include="Submission.cs" />
+		<Compile Include="ProgressDialog.cs">
+			<SubType>Form</SubType>
+		</Compile>
+		<Compile Include="ProgressDialog.Designer.cs">
+			<DependentUpon>ProgressDialog.cs</DependentUpon>
+		</Compile>
+		<Compile Include="SubmitterOptionsPane.cs">
+			<SubType>UserControl</SubType>
+		</Compile>
+		<Compile Include="SubmitterOptionsPane.Designer.cs">
+			<DependentUpon>SubmitterOptionsPane.cs</DependentUpon>
+		</Compile>
+		<Compile Include="Web References\JiraSoap\Reference.cs">
+			<AutoGen>True</AutoGen>
+			<DesignTime>True</DesignTime>
+			<DependentUpon>Reference.map</DependentUpon>
+		</Compile>
+	</ItemGroup>
+	<ItemGroup>
+		<EmbeddedResource Include="IssueView.resx">
+			<DependentUpon>IssueView.cs</DependentUpon>
+			<SubType>Designer</SubType>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Res\Stringtable.resx">
+			<SubType>Designer</SubType>
+			<Generator>ResXFileCodeGenerator</Generator>
+			<LastGenOutput>Stringtable.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<EmbeddedResource Include="ServerPropertiesSheet.resx">
+			<SubType>Designer</SubType>
+			<DependentUpon>ServerPropertiesSheet.cs</DependentUpon>
+		</EmbeddedResource>
+		<EmbeddedResource Include="SubmitterOptionsPane.resx">
+			<SubType>Designer</SubType>
+			<DependentUpon>SubmitterOptionsPane.cs</DependentUpon>
+		</EmbeddedResource>
+	</ItemGroup>
+	<ItemGroup>
+		<WebReferences Include="Web References\" />
+	</ItemGroup>
+	<ItemGroup>
+		<WebReferenceUrl Include="http://www.jetbrains.net/jira/rpc/soap/jirasoapservice-v2%3fwsdl">
+			<UrlBehavior>Dynamic</UrlBehavior>
+			<RelPath>Web References\JiraSoap\</RelPath>
+			<UpdateFromURL>http://www.jetbrains.net/jira/rpc/soap/jirasoapservice-v2%3fwsdl</UpdateFromURL>
+			<ServiceLocationURL></ServiceLocationURL>
+			<CachedDynamicPropName></CachedDynamicPropName>
+			<CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+			<CachedSettingsPropName>Jiffa_JiraSoap_JiraSoapServiceService</CachedSettingsPropName>
+		</WebReferenceUrl>
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="app.config" />
+		<None Include="Properties\Settings.settings">
+			<Generator>SettingsSingleFileGenerator</Generator>
+			<LastGenOutput>Settings.Designer.cs</LastGenOutput>
+		</None>
+		<None Include="Web References\JiraSoap\jirasoapservice-v2.wsdl" />
+		<None Include="Web References\JiraSoap\Reference.map">
+			<Generator>MSDiscoCodeGenerator</Generator>
+			<LastGenOutput>Reference.cs</LastGenOutput>
+		</None>
+		<None Include="Web References\JiraSoap\RemoteComment.datasource">
+			<DependentUpon>Reference.map</DependentUpon>
+		</None>
+		<None Include="Web References\JiraSoap\RemoteComponent.datasource">
+			<DependentUpon>Reference.map</DependentUpon>
+		</None>
+		<None Include="Web References\JiraSoap\RemoteConfiguration.datasource">
+			<DependentUpon>Reference.map</DependentUpon>
+		</None>
+		<None Include="Web References\JiraSoap\RemoteField.datasource">
+			<DependentUpon>Reference.map</DependentUpon>
+		</None>
+		<None Include="Web References\JiraSoap\RemoteFilter.datasource">
+			<DependentUpon>Reference.map</DependentUpon>
+		</None>
+		<None Include="Web References\JiraSoap\RemoteGroup.datasource">
+			<DependentUpon>Reference.map</DependentUpon>
+		</None>
+		<None Include="Web References\JiraSoap\RemoteIssue.datasource">
+			<DependentUpon>Reference.map</DependentUpon>
+		</None>
+		<None Include="Web References\JiraSoap\RemoteIssueType.datasource">
+			<DependentUpon>Reference.map</DependentUpon>
+		</None>
+		<None Include="Web References\JiraSoap\RemoteNamedObject.datasource">
+			<DependentUpon>Reference.map</DependentUpon>
+		</None>
+		<None Include="Web References\JiraSoap\RemotePermission.datasource">
+			<DependentUpon>Reference.map</DependentUpon>
+		</None>
+		<None Include="Web References\JiraSoap\RemotePermissionScheme.datasource">
+			<DependentUpon>Reference.map</DependentUpon>
+		</None>
+		<None Include="Web References\JiraSoap\RemotePriority.datasource">
+			<DependentUpon>Reference.map</DependentUpon>
+		</None>
+		<None Include="Web References\JiraSoap\RemoteProject.datasource">
+			<DependentUpon>Reference.map</DependentUpon>
+		</None>
+		<None Include="Web References\JiraSoap\RemoteResolution.datasource">
+			<DependentUpon>Reference.map</DependentUpon>
+		</None>
+		<None Include="Web References\JiraSoap\RemoteScheme.datasource">
+			<DependentUpon>Reference.map</DependentUpon>
+		</None>
+		<None Include="Web References\JiraSoap\RemoteServerInfo.datasource">
+			<DependentUpon>Reference.map</DependentUpon>
+		</None>
+		<None Include="Web References\JiraSoap\RemoteStatus.datasource">
+			<DependentUpon>Reference.map</DependentUpon>
+		</None>
+		<None Include="Web References\JiraSoap\RemoteUser.datasource">
+			<DependentUpon>Reference.map</DependentUpon>
+		</None>
+		<None Include="Web References\JiraSoap\RemoteVersion.datasource">
+			<DependentUpon>Reference.map</DependentUpon>
+		</None>
+	</ItemGroup>
+	<ItemGroup>
+		<EmbeddedResource Include="Properties\Resources.resx">
+			<SubType>Designer</SubType>
+			<Generator>ResXFileCodeGenerator</Generator>
+			<LastGenOutput>Resources.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Res\JiraComponent.ico" />
+		<EmbeddedResource Include="Res\JiraProject.ico" />
+		<EmbeddedResource Include="Res\JiraServer.ico" />
+		<EmbeddedResource Include="ProgressDialog.resx">
+			<SubType>Designer</SubType>
+			<DependentUpon>ProgressDialog.cs</DependentUpon>
+		</EmbeddedResource>
+	</ItemGroup>
+	<ItemGroup>
+		<EmbeddedResource Include="Res\JiraIssue.ico" />
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="OpenApiEx\OpenApiEx.csproj">
+			<Project>{46273DE6-E4C5-4933-A82F-409F50AF944E}</Project>
+			<Name>OpenApiEx</Name>
+		</ProjectReference>
+	</ItemGroup>
+	<ItemGroup>
+		<BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+			<Visible>False</Visible>
+			<ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+			<Install>true</Install>
+		</BootstrapperPackage>
+		<BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+			<Visible>False</Visible>
+			<ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+			<Install>false</Install>
+		</BootstrapperPackage>
+		<BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+			<Visible>False</Visible>
+			<ProductName>.NET Framework 3.5</ProductName>
+			<Install>false</Install>
+		</BootstrapperPackage>
+	</ItemGroup>
+	<Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+	<!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>-->
+	<ItemGroup>
+		<!--<OutputFiles Include="$(TargetDir)\$(TargetName).dll"/>
+		<OutputFiles Include="$(TargetDir)\$(TargetName).pdb"/>-->
+	</ItemGroup>
+	<Target Name="AfterBuild">
+		<Copy SourceFiles="$(TargetDir)\$(TargetName).dll" DestinationFolder="C:\program Files\Omea" />
+		<Copy SourceFiles="$(TargetDir)\$(TargetName).pdb" DestinationFolder="C:\program Files\Omea" />
+	</Target>
+</Project>

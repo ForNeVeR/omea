@@ -1,0 +1,224 @@
+Pre-Release Software Evaluation Agreement
+
+JETBRAINS S.R.O.  ("JETBRAINS") IS WILLING TO LICENSE THE
+OMEA PRE-RELEASE SOFTWARE TO
+LICENSEE ONLY UPON THE CONDITION THAT LICENSEE ACCEPTS ALL
+OF THE TERMS CONTAINED IN THIS LICENSE AGREEMENT
+("AGREEMENT").  PLEASE READ THE TERMS AND CONDITIONS OF THIS
+AGREEMENT CAREFULLY.  BY DOWNLOADING OR INSTALLING THIS
+SOFTWARE, LICENSEE ACCEPTS THE TERMS AND CONDITIONS OF THIS
+LICENSE AGREEMENT.  INDICATE ACCEPTANCE BY SELECTING THE
+"ACCEPT" BUTTON AT THE BOTTOM OF THIS AGREEMENT.  IF
+LICENSEE IS NOT WILLING TO BE BOUND BY ALL THE TERMS, SELECT
+THE "DECLINE" BUTTON AT THE BOTTOM OF THE AGREEMENT AND THE
+DOWNLOAD OR INSTALL PROCESS WILL NOT CONTINUE.
+
+
+1.0 DEFINITIONS «Software» means the Omea pre-release software in binary and/or
+source code forms, any other machine readable materials
+(including, but not limited to, libraries, source files,
+header files, and data files) and any user manuals,
+programming guides and other documentation provided to
+Licensee by JetBrains under this Agreement.
+
+
+2.0 LIMITED LICENSE
+
+2.1 Source Code.  JetBrains grants to Licensee, a non-exclusive,
+non-transferable, royalty-free and limited license to view
+the source code portions of the Software internally
+for the purposes of evaluation only.
+
+2.2 Binary Code.  JetBrains grants to Licensee, a non-exclusive,
+non-transferable, royalty-free and limited license to use
+the binary code portions of the Software internally
+for the purposes of evaluation only.
+
+2.3 No licenses are granted to Licensee for any other
+purposes, Licensee may not sell, rent, loan or otherwise
+encumber or transfer Software in whole or in part,
+to any third party.
+
+
+3.0 LICENSE RESTRICTIONS
+
+3.1 Licensee may not duplicate Software other than
+for a single copy of Software for archival purposes
+only.  Licensee agrees to reproduce any copyright and other
+proprietary right notices on any such copy.
+
+3.2 Except as otherwise provided by law, Licensee may not
+modify or create derivative works of the Software,
+or reverse engineer, disassemble or decompile binary
+portions of the Software, or otherwise attempt to
+derive the source code from such portions.
+
+3.3 No right, title, or interest in or to Software,
+any trademarks, service marks, or trade names of JetBrains or
+JetBrains' licensors is granted under this Agreement.
+
+3.4 Licensee shall have no right to use the Licensed
+Software for productive or commercial use.
+
+
+4.0 NO SUPPORT JetBrains is under no obligation to support
+Software or to provide Licensee with updates or
+error corrections (collectively "Software Updates").  If
+JetBrains, at its sole option, supplies Software Updates to
+Licensee, the Software Updates will be considered part of
+Software, and subject to the terms of this
+Agreement.
+
+
+5.0 LICENSEE DUTIES Licensee agrees to evaluate and test the
+Software for use in Licensee's software environment and
+provide feedback to JetBrains in a manner reasonably requested by
+JetBrains.  Any and all test results, error data, reports or other
+information, feedback or materials made or provided by
+Licensee relating to Software (collectively, "Feedback") are
+the exclusive property of JetBrains and Licensee hereby assigns
+all Feedback to JetBrains at no cost to JetBrains.  JetBrains may use such
+Feedback in any manner and for any purpose, without
+limitation, liability or obligation to Licensee.
+
+
+6.0 TERM AND TERMINATION OF AGREEMENT
+
+6.1 This Agreement will commence on the date on which
+Licensee receives Software (the "Effective Date")
+and will expire sixty (60) days from the Effective Date,
+unless terminated earlier as provided herein.
+
+6.2 Either party may terminate this Agreement upon ten (10)
+days' written notice to the other party.  However, JetBrains may
+terminate this Agreement immediately should any Licensed
+Software become, or in JetBrains' opinion be likely to become,
+the subject of a claim of infringement of a patent, trade
+secret or copyright.
+
+6.3 JetBrains may terminate this Agreement immediately should
+Licensee materially breach any of its provisions or take any
+action in derogation of JetBrains' rights to the Confidential
+Information licensed to Licensee.
+
+6.4 Upon termination or expiration of this Agreement,
+Licensee will immediately cease use of and destroy Licensed
+Software, any copies thereof and provide to JetBrains a written
+statement certifying that Licensee has complied with the
+foregoing obligations.
+
+6.5 Rights and obligations under this Agreement which by
+their nature should survive, will remain in effect after
+termination or expiration hereof.
+
+
+7.0 CONFIDENTIAL INFORMATION
+
+7.1 For purposes of this Agreement, "Confidential
+Information" means:  (i) business and technical information
+and any source code or binary code, which JetBrains discloses to
+Licensee related to Software; (ii) Licensee's
+feedback based on Software; and (iii) the terms,
+conditions, and existence of this Agreement.  Licensee may
+not disclose or use Confidential Information, except for the
+purposes specified in this Agreement.  Licensee will protect
+the Confidential Information with the same degree of care,
+but not less than a reasonable degree of care, as Licensee
+uses to protect its own Confidential Information.
+Licensee's obligations regarding Confidential Information
+will expire no less than five (5) years from the date of
+receipt of the Confidential Information, except for JetBrains
+source code which will be protected in perpetuity.  Licensee
+agrees that Software contains JetBrains trade secrets.
+
+7.2 Notwithstanding any provisions contained in this
+Agreement concerning nondisclosure and non-use of the
+Confidential Information, the nondisclosure obligations of
+Section 7.1 will not apply to any portion of Confidential
+Information that Licensee can demonstrate in writing is:
+(i) now, or hereafter through no act or failure to act on
+the part of Licensee becomes, generally known to the general
+public; (ii) known to Licensee at the time of receiving the
+Confidential Information without an obligation of
+confidentiality; (iii) hereafter rightfully furnished to
+Licensee by a third party without restriction on disclosure;
+or (iv) independently developed by Licensee without any use
+of the Confidential Information.
+
+7.3 Licensee must restrict access to Confidential
+Information to its employees or contractors with a need for
+this access to perform their employment or contractual
+obligations and who have agreed in writing to be bound by a
+confidentiality obligation, which incorporates the
+protections and restrictions substantially as set forth in
+this Agreement.
+
+
+8.0 DISCLAIMER OF WARRANTY
+
+8.1 Licensee acknowledges that Software may contain
+errors and is not designed, licensed, or intended for use in
+the design, construction, operation or maintenance of any
+nuclear facility ("High Risk Activities").  JetBrains disclaims
+any express or implied warranty of fitness for such uses.
+Licensee represents and warrants to JetBrains that it will not
+use, distribute or license the Software for High
+Risk Activities.
+
+8.2 SOFTWARE IS PROVIDED "AS IS".  ALL EXPRESS OR
+IMPLIED CONDITIONS, REPRESENTATIONS, AND WARRANTIES,
+INCLUDING ANY IMPLIED WARRANTY OF MERCHANTABILITY,
+SATISFACTORY QUALITY, FITNESS FOR A PARTICULAR PURPOSE, OR
+NON-INFRINGEMENT, ARE DISCLAIMED, EXCEPT TO THE EXTENT THAT
+SUCH DISCLAIMERS ARE HELD TO BE LEGALLY INVALID.
+
+
+9.0 LIMITATION OF LIABILITY
+
+9.1 Licensee acknowledges that the Software may be
+experimental and that the Software may have defects
+or deficiencies, which cannot or will not be corrected by
+JetBrains.  Licensee will hold JetBrains harmless from any claims based
+on Licensee's use of the Software for any purposes
+other than those of internal evaluation, and from any claims
+that later versions or releases of any Software
+furnished to Licensee are incompatible with the Licensed
+Software provided to Licensee under this Agreement.
+
+9.2 To the extent not prohibited by law, in no event will
+JetBrains be liable for any indirect, punitive, special,
+incidental or consequential damage in connection with or
+arising out of this Agreement (including loss of business,
+revenue, profits, use, data or other economic advantage),
+however it arises, whether for breach or in tort, even if
+JetBrains has been previously advised of the possibility of such
+damage.
+
+
+10.0 U.S.  GOVERNMENT RESTRICTED RIGHTS If this Software is
+being acquired by or on behalf of the U.S.  Government or by
+a U.S.  Government prime contractor or subcontractor (at any
+tier), then the Government's rights in the Software and
+accompanying documentation shall be only as set forth in
+this license; this is in accordance with 48 C.F.R.
+227.7202-4 (for Department of Defense (DOD) acquisitions)
+and with 48 C.F.R.  2.101 and 12.212 (for non-DOD
+acquisitions).
+
+
+11.0 GENERAL TERMS
+
+JetBrains reserves the right at any time to cease the support of the Software and to alter prices, features, specifications, capabilities, functions, licensing terms, release dates, general availability or other characteristics of the Software.
+ 
+You agree to abide by the third-party agreements attached hereto. This Agreement, including the third-party agreements, constitutes the entire agreement between the parties concerning Your use of the Software, and supersedes any and all prior or contemporaneous oral or written representations, communications, or advertising with respect to the Software. No purchase order, other ordering document or any hand written or typewritten text which purports to modify or supplement the printed text of this Agreement or any schedule will add to or vary the terms of this Agreement unless signed by both You and JetBrains.
+ 
+A waiver by either party of any term or condition of this Agreement or any breach thereof, in any one instance, shall not waive such term or condition or any subsequent breach. The provisions of this Agreement which require or contemplate performance after the expiration or termination of this Agreement shall be enforceable notwithstanding said expiration or termination.
+ 
+This Agreement will be governed by the laws of Czech Republic, without reference to conflict of laws principles. You agree that any litigation relating to this Agreement may only be brought in, and shall be subject to the jurisdiction of, any Court of Czech Republic.
+ 
+Titles are inserted for convenience only and shall not affect in any way the meaning or interpretation of this Agreement. If any provision of this Agreement is held invalid, the remainder of this Agreement will continue in full force and effect. Either JetBrains or You may assign this Agreement in the case of a merger or sale of substantially all of its respective assets to another entity. This Agreement shall be binding upon and shall inure to the benefit of the parties, their successors and assigns.
+ 
+If You have any questions, please contact JetBrains, Klanova 9/506, Prague, 14700, Czech Republic (fax: +420-261711724). 
+
+You can also use the following e-mail address: om@jetbrains.com
+

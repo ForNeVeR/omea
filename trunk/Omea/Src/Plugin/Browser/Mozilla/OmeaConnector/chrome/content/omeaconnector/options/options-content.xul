@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin" type="text/css"?>
+<?xml-stylesheet href="chrome://omeaconnector/skin/omeaconnector.css" type="text/css"?>
+<!DOCTYPE overlay SYSTEM "chrome://omeaconnector/locale/omeaconnector.dtd">
+
+<overlay id="omeaconnector-common" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+  <vbox id="omeaconnector-options-box">
+    <groupbox>
+      <caption><label value="&omeaconnector.options.pendinggroup.title;" /></caption>
+      <vbox>
+        <label value="&omeaconnector.options.pendinggroup.text;" />
+        <radiogroup id="omeaconnector-options-pending-radiogroup">
+          <vbox>
+            <radio id="omeaconnector-options-pending-radio-store"
+                   label="&omeaconnector.options.pending.radio.store;"
+                   value="store"
+                   oncommand="omeaconnector_options_methodChanged( this.value )" />
+              <vbox style="padding-left: 2em;">
+                <checkbox id="omeaconnector-options-timerset"
+                          label="&omeaconnector.options.timerset.label;" />
+                <checkbox id="omeaconnector-options-askonexit"
+                          label="&omeaconnector.options.askonexit.label;" />
+              </vbox>
+            <radio id="omeaconnector-options-pending-radio-run"
+                   label="&omeaconnector.options.pending.radio.run;"
+                   value="run"
+                   oncommand="omeaconnector_options_methodChanged( this.value )" />
+          </vbox>
+        </radiogroup>
+      </vbox>
+    </groupbox>
+  </vbox>
+</overlay>

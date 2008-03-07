@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+  <copyright company="JetBrains">
+  Copyright © 2003-2008 JetBrains s.r.o.
+  You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
+  </copyright>
+-->
+<VisualStudioProject>
+	<CSHARP ProjectType="Local" ProductVersion="7.10.3077" SchemaVersion="2.0" ProjectGuid="{A7F4C3DE-527F-4C31-8A84-267C6E798A2F}" SccProjectName="Perforce Project" SccLocalPath=".." SccProvider="MSSCCI:Perforce SCM">
+		<Build>
+			<Settings ApplicationIcon="" AssemblyKeyContainerName="" AssemblyName="FtpClient" AssemblyOriginatorKeyFile="" DefaultClientScript="JScript" DefaultHTMLPageLayout="Grid" DefaultTargetSchema="IE50" DelaySign="false" OutputType="Library" PreBuildEvent="" PostBuildEvent="" RootNamespace="FtpClient" RunPostBuildEvent="OnBuildSuccess" StartupObject="">
+				<Config Name="Debug" AllowUnsafeBlocks="false" BaseAddress="285212672" CheckForOverflowUnderflow="false" ConfigurationOverrideFile="" DefineConstants="DEBUG;TRACE" DocumentationFile="" DebugSymbols="true" FileAlignment="4096" IncrementalBuild="false" NoStdLib="false" NoWarn="" Optimize="false" OutputPath="bin\Debug\" RegisterForComInterop="false" RemoveIntegerChecks="false" TreatWarningsAsErrors="false" WarningLevel="4" />
+				<Config Name="Release" AllowUnsafeBlocks="false" BaseAddress="285212672" CheckForOverflowUnderflow="false" ConfigurationOverrideFile="" DefineConstants="TRACE" DocumentationFile="" DebugSymbols="false" FileAlignment="4096" IncrementalBuild="false" NoStdLib="false" NoWarn="" Optimize="true" OutputPath="bin\Release\" RegisterForComInterop="false" RemoveIntegerChecks="false" TreatWarningsAsErrors="false" WarningLevel="4" />
+			</Settings>
+			<References>
+				<Reference Name="System" AssemblyName="System" HintPath="..\..\..\..\..\..\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.dll" />
+				<Reference Name="System.Data" AssemblyName="System.Data" HintPath="..\..\..\..\..\..\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Data.dll" />
+				<Reference Name="System.XML" AssemblyName="System.XML" HintPath="..\..\..\..\..\..\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.XML.dll" />
+			</References>
+		</Build>
+		<Files>
+			<Include>
+				<File RelPath="BaseSocket.cs" SubType="Code" BuildAction="Compile" />
+				<File RelPath="Net\Ftp\AssemblyInfo.cs" SubType="Code" BuildAction="Compile" />
+				<File RelPath="Net\Ftp\FTPActiveDataSocket.cs" SubType="Code" BuildAction="Compile" />
+				<File RelPath="Net\Ftp\FTPClient.cs" SubType="Code" BuildAction="Compile" />
+				<File RelPath="Net\Ftp\FTPControlSocket.cs" SubType="Code" BuildAction="Compile" />
+				<File RelPath="Net\Ftp\FTPDataSocket.cs" SubType="Code" BuildAction="Compile" />
+				<File RelPath="Net\Ftp\FTPException.cs" SubType="Code" BuildAction="Compile" />
+				<File RelPath="Net\Ftp\FTPFile.cs" SubType="Code" BuildAction="Compile" />
+				<File RelPath="Net\Ftp\FTPFileFactory.cs" SubType="Code" BuildAction="Compile" />
+				<File RelPath="Net\Ftp\FTPFileParser.cs" SubType="Code" BuildAction="Compile" />
+				<File RelPath="Net\Ftp\FTPPassiveDataSocket.cs" SubType="Code" BuildAction="Compile" />
+				<File RelPath="Net\Ftp\FTPReply.cs" SubType="Code" BuildAction="Compile" />
+				<File RelPath="Net\Ftp\UnixFileParser.cs" SubType="Code" BuildAction="Compile" />
+				<File RelPath="Net\Ftp\WindowsFileParser.cs" SubType="Code" BuildAction="Compile" />
+				<File RelPath="Util\Debug\Appender.cs" SubType="Code" BuildAction="Compile" />
+				<File RelPath="Util\Debug\FileAppender.cs" SubType="Code" BuildAction="Compile" />
+				<File RelPath="Util\Debug\Level.cs" SubType="Code" BuildAction="Compile" />
+				<File RelPath="Util\Debug\Logger.cs" SubType="Code" BuildAction="Compile" />
+				<File RelPath="Util\Debug\StandardOutputAppender.cs" SubType="Code" BuildAction="Compile" />
+			</Include>
+		</Files>
+	</CSHARP>
+</VisualStudioProject>

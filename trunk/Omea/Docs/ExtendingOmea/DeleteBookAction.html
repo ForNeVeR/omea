@@ -1,0 +1,77 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1251">
+<meta name=Generator content="Microsoft Word 11 (filtered)">
+<title>    public class DeleteBookAction: ActionOnResource</title>
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:"Lucida Console";
+	panose-1:2 11 6 9 4 5 4 2 2 4;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman";}
+@page Section1
+	{size:612.0pt 792.0pt;
+	margin:2.0cm 42.5pt 2.0cm 3.0cm;}
+div.Section1
+	{page:Section1;}
+-->
+</style>
+
+</head>
+
+<body lang=RU>
+
+<div class=Section1>
+
+<p class=MsoNormal style='text-autospace:none'><span lang=EN-US
+style='font-size:10.0pt;font-family:"Lucida Console"'>    public class <span
+style='color:navy'>DeleteBookAction</span>: <span style='color:navy'>ActionOnResource</span></span></p>
+
+<p class=MsoNormal style='text-autospace:none'><span lang=EN-US
+style='font-size:10.0pt;font-family:"Lucida Console"'>    {</span></p>
+
+<p class=MsoNormal style='text-autospace:none'><span lang=EN-US
+style='font-size:10.0pt;font-family:"Lucida Console"'>        public override
+void <span style='color:navy'>Execute</span>( <span style='color:navy'>IActionContext</span>
+<span style='color:navy'>context</span> )</span></p>
+
+<p class=MsoNormal style='text-autospace:none'><span lang=EN-US
+style='font-size:10.0pt;font-family:"Lucida Console"'>        {</span></p>
+
+<p class=MsoNormal style='text-autospace:none'><span lang=EN-US
+style='font-size:10.0pt;font-family:"Lucida Console"'>            foreach( <span
+style='color:navy'>IResource</span> <span style='color:navy'>res</span> in <span
+style='color:navy'>context</span>.<span style='color:navy'>SelectedResources</span>
+)</span></p>
+
+<p class=MsoNormal style='text-autospace:none'><span lang=EN-US
+style='font-size:10.0pt;font-family:"Lucida Console"'>            </span><span
+style='font-size:10.0pt;font-family:"Lucida Console"'>{</span></p>
+
+<p class=MsoNormal style='text-autospace:none'><span style='font-size:10.0pt;
+font-family:"Lucida Console"'>                new <span style='color:navy'>ResourceProxy</span>(
+<span style='color:navy'>res</span> ).<span style='color:navy'>DeleteAsync</span>();</span></p>
+
+<p class=MsoNormal style='text-autospace:none'><span style='font-size:10.0pt;
+font-family:"Lucida Console"'>            }</span></p>
+
+<p class=MsoNormal style='text-autospace:none'><span style='font-size:10.0pt;
+font-family:"Lucida Console"'>        }</span></p>
+
+<p class=MsoNormal style='text-autospace:none'><span style='font-size:10.0pt;
+font-family:"Lucida Console"'>    }</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,275 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+  <copyright company="JetBrains">
+  Copyright © 2003-2008 JetBrains s.r.o.
+  You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
+  </copyright>
+-->
+<Project DefaultTargets="Full" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<Import Project="Microsoft.Sdc.Common.tasks" />
+	<PropertyGroup>
+		<!-- name for target environment. See test.properties for list of environments-->
+		<TestEnvironment Condition="'$(TestEnvironment)'==''" />
+		<!-- Test type ie. a named collection of nuint categories. See test.properties for list of types-->
+		<TestType Condition="'$(TestType)'==''" />
+		<!-- How test has been launched from, can be one of Local, Remote or Drop -->
+		<TestEnvironmentType Condition="'$(TestEnvironmentType)'==''">Drop</TestEnvironmentType>
+		<!-- set to true if this instance is running on a remote box -->
+		<RemoteLaunch Condition="'$(RemoteLaunch)'==''">false</RemoteLaunch>
+		<!-- drive on which visual studio is installed set the environment variable of the same name if it is not c: -->
+		<VStudioDriveSpec Condition="'$(VStudioDriveSpec)'==''">c:</VStudioDriveSpec>
+		<CodeCoverageVersion Condition="'$(CodeCoverageVersion)'==''">2.0.40924</CodeCoverageVersion>
+		<StopOnTestError Condition="'$(StopOnTestError)'==''">true</StopOnTestError>
+		<CopyTestEnvironment Condition="'$(CopyTestEnvironment)'==''">true</CopyTestEnvironment>
+		<!-- When tests are run from a drop folder or they are run remotely during a build
+             then the tools folder is under the test folder. When tests are run locally
+             from a build then the tools folder is a peer to the build folder. -->
+		<ToolsPath>$(BuildPath)\Tools\</ToolsPath>
+		<ToolsPath Condition="('$(RemoteLaunch)' == 'true') OR ('$(TestEnvironmentType)'=='Drop')">$(BuildPath)\Tools\</ToolsPath>
+		<!-- For local testing its $(BuildPath)\..\Solutions -->
+		<!-- For remote its $(BuildPath) -->
+		<SolutionPath>$(BuildPath)\..\Solutions</SolutionPath>
+		<SolutionPath Condition="('$(RemoteLaunch)' == 'true') OR ('$(TestEnvironmentType)'=='Drop')">$(BuildPath)</SolutionPath>
+		<!-- set this to zero so if the tests don't need to be run it won't report an error -->
+		<TotalTestFailures>0</TotalTestFailures>
+		<ExecuteTestsDependsOn />
+		<RunTestsDependsOn />
+		<CodeCoverageConfigurationTemplateFile Condition="'$(CodeCoverageConfigurationTemplateFile)'==''">Template.CoverageConfiguration.xml</CodeCoverageConfigurationTemplateFile>
+		<CodeCoveragePath Condition="'$(CodeCoveragePath)'==''">$(ToolsPath)CoverageEye.NET\$(CodeCoverageVersion)</CodeCoveragePath>
+		<CodeCoverageTransform Condition="'$(CodeCoverageTransform)'==''">$(CodeCoveragePath)\Configuration\Transform.xsl</CodeCoverageTransform>
+		<RemoteCodeCoveragePath>C:\NevisTest\Tools\CoverageEye.NET\$(CodeCoverageVersion)</RemoteCodeCoveragePath>
+		<PathToPSExec>$(ToolsPath)PsTools\1.63</PathToPSExec>
+		<AssembliesFolder Condition="'$(AssembliesFolder)'==''">$(BuildPath)</AssembliesFolder>
+		<MsTestPath Condition="'$(VS80COMNTOOLS)'!=''">$(VS80COMNTOOLS)..\IDE\</MsTestPath>
+		<MsTestPath Condition="'$(MsTestPath)'==''">$(ToolsPath)MsTest\8.0.50727\</MsTestPath>
+	</PropertyGroup>
+	<ItemGroup>
+		<BuildFiles Include="   $(BuildPath)\Test.proj;&#xD;&#xA;                                $(BuildPath)\Test.properties;" />
+	</ItemGroup>
+	<PropertyGroup>
+		<MaxErrors Condition="'$(MaxErrors)'==''">0</MaxErrors>
+	</PropertyGroup>
+	<Target Name="Full" DependsOnTargets="&#xD;&#xA;            Startup;&#xD;&#xA;            ExecuteTests;&#xD;&#xA;            RemoteTest" />
+	<Target Name="Startup">
+		<Message Text="Starting Tests..." Importance="high" />
+		<Message Text="TestType = $(TestType)" Importance="high" />
+		<Message Text="TestEnvironment = $(TestEnvironment)" Importance="high" />
+		<Message Text="TestEnvironmentType = $(TestEnvironmentType)" Importance="high" />
+		<Message Text="BuildType = $(BuildType)" Importance="high" />
+		<Error Text="TestType must be set" Condition="'$(TestType)'==''" />
+		<Error Text="TestEnvironment must be set" Condition="'$(TestEnvironment)'==''" />
+		<Error Text="TestEnvironmentType must be set" Condition="'$(TestEnvironmentType)'==''" />
+	</Target>
+	<Target Name="LocalCodeCoverage" Condition=" '$(TestEnvironmentType)' == 'Local' or '$(RemoteLaunch)'=='true'" DependsOnTargets="StartCodeCoverage;ExecuteTests;EndCodeCoverage"></Target>
+	<Target Name="RemoteCodeCoverage" Condition=" '$(TestEnvironmentType)' == 'Remote' and '$(RemoteLaunch)'!='true' " DependsOnTargets="CopyTestEnvironment">
+		<Exec Command="$(PathToPSExec)\PsExec.exe \\$(RemoteHost) -u $(RemoteDomain)\$(RemoteUserName) -p $(RemotePassword) -e -w $(AssembliesFolder) c:\windows\Microsoft.Net\Framework\v2.0.50727\msbuild.exe /Property:VersionNumber=$(VersionNumber);TestEnvironment=$(TestEnvironment);PropertyFile=$(PropertyFile);BuildType=$(BuildType);CodeCoveragePath=$(RemoteCodeCoveragePath);RemoteLaunch=true;StopOnTestError=$(StopOnTestError) /Target:CodeCoverage $(AssembliesFolder)\Test.proj" />
+		<!-- Pull back any result files to the local machine -->
+		<Share.Disconnect ShareName="$(RemoteDrive)" />
+		<Share.Connect ShareName="$(RemoteShareName)" Machine="$(RemoteHost)" UserName="$(RemoteDomain)\$(RemoteUserName)" Password="$(RemotePassword)" LocalName="$(RemoteDrive)" ResourceType="Disk" Connections="1" />
+		<RemoveDir Condition="Exists('$(BuildPath)\Output\CodeCoverage')" Directories="$(BuildPath)\Output\CodeCoverage" />
+		<Folder.Copy Source="$(RemoteDrive)\Output\CodeCoverage" Destination="$(BuildPath)\Output\CodeCoverage" />
+		<Share.Disconnect ShareName="$(RemoteDrive)" />
+	</Target>
+	<Target Name="CodeCoverage" DependsOnTargets="Startup;LocalCodeCoverage;RemoteCodeCoverage"></Target>
+	<Target Name="StartCodeCoverage">
+		<RemoveDir Condition="Exists('$(BuildPath)\Output\CodeCoverage')" Directories="$(BuildPath)\Output\CodeCoverage" />
+		<MakeDir Condition="!Exists('$(BuildPath)\Output')" Directories="$(BuildPath)\Output" />
+		<MakeDir Condition="!Exists('$(BuildPath)\Output\CodeCoverage')" Directories="$(BuildPath)\Output\CodeCoverage" />
+		<Microsoft.Build.Tasks.Copy SourceFiles="$(CodeCoveragePath)\Configuration\$(CodeCoverageConfigurationTemplateFile)" DestinationFiles="$(CodeCoveragePath)\Configuration\CoverageConfiguration.xml" />
+		<CreateItem Include="%(AllAssemblies.Filename)%(AllAssemblies.Extension)">
+			<Output TaskParameter="Include" ItemName="CodeCoverageAssemblies" />
+		</CreateItem>
+		<CodeCoverage.AddAssembly ReportDirectory="$(BuildPath)\Output\CodeCoverage" Assemblies="@(CodeCoverageAssemblies-&gt;'%(Filename)%(Extension)')" Path="$(CodeCoveragePath)\Configuration\" />
+		<Exec Command="regsvr32 /s $(CodeCoveragePath)\codecoverage.dll" />
+		<Exec Command="$(CodeCoveragePath)\coverageeye.exe /START /RECYCLE" />
+		<!-- make sure IIS picks up code coverage environment changes (current version of CC does not recycle IIS) -->
+		<Exec ContinueOnError="true" Command="iisreset" />
+	</Target>
+	<Target Name="EndCodeCoverage">
+		<!-- End Code Coverage (Moved to RemoteEndCodeCoverage)
+    
+    -->
+		<Exec Command="$(CodeCoveragePath)\coverageeye.exe /STOP /RECYCLE /DONOTSTARTSERVICE /MERGEREPORTS" />
+		<Exec Command="regsvr32 /s /u $(CodeCoveragePath)\codecoverage.dll" />
+		<!-- build report -->
+		<Exec WorkingDirectory="$(BuildPath)\Output\CodeCoverage" Command="if exist Report.*.%(CodeCoverageAssemblies.Filename)%(CodeCoverageAssemblies.Extension).xml rename Report.*.%(CodeCoverageAssemblies.Filename)%(CodeCoverageAssemblies.Extension).xml Report.%(CodeCoverageAssemblies.Filename)%(CodeCoverageAssemblies.Extension).xml" />
+		<Microsoft.Build.Tasks.Copy Condition="!Exists('$(BuildPath)\Output\CodeCoverage\Report.%(CodeCoverageAssemblies.Filename)%(CodeCoverageAssemblies.Extension).xml')" SourceFiles="$(CodeCoverageBlankReport)" DestinationFiles="$(BuildPath)\Output\CodeCoverage\Report.%(CodeCoverageAssemblies.Filename)%(CodeCoverageAssemblies.Extension).xml" />
+		<File.RegEx Path="$(BuildPath)\Output\CodeCoverage\Report.%(CodeCoverageAssemblies.Filename)%(CodeCoverageAssemblies.Extension).xml" RegularExpression="%AssemblyName%" NewValue="%(CodeCoverageAssemblies.Filename)%(CodeCoverageAssemblies.Extension)" Force="true" Condition="Exists('$(BuildPath)\Output\CodeCoverage\Report.%(CodeCoverageAssemblies.Filename)%(CodeCoverageAssemblies.Extension).xml')" />
+		<Summary.AddToReport SourceFolder="$(BuildPath)\Output\CodeCoverage" FileSpec="Report*.xml" ReportFile="$(BuildPath)\Output\CodeCoverage\BuildReportCodeCoverage.xml" SectionGenerator="Microsoft.Sdc.Tasks.Configuration.SummaryGeneration.Generators.CodeCoverageSectionGenerator" />
+		<Xml.XslTransform Condition="Exists('$(BuildPath)\Output\CodeCoverage\BuildReportCodeCoverage.xml')" XslFile="$(CodeCoverageTransform)" XmlFile="$(BuildPath)\Output\CodeCoverage\BuildReportCodeCoverage.xml" ResultFile="$(BuildPath)\Output\CodeCoverage\BuildReportCodeCoverage.htm" />
+		<Message Text="CodeCoverage Report is located at:&#xA;$(BuildPath)\Output\CodeCoverage\BuildCodeCoverageReport.htm" />
+	</Target>
+	<Target Name="CopyTestEnvironment" Condition="'$(CopyTestEnvironment)'=='true' and '$(RemoteLaunch)'!='true'">
+		<!-- Copies main assemblies and all sub folders + the test framework up to the target test machine -->
+		<Message Text="ToolsPath=$(ToolsPath)" />
+		<!-- Create a test files share to the target test machine -->
+		<Share.Disconnect ShareName="$(RemoteDrive)" />
+		<Share.Connect ShareName="$(RemoteShareName)" Machine="$(RemoteHost)" UserName="$(RemoteDomain)\$(RemoteUserName)" Password="$(RemotePassword)" LocalName="$(RemoteDrive)" ResourceType="Disk" Connections="1" />
+		<!-- Delete any old test files -->
+		<CreateItem Include="$(RemoteDrive)\**">
+			<Output TaskParameter="Include" ItemName="FilesToDelete" />
+		</CreateItem>
+		<!-- todo investigate this <RemoveDir Directories="%(FilesToDelete.Directory)" /> -->
+		<Delete Files="@(FilesToDelete)" />
+		<!-- Copy contents of Assemblies folder and subfolders up to test files share -->
+		<CreateItem Include="$(BuildPath)\..\Solutions\*Assemblies\**">
+			<Output TaskParameter="Include" ItemName="AssemblyTestFiles" />
+		</CreateItem>
+		<CreateItem Include="$(BuildPath)\..\Solutions\**\*.vsmdi;$(BuildPath)\..\Solutions\**\*.testrunconfig;">
+			<Output TaskParameter="Include" ItemName="AssemblyTestFiles" />
+		</CreateItem>
+		<Microsoft.Build.Tasks.Copy SourceFiles="@(AssemblyTestFiles)" SkipUnchangedFiles="true" DestinationFiles="@(AssemblyTestFiles-&gt;'$(RemoteDrive)\%(RecursiveDir)%(Filename)%(Extension)')" />
+		<!-- Copy test framework files up to test files share -->
+		<CreateItem Include="$(BuildPath)\*.proj;$(BuildPath)\*.properties">
+			<Output TaskParameter="Include" ItemName="TestFrameworkFilesRoot" />
+		</CreateItem>
+		<CreateItem Include="$(BuildPath)\bin\**">
+			<Output TaskParameter="Include" ItemName="TestFrameworkFilesBin" />
+		</CreateItem>
+		<CreateItem Include="$(BuildPath)\Xsl\**">
+			<Output TaskParameter="Include" ItemName="TestFrameworkFilesXsl" />
+		</CreateItem>
+		<CreateItem Include="$(BuildPath)\Tools\NUnit\**">
+			<Output TaskParameter="Include" ItemName="TestFrameworkFilesNunit" />
+		</CreateItem>
+		<CreateItem Include="$(BuildPath)\Tools\MsTest\**">
+			<Output TaskParameter="Include" ItemName="TestFrameworkFilesMsTest" />
+		</CreateItem>
+		<CreateItem Include="$(BuildPath)\Tools\CoverageEye.NET\**">
+			<Output TaskParameter="Include" ItemName="TestFrameworkFilesCoverageEyeNET" />
+		</CreateItem>
+		<Microsoft.Build.Tasks.Copy SourceFiles="@(TestFrameworkFilesRoot)" DestinationFiles="@(TestFrameworkFilesRoot-&gt;'$(RemoteDrive)\%(Filename)%(Extension)')" />
+		<Microsoft.Build.Tasks.Copy SourceFiles="@(TestFrameworkFilesBin)" DestinationFiles="@(TestFrameworkFilesBin-&gt;'$(RemoteDrive)\bin\%(RecursiveDir)%(Filename)%(Extension)')" />
+		<Microsoft.Build.Tasks.Copy SourceFiles="@(TestFrameworkFilesXsl)" DestinationFiles="@(TestFrameworkFilesXsl-&gt;'$(RemoteDrive)\Xsl\%(RecursiveDir)%(Filename)%(Extension)')" />
+		<Microsoft.Build.Tasks.Copy SourceFiles="@(TestFrameworkFilesNunit)" DestinationFiles="@(TestFrameworkFilesNunit-&gt;'$(RemoteDrive)\Tools\NUnit\%(RecursiveDir)%(Filename)%(Extension)')" />
+		<Microsoft.Build.Tasks.Copy SourceFiles="@(TestFrameworkFilesMsTest)" DestinationFiles="@(TestFrameworkFilesMsTest-&gt;'$(RemoteDrive)\Tools\MsTest\%(RecursiveDir)%(Filename)%(Extension)')" />
+		<Microsoft.Build.Tasks.Copy SourceFiles="@(TestFrameworkFilesCoverageEyeNET)" DestinationFiles="@(TestFrameworkFilesCoverageEyeNET-&gt;'$(RemoteDrive)\Tools\CoverageEye.NET\%(RecursiveDir)%(Filename)%(Extension)')" />
+		<!-- copy any project specific test data/binaries as listed in test.properties -->
+		<Microsoft.Build.Tasks.Copy SourceFiles="@(ProjectTestFiles)" DestinationFiles="@(ProjectTestFiles-&gt;'$(RemoteDrive)\%(DestinationDir)\%(RecursiveDir)%(Filename)%(Extension)')" />
+		<Share.Disconnect ShareName="$(RemoteDrive)" />
+	</Target>
+	<Target Name="RemoteTest" Condition=" '$(TestEnvironmentType)' == 'Remote' " DependsOnTargets="CopyTestEnvironment;TestInformation">
+		<!-- Execute the tests remotely -->
+		<Exec IgnoreExitCode="true" Command="$(PathToPSExec)\PsExec.exe \\$(RemoteHost) -i -u $(RemoteDomain)\$(RemoteUserName) -p $(RemotePassword) -e -w $(TestFolder) $(WinDir)\Microsoft.NET\Framework\v2.0.50727\msbuild.exe /v:d /Target:ExecuteTests /Property:VersionNumber=$(VersionNumber);TestEnvironment=$(TestEnvironment);TestType=$(TestType);PropertyFile=$(PropertyFile);StopOnTestError=$(StopOnTestError);TestEnvironmentType=$(TestEnvironmentType);RemoteLaunch=true $(TestFolder)\Test.proj">
+			<Output TaskParameter="ExitCode" PropertyName="RemoteTestsExitCode" />
+		</Exec>
+		<!--
+      Todo should use psexec task
+      <PsExec ToolPath="$(BinPath)" 
+               Server="$(RemoteHost)" 
+               User="$(RemoteDomain)\$(RemoteUserName)"
+               Password="$(RemotePassword)"
+               Command="c:\windows\\Microsoft.NET\Framework\v2.0.50727\msbuild.exe /Property:VersionNumber=$(VersionNumber);TestEnvironment=$(TestEnvironment);TestType=$(TestType);PropertyFile=$(PropertyFile);StopOnTestError=$(StopOnTestError) /Target:ExecuteTests $(AssembliesFolder)\Test.proj" >
+          <Output TaskParameter="ExitCode" PropertyName="DeleteTasksDllStatus" />
+      </PsExec>
+      -->
+		<!-- Pull back any result files to the local machine -->
+		<Share.Disconnect ShareName="$(RemoteDrive)" />
+		<Share.Connect ShareName="$(RemoteShareName)" Machine="$(RemoteHost)" UserName="$(RemoteDomain)\$(RemoteUserName)" Password="$(RemotePassword)" LocalName="$(RemoteDrive)" ResourceType="Disk" Connections="1" />
+		<Folder.Copy Source="$(RemoteDrive)\Output" Destination="$(BuildPath)\Output" />
+		<Share.Disconnect ShareName="$(RemoteDrive)" />
+		<Error Text="Test Failures on Remote Test Box $(RemoteHost) exit code = $(RemoteTestsExitCode)" Condition="'$(RemoteTestsExitCode)' != '0'" />
+	</Target>
+	<Target Name="ExecuteTests" DependsOnTargets="$(ExecuteTestsDependsOn);RunTests;ErrorOnTestFailures" Condition=" ('$(TestEnvironmentType)' == 'Local') OR ('$(TestEnvironmentType)' == 'Drop') OR ('$(RemoteLaunch)' == 'true') "></Target>
+	<Target Name="TestConfigFiles">
+		<!-- Setup the test environment based upon environment being tested. -->
+		<Microsoft.Build.Tasks.Copy SourceFiles="%(TestDataFile.Identity)" DestinationFiles="%(TestDataFile.DestinationFile)" />
+		<File.RegEx Condition=" '@(ModifyFile)' != '' " Path="%(ModifyFile.Identity)" RegularExpression="%(ModifyFile.Token)" NewValue="%(ModifyFile.Value)" Force="true" />
+	</Target>
+	<!-- Runs tests on the local machine-->
+	<Target Name="RunTests" DependsOnTargets="$(RunTestsDependsOn);TestConfigFiles;TestInformation">
+		<ServiceProcess.Start ContinueOnError="true" ServiceName="%(ServicesToInstall.Identity)" Condition="('%(ServicesToInstall.StartForTests)' == 'true') AND ('$(TestEnvironmentType)' == 'Local')" />
+		<!-- remove previos test results -->
+		<Exec Condition="Exists('$(BuildPath)\Output\Test')" Command="rmdir /s /q $(BuildPath)\Output\Test" />
+		<!-- Only create this folder here -->
+		<!-- Any other folders should be created by the tests and not created here -->
+		<MakeDir Condition="!Exists('$(BuildPath)\Output\Test')" Directories="$(BuildPath)\Output\Test" />
+		<!-- Need to GAC nunit here because it may have not been installed from the msi -->
+		<!-- GK Jun06 removed version specific GACing, I don't believe this is required.
+    <GlobalAssemblyCache.AddAssembly AssemblyPath="$(ToolsPath)NUnit\2.2\nunit.core.dll" />
+    <GlobalAssemblyCache.AddAssembly AssemblyPath="$(ToolsPath)NUnit\2.2\nunit.framework.dll" />
+    -->
+		<!--
+    <CreateItem Condition=" '%(AllAssemblies.NUnit)' == 'true' " Include="@(AllAssemblies->'$(AssembliesFolder)\%(Identity)')">
+      <Output TaskParameter="Include" ItemName="NUnitAssemblies"/>
+    </CreateItem>
+    
+    -->
+		<CreateItem Condition=" '%(AllAssemblies.NUnit)' == 'true' " Include="@(AllAssemblies-&gt;'$(AssembliesFolder)\%(SolutionName)Assemblies\%(Identity)')">
+			<Output TaskParameter="Include" ItemName="NUnitAssemblies" />
+		</CreateItem>
+		<CreateItem Include="@(AllAssemblies-&gt;'$(BuildPath)..\Solutions\%(SolutionName)Assemblies\%(Identity)')">
+			<Output TaskParameter="Include" ItemName="AllAssembliesTemp" />
+		</CreateItem>
+		<Message Text="&#xA;All Assemblies Solution Name: &#xA; @(AllAssemblies-&gt;'%(SolutionName)','&#xA;')" Importance="Low" />
+		<Message Text="&#xA;All AssembliesTemp Solution Name: &#xA; @(AllAssembliesTemp-&gt;'%(Identity)' @(AllAssembliesTemp-&gt;'%(MsTest)','&#xA;')" Importance="Low" />
+		<CreateItem Condition=" '%(AllAssembliesTemp.MsTest)' == 'true' " Include="@(AllAssembliesTemp)">
+			<Output TaskParameter="Include" ItemName="MsTestAssemblies" />
+		</CreateItem>
+		<Message Text="&#xA;All Assemblies: &#xA; @(AllAssemblies)" Importance="Low" />
+		<Message Text="&#xA;MsTest Assemblies: &#xA; @(MsTestAssemblies-&gt;'%(FullPath)','&#xA;')" Importance="Low" />
+		<Message Text="&#xA;MsTest Assemblies.SolutionName: &#xA; @(MsTestAssemblies-&gt;'%(SolutionName)','&#xA;')" Importance="Low" />
+		<Message Text="&#xA;MsTest Assemblies.NDoc: &#xA; @(MsTestAssemblies-&gt;'%(NDoc)','&#xA;')" Importance="Low" />
+		<Message Text="&#xA;MsTest Assemblies.ProjectName: &#xA; @(MsTestAssemblies-&gt;'%(ProjectName)','&#xA;')" Importance="Low" />
+		<Message Text="&#xA;AllAssemblies Assemblies.ProjectName: &#xA; @(AllAssemblies-&gt;'%(ProjectName)','&#xA;')" Importance="Low" />
+		<Message Condition=" ('%(TestCategories.Identity)' == '$(TestType)') and ('@(MsTestAssemblies)' != '')" Text="Executing MsTest Tests..." Importance="High" />
+		<Microsoft.Build.Tasks.Copy SourceFiles="$(SolutionPath)\%(TestCategories.SolutionName)\%(TestCategories.SolutionName).vsmdi" DestinationFiles="$(SolutionPath)\%(TestCategories.SolutionName)\%(TestCategories.SolutionName)-Test.vsmdi" Condition="Exists('$(SolutionPath)\%(TestCategories.SolutionName)\%(TestCategories.SolutionName).vsmdi')" />
+		<File.RegEx Path="$(SolutionPath)\%(TestCategories.SolutionName)\%(TestCategories.SolutionName)-Test.vsmdi" RegularExpression="bin\\debug" NewValue="..\..\%(TestCategories.SolutionName)Assemblies" Force="true" Condition="Exists('$(SolutionPath)\%(TestCategories.SolutionName)\%(TestCategories.SolutionName)-Test.vsmdi')" />
+		<File.RegEx Path="$(SolutionPath)\%(TestCategories.SolutionName)\%(TestCategories.SolutionName)-Test.vsmdi" RegularExpression="bin\\release" NewValue="..\..\%(TestCategories.SolutionName)Assemblies" Force="true" Condition="Exists('$(SolutionPath)\%(TestCategories.SolutionName)\%(TestCategories.SolutionName)-Test.vsmdi')" />
+		<Tools.MsTest ToolPath="$(MsTestPath)" Condition=" '%(TestCategories.Identity)' == '$(TestType)' and ('@(MsTestAssemblies)' != '') and Exists('$(SolutionPath)\%(TestCategories.SolutionName)\%(TestCategories.SolutionName)-Test.vsmdi')" MetaDataFile="$(SolutionPath)\%(TestCategories.SolutionName)\%(TestCategories.SolutionName)-Test.vsmdi" WorkingDirectory="$(SolutionPath)\%(TestCategories.SolutionName)Assemblies" IncludeTestList="%(TestCategories.Category)" RunConfigFile="$(SolutionPath)\%(TestCategories.SolutionName)\%(TestCategories.RunConfig).testrunconfig" OutputFolder="$(BuildPath)\Output\Test\" Version="8.0">
+			<Output TaskParameter="TestLists" ItemName="TestLists" />
+			<Output TaskParameter="Pass" ItemName="TestPassMsTest" />
+			<Output TaskParameter="Fail" ItemName="TestFailMsTest" />
+			<Output TaskParameter="NotRun" ItemName="TestNoRunMsTest" />
+			<Output TaskParameter="Total" ItemName="TestTotalMsTest" />
+			<Output TaskParameter="TimeTaken" ItemName="TestTimeTakenMsTest" />
+			<Output TaskParameter="FailFullTypeNames" ItemName="FailFullTypeNames" />
+			<Output TaskParameter="FailMethodNames" ItemName="FailMethodNames" />
+		</Tools.MsTest>
+		<Message Text="FailFullTypeNames is @(FailFullTypeNames)" Importance="Low" />
+		<Message Text="FailMethodNames is @(FailMethodNames)" Importance="Low" />
+		<Message Condition=" ('%(TestCategories.Identity)' == '$(TestType)') and ('@(NUnitAssemblies)' != '')" Text="Executing NUnit Tests..." Importance="High" />
+		<!-- Run multiple test categories using a predefined item list called NUnitAssemblies -->
+		<Tools.NUnit Condition=" ('%(TestCategories.Identity)' == '$(TestType)') and ('@(NUnitAssemblies)' != '')" ToolPath="$(ToolsPath)NUnit\2.2" Assemblies="@(NUnitAssemblies)" Version="2.2" OutputFolder="$(BuildPath)\Output\Test" IncludeCategory="%(TestCategories.Category)">
+			<Output TaskParameter="Category" ItemName="Categories" />
+			<Output TaskParameter="Pass" ItemName="TestPass" />
+			<Output TaskParameter="Fail" ItemName="TestFail" />
+			<Output TaskParameter="NotRun" ItemName="TestNoRun" />
+			<Output TaskParameter="Total" ItemName="TestTotal" />
+			<Output TaskParameter="TimeTaken" ItemName="TestTimeTaken" />
+		</Tools.NUnit>
+		<!-- Collate the results -->
+		<Exec Command="attrib -r $(AssembliesFolder)\Test\Results\*.* /S" />
+		<Exec Command="attrib -r $(BuildPath)\Output\Test\*.* /S" />
+		<Folder.Copy Condition="Exists('$(AssembliesFolder)\Test\Results')" Source="$(AssembliesFolder)\Test\Results" Destination="$(BuildPath)\Output\Test\ProductStudio" />
+		<Xml.XslTransform XslFile="$(BuildPath)\Xsl\NUnit_StyleSheet.xslt" Path="$(BuildPath)\Output\Test" Output="$(BuildPath)\Output\Test\Formatted" Extension="htm" />
+		<CompileTestSummary OutputXmlFilename="$(BuildPath)\Output\Test\Summary.xml" OutputHtmlFilename="$(BuildPath)\Output\Test\Summary.html" Categories="@(Categories);@(TestLists)" TestPass="@(TestPass);@(TestPassMstest)" TestFail="@(TestFail);@(TestFailMsTest)" TestNoRun="@(TestNoRun);@(TestNoRunMsTest)" TestTotal="@(TestTotal);@(TestTotalMsTest)" TestTimeTaken="@(TestTimeTaken);@(TestTimeTakenMsTest)" XsltFilename="$(BuildPath)\Xsl\TestSummary.xsl">
+			<Output TaskParameter="TotalTestFailures" PropertyName="TotalTestFailures" />
+		</CompileTestSummary>
+		<Message Text="$(TotalTestFailures) Test failure(s)" />
+		<CreateProperty Value="%(TestSettings.MaxErrorsAllowed)" Condition="'%(TestSettings.Identity)' == '$(TestType)'">
+			<Output TaskParameter="Value" PropertyName="MaxErrors" />
+		</CreateProperty>
+		<ServiceProcess.Stop ContinueOnError="true" ServiceName="%(ServicesToInstall.Identity)" Condition="&#xD;&#xA;                ('$(TestEnvironmentType)' == 'Local') AND&#xD;&#xA;                ('%(ServicesToInstall.StopAfterTestsSucceed)' == 'true') AND&#xD;&#xA;                ($(MaxErrors)&gt;=$(TotalTestFailures))" />
+		<ServiceProcess.Stop ContinueOnError="true" ServiceName="%(ServicesToInstall.Identity)" Condition="&#xD;&#xA;                ('$(TestEnvironmentType)' == 'Local') AND&#xD;&#xA;                ('%(ServicesToInstall.StopAfterTestsFailed)' == 'true') AND&#xD;&#xA;                ($(TotalTestFailures)&gt;$(MaxErrors))" />
+	</Target>
+	<Target Name="ErrorOnTestFailures" Condition="'$(StopOnTestError)'=='true'">
+		<Message Text="Max Test Failures Allowed: $(MaxErrors)"></Message>
+		<Error Condition="$(TotalTestFailures) &gt; $(MaxErrors)" Text="Too many Test failures. $(TotalTestFailures) test(s) failed when a maximum of $(MaxErrors) failure(s) are allowed." />
+		<Touch AlwaysCreate="true" Files="$(BuildPath)\Output\Test\TestMarker.txt" />
+	</Target>
+	<Target Name="TestInformation">
+		<Message Text="TestEnvironmentType: $(TestEnvironmentType)" />
+		<Message Text="TestType: $(TestType)" />
+		<Message Text="TestEnvironment: $(TestEnvironment)" />
+		<Message Text="RemoteLaunch: $(RemoteLaunch)" />
+		<Message Text="StopOnTestError: $(StopOnTestError)" />
+		<Message Text="CopyTestEnvironment: $(CopyTestEnvironment)" />
+		<Message Text="MaxErrors: $(MaxErrors)" />
+		<Message Text="AssembliesFolder: $(AssembliesFolder)" />
+		<Message Text="VersionNumber: $(VersionNumber)" />
+		<Message Text="PropertyFile: $(PropertyFile)" />
+		<Message Text="ToolsPath: $(ToolsPath)" />
+		<Message Text="CodeCoveragePath: $(CodeCoveragePath)" />
+	</Target>
+</Project>

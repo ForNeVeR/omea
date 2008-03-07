@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+  <copyright company="JetBrains">
+  Copyright © 2003-2008 JetBrains s.r.o.
+  You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
+  </copyright>
+-->
+<omniamea-plugin>
+	<actions namespace="JetBrains.Omea.Favorites">
+		<main-menu>
+			<group id="FileNewActions">
+				<action name="Browser Bookmark..." class="AddFavoriteAction" />
+			</group>
+		</main-menu>
+		<popup-menu>
+			<group id="Favorites Actions" anchor="first">
+				<action name="Open in Browser Window" type="Weblink" class="OpenFavoriteAction" />
+				<action name="New Bookmark..." class="AddFavoriteAction" />
+				<action name="New Folder" class="AddFolderAction" />
+				<action name="Send by Mail" type="Weblink" class="SendBookmarkByEmail" />
+			</group>
+			<group id="FavoritesPropertiesActions">
+				<action name="Properties..." class="EditFavoritesPropertiesAction" />
+			</group>
+		</popup-menu>
+		<double-click>
+			<action class="OpenFavoriteAction" />
+		</double-click>
+		<link-click>
+			<action type="Folder" class="FolderLinkClickAction" />
+		</link-click>
+		<composite>
+			<component id="Delete" tab="Web" class="DeleteFavoriteAction" />
+			<component id="NewItem" tab="Web" class="AddFavoriteAction" />
+			<component id="Refresh" tab="Web" class="RefreshFavoriteAction" />
+			<component id="SendByMail" tab="Web" class="SendBookmarkByEmail" />
+			<component id="Properties" type="Weblink" class="EditFavoritesPropertiesAction" />
+			<component id="Properties" type="Folder" class="EditFavoritesPropertiesAction" />
+			<component id="MarkAsRead" class="MarkAsReadAction" />
+			<component id="NewFolder" tab="Web" class="AddFolderAction" />
+		</composite>
+		<toolbar iconprefix="Favorites.Icons">
+			<group id="CommonActions">
+				<action icon="addwebp.ico" tab="Web" tooltip="Add Bookmark" class="AddFavoriteAction" anchor="first" />
+			</group>
+		</toolbar>
+		<urlbar iconprefix="Favorites.Icons">
+			<group id="URLBarActions">
+				<action tooltip="Add Bookmark" class="AddFavoriteAction" icon="addwebp.ico" />
+				<action tooltip="Annotate and Categorize" class="AnnotateAndCategorizeWeblinkAction" icon="categorize_annotate_16.ico" />
+			</group>
+		</urlbar>
+	</actions>
+</omniamea-plugin>

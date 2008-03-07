@@ -1,0 +1,696 @@
+/*=(===============================================================)*/
+
+/*=(===============================================================)*/
+/*=(Created with RoboEditor.)=======================================*/
+/*=(===============================================================)*/
+
+HTML BODY {
+	background-color: #ffffff;
+	color: #000000;
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size: 0.8em;
+}
+
+DIV#helpHeader {
+	background-color: #C1BED7;
+	border-right: 1px solid #CCC;
+	border-bottom: 1px solid #CCC;
+	color: #544B98;
+	font-weight: bold;
+	padding: 6px;
+	height: 20px;
+}
+
+DIV#helpHeaderImg {
+	background-image: url("images/helpUI/ico_product.gif");
+	background-position: left;
+	background-repeat: no-repeat;
+	float: left;
+	position: absolute;
+	background-color: transparent;
+	height: 32px;
+	width: 28px;
+	margin-right: 6px;
+}
+
+DIV#mainContent {
+	margin: 1em 4em 8px 4em;
+	padding-bottom: 12px;
+}
+
+DIV#footer {
+	background-color: transparent;
+	color: #999999;
+	border-top: 1px dashed #999999;
+	font-size: 10px;
+	font-weight: normal;
+	margin: 8px 4em 2em 5em;
+	padding-top: 2px;
+}
+
+DIV.tip,
+DIV.note {
+	margin: 2em 8em 2em 4em;
+	padding: 6px 6px 6px 2px;
+}
+
+DIV.tip {
+	background-color: #E0DEEB;
+	height: 30px;
+}
+
+DIV.note {
+	background-color: #FCE6C5;
+	height: 30px;
+}
+
+DIV.noteImg,
+DIV.tipImg {
+	float: left;
+	position: absolute;
+	background-color: transparent;
+	background-position: center;
+	background-repeat: no-repeat;
+	
+	overflow: visible;
+}
+
+DIV.noteImg {
+	width: 62px;
+	height: 32px;
+	background-image: url("images/helpUI/note.gif");
+}
+
+DIV.tipImg {
+	width: 42px;
+	height: 42px;
+	background-image: url("images/helpUI/tip.gif");
+}
+
+DIV#seealso {
+	color: #666666;
+	margin: 24px 0 0 0;
+	padding: 0 0 6px 0;
+	width: 45%;
+	border-top: 1px solid #C1BED7;
+	background-color: #E0DEEB;
+	background-image: url("images/helpUI/grad1.gif");
+	background-position: bottom;
+	background-repeat: repeat-x;
+	background-attachment: scroll;
+}
+
+DIV.hide {
+	display: none;
+}
+
+DIV.proc,
+DIV.vidLinks {
+	background-color: #eeeeee;
+	border: 1px solid #cccccc;
+	margin: 1em 1em 1em 1em;
+	padding: 12px 12px 12px 12px;
+}
+
+div.vidLinks {
+	width: 40%;
+}
+
+DIV.indent {
+	margin: 0 1em;
+}
+
+div.example {
+	background-color: #ffffff;
+	border-top: 1px solid #666666;
+	border-left: 1px solid #666666;
+	border-right: 2px solid #666666;
+	border-bottom: 2px solid #666666;
+	margin: 0;
+	padding: 8px 8px 8px 8px;
+	width: 45%;
+}
+
+DIV#endspace {
+	margin-top: 400px;
+}
+
+A:LINK {
+	background: transparent;
+	border-bottom: 1px dashed #666699;
+	color: #666699;
+	x-text-underline: off;
+	x-text-overline: off;
+	x-text-line-through: off;
+	x-text-underline: off;
+	x-text-overline: off;
+	x-text-line-through: off;
+	x-text-underline: off;
+	x-text-overline: off;
+	x-text-line-through: off;
+	x-text-underline: off;
+	x-text-overline: off;
+	x-text-line-through: off;
+	/*begin!kadov{{*/ text-decoration: none none none none none none none none none none none none; /*}}end!kadov*/ 
+}
+
+A:VISITED {
+	background: transparent;
+	border-bottom: 1px dashed #000066;
+	color: #000066;
+	x-text-underline: off;
+	x-text-overline: off;
+	x-text-line-through: off;
+	x-text-underline: off;
+	x-text-overline: off;
+	x-text-line-through: off;
+	x-text-underline: off;
+	x-text-overline: off;
+	x-text-line-through: off;
+	x-text-underline: off;
+	x-text-overline: off;
+	x-text-line-through: off;
+	/*begin!kadov{{*/ text-decoration: none none none none none none none none none none none none; /*}}end!kadov*/ 
+}
+
+A:HOVER {
+	background-color: transparent;
+	border-bottom: none;
+	color: #0099FF;
+	x-text-underline: off;
+	x-text-overline: off;
+	x-text-line-through: off;
+	x-text-underline: normal;
+	/*begin!kadov{{*/ text-decoration: none none none underline; /*}}end!kadov*/ 
+}
+
+DIV#seealso A:HOVER,
+DIV.vidLinks A:HOVER {
+	background-color: #CCCCEE;
+	color: #333333;
+	padding: 2px 4px 2px 4px;
+	margin: 2px 0 2px 0;
+	font-weight: bold;
+	x-text-underline: off;
+	x-text-overline: off;
+	x-text-line-through: off;
+	border-top: 1px solid #999999;
+	border-left: 1px solid #999999;
+	border-right: 2px solid #666666;
+	border-bottom: 2px solid #666666;
+	list-style-image: url("images/helpUI/omguy_12x12.gif");
+	list-style-position: outside;
+	x-text-underline: off;
+	x-text-overline: off;
+	x-text-line-through: off;
+	x-text-underline: off;
+	x-text-overline: off;
+	x-text-line-through: off;
+	x-text-underline: off;
+	x-text-overline: off;
+	x-text-line-through: off;
+	x-text-underline: off;
+	x-text-overline: off;
+	x-text-line-through: off;
+	/*begin!kadov{{*/ text-decoration: none none none none none none none none none none none none none none none; /*}}end!kadov*/ 
+}
+
+P {
+	margin: 0 0 8px 0;
+}
+
+/*=(Generated Code)=================================================*/
+/*=(WARNING: DO NOT EDIT OR DELETE THIS SECTION!)===================*/
+/*begin!kadov{{=====================================================*/ 
+LI.kadov-P {
+}
+/*}}end!kadov=======================================================*/ 
+
+
+
+P.helpHeader {
+	display: inline;
+	font-size: 1.25em;
+	margin: 0;
+	padding: 6px 12px 12px 32px;
+}
+
+/*=(Generated Code)=================================================*/
+/*=(WARNING: DO NOT EDIT OR DELETE THIS SECTION!)===================*/
+/*begin!kadov{{=====================================================*/ 
+LI.kadov-P-ChelpHeader {
+	font-size: 1.25em;
+}
+/*}}end!kadov=======================================================*/ 
+
+
+
+P.tip {
+	padding: 0 1.5em 0 5em;
+}
+
+/*=(Generated Code)=================================================*/
+/*=(WARNING: DO NOT EDIT OR DELETE THIS SECTION!)===================*/
+/*begin!kadov{{=====================================================*/ 
+LI.kadov-P-Ctip {
+}
+/*}}end!kadov=======================================================*/ 
+
+
+
+P.note {
+	padding: 0 1.5em 0 6em;
+}
+
+/*=(Generated Code)=================================================*/
+/*=(WARNING: DO NOT EDIT OR DELETE THIS SECTION!)===================*/
+/*begin!kadov{{=====================================================*/ 
+LI.kadov-P-Cnote {
+}
+/*}}end!kadov=======================================================*/ 
+
+
+
+P.tip,
+P.tip1 {
+	color: #333300;
+}
+
+/*=(Generated Code)=================================================*/
+/*=(WARNING: DO NOT EDIT OR DELETE THIS SECTION!)===================*/
+/*begin!kadov{{=====================================================*/ 
+LI.kadov-P-Ctip,
+LI.kadov-P-Ctip1 {
+	color: #333300;
+}
+/*}}end!kadov=======================================================*/ 
+
+
+
+P.note,
+P.note1 {
+	color: #003300;
+	background: transparent;
+}
+
+/*=(Generated Code)=================================================*/
+/*=(WARNING: DO NOT EDIT OR DELETE THIS SECTION!)===================*/
+/*begin!kadov{{=====================================================*/ 
+LI.kadov-P-Cnote,
+LI.kadov-P-Cnote1 {
+	color: #003300;
+}
+/*}}end!kadov=======================================================*/ 
+
+
+
+P.tip1 {
+	padding: 6px 1.5em 0 5em;
+}
+
+/*=(Generated Code)=================================================*/
+/*=(WARNING: DO NOT EDIT OR DELETE THIS SECTION!)===================*/
+/*begin!kadov{{=====================================================*/ 
+LI.kadov-P-Ctip1 {
+}
+/*}}end!kadov=======================================================*/ 
+
+
+
+P.note1 {
+	padding: 6px 1.5em 0 6em;
+}
+
+/*=(Generated Code)=================================================*/
+/*=(WARNING: DO NOT EDIT OR DELETE THIS SECTION!)===================*/
+/*begin!kadov{{=====================================================*/ 
+LI.kadov-P-Cnote1 {
+}
+/*}}end!kadov=======================================================*/ 
+
+
+
+#seealso P {
+	background-color: transparent;
+	margin: 4px 0 8px 0;
+	padding: 2px 0 0 8px;
+	width: 100%;
+}
+
+/*=(Generated Code)=================================================*/
+/*=(WARNING: DO NOT EDIT OR DELETE THIS SECTION!)===================*/
+/*begin!kadov{{=====================================================*/ 
+#seealso LI.kadov-P {
+}
+/*}}end!kadov=======================================================*/ 
+
+
+
+P.caption {
+	font-size: 0.75em;
+	font-weight: bold;
+	margin: 6px 12px 12px 12px;
+}
+
+/*=(Generated Code)=================================================*/
+/*=(WARNING: DO NOT EDIT OR DELETE THIS SECTION!)===================*/
+/*begin!kadov{{=====================================================*/ 
+LI.kadov-P-Ccaption {
+	font-size: 0.75em;
+	font-weight: bold;
+}
+/*}}end!kadov=======================================================*/ 
+
+
+
+P.procHead {
+	font-style: italic;
+	font-weight: bold;
+	font-size: 1em;
+	color: #666666;
+}
+
+/*=(Generated Code)=================================================*/
+/*=(WARNING: DO NOT EDIT OR DELETE THIS SECTION!)===================*/
+/*begin!kadov{{=====================================================*/ 
+LI.kadov-P-CprocHead {
+	font-style: italic;
+	font-weight: bold;
+	font-size: 1em;
+	color: #666666;
+}
+/*}}end!kadov=======================================================*/ 
+
+
+
+P.caution {
+	background: #ffff00;
+	padding: 6px 8px;
+	border: 1px solid #000000;
+	margin: 12px 36px 12px 18px;
+}
+
+/*=(Generated Code)=================================================*/
+/*=(WARNING: DO NOT EDIT OR DELETE THIS SECTION!)===================*/
+/*begin!kadov{{=====================================================*/ 
+LI.kadov-P-Ccaution {
+}
+/*}}end!kadov=======================================================*/ 
+
+
+
+P.temp {
+	font-style: italic;
+	font-weight: bold;
+	color: #ff0000;
+	background-color: transparent;
+	display: block;
+}
+
+/*=(Generated Code)=================================================*/
+/*=(WARNING: DO NOT EDIT OR DELETE THIS SECTION!)===================*/
+/*begin!kadov{{=====================================================*/ 
+LI.kadov-P-Ctemp {
+	font-style: italic;
+	font-weight: bold;
+	color: #ff0000;
+}
+/*}}end!kadov=======================================================*/ 
+
+
+
+P.opt {
+	padding: 4px 12px 4px 12px;
+	margin: 0 0 12px -2em;
+	color: #333333;
+	background-color: #E0DEEB;
+	border: 1px solid #EEEEEE;
+}
+
+/*=(Generated Code)=================================================*/
+/*=(WARNING: DO NOT EDIT OR DELETE THIS SECTION!)===================*/
+/*begin!kadov{{=====================================================*/ 
+LI.kadov-P-Copt {
+	color: #333333;
+}
+/*}}end!kadov=======================================================*/ 
+
+
+
+div.vidLinks p {
+	font-size: smaller;
+	background-color: transparent;
+	color: #999999;
+	margin: 12px 6px 4px 12px;
+}
+
+/*=(Generated Code)=================================================*/
+/*=(WARNING: DO NOT EDIT OR DELETE THIS SECTION!)===================*/
+/*begin!kadov{{=====================================================*/ 
+div.vidLinks LI.kadov-p {
+	font-size: smaller;
+	color: #999999;
+}
+/*}}end!kadov=======================================================*/ 
+
+
+
+H1,
+H2,
+H3 {
+	background: transparent;
+	color: #544B98;
+	font-weight: bold;
+	margin: 12px 0 2px 0;
+}
+
+/*=(Generated Code)=================================================*/
+/*=(WARNING: DO NOT EDIT OR DELETE THIS SECTION!)===================*/
+/*begin!kadov{{=====================================================*/ 
+LI.kadov-H1,
+LI.kadov-H2,
+LI.kadov-H3 {
+	color: #544B98;
+	font-weight: bold;
+}
+/*}}end!kadov=======================================================*/ 
+
+
+
+H1 {
+	font-size: 26px;
+	margin: 1em 0 6px -1em;
+}
+
+/*=(Generated Code)=================================================*/
+/*=(WARNING: DO NOT EDIT OR DELETE THIS SECTION!)===================*/
+/*begin!kadov{{=====================================================*/ 
+LI.kadov-H1 {
+	font-size: 26px;
+}
+/*}}end!kadov=======================================================*/ 
+
+
+
+H2 {
+	font-size: 20px;
+}
+
+/*=(Generated Code)=================================================*/
+/*=(WARNING: DO NOT EDIT OR DELETE THIS SECTION!)===================*/
+/*begin!kadov{{=====================================================*/ 
+LI.kadov-H2 {
+	font-size: 20px;
+}
+/*}}end!kadov=======================================================*/ 
+
+
+
+H3 {
+	font-size: 14px;
+}
+
+/*=(Generated Code)=================================================*/
+/*=(WARNING: DO NOT EDIT OR DELETE THIS SECTION!)===================*/
+/*begin!kadov{{=====================================================*/ 
+LI.kadov-H3 {
+	font-size: 14px;
+}
+/*}}end!kadov=======================================================*/ 
+
+
+
+H4 {
+	background: transparent;
+	color: #4B4B4B;
+	font-size: 12px;
+	font-style: italic;
+	font-weight: bold;
+	margin: 12px 0 2px 0;
+}
+
+/*=(Generated Code)=================================================*/
+/*=(WARNING: DO NOT EDIT OR DELETE THIS SECTION!)===================*/
+/*begin!kadov{{=====================================================*/ 
+LI.kadov-H4 {
+	color: #4B4B4B;
+	font-size: 12px;
+	font-style: italic;
+	font-weight: bold;
+}
+/*}}end!kadov=======================================================*/ 
+
+
+
+div.vidLinks H3 {
+	background-color: transparent;
+	background-image: url("images/helpUI/video.gif");
+	background-position: top left;
+	background-repeat: no-repeat;
+	margin-top: 0;
+	margin-left: 0;
+	padding-left: 26px;
+	color: #666666;
+}
+
+/*=(Generated Code)=================================================*/
+/*=(WARNING: DO NOT EDIT OR DELETE THIS SECTION!)===================*/
+/*begin!kadov{{=====================================================*/ 
+div.vidLinks LI.kadov-H3 {
+	color: #666666;
+}
+/*}}end!kadov=======================================================*/ 
+
+
+
+UL,
+UL.omguy {
+	margin: .5em 2em 6px 2.5em;
+}
+
+OL {
+	margin: 0 2em 6px 3em;
+}
+
+UL.indent {
+	margin: 0 2em 0 3em;
+}
+
+div.vidLinks UL {
+	margin-top: 12px;
+}
+
+LI {
+	list-style-position: outside;
+	padding-bottom: 12px;
+}
+
+UL.omguy LI {
+	list-style-image: url("images/helpUI/omguy_12x12.gif");
+	list-style-position: outside;
+	list-style-type: square;
+	padding-bottom: 8px;
+	margin: 2px 0 2px 0;
+}
+
+LI.indentb {
+	list-style-image: none;
+	list-style-type: circle;
+	padding-bottom: 0;
+	padding-top: 8px;
+}
+
+LI.seealso {
+	background-color: transparent;
+	list-style-image: none;
+	list-style-type: none;
+	padding: 0 0 3px 0;
+	margin: 0;
+}
+
+IMG {
+	margin: 12px 12px 0 12px;
+}
+
+IMG.inline {
+	display: inline;
+	margin: 0 12px 0 4px;
+}
+
+IMG.linkIcon {
+	margin: 0;
+	padding: 0 0 0 2px;
+	display: inline;
+	border: 0;
+	vertical-align: middle;
+}
+
+TABLE {
+	border: 2px solid #667F99;
+	margin: 0 2em 10px 2em;
+}
+
+TH {
+	background-color: #eeeeee;
+	padding: 4px;
+	border-right: 1px solid #667F99;
+	border-bottom: 1px solid #667F99;
+}
+
+TD {
+	background-color: #ffffff;
+	padding: 4px;
+	border-right: 1px solid #667F99;
+	border-bottom: 1px solid #667F99;
+}
+
+TH.rightCell,
+TD.rightCell {
+	border-right: 0;
+}
+
+TD.bottomCell {
+	border-bottom: 0;
+}
+
+TD.bottomRightCell {
+	border-right: 0;
+	border-bottom: 0;
+}
+
+.hide {
+	display: none;
+}
+
+/*=(Generated Code)=================================================*/
+/*=(WARNING: DO NOT EDIT OR DELETE THIS SECTION!)===================*/
+/*begin!kadov{{=====================================================*/ 
+LI.kadov-Chide {
+}
+/*}}end!kadov=======================================================*/ 
+
+
+
+hr {
+	border-top: 1px solid #C1BED7;
+	color: #ffffff;
+	background-color: transparent;
+	padding: 0;
+	margin: 2px 0 0 0;
+	height: 1px;
+}
+
+.vidLinks span.info {
+	font-size: smaller;
+	background-color: transparent;
+	color: #999999;
+	margin: 0 0 0 24px;
+}
+
+SPAN.Code {
+	font-size: 1em;
+	font-family: "Courier New", Courier, monospace;
+}
+
+
+/*=(===============================================================)*/

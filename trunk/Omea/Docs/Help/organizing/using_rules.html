@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+    <title>Using Rules</title>
+    <meta http-equiv="content-type" content="text/html" charset="windows-1252" />
+    <meta name="copyright" content="Copyright (c)2004 JetBrains, Inc." />
+    <meta name="topic-check-list" content="Added To TOC" />
+    <link rel="StyleSheet" href="../help.css" /> 
+</head>
+<body>
+
+<!-- Conditional Headers -->
+<div style="x-condition: PRO;">
+	<div id="helpHeader">
+		<div id="helpHeaderImg"></div>   		
+		<p class="helpHeader">Omea Pro Help: Organizing: Rules</p>
+	</div>
+</div>
+
+<div style="x-condition: READER;">
+	<div id="helpHeader">
+		<div id="helpHeaderImg"></div>
+		<p class="helpHeader">Omea Reader Help: Organizing: Rules</p>
+	</div>
+</div>
+<div id="mainContent">
+   <h1>Using Rules to Automate Organization</h1>
+	<p>Rules can help you automate organization of incoming information and resources. For example, if you have set up 
+	your own filing system of <a href="organizing_using_categories.html">Categories</a>, you can create Rules to 
+	automatically file incoming resources that meet some criteria into one or more Categories. That&#146;s just the tip of 
+	the iceberg when it comes to what you can do with Rules.</p>
+	
+	<p>If you have ever used the rules feature of Microsoft Outlook<sup>&reg;</sup>, you&#146;ll find that rules in 
+	<span style="x-condition: READER;">Omea Reader</span><span style="x-condition: PRO;">Omea Pro</span> work much the 
+	same way, except that they can deal with all supported resource types, not just e-mail, and there are more 
+	actions that Rules can perform on the resource(s) they match. The technique for defining Rules is also similar. If 
+	you are familiar with how it&#146;s done in Outlook, you should be able to create Rules in 
+	<span style="x-condition: READER;">Omea Reader</span><span style="x-condition: PRO;">Omea Pro</span> without difficulty. </p>
+	<a name="newrule"></a>
+	<h2>Creating a New Rule</h2>
+	<p>The <a href="../reference/manage_rules.html">Rules Manager</a> dialog (<strong>Tools | Manage Rules</strong>) 
+	enables you  to create, modify, and delete Rules, and to change the Rule processing order. The process of creating rules is similar to the one of creating <a href="organizing_using_views.html">Views</a>. </p>
+	
+	<p>There are 4 kinds of criteria that you can specify for Rules:</p>
+	<ul>
+		<li><strong>Resource type(s):</strong>&nbsp; The type(s) of resource(s) that the Rule applies to.</li>
+		<li><strong>Conditions:</strong>&nbsp;Some criteria that must be met in order for the Rule to apply. For example, 
+		   a Rule might specify that some specific text must appear in the resource(s) to which the Rule 
+			applies.</li>
+		<li><strong>Exceptions:</strong>&nbsp;Any exception(s) to the Condition(s). For example, a Condition might specify 
+		that a resource must be from a particular sender. An Exception might specify some text in the resource which, if 
+		present, would prevent the Rule from being applied even though the sender condition is matched.</li>
+		<li><strong>Actions:</strong>&nbsp;What should happen with resources that meet the resource type and 
+		Condition criteria, and to which any defined Exception(s) are not applicable. For example, if the resource type 
+		is Newsgroup articles, the Conditions specify a particular sender, and the Exception(s) are not applicable, then 
+		an Action might file the resource under a particular Category, display a message box, play a sound, or all three.</li>
+	</ul>
+	<h3>Process for Creating Rules</h3>
+	<p>There is no single set of steps for creating a Rule, because each one can contain almost any combination of the 
+	many criteria. The basic steps are:</p>
+	<ol>
+		<li>Specify what resources the Rule applies to. By default, a new Rule applies to all supported resource types. 
+		If you want to limit the Rule to just one or two types, you must explicitly specify these.</li>
+		<li>Define one or more Conditions. (Required).</li>
+		<li>Define one or more Exceptions to the Conditions. (Optional)</li>
+		<li>Define one or more Actions that take place if the other defined criteria are met.</li>
+	</ol>
+	<div class=tip>
+	<div class=tipImg
+	style="/*begin!kadov{{*/ x-right: 747px; x-bottom: 776px; /*}}end!kadov*/ ">
+          <p>&nbsp;</p>
+        </div>
+          <p class=tip1>You can define multiple conditions, use 
+            <em>Shift + click</em> to select multiple conditions that are contiguous 
+               ( i.e., border on each other) and <em>Ctrl + click</em> to select non-contiguous 
+               conditions. Multiple conditions have an inclusive (&quot;AND&quot;) 
+          relationship to each other.</p>
+  </div>
+	<div class="vidLinks">
+ 	   <h3>Quick Video Tutorial: <em>How to Create a New Rule</em></h3>
+		<ul>
+	      <li><a href="../New_Rule.swf"><strong>View Local Tutorial File</strong></a><span class="info">(<a href="../omea_help.htm#clips">More info</a>)</span></li>
+		   <li><a href="http://www.jetbrains.com/omea/features/clips/New_Rule.swf" target="_blank"><strong>View Tutorial On-Line</strong></a></li>
+	   </ul>
+		<p>Requires <a href="http://www.macromedia.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash" target="_blank"> Macromedia Flash Player</a></p>
+	</div>		
+    <h2>Pins</h2>
+    <p>You can now use pins if you want Omea to reuse the conditions which you have once defined in any of the dialogs for defining rules. To pin the condition, just click the <strong>Pin </strong> button (<img src="../images/iconsMarks/ico_pinned_condition.png" width="15" height="15" class="linkIcon" />). Once you pin some condition, it will always appear in the <a href="../reference/manage_rules.html">Rules Manager dialog </a>if you click the <strong>New</strong> button in appropriate tab. </p>
+    <img src="../images/sshots/dialogs/shared/new_tray_icon_rule_pined_condition.png" width="413" height="189" alt="Pined Condition example" />
+    <p class="caption">Pined Condition in the New Tray Icon Rule dialog</p>
+    <div class="note">
+	<div class="noteImg"
+	style="/*begin!kadov{{*/ x-right: 944px; x-bottom: 3017px; /*}}end!kadov*/ ">
+    <p>&nbsp;</p>
+  </div>
+      <p class="note">The pre pinned conditions are not intended for existing in Omea &#8220;forever&#8221; and you can easily delete them by pressing the <strong>Delete</strong> button in the <strong>Conditions</strong> field but you may find them rather useful when you become more familiar with the Rules. </p>
+  </div>
+    <p>If you often use some condition or exception , you can easily pin it for later use by pressing the <img src="../images/iconsMarks/ico_pinned_condition.png" width="15" height="15" class="linkIcon" /> button in order not to specify it again in the future. </p>
+    <div id="seealso">
+      <p class="seealso"><strong style="font-weight: bold;">See also:</strong></p>
+      <ol>
+        <li class="kadov-p"><a href="../organizing/organizing_your_resources.html">Organizing Your Resources</a></li>
+        <li class="kadov-p"><a href="../reference/manage_rules.html">Rules Manager dialog</a></li>
+        <li class="kadov-p"><a href="../reference/select_conditions.html">Select Condition(s) Dialog</a></li>
+        <li class="kadov-p"><a href="../reference/tray_icon_rule.htm">Tray Icon Rule Dialog</a></li>
+      </ol>
+    </div>
+  <p> </p>
+</div>
+<div id="footer">
+	E-mail support shown in the video tutorial is available only in Omea Pro.
+</div>
+<!-- LAST SPELLCHECK: 07 Sept 2004 -->
+<!-- Conditional Text & Build Tags complete! 06 Sept 2004 -->
+</body>
+
+</html>

@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+  <copyright company="JetBrains">
+  Copyright © 2003-2008 JetBrains s.r.o.
+  You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
+  </copyright>
+-->
+<omniamea-plugin>
+	<actions namespace="JetBrains.Omea.RSSPlugin">
+		<actiondef id="ToggleNewspaper" assembly="GUIControls" class="JetBrains.Omea.GUIControls.SwitchNewspaperModeAction">
+			<param type="string" value="RSSFeed" />
+			<param type="string" value="RSSFeedGroup" />
+			<param type="string" value="SearchView" />
+			<param type="string" value="Category" />
+			<filter assembly="GUIControls" class="JetBrains.Omea.GUIControls.ActiveTabFilter">
+				<param type="string" value="Feeds" />
+				<param type="bool" value="false" />
+			</filter>
+		</actiondef>
+		<main-menu>
+			<group id="FileNewActions">
+				<action name="Feed Folder..." class="NewFeedGroupAction" />
+			</group>
+			<group id="RSSImportActions" menu="File" anchor="after:FileImportActions">
+				<action name="Import Feed Subscriptions..." class="ImportWizardAction" />
+				<action name="Export Feed Subscriptions..." class="ExportFeedsAction" />
+			</group>
+			<group id="ViewModeActions" menu="View">
+				<action name="View as Newspaper" ref="ToggleNewspaper" />
+			</group>
+			<group id="ViewFilterActions" menu="View" submenu="Filter Feeds" anchor="after:ViewModeActions">
+				<action name="Only Feeds with Unread Items" class="FilterUnreadFeedsAction" />
+				<action name="Feeds with Errors" class="FilterErrorFeedsAction" />
+				<action name="Sorted by Last Post" class="SortByLastPostAction" />
+			</group>
+			<group id="SendReceiveActions" menu="Tools" anchor="first">
+				<action name="Update Feeds" class="UpdateAllFeedsAction" />
+			</group>
+			<group id="FeedActions" menu="Tools" anchor="before:ToolsOptionsActions">
+				<action name="Subscribe to Feed..." class="AddFeedAction" icon="RSSPlugin.Icons.AddRSSFeed.ico" />
+				<action name="Subscribe to Search Feeds..." class="AddSearchFeedAction" icon="RSSPlugin.Icons.SubscribeToSearch.ico" />
+			</group>
+		</main-menu>
+		<popup-menu>
+			<group id="ItemOpenActions">
+				<action type="RSSFeed" name="Open Homepage" class="OpenItemAction" anchor="before:CompositeAction/Refresh">
+					<param type="string" value="Homepage" />
+				</action>
+				<action name="Open in Browser" type="RSSItem" class="OpenItemAction" anchor="before:CompositeAction/Refresh">
+					<param type="string" value="Link" />
+				</action>
+				<action name="Copy Article URL" type="RSSItem" class="CopyPostURLAction" />
+				<action name="New Feed Folder" class="NewFeedGroupAction" />
+				<action name="Move to Feed Folder..." type="RSSFeedGroup" class="MoveFeed2FolderAction" />
+				<action name="Move to Feed Folder..." type="RSSFeed" class="MoveFeed2FolderAction" />
+				<action name="Search in these Feeds..." type="RSSFeedGroup" class="SearchInFeedGroupAction" />
+			</group>
+			<group id="RSSItemActions" anchor="after:ItemModifyActions">
+				<action type="RSSItem" name="Read Comments" class="ReadCommentsAction" />
+				<action type="RSSItem" name="Post New Comment..." class="PostNewComment" />
+				<action type="RSSItem" name="Cancel Downloading Enclosure" class="InterruptDownloadAction" />
+				<action type="RSSItem" name="Queue Downloading Enclosure" class="PlanToDownloadAction" />
+				<action type="RSSItem" name="Run Enclosure Program" class="RunEnclosureAction" />
+				<action type="RSSItem" name="Locate Enclosure on Disk" class="LocateOnDiskAction" />
+				<action type="RSSItem" name="Delete Enclosure" class="DeleteEnclosureAction" />
+			</group>
+			<group id="FeedViewActions" anchor="after:ItemModifyActions">
+				<action type="RSSFeed" name="Hide Read Messages" class="HideReadRSSAction" />
+				<action type="RSSFeedGroup" name="Hide Read Messages" class="HideReadRSSAction" />
+				<action type="RSSFeed" name="View as Newspaper" ref="ToggleNewspaper" />
+				<action type="RSSFeedGroup" name="View as Newspaper" ref="ToggleNewspaper" />
+				<action name="Show Total Items Count" type="RSSFeed" assembly="GUIControls" class="JetBrains.Omea.GUIControls.ToggleShowTotalCountAction" />
+				<action name="Show Total Items Count" type="RSSFeedGroup" assembly="GUIControls" class="JetBrains.Omea.GUIControls.ToggleShowTotalCountAction" />
+			</group>
+			<group id="FeedGroupActions" anchor="after:FeedViewActions">
+				<action name="Subscribe to Feed..." class="AddFeedAction" />
+				<action name="Subscribe to Search Feeds..." class="AddSearchFeedAction" />
+				<action name="Import Feed Subscriptions..." class="ImportFeedsAction" />
+				<action name="Search in this Feed..." type="RSSFeed" class="SearchInFeed" />
+			</group>
+			<group id="ItemDeleteActions">
+				<action type="RSSFeed" name="" class="StartStopUpdateFeedAction" />
+				<action type="RSSFeedGroup" name="" class="StartStopUpdateFeedAction" />
+			</group>
+			<group id="PropertiesActions">
+				<action name="Properties" class="FeedPropertiesAction" />
+				<action type="RSSFeed" name="Edit Expiration Rule..." class="JetBrains.Omea.GUIControls.EditExpirationRule" assembly="GUIControls" />
+				<action type="RSSFeed" name="Clear Expiration Rule" class="JetBrains.Omea.GUIControls.DeleteExpirationRule" assembly="GUIControls" />
+			</group>
+		</popup-menu>
+		<keyboard>
+			<action key="F9" tab="Feeds" class="UpdateAllFeedsAction" />
+		</keyboard>
+		<double-click>
+			<action type="RSSItem" class="OpenItemAction">
+				<param type="string" value="Link" />
+			</action>
+			<action type="RSSFeed" class="OpenItemAction">
+				<param type="string" value="Homepage" />
+			</action>
+		</double-click>
+		<toolbar iconprefix="RSSPlugin.Icons">
+			<group id="RSSNewActions" anchor="before:CommonActions">
+				<action tooltip="Subscribe to Feed" tab="Feeds" text="Subscribe" icon="AddRSSFeed.ico" class="AddFeedAction" />
+				<action tooltip="Subscribe to Search Feed" tab="Feeds" icon="SubscribeToSearch.ico" class="AddSearchFeedAction" />
+			</group>
+			<group id="RSSActions">
+				<action tooltip="Update All Feeds" tab="Feeds" text="Update All" icon="UpdateFeeds.ico" class="UpdateAllFeedsAction" />
+				<action tooltip="Read Comments" tab="Feeds" icon="comment.ico" class="ReadCommentsAction" />
+			</group>
+			<group id="ViewActions">
+				<action tooltip="Newspaper View" tab="Feeds" icon="newspaper.ico" ref="ToggleNewspaper" />
+			</group>
+		</toolbar>
+		<urlbar iconprefix="RSSPlugin.Icons">
+			<group id="URLBarActions">
+				<action tooltip="Subscribe to Feed" icon="AddRSSFeed.ico" class="AddFeedAction" />
+			</group>
+		</urlbar>
+		<composite>
+			<component id="Forward" tab="Feeds" type="RSSItem" class="SendEmailAction" />
+			<component id="Delete" tab="Feeds" class="RemoveFeedsAndGroupsAction" />
+			<component id="HideRead" class="HideReadRSSAction" />
+			<component id="Properties" class="FeedPropertiesAction" />
+			<component id="NewItem" tab="Feeds" class="AddFeedAction" />
+			<component id="Refresh" tab="Feeds" class="UpdateFeedAction" />
+			<component id="SaveAs" type="RSSItem" class="SaveItemAction" />
+			<component id="MarkAllRead" type="RSSFeed" class="MarkAsReadAction" />
+			<component id="MarkAllRead" type="RSSFeedGroup" class="MarkAsReadAction" />
+			<component id="NewFolder" tab="Feeds" class="NewFeedGroupAction" />
+		</composite>
+	</actions>
+	<resource-icons namespace="RSSPlugin.Icons">
+		<icons type="RSSFeedGroup">
+			<icon name="RSSFeedGroupClosed.ico" default="1" />
+			<icon name="RSSFeedGroupOpen.ico">
+				<prop name="Open" value="1" />
+			</icon>
+		</icons>
+	</resource-icons>
+	<display-columns>
+		<columns type="RSSItem">
+			<column width="300" autoSize="1">
+				<prop name="Subject" />
+				<multiline row="1" startX="0" width="240" anchor="both" />
+			</column>
+			<column width="120" showIfDistinct="1">
+				<prop name="From" />
+				<prop name="-RSSItem" />
+				<multiline row="0" startX="0" width="196" r="112" g="112" b="112" anchor="both" />
+			</column>
+			<column width="120">
+				<prop name="-RSSItem" />
+			</column>
+			<column width="120">
+				<prop name="Date" />
+				<multiline row="0" startX="210" width="90" anchor="right" align="right" />
+				<comparer assembly="Rss" class="JetBrains.Omea.RSSPlugin.DateIndexComparer" />
+			</column>
+			<column width="100" showIfNotEmpty="1">
+				<prop name="RSSCategory" />
+			</column>
+			<column width="60" showIfNotEmpty="1">
+				<prop name="CommentCount" />
+			</column>
+			<column width="20" showIfNotEmpty="1" fixedSize="1">
+				<prop name="EnclosureDownloadingState" />
+				<multiline row="0" startX="196" width="14" anchor="right" hideIfNoProp="1" />
+			</column>
+		</columns>
+	</display-columns>
+</omniamea-plugin>

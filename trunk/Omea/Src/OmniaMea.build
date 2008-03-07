@@ -1,0 +1,658 @@
+<?xml version="1.0"?>
+<project name="OmniaMea" default="build" currentframework="net-1.1">
+  <property name="build.dir.debug"      value="debug" overwrite="false" />
+  <property name="build.dir.release"    value="release" overwrite="false" />
+  <property name="build.dir.obfuscated" value="release" overwrite="false" />
+  <property name="archive.dir"          value="../archive" overwrite="false" />
+  <property name="draco"                value="false" overwrite="false" />
+  <property name="map.dir"              value="C:\OmniaMea\maps" overwrite="false" />
+  <property name="site.dir"             value="C:\OmniaMea" overwrite="false" />
+  <property name="build.omea.pro"       value="true" overwrite="false" />
+  <property name="build.omea.reader"    value="true" overwrite="false" />
+
+	<!-- ACHTUNG!! Turn this off for production release builds!! -->
+  <property name="trace"             value="true"/>
+
+  <target name="mkdir">
+    <mkdir dir="${build.dir.debug}"/>
+    <mkdir dir="${build.dir.debug}/Setup"/>
+    <mkdir dir="${build.dir.debug}/obj"/>
+
+    <mkdir dir="${build.dir.release}"/>
+    <mkdir dir="${build.dir.release}/Setup"/>
+    <mkdir dir="${build.dir.release}/obj"/>
+
+    <!-- <delete>
+      <fileset basedir="${archive.dir}">
+        <include name="OmeaDebug-*.zip"/>        
+      </fileset>
+    </delete> -->
+  </target>
+  
+  <target name="init" depends="mkdir">
+    
+    <!-- Revert unchanged files -->
+    <exec program="p4.exe" commandline="revert -a" failonerror="false"/>
+
+	<exec program="p4.exe" commandline="edit Setup\NSISSetup\version.nsi" />
+	<!-- <exec program="cmd" commandline="/c set" /> -->
+
+	<!-- This property sets the current folder from which the relative paths suibmitted to P4 are resolved in PerforceClient -->
+	<property name="dir.project.own" value="${path::get-full-path('.')}"/>
+
+    <script language="C#">
+		<imports>
+			<import namespace="System.Diagnostics" />
+		</imports>
+      <code><![CDATA[
+        public static void ScriptMain( Project project )
+        {
+          int buildDayNumber, buildNumber;
+          try
+          {
+            StreamReader sr = new StreamReader( "\\OmniaMea\\build.eap.id" );
+            DateTime lastDate = DateTime.Parse( sr.ReadLine() );
+            buildDayNumber = Int32.Parse( sr.ReadLine() );
+            buildNumber = Int32.Parse( sr.ReadLine() );
+            if ( lastDate != DateTime.Now.Date )
+            {
+              buildDayNumber++;
+              buildNumber = 1;
+            }
+            else
+              buildNumber++;
+            sr.Close();
+          }
+          catch( Exception e )
+          {
+            buildDayNumber = 1;
+            buildNumber = 1;
+          }
+          StreamWriter sw = new StreamWriter( "\\OmniaMea\\build.eap.id" );
+          sw.Write( DateTime.Now.Date.ToString() + "\n" );
+          sw.Write( buildDayNumber.ToString() + "\n" );
+          sw.Write( buildNumber.ToString() + "\n" );
+          sw.Close();
+
+          // Explicitly define the build version components
+          int	buildMajor = 2;
+          int	buildMinor = 0;
+          int	buildBuild = buildDayNumber;
+          int	buildRevision = buildNumber;
+          string	buildVersionComma = String.Format("{0},{1},{2},{3}", buildMajor, buildMinor, buildBuild, buildRevision);
+          string	buildVersionDot = String.Format("{0}.{1}.{2}.{3}", buildMajor, buildMinor, buildBuild, buildRevision);
+          project.Log(Level.Info, "Version was set to [" + buildVersionComma + "].");
+          
+          // Store those as properties
+          project.Properties["build.version.major"] = buildMajor.ToString();
+          project.Properties["build.version.minor"] = buildMinor.ToString();
+          project.Properties["build.version.build"] = buildBuild.ToString();
+          project.Properties["build.version.revision"] = buildRevision.ToString();
+          project.Properties["build.version.full.comma"] = buildVersionComma;
+          project.Properties["build.version.full.dot"] = buildVersionDot;
+          
+          // Build ID (day number - dot - a number of this build on this day)
+          string buildID = buildBuild.ToString() + "." + buildRevision.ToString();
+          try
+          {
+			project.Properties ["build.number"] = buildID;
+		  }
+		  catch(Exception ex) {}	// Fails under TeamCity, as the property is readonly there
+          
+			/////////////////////////////////
+			// Update versions of AssemblyVersion files in several projects
+			string[] sModuleList = new string[]
+			{
+				@"ContactsPlugin\AssemblyVersion.cs",
+				@"DebugPlugin\AssemblyVersion.cs",
+				@"Favorites\AssemblyVersion.cs",
+				@"FilePlugin\AssemblyVersion.cs",
+				@"HTMLPlugin\AssemblyVersion.cs",
+				@"InstantMessaging\ICQ\AssemblyVersion.cs",
+				@"InstantMessaging\Miranda\AssemblyVersion.cs",
+				@"InstantMessaging\Trillian\AssemblyVersion.cs",
+				@"NntpPlugin\AssemblyVersion.cs",
+				@"NotesPlugin\AssemblyVersion.cs",
+				@"OmniaMea\AssemblyVersion.cs",
+				@"OutlookPlugin\AssemblyVersion.cs",
+				@"PDFPlugin\AssemblyVersion.cs",
+				@"Pictures\AssemblyVersion.cs",
+				@"RSSPlugin\AssemblyVersion.cs",
+				@"Tasks\AssemblyVersion.cs",
+				@"WordDocPlugin\AssemblyVersion.cs",
+				@"ExcelDocPlugin\AssemblyVersion.cs",
+				@"MshtmlBrowser\AssemblyVersion.js",
+				@"OmeaDotNet\AssemblyVersion.cs"
+			};
+
+			// Open those files for editing
+			string	sCheckinComment = String.Format("Version number set to [{0}].", buildVersionComma);
+			using(new PerforceClient(project, sModuleList, sCheckinComment))
+			{          
+				// Rewrite the version info for managed projects
+				foreach( string module in sModuleList )
+				{
+					sw = new StreamWriter(new FileStream(module, FileMode.Create, FileAccess.Write, FileShare.Read));
+					sw.WriteLine("// this ALWAYS GENERATED file contains the project version information");
+					sw.WriteLine("// DO NOT MODIFY this file manually for your changes will be overwritten on the next build run");
+					sw.WriteLine("// Generated on {0} for version {1}", DateTime.Now.ToString("s"), buildVersionComma);
+					sw.WriteLine();
+					sw.WriteLine("{0} System.Reflection;", (module.EndsWith(".js") ? "import" : "using")); 
+					sw.WriteLine();
+
+					sw.WriteLine("[assembly: AssemblyVersion(\"{0}\")]", buildVersionDot );
+					if ( module.StartsWith("OmniaMea") )
+					{
+						sw.Write( "[assembly: AssemblyDescription(\"Built on " +
+							DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToShortTimeString() + "\")]\n" );
+					}
+
+					sw.WriteLine();
+					sw.WriteLine("// EOF");
+
+					sw.Close();
+				}
+			}
+          
+          /*
+          // Rewrite the version info for C++ projects
+          foreach(string module in new string[]{"MshtmlBrowser\\MshtmlSite"})
+          {
+			  // Fetch the old file contents
+			  StreamReader sr = new StreamReader(new FileStream(module + "\\AssemblyVersion.rc", FileMode.Open, FileAccess.Read, FileShare.Read), Encoding.Default);	// Avoid locking access to the file; use ANSI codepage
+			  string	sRes = sr.ReadToEnd();
+			  sr.Close();
+			  
+				// Modify the version info
+				sRes = Regex.Replace(sRes, @"(?<prefix>(PRODUCTVERSION|FILEVERSION)\s+)\d.\d.\d.\d(?<suffix>.*)", "${prefix}" + buildVersionComma + "${suffix}");
+              
+              // Write back
+              sw = new StreamWriter(new FileStream(module + "\\AssemblyVersion.rc", FileMode.Create, FileAccess.Write, FileShare.Read), Encoding.Default);	// Avoid locking access to the file; use ANSI codepage
+              sw.Write(sRes);
+              sw.Close();
+          }
+          */
+
+          File.Delete( "Setup\\NSISSetup\\version.nsi" );
+          sw = new StreamWriter( "Setup\\NSISSetup\\version.nsi" );
+          sw.Write( "!define MUI_VERSION \"build " + buildID + "\"\n" );
+          sw.Write( "!define MUI_VERSION_MAJOR " + buildDayNumber.ToString() + "\n" );
+          sw.Write( "!define MUI_VERSION_MINOR " + buildNumber.ToString() + "\n" );
+          sw.Close();
+        }
+        
+public class PerforceClient : IDisposable
+{
+	/// NANT project.
+	Project	_oNantProject;
+	
+	/// List of the P4 paths of the files to checkin.
+	/// Non-null only in between the checkout and checkin.
+	Hashtable	_filelist = null;
+	
+	/// Checkin comment.
+	string	_description = null;
+	
+	public PerforceClient(Project project)
+	{
+		if(project == null)
+			throw new ArgumentNullException("project");
+		_oNantProject = project;
+	}
+	
+	public PerforceClient(Project project, string[] filenames, string description)
+	{
+		if(project == null)
+			throw new ArgumentNullException("project");
+		_oNantProject = project;
+		
+		CheckOut(filenames, description);
+	}
+	
+	/// Performs checkout of the files specified and remembers the list
+	public void CheckOut(string[] filenames, string description)
+	{
+		if(_oNantProject == null)
+			throw new ObjectDisposedException(typeof(PerforceClient).Name);
+		if(_filelist != null)
+			throw new InvalidOperationException("Cannot checkout for the second time.");
+			
+		_oNantProject.Log(Level.Info, "Initiating checkout. " + description);			
+		
+		// Prepare the command
+		StringWriter	sw = new StringWriter();
+		sw.Write("edit");
+		foreach(string filename in filenames)
+			sw.Write(" {0}", filename);			
+			
+		// Invoke P4
+		string sEditList = RunProcess(_oNantProject, "Checkout", "p4.exe", sw.ToString(), null);
+	
+		// Build the list of checked-out files
+		Regex	regexFiles = new Regex("(//[^ #]+)");
+		Match	matchFiles = regexFiles.Match(sEditList);
+		_filelist = new Hashtable();
+		while(matchFiles.Success)
+		{
+			_filelist[matchFiles.Value] = true;
+			matchFiles = matchFiles.NextMatch();		
+		}
+		
+		_description = description;	// Store
+	}
+	
+	/// Checks in the previously checked-out files.
+	public void CheckIn()
+	{
+		if(_oNantProject == null)
+			throw new ObjectDisposedException(typeof(PerforceClient).Name);
+		if(_filelist == null)
+			throw new InvalidOperationException("Must checkout before checkin.");		
+			
+		_oNantProject.Log(Level.Info, "Initiating checkin. " + _description);
+
+		// Generate the changespec
+		StringWriter	swChangespec = new StringWriter();
+		swChangespec.WriteLine("Change: new");
+		swChangespec.WriteLine();
+		swChangespec.WriteLine("Description: {0}", _description);
+		swChangespec.WriteLine();
+		swChangespec.WriteLine("Files:");
+		// Add files
+		foreach(string filename in _filelist.Keys)
+			swChangespec.WriteLine("    {0}", filename);
+		swChangespec.WriteLine();
+		_filelist = null;
+
+		_oNantProject.Log(Level.Info, String.Format("Submitting changespec: [{0}].", swChangespec));
+
+		// Exec checkin
+		RunProcess(_oNantProject, "Checkin", "p4.exe", "submit -i", swChangespec.ToString());
+	}
+
+	/// Executes an external process, feeds it with STDIN, outputs its error and warning streams, and throws an exception on failure code
+	public static string RunProcess(Project project, string name, string command, string arguments, string stdin)
+	{
+		// Start the process with command-line arguments specified
+		Process process = new Process();
+		process.StartInfo.FileName = command;
+		process.StartInfo.Arguments = arguments;
+		process.StartInfo.CreateNoWindow = true;
+		process.StartInfo.UseShellExecute = false;
+		process.StartInfo.RedirectStandardInput = true;
+		process.StartInfo.RedirectStandardOutput = true;
+		process.StartInfo.RedirectStandardError = true;
+		process.Start();
+		DateTime timeStart = DateTime.Now;
+
+		// If there is any STDIN content, submit it
+		if((stdin != null) && (stdin.Length > 0))
+		{
+			process.StandardInput.Write(stdin);
+			process.StandardInput.Close();
+		}
+		
+		// Retrieve the output
+		string	sInfo = process.StandardOutput.ReadToEnd();
+		string	sError = process.StandardError.ReadToEnd();
+		
+		// Wait synchronously for the process to complete
+		process.WaitForExit();
+
+		// Print the output	
+		if(sInfo.Length != 0)
+			project.Log(Level.Info, sInfo);
+		if(sError.Length != 0)
+			project.Log(Level.Error, sError);
+		
+		// Check for faulires
+		if(process.ExitCode != 0)
+			throw new Exception(String.Format("{0} has failed with exit code {1}.", name, process.ExitCode));
+		project.Log(Level.Info, String.Format("{0} completed in {1}.", name, process.ExitTime - timeStart));
+		
+		return sInfo;
+	}
+	
+	public void Dispose()
+	{
+		// Disposed already
+		if(_oNantProject == null)
+			return;
+			
+		// No pending files
+		if(_filelist == null)
+			return;
+			
+		CheckIn();
+	}
+	
+	~PerforceClient()
+	{
+		Dispose();
+	}
+}
+        
+      ]]></code>
+    </script>
+
+    <echo message="Compiling build ${build.number}"/>
+  </target>
+
+  <include buildfile="OmeaCompile.build"/>
+
+  <target name="debugbuild" depends="mkdir">
+    <nant buildfile="OmeaCompile.build" target="build">
+      <properties>
+        <property name="build.dir" value="${build.dir.debug}"/>
+        <property name="build.debug" value="true"/>
+      </properties>
+    </nant>
+  </target>
+
+  <target name="releasebuild" depends="mkdir">
+    <nant buildfile="OmeaCompile.build" target="build">
+      <properties>
+        <property name="build.dir" value="${build.dir.release}"/>
+        <property name="build.debug" value="false"/>
+      </properties>
+    </nant>
+
+    <call target="ExcelDocPlugin"/>
+    <delete file="Dotfuscated\map.xml" failonerror="false" /> <!-- The file needs to be deleted for the obfuscator to succeed. -->
+    <exec program="C:\Program Files\PreEmptive Solutions\Dotfuscator Standard Edition 2.0\dotfuscator.exe"
+      commandline="OmniaMeaDotfuscator.xml"/>      
+
+    <copy file="Dotfuscated\map.xml" tofile="${map.dir}\map-${build.number}.xml"/>
+    <property name="build.dir.obfuscated" value="Dotfuscated"/>
+  </target>
+    
+  <target name="OmniaMeaBaseTests">
+    <nunit2>
+      <formatter type="Plain"/>
+      <test assemblyname="${build.dir.debug}/OmniaMeaBaseTests.dll"/>
+    </nunit2>
+  </target>
+
+  <target name="DBUtilsTests">
+    <nunit2>
+      <formatter type="Plain"/>
+      <test assemblyname="${build.dir.debug}/DBUtilsTests.exe"/>
+    </nunit2>
+  </target>
+  
+  <target name="JetListViewTests">
+    <nunit2>
+      <formatter type="Plain"/>
+      <test assemblyname="${build.dir.debug}/JetListView.dll"/>
+    </nunit2>
+  </target>
+
+  <target name="GUIControlsTests">
+    <nunit2>
+      <formatter type="Plain"/>
+      <test assemblyname="${build.dir.debug}/GUIControlsTests.dll"/>
+    </nunit2>
+  </target>
+
+  <target name="CommonTests">
+    <nunit2>
+      <formatter type="Plain"/>
+      <test assemblyname="${build.dir.debug}/CommonTests.dll"/>
+    </nunit2>
+  </target>
+
+  <target name="ResourceToolsTests">
+    <nunit2>
+      <formatter type="Plain"/>
+      <test assemblyname="${build.dir.debug}/ResourceToolsTests.dll"/>
+    </nunit2>
+  </target>
+
+  <target name="TextIndexTests">
+    <nunit2>
+      <formatter type="Plain"/>
+      <test assemblyname="${build.dir.debug}/TextIndexTests.dll"/>
+    </nunit2>
+  </target>
+
+  <target name="OmeaTests">
+    <nunit2>
+      <formatter type="Plain"/>
+      <test assemblyname="${build.dir.debug}/OmeaPro.exe"/>
+    </nunit2>
+  </target>
+
+  <target name="ContactsPluginTests">
+    <nunit2>
+      <formatter type="Plain"/>
+      <test assemblyname="${build.dir.debug}/ContactsPlugin.dll"/>
+    </nunit2>
+  </target>
+
+  <target name="RSSPluginTests">
+    <nunit2>
+      <formatter type="Plain"/>
+      <test assemblyname="${build.dir.debug}/RSSPlugin.dll"/>
+    </nunit2>
+  </target>
+
+  <target name="OutlookPluginTests">
+    <nunit2>
+      <formatter type="Plain"/>
+      <test assemblyname="${build.dir.debug}/OutlookPlugin.dll"/>
+    </nunit2>
+  </target>
+
+  <target name="MirandaPluginTests">
+    <nunit2>
+      <formatter type="Plain"/>
+      <test assemblyname="${build.dir.debug}/MirandaPlugin.dll"/>
+    </nunit2>
+  </target>
+  <target name="ContactNamesTests">
+    <nunit2>
+      <formatter type="Plain"/>
+      <test assemblyname="${build.dir.debug}/OutlookPlugin.dll" testname="OutlookPlugin.Tests.ContactNamesTests"/>
+    </nunit2>
+  </target>
+
+  <target name="test">
+    <call target="debugbuild"/>
+    <call target="OmniaMeaBaseTests"/>
+    <call target="DBUtilsTests"/>
+    <call target="JetListViewTests"/>
+    <call target="GUIControlsTests"/>
+    <call target="CommonTests"/>
+    <call target="ResourceToolsTests"/>
+    <call target="TextIndexTests"/>
+    <call target="OmeaTests"/>
+    <call target="ContactsPluginTests"/>
+    <call target="RSSPluginTests"/>
+    <call target="ContactNamesTests"/>
+    <call target="MirandaPluginTests"/>
+  </target>
+
+   <target name="plugins" depends="init">
+     <nant buildfile="BrowserPlugins/Mozilla/OmeaConnector/omeaconnector.build" inheritall="true"/>
+     <copy file="BrowserPlugins/Mozilla/OmeaConnector/omeaconnector.xpi" todir="${build.dir.release}"/>
+
+     <!-- Build the Internet Explorer Add-Ons -->
+     <nant buildfile="BrowserPlugins/JetIe/default.build" inheritall="true">
+       <properties>
+         <property name="dir.project" value="${path::get-full-path('BrowserPlugins/JetIe')}"/>
+         <property name="build.dir" value="${path::get-full-path(build.dir.release)}"/>
+       </properties>
+     </nant>
+   </target>
+
+   <target name="nsis" depends="init,releasebuild,plugins,test">
+     <exec program="makensis.exe"
+           commandline="/DBINARIES_LOCATION=../../${build.dir.release} /DOBFUSC_LOCATION=../../${build.dir.obfuscated} /DBUILD=${build.version.build} OmniaMeaSetup.nsi"
+           workingdir="Setup/NSISSetup"/>
+
+     <exec program="makensis.exe"
+           commandline="/DBINARIES_LOCATION=../../${build.dir.release} /DOBFUSC_LOCATION=../../${build.dir.obfuscated} /DBUILD=${build.version.build} /DREADER=1 OmniaMeaSetup.nsi"
+           workingdir="Setup/NSISSetup"/>
+     
+     <exec program="makensis.exe"
+           commandline="/DBINARIES_LOCATION=../../${build.dir.release} /DOBFUSC_LOCATION=../../${build.dir.obfuscated} /DBUILD=${build.version.build} BeelaxyPlugin.nsi"
+           workingdir="Setup/NSISSetup"/>
+     
+     <zip zipfile="${archive.dir}/OmeaDebug-${build.number}.zip">
+       <fileset basedir="${build.dir.debug}">
+         <include name="*.*"/>
+         <include name="data/*.*"/>
+         <excludes name="*-results.xml"/>
+         <excludes name="DBUtilsTests.exe"/>
+         <excludes name="_*"/>
+         <excludes name="*.exp"/>        
+       </fileset>
+     </zip>
+
+     <zip zipfile="${archive.dir}/wvWare-1.0.0-JetBrains.zip">
+       <fileset basedir="wvWare">
+         <include name="**/*"/>
+       </fileset>
+     </zip>
+
+     <zip zipfile="${archive.dir}/xlhtml-0.5-JetBrains.zip">
+       <fileset basedir="xlhtml">
+         <include name="**/*"/>
+       </fileset>
+     </zip>
+
+     <copy file="${build.dir.release}/MemoryWatchPlugin.dll" todir="${archive.dir}"/>
+
+     <copy file="${build.dir.release}/Setup/OmeaSetup.exe" 
+           tofile="${archive.dir}/OmeaSetup-${build.number}.exe"/>
+
+     <copy file="${build.dir.release}/Setup/OmeaReaderSetup.exe" 
+           tofile="${archive.dir}/OmeaReaderSetup-${build.number}.exe"/>
+
+     <copy file="${build.dir.release}/Setup/OmeaBeelaxySetup.exe" 
+           tofile="${archive.dir}/OmeaBeelaxySetup-${build.number}.exe"/>
+
+	<!-- Copy IexploreBeelaxy installer files to the archive storage, including version-independent and versioned filenames -->
+	<foreach item="File" property="filename">
+		<in>
+			<items>
+				<include name="${build.dir.release}/IexploreBeelaxy*.msi" />
+			</items>
+		</in>
+		<do>
+			<copy todir="${archive.dir}" file="${filename}" />
+		</do>
+	</foreach>
+
+     <copy file="\OmniaMea\build.id" tofile="\OmniaMea\build.integration"/>
+
+     <!-- <exec program="cmd.exe" 
+          commandline="/c echo RedirectTemp /files/OmniaMeaSetup-latest.exe http://omniamea-unit.labs.intellij.net/files/OmniaMeaSetup-${build.number}.exe"
+          output="${archive.dir}/.htaccess"
+          append="true"/> -->
+
+     <script language="C#">
+       <code><![CDATA[
+         public static void ScriptMain( Project project )
+         {
+           StreamReader sr = new StreamReader( "\\OmniaMea\\.htaccess" );
+           ArrayList strings = new ArrayList();
+
+           string build = project.Properties ["build.number"];
+
+           while (true)
+           {
+             string line = sr.ReadLine();
+             if ( line == null )
+               break;
+             line = line.Trim();
+             if ( line.IndexOf("OmeaSetup-latest.exe") >= 0 )
+             {
+               line = "RedirectTemp /files/OmeaSetup-latest.exe http://omniamea-unit.labs.intellij.net/files/OmeaSetup-" + build + ".exe";             
+             }
+             else if ( line.IndexOf("OmeaReaderSetup-latest.exe") >= 0 )
+             {
+               line = "RedirectTemp /files/OmeaReaderSetup-latest.exe http://omniamea-unit.labs.intellij.net/files/OmeaReaderSetup-" + build + ".exe";
+             }
+             strings.Add( line );
+           }
+           sr.Close();
+
+           StreamWriter sw = new StreamWriter( "\\OmniaMea\\.htaccess" );
+           foreach( string line in strings )
+           {
+             sw.Write( line + "\n" );
+           }
+           sw.Close();
+
+           sw = File.CreateText( "\\Program Files\\Apache Group\\Apache2\\htdocs\\build.txt" );
+           sw.Write( build );
+           sw.Close();
+         
+			// Write the timestamp
+			sw = new StreamWriter("\\Program Files\\Apache Group\\Apache2\\htdocs\\BuildTime.txt");
+			sw.Write(DateTime.Now.ToString("F"));
+			sw.Close();
+         }
+       ]]></code>
+     </script>
+
+     <exec program="p4.exe" 
+           commandline="revert Setup\NSISSetup\version.nsi" failonerror="false"/>
+  </target>
+
+  <target name="samples" depends="releasebuild">
+    <foreach item="Folder" in="SamplePlugins" property="filename">
+      <property name="buildpath" value="${filename}\plugin.build"/>
+      <if test="${file::exists(buildpath)}">
+        <property name="build.dir" value="${path::get-full-path(build.dir.release)}"/>
+        <property name="references.dir" value="${path::get-full-path('References')}"/>
+        <nant buildfile="${buildpath}" target="dist" inheritall="true"/>
+      </if>
+    </foreach>
+  </target>
+
+  <target name="openapi" depends="releasebuild">
+    <ndoc>
+      <assemblies basedir="${build.dir.release}">
+        <include name="OpenAPI.dll"/>
+      </assemblies>
+      <documenters>
+        <documenter name="MSDN">
+          <property name="OutputDirectory" value="doc"/>
+          <property name="CopyrightText" value="Copyright (C) 2003-04 JetBrains Inc."/>
+          <property name="HtmlHelpName" value="Omea OpenAPI" />
+          <property name="Title" value="Open API for JetBrains Omea"/>
+        </documenter>
+      </documenters>
+    </ndoc>
+
+    <zip zipfile="Omea-OpenAPI.zip">
+      <fileset>
+        <include name="doc/Omea OpenAPI.chm"/>
+        <include name="SamplePlugins/**/*.cs"/>
+        <include name="SamplePlugins/**/*.resx"/>
+        <include name="SamplePlugins/**/*.sln"/>
+        <include name="SamplePlugins/**/*.csproj"/>
+      </fileset>
+    </zip>
+  </target>
+
+  <target name="ExcelDocPlugin">
+    <zip zipfile="${build.dir.release}/Setup/ExcelDocPlugin.zip">
+      <fileset basedir="${build.dir.release}">
+        <include name="ExcelDocPlugin.dll"/>
+      </fileset>
+      <fileset basedir="References">
+        <include name="xlhtml-w32.exe"/>
+      </fileset>
+      <fileset basedir="xlhtml" prefix="xlhtml-w32.src">
+        <include name="**/*.c"/>
+        <include name="**/*.h"/>
+        <include name="xlhtml-w32.sln"/>
+        <include name="xlhtml-w32.vcproj"/>
+      </fileset>
+    </zip>
+    <copy file="${build.dir.release}/Setup/ExcelDocPlugin.zip" todir="${site.dir}"/>
+  </target>
+</project>

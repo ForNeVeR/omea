@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+  <copyright company="JetBrains">
+  Copyright © 2003-2008 JetBrains s.r.o.
+  You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
+  </copyright>
+-->
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<!-- Override these properties to insert custom targets before key events -->
+	<PropertyGroup>
+		<EndPreBuildDependsOn />
+	</PropertyGroup>
+	<PropertyGroup>
+		<VersionXmlFile>$(BuildPath)\Versioning\VersionNumber.exe.config</VersionXmlFile>
+	</PropertyGroup>
+	<UsingTask AssemblyFile="$(BuildPath)\bin\Microsoft.Sdc.Tasks.dll" TaskName="Microsoft.Sdc.Tasks.GlobalAssemblyCache.RemoveAssembly" />
+	<UsingTask AssemblyFile="$(BuildPath)\bin\Microsoft.Sdc.Tasks.dll" TaskName="Microsoft.Sdc.Tasks.VersionNumber.CreateSourceFiles" />
+	<!-- Redefining the BeforeBuild target here to plugin to the standard msbuild -->
+	<Target Name="BeforeBuild" DependsOnTargets="StartBeforeBuild;UnGac;$(EndPreBuildDependsOn)"></Target>
+	<Target Name="StartBeforeBuild">
+		<Error Condition=" '$(BuildPath)' == '' " Text="You must define the BuildPath property in your .csproj file" />
+		<VersionNumber.CreateSourceFiles ConfigFileLocation="$(VersionXmlFile)" OutputPath="$(MSBuildProjectDirectory)\..\Common" />
+	</Target>
+	<Target Name="UnGac">
+		<Message Text="Un-GAC assembly &quot;%(AllAssemblies.Filename)&quot;." Condition=" '%(AllAssemblies.ProjectName)' == '$(MSBuildProjectName)' and '%(AllAssemblies.Gac)' == 'true' " />
+		<GlobalAssemblyCache.RemoveAssembly AssemblyName="%(AllAssemblies.Filename)" Condition=" '%(AllAssemblies.ProjectName)' == '$(MSBuildProjectName)' and '%(AllAssemblies.Gac)' == 'true' " />
+	</Target>
+</Project>

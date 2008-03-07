@@ -1,0 +1,1157 @@
+<!doctype HTML public "-//W3C//DTD HTML 4.0 Frameset//EN">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang=en lang=en>
+
+<!--(==============================================================)-->
+<!--(Document created with RoboEditor. )============================-->
+<!--(==============================================================)-->
+
+<head>
+
+<title>Feeds and Weblogs</title>
+
+<!--(Meta)==========================================================-->
+
+<meta http-equiv=content-type content="text/html; charset=windows-1252" charset=windows-1252 />
+<meta name=copyright content="Copyright (c)2004 JetBrains, Inc." />
+<meta name=topic-check-list content="Added To TOC" />
+<meta name=generator content="RoboHELP by eHelp Corporation - www.ehelp.com">
+<meta name=generator-major-version content=0.1>
+<meta name=generator-minor-version content=1>
+<meta name=filetype content=kadov>
+<meta name=filetype-version content=1>
+<meta name=page-count content=1>
+<meta name=layout-height content=10246>
+<meta name=layout-width content=2192>
+
+
+<!--(Links)=========================================================-->
+
+<link rel=StyleSheet type="text/css" href="..\help.css" />
+
+
+
+</head>
+
+<!--(Body)==========================================================-->
+
+
+<body>
+
+<!-- Conditional Headers -->
+<div style="x-condition: PRO;">
+<div id=helpHeader>
+<div id=helpHeaderImg
+	style="/*begin!kadov{{*/ x-right: 951px; x-bottom: 10213px; /*}}end!kadov*/ ">
+<p>&nbsp;</p>
+</div>
+
+<p class=helpHeader>Omea Pro Help: Feeds &amp; Weblogs</p>
+</div>
+</div>
+
+<div style="x-condition: READER;">
+<div id=helpHeader>
+<div id=helpHeaderImg
+	style="/*begin!kadov{{*/ x-right: 951px; x-bottom: 10213px; /*}}end!kadov*/ ">
+<p>&nbsp;</p>
+</div>
+
+<p class=helpHeader>Omea Reader Help: Feeds &amp; Weblogs</p>
+</div>
+</div>
+
+<div id=mainContent>
+<h1>Using <span style="x-condition: READER;">Omea Reader</span><span style="x-condition: PRO;">Omea 
+ Pro</span> with Feeds and Weblogs</h1>
+
+<p><span style="x-condition: READER;">Omea Reader</span><span style="x-condition: PRO;">Omea 
+ Pro</span> has a built-in feed reader that supports both RSS and Atom (including ATOM 1.0)
+ feeds. You can subscribe to feeds individually, or by importing an exported 
+ OPML file from another aggregator (reader). You can export your <span 
+ style="x-condition: READER;">Omea Reader</span> <span style="x-condition: PRO;">Omea 
+ Pro</span> feed subscriptions to OPML format as well.</p>
+
+<p>RSS and Atom feeds are often published by weblogs (a.k.a. &quot;blogs&quot;). 
+ If there is a third-party Weblog Posting Extension plugin for your particular 
+ weblog, and if you install that plugin via the <a href="../reference/feeds.html">Feeds 
+ options</a>, you can post a new item into your blog that references the 
+ post in the weblog you are currently reading in <span style="x-condition: READER;">Omea 
+ Reader</span> <span style="x-condition: PRO;">Omea Pro</span>.</p>
+
+<a name=subscribing></a>
+
+<h2>Subscribing to a Feed</h2>
+
+<p>The subscription process is the same for both RSS and Atom feeds.</p>
+
+
+<h3>Subscribing to an Individual Feed</h3>
+
+<p>To subscribe to a feed, you must know the URL of the feed data file. 
+ This is an XML file which has the feed’s data either in RSS or Atom format. 
+ If you don’t know the URL of the feed data file itself, but you do know 
+ the URL of the web site that hosts the feed, <span style="x-condition: READER;">Omea 
+ Reader</span><span style="x-condition: PRO;">Omea Pro</span> will try 
+ to locate all the feed data files at that URL. If it finds one or more, 
+ it reports them to you so you can decide which feed(s) to subscribe to.</p>
+
+<div class=proc>
+<p class=procHead>To subscribe to a feed:</p>
+
+<ol>
+	
+	<li class=kadov-p>Select the <strong>Feeds</strong> tab in the Main 
+ window.</li>
+	
+	<li class=kadov-p>
+	Either... 
+	
+	<ul>
+		
+		<li class=kadov-p><p>Choose <strong>Tools | Subscribe to Feed</strong> 
+ on the Main menu. </p></li>
+		
+		<li class=kadov-p>Right-click the white space in the <strong>Feeds</strong> 
+ pane and choose <strong>Subscribe to Feed</strong> on the context menu, 
+ or... </li>
+		
+		<li class=kadov-p>Click the Subscribe to Feed icon <img src="../images/iconsMarks/ico_add_feed.gif"
+	class=linkIcon
+	/
+	style="width: 16px;
+			height: 16px;
+			border-style: none;
+			border-style: none;"
+	width=16
+	height=16
+	border=0> on the <strong>Items List toolbar</strong>. </li>
+		
+		<li class=kadov-p>Press <strong>Ctrl+N</strong> on the keyboard. </li>
+	</ul>
+	
+	<p>The <strong>Subscribe to Feed</strong> wizard appears.</p>
+	<a name=sshot></a>
+	<p><img src="../images/sshots/dialogs/pro/subscribe_to_feed_wizard.png"
+										alt="Subscribe to Feed wizard"
+										style="width: 558px;
+												height: 483px;
+												border-style: none;
+												float: none;
+												border-style: none;"
+										width=558
+										height=483
+										border=0></p>
+	<p class=caption>Subscribe to Feed wizard (step 1)</p>
+	<li class=kadov-p>Enter the URL (address) of the feed on the web. This 
+ is the address of the feed data file, not a web page. Your entry should 
+ be something like:<br />
+	<code><strong>http://somesite.com/feeds/productnews<span style="color: #0000ff;">.xml</span></strong></code> 
+ <br />
+	<br />
+	If you are not sure of the exact address of the feed, you can enter 
+ the URL of the site and <span style="x-condition: READER;">Omea Reader</span><span 
+ style="x-condition: PRO;">Omea Pro</span> will try to find any feed data 
+ files there. </li>
+	
+	<li class=kadov-p>If the feed you are subscribing to requires you to 
+ log in, and you either you have never logged in before, or you have logged 
+ in using Internet Explorer© and the browser is not set to remember your 
+ login information, then check the box next to <em>The feed requires an 
+ HTTP login</em>, and supply the user name and password. </li>
+	
+	<li class=kadov-p>
+	Click <strong>Next</strong>. 
+	
+	<ul>
+		
+		<li class=kadov-p>
+		If you entered a valid URL for a feed data file, the dialog offers 
+ you the option of specifying a title to appear in the <strong>Feeds</strong> 
+ pane, and of specifying a Feed Folder or creating a new Feed Folder in which the feed will appear in the <strong>Feeds</strong> pane. 
+ Optionally change the title and specify or create a Feed Folder, and click 
+ <strong>Finish</strong> to complete the subscription.<br />
+		<img src="../images/sshots/shared/feed_valid_single.gif"
+			alt="Valid feed options"
+			/
+			style="width: 362px;
+					height: 274px;
+					border-style: none;
+					border-style: none;"
+			width=362
+			height=274
+			border=0> 
+		
+		<p class=caption>Feed subscription when a valid feed URL has been 
+ specified.</p>
+		</li>
+		
+		<li class=kadov-p>
+		If you entered a web site URL and <span style="x-condition: READER;">Omea 
+ Reader</span> <span style="x-condition: PRO;">Omea Pro</span> found one 
+ or more feed data files, the dialog offers you a choice of which one you 
+ want to subscribe to.<br />
+		<a name=sshot></a>
+		<img src="../images/sshots/shared/feed_valid_multiple.gif"
+			alt="Multiple feeds at URL"
+			/
+			style="width: 351px;
+					height: 226px;
+					border-style: none;
+					border-style: none;"
+			width=351
+			height=226
+			border=0> 
+		
+		<p class=caption>Multiple feeds found at a web site URL</p>
+		
+		<p>Check the desired feed or feeds and click <strong>Next</strong>. The 
+ dialog will offer the option of re-titling and selection of Feed Folder 
+ as described above (if you have selected one feed to subscribe to). If several feeds are selected, you won't be able to edit the feed title at this step of the startup wizard but you can easily change it in the <a href="../reference/feed_properties_dialog.html">Feed Properties dialog</a>. Click <strong>Finish</strong> on that screen to complete 
+ the subscription.</p>
+		</li>
+	</ul>
+	</li>
+</ol>
+</div>
+
+<a name=subscribingother></a>
+
+<h2>Other Possibilities for Subscribing to Feeds</h2>
+
+<h3>Subscribing from the Internet Browsers</h3>
+
+<p>You can subscribe to the feeds from within Mozilla<sup>©</sup>, Firefox<sup>©</sup>, and 
+ Internet Explorer<sup>©</sup> using <a href="working_with_mozilla_browser_plugin.htm">Omea Connector plugin</a> and <a href="working_with_ie_add-on.htm">Omea Add-on</a> respectively. The plugin is installed automatically in Internet Explorer<sup>©</sup> and you need to install it manually for Mozilla-based browsers. After the plugins are installed, a special toolbar for subscribing to feeds appears. </p>
+<p><img src="../images/sshots/shared/mozilla_toolbar.png" alt="Toobar in Mozilla " width="426" height="214"></p>
+<p class="caption">A toolbar in Mozilla<sup>©</sup> (it looks the same in Firefox<sup>©</sup> and Internet Explorer<sup>©</sup>) </p>
+<p>Using Omea Connector Plugin for Mozilla<sup>©</sup> and Firefox<sup>©</sup> you can subscribe 
+ to the feeds both when <span style="x-condition: READER;">Omea Reader</span><span 
+ style="x-condition: PRO;">Omea Pro</span> is running or when it is turned 
+ off. Omea Add-on for Internet Explorer<sup>©</sup> provides the same possibilities 
+ for subscribing to feeds &#8212; simply click Subscribe to Feed button on this toolbar and then follow the instructions of Omea's <em>Subscribe to Feed</em> wizard. For more information, refer to <a href="working_with_mozilla_browser_plugin.htm">Working 
+ with Browser Plugins</a>. </p>
+<a name=draganddrop></a>
+<h3>Subscribing using Drag-and-Drop Mechanism</h3>
+
+<p>You can also subscribe to feed by dragging the address of the web page 
+ or the link on the web page (in some external web browser) and dropping this link to any place of the 
+ <strong>Feeds</strong> pane in <span style="x-condition: READER;">Omea 
+ Reader</span><span style="x-condition: PRO;">Omea Pro</span>. <span class=caption>If 
+ you already have some Feed Folders and want to add the feed subscription 
+ to some group, the Feed Folder to which you want to drop the web link becomes 
+ selected (the rectangle border appears around the Feed Folder name) and 
+ the mouse pointer changes its appearance as in figure below. </span></p>
+<p><img src="../images/sshots/shared/subscribing_to_feed_using_d.png" alt="Dropping the Link to the Feeds Pane" width="220" height="341"></p>
+<p class=caption>Dropping the web link from the external browser to the Feeds pane</p>
+
+<p>Once you release the mouse button, the <strong>Subscribe to Feed</strong> 
+ wizard opens. Follow the wizard instructions to subscribe to the feed. </p>
+<div class=tip>
+        <div class=tipImg
+	style="/*begin!kadov{{*/ x-right: 747px; x-bottom: 776px; /*}}end!kadov*/ ">
+    
+        </div>
+        <p class=tip>Please note that you can subscribe to feeds using drag-and-drop mechanism only from the external web browsers. </p>
+  </div>
+
+<a name=subcribingtosearchfeeds></a>
+<h2>Subscribing to Search Feeds</h2>
+<p>Now you can search the entries of the words which you specify as a search criteria to look for  in different feed search engines which are <strong>Feedster</strong>, <strong>Google News, MSN Search, Yahoo! Search, Blogdigger, </strong> and <strong>blogs.yandex.ru</strong>. Once you specify the search criteria and come through the feed subscription wizard, Omea will detect if the entries of words you specify appear in the feeds listed on the search engine. You can also set notifications to be aware of the changes in the blogs mentioned on the chosen feeds search engine. </p>
+<p>Subscribing to the search feed is very much like the subscribe to feed procedure (see <strong>Subscribe to feed</strong> above). To call this wizard, from the <strong>Tools</strong>, select <strong>Subscribe to Search Feed</strong> or right-click any space of the <strong>Feeds</strong> pane and select the same on the shortcut menu. </p>
+<p><img src="../images/sshots/dialogs/shared/subscribe_to_search_feed.png" alt="Subscribe to Search feed dialog"></p>
+<p class="caption">Subscribe to Search Feed dialog (word &#8220;Omea&#8221; is entered as a search keyword and the &#8220;Blogdigger&#8221; search engine is selected) </p>
+<p>Once you have come through the <strong>Subscribe to Search Feed</strong> wizard, the feeds mentioning the search keyword(s) you have specified and registered on the search engine which you have selected are downloaded and appear in the <strong>Items List</strong>. </p>
+<p><img src="../images/sshots/shared/subscribe_to_search_feed_il.png" alt="Illustration of how you can subscribe to search feed" width="718" height="841"></p>
+<p class="caption">Illustration of how Omea searches for entries of the keywords using different blogs search engines </p>
+<p>Once you are subscribed to the search feed, and you update all feeds or the feed which contains the results of search, new items which appeared and can be retrieved by the search feed, appear in Omea as well. So you will always be up-to-date with tracking the entries of the words which you have specified when subscribing to the search feed. </p>
+<div class=tip>
+        <div class=tipImg
+	style="/*begin!kadov{{*/ x-right: 747px; x-bottom: 776px; /*}}end!kadov*/ ">
+          <p>&nbsp;</p>
+        </div>
+        <p class=tip>When searching using MSN and Yahoo! search engines, Omea finds instances of words or phrases on the web but not in blogs (feeds). </p>
+  </div>
+<p><a name=importing></a></p>
+<h3>Importing Feed Subscriptions from Other Readers and OPML Files</h3>
+
+<p>If you have been reading feeds in a different aggregator (reader), you 
+ can import your subscriptions from that program into <span style="x-condition: READER;">Omea 
+ Reader</span><span style="x-condition: PRO;">Omea Pro</span>. You can now import subscriptions from <em>Bloglines</em>, <em>RSS Bandit</em>, <em>SharpReader</em> and <em>FeedDemon</em> or import your subscriptions which you have previously saved in <em>OPML file</em>. </p>
+<div class=proc>
+<p class=procHead>To import feed subscriptions from other readers and OPML files:</p>
+
+<ol>
+	
+	<li class=kadov-p>Use the Export feature of your other feed reader 
+ program to export your feed subscriptions to an OPML file.</li>
+	
+	<li class=kadov-p>Start Omea and choose <strong>File | Import Feed Subscriptions </strong> 
+ on the main menu or right-click in any place of the <strong>Feeds</strong> pane and select <strong>Import Feed Subscriptions&#8230;</strong>.<br>
+	The <strong>Import Feed Subscriptions</strong> wizard appears.</li>
+	
+	<li class=kadov-p>Select one or several readers from which you want to import your feed subscriptions or OPML file and follow the wizard directions.<br>
+	  <div class=tip>
+        <div class=tipImg
+	style="/*begin!kadov{{*/ x-right: 747px; x-bottom: 776px; /*}}end!kadov*/ ">
+          <p>&nbsp;</p>
+        </div>
+        <p class=tip>If you are not certain how many feeds the OPML file will subscribe to, or what all of the feeds are, check <strong>Preview feed before import</strong> option. In the <strong>Subscription Import Preview</strong> dialog, select (check) the feeds which you want to import. </p>
+	    </div>
+	  </li>
+	<li class=kadov-p>If you selected <em>Bloglines</em>, type your <em>Bloglines login</em>  and <em>password</em> when prompted and click <em>Next</em> or <em>Finish</em>. </li>
+	<li class=kadov-p>If you selected <em>OPML files</em>, click <strong>Add File</strong> to add the feed subscriptions stored in files or <strong>Add URL</strong> to navigate to the desired feed subscription file when prompted and click <em>Next</em> or <em>Finish</em>. Some feed publishers provide an OPML file on the web, enabling 
+   you to subscribe to one or more of their feeds. You can import these subscriptions 
+   from the online OPML file. Just enter its URL on this step.</li>
+	<li class=kadov-p>When you are done, click <strong>Finish</strong>.<br>
+	  The imported feeds will appear in the <strong>Feeds</strong> pane of the <strong>Feeds</strong> Tab. </li>
+</ol>
+</div>
+<p>&nbsp;</p>
+
+<a name=unsubscribing></a>
+<h2>Unsubscribing</h2>
+
+<p>You can unsubscribe from an single feed, multiple feeds, or from all 
+ feeds in a <strong>Feed</strong> <strong>Folder</strong>.</p>
+
+<div class=proc>
+<p class=procHead>To unsubscribe from a single feed or multiple feeds:</p>
+
+<ol>
+	
+	<li class=kadov-p>Select the feed to delete in the <strong>Feeds</strong> 
+ pane. To unsubscribe multiple feeds, hold down the <strong>Ctrl</strong> 
+ key and click on each feed you want to unsubscribe.</li>
+	
+	<li class=kadov-p>Press <strong>Del(ete)</strong>, or right-click any 
+ selected feed in the <strong>Feeds</strong> pane and choose <strong>Unsubscribe.</strong></li>
+	
+	<li class=kadov-p>When prompted to confirm that you want to delete 
+ the feeds, click <strong>Yes.</strong></li>
+</ol>
+</div>
+<p> </p>
+<div class=proc>
+<p class=procHead>To unsubscribe from all feeds in a Feed Folder:</p>
+
+<ol>
+	
+	<li class=kadov-p>Select the <strong>Feed Folder</strong> in the <strong>Feeds</strong> pane.</li>
+	
+	<li class=kadov-p>Press <strong>Del(ete)</strong>, or right-click the<strong> 
+ Feed Folder </strong>  and choose <strong>Delete.</strong></li>
+	
+	<li class=kadov-p>When prompted to confirm that you want to delete 
+ all feeds in the group, click <strong>OK</strong>.</li>
+</ol>
+</div>
+
+<a name=feedsworkspaces></a>
+
+<h3>Feeds and Workspaces</h3>
+
+<p>If you subscribe to a feed while working in the <em>All</em> Workspace, 
+ the feed will be accessible in all other Workspaces, whether existing 
+ now or created in the future.</p>
+
+<p>If you subscribe to a feed while working in a custom Workspace, the 
+ feed will be accessible only in that Workspace (and in <em>All</em> as 
+ well). If you want to have is accessible in another custom Workspace, 
+ you will need to explicitly add it. For more information, see <a href="../organizing/organizing_using_workspaces.html#resources"><em>Associating 
+ Resources with a Workspace</em></a>.</p>
+
+<div class=note>
+<div class=noteImg
+	style="/*begin!kadov{{*/ x-right: 923px; x-bottom: 10213px; /*}}end!kadov*/ ">
+<p>&nbsp;</p>
+</div>
+
+<blockquote>
+<p class=note>If you decide to unsubscribe from the feed in some Custom 
+ Workspace which is also available in the <em>All</em> workspace, this feed will 
+ be deleted both from the Custom and <em>All</em> Workspace. </p>
+</blockquote>
+</div>
+</div>
+<blockquote>
+<a name=feedgroups></a>
+
+
+<h2>Organizing Feeds with Feed Folders </h2>
+
+<p>In the <strong>Feeds</strong> pane, you can organize the feeds you have 
+ subscribed to into <em>Feed Folders</em>.  You can create new <strong>Feed 
+Folders </strong> when you subscribe to a feed, or any time later 
+ on. If you need to reorganize your feeds, you can drag a feed and drop it 
+ into any <strong>Feed Folder</strong>, or to the top level of the 
+ <strong>Feeds</strong> pane.</p>
+</blockquote>
+<blockquote> 
+<div class=proc
+	style="height: 530px;">
+<div style="float: left; position: fixed;">
+<!--kadov_tag{{<implicit_p>}}--><img src="../images/sshots/shared/feed_groups.png"
+									alt="Feed Groups"
+									/
+									style="width: 332px;
+											height: 486px;
+											border-style: none;
+											border-style: none;"
+									width=332
+									height=486
+									border=0> 
+</div>
+
+<div style="float: right;">
+<p class=procHead
+	style="margin-top: 80px;">To create a new Feed Folder:</p>
+
+<ol>
+	
+	<li class=kadov-p>In the <strong>Feeds</strong> pane right-click on 
+ the pane background if you want to create a top-level group. If you want 
+ to create a new group within and existing group, right-click  the existing folder.</li>
+	
+	<li class=kadov-p>Choose <strong>New Feed Folder </strong> on the context 
+ menu.</li>
+	
+	<li class=kadov-p>Type the Feed Folder name and press <strong>Enter</strong>.</li>
+	
+	<p>Then drag the feeds from the <strong>Feeds</strong> pane 
+ root or other Feed Folders and drop them to the new Feed Folder.</p>
+</ol>
+</div>
+
+</div>
+</blockquote>
+<a name=reading></a>
+
+<blockquote>
+<h2>Reading Feed Postings</h2>
+
+<p><em style="font-style: italic;">Posts</em> in an RSS or Atom feeds are 
+ similar articles in <a href="com_news.html">newsgroups</a>... they are 
+ the content you want to read.</p>
+
+<p>Once subscribed, you can select the feed to read in the <strong>Feeds</strong> 
+ pane (Left sidebar). When you select a feed, the list of posts appears 
+ in the <strong>Items List</strong> of the <strong>Feeds</strong> tab. 
+ Unread articles appear in <strong>bold</strong> type.</p>
+
+<p>If you select a <strong>Feed Folder</strong> 
+ in the <strong>Feeds</strong> pane, the <strong>Items</strong> <strong>List</strong> 
+ displays a combined list of posts in all feeds in the selected group.</p>
+
+<p>When you select a post in the <strong>Items</strong> <strong>List</strong>, 
+ its text (body) appears in the <strong>Item</strong> <strong>Viewer</strong>.</p>
+
+<p>You can view the post in an external web browser. Either double-click 
+ on the post, or choose <strong>Open in Browser</strong> on the article’s 
+ context menu.</p>
+</blockquote>
+
+<div class=tip>
+<div class=tipImg
+	style="/*begin!kadov{{*/ x-right: 943px; x-bottom: 10203px; /*}}end!kadov*/ ">
+<p>&nbsp;</p>
+</div>
+
+<p class=tip>You can enable the AutoPreview option (<strong>View&gt;AutoPreview</strong>). 
+ You can choose to preview all feeds and feeds comments in the <strong>Items 
+ List</strong> or choose to autopreview the unread messages only (<strong>View&gt;AutoPreview&gt;Unread 
+ Items</strong>) or not to view the feeds posts with autopreview. </p>
+</div>
+
+<blockquote>
+<h3>Refreshing the List of Posts</h3>
+
+<div class=proc>
+<p class=procHead>To refresh the feed and download new posts:</p>
+
+<ol>
+	
+	<li class=kadov-p>Select the feed or several feeds (press and hold down <strong>Ctrl</strong> or <strong>Shift</strong>) in the <strong>Feeds</strong> pane. 
+ </li>
+	
+	<li class=kadov-p>Choose <strong>Tools | Update Feeds</strong> on the 
+ main menu, or right-click on the feed and choose <strong>Update</strong> 
+ on the context menu. </li>
+</ol>
+
+<p>If the feeds are organized using the <strong>Feed Folders</strong>, you 
+ can update all feeds which the <strong>Feed Folder </strong> contains. To 
+ do so: right-click the <strong>Feed Folder </strong> name and select <strong>Update</strong>. </p>
+
+</div>
+<div class=tip>
+<div class=tipImg
+	style="/*begin!kadov{{*/ x-right: 943px; x-bottom: 10203px; /*}}end!kadov*/ ">
+<p>&nbsp;</p>
+</div>
+
+<p class=tip>You can also define a per-feed update interval. To do so, repeat step one of the procedure described above, then right-click and select <strong>Properties</strong>. Switch to <strong>Settings</strong> tab and set the desired update interval in <em>Update every</em> field. </p>
+</div>
+
+<h3>Expanding All Threads</h3>
+<p>Use this command (<strong>View&gt;Expand All Threads</strong>) to view all feed posts and their comments as threads (Thread in general is a set of posts on a feed post, composed of an initial post about a topic and all responses to it). Please note that if the feed, for which you apply this command, contains many posts and comments, it many require some time to &#8220;redraw&#8221; the Feeds <strong>Items List</strong>. </p>
+</blockquote>
+
+<a name=newspaper></a>
+
+<blockquote>
+<h3>Using Newspaper View</h3>
+
+<p>By default, the <strong>Items List</strong> for feeds contains a listing 
+ of the titles of all the posts. You can sort the list in various ways 
+ by clicking on the different column headers.</p>
+<p>&#8220;<em>Newspaper</em>&#8221; View for feeds provides you with maximum flexibility for customizing and reading your feed posts. In this View, the feed posts follow each other like chapters in the book. </p>
+  <P>Newspaper View can be applied to all Views in the <strong>Feeds</strong> tab (such as <em>Today</em>, <em>Unread</em>) or you can </P>
+  <ul>
+    <li>view the selected feeds as Newspaper, </li>
+    <li>turn this option on for the <a href="../using/com_feedsblogs.htm#feedgroups">feed folder</a> which contains several feeds,</li>
+    <li> turn this option off if you are more used to reading feeds using a usual <em>Items List</em> representation.</li>
+  </ul>
+  <P>To apply this View to the selected feed or feeds, select the feed or feeds in the <strong>Feeds</strong> pane (press and hold down <strong>Ctrl</strong> if you want to select several feeds) and click Newspaper View button (<img src="../images/iconsMarks/ico_newspaper_view.gif" width="16" height="16" class="linkIcon">) on the <strong>Feeds Item List Toolbar</strong>. The feeds list will look like this. </P>
+  <p></p>
+  <a name="newspapersshot"></a>
+  <p><img src="../images/sshots/shared/newspaper_view.png" alt="Newspaper view" width="748" height="457"></p>
+  <p class="caption">Newspaper view for feeds </p>
+  <p>The feed posts now follow each other, and you can customize the &quot;Newspaper&quot; view and perform different actions with the selected feed post or posts. </p>
+  <h4>Main Possibilities for working with Newspaper View </h4>
+  <p><strong>Paging</strong>: You can specify the number of feeds posts you can view on a single &#8220;newspaper page&#8221; by selecting from 10 to 100 items per page from the toolbar which is located at the bottom of the Feeds list. If the feed contains many entries, you can easily browse through them by clicking on the pages buttons in the Feeds toolbar. </p>
+  <p><strong>Filtering</strong>: You can select the number of filters which correspond to the Views which you have in <strong>Views and Categories pane</strong></p>
+  <p><strong>Marking as Read</strong>: Mark as Read by timer (is set in Omea's <a href="../reference/general.html">General options</a>)</p>
+  <p><strong>Navigating between unread articles</strong>: use the <strong>Ctrl-U</strong> (Go to next Unread item) hotkey combination to easily browse through unread items</p>
+  <p><strong>Navigating between pages</strong>: <strong>Ctrl-Shift-A</strong> (Go to next Unread item)</p>
+  <p><strong>Searching in Newspaper View</strong>: <strong><a href="../search/quick_find.html">Quick Find</a></strong> feature (which allows you to find items on the page you are currently browsing) works in the <em>Newspaper View.</em></p>
+  <p>To turn the <strong>Newspaper View</strong> off, click the <strong>Newspaper View</strong> icon again. </p>
+</blockquote>
+
+<a name=viewcomments></a>
+<blockquote>
+<h3>Viewing and Reading Feed Comments</h3>
+
+<p>If the feed you are viewing supports comments and exports them to RSS/Atom 
+ format, and if comments are present, the <em>Comment Count</em> column 
+ appears in the <strong>Items List</strong> for Feeds, and the <strong>Read 
+ Comments</strong> icon <img src="../images/iconsMarks/ico_read_comments.gif"
+							class=linkIcon
+							/
+							style="width: 15px;
+									height: 15px;
+									border-style: none;
+									border-style: none;"
+							width=15
+							height=15
+							border=0> appears on the <strong>Items List</strong> 
+ toolbar.</p>
+
+<p>Click the <strong>Read Comments</strong> icon to download the comments. 
+ Comments appear in the <strong>Items List</strong> as replies to the post 
+ to which they refer; the Comments body appears in the <strong>Item Viewer</strong>.</p>
+
+<h4>Unread Comments Count</h4>
+
+<p>You can view the number of comments in the <strong>Comments Count</strong> 
+ column of the feeds <strong>Item List</strong>. If the feed thread (feed 
+ post and reply to the post) contains several comments which are not read, 
+ the number of comments in the Comments Count column is shown bold. Once 
+ you have browsed through all comments and the feed post, the number of 
+ comments changes to regular (not bold).</p>
+<div class=tip>
+  <div class=tipImg
+	style="/*begin!kadov{{*/ x-right: 943px; x-bottom: 10203px; /*}}end!kadov*/ ">
+    <p>&nbsp;</p>
+  </div>
+  <p class=tip><span class="note">If the <strong>Comment Count</strong> column is not visible, right-click any column header and select <strong>Configure Columns</strong>. In the <strong>Resource List Columns</strong> dialog which appears, select <strong>Comment Count</strong>.</span></p>
+</div>
+</blockquote>
+
+
+<blockquote><div class=note>
+  <div class=noteImg
+	style="/*begin!kadov{{*/ x-right: 923px; x-bottom: 10213px; /*}}end!kadov*/ ">
+    <p>&nbsp;</p>
+  </div>
+  <p class="note">The number of comments in some feeds may not appear the same if you browse the feed and its comments in some web browser. </p>
+  </div>
+<a name=markingread></a>
+<blockquote>
+<h3>Marking Posts as Read</h3>
+
+<p>There are several ways to mark an unread post as read:</p>
+
+<ul>
+	
+	<li class=kadov-p>
+	When an unread post is selected in the <strong>Items List</strong>... 
+ 
+	
+	<ul>
+		
+		<li class=kadov-p>On the Main menu, choose <strong>Edit | Mark 
+ As Read</strong> </li>
+		
+		<li class=kadov-p>Press <strong>Ctrl + Q</strong> </li>
+		
+		<li class=kadov-p>Choose the <strong>Items List</strong> context 
+ menu item <strong>Mark As Read</strong> </li>
+		
+		<li class=kadov-p>In the <strong>Item Viewer</strong>, choose the 
+ context menu item <strong>Mark As Read</strong> </li>
+	    <li class=kadov-p>Click the feed icon  in the Items List. To mark the feed post as Unread, click this icon again. </li>
+	</ul>
+	</li>
+</ul>
+</blockquote>
+
+<div class=tip>
+<div class=tipImg
+	style="/*begin!kadov{{*/ x-right: 943px; x-bottom: 10203px; /*}}end!kadov*/ ">
+<p>&nbsp;</p>
+</div>
+
+<p class=tip>You can set an option in <a href="../reference/general.html">Omea 
+ General options</a> to automatically mark items, including posts to RSS 
+ and Atom feeds, as read after a specified time interval. This option is 
+ enabled by default and the default time interval is 2 seconds.</p>
+</div>
+
+<blockquote>
+<h4>Marking the entire feed as read</h4>
+
+<p>You can mark every post in a feed as read in a single operation.</p>
+
+<div class=proc>
+<p class=procHead>To mark all the posts in a feed as read:</p>
+
+<ol>
+	
+	<li class=kadov-p><p>Select the feed in the <strong>Feeds</strong> 
+ pane. </li>
+	
+	<li class=kadov-p>
+	  <p>Right-click and choose <strong>Mark All As Read</strong> on the context menu.
+</li>
+	    
+	<li class=kadov-p>
+	  <p>Press <strong>Ctrl+Shift+A</strong> on the keyboard. 
+    </li>
+</ol>
+
+</div>
+</blockquote>
+
+<a name=markingunread></a>
+
+<blockquote>
+<h3>Marking Posts as Unread</h3>
+
+<p>There are several ways to mark a read post as unread:</p>
+
+<ul>
+	
+	<li class=kadov-p>
+	When a read article/reply is selected in the <strong>Items List</strong>... 
+ 
+	
+	<ul>
+		
+		<li class=kadov-p>On the Main menu, choose <strong>Edit | Mark 
+ As Unread</strong></li>
+		
+		<li class=kadov-p>Choose the context menu item <strong>Mark As 
+ Unread</strong></li>
+	</ul>
+	</li>
+</ul>
+ 
+<a name=expiringfeeds></a>
+<h2>Expiring Feeds Posts</h2>
+<p>You can set the auto-expiration rules both globally (in the <a href="../reference/feeds.html">Feeds Options dialog</a>). For more information, see <a href="../reference/auto_expiration_rule_dialog.htm">Auto-expiration Rules dialog</a>.</p>
+<a name=downloadingenclosures></a>
+<h2>Downloading Feed Enclosures</h2>
+<p>Some of the feeds which you are subscribed to may contain enclosures or files&#8230; Enclosure in general is something (usually a supporting document) that is enclosed in an envelope with a covering letter. In terms of  Omea enclosure is a file that is &#8220;attached&#8221; to the feed post. </p>
+<p>Downloading feed enclosures in Omea is quite simple. If the feed contains enclosures, the web link to these enclosures is in the bottom of the feed post in the <strong>Item Viewer</strong>. Besides, the <strong>Items List</strong> has a column <strong>Enclosure Downloading State</strong>. Picture below illustrates that.</p>
+<p><img src="../images/sshots/shared/enclosures_download_status_.png" alt="Enlcosures download state illustration" width="729" height="222"></p>
+<p class="caption">Illustration of enclosures download state </p>
+<p> </p>
+<div class="proc"> 
+  <p class="prochead">To download a feed enclosure:</p>
+  <ol> 
+  <li class=kadov-p>Select the feed post in the <strong>Items List</strong>. </li>
+  <li class=kadov-p>Do one of the following:
+    <ul>
+      <li>Right-click and select <strong>Queue Downloading Enclosure</strong> </li>
+      <li>Click the <strong>Enclosure</strong> column icon <img src="../images/iconsMarks/ico_enclosure_not_downloaded.png" width="16" height="16" class="linkIcon"> for the corresponding resource.</li>
+     
+  </ul>
+  </li>
+    <p>The feed enclosure will start downloading; the column icon will change to <img src="../images/iconsMarks/ico_enclosure_planned_for_downloading.png" width="16" height="16" class="linkIcon"> and if you move the mouse pointer to the column sign, you can see the enclosure download progress in the tooltip. When the file is downloaded, the notification balloon appears in the lower right part of the screen and the download state icon changes to <img src="../images/iconsMarks/ico_enclosure_download_complete.png" width="16" height="16" class="linkIcon"> and the notification balloon appears in the lower-right corner of the screen. </p>
+	    <p>You can also use this method: follow (click) the enclosure URL in the feed post, the enclosure will start downloading. If the enclosure file type is, for example, &#8220;<em>mp3</em>&#8221;, Windows Media Player<sup>&reg;</sup> or other program which is used in your system to process this file type, will open. </p>
+    </ol>
+</div>
+<h3> Accessing Downloaded Enclosures</h3>
+<p>When the enclosure download is complete, you can access the downloaded files in the file directory
+which you have specified in <a href="../reference/feeds_enclosures.htm">Omea's feeds enclosures settings</a> and
+<a href="../reference/feed_properties_dialog.html">Feed properties dialog</a>. You can also right-click the
+feed post which has the downloaded enclosure and select <strong>Locate on Disk</strong>. Omea will open the folder
+which contains the enclosures. By default, it is &#8220;<strong>My Enclosures</strong>&#8221; folder.</p>
+<p>Alternatively you can open the enclosure directly in the associated application by right-clicking on the enclosure icon
+and selecting <strong>Run Enclosure Program</strong> on the context menu.</p>
+<div class=note>
+  <div class=noteImg
+	style="/*begin!kadov{{*/ x-right: 923px; x-bottom: 10213px; /*}}end!kadov*/ ">
+  <p>&nbsp;</p>
+  </div>
+  
+<blockquote>
+  <p class=note>Omea  can download only once enclosure at a time, though you can and all other enclosures will be pending for downloading. </p>
+  <p class=note>If you have specified the download period in <a href="../reference/feed_properties_dialog.html">Feeds  Properties dialog</a>, the enclosures will be downloaded only during that period. Once you set the enclosure for downloading, the column icon will change to  <img src="../images/iconsMarks/ico_enclosure_planned_for_downloading.png" width="16" height="16" class="linkIcon"> and the download will take place only download period defined in the <a href="../reference/feeds.html">Feed Options dialog</a>. </p>
+  </blockquote>
+</div>
+<h3>Canceling Downloading Enclosures</h3>
+<p>If you have mistakenly started downloading the feed enclosure, you can easily cancel it. Select the enclosure which is already downloaded or is pending for downloading and select Cancel Downloading Enclosure. The enclosure will not be downloaded and the state column icon will change to <strong>Not Downloaded</strong> (<img src="../images/iconsMarks/ico_enclosure_not_downloaded.png" width="16" height="16" class="linkIcon">). You can start downloading enclosures any time later. </p>
+<h3>Deleting an Enclosure</h3>
+<p>You can delete an already downloaded enclosure directly from Omea - right-click on the enclosure icon
+and select <strong>Delete Enclosure</strong> on the context menu. </p>
+<h3>Customizing Feeds Items List</h3>
+<p>To increase your productivity of working with enclosures and always have the required information at hand, you can customize Omea's <strong>Items List</strong>. To do so, you need to call the <a href="../reference/columns_dialog.html"> Configure Columns dialog</a>. You can access this dialog from the context menu of the column headers in the main window <strong>Items List</strong> or from the <strong>View</strong> menu, select <strong>Configure Columns&#8230;</strong></p>
+<h4>Enclosure Downloading State</h4>
+<p>Represents the state (planned for downloading, in progress, completed, failed) of downloading the feed enclosures. </p>
+<h4>Enclosure Size</h4>
+<p>Provides information about the size of the enclosure in bytes.</p>
+<h4>Enclosure Type</h4>
+<p>Provides information about what type of file the feed enclosure is. </p>
+<h4>Enclosure URL </h4>
+<p>A link to the enclosure URL.</p>
+<p><a name=saving></a></p>
+
+<h2>Saving the  Feed Posts </h2>
+<p>You can now save the feed posts onto your PC. </p>
+<div class=proc>
+  <p class=procHead>To save a feed post:</p>
+  <ol>
+    <li class=kadov-p>Click the Feeds tab, select to the desired feed in the <strong>Feeds</strong> pane and select the feed post or feed posts you want to save in the <strong>Items List</strong>.</li>
+    <li class=kadov-p> Choose <strong>File | Save As </strong>on the Main menu.</li>
+    <li class=kadov-p>In the Save As dialog which opens, select the location for your feed post(s), then type the name and click <strong>Save</strong>. </li>
+    </ol>
+</div>
+
+<p><a name=customizing></a></p>
+<h2>Customizing the Properties of Several Feeds </h2>
+<p>You can customize such properties as <strong>login</strong> and <strong>password</strong> 
+     and <strong>feeds update interval</strong> of several feeds selected in 
+    the <strong>Feeds</strong> pane or all feeds of the selected Feeds group. </p>
+<p>Select several feeds in the <strong>Feeds</strong> pane by holding 
+       down the <strong>Ctrl</strong> or <strong>Shift</strong> on the keyboard, 
+    right-click and choose <strong>Properties</strong> on the shortcut menu.   </p>
+<p>You can also customize the properties of all feeds in the selected Feed 
+     group —  right-click the Feed Folder in the <strong>Feeds</strong> pane and select <strong>Properties</strong>. </p>
+<p name=sending><a name=sending></a> </p>
+<h2>Sending the Feed Post to Someone Else</h2>
+<p>It is possible to send a post in a feed to someone else via e-mail.</p>
+<div class=proc>
+    <p class=procHead>To forward a post:</p>
+    
+<ol>
+	    
+	<li class=kadov-p>Click the Feeds tab, select to the desired feed in 
+     the <strong>Feeds</strong> pane and select the feed post you want to forward in the <strong>Items 
+     List</strong>.</li>
+	    
+	<li class=kadov-p>
+	    Do one of the following: 
+	    
+	<ul>
+		    
+		<li class=kadov-p>Choose <strong>Actions | Forward</strong> on 
+     the Main menu,</li>
+		    
+		<li class=kadov-p>Press <strong>Ctrl + Shift + F</strong>, </li>
+		    
+		<li class=kadov-p>Choose <strong>Forward</strong> in the context 
+     menu of the selected item, or the <strong>Item Viewer</strong>, </li>
+		    
+		<li class=kadov-p>Click the <strong>Forward</strong> button<img 
+ src="../images/sshots/pro/forward_button.gif"
+	alt="Forward button"
+	class=inline
+	/
+	style="width: 73px;
+			height: 22px;
+			border-style: none;
+			border-style: none;"
+	width=73
+	height=22
+	border=0>on the <strong>Items List toolbar</strong>.</li>
+	    </ul>
+	    </li>
+	    
+	<p>A new e-mail message is created with the title of the selected post 
+       in the <strong>Subject</strong>, and the text in the message body.
+    </p>
+	    <p>You can also forward several feed posts at a time. To select several feed posts, press and hold down <strong>Ctrl</strong> button. To send these posts, repeat step two of the procedure described above. </p>
+    </ol>
+    </div>
+</blockquote>
+<a name=deletingfeeds></a>
+
+<blockquote>
+<h2>Deleting the Feed Posts </h2>
+
+<p>You can now delete the feed posts using <strong>Del</strong>(<strong>ete</strong>) 
+ key on the keyboard. The deleted feed posts are moved to the <strong>Deleted 
+ Resources</strong> View in the <strong>Views and Categories</strong> pane.</p>
+</blockquote>
+
+<div class=note>
+<div class=noteImg
+	style="/*begin!kadov{{*/ x-right: 923px; x-bottom: 10213px; /*}}end!kadov*/ ">
+<p>&nbsp;</p>
+</div>
+
+<blockquote>
+<p class=note>Feed posts in the <strong>Deleted Resources</strong> View 
+ are not removed from your Omea's database until you choose to empty the 
+ <strong>Deleted Resources</strong>. To delete the feeds posts permanently 
+ from Omea, right-click the <strong>Deleted Resources</strong> View and 
+ select <strong>Empty Deleted Resources</strong> or select certain feed 
+ posts, right-click and select <strong>Delete</strong> or press <strong>Del(ete)</strong> 
+ on the keyboard.</p>
+
+<p class=note>If you unsubscribe from the feed, the feed posts are deleted 
+ permanently from your system. </p>
+</blockquote>
+</div>
+
+<blockquote>
+<p>If you decide that you have mistakenly deleted some feeds posts, you 
+ can restore them from the <strong>Deleted Resources</strong>. To do so: 
+ select the feed post or several feeds posts (hold <strong>Ctrl</strong> 
+ or <strong>Shift</strong> to select several feeds posts), right-click 
+ and select <strong>Undelete</strong> on the shortcut menu. </p>
+
+<p name=printing><a name=printing></a> </p>
+
+<h2>Printing Feed Postings</h2>
+
+<div class=proc>
+<p class=procHead>To print a feed posting:</p>
+<ol>
+	<li class=kadov-p>Select the item in the <strong>Items List</strong>.</li>
+	<li class=kadov-p>Right-click and choose <strong>Copy Article URL</strong> on the context menu.</li>
+</ol>
+</div>
+
+<a name=copyingurl></a>
+<h2>Remembering the Feed Posting's URL</h2>
+<p>Though Omea shows the feed posting's URL at the bottom of the content under the horizontal bar, sometimes it is
+inconvenient to scroll to the bottom just to copy the posting URL into clipboard. Now you can copy the posting's shortcut
+from any point in the <strong>content pane</strong> or staying on the posting resource in the <strong>Items List</strong>.
+</p>
+<div class=proc>
+<p class=procHead>To copy a feed posting's URL into the clipboard:</p>
+<ol>
+	<li class=kadov-p>Select the item in the <strong>Items List</strong>.</li>
+	<li class=kadov-p>
+	Either... 
+	
+	<ul>
+		
+		<li class=kadov-p>Choose <strong>File | Print</strong> on the Main 
+ menu, or...</li>
+		
+		<li class=kadov-p>Click the <strong>Print</strong> icon <img src="../images/iconsMarks/print.gif"
+	class=linkIcon
+	/
+	style="width: 15px;
+			height: 15px;
+			border-style: none;
+			border-style: none;"
+	width=15
+	height=15
+	border=0> on the <strong>Items List toolbar.</strong></li>
+	</ul>
+	</li>
+</ol>
+</div>
+
+<a name=updating></a>
+<h2>Updating Feeds</h2>
+
+<p>You can control how often <span style="x-condition: READER;">Omea Reader</span><span 
+ style="x-condition: PRO;">Omea Pro</span> checks for updates to feeds. 
+ You can set the default interval for a feed updates in the <a href="../reference/feeds.html">Feeds 
+ options </a>in the <strong>Options</strong> dialog. You can access this 
+ dialog from the <strong>Tools | Options: Feeds: Default feeds update interval</strong>. 
+ </p>
+
+<p>To change the update interval for a specific feed, you can select it 
+ in the <strong>Feeds</strong> pane, right-click, choose <strong>Properties</strong> 
+ from the context menu. The <strong>Feed Properties dialog</strong> appears 
+ and you can set the interval for this selected feed there. To set the 
+ time interval, click <strong>Settings</strong> tab, check <strong>Update every</strong> option and select (type) 
+ number in the number box and select the time unit. </p>
+
+<p><img src="../images/sshots/dialogs/shared/feed_properties.png"
+		class=proc
+		alt="The Feed Properties dialog"
+		style="width: 432px;
+				height: 434px;
+				border-style: none;
+				float: none;
+				border-style: none;"
+		width=432
+		height=434
+		border=0>
+  
+</p>
+<p class="caption">Feed Properties dialog </p>
+<p>To update the feeds, use:</p>
+
+<ul>
+	
+	<li class=kadov-p><strong>Update All Feeds </strong>button <img 
+ src="../images/iconsMarks/ico_update_all_feeds.gif"
+	class=linkIcon
+	style="width: 16px; height: 16px;"
+	width=16
+	height=16
+	border=0> of the <strong>Items List toolbar</strong> of the <strong>Feeds</strong> 
+ tab, </li>
+	
+	<li class=kadov-p><strong>F9</strong> button for updating all feeds 
+ in the <strong>Feeds</strong> tab, </li>
+	
+	<li class=kadov-p><strong>F5</strong> button for updating the current 
+ (selected) feed.</li>
+</ul>
+
+<a name=autoupdatingcomments></a>
+<h3>Auto Updating Feeds Comments</h3>
+
+<p>If you want to keep an eye on some feed post which contains comments 
+ you can tell Omea to auto-update the comments for this feed. Thus, you 
+ won't have to press <strong>Read Comments</strong> <img src="../images/iconsMarks/ico_read_comments.gif"
+	class=linkIcon
+	/
+	style="width: 15px;
+			height: 15px;
+			border-style: none;
+			border-style: none;"
+	width=15
+	height=15
+	border=0> on the <strong>Items List</strong> toolbar when you want 
+ to check if the new comments  are available:</p>
+
+<div class=proc>
+<p>Right-click the feed in the <strong>Feeds</strong> pane and select <strong>Auto 
+ Update Feed Comments</strong>. </p>
+
+<p class=procHead>&nbsp;</p>
+</div>
+<p>The comments will be updated automatically in the feed thread for which 
+   you have once clicked the <strong>Read Comments</strong> button. </p>
+<p>Once you click the <strong>Read Comments</strong> button, you show Omea 
+   that you are interested in this specified feeds thread. </p>
+</blockquote>
+
+<div class=note>
+<div class=noteImg
+	style="/*begin!kadov{{*/ x-right: 923px; x-bottom: 10213px; /*}}end!kadov*/ ">
+<p>&nbsp;</p>
+</div>
+
+<p class=note>The comments update interval is the same as for the feeds 
+ which is set in <strong>Tools&gt;Options&gt;Internet&gt;Feeds&gt;Default 
+ feeds update interval</strong>. Please note that comments will stop updating 
+ depending on the value of <strong>Stop updating feeds comments if no comments 
+ have been received for</strong> setting in <span style="x-condition: READER;">Omea 
+ Reader</span><span style="x-condition: PRO;">Omea Pro</span> options. 
+ It is recommended to set the value of this option rather big, for example, 
+ 100 hours. </p>
+</div>
+<a name=renaming></a>
+<h2>Renaming Feeds and Feed Folders </h2>
+<div class=proc>
+<p class=procHead>To rename the feed:</p>
+
+<ol>
+	
+	<li class=kadov-p>Navigate to the <strong>Feeds</strong> tab.</li>
+	
+	<li class=kadov-p>
+	Select the  feed or the feed folder which you want to rename  in the <strong>Feeds</strong> pane and do one of the following:
+	<ul>
+	  <li>From the <strong>Edit</strong> menu, select <strong>Rename RSS/ATOM Feed</strong> </li>
+	  <li>Right-click and select <strong>Rename RSS/ATOM Feed</strong></li>
+	  <li>Press <strong>F2</strong> </li>
+	</ul>
+	</li>
+    <li class=kadov-p>Type the new feed name and either click <strong>Enter</strong> or click in any place of the <strong>Feeds</strong> pane.</li>
+</ol>
+</div>
+<p>&nbsp;</p>
+
+<a name=stopresume></a>
+
+<h2>Stop and Resume Updating Feed</h2>
+<p>If (for some reason) you want not to receive posts from the particular feed you can
+easily <em>Suspend</em> that subscription and resume it later.</p>
+
+<div class=proc>
+<p class=procHead>To suspend (resume) feed updates:</p>
+<ol>
+	<li class=kadov-p>Navigate to the <strong>Feeds</strong> tab.</li>
+	<li class=kadov-p>Select the feed in the <strong>Feeds</strong> pane. </li>
+    <li class=kadov-p>Right-click the feed and select <strong>Pause Updating Feed</strong></li>
+    <p>A small <em>Pause</em> icon will appear on the right-top corner of the feed icon.</p>
+    <p><img src="../images/sshots/shared/paused_feed.png" alt="Paused feed icon"></p>
+    <p class="caption">Paused feed icon</p>
+    <li class=kadov-p>When you want to continue receive posts from this feed:
+	right-click the feed and select <strong>Resume Updating Feed</strong></li>
+</ol>
+</div>
+ 
+<a name=tipsandtricks></a>
+<h2>Tips and Tricks</h2>
+<a name=postingnewcomments></a>
+<h3>How to Post Comments to the Feed?</h3>
+<p>You can now post comments to the feeds which allow that from within Omea. </p>
+<div class=proc>
+<p class=procHead>To comment a feed post:</p>
+
+<ol>
+	
+	<li class=kadov-p>Navigate to the <strong>Feeds</strong> tab.</li>
+	
+	<li class=kadov-p>
+	Select the  feed in the <strong>Feeds</strong> pane and navigate the feed post to which you want to post a comment. </li>
+    <li class=kadov-p>Right-click the feed post and select <strong>Post New Comment&#8230; </strong></li>
+    <li class=kadov-p>In the form that opens, select or type your name and e-mail which you want to be visible to other people reading the feed, type the different subject if necessary and  the comment in the white space provided for it. You can optionally enter your web page or blog address into the <strong>My web page</strong> field.</li>
+    <p><img src="../images/sshots/dialogs/shared/post_new_comment_form.png" width="518" height="324" alt="Post New Comment form"></p>
+    <p class="caption">The Post New Comment Form</p>
+    <li class=kadov-p>Click <strong>Send</strong> to post your comment to the feed.</li>
+</ol>
+</div>
+
+<h3>What if the Feed Update Fails? </h3>
+<p>If a feed update fails, the update error icon <img src="../images/iconsMarks/ico_rss_feed_error.gif"
+														class=linkIcon
+														/
+														style="width: 16px;
+	height: 16px;
+	border-style: none;
+	border-style: none;"
+														width=16
+														height=16
+														border=0> is shown 
+ for the feed in the Feeds pane, and an error message appears under the 
+ <strong>Items List toolbar</strong> when the feed is selected. Failure 
+ to update can be caused by network problems or by an error on the server 
+ hosting the feed. You can see the description of the error by right-clicking 
+ the feed and selecting <strong>Properties</strong> on the context menu.</p>
+
+<p><img src="../images/sshots/shared/feed_update_failed_message.png"
+		class=proc
+		alt="Feed update error message"
+		style="width: 392px; height: 18px;"
+		width=392
+		height=18
+		border=0></p>
+
+<p class=caption>Feed update failed message of the Feed Properties dialog 
+ </p>
+<a name=alerts></a>
+<h3>How to Get a Desktop Alert when New Items Appear in the Feed? </h3>
+
+<p>If you want to receive a notification (a desktop alert) when the feed 
+ that is meaningful to you is updated, on the main menu, select <strong>Tools 
+ | Options: Feeds</strong> and check the <strong>Show desktop alert when 
+ new items are received</strong>. You can also tell Omea to show the desktop alerts when the feed enclosures are downloaded (see <a href="../reference/feeds_enclosures.htm">Feed Enclosures</a>). </p>
+<a name=selection></a>
+<h3>How to Tell Omea Remember Selection in Feeds between Its Restarts? 
+ </h3>
+
+<p>If you want Omea to remember the selected item in RSS feeds between 
+ its restarts, on the main menu, select <strong>Tools | Options: Feeds</strong> 
+ and check the <span class=label><strong>Remember selection in feeds between 
+ restarts</strong></span>.</p>
+<a name=importingsubscriptions></a>
+<h3>How to Import the Bloglines Subscriptions which I have? </h3>
+
+<p>If you want to access and manage your Bloglines subscriptions, you can 
+ import it in Omea. To do this, from the <strong>File</strong> menu, select 
+ <strong>Import Bloglines Subscription...</strong> to call the dialog where 
+ you can type your Bloglines Login and Password, check the <strong>Preview 
+ feed list before importing</strong> option and import the desired feed. 
+ </p>
+
+<p><img src="../images/sshots/reader/import_bloglines_subscripti.gif"
+		class=proc
+		alt="The Import Bloglines Subscription dialog"
+		style="width: 384px;
+				height: 151px;
+				border-style: none;
+				float: none;
+				border-style: none;"
+		width=384
+		height=151
+		border=0></p>
+<div class=note>
+  <div class=noteImg
+	style="/*begin!kadov{{*/ x-right: 944px; x-bottom: 682px; /*}}end!kadov*/ "> </div>
+  <p class=note><span class="tip">Please note that you can perform this operation if you have Bloglines plugin installed and activated (see, <a href="../reference/plugins.html">Options: Plugins</a>). You can also import your Bloglines subscription using the standard import procedure described <a href="com_feedsblogs.htm#importing">above</a>. </span></p>
+  </div>
+
+<a name=exportingsubscriptions></a>
+<h3>How to Export Feeds Subscriptions?</h3>
+
+<p>If you want to share your feeds subscriptions with other Omea users 
+ or have the same feed subscription in some different feed reader, you 
+ can export them from <span style="x-condition: PRO;">Omea Pro</span><span 
+ style="x-condition: READER;">Omea Reader</span> and import them later 
+ in a different feed aggregator or a different version of Omea. </p>
+
+<div class=proc>
+<p class=procHead>To export the feeds subscriptions:</p>
+
+<ol>
+	
+	<li class=kadov-p>From the <strong>File</strong> menu, select <strong>Export Feed Subscriptions…</strong> <br>
+	The <strong>Save As</strong> dialog opens. </li>
+	
+	<li class=kadov-p>Select necessary feeds by checking the appropriate items in the list. </li>
+	<p><img src="../images/sshots/dialogs/shared/export_feeds_to_opml.png"
+		class=proc alt="The Export Feeds dialog"
+		style="border-style: none;
+				float: none;
+				border-style: none;"
+		border=0></p>
+	
+	<li class=kadov-p>Type your OPML file name and choose the destination folder and click <strong>OK</strong>.<br>
+	Your feed subscriptions will be saved and you can access the OPML file 
+    and import your OPML subscriptions any time later — just repeat the import 
+    procedure described above.</li>
+</ol>
+</div>
+
+<div id=seealso>
+<p class=seealso><strong style="font-weight: bold;">See also:</strong></p>
+
+<ol>
+	
+	<li class=kadov-p><a href="..\reference\feeds.html">Feeds Options</a></li>
+	
+	<li class=kadov-p><a href="../reference/feeds_enclosures.htm">Feed Enclosures</a></li>
+	<li class=kadov-p><a href="../reference/feed_properties_dialog.html">Feed 
+ Properties Dialog</a></li>
+</ol>
+</div>
+</blockquote>
+
+</body>
+
+</html>

@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+  <copyright company="JetBrains">
+  Copyright © 2003-2008 JetBrains s.r.o.
+  You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
+  </copyright>
+-->
+<props namespace="JetBrains.Omea" class="DisplayColumnProps" visibility="internal" summary="Resource types and properties used for storing the display column settings.">
+	<resourcetype name="ColumnScheme" noIndex="1" internal="1" />
+	<resourcetype name="ColumnDescriptor" noIndex="1" internal="1" />
+	<prop name="ColumnProps" dataType="StringList" internal="1" />
+	<prop name="ColumnSortProps" dataType="StringList" internal="1" />
+	<prop name="ColumnDescriptor" dataType="Link" internal="1" />
+	<prop name="ColumnOrder" dataType="Int" internal="1" />
+	<prop name="ColumnWidth" dataType="Int" internal="1" />
+	<prop name="ColumnFlags" dataType="Int" internal="1" />
+	<prop name="ColumnSortAsc" dataType="Bool" internal="1" />
+	<prop name="ColumnKeyTypes" dataType="String" internal="1">
+		<unique resourcetype="ColumnScheme" />
+	</prop>
+	<prop name="ColumnSchemeOwner" dataType="Link" internal="1" />
+	<prop name="ColumnSchemeTab" dataType="String" internal="1" />
+	<prop name="GroupItems" dataType="Bool" internal="1" />
+</props>

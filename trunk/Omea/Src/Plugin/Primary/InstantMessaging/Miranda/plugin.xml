@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+  <copyright company="JetBrains">
+  Copyright © 2003-2008 JetBrains s.r.o.
+  You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
+  </copyright>
+-->
+<omniamea-plugin>
+	<actions namespace="JetBrains.Omea.InstantMessaging.Miranda">
+		<main-menu>
+			<group id="IMRebuildActions" menu="File" anchor="after:FileImportActions">
+				<action name="Rebuild Miranda Conversations..." class="RebuildMirandaConversationsAction" />
+			</group>
+		</main-menu>
+		<link-click>
+			<action type="MirandaICQAccount" class="MirandaAccountClickAction" />
+			<action type="MirandaAIMAccount" class="MirandaAccountClickAction" />
+			<action type="MirandaJabberAccount" class="MirandaAccountClickAction" />
+			<action type="MirandaYahooAccount" class="MirandaAccountClickAction" />
+		</link-click>
+	</actions>
+	<resource-icons namespace="OmniaMea.InstantMessaging.Miranda.icons">
+		<icon type="MirandaICQAccount" name="icq.ico" />
+		<icon type="MirandaAIMAccount" name="aim.ico" />
+		<icon type="MirandaJabberAccount" name="jabber.ico" />
+		<icon type="MirandaYahooAccount" name="yahoo.ico" />
+		<icon type="MirandaConversation" name="conversation4.ico" />
+	</resource-icons>
+</omniamea-plugin>
