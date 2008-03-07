@@ -1,0 +1,19 @@
+<style type="text/css">
+body {  font: normal 70% Tahoma;  margin: 0.6em 1em 1em 1em;  padding: 0;  }
+img  {  border:0  }
+h2   {  margin: 0;  padding: .3em 1em;  font-size: 100%;  font-weight: bold;  color: #706f88;
+        background-color: #f2f2f2;  border-top: solid 1px #e9e9e9;  border-bottom: solid 1px #e9e9e9;  }
+.attachment  {  margin: 0;  padding: .3em 0 1em 1em;  float: left;  width: 100%;  background-color: #f4f4f4;  }
+.attachment h3  {  margin: 0 .7em 0 .1em;  padding: 0;  display: inline;  font-size: 100%;  }
+.attachment p.size  {  margin: 0 0 0 .1em;  padding: 0;  display: inline;  }
+.attachment .picture  {  margin: .5em 0 0 0;  padding: 0 0 0 0;  float: left;  position: relative;  text-align: center;
+						 vertical-align: middle;  background-color: #ebebeb;  border-left: solid 1px #d7d7d7;
+						 border-top: solid 1px #d7d7d7;  border-right: solid 1px #fff;  border-bottom: solid 1px #fff;  }
+.attachment .picture.ico  {  width: 8em;  height: 8em;  display: table;  position: static;  overflow: hidden;  }
+.attachment .picture.ico p  {  margin: 0;  padding: 0;  display: table-cell;  position: static;  text-align: center;
+							   vertical-align: middle;  #position: absolute;  #top: 50%;  #left: 50%;  }
+.attachment .picture.ico img  {  #position: relative;  #top: -50%;  #left: -50%;  }
+.attachment .picture p.fullSize  {  margin: 0 -14px 0 0;  padding: 0;  position: absolute;  top: 0;  right: 0;
+									color: #8783a4;  width: 14px;  height: 14px;  background: url( %%1%% ) no-repeat 0 0;  }
+.attachment p.content  {  margin: .3em 2em 0 11em;  padding: 0;  }
+</style>

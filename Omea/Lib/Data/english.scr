@@ -1,0 +1,1634 @@
+;[LanguageParms]
+;
+;LanguageID = 9
+;PhrasalVerbPosition = forward
+;PhrasalVerbs = about across ahead along aside at away back by down forward in into off on out over round through to up
+;
+;[Main]
+;
+             caeca => caecum n n=p
+              ceca => cecum n n=p
+           viatica => viaticum n n=p
+         memoranda => memorandum n n=p
+           addenda => addendum n n=p
+          credenda => credendum n n=p
+           pudenda => pudendum n n=p
+        corrigenda => corrigendum n n=p
+        definienda => definiendum n n=p
+         referenda => referendum n n=p
+         stomodaea => stomodaeum n n=p
+         propylaea => propylaeum n n=p
+          gynaecea => gynaeceum n n=p
+           gynecea => gynecium n n=p
+          gynoecea => gynoecium n n=p
+          stomodea => stomodeum n n=p
+              odea => odeum n n=p
+           hypogea => hypogeum n n=p
+             pilea => pileum n n=p
+          mausolea => mausoleum n n=p
+              olea => oleum n n=p
+        succedanea => succedaneum n n=p
+          prytanea => prytaneum n n=p
+           perinea => perineum n n=p
+         peritonea => peritoneum n n=p
+          endostea => endosteum n n=p
+         periostea => periosteum n n=p
+           parerga => parergon n n=p
+             terga => tergum n n=p
+        anacolutha => anacoluthon n n=p
+               *ia => ium n n=p | ion n n=p
+            qualia => quale n n=p
+         lacunaria => lacunar n n=p
+             retia => rete n n=p
+       definientia => definiens n n=p
+             entia => ens n n=p
+            *phala => phalon n n=p
+              vela => velum n n=p
+              fila => filum n n=p
+              hila => hilum n n=p
+          flabella => flabellum n n=p
+           labella => labellum n n=p
+         cerebella => cerebellum n n=p
+          cribella => cribellum n n=p
+       involucella => involucellum n n=p
+          flagella => flagellum n n=p
+          clitella => clitellum n n=p
+          rostella => rostellum n n=p
+         haustella => haustellum n n=p
+          scutella => scutellum n n=p
+        aspergilla => aspergillum n n=p
+          spirilla => spirillum n n=p
+          sensilla => sensillum n n=p
+           vexilla => vexillum n n=p
+              cola => colon n n=p
+            eidola => eidolon n n=p
+         tropaeola => tropaeolum n n=p
+              sola => solum n n=p
+             pepla => peplum n n=p
+           exempla => exemplum n n=p
+              *ula => *ulum n n=p
+          subphyla => subphylum n n=p
+             phyla => phylum n n=p
+           propyla => propylon n n=p
+           extrema => extremum n n=p
+            minima => minimum n n=p
+            optima => optimum n n=p
+            maxima => maximum n n=p
+              roma => rom n n=p
+             etyma => etymon n n=p
+            arcana => arcanum n n=p
+            organa => organon n n=p | organum n n=p
+           tympana => tympanum n n=p
+            fraena => fraenum n n=p
+           duodena => duodenum n n=p
+             plena => plenum n n=p
+       prolegomena => prolegomenon n n=p
+      epiphenomena => epiphenomenon n n=p
+     phi-phenomena => phi-phenomenon n n=p
+         phenomena => phenomenon n n=p
+           noumena => noumenon n n=p
+             frena => frenum n n=p
+        interregna => interregnum n n=p
+          velamina => velamen n n=p
+          foramina => foramen n n=p
+           stamina => stamen n n=p
+          putamina => putamen n n=p
+         gravamina => gravamen n n=p
+           tegmina => tegmen n n=p
+            limina => limen n n=p
+            vimina => vimen n n=p
+        praenomina => praenomen n n=p
+         prenomina => prenomen n n=p
+          agnomina => agnomen n n=p
+         cognomina => cognomen n n=p
+            nomina => nomen n n=p
+           germina => germen n n=p
+            lumina => lumen n n=p
+            numina => numen n n=p
+            rumina => rumen n n=p
+        mediastina => mediastinum n n=p
+       xiphisterna => xiphisternum n n=p
+         episterna => episternum n n=p
+            sterna => sternum n n=p
+            epizoa => epizoon n n=p
+        haematozoa => haematozoon n n=p
+         hematozoa => hematozoon n n=p
+       spermatozoa => spermatozoon n n=p
+           entozoa => entozoon n n=p
+          protozoa => protozoon n n=p
+               zoa => zoon n n=p
+            labara => labarum n n=p
+            megara => megaron n n=p
+        candelabra => candelabrum n n=p
+             labra => labrum n n=p
+           cerebra => cerebrum n n=p
+         ambulacra => ambulacrum n n=p
+         simulacra => simulacrum n n=p
+             sacra => sacrum n n=p
+            fulcra => fulcrum n n=p
+         involucra => involucrum n n=p
+             *edra => edron n n=p
+       liriodendra => liriodendron n n=p
+       philodendra => philodendron n n=p
+          ephemera => ephemeron n n=p
+       subgegenera => subgenus n n=p
+            genera => genus n n=p
+          antisera => antiserum n n=p
+              sera => serum n n=p
+        coelentera => coelenteron n n=p
+         mesentera => mesenteron n n=p
+            entera => enteron n n=p
+            *ptera => pteron n n=p
+         pronephra => pronephros n n=p
+              fora => forum n n=p
+            femora => femur n n=p
+           oxymora => oxymoron n n=p
+           corpora => corpus n n=p
+               ora => os n n=p
+           plectra => plectron n n=p | plectrum n n=p
+           spectra => spectrum n n=p
+             antra => antrum n n=p
+            centra => centrum n n=p
+         sequestra => sequestrum n n=p
+            sistra => sistrum n n=p
+            rostra => rostrum n n=p
+            lustra => lustre n n=p
+        hemielytra => hemielytron n n=p | hemelytron n n=p
+            elytra => elytron n n=p | elytrum n n=p
+            pleura => pleuron n n=p
+              jura => jus n n=p
+             crura => crus n n=p
+             omasa => omasum n n=p
+              vasa => vas n n=p
+          responsa => responsum n n=p
+             dorsa => dorsum n n=p
+     fideicommissa => fideicommissum n n=p
+            crissa => crissum n n=p
+              ossa => os n n=p
+              data => datum n n=p
+            ideata => ideatum n n=p
+            relata => relatum n n=p
+             *mata => ma n n=p
+          ultimata => ultimatum n n=p
+        desiderata => desideratum n n=p
+            errata => erratum n n=p
+         substrata => substratum n n=p
+       superstrata => superstratum n n=p
+            strata => stratum n n=p
+             recta => rectum n n=p
+             dicta => dictum n n=p
+            sancta => sanctum n n=p
+          asyndeta => asyndeton n n=p
+      parasyntheta => parasyntheton n n=p
+            pineta => pinetum n n=p
+            tapeta => tapetum n n=p
+          arboreta => arboretum n n=p
+          equiseta => equisetum n n=p
+            capita => caput n n=p
+          occipita => occiput n n=p
+         sincipita => sinciput n n=p
+            quanta => quantum n n=p
+         paramenta => parament n n=p
+           ramenta => ramentum n n=p
+       impedimenta => impediment n n=p
+           lomenta => lomentum n n=p
+           momenta => momentum n n=p
+           tomenta => tomentum n n=p
+            omenta => omentum n n=p
+         argumenta => argumentum n n=p
+              nota => notum n n=p
+            scrota => scrotum n n=p
+             lepta => lepton n n=p
+             septa => septum n n=p
+            frusta => frustum n n=p
+             scuta => scutum n n=p
+            makuta => likuta n n=p
+             sputa => sputum n n=p
+             adyta => adytum n n=p
+             rhyta => rhyton n n=p
+             vacua => vacuum n n=p
+           residua => residuum n n=p
+             genua => genu n n=p
+          continua => continuum n n=p
+            cornua => cornu n n=p
+          menstrua => menstruum n n=p
+               ova => ovum n n=p
+              taxa => taxon n n=p
+          antefixa => antefix n n=p
+                 a => = art x=i
+            forbad => forbid v
+               bad => bid v
+               had => have v
+            unclad => unclothe v
+              clad => clothe v
+             *bbed => b v
+             *dded => d v
+             *gged => g v
+             *mmed => m v
+             *nned => n v
+             *pped => p v
+             *rred => r v
+             *ssed => s v
+             *tted => t v
+             *zzed => z v
+            redded => red v | redd v
+              seed => seed v
+           handfed => handfeed v
+           coiffed => coif v
+          underfed => underfeed v
+         winterfed => winterfeed v
+         force-fed => force-feed v
+        bottle-fed => bottle-feed v
+         stall-fed => stall-feed v
+         spoon-fed => spoon-feed v
+        breast-fed => breast-feed v
+               fed => feed v
+              shed => shed v
+              *ied => y v
+        shellacked => shellac v
+        bivouacked => bivouac v
+        trafficked => traffic v
+         frolicked => frolic v
+          mimicked => mimic v
+          panicked => panic v
+         picnicked => picnic v
+         physicked => physic v
+            sicked => sic v
+           talcked => talc v
+            arcked => arc v
+            yakked => yak v
+           trekked => trek v
+           outwked => outwk v
+              bled => bleed v
+              fled => flee v
+          caballed => cabal v
+          medalled => medal v
+     back-pedalled => back-pedal v
+     soft-pedalled => soft-pedal v
+          pedalled => pedal v
+        marshalled => marshal v
+           dialled => dial v
+        initialled => initial v
+  court-martialled => court-martial v
+          canalled => canal v
+         signalled => signal v
+          appalled => appal v | appall v
+            palled => pal v
+     outgeneralled => outgeneral v
+     disenthralled => disenthral v | disenthrall v
+        enthralled => enthral v | enthrall v
+         spiralled => spiral v
+         corralled => corral v
+          metalled => metal v
+       subtotalled => subtotal v
+          totalled => total v
+         installed => instal v | install v
+          equalled => equal v
+        victualled => victual v
+          rivalled => rival v
+          labelled => label v
+           cbelled => cbel v
+          rebelled => rebel v
+          libelled => libel v
+      precancelled => precancel v
+         cancelled => cancel v
+        spancelled => spancel v
+         marcelled => marcel v
+         parcelled => parcel v
+          excelled => excel v
+          modelled => model v
+          yodelled => yodel v
+         cudgelled => cudgel v
+            gelled => gel v
+        hatchelled => hatchel v
+         bushelled => bushel v
+            jelled => jell v
+         nickelled => nickel v
+       parallelled => parallel v
+         enamelled => enamel v
+      entrammelled => entrammel v
+        trammelled => trammel v
+         pommelled => pommel v
+         pummelled => pummel v
+           smelled => smell v
+        empanelled => empanel v
+        impanelled => impanel v
+          panelled => panel v
+        channelled => channel v
+        flannelled => flannel v
+       unkennelled => unkennel v
+         kennelled => kennel v
+         funnelled => funnel v
+         tunnelled => tunnel v
+         kernelled => kernel v
+          repelled => repel v
+          impelled => impel v
+         compelled => compel v
+         propelled => propel v
+         rappelled => rappel v
+         dispelled => dispel v
+        misspelled => misspell v
+           spelled => spell v
+          cupelled => cupel v
+          expelled => expel v
+         barrelled => barrel v
+        quarrelled => quarrel v
+         laurelled => laurel v
+         teaselled => teasel v
+        handselled => handsel v
+         chiselled => chisel v
+         tinselled => tinsel v
+        counselled => counsel v
+         tasselled => tassel v
+         houselled => housel v
+           duelled => duel v
+         refuelled => refuel v
+           fuelled => fuel v
+         gravelled => gravel v
+        unravelled => unravel v
+         travelled => travel v
+          ravelled => ravel v
+          bevelled => bevel v
+       dishevelled => dishevel v
+          levelled => level v
+          revelled => revel v
+         snivelled => snivel v
+         drivelled => drivel v
+        shrivelled => shrivel v
+         swivelled => swivel v
+         shovelled => shovel v
+          hovelled => hovel v
+         grovelled => grovel v
+         marvelled => marvel v
+           dwelled => dwell v
+        bejewelled => bejewel v
+          jewelled => jewel v
+     disembowelled => disembowel v
+          rowelled => rowel v
+         trowelled => trowel v
+          towelled => towel v
+         upswelled => upswell v
+           swelled => swell v
+     red-pencilled => red-pencil v
+    blue-pencilled => blue-pencil v
+         pencilled => pencil v
+        stencilled => stencil v
+         fulfilled => fulfil v | fulfill v
+       overspilled => overspill v
+           spilled => spill v
+         distilled => distil v | distill v
+          cavilled => cavil v
+        bedevilled => bedevil v
+          devilled => devil v
+         gambolled => gambol v
+         symbolled => symbol v
+        vitriolled => vitriol v
+          carolled => carol v
+          enrolled => enrol v | enroll v
+         patrolled => patrol v
+      decontrolled => decontrol v
+        controlled => control v
+         pistolled => pistol v
+          extolled => extol v | extoll v
+         frivolled => frivol v
+       disannulled => disannul v
+          annulled => annul v
+         interpled => interplead v
+           mispled => misplead v
+              pled => plead v
+            misled => mislead v
+               led => lead v
+              sped => speed v
+            inbred => inbreed v
+         interbred => interbreed v
+         crossbred => crossbreed v
+           outbred => outbreed v
+              bred => breed v
+           fritted => frit v | fritt v
+            revved => rev v
+           chivved => chiv v
+               *ed => = n n=s | = adj | = v m=n t=s n=s p=12 | = v m=n t=s n=p | e v t=d | e v m=n t=t | ~ v t=d | ~ v m=n t=t
+              *aid => ay v
+           foredid => foredo v
+             redid => redo v
+             undid => undo v
+           overdid => overdo v
+            fordid => fordo v
+            outdid => outdo v
+               did => do v
+             breid => brei v
+              chid => chide v
+               hid => hide v
+          backslid => backslide v
+              slid => slide v
+           bestrid => bestride v
+            beheld => behold v
+          withheld => withhold v
+            upheld => uphold v
+              held => hold v
+         undersold => undersell v
+          oversold => oversell v
+           outsold => outsell v
+              sold => sell v
+          foretold => foretell v
+              told => tell v
+        spellbound => spellbind v
+           unbound => unbind v
+             bound => bind v
+             found => find v
+            ground => grind v
+           rewound => rewind v
+           enwound => enwind v
+           unwound => unwind v
+         overwound => overwind v
+             wound => wind v
+              shod => shoe v
+         withstood => withstand v
+     misunderstood => misunderstand v
+        understood => understand v
+          outstood => outstand v
+             stood => stand v
+            untrod => untread v
+           re-trod => re-tread v
+              trod => tread v
+         overheard => overhear v
+          misheard => mishear v
+             heard => hear v
+               *ae => a n n=p | ~ n n=p
+            raphae => raphe n n=p
+            stelae => stele n n=p
+       paraselenae => paraselene n n=p
+          woodlice => woodlouse n n=p
+          booklice => booklouse n n=p
+              lice => louse n n=p
+         fieldmice => fieldmouse n n=p
+          reremice => reremouse n n=p
+          rearmice => rearmouse n n=p
+       flittermice => flittermouse n n=p
+           dormice => dormouse n n=p
+           titmice => titmouse n n=p
+         shrewmice => shrewmouse n n=p
+              mice => mouse n n=p
+             pence => penny n n=p
+           forbade => forbid v
+              bade => bid v
+            remade => remake v
+            unmade => unmake v
+              made => make v
+             abode => abide v
+          overrode => override v
+            strode => stride v
+          bestrode => bestride v
+           outrode => outride v
+          joy-rode => joy-ride v
+              rode => ride v
+          pfennige => pfennig n n=p
+               the => = art x=i
+            loggie => loggia n n=p
+          cockshie => cockshy n n=p
+          sinfonie => sinfonia n n=p
+       bains-marie => bain-marie n n=p
+           bespoke => bespeak v
+         forespoke => forespeak v
+           unspoke => unspeak v
+          forspoke => forspeak v
+             spoke => speak v
+             broke => break v
+             awoke => awake v
+              woke => wake v
+            cicale => cicala n n=p
+          predelle => predella n n=p
+           novelle => novella n n=p
+             stole => steal v
+         misbecame => misbecome v
+            became => become v
+          overcame => overcome v
+              came => come v
+           maremme => maremma n n=p
+         signorine => signorina n n=p
+          cavatine => cavatina n n=p
+          foredone => foredo v
+            redone => redo v
+            undone => undo v
+          overdone => overdo v
+           fordone => fordo v
+           outdone => outdo v
+              done => do v
+          foregone => forego v
+         undergone => undergo v
+           forgone => forgo v
+           outgone => outgo v
+              gone => go v
+          outshone => outshine v
+             shone => shine v
+         overborne => overbear v
+          forborne => forbear v
+             borne => bear v
+               are => be v
+              were => be v
+       wanderjahre => wanderjahr n n=p
+              lire => lira n n=p
+     aides-memoire => aide-memoire n n=p
+          overbore => overbear v
+           forbore => forbear v
+              bore => bear v
+      heldentenore => heldentenor n n=p
+           signore => signora n n=p
+              tore => tear v
+           unswore => unswear v
+          forswore => forswear v
+             swore => swear v
+           outwore => outwear v
+              wore => wear v
+      acciaccature => acciaccatura n n=p
+      appoggiature => appoggiatura n n=p
+     chefs-d'ouvre => chef-d'ouvre n n=p
+             geese => goose n n=p
+          marchese => marchesa n n=p
+             prese => presa n n=p
+             paise => paisa n n=p
+             chose => choose v
+             arose => arise v
+            uprose => uprise v
+              rose => rise v
+           fermate => fermata n n=p
+               ate => eat v
+             volte => volta n n=p
+             smote => smite v
+         typewrote => typewrite v
+           rewrote => rewrite v
+        underwrote => underwrite v
+         overwrote => overwrite v
+        ghostwrote => ghostwrite v
+             wrote => write v
+           ariette => arietta n n=p
+           forgave => forgive v
+           misgave => misgive v
+              gave => give v
+              dive => diva n n=p
+           skydove => skydive v
+              dove => dive v
+            uphove => upheave v
+              hove => heave v
+             clove => cleave v
+         overdrove => overdrive v
+             drove => drive v
+            shrove => shrive v
+            throve => thrive v
+            unrove => unreeve v
+            strove => strive v
+              rove => reeve v
+             stove => stave v
+            inwove => inweave v
+         interwove => interweave v
+              wove => weave v
+           unfroze => unfreeze v
+             froze => freeze v
+          upsprang => upspring v
+            sprang => spring v
+              rang => ring v
+              sang => sing v
+            *bbing => b v
+            *dding => d v
+           redding => red v | redd v
+             being => be v x=i
+          coiffing => coif v
+            *gging => g v
+            *lling => l v
+            *mming => m v
+            *nning => n v
+            *pping => p v
+            *rring => r v
+            *ssing => s v
+            *tting => t v
+            *zzing => z v
+       shellacking => shellac v
+       bivouacking => bivouac v
+       trafficking => traffic v
+        frolicking => frolic v
+         mimicking => mimic v
+         panicking => panic v
+        picnicking => picnic v
+        physicking => physic v
+           sicking => sic v
+          talcking => talc v
+           arcking => arc v
+           yakking => yak v
+          trekking => trek v
+         appalling => appal v | appall v
+       enthralling => enthral v | enthrall v
+    disenthralling => disenthral v | disenthrall v
+        installing => install v
+        fulfilling => fulfil v | fulfill v
+        distilling => distil v | distill v
+         enrolling => enrol v | enroll v
+          fritting => frit v | fritt v
+           revving => rev v
+          chivving => chiv v
+           belying => belie v
+             lying => lie v
+          stymying => stymie v
+          hogtying => hogtie v
+           untying => untie v
+             tying => tie v
+             vying => vie v
+              *ing => = n n=s | = adj | = v m=n t=s n=s p=12 | = v m=n t=s n=p | ~ v t=g | e v t=g
+          overhung => overhang v
+              hung => hang v
+             clung => cling v
+             flung => fling v
+           unslung => unsling v
+             slung => sling v
+          upsprung => upspring v
+            sprung => spring v
+         hamstrung => hamstring v
+          unstrung => unstring v
+            strung => string v
+             wrung => wring v
+              rung => ring v
+              sung => sing v
+             stung => sting v
+           upswung => upswing v
+             swung => swing v
+               dug => dig v
+      snaggleteeth => snaggletooth n n=p
+         foreteeth => foretooth n n=p
+          eyeteeth => eyetooth n n=p
+          dogteeth => dogtooth n n=p
+         buckteeth => bucktooth n n=p
+             teeth => tooth n n=p
+         yeshivoth => yeshiva n n=p
+          mitzvoth => mitzvah n n=p
+        mishnayoth => mishna n n=p | mishnah n n=p
+           matzoth => matzo n n=p
+          mezuzoth => mezuzah n n=p
+           syllabi => syllabus n n=p
+         choriambi => choriambus n n=p
+             iambi => iamb n n=p
+             limbi => limbus n n=p
+       cumulonimbi => cumulonimbus n n=p
+             nimbi => nimbus n n=p
+           thrombi => thrombus n n=p
+            rhombi => rhombus n n=p
+           succubi => succubus n n=p
+            incubi => incubus n n=p
+               *ci => cus n n=p
+          capricci => capriccio n n=p
+            solidi => solidus n n=p
+              nidi => nidus n n=p
+             soldi => soldo n n=p
+         glissandi => glissando n n=p
+        scherzandi => scherzando n n=p
+         crescendi => crescendo n n=p
+           secondi => secondo n n=p
+             tondi => tondo n n=p
+             fundi => fundus n n=p
+              nodi => nodus n n=p
+        longobardi => longobard n n=p
+             scudi => scudo n n=p
+               *ei => eus n n=p
+          cicisbei => cicisbeo n n=p
+               lei => leu n n=p
+          calcanei => calcaneum n n=p | calcaneus n n=p
+          solfeggi => solfeggio n n=p
+               *gi => gus n n=p
+               *hi => hus n n=p
+               *ii => ius n n=p
+        bolsheviki => bolshevik n n=p
+          stotinki => stotinka n n=p
+               *li => lo n n=p | lus n n=p
+            argali => argali n n=p
+         pastorali => pastorale n n=p
+           intagli => intaglio n n=p
+              puli => pul n n=p
+               *mi => mo n n=p | mus n n=p
+           soprani => soprano n n=p
+           scaleni => scalenus n n=p
+             segni => segno n n=p
+           bambini => bambino n n=p
+             acini => acinus n n=p
+            uncini => uncinus n n=p
+           sordini => sordino n n=p
+          zecchini => zecchino n n=p
+            echini => echinus n n=p
+           termini => terminus n n=p
+           amorini => amorino n n=p
+        concertini => concertino n n=p
+           pulvini => pulvinus n n=p
+            alumni => alumnus n n=p
+     conversazioni => conversazione n n=p
+           spumoni => spumone n n=p
+            krooni => kroon n n=p
+          ciceroni => cicerone n n=p
+        chitarroni => chitarrone n n=p
+         panettoni => panettone n n=p
+           canzoni => canzone n n=p
+          cothurni => cothurnus n n=p
+              naoi => naos n n=p
+            pithoi => pithos n n=p
+            mythoi => mythos n n=p
+            sigloi => siglos n n=p
+            tholoi => tholos n n=p
+             topoi => topos n n=p
+        monopteroi => monopteros n n=p
+       metanephroi => metanephros n n=p
+        pronephroi => pronephros n n=p
+            euripi => euripus n n=p
+             palpi => palpus n n=p
+        hippocampi => hippocampus n n=p
+             tempi => tempo n n=p
+    pithecanthropi => pithecanthropus n n=p
+             pappi => pappus n n=p
+         metacarpi => metacarpus n n=p
+             carpi => carpus n n=p
+            polypi => polypus n n=p
+             acari => acarus n n=p
+         ricercari => ricercare n n=p
+           cathari => cathar n n=p
+       bersaglieri => bersagliere n n=p
+       carabinieri => carabiniere n n=p
+       condottieri => condottiere n n=p
+            humeri => humerus n n=p
+             uteri => uterus n n=p
+            onagri => onager n n=p
+              miri => mir n n=p
+         decemviri => decemvir n n=p
+         triumviri => triumvir n n=p
+          duumviri => duumvir n n=p
+            ephori => ephor n n=p
+            pylori => pylorus n n=p
+        monsignori => monsignor n n=p
+           signori => signore n n=p
+         uredosori => uredosorus n n=p
+              sori => sorus n n=p
+              tori => torus n n=p
+             cirri => cirrus n n=p
+           maestri => maestro n n=p
+         mosasauri => mosasaurus n n=p
+          thesauri => thesaurus n n=p
+      ichthyosauri => ichthyosaurus n n=p
+           coenuri => coenurus n n=p
+              gyri => gyrus n n=p
+            papyri => papyrus n n=p
+          marchesi => marchese n n=p
+           mafiosi => mafioso n n=p
+          virtuosi => virtuoso n n=p
+    tarsometatarsi => tarsometatarsus n n=p
+         metatarsi => metatarsus n n=p
+             tarsi => tarsus n n=p
+             torsi => torso n n=p
+            thyrsi => thyrsus n n=p
+             bassi => basso n n=p
+          narcissi => narcissus n n=p
+           colossi => colossus n n=p
+             byssi => byssus n n=p
+               *ti => to n n=p | tus n n=p | te n n=p
+              lati => lat n n=p
+          banditti => bandit n n=p
+               dui => duo n n=p
+             naevi => naevus n n=p
+      cavo-rilievi => cavo-rilievo n n=p
+           rilievi => rilievo n n=p
+              nevi => nevus n n=p
+          amphioxi => amphioxus n n=p
+           scherzi => scherzo n n=p
+        intermezzi => intermezzo n n=p
+            struck => strike v
+           unstuck => unstick v
+             stuck => stick v
+             drank => drink v
+            shrank => shrink v
+       countersank => countersink v
+              sank => sink v
+             stank => stink v
+             slunk => slink v
+             drunk => drink v
+            shrunk => shrink v
+       countersunk => countersink v
+              sunk => sink v
+             stunk => stink v
+             shook => shake v
+           forsook => forsake v
+            betook => betake v
+            retook => retake v
+           partook => partake v
+         undertook => undertake v
+          overtook => overtake v
+           mistook => mistake v
+              took => take v
+            befell => befall v
+              fell => fall v
+              swam => swim v
+                am => be v
+          cherubim => cherub n n=p
+         sephardim => sephardi n n=p
+          seraphim => seraph n n=p
+          teraphim => teraph n n=p
+         midrashim => midrash n n=p
+         kaddishim => kaddish n n=p
+         qaddishim => qaddish n n=p
+         dibbukkim => dibbuk n n=p
+         dybbukkim => dybbuk n n=p
+            moslim => moslem n n=p
+        shadchanim => shadchan n n=p
+          minyanim => minyan n n=p
+          chazanim => chazan n n=p
+          hazzanim => hazzan n n=p
+           hadarim => heder n n=p
+          chadarim => cheder n n=p
+          chedarim => cheder n n=p
+          mahzorim => mahzor n n=p
+         machzorim => machzor n n=p
+          siddurim => siddur n n=p
+         shabbasim => shabbas n n=p
+         shammosim => shammas n n=p | shammes n n=p
+         shabbatim => shabbat n n=p
+           shittim => shittah n n=p
+          moshavim => moshav n n=p
+             goyim => goy n n=p
+        ashkenazim => ashkenazi n n=p
+         kibbutzim => kibbutz n n=p
+         chalutzim => chalutz n n=p
+              swum => swim v
+             began => begin v
+               gan => gin v
+           foreran => forerun v
+             reran => rerun v
+           overran => overrun v
+            outran => outrun v
+               ran => run v
+                an => = art x=i
+             laden => lade v
+        overbidden => overbid v
+         forbidden => forbid v
+         outbidden => outbid v
+            bidden => bid v
+           chidden => chide v
+            hidden => hide v
+       backslidden => backslide v
+           slidden => slide v
+        overridden => override v
+        bestridden => bestride v
+          stridden => stride v
+         outridden => outride v
+        joy-ridden => joy-ride v
+            ridden => ride v
+         untrodden => untread v
+        re-trodden => re-tread v
+           trodden => tread v
+          beholden => behold v
+              been => be v x=i
+          foreseen => foresee v
+          overseen => oversee v
+         sightseen => sightsee v
+              seen => see v
+      ubermenschen => ubermensch n n=p
+            shaken => shake v
+          forsaken => forsake v
+           betaken => betake v
+           retaken => retake v
+          partaken => partake v
+        undertaken => undertake v
+         overtaken => overtake v
+          mistaken => mistake v
+             taken => take v
+          shrunken => shrink v
+            sunken => sink v
+          bespoken => bespeak v
+        forespoken => forespeak v
+          unspoken => unspeak v
+         forspoken => forspeak v
+            spoken => speak v
+            broken => break v
+            awoken => awake v
+             woken => wake v
+          befallen => befall v
+            fallen => fall v
+         upswollen => upswell v
+           swollen => swell v
+            stolen => steal v
+              *men => man n n=p
+         *children => child n n=p
+          brethren => brother n n=p
+            herren => herr n n=p
+            arisen => arise v
+           uprisen => uprise v
+             risen => rise v
+            chosen => choose v
+        browbeaten => browbeat v
+            beaten => beat v
+             eaten => eat v
+            molten => melt v
+        backbitten => backbite v
+            bitten => bite v
+           smitten => smite v
+       typewritten => typewrite v
+         rewritten => rewrite v
+      underwritten => underwrite v
+       overwritten => overwrite v
+      ghostwritten => ghostwrite v
+           written => write v
+          begotten => beget v
+         forgotten => forget v
+            gotten => get v
+            frauen => frau n n=p
+            shaven => shave v
+            graven => grave v
+          forgiven => forgive v
+          misgiven => misgive v
+             given => give v
+        overdriven => overdrive v
+            driven => drive v
+           shriven => shrive v
+           thriven => thrive v
+           striven => strive v
+             riven => rive v
+            cloven => cleave v
+            proven => prove v
+           inwoven => inweave v
+        interwoven => interweave v
+             woven => weave v
+              oxen => ox n n=p
+          unfrozen => unfreeze v
+      quick-frozen => quick-freeze v
+            frozen => freeze v
+         underlain => underlie v
+          overlain => overlie v
+             slain => slay v
+              lain => lie v
+             yogin => yogi n n=p
+          fellahin => fellah n n=p
+               won => win v
+              born => bear v
+             shorn => shear v
+              torn => tear v
+             sworn => swear v
+           unsworn => unswear v
+          forsworn => forswear v
+           outworn => outwear v
+              worn => wear v
+             begun => begin v
+              spun => spin v
+             gnawn => gnaw v
+         wiredrawn => wiredraw v
+         withdrawn => withdraw v
+         overdrawn => overdraw v
+        fine-drawn => fine-draw v
+             drawn => draw v
+          hacksawn => hacksaw v
+          whipsawn => whipsaw v
+       quartersawn => quartersaw v
+              sawn => saw v
+             shewn => shew v
+        rough-hewn => rough-hew v
+              hewn => hew v
+          bestrewn => bestrew v
+            strewn => strew v
+          oversewn => oversew v
+              sewn => sew v
+         foreshown => foreshow v
+             shown => show v
+         overblown => overblow v
+          flyblown => flyblow v
+             blown => blow v
+         overflown => overflow v | overfly v
+             flown => fly v
+              mown => mow v
+         foreknown => foreknow v
+             known => know v
+         overgrown => overgrow v
+          outgrown => outgrow v
+             grown => grow v
+        overthrown => overthrow v
+            thrown => throw v
+            strown => strow v
+              sown => sow v
+         genned-up => gen-up v
+        genning-up => gen-up v
+           gens-up => gen-up v
+           drabber => drab adj comp
+           glibber => glib adj comp
+           gladder => glad adj comp
+            madder => = n n=s | = v | mad adj comp
+            sadder => sad adj comp
+            redder => red adj comp
+             freer => free adj comp
+            bigger => big adj comp
+           smugger => smug adj comp
+           snugger => snug adj comp
+              *ier => y adj comp
+           fancier => fancy adj comp
+            cagier => cagy adj comp | cagey adj comp
+           stagier => stagy adj comp | stagey adj comp
+           shakier => shaky adj comp | shakey adj comp
+           flakier => flaky adj comp | flakey adj comp
+           porkier => porky adj comp | porkey adj comp
+            homier => homy adj comp | homey adj comp
+            pinier => piny adj comp | piney adj comp
+           phonier => phony adj comp | phoney adj comp
+          spoonier => spoony adj comp | spooney adj comp
+            tonier => tony adj comp | toney adj comp
+            gooier => gooey adj comp
+            dopier => dopey adj comp
+            eerier => eerie adj comp
+            cosier => cosy adj comp | cosey adj comp
+            nosier => nosy adj comp | nosey adj comp
+           goosier => goosy adj comp | goosey adj comp
+          choosier => choosy adj comp | choosey adj comp
+           horsier => horsy adj comp | horsey adj comp
+           mousier => mousy adj comp | mousey adj comp
+           slatier => slaty adj comp | slatey adj comp
+            dowier => dowie adj comp | dowy adj comp
+          crueller => cruel adj comp
+            dimmer => = n n=s | dim adj comp
+           slimmer => = n n=s | slim adj comp
+           grimmer => grim adj comp
+           primmer => prim adj comp
+           trimmer => = n n=s | trim adj comp
+           glummer => glum adj comp
+            tanner => = n n=s | tan adj comp
+            wanner => wan adj comp
+           thinner => = n n=s | thin adj comp
+            dunner => = n n=s | dun adj comp
+            hepper => hep adj comp
+            hipper => hip adj comp
+            fatter => fat adj comp
+           flatter => = n n=s | = v | flat adj comp
+            wetter => wet adj comp
+            fitter => = n n=s | fit adj comp
+            hotter => = v | hot adj comp
+               *er => = n n=s | = adj | ~ adj comp | e adj comp | = v m=n t=s n=s p=12 | = v m=n t=s n=p
+               has => have v m=n t=s n=s p=3
+               was => be v
+             pubes => pubis n n=p
+         anthraces => anthrax n n=p
+           boraces => borax n n=p
+      metathoraces => metathorax n n=p
+    prothothoraces => prothorax n n=p
+   cephalothoraces => cephalothorax n n=p
+      mesothoraces => mesothorax n n=p
+          thoraces => thorax n n=p
+           hyraces => hyrax n n=p
+          scoleces => scolex n n=p
+            ibices => ibex n n=p
+          spadices => spadix n n=p
+           radices => radix n n=p
+        appendices => appendix n n=p
+        subindices => subindex n n=p
+           indices => index n n=p
+           codices => codex n n=p
+          caudices => caudex n n=p
+        pontifices => pontifex n n=p
+           calices => calix n n=p
+       antihelices => antihelix n n=p
+        anthelices => anthelix n n=p
+           helices => helix n n=p
+          pollices => pollex n n=p
+          scolices => scolex n n=p
+           culices => culex n n=p
+           cylices => cylix n n=p
+           cimices => cimex n n=p
+          fornices => fornix n n=p
+            apices => apex n n=p
+          auspices => auspex n n=p | auspice n n=p
+        haruspices => haruspex n n=p
+         aruspices => aruspex n n=p
+           varices => varix n n=p
+          caprices => caprice n n=p
+        cicatrices => cicatrix n n=p
+          matrices => matrix n n=p
+      separatrices => separatrix n n=p
+      generatrices => generatrix n n=p
+         rectrices => rectrix n n=p
+       bisectrices => bisectrix n n=p
+         tectrices => tectrix n n=p
+       executrices => executrix n n=p
+           murices => murex n n=p
+           latices => latex n n=p
+          vertices => vertex n n=p
+       subcortices => subcortex n n=p
+          cortices => cortex n n=p
+          vortices => vortex n n=p
+          cervices => cervix n n=p
+            calces => calx n n=p
+             voces => vox n n=p
+            cruces => crux n n=p
+        epicalyces => epicalyx n n=p
+           calyces => calyx n n=p
+           naiades => naiad n n=p
+          ommiades => ommiad n n=p
+           monades => monad n n=p | monas n n=p
+           dryades => dryad n n=p
+         omayyades => omayyad n n=p
+          stapedes => stapes n n=p
+             pedes => pes n n=p
+          haeredes => haeres n n=p
+           heredes => heres n n=p
+       proboscides => proboscis n n=p
+          nereides => nereid n n=p
+         rhachides => rhachis n n=p
+          raphides => raphide n n=p | raphis n n=p
+           aphides => aphis n n=p
+       chrysalides => chrysalis n n=p
+         parulides => parulis n n=p
+      epididymides => epididymis n n=p
+         oceanides => oceanid n n=p
+      achaemenides => achaemenid n n=p
+          leonides => leonid n n=p
+       ephemerides => ephemeris n n=p
+            irides => iris n n=p
+           apsides => apsis n n=p
+       caryopsides => caryopsis n n=p
+    lymphangitides => lymphangitis n n=p
+      epiglottides => epiglottis n n=p
+      proglottides => proglottis n n=p
+         glottides => glottis n n=p
+           pyxides => pyxis n n=p
+          custodes => custos n n=p
+           incudes => incus n n=p
+             leges => lex n n=p
+        interreges => interrex n n=p
+           remiges => remex n n=p
+         phalanges => phalange n n=p | phalanx n n=p
+   hieracosphinges => hieracosphinx n n=p
+     androsphinges => androsphinx n n=p
+          sphinges => sphinx n n=p
+         salpinges => salpinx n n=p
+          syringes => syrinx n n=p
+     nasopharynges => nasopharynx n n=p
+         pharynges => pharynx n n=p
+          larynges => larynx n n=p
+          coccyges => coccyx n n=p
+             *ches => = n n=p | che n n=p | ch n n=p | che v m=n t=s n=s p=3 | ch v m=n t=s n=s p=3
+             *shes => = n n=s | she n n=p | sh n n=p | sh v m=n t=s n=s p=3
+              *ies => = n n=s | ie n n=p | y n n=p | = adj | = v m=n t=s n=s p=12 | = v m=n t=s n=p | ie v m=n t=s n=s p=3 | y v m=n t=s n=s p=3
+           cylikes => cylix n n=p
+           kylikes => kylix n n=p
+          quezales => quezal n n=p
+    mesdemoiselles => mademoiselle n n=p
+          frijoles => frijol n n=p
+            caules => caulis n n=p
+          mesdames => madame n n=p
+            vermes => vermis n n=p
+             lenes => lenis n n=p
+             penes => penis n n=p
+         teredines => teredo n n=p
+          uredines => uredo n n=p
+        testudines => testudo n n=p
+          imagines => imago n n=p
+        lentigines => lentigo n n=p
+        vertigines => vertigo n n=p
+          flamines => flamen n n=p
+          pectines => pecten n n=p
+           umbones => umbo n n=p
+           ancones => ancon n n=p | ancone n n=p
+         comedones => comedo n n=p
+        myrmidones => myrmidon n n=p
+            agones => agon n n=p
+      autochthones => autochthon n n=p
+           colones => colon n n=p
+         telamones => telamon n n=p
+          mucrones => mucro n n=p
+             *hoes => oe v
+              *oes => o n|v n=p
+           dildoes => dildoe n n=p
+              does => doe n n=p | do v
+           mongoes => mongoe n n=p
+              joes => jo n n=p | joe n n=p
+              roes => roe n n=p
+           tiptoes => tiptoe v
+              toes => toe v
+          cyclopes => cyclops n n=p
+          stylopes => stylops n n=p
+           stirpes => stirps n n=p
+         mudejares => mudejar n n=p
+         bolivares => bolivar n n=p
+             vires => vis n n=p
+    conquistadores => conquistador n n=p
+           senores => senor n n=p
+          viatores => viator n n=p
+        traditores => traditor n n=p
+          furfures => furfur n n=p
+          anabases => anabasis n n=p
+         parabases => parabasis n n=p
+         catabases => catabasis n n=p
+         katabases => katabasis n n=p
+             bases => base n n=p | basis n n=p
+          emphases => emphasis n n=p
+        amoebiases => amoebiasis n n=p
+           myiases => myiasis n n=p
+        cataclases => cataclasis n n=p
+             oases => oasis n n=p
+     periphrarases => periphrasis n n=p
+            crases => crasis n n=p
+    telangiectases => telangiectasis n n=p
+           entases => entasis n n=p
+          protases => protasis n n=p
+         diastases => diastasis n n=p
+        metastases => metastasis n n=p
+    bacteriostases => bacteriostasis n n=p
+       iconostases => iconostas n n=p | iconostasis n n=p
+        hypostases => hypostasis n n=p
+           asceses => ascesis n n=p
+         eisegeses => eisegesis n n=p
+        epexegeses => epexegesis n n=p
+          exegeses => exegesis n n=p
+        metatheses => metathesis n n=p
+        antitheses => antithesis n n=p
+        epentheses => epenthesis n n=p
+       parentheses => parenthesis n n=p
+         syntheses => synthesis n n=p
+        hypotheses => hypothesis n n=p
+        prostheses => prosthesis n n=p
+            theses => thesis n n=p
+            dieses => diesis n n=p
+     lymphopoieses => lymphopoiesis n n=p
+         epicleses => epiclesis n n=p
+           nemeses => nemesis n n=p
+      phylogeneses => phylogenesis n n=p
+      palingeneses => palingenesis n n=p
+      phylogeneses => phylogenesis n n=p
+           geneses => genesis n n=p
+         anamneses => anamnesis n n=p
+       aposiopeses => aposiopesis n n=p
+         diaereses => diaeresis n n=p
+          diereses => dieresis n n=p
+     amniocenteses => amniocentesis n n=p
+          diathses => diathesis n n=p
+            crises => crisis n n=p
+       anagnorises => anagnorisis n n=p
+        diastalses => diastalsis n n=p
+       peristalses => peristalsis n n=p
+        amanuenses => amanuensis n n=p
+       syssarcoses => syssarcosis n n=p
+          apodoses => apodosis n n=p
+        apotheoses => apotheosis n n=p
+    metempsychoses => metempsychosis n n=p
+         psychoses => psychosis n n=p
+         gomphoses => gomphosis n n=p
+      anamorphoses => anamorphosis n n=p
+     metamorphoses => metamorphosis n n=p
+         morphoses => morphosis n n=p
+           meioses => meiosis n n=p
+            mioses => miosis n n=p
+          cycloses => cyclosis n n=p
+     aspergilloses => aspergillosis n n=p
+       anastomoses => anastomosis n n=p
+       syndesmoses => syndesmosis n n=p
+        ecchymoses => ecchymosis n n=p
+          stenoses => stenosis n n=p
+         diagnoses => diagnosis n n=p
+         prognoses => prognosis n n=p
+            gnoses => gnosis n n=p
+      avitaminoses => avitaminosis n n=p
+          zoonoses => zoonosis n n=p
+          hypnoses => hypnosis n n=p
+         mongooses => mongoose n n=p
+            gooses => goose n n=p
+  arterioscleroses => arteriosclerosis n n=p
+   atheroscleroses => atherosclerosis n n=p
+         scleroses => sclerosis n n=p
+       diarthroses => diarthrosis n n=p
+    amphiarthroses => amphiarthrosis n n=p
+       enarthroses => enarthrosis n n=p
+      synarthroses => synarthrosis n n=p
+         arthroses => arthrosis n n=p
+    psychoneuroses => psychoneurosis n n=p
+       aponeuroses => aponeurosis n n=p
+          neuroses => neurosis n n=p
+           soroses => sorosis n n=p
+        dermatoses => dermatosis n n=p
+         proptoses => proptosis n n=p
+            ptoses => ptosis n n=p
+        endostoses => endostosis n n=p
+      hyperostoses => hyperostosis n n=p
+         exostoses => exostosis n n=p
+            myoses => myosis n n=p
+          synapses => synapsis n n=p
+         syllepses => syllepsis n n=p
+         prolepses => prolepsis n n=p
+       paraleipses => paraleipsis n n=p
+          ellipses => ellipsis n n=p
+          synopses => synopsis n n=p
+         caryopses => caryopsis n n=p
+             arses => arsis n n=p
+          diaerses => diaeresis n n=p
+           ecdyses => ecdysis n n=p
+         diaphyses => diaphysis n n=p
+        paraphyses => paraphysis n n=p
+         epiphyses => epiphysis n n=p
+         symphyses => symphysis n n=p
+       diapophyses => diapophysis n n=p
+         apophyses => apophysis n n=p
+   neurohypophyses => neurohypophysis n n=p
+        hypophyses => hypophysis n n=p
+     haemodialyses => haemodialysis n n=p
+      hemodialyses => hemodialysis n n=p
+          dialyses => dialysis n n=p
+     microanalyses => microanalysis n n=p
+        uranalyses => uranalysis n n=p
+          analyses => analysis n n=p
+        urinalyses => urinalysis n n=p
+         paralyses => paralysis n n=p
+     autocatalyses => autocatalysis n n=p
+         catalyses => catalysis n n=p
+        haemolyses => haemolysis n n=p
+         hemolyses => hemolysis n n=p
+         atmolyses => atmolysis n n=p
+      haematolyses => haematolysis n n=p
+       hematolyses => hematolysis n n=p
+             lyses => lysis n n=p
+       haemoptyses => haemoptysis n n=p
+        hemoptyses => hemoptysis n n=p
+              *ses => = n n=p | se n n=p | s n n=p | se v m=n t=s n=s p=3 | s v m=n t=s n=s p=3
+          parietes => paries n n=p
+          stipites => stipes n n=p
+          atlantes => atlas n n=p
+            mantes => mantis n n=p
+            gentes => gens n n=p
+            pontes => pons n n=p
+           frontes => frons n n=p
+            fortes => fortis n n=p
+         ovotestes => ovotestis n n=p
+            testes => testis n n=p
+             cutes => cutis n n=p
+            ungues => unguis n n=p
+            tenues => tenuis n n=p
+           sheaves => sheaf n n=p
+       broadleaves => broadleaf n n=p
+       thickleaves => thickleaf n n=p
+        shinleaves => shinleaf n n=p
+       interleaves => interleaf n n=p
+      cloverleaves => cloverleaf n n=p
+         flyleaves => flyleaf n n=p
+            leaves => leaf n n=p | leave n n=p | leave v
+            loaves => loaf n n=p
+        flagstaves => flagstaff n n=p
+     quarterstaves => quarterstaff n n=p
+            beeves => beef n n=p
+           thieves => thief n n=p
+             lives => life n n=p
+        jackknives => jackknife n n=p
+         penknives => penknife n n=p
+       paperknives => paperknife n n=p
+      pocketknives => pocketknife n n=p
+        drawknives => drawknife n n=p
+            knives => knife n n=p
+          midwives => midwife n n=p
+          oldwives => oldwife n n=p
+         goodwives => goodwife n n=p
+      sweetiewives => sweetiewife n n=p
+          alewives => alewife n n=p
+        housewives => housewife n n=p
+         fishwives => fishwife n n=p
+             wives => wife n n=p
+        mooncalves => mooncalf n n=p
+            calves => calf n n=p
+            halves => half n n=p
+           shelves => shelf n n=p
+            pelves => pelvis n n=p
+        yourselves => yourself n n=p
+            selves => self n n=p
+             elves => elf n n=p
+        aardwolves => aardwolf n n=p
+        werewolves => werewolf n n=p
+            wolves => wolf n n=p
+          behooves => behoof n n=p
+            hooves => hoof n n=p
+           scarves => scarf n n=p
+           wharves => wharf n n=p
+           dwarves => dwarf n n=p
+            turves => turf n n=p
+      morphallaxes => morphallaxis n n=p
+            praxes => praxis n n=p
+       phyllotaxes => phyllotaxis n n=p
+              axes => ax n n=p | axis n n=p
+          cathexes => cathexis n n=p
+          anatyxes => anaptyxis n n=p
+            fezzes => fez n n=p
+          squizzes => squiz n n=p
+           whizzes => whiz v
+           quizzes => quiz n n=p | quiz v
+                is => be v
+; New rules for unambiguous analysis of "-less" adjectives and "-ness" nouns
+;
+             bless => = v m=n t=s n=s p=12 | = v m=n t=s n=p
+      irregardless => = adv
+     disregardless => = adv
+        regardless => = adj | = adv
+       nonetheless => = adv
+      nevertheless => = adv | = conj
+          wireless => = adj | = n n=s | = v m=n t=s n=s p=12 | = v m=n t=s n=p
+       defenseless => = adj | = adv
+         doubtless => = adj | = adv
+              less => = adj | = adv
+             *less => = adj
+         unharness => = v m=n t=s n=s p=12 | = v m=n t=s n=p
+           harness => = n n=s | = v m=n t=s n=s p=12 | = v m=n t=s n=p
+           witness => = n n=s | = v m=n t=s n=s p=12 | = v m=n t=s n=p
+             *ness => = n n=s
+;
+; End of update
+                *s => = n n=s | ~ n n=p | = adj | = v m=n t=s n=s p=12 | = v m=n t=s n=p | ~ v m=n t=s n=s p=3
+             begat => beget v
+              spat => spit v
+             resat => resit v
+          baby-sat => baby-sit v
+               sat => sit v
+          forefeet => forefoot n n=p
+         blackfeet => blackfoot n n=p
+        tenderfeet => tenderfoot n n=p
+          flatfeet => flatfoot n n=p
+         splayfeet => splayfoot n n=p
+         acre-feet => acre-foot n n=p
+              feet => foot n n=p
+               met => meet v
+             cleft => cleave v
+              left => leave v
+              reft => reave v
+             might => may v
+            caught => catch v
+          untaught => unteach v
+            taught => teach v
+           abought => aby v
+       underbought => underbuy v
+            bought => buy v
+            fought => fight v
+         bethought => bethink v
+         rethought => rethink v
+         unthought => unthink v
+        outthought => outthink v
+           thought => think v
+           brought => bring v
+          besought => beseech v
+            sought => seek v
+           backbit => backbite v
+               bit => bite v
+          floodlit => floodlight v
+           spotlit => spotlight v
+               lit => light v
+              smit => smite v
+          misdealt => misdeal v
+             dealt => deal v
+              felt => feel v
+              gelt => geld v
+             smelt => smell v
+             knelt => kneel v
+          misspelt => misspell v
+             spelt => spell v
+           indwelt => indwell v
+             dwelt => dwell v
+              gilt => gild v
+            spoilt => spoil v
+         overspilt => overspill v
+             spilt => spill v
+           rebuilt => rebuild v
+           upbuilt => upbuild v
+         overbuilt => overbuild v
+       jerry-built => jerry-build v
+             built => build v
+            dreamt => dream v
+             leant => lean v
+             meant => mean v
+            unbent => unbend v
+              bent => bend v
+             shent => shend v
+              kent => ken v
+              lent => lend v
+         overspent => overspend v
+          misspent => misspend v
+             spent => spend v
+              rent => rend v
+              sent => send v
+          forewent => forego v
+         underwent => undergo v
+           forwent => forgo v
+           outwent => outgo v
+              went => go v
+          unlearnt => unlearn v
+            learnt => learn v
+             burnt => burn v
+             begot => beget v
+            forgot => forget v
+               got => get v
+         undershot => undershoot v
+          overshot => overshoot v
+           outshot => outshoot v
+              shot => shoot v
+            agorot => agora n n=p
+             leapt => leap v
+              kept => keep v
+         overslept => oversleep v
+             slept => sleep v
+             crept => creep v
+           upswept => upsweep v
+             swept => sweep v
+              wept => weep v
+           benempt => bename v
+            begirt => begird v
+         undergirt => undergird v
+              girt => gird v
+          drabbest => drab adj sup
+          glibbest => glib adj sup
+          gladdest => glad adj sup
+           maddest => mad adj sup
+           saddest => sad adj sup
+           reddest => red adj sup
+            freest => free adj sup
+           biggest => big adj sup
+          smuggest => smug adj sup
+          snuggest => snug adj sup
+             *iest => y adj sup
+         chanciest => chancy adj sup | chancey adj sup
+           cagiest => cagy adj sup | cagey adj sup
+          shakiest => shaky adj sup | shakey adj sup
+          flakiest => flaky adj sup | flakey adj sup
+          porkiest => porky adj sup | porkey adj sup
+           holiest => holy adj sup | holey adj sup
+           homiest => homy adj sup | homey adj sup
+           piniest => piny adj sup | piney adj sup
+          phoniest => phony adj sup | phoney adj sup
+         spooniest => spoony adj sup | spooney adj sup
+           toniest => tony adj sup | toney adj sup
+           dopiest => dopey adj sup
+          scariest => scary adj sup | scarey adj sup
+           eeriest => eerie adj sup
+           cosiest => cosy adj sup | cosey adj sup
+           nosiest => nosy adj sup | nosey adj sup
+          goosiest => goosy adj sup | goosey adj sup
+         choosiest => choosy adj sup | choosey adj sup
+          horsiest => horsy adj sup | horsey adj sup
+          mousiest => mousy adj sup | mousey adj sup
+          slatiest => slaty adj sup | slatey adj sup
+           dowiest => dowie adj sup | dowy adj sup
+             blest => bless v
+         cruellest => cruel adj sup
+           dimmest => dim adj sup
+          slimmest => slim adj sup
+          grimmest => grim adj sup
+          primmest => prim adj sup
+          trimmest => trim adj sup
+          glummest => glum adj sup
+           tannest => tan adj sup
+           wannest => wan adj sup
+          thinnest => thin adj sup
+           dunnest => dun adj sup
+           heppest => hep adj sup
+           hippest => hip adj sup
+           fattest => fat adj sup
+          flattest => flat adj sup
+           wettest => wet adj sup
+           fittest => fit adj sup
+           hottest => hot adj sup
+              *est => = n n=s | = adj | ~ adj sup | e adj sup | = v m=n t=s n=s p=12 | = v m=n t=s n=p
+              lost => lose v
+             curst => curse v
+      eisteddfodau => eisteddfod n n=p
+            haleru => haler n n=p
+              latu => lat n n=p
+              litu => litas n n=p
+       sons-in-law => son-in-law n n=p
+    fathers-in-law => father-in-law n n=p
+    mothers-in-law => mother-in-law n n=p
+   brothers-in-law => brother-in-law n n=p
+  daughters-in-law => daughter-in-law n n=p
+    sisters-in-law => sister-in-law n n=p
+      heirs-at-law => heir-at-law n n=p
+  attorneys-at-law => attorney-at-law n n=p
+           foresaw => foresee v
+           oversaw => oversee v
+          sightsaw => sightsee v
+               saw => see v
+          overblew => overblow v
+           flyblew => flyblow v
+              blew => blow v
+          overflew => overfly v
+              flew => fly v
+              slew => slay v
+          foreknew => foreknow v
+              knew => know v
+          wiredrew => wiredraw v
+          withdrew => withdraw v
+          overdrew => overdraw v
+         fine-drew => fine-draw v
+              drew => draw v
+          overgrew => overgrow v
+           outgrew => outgrow v
+              grew => grow v
+         overthrew => overthrow v
+             threw => throw v
+  jacks-in-the-box => jack-in-the-box n n=p
+    proces-verbaux => proces-verbal n n=p
+             *eaux => eau n n=p
+          fabliaux => fabliau n n=p
+            adieux => adieu n n=p
+           milieux => milieu n n=p
+      billets-doux => billet-doux n n=p
+             choux => chou n n=p
+            bijoux => bijou n n=p
+          underlay => underlie v
+           overlay => overlie v
+               lay => lie v
+        passers-by => passer-by n n=p
+          sovkhozy => sovkhoz n n=p
+            groszy => grosz n n=p

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://omeaconnector/content/about/about.css" type="text/css"?>
+
+<?xul-overlay href="options-content.xul" ?>
+
+<!DOCTYPE dialog SYSTEM "chrome://omeaconnector/locale/omeaconnector.dtd">
+
+<dialog buttons="accept,cancel" 
+        onload="omeaconnector_options_load()"
+        ondialogaccept="omeaconnector_options_apply()"
+        id="omeaconnector-options-dialog"
+        title="&omeaconnector.options.title;"
+        xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+    <script type="application/x-javascript" src="chrome://omeaconnector/content/options/options.js"/>
+    <vbox id="omeaconnector-options-box" />
+    <separator class="groove" />
+</dialog>

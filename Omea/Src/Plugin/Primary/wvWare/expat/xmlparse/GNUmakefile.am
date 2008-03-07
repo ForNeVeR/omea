@@ -1,0 +1,11 @@
+INCLUDES = -I. -I$(top_builddir) -I$(srcdir) -I$(top_srcdir)/expat/xmltok
+
+noinst_LTLIBRARIES = libxmlparse.la
+
+libxmlparse_la_SOURCES = xmlparse.c hashtable.c
+
+OTHERHEADERS = \
+	hashtable.h \
+	xmlparse.h
+
+EXTRA_DIST = $(OTHERHEADERS)

@@ -1,0 +1,133 @@
+[OPTIONS]
+Compiled File=OmeaHelp.chm
+Title=Omea Help
+Contents File=OmeaHelp.hhc
+Index File=OmeaHelp.hhk
+Default topic=Omea_Help.htm
+Default Window=OmeaProWindow
+Error log file=
+Display compile progress=No
+Display compile notes=Yes
+Full-text search=Yes
+Binary Index=Yes
+Auto Index=No
+Enhanced decompilation=No
+Binary TOC=No
+Flat=No
+Custom tab="&Glossary", HHActiveX.GlossaryPane
+
+[WINDOWS]
+OmeaProWindow="Omea Pro Help","OmeaHelp.hhc","OmeaHelp.hhk","","",,,,,0xc0520,0,0x200e,[156,120,956,720],0xb0000,0x0,,0,0,0,[Glossary,HHActiveX.GlossaryPane]
+ReaderHelpWindow="Omea Reader Help","OmeaHelp.hhc","OmeaHelp.hhk","","",,,,,0x400c0520,0,0x300e,[5,5,805,605],0x0,0x0,,0,0,0,[Glossary,HHActiveX.GlossaryPane]
+
+[FILES]
+overview\quick_tour.html
+overview\about_pro.html
+overview\key_concepts.html
+Omea_Help.htm
+organizing\organizing_your_resources.html
+organizing\organizing_using_workspaces.html
+organizing\organizing_using_categories.html
+getstarted\getting_started.html
+getstarted\configuring_options.html
+getstarted\indexing_your_computers_resources.html
+organizing\organizing_using_tasks.html
+organizing\organizing_using_views.html
+organizing\organizing_using_links.html
+reference\indexed_folders.html
+reference\manage_workspaces.html
+reference\manage_rules.html
+reference\manage_views_.html
+reference\manage_newsgroups.html
+reference\options_dialog.html
+reference\general.html
+reference\file_options.htm
+reference\index.html
+reference\icq.html
+reference\feeds.html
+reference\news.html
+reference\outlook_general.html
+reference\proxy_configuration.html
+appendix\license_agreement.html
+reference\outlook_address_book.html
+reference\new_edit_rule.html
+reference\miranda.html
+appendix\acknowledgements.html
+reference\plugins.html
+reference\outlook_folders.html
+reference\news_server_properties.html
+reference\mozilla_bookmarks.html
+reference\favorites.html
+reference\mail_format.html
+reference\outlook_infostores.html
+reference\web_pages.html
+reference\paths.html
+reference\user_info.html
+organizing\using_rules.html
+using\index.html
+using\com_feedsblogs.htm
+using\com_news.html
+using\com_im.html
+organizing\using_formatting_rules.html
+organizing\using_shortcuts.html
+organizing\custom_properties.html
+organizing\resource_clipboard.html
+using\manage_contacts.html
+organizing\notify_me.html
+search\index.html
+search\adv_search.html
+search\basic_search.html
+search\quick_find.html
+search\find_in_resource.html
+organizing\using_flags.htm
+overview\about_reader.html
+using\web_pages.html
+using\clippings.html
+organizing\index.html
+using\redir_news_sendarticle.html
+overview\redir_quicktour_todo.html
+reference\query_syntax.html
+reference\keyboard_shortcuts.html
+organizing\using_annotations.html
+reference\contacts_dialog.html
+reference\select_conditions.html
+reference\select_rule_actions.html
+reference\edit_time_span_dialog.htm
+reference\feed_properties_dialog.html
+reference\columns_dialog.html
+reference\Choose_Recourse_Types_Dialog.htm
+What_s_New_in_Omea_Pro.htm
+what_s_new_in_omea_reader.htm
+introduction.htm
+using\files.htm
+using\working_with_mozilla_browser_plugin.htm
+using\working_with_ie_add-on.htm
+reference\apply_rules_dialog.htm
+reference\default_application.htm
+reference\tray_icon_rule.htm
+reference\outlook_tasks.htm
+reference\auto_expiration_rule_dialog.htm
+reference\feeds_enclosures.htm
+using\downloading_feed_enclosures.htm
+using\working_with_files.htm
+reference\opera_bookmarks.htm
+organizing\jetlistview_enhancements.htm
+reference\delete_confirmations.htm
+using\email.html
+reference\outlook_address_books.htm
+using\com_email.html
+eHelp.xml
+RoboHHRE.lng
+
+OmeaHelp.glo
+OmeaHelp.brs
+[ALIAS]
+#include OmeaHelp.ali
+
+[MAP]
+#include BSSCDefault.h
+
+[TEXT POPUPS]
+BSSCDefault.h
+
+

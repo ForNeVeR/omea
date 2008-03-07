@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin" type="text/css"?>
+<?xml-stylesheet href="chrome://omeaconnector/skin/omeaconnector.css" type="text/css"?>
+
+<!DOCTYPE overlay SYSTEM "chrome://omeaconnector/locale/omeaconnector.dtd">
+
+<overlay id="omeaconnector-ms-pref" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+  <treechildren id="panelChildren">
+    <treeitem container="true" id="jetbrains-plugins-item">
+      <treerow id="jetraiting-options-row">
+        <treecell id="jetraiting-options-cell" url="chrome://omeaconnector/content/options/options-page-fake.xul" label="&jetbrains.options.label;"/> 
+      </treerow>
+      <treechildren id="jetbrains-plugins-children">
+        <treeitem>
+          <treerow>
+            <treecell url="chrome://omeaconnector/content/options/options-page.xul" label="&omeaconnector.options.title-ms;"/>
+          </treerow>
+        </treeitem>
+      </treechildren>
+    </treeitem>
+  </treechildren>
+</overlay>

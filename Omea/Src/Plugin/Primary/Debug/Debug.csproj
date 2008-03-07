@@ -1,0 +1,240 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+  <copyright company="JetBrains">
+  Copyright © 2003-2008 JetBrains s.r.o.
+  You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
+  </copyright>
+-->
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+	<PropertyGroup>
+		<ProjectType>Local</ProjectType>
+		<ProductVersion>9.0.21022</ProductVersion>
+		<SchemaVersion>2.0</SchemaVersion>
+		<ProjectGuid>{6ABD562F-44A2-420A-8C1B-BEF261A17C05}</ProjectGuid>
+		<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+		<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+		<AssemblyName>Debug</AssemblyName>
+		<DefaultClientScript>JScript</DefaultClientScript>
+		<DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+		<DefaultTargetSchema>IE50</DefaultTargetSchema>
+		<DelaySign>false</DelaySign>
+		<OutputType>Library</OutputType>
+		<RootNamespace>DebugPlugin</RootNamespace>
+		<RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+		<OldToolsVersion>2.0</OldToolsVersion>
+		<ProductHomeDir>$(MSBuildProjectDirectory)/../../../..</ProductHomeDir>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+		<AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+		<BaseAddress>285212672</BaseAddress>
+		<CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+		<DefineConstants>DEBUG;TRACE</DefineConstants>
+		<DebugSymbols>true</DebugSymbols>
+		<FileAlignment>4096</FileAlignment>
+		<NoStdLib>false</NoStdLib>
+		<Optimize>false</Optimize>
+		<RegisterForComInterop>false</RegisterForComInterop>
+		<RemoveIntegerChecks>false</RemoveIntegerChecks>
+		<TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+		<WarningLevel>4</WarningLevel>
+		<DebugType>full</DebugType>
+		<ErrorReport>prompt</ErrorReport>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+		<AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+		<BaseAddress>285212672</BaseAddress>
+		<CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+		<DefineConstants>TRACE</DefineConstants>
+		<DebugSymbols>false</DebugSymbols>
+		<FileAlignment>4096</FileAlignment>
+		<NoStdLib>false</NoStdLib>
+		<Optimize>true</Optimize>
+		<RegisterForComInterop>false</RegisterForComInterop>
+		<RemoveIntegerChecks>false</RemoveIntegerChecks>
+		<TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+		<WarningLevel>4</WarningLevel>
+		<DebugType>none</DebugType>
+		<ErrorReport>prompt</ErrorReport>
+	</PropertyGroup>
+	<ItemGroup>
+		<Reference Include="System">
+			<Name>System</Name>
+		</Reference>
+		<Reference Include="System.Data">
+			<Name>System.Data</Name>
+		</Reference>
+		<Reference Include="System.Drawing">
+			<Name>System.Drawing</Name>
+		</Reference>
+		<Reference Include="System.Windows.Forms">
+			<Name>System.Windows.Forms</Name>
+		</Reference>
+		<Reference Include="System.Xml">
+			<Name>System.XML</Name>
+		</Reference>
+		<ProjectReference Include="../../../Core/DBIndex/DBIndex.vcproj">
+			<Name>DBIndex</Name>
+			<Project>{7324F8A3-E741-451A-8428-BCD71E464A89}</Project>
+			<Package>{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}</Package>
+		</ProjectReference>
+		<ProjectReference Include="../../../Core/DBUtils/DBUtils.csproj">
+			<Name>DBUtils</Name>
+			<Project>{14CD54EF-C6BA-4A9D-A742-2A431DC7E641}</Project>
+			<Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+		</ProjectReference>
+		<ProjectReference Include="../../../Core/GUIControls/GUIControls.csproj">
+			<Name>GUIControls</Name>
+			<Project>{C9CBAAE5-F8D4-4BD2-BDF0-026B85122106}</Project>
+			<Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+		</ProjectReference>
+		<ProjectReference Include="../../../Core/JetBrainsShared/JetBrainsShared.csproj">
+			<Project>{5133BE57-1BE8-4C82-BA5E-ADA6CFA0AA8B}</Project>
+			<Name>JetBrainsShared</Name>
+		</ProjectReference>
+		<ProjectReference Include="../../../Core/JetListView/JetListView.csproj">
+			<Name>JetListView</Name>
+			<Project>{F143C8CF-F540-4CEE-9D6B-48F583A3B955}</Project>
+			<Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+		</ProjectReference>
+		<ProjectReference Include="../../../Core/OmniaMeaBase/OmniaMeaBase.csproj">
+			<Name>OmniaMeaBase</Name>
+			<Project>{C77A02EC-E116-44B9-8FF2-85637FA405B7}</Project>
+			<Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+		</ProjectReference>
+		<ProjectReference Include="../../../Core/OpenAPI/OpenAPI.csproj">
+			<Name>OpenAPI</Name>
+			<Project>{BC8E1E30-A063-463A-9213-A159C7FA4AAC}</Project>
+			<Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+		</ProjectReference>
+		<ProjectReference Include="../../../Core/ResourceStore/ResourceStore.csproj">
+			<Name>ResourceStore</Name>
+			<Project>{D022CCB6-4958-44DD-8175-E9AA181E6F41}</Project>
+			<Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+		</ProjectReference>
+		<ProjectReference Include="../../../Core/ResourceTools/ResourceTools.csproj">
+			<Project>{3866FB99-0922-4062-8880-B39DA0F1C15E}</Project>
+			<Name>ResourceTools</Name>
+		</ProjectReference>
+		<ProjectReference Include="../../../Core/TextIndex/TextIndex.csproj">
+			<Name>TextIndex</Name>
+			<Project>{971F984A-724F-4841-8AB9-6BB738C6E329}</Project>
+			<Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+		</ProjectReference>
+		<ProjectReference Include="..\..\..\Core\Interop.WinApi\Interop.WinApi.csproj">
+			<Project>{3F0FF59D-9EEB-407E-8DD5-7DE159ABBC35}</Project>
+			<Name>Interop.WinApi</Name>
+		</ProjectReference>
+	</ItemGroup>
+	<ItemGroup>
+		<Compile Include="AssemblyInfo.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="CacheWatch.cs">
+			<SubType>Form</SubType>
+		</Compile>
+		<Compile Include="DebugActions.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="DebugPlugin.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="OutlookCotrolPanel.cs">
+			<SubType>Form</SubType>
+		</Compile>
+		<Compile Include="QueryForm.cs">
+			<SubType>Form</SubType>
+		</Compile>
+		<Compile Include="ResourceBrowser.cs">
+			<SubType>Form</SubType>
+		</Compile>
+		<Compile Include="ResourceListView2TestForm.cs">
+			<SubType>Form</SubType>
+		</Compile>
+		<Compile Include="ResourcePropertiesDialog.cs">
+			<SubType>Form</SubType>
+		</Compile>
+		<Compile Include="SettingOptionsForDebugDlg.cs">
+			<SubType>Form</SubType>
+		</Compile>
+		<Compile Include="Settings.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="ShowBlobAsPicture.cs">
+			<SubType>Form</SubType>
+		</Compile>
+		<Compile Include="ShowBlobAsText.cs">
+			<SubType>Form</SubType>
+		</Compile>
+		<Compile Include="TermEntryContentForm.cs">
+			<SubType>Form</SubType>
+		</Compile>
+		<Compile Include="TestDde.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="ThreadTimesForm.cs">
+			<SubType>Form</SubType>
+		</Compile>
+		<Compile Include="ViewDocIndexContentForm.cs">
+			<SubType>Form</SubType>
+		</Compile>
+		<Compile Include="ViewTermIndexContentForm.cs">
+			<SubType>Form</SubType>
+		</Compile>
+		<EmbeddedResource Include="CacheWatch.resx">
+			<DependentUpon>CacheWatch.cs</DependentUpon>
+			<SubType>Designer</SubType>
+		</EmbeddedResource>
+		<EmbeddedResource Include="OutlookCotrolPanel.resx">
+			<DependentUpon>OutlookCotrolPanel.cs</DependentUpon>
+			<SubType>Designer</SubType>
+		</EmbeddedResource>
+		<EmbeddedResource Include="plugin.xml" />
+		<EmbeddedResource Include="QueryForm.resx">
+			<DependentUpon>QueryForm.cs</DependentUpon>
+			<SubType>Designer</SubType>
+		</EmbeddedResource>
+		<EmbeddedResource Include="ResourceBrowser.resx">
+			<DependentUpon>ResourceBrowser.cs</DependentUpon>
+			<SubType>Designer</SubType>
+		</EmbeddedResource>
+		<EmbeddedResource Include="ResourceListView2TestForm.resx">
+			<DependentUpon>ResourceListView2TestForm.cs</DependentUpon>
+			<SubType>Designer</SubType>
+		</EmbeddedResource>
+		<EmbeddedResource Include="ResourcePropertiesDialog.resx">
+			<DependentUpon>ResourcePropertiesDialog.cs</DependentUpon>
+			<SubType>Designer</SubType>
+		</EmbeddedResource>
+		<EmbeddedResource Include="SettingOptionsForDebugDlg.resx">
+			<DependentUpon>SettingOptionsForDebugDlg.cs</DependentUpon>
+			<SubType>Designer</SubType>
+		</EmbeddedResource>
+		<EmbeddedResource Include="ShowBlobAsPicture.resx">
+			<DependentUpon>ShowBlobAsPicture.cs</DependentUpon>
+			<SubType>Designer</SubType>
+		</EmbeddedResource>
+		<EmbeddedResource Include="ShowBlobAsText.resx">
+			<DependentUpon>ShowBlobAsText.cs</DependentUpon>
+			<SubType>Designer</SubType>
+		</EmbeddedResource>
+		<EmbeddedResource Include="TermEntryContentForm.resx">
+			<DependentUpon>TermEntryContentForm.cs</DependentUpon>
+			<SubType>Designer</SubType>
+		</EmbeddedResource>
+		<EmbeddedResource Include="ThreadTimesForm.resx">
+			<DependentUpon>ThreadTimesForm.cs</DependentUpon>
+			<SubType>Designer</SubType>
+		</EmbeddedResource>
+		<EmbeddedResource Include="ViewDocIndexContentForm.resx">
+			<DependentUpon>ViewDocIndexContentForm.cs</DependentUpon>
+			<SubType>Designer</SubType>
+		</EmbeddedResource>
+		<EmbeddedResource Include="ViewTermIndexContentForm.resx">
+			<DependentUpon>ViewTermIndexContentForm.cs</DependentUpon>
+			<SubType>Designer</SubType>
+		</EmbeddedResource>
+	</ItemGroup>
+	<Import Project="$(ProductHomeDir)/Build/Product.BeforeMicrosoftCommon.Targets" />
+	<Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+	<Import Project="$(ProductHomeDir)/Build/Product.AfterMicrosoftCommon.Targets" />
+</Project>

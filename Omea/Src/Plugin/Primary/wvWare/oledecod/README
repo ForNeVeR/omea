@@ -1,0 +1,9 @@
+0.0.3:
++ Add one parameter to OLEdecod; max_level, which is the maximum level
+  stream we will extract into files.
++ Changed name from main.c to demo.c
++ Added a simple Makefile
++ Added this README file.
+
+--
+Arturo Tena <arturo@directmail.org>

@@ -1,0 +1,19 @@
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RegisterPlugin", "RegisterPlugin.csproj", "{98C096BA-5D99-4F4C-AC62-99FC187E6817}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{98C096BA-5D99-4F4C-AC62-99FC187E6817}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98C096BA-5D99-4F4C-AC62-99FC187E6817}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98C096BA-5D99-4F4C-AC62-99FC187E6817}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98C096BA-5D99-4F4C-AC62-99FC187E6817}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

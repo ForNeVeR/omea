@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<rhpml majorversion="1" minorversion="0">
+	<fontsets>
+		<fontset>
+			<name>Marlett</name>
+			<fontlist>Marlett</fontlist>
+		</fontset>
+		<fontset>
+			<name>Arial</name>
+			<fontlist>Arial</fontlist>
+		</fontset>
+		<fontset>
+			<name>Arial CE</name>
+			<fontlist>Arial CE</fontlist>
+		</fontset>
+		<fontset>
+			<name>Arial CYR</name>
+			<fontlist>Arial CYR</fontlist>
+		</fontset>
+		<fontset>
+			<name>Arial Greek</name>
+			<fontlist>Arial Greek</fontlist>
+		</fontset>
+		<fontset>
+			<name>Arial TUR</name>
+			<fontlist>Arial TUR</fontlist>
+		</fontset>
+		<fontset>
+			<name>Arial Baltic</name>
+			<fontlist>Arial Baltic</fontlist>
+		</fontset>
+		<fontset>
+			<name>Courier New</name>
+			<fontlist>Courier New</fontlist>
+		</fontset>
+		<fontset>
+			<name>Courier New CE</name>
+			<fontlist>Courier New CE</fontlist>
+		</fontset>
+		<fontset>
+			<name>Courier New CYR</name>
+			<fontlist>Courier New CYR</fontlist>
+		</fontset>
+		<fontset>
+			<name>Courier New Greek</name>
+			<fontlist>Courier New Greek</fontlist>
+		</fontset>
+		<fontset>
+			<name>Courier New TUR</name>
+			<fontlist>Courier New TUR</fontlist>
+		</fontset>
+		<fontset>
+			<name>Courier New Baltic</name>
+			<fontlist>Courier New Baltic</fontlist>
+		</fontset>
+		<fontset>
+			<name>Lucida Console</name>
+			<fontlist>Lucida Console</fontlist>
+		</fontset>
+		<fontset>
+			<name>Lucida Sans Unicode</name>
+			<fontlist>Lucida Sans Unicode</fontlist>
+		</fontset>
+		<fontset>
+			<name>Times New Roman</name>
+			<fontlist>Times New Roman</fontlist>
+		</fontset>
+		<fontset>
+			<name>Times New Roman CE</name>
+			<fontlist>Times New Roman CE</fontlist>
+		</fontset>
+		<fontset>
+			<name>Times New Roman CYR</name>
+			<fontlist>Times New Roman CYR</fontlist>
+		</fontset>
+		<fontset>
+			<name>Times New Roman Greek</name>
+			<fontlist>Times New Roman Greek</fontlist>
+		</fontset>
+		<fontset>
+			<name>Times New Roman TUR</name>
+			<fontlist>Times New Roman TUR</fontlist>
+		</fontset>
+		<fontset>
+			<name>Times New Roman Baltic</name>
+			<fontlist>Times New Roman Baltic</fontlist>
+		</fontset>
+		<fontset>
+			<name>Wingdings</name>
+			<fontlist>Wingdings</fontlist>
+		</fontset>
+		<fontset>
+			<name>Symbol</name>
+			<fontlist>Symbol</fontlist>
+		</fontset>
+		<fontset>
+			<name>Verdana</name>
+			<fontlist>Verdana</fontlist>
+		</fontset>
+		<fontset>
+			<name>Arial Black</name>
+			<fontlist>Arial Black</fontlist>
+		</fontset>
+		<fontset>
+			<name>Comic Sans MS</name>
+			<fontlist>Comic Sans MS</fontlist>
+		</fontset>
+		<fontset>
+			<name>Impact</name>
+			<fontlist>Impact</fontlist>
+		</fontset>
+		<fontset>
+			<name>Georgia</name>
+			<fontlist>Georgia</fontlist>
+		</fontset>
+		<fontset>
+			<name>Franklin Gothic Medium</name>
+			<fontlist>Franklin Gothic Medium</fontlist>
+		</fontset>
+		<fontset>
+			<name>Palatino Linotype</name>
+			<fontlist>Palatino Linotype</fontlist>
+		</fontset>
+		<fontset>
+			<name>Tahoma</name>
+			<fontlist>Tahoma</fontlist>
+		</fontset>
+		<fontset>
+			<name>Trebuchet MS</name>
+			<fontlist>Trebuchet MS</fontlist>
+		</fontset>
+		<fontset>
+			<name>Webdings</name>
+			<fontlist>Webdings</fontlist>
+		</fontset>
+		<fontset>
+			<name>Estrangelo Edessa</name>
+			<fontlist>Estrangelo Edessa</fontlist>
+		</fontset>
+		<fontset>
+			<name>Gautami</name>
+			<fontlist>Gautami</fontlist>
+		</fontset>
+		<fontset>
+			<name>Latha</name>
+			<fontlist>Latha</fontlist>
+		</fontset>
+		<fontset>
+			<name>Mangal</name>
+			<fontlist>Mangal</fontlist>
+		</fontset>
+		<fontset>
+			<name>MV Boli</name>
+			<fontlist>MV Boli</fontlist>
+		</fontset>
+		<fontset>
+			<name>Raavi</name>
+			<fontlist>Raavi</fontlist>
+		</fontset>
+		<fontset>
+			<name>Shruti</name>
+			<fontlist>Shruti</fontlist>
+		</fontset>
+		<fontset>
+			<name>Tunga</name>
+			<fontlist>Tunga</fontlist>
+		</fontset>
+		<fontset>
+			<name>Sylfaen</name>
+			<fontlist>Sylfaen</fontlist>
+		</fontset>
+		<fontset>
+			<name>Microsoft Sans Serif</name>
+			<fontlist>Microsoft Sans Serif</fontlist>
+		</fontset>
+		<fontset>
+			<name>Arial Narrow</name>
+			<fontlist>Arial Narrow</fontlist>
+		</fontset>
+		<fontset>
+			<name>Book Antiqua</name>
+			<fontlist>Book Antiqua</fontlist>
+		</fontset>
+		<fontset>
+			<name>Bookman Old Style</name>
+			<fontlist>Bookman Old Style</fontlist>
+		</fontset>
+		<fontset>
+			<name>Century Gothic</name>
+			<fontlist>Century Gothic</fontlist>
+		</fontset>
+		<fontset>
+			<name>Garamond</name>
+			<fontlist>Garamond</fontlist>
+		</fontset>
+		<fontset>
+			<name>Haettenschweiler</name>
+			<fontlist>Haettenschweiler</fontlist>
+		</fontset>
+		<fontset>
+			<name>MS Outlook</name>
+			<fontlist>MS Outlook</fontlist>
+		</fontset>
+		<fontset>
+			<name>Monotype Corsiva</name>
+			<fontlist>Monotype Corsiva</fontlist>
+		</fontset>
+		<fontset>
+			<name>Wingdings 2</name>
+			<fontlist>Wingdings 2</fontlist>
+		</fontset>
+		<fontset>
+			<name>Wingdings 3</name>
+			<fontlist>Wingdings 3</fontlist>
+		</fontset>
+		<fontset>
+			<name>Niagara Solid</name>
+			<fontlist>Niagara Solid</fontlist>
+		</fontset>
+		<fontset>
+			<name>Gauss Jordan</name>
+			<fontlist>Gauss Jordan</fontlist>
+		</fontset>
+		<fontset>
+			<name>Guild of Professional Actors</name>
+			<fontlist>Guild of Professional Actors</fontlist>
+		</fontset>
+		<fontset>
+			<name>SF TransRobotics</name>
+			<fontlist>SF TransRobotics</fontlist>
+		</fontset>
+		<fontset>
+			<name>SF TransRobotics Extended</name>
+			<fontlist>SF TransRobotics Extended</fontlist>
+		</fontset>
+	</fontsets>
+</rhpml>

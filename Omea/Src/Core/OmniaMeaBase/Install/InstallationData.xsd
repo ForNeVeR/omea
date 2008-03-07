@@ -1,0 +1,282 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+  <copyright company="JetBrains">
+  Copyright © 2003-2008 JetBrains s.r.o.
+  You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
+  </copyright>
+-->
+<xs:schema id="InstallationDataXml" targetNamespace="urn:shemas-jetbrains-com:installation-data" elementFormDefault="qualified" xmlns="urn:shemas-jetbrains-com:installation-data" xmlns:mstns="urn:shemas-jetbrains-com:installation-data" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="InstallationData" type="InstallationDataXml">
+		<xs:annotation>
+			<xs:documentation>The root element for the file.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="InstallationDataXml">
+		<xs:sequence minOccurs="1" maxOccurs="1">
+			<xs:element name="Registry" type="RegistryXml" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The root element for all the Registry keys and values.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Files" type="FilesXml" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The root elements for all the satellite files (but for the product binaries) included with the installations.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="RegistryHiveXml">
+		<xs:annotation>
+			<xs:documentation>A choice of the Registry hives to write into.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Hkcr">
+				<xs:annotation>
+					<xs:documentation>HKEY_CLASSES_ROOT.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Hklm">
+				<xs:annotation>
+					<xs:documentation>HKEY_LOCAL_MACHINE.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Hkcu">
+				<xs:annotation>
+					<xs:documentation>HKEY_CURRENT_USER.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Hkmu">
+				<xs:annotation>
+					<xs:documentation>Either HKEY_LOCAL_MACHINE or HKEY_CURRENT_USER, depending on the installation type (“ALLUSERS” installer property value).</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="RegistryBaseXml">
+		<xs:annotation>
+			<xs:documentation>Base type that holds the attributes that are common for both keys and values.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence />
+		<xs:attribute name="Hive" type="RegistryHiveXml" use="required">
+			<xs:annotation>
+				<xs:documentation>The Registry hive into which the key or value should be written.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="Key" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>Relative path to the key under the hive, not including any leading or trailing slahes.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="RegistryValueXml">
+		<xs:annotation>
+			<xs:documentation>Represents a value to be written to the Registry. On uninstallation, the value will be deleted. It is not necessary to have a key element for each value, unless you want it to be deleted upon uninstallation.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="RegistryBaseXml">
+				<xs:sequence>
+				</xs:sequence>
+				<xs:attribute name="Name" type="xs:string" use="required">
+					<xs:annotation>
+						<xs:documentation>Name of the value under its key, or an empty string for the default value of the key.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="Value" type="xs:string" use="required">
+					<xs:annotation>
+						<xs:documentation>Value for the value.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="Type" type="RegistryValueTypeXml" use="required">
+					<xs:annotation>
+						<xs:documentation>Type of the value, which determines the type of the Windows Registry value to be created. The Value must be formatted accordingly.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="Permanent" type="xs:boolean" use="optional" default="false">
+					<xs:annotation>
+						<xs:documentation>Specifies that the value should be written on registration and left intact on unregistration.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="RegistryValueTypeXml">
+		<xs:annotation>
+			<xs:documentation>Lists possible types for the Registry values.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Dword">
+				<xs:annotation>
+					<xs:documentation>An integer DWORD value.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="String">
+				<xs:annotation>
+					<xs:documentation>A string value.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="RegistryKeyXml">
+		<xs:annotation>
+			<xs:documentation>Represents a Registry key. You should create the Key elements only for those Registry keys that should be deleted upon uninstallation.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="RegistryBaseXml">
+				<xs:sequence />
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="RegistryXml">
+		<xs:sequence minOccurs="0" maxOccurs="unbounded">
+			<xs:element name="Key" type="RegistryKeyXml" minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="Value" type="RegistryValueXml" minOccurs="0" maxOccurs="unbounded" />
+			<xs:sequence minOccurs="0" maxOccurs="0">
+				<!-- Min/max are 0 because that's just a “usage to force generation”. -->
+				<xs:element name="Macro" type="MacroXml" />
+			</xs:sequence>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="MacroNameXml">
+		<xs:annotation>
+			<xs:documentation>An enumeration of possible macro names, is not used directly in the XML files, but instead serves as a reference info or string constants from the code.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="SystemDir">
+				<xs:annotation>
+					<xs:documentation>The System directory. Used to locate the mscoree.dll that is the COM Server for us.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ProductBinariesDir">
+				<xs:annotation>
+					<xs:documentation>The directory that contains the product binaries.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="DateTime">
+				<xs:annotation>
+					<xs:documentation>Date and time at the moment the macro is resolved, in an arbitrary format. Use with care, because the date-time might resolve at the installation time on the user machine. The format is not defined.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="MacroXml">
+		<xs:annotation>
+			<xs:documentation>A dummy element introduced so that the autogenerated C# sources contained all of the macro name fields, which otherwise will be dropped as unused. Could be used for assigning default values to the macros.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence />
+		<xs:attribute name="Name" type="MacroNameXml" use="required" />
+		<xs:attribute name="DefaultValue" type="xs:string" use="required" />
+	</xs:complexType>
+	<xs:complexType name="FilesXml">
+		<xs:sequence minOccurs="1" maxOccurs="1">
+			<xs:element name="Folder" type="FolderXml" minOccurs="1" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>A collection of files under the same folder (both on the source and target systems).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="FolderXml">
+		<xs:sequence minOccurs="1" maxOccurs="1">
+			<xs:element name="Files" minOccurs="1" maxOccurs="1">
+				<xs:complexType>
+					<xs:sequence minOccurs="1" maxOccurs="1">
+						<xs:element name="File" type="FileXml" minOccurs="1" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation>A single satellite file in the installation.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="Id" type="IdXml" use="required">
+			<xs:annotation>
+				<xs:documentation>An ID for this folder entry, from which the component, folder and file IDs in the installation database are derived.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="SourceRoot" type="SourceRootXml" use="required">
+			<xs:annotation>
+				<xs:documentation>One of the root folders to locate the file on the source system.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="SourceDir" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>Relative path from the specified root to the directory on the source system.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="TargetRoot" type="TargetRootXml" use="required">
+			<xs:annotation>
+				<xs:documentation>One of the root folders to locate the file on the target system.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="TargetDir" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>Relative path from the specified root to the directory on the target system.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="MsiComponentGuid" type="GuidXml" use="required">
+			<xs:annotation>
+				<xs:documentation>GUID for the component to be generated in the installer.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="FileXml">
+		<xs:attribute name="SourceName" type="LocalFileNameXml" use="required">
+			<xs:annotation>
+				<xs:documentation>The local name of the file on the source system. May be a mask that matches more than one file.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="TargetName" type="LocalFileNameXml" use="required">
+			<xs:annotation>
+				<xs:documentation>The local name of the file on the target system. If left empty, will be the same as the source name. Must be left empty if the source name matches more than one file.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:simpleType name="SourceRootXml">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="ProductBinariesDir">
+				<xs:annotation>
+					<xs:documentation>A directory to which the product is built; contains all of the product binaries. Warning: when doing a local install, this is the same as the target InstallDir.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ProductHomeDir">
+				<xs:annotation>
+					<xs:documentation>Home directory of the product, can be used to refer to product library files. Shouldn't be used for the Bin folder, see ProductBinariesDir instead, because it may be redirected on the build.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TargetRootXml">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="InstallDir">
+				<xs:annotation>
+					<xs:documentation>Binaries installation directory on the remote system (the Bin folder).</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LocalFileNameXml">
+		<xs:annotation>
+			<xs:documentation>A local file name must not contain slashes.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[^\\/\?\:]+"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="GuidXml">
+		<xs:annotation>
+			<xs:documentation>An all-uppercase curlies-enclosed GUID.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\{[0-9A-Z]{8}-[0-9A-Z]{4}-[0-9A-Z]{4}-[0-9A-Z]{4}-[0-9A-Z]{12}\}" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="IdXml">
+		<xs:annotation>
+			<xs:documentation>Defines an ID so that it were directly mappable into a programming language identifier.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[A-Za-z_][A-Za-z_0-9]*" />
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

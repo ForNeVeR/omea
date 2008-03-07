@@ -1,0 +1,686 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>JetBrains.Build.Common</name>
+    </assembly>
+    <members>
+        <member name="T:JetBrains.Build.Common.Infra.AttributeName">
+            <summary>
+            Names for the task attribute items in the property bag.
+            </summary>
+        </member>
+        <member name="T:JetBrains.Build.Common.Infra.TaskBase">
+            <summary>
+            The base class for deriving tasks from it, defines the attribute bag.
+            </summary>
+        </member>
+        <member name="F:JetBrains.Build.Common.Infra.TaskBase.myBag">
+            <summary>
+            <see cref="P:JetBrains.Build.Common.Infra.TaskBase.Bag"/>.
+            </summary>
+        </member>
+        <member name="M:JetBrains.Build.Common.Infra.TaskBase.BagContains(JetBrains.Build.Common.Infra.AttributeName)">
+            <summary>
+            Checks whether a bag entry is present.
+            </summary>
+        </member>
+        <member name="M:JetBrains.Build.Common.Infra.TaskBase.BagGet``1(JetBrains.Build.Common.Infra.AttributeName)">
+            <summary>
+            Gets a typed value from the bag. Throws if a value is missing.
+            </summary>
+        </member>
+        <member name="M:JetBrains.Build.Common.Infra.TaskBase.BagGet``1(JetBrains.Build.Common.Infra.AttributeName,``0)">
+            <summary>
+            Gets a typed value from the bag. Returns the <paramref name="defaultvalue"/> if an entry is missing from the bag.
+            </summary>
+        </member>
+        <member name="M:JetBrains.Build.Common.Infra.TaskBase.BagGetTry``1(JetBrains.Build.Common.Infra.AttributeName)">
+            <summary>
+            Gets a typed value from the bag. <c>Null</c> (a missing value) is OK.
+            </summary>
+        </member>
+        <member name="M:JetBrains.Build.Common.Infra.TaskBase.BagSet``1(JetBrains.Build.Common.Infra.AttributeName,``0)">
+            <summary>
+            Puts a typed value to the bag. <c>Null</c> (a missing value) is OK.
+            </summary>
+        </member>
+        <member name="M:JetBrains.Build.Common.Infra.TaskBase.ExecuteTask">
+            <summary>
+            The method to be overriden in inheriting tasks.
+            Throw an exception in case of an errror.
+            </summary>
+        </member>
+        <member name="M:JetBrains.Build.Common.Infra.TaskBase.GetStringValue(JetBrains.Build.Common.Infra.AttributeName)">
+            <summary>
+            Gets a string value from the bag, throws on an error.
+            </summary>
+        </member>
+        <member name="M:JetBrains.Build.Common.Infra.TaskBase.GetValue``1(JetBrains.Build.Common.Infra.AttributeName)">
+            <summary>
+            Gets a <typeparamref name="T"/> value from the bag, throws on an error.
+            </summary>
+        </member>
+        <member name="M:JetBrains.Build.Common.Infra.TaskBase.Execute">
+            <summary>
+            When overridden in a derived class, executes the task.
+            </summary>
+            
+            <returns>
+            true if the task successfully executed; otherwise, false.
+            </returns>
+            
+        </member>
+        <member name="P:JetBrains.Build.Common.Infra.TaskBase.Bag">
+            <summary>
+            Gets the task attributes bag.
+            </summary>
+        </member>
+        <member name="T:JetBrains.Build.Common.Infra.TaskHelper">
+            <summary>
+            Static helper methods, externalized from different tasks.
+            </summary>
+        </member>
+        <member name="M:JetBrains.Build.Common.Infra.TaskHelper.GetStringValue(System.Collections.Hashtable,JetBrains.Build.Common.Infra.AttributeName)">
+            <summary>
+            Gets a string value from the bag, throws on an error.
+            </summary>
+        </member>
+        <member name="M:JetBrains.Build.Common.Infra.TaskHelper.GetValue``1(System.Collections.Hashtable,JetBrains.Build.Common.Infra.AttributeName)">
+            <summary>
+            Gets a <typeparamref name="T"/> value from the bag, throws on an error.
+            </summary>
+        </member>
+        <member name="T:JetBrains.Build.Common.Infra.ToolTaskBase">
+            <summary>
+            A base task for tool-based tasks, defining the attributes bag.
+            </summary>
+        </member>
+        <member name="M:JetBrains.Build.Common.Infra.ToolTaskBase.BagContains(JetBrains.Build.Common.Infra.AttributeName)">
+            <summary>
+            Checks whether a bag entry is present.
+            </summary>
+        </member>
+        <member name="M:JetBrains.Build.Common.Infra.ToolTaskBase.BagGet``1(JetBrains.Build.Common.Infra.AttributeName)">
+            <summary>
+            Gets a typed value from the bag. Throws if a value is missing.
+            </summary>
+        </member>
+        <member name="M:JetBrains.Build.Common.Infra.ToolTaskBase.BagGet``1(JetBrains.Build.Common.Infra.AttributeName,``0)">
+            <summary>
+            Gets a typed value from the bag. Returns the <paramref name="defaultvalue"/> if an entry is missing from the bag.
+            </summary>
+        </member>
+        <member name="M:JetBrains.Build.Common.Infra.ToolTaskBase.BagGetTry``1(JetBrains.Build.Common.Infra.AttributeName)">
+            <summary>
+            Gets a typed value from the bag. <c>Null</c> (a missing value) is OK.
+            </summary>
+        </member>
+        <member name="M:JetBrains.Build.Common.Infra.ToolTaskBase.BagSet``1(JetBrains.Build.Common.Infra.AttributeName,``0)">
+            <summary>
+            Puts a typed value to the bag. <c>Null</c> (a missing value) is OK.
+            </summary>
+        </member>
+        <member name="M:JetBrains.Build.Common.Infra.ToolTaskBase.GenerateFullPathToTool">
+            <summary>
+            Returns the fully qualified path to the executable file.
+            </summary>
+            
+            <returns>
+            The fully qualified path to the executable file.
+            </returns>
+            
+        </member>
+        <member name="P:JetBrains.Build.Common.Infra.ToolTaskBase.ToolDir">
+            <summary>
+            Gets or sets the directory in which the tool task executable resides.
+            </summary>
+        </member>
+        <member name="P:JetBrains.Build.Common.Infra.ToolTaskBase.ToolDirEnvName">
+            <summary>
+            Gets the name of the environment variable that provides the path to the tool in case the <see cref="P:JetBrains.Build.Common.Infra.ToolTaskBase.ToolDir"/> is not defined.
+            </summary>
+        </member>
+        <member name="T:JetBrains.Build.Common.Infra.VsHiveTask">
+            <summary>
+            A task that defines task input parameters for defining the VS hive.
+            </summary>
+        </member>
+        <member name="M:JetBrains.Build.Common.Infra.VsHiveTask.GetVsHive">
+            <summary>
+            Gets the Visual Studio hive, which is a concatenation of the version and the hive.
+            </summary>
+        </member>
+        <member name="M:JetBrains.Build.Common.Infra.VsHiveTask.GetVsRootSuffix">
+            <summary>
+            Gets the Visual Studio root suffix, checks that it's been defined.
+            Replaces the dash special value “-” with an empty root suffix.
+            </summary>
+        </member>
+        <member name="M:JetBrains.Build.Common.Infra.VsHiveTask.GetVsVersion">
+            <summary>
+            Gets the Visual Studio version, checks that it's been defined.
+            </summary>
+        </member>
+        <member name="P:JetBrains.Build.Common.Infra.VsHiveTask.VsRootSuffix">
+            <summary>
+            Gets or sets the Visual Studio root suffix to work with, a dash “-” means no hive.
+            Example: “-” (main hive), “ReSharper” (experimental hive).
+            <see cref="P:JetBrains.Build.Common.Infra.VsHiveTask.VsVersion"/> and <see cref="P:JetBrains.Build.Common.Infra.VsHiveTask.VsRootSuffix"/> together form the Visual Studio Hive.
+            </summary>
+        </member>
+        <member name="P:JetBrains.Build.Common.Infra.VsHiveTask.VsVersion">
+            <summary>
+            Gets or sets the Visual Studio version to work with.
+            Example: “8.0”.
+            <see cref="P:JetBrains.Build.Common.Infra.VsHiveTask.VsVersion"/> and <see cref="P:JetBrains.Build.Common.Infra.VsHiveTask.VsRootSuffix"/> together form the Visual Studio Hive.
+            </summary>
+        </member>
+        <member name="T:JetBrains.Build.Common.Tasks.AssertStrongName">
+            <summary>
+            Throws if any of the input file is missing a strong name.
+            </summary>
+        </member>
+        <member name="M:JetBrains.Build.Common.Tasks.AssertStrongName.ExecuteTask">
+            <summary>
+            The method to be overriden in inheriting tasks.
+            Throw an exception in case of an errror.
+            </summary>
+        </member>
+        <member name="P:JetBrains.Build.Common.Tasks.AssertStrongName.InputFiles">
+            <summary>
+            Specifies the list of the files to check for the strong name.
+            </summary>
+        </member>
+        <member name="T:JetBrains.Build.Common.Tasks.CreatePublisherPolicyBuildFile">
+            <summary>
+            Generates the publisher policy assemblies for the given set of assemblies and their specific versions.
+            </summary>
+        </member>
+        <member name="M:JetBrains.Build.Common.Tasks.CreatePublisherPolicyBuildFile.AssertVersionComponents(System.Version,System.Int32)">
+            <summary>
+            Ensures that version has at least <paramref name="components"/> components defined.
+            </summary>
+        </member>
+        <member name="M:JetBrains.Build.Common.Tasks.CreatePublisherPolicyBuildFile.ExecuteTask">
+            <summary>
+            The method to be overriden in inheriting tasks.
+            Throw an exception in case of an errror.
+            </summary>
+        </member>
+        <member name="P:JetBrains.Build.Common.Tasks.CreatePublisherPolicyBuildFile.InputFiles">
+            <summary>
+            Lists the assemblies for which the policies should be generated.
+            </summary>
+        </member>
+        <member name="P:JetBrains.Build.Common.Tasks.CreatePublisherPolicyBuildFile.IntDir">
+            <summary>
+            Specifies the intermediate folder in which the config files should be created.
+            </summary>
+        </member>
+        <member name="P:JetBrains.Build.Common.Tasks.CreatePublisherPolicyBuildFile.KeyFile">
+            <summary>
+            Specifies the key file to sign the publisher policy assemblies with; must correspond to the key that was used to sign the original assembly.
+            </summary>
+        </member>
+        <member name="P:JetBrains.Build.Common.Tasks.CreatePublisherPolicyBuildFile.OutDir">
+            <summary>
+            Specifies the output folder into which the resulting assemblies will be written.
+            </summary>
+        </member>
+        <member name="P:JetBrains.Build.Common.Tasks.CreatePublisherPolicyBuildFile.OutputFile">
+            <summary>
+            Specifies the output MSBuild project file that will be generated by this task.
+            </summary>
+        </member>
+        <member name="P:JetBrains.Build.Common.Tasks.CreatePublisherPolicyBuildFile.SourceVersionHigh">
+            <summary>
+            The upper boundary of the source versions range for the publisher policy. Optional; if missed, the actual version of the assembly will be used.
+            </summary>
+        </member>
+        <member name="P:JetBrains.Build.Common.Tasks.CreatePublisherPolicyBuildFile.SourceVersionLow">
+            <summary>
+            The lower boundary of the source versions range for the publisher policy. Required.
+            </summary>
+        </member>
+        <member name="P:JetBrains.Build.Common.Tasks.CreatePublisherPolicyBuildFile.TargetVersion">
+            <summary>
+            The target version for the publisher policy. Optional; if missed, the actual version of the assembly will be used.
+            </summary>
+        </member>
+        <member name="T:JetBrains.Build.Common.Tasks.DateTime">
+            <summary>
+            Presents the current Date and Time in an arbitrary format.
+            </summary>
+        </member>
+        <member name="M:JetBrains.Build.Common.Tasks.DateTime.ExecuteTask">
+            <summary>
+            The method to be overriden in inheriting tasks.
+            Throw an exception in case of an errror.
+            </summary>
+        </member>
+        <member name="P:JetBrains.Build.Common.Tasks.DateTime.Format">
+            <summary>
+            Gets or sets the formatting string.
+            </summary>
+        </member>
+        <member name="P:JetBrains.Build.Common.Tasks.DateTime.Value">
+            <summary>
+            The resulting date/time string.
+            </summary>
+        </member>
+        <member name="T:JetBrains.Build.Common.Tasks.InnovasysHelpLite">
+            <summary>
+            Builds the Innovasis Help Studio Lite projects.
+            </summary>
+        </member>
+        <member name="F:JetBrains.Build.Common.Tasks.InnovasysHelpLite.myRegexDetailedMessage">
+            <summary>
+            A message with all the line/cols available.
+            </summary>
+        </member>
+        <member name="F:JetBrains.Build.Common.Tasks.InnovasysHelpLite.myRegexLineWithMessage">
+            <summary>
+            A line that has either message.
+            </summary>
+        </member>
+        <member name="M:JetBrains.Build.Common.Tasks.InnovasysHelpLite.ExecuteTool(System.String,System.String,System.String)">
+            <summary>
+            Creates a temporoary response (.rsp) file and runs the executable file.
+            </summary>
+            
+            <returns>
+            The returned exit code of the executable file. If the task logged errors, but the executable returned an exit code of 0, this method returns -1.
+            </returns>
+            
+            <param name="commandLineCommands">The command line arguments to pass directly to the executable file.</param>
+            <param name="responseFileCommands">The command line arguments to place in the .rsp file.</param>
+            <param name="pathToTool">The path to the executable file.</param>
+        </member>
+        <member name="M:JetBrains.Build.Common.Tasks.InnovasysHelpLite.GenerateCommandLineCommands">
+            <summary>
+            Returns a string value containing the command line arguments to pass directly to the executable file.
+            </summary>
+            
+            <returns>
+            A string value containing the command line arguments to pass directly to the executable file.
+            </returns>
+            
+        </member>
+        <member name="P:JetBrains.Build.Common.Tasks.InnovasysHelpLite.InputFile">
+            <summary>
+            Gets or sets the Help Studio project file pathname.
+            </summary>
+        </member>
+        <member name="P:JetBrains.Build.Common.Tasks.InnovasysHelpLite.OutDir">
+            <summary>
+            Gets or sets the output folder path/name.
+            </summary>
+        </member>
+        <member name="P:JetBrains.Build.Common.Tasks.InnovasysHelpLite.OutputFile">
+            <summary>
+            Gets or sets the name of the output file in the <see cref="P:JetBrains.Build.Common.Tasks.InnovasysHelpLite.OutDir"/> folder.
+            </summary>
+        </member>
+        <member name="P:JetBrains.Build.Common.Tasks.InnovasysHelpLite.ToolDirEnvName">
+            <summary>
+            Gets the name of the environment variable that provides the path to the tool in case the <see cref="P:JetBrains.Build.Common.Infra.ToolTaskBase.ToolDir"/> is not defined.
+            </summary>
+        </member>
+        <member name="P:JetBrains.Build.Common.Tasks.InnovasysHelpLite.ToolName">
+            <summary>
+            Gets the name of the executable file to run.
+            </summary>
+            
+            <returns>
+            The name of the executable file to run.
+            </returns>
+            
+        </member>
+        <member name="T:JetBrains.Build.Common.Tasks.MsHelp2">
+            <summary>
+            Compiles the MS-Help files into the Document Explorer format.
+            </summary>
+        </member>
+        <member name="M:JetBrains.Build.Common.Tasks.MsHelp2.ExecuteTool(System.String,System.String,System.String)">
+            <summary>
+            Creates a temporoary response (.rsp) file and runs the executable file.
+            </summary>
+            
+            <returns>
+            The returned exit code of the executable file. If the task logged errors, but the executable returned an exit code of 0, this method returns -1.
+            </returns>
+            
+            <param name="commandLineCommands">The command line arguments to pass directly to the executable file.</param>
+            <param name="responseFileCommands">The command line arguments to place in the .rsp file.</param>
+            <param name="pathToTool">The path to the executable file.</param>
+        </member>
+        <member name="M:JetBrains.Build.Common.Tasks.MsHelp2.GenerateCommandLineCommands">
+            <summary>
+            Returns a string value containing the command line arguments to pass directly to the executable file.
+            </summary>
+            
+            <returns>
+            A string value containing the command line arguments to pass directly to the executable file.
+            </returns>
+            
+        </member>
+        <member name="P:JetBrains.Build.Common.Tasks.MsHelp2.HelpCollectionFile">
+            <summary>
+            Gets or sets the project (Collection, HxC) file.
+            </summary>
+        </member>
+        <member name="P:JetBrains.Build.Common.Tasks.MsHelp2.OutputFile">
+            <summary>
+            Gets or sets the name of the output (generated, HxS) file.
+            </summary>
+        </member>
+        <member name="P:JetBrains.Build.Common.Tasks.MsHelp2.ProjectDir">
+            <summary>
+            Gets or sets the help project root.
+            </summary>
+        </member>
+        <member name="P:JetBrains.Build.Common.Tasks.MsHelp2.ToolName">
+            <summary>
+            Gets the name of the executable file to run.
+            </summary>
+            
+            <returns>
+            The name of the executable file to run.
+            </returns>
+            
+        </member>
+        <member name="T:JetBrains.Build.Common.Tasks.RenReg">
+            <summary>
+            Supports RegEx rename of files.
+            </summary>
+        </member>
+        <member name="M:JetBrains.Build.Common.Tasks.RenReg.ExecuteTask">
+            <summary>
+            The method to be overriden in inheriting tasks.
+            Throw an exception in case of an errror.
+            </summary>
+        </member>
+        <member name="P:JetBrains.Build.Common.Tasks.RenReg.Directory">
+            <summary>
+            Gets or sets the directory to look for the files.
+            </summary>
+        </member>
+        <member name="P:JetBrains.Build.Common.Tasks.RenReg.What">
+            <summary>
+            Gets or sets the matching pattern.
+            </summary>
+        </member>
+        <member name="P:JetBrains.Build.Common.Tasks.RenReg.With">
+            <summary>
+            Gets or sets the replacement string.
+            </summary>
+        </member>
+        <member name="T:JetBrains.Build.Common.Tasks.Replace">
+            <summary>
+            Performs RegexReplace on a string.
+            </summary>
+        </member>
+        <member name="M:JetBrains.Build.Common.Tasks.Replace.ExecuteTask">
+            <summary>
+            The method to be overriden in inheriting tasks.
+            Throw an exception in case of an errror.
+            </summary>
+        </member>
+        <member name="P:JetBrains.Build.Common.Tasks.Replace.CaseSensitive">
+            <summary>
+            Gets or sets whether the search should be case-sensitive.
+            </summary>
+        </member>
+        <member name="P:JetBrains.Build.Common.Tasks.Replace.FailOnNoMatch">
+            <summary>
+            Gets or sets whether the task should fail when no replacements were made.
+            </summary>
+        </member>
+        <member name="P:JetBrains.Build.Common.Tasks.Replace.IsMatch">
+            <summary>
+            Gets whether there were any replacements, that is, the string was ever matched.
+            </summary>
+        </member>
+        <member name="P:JetBrains.Build.Common.Tasks.Replace.Text">
+            <summary>
+            On input, specifies the source text on which the replace should be performed.
+            On output, gives the results of the replacement.
+            </summary>
+        </member>
+        <member name="P:JetBrains.Build.Common.Tasks.Replace.What">
+            <summary>
+            Gets or sets the matching pattern.
+            </summary>
+        </member>
+        <member name="P:JetBrains.Build.Common.Tasks.Replace.With">
+            <summary>
+            Gets or sets the replacement string.
+            </summary>
+        </member>
+        <member name="T:JetBrains.Build.Common.Tasks.ReplaceText">
+            <summary>
+            Replaces text in the text files against a regexp.
+            </summary>
+        </member>
+        <member name="M:JetBrains.Build.Common.Tasks.ReplaceText.ReplaceTextInFile(System.String,System.Text.RegularExpressions.Regex,System.String)">
+            <summary>
+            Processes a single file.
+            </summary>
+        </member>
+        <member name="M:JetBrains.Build.Common.Tasks.ReplaceText.ExecuteTask">
+            <summary>
+            The method to be overriden in inheriting tasks.
+            Throw an exception in case of an errror.
+            </summary>
+        </member>
+        <member name="P:JetBrains.Build.Common.Tasks.ReplaceText.CaseSensitive">
+            <summary>
+            Gets or sets whether the search should be case-sensitive.
+            </summary>
+        </member>
+        <member name="P:JetBrains.Build.Common.Tasks.ReplaceText.InputFiles">
+            <summary>
+            Gets or sets the files to replace text within.
+            </summary>
+        </member>
+        <member name="P:JetBrains.Build.Common.Tasks.ReplaceText.What">
+            <summary>
+            Gets or sets the matching pattern.
+            </summary>
+        </member>
+        <member name="P:JetBrains.Build.Common.Tasks.ReplaceText.With">
+            <summary>
+            Gets or sets the replacement string.
+            </summary>
+        </member>
+        <member name="T:JetBrains.Build.Common.Tasks.Sign">
+            <summary>
+            Signs the files with Microsoft Authenticode.
+            Note: this file calls the SignTool.exe manually instead of using the MSBuild utilities.
+            </summary>
+        </member>
+        <member name="M:JetBrains.Build.Common.Tasks.Sign.GenerateCommandLineCommands">
+            <summary>
+            Returns a string value containing the command line arguments to pass directly to the executable file.
+            </summary>
+            
+            <returns>
+            A string value containing the command line arguments to pass directly to the executable file.
+            </returns>
+            
+        </member>
+        <member name="P:JetBrains.Build.Common.Tasks.Sign.InputFiles">
+            <summary>
+            The input files that will be signed by the task.
+            </summary>
+        </member>
+        <member name="P:JetBrains.Build.Common.Tasks.Sign.KeyFile">
+            <summary>
+            The file that contains the private keys to use for signing.
+            </summary>
+        </member>
+        <member name="P:JetBrains.Build.Common.Tasks.Sign.TimestampingServer">
+            <summary>
+            Specifies an optional server to timestamp the files being signed.
+            </summary>
+        </member>
+        <member name="P:JetBrains.Build.Common.Tasks.Sign.Verbose">
+            <summary>
+            Whether the tool output should be verbose.
+            </summary>
+        </member>
+        <member name="P:JetBrains.Build.Common.Tasks.Sign.ToolName">
+            <summary>
+            Gets the name of the executable file to run.
+            </summary>
+            
+            <returns>
+            The name of the executable file to run.
+            </returns>
+            
+        </member>
+        <member name="T:JetBrains.Build.Common.Tasks.Sign_SecurityUtilities">
+            <summary>
+            Signs the files with Microsoft Authenticode.
+            Note: this file calls the MSBuild Security Utilities to sign the file, instead of calling SignTool.exe manually.
+            </summary>
+        </member>
+        <member name="M:JetBrains.Build.Common.Tasks.Sign_SecurityUtilities.ExecuteTask">
+            <summary>
+            The method to be overriden in inheriting tasks.
+            Throw an exception in case of an errror.
+            </summary>
+        </member>
+        <member name="P:JetBrains.Build.Common.Tasks.Sign_SecurityUtilities.InputFiles">
+            <summary>
+            The input files that will be signed by the task.
+            </summary>
+        </member>
+        <member name="P:JetBrains.Build.Common.Tasks.Sign_SecurityUtilities.KeyFile">
+            <summary>
+            The file that contains the private keys to use for signing.
+            </summary>
+        </member>
+        <member name="P:JetBrains.Build.Common.Tasks.Sign_SecurityUtilities.Password">
+            <summary>
+            An optional password to the key file.
+            </summary>
+        </member>
+        <member name="P:JetBrains.Build.Common.Tasks.Sign_SecurityUtilities.TimestampingServer">
+            <summary>
+            Specifies an optional server to timestamp the files being signed.
+            </summary>
+        </member>
+        <member name="T:JetBrains.Build.Common.Tasks.StartDevenv">
+            <summary>
+            Runs the DEVENV application.
+            </summary>
+        </member>
+        <member name="M:JetBrains.Build.Common.Tasks.StartDevenv.GetDevenvInstallDir">
+            <summary>
+            Gets the DEVENV installation folder.
+            </summary>
+        </member>
+        <member name="M:JetBrains.Build.Common.Tasks.StartDevenv.GetHiveArgument">
+            <summary>
+            Gets the devenv command line argument that specifies the hive (with a trailing space). Could be an empty string.
+            </summary>
+        </member>
+        <member name="M:JetBrains.Build.Common.Tasks.StartDevenv.GetDevenvExecutableName">
+            <summary>
+            Picks the name from attrs, or uses the default.
+            </summary>
+        </member>
+        <member name="M:JetBrains.Build.Common.Tasks.StartDevenv.ExecuteTask">
+            <summary>
+            The method to be overriden in inheriting tasks.
+            Throw an exception in case of an errror.
+            </summary>
+        </member>
+        <member name="P:JetBrains.Build.Common.Tasks.StartDevenv.Arguments">
+            <summary>
+            Gets or sets the command-line arguments for the DEVENV application.
+            </summary>
+        </member>
+        <member name="P:JetBrains.Build.Common.Tasks.StartDevenv.Async">
+            <summary>
+            Gets or sets whether the operation should be performed asynchronously.
+            If sync, we wait for Devenv to finish. Otherwise, we do not.
+            </summary>
+        </member>
+        <member name="P:JetBrains.Build.Common.Tasks.StartDevenv.DevenvExecutableName">
+            <summary>
+            Gets or sets the name of the executable to run.
+            It may differ for the development Visual Studio.
+            Optional.
+            </summary>
+        </member>
+        <member name="T:JetBrains.Build.Common.Tasks.StringFormat">
+            <summary>
+            Invokes the <see cref="M:System.String.Format(System.String,System.Object[])"/> function for the given arguments.
+            </summary>
+        </member>
+        <member name="M:JetBrains.Build.Common.Tasks.StringFormat.ExecuteTask">
+            <summary>
+            The method to be overriden in inheriting tasks.
+            Throw an exception in case of an errror.
+            </summary>
+        </member>
+        <member name="P:JetBrains.Build.Common.Tasks.StringFormat.Arguments">
+            <summary>
+            Gets or sets the list of arguments to use in formatting.
+            If you need to specify number-specific etc formatting, use <see cref="P:JetBrains.Build.Common.Tasks.StringFormat.ArgumentTypes"/>.
+            </summary>
+        </member>
+        <member name="P:JetBrains.Build.Common.Tasks.StringFormat.ArgumentTypes">
+            <summary>
+            If specified, a collection of CLR type names of the <see cref="P:JetBrains.Build.Common.Tasks.StringFormat.Arguments"/>.
+            The length of the argument types collection must be equal to the number of <see cref="P:JetBrains.Build.Common.Tasks.StringFormat.Arguments"/>.
+            The CLR type names are case-insensitive full names of types from <c>mscorlib</c>, or assembly-qualified names in case of other assemblies.
+            </summary>
+        </member>
+        <member name="P:JetBrains.Build.Common.Tasks.StringFormat.CultureInfo">
+            <summary>
+            Specifies the culture info for the formatting, if applicable.
+            By default, that's <see cref="P:System.Globalization.CultureInfo.InvariantCulture"/>.
+            </summary>
+        </member>
+        <member name="P:JetBrains.Build.Common.Tasks.StringFormat.Format">
+            <summary>
+            Gets or sets the format string.
+            </summary>
+        </member>
+        <member name="P:JetBrains.Build.Common.Tasks.StringFormat.Result">
+            <summary>
+            Gets the resulting formatted string.
+            </summary>
+        </member>
+        <member name="T:JetBrains.Build.Common.Tasks.Xlat">
+            <summary>
+            Translates an input string into the output string against the table.
+            </summary>
+        </member>
+        <member name="M:JetBrains.Build.Common.Tasks.Xlat.ExecuteTask">
+            <summary>
+            The method to be overriden in inheriting tasks.
+            Throw an exception in case of an errror.
+            </summary>
+        </member>
+        <member name="P:JetBrains.Build.Common.Tasks.Xlat.Input">
+            <summary>
+            The input string to be translated.
+            </summary>
+        </member>
+        <member name="P:JetBrains.Build.Common.Tasks.Xlat.Result">
+            <summary>
+            The translation result.
+            </summary>
+        </member>
+        <member name="P:JetBrains.Build.Common.Tasks.Xlat.Table">
+            <summary>
+            The translation table.
+            The “Input” and “Output” metadata of each item define the translation, the item spec is ignored.
+            </summary>
+        </member>
+    </members>
+</doc>

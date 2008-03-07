@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>Outlook General Options</title>
+    <meta http-equiv="content-type" content="text/html" charset="windows-1252" />
+    <meta name="copyright" content="Copyright (c)2004 JetBrains, Inc." />
+    <meta name="topic-check-list" content="Added To TOC" />
+    <link rel="StyleSheet" href="../help.css" />
+	 <meta name="build tags" content="PRO" /> <!-- This entire topic appears only in Omea Pro -->
+</head>
+<body>
+
+<div id="helpHeader">
+   	<div id="helpHeaderImg"></div>
+	<p class="helpHeader">Omea Pro Help: Appendix: Reference: Options: MS Outlook</p>
+	
+</div>
+<div id="mainContent">
+	<h1>Outlook General</h1>
+    <p class="opt">You can access this option from the Main menu: <strong>Tools | Options: MS Outlook: Outlook General</strong></p>
+
+   	<p>These options enable you to control the way Omea integrates with MS Outlook. </p>
+
+	<img src="../images/sshots/dialogs/pro/options_outlook_general.png" width="788" height="695" alt="Options Dialog: Outlook General options" />
+	<p class="caption">Outlook general options in the Options Dialog</p>
+  <div class="indent"></div>
+	
+	<h2>Send/Receive</h2>
+   	<p>The options in this group control how Omea sends and receives e-mail 
+      messages via MS Outlook.</p>
+	<div class="indent">	  
+		<h3>Deliver on Startup</h3>  
+		<p>When this option is checked, e-mail messages from the Outlook e-mail 
+		server download immediately when you start Omea. If there are a very 
+		large number of messages, checking this option could increase the amount 
+		of time Omea needs to fully start up.</p>
+
+		<h3>Schedule Automatic Send/Receive Every <em>n</em> Minutes</h3>
+    	<p>When checked, Omea will automatically download e-mail message from the
+		Outlook e-mail server according to the interval set in the number box. This 
+		will override any send/receive interval configured in Outlook itself.</p>
+	</div>
+	
+	<h2>Synchronize Outlook Folders on Startup</h2>
+	<div class="indent">	  
+	<h3>All Folders</h3>
+	<p>When checked, all Outlook folders will be synchronized on the startup. Please note that if there are a very large number of messages, checking this option could increase the amount of time Omea needs to fully start up.</p>
+	<h3>Only Folders with New E-mail</h3>
+	<p>When checked, only those folders with new e-mail  messages (which appeared between current and previous start of Omea Pro) will be synchronized. </p>
+	<h3>None</h3>
+	<p>When checked, none of the folders will be synchronized on startup.</p>
+	</div>
+	<h2>Security</h2>
+	<div class="indent">
+      <h3>Show Embedded Pictures</h3>
+      <p>When checked, the e-mail viewer in Omea will display pictures embedded in Outlook e-mail messages that have Rich Text or HTML format.</p>
+      <p>Note that checking this option lowers your e-mail security level. It is possible for senders to use &quot;Web bugs&quot;... usually invisible images embedded in HTML code that return information to the sender of the e-mail. For example, it is possible that an embedded image could notify the sender that you have opened the message, thereby confirming your address as a valid e-mail address.</p>
+    </div>
+	<h2>Autoexpiration Rules</h2>
+	<div class="indent">
+	<p>This group of options will allow you to control when Omea can consider the e-mail messages &#8220;old&#8221; or outdated
+	and actions which you want Omea to perform with these outdated e-mail messages. Once you customize these options, you will
+	manage to avoid the information clutter and always have latest and the most important information in your folders. You can
+	later edit these default expiration rules and define per foder expiration rules (conditions, exceptions and actions) in
+	the <a href="manage_rules.html">Rules Manager</a>, <strong>Auto Expire</strong> tab or when you right-click the selected
+	folder in the <strong>Outlook Folders</strong> pane and select <strong>Edit Expiration Rules</strong> on the pop-up menu.</p>
+	<h3>Default Rule for All Outlook Folders </h3>
+	<p>Using this group of options you can specify the default expiration rule for all Outlook folders which you set to be indexed. </p>
+    <h3> Rule for Deleted E-mail Messages </h3>
+    <p>Using this group of options you can control what Omea Pro will do with the newsgroups posts which it considers&#8220;old&#8221;.
+    By default, these messages are deleted, but you can change this action if you specify something else in
+    the <a href="auto_expiration_rule_dialog.htm">Edit Expiration Rule dialog</a> which appears if you click the <strong>Advanced</strong>
+	button and specify other actions in it.</p>
+    </div>
+
+    <h2>Other</h2>
+	<div class="indent">
+		<h3>Mark Messages as Read on Reply or Forward</h3>
+		<p>When this option is checked, Omea will mark an Outlook e-mail message as 
+		read when you reply to it or forward it if you have not actually opened the 
+		message.</p>
+		
+		
+		
+	</div>
+	
+    
+   	<div id="seealso">
+		<p class="seealso"><strong>See also:</strong></p>
+  	   	<ul>
+		   <li class="seealso"><a href="outlook_folders.html">Outlook Folders</a></li>
+	   		<li class="seealso"><a href="outlook_address_book.html">Outlook Address Books</a></li>
+		      <li class="seealso"><a href="outlook_tasks.htm">Outlook Tasks</a></li>
+	       <li class="seealso"><a href="outlook_infostores.html">Outlook Information Stores</a></li>
+	   		<li class="seealso"><a href="options_dialog.html">Options dialog</a></li>
+    	</ul>
+   </div>				
+</div>
+<!-- LAST SPELLCHECK: 12 Nov 2004 -->
+<!-- Conditional Build Tags complete! 02 Sept 2004 -->
+</body>
+
+</html>

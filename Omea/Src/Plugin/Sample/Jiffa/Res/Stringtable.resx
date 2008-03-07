@@ -1,0 +1,222 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+  <copyright company="JetBrains">
+  Copyright © 2003-2008 JetBrains s.r.o.
+  You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
+  </copyright>
+-->
+<root>
+	<!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+	<xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+		<xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+		<xsd:element name="root" msdata:IsDataSet="true">
+			<xsd:complexType>
+				<xsd:choice maxOccurs="unbounded">
+					<xsd:element name="metadata">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" />
+							</xsd:sequence>
+							<xsd:attribute name="name" use="required" type="xsd:string" />
+							<xsd:attribute name="type" type="xsd:string" />
+							<xsd:attribute name="mimetype" type="xsd:string" />
+							<xsd:attribute ref="xml:space" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="assembly">
+						<xsd:complexType>
+							<xsd:attribute name="alias" type="xsd:string" />
+							<xsd:attribute name="name" type="xsd:string" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="data">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+								<xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+							</xsd:sequence>
+							<xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+							<xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+							<xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+							<xsd:attribute ref="xml:space" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="resheader">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+							</xsd:sequence>
+							<xsd:attribute name="name" type="xsd:string" use="required" />
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:choice>
+			</xsd:complexType>
+		</xsd:element>
+	</xsd:schema>
+	<resheader name="resmimetype">
+		<value>text/microsoft-resx</value>
+	</resheader>
+	<resheader name="version">
+		<value>2.0</value>
+	</resheader>
+	<resheader name="reader">
+		<value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<resheader name="writer">
+		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<data name="ActionNoSelection" xml:space="preserve">
+    <value>There is no selection to execute this action upon.
+
+Please select some resources and try again.</value>
+  </data>
+	<data name="AddJiraServer" xml:space="preserve">
+    <value>Add JIRA Server</value>
+  </data>
+	<data name="ComponentNone" xml:space="preserve">
+    <value>— None —</value>
+  </data>
+	<data name="ConfirmDeleteServer" xml:space="preserve">
+    <value>The JIRA Server “{0}” and all of its resources will be deleted.
+
+Are you sure?</value>
+  </data>
+	<data name="Credentials" xml:space="preserve">
+    <value>Credentials</value>
+  </data>
+	<data name="DeleteJiraServer" xml:space="preserve">
+    <value>Delete JIRA Server</value>
+  </data>
+	<data name="DontSubmit" xml:space="preserve">
+    <value>— Don't Submit —</value>
+  </data>
+	<data name="Error_BodyEmpty" xml:space="preserve">
+    <value>The body must not be empty.</value>
+  </data>
+	<data name="Error_ComponentOfWrongProject" xml:space="preserve">
+    <value>The component you're trying to assign does not belong to the current project.</value>
+  </data>
+	<data name="Error_IssueTypeOfWrongServer" xml:space="preserve">
+    <value>The issue type you're tryign to assign does not belong to the current server.</value>
+  </data>
+	<data name="Error_MultiParent" xml:space="preserve">
+    <value>There is more than one parent in the resources hierarchy.</value>
+  </data>
+	<data name="Error_NoParent" xml:space="preserve">
+    <value>There is no parent in the resources hierarchy.</value>
+  </data>
+	<data name="Error_NoProjectByKey" xml:space="preserve">
+    <value>There is no project with the given key.</value>
+  </data>
+	<data name="Error_PriorityOfWrongServer" xml:space="preserve">
+    <value>The priority you're tryign to assign does not belong to the current server.</value>
+  </data>
+	<data name="Error_StatusOfWrongServer" xml:space="preserve">
+    <value>The status you're tryign to assign does not belong to the current server.</value>
+  </data>
+	<data name="Error_TitleEmpty" xml:space="preserve">
+    <value>The title must not be empty.</value>
+  </data>
+	<data name="Error_WrongParent" xml:space="preserve">
+    <value>The specified parent object does not correspond to the Resources hierarchy.</value>
+  </data>
+	<data name="GotoTabAddServer" xml:space="preserve">
+    <value>— Go to JIRA tab and add a JIRA Server —</value>
+  </data>
+	<data name="Jira" xml:space="preserve">
+    <value>JIRA</value>
+  </data>
+	<data name="JiraServerProperties" xml:space="preserve">
+    <value>JIRA Server Properties…</value>
+  </data>
+	<data name="JiraServerPropertiesTitle" xml:space="preserve">
+    <value>{0} – JIRA Server Properties</value>
+  </data>
+	<data name="NoJiraProjects" xml:space="preserve">
+    <value>There are no JIRA projects available. Please go to the JIRA tab and add a JIRA server.</value>
+  </data>
+	<data name="SelectJiraProject" xml:space="preserve">
+    <value>Please select a JIRA project from the combo box.</value>
+  </data>
+	<data name="StatusAuto" xml:space="preserve">
+    <value>— Auto —</value>
+  </data>
+	<data name="SubmitProjectNotSpecified" xml:space="preserve">
+    <value>There is no JIRA project specified for submitting the issues into.
+
+Please go to the Jiffa options page and chose a project. Before that, a JIRA server must be configured on the JIRA tab.</value>
+  </data>
+	<data name="SubmitterOptionsPanePrompt" xml:space="preserve">
+    <value>Contains the JIRA Submitter options.</value>
+  </data>
+	<data name="SubmitToJira" xml:space="preserve">
+    <value>Submit to JIRA…</value>
+  </data>
+	<data name="SyncingJiraServer" xml:space="preserve">
+    <value>Synchronizing the “{0}” JIRA server…</value>
+  </data>
+	<data name="SyncingJiraServerFailed" xml:space="preserve">
+    <value>Failed to synchronize the “{0}” JIRA server.</value>
+  </data>
+	<data name="SyncingJiraServerSucceeded" xml:space="preserve">
+    <value>Done synchronizing the “{0}” JIRA server.</value>
+  </data>
+</root>

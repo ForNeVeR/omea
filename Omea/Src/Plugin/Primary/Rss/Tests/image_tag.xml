@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+  <copyright company="JetBrains">
+  Copyright © 2003-2008 JetBrains s.r.o.
+  You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
+  </copyright>
+-->
+<!DOCTYPE rss PUBLIC "-//Netscape Communications//DTD RSS 0.91//EN" "http://my.netscape.com/publish/formats/rss-0.91.dtd"[]>
+<rss version="0.91">
+	<channel>
+		<title>Wired News</title>
+		<link>http://www.wired.com/</link>
+		<description>Wired News, a pioneer in online journalism, has been at the forefront of daily technology news coverage since its launch in 1996. The site's mission is to provide an original, lively and timely chronicle of how technology affects our lives, for better or worse.</description>
+		<language>en-us</language>
+		<pubDate>Sat, 12 Feb 2005 02:33:14 PST</pubDate>
+		<image>
+			<title>Wired News</title>
+			<url>http://static.wired.com/news/images/netcenterb.gif</url>
+			<link>http://www.wired.com/</link>
+		</image>
+		<item>
+			<title>Attack of the Metal-Eating Plants</title>
+			<link>http://www.wired.com/news/technology/0,1282,66575,00.html</link>
+			<description>Removing heavy metals from soil can be an expensive, complicated undertaking, so researchers are trying to design plants that draw the toxins out of the ground. By Stephen Leahy.</description>
+		</item>
+		<item>
+			<title>Tech Does It Better</title>
+			<link>http://www.wired.com/news/culture/0,1284,66565,00.html</link>
+			<description>Can technology replace men? For sex workers, let's hope so. Commentary by Regina Lynn.</description>
+		</item>
+	</channel>
+</rss>

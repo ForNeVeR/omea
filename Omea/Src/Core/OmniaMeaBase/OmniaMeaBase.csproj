@@ -1,0 +1,304 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+  <copyright company="JetBrains">
+  Copyright © 2003-2008 JetBrains s.r.o.
+  You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
+  </copyright>
+-->
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+	<PropertyGroup>
+		<ProjectType>Local</ProjectType>
+		<ProductVersion>9.0.21022</ProductVersion>
+		<SchemaVersion>2.0</SchemaVersion>
+		<ProjectGuid>{C77A02EC-E116-44B9-8FF2-85637FA405B7}</ProjectGuid>
+		<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+		<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+		<AssemblyName>OmniaMeaBase</AssemblyName>
+		<DefaultClientScript>JScript</DefaultClientScript>
+		<DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+		<DefaultTargetSchema>IE50</DefaultTargetSchema>
+		<DelaySign>false</DelaySign>
+		<OutputType>Library</OutputType>
+		<RootNamespace>OmniaMeaBase</RootNamespace>
+		<RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+		<OldToolsVersion>2.0</OldToolsVersion>
+		<ProductHomeDir>$(MSBuildProjectDirectory)/../../..</ProductHomeDir>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+		<BaseAddress>285212672</BaseAddress>
+		<CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+		<DefineConstants>TRACE</DefineConstants>
+		<DebugSymbols>true</DebugSymbols>
+		<FileAlignment>4096</FileAlignment>
+		<NoStdLib>false</NoStdLib>
+		<Optimize>false</Optimize>
+		<RegisterForComInterop>false</RegisterForComInterop>
+		<RemoveIntegerChecks>false</RemoveIntegerChecks>
+		<TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+		<WarningLevel>1</WarningLevel>
+		<DebugType>full</DebugType>
+		<ErrorReport>prompt</ErrorReport>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+		<BaseAddress>285212672</BaseAddress>
+		<CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+		<DebugSymbols>false</DebugSymbols>
+		<FileAlignment>4096</FileAlignment>
+		<NoStdLib>false</NoStdLib>
+		<Optimize>false</Optimize>
+		<RegisterForComInterop>false</RegisterForComInterop>
+		<RemoveIntegerChecks>false</RemoveIntegerChecks>
+		<TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+		<WarningLevel>1</WarningLevel>
+		<DebugType>none</DebugType>
+		<ErrorReport>prompt</ErrorReport>
+	</PropertyGroup>
+	<ItemGroup>
+		<Reference Include="ICSharpCode.SharpZipLib">
+			<Name>ICSharpCode.SharpZipLib</Name>
+			<HintPath>../../../Lib/References/ICSharpCode.SharpZipLib.dll</HintPath>
+		</Reference>
+		<Reference Include="JetBrains.Annotations, Version=4.0.0.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>..\..\..\Lib\References\JetBrains.Annotations.dll</HintPath>
+		</Reference>
+		<Reference Include="Microsoft.Web.Services">
+			<Name>Microsoft.Web.Services</Name>
+			<HintPath>../../../Lib/References/Microsoft.Web.Services.dll</HintPath>
+		</Reference>
+		<Reference Include="System">
+			<Name>System</Name>
+		</Reference>
+		<Reference Include="System.Data">
+			<Name>System.Data</Name>
+		</Reference>
+		<Reference Include="System.Drawing">
+			<Name>System.Drawing</Name>
+		</Reference>
+		<Reference Include="System.Management">
+			<Name>System.Management</Name>
+		</Reference>
+		<Reference Include="System.Web">
+			<Name>System.Web</Name>
+		</Reference>
+		<Reference Include="System.Windows.Forms">
+			<Name>System.Windows.Forms</Name>
+		</Reference>
+		<Reference Include="System.Xml">
+			<Name>System.XML</Name>
+		</Reference>
+		<ProjectReference Include="../JetBrainsShared/JetBrainsShared.csproj">
+			<Project>{5133BE57-1BE8-4C82-BA5E-ADA6CFA0AA8B}</Project>
+			<Name>JetBrainsShared</Name>
+		</ProjectReference>
+		<ProjectReference Include="../OpenAPI/OpenAPI.csproj">
+			<Name>OpenAPI</Name>
+			<Project>{BC8E1E30-A063-463A-9213-A159C7FA4AAC}</Project>
+			<Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+		</ProjectReference>
+		<ProjectReference Include="../SecureLib/SecureLib.csproj">
+			<Name>SecureLib</Name>
+			<Project>{5BFA5A70-D384-4417-AFCC-5C744485A85F}</Project>
+			<Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+		</ProjectReference>
+		<ProjectReference Include="..\Interop.WinApi\Interop.WinApi.csproj">
+			<Project>{3F0FF59D-9EEB-407E-8DD5-7DE159ABBC35}</Project>
+			<Name>Interop.WinApi</Name>
+		</ProjectReference>
+	</ItemGroup>
+	<ItemGroup>
+		<Compile Include="Algorithms.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="AssemblyInfo.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="AsyncProcessing\AsyncProcessor.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="AsyncProcessing\Jobs.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="AsyncProcessing\ReenteringJobs.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="COMHelpers.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Containers\AnchoredList.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Containers\BTree.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Containers\Caches.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Containers\CountedSet.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Containers\Enumerators.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Containers\Lists.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Containers\Pair.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Containers\PriorityQueue.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Containers\RedBlackTree.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Containers\Tries.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="DateParsers.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="GrUtils.cs" />
+		<Compile Include="Guard.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Ini.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Install\FileInstaller.cs" />
+		<Compile Include="Install\IInstallAttributes.cs" />
+		<Compile Include="Install\InstallationData.cs">
+			<DependentUpon>InstallationData.xsd</DependentUpon>
+		</Compile>
+		<Compile Include="Install\InstallationData.Helpers.cs" />
+		<Compile Include="Install\InstallAttributesAttribute.cs" />
+		<Compile Include="Install\Installer.cs" />
+		<Compile Include="Install\InstallFileAttribute.cs" />
+		<Compile Include="Install\LocalInstaller.cs" />
+		<Compile Include="Containers\OneToSetMap.cs" />
+		<Compile Include="Install\RegistrationStage.cs" />
+		<Compile Include="MIME\BodyBuilder.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="MIME\BodyParser.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="MIME\MIMEParser.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="MIME\MIMETypes.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="MIME\UUEncode.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Netfx35\Typedef.cs" />
+		<Compile Include="Net\AsyncTcpClient.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Net\Cookies.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Net\HTMLParser.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Net\HttpTools.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Net\ProtocolUnits.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Net\RTFParser.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Net\TcpConnections.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="NoObfuscateAttribute.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="RegUtil.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="ResourceSettings.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Settings.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="System\BlobFileSystem.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="System\CachedStream.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="System\Charsets.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="System\Dde.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="System\FileIcons.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="System\Filetypes.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="System\IntInternalizer.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="System\IOTools.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="System\IPC.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="System\JetMemoryStream.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="System\MTQueue.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="System\MultiLock.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="System\ObjectPool.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="System\PinnedStringPool.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="System\SpinWaitLock.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="System\WindowsAPI.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="TextDelimitingCategories.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Tracer.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Utils.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="XmlTools.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<XsdCs Include="Install\InstallationData.xsd">
+			<Namespace>JetBrains.Build.InstallationData</Namespace>
+			<EmbeddedResource>True</EmbeddedResource>
+		</XsdCs>
+		<None Include="Net\Suppl\Entities.ISO 8859-1 %28Latin-1%29 characters.dtd" />
+		<None Include="Net\Suppl\Entities.markup-significant and internationalization characters.dtd" />
+		<None Include="Net\Suppl\Entities.symbols, mathematical symbols, and Greek letters.dtd" />
+		<Content Include="Net\Suppl\ExtractEntities.js" />
+		<EmbeddedResource Include="Net\Suppl\HtmlEntities.xml" />
+	</ItemGroup>
+	<Import Project="$(ProductHomeDir)/Build/Product.BeforeMicrosoftCommon.Targets" />
+	<Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+	<Import Project="$(ProductHomeDir)/Build/Product.AfterMicrosoftCommon.Targets" />
+</Project>

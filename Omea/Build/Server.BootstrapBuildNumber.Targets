@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+  <copyright company="JetBrains">
+  Copyright © 2003-2008 JetBrains s.r.o.
+  You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
+  </copyright>
+-->
+<!-- Supports the server build tasks on the build server. -->
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+	<!-- We would like the ProductVersion properties to be statically available during the build. -->
+	<!-- But we cannot parse them out of the TeamCity's concatenated value statically. -->
+	<!-- Here we parse them within a target, and then wind up the regular build, setting them as parameters. -->
+	<Target Name="BootstrapBuildNumber">
+		<!-- Validate. -->
+		<Error Text="The BUILD_NUMBER property must be specified in the “Major.Minor.Build.Revision” format." Condition="'$(BUILD_NUMBER)'==''" />
+		<!-- Parse. -->
+		<Replace Text="$(BUILD_NUMBER)" What="^(?&lt;Major&gt;\d+)\.(?&lt;Minor&gt;\d+)\.(?&lt;Build&gt;\d+)\.(?&lt;Revision&gt;\d+)$" With="${Major}" CaseSensitive="False">
+			<Output TaskParameter="Text" PropertyName="ProductVersionMajor" />
+			<Output TaskParameter="IsMatch" PropertyName="IsMatch" />
+		</Replace>
+		<Error Text="Could not parse the Major version out of the build number." Condition="'$(ProductVersionMajor)'=='' Or !$(IsMatch)" />
+		<Replace Text="$(BUILD_NUMBER)" What="^(?&lt;Major&gt;\d+)\.(?&lt;Minor&gt;\d+)\.(?&lt;Build&gt;\d+)\.(?&lt;Revision&gt;\d+)$" With="${Minor}" CaseSensitive="False">
+			<Output TaskParameter="Text" PropertyName="ProductVersionMinor" />
+		</Replace>
+		<Error Text="Could not parse the Minor version out of the build number." Condition="'$(ProductVersionMinor)'=='' Or !$(IsMatch)" />
+		<Replace Text="$(BUILD_NUMBER)" What="^(?&lt;Major&gt;\d+)\.(?&lt;Minor&gt;\d+)\.(?&lt;Build&gt;\d+)\.(?&lt;Revision&gt;\d+)$" With="${Build}" CaseSensitive="False">
+			<Output TaskParameter="Text" PropertyName="ProductVersionBuild" />
+		</Replace>
+		<Error Text="Could not parse the Build version out of the build number." Condition="'$(ProductVersionBuild)'=='' Or !$(IsMatch)" />
+		<Replace Text="$(BUILD_NUMBER)" What="^(?&lt;Major&gt;\d+)\.(?&lt;Minor&gt;\d+)\.(?&lt;Build&gt;\d+)\.(?&lt;Revision&gt;\d+)$" With="${Revision}" CaseSensitive="False">
+			<Output TaskParameter="Text" PropertyName="ProductVersionRevision" />
+		</Replace>
+		<Error Text="Could not parse the Revision version out of the build number." Condition="'$(ProductVersionRevision)'=='' Or !$(IsMatch)" />
+		<Message Text="The ProductVersion is $(ProductVersionMajor).$(ProductVersionMinor).$(ProductVersionBuild).$(ProductVersionRevision)." Importance="high" />
+		<!-- Pick the props. -->
+		<PropertyGroup>
+			<BootstrapProps>
+				ProductVersionMajor=$(ProductVersionMajor);
+				ProductVersionMinor=$(ProductVersionMinor);
+				ProductVersionBuild=$(ProductVersionBuild);
+				ProductVersionRevision=$(ProductVersionRevision);
+			</BootstrapProps>
+		</PropertyGroup>
+		<!-- Bootstrap! -->
+		<MSBuild Projects="$(MSBuildProjectFullPath)" Targets="Build" Properties="$(BootstrapProps)" />
+	</Target>
+</Project>

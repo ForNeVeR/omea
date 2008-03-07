@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+  <copyright company="JetBrains">
+  Copyright © 2003-2008 JetBrains s.r.o.
+  You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
+  </copyright>
+-->
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Fragment>
+		<Directory Id="">
+			<Component Id="" Guid="*">
+				<RegistryKey Action="createAndRemoveOnUninstall" Key="Software\Classes\AppID\{05765213-D08D-4A03-8E16-215CCBE5F01A}" Root="HKMU" />
+				<RegistryKey Action="createAndRemoveOnUninstall" Key="Software\Classes\AppID\MshtmlSite.DLL" Root="HKMU" />
+				<RegistryKey Action="createAndRemoveOnUninstall" Key="Software\Classes\MshtmlSite.MshtmlBrowser.1" Root="HKMU" />
+				<RegistryKey Action="createAndRemoveOnUninstall" Key="Software\Classes\MshtmlSite.MshtmlBrowser.1\CLSID" Root="HKMU" />
+				<RegistryKey Action="createAndRemoveOnUninstall" Key="Software\Classes\MshtmlSite.MshtmlBrowser" Root="HKMU" />
+				<RegistryKey Action="createAndRemoveOnUninstall" Key="Software\Classes\MshtmlSite.MshtmlBrowser\CLSID" Root="HKMU" />
+				<RegistryKey Action="createAndRemoveOnUninstall" Key="Software\Classes\MshtmlSite.MshtmlBrowser\CurVer" Root="HKMU" />
+				<RegistryKey Action="createAndRemoveOnUninstall" Key="Software\Classes\CLSID\{8A2F0DBE-EC1B-4D1D-8712-4259211B41B4}" Root="HKMU" />
+				<RegistryKey Action="createAndRemoveOnUninstall" Key="Software\Classes\CLSID\{8A2F0DBE-EC1B-4D1D-8712-4259211B41B4}\ProgID" Root="HKMU" />
+				<RegistryKey Action="createAndRemoveOnUninstall" Key="Software\Classes\CLSID\{8A2F0DBE-EC1B-4D1D-8712-4259211B41B4}\VersionIndependentProgID" Root="HKMU" />
+				<RegistryKey Action="createAndRemoveOnUninstall" Key="Software\Classes\CLSID\{8A2F0DBE-EC1B-4D1D-8712-4259211B41B4}\InprocServer32" Root="HKMU" />
+				<RegistryKey Action="createAndRemoveOnUninstall" Key="Software\Classes\CLSID\{8A2F0DBE-EC1B-4D1D-8712-4259211B41B4}\Control" Root="HKMU" />
+				<RegistryKey Action="createAndRemoveOnUninstall" Key="Software\Classes\CLSID\{8A2F0DBE-EC1B-4D1D-8712-4259211B41B4}\ToolboxBitmap32" Root="HKMU" />
+				<RegistryKey Action="createAndRemoveOnUninstall" Key="Software\Classes\CLSID\{8A2F0DBE-EC1B-4D1D-8712-4259211B41B4}\MiscStatus" Root="HKMU" />
+				<RegistryKey Action="createAndRemoveOnUninstall" Key="Software\Classes\CLSID\{8A2F0DBE-EC1B-4D1D-8712-4259211B41B4}\MiscStatus\1" Root="HKMU" />
+				<RegistryKey Action="createAndRemoveOnUninstall" Key="Software\Classes\CLSID\{8A2F0DBE-EC1B-4D1D-8712-4259211B41B4}\TypeLib" Root="HKMU" />
+				<RegistryKey Action="createAndRemoveOnUninstall" Key="Software\Classes\CLSID\{8A2F0DBE-EC1B-4D1D-8712-4259211B41B4}\Version" Root="HKMU" />
+				<RegistryKey Action="createAndRemoveOnUninstall" Key="Software\Classes\TypeLib\{05765213-D08D-4A03-8E16-215CCBE5F01A}" Root="HKMU" />
+				<RegistryKey Action="createAndRemoveOnUninstall" Key="Software\Classes\TypeLib\{05765213-D08D-4A03-8E16-215CCBE5F01A}\1.0" Root="HKMU" />
+				<RegistryKey Action="createAndRemoveOnUninstall" Key="Software\Classes\TypeLib\{05765213-D08D-4A03-8E16-215CCBE5F01A}\1.0\FLAGS" Root="HKMU" />
+				<RegistryKey Action="createAndRemoveOnUninstall" Key="Software\Classes\TypeLib\{05765213-D08D-4A03-8E16-215CCBE5F01A}\1.0\0" Root="HKMU" />
+				<RegistryKey Action="createAndRemoveOnUninstall" Key="Software\Classes\TypeLib\{05765213-D08D-4A03-8E16-215CCBE5F01A}\1.0\0\win32" Root="HKMU" />
+				<RegistryKey Action="createAndRemoveOnUninstall" Key="Software\Classes\TypeLib\{05765213-D08D-4A03-8E16-215CCBE5F01A}\1.0\HELPDIR" Root="HKMU" />
+				<RegistryKey Action="createAndRemoveOnUninstall" Key="Software\Classes\Interface\{C8A2C2D2-70D0-4478-8F3B-DFA03B2017DE}" Root="HKMU" />
+				<RegistryKey Action="createAndRemoveOnUninstall" Key="Software\Classes\Interface\{C8A2C2D2-70D0-4478-8F3B-DFA03B2017DE}\ProxyStubClsid" Root="HKMU" />
+				<RegistryKey Action="createAndRemoveOnUninstall" Key="Software\Classes\Interface\{C8A2C2D2-70D0-4478-8F3B-DFA03B2017DE}\ProxyStubClsid32" Root="HKMU" />
+				<RegistryKey Action="createAndRemoveOnUninstall" Key="Software\Classes\Interface\{C8A2C2D2-70D0-4478-8F3B-DFA03B2017DE}\TypeLib" Root="HKMU" />
+				<RegistryKey Action="createAndRemoveOnUninstall" Key="Software\Classes\Interface\{C6E6C248-48BD-4A21-A593-4A0C7172D25B}" Root="HKMU" />
+				<RegistryKey Action="createAndRemoveOnUninstall" Key="Software\Classes\Interface\{C6E6C248-48BD-4A21-A593-4A0C7172D25B}\ProxyStubClsid" Root="HKMU" />
+				<RegistryKey Action="createAndRemoveOnUninstall" Key="Software\Classes\Interface\{C6E6C248-48BD-4A21-A593-4A0C7172D25B}\ProxyStubClsid32" Root="HKMU" />
+				<RegistryKey Action="createAndRemoveOnUninstall" Key="Software\Classes\Interface\{C6E6C248-48BD-4A21-A593-4A0C7172D25B}\TypeLib" Root="HKMU" />
+				<RegistryValue Root="HKMU" Key="Software\Classes\AppID\{05765213-D08D-4A03-8E16-215CCBE5F01A}" Value="MshtmlSite" Type="string" Action="write" />
+				<RegistryValue Root="HKMU" Key="Software\Classes\AppID\MshtmlSite.DLL" Name="AppID" Value="{05765213-D08D-4A03-8E16-215CCBE5F01A}" Type="string" Action="write" />
+				<RegistryValue Root="HKMU" Key="Software\Classes\MshtmlSite.MshtmlBrowser.1" Value="CMshtmlBrowser Object" Type="string" Action="write" />
+				<RegistryValue Root="HKMU" Key="Software\Classes\MshtmlSite.MshtmlBrowser.1\CLSID" Value="{8A2F0DBE-EC1B-4D1D-8712-4259211B41B4}" Type="string" Action="write" />
+				<RegistryValue Root="HKMU" Key="Software\Classes\MshtmlSite.MshtmlBrowser" Value="CMshtmlBrowser Object" Type="string" Action="write" />
+				<RegistryValue Root="HKMU" Key="Software\Classes\MshtmlSite.MshtmlBrowser\CLSID" Value="{8A2F0DBE-EC1B-4D1D-8712-4259211B41B4}" Type="string" Action="write" />
+				<RegistryValue Root="HKMU" Key="Software\Classes\MshtmlSite.MshtmlBrowser\CurVer" Value="MshtmlSite.MshtmlBrowser.1" Type="string" Action="write" />
+				<RegistryValue Root="HKMU" Key="Software\Classes\CLSID\{8A2F0DBE-EC1B-4D1D-8712-4259211B41B4}" Value="CMshtmlBrowser Object" Type="string" Action="write" />
+				<RegistryValue Root="HKMU" Key="Software\Classes\CLSID\{8A2F0DBE-EC1B-4D1D-8712-4259211B41B4}" Name="AppID" Value="{05765213-D08D-4A03-8E16-215CCBE5F01A}" Type="string" Action="write" />
+				<RegistryValue Root="HKMU" Key="Software\Classes\CLSID\{8A2F0DBE-EC1B-4D1D-8712-4259211B41B4}\ProgID" Value="MshtmlSite.MshtmlBrowser.1" Type="string" Action="write" />
+				<RegistryValue Root="HKMU" Key="Software\Classes\CLSID\{8A2F0DBE-EC1B-4D1D-8712-4259211B41B4}\VersionIndependentProgID" Value="MshtmlSite.MshtmlBrowser" Type="string" Action="write" />
+				<RegistryValue Root="HKMU" Key="Software\Classes\CLSID\{8A2F0DBE-EC1B-4D1D-8712-4259211B41B4}\InprocServer32" Value="[#F.ProductBinaries.MshtmlSite.dll]" Type="string" Action="write" />
+				<RegistryValue Root="HKMU" Key="Software\Classes\CLSID\{8A2F0DBE-EC1B-4D1D-8712-4259211B41B4}\InprocServer32" Name="ThreadingModel" Value="apartment" Type="string" Action="write" />
+				<RegistryValue Root="HKMU" Key="Software\Classes\CLSID\{8A2F0DBE-EC1B-4D1D-8712-4259211B41B4}\ToolboxBitmap32" Value="[#F.ProductBinaries.MshtmlSite.dll], 1" Type="string" Action="write" />
+				<RegistryValue Root="HKMU" Key="Software\Classes\CLSID\{8A2F0DBE-EC1B-4D1D-8712-4259211B41B4}\MiscStatus" Value="0" Type="string" Action="write" />
+				<RegistryValue Root="HKMU" Key="Software\Classes\CLSID\{8A2F0DBE-EC1B-4D1D-8712-4259211B41B4}\MiscStatus\1" Value="131473" Type="string" Action="write" />
+				<RegistryValue Root="HKMU" Key="Software\Classes\CLSID\{8A2F0DBE-EC1B-4D1D-8712-4259211B41B4}\TypeLib" Value="{05765213-D08D-4A03-8E16-215CCBE5F01A}" Type="string" Action="write" />
+				<RegistryValue Root="HKMU" Key="Software\Classes\CLSID\{8A2F0DBE-EC1B-4D1D-8712-4259211B41B4}\Version" Value="1.0" Type="string" Action="write" />
+				<RegistryValue Root="HKMU" Key="Software\Classes\TypeLib\{05765213-D08D-4A03-8E16-215CCBE5F01A}\1.0\0\win32" Value="[#F.ProductBinaries.MshtmlSite.dll]" Type="string" Action="write" />
+			</Component>
+		</Directory>
+	</Fragment>
+</Wix>

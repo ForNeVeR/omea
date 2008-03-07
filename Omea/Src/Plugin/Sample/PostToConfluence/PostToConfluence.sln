@@ -1,0 +1,35 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PostToConfluence", "PostToConfluence.csproj", "{973266EB-2A0F-4A29-B153-830B1174B655}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(DPCodeReviewSolutionGUID) = preSolution
+		DPCodeReviewSolutionGUID = {00000000-0000-0000-0000-000000000000}
+	EndGlobalSection
+	GlobalSection(SourceCodeControl) = preSolution
+		SccNumberOfProjects = 2
+		SccProjectName0 = Perforce\u0020Project
+		SccLocalPath0 = .
+		SccProvider0 = MSSCCI:Perforce\u0020SCM
+		CanCheckoutShared = true
+		SolutionUniqueID = {FC78ABC5-F313-436D-B307-CCA8687444F0}
+		SccProjectUniqueName1 = PostToConfluence.csproj
+		SccLocalPath1 = .
+		CanCheckoutShared = true
+	EndGlobalSection
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{973266EB-2A0F-4A29-B153-830B1174B655}.Debug.ActiveCfg = Debug|.NET
+		{973266EB-2A0F-4A29-B153-830B1174B655}.Debug.Build.0 = Debug|.NET
+		{973266EB-2A0F-4A29-B153-830B1174B655}.Release.ActiveCfg = Release|.NET
+		{973266EB-2A0F-4A29-B153-830B1174B655}.Release.Build.0 = Release|.NET
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

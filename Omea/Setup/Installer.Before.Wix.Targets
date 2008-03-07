@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+  <copyright company="JetBrains">
+  Copyright © 2003-2008 JetBrains s.r.o.
+  You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
+  </copyright>
+-->
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<!-- Custom props -->
+	<PropertyGroup>
+		<!-- Properties coming from imported projects: ProductVersionMajor, ProductVersionMinor, ProductVersionBuild, ProductVersionRevision -->
+		<IncludeSearchPaths>$(IncludeSearchPaths); $(ProductBinariesDir)</IncludeSearchPaths>
+		<WixBinariesDir Condition="'$(WixBinariesDir)'==''">$(WixToolPath)</WixBinariesDir>
+		<ProductReferencesDir>$(ProductHomeDir)\Lib\References</ProductReferencesDir>
+		<GuidCacheFile>$(ProductHomeDir)/Lib/MsiGuidCache.xml</GuidCacheFile>
+		<VsRootSuffix Condition="'$(VsRootSuffix)'==''">-</VsRootSuffix>
+	</PropertyGroup>
+	<!-- Generated Items Spec -->
+	<PropertyGroup>
+		<WixDirectoryId>D.DynamicItems</WixDirectoryId>
+		<WixProductBinariesComponentGroupId>U.DynamicItems.ProductBinaries</WixProductBinariesComponentGroupId>
+		<WixProductReferencesComponentGroupId>U.DynamicItems.ProductReferences</WixProductReferencesComponentGroupId>
+		<WixInstallationDataComponentGroupId>U.DynamicItems.InstallationData</WixInstallationDataComponentGroupId>
+		<WixProductBinariesDiskId>16</WixProductBinariesDiskId>
+		<WixProductReferencesDiskId>17</WixProductReferencesDiskId>
+	</PropertyGroup>
+	<!-- Pass item specs to Candle for use in the static sources -->
+	<PropertyGroup>
+		<!-- The #define constants that are passed to the preprocessor. -->
+		<!-- Some of them are added dynamically in the Xlat tasks and such. -->
+		<DefineConstants>
+			DynProductVersionMajor=$(ProductVersionMajor);
+			DynProductVersionMinor=$(ProductVersionMinor);
+			DynProductVersionBuild=$(ProductVersionBuild);
+			DynProductVersionRevision=$(ProductVersionRevision);
+			DynWixDirectoryId=$(WixDirectoryId);
+			DynWixProductBinariesComponentGroupId=$(WixProductBinariesComponentGroupId);
+			DynWixProductReferencesComponentGroupId=$(WixProductReferencesComponentGroupId);
+			DynWixInstallationDataComponentGroupId=$(WixInstallationDataComponentGroupId);
+			DynWixProductBinariesDiskId=$(WixProductBinariesDiskId);
+			DynWixProductReferencesDiskId=$(WixProductReferencesDiskId);
+			DynProductReferencesDir=$(ProductReferencesDir);
+			DynProductBinariesDir=$(ProductBinariesDir);
+			DynProductHomeDir=$(ProductHomeDir);
+			DynHelpSourcesDir=$(ProductHomeDir)\Help;
+		</DefineConstants>
+	</PropertyGroup>
+</Project>

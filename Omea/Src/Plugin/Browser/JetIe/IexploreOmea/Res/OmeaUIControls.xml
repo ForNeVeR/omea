@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+  <copyright company="JetBrains">
+  Copyright © 2003-2008 JetBrains s.r.o.
+  You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
+  </copyright>
+-->
+<JetIe>
+	<Controls Type="Menu" Name="Tools">
+		<Control Action="OmeaOptions" />
+		<!--
+		<Control Action="Syndicate" />
+		<Control Action="Clip" />
+		<Control Action="ClipSilent" />
+		-->
+	</Controls>
+	<Controls Type="Toolbar" Name="Main">
+		<Control Action="Syndicate" />
+		<Control Action="Clip" />
+		<Control Action="ClipSilent" />
+		<Control Action="Annotate" />
+		<!--
+		<Control Action="OmeaOptions" />
+		-->
+	</Controls>
+	<Controls Type="ContextMenu" Name="Main">
+		<Control Action="Clip" OnDefault="0" OnImages="0" OnControls="0" OnTables="0" OnTextSelection="1" OnAnchor="0" OnUnknown="0" />
+		<Control Action="ClipSilent" OnDefault="0" OnImages="0" OnControls="0" OnTables="0" OnTextSelection="1" OnAnchor="0" OnUnknown="0" />
+		<Control Action="Syndicate" OnDefault="0" OnImages="1" OnControls="0" OnTables="0" OnTextSelection="0" OnAnchor="1" OnUnknown="0" />
+	</Controls>
+	<Controls Type="Toolbar" Name="Omea" Title="Omea" ShowTitle="1">
+		<DropDownButton Switch="1">
+			<Control Action="Clip" />
+			<Control Action="ClipSilent" />
+		</DropDownButton>
+		<Separator />
+		<Control Action="Syndicate" />
+		<Control Action="Annotate" />
+	</Controls>
+</JetIe>

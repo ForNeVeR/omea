@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+  <copyright company="JetBrains">
+  Copyright © 2003-2008 JetBrains s.r.o.
+  You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
+  </copyright>
+-->
+<props namespace="JetBrains.Omea.PicoCore" class="CoreProps" constructor="public" summary="Implementation of the ICoreProps interface">
+	<interface namespace="JetBrains.Omea.OpenAPI" name="ICoreProps" summary="IDs of the resource properties which are registered by the core." since="2.0" />
+	<prop name="Name" dataType="String" summary="String property which stores the name of a resource" />
+	<prop name="Date" dataType="Date" summary="Date property which stores the date of a resource" />
+	<prop name="Size" dataType="Int" summary="Integer property which stores the size of a resource" />
+	<prop name="Subject" dataType="String" summary="String property which stores the subject of a resource" />
+	<prop name="LongBody" dataType="LongString" internal="1" summary="Long string property which stores the contents of a resource" />
+	<prop name="LongBodyIsHTML" dataType="Bool" internal="1" summary="Boolean property which is set to true if the contents of the LongBody property is formatted as HTML" />
+	<prop name="LongBodyIsRTF" dataType="Bool" internal="1" summary="Boolean property which is set to true if the contents of the LongBody property is formatted as RTF" />
+	<prop name="Parent" dataType="Link" directedLink="1" reverseDisplayName="Children" summary="Directed link property which links a resource to its parent in a hierarchy" />
+	<prop name="Reply" dataType="Link" directedLink="1" displayName="Reply To" reverseDisplayName="Replies" summary="Directed link property which links a resource to its parent in a conversation thread" />
+	<prop name="IsDeleted" dataType="Bool" internal="1" summary="Boolean property which is set to true on resources which have been non-permanently deleted" />
+	<prop name="ShowDeletedItems" dataType="Bool" internal="1" summary="Boolean property which is set to true on container resources for which the deleted items are not hidden when displaying their content" />
+	<prop name="IsUnread" dataType="Bool" internal="1" summary="Boolean property which is set to true on unread resources" />
+	<prop name="DisplayUnread" dataType="Bool" internal="1" summary="Boolean property which is set to true on container resources for which only unread resources are shown when displaying their content" />
+	<prop name="DisplayThreaded" dataType="Bool" internal="1" summary="Boolean property which is set to true on container resources whose contents is displayed in threaded mode." />
+	<prop name="DisplayNewspaper" dataType="Bool" internal="1" summary="Boolean property which is set to true on container resources whose contents is displayed in newspaper mode." />
+	<prop name="Open" dataType="Int" internal="1" summary="Integer property which is set to 1 on folders which are expanded and 0 on folders which are not." />
+	<prop name="Annotation" dataType="String" askSerialize="1" summary="String property which stores the text of the resource annotation." />
+	<prop name="ContentType" dataType="String" internal="1" summary="String property which stores the basic resource type for an entity (e.g. Tab, View, etc)." />
+	<prop name="ResourceVisibleOrder" dataType="Double" internal="1" summary="A &lt;see cref=&quot;double&quot;/&gt; property that defines an order in which the resources should be arranged in lists and under one parent in trees in those controls that support rearranging by the user, either with order buttons or by drag'n'drop." />
+	<prop name="UserResourceOrder" dataType="LongString" internal="1" summary="A &lt;see cref=&quot;string&quot;/&gt; property that is set on the resource container and defines the user sorting order on its children by listing the resource IDs in a descending order." />
+</props>

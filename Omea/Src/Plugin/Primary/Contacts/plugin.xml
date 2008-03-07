@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+  <copyright company="JetBrains">
+  Copyright © 2003-2008 JetBrains s.r.o.
+  You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
+  </copyright>
+-->
+<omniamea-plugin>
+	<actions namespace="JetBrains.Omea.ContactsPlugin">
+		<main-menu>
+			<group id="FileNewActions">
+				<action name="Contact..." class="NewContactAction" />
+				<action name="Address Book..." class="CreateABAction" />
+			</group>
+		</main-menu>
+		<popup-menu>
+			<group id="ItemOpenActions">
+				<action type="Contact" name="Open" class="EditContactAction" />
+				<action type="ContactName" name="Open" class="EditContactAction" />
+				<action name="Send Mail" type="Contact" class="MailToContactAction" />
+				<action name="Send Mail" type="ContactName" class="MailToContactAction" />
+				<action name="Send Mail" type="EmailAccount" class="MailToContactAction" />
+				<action name="Copy Address" type="EmailAccount" class="CopyEmailAccountAction" />
+			</group>
+			<group id="ItemModifyActions">
+				<action name="New Contact..." class="NewContactAction" />
+				<action name="Rename" type="AddressBook" class="JetBrains.Omea.GUIControls.RenameAction" assembly="GUIControls" />
+			</group>
+			<group id="ContactMergeActions" anchor="after:ItemModifyActions">
+				<action type="Contact" name="Merge Contacts..." class="MergeContactAction" />
+				<action type="Contact" name="Extract Merged Contacts..." class="SplitContactAction" />
+				<action type="ContactName" name="Extract Merged Contacts..." class="SplitContactAction" />
+			</group>
+			<group id="ItemDeleteActions">
+				<action name="Remove Contact from Address Book" type="AddressBook" class="RemoveFromABAction" />
+				<action name="Remove from Address Book" type="Contact" class="RemoveContactFromAddressBookAction" />
+				<action name="Delete Unused Contacts" type="SearchView" class="CleanUnusedContactsAction" />
+			</group>
+		</popup-menu>
+		<double-click>
+			<action type="Contact" class="EditContactAction" />
+			<action type="ContactName" class="EditContactAction" />
+		</double-click>
+		<toolbar iconprefix="ContactsPlugin.Icons">
+			<group id="CommonActions">
+				<action icon="contact.ico" tab="Contacts" tooltip="New Contact" class="NewContactAction" anchor="first" />
+			</group>
+		</toolbar>
+		<composite>
+			<component id="NewItem" tab="Contacts" class="NewContactAction" />
+			<component id="Delete" type="AddressBook" tab="Contacts" class="DeleteABAction" />
+		</composite>
+	</actions>
+	<resource-icons namespace="ContactsPlugin.Icons">
+		<icons type="Contact">
+			<icon name="contact_myself.ico">
+				<prop name="Myself" value="1" />
+			</icon>
+			<icon name="DeletedContact.ico">
+				<hasprop name="IsDeleted" />
+			</icon>
+			<icon name="contact.ico">
+				<hasprop name="Category" />
+			</icon>
+			<icon name="contact.ico" default="1">
+				<hasprop name="InAddressBook" />
+			</icon>
+			<icon name="unknowncontact.ico" />
+		</icons>
+		<icons type="AddressBook">
+			<icon name="addressbook2.ico">
+				<hasprop name="IsNonExportable" />
+			</icon>
+			<icon name="addressbook.ico" />
+		</icons>
+		<icons type="Phone">
+			<icon name="phone.ico" />
+		</icons>
+	</resource-icons>
+	<display-columns>
+		<columns type="Contact">
+			<column width="250">
+				<prop name="DisplayName" />
+				<multiline row="0" startX="0" width="200" anchor="both" />
+			</column>
+			<column width="120">
+				<prop name="EmailAcct" />
+				<multiline row="1" startX="0" width="160" anchor="both" r="112" g="112" b="112" />
+			</column>
+		</columns>
+	</display-columns>
+</omniamea-plugin>

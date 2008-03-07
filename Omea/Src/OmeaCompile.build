@@ -1,0 +1,1012 @@
+<?xml version="1.0"?>
+<project name="OmeaCompile" currentframework="net-1.1">
+  <property name="build.omea.pro"       value="true" overwrite="false" />
+  <property name="build.omea.reader"    value="true" overwrite="false" />
+  <property name="trace"                value="true" overwrite="false" />
+    
+  <target name="OpenAPI.csproj">
+    <csc target="library" output="${build.dir}/OpenAPI.dll" debug="${build.debug}" define="TRACE"
+        doc="${build.dir}/OpenAPI.xml">
+      <nowarn>
+        <warning number="1591"/>
+      </nowarn>
+      <sources basedir="OpenAPI">
+        <include name="*.cs"/>
+      </sources>
+    </csc>
+  </target>
+
+  <target name="JetBrainsShared.csproj">
+    <csc target="library" output="${build.dir}/JetBrainsShared.dll" debug="${build.debug}" define="TRACE">
+      <sources basedir="JetBrainsDotNet/JetBrainsShared">
+        <include name="Components/CustomTreeView/*.cs"/>
+        <include name="Components/ImageListButton/*.cs"/>
+        <include name="Components/RichTextTreeView/*.cs"/>
+        <include name="Components/Separator/*.cs"/>
+        <include name="Components/TreeSearchWindow/*.cs"/>
+        <include name="DataStructures/*.cs"/>
+        <include name="ExceptionReport/*.cs"/>
+        <include name="Interop/*.cs"/>
+        <include name="License/*.cs"/>
+        <include name="RichText/*.cs"/>
+        <include name="Util/*.cs"/>
+        <include name="AssemblyInfo.cs"/>
+      </sources>
+      <resources basedir="JetBrainsDotNet/JetBrainsShared">
+        <include name="Components/CustomTreeView/*.resx"/>
+        <include name="Components/ImageListButton/*.resx"/>
+        <include name="Components/RichTextTreeView/*.resx"/>
+        <include name="Components/Separator/*.resx"/>
+        <include name="Components/TreeSearchWindow/*.resx"/>
+        <include name="ExceptionReport/*.resx"/>
+        <include name="License/*.resx"/>
+      </resources>
+      <references>
+        <include name="JetBrainsDotNet/Libraries/CookComputing.XmlRpc.dll"/>
+      </references>
+    </csc>
+  </target>
+
+  <target name="Mentalis">
+    <csc target="library" output="${build.dir}/Org.Mentalis.Security.dll" debug="${build.debug}" define="TRACE">
+      <sources basedir="SecureLib">
+        <include name="**/*.cs"/>
+      </sources>
+    </csc>
+  </target>
+ 
+  <target name="OmniaMeaBase.csproj" depends="OpenAPI.csproj,JetBrainsShared.csproj,Mentalis">
+    <csc target="library" output="${build.dir}/OmniaMeaBase.dll" debug="${build.debug}" define="TRACE">
+      <sources basedir="OmniaMeaBase">
+        <include name="*.cs"/>
+        <include name="AsyncProcessing/*.cs"/>
+        <include name="Containers/*.cs"/>
+        <include name="MIME/*.cs"/>
+        <include name="Net/*.cs"/>
+        <include name="System/*.cs"/>
+      </sources>
+      <resources basedir="OmniaMeaBase">
+        <include name="Net/Suppl/HtmlEntities.xml"/>
+      </resources>
+      <references>
+        <include name="References/Microsoft.Web.Services.dll"/>
+        <include name="References/ICSharpCode.SharpZipLib.dll"/>
+        <include name="${build.dir}/OpenAPI.dll"/>
+        <include name="${build.dir}/JetBrainsShared.dll"/>
+        <include name="${build.dir}/Org.Mentalis.Security.dll"/>
+      </references>
+    </csc>
+  </target>
+
+  <target name="DBIndex" depends="OmniaMeaBase.csproj">
+    <mkdir dir="${build.dir}/obj/DBIndex"/>
+
+    <cl outputdir="${build.dir}/obj/DBIndex" 
+        managedextensions="true" options="/MT /Og /Ob1 /Os /Oy /G6 /D WIN32 /D NDEBUG /D _WINDLL /D _MBCS /FD /EHsc /Zp4 /W3 /nologo /c /clr /TP /Zl">
+        
+      <arg value="/Zi" if="${build.debug}"/>
+
+      <sources basedir="DBIndex">
+        <include name="*.cpp"/>
+      </sources>
+
+      <includedirs basedir="DBIndex">
+        <include name="."/>
+      </includedirs>
+
+      <forcedusingfiles>
+        <include name="mscorlib.dll" asis="true"/>
+        <include name="System.dll" asis="true"/>
+        <include name="${build.dir}/OmniaMeaBase.dll" asis="true"/>
+      </forcedusingfiles>
+    </cl>
+
+    <link output="${build.dir}/DBIndex.dll"
+        options="/DLL /NOENTRY /INCREMENTAL:NO /NOLOGO /OPT:REF /OPT:ICF /FIXED:No">
+
+      <arg value="/DEBUG" if="${build.debug}"/>
+      
+      <sources>
+        <include name="${build.dir}/obj/DBIndex/*.obj"/>
+        <include name="msvcrt.lib" asis="true"/>
+        <include name="nochkclr.obj" asis="true"/>
+        <include name="mscoree.lib" asis="true"/>
+        <include name="kernel32.lib" asis="true"/>
+        <include name="user32.lib" asis="true"/>
+        <include name="advapi32.lib" asis="true"/>
+        <include name="wininet.lib" asis="true"/>
+      </sources>
+    </link>
+  </target>
+
+  <target name="launcher">
+    <mkdir dir="${build.dir.release}/obj/launcher"/>
+    <mkdir dir="${build.dir.release}/obj/reader_launcher"/>
+
+    <cl outputdir="${build.dir.release}/obj/launcher" 
+        options="/w /EHsc">
+
+      <sources basedir="Launcher">
+        <include name="*.cpp"/>
+      </sources>
+
+    </cl>
+
+    <rc rcfile="Launcher/Launcher.rc" output="${build.dir.release}/obj/launcher/Launcher.res"/>
+
+    <link output="${build.dir.release}/OmeaLauncher.exe" options="/SUBSYSTEM:WINDOWS">
+      <sources>
+        <include name="${build.dir.release}/obj/launcher/*.obj"/>
+        <include name="${build.dir.release}/obj/launcher/*.res"/>
+        <include name="advapi32.lib" asis="true"/>
+        <include name="user32.lib" asis="true"/>
+        <include name="shell32.lib" asis="true"/>
+      </sources>
+    </link>
+
+    <cl outputdir="${build.dir.release}/obj/reader_launcher" 
+        options="/w /EHsc /D READER">
+
+      <sources basedir="Launcher">
+        <include name="*.cpp"/>
+      </sources>
+
+    </cl>
+
+    <rc rcfile="Launcher/LauncherReader.rc" output="${build.dir.release}/obj/reader_launcher/Launcher.res"/>
+
+    <link output="${build.dir.release}/OmeaReaderLauncher.exe" options="/SUBSYSTEM:WINDOWS">
+      <sources>
+        <include name="${build.dir.release}/obj/reader_launcher/*.obj"/>
+        <include name="${build.dir.release}/obj/reader_launcher/*.res"/>
+        <include name="advapi32.lib" asis="true"/>
+        <include name="user32.lib" asis="true"/>
+        <include name="shell32.lib" asis="true"/>
+      </sources>
+    </link>
+  </target>
+
+  <target name="EMAPILib">
+    <mkdir dir="${build.dir}/obj/EMAPILib"/>
+
+    <cl outputdir="${build.dir}/obj/EMAPILib" 
+        managedextensions="true" options="/MT /Od /G6 /D WIN32 /D _WINDLL /EHsc /W4 /D _MBCS /TP /Wp64 /nologo /Gd /NODEFAULTLIB">
+
+      <arg value="/D NDEBUG" unless="${build.debug}"/>
+      <arg value="/D _DEBUG" if="${build.debug}"/>
+      <arg value="/Zi" if="${build.debug}"/>
+
+      <sources basedir="EMAPILib">
+        <include name="*.cpp"/>
+      </sources>
+
+      <includedirs basedir="EMAPILib">
+        <include name="."/>
+      </includedirs>
+
+      <forcedusingfiles>
+        <include name="mscorlib.dll" asis="true"/>
+        <include name="System.dll" asis="true"/>
+        <include name="System.Windows.Forms.dll" asis="true"/>
+      </forcedusingfiles>
+    </cl>
+
+    <link output="${build.dir}/EMAPILib.dll"
+        options="/DLL /NOENTRY /OPT:REF /OPT:ICF /DELAYLOAD:&quot;mapi32.dll&quot; /INCLUDE:&quot;__DllMainCRTStartup@12&quot;">
+
+      <arg value="/DEBUG" if="${build.debug}"/>
+      
+      <sources>
+        <include name="${build.dir}/obj/EMAPILib/*.obj"/>
+        <include name="msvcrtd.lib" asis="true" if="${build.debug}"/>
+        <include name="msvcrt.lib" asis="true" unless="${build.debug}"/>
+        <include name="mscoree.lib" asis="true"/>
+        <include name="mapi32.lib" asis="true"/>
+        <include name="uuid.lib" asis="true"/>
+        <include name="kernel32.lib" asis="true"/>
+        <include name="user32.lib" asis="true"/>
+        <include name="gdi32.lib" asis="true"/>
+        <include name="advapi32.lib" asis="true"/>
+        <include name="Delayimp.lib" asis="true"/>
+        <include name="Ole32.lib" asis="true"/>
+      </sources>
+    </link>
+  </target>
+
+  <target name="mshtml-site">
+     <!-- Build the unmanaged site for MSHTML browser engine. -->
+     <nant buildfile="MshtmlBrowser/MshtmlSite/MshtmlSite.build" inheritall="true">
+       <properties>
+         <property name="dir.project" value="${path::get-full-path('MshtmlBrowser/MshtmlSite')}"/>
+         <property name="build.dir" value="${path::get-full-path(build.dir.release)}"/>
+       </properties>
+     </nant>
+  </target>
+
+  <target name="SpHeader.csproj">
+    <csc target="library" output="${build.dir}/SpHeader.dll" debug="${build.debug}" define="TRACE"> 
+      <sources basedir="SpHeader">
+        <include name="*.cs"/>
+        <include name="Tests/*.cs" if="${build.debug}"/>
+      </sources>
+      <resources basedir="SpHeader" prefix="SP.Windows">
+        <include name="*.resx"/>
+        <include name="*.resources"/>
+      </resources>
+    </csc>
+  </target>
+
+  <target name="JetListView.csproj" depends="JetBrainsShared.csproj,OmniaMeaBase.csproj,SpHeader.csproj">
+    <csc target="library" output="${build.dir}/JetListView.dll" debug="${build.debug}" define="TRACE"> 
+      <nowarn>
+        <warning number="67"/>
+      </nowarn>
+      <sources basedir="JetListView Control">
+        <include name="*.cs"/>
+        <include name="Tests/*.cs" if="${build.debug}"/>
+      </sources>
+      <resources basedir="JetListView Control" prefix="JetBrains.JetListViewLibrary">
+        <include name="*.resx"/>
+        <include name="*.resources"/>
+      </resources>
+      <references>
+        <include name="${build.dir}/JetBrainsShared.dll"/>
+        <include name="${build.dir}/OmniaMeaBase.dll"/>
+        <include name="${build.dir}/SpHeader.dll"/>
+        <include name="References/System.Windows.Forms.Themes.dll"/>
+        <include name="References/nunit.framework.dll" if="${build.debug}"/>
+      </references>
+    </csc>
+  </target>
+
+  <target name="DBUtils.csproj" depends="DBIndex,OmniaMeaBase.csproj,JetBrainsShared.csproj">
+    <csc target="library" output="${build.dir}/DBUtils.dll" debug="${build.debug}" define="TRACE"> 
+      <sources basedir="DBUtils">
+        <include name="**/*.cs"/>
+      </sources>
+      <references>
+        <include name="${build.dir}/OpenAPI.dll"/>
+        <include name="${build.dir}/DBIndex.dll"/>
+        <include name="${build.dir}/OmniaMeaBase.dll"/>
+        <include name="${build.dir}/JetBrainsShared.dll"/>
+      </references>
+    </csc>
+  </target>
+
+  <target name="ResourceStore.csproj" depends="DBUtils.csproj,OmniaMeaBase.csproj,OpenAPI.csproj,JetBrainsShared.csproj">
+    <csc target="library" output="${build.dir}/ResourceStore.dll" debug="${build.debug}" define="TRACE">
+      <sources basedir="ResourceStore">
+        <include name="**/*.cs"/>
+      </sources>
+      <resources basedir="ResourceStore">
+        <include name="**/*.resx"/>
+      </resources>
+      <references>
+        <include name="${build.dir}/DBUtils.dll"/>
+        <include name="${build.dir}/OmniaMeaBase.dll"/>
+        <include name="${build.dir}/OpenAPI.dll"/>
+        <include name="${build.dir}/JetBrainsShared.dll"/>
+        <include name="References/ICSharpCode.SharpZipLib.dll"/>
+      </references>
+    </csc>
+  </target>
+
+  <target name="ResourceTools.csproj" depends="ResourceStore.csproj">
+    <csc target="library" output="${build.dir}/ResourceTools.dll" debug="${build.debug}" define="TRACE"> 
+      <sources basedir="ResourceTools">
+        <include name="**/*.cs"/>
+      </sources>
+      <references>
+        <include name="${build.dir}/OpenAPI.dll"/>
+        <include name="${build.dir}/ResourceStore.dll"/>
+        <include name="${build.dir}/OmniaMeaBase.dll"/>
+        <include name="${build.dir}/JetBrainsShared.dll"/>
+      </references>
+    </csc>
+  </target>
+
+  <target name="TextIndex.csproj" depends="ResourceTools.csproj">
+    <csc target="library" output="${build.dir}/TextIndex.dll" debug="${build.debug}" define="TRACE"> 
+      <sources basedir="TextIndex">
+        <include name="**/*.cs"/>
+      </sources>
+      <references>
+        <include name="${build.dir}/DBIndex.dll"/>
+        <include name="${build.dir}/OmniaMeaBase.dll"/>
+        <include name="${build.dir}/OpenAPI.dll"/>
+        <include name="${build.dir}/ResourceStore.dll"/>
+        <include name="${build.dir}/ResourceTools.dll"/>
+        <include name="${build.dir}/JetBrainsShared.dll"/>
+      </references>
+    </csc>
+  </target>
+
+  <target name="GUIControls.csproj" depends="ResourceTools.csproj,JetListView.csproj">
+    <csc target="library" output="${build.dir}/GUIControls.dll" debug="${build.debug}" define="TRACE">
+      <nowarn>
+        <warning number="67"/>  <!-- The event 'event' is never used -->
+      </nowarn>
+      <sources basedir="GUIControls">
+        <include name="**/*.cs"/>
+      </sources>
+      <resources basedir="GUIControls" prefix="GUIControls.Icons">
+        <include name="**/*.resx"/>
+      </resources>
+      <resources basedir="GUIControls" prefix="GUIControls.Icons">	<!-- General icons -->
+        <include name="Icons/*.ico"/>
+        <include name="Icons/*.png"/>
+      </resources>
+      <resources basedir="GUIControls" prefix="GUIControls.Icons.RichEdit">	<!-- RichEdit icons -->
+        <include name="Icons/RichEdit/*.ico"/>
+      </resources>
+      <references>
+        <include name="${build.dir}/ResourceStore.dll"/>
+        <include name="${build.dir}/OpenAPI.dll"/>
+        <include name="${build.dir}/OmniaMeaBase.dll"/>
+        <include name="${build.dir}/ResourceTools.dll"/>
+        <include name="${build.dir}/JetBrainsShared.dll"/>
+        <include name="${build.dir}/JetListView.dll"/>
+        <include name="References/System.Windows.Forms.Themes.dll"/>
+      </references>
+    </csc>
+  </target>
+
+  <target name="PicoCore.csproj" depends="GUIControls.csproj">
+    <csc target="library" output="${build.dir}/PicoCore.dll" debug="${build.debug}" define="TRACE">
+      <nowarn>
+        <warning number="67"/>  <!-- The event 'event' is never used -->
+      </nowarn>
+      <sources basedir="PicoCore">
+        <include name="*.cs"/>
+      </sources>
+      <references>
+        <include name="${build.dir}/OpenAPI.dll"/>
+        <include name="${build.dir}/ResourceStore.dll"/>
+        <include name="${build.dir}/ResourceTools.dll"/>
+        <include name="${build.dir}/GUIControls.dll"/>
+        <include name="${build.dir}/OmniaMeaBase.dll"/>
+        <include name="References/nunit.framework.dll"/>
+        <include name="References/nmock.dll"/>
+        <include name="References/PicoContainer.dll"/>
+      </references>
+    </csc>
+  </target>
+
+  <target name="ResourceToolsTests.csproj" depends="PicoCore.csproj">
+    <csc target="library" output="${build.dir}/ResourceToolsTests.dll" debug="${build.debug}" define="TRACE">
+      <sources basedir="ResourceToolsTests">
+        <include name="**/*.cs"/>
+      </sources>
+      <references>
+        <include name="${build.dir}/OmniaMeaBase.dll"/>
+        <include name="${build.dir}/ResourceStore.dll"/>
+        <include name="${build.dir}/ResourceTools.dll"/>
+        <include name="${build.dir}/OpenAPI.dll"/>
+        <include name="${build.dir}/TextIndex.dll"/>
+        <include name="${build.dir}/PicoCore.dll"/>
+        <include name="References/nunit.framework.dll"/>
+      </references>
+    </csc>
+  </target>
+
+  <target name="GUIControlsTests.csproj" depends="PicoCore.csproj">
+    <csc target="library" output="${build.dir}/GUIControlsTests.dll" debug="${build.debug}" define="TRACE">
+      <sources basedir="GUIControlsTests">
+        <include name="**/*.cs"/>
+      </sources>
+      <resources basedir="GUIControlsTests">
+        <include name="**/*.resx"/>
+      </resources>
+      <references>
+        <include name="${build.dir}/ResourceStore.dll"/>
+        <include name="${build.dir}/OpenAPI.dll"/>
+        <include name="${build.dir}/OmniaMeaBase.dll"/>
+        <include name="${build.dir}/GUIControls.dll"/>
+        <include name="${build.dir}/JetBrainsShared.dll"/>
+        <include name="${build.dir}/ResourceTools.dll"/>
+        <include name="${build.dir}/PicoCore.dll"/>
+        <include name="${build.dir}/JetListView.dll"/>
+        <include name="References/nunit.framework.dll"/>
+      </references>
+    </csc>
+  </target>
+  
+  <target name="OmniaMeaBaseTests.csproj" depends="DBIndex">
+    <csc target="library" output="${build.dir}/OmniaMeaBaseTests.dll" debug="${build.debug}" define="TRACE">
+      <sources basedir="OmniaMeaBase/OmniaMeaBaseTests">
+        <include name="**/*.cs"/>
+      </sources>
+      <references>
+        <include name="${build.dir}/DBIndex.dll"/>
+        <include name="${build.dir}/OmniaMeaBase.dll"/>
+        <include name="${build.dir}/OpenAPI.dll"/>
+        <include name="${build.dir}/JetBrainsShared.dll"/>
+        <include name="References/nunit.framework.dll"/>
+      </references>
+    </csc>
+
+  </target>
+  
+  <target name="build" 
+    depends="DBIndex,launcher,EMAPILib,mshtml-site,PicoCore.csproj,GUIControlsTests.csproj,ResourceToolsTests.csproj,OmniaMeaBaseTests.csproj,TextIndex.csproj">
+
+    <csc target="exe" output="${build.dir}/DBUtilsTests.exe" debug="${build.debug}" define="TRACE">
+      <sources basedir="DBUtilsTests">
+        <include name="**/*.cs"/>
+      </sources>
+      <references>
+        <include name="${build.dir}/DBUtils.dll"/>
+        <include name="${build.dir}/OmniaMeaBase.dll"/>
+        <include name="References/nunit.framework.dll"/>
+      </references>
+    </csc>
+
+    <csc target="exe" output="${build.dir}/TermIndexProfile.exe" debug="${build.debug}" define="TRACE"> 
+      <sources basedir="TermIndexProfile">
+        <include name="**/*.cs"/>
+      </sources>
+      <references>
+        <include name="${build.dir}/TextIndex.dll"/>
+        <include name="${build.dir}/OmniaMeaBase.dll"/>
+      </references>
+    </csc>
+
+    <csc target="library" output="${build.dir}/CommonTests.dll" debug="${build.debug}" define="TRACE">
+      <sources basedir="CommonTests">
+        <include name="**/*.cs"/>
+        <exclude name="AdvancedConcurentTests.cs"/>
+      </sources>
+      <references>
+        <include name="${build.dir}/ResourceStore.dll"/>
+        <include name="${build.dir}/DBUtils.dll"/>
+        <include name="${build.dir}/OpenAPI.dll"/>
+        <include name="${build.dir}/TextIndex.dll"/>
+        <include name="${build.dir}/OmniaMeaBase.dll"/>
+        <include name="References/nunit.framework.dll"/>
+        <include name="References/nmock.dll"/>
+        <include name="References/PicoContainer.dll"/>
+      </references>
+    </csc>
+
+    <csc target="library" output="${build.dir}/TextIndexTests.dll" debug="${build.debug}" define="TRACE">
+      <sources basedir="TextIndexTests">
+        <include name="**/*.cs"/>
+      </sources>
+      <references>
+        <include name="${build.dir}/ResourceStore.dll"/>
+        <include name="${build.dir}/TextIndex.dll"/>
+        <include name="${build.dir}/ResourceTools.dll"/>
+        <include name="${build.dir}/OpenAPI.dll"/>
+        <include name="${build.dir}/OmniaMeaBase.dll"/>
+        <include name="${build.dir}/CommonTests.dll"/>
+        <include name="References/nunit.framework.dll"/>
+      </references>
+    </csc>
+
+    <nant buildfile="MshtmlBrowser/MshtmlBrowserControl.build" inheritall="true">
+      <properties>
+        <property name="build.dir" value="${path::get-full-path(build.dir)}"/>
+      </properties>
+    </nant>
+
+    <csc target="library" output="${build.dir}/WordDocPlugin.dll" debug="${build.debug}" define="TRACE">
+      <sources basedir="WordDocPlugin">
+        <include name="**/*.cs"/>
+      </sources>
+      <resources basedir="WordDocPlugin" prefix="WordDocPlugin">
+        <include name="Word.ico"/>
+        <include name="plugin.xml"/>
+      </resources>
+      <references>
+        <include name="${build.dir}/ResourceTools.dll"/>
+        <include name="${build.dir}/OpenAPI.dll"/>
+        <include name="${build.dir}/OmniaMeaBase.dll"/>
+        <include name="${build.dir}/GUIControls.dll"/>
+        <include name="${build.dir}/JetBrainsShared.dll"/>
+      </references>
+    </csc>
+
+    <csc target="library" output="${build.dir}/OutlookPlugin.dll" debug="${build.debug}" define="TRACE,NO_USAGE_LOG">
+      <sources basedir="OutlookPlugin">
+        <include name="**/*.cs"/>
+        <exclude name="Tests/*.cs" unless="${build.debug}"/>
+      </sources>
+      <resources basedir="OutlookPlugin" prefix="OutlookPlugin.Icons">
+        <include name="**/*.resx"/>
+        <include name="**/*.ico"/>
+        <include name="plugin.xml"/>
+      </resources>
+      <references>
+        <include name="${build.dir}/ResourceStore.dll"/>
+        <include name="${build.dir}/ResourceTools.dll"/>
+        <include name="${build.dir}/OpenAPI.dll"/>
+        <include name="${build.dir}/OmniaMeaBase.dll"/>
+        <include name="${build.dir}/GUIControls.dll"/>
+        <include name="${build.dir}/JetBrainsShared.dll"/>
+        <include name="${build.dir}/JetListView.dll"/>
+        <include name="${build.dir}/EMAPILib.dll"/>
+        <include name="References/Interop.Outlook.dll"/>
+        <include name="References/office.dll"/>
+        <include name="References/Interop.Shell32.dll"/>
+        <include name="${build.dir}/ResourceStore.dll" if="${build.debug}"/>
+        <include name="References/nunit.framework.dll" if="${build.debug}"/>
+        <include name="${build.dir}/CommonTests.dll" if="${build.debug}"/>
+        <include name="${build.dir}/PicoCore.dll" if="${build.debug}"/>
+      </references>
+    </csc>
+
+    <csc target="library" output="${build.dir}/ICQPlugin.dll" debug="${build.debug}" define="TRACE">
+      <sources basedir="InstantMessaging/ICQ">
+        <include name="*.cs"/>
+      </sources>
+      <resources basedir="InstantMessaging/ICQ" prefix="ICQPlugin.icons">
+        <include name="*.resx"/>
+        <include name="**/*.ico"/>
+        <include name="plugin.xml"/>
+      </resources>
+      <references>
+        <include name="${build.dir}/OpenAPI.dll"/>
+        <include name="${build.dir}/DBUtils.dll"/>
+        <include name="${build.dir}/ResourceTools.dll"/>
+        <include name="${build.dir}/OmniaMeaBase.dll"/>
+        <include name="${build.dir}/GUIControls.dll"/>
+        <include name="${build.dir}/JetBrainsShared.dll"/>
+      </references>
+    </csc>
+
+    <csc target="library" output="${build.dir}/MirandaPlugin.dll" debug="${build.debug}" define="TRACE">
+      <sources basedir="InstantMessaging/Miranda">
+        <include name="*.cs"/>
+        <include name="Tests/*.cs" if="${build.debug}"/>
+      </sources>
+      <resources basedir="InstantMessaging/Miranda" prefix="OmniaMea.InstantMessaging.Miranda.icons">
+        <include name="*.resx"/>
+        <include name="**/*.ico"/>
+        <include name="plugin.xml"/>
+      </resources>
+      <references>
+        <include name="${build.dir}/OpenAPI.dll"/>
+        <include name="${build.dir}/ResourceTools.dll"/>
+        <include name="${build.dir}/OmniaMeaBase.dll"/>
+        <include name="${build.dir}/GUIControls.dll"/>
+        <include name="${build.dir}/JetBrainsShared.dll"/>
+        <include name="${build.dir}/ResourceStore.dll" if="${build.debug}"/>
+        <include name="References/nunit.framework.dll" if="${build.debug}"/>
+        <include name="${build.dir}/PicoCore.dll" if="${build.debug}"/>
+      </references>
+    </csc>
+
+    <csc target="library" output="${build.dir}/FilePlugin.dll" debug="${build.debug}" define="TRACE">
+      <sources basedir="FilePlugin">
+        <include name="*.cs"/>
+      </sources>
+      <resources basedir="FilePlugin" prefix="FilePlugin.icons">
+        <include name="*.resx"/>
+        <include name="**/*.ico"/>
+        <include name="plugin.xml"/>
+      </resources>
+      <references>
+        <include name="${build.dir}/OpenAPI.dll"/>
+        <include name="${build.dir}/OmniaMeaBase.dll"/>
+        <include name="${build.dir}/ResourceStore.dll"/>
+        <include name="${build.dir}/ResourceTools.dll"/>
+        <include name="${build.dir}/GUIControls.dll"/>
+        <include name="${build.dir}/JetListView.dll"/>
+        <include name="${build.dir}/JetBrainsShared.dll"/>        
+      </references>
+    </csc>
+
+    <csc target="library" output="${build.dir}/ContactsPlugin.dll" debug="${build.debug}" define="TRACE,NO_USAGE_LOG">
+      <sources basedir="ContactsPlugin">
+        <include name="*.cs"/>
+        <include name="Tests/*.cs" if="${build.debug}"/>
+      </sources>
+      <resources basedir="ContactsPlugin" prefix="ContactsPlugin.icons">
+        <include name="*.resx"/>
+        <include name="**/*.ico"/>
+        <include name="plugin.xml"/>
+        <include name="icons/*.xml"/>
+      </resources>
+      <resources basedir="ContactsPlugin" prefix="ContactsPlugin.Styles">
+        <include name="ContactView.css"/>
+      </resources>
+      <references>
+        <include name="${build.dir}/ResourceTools.dll"/>
+        <include name="${build.dir}/OpenAPI.dll"/>
+        <include name="${build.dir}/OmniaMeaBase.dll"/>
+        <include name="${build.dir}/GUIControls.dll"/>
+        <include name="${build.dir}/JetBrainsShared.dll"/>
+        <include name="${build.dir}/ResourceStore.dll" if="${build.debug}"/>
+        <include name="${build.dir}/JetListView.dll"/>
+        <include name="${build.dir}/PicoCore.dll" if="${build.debug}"/>
+        <include name="References/nunit.framework.dll" if="${build.debug}"/>
+      </references>
+    </csc>
+
+    <csc target="library" output="${build.dir}/HTMLPlugin.dll" debug="${build.debug}" define="TRACE">
+      <sources basedir="HTMLPlugin">
+        <include name="**/*.cs"/>
+      </sources>
+      <resources basedir="HTMLPlugin" prefix="HTMLPlugin">
+        <include name="*.resx"/>
+        <include name="*.ico"/>
+        <include name="plugin.xml"/>
+      </resources>
+      <references>
+        <include name="${build.dir}/JetBrainsShared.dll"/>
+        <include name="${build.dir}/OpenAPI.dll"/>
+        <include name="${build.dir}/OmniaMeaBase.dll"/>
+        <include name="${build.dir}/ResourceTools.dll"/>
+        <include name="${build.dir}/GUIControls.dll"/>
+      </references>
+    </csc>
+
+    <csc target="library" output="${build.dir}/PDFPlugin.dll" debug="${build.debug}" define="TRACE">
+      <sources basedir="PDFPlugin">
+        <include name="**/*.cs"/>
+      </sources>
+      <resources basedir="PDFPlugin" prefix="PDFPlugin">
+        <include name="*.resx"/>
+        <include name="*.ico"/>
+        <include name="plugin.xml"/>
+      </resources>
+      <references>
+        <include name="${build.dir}/OpenAPI.dll"/>
+        <include name="${build.dir}/OmniaMeaBase.dll"/>
+        <include name="${build.dir}/ResourceTools.dll"/>
+        <include name="${build.dir}/GUIControls.dll"/>
+        <include name="References/Interop.PdfLib.dll"/>
+        <include name="References/AxInterop.PdfLib.dll"/>
+        <include name="References/AcroPDFLib.dll"/>
+        <include name="References/AxAcroPDFLib.dll"/>
+      </references>
+    </csc>
+
+    <csc target="library" output="${build.dir}/Favorites.dll" debug="${build.debug}" define="TRACE,NO_USAGE_LOG">
+      <sources basedir="Favorites">
+        <include name="**/*.cs"/>
+      </sources>
+      <resources basedir="Favorites" prefix="Favorites.Icons">
+        <include name="**/*.resx"/>
+        <include name="**/*.ico"/>
+        <include name="plugin.xml"/>
+      </resources>
+      <references>
+        <include name="${build.dir}/OpenAPI.dll"/>
+        <include name="${build.dir}/OmniaMeaBase.dll"/>
+        <include name="${build.dir}/ResourceTools.dll"/>
+        <include name="${build.dir}/GUIControls.dll"/>
+        <include name="${build.dir}/JetBrainsShared.dll"/>
+        <include name="${build.dir}/JetListView.dll"/>
+        <include name="References/Interop.Shell32.dll"/>
+        <include name="References/Microsoft.Web.Services.dll"/>
+      </references>
+    </csc>
+
+    <csc target="library" output="${build.dir}/Tasks.dll" debug="${build.debug}" define="TRACE">
+      <nowarn>
+        <warning number="67"/>  <!-- The event 'event' is never used -->
+      </nowarn>
+      <sources basedir="Tasks">
+        <include name="**/*.cs"/>
+      </sources>
+      <resources basedir="Tasks" prefix="Tasks.icons">
+        <include name="*.resx"/>
+        <include name="**/*.ico"/>
+        <include name="plugin.xml"/>
+      </resources>
+      <resources basedir="Tasks" prefix="Tasks.Styles">
+        <include name="TaskView.css"/>
+      </resources>
+      <references>
+        <include name="${build.dir}/OpenAPI.dll"/>
+        <include name="${build.dir}/OpenAPI.dll"/>
+        <include name="${build.dir}/OmniaMeaBase.dll"/>
+        <include name="${build.dir}/GUIControls.dll"/>
+        <include name="${build.dir}/JetBrainsShared.dll"/>
+        <include name="${build.dir}/JetListView.dll"/>
+        <include name="${build.dir}/ResourceTools.dll"/>
+      </references>
+    </csc>
+
+    <csc target="library" output="${build.dir}/Pictures.dll" debug="${build.debug}" define="TRACE">
+      <sources basedir="Pictures">
+        <include name="**/*.cs"/>
+      </sources>
+      <resources basedir="Pictures" prefix="Pictures">
+        <include name="*.resx"/>
+        <include name="*.ico"/>
+        <include name="plugin.xml"/>
+      </resources>
+      <references>
+        <include name="${build.dir}/OpenAPI.dll"/>
+        <include name="${build.dir}/OmniaMeaBase.dll"/>
+        <include name="${build.dir}/ResourceTools.dll"/>
+        <include name="${build.dir}/GUIControls.dll"/>
+      </references>
+    </csc>
+
+    <csc target="library" output="${build.dir}/RSSPlugin.dll" debug="${build.debug}" define="TRACE,NO_USAGE_LOG">
+      <sources basedir="RSSPlugin">
+        <include name="**/*.cs"/>
+        <exclude name="Tests/*.cs" unless="${build.debug}"/>
+      </sources>
+      <resources basedir="RSSPlugin" prefix="RSSPlugin.icons">
+        <include name="**/*.resx"/>
+        <include name="**/*.ico"/>
+        <include name="**/*.gif"/>
+        <include name="plugin.xml"/>
+        <include name="Tests/*.xml" if="${build.debug}"/>
+        <include name="Tests/*.html" if="${build.debug}"/>
+      </resources>
+      <resources basedir="RSSPlugin" prefix="RSSPlugin.Styles">
+        <include name="Default.css"/>
+        <include name="Summary.css"/>
+      </resources>
+      <references>
+        <include name="${build.dir}/OpenAPI.dll"/>
+        <include name="${build.dir}/OmniaMeaBase.dll"/>
+        <include name="${build.dir}/GUIControls.dll"/>
+        <include name="${build.dir}/ResourceTools.dll"/>
+        <include name="${build.dir}/JetBrainsShared.dll"/>
+        <include name="${build.dir}/JetListView.dll"/>
+        <include name="JetBrainsDotNet/Libraries/CookComputing.XmlRpc.dll"/>
+        <include name="References/blogExtension.dll"/>
+        <include name="${build.dir}/ResourceStore.dll" if="${build.debug}"/>
+        <include name="References/nunit.framework.dll" if="${build.debug}"/>
+        <include name="${build.dir}/PicoCore.dll" if="${build.debug}"/>
+        <include name="${build.dir}/MshtmlBrowserControl.dll" />
+        <include name="Microsoft.JScript.dll" />
+      </references>
+    </csc>
+
+    <csc target="library" output="${build.dir}/BeelaxyPlugin.dll" debug="${build.debug}" define="TRACE">
+      <sources basedir="OmeaDotNet">
+        <include name="**/*.cs"/>
+      </sources>
+      <resources basedir="OmeaDotNet" prefix="Beelaxy.Icons">
+        <include name="**/*.resx"/>
+        <include name="**/*.ico"/>
+        <include name="plugin.xml"/>
+      </resources>
+      <references>
+        <include name="${build.dir}/OpenAPI.dll"/>
+        <include name="${build.dir}/OmniaMeaBase.dll"/>
+        <include name="${build.dir}/GUIControls.dll"/>
+        <include name="${build.dir}/ResourceTools.dll"/>
+        <include name="${build.dir}/JetBrainsShared.dll"/>
+        <include name="${build.dir}/ResourceStore.dll"/>
+        <include name="${build.dir}/JetListView.dll"/>
+      </references>
+    </csc>
+
+    <csc target="library" output="${build.dir}/DebugPlugin.dll" debug="${build.debug}" define="TRACE">
+      <sources basedir="DebugPlugin">
+        <include name="**/*.cs"/>
+      </sources>
+      <resources basedir="DebugPlugin" prefix="DebugPlugin">
+        <include name="*.resx"/>
+        <include name="*.ico"/>
+        <include name="plugin.xml"/>
+      </resources>
+      <references>
+        <include name="${build.dir}/OpenAPI.dll"/>
+        <include name="${build.dir}/GUIControls.dll"/>
+        <include name="${build.dir}/OmniaMeaBase.dll"/>
+        <include name="${build.dir}/TextIndex.dll"/>
+        <include name="${build.dir}/ResourceStore.dll"/>
+        <include name="${build.dir}/JetBrainsShared.dll"/>
+        <include name="${build.dir}/DBIndex.dll"/>
+        <include name="${build.dir}/ResourceTools.dll"/>
+        <include name="${build.dir}/JetListView.dll"/>
+        <include name="${build.dir}/DBUtils.dll"/>
+        <include name="${build.dir}/MshtmlBrowserControl.dll" />
+        <include name="Microsoft.JScript.dll" />
+      </references>
+    </csc>
+
+   <csc target="library" output="${build.dir}/NntpPlugin.dll" debug="${build.debug}" define="TRACE">
+      <sources basedir="NntpPlugin">
+        <include name="**/*.cs"/>
+      </sources>
+      <resources basedir="NntpPlugin" prefix="NntpPlugin.Icons">
+        <include name="*.resx"/>
+        <include name="**/*.ico"/>
+        <include name="plugin.xml"/>
+      </resources>
+      <references>
+        <include name="${build.dir}/OmniaMeaBase.dll"/>
+        <include name="${build.dir}/OpenAPI.dll"/>
+        <include name="${build.dir}/GUIControls.dll"/>
+        <include name="${build.dir}/ResourceTools.dll"/>
+        <include name="${build.dir}/JetBrainsShared.dll"/>
+        <include name="${build.dir}/ResourceStore.dll"/>
+        <include name="${build.dir}/JetListView.dll"/>
+      </references>
+    </csc>
+
+   <csc target="library" output="${build.dir}/NotesPlugin.dll" debug="${build.debug}" define="TRACE">
+      <sources basedir="NotesPlugin">
+        <include name="**/*.cs"/>
+      </sources>
+      <resources basedir="NotesPlugin" prefix="NotesPlugin.Icons">
+        <include name="*.resx"/>
+        <include name="**/*.ico"/>
+        <include name="plugin.xml"/>
+      </resources>
+      <references>
+        <include name="${build.dir}/OmniaMeaBase.dll"/>
+        <include name="${build.dir}/OpenAPI.dll"/>
+        <include name="${build.dir}/GUIControls.dll"/>
+        <include name="${build.dir}/ResourceTools.dll"/>
+        <include name="${build.dir}/ResourceStore.dll"/>
+        <include name="${build.dir}/MshtmlBrowserControl.dll" />
+        <include name="Microsoft.JScript.dll" />
+      </references>
+    </csc>
+
+    <csc target="library" output="${build.dir}/ExcelDocPlugin.dll" debug="${build.debug}" define="TRACE">
+      <sources basedir="ExcelDocPlugin">
+        <include name="**/*.cs"/>
+      </sources>
+      <resources basedir="ExcelDocPlugin" prefix="ExcelDocPlugin">
+        <include name="Excel.ico"/>
+        <include name="plugin.xml"/>
+      </resources>
+      <references>
+        <include name="${build.dir}/ResourceTools.dll"/>
+        <include name="${build.dir}/OpenAPI.dll"/>
+        <include name="${build.dir}/OmniaMeaBase.dll"/>
+        <include name="${build.dir}/GUIControls.dll"/>
+        <include name="${build.dir}/JetBrainsShared.dll"/>
+      </references>
+    </csc>
+
+    <csc target="library" output="${build.dir}/BloglinesPlugin.dll" debug="${build.debug}" define="TRACE">
+      <sources basedir="SamplePlugins\BloglinesPlugin">
+        <include name="**/*.cs"/>
+      </sources>
+      <resources basedir="SamplePlugins\BloglinesPlugin" prefix="Bloglines">
+        <include name="*.resx"/>
+        <include name="*.ico"/>
+      </resources>
+      <references>
+        <include name="${build.dir}/OpenAPI.dll"/>
+      </references>
+    </csc>
+
+    <csc target="library" output="${build.dir}/MemoryWatchPlugin.dll" debug="${build.debug}" define="TRACE">
+      <sources basedir="MemoryWatchPlugin">
+        <include name="**/*.cs"/>
+      </sources>
+      <resources basedir="MemoryWatchPlugin" prefix="MemoryWatchPlugin">
+        <include name="*.resx"/>
+        <include name="*.ico"/>
+        <include name="plugin.xml"/>
+      </resources>
+      <references>
+        <include name="${build.dir}/DBIndex.dll"/>
+        <include name="${build.dir}/EMAPILib.dll"/>
+        <include name="${build.dir}/OmniaMeaBase.dll"/>
+        <include name="${build.dir}/OpenAPI.dll"/>
+      </references>
+    </csc>
+
+    <csc target="winexe" output="${build.dir}/OmeaPro.exe" debug="${build.debug}" define="TRACE,NO_USAGE_LOG"
+        win32icon="OmniaMea/App.ico" if="${build.omea.pro}">
+      <nowarn>
+        <warning number="67"/>  <!-- The event 'event' is never used -->
+      </nowarn>
+      <sources basedir="OmniaMea">
+        <include name="**/*.cs"/>
+        <exclude name="Tests/**/*.cs" unless="${build.debug}"/>
+      </sources>
+      <resources basedir="OmniaMea" prefix="OmniaMea.icons">
+        <include name="**/*.resx"/>
+        <include name="**/*.ico"/>
+        <include name="**/*.bmp"/>
+        <include name="plugin.xml"/>
+        <include name="icons/*.xml"/>
+      </resources>
+      <resources basedir="OmniaMea/ResourceBrowser" prefix="OmniaMea.ResourceBrowser">
+        <include name="Newspaper.CommonStyles.css"/>
+      </resources>
+      <references>
+        <include name="${build.dir}/TextIndex.dll"/>
+        <include name="${build.dir}/ResourceStore.dll"/>
+        <include name="${build.dir}/GUIControls.dll"/>
+        <include name="${build.dir}/MshtmlBrowserControl.dll" />
+        <include name="Microsoft.JScript.dll" />
+        <include name="${build.dir}/OpenAPI.dll"/>
+        <include name="${build.dir}/OmniaMeaBase.dll"/>
+        <include name="${build.dir}/ResourceTools.dll"/>
+        <include name="${build.dir}/DBUtils.dll"/>
+        <include name="${build.dir}/JetBrainsShared.dll"/>
+        <include name="${build.dir}/DBIndex.dll"/>
+        <include name="${build.dir}/PicoCore.dll"/>
+        <include name="${build.dir}/JetListView.dll"/>
+        <include name="JetBrainsDotNet/Libraries/CookComputing.XmlRpc.dll"/>
+        <include name="References/ICSharpCode.SharpZipLib.dll"/>
+        <include name="References/PicoContainer.dll"/>
+        <include name="References/nunit.framework.dll" if="${build.debug}"/>
+        <include name="${build.dir}/CommonTests.dll" if="${build.debug}"/>
+        <include name="${build.dir}/SpHeader.dll" if="${build.debug}"/>
+      </references>
+    </csc>
+
+    <csc target="winexe" output="${build.dir}/OmeaReader.exe" debug="${build.debug}" define="TRACE,READER"
+        win32icon="OmniaMea/AppReader.ico" if="${build.omea.reader}">
+      <nowarn>
+        <warning number="67"/>  <!-- The event 'event' is never used -->
+      </nowarn>
+      <sources basedir="OmniaMea">
+        <include name="**/*.cs"/>
+        <exclude name="Tests/**/*.cs"/>
+      </sources>
+      <resources basedir="OmniaMea" prefix="OmniaMea.icons">
+        <include name="**/*.resx"/>
+        <include name="**/*.ico"/>
+        <include name="**/*.bmp"/>
+        <include name="**/*.png"/>
+        <include name="plugin.xml"/>
+        <include name="icons/*.xml"/>
+      </resources>
+      <resources basedir="OmniaMea/ResourceBrowser" prefix="OmniaMea.ResourceBrowser">
+        <include name="Newspaper.CommonStyles.css"/>
+      </resources>
+      <references>
+        <include name="${build.dir}/TextIndex.dll"/>
+        <include name="${build.dir}/ResourceStore.dll"/>
+        <include name="${build.dir}/GUIControls.dll"/>
+        <include name="${build.dir}/MshtmlBrowserControl.dll" />
+        <include name="${build.dir}/RemoteControl.dll" />
+        <include name="Microsoft.JScript.dll" />
+        <include name="${build.dir}/OpenAPI.dll"/>
+        <include name="${build.dir}/OmniaMeaBase.dll"/>
+        <include name="${build.dir}/ResourceTools.dll"/>
+        <include name="${build.dir}/DBUtils.dll"/>
+        <include name="${build.dir}/JetBrainsShared.dll"/>
+        <include name="${build.dir}/DBIndex.dll"/>
+        <include name="${build.dir}/PicoCore.dll"/>
+        <include name="${build.dir}/JetListView.dll"/>
+        <include name="JetBrainsDotNet/Libraries/CookComputing.XmlRpc.dll"/>
+        <include name="References/ICSharpCode.SharpZipLib.dll"/>
+        <include name="References/PicoContainer.dll"/>
+      </references>
+    </csc>
+
+    <csc target="exe" output="${build.dir}/DBRepair.exe" debug="${build.debug}" define="TRACE">
+      <sources basedir="DBRepair">
+        <include name="**/*.cs"/>
+      </sources>
+      <references>
+        <include name="${build.dir}/TextIndex.dll"/>
+        <include name="${build.dir}/ResourceStore.dll"/>
+        <include name="${build.dir}/OpenAPI.dll"/>
+        <include name="${build.dir}/OmniaMeaBase.dll"/>
+        <include name="${build.dir}/DBUtils.dll"/>
+        <include name="${build.dir}/JetBrainsShared.dll"/>
+      </references>
+    </csc>
+
+    <copy todir="${build.dir}/data">
+      <fileset basedir="Data">
+        <include name="*.*"/>
+      </fileset>
+    </copy>
+
+    <copy todir="${build.dir}">
+      <fileset basedir="Doc">
+        <include name="Readme.txt"/>
+      </fileset>
+    </copy>
+
+    <copy todir="${build.dir}">
+      <fileset basedir="References">
+        <include name="*.*"/>
+      </fileset>
+    </copy>
+
+    <copy file="JetBrainsDotNet/Libraries/CookComputing.XmlRpc.dll" tofile="${build.dir}/CookComputing.XmlRpc.dll"/>
+  </target>
+</project>

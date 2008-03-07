@@ -1,0 +1,32 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BloglinesPlugin", "BloglinesPlugin.csproj", "{31D78B3D-005D-4BEC-B1FA-0A1FC0C3CDCF}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SourceCodeControl) = preSolution
+		SccNumberOfProjects = 2
+		SccProjectName0 = \u0022Perforce\u0020Project\u0022
+		SccLocalPath0 = .
+		SccProvider0 = MSSCCI:Perforce\u0020SCM
+		CanCheckoutShared = true
+		SolutionUniqueID = {7E73818F-62DC-401D-8BFB-83075F2ADE80}
+		SccProjectUniqueName1 = BloglinesPlugin.csproj
+		SccLocalPath1 = .
+		CanCheckoutShared = true
+	EndGlobalSection
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{31D78B3D-005D-4BEC-B1FA-0A1FC0C3CDCF}.Debug.ActiveCfg = Debug|.NET
+		{31D78B3D-005D-4BEC-B1FA-0A1FC0C3CDCF}.Debug.Build.0 = Debug|.NET
+		{31D78B3D-005D-4BEC-B1FA-0A1FC0C3CDCF}.Release.ActiveCfg = Release|.NET
+		{31D78B3D-005D-4BEC-B1FA-0A1FC0C3CDCF}.Release.Build.0 = Release|.NET
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal
