@@ -255,7 +255,7 @@ namespace JetBrains.Omea.RSSPlugin
             foreach( IResource res in linked )
             {
                 string link = res.GetStringProp( Props.Link );
-                if( Utils.IsValidString( link ) )
+                if( !string.IsNullOrEmpty( link ) )
                 {
                     string  template = "href=\"" + link + "\"";
                     int     indexHref = body.IndexOf( template );

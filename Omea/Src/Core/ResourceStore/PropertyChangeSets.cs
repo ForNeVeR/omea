@@ -45,6 +45,12 @@ namespace JetBrains.Omea.ResourceStore
         }
 
         public abstract bool IsPropertyChanged( int propID );
+
+        public bool IsPropertyChanged<T>(PropId<T> propId)
+        {
+            return IsPropertyChanged(propId.Id);
+        }
+
         public abstract int[] GetChangedProperties();
         public abstract object GetOldValue( int propID );
 

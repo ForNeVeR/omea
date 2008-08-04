@@ -194,7 +194,7 @@
 			<column width="14" fixedSize="1">
 				<prop name="-Attachment" ifExist="1" />
 				<prop name="-NewsAttachment" />
-				<comparer assembly="Nntp" class="JetBrains.Omea.Nntp.AttachmentComparer" />
+				<comparer assembly="Nntp.OmeaPlugin" class="JetBrains.Omea.Nntp.AttachmentComparer" />
 				<multiline row="0" startX="196" width="14" anchor="right" hideIfNoProp="1" />
 				<sortmenutext asc="None on top" desc="With on top" />
 			</column>

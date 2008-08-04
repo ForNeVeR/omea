@@ -9,6 +9,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
 using JetBrains.Omea.AsyncProcessing;
+using JetBrains.Omea.Base;
 using JetBrains.Omea.Contacts;
 using JetBrains.Omea.OpenAPI;
 using JetBrains.Omea.Containers;
@@ -22,7 +23,7 @@ using System.Reflection;
 
 namespace JetBrains.Omea.InstantMessaging.ICQ
 {
-    [PluginDescriptionAttribute("JetBrains Inc.", "ICQ IM conversation viewer.\n Extracts ICQ database and converts it into searchable conversations.")]
+    [PluginDescriptionAttribute("ICQ IM", "JetBrains Inc.", "ICQ IM conversation viewer.\n Extracts ICQ database and converts it into searchable conversations.", PluginDescriptionFormat.PlainText, "Icons/IcqPluginIcon.png")]
     public class ICQPlugin : ReenteringEnumeratorJob, IPlugin, IResourceDisplayer, IResourceTextProvider
     {
         #region System.Object overrides
@@ -66,17 +67,17 @@ namespace JetBrains.Omea.InstantMessaging.ICQ
                 _correspondentPane = new CorrespondentCtrl();
                 _correspondentPane.IniSection = "ICQ";
                 _correspondentPane.SetCorresponentFilterList( Core.ResourceStore.FindResourcesWithProp( null, "ICQAcct" ) );
-                Core.LeftSidebar.RegisterResourceStructurePane("ICQCorrespondents", "IM", "ICQ Correspondents", 
-                    LoadIconFromAssembly( "correspondents.ico" ), _correspondentPane );
-                Core.LeftSidebar.RegisterViewPaneShortcut("ICQCorrespondents", Keys.Control | Keys.Alt | Keys.Q);
+
+                Image img = Utils.TryGetEmbeddedResourceImageFromAssembly( Assembly.GetExecutingAssembly(), "ICQPlugin.Icons.Correspondents24.png" );
+                Core.LeftSidebar.RegisterResourceStructurePane( "ICQCorrespondents", "IM", "ICQ Correspondents", img, _correspondentPane );
+                Core.LeftSidebar.RegisterViewPaneShortcut( "ICQCorrespondents", Keys.Control | Keys.Alt | Keys.Q );
             }
 
             IPluginLoader loader = Core.PluginLoader;
             IActionManager actionManager = Core.ActionManager;
 
             loader.RegisterResourceDisplayer( _icqConversationResName, this );
-            actionManager.RegisterLinkClickAction( new ConversationLinkClickAction(),
-                                                        _icqConversationResName, null );
+            actionManager.RegisterLinkClickAction( new ConversationLinkClickAction(),_icqConversationResName, null );
             _conversationManager = new IMConversationsManager( _icqConversationResName, "ICQ Conversation", "Subject", 
                                                                GetConversationTimeSpan(), _propICQAcct, _propFromICQ, _propToICQ, this );
             _conversationManager.ReverseMode = GetReverseMode();
@@ -93,7 +94,7 @@ namespace JetBrains.Omea.InstantMessaging.ICQ
             loader.RegisterResourceTextProvider( _contactResName, this );
 
             Core.ResourceBrowser.RegisterLinksPaneFilter( _icqConversationResName, new ItemRecipientsFilter() );
-            Core.ResourceBrowser.RegisterLinksGroup( "Accounts", new int[] { _propICQAcct }, ListAnchor.First );
+            Core.ResourceBrowser.RegisterLinksGroup( "Accounts", new[] { _propICQAcct }, ListAnchor.First );
 
             //  Upgrade information about ICQ address book - set its
             //  ContentType property so that it could be filtered out when
@@ -153,7 +154,6 @@ namespace JetBrains.Omea.InstantMessaging.ICQ
             Interrupted = true;
             DisposeDBWatchers();
         }
-
         #endregion
 
         #region ReenteringEnumeratorJob Members
@@ -194,7 +194,7 @@ namespace JetBrains.Omea.InstantMessaging.ICQ
                 {
                     int id = E.Key;
                     IResource convs = Core.ResourceStore.LoadResource( id );
-                    Core.FilterManager.ExecRules( StandardEvents.ResourceReceived, convs );
+                    Core.FilterEngine.ExecRules( StandardEvents.ResourceReceived, convs );
                     Core.TextIndexManager.QueryIndexing( id );
                 }
                 SetUpdateDates( _minUpdateDate, _maxUpdateDate );
@@ -209,7 +209,7 @@ namespace JetBrains.Omea.InstantMessaging.ICQ
                             watcher.Path = (string) E.Key;
                             watcher.IncludeSubdirectories = false;
                             watcher.NotifyFilter = NotifyFilters.LastWrite | NotifyFilters.FileName;
-                            watcher.Changed += new FileSystemEventHandler( AsyncUpdateHistory );
+                            watcher.Changed += AsyncUpdateHistory;
                             watcher.Filter = "*.d*";
                             watcher.EnableRaisingEvents = true;
                             _folderWatchers.Add( E.Key, watcher );
@@ -256,9 +256,8 @@ namespace JetBrains.Omea.InstantMessaging.ICQ
                         _maxUpdateDate = msgDateTime;
                     }
                     _percentage = _messageIndex * 100 / _icqMessages.Count;
-                    return new DelegateJob(
-                        "Processing ICQ message from " + message.From.UIN,
-                        new ProcessICQMessageDelegate( ProcessICQMessage ), new object[] { message } );
+                    return new DelegateJob( "Processing ICQ message from " + message.From.UIN,
+                                            new ProcessICQMessageDelegate( ProcessICQMessage ), new object[] { message } );
                 }
             }
             return null;
@@ -267,7 +266,6 @@ namespace JetBrains.Omea.InstantMessaging.ICQ
         public override string Name
         {
             get { return "Building ICQ conversations"; }
-            set {}
         }
 
         #endregion
@@ -313,12 +311,6 @@ namespace JetBrains.Omea.InstantMessaging.ICQ
 
         #endregion
 
-        private static Icon LoadIconFromAssembly( string iconName )
-        {
-            Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("ICQPlugin.Icons." + iconName);
-            return new Icon(stream);
-        }
-
         #region implementation details
 
         private void RegisterTypes()
@@ -348,7 +340,7 @@ namespace JetBrains.Omea.InstantMessaging.ICQ
             colManager.RegisterDisplayColumn( _icqConversationResName, 0, new ColumnDescriptor( "From", 120 ) );
             colManager.RegisterDisplayColumn( _icqConversationResName, 1, new ColumnDescriptor( "To", 120 ) );
             colManager.RegisterDisplayColumn( _icqConversationResName, 2,
-                new ColumnDescriptor( new string[] { "Subject" }, 300, ColumnDescriptorFlags.AutoSize ) );
+                new ColumnDescriptor( new[] { "Subject" }, 300, ColumnDescriptorFlags.AutoSize ) );
             colManager.RegisterDisplayColumn(_icqConversationResName, 3, new ColumnDescriptor( "Date", 120 ) );
 
             Core.PluginLoader.RegisterResourceDeleter( _icqConversationResName, new ICQConversationDeleter() );
@@ -382,7 +374,7 @@ namespace JetBrains.Omea.InstantMessaging.ICQ
             _icqMessages.Clear();
             _idResources.Clear();
 
-            DBImport.Importer theImporter = DBImport.Importer.GetInstance();
+            Importer theImporter = Importer.GetInstance();
             theImporter.Reset();
             
             Core.UIManager.GetStatusWriter( this, StatusPane.UI ).ShowStatus( "Importing ICQ database" );
@@ -482,22 +474,12 @@ namespace JetBrains.Omea.InstantMessaging.ICQ
             if( !From.IsIgnored() && !To.IsIgnored() )
             {
                 // searching for the "From" contact
-                IResource fromAccount =
-                    Core.ResourceStore.FindUniqueResource( _icqAccountResName, _propUIN, From.UIN );
-                if( fromAccount == null )
-                {
-                    fromAccount = NewICQAccount( From );
-                }
+                IResource fromAccount = Core.ResourceStore.FindUniqueResource( _icqAccountResName, _propUIN, From.UIN ) ?? NewICQAccount( From );
 
-                // searching for the "To" contact
-                IResource toAccount =
-                    Core.ResourceStore.FindUniqueResource( _icqAccountResName, _propUIN, To.UIN );
-                if( toAccount == null )
-                {
-                    toAccount = NewICQAccount( To );
-                }
+            	// searching for the "To" contact
+                IResource toAccount = Core.ResourceStore.FindUniqueResource( _icqAccountResName, _propUIN, To.UIN ) ?? NewICQAccount( To );
 
-                // update or create conversation and request its indexing if updated
+            	// update or create conversation and request its indexing if updated
                 IResource convs = _conversationManager.Update( message.Body, message.Time, fromAccount, toAccount );
                 if( convs != null )
                 {
@@ -525,7 +507,7 @@ namespace JetBrains.Omea.InstantMessaging.ICQ
 
             if( ICQAccRes == null )
             {
-                ICQAccRes = NewICQAccount( contact );
+                NewICQAccount( contact );
             }
             else
             {

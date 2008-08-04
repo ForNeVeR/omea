@@ -12,6 +12,7 @@ using JetBrains.Omea.Contacts;
 using JetBrains.Omea.OpenAPI;
 using JetBrains.Omea.FiltersManagement;
 using JetBrains.Omea.GUIControls;
+using JetBrains.Omea.Plugins;
 using JetBrains.Omea.ResourceTools;
 
 namespace JetBrains.Omea
@@ -83,7 +84,7 @@ namespace JetBrains.Omea
                     Trace.WriteLine( "ViewsInitializer - [" + viewInitName + "] started EachRun initialization" );
                     res.RegisterViewsEachRun();
                 }
-                catch( CancelStartupException )
+                catch( PluginLoader.CancelStartupException )
                 {
                     throw;
                 }
@@ -106,7 +107,7 @@ namespace JetBrains.Omea
         public void  RegisterViewsFirstRun()
         {
             //-----------------------------------------------------------------
-            IFilterManager fMgr = Core.FilterManager;
+            IFilterRegistry fMgr = Core.FilterRegistry;
             IStandardConditions std = fMgr.Std;
 
             //-----------------------------------------------------------------
@@ -170,20 +171,20 @@ namespace JetBrains.Omea
             //-----------------------------------------------------------------
             //  Standard views
             //-----------------------------------------------------------------
-            IResource unreadRes = fMgr.RegisterView( "Unread", new IResource[ 1 ]{ unr }, null );
-            IResource flaggedRes = fMgr.RegisterView( "Flagged", new IResource[ 1 ]{ fla }, null );
-            IResource annotatedRes = fMgr.RegisterView( "Annotated", new IResource[ 1 ]{ ann }, null );
-            IResource clippings = fMgr.RegisterView( "Clippings", new IResource[ 1 ]{ cli }, null );
-            IResource deletedRes = fMgr.RegisterView( "Deleted Resources", new IResource[ 1 ]{ del }, null );
+            IResource unreadRes = fMgr.RegisterView( "Unread", new []{ unr }, null );
+            IResource flaggedRes = fMgr.RegisterView( "Flagged", new []{ fla }, null );
+            IResource annotatedRes = fMgr.RegisterView( "Annotated", new []{ ann }, null );
+            IResource clippings = fMgr.RegisterView( "Clippings", new []{ cli }, null );
+            IResource deletedRes = fMgr.RegisterView( "Deleted Resources", new []{ del }, null );
             deletedRes.SetProp( Core.Props.ShowDeletedItems, true );
             deletedRes.SetProp( "IsLiveMode", true );
 
-            IResource today = fMgr.RegisterView( "Today", new IResource[ 1 ]{ todayCond }, null );
-            IResource yesterday = fMgr.RegisterView( "Yesterday", new IResource[ 1 ]{ yesterdayCond }, null );
-            IResource thisWeek = fMgr.RegisterView( "This week", new IResource[ 1 ]{ thisWeekCond }, null );
-            IResource lastWeek = fMgr.RegisterView( "Last week", new IResource[ 1 ]{ lastWeekCond }, null );
-            IResource thisMonth = fMgr.RegisterView( "This month", new IResource[ 1 ]{ thisMonthCond }, null );
-            IResource lastMonth = fMgr.RegisterView( "Last month", new IResource[ 1 ]{ lastMonthCond }, null );
+            IResource today = fMgr.RegisterView( "Today", new []{ todayCond }, null );
+            IResource yesterday = fMgr.RegisterView( "Yesterday", new []{ yesterdayCond }, null );
+            IResource thisWeek = fMgr.RegisterView( "This week", new []{ thisWeekCond }, null );
+            IResource lastWeek = fMgr.RegisterView( "Last week", new []{ lastWeekCond }, null );
+            IResource thisMonth = fMgr.RegisterView( "This month", new []{ thisMonthCond }, null );
+            IResource lastMonth = fMgr.RegisterView( "Last month", new []{ lastMonthCond }, null );
 
             fMgr.SetVisibleInAllTabs( flaggedRes );
             fMgr.SetVisibleInAllTabs( annotatedRes );
@@ -191,7 +192,7 @@ namespace JetBrains.Omea
             fMgr.SetVisibleInAllTabs( deletedRes );
 
             //-----------------------------------------------------------------
-            Core.FilterManager.CreateViewFolder( "Recent", null, 0 );
+            Core.FilterRegistry.CreateViewFolder( "Recent", null, 0 );
 
             fMgr.AssociateViewWithFolder( unreadRes, null, 1 );
             fMgr.AssociateViewWithFolder( deletedRes, null, 3 );
@@ -254,15 +255,15 @@ namespace JetBrains.Omea
         private static void RegisterCustomConditions()
         {
             IResource res;
-            IFilterManager fMgr = Core.FilterManager;
+            IFilterRegistry fMgr = Core.FilterRegistry;
 
-            #region Core.FilterManager.Std.ResourceIsCategorized Cleaning
+            #region Core.FilterRegistry.Std.ResourceIsCategorized Cleaning
             //  Fix previous version of this condition (it was implemented as
             //  predicate-type).
-            IResourceList old = Core.ResourceStore.FindResources( FilterManagerProps.ConditionResName, "Name", Core.FilterManager.Std.ResourceIsCategorizedName );
+            IResourceList old = Core.ResourceStore.FindResources( FilterManagerProps.ConditionResName, "Name", Core.FilterRegistry.Std.ResourceIsCategorizedName );
             old = old.Intersect( Core.ResourceStore.FindResources( FilterManagerProps.ConditionResName, "ConditionType", "predicate" ), true );
             old.DeleteAll();
-            #endregion Core.FilterManager.Std.ResourceIsCategorized Cleaning
+            #endregion Core.FilterRegistry.Std.ResourceIsCategorized Cleaning
 
             fMgr.RegisterCustomCondition( fMgr.Std.ResourceIsCategorizedName, fMgr.Std.ResourceIsCategorizedNameDeep,
                                           null, new ResourceIsCategorized() );
@@ -309,7 +310,7 @@ namespace JetBrains.Omea
         private static void RegisterRulesActions()
         {
             IResource       res;
-            IFilterManager  fmgr = Core.FilterManager; 
+            IFilterRegistry  fmgr = Core.FilterRegistry; 
             IStandardConditions std = fmgr.Std;
 
             //  Register them here since they require live object as parameter
@@ -341,11 +342,11 @@ namespace JetBrains.Omea
 
         private static void RegisterViews()
         {
-            IFilterManager  fMgr = Core.FilterManager;
+            IFilterRegistry  fMgr = Core.FilterRegistry;
             if( Core.ResourceStore.FindResources( FilterManagerProps.ViewResName, "DeepName", "Deleted Resources" ).Count == 0 )
             {
                 Trace.WriteLine( "ViewsInitializer -- DeletedResources view is not found");
-                IResource res = fMgr.RegisterView( "Deleted Resources", new IResource[ 1 ]{ fMgr.Std.ResourceIsDeleted }, null );
+                IResource res = fMgr.RegisterView( "Deleted Resources", new []{ fMgr.Std.ResourceIsDeleted }, null );
                 fMgr.AssociateViewWithFolder( res, null, 3 );
                 fMgr.SetVisibleInAllTabs( res );
                 res.SetProp( Core.Props.ShowDeletedItems, true );
@@ -355,10 +356,10 @@ namespace JetBrains.Omea
 
         private static void RegisterSearchQueryExtensions()
         {
-            Core.SearchQueryExtensions.RegisterSingleTokenRestriction( "in", "unread", Core.FilterManager.Std.ResourceIsUnread );
-            Core.SearchQueryExtensions.RegisterSingleTokenRestriction( "in", "flagged", Core.FilterManager.Std.ResourceIsFlagged );
-            Core.SearchQueryExtensions.RegisterSingleTokenRestriction( "in", "deleted", Core.FilterManager.Std.ResourceIsDeleted );
-            Core.SearchQueryExtensions.RegisterSingleTokenRestriction( "in", "cats", Core.FilterManager.Std.ResourceIsCategorized );
+            Core.SearchQueryExtensions.RegisterSingleTokenRestriction( "in", "unread", Core.FilterRegistry.Std.ResourceIsUnread );
+            Core.SearchQueryExtensions.RegisterSingleTokenRestriction( "in", "flagged", Core.FilterRegistry.Std.ResourceIsFlagged );
+            Core.SearchQueryExtensions.RegisterSingleTokenRestriction( "in", "deleted", Core.FilterRegistry.Std.ResourceIsDeleted );
+            Core.SearchQueryExtensions.RegisterSingleTokenRestriction( "in", "cats", Core.FilterRegistry.Std.ResourceIsCategorized );
 
             Core.SearchQueryExtensions.RegisterFreestyleRestriction( "in", new CategoryTokenMatcher() );
             Core.SearchQueryExtensions.RegisterFreestyleRestriction( "from", new FromTokenMatcher() );
@@ -372,7 +373,7 @@ namespace JetBrains.Omea
             {
                 IResource   condition = null;
                 IResourceList categories = Core.ResourceStore.GetAllResources( "Category" );
-                IResource template = Core.FilterManager.Std.InTheCategoryX;
+                IResource template = Core.FilterRegistry.Std.InTheCategoryX;
                 if( template != null )
                 {
                     stream = stream.ToLower().Trim();
@@ -410,19 +411,16 @@ namespace JetBrains.Omea
                         IResourceList list = Core.ResourceStore.FindResources( "Contact", ContactManager._propFirstName, token );
                         list = list.Union( Core.ResourceStore.FindResources( "Contact", ContactManager._propLastName, token ) );
 
-                        if( candidates.Count == 0 )
-                            candidates = list;
-                        else
-                            candidates = candidates.Intersect( list );
+                        candidates = (candidates.Count == 0) ? list : candidates.Intersect( list );
                     }
                 }
 
                 if( candidates.Count > 0 )
                 {
-                    IResource template = Core.FilterManager.Std.FromContactX;
+                    IResource template = Core.FilterRegistry.Std.FromContactX;
                     if( template != null ) //  Everything is possible :-(
                     {
-                        condition = Core.FilterManager.InstantiateConditionTemplate( template, candidates, null );
+                        condition = Core.FilterRegistry.InstantiateConditionTemplate( template, candidates, null );
                     }
                 }
 
@@ -435,7 +433,7 @@ namespace JetBrains.Omea
             public IResource ParseTokenStream( string stream )
             {
                 IResource   condition = null;
-                IResource template = Core.FilterManager.Std.ReceivedInTheTimeSpanX;
+                IResource template = Core.FilterRegistry.Std.ReceivedInTheTimeSpanX;
                 if( template == null ) //  Everything is possible :-(
                     return condition;
 
@@ -478,7 +476,7 @@ namespace JetBrains.Omea
                             startDate = new DateTime( yearNum, indexInSet, 1 ).ToString();
                             endDate = new DateTime( yearNum, indexInSet, DateTime.DaysInMonth( yearNum, indexInSet ) ).ToString();
 
-                            condition = ((FilterManager)Core.FilterManager).CreateStandardConditionAux(
+                            condition = ((FilterRegistry)Core.FilterRegistry).CreateStandardConditionAux(
                                                 null, propName, ConditionOp.InRange, startDate, endDate );
                         }
                     }
@@ -488,7 +486,7 @@ namespace JetBrains.Omea
                         startDate = new DateTime( indexInSet, 1, 1 ).ToString();
                         endDate = new DateTime( indexInSet, 12, DateTime.DaysInMonth( indexInSet, 12 ) ).ToString();
 
-                        condition = ((FilterManager)Core.FilterManager).CreateStandardConditionAux(
+                        condition = ((FilterRegistry)Core.FilterRegistry).CreateStandardConditionAux(
                                             null, propName, ConditionOp.InRange, startDate, endDate );
                     }
                 }
@@ -687,7 +685,7 @@ namespace JetBrains.Omea
 
         public IResourceList Filter( string resType, IActionParameterStore actionStore )
         {
-            throw new NotSupportedException( "FilterManager -- this condition can be used only in Action or Formatting rules." );
+            throw new NotSupportedException( "FilterRegistry -- this condition can be used only in Action or Formatting rules." );
         }
     }
 
@@ -758,7 +756,7 @@ namespace JetBrains.Omea
 
         public IResourceList Filter( string resType, IActionParameterStore actionStore )
         {
-            throw new NotSupportedException( "FilterManager -- this condition can be used only in Action or Formatting rules." );
+            throw new NotSupportedException( "FilterRegistry -- this condition can be used only in Action or Formatting rules." );
         }
     }
     #endregion Custom Conditions

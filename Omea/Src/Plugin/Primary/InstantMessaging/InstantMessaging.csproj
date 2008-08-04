@@ -13,7 +13,7 @@
 		<ProjectGuid>{2599D1BB-C0B3-4F3F-A536-2730C3A7A390}</ProjectGuid>
 		<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
 		<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-		<AssemblyName>InstantMessaging</AssemblyName>
+		<AssemblyName>InstantMessaging.OmeaPlugin</AssemblyName>
 		<DefaultClientScript>JScript</DefaultClientScript>
 		<DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
 		<DefaultTargetSchema>IE50</DefaultTargetSchema>
@@ -23,6 +23,7 @@
 		<RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
 		<OldToolsVersion>0.0</OldToolsVersion>
 		<ProductHomeDir>$(MSBuildProjectDirectory)/../../../..</ProductHomeDir>
+		<TargetFrameworkVersion>v3.0</TargetFrameworkVersion>
 	</PropertyGroup>
 	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
 		<AllowUnsafeBlocks>false</AllowUnsafeBlocks>

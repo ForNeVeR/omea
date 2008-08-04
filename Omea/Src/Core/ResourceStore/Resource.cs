@@ -391,6 +391,16 @@ namespace JetBrains.Omea.ResourceStore
             SetProp( propId, propValue );
         }
 
+        public void SetProp<T>(PropId<T> propId, T value)
+        {
+            SetProp( propId.Id, value );
+        }
+
+        public void SetReverseLinkProp(PropId<IResource> propId, IResource propValue)
+        {
+            SetProp(-propId.Id, propValue);
+        }
+
         /**
          * Sets a property with the specified ID to the specified value.
          */
@@ -610,7 +620,13 @@ namespace JetBrains.Omea.ResourceStore
         {
             return GetProp( MyPalStorage.Storage.GetPropId( propName ) );
         }
-        
+
+
+        public T GetProp<T>(PropId<T> propId)
+        {
+            return (T) GetProp(propId.Id);
+        }
+
         public object GetProp( int propId )
         {
             // this also checks if the property ID is valid
@@ -839,6 +855,11 @@ namespace JetBrains.Omea.ResourceStore
             {
                 UnLock();
             }
+        }
+
+        public IResource GetReverseLinkProp(PropId<IResource> propId)
+        {
+            return GetLinkProp(-propId.Id);
         }
 
         private class StringPropWeakReference : WeakReference
@@ -1073,6 +1094,11 @@ namespace JetBrains.Omea.ResourceStore
             }
         }
 
+        public bool HasProp<T>(PropId<T> propId)
+        {
+            return HasProp(propId.Id);
+        }
+
         private bool HasLinkProp( int propId )
         {
             IntArrayList list;
@@ -1259,6 +1285,11 @@ namespace JetBrains.Omea.ResourceStore
             {
                 MyPalStorage.Storage.OnLinkAdded( targetResource, this, reversePropId );
             }
+        }
+
+        public void AddLink(PropId<IResource> propId, IResource target)
+        {
+            AddLink(propId.Id, target);
         }
 
         /**
@@ -1562,6 +1593,16 @@ namespace JetBrains.Omea.ResourceStore
             return GetLinksOfType( resType, propId, false, false );
         }
 
+        public IResourceList GetLinksOfType(string resType, PropId<IResource> propId)
+        {
+            return GetLinksOfType(resType, propId.Id);
+        }
+
+        public BusinessObjectList<T> GetLinksOfType<T>(ResourceTypeId<T> resType, PropId<IResource> propId) where T : BusinessObject
+        {
+            return new BusinessObjectList<T>(resType, GetLinksOfType(resType.Name, propId));
+        }
+
         public IResourceList GetLinksOfTypeLive( string resType, string propName )
         {
             return GetLinksOfType( resType, MyPalStorage.Storage.GetPropId( propName ), true, false );
@@ -1570,6 +1611,11 @@ namespace JetBrains.Omea.ResourceStore
         public IResourceList GetLinksOfTypeLive( string resType, int propId )
         {
             return GetLinksOfType( resType, propId, true, false );
+        }
+
+        public IResourceList GetLinksOfTypeLive(string resType, PropId<IResource> propId)
+        {
+            return GetLinksOfTypeLive(resType, propId.Id);
         }
 
         public IResourceList GetLinksFrom( string resType, string propName )
@@ -1583,6 +1629,18 @@ namespace JetBrains.Omea.ResourceStore
         {
             VerifyDirectedLink( propId );
             return GetLinksOfType( resType, propId, false, true );
+        }
+
+        public IResourceList GetLinksFrom(string resType, PropId<IResource> propId)
+        {
+            return GetLinksFrom(resType, propId.Id);
+        }
+
+
+        public BusinessObjectList<T> GetLinksFrom<T>(ResourceTypeId<T> resType, PropId<IResource> propId)
+            where T : BusinessObject
+        {
+            return new BusinessObjectList<T>(resType, GetLinksFrom(resType.Name, propId));
         }
 
         public IResourceList GetLinksFromLive( string resType, string propName )
@@ -1609,6 +1667,16 @@ namespace JetBrains.Omea.ResourceStore
         {
             VerifyDirectedLink( propId );
             return GetLinksOfType( resType, -propId, false, true  );
+        }
+
+        public IResourceList GetLinksTo(string resType, PropId<IResource> propId)
+        {
+            return GetLinksTo(resType, propId.Id);
+        }
+
+        public BusinessObjectList<T> GetLinksTo<T>(ResourceTypeId<T> resType, PropId<IResource> propId) where T : BusinessObject
+        {
+            return new BusinessObjectList<T>(resType, GetLinksTo(resType.Name, propId));
         }
 
         public IResourceList GetLinksToLive( string resType, string propName )

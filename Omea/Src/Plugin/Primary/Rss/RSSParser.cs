@@ -26,6 +26,7 @@ namespace JetBrains.Omea.RSSPlugin
         public virtual bool SkipNextRead { get { return false; } }
     }
 
+    #region RSS Elements Parsers
     public class FeedElementParser : BaseFeedElementParser
     {
         private readonly int _propId;
@@ -172,7 +173,7 @@ namespace JetBrains.Omea.RSSPlugin
 
     internal class ImageParser : BaseFeedElementParser
     {
-        private static readonly string RDFNamespace = "http://www.w3.org/1999/02/22-rdf-syntax-ns#";
+        private const string RDFNamespace = "http://www.w3.org/1999/02/22-rdf-syntax-ns#";
 
         public override void ParseValue( IResource resource, XmlReader reader )
         {
@@ -453,7 +454,9 @@ namespace JetBrains.Omea.RSSPlugin
 
         public bool SkipNextRead { get { return true; } }
     }
+    #endregion RSS Elements Parsers
 
+    #region ATOM Elements Parsers
 	/// <summary>
 	/// Generic parser for ATOM Link constructs.
 	/// Distinguish three distinct relations (by release 2.1.2), discriminated
@@ -474,7 +477,7 @@ namespace JetBrains.Omea.RSSPlugin
         {
             string href = reader.GetAttribute( "href" );
             string rel = reader.GetAttribute( "rel" );
-            if ( !Utils.IsValidString( rel ) )
+            if ( string.IsNullOrEmpty( rel ) )
             {
                 rel = "alternate";
             }
@@ -520,7 +523,7 @@ namespace JetBrains.Omea.RSSPlugin
             //   resource.SetProp( Props.EnclosureType, type );
 		                
             string length = reader.GetAttribute( "length" );
-            if ( length != null && length.Length > 0 )
+            if ( !string.IsNullOrEmpty( length ) )
             {
                 try
                 {
@@ -551,7 +554,7 @@ namespace JetBrains.Omea.RSSPlugin
             try
             {
                 newRelated.SetProp( Props.URL, href );
-                if( Utils.IsValidString( title ))
+                if( !string.IsNullOrEmpty( title ))
                     newRelated.SetProp( Core.Props.Name, title );
             }
             finally
@@ -647,7 +650,7 @@ namespace JetBrains.Omea.RSSPlugin
                 }
             }
 
-            if ( ( name != null && name.Length > 0 ) || ( email != null && email.Length > 0 ) )
+            if ( !string.IsNullOrEmpty( name ) || !string.IsNullOrEmpty( email ) )
             {
                 IContact contact = Core.ContactManager.FindOrCreateContact( email, name );
                 if ( _propId == Core.ContactManager.Props.LinkFrom )
@@ -703,13 +706,9 @@ namespace JetBrains.Omea.RSSPlugin
 
         public override void ParseValue( IResource resource, XmlReader reader )
         {
-            string mode = reader.GetAttribute( "mode" );
-            if ( mode == null )
-            {
-                mode = "xml";
-            }
-
             string content = null;
+            string mode = reader.GetAttribute( "mode" ) ?? "xml";
+
             if( String.Compare( mode, "xml", true ) == 0 )
             {
                 reader.Read();
@@ -726,16 +725,27 @@ namespace JetBrains.Omea.RSSPlugin
                     }
                 }
             }
-            else if( String.Compare( mode, "escaped", true ) == 0 )
+            else
+            if( String.Compare( mode, "escaped", true ) == 0 )
             {
                 content = HtmlTools.SafeHtmlDecode( reader.ReadString() );
             }
-            else if( String.Compare( mode, "base64", true ) == 0 )
+            else
+            if( String.Compare( mode, "base64", true ) == 0 )
             {
+/*
+ * NB, LloiX (17.03.2008)
+ * This is an arguable code. "base64" encoding is used to store data of a binary
+ * nature. It is both illogical and invalid to convert the result "byte[]" intermediate
+ * content to a string one.
+ * As an alternative we can emulate the notion of an "attachment" for this part of the
+ * content but that requires changes in the API and feed article processing.
                 content = reader.ReadString();
                 byte[] data = Convert.FromBase64String( content );
                 XmlValidatingReader valReader = (XmlValidatingReader)reader;
                 content = valReader.Encoding.GetString( data );
+*/
+                Core.ReportBackgroundException( new ApplicationException( "RssParser -- Processing base64-mode content for text." ) );
             }
             
             if ( content != null ) 
@@ -772,35 +782,19 @@ namespace JetBrains.Omea.RSSPlugin
 
         public override void ParseValue( IResource resource, XmlReader reader )
         {
-            string type = reader.GetAttribute( "type" );
-            if ( type == null )
-            {
-                type = "text";
-            }
+            string type = reader.GetAttribute( "type" ) ?? "text";
 
             string content = null;
             if( String.Compare( type, "text", true) == 0 )
             {
-                if ( _expectFormat == TextFormat.PlainText )
-                {
-                    content = reader.ReadString();
-                }
-                else
-                {
-                    content = HttpUtility.HtmlEncode( reader.ReadString() );
-                }
+                content = (_expectFormat == TextFormat.PlainText) ? reader.ReadString() :
+                                                                    HttpUtility.HtmlEncode( reader.ReadString() );
             }
             else if( String.Compare( type, "text/html", true ) == 0 ||
                      String.Compare( type, "html", true) == 0 )
             {
-                if ( _expectFormat == TextFormat.PlainText )
-                {
-                    content = HtmlTools.StripHTML( reader.ReadString() );
-                }
-                else
-                {
-                    content = reader.ReadString();
-                }
+                content = (_expectFormat == TextFormat.PlainText) ? HtmlTools.StripHTML( reader.ReadString() ) :
+                                                                    reader.ReadString();
             }
             else if( String.Compare( type, "xhtml", true ) == 0 )
             {
@@ -824,11 +818,11 @@ namespace JetBrains.Omea.RSSPlugin
         public override void ParseValue( IResource resource, XmlReader reader )
         {
             string category = reader.GetAttribute( "label" );
-            if ( category == null || category.Length == 0 )
+            if ( string.IsNullOrEmpty( category ) )
             {
                 category = reader.GetAttribute( "term" );
             }
-            if ( category != null && category.Length > 0 )
+            if ( !string.IsNullOrEmpty( category ) )
             {
                 resource.SetProp( Props.RSSCategory, category );
             }
@@ -840,6 +834,7 @@ namespace JetBrains.Omea.RSSPlugin
         public override void ParseValue( IResource resource, XmlReader reader )
         {}
     }
+    #endregion ATOM Elements Parsers
 
     /**
      * General parsing framework for RSS and ATOM feeds.
@@ -869,7 +864,6 @@ namespace JetBrains.Omea.RSSPlugin
         private const string NamespaceRSS10_1 = "http://www.purl.org/rss/1.0/";
         private const string NamespaceRSS20 = "http://backend.userland.com/rss2";
         private const string NamespaceDC = "http://purl.org/dc/elements/1.1/";
-        //private const string NamespaceBlogChannel = "http://backend.userland.com/blogChannelModule";
         private const string NamespaceHTML = "http://www.w3.org/1999/xhtml";
         private const string NamespaceContent = "http://purl.org/rss/1.0/modules/content/";
         private const string NamespaceSyndication = "http://purl.org/rss/1.0/modules/syndication/";
@@ -878,7 +872,7 @@ namespace JetBrains.Omea.RSSPlugin
         public const string NamespaceATOM10 = "http://www.w3.org/2005/Atom";
         private const string NamespaceWFW = "http://wellformedweb.org/CommentAPI/";
 
-        private static readonly string[] _rssNamespaces = new string[]
+        private static readonly string[] _rssNamespaces = new[]
             {
                 "", NamespaceRSS09, NamespaceRSS091, NamespaceRSS093,
                 NamespaceRSS10, NamespaceRSS10_1, NamespaceRSS20
@@ -905,6 +899,12 @@ namespace JetBrains.Omea.RSSPlugin
             _commentFeed = _feed.GetLinkProp( Props.FeedComment2Feed );
         }
 
+        public void Dispose()
+        {
+            _rssItemElements = null;
+        }
+
+        #region Static Initialization
         private static void CheckItemsRegister()
         {
             if ( _rssItemElements == null )
@@ -914,15 +914,9 @@ namespace JetBrains.Omea.RSSPlugin
             }
         }
 
-        public void Dispose()
-        {
-            _rssItemElements = null;
-        }
-
         /**
          * Registers the elements for the RSS feeds and items.
          */
-
         private static void RegisterRSSElements()
         {
             _rssItemElements = CollectionsUtil.CreateCaseInsensitiveHashtable();
@@ -937,7 +931,7 @@ namespace JetBrains.Omea.RSSPlugin
             _rssItemElements[ NamespaceDC + ":date" ] = new DCDateParser( Core.Props.Date );
             _rssItemElements[ NamespaceDC + ":creator" ] = new ItemAuthorParser();
             _rssItemElements[ NamespaceHTML + ":body" ] = new XhtmlBodyParser();
-            _rssItemElements[ NamespaceSlash + ":comments" ] = new FeedElementParser( Props.CommentCount );
+            _rssItemElements[ NamespaceSlash + ":comments" ] = new FeedElementParser( Props.CommentCount.Id );
             _rssItemElements[ NamespaceWFW + ":commentRSS" ] = new FeedElementParser( Props.CommentRSS );
             _rssItemElements[ NamespaceWFW + ":comment" ] = new FeedElementParser( Props.WfwComment );
             _rssChannelElements[ NamespaceDC + ":creator" ] = new FeedAuthorParser();
@@ -1050,6 +1044,7 @@ namespace JetBrains.Omea.RSSPlugin
                     break;
             }
         }
+        #endregion Static Initialization
 
         public void Parse( Stream stream, Encoding encoding, bool parseItems )
         {
@@ -1072,19 +1067,18 @@ namespace JetBrains.Omea.RSSPlugin
             else
             {
                 Trace.WriteLine( "Can not process feed '" + _feed.DisplayName + "' with preparer\n" );
-                if( encoding == null )
-                {
-                    baseReader = new XmlTextReader( stream );
-                }
-                else
-                {
-                    baseReader = new XmlTextReader( new StreamReader( stream, encoding ) );
-                }
+                baseReader = (encoding == null) ? new XmlTextReader( stream ) :
+                                                  new XmlTextReader( new StreamReader( stream, encoding ) );
             }
+            //  Following two lines are obsolete?
             baseReader.WhitespaceHandling = WhitespaceHandling.None;
             baseReader.XmlResolver = null;
-            XmlValidatingReader reader = new XmlValidatingReader( baseReader );
-            reader.ValidationType = ValidationType.None;
+
+            XmlReaderSettings settings = new XmlReaderSettings();
+            settings.ValidationType = ValidationType.None;
+            settings.XmlResolver = null;
+            XmlReader reader = XmlReader.Create( baseReader, settings );
+
             while ( reader.Read() )
             {
                 if ( reader.NodeType == XmlNodeType.Element &&
@@ -1203,7 +1197,7 @@ namespace JetBrains.Omea.RSSPlugin
                                    Hashtable channelElements, Hashtable itemElements )
         {
             string xmlBase = reader.GetAttribute( "xml:base" );
-            if ( xmlBase != null && xmlBase.Length > 0 )
+            if ( !string.IsNullOrEmpty( xmlBase ) )
             {
                 _feed.SetProp( Props.LinkBase, xmlBase );
             }
@@ -1253,7 +1247,7 @@ namespace JetBrains.Omea.RSSPlugin
             Trace.WriteLineIf( Settings.Trace, "Parsing new item" );
 
             string xmlBase = reader.GetAttribute( "xml:base" );
-            if ( xmlBase != null && xmlBase.Length > 0 )
+            if ( !string.IsNullOrEmpty( xmlBase ) )
             {
                 string channelXmlBase = _feed.GetPropText( Props.LinkBase );
                 if ( channelXmlBase.Length > 0 )
@@ -1342,7 +1336,15 @@ namespace JetBrains.Omea.RSSPlugin
             }
         }
 
-        private void UpdateItemToFeed( IResource item, IResource oldItem )
+        private static void UpdateProp<T>(IResource item, IResource oldItem, PropId<T> propId)
+        {
+            if (item.HasProp(propId))
+            {
+                oldItem.SetProp(propId, item.GetProp(propId));
+            }
+        }
+
+        private void UpdateItemToFeed(IResource item, IResource oldItem)
         {
             try 
             {
@@ -1420,10 +1422,7 @@ namespace JetBrains.Omea.RSSPlugin
             }
 
             Core.TextIndexManager.QueryIndexing( item.Id );
-            if ( Core.FilterManager != null )
-            {
-                Core.FilterManager.ExecRules( StandardEvents.ResourceReceived, item );
-            }
+            Core.FilterEngine.ExecRules( StandardEvents.ResourceReceived, item );
         }
 
         private void  SetItemDate( IResource item )
@@ -1499,16 +1498,9 @@ namespace JetBrains.Omea.RSSPlugin
                 CreateDefaultSubject( item );
             }
 
-            string longBody, subject;
-            if ( item.HasProp( Core.Props.LongBody ) )
-            {
-                longBody = item.GetPropText( Core.Props.LongBody );
-            }
-            else
-            {
-                longBody = item.GetPropText( Props.Summary );
-            }
-            subject = item.GetPropText( Core.Props.Subject );
+            int propId = item.HasProp( Core.Props.LongBody ) ? Core.Props.LongBody : Props.Summary;
+            string longBody = item.GetPropText( propId );
+            string subject = item.GetPropText( Core.Props.Subject );
 
             //  First try to find the duplicate without transformations of
             //  possible relative links sinch they are rare.
@@ -1574,23 +1566,16 @@ namespace JetBrains.Omea.RSSPlugin
 
         private static void UpdateBodyAndSize( IResource fromItem, IResource toItem )
         {
-            string body;
-            if ( fromItem.HasProp( Core.Props.LongBody ) )
-            {
-                body = fromItem.GetPropText( Core.Props.LongBody );
-            }
-            else
-            {
-                body = fromItem.GetPropText( Props.Summary );
-            }
+            int propId = fromItem.HasProp( Core.Props.LongBody ) ? Core.Props.LongBody : Props.Summary;
+            string body = fromItem.GetPropText( propId );
+
             toItem.SetProp( Core.Props.LongBody, body );
             toItem.SetProp( Props.RssLongBodyCRC, fromItem.GetProp( Props.RssLongBodyCRC ) );
 
             int size = body.Length;
             if ( size == 0 )
-            {
                 size = toItem.GetPropText( Core.Props.Subject ).Length;
-            }
+
             toItem.SetProp( Core.Props.Size, size );
         }
 

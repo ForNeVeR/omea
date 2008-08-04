@@ -12,18 +12,18 @@ using JetBrains.Omea.Base;
 
 namespace JetBrains.Omea.Containers
 {
-    /**
-     * Trie of chars
-     * Each node contains sorted by char list of subnodes
-     * Chars are compared via comparer passed to constructor
-     */
+    ///<summary>
+    /// <para>Trie of chars.</para>
+    /// <para>Each node contains sorted by char list of subnodes.</para>
+    /// <para>Chars are compared via comparer passed to constructor.</para>
+    /// </summary>
     public class CharTrie : IEnumerable
     {
-        /**
-         * Trie node
-         * If necessary, classes that inherit CharTrie can define specific nodes
-         * To do this, inherit Node, define constructors and override NewNode()
-         */
+        ///<summary>
+        /// Trie node
+        /// If necessary, classes that inherit CharTrie can define specific nodes.
+        /// To do this, inherit Node, define constructors and override NewNode()
+        /// </summary>
         public class Node : IEnumerable
         {
             protected char          _char;
@@ -215,14 +215,8 @@ namespace JetBrains.Omea.Containers
 
         public CharTrie( IComparer charComparer )
         {
-            if( charComparer != null )
-            {
-                _nodeComparer = new Node.Comparer( charComparer );
-            }
-            else
-            {
-                _nodeComparer = Node.DefaultComparer.Instance;
-            }
+            _nodeComparer = (charComparer != null) ? new Node.Comparer( charComparer ) :
+                                                     Node.DefaultComparer.Instance;
             Clear();
         }
 
@@ -560,8 +554,7 @@ namespace JetBrains.Omea.Containers
         {
             if( index >= 0 )
             {
-                TrieNode node;
-                node = LoadNodeByIndex( index );
+                TrieNode node = LoadNodeByIndex( index );
                 if( !tokensOnly || node.IsToken )
                 {
                     wards.Add( index );
@@ -656,7 +649,7 @@ namespace JetBrains.Omea.Containers
             }
             _stringCache = new ObjectCache( _stringCachesize );
             _nodesCache = new IntObjectCache( _nodesCacheSize );
-            _nodesCache.ObjectRemoved += new IntObjectCacheEventHandler( _nodesCache_ObjectRemoved );
+            _nodesCache.ObjectRemoved += _nodesCache_ObjectRemoved;
             _isDirty = false;
         }
 

@@ -4,94 +4,18 @@
 /// </copyright>
 
 using System;
-using System.Collections;
 using System.Diagnostics;
 using System.Reflection;
 using System.Windows.Forms;
 using GUIControls;
 using JetBrains.Omea.Conversations;
 using JetBrains.Omea.GUIControls;
-using JetBrains.Omea.Containers;
 using JetBrains.Omea.CustomProperties;
 using JetBrains.Omea.OpenAPI;
 using JetBrains.Omea.ResourceTools;
-using JetBrains.Omea.TextIndex;
 
 namespace JetBrains.Omea
 {
-    /**
-     * Action that finds the resources similar to the selected resource.
-     */
-    
-    public class FindSimilarAction: IAction
-    {
-//        private const double  MinReasonableSimilarityValue = 0.3;
-        
-        public void Update( IActionContext context, ref ActionPresentation presentation )
-        {
-            if ( context.SelectedResources.Count != 1 )
-            {
-                presentation.Visible = false;
-            }
-            else
-            {
-                IResource selResource = context.SelectedResources [0];
-            
-                if ( Core.ResourceStore.ResourceTypes [selResource.Type].HasFlag( ResourceTypeFlags.NoIndex ) )
-                {
-                    presentation.Visible = false;
-                }
-            }
-            
-            if ( context.Kind == ActionContextKind.MainMenu && !presentation.Visible )
-            {
-                presentation.Visible = true;
-                presentation.Enabled = false;
-            }
-    
-            if ( !Core.TextIndexManager.IsIndexPresent() )
-            {
-                presentation.Enabled = false;
-            }
-        }
-		
-        public void Execute( IActionContext context )
-        {
-            if ( context.SelectedResources.Count == 1 )
-            {
-                IResource simBase = context.SelectedResources [0];
-
-//--  LX: cuurently this code is closed
-//                ArrayList entries = ((FullTextIndexer)Core.FullTextIndexer).GetSimilarDocuments( simBase.Id );
-                ArrayList entries = new ArrayList();
-//--
-                IntArrayList ids = new IntArrayList();
-                SimplePropertyProvider provider = new SimplePropertyProvider();
-                foreach( Pair pair in entries )
-                {
-                    int resourceID = (int) pair.First;
-                    float similarity = (float) pair.Second;
-                    ids.Add( resourceID );
-                    provider.SetProp( resourceID, FullTextIndexer.SimilarityPropId, (double) similarity );
-                }
-
-                IResourceList simList = Core.ResourceStore.ListFromIds( ids, true );
-                simList.AttachPropertyProvider( provider );
-
-                ColumnDescriptor[] defaultCols = Core.DisplayColumnManager.GetDefaultColumns( simList );
-                ColumnDescriptor[] allColumns = new ColumnDescriptor[ defaultCols.Length + 1 ];
-                defaultCols.CopyTo( allColumns, 0 );
-                allColumns[ allColumns.Length - 1 ] = new ColumnDescriptor( "Similarity", 100 );
-                
-                Core.UIManager.BeginUpdateSidebar();
-                Core.TabManager.SelectResourceTypeTab( null );
-                Core.UIManager.EndUpdateSidebar();
-                Core.ResourceBrowser.DisplayResourceList( null, simList, "Documents similar to " + simBase.DisplayName, allColumns );
-                Core.ResourceBrowser.FocusResourceList();
-            }
-        }
-    }
-
     /// <summary>
     /// The action for showing the Advanced Search dialog.
     /// </summary>
@@ -501,7 +425,7 @@ namespace JetBrains.Omea
     {
         public override void Execute( IActionContext context )
         {
-            Form mainFrame = ICore.Instance.MainWindow as Form;
+            Form mainFrame = Core.MainWindow as Form;
             mainFrame.Close();
         }
     }
@@ -513,7 +437,7 @@ namespace JetBrains.Omea
     {
         public void Execute( IActionContext context )
         {
-            if( ( context.CurrentUrl != null ) && ( context.CurrentUrl != "" ) )
+            if( !string.IsNullOrEmpty( context.CurrentUrl ) )
 				Core.UIManager.OpenInNewBrowserWindow(context.CurrentUrl);
 #if DEBUG
 			else
@@ -523,11 +447,10 @@ namespace JetBrains.Omea
 
         public void Update( IActionContext context, ref ActionPresentation presentation )
         {
-            presentation.Visible = ((context.CurrentUrl != null) && (context.CurrentUrl != ""));
+            presentation.Visible = !string.IsNullOrEmpty( context.CurrentUrl );
         }
     }
 
-    //-------------------------------------------------------------------------
     public class RestoreDefaultViewsAction: SimpleAction
     {
         public override void Execute( IActionContext context )
@@ -551,15 +474,15 @@ namespace JetBrains.Omea
 
         public ViewAnnotationsAction()
         {
-            MenuItemState = ICore.Instance.SettingStore.ReadBool( "Annotations", "ViewAnnotations", true );
-            ICore.Instance.ResourceBrowser.ViewAnnotations = MenuItemState;
+            MenuItemState = Core.SettingStore.ReadBool( "Annotations", "ViewAnnotations", true );
+            Core.ResourceBrowser.ViewAnnotations = MenuItemState;
         }
 
         public void Execute( IActionContext context )
         {
             MenuItemState = !MenuItemState;
-            ICore.Instance.ResourceBrowser.ViewAnnotations = MenuItemState;
-            ICore.Instance.SettingStore.WriteBool( "Annotations", "ViewAnnotations", MenuItemState );
+            Core.ResourceBrowser.ViewAnnotations = MenuItemState;
+            Core.SettingStore.WriteBool( "Annotations", "ViewAnnotations", MenuItemState );
         }
 
         public void Update( IActionContext context, ref ActionPresentation presentation )
@@ -572,7 +495,7 @@ namespace JetBrains.Omea
     {
         public void Execute( IActionContext context )
         {
-            ICore.Instance.ResourceBrowser.EditAnnotation( context.SelectedResources[ 0 ] );
+            Core.ResourceBrowser.EditAnnotation( context.SelectedResources[ 0 ] );
         }
 
         public void Update( IActionContext context, ref ActionPresentation presentation )
@@ -761,7 +684,7 @@ namespace JetBrains.Omea
 
         public void Update( IActionContext context, ref ActionPresentation presentation )
         {
-            presentation.Visible = (Core.RightSidebar.PaneCount > 0);
+            presentation.Visible = (Core.RightSidebar.PanesCount > 0);
             presentation.Checked = Core.UIManager.RightSidebarExpanded;
         }
     }
@@ -833,7 +756,7 @@ namespace JetBrains.Omea
                     Core.ResourceBrowser.ResourceListExpanded = false;
                 }
 
-                (Core.TabManager as TabSwitcher).TabChanging += new EventHandler(TabManager_TabChanging);
+                (Core.TabManager as TabSwitcher).TabChanging += TabManager_TabChanging;
             }
             else
             {
@@ -1008,7 +931,7 @@ namespace JetBrains.Omea
 
     public class OpenUrlAction: SimpleAction
     {
-        private string _url;
+        private readonly string _url;
 
         public OpenUrlAction( string url )
         {
@@ -1290,12 +1213,13 @@ namespace JetBrains.Omea
         public void Update( IActionContext context, ref ActionPresentation presentation )
         {
             ResourceBrowser browser = Core.ResourceBrowser as ResourceBrowser;
-            presentation.Checked = (browser.VerticalLayout == _value) && !browser.ContentOnlyMode;
+            presentation.Checked = (browser.VerticalLayout == _value) && 
+                (Core.ResourceBrowser.BrowserPanesMode == BrowserPanesVisibilityMode.Both);
         }
 
         public override string ToString()
         {
-            return base.ToString() + "(" + this._value.ToString() + ")";
+            return base.ToString() + "(" + _value + ")";
         }
     }
 
@@ -1303,16 +1227,29 @@ namespace JetBrains.Omea
     {
         public void Execute( IActionContext context )
         {
-            ResourceBrowser browser = Core.ResourceBrowser as ResourceBrowser;
-//            Core.ResourceBrowser.ResourceListExpanded = !Core.ResourceBrowser.ResourceListExpanded;
-            browser.ContentOnlyMode = !browser.ContentOnlyMode;
+            BrowserPanesVisibilityMode mode = Core.ResourceBrowser.BrowserPanesMode;
+            Core.ResourceBrowser.BrowserPanesMode = (mode == BrowserPanesVisibilityMode.ContentOnly) ? 
+                                                     BrowserPanesVisibilityMode.Both : BrowserPanesVisibilityMode.ContentOnly;
         }
 
         public void Update( IActionContext context, ref ActionPresentation presentation )
         {
-            ResourceBrowser browser = Core.ResourceBrowser as ResourceBrowser;
-            presentation.Checked = browser.ContentOnlyMode;
-//            presentation.Checked = !Core.ResourceBrowser.ResourceListExpanded;
+            presentation.Checked = (Core.ResourceBrowser.BrowserPanesMode == BrowserPanesVisibilityMode.ContentOnly);
+        }
+    }
+
+    public class ToggleListOnlyModeAction : IAction
+    {
+        public void Execute( IActionContext context )
+        {
+            BrowserPanesVisibilityMode mode = Core.ResourceBrowser.BrowserPanesMode;
+            Core.ResourceBrowser.BrowserPanesMode = (mode == BrowserPanesVisibilityMode.ListOnly) ? 
+                                                     BrowserPanesVisibilityMode.Both : BrowserPanesVisibilityMode.ListOnly;
+        }
+
+        public void Update( IActionContext context, ref ActionPresentation presentation )
+        {
+            presentation.Checked = (Core.ResourceBrowser.BrowserPanesMode == BrowserPanesVisibilityMode.ListOnly);
         }
     }
 
@@ -1382,7 +1319,7 @@ namespace JetBrains.Omea
         {
             IEmailService service = (IEmailService) Core.PluginLoader.GetPluginService( typeof(IEmailService) );
             string subject = context.CurrentPageTitle;
-            if ( subject == null || subject.Length == 0 )
+            if( string.IsNullOrEmpty( subject ) )
             {
                 subject = context.CurrentUrl;
             }
@@ -1391,8 +1328,7 @@ namespace JetBrains.Omea
 
         public void Update( IActionContext context, ref ActionPresentation presentation )
         {
-            if ( context.CurrentUrl == null || context.CurrentUrl.Length == 0 ||
-                context.CurrentUrl == "about:blank" )
+            if ( string.IsNullOrEmpty( context.CurrentUrl ) || context.CurrentUrl == "about:blank" )
             {
                 presentation.Enabled = false;
             }

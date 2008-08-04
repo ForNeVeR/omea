@@ -96,7 +96,7 @@ namespace JetBrains.Omea.GUIControls
         public override void Execute( IActionContext context )
         {
             IResource res = context.SelectedResources[ 0 ];
-            if( res.GetStringProp( "DeepName" ) == Core.FilterManager.ViewNameForSearchResults )
+            if( res.GetStringProp( "DeepName" ) == Core.FilterRegistry.ViewNameForSearchResults )
             {
                 SearchCtrl.ShowAdvancedSearchDialog( res );
             }
@@ -119,7 +119,7 @@ namespace JetBrains.Omea.GUIControls
             if( presentation.Visible )
             {
                 IResource res = context.SelectedResources[ 0 ];
-                if( res.GetStringProp( "DeepName" ) == Core.FilterManager.ViewNameForSearchResults )
+                if( res.GetStringProp( "DeepName" ) == Core.FilterRegistry.ViewNameForSearchResults )
                 {
                     presentation.Text = "Refine this search...";
                 }
@@ -138,8 +138,7 @@ namespace JetBrains.Omea.GUIControls
             IResource view = context.SelectedResources[ 0 ];
 
             //  Construct a name for a new view.
-            string newName;
-            newName = "Copy of " + view.DisplayName;
+            string newName = "Copy of " + view.DisplayName;
             IResource res = Core.ResourceStore.FindUniqueResource( FilterManagerProps.ViewResName, Core.Props.Name, newName );
             if( res != null )
             {
@@ -153,7 +152,7 @@ namespace JetBrains.Omea.GUIControls
             }
 
             int sortOrder = view.HasProp( "RootSortOrder" ) ? view.GetIntProp( "RootSortOrder" ) : 0;
-            IResource newView = Core.FilterManager.CloneView( view, newName );
+            IResource newView = Core.FilterRegistry.CloneView( view, newName );
 
             Core.ResourceTreeManager.LinkToResourceRoot( newView, sortOrder );
             Core.LeftSidebar.DefaultViewPane.EditResourceLabel( newView );
@@ -167,7 +166,7 @@ namespace JetBrains.Omea.GUIControls
             if( presentation.Visible )
             {
                 string deepName = context.SelectedResources[ 0 ].GetStringProp( "DeepName" );
-                presentation.Visible = (deepName != Core.FilterManager.ViewNameForSearchResults );
+                presentation.Visible = (deepName != Core.FilterRegistry.ViewNameForSearchResults );
             }
         }
     }
@@ -179,9 +178,9 @@ namespace JetBrains.Omea.GUIControls
             IResource view = context.SelectedResources[ 0 ];
             IResource[][] conditions;
             IResource[]   exceptions;
-            FilterManager.CloneConditionTypeLinks( view, out conditions, out exceptions );
+            FilterRegistry.CloneConditionTypeLinks( view, out conditions, out exceptions );
 
-            string[] types = FilterManager.CompoundType( view );
+            string[] types = FilterRegistry.CompoundType( view );
             Core.FilteringFormsManager.ShowEditActionRuleForm( view.GetStringProp( Core.Props.Name ), types,
                                                                conditions, exceptions, null );
         }
@@ -204,7 +203,7 @@ namespace JetBrains.Omea.GUIControls
                                      MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation ) == DialogResult.Yes )
                 {
                     for( int i = 0; i < context.SelectedResources.Count; i++ )
-                        Core.FilterManager.DeleteView( context.SelectedResources[ i ] );
+                        Core.FilterRegistry.DeleteView( context.SelectedResources[ i ] );
                 }
             }
             else
@@ -212,7 +211,7 @@ namespace JetBrains.Omea.GUIControls
                 string name = context.SelectedResources[ 0 ].GetPropText( Core.Props.Name );
                 if( MessageBox.Show( "Delete view \"" + name + "\"?", "Delete View", 
                                      MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation ) == DialogResult.Yes )
-                    Core.FilterManager.DeleteView( context.SelectedResources[ 0 ] );
+                    Core.FilterRegistry.DeleteView( context.SelectedResources[ 0 ] );
             }
         }
 
@@ -345,7 +344,7 @@ namespace JetBrains.Omea.GUIControls
                 if( res.Type == FilterManagerProps.ViewFolderResName )
                     DeleteFolder( res );
                 else
-                    Core.FilterManager.DeleteView( res );
+                    Core.FilterRegistry.DeleteView( res );
             }
             new ResourceProxy( folder ).Delete();
         }
@@ -378,7 +377,7 @@ namespace JetBrains.Omea.GUIControls
         public void Update( IActionContext context, ref ActionPresentation presentation )
         {
             presentation.Enabled =
-                (Core.ResourceStore.GetAllResources( FilterManager.RuleApplicableResourceTypeResName ).Count > 0);
+                (Core.ResourceStore.GetAllResources( FilterRegistry.RuleApplicableResourceTypeResName ).Count > 0);
         }
     }
     public class NewRuleAction: IAction
@@ -392,7 +391,7 @@ namespace JetBrains.Omea.GUIControls
         public void Update( IActionContext context, ref ActionPresentation presentation )
         {
             presentation.Enabled =
-                (Core.ResourceStore.GetAllResources( FilterManager.RuleApplicableResourceTypeResName ).Count > 0);
+                (Core.ResourceStore.GetAllResources( FilterRegistry.RuleApplicableResourceTypeResName ).Count > 0);
         }
     }
 
@@ -450,7 +449,7 @@ namespace JetBrains.Omea.GUIControls
         {
             foreach( IResource rule in rules )
             {
-                Core.FilterManager.ExecRule( rule, list );
+                Core.FilterEngine.ExecRule( rule, list );
             }
         }
 
@@ -580,7 +579,7 @@ namespace JetBrains.Omea.GUIControls
             base.Update( context, ref presentation );
             presentation.Visible = presentation.Visible &&
                                    context.SelectedResources[ 0 ].GetStringProp( "DeepName" ) ==
-                                   Core.FilterManager.ViewNameForSearchResults;
+                                   Core.FilterRegistry.ViewNameForSearchResults;
         }
     }
 
@@ -684,7 +683,7 @@ namespace JetBrains.Omea.GUIControls
             IResourceList unreadList = Core.ResourceStore.FindResourcesWithProp( null, Core.Props.IsUnread );
             foreach( IResource view in _views )
             {
-                IResourceList  inView = Core.FilterManager.ExecView( view );
+                IResourceList  inView = Core.FilterEngine.ExecView( view );
                 
                 IResource ws = Core.WorkspaceManager.ActiveWorkspace;
                 if ( ws != null )
@@ -764,12 +763,11 @@ namespace JetBrains.Omea.GUIControls
         public override string Name
         {
             get { return "Performing emptying the Deleted Resources"; }
-            set {}
         }
 
         public override void  EnumerationStarting()
         {
-            IResourceList  inView = Core.FilterManager.ExecView( _savedView );
+            IResourceList  inView = Core.FilterEngine.ExecView( _savedView );
             inView = inView.Intersect( Core.ResourceBrowser.FilterResourceList, true );
             ResourceIds = new IntArrayList( inView.ResourceIds );
             Index = 0;

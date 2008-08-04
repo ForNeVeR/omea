@@ -13,7 +13,7 @@ using JetBrains.Omea.ResourceTools;
 
 namespace JetBrains.Omea.Notes
 {
-    [PluginDescriptionAttribute("Michael (LloiX) Gerasimov, light.on.shadow@gmail.com", "Support for short notes in html format. Allows to create and edit notes.")]
+    [PluginDescription("Notes", "Michael (LloiX) Gerasimov", "Support for short notes in html format. Allows to create and edit notes.<LineBreak/><Hyperlink NavigateUri=\"mailto:light.on.shadow@gmail.com\">light.on.shadow@gmail.com</Hyperlink>", PluginDescriptionFormat.XamlInline, "Icons/NotesPluginIcon.png")]
     public class NotesPlugin : IPlugin, IResourceDisplayer, IResourceTextProvider
     {
         #region IPlugin Members
@@ -180,7 +180,7 @@ namespace JetBrains.Omea.Notes
     {
         public void RegisterViewsFirstRun()
         {
-            IResource view = Core.FilterManager.RegisterView( "All Notes", new string[] { NotesPlugin._Note, "Fragment" }, (IResource[])null, null );
+            IResource view = Core.FilterRegistry.RegisterView( "All Notes", new string[] { NotesPlugin._Note, "Fragment" }, (IResource[])null, null );
             Core.ResourceTreeManager.LinkToResourceRoot( view, 8 );
             IResourceList allNotes = Core.ResourceStore.GetAllResources( NotesPlugin._Note );
             foreach( IResource note in allNotes )

@@ -4,6 +4,7 @@
 /// </copyright>
 
 using System;
+using System.Collections.Generic;
 using JetBrains.Omea.Base;
 using JetBrains.Omea.Containers;
 using JetBrains.Omea.OpenAPI;
@@ -120,6 +121,7 @@ namespace JetBrains.Omea.ResourceStore
         private PropTypeItem[] _pseudoProps           = new PropTypeItem[ 3 ];
         private Hashtable      _propTypeNameCache     = CollectionsUtil.CreateCaseInsensitiveHashtable();
         private bool           _propTypesCached;
+        private Dictionary<int, object> _propIdCache = new Dictionary<int, object>();
 
         internal PropTypeCollection( MyPalStorage storage, ITable propTypeTable )
         {
@@ -184,10 +186,34 @@ namespace JetBrains.Omea.ResourceStore
         {
             return Register( name, propType, PropTypeFlags.Normal, null );
         }
-		
+
+        public PropId<T> Register<T>(string name, PropDataTypeGeneric<T> dataType)
+        {
+            int id = Register(name, dataType.Type);
+            return InternPropId(new PropId<T>(id));
+        }
+
+        private PropId<T> InternPropId<T>(PropId<T> propId)
+        {
+            lock(_propIdCache)
+            {
+                if (!_propIdCache.ContainsKey(propId.Id))
+                {
+                    _propIdCache[propId.Id] = propId;
+                }
+                return (PropId<T>) _propIdCache[propId.Id];
+            }
+        }
+
         public int Register( string name, PropDataType propType, PropTypeFlags flags )
         {
             return Register( name, propType, flags, null );
+        }
+
+        public PropId<T> Register<T>(string name, PropDataTypeGeneric<T> dataType, PropTypeFlags flags)
+        {
+            int id = Register(name, dataType.Type, flags);
+            return InternPropId(new PropId<T>(id));
         }
 
         public int Register( string name, PropDataType dataType, PropTypeFlags flags, IPlugin ownerPlugin )
@@ -198,6 +224,14 @@ namespace JetBrains.Omea.ResourceStore
             CreateOrUpdatePropTypeResource( name, dataType, flags, ownerPlugin, ID, newPropType );
 
             return ID;
+        }
+
+
+        public PropId<T> Register<T>(string name, PropDataTypeGeneric<T> dataType, PropTypeFlags flags,
+                                     IPlugin ownerPlugin)
+        {
+            int id = Register(name, dataType.Type, flags, ownerPlugin);
+            return InternPropId(new PropId<T>(id));
         }
 
         internal void CreateOrUpdatePropTypeResource( string name, PropDataType dataType, PropTypeFlags flags, IPlugin ownerPlugin, int ID, bool newPropType )
@@ -247,6 +281,12 @@ namespace JetBrains.Omea.ResourceStore
             RegisterPropDisplayNameInternal( propID, displayName, null );
         }
 
+
+        public void RegisterDisplayName<T>(PropId<T> propId, string displayName)
+        {
+            RegisterDisplayName(propId.Id, displayName);
+        }
+
         /**
          * Sets the display name for a directed link,
          */
@@ -258,6 +298,11 @@ namespace JetBrains.Omea.ResourceStore
                 throw new StorageException( "Both Source and Target display names can only be specified for directed links" );
             }
             RegisterPropDisplayNameInternal( propID, fromDisplayName, toDisplayName );
+        }
+
+        public void RegisterDisplayName(PropId<IResource> propId, string fromDisplayName, string toDisplayName)
+        {
+            RegisterDisplayName(propId.Id, fromDisplayName, toDisplayName);
         }
 
         /**

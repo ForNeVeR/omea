@@ -15,7 +15,7 @@
 		<OutputType>Library</OutputType>
 		<AppDesignerFolder>Properties</AppDesignerFolder>
 		<RootNamespace>JetBrains.Omea.Jiffa</RootNamespace>
-		<AssemblyName>Jiffa</AssemblyName>
+		<AssemblyName>Jiffa.OmeaPlugin</AssemblyName>
 		<FileUpgradeFlags></FileUpgradeFlags>
 		<UpgradeBackupLocation></UpgradeBackupLocation>
 		<OldToolsVersion>2.0</OldToolsVersion>
@@ -75,9 +75,9 @@
 			<HintPath>..\..\..\..\Bin\MshtmlBrowserControl.dll</HintPath>
 			<Private>False</Private>
 		</Reference>
-		<Reference Include="Nntp, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+		<Reference Include="Nntp.OmeaPlugin, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
 			<SpecificVersion>False</SpecificVersion>
-			<HintPath>..\..\..\..\Bin\Nntp.dll</HintPath>
+			<HintPath>..\..\..\..\Bin\Nntp.OmeaPlugin.dll</HintPath>
 			<Private>False</Private>
 		</Reference>
 		<Reference Include="OmniaMeaBase, Version=1.0.2494.36850, Culture=neutral">
@@ -310,7 +310,7 @@
 		<OutputFiles Include="$(TargetDir)\$(TargetName).pdb"/>-->
 	</ItemGroup>
 	<Target Name="AfterBuild">
-		<Copy SourceFiles="$(TargetDir)\$(TargetName).dll" DestinationFolder="C:\program Files\Omea" />
-		<Copy SourceFiles="$(TargetDir)\$(TargetName).pdb" DestinationFolder="C:\program Files\Omea" />
+		<Copy SourceFiles="$(TargetDir)\$(TargetName).dll" DestinationFolder="..\..\..\..\Bin\Plugins" />
+		<Copy SourceFiles="$(TargetDir)\$(TargetName).pdb" DestinationFolder="..\..\..\..\Bin\Plugins" />
 	</Target>
 </Project>

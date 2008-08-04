@@ -49,13 +49,13 @@ namespace JetBrains.Omea
             _closeImageList = new ImageList();
             _delImageList.ColorDepth = Core.ResourceIconManager.IconColorDepth;
 
-            _delImageList.Images.Add( Utils.GetResourceIconFromAssembly( "OmniaMea", "OmniaMea.Icons.delete.ico" ) );
-            _delImageList.Images.Add( Utils.GetResourceIconFromAssembly( "OmniaMea", "OmniaMea.Icons.delete_hover.ico" ) );
-            _delImageList.Images.Add( Utils.GetResourceIconFromAssembly( "OmniaMea", "OmniaMea.Icons.delete_pressed.ico" ) );
+            _delImageList.Images.Add( Utils.TryGetEmbeddedResourceIconFromAssembly( "OmniaMea", "OmniaMea.Icons.delete.ico" ) );
+            _delImageList.Images.Add( Utils.TryGetEmbeddedResourceIconFromAssembly( "OmniaMea", "OmniaMea.Icons.delete_hover.ico" ) );
+            _delImageList.Images.Add( Utils.TryGetEmbeddedResourceIconFromAssembly( "OmniaMea", "OmniaMea.Icons.delete_pressed.ico" ) );
 
-            _closeImageList.Images.Add( Utils.GetResourceIconFromAssembly( "OmniaMea", "OmniaMea.Icons.close1.ico" ) );
-            _closeImageList.Images.Add( Utils.GetResourceIconFromAssembly( "OmniaMea", "OmniaMea.Icons.close2.ico" ) );
-            _closeImageList.Images.Add( Utils.GetResourceIconFromAssembly( "OmniaMea", "OmniaMea.Icons.close3.ico" ) );
+            _closeImageList.Images.Add( Utils.TryGetEmbeddedResourceIconFromAssembly( "OmniaMea", "OmniaMea.Icons.close1.ico" ) );
+            _closeImageList.Images.Add( Utils.TryGetEmbeddedResourceIconFromAssembly( "OmniaMea", "OmniaMea.Icons.close2.ico" ) );
+            _closeImageList.Images.Add( Utils.TryGetEmbeddedResourceIconFromAssembly( "OmniaMea", "OmniaMea.Icons.close3.ico" ) );
 
             ReadVisibilityTimer();
             InitializeComponent();

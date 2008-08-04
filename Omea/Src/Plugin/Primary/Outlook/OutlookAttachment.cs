@@ -17,12 +17,13 @@ namespace JetBrains.Omea.OutlookPlugin
     
     public class OutlookAttachment
     {
-        private int _attachmentIndex;
-        private int _sourceMailID;
-        private string _fileName;
+        private readonly IResource _resAttach;
+
+        private readonly int _attachmentIndex;
+        private readonly int _sourceMailID;
+        private readonly string _fileName;
+        private readonly int _attachMethod = -1;
         private int _num = -1;
-        private int _attachMethod = -1;
-        private IResource _resAttach;
 
         public OutlookAttachment( IResource res )
         {
@@ -71,7 +72,8 @@ namespace JetBrains.Omea.OutlookPlugin
                 return null;
             }
         }
-        private int GetAttachNum( IEMessage message, int index )
+
+        private static int GetAttachNum( IEMessage message, int index )
         {
             IETable table = message.GetAttachments();
             if ( table == null ) return 0;
@@ -96,7 +98,9 @@ namespace JetBrains.Omea.OutlookPlugin
             }
             return 0;
         }
-        private MemoryStream EmptyStream { get { return new MemoryStream( new byte[] {} ); } }
+
+        private static MemoryStream EmptyStream { get { return new MemoryStream( new byte[] {} ); } }
+
         public IEMessage OpenMessage()
         {
             IResource mail = Core.ResourceStore.LoadResource( _sourceMailID );

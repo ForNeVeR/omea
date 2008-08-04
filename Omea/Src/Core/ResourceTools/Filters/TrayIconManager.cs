@@ -21,13 +21,13 @@ namespace JetBrains.Omea.FiltersManagement
         private enum TrayIconMode { Strict, Outlook };
 
         private IResourceList AllRules;
-        private Hashtable    WatchedLists = new Hashtable();
-        private Hashtable    WatchedIcons = new Hashtable();
-        private ArrayList    WatchersOrder = new ArrayList();
+        private readonly Hashtable    WatchedLists = new Hashtable();
+        private readonly Hashtable    WatchedIcons = new Hashtable();
+        private readonly ArrayList    WatchersOrder = new ArrayList();
 
-        private NotifyIcon   NotIcon;
-        private Icon         DefaultIcon;
-        private string       DefaultTooltip;
+        private readonly NotifyIcon   NotIcon;
+        private readonly Icon         DefaultIcon;
+        private readonly string       DefaultTooltip;
         private TrayIconMode Mode = TrayIconMode.Strict;
 
         private delegate void AssignmentDelegate( IResource res, string name, Icon icon );
@@ -73,14 +73,14 @@ namespace JetBrains.Omea.FiltersManagement
                                                 IResource[] conditions, IResource[] exceptions,
                                                 Icon icon )
         {
-            IResource[][] group = FilterManager.Convert2Group( conditions );
+            IResource[][] group = FilterRegistry.Convert2Group( conditions );
             return RegisterTrayIconRule( name, types, group, exceptions, icon );
         }
         public IResource  ReregisterTrayIconRule( IResource rule, string name, string[] types,
                                                   IResource[] conditions, IResource[] exceptions,
                                                   Icon icon )
         {
-            IResource[][] group = FilterManager.Convert2Group( conditions );
+            IResource[][] group = FilterRegistry.Convert2Group( conditions );
             return ReregisterTrayIconRule( rule, name, types, group, exceptions, icon );
         }
         #endregion Old-style interface
@@ -95,16 +95,14 @@ namespace JetBrains.Omea.FiltersManagement
                 Trace.WriteLine( "TrayIconManager -- Registering publicly rule [" + name + "]." );
 
                 ResourceProxy proxy = GetRuleProxy( rule );
-                FilterManager.InitializeView( proxy, name, types, conditions, exceptions ); // proxy.EndUpdate inside
+                FilterRegistry.InitializeView( proxy, name, types, conditions, exceptions ); // proxy.EndUpdate inside
                 Core.ResourceAP.RunJob( new AssignmentDelegate( AddSpecificParams ), proxy.Resource, name, icon );
                 InitializeWatcher( proxy.Resource, name, icon );
                 return proxy.Resource;
             }
-            else
-            {
-                Trace.WriteLine( "TrayIconManager -- rule [" + name + "] is already registered." );
-                return rule;
-            }
+
+            Trace.WriteLine( "TrayIconManager -- rule [" + name + "] is already registered." );
+            return rule;
         }
 
         public IResource  ReregisterTrayIconRule( IResource rule, string name, string[] types,
@@ -114,7 +112,7 @@ namespace JetBrains.Omea.FiltersManagement
             UnregisterIconWatcherImpl( rule.DisplayName, false );
             ResourceProxy proxy = new ResourceProxy( rule );
             proxy.BeginUpdate();
-            FilterManager.InitializeView( proxy, name, types, conditions, exceptions );
+            FilterRegistry.InitializeView( proxy, name, types, conditions, exceptions );
 
             Core.ResourceAP.RunUniqueJob( new AssignmentDelegate( AddSpecificParams ), rule, name, icon );
             InitializeWatcher( rule, name, icon );
@@ -210,7 +208,7 @@ namespace JetBrains.Omea.FiltersManagement
             #endregion Preconditions
 
             ResourceProxy newRule = GetRuleProxy( null );
-            FilterManager.CloneView( source, newRule, newName );
+            FilterRegistry.CloneView( source, newRule, newName );
             CloneStaticInfo( source, newRule.Resource );
             RegisterIconWatcher( newRule.Resource );
 
@@ -275,7 +273,7 @@ namespace JetBrains.Omea.FiltersManagement
                     //  The latter can be caused by database corruption when valid
                     //  icon content can not be parsed from binary representation.
                     //---------------------------------------------------------
-                    Core.FilterManager.MarkRuleAsInvalid( rule, "Application did not manage to load a rule's icon." );
+                    Core.FilterRegistry.MarkRuleAsInvalid( rule, "Application did not manage to load a rule's icon." );
                     Core.UIManager.ShowSimpleMessageBox( "Tray Icon Manager", "Tray icon can not be loaded for a rule \"" +
                                                                             name + "\" - icon file is not found or corrupted.");
                 }
@@ -284,7 +282,7 @@ namespace JetBrains.Omea.FiltersManagement
 
         private void  InitializeWatcher( IResource rule, string name, Icon icon )
         {
-            IResourceList watchList = Core.FilterManager.ExecView( rule );
+            IResourceList watchList = Core.FilterEngine.ExecView( rule );
             watchList = watchList.Minus( Core.ResourceStore.FindResourcesWithPropLive( null, Core.Props.IsDeleted ));
 
             WatchersOrder.Add( name );
@@ -310,7 +308,7 @@ namespace JetBrains.Omea.FiltersManagement
             if( deleteResource )
             {
                 IResource rule = FindRule( name );
-                Core.FilterManager.DeleteView( rule );
+                Core.FilterRegistry.DeleteView( rule );
             }
 
             WatchedLists.Remove( name );

@@ -1052,6 +1052,7 @@ namespace JetBrains.Omea.OutlookPlugin
         /// </summary>
         /// <remarks>The name of the last executing job is displayed in the tooltip for
         /// the async processor status indicator in the status bar.</remarks>
-        public override string Name { get { return "Empty job to start async processor"; } set { } }
+        public override string Name { get { return "Empty job to start async processor"; }
+        }
     }
 }

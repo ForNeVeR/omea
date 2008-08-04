@@ -280,7 +280,6 @@ namespace JetBrains.Omea.OutlookPlugin
         public override string Name
         {
             get { return "Exporting task"; }
-            set { }
         }
     }
 }

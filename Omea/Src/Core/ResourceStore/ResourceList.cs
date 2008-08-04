@@ -129,6 +129,18 @@ namespace JetBrains.Omea.ResourceStore
             }
         }
 
+        public IResource Find(Predicate<IResource> predicate)
+        {
+            lock( this )
+            {
+                foreach( IResource res in this )
+                {
+                    if ( predicate(res)) return res;
+                }
+            }
+            return null;
+        }
+
         public event ResourceIndexEventHandler ResourceAdded
         {
             add

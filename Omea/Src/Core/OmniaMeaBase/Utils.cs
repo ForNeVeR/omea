@@ -5,6 +5,8 @@
 
 using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
@@ -14,9 +16,13 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Forms;
+using System.Windows.Media;
 
 using JetBrains.Annotations;
 using JetBrains.Omea.OpenAPI;
+using JetBrains.Util;
+
+using Color=System.Drawing.Color;
 
 namespace JetBrains.Omea.Base
 {
@@ -182,11 +188,6 @@ namespace JetBrains.Omea.Base
             return -1;
         }
 
-        public static bool IsValidString( string str )
-        {
-            return ( str != null ) && ( str.Length > 0 );
-        }
-
         public static string MergeStrings( string[] array, char delim )
         {
             Guard.NullArgument( array, "array" );
@@ -305,8 +306,10 @@ namespace JetBrains.Omea.Base
 		/// </summary>
         public static string SizeToString( long size )
         {
-			if(!Core.UserInterfaceAP.IsOwnerThread)
+            #region Preconditions
+            if (!Core.UserInterfaceAP.IsOwnerThread)
 				throw new InvalidOperationException("Formatting must be called on the UI AP thread.");
+            #endregion Preconditions
 
 			// Invoke the system formatting routine
 			if(StrFormatByteSize64A( size, _buffer, (uint)_buffer.Length ) == IntPtr.Zero)
@@ -360,7 +363,7 @@ namespace JetBrains.Omea.Base
             string iconName = flag.GetStringProp( "IconName" );
             if( asmName != null && iconName != null )
             {
-                return GetResourceIconFromAssembly( asmName, iconName );
+                return TryGetEmbeddedResourceIconFromAssembly( asmName, iconName );
             }
             return null;
         }
@@ -371,35 +374,29 @@ namespace JetBrains.Omea.Base
             string iconName = flag.GetStringProp( "IconName" );
             if( asmName != null && iconName != null )
             {
-                return GetResourceImageFromAssembly( asmName, iconName );
+                return TryGetEmbeddedResourceImageFromAssembly( asmName, iconName );
             }
             return null;
         }
 
-        public static Icon GetResourceIconFromAssembly( string asmName, string resName )
+    	[CanBeNull]
+    	public static Icon TryGetEmbeddedResourceIconFromAssembly([NotNull] string asmName, [NotNull] string resName )
         {
-            Icon     icon = null;
-            Assembly iconAssembly = FindAssembly( asmName );
+            Icon        icon = null;
+            Assembly    iconAssembly = FindAssembly( asmName );
+            Stream      iconStream = iconAssembly.GetManifestResourceStream( resName );
 
-            if ( iconAssembly != null )
-            {
-                Stream iconStream = iconAssembly.GetManifestResourceStream( resName );
-                if ( iconStream != null )
-                {
-                    icon = new Icon( iconStream );
-                }
-            }
-
-            return icon;
+            return ( iconStream != null ) ? new Icon( iconStream ) : null;
         }
 
-        public static Image GetResourceImageFromAssembly( string asmName, string resName )
+    	[CanBeNull]
+    	public static Image TryGetEmbeddedResourceImageFromAssembly([NotNull] string asmName, [NotNull] string resName )
         {
-            Assembly asm = FindAssembly( asmName );
-            return GetResourceImageFromAssembly( asm, resName );
+    		return TryGetEmbeddedResourceImageFromAssembly( FindAssembly( asmName ), resName );
         }
 
-        public static Image GetResourceImageFromAssembly( Assembly asm, string resName )
+    	[CanBeNull]
+    	public static Image TryGetEmbeddedResourceImageFromAssembly([CanBeNull] Assembly asm, [NotNull] string resName )
         {
             if( asm != null )
             {
@@ -410,14 +407,89 @@ namespace JetBrains.Omea.Base
             return null;
         }
 
+    	/// <summary>
+    	/// Makes an Avalon Pack Absolute URI for a resource whose relative name is <paramref name="sRelativeNameInCallingAssembly"/> and which is packaged in the <paramref name="assembly"/>.
+    	/// </summary>
+    	[NotNull]
+    	public static Uri MakeResourceUri([NotNull] string sRelativeNameInCallingAssembly, [NotNull] Assembly assembly)
+    	{
+    		if(sRelativeNameInCallingAssembly.IsEmpty())
+    			throw new ArgumentNullException("sRelativeNameInCallingAssembly");
+    		if(assembly == null)
+    			throw new ArgumentNullException("assembly");
+
+    		sRelativeNameInCallingAssembly = sRelativeNameInCallingAssembly.TrimStart('/');
+
+    		return new Uri(string.Format("pack://application:,,,/{0};component/{1}", assembly.GetName().Name, sRelativeNameInCallingAssembly), UriKind.Absolute);
+    	}
+
+    	/// <summary>
+    	/// Loads a raster or relative image from the application Pack Resources.
+    	/// // TODO: implement loading vector images.
+    	/// </summary>
+    	/// <param name="uriPack">Pack URI of the resource.</param>
+    	[NotNull]
+    	public static ImageSource LoadResourceImage([NotNull] Uri uriPack)
+    	{
+    		if(uriPack == null)
+    			throw new ArgumentNullException("uriPack");
+
+    		var result = (ImageSource)TypeDescriptor.GetConverter(typeof(ImageSource)).ConvertFrom(uriPack);
+
+    		if(result == null)
+    			throw new InvalidOperationException(string.Format("Could not load an image from the Pack URI {0}.", uriPack));
+
+    		return result;
+    	}
+
+    	/// <summary>
+    	/// Loads a raster or relative image from the application Pack Resources.
+    	/// // TODO: implement loading vector images.
+    	/// </summary>
+    	/// <param name="sRelativeNameInCallingAssembly">Relative name of the Pack resource.</param>
+    	[NotNull]
+    	public static ImageSource LoadResourceImage([NotNull] string sRelativeNameInCallingAssembly)
+    	{
+    		return LoadResourceImage(sRelativeNameInCallingAssembly, Assembly.GetCallingAssembly());
+    	}
+
+    	/// <summary>
+    	/// Loads a raster or relative image from the application Pack Resources.
+    	/// // TODO: implement loading vector images.
+    	/// </summary>
+    	/// <param name="sRelativeNameInCallingAssembly">Relative name of the Pack resource.</param>
+    	/// <param name="assembly">Assembly that contains the resource.</param>
+    	[NotNull]
+    	public static ImageSource LoadResourceImage([NotNull] string sRelativeNameInCallingAssembly, [NotNull] Assembly assembly)
+    	{
+    		if(sRelativeNameInCallingAssembly.IsEmpty())
+    			throw new ArgumentNullException("sRelativeNameInCallingAssembly");
+    		if(assembly == null)
+    			throw new ArgumentNullException("assembly");
+
+    		return LoadResourceImage(MakeResourceUri(sRelativeNameInCallingAssembly, assembly));
+    	}
+
+    	/// <summary>
+    	/// Makes an Avalon Pack Absolute URI for a resource whose relative name is <paramref name="sRelativeNameInCallingAssembly"/> and which is packaged in the calling assembly.
+    	/// </summary>
+    	[NotNull]
+    	public static Uri MakeResourceUri([NotNull] string sRelativeNameInCallingAssembly)
+    	{
+    		return MakeResourceUri(sRelativeNameInCallingAssembly, Assembly.GetCallingAssembly());
+    	}
+
         /// <summary>
         /// Save image in the system-dependent Temp directory in the ".png" format
         /// (if it is not present already) and return the result path for the file.
         /// Use image's GetHashCode for file name.
         /// </summary>
-        public static string IconPath( Image img )
+        [NotNull]
+        public static string IconPath([NotNull] Image img )
         {
-            string iconName = img.GetHashCode() + ".png";
+        	if(img == null)
+        		throw new ArgumentNullException("img");
+        	string iconName = img.GetHashCode() + ".png";
             string path = Path.Combine( Path.GetTempPath(), iconName );
             if( !File.Exists( path ) )
             {
@@ -429,9 +501,12 @@ namespace JetBrains.Omea.Base
 
     	[NotNull]
     	public static Assembly FindAssembly([NotNull] string name)
-    	{
-    		if(name == null)
-    			throw new ArgumentNullException("name");
+        {
+            #region Preconditions
+            if( name == null )
+    			throw new ArgumentNullException( "name" );
+            #endregion Preconditions
+
     		foreach(Assembly asm in AppDomain.CurrentDomain.GetAssemblies())
     		{
     			if(asm.GetName().Name == name)
@@ -440,7 +515,38 @@ namespace JetBrains.Omea.Base
 			throw new InvalidOperationException(string.Format("The assembly “{0}” could not be found.", name));
     	}
 
-		/// <summary>
+    	/// <summary>
+    	/// Compares two collections for equality.
+    	/// </summary>
+    	public static bool AreEqual<T>([NotNull] ICollection<T> one, [NotNull] ICollection<T> two)
+    	{
+    		if(one == null)
+    			throw new ArgumentNullException("one");
+    		if(two == null)
+    			throw new ArgumentNullException("two");
+
+    		if(one.Count != two.Count)
+    			return false;
+
+    		using(IEnumerator<T> enumOne = one.GetEnumerator())
+    		using(IEnumerator<T> enumTwo = two.GetEnumerator())
+    		{
+    			for(;;)
+    			{
+    				bool bOne = enumOne.MoveNext();
+    				bool bTwo = enumTwo.MoveNext();
+    				if(bOne != bTwo)
+    					return false;
+    				if(!bOne)
+    					return true; // End of collection
+
+    				if(!Equals(enumOne.Current, enumTwo.Current))
+    					return false;
+    			}
+    		}
+    	}
+
+    	/// <summary>
 		/// Formatting buffer for the <see cref="SizeToString"/> routine.
 		/// </summary>
 		protected static byte[] _buffer = new byte[0x100];
@@ -473,6 +579,25 @@ namespace JetBrains.Omea.Base
         private static int      _lastCheckNetworkTicks = 0;
         private static bool     _isNetworkConnected = true;
         private static bool     _wasNetworkConnected = false;
+
+    	/// <summary>
+    	/// Creates an image source from a byte stream, a raster or vector one.
+    	/// // TODO: support vector images.
+    	/// Throws on errors.
+    	/// </summary>
+    	[NotNull]
+    	public static ImageSource LoadImage([NotNull] byte[] imagedata)
+    	{
+    		if(imagedata == null)
+    			throw new ArgumentNullException("imagedata");
+    		if(imagedata.Length == 0)
+    			throw new ArgumentException("The image data is empty.", "imagedata");
+
+    		var result = (ImageSource)TypeDescriptor.GetConverter(typeof(ImageSource)).ConvertFrom(imagedata);
+    		if(result == null)
+    			throw new InvalidOperationException(string.Format("Could not load an image from the data stream."));
+    		return result;
+    	}
     }
 
     public class StringStrictComparer : IComparer

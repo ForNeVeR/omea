@@ -12,31 +12,7 @@ using System.Xml;
 
 namespace JetBrains.Omea.OpenAPI
 {
-    /// <summary>
-    /// Class is used as an attribute for specifying the "Author" and "Description"
-    /// information fields for both JetBrains and custom plugins. This information is
-    /// then shown in the "Tools | Options | Omea | Plugins" options pane.
-    /// </summary>
-    /// <example>
-    /// [PluginDescriptionAttribute("Brad Pitt", "Best plugin of the year")]
-    /// public class MyPlugin : IPlugin, IResourceDisplayer, IResourceTextProvider {}
-    /// </example>
-    public class PluginDescriptionAttribute : Attribute
-    {
-        readonly string _Author;
-        readonly string _Description;
-
-        public string Author { get { return _Author; } }
-        public string Description { get { return _Description; } }
-
-        public PluginDescriptionAttribute( string author, string descr )
-        {
-            _Author = author;
-            _Description = descr;
-        }
-    }
-
-    /// <summary>
+	/// <summary>
     /// Specifies a format of a plain or rich text string.
     /// </summary>
     public enum TextFormat 
@@ -1259,8 +1235,10 @@ namespace JetBrains.Omea.OpenAPI
         /// <param name="viewPane">The pane instance.</param>
         /// <param name="paneId">The ID of the pane.</param>
         /// <param name="caption">The caption of the pane.</param>
-        /// <param name="icon">The icon displayed for the pane.</param>
-        void RegisterPane( AbstractViewPane viewPane, string paneId, string caption, Icon icon );
+        /// <param name="icon">The icon displayed for the pane in the small toolbar at the
+        /// bottom of the sidebar. For the icon, an image in PNG 24x24 format is required. If image has
+        /// different format, it will be adjusted to fit 24x24.</param>
+        void RegisterPane( AbstractViewPane viewPane, string paneId, string caption, Image icon );
 
         /// <summary>
         /// Changes the caption of the pane with the specified ID.
@@ -1287,7 +1265,7 @@ namespace JetBrains.Omea.OpenAPI
         /// <summary>
         /// Gets the number of panes registered in the right sidebar.
         /// </summary>
-        int PaneCount { get; }
+        int PanesCount { get; }
 
         /// <summary>
         /// Returns the instance of the pane with the name.
@@ -1312,8 +1290,7 @@ namespace JetBrains.Omea.OpenAPI
         /// <param name="caption">User-visible caption of the pane.</param>
         /// <param name="icon">Icon to show on the button which expands/collapses the pane.</param>
         /// <param name="viewPane">The pane instance.</param>
-        void RegisterViewPane( string paneId, string tabId, string caption, Icon icon, 
-            AbstractViewPane viewPane );
+        void RegisterViewPane( string paneId, string tabId, string caption, Image icon, AbstractViewPane viewPane );
 
         /// <summary>
         /// Registers a standard view pane displaying a tree of resources in the left sidebar.
@@ -1324,8 +1301,8 @@ namespace JetBrains.Omea.OpenAPI
         /// <param name="icon">Icon to show on the button which expands/collapses the pane.</param>
         /// <param name="rootResource">The root of the resource tree displayed in the pane.</param>
         /// <returns>The instance of the tree view pane.</returns>
-        IResourceTreePane RegisterTreeViewPane( string paneId, string tabId, string caption, Icon icon, 
-            IResource rootResource );
+        IResourceTreePane RegisterTreeViewPane( string paneId, string tabId, string caption, Image icon, 
+                                                IResource rootResource );
         
         /// <summary>
         /// Registers a custom view pane in the left sidebar which serves as the resource
@@ -1339,8 +1316,8 @@ namespace JetBrains.Omea.OpenAPI
         /// <remarks>The resource structure pane is the pane in which Omea tries to find the resource
         /// registered as the resource location through <see cref="IUIManager.RegisterResourceLocationLink"/>.
         /// </remarks>
-        void RegisterResourceStructurePane( string paneId, string tabId, string caption, Icon icon, 
-            AbstractViewPane viewPane );
+        void RegisterResourceStructurePane( string paneId, string tabId, string caption, Image icon, 
+                                            AbstractViewPane viewPane );
         
         /// <summary>
         /// Registers a standard pane displaying a tree of resources, which also serves as the resource
@@ -1355,7 +1332,7 @@ namespace JetBrains.Omea.OpenAPI
         /// <remarks>The resource structure pane is the pane in which Omea tries to find the resource
         /// registered as the resource location through <see cref="IUIManager.RegisterResourceLocationLink"/>.</remarks>
         IResourceTreePane RegisterResourceStructureTreePane( string paneId, string tabId, string caption, 
-            Icon icon, IResource rootResource );
+                                                             Image icon, IResource rootResource );
 
         /// <summary>
         /// Registers a standard pane displaying a tree of resources, which also serves as the resource
@@ -1366,7 +1343,7 @@ namespace JetBrains.Omea.OpenAPI
         /// <param name="tabId">ID of the tab in which the pane is shown.</param>
         /// <param name="caption">User-visible caption of the pane.</param>
         /// <param name="icon">Icon to show on the button which expands/collapses the pane.</param>
-        /// <param name="rootResourceType">The resource type the root of which is used as the root
+        /// <param name="rootResType">The resource type the root of which is used as the root
         /// resource of the pane.</param>
         /// <returns>The instance of the tree view pane.</returns>
         /// <remarks><para>The resource structure pane is the pane in which Omea tries to find the resource
@@ -1374,11 +1351,11 @@ namespace JetBrains.Omea.OpenAPI
         /// <para>The root resource for a resource type is obtained through
         /// <see cref="IResourceTreeManager.GetRootForType"/>.</para>
         /// <para>When a workspace is active, the pane displays on the top level the resources
-        /// of <c>rootResourceType</c> type linked to the workspace. If resources of additional types
+        /// of <c>rootResType</c> type linked to the workspace. If resources of additional types
         /// should be displayed, <see cref="IResourceTreePane.WorkspaceFilterTypes"/> should be used.</para>
         /// </remarks>
         IResourceTreePane RegisterResourceStructureTreePane( string paneId, string tabId, string caption, 
-            Icon icon, string rootResourceType );
+                                                             Image icon, string rootResType );
         
         /// <summary>
         /// Registers a keyboard shortcut for activating the pane with the specified ID.
@@ -2187,15 +2164,6 @@ namespace JetBrains.Omea.OpenAPI
         /// <returns>The deleter implementation, or null if none was registered for the
         /// specified resource type.</returns>
         IResourceDeleter GetResourceDeleter( string resType );
-
-        /// <summary>
-        /// Returns the description of the plugin stored as the attribute of class <see cref="IResourceSerializer">PluginDescriptionAttribute</see>
-        /// </summary>
-        /// <param name="path">The path of the plugin in the system.</param>
-        /// <param name="author">Author field of the <see cref="IResourceSerializer">PluginDescriptionAttribute</see>.</param>
-        /// <param name="description">Description field of the <see cref="IResourceSerializer">PluginDescriptionAttribute</see>.</param>
-        /// <since>2.2</since>
-        void GetPluginDescription( string path, out string author, out string description );
     }
 
     /// <summary>

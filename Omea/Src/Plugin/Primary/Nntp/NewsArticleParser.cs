@@ -161,7 +161,7 @@ namespace JetBrains.Omea.Nntp
                         Core.CategoryManager.AddResourceCategory( article, category );
                     }
 
-                    Core.FilterManager.ExecRules( StandardEvents.ResourceReceived, article );
+                    Core.FilterEngine.ExecRules( StandardEvents.ResourceReceived, article );
                     CleanLocalArticle( articleId, article );
                 }
                 article.EndUpdate();
@@ -281,7 +281,7 @@ namespace JetBrains.Omea.Nntp
                 ProcessBody( _bodyBuilder.ToString(), content_type, content_transfer_encoding, article, charset );
                 article.SetProp( NntpPlugin._propArticleHeaders, _headersBuilder.ToString() );
                 article.SetProp( NntpPlugin._propIsUnread, true );
-                Core.FilterManager.ExecRules( StandardEvents.ResourceReceived, article );
+                Core.FilterEngine.ExecRules( StandardEvents.ResourceReceived, article );
                 CleanLocalArticle( articleId, article );
                 article.EndUpdate();
                 if( mySelf && new ServerResource( server ).MarkFromMeAsRead )
@@ -367,7 +367,7 @@ namespace JetBrains.Omea.Nntp
                 {
                     Core.CategoryManager.AddResourceCategory( article, category );
                 }
-                Core.FilterManager.ExecRules( StandardEvents.ResourceReceived, article );
+                Core.FilterEngine.ExecRules( StandardEvents.ResourceReceived, article );
                 CleanLocalArticle( articleId, article );
             }
             article.EndUpdate();
@@ -683,14 +683,8 @@ namespace JetBrains.Omea.Nntp
 
         internal static string TranslateHeader( string charset, string header )
         {
-            if( MIMEParser.ContainsMIMEStrings( header ) )
-            {
-                header = ParseTools.ParseMIMEHeader( header );
-            }
-            else
-            {
-                header = MIMEParser.TranslateRawStringInCharset( charset, header );
-            }
+            header = MIMEParser.ContainsMIMEStrings( header ) ? ParseTools.ParseMIMEHeader( header ) :
+                                                                MIMEParser.TranslateRawStringInCharset( charset, header );
             return header;
         }
 

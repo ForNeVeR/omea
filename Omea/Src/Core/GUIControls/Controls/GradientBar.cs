@@ -3,9 +3,6 @@
 /// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
 /// </copyright>
 
-using System;
-using System.Collections;
-using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Drawing.Drawing2D;
@@ -15,12 +12,12 @@ namespace JetBrains.Omea.GUIControls
 	/// <summary>
 	/// A bar which is entirely filled by a gradient fill.
 	/// </summary>
-	public class GradientBar : System.Windows.Forms.UserControl
+	public class GradientBar : UserControl
 	{
 		/// <summary> 
 		/// Required designer variable.
 		/// </summary>
-		private System.ComponentModel.Container components = null;
+		private System.ComponentModel.Container components;
 
         private Color _startColor = Color.Black;
         private Color _endColor = Color.White;

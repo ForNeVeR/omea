@@ -55,7 +55,6 @@ namespace JetBrains.Omea.Favorites
         public override string Name
         {
             get { return "Downloading " + _reader.URL; }
-            set {}
         }
 
         protected override void Execute()
@@ -179,7 +178,7 @@ namespace JetBrains.Omea.Favorites
                     {
                         formatFile.SetProp( Core.Props.Date, lastWriteTime );
                         formatFile.SetProp( FavoritesPlugin._propIsUnread, true );
-                        Core.FilterManager.ExecRules( StandardEvents.ResourceReceived, _webLink );
+                        Core.FilterEngine.ExecRules( StandardEvents.ResourceReceived, _webLink );
                     }
                     if( formatFile.Type != "UnknownFile" )
                     {
@@ -288,7 +287,7 @@ namespace JetBrains.Omea.Favorites
                 {
                     formatFile.SetProp( Core.Props.Date, lastModified );
                     formatFile.SetProp( FavoritesPlugin._propIsUnread, true );
-                    Core.FilterManager.ExecRules( StandardEvents.ResourceReceived, _webLink );
+                    Core.FilterEngine.ExecRules( StandardEvents.ResourceReceived, _webLink );
                 }
                 if( formatFile.Type != "UnknownFile" )
                 {

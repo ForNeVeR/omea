@@ -26,7 +26,7 @@ namespace JetBrains.Omea.GUIControls
         public MenuHostWrapper( ToolStripDropDownItem menuItem, MethodInvoker action )
         {
             _menuParent = menuItem;
-            menuItem.DropDownOpening += delegate{ action.Invoke();; };
+            menuItem.DropDownOpening += delegate{ action.Invoke(); };
         }
 
         public ToolStripItemCollection Items
@@ -37,11 +37,10 @@ namespace JetBrains.Omea.GUIControls
         }
     }
 
-    public class MenuActionManager
+    public abstract class MenuActionManager
 	{
         internal class MenuAction
         {
-            private string           _name;
             private readonly string  _resourceType;
             private readonly IAction _action;
             private readonly IActionStateFilter[] _filters;
@@ -50,16 +49,16 @@ namespace JetBrains.Omea.GUIControls
             public MenuAction( string resourceType, string name, Image icon, IAction action, IActionStateFilter[] filters )
             {
                 _resourceType = resourceType;
-                _name         = name;
+                Name         = name;
                 _action       = action;
                 _filters      = filters;
                 _actionIcon   = icon;
             }
 
-            internal string      ResourceType { get { return _resourceType; } }
-            internal string      Name         { get { return _name; } set { _name = value; } }
-            internal IAction     Action       { get { return _action; } }
-            internal Image       MenuIcon     { get { return _actionIcon; } }
+            internal string   ResourceType  { get { return _resourceType; } }
+            internal string   Name          { get; set; }
+            internal IAction  Action        { get { return _action; } }
+            internal Image    MenuIcon      { get { return _actionIcon; } }
             internal IActionStateFilter[] Filters { get { return _filters; } }
         }
 
@@ -81,20 +80,9 @@ namespace JetBrains.Omea.GUIControls
                 _actions.Add( action.Action.ToString(), action, anchor );
             }
 
-            internal string Name
-            {
-                get { return _name; }
-            }
-
-            internal string SubmenuName
-            {
-                get { return _submenuName; }
-            }
-
-            public IEnumerable Actions
-            {
-                get { return _actions; }
-            }
+            internal string Name        {  get { return _name;      } }
+            internal string SubmenuName {  get { return _submenuName; }  }
+            public IEnumerable Actions  {  get { return _actions;   } }
 
             public bool RemoveAction( IAction action )
             {
@@ -110,11 +98,11 @@ namespace JetBrains.Omea.GUIControls
             }
         }
 
-        private readonly MenuHostWrapper _menu;
-        private IActionContext          _lastContext;
+        protected bool                  _persistentMnemonics = true;
+        protected bool                  _allowVisibleResTypeMismatched;
+
         private bool                    _mnemonicsAssigned;
-        private bool                    _persistentMnemonics = true;
-        private bool                    _allowVisibleResTypeMismatched = false;
+        private readonly MenuHostWrapper _menu;
         private readonly AnchoredList   _actionGroups = new AnchoredList();    // <MenuActionGroup>
         private readonly HashSet        _usedMnemonics = new HashSet();
         private readonly HashSet        _suppressedSeparators = new HashSet();
@@ -122,27 +110,19 @@ namespace JetBrains.Omea.GUIControls
         // MenuItem -> MenuAction
         private readonly Dictionary<ToolStripMenuItem,MenuAction> _itemToActionMap = new Dictionary<ToolStripMenuItem,MenuAction>();
 
-		public MenuActionManager( ToolStripMenuItem menu )
+        protected abstract IActionContext CurrentContext {  get;  }
+
+        #region Ctor and Properties
+        protected MenuActionManager( ToolStripDropDownItem menu )
 		{
             _menu = new MenuHostWrapper( menu, UpdateMenuActions );
         }
 
-		public MenuActionManager( ContextMenuStrip menu )
+        protected MenuActionManager( ToolStripDropDown menu )
 		{
             _menu = new MenuHostWrapper( menu, UpdateMenuActions );
         }
-
-        public bool PersistentMnemonics
-        {
-            get { return _persistentMnemonics; }
-            set { _persistentMnemonics = value; }
-        }
-
-        public bool AllowVisibleResTypeMismatched
-        {
-            get { return _allowVisibleResTypeMismatched; }
-            set { _allowVisibleResTypeMismatched = value; }
-        }
+        #endregion Ctor and Properties
 
         #region Register/Unregister Group and Action
         public void RegisterGroup( string name, string submenuName, ListAnchor anchor )
@@ -157,22 +137,6 @@ namespace JetBrains.Omea.GUIControls
         {
         	return _actionGroups.FindByKey( groupName ) != null;
         }
-
-/*
-        /// <summary>
-        /// Registers an action in an action group of the menu.
-        /// </summary>
-        public void RegisterAction( IAction action, string groupId, ListAnchor anchor, string text,
-                                    string resourceType, IActionStateFilter[] filters )
-        {
-            MenuActionGroup group = (MenuActionGroup) _actionGroups.FindByKey( groupId );
-            if ( group == null )
-                throw new ArgumentException( "ContextMenuManager -- Invalid action group name " + groupId, "groupId" );
-
-            _mnemonicsAssigned = false;
-            group.Add( new MenuAction( resourceType, text, action, filters ), anchor );
-        }
-*/
 
         /// <summary>
         /// Registers an action in an action group of the menu.
@@ -210,43 +174,49 @@ namespace JetBrains.Omea.GUIControls
         #endregion Register/Unregister Group and Action
 
         #region Menonics Assignment
-        public void ResetMnemonics()
-        {
-            _mnemonicsAssigned = false;
-        }
 
         private void AssignMnemonics()
         {
             ResetUsedMnemonics();
 
             foreach( MenuActionGroup group in _actionGroups )
+            foreach( MenuAction action in group.Actions )
             {
-                foreach( MenuAction action in group.Actions )
-                {
-                     action.Name = AssignMnemonic( action.Name );
-                }
+                 action.Name = AssignMnemonic( action.Name );
             }
         }
 
         private void ResetUsedMnemonics()
         {
             _usedMnemonics.Clear();
+
             foreach( MenuActionGroup group in _actionGroups )
+            foreach( MenuAction action in group.Actions )
             {
-                foreach( MenuAction action in group.Actions )
-                {
-                    CheckExistingMnemonic( action.Name );
-                }
+                CheckMnemonicAssigned( action.Name );
             }
         }
 
-        /**
-         * Automatically assigns a mnemonic for a menu action.
-         */
+        /// <summary>
+        /// If an '&' char is already present in the menu item text, store it
+        /// in order next mnemonics are not clashed with them.
+        /// </summary>
+        private bool CheckMnemonicAssigned( string text )
+        {
+            int  i = text.IndexOf( '&', 0, Math.Max( text.Length - 1, 0 ) );
+            bool found = (i != -1) && (text[ i + 1 ] != '&');
+            if( found )
+                _usedMnemonics.Add( Char.ToLower( text[ i + 1 ] ) );
 
+            return found;
+        }
+
+        /// <summary>
+        /// Automatically assigns a mnemonic for a menu action.
+        /// </summary>
         private string AssignMnemonic( string text )
         {
-            if ( CheckExistingMnemonic( text ) )
+            if ( CheckMnemonicAssigned( text ) )
             {
                 return text;
             }
@@ -256,12 +226,9 @@ namespace JetBrains.Omea.GUIControls
             {
                 if ( Char.IsWhiteSpace( text, i ) && !Char.IsWhiteSpace( text, i + 1 ) )
                 {
-                    char candidate = Char.ToLower( text[ i + 1] );
-                    if ( !_usedMnemonics.Contains( candidate ) )
-                    {
-                        _usedMnemonics.Add( candidate );
-                        return text.Substring( 0, i + 1 ) + '&' + text.Substring( i + 1 );
-                    }
+                    string res = CheckAndAssign( text, i + 1 );
+                    if( res != null )
+                        return res;
                 }
             }
 
@@ -270,39 +237,33 @@ namespace JetBrains.Omea.GUIControls
             {
                 if ( !Char.IsWhiteSpace( text, i ) )
                 {
-                    char candidate = Char.ToLower( text [ i ] );
-                    if ( !_usedMnemonics.Contains( candidate ) )
-                    {
-                        _usedMnemonics.Add( candidate );
-                        return text.Substring( 0, i ) + '&' + text.Substring( i );
-                    }
+                    string res = CheckAndAssign( text, i );
+                    if( res != null )
+                        return res;
                 }
             }
 
             return text;
         }
 
-        private bool CheckExistingMnemonic( string text )
+        private string CheckAndAssign( string text, int i )
         {
-            // check if the mnemonic is already assigned
-            for( int i = 0; i < text.Length - 1; i++ )   // the last character cannot be &
+            char candidate = Char.ToLower( text [ i ] );
+            if ( !_usedMnemonics.Contains( candidate ) )
             {
-                if ( text[ i ] == '&' && text[ i + 1 ] != '&' )
-                {
-                    _usedMnemonics.Add( Char.ToLower( text[ i + 1 ] ) );
-                    return true;
-                }
+                _usedMnemonics.Add( candidate );
+                return text.Substring( 0, i ) + '&' + text.Substring( i );
             }
-            return false;
+            return null;
         }
         #endregion Menonics Assignment
 
         #region FillMenu
 
-        /**
-         * Fills the menu with actions, depending on the specified context.
-         */
-        private void FillMenuIfNecessary( IActionContext context )
+        /// <summary>
+        /// Fills the menu with actions, depending on the specified context.
+        /// </summary>
+        public void FillMenuIfNecessary( IActionContext context )
         {
             if( _menu.Items.Count == 0 )
             {
@@ -410,27 +371,19 @@ namespace JetBrains.Omea.GUIControls
 
         #region Update Menu
 
-        public IActionContext ActionContext
-        {
-            set {  _lastContext = value;  }   
-        }
-
         /// <summary>
         /// Updates the visible and enabled state of actions in the menu without rebuilding
         /// the menu entirely.
         /// If there is no menu item in the menu, then we need to fill it for a first time
         /// from the registered groups and actions.
         /// </summary>
-        internal void UpdateMenuActions()
+        public void UpdateMenuActions()
         {
-            #region Preconditions
-            if ( _lastContext == null )
-                throw new ArgumentException( "MenuActionManager -- _lastContext is NULL in UpdateActions" );
-            #endregion Preconditions
+            IActionContext context = CurrentContext;
 
-            string[] resTypes = _lastContext.SelectedResources.GetAllTypes();
-            FillMenuIfNecessary( _lastContext );
-            UpdateMenuActions( _lastContext, resTypes, _menu.Items );
+            string[] resTypes = context.SelectedResources.GetAllTypes();
+            FillMenuIfNecessary( context );
+            UpdateMenuActions( context, resTypes, _menu.Items );
         }
 
         private bool UpdateMenuActions( IActionContext context, string[] resTypes, 
@@ -440,6 +393,9 @@ namespace JetBrains.Omea.GUIControls
             bool anyItemSinceSeparator = false;
             ToolStripSeparator lastSeparator = null;
             ActionPresentation presentation = new ActionPresentation();
+
+            if( !_persistentMnemonics )
+                ResetUsedMnemonics();
 
             foreach( ToolStripItem item in items )
             {
@@ -460,7 +416,7 @@ namespace JetBrains.Omea.GUIControls
                     anyItemSinceSeparator = (anyItemSinceSeparator || presentation.Visible);
                     anyVisible = (anyVisible || presentation.Visible);
 
-                    SetActionFlags( item, ref presentation );
+                    SetActionFlags( item, presentation );
                 }
                 else // ToolStripSeparator
                 {
@@ -504,11 +460,11 @@ namespace JetBrains.Omea.GUIControls
                 {
                     string text = presentation.Text;
                     action.Action.Update( context, ref presentation );
+                    if( !_persistentMnemonics && presentation.Visible )
+                        presentation.Text = AssignMnemonic( presentation.Text );
+
                     if( text != presentation.Text )
                         presentation.TextChanged = true;
-
-                    if( !_persistentMnemonics )
-                        presentation.Text = AssignMnemonic( presentation.Text );
                 }
             }
             catch( Exception ex )
@@ -533,7 +489,7 @@ namespace JetBrains.Omea.GUIControls
         }
 
         /// Sets the properties of a menu item from an ActionPresentation instance.
-        private static void SetActionFlags( ToolStripItem item, ref ActionPresentation presentation )
+        private static void SetActionFlags( ToolStripItem item, ActionPresentation presentation )
         {
             item.Enabled = presentation.Enabled;
             item.Visible = presentation.Visible;
@@ -553,14 +509,15 @@ namespace JetBrains.Omea.GUIControls
         #endregion Update Menu
 
         #region Execute
+
         private void ExecuteMenuAction( object sender, EventArgs e )
 		{
             MenuAction menuAction = _itemToActionMap[ (ToolStripMenuItem) sender ];
             if ( menuAction != null )
             {
                 try
-                {                                                      
-					menuAction.Action.Execute( _lastContext );
+                {
+                    menuAction.Action.Execute( CurrentContext );
                 }
                 catch( Exception ex )
                 {
@@ -569,5 +526,43 @@ namespace JetBrains.Omea.GUIControls
             }
         }
         #endregion Execute
+    }
+
+    public class MainMenuActionManager : MenuActionManager
+    {
+        public MainMenuActionManager( ToolStripDropDownItem menu ) : base( menu )
+		{
+            _persistentMnemonics = _allowVisibleResTypeMismatched = true;
+        }
+
+        protected override IActionContext CurrentContext
+        {
+            get {  return Core.ActionManager.GetMainMenuActionContext();  }
+        }
+    }
+
+    public class ContextMenuActionManager : MenuActionManager
+    {
+        protected IActionContext  _lastContext;
+
+		public ContextMenuActionManager( ToolStripDropDown menu ) : base( menu )
+		{
+            _persistentMnemonics = _allowVisibleResTypeMismatched = false;
+        }
+
+        protected override IActionContext CurrentContext
+        {
+            get
+            {
+                #region Preconditions
+                if( _lastContext == null )
+                    throw new InvalidOperationException( "ContextMenuActionManager -- ActionContext must be set before its usage." );
+                #endregion Preconditions
+
+                return _lastContext;
+            }
+        }
+
+        public IActionContext ActionContext {  set {  _lastContext = value;  }   }
     }
 }

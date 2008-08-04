@@ -179,7 +179,6 @@ namespace JetBrains.Omea.OutlookPlugin
         public override string Name
         {
             get { return "Export Categories for mail"; }
-            set { }
         }
     }
 }

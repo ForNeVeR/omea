@@ -403,8 +403,9 @@
 				<action icon="previewright.ico" tooltip="Preview Pane at Right" class="ToggleVerticalLayoutToolbarAction">
 					<param type="bool" value="true" />
 				</action>
-				<action icon="previewno.ico" tooltip="Preview Pane without List" class="ToggleWebPageModeAction" />
-			</group>
+				<action icon="previewno.ico" tooltip="Preview Pane Without List" class="ToggleWebPageModeAction" />
+        <action icon="twopanes.ico" tooltip="Resource List without Preview Pane" class="ToggleListOnlyModeAction" />
+      </group>
 		</toolbar>
 		<keyboard>
 			<action key="Alt+Left" class="BackAction" />
@@ -445,7 +446,8 @@
 			</action>
 			<action key="Control+Alt+A" class="ViewAnnotationsAction" />
 			<action key="Alt+F1" class="ShowHideLeftSidebarAction" />
-			<action key="Enter" class="FocusResourceBrowserAction" />
+      <action key="Alt+F12" class="ShowHideShortcutBarAction" />
+      <action key="Enter" class="FocusResourceBrowserAction" />
 			<action key="Control+Y" ref="AssignCategories" />
 			<action key="Control+Tab" ref="NextWorkspace" />
 			<action key="Control+Shift+Tab" ref="PrevWorkspace" />

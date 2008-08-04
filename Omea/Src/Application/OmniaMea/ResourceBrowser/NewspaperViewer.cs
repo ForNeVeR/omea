@@ -2636,7 +2636,6 @@ namespace JetBrains.Omea
 			public override string Name
 			{
 				get { return "Ensure that Newspaper View Item Is Visible."; }
-				set { throw new NotImplementedException(); }
 			}
 
 			protected override void Execute()

@@ -5,6 +5,8 @@
 
 using System.Windows.Forms;
 
+using JetBrains.Annotations;
+
 namespace JetBrains.Omea.OpenAPI
 {
     /// <summary><seealso cref="IUIManager.RegisterOptionsPane"/><seealso cref="IUIManager.AddOptionsChangesListener"/>
@@ -64,46 +66,36 @@ namespace JetBrains.Omea.OpenAPI
         /// <param name="errorMessage">Set error string if validation failed.</param>
         /// <param name="controlToSelect">Set focus to specified control.</param>
         /// <returns>Returns true if options pane is valid.</returns>
-        /// <remarks>If returns true, error message should be set. Control to select can be unspecified.</remarks>
+        /// <remarks>If returns <c>False</c>, error message should be set. Control to select can be unspecified.</remarks>
         /// <since>1.0.3</since>
-        public virtual bool IsValid( ref string errorMessage, ref Control controlToSelect )
+        public virtual bool IsValid( ref string errorMessage, [CanBeNull] ref Control controlToSelect )
         {
             return true;
         }
 
-        /// <summary>
-        /// Gets or sets the flag signifying that the pane is currently being shown
-        /// in the Startup Wizard and not in the Options dialog.
-        /// </summary>
-        public bool IsStartupPane
-        {
-            get { return _isStartupPane; }
-            set { _isStartupPane = value; }
-        }
+    	/// <summary>
+    	/// Gets or sets the flag signifying that the pane is currently being shown
+    	/// in the Startup Wizard and not in the Options dialog.
+    	/// </summary>
+    	public bool IsStartupPane { get; set; }
 
-        /// <summary>
-        /// Gets or sets the flag whether restart of the application is needed. Should be used if an
-        /// AbstractOptionsPane implementor wishes to restart the application after settings are submitted.
-        /// </summary>
-        /// <since>2.2</since>
-        public bool NeedRestart
-        {
-            get { return _needRestart; }
-            set { _needRestart = value; }
-        }
+    	/// <summary>
+    	/// Gets or sets the flag whether restart of the application is needed. Should be used if an
+    	/// AbstractOptionsPane implementor wishes to restart the application after settings are submitted.
+    	/// </summary>
+    	/// <since>2.2</since>
+    	public bool NeedRestart { get; set; }
 
-        /// <summary>
+    	/// <summary>
         /// Retrieves the keyword in the help file that should be activated when help is
         /// requested for this options pane.
         /// </summary>
         /// <returns>Help index keyword.</returns>
-        public virtual string GetHelpKeyword()
+    	[CanBeNull]
+    	public virtual string GetHelpKeyword()
         {
             return null;
         }
-
-        private bool _isStartupPane;
-        private bool _needRestart;
     }
 
     /// <summary>

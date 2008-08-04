@@ -204,15 +204,15 @@ namespace JetBrains.Omea.GUIControls.CustomViews
             if( !enableQueryCondition )
             {
                 IResource queryTemplate = Store.FindUniqueResource( FilterManagerProps.ConditionTemplateResName, "Name",
-                                                                    Core.FilterManager.Std.BodyMatchesSearchQueryXName );
+                                                                    Core.FilterRegistry.Std.BodyMatchesSearchQueryXName );
                 if( queryTemplate != null ) // it may be absent if no text index is loaded
                     conditions = conditions.Minus( queryTemplate.ToResourceList() );
                 queryTemplate = Store.FindUniqueResource( FilterManagerProps.ConditionTemplateResName, "Name",
-                                                          Core.FilterManager.Std.SubjectMatchSearchQueryXName );
+                                                          Core.FilterRegistry.Std.SubjectMatchSearchQueryXName );
                 if( queryTemplate != null ) // it may be absent if no text index is loaded
                     conditions = conditions.Minus( queryTemplate.ToResourceList() );
                 queryTemplate = Store.FindUniqueResource( FilterManagerProps.ConditionTemplateResName, "Name",
-                                                          Core.FilterManager.Std.SourceMatchSearchQueryXName );
+                                                          Core.FilterRegistry.Std.SourceMatchSearchQueryXName );
                 if( queryTemplate != null ) // it may be absent if no text index is loaded
                     conditions = conditions.Minus( queryTemplate.ToResourceList() );
             }
@@ -243,7 +243,7 @@ namespace JetBrains.Omea.GUIControls.CustomViews
             for( int i = 0; i < choosenConditions.Count; i++ )
             {
                 if( !choosenConditions[ i ].HasProp( Core.Props.Parent ) )
-                    Core.FilterManager.AssociateConditionWithGroup( choosenConditions[ i ], "Other" );
+                    Core.FilterRegistry.AssociateConditionWithGroup( choosenConditions[ i ], "Other" );
             }
             return choosenConditions;
         }

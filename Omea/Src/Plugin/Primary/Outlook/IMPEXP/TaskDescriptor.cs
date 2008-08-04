@@ -206,7 +206,6 @@ namespace JetBrains.Omea.OutlookPlugin
         public override string Name
         {
             get { return "Import task"; }
-            set { }
         }
     }
     internal class Task

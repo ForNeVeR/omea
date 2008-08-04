@@ -4,10 +4,10 @@
 /// </copyright>
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using JetBrains.DataStructures;
 using JetBrains.Omea.Base;
-using JetBrains.Omea.Containers;
 using JetBrains.Omea.OpenAPI;
 
 namespace JetBrains.Omea.Favorites
@@ -87,9 +87,9 @@ namespace JetBrains.Omea.Favorites
 
         #endregion
 
-        private string          _name = null;
-        private static string   _error = "No changes can be made here.";
-        private static Random           _random = new Random();
+        private string       _name;
+        private const string _error = "No changes can be made here.";
+        private static readonly Random _random = new Random();
     }
 
     /// <summary>
@@ -383,7 +383,7 @@ namespace JetBrains.Omea.Favorites
             {
                 if( value < 0 || value > 2 )
                 {
-                    throw new ArgumentOutOfRangeException( "DownloadMethod", "Can only be in [0, 2]" );
+                    throw new ArgumentOutOfRangeException( "value", "Can only be in [0, 2]" );
                 }
                 Core.SettingStore.WriteInt( "Favorites", "DownloadMethod", value );
             }
@@ -392,7 +392,7 @@ namespace JetBrains.Omea.Favorites
         public void SynchronizeBookmarks()
         {
             IResourceList weblinks = GetBookmarks();
-            IntArrayList postponedWeblinkIds = new IntArrayList();
+            List<int> postponedIds = new List<int>();
             foreach( IResource weblink in weblinks.ValidResources )
             {
                 string URL = weblink.GetPropText( FavoritesPlugin._propURL );
@@ -404,14 +404,13 @@ namespace JetBrains.Omea.Favorites
                     }
                     else
                     {
-                        postponedWeblinkIds.Add( weblink.Id );
+                        postponedIds.Add( weblink.Id );
                     }
                 }
             }
-            if( postponedWeblinkIds.Count > 0 ) 
+            if( postponedIds.Count > 0 ) 
             {
-                IResourceList postponedWeblinks =
-                    Core.ResourceStore.ListFromIds( postponedWeblinkIds.ToArray(), false );
+                IResourceList postponedWeblinks = Core.ResourceStore.ListFromIds( postponedIds.ToArray(), false );
                 int downloadMethod = DownloadMethod;
                 if( downloadMethod == 0 )
                 {
@@ -485,7 +484,7 @@ namespace JetBrains.Omea.Favorites
         private delegate IResource ResourceStringDelegate2( IResource res, string str );
         private delegate void ResourceResourceDelegate( IResource res1, IResource res2 );
 
-        internal IResource FindOrCreateBookmark( IResource parent, string name, string url, bool transient )
+        internal static IResource FindOrCreateBookmark( IResource parent, string name, string url, bool transient )
         {
             url = url.Trim();
             if( url.IndexOf( "://" ) < 0 )
@@ -523,7 +522,7 @@ namespace JetBrains.Omea.Favorites
             return result;
         }
 
-        private void SetNameImpl( IResource res, string name )
+        private static void SetNameImpl( IResource res, string name )
         {
             if( !res.IsDeleted )
             {
@@ -539,7 +538,7 @@ namespace JetBrains.Omea.Favorites
             }
         }
 
-        private IResource SetUrlImpl( IResource res, string url )
+        private static IResource SetUrlImpl( IResource res, string url )
         {
             if( !Core.ResourceStore.IsOwnerThread() )
             {
@@ -598,9 +597,9 @@ namespace JetBrains.Omea.Favorites
         #endregion
 
         private static BookmarkService  _theService;
-        private IResource               _rootFolder;
-        private HashMap                 _profileNames2RootResources;
-        private HashMap                 _rootResources2Profiles;
+        private readonly IResource      _rootFolder;
+        private readonly HashMap        _profileNames2RootResources;
+        private readonly HashMap        _rootResources2Profiles;
         private static int              _propName;
     }
 }

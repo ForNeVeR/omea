@@ -5,6 +5,7 @@
 
 using System;
 using System.Collections;
+using JetBrains.Annotations;
 
 namespace JetBrains.Omea.OpenAPI
 {
@@ -615,6 +616,14 @@ namespace JetBrains.Omea.OpenAPI
         /// </summary>
         /// <remarks>Before the resource list items are first accessed, it exists only as a predicate structure describing which resources should be requested to populate the list contents. This function provides for returning the list into this state.</remarks>
         void Deinstantiate();
+
+        /// <summary>
+        /// Finds a resource matching the specified condition in the list.
+        /// </summary>
+        /// <param name="predicate">The condition to check for each resource.</param>
+        /// <returns>First resource matching the condition, or null if none was found.</returns>
+        [CanBeNull]
+        IResource Find(Predicate<IResource> predicate);
 
         /// <summary>
         /// Returns an enumerable which enumerates only existing and not deleted resources

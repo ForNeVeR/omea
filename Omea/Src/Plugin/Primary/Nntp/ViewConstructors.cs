@@ -27,7 +27,7 @@ namespace JetBrains.Omea.Nntp
         public void RegisterViewsFirstRun()
         {
             IResource res;
-            IFilterManager fMgr = Core.FilterManager;
+            IFilterRegistry fMgr = Core.FilterRegistry;
 
             //  Conditions/Templates
             IResource myResType = Core.ResourceStore.FindUniqueResource( "ResourceType", "Name", NntpPlugin._newsArticle );
@@ -38,7 +38,7 @@ namespace JetBrains.Omea.Nntp
 
         public void RegisterViewsEachRun()
         {
-            IFilterManager fMgr = Core.FilterManager;
+            IFilterRegistry fMgr = Core.FilterRegistry;
             INotificationManager notifMgr = Core.NotificationManager;
             string[]  _applTypes = new string[] { NntpPlugin._newsArticle };
 
@@ -63,7 +63,7 @@ namespace JetBrains.Omea.Nntp
             notifMgr.RegisterNotifyMeCondition( NntpPlugin._newsGroup, template, 0 );
             notifMgr.RegisterNotifyMeCondition( NntpPlugin._newsArticle, threadTemplate, 0 );
 
-            fMgr.RegisterRuleApplicableResourceType( NntpPlugin._newsArticle );
+            Core.FilterEngine.RegisterRuleApplicableResourceType( NntpPlugin._newsArticle );
         }
         #endregion
     }
@@ -97,7 +97,7 @@ namespace JetBrains.Omea.Nntp
 
             //  Tray icon rules.
             Core.TrayIconManager.RegisterTrayIconRule( "Unread News Articles", _applTypes,
-                                                       new IResource[] { Core.FilterManager.Std.ResourceIsUnread },
+                                                       new IResource[] { Core.FilterRegistry.Std.ResourceIsUnread },
                                                        null, NntpPlugin.LoadNewsIcon( "article.ico" ) );
         }
 

@@ -18,7 +18,7 @@ using JetBrains.Omea.ResourceTools;
 
 namespace JetBrains.Omea.FilePlugin
 {
-    [PluginDescriptionAttribute("JetBrains Inc.", "Simple file explorer in Omea with the facilities to represent the Folders tree, include/exclude folders from text searching.")]
+    [PluginDescription("File Explorer", "JetBrains Inc.", "Simple file explorer in Omea with the facilities to represent the Folders tree, include/exclude folders from text searching.", PluginDescriptionFormat.PlainText, "Icons/FilePluginIcon.png")]
     public class FileProxy : IPlugin, IStreamProvider, IResourceTextIndexingPermitter, IResourceIconProvider, IResourceUIHandler, IResourceDragDropHandler
     {
         #region IPlugin Members
@@ -39,14 +39,14 @@ namespace JetBrains.Omea.FilePlugin
             uiMgr.RegisterOptionsPane( "Folders & Files", "File Options", FileOptionsPane.FileOptionsPaneCreator,
                 "The File Options enable you to control the indexing and display of hidden files, and to specify the extensions of files that [product name] should treat as plain text files." );
             uiMgr.RegisterResourceSelectPane( _folderResourceType, typeof( FileFoldersSelectorPane ) );
-            Core.TabManager.RegisterResourceTypeTab( "Files", "Files", new string[] { _folderResourceType }, _propParentFolder, 5 );
+            Core.TabManager.RegisterResourceTypeTab( "Files", "Files", new[] { _folderResourceType }, _propParentFolder, 5 );
 
             IResource filesRoot = FoldersCollection.Instance.FilesRoot;
-            _pane = Core.LeftSidebar.RegisterResourceStructureTreePane( "FileFolders", "Files", "Indexed Folders", 
-                                                                        LoadIconFromAssembly( "folders.ico" ), filesRoot );
+            Image img = Utils.TryGetEmbeddedResourceImageFromAssembly( Assembly.GetExecutingAssembly(), "FilePlugin.Icons.Folders24.png" );
+            _pane = Core.LeftSidebar.RegisterResourceStructureTreePane( "FileFolders", "Files", "Indexed Folders", img, filesRoot );
             _pane.ParentProperty = _propParentFolder;
             _pane.AddNodeFilter( new FoldersFilter() );
-            _pane.WorkspaceFilterTypes = new string[] { _folderResourceType };
+            _pane.WorkspaceFilterTypes = new[] { _folderResourceType };
             Core.ResourceTreeManager.SetResourceNodeSort( filesRoot, "DisplayName" );
             Core.LeftSidebar.RegisterViewPaneShortcut( "FileFolders", Keys.Control | Keys.Alt | Keys.I );
 
@@ -57,14 +57,12 @@ namespace JetBrains.Omea.FilePlugin
 
             Core.UIManager.RegisterResourceLocationLink( _folderResourceType, 0, _folderResourceType );
 
-            Core.ResourceIconManager.RegisterPropTypeIcon( _propParentFolder, 
-                LoadIconFromAssembly( "file.ico" ) );
-            Core.ResourceIconManager.RegisterResourceIconProvider( _folderResourceType,
-                this );
+            Core.ResourceIconManager.RegisterPropTypeIcon( _propParentFolder, LoadIconFromAssembly( "file.ico" ) );
+            Core.ResourceIconManager.RegisterResourceIconProvider( _folderResourceType, this );
 
             Core.ResourceBrowser.RegisterLinksPaneFilter( "FileFolder", new FileFolderLinksFilter() );
 
-            (Core.FileResourceManager as FileResourceManager).RegisterFileTypeColumns( _folderResourceType );
+            ((FileResourceManager)Core.FileResourceManager).RegisterFileTypeColumns( _folderResourceType );
 
             LoadResourceIcons();
 
@@ -81,8 +79,7 @@ namespace JetBrains.Omea.FilePlugin
 
         private static Icon LoadIconFromAssembly( string iconName )
         {
-            Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream( "FilePlugin.Icons." + iconName );
-            return new Icon( stream );
+        	return new Icon( Assembly.GetExecutingAssembly().GetManifestResourceStream( "FilePlugin.Icons." + iconName ) );
         }
 
         public void Startup()
@@ -233,7 +230,7 @@ namespace JetBrains.Omea.FilePlugin
             catch( Exception e )
             {
                 Utils.DisplayException( Core.MainWindow, e, "Error" );
-                Core.UserInterfaceAP.QueueJob( new MethodInvoker( Core.ResourceBrowser.GoBack ) );
+                Core.UserInterfaceAP.QueueJob("GoBack", new MethodInvoker( Core.ResourceBrowser.GoBack ) );
             }
         }
 
@@ -341,8 +338,7 @@ namespace JetBrains.Omea.FilePlugin
         }
 
         public void AddResourceDragData( IResourceList dragResources, IDataObject dataObject )
-        {
-        }
+        {}
 
         #endregion
 
@@ -384,9 +380,8 @@ namespace JetBrains.Omea.FilePlugin
             _propDeletedFile = store.PropTypes.Register( "DeletedFile", PropDataType.Bool, PropTypeFlags.Internal );
 
             Core.WorkspaceManager.RegisterWorkspaceContainerType( _folderResourceType, 
-                new int[] { _propParentFolder }, _propParentFolder );
-            Core.WorkspaceManager.RegisterWorkspaceSelectorFilter( _folderResourceType,
-                new FoldersFilter() );
+                new[] { _propParentFolder }, _propParentFolder );
+            Core.WorkspaceManager.RegisterWorkspaceSelectorFilter( _folderResourceType, new FoldersFilter() );
 
             IResourceList rootFolders = store.FindResourcesWithProp( _folderResourceType, _propStatus );
             if( rootFolders.Count == 0 )
@@ -600,14 +595,14 @@ namespace JetBrains.Omea.FilePlugin
                         Core.ResourceStore.FindResourcesWithPropLive( null, _propDeletedFile ) );
                 }
                 ColumnDescriptor[] fileColumns = new ColumnDescriptor[ 4 ];
-                fileColumns[ 0 ].PropNames = new string[] { "DisplayName" };
+                fileColumns[ 0 ].PropNames = new[] { "DisplayName" };
                 fileColumns[ 0 ].Width = 300;
                 fileColumns[ 0 ].CustomComparer = new FoldersUpComparer();
-                fileColumns[ 1 ].PropNames = new string[] { "FileType" };
+                fileColumns[ 1 ].PropNames = new[] { "FileType" };
                 fileColumns[ 1 ].Width = 120;
-                fileColumns[ 2 ].PropNames = new string[] { "Size" };
+                fileColumns[ 2 ].PropNames = new[] { "Size" };
                 fileColumns[ 2 ].Width = 120;
-                fileColumns[ 3 ].PropNames = new string[] { "Date" };
+                fileColumns[ 3 ].PropNames = new[] { "Date" };
                 fileColumns[ 3 ].Width = 120;
                 rBrowser.DisplayUnfilteredResourceList(
                     res, folderContents, path, Core.DisplayColumnManager.AddAnyTypeColumns( fileColumns ) );
@@ -681,20 +676,19 @@ namespace JetBrains.Omea.FilePlugin
             }
         }
 
-        /**
-         * handler on resource browser's content changed
-         */
+		/// <summary>
+		/// Handler on resource browser's content changed.
+		/// </summary>
         private void ResourceBrowser_ContentChanged( object sender, EventArgs e )
         {
-            IAsyncProcessor ap = Core.ResourceAP;
-            IResource owner = Core.ResourceBrowser.OwnerResource;
+        	IResource owner = Core.ResourceBrowser.OwnerResource;
             if( owner != null && owner.Type == _folderResourceType )
             {
-                ap.QueueJob( JobPriority.Immediate, new ResourceDelegate( SetCurrentFolderWatcher ), owner );
+                Core.ResourceAP.QueueJob(JobPriority.Immediate, "Set Folder Watcher", new ResourceDelegate( SetCurrentFolderWatcher ), owner );
             }
             else
             {
-                ap.QueueJob( JobPriority.Immediate, new MethodInvoker( DisposeCurrentFolderWatcher ) );
+                Core.ResourceAP.QueueJob(JobPriority.Immediate, "Remove Folder Watcher", new MethodInvoker( DisposeCurrentFolderWatcher ) );
             }
         }
 
@@ -743,12 +737,12 @@ namespace JetBrains.Omea.FilePlugin
          */
         private void SelectedFolderChanged( object source, FileSystemEventArgs e )
         {
-            Core.ResourceAP.QueueJob( JobPriority.Immediate, new MethodInvoker( SelectedFolderChangedImpl ) );
+            Core.ResourceAP.QueueJob(JobPriority.Immediate, "Selected Folder Changed", new MethodInvoker( SelectedFolderChangedImpl ) );
         }
 
         private void SelectedFolderRenamed( object sender, RenamedEventArgs e )
         {
-            Core.ResourceAP.QueueJob( JobPriority.Immediate, new MethodInvoker( SelectedFolderChangedImpl ) );
+            Core.ResourceAP.QueueJob( JobPriority.Immediate, "Selected Folder Changed", new MethodInvoker( SelectedFolderChangedImpl ) );
         }
 
         private void SelectedFolderChangedImpl()
@@ -780,7 +774,7 @@ namespace JetBrains.Omea.FilePlugin
 
         private class FileFoldersSelectorPane : ResourceTreeSelectPane, IResourceNodeFilter
         {
-            public FileFoldersSelectorPane(): base()
+            public FileFoldersSelectorPane()
             {
                 _resourceTree.ParentProperty = _propParentFolder;
                 _resourceTree.AddNodeFilter( this );

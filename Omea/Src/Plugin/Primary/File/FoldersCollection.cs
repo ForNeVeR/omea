@@ -671,7 +671,6 @@ namespace JetBrains.Omea.FilePlugin
         public override string Name
         {
             get { return "Collecting file folders"; }
-            set {}
         }
 
         #endregion

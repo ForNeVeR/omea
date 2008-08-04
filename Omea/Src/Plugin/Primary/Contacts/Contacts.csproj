@@ -6,280 +6,286 @@
   </copyright>
 -->
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
-	<PropertyGroup>
-		<ProjectType>Local</ProjectType>
-		<ProductVersion>9.0.21022</ProductVersion>
-		<SchemaVersion>2.0</SchemaVersion>
-		<ProjectGuid>{880A3057-3DF9-49FB-950E-823CD66F8A7F}</ProjectGuid>
-		<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-		<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-		<AssemblyName>Contacts</AssemblyName>
-		<DefaultClientScript>JScript</DefaultClientScript>
-		<DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
-		<DefaultTargetSchema>IE50</DefaultTargetSchema>
-		<DelaySign>false</DelaySign>
-		<OutputType>Library</OutputType>
-		<RootNamespace>ContactsPlugin</RootNamespace>
-		<RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
-		<OldToolsVersion>2.0</OldToolsVersion>
-		<ProductHomeDir>$(MSBuildProjectDirectory)/../../../..</ProductHomeDir>
-	</PropertyGroup>
-	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-		<AllowUnsafeBlocks>false</AllowUnsafeBlocks>
-		<BaseAddress>285212672</BaseAddress>
-		<CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
-		<DefineConstants>DEBUG;TRACE;USAGE_LOG</DefineConstants>
-		<DebugSymbols>true</DebugSymbols>
-		<FileAlignment>4096</FileAlignment>
-		<NoStdLib>false</NoStdLib>
-		<Optimize>false</Optimize>
-		<RegisterForComInterop>false</RegisterForComInterop>
-		<RemoveIntegerChecks>false</RemoveIntegerChecks>
-		<TreatWarningsAsErrors>false</TreatWarningsAsErrors>
-		<WarningLevel>4</WarningLevel>
-		<DebugType>full</DebugType>
-		<ErrorReport>prompt</ErrorReport>
-	</PropertyGroup>
-	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-		<AllowUnsafeBlocks>false</AllowUnsafeBlocks>
-		<BaseAddress>285212672</BaseAddress>
-		<CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
-		<DefineConstants>TRACE</DefineConstants>
-		<DebugSymbols>false</DebugSymbols>
-		<FileAlignment>4096</FileAlignment>
-		<NoStdLib>false</NoStdLib>
-		<Optimize>true</Optimize>
-		<RegisterForComInterop>false</RegisterForComInterop>
-		<RemoveIntegerChecks>false</RemoveIntegerChecks>
-		<TreatWarningsAsErrors>false</TreatWarningsAsErrors>
-		<WarningLevel>4</WarningLevel>
-		<DebugType>none</DebugType>
-		<ErrorReport>prompt</ErrorReport>
-	</PropertyGroup>
-	<ItemGroup>
-		<Reference Include="nunit.framework">
-			<Name>nunit.framework</Name>
-			<HintPath>../../../../Lib/References/nunit.framework.dll</HintPath>
-		</Reference>
-		<Reference Include="System">
-			<Name>System</Name>
-		</Reference>
-		<Reference Include="System.Data">
-			<Name>System.Data</Name>
-		</Reference>
-		<Reference Include="System.Drawing">
-			<Name>System.Drawing</Name>
-		</Reference>
-		<Reference Include="System.Windows.Forms">
-			<Name>System.Windows.Forms</Name>
-		</Reference>
-		<Reference Include="System.Xml">
-			<Name>System.XML</Name>
-		</Reference>
-		<ProjectReference Include="../../../Core/GUIControls/GUIControls.csproj">
-			<Name>GUIControls</Name>
-			<Project>{C9CBAAE5-F8D4-4BD2-BDF0-026B85122106}</Project>
-			<Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
-			<Private>True</Private>
-		</ProjectReference>
-		<ProjectReference Include="../../../Core/JetBrainsShared/JetBrainsShared.csproj">
-			<Project>{5133BE57-1BE8-4C82-BA5E-ADA6CFA0AA8B}</Project>
-			<Name>JetBrainsShared</Name>
-		</ProjectReference>
-		<ProjectReference Include="../../../Core/JetListView/JetListView.csproj">
-			<Name>JetListView</Name>
-			<Project>{F143C8CF-F540-4CEE-9D6B-48F583A3B955}</Project>
-			<Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
-		</ProjectReference>
-		<ProjectReference Include="../../../Core/OmniaMeaBase/OmniaMeaBase.csproj">
-			<Name>OmniaMeaBase</Name>
-			<Project>{C77A02EC-E116-44B9-8FF2-85637FA405B7}</Project>
-			<Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
-		</ProjectReference>
-		<ProjectReference Include="../../../Core/OpenAPI/OpenAPI.csproj">
-			<Name>OpenAPI</Name>
-			<Project>{BC8E1E30-A063-463A-9213-A159C7FA4AAC}</Project>
-			<Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
-		</ProjectReference>
-		<ProjectReference Include="../../../Core/PicoCore/PicoCore.csproj">
-			<Name>PicoCore</Name>
-			<Project>{4D08EA48-F2BE-418B-AE1C-4925A7647F37}</Project>
-			<Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
-		</ProjectReference>
-		<ProjectReference Include="../../../Core/ResourceStore/ResourceStore.csproj">
-			<Name>ResourceStore</Name>
-			<Project>{D022CCB6-4958-44DD-8175-E9AA181E6F41}</Project>
-			<Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
-		</ProjectReference>
-		<ProjectReference Include="../../../Core/ResourceTools/ResourceTools.csproj">
-			<Project>{3866FB99-0922-4062-8880-B39DA0F1C15E}</Project>
-			<Name>ResourceTools</Name>
-		</ProjectReference>
-	</ItemGroup>
-	<ItemGroup>
-		<Compile Include="AddressBlock.cs">
-			<SubType>UserControl</SubType>
-		</Compile>
-		<Compile Include="AllFullNamesForm.cs">
-			<SubType>Form</SubType>
-		</Compile>
-		<Compile Include="AssemblyInfo.cs">
-			<SubType>Code</SubType>
-		</Compile>
-		<Compile Include="CategoriesBlock.cs">
-			<SubType>UserControl</SubType>
-		</Compile>
-		<Compile Include="ContactActions.cs">
-			<SubType>Code</SubType>
-		</Compile>
-		<Compile Include="ContactBlocks\FullNameEditForm.cs">
-			<SubType>Form</SubType>
-		</Compile>
-		<Compile Include="ContactBlocks\FullNameEditForm.Designer.cs">
-			<DependentUpon>FullNameEditForm.cs</DependentUpon>
-		</Compile>
-		<Compile Include="ContactDisplayPane.cs">
-			<SubType>UserControl</SubType>
-		</Compile>
-		<Compile Include="ContactMergingDialog.cs">
-			<SubType>Form</SubType>
-		</Compile>
-		<Compile Include="ContactService.cs">
-			<SubType>Code</SubType>
-		</Compile>
-		<Compile Include="ContactsPlugin.cs">
-			<SubType>Code</SubType>
-		</Compile>
-		<Compile Include="ContactView.cs">
-			<SubType>UserControl</SubType>
-		</Compile>
-		<Compile Include="DescriptionBlock.cs">
-			<SubType>UserControl</SubType>
-		</Compile>
-		<Compile Include="DetailsBlock.cs">
-			<SubType>UserControl</SubType>
-		</Compile>
-		<Compile Include="EmailAccountSelector.cs">
-			<SubType>UserControl</SubType>
-		</Compile>
-		<Compile Include="JobBlock.cs">
-			<SubType>UserControl</SubType>
-		</Compile>
-		<Compile Include="NameBlock.cs">
-			<SubType>UserControl</SubType>
-		</Compile>
-		<Compile Include="PhoneBlock.cs">
-			<SubType>UserControl</SubType>
-		</Compile>
-		<Compile Include="PropertyEditor.cs">
-			<SubType>UserControl</SubType>
-		</Compile>
-		<Compile Include="ResourceSerialization.cs">
-			<SubType>Code</SubType>
-		</Compile>
-		<Compile Include="SplitContactForm.cs">
-			<SubType>Form</SubType>
-		</Compile>
-		<Compile Include="Tests\Deserialization.cs">
-			<SubType>Code</SubType>
-		</Compile>
-		<Compile Include="Tests\SubstituteNameTest.cs">
-			<SubType>Code</SubType>
-		</Compile>
-		<Compile Include="ViewsConstructor.cs">
-			<SubType>Code</SubType>
-		</Compile>
-		<EmbeddedResource Include="AddressBlock.resx">
-			<DependentUpon>AddressBlock.cs</DependentUpon>
-			<SubType>Designer</SubType>
-		</EmbeddedResource>
-		<EmbeddedResource Include="AllFullNamesForm.resx">
-			<DependentUpon>AllFullNamesForm.cs</DependentUpon>
-			<SubType>Designer</SubType>
-		</EmbeddedResource>
-		<EmbeddedResource Include="CategoriesBlock.resx">
-			<DependentUpon>CategoriesBlock.cs</DependentUpon>
-			<SubType>Designer</SubType>
-		</EmbeddedResource>
-		<EmbeddedResource Include="ContactDisplayPane.resx">
-			<DependentUpon>ContactDisplayPane.cs</DependentUpon>
-			<SubType>Designer</SubType>
-		</EmbeddedResource>
-		<EmbeddedResource Include="ContactMergingDialog.resx">
-			<DependentUpon>ContactMergingDialog.cs</DependentUpon>
-			<SubType>Designer</SubType>
-		</EmbeddedResource>
-		<EmbeddedResource Include="ContactsPlugin.resx">
-			<DependentUpon>ContactsPlugin.cs</DependentUpon>
-			<SubType>Designer</SubType>
-		</EmbeddedResource>
-		<EmbeddedResource Include="ContactView.resx">
-			<DependentUpon>ContactView.cs</DependentUpon>
-			<SubType>Designer</SubType>
-		</EmbeddedResource>
-		<EmbeddedResource Include="DescriptionBlock.resx">
-			<DependentUpon>DescriptionBlock.cs</DependentUpon>
-			<SubType>Designer</SubType>
-		</EmbeddedResource>
-		<EmbeddedResource Include="DetailsBlock.resx">
-			<DependentUpon>DetailsBlock.cs</DependentUpon>
-			<SubType>Designer</SubType>
-		</EmbeddedResource>
-		<EmbeddedResource Include="Icons\addressbook.ico" />
-		<EmbeddedResource Include="Icons\addressbook1.ico" />
-		<EmbeddedResource Include="Icons\addressbook2.ico" />
-		<EmbeddedResource Include="Icons\contact.ico" />
-		<EmbeddedResource Include="Icons\ContactColorScheme.xml" />
-		<EmbeddedResource Include="Icons\contactInAddrBook.ico" />
-		<EmbeddedResource Include="Icons\ContactLarge.ico" />
-		<EmbeddedResource Include="Icons\contact_myself.ico" />
-		<EmbeddedResource Include="Icons\DeletedContact.ico" />
-		<EmbeddedResource Include="Icons\phone.ico" />
-		<EmbeddedResource Include="Icons\unknowncontact.ico" />
-		<EmbeddedResource Include="JobBlock.resx">
-			<DependentUpon>JobBlock.cs</DependentUpon>
-			<SubType>Designer</SubType>
-		</EmbeddedResource>
-		<EmbeddedResource Include="NameBlock.resx">
-			<DependentUpon>NameBlock.cs</DependentUpon>
-			<SubType>Designer</SubType>
-		</EmbeddedResource>
-		<EmbeddedResource Include="PhoneBlock.resx">
-			<DependentUpon>PhoneBlock.cs</DependentUpon>
-			<SubType>Designer</SubType>
-		</EmbeddedResource>
-		<EmbeddedResource Include="plugin.xml" />
-		<EmbeddedResource Include="PropertyEditor.resx">
-			<DependentUpon>PropertyEditor.cs</DependentUpon>
-			<SubType>Designer</SubType>
-		</EmbeddedResource>
-		<EmbeddedResource Include="SplitContactForm.resx">
-			<DependentUpon>SplitContactForm.cs</DependentUpon>
-			<SubType>Designer</SubType>
-		</EmbeddedResource>
-		<EmbeddedResource Include="Icons\InABoverlay.ico" />
-	</ItemGroup>
-	<ItemGroup>
-		<EmbeddedResource Include="Styles\ContactView.css" />
-	</ItemGroup>
-	<ItemGroup>
-		<EmbeddedResource Include="Icons\CollapsePanel.gif" />
-		<EmbeddedResource Include="Icons\ExpandPanel.gif" />
-	</ItemGroup>
-	<ItemGroup>
-		<EmbeddedResource Include="ContactBlocks\FullNameEditForm.resx">
-			<SubType>Designer</SubType>
-			<DependentUpon>FullNameEditForm.cs</DependentUpon>
-		</EmbeddedResource>
-		<EmbeddedResource Include="Icons\CollapsePanelHover.gif" />
-		<EmbeddedResource Include="Icons\ExpandPanelHover.gif" />
-	</ItemGroup>
-	<ItemGroup>
-		<EmbeddedResource Include="Icons\contact24.png" />
-		<EmbeddedResource Include="Icons\contact32.png" />
-		<EmbeddedResource Include="Icons\contact48.png" />
-	</ItemGroup>
-	<Import Project="$(ProductHomeDir)/Build/Product.BeforeMicrosoftCommon.Targets" />
-	<Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-	<Import Project="$(ProductHomeDir)/Build/Product.AfterMicrosoftCommon.Targets" />
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{880A3057-3DF9-49FB-950E-823CD66F8A7F}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <AssemblyName>Contacts.OmeaPlugin</AssemblyName>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>Library</OutputType>
+    <RootNamespace>ContactsPlugin</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <ProductHomeDir>$(MSBuildProjectDirectory)/../../../..</ProductHomeDir>
+    <TargetFrameworkVersion>v3.0</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <DefineConstants>DEBUG;TRACE;USAGE_LOG</DefineConstants>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <DefineConstants>TRACE</DefineConstants>
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="nunit.framework">
+      <Name>nunit.framework</Name>
+      <HintPath>../../../../Lib/References/nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Name>System.Drawing</Name>
+    </Reference>
+    <Reference Include="System.Windows.Forms">
+      <Name>System.Windows.Forms</Name>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+    <ProjectReference Include="../../../Core/GUIControls/GUIControls.csproj">
+      <Name>GUIControls</Name>
+      <Project>{C9CBAAE5-F8D4-4BD2-BDF0-026B85122106}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+      <Private>True</Private>
+    </ProjectReference>
+    <ProjectReference Include="../../../Core/JetBrainsShared/JetBrainsShared.csproj">
+      <Project>{5133BE57-1BE8-4C82-BA5E-ADA6CFA0AA8B}</Project>
+      <Name>JetBrainsShared</Name>
+    </ProjectReference>
+    <ProjectReference Include="../../../Core/JetListView/JetListView.csproj">
+      <Name>JetListView</Name>
+      <Project>{F143C8CF-F540-4CEE-9D6B-48F583A3B955}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="../../../Core/OmniaMeaBase/OmniaMeaBase.csproj">
+      <Name>OmniaMeaBase</Name>
+      <Project>{C77A02EC-E116-44B9-8FF2-85637FA405B7}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="../../../Core/OpenAPI/OpenAPI.csproj">
+      <Name>OpenAPI</Name>
+      <Project>{BC8E1E30-A063-463A-9213-A159C7FA4AAC}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="../../../Core/PicoCore/PicoCore.csproj">
+      <Name>PicoCore</Name>
+      <Project>{4D08EA48-F2BE-418B-AE1C-4925A7647F37}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="../../../Core/ResourceStore/ResourceStore.csproj">
+      <Name>ResourceStore</Name>
+      <Project>{D022CCB6-4958-44DD-8175-E9AA181E6F41}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="../../../Core/ResourceTools/ResourceTools.csproj">
+      <Project>{3866FB99-0922-4062-8880-B39DA0F1C15E}</Project>
+      <Name>ResourceTools</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AddressBlock.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AllFullNamesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CategoriesBlock.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ContactActions.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ContactBlocks\FullNameEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ContactBlocks\FullNameEditForm.Designer.cs">
+      <DependentUpon>FullNameEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ContactDisplayPane.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ContactMergingDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ContactService.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ContactsPlugin.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ContactView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DescriptionBlock.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DetailsBlock.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="EmailAccountSelector.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="JobBlock.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="NameBlock.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PhoneBlock.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PropertyEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ResourceSerialization.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SplitContactForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tests\Deserialization.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Tests\SubstituteNameTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ViewsConstructor.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <EmbeddedResource Include="AddressBlock.resx">
+      <DependentUpon>AddressBlock.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AllFullNamesForm.resx">
+      <DependentUpon>AllFullNamesForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CategoriesBlock.resx">
+      <DependentUpon>CategoriesBlock.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ContactDisplayPane.resx">
+      <DependentUpon>ContactDisplayPane.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ContactMergingDialog.resx">
+      <DependentUpon>ContactMergingDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ContactsPlugin.resx">
+      <DependentUpon>ContactsPlugin.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ContactView.resx">
+      <DependentUpon>ContactView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DescriptionBlock.resx">
+      <DependentUpon>DescriptionBlock.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DetailsBlock.resx">
+      <DependentUpon>DetailsBlock.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Icons\addressbook.ico" />
+    <EmbeddedResource Include="Icons\addressbook2.ico" />
+    <EmbeddedResource Include="Icons\contact.ico" />
+    <EmbeddedResource Include="Icons\ContactColorScheme.xml" />
+    <EmbeddedResource Include="Icons\contactInAddrBook.ico" />
+    <EmbeddedResource Include="Icons\ContactLarge.ico" />
+    <EmbeddedResource Include="Icons\contact_myself.ico" />
+    <EmbeddedResource Include="Icons\DeletedContact.ico" />
+    <EmbeddedResource Include="Icons\phone.ico" />
+    <EmbeddedResource Include="Icons\unknowncontact.ico" />
+    <EmbeddedResource Include="JobBlock.resx">
+      <DependentUpon>JobBlock.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NameBlock.resx">
+      <DependentUpon>NameBlock.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PhoneBlock.resx">
+      <DependentUpon>PhoneBlock.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="plugin.xml" />
+    <EmbeddedResource Include="PropertyEditor.resx">
+      <DependentUpon>PropertyEditor.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SplitContactForm.resx">
+      <DependentUpon>SplitContactForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Icons\InABoverlay.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Styles\ContactView.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Icons\CollapsePanel.gif" />
+    <EmbeddedResource Include="Icons\ExpandPanel.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ContactBlocks\FullNameEditForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FullNameEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Icons\CollapsePanelHover.gif" />
+    <EmbeddedResource Include="Icons\ExpandPanelHover.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Icons\contact24.png" />
+    <EmbeddedResource Include="Icons\contact32.png" />
+    <EmbeddedResource Include="Icons\contact48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Icons\AddressBook24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\ContactsPluginIcon.png" />
+  </ItemGroup>
+  <Import Project="$(ProductHomeDir)/Build/Product.BeforeMicrosoftCommon.Targets" />
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(ProductHomeDir)/Build/Product.AfterMicrosoftCommon.Targets" />
 </Project>

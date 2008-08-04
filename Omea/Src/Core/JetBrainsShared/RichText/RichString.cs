@@ -15,7 +15,7 @@ namespace JetBrains.UI.RichText
     /// <summary>
     /// Represents a formatted string
     /// </summary>
-    internal class RichString : IComparable, ICloneable
+    public class RichString : IComparable, ICloneable
     {
         #region Constants
 

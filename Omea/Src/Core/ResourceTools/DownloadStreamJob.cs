@@ -124,9 +124,6 @@ namespace JetBrains.Omea.ResourceTools
             {
                 return "Download " + _reader.URL;
             }
-            set
-            {
-            }
         }
     }
     public class DownloadResourceBlobJob : DownloadStreamJob

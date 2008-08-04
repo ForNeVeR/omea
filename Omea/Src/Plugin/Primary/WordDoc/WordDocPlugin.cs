@@ -24,12 +24,12 @@ using JetBrains.Omea.RTF;
 
 namespace JetBrains.Omea.WordDocPlugin
 {
-	[PluginDescriptionAttribute("JetBrains Inc.", "Microsoft Word files viewer and plain text extractor, for search capabilities")]
+	[PluginDescriptionAttribute("Word Documents", "JetBrains Inc.", "Microsoft Word files viewer and plain text extractor, for search capabilities", PluginDescriptionFormat.PlainText, "Icons/WordDocPluginIcon.png")]
 	public class WordDocPlugin: IPlugin, IResourceDisplayer, IResourceTextProvider
 	{
 		private readonly Tracer _tracer = new Tracer( "WordDocPlugin" );
 		private static string cMSWordFile = "MSWordFile";
-		private static string _tempDir = null;
+		private static string _tempDir;
 
 		#region IPlugin Members
 
@@ -85,7 +85,7 @@ namespace JetBrains.Omea.WordDocPlugin
 				return false;
 
 			string fileName = Core.FileResourceManager.GetSourceFile( res );
-			if ( fileName != null && fileName.Length > 0 )
+			if ( !string.IsNullOrEmpty(fileName) )
 			{
 				bool isRtf;
 				try
@@ -166,7 +166,7 @@ namespace JetBrains.Omea.WordDocPlugin
 
 		internal static bool IsRtfFile( string fileName )
 		{
-			FileStream f = null;
+			FileStream f;
 			try
 			{
 				f = File.Open( fileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite );

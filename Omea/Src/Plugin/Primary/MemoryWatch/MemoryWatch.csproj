@@ -13,7 +13,7 @@
 		<ProjectGuid>{C0A16CD4-73A8-496A-94C9-19E26C2C65B6}</ProjectGuid>
 		<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
 		<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-		<AssemblyName>MemoryWatch</AssemblyName>
+		<AssemblyName>MemoryWatch.OmeaPlugin</AssemblyName>
 		<DefaultClientScript>JScript</DefaultClientScript>
 		<DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
 		<DefaultTargetSchema>IE50</DefaultTargetSchema>
@@ -23,6 +23,7 @@
 		<RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
 		<OldToolsVersion>2.0</OldToolsVersion>
 		<ProductHomeDir>$(MSBuildProjectDirectory)/../../../..</ProductHomeDir>
+		<TargetFrameworkVersion>v3.0</TargetFrameworkVersion>
 	</PropertyGroup>
 	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
 		<AllowUnsafeBlocks>false</AllowUnsafeBlocks>

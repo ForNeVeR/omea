@@ -144,7 +144,6 @@ namespace JetBrains.Omea.OutlookPlugin
         public override string Name
         {
             get { return "Rename address book"; }
-            set { }
         }
     }
 
@@ -185,7 +184,6 @@ namespace JetBrains.Omea.OutlookPlugin
         public override string Name
         {
             get { return "Creation address book: " + _oldName + " to: " + _name; }
-            set { }
         }
     }
 }

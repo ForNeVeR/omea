@@ -190,10 +190,16 @@ namespace JetBrains.Omea.OpenAPI
         public static ITextIndexManager     TextIndexManager     { [DebuggerStepThrough] get { return ICore.Instance.TextIndexManager; } }
         
         /// <summary>
-        /// The <see cref="IFilterManager">Filter Manager</see> provides interfaces for
+        /// The <see cref="IFilterRegistry">Filter Manager</see> provides interfaces for
         /// working with custom views, rules, conditions and rule actions.
         /// </summary>
-        public static IFilterManager        FilterManager        { [DebuggerStepThrough] get { return ICore.Instance.FilterManager; } }
+        public static IFilterRegistry        FilterRegistry        { [DebuggerStepThrough] get { return ICore.Instance.FilterRegistry; } }
+
+        /// <summary>
+        /// The <see cref="IFilterRegistry">Filter Manager</see> provides interfaces for
+        /// working with custom views, rules, conditions and rule actions.
+        /// </summary>
+        public static IFilterEngine          FilterEngine          { [DebuggerStepThrough] get { return ICore.Instance.FilterEngine; } }
 
         /// <summary>
         /// The <see cref="ITrayIconManager">Tray Icon Manager</see> provides interfaces
@@ -223,6 +229,7 @@ namespace JetBrains.Omea.OpenAPI
         /// <since>2.0</since>
         public static IFilteringFormsManager FilteringFormsManager { [DebuggerStepThrough] get { return ICore.Instance.FilteringFormsManager; } }
 
+        /// <since>3.0</since>
         public static ISearchQueryExtensions SearchQueryExtensions { [DebuggerStepThrough] get { return ICore.Instance.SearchQueryExtensions; } }
 
         /// <summary>
@@ -326,6 +333,8 @@ namespace JetBrains.Omea.OpenAPI
         /// <since>2.0</since>
         public static ICoreProps Props { [DebuggerStepThrough] get { return ICore.Instance.Props; } }
 
+        public static ICorePropIds PropIds { get { return ICore.Instance.PropIds; } }
+        
         /// <summary>
         /// Omea product short name.
         /// </summary>
@@ -394,7 +403,15 @@ namespace JetBrains.Omea.OpenAPI
             get { return ICore.Instance.DefaultProxy; }
         }
 
-        /// <summary>
+    	/// <summary>
+    	/// Reports a non-fatal exception to the UI and provides an opportunity to submit this exception to the tracker.
+    	/// </summary>
+    	/// <param name="e">The exception being reported.</param>
+    	/// <since>3</since>
+    	public static void ReportException( Exception e ) {ReportException(e, false);
+    	}
+
+    	/// <summary>
         /// Reports an exception to the UI and provides an opportunity to submit this exception to the tracker.
         /// </summary>
         /// <param name="e">The exception being reported.</param>
@@ -548,10 +565,16 @@ namespace JetBrains.Omea.OpenAPI
         public abstract ITextIndexManager   TextIndexManager { get; }
 
         /// <summary>
-        /// FilterManager controls the creation, maintenance and execution of
-        /// rules, formatting rules and views.
+        /// FilterRegistry controls the creation and maintenance of
+        /// rules, views and views-derived structures (like formatting, expiration,
+        /// and tray icon rules).
         /// </summary>
-        public abstract IFilterManager      FilterManager    { get; }
+        public abstract IFilterRegistry      FilterRegistry  { get; }
+
+        /// <summary>
+        /// FilterEngine controls the execution of rules and views.
+        /// </summary>
+        public abstract IFilterEngine        FilterEngine    { get; }
 
         /// <summary>
         /// The <see cref="ITrayIconManager">Tray Icon Manager</see> provides interfaces
@@ -683,6 +706,8 @@ namespace JetBrains.Omea.OpenAPI
         /// </summary>
         /// <since>2.0</since>
         public abstract ICoreProps Props { get; }
+
+        public abstract ICorePropIds PropIds { get;  }
 
         /// <summary>
         /// Omea product short name.

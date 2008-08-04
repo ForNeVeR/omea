@@ -71,10 +71,23 @@ namespace JetBrains.Omea.OpenAPI
     };
 
     /// <summary>
+    /// Configure the visibility of resource list and content panes.
+    /// </summary>
+    /// <since>3.0</since>
+    public enum BrowserPanesVisibilityMode
+    {
+        ListOnly,
+        ContentOnly,
+        Both
+    };
+
+    /// <summary>
     /// Manages the display of resources and resource lists in Omea.
     /// </summary>
     public interface IResourceBrowser: IContextProvider, ICommandProcessor
     {
+        BrowserPanesVisibilityMode BrowserPanesMode { get; set; }
+
         /// <summary>
         /// Displays the specified resource in a full-height preview pane (with the
         /// resource list hidden).

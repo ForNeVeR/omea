@@ -499,7 +499,7 @@ namespace JetBrains.Omea.OutlookPlugin
                 newMail = outlook.CreateNew();
                 newMail.Subject = subject;
 
-                bool validBody = Utils.IsValidString( body );
+                bool validBody = !String.IsNullOrEmpty( body );
 
                 if ( useTemplatesInBody && Settings.UseSignature )
                 {
@@ -516,7 +516,8 @@ namespace JetBrains.Omea.OutlookPlugin
                     catch ( Exception ){}
                     newMail.HTMLBody = body;
                 }
-                else if ( validBody )
+                else
+                if ( validBody )
                 {
                     try
                     {
@@ -525,7 +526,8 @@ namespace JetBrains.Omea.OutlookPlugin
                     catch ( Exception ){}
                     newMail.Body = body;
                 }
-                else if ( !validBody && Utils.IsValidString( body ) )
+                else
+                if ( !String.IsNullOrEmpty( body ) )
                 {
                     newMail.Body = body;
                 }

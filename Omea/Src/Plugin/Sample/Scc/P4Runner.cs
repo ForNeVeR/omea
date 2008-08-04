@@ -5,6 +5,7 @@
 
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using System.Text;
@@ -50,7 +51,7 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
         }
     }
 
-    internal class FileChange
+    internal class FileChangeData
     {
         private string _path;
         private int _revision;
@@ -58,7 +59,7 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
         private bool _binary = false;
         private StringBuilder _diffBuilder = new StringBuilder();
 
-        public FileChange( string path, int revision, string changeType )
+        public FileChangeData( string path, int revision, string changeType )
         {
             _path = path;
             _revision = revision;
@@ -100,26 +101,14 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
     
     internal class ChangeSetDetails
     {
-        private string _description;
-        private FileChange[] _fileChanges;
-
-        public ChangeSetDetails( string description, FileChange[] fileChanges )
+        public ChangeSetDetails( string description, FileChangeData[] fileChanges )
         {
-            _description = description;
-            _fileChanges = fileChanges;
+            Description = description;
+            FileChanges = fileChanges;
         }
 
-        public string Description
-        {
-            get { return _description; }
-            set { _description = value; }
-        }
-
-        public FileChange[] FileChanges
-        {
-            get { return _fileChanges; }
-            set { _fileChanges = value; }
-        }
+        public string Description { get; set; }
+        public FileChangeData[] FileChanges { get; set; }
     }
     
     /// <summary>
@@ -275,19 +264,19 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
         {
             string desc = ReadPerforceStdout( "describe -du " + changeSetNumber );
             desc = desc.Replace( "\r\n", "\n" );
-            ArrayList descLines = new ArrayList( desc.Split( '\n' ) );
+            var descLines = new List<string>( desc.Split( '\n' ) );
             // skip heading
             descLines.RemoveAt( 0 );
 
             StringBuilder descBuilder = new StringBuilder();
-            FileChange lastChange = null;
-            ArrayList fileChanges = new ArrayList();
-            Hashtable fileChangesMap = new Hashtable();
+            FileChangeData lastChange = null;
+            var fileChanges = new List<FileChangeData>();
+            var fileChangesMap = new Dictionary<string, FileChangeData>();
 
             bool affectedStarted = false, differencesStarted = false;
             while ( descLines.Count > 0 )
             {
-                string descLine = (string) descLines [0];
+                string descLine = descLines [0];
                 descLines.RemoveAt( 0 );
                 if ( descLine == "" )
                     continue;
@@ -321,7 +310,7 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
                         pos = descLine.IndexOf( ' ' );
                         int revision = Int32.Parse( descLine.Substring( 1, pos ) );
                         string changeType = descLine.Substring( pos + 1 );
-                        FileChange change = new FileChange( path, revision, changeType );
+                        var change = new FileChangeData( path, revision, changeType );
                         fileChanges.Add( change );
                         fileChangesMap.Add( path, change );
                     }
@@ -332,7 +321,7 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
                     {
                         int revisionPos = descLine.LastIndexOf( '#' );
                         string path = descLine.Substring( 5, revisionPos-5 ); // skip =====
-                        lastChange = (FileChange) fileChangesMap [path];
+                        lastChange = fileChangesMap [path];
                         if ( descLine.IndexOf( "(binary)", revisionPos ) >= 0 )
                         {
                             lastChange.Binary = true;
@@ -344,8 +333,7 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
                     }
                 }
             }
-            return new ChangeSetDetails( descBuilder.ToString(), 
-                (FileChange[]) fileChanges.ToArray( typeof (FileChange) ) );
+            return new ChangeSetDetails( descBuilder.ToString(), fileChanges.ToArray() );
         }
 
         /// <summary>

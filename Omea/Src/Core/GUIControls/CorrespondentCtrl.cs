@@ -4,6 +4,7 @@
 /// </copyright>
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
@@ -11,7 +12,6 @@ using JetBrains.JetListViewLibrary;
 using JetBrains.Omea.Contacts;
 using JetBrains.Omea.FiltersManagement;
 using JetBrains.Omea.OpenAPI;
-using JetBrains.Omea.Containers;
 using JetBrains.Omea.ResourceTools;
 
 namespace JetBrains.Omea.GUIControls
@@ -31,12 +31,12 @@ namespace JetBrains.Omea.GUIControls
         private IResourceList _categories;
         private IResourceList _views;
         private IResourceList _addressBooks;
-        private ResourceNameJetFilter _nameFilter;
+        private readonly ResourceNameJetFilter _nameFilter;
         private bool _forceUpdate = false;
         private bool _selectorMode = false;
         private IResourceList _initialSelection;
         private IResourceList _selectionSourceList;
-        private IntArrayList _checkedResources;
+        private List<int> _checkedResources;
         private bool _updatingCheckedResources = false;
         private ResourceComboBox _cmbCategory;
         private Label _lblShowCategory;
@@ -44,7 +44,7 @@ namespace JetBrains.Omea.GUIControls
         private IResource _lastWorkspace;
         private string _iniSection;
         private IResourceList _correspondentFilterList;
-        private Pen _borderPen = new Pen( Color.FromArgb( 88, 80, 159 ) );
+        private readonly Pen _borderPen = new Pen( Color.FromArgb( 88, 80, 159 ) );
         private ResourceListDataProvider _dataProvider;
         private CheckBoxColumn _checkBoxColumn;
 
@@ -139,7 +139,7 @@ namespace JetBrains.Omea.GUIControls
         //---------------------------------------------------------------------
         private void  LoadViews()
         {
-            IResourceList views = Core.FilterManager.GetViews();
+            IResourceList views = Core.FilterRegistry.GetViews();
             IResourceList cviews = Core.ResourceStore.EmptyResourceList;
             lock( views )
             {
@@ -264,8 +264,8 @@ namespace JetBrains.Omea.GUIControls
                 selectSuccess = _dataProvider.FindResourceNode( node );
                 if ( !selectSuccess )
                 {
-                    if ( !selectSuccess && node.Type == "Contact" && 
-                        _lastWorkspace == null && _cmbCategory.SelectedIndex != 0  )
+                    if ( node.Type == "Contact" && _lastWorkspace == null && 
+                        _cmbCategory.SelectedIndex != 0  )
                     {
                         // show All contacts and retry selection
                         _cmbCategory.SelectedIndex = 0;
@@ -440,7 +440,7 @@ namespace JetBrains.Omea.GUIControls
             {
                 switch( selectedResource.Type )
                 {
-                    case FilterManagerProps.ViewResName: correspondents = Core.FilterManager.ExecView( selectedResource ); break;
+                    case FilterManagerProps.ViewResName: correspondents = Core.FilterEngine.ExecView( selectedResource ); break;
                     case "Category": correspondents = selectedResource.GetLinksOfTypeLive( "Contact", "Category" ); break;
                     case "AddressBook": correspondents = selectedResource.GetLinksOfTypeLive( "Contact", "InAddressBook" ); break;
                     default: throw new NotSupportedException( "Correspondence -- Not supported type discriminator: " + selectedResource.Type );
@@ -813,7 +813,7 @@ namespace JetBrains.Omea.GUIControls
         public void SelectResource( string[] resTypes, IResourceList baseList, IResource selection )
         {
             SetSelectorMode();
-            _checkedResources = new IntArrayList();
+            _checkedResources = new List<int>();
             _selectionSourceList = baseList;
             
             Populate();
@@ -823,7 +823,7 @@ namespace JetBrains.Omea.GUIControls
         public void SelectResources( string[] resTypes, IResourceList baseList, IResourceList selection )
         {
             SetSelectorMode();
-            _checkedResources = new IntArrayList();
+            _checkedResources = new List<int>();
             _selectionSourceList = baseList;
             
             _checkBoxColumn = new CheckBoxColumn();

@@ -4,6 +4,7 @@
 /// </copyright>
 
 using System;
+using System.Collections.Specialized;
 using System.IO;
 using System.Net;
 using System.Diagnostics;
@@ -117,10 +118,10 @@ namespace JetBrains.Omea.HttpTools
             {
                 proxy = WebProxy.GetDefaultProxy();
                 proxy.Credentials = CredentialCache.DefaultCredentials;
-                if ( proxy != null && proxy.Address != null )
+                if ( proxy.Address != null )
                 {
                     Trace.WriteLine( "Using proxy settings from IE: address " + proxy.Address + 
-                        ", bypass on local addresses " + proxy.BypassProxyOnLocal );
+                                     ", bypass on local addresses " + proxy.BypassProxyOnLocal );
                     haveProxy = true;
                 }
                 else
@@ -140,10 +141,6 @@ namespace JetBrains.Omea.HttpTools
                     catch
                     {
                         proxy = WebProxy.GetDefaultProxy();
-                        if( proxy == null )
-                        {
-                            break;
-                        }
                     }
                     string user = ini.ReadString( "HttpProxy", "User" );
                     if( user.Length == 0 )
@@ -175,7 +172,7 @@ namespace JetBrains.Omea.HttpTools
                         catch{}
                     }
 
-                    if ( proxy != null && proxy.Address != null )
+                    if ( proxy.Address != null )
                     {
                         Trace.WriteLine( "Using proxy settings specified by user: address " + proxy.Address + 
                             ", bypass on local addresses " + proxy.BypassProxyOnLocal );
@@ -325,7 +322,8 @@ namespace JetBrains.Omea.HttpTools
             {
                 ProcessFileURL();
             }
-            else if( _urlType == URLType.Web )
+            else
+            if( _urlType == URLType.Web )
             {
                 if( _requestStream != null )
                 {
@@ -733,12 +731,12 @@ namespace JetBrains.Omea.HttpTools
         private static string                       _userAgent = String.Empty;
         private State                               _state;
         private string                              _url;
-        private URLType                             _urlType;
+        private readonly URLType                    _urlType;
         private int                                 _certfId;
         private X509Certificate                     _X509Certificate;
         private HttpWebRequest                      _request;
-        private JetMemoryStream                     _requestStream;
-        private string                              _requestContentType;
+        private readonly JetMemoryStream            _requestStream;
+        private readonly string                     _requestContentType;
         private HttpWebResponse                     _response;
         private Stream                              _responseStream;
         private IAsyncResult                        _asyncResult;

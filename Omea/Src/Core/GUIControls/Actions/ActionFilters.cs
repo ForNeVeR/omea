@@ -53,7 +53,7 @@ namespace JetBrains.Omea.GUIControls
         {
             presentation.Visible = context.SelectedResources.Count > 0 &&
                                    context.SelectedResources[ 0 ].GetStringProp( "DeepName" ) == 
-                                        ICore.Instance.FilterManager.ViewNameForSearchResults;
+                                        ICore.Instance.FilterRegistry.ViewNameForSearchResults;
         }
     }
 

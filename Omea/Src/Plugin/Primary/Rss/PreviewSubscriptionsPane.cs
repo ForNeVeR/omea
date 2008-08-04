@@ -199,8 +199,7 @@ namespace JetBrains.Omea.RSSPlugin
         }
         #endregion
 
-        private delegate void ImportJob( IResource root, bool addToWorkspace );
-        public override void ShowPane()
+		public override void ShowPane()
         {
             //  OM-13761, -12533: importing during shutdown leads to creation
             //  of illegal proxy resource. Just do nothing if not in "Running" mode.
@@ -260,7 +259,7 @@ namespace JetBrains.Omea.RSSPlugin
             ResourceProxy p = ResourceProxy.BeginNewResource( "RSSFeedGroup" );
             p.EndUpdate();
             _importRoot = p.Resource;
-            Core.UIManager.RunWithProgressWindow( ImportManager.ImportPaneName, new ImportJob( _manager.DoImport ), _importRoot, false );
+            Core.UIManager.RunWithProgressWindow( ImportManager.ImportPaneName, delegate { _manager.DoImport(_importRoot, false); } );
     
             Core.ResourceTreeManager.SetResourceNodeSort( _importRoot, "Type- Name" );
             _tvFeeds.RootResource = _importRoot;

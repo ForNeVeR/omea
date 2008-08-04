@@ -122,22 +122,22 @@ namespace GUIControls.CustomViews
 
             if( rule != null )
             {
-                IResourceList exceptions = Core.FilterManager.GetExceptions( rule );
-                if( exceptions.IndexOf( Core.FilterManager.Std.ResourceIsFlagged ) != -1 )
+                IResourceList exceptions = Core.FilterRegistry.GetExceptions( rule );
+                if( exceptions.IndexOf( Core.FilterRegistry.Std.ResourceIsFlagged ) != -1 )
                 {
                     checkFlaggedResources.Checked = true;
-                    exceptions = exceptions.Minus( Core.FilterManager.Std.ResourceIsFlagged.ToResourceList() );
-                    exceptions = exceptions.Minus( Core.FilterManager.Std.ResourceIsAnnotated.ToResourceList() );
+                    exceptions = exceptions.Minus( Core.FilterRegistry.Std.ResourceIsFlagged.ToResourceList() );
+                    exceptions = exceptions.Minus( Core.FilterRegistry.Std.ResourceIsAnnotated.ToResourceList() );
                 }
-                if( exceptions.IndexOf( Core.FilterManager.Std.ResourceIsCategorized ) != -1 )
+                if( exceptions.IndexOf( Core.FilterRegistry.Std.ResourceIsCategorized ) != -1 )
                 {
                     checkCategorizedResources.Checked = true;
-                    exceptions = exceptions.Minus( Core.FilterManager.Std.ResourceIsCategorized.ToResourceList() );
+                    exceptions = exceptions.Minus( Core.FilterRegistry.Std.ResourceIsCategorized.ToResourceList() );
                 }
-                if( exceptions.IndexOf( Core.FilterManager.Std.ResourceIsUnread ) != -1 )
+                if( exceptions.IndexOf( Core.FilterRegistry.Std.ResourceIsUnread ) != -1 )
                 {
                     checkUnreadResources.Checked = true;
-                    exceptions = exceptions.Minus( Core.FilterManager.Std.ResourceIsUnread.ToResourceList() );
+                    exceptions = exceptions.Minus( Core.FilterRegistry.Std.ResourceIsUnread.ToResourceList() );
                 }
 
                 if( exceptions.Count > 0 )
@@ -156,14 +156,14 @@ namespace GUIControls.CustomViews
                 }
 
                 //-----------------------------------------------------------------
-                IResourceList actions = Core.FilterManager.GetActions( rule );
-                if( actions.IndexOf( Core.FilterManager.Std.DeleteResourceAction ) != -1 )
+                IResourceList actions = Core.FilterRegistry.GetActions( rule );
+                if( actions.IndexOf( Core.FilterRegistry.Std.DeleteResourceAction ) != -1 )
                 {
                     checkDeleteResources.Checked = true;
                     if( checkDeleteResources.Checked )
                         checkDeleteRelatedContacts.Checked = rule.HasProp( "DeleteRelatedContact" );
                 }
-                if( actions.IndexOf( Core.FilterManager.Std.MarkResourceAsReadAction ) != -1 )
+                if( actions.IndexOf( Core.FilterRegistry.Std.MarkResourceAsReadAction ) != -1 )
                     checkMarkRead.Checked = true;
             }
             else
@@ -577,7 +577,7 @@ namespace GUIControls.CustomViews
             {
                 string  paramStr = "Last " + numericOlderValue.Value + " " +
                                    (string)comboTimeUnits.Items[ comboTimeUnits.SelectedIndex ];
-                IResource dateTemplate = Core.FilterManager.Std.ReceivedInTheTimeSpanX;
+                IResource dateTemplate = Core.FilterRegistry.Std.ReceivedInTheTimeSpanX;
                 IResource dateExc = FilterConvertors.InstantiateTemplate( dateTemplate, paramStr, null );
                 excVector.Add( dateExc );
             }
@@ -585,21 +585,21 @@ namespace GUIControls.CustomViews
             //-----------------------------------------------------------------
             if( checkFlaggedResources.Checked )
             {
-                excVector.Add( Core.FilterManager.Std.ResourceIsFlagged );
-                excVector.Add( Core.FilterManager.Std.ResourceIsAnnotated );
+                excVector.Add( Core.FilterRegistry.Std.ResourceIsFlagged );
+                excVector.Add( Core.FilterRegistry.Std.ResourceIsAnnotated );
             }
             if( checkCategorizedResources.Checked )
             {
-                excVector.Add( Core.FilterManager.Std.ResourceIsCategorized );
+                excVector.Add( Core.FilterRegistry.Std.ResourceIsCategorized );
             }
             if( checkUnreadResources.Checked )
-                excVector.Add( Core.FilterManager.Std.ResourceIsUnread );
+                excVector.Add( Core.FilterRegistry.Std.ResourceIsUnread );
 
             //-----------------------------------------------------------------
             if( checkDeleteResources.Checked )
-                actVector.Add( Core.FilterManager.Std.DeleteResourceAction );
+                actVector.Add( Core.FilterRegistry.Std.DeleteResourceAction );
             if( checkMarkRead.Checked )
-                actVector.Add( Core.FilterManager.Std.MarkResourceAsReadAction );
+                actVector.Add( Core.FilterRegistry.Std.MarkResourceAsReadAction );
 
             exceptions = (IResource[]) excVector.ToArray( typeof(IResource) );
             actions = (IResource[]) actVector.ToArray( typeof(IResource) );

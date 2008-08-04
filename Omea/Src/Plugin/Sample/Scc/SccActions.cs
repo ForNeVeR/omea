@@ -29,7 +29,7 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
         {
             foreach( IResource res in context.SelectedResources )
             {
-                RepositoryType repType = SccPlugin.GetRepositoryType( res.GetStringProp( Props.RepositoryType ) );
+                RepositoryType repType = SccPlugin.GetRepositoryType( res );
                 if ( repType != null )
                 {
                     repType.UpdateRepository( res );
@@ -46,7 +46,7 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
         public override void Execute( IActionContext context )
         {
             IResource repository = context.SelectedResources[0];
-            RepositoryType repType = SccPlugin.GetRepositoryType( repository.GetStringProp( Props.RepositoryType ) );
+            RepositoryType repType = SccPlugin.GetRepositoryType( repository );
             repType.EditRepository( Core.MainWindow, repository );
         }
     }
@@ -76,8 +76,8 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
                 }
                 else
                 {
-                    Core.UIManager.RunWithProgressWindow( "Deleting Repository", 
-                        new ResourceDelegate( RunDeleteRepository ), repository );
+                    Core.UIManager.RunWithProgressWindow( "Deleting Repository",
+                                                          () => RunDeleteRepository(repository));
                 }
                 return true;
             }
@@ -86,7 +86,7 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
 
         private static void RunDeleteRepository( IResource res )
         {
-            Core.ResourceAP.RunJob( new ResourceDelegate( DoDeleteRepository ), res );
+            Core.ResourceAP.RunJob("Deleting SCC repository", () => DoDeleteRepository(res)); 
         }
 
         private static void DoDeleteRepository( IResource res )
@@ -139,15 +139,7 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
     {
         public override void Execute( IActionContext context )
         {
-            bool anyChecked = false;
-            foreach( IResource res in context.SelectedResources )
-            {
-                if ( res.HasProp( Props.ShowSubfolderContents ) )
-                {
-                    anyChecked = true;
-                    break;
-                }
-            }
+            bool anyChecked = HasAnyCheckedResource(context);
             foreach( IResource res in context.SelectedResources )
             {
                 new ResourceProxy( res ).SetProp( Props.ShowSubfolderContents, !anyChecked );
@@ -159,19 +151,17 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
             }
         }
 
+        private static bool HasAnyCheckedResource(IActionContext context)
+        {
+            return context.SelectedResources.Find(res => res.HasProp(Props.ShowSubfolderContents)) != null;
+        }
+
         public override void Update( IActionContext context, ref ActionPresentation presentation )
         {
             base.Update( context, ref presentation );
             if ( presentation.Visible )
             {
-                foreach( IResource res in context.SelectedResources )
-                {
-                    if ( res.HasProp( Props.ShowSubfolderContents ) )
-                    {
-                        presentation.Checked = true;
-                        break;
-                    }
-                }
+                presentation.Checked = HasAnyCheckedResource(context);
             }
         }
     }

@@ -7,7 +7,6 @@ using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
-using JetBrains.Omea.Base;
 using JetBrains.Omea.GUIControls;
 using JetBrains.Omea.OpenAPI;
 
@@ -16,17 +15,17 @@ namespace JetBrains.Omea.RSSPlugin.SubscribeWizard
 	/// <summary>
 	/// Summary description for FeedAddressPane.
 	/// </summary>
-	public class FeedAddressPane : System.Windows.Forms.UserControl
+	public class FeedAddressPane : UserControl
 	{
-        private System.Windows.Forms.TextBox _edtURL;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label _lblError;
-        private System.Windows.Forms.Label _lblProgress;
-        private System.Windows.Forms.CheckBox _chkAuthentication;
-        private System.Windows.Forms.GroupBox _grpLogin;
-        private System.Windows.Forms.Label      _lblUserName, _lblPassword;
-        private System.Windows.Forms.TextBox    _edtUserName, _edtPassword;
+        private TextBox     _edtURL;
+        private Label       label1;
+        private Label       label2;
+        private Label       _lblError;
+        private Label       _lblProgress;
+        private CheckBox    _chkAuthentication;
+        private GroupBox    _grpLogin;
+        private Label       _lblUserName, _lblPassword;
+        private TextBox     _edtUserName, _edtPassword;
         private JetLinkLabel _lnkExistingFeed;
         private ToolTip      _tipForFullFeedPath;
 		private IContainer   components = null;
@@ -235,7 +234,7 @@ namespace JetBrains.Omea.RSSPlugin.SubscribeWizard
 	    #endregion
 
         #region Key pressing handling
-        private void _edtURL_KeyDown( object sender, System.Windows.Forms.KeyEventArgs e )
+        private void _edtURL_KeyDown( object sender, KeyEventArgs e )
         {
             if ( e.KeyData == Keys.Enter )
             {
@@ -243,7 +242,7 @@ namespace JetBrains.Omea.RSSPlugin.SubscribeWizard
             }
         }
 
-        private void _edtURL_KeyPress( object sender, System.Windows.Forms.KeyPressEventArgs e )
+        private void _edtURL_KeyPress( object sender, KeyPressEventArgs e )
         {
             ErrorMessage = "";
             if ( e.KeyChar == '\r' )
@@ -254,7 +253,7 @@ namespace JetBrains.Omea.RSSPlugin.SubscribeWizard
 
         private void _edtURL_TextChanged(object sender, EventArgs e)
         {
-            NextPredicate( Utils.IsValidString( _edtURL.Text ) );
+            NextPredicate( !String.IsNullOrEmpty( _edtURL.Text ) );
         }
         #endregion Key pressing handling
 
@@ -339,7 +338,7 @@ namespace JetBrains.Omea.RSSPlugin.SubscribeWizard
             _edtURL.SelectionStart = _edtURL.Text.Length;	        
         }
 
-        private void _chkAuthentication_CheckedChanged( object sender, System.EventArgs e )
+        private void _chkAuthentication_CheckedChanged( object sender, EventArgs e )
         {
             _grpLogin.Enabled = _chkAuthentication.Checked;
         }

@@ -171,7 +171,7 @@
 			<column width="14" fixedSize="1">
 				<prop name="-Attachment" />
 				<prop name="InternalAttachment" />
-				<comparer assembly="Outlook" class="JetBrains.Omea.OutlookPlugin.AttachmentComparer" />
+				<comparer assembly="Outlook.OmeaPlugin" class="JetBrains.Omea.OutlookPlugin.AttachmentComparer" />
 				<multiline row="0" startX="196" width="14" anchor="right" hideIfNoProp="1" />
 				<sortmenutext asc="None on top" desc="With on top" />
 			</column>

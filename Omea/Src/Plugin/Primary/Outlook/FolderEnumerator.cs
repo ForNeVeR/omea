@@ -218,8 +218,6 @@ namespace JetBrains.Omea.OutlookPlugin
         public override string Name
         {
             get { return "Mail sync in background"; }
-            set
-            {}
         }
     }
 

@@ -6,7 +6,6 @@
 using System.IO;
 using System.Windows.Forms;
 using JetBrains.JetListViewLibrary;
-using JetBrains.Omea.Base;
 using JetBrains.Omea.Containers;
 using JetBrains.Omea.GUIControls;
 using JetBrains.Omea.OpenAPI;
@@ -19,17 +18,17 @@ namespace JetBrains.Omea.RSSPlugin
 	public class ExportFeedsForm : DialogBase
 	{
         private ResourceTreeView2 _treeFeeds;
-        private System.Windows.Forms.Button _btnOK;
-        private System.Windows.Forms.Button _btnCancel;
-        private System.Windows.Forms.TextBox _edtFileName;
-        private System.Windows.Forms.Label _lblTitle;
-        private System.Windows.Forms.Label _lblDestination;
-        private System.Windows.Forms.Button _btnBrowse;
-        private System.Windows.Forms.Button _btnSelectAll;
-        private System.Windows.Forms.Button _btnUnselectAll;
+        private Button  _btnOK;
+        private Button  _btnCancel;
+        private TextBox _edtFileName;
+        private Label   _lblTitle;
+        private Label   _lblDestination;
+        private Button  _btnBrowse;
+        private Button  _btnSelectAll;
+        private Button  _btnUnselectAll;
 
         private int          _totalFeeds = 0, _checkedFeeds = 0;
-        private IntArrayList _listCheckedFeeds = new IntArrayList();
+        private readonly IntArrayList _listCheckedFeeds = new IntArrayList();
 
         private System.ComponentModel.Container components = null;
 
@@ -199,14 +198,14 @@ namespace JetBrains.Omea.RSSPlugin
 
         private void _btnSelectAll_Click( object sender, System.EventArgs e )
         {
-            _treeFeeds.ForEachNode( new ResourceDelegate( CheckResource ) );
+            _treeFeeds.ForEachNode( CheckResource );
             _checkedFeeds = _totalFeeds;
             CheckValidState();
         }
 
         private void _btnUnselectAll_Click( object sender, System.EventArgs e )
         {
-            _treeFeeds.ForEachNode( new ResourceDelegate( UncheckResource ) );
+            _treeFeeds.ForEachNode( UncheckResource );
             _checkedFeeds = 0;
             CheckValidState( false );
         }
@@ -247,7 +246,7 @@ namespace JetBrains.Omea.RSSPlugin
         }
         private void CheckValidState()
         {
-            _btnOK.Enabled = Utils.IsValidString( _edtFileName.Text ) && AnyItemChecked();
+            _btnOK.Enabled = !string.IsNullOrEmpty( _edtFileName.Text ) && AnyItemChecked();
         }
 
         private bool  AnyItemChecked()
@@ -281,7 +280,7 @@ namespace JetBrains.Omea.RSSPlugin
                 //  to open output stream.
                 path = Path.GetFullPath( _edtFileName.Text );
                 FileStream strm = new FileStream( _edtFileName.Text, FileMode.Create );
-                _treeFeeds.ForEachNode( new ResourceDelegate( CollectCheckedResource ) );
+                _treeFeeds.ForEachNode( CollectCheckedResource );
                 strm.Close();
             }
             catch( System.ArgumentException )
@@ -289,12 +288,12 @@ namespace JetBrains.Omea.RSSPlugin
                 MessageBox.Show( "Can not open output file with name: " + path );
                 DialogResult = DialogResult.None;
             }
-            catch( System.IO.DirectoryNotFoundException )
+            catch( DirectoryNotFoundException )
             {
                 MessageBox.Show( "Can not open output file with name: " + path );
                 DialogResult = DialogResult.None;
             }
-            catch( System.IO.IOException )
+            catch( IOException )
             {
                 MessageBox.Show( "Can not open output file with name: " + path );
                 DialogResult = DialogResult.None;

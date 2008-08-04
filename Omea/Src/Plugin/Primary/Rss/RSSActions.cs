@@ -137,7 +137,7 @@ namespace JetBrains.Omea.RSSPlugin
                 // Call this, if import was done it doesn't break anything.
                 if( ! importManager.FeedsImported )
                 {
-                    Core.UIManager.RunWithProgressWindow( ImportManager.ImportPaneName, new ImportJob( importManager.DoImport ), RSSPlugin.RootFeedGroup, true );
+                    Core.UIManager.RunWithProgressWindow( ImportManager.ImportPaneName, delegate { importManager.DoImport(RSSPlugin.RootFeedGroup, true); } );
                 }
                 Core.ResourceAP.QueueJob( new MethodInvoker(importManager.DoImportCache) );
             }

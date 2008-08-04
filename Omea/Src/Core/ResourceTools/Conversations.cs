@@ -62,7 +62,7 @@ namespace JetBrains.Omea.Conversations
 
             _conversationResType = resType;
             _store.ResourceTypes.Register( resType, resourceTypeDisplayName, displayNameMask, ResourceTypeFlags.Normal, ownerPlugin );
-            Core.FilterManager.RegisterRuleApplicableResourceType( resType );
+            Core.FilterEngine.RegisterRuleApplicableResourceType( resType );
             _store.RegisterLinkRestriction( resType, _propFrom, null, 1, 1 );
             _store.RegisterLinkRestriction( resType, _propTo, null, 1, 1 );
             _store.RegisterLinkRestriction( resType, propFromAccount, null, 1, 1 );

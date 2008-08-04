@@ -9,7 +9,6 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Reflection;
-using System.Text;
 using System.Windows.Forms;
 using JetBrains.DataStructures;
 using JetBrains.Omea.Base;
@@ -21,9 +20,9 @@ using JetBrains.UI.RichText;
 
 namespace JetBrains.Omea.Favorites
 {
-    [PluginDescriptionAttribute("JetBrains Inc.", "Support for Mozilla bookmarks and Internet Explorer Favorites.")]
-    public class FavoritesPlugin : IPlugin, IStreamProvider, IResourceTextProvider, 
-        IResourceDisplayer, IDisplayPane2, IResourceUIHandler, IResourceIconProvider
+    [PluginDescription("Web Browser Favorites", "JetBrains Inc.", "Support for Mozilla bookmarks and Internet Explorer Favorites.", PluginDescriptionFormat.PlainText, "Icons/FavoritesPluginIcon.png")]
+    public class FavoritesPlugin : IPlugin, IStreamProvider, IResourceTextProvider, IResourceDisplayer,
+                                   IDisplayPane2, IResourceUIHandler, IResourceIconProvider
     {
         #region IPlugin Members
 
@@ -34,8 +33,7 @@ namespace JetBrains.Omea.Favorites
             RegisterTypes();
 
             IUIManager uiMgr = Core.UIManager;
-            uiMgr.RegisterWizardPane(
-                "Import Bookmarks", ImportBookmarksOptionsPane.StartupWizardPaneCreator, 1 );
+            uiMgr.RegisterWizardPane( "Import Bookmarks", ImportBookmarksOptionsPane.StartupWizardPaneCreator, 1 );
             uiMgr.RegisterOptionsGroup( "Internet", "The Internet options enable you to control how [product name] works with several types of online content." );
             OptionsPaneCreator favoritesPaneCreator = FavoritesOptionsPane.FavoritesOptionsPaneCreator;
             uiMgr.RegisterOptionsPane( "Internet", "Favorites", favoritesPaneCreator,
@@ -56,13 +54,13 @@ namespace JetBrains.Omea.Favorites
             IPropTypeCollection propTypes = Core.ResourceStore.PropTypes;
             int sourceId = propTypes[ "Source" ].Id;
             propTypes.RegisterDisplayName( sourceId, "Web Bookmark" );
-            Core.TabManager.RegisterResourceTypeTab( "Web", "Web", new string[] { "Weblink", "Folder" }, sourceId, 4 );
+            Core.TabManager.RegisterResourceTypeTab( "Web", "Web", new[] { "Weblink", "Folder" }, sourceId, 4 );
             uiMgr.RegisterResourceLocationLink( "Weblink", _propParent, "Folder" );
             uiMgr.RegisterResourceLocationLink( "Folder", _propParent, "Folder" );
             uiMgr.RegisterResourceSelectPane( "Weblink", typeof(ResourceTreeSelectPane) );
             Core.WorkspaceManager.RegisterWorkspaceType( "Weblink",
-                new int[] { Core.ResourceStore.PropTypes[ "Source" ].Id }, WorkspaceResourceType.Container );
-            Core.WorkspaceManager.RegisterWorkspaceFolderType( "Folder", "Weblink", new int[] { _propParent } );
+                new[] { Core.ResourceStore.PropTypes[ "Source" ].Id }, WorkspaceResourceType.Container );
+            Core.WorkspaceManager.RegisterWorkspaceFolderType( "Folder", "Weblink", new[] { _propParent } );
             IPluginLoader loader = Core.PluginLoader;
             loader.RegisterResourceDisplayer( "Weblink", this );
             loader.RegisterStreamProvider( "Weblink", this );
@@ -71,26 +69,25 @@ namespace JetBrains.Omea.Favorites
             loader.RegisterResourceTextProvider( null, this );
             _favIconManager = (FavIconManager) Core.GetComponentImplementation( typeof( FavIconManager ) );
 
-            Core.ResourceIconManager.RegisterResourceIconProvider( "Weblink", this );
-            _favoritesTreePane = Core.LeftSidebar.RegisterResourceStructureTreePane(
-                "Favorites", "Web", "Bookmarks", LoadIconFromAssembly( "favorites.ico" ), "Weblink" );
-            _favoritesTreePane.WorkspaceFilterTypes = new string[] { "Weblink", "Folder" };
+            Image img = Utils.TryGetEmbeddedResourceImageFromAssembly( Assembly.GetExecutingAssembly(), "Favorites.Icons.Favorites24.png" );
+            _favoritesTreePane = Core.LeftSidebar.RegisterResourceStructureTreePane( "Favorites", "Web", "Bookmarks", img, "Weblink" );
+            _favoritesTreePane.WorkspaceFilterTypes = new[] { "Weblink", "Folder" };
             _favoritesTreePane.EnableDropOnEmpty( this );
-            JetResourceTreePane realPane = _favoritesTreePane as JetResourceTreePane;
+            JetResourceTreePane realPane = (JetResourceTreePane)_favoritesTreePane;
             realPane.AddNodeDecorator( new WeblinkNodeDecorator() );
             realPane.AddNodeFilter( new BookmarkProfileFilter() );
             _favoritesTreePane.ToolTipCallback = DisplayWeblinkError;
             Core.LeftSidebar.RegisterViewPaneShortcut( "Favorites", Keys.Control | Keys.Alt | Keys.B );
             
-            Core.ResourceIconManager.RegisterPropTypeIcon(
-                Core.ResourceStore.PropTypes[ "Source" ].Id, LoadIconFromAssembly( "favorites1.ico" ) );
+            Core.ResourceIconManager.RegisterResourceIconProvider( "Weblink", this );
+            Core.ResourceIconManager.RegisterPropTypeIcon( Core.ResourceStore.PropTypes[ "Source" ].Id, LoadIconFromAssembly( "favorites1.ico" ) );
             _emptyWeblinkIcon = LoadIconFromAssembly( "weblink_empty.ico" );
             _errorWeblinkIcon = LoadIconFromAssembly( "weblink_error.ico" );
             WebLinksPaneFilter filter = new WebLinksPaneFilter();
             Core.ResourceBrowser.RegisterLinksPaneFilter( "Weblink", filter );
             Core.ResourceBrowser.RegisterLinksPaneFilter( "Folder", filter );
             Core.ResourceBrowser.RegisterResourceDisplayForwarder( "Weblink", ForwardWeblinkDisplay );
-            Core.FilterManager.RegisterRuleApplicableResourceType( "Weblink" );
+            Core.FilterEngine.RegisterRuleApplicableResourceType( "Weblink" );
 
             Core.RemoteControllerManager.AddRemoteCall( "Favorites.ExportMozillaBookmarkChanges.1",
                 new RemoteExportMozillaBookmarkChangesDelegate( RemoteExportMozillaBookmarkChanges ) );
@@ -102,7 +99,7 @@ namespace JetBrains.Omea.Favorites
                 new RemoteAnnotateWeblinkDelegate( RemoteAnnotateWeblink ) );
 
             Core.DisplayColumnManager.RegisterDisplayColumn( "Weblink", 0,
-                new ColumnDescriptor( new string[] { "Name", "DisplayName" }, 300, ColumnDescriptorFlags.AutoSize ) );
+                new ColumnDescriptor( new[] { "Name", "DisplayName" }, 300, ColumnDescriptorFlags.AutoSize ) );
             Core.DisplayColumnManager.RegisterDisplayColumn( "Weblink", 1, new ColumnDescriptor( "LastUpdated", 120 ) );
 
             /**
@@ -329,10 +326,7 @@ namespace JetBrains.Omea.Favorites
                     {
                         return icon;
                     }
-                    else
-                    {
-                        _favIconManager.DownloadFavIcon( url );
-                    }
+                    _favIconManager.DownloadFavIcon( url );
                 }
                 string favIconUrl = resource.GetStringProp( _propFaviconUrl );
                 if( favIconUrl != null )
@@ -347,10 +341,7 @@ namespace JetBrains.Omea.Favorites
                     {
                         return icon;
                     }
-                    else
-                    {
-                        _favIconManager.DownloadFavIcon( favIconUrl );
-                    }
+                    _favIconManager.DownloadFavIcon( favIconUrl );
                 }
                 
                 IResourceIconProvider provider = Core.ResourceIconManager.GetResourceIconProvider( source.Type );
@@ -380,9 +371,9 @@ namespace JetBrains.Omea.Favorites
                         return false;
                     }
                     IBookmarkProfile targetProfile = _bookmarkService.GetOwnerProfile( targetResource );
-                    string error = null;
                     foreach( IResource dragRes in dragResources )
                     {
+                        string error;
                         IBookmarkProfile sourceProfile = _bookmarkService.GetOwnerProfile( dragRes );
                         if( sourceProfile == targetProfile )
                         {
@@ -467,9 +458,9 @@ namespace JetBrains.Omea.Favorites
         public bool CanRenameResource( IResource res )
         {
             IBookmarkProfile profile = _bookmarkService.GetOwnerProfile( res );
-            string error = null;
+            string error;
             return ( res.Type == "Weblink" || res.Type == "Folder" ) &&
-                ( profile == null || profile.CanRename( res, out error ) );
+                   ( profile == null || profile.CanRename( res, out error ) );
         }
 
         public bool ResourceRenamed( IResource res, string newName )
@@ -528,12 +519,8 @@ namespace JetBrains.Omea.Favorites
                 return weblinks;
             }
             int id = Core.SettingStore.ReadInt( "Favorites", "CatAnnRoot", _bookmarkService.BookmarksRoot.Id );
-            IResource annRoot = Core.ResourceStore.TryLoadResource( id );
-            if( annRoot == null )
-            {
-                annRoot = _bookmarkService.BookmarksRoot;
-            }
-            return _bookmarkService.FindOrCreateBookmark( annRoot, title, url, true ).ToResourceList();
+            IResource annRoot = Core.ResourceStore.TryLoadResource( id ) ?? _bookmarkService.BookmarksRoot;
+        	return BookmarkService.FindOrCreateBookmark( annRoot, title, url, true ).ToResourceList();
         }
 
         private delegate void RemoteAnnotateWeblinkDelegate( string url, string title );
@@ -542,19 +529,17 @@ namespace JetBrains.Omea.Favorites
         {
             if( !Core.ResourceStore.IsOwnerThread() )
             {
-                Core.ResourceAP.QueueJob(
-                    new RemoteAnnotateWeblinkDelegate( RemoteAnnotateWeblink ), url, title );
+                Core.ResourceAP.QueueJob("Remote Annotate Web Link", new RemoteAnnotateWeblinkDelegate( RemoteAnnotateWeblink ), url, title );
             }
             else
             {
                 IResourceList weblinks = FindOrCreateWeblinksByUrl( url, title );
                 if( weblinks.Count > 0 )
                 {
-                    Core.UserInterfaceAP.QueueJob( new MethodInvoker( ( (Form) Core.MainWindow).Activate ) );
+                    Core.UserInterfaceAP.QueueJob("Activate Main Window",  new MethodInvoker( ( (Form) Core.MainWindow).Activate ) );
                     foreach( IResource weblink in weblinks )
                     {
-                        Core.UserInterfaceAP.QueueJob(
-                            new ResourceDelegate( RemoteAnnotateForm.EditAnnotation ), weblink );
+                        Core.UserInterfaceAP.QueueJob("Edit Annotation",  new ResourceDelegate( RemoteAnnotateForm.EditAnnotation ), weblink );
                     }
                 }
             }
@@ -570,17 +555,13 @@ namespace JetBrains.Omea.Favorites
             if( profileName == null )
             {
                 MozillaProfile profile = new MozillaProfile( profilePath );
-                profileName = profile.Name;
-                if( profileName == null )
-                {
-                    profileName = string.Empty;
-                }
+                profileName = profile.Name ?? string.Empty;
                 string lname = profileName.ToLower();
                 if( lname.IndexOf( "mozilla" ) < 0 && lname.IndexOf( "firefox" ) < 0 && lname.IndexOf( "phoenix" ) < 0 )
                 {
                     profile = new MozillaProfile( IOTools.GetFullName( IOTools.GetParent( profilePath ) ) );
                     profileName = profile.Name;
-                    if( profileName == null || profileName.Length == 0 )
+                    if( string.IsNullOrEmpty( profileName ) )
                     {
                         Trace.WriteLine( "ProfilePath2Name( " + profilePath + " ) : not found" );
                         return null;
@@ -599,7 +580,7 @@ namespace JetBrains.Omea.Favorites
             {
                 return null;
             }
-            return (BookmarkChange[]) Core.ResourceAP.RunUniqueJob(
+            return (BookmarkChange[]) Core.ResourceAP.RunUniqueJob("ParseChangesLog",
                 new ParseChangesLogDelegate( ParseChangesLog ), profileName );
         }
 
@@ -687,7 +668,7 @@ namespace JetBrains.Omea.Favorites
 
         #region implementation details
 
-        private void Core_StateChanged( object sender, EventArgs e )
+        private static void Core_StateChanged( object sender, EventArgs e )
         {
             if( Core.State == CoreState.Running )
             {
@@ -706,12 +687,11 @@ namespace JetBrains.Omea.Favorites
             }
         }
 
-        private void StartImportProfiles()
+        private static void StartImportProfiles()
         {
             if( !Core.ResourceStore.IsOwnerThread() )
             {
-                Core.ResourceAP.QueueJob(
-                    "Importing bookmark profiles", new MethodInvoker( StartImportProfiles ) );
+                Core.ResourceAP.QueueJob( "Importing bookmark profiles", new MethodInvoker( StartImportProfiles ) );
             }
             else
             {
@@ -787,8 +767,7 @@ namespace JetBrains.Omea.Favorites
                 if( ( webLink == _favoritesTreePane.SelectedNode && Core.TabManager.CurrentTabId == "Web" ) ||
                     ( browser.SelectedResources.Count == 1 && webLink == browser.SelectedResources[ 0 ] ) )
                 {
-                    Core.UserInterfaceAP.QueueJobAt(
-                        DateTime.Now.AddSeconds( 1 ), new MethodInvoker( browser.RedisplaySelectedResource ) );
+                    Core.UserInterfaceAP.QueueJobAt(DateTime.Now.AddSeconds( 1 ), "RedisplaySelectedResource", browser.RedisplaySelectedResource );
                 }
             }
 
@@ -797,18 +776,17 @@ namespace JetBrains.Omea.Favorites
             {
                 if( set.IsPropertyChanged( _propLastUpdated ) || set.IsPropertyChanged( _propUpdateFreq ) )
                 {
-                    BookmarkService.QueueWeblink(
-                        webLink, URL, BookmarkService.BookmarkSynchronizationTime( webLink ) );
+                    BookmarkService.QueueWeblink( webLink, URL, BookmarkService.BookmarkSynchronizationTime( webLink ) );
                 }
                 if( set.IsPropertyChanged( _propURL ) )
                 {
                     BookmarkService.ImmediateQueueWeblink( webLink, URL );
                 }
             }
-            if( set.IsPropertyChanged( Core.Props.Name ) || set.IsPropertyChanged( _propURL ) )
+            if( set.IsPropertyChanged( Core.PropIds.Name ) || set.IsPropertyChanged( _propURL ) )
             {
                 IBookmarkProfile profile = _bookmarkService.GetOwnerProfile( webLink );
-                string error = null;
+                string error;
                 if( profile != null && profile.CanCreate( webLink, out error ) )
                 {
                     profile.Create( webLink );

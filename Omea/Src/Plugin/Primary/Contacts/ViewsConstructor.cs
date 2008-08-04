@@ -29,7 +29,7 @@ namespace JetBrains.Omea.ContactsPlugin
         {
             string[]        applType = new string[ 1 ] { "Contact" };
             IResource       res;
-            IFilterManager  fMgr = Core.FilterManager;
+            IFilterRegistry  fMgr = Core.FilterRegistry;
 
             //  Conditions/Templates
             res = fMgr.CreateConditionTemplate( ContactInABName, ContactInABNameDeep, applType, ConditionOp.In, "AddressBook", "InAddressBook" );
@@ -56,14 +56,14 @@ namespace JetBrains.Omea.ContactsPlugin
         public void RegisterViewsEachRun()
         {
             Core.NotificationManager.RegisterNotifyMeResourceType( "Contact", null );
-            Core.NotificationManager.RegisterNotifyMeCondition( "Contact", Core.FilterManager.Std.FromContactX, 0 );
+            Core.NotificationManager.RegisterNotifyMeCondition( "Contact", Core.FilterRegistry.Std.FromContactX, 0 );
 
-            Core.FilterManager.RegisterRuleActionTemplate( AddContact2ABName, AddContact2ABNameDeep,
+            Core.FilterRegistry.RegisterRuleActionTemplate( AddContact2ABName, AddContact2ABNameDeep,
                                                            new ContactsPlugin.AddContactToABAction(), ConditionOp.In, "AddressBook" );
 
-            IResource res = Core.FilterManager.RegisterCustomCondition( ContactHasCorrespondenceName, ContactHasCorrespondenceNameDeep,
+            IResource res = Core.FilterRegistry.RegisterCustomCondition( ContactHasCorrespondenceName, ContactHasCorrespondenceNameDeep,
                                                                         new string[] { "Contact" }, new ContactHasCorrespondenceCondition() );
-            Core.FilterManager.AssociateConditionWithGroup( res, "Address and Contact Conditions" );
+            Core.FilterRegistry.AssociateConditionWithGroup( res, "Address and Contact Conditions" );
 
             IResource defltView = Core.ResourceStore.FindUniqueResource( FilterManagerProps.ViewResName, Core.Props.Name, "Active" );
             Core.TabManager.SetDefaultSelectedResource( "Contacts", defltView );

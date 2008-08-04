@@ -14,7 +14,7 @@ namespace JetBrains.Util
 	/// The attribute must be mentioned in your member reordering patterns.
 	/// </remarks>
 	[AttributeUsage(AttributeTargets.All)]
-	internal class NoReorder : Attribute
+	public class NoReorder : Attribute
 	{
 	}
 }

@@ -5,7 +5,6 @@
 
 using System.Drawing;
 using System.IO;
-using System.Reflection;
 using System.Windows.Forms;
 using JetBrains.DataStructures;
 using JetBrains.Omea.Base;
@@ -25,22 +24,22 @@ namespace JetBrains.Omea.GUIControls
         private readonly ImageList _imageList;
         private readonly IResourceIconProvider _flagIconProvider;
         private static ContextMenuStrip _flagContextMenu;
-        private static MenuActionManager _flagActionManager;
+        private static ContextMenuActionManager _flagActionManager;
         private static int _lastFlagKey = 1;
-        internal static bool _isCtrlPressed = false;
+        internal static bool _isCtrlPressed;
 
 		public FlagColumn( IResourceIconProvider flagIconProvider )
 		{
 			_imageList = new ImageList();
 			_imageList.ColorDepth = Core.ResourceIconManager.IconColorDepth;
 
-			_imageList.Images.Add(Utils.GetResourceIconFromAssembly("OmniaMea", "OmniaMea.Icons.flag.ico"));
-			_imageList.Images.Add(Utils.GetResourceIconFromAssembly("OmniaMea", "OmniaMea.Icons.FlagNoProp.ico"));
+			_imageList.Images.Add(Utils.TryGetEmbeddedResourceIconFromAssembly("OmniaMea", "OmniaMea.Icons.flag.ico"));
+			_imageList.Images.Add(Utils.TryGetEmbeddedResourceIconFromAssembly("OmniaMea", "OmniaMea.Icons.FlagNoProp.ico"));
 
 			_flagIconProvider = flagIconProvider;
 
 			_flagContextMenu = new ContextMenuStrip();
-			_flagActionManager = new MenuActionManager(_flagContextMenu);
+			_flagActionManager = new ContextMenuActionManager(_flagContextMenu);
 		}
 
         public static void FillImagesAndActions()

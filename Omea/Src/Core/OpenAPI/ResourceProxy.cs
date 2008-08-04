@@ -303,6 +303,11 @@ namespace JetBrains.Omea.OpenAPI
 			SetProp( Core.ResourceStore.GetPropId( propName ), propValue, false );
 		}
 
+        public void SetProp<T>( PropId<T> propId, T propValue )
+        {
+            SetProp( propId.Id, propValue );
+        }
+
 		/// <summary><seealso cref="BeginUpdate"/><seealso cref="SetPropAsync"/><seealso cref="DeleteProp"/>
 		/// Assigns a new value to the resource property synchronously, or schedules the property update if <see cref="BeginUpdate"/> has been called.
 		/// </summary>
@@ -401,6 +406,11 @@ namespace JetBrains.Omea.OpenAPI
 		{
 			SetProp( propId, propValue, true );
 		}
+
+        public void SetPropAsync<T>( PropId<T> propId, T propValue)
+        {
+            SetProp(propId.Id, propValue);
+        }
 
 		/// <summary>
 		/// Sets the display name of the target resource.
@@ -505,6 +515,11 @@ namespace JetBrains.Omea.OpenAPI
 			SetProp( propId, null );
 		}
 
+        public void DeleteProp<T>(PropId<T> propId)
+        {
+            DeleteProp(propId.Id);
+        }
+
 		/// <summary><seealso cref="BeginUpdate"/><seealso cref="DeleteProp"/><seealso cref="SetPropAsync"/>
 		/// Assigns a new value to the resource property asynchronously, or schedules the property update if <see cref="BeginUpdate"/> has been called.
 		/// </summary>
@@ -569,6 +584,11 @@ namespace JetBrains.Omea.OpenAPI
 			SetProp( propId, null, true );
 		}
 
+        public void DeletePropAsync<T>(PropId<T> propId)
+        {
+            DeletePropAsync(propId.Id);
+        }
+
 		/// <summary>
 		/// Adds a link with the specified property name to the specified target resource.
 		/// </summary>
@@ -602,6 +622,11 @@ namespace JetBrains.Omea.OpenAPI
 			AddPendingOperation( new PendingOperation( propId, target, OperationType.AddLink ), false );
 		}
 
+        public void AddLink(PropId<IResource> propId, IResource target)
+        {
+            AddLink(propId.Id, target);
+        }
+
 		/// <summary>
 		/// Deletes a link with the specified property name to the specified resource.
 		/// </summary>
@@ -627,6 +652,11 @@ namespace JetBrains.Omea.OpenAPI
 
 			AddPendingOperation( new PendingOperation( propId, target, OperationType.DeleteLink ), false );
 		}
+
+        public void DeleteLink(PropId<IResource> propId, IResource target)
+        {
+            DeleteLink(propId.Id, target);
+        }
 
 		/// <summary>
 		/// Deletes all links with the specified property name.
@@ -654,6 +684,11 @@ namespace JetBrains.Omea.OpenAPI
 
 			AddPendingOperation( new PendingOperation( propId, null, OperationType.DeleteLink ), false );
 		}
+
+        public void DeleteLinks(PropId<IResource> propId)
+        {
+            DeleteLinks(propId.Id);
+        }
 
 		/// <summary>
 		/// Synchronously commits a batch update of a resource.

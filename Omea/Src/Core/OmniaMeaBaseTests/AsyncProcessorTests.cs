@@ -459,7 +459,6 @@ namespace OmniaMeaBaseTests
             public override string Name
             {
                 get { return ""; }
-                set {}
             }
 
             private int _cycles;
@@ -511,7 +510,6 @@ namespace OmniaMeaBaseTests
             public override string Name
             {
                 get { return ""; }
-                set {}
             }
 
             private int         _totaljobs;
@@ -1016,7 +1014,6 @@ namespace OmniaMeaBaseTests
             public override string Name
             {
                 get { return "The Name"; }
-                set {}
             }
             protected override void Execute()
             {

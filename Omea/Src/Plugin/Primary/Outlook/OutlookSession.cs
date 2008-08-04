@@ -26,8 +26,6 @@ namespace JetBrains.Omea.OutlookPlugin
             public override string Name
             {
                 get { return "Wait for 10 seconds"; }
-                set
-                {}
             }
 
             /// <summary>

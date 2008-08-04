@@ -11,6 +11,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using GUIControls.Controls;
 using JetBrains.DataStructures;
 using JetBrains.JetListViewLibrary;
 using JetBrains.Omea.Base;
@@ -23,8 +24,18 @@ namespace JetBrains.Omea
 {
     internal class ResourceBrowser : UserControl, IResourceBrowser
     {
-        private JetSplitter splitter1;
+        private const int   _cSpaceMargin = 4;
+        private const int   _cDefaultLinksPaneWidth = 150;
+
         private IContainer components = null;
+
+        private Panel _bodyPane;
+        private LinksPane _linksPane;
+        private CustomStylePanel _lowerPaneBackground;
+        private ResourceListView2 _listView;
+        private Panel             _lowerPane;
+        private JetSplitter _listAndContentSplitter;
+        private IDisplayPane _displayPane = null;
 
         private string _lastDisplayedType = null;
         private IResourceDisplayer _lastPlugin = null;
@@ -34,17 +45,13 @@ namespace JetBrains.Omea
         private IResourceList _singleResourceList;
         private IResourceList _filterResourceList;
         private IResourceList _ownerResourceList;
+        private IResourceList _customProperties;
         private IResource _lastDisplayedResource;
         private int _lastDisplayedResourceCount = 0;
         private IResource _delegateOrigResource;
         private IResource _ownerResource;
         private IHighlightDataProvider _highlightProvider;
         private bool _suppressContexts;
-        private Panel _bodyPane;
-        private LinksPane _linksPane;
-        private CustomStylePanel _lowerPaneBackground;
-        private Panel _lowerPane;
-        private IDisplayPane _displayPane = null;
 
         private string _caption;
         private string _captionPrefix;
@@ -57,9 +64,7 @@ namespace JetBrains.Omea
         private bool                _viewAnnotations = false;
         private AnnotationForm      _annotationForm;
 
-        private const int           cSpaceMargin = 4;
-        private const int           cDefaultLinksPaneWidth = 150;
-
+        BrowserPanesVisibilityMode _mode = BrowserPanesVisibilityMode.Both;
         private ColumnDescriptor[] _defaultColumns;
         private ResourceListState _listState;
 
@@ -67,14 +72,8 @@ namespace JetBrains.Omea
         private DisplayColumnManager _columnManager;
         private Timer _tmrMarkAsRead;
         private JetLinkLabel _statusLineLabel;
-        private ResourceListView2 _listView;
         private EventHandler _statusLineClickHandler;
-        private bool            _webPageMode;
-        private bool            _contentOnlyMode;
-        private Panel           _webAddressPanel;
-        private JetTextBox      _edtURL;
-        private Button          _btnGoURL;
-        private ArrayList _webModeHiddenControls = new ArrayList();
+        private readonly ArrayList _webModeHiddenControls = new ArrayList();
         private string    _webModeSavedCaption;
         private bool      _resourceListVisible;
         private bool      _statusLineVisible;
@@ -85,15 +84,22 @@ namespace JetBrains.Omea
         private string    _urlBarText;
         private LinksBar _linksBar;
         private Splitter _linksPaneSplitter;
-        private GradientToolbar _urlBarToolbar;             // saved value for switching to Web mode 
-        private IResourceList _customProperties;
 
-        private ToolbarActionManager _toolBarActionManager;
-        private ToolbarActionManager _urlBarActionManager;
-        private Panel _toolBarPanel;
-        private GradientToolbar _toolBar;
+        private bool        _webPageMode;
+        private int         _SavedWidth;
+        private DockStyle   _savedDock;
 
-        private HashMap _linksPaneFilters = new HashMap();  // resource type -> ILinksPaneFilter
+        private Panel       _toolBarPanel;
+        private ToolStrip   _toolBar;
+        private ToolStrip   _urlBarToolbar;             // saved value for switching to Web mode 
+        private Panel       _webAddressPanel;
+        private JetTextBox  _edtURL;
+        private Button      _btnGoURL;
+        private readonly ToolbarActionManager _toolBarActionManager;
+        private readonly ToolbarActionManager _urlBarActionManager;
+        private readonly ToolBarRenderer _toolbarRenderer;
+
+        private readonly HashMap _linksPaneFilters = new HashMap();  // resource type -> ILinksPaneFilter
 
         private ColorScheme _colorScheme;
         private bool _linksPaneWidthLoaded;
@@ -110,9 +116,9 @@ namespace JetBrains.Omea
 
         public event EventHandler ContentChanged;
 
-        private PerTabBrowserSettings _perTabBrowserSettings = new PerTabBrowserSettings();
-        private DefaultAutoPreviewColumn _autoPreviewColumn;
-        private ContextAutoPreviewColumn _contextPreviewColumn;
+        private readonly PerTabBrowserSettings _perTabBrowserSettings = new PerTabBrowserSettings();
+        private readonly DefaultAutoPreviewColumn _autoPreviewColumn;
+        private readonly ContextAutoPreviewColumn _contextPreviewColumn;
 
         private HiddenColumnState _hiddenColumnState;
 
@@ -150,16 +156,15 @@ namespace JetBrains.Omea
             _listView.JetListView.AutoToolTips = false;
             _listView.AllowSameViewDrag = false;
                  
-            splitter1.ControlToCollapse = _listView;
+            _listAndContentSplitter.ControlToCollapse = _listView;
 
             _browseStack = new BrowseStack( this );
 
             SetCaptionLabelInactive();
-            _toolBar.ButtonIndent = 4;
-            _urlBarToolbar.ButtonIndent = 4;
 
             _urlBarActionManager = new ToolbarActionManager( _urlBarToolbar );
             _urlBarActionManager.ContextProvider = this;
+            _toolbarRenderer = new ToolBarRenderer( _colorScheme, Color.White, SystemColors.ControlDark );
 
             _autoPreviewColumn = new DefaultAutoPreviewColumn();
             _contextPreviewColumn = new ContextAutoPreviewColumn();
@@ -199,6 +204,47 @@ namespace JetBrains.Omea
             base.Dispose( disposing );
         }
 
+        #region Panes Visibility
+        public BrowserPanesVisibilityMode BrowserPanesMode
+        {
+            get {  return _mode;  }
+            set
+            {
+                if( _mode != value )
+                {
+                    if( _mode == BrowserPanesVisibilityMode.ListOnly )
+                        ShowContentPane();
+                    if( _mode == BrowserPanesVisibilityMode.ContentOnly )
+                        ResourceListExpanded = true;
+
+                    if( value == BrowserPanesVisibilityMode.ListOnly )
+                        HideContentPane();
+                    if( value == BrowserPanesVisibilityMode.ContentOnly )
+                        ResourceListExpanded = false;
+
+                    _mode = value;
+                }
+            }
+        }
+
+        private void HideContentPane()
+        {
+            _SavedWidth = _listView.Width;
+            _savedDock = _listView.Dock;
+
+            _lowerPaneBackground.Visible = _listAndContentSplitter.Visible = false;
+            _listView.Dock = DockStyle.Fill;
+        }
+
+        private void ShowContentPane()
+        {
+            _listView.Dock = _savedDock;
+            _listView.Width = _SavedWidth;
+
+            _lowerPaneBackground.Visible = _listAndContentSplitter.Visible = true;
+        }
+        #endregion Panes Visibility
+
         #region Component Designer generated code
         /// <summary> 
         /// Required method for Designer support - do not modify 
@@ -208,7 +254,7 @@ namespace JetBrains.Omea
         {
             this.components = new System.ComponentModel.Container();
             System.Resources.ResourceManager resources = new System.Resources.ResourceManager(typeof(ResourceBrowser));
-            this.splitter1 = new JetBrains.Omea.GUIControls.JetSplitter();
+            this._listAndContentSplitter = new JetBrains.Omea.GUIControls.JetSplitter();
             this._lowerPaneBackground = new CustomStylePanel();
             this._lowerPane = new System.Windows.Forms.Panel();
             this._bodyPane = new System.Windows.Forms.Panel();
@@ -224,25 +270,17 @@ namespace JetBrains.Omea
             this.miConfigureColumns = new System.Windows.Forms.MenuItem();
             this.miShowItemsInGroups = new System.Windows.Forms.MenuItem();
             this._webAddressPanel = new System.Windows.Forms.Panel();
-            this._urlBarToolbar = new JetBrains.Omea.GUIControls.GradientToolbar();
+            this._urlBarToolbar = new ToolStrip();
             this._edtURL = new JetTextBox();
             this._btnGoURL = new Button();
             this._linksBar = new LinksBar();
-            this._toolBar = new JetBrains.Omea.GUIControls.GradientToolbar();
+            this._toolBar = new ToolStrip();
             this._toolBarPanel = new System.Windows.Forms.Panel();
-//            this._quickFindPanel = new System.Windows.Forms.Panel();
-//            this._btnClearQuickFind = new ImageListButton();
-//            this._clearImageList = new System.Windows.Forms.ImageList(this.components);
-//            this._btnGo = new ImageListButton();
-//            this._goImageList = new System.Windows.Forms.ImageList(this.components);
-//            this._edtQuickFind = new JetTextBox();
-//            this.label1 = new JetBrains.Omea.GUIControls.JetLinkLabel();
             this._listViewPanel = new Panel();
             this._lowerPane.SuspendLayout();
             this._captionPanel.SuspendLayout();
             this._webAddressPanel.SuspendLayout();
             this._toolBarPanel.SuspendLayout();
-//            this._quickFindPanel.SuspendLayout();
             this._listViewPanel.SuspendLayout();
             this.SuspendLayout();
             //
@@ -251,20 +289,20 @@ namespace JetBrains.Omea
             this._listViewPanel.Name = "_listViewPanel";
             this._listViewPanel.Dock = DockStyle.Fill;
             this._listViewPanel.Controls.Add(this._lowerPaneBackground);
-            this._listViewPanel.Controls.Add(this.splitter1);
+            this._listViewPanel.Controls.Add(this._listAndContentSplitter);
             this._listViewPanel.Controls.Add(this._listView);
             // 
-            // splitter1
+            // _listAndContentSplitter
             // 
-            this.splitter1.ControlToCollapse = null;
-            this.splitter1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.splitter1.FillGradient = false;
-            this.splitter1.FillCenterRect = false;
-            this.splitter1.Location = new System.Drawing.Point(0, 227);
-            this.splitter1.Name = "splitter1";
-            this.splitter1.Size = new System.Drawing.Size(600, 5);
-            this.splitter1.TabIndex = 1;
-            this.splitter1.TabStop = false;
+            this._listAndContentSplitter.ControlToCollapse = null;
+            this._listAndContentSplitter.Dock = System.Windows.Forms.DockStyle.Top;
+            this._listAndContentSplitter.FillGradient = false;
+            this._listAndContentSplitter.FillCenterRect = false;
+            this._listAndContentSplitter.Location = new System.Drawing.Point(0, 227);
+            this._listAndContentSplitter.Name = "_listAndContentSplitter";
+            this._listAndContentSplitter.Size = new System.Drawing.Size(600, 5);
+            this._listAndContentSplitter.TabIndex = 1;
+            this._listAndContentSplitter.TabStop = false;
             // 
             // _lowerPaneBackground
             // 
@@ -427,8 +465,8 @@ namespace JetBrains.Omea
             // _webAddressPanel
             // 
             this._webAddressPanel.Controls.Add(this._btnGoURL);
-            this._webAddressPanel.Controls.Add(this._urlBarToolbar);
             this._webAddressPanel.Controls.Add(this._edtURL);
+            this._webAddressPanel.Controls.Add(this._urlBarToolbar);
             this._webAddressPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this._webAddressPanel.Location = new System.Drawing.Point(0, 67);
             this._webAddressPanel.Name = "_webAddressPanel";
@@ -439,21 +477,14 @@ namespace JetBrains.Omea
             // 
             // _urlBarToolbar
             // 
-            this._urlBarToolbar.Appearance = System.Windows.Forms.ToolBarAppearance.Flat;
             this._urlBarToolbar.AutoSize = false;
-            this._urlBarToolbar.Divider = false;
             this._urlBarToolbar.Dock = System.Windows.Forms.DockStyle.Left;
-            this._urlBarToolbar.DropDownArrows = true;
-            this._urlBarToolbar.GradientEndColor = System.Drawing.SystemColors.ControlDark;
-            this._urlBarToolbar.GradientStartColor = System.Drawing.Color.White;
             this._urlBarToolbar.Location = new System.Drawing.Point(0, 0);
             this._urlBarToolbar.Name = "_urlBarToolbar";
-            this._urlBarToolbar.PaintBackground += new PaintEventHandler( HandlePaintUrlBarBackground );
-            this._urlBarToolbar.ShowToolTips = true;
             this._urlBarToolbar.Size = new System.Drawing.Size(40, 29);
             this._urlBarToolbar.TabIndex = 2;
-            this._urlBarToolbar.TextAlign = ToolBarTextAlign.Right;
-            this._urlBarToolbar.Wrappable = false;
+            this._urlBarToolbar.LayoutStyle = ToolStripLayoutStyle.HorizontalStackWithOverflow;
+            this._urlBarToolbar.Renderer = _toolbarRenderer;
             // 
             // _edtURL
             // 
@@ -491,22 +522,14 @@ namespace JetBrains.Omea
             // 
             // _toolBar
             // 
-            this._toolBar.Appearance = System.Windows.Forms.ToolBarAppearance.Flat;
             this._toolBar.AutoSize = false;
             this._toolBar.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._toolBar.DropDownArrows = true;
             this._toolBar.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(204)));
-            this._toolBar.GradientEndColor = System.Drawing.SystemColors.ControlDark;
-            this._toolBar.GradientStartColor = System.Drawing.Color.White;
             this._toolBar.Location = new System.Drawing.Point(244, 0);
             this._toolBar.Name = "_toolBar";
-            this._toolBar.PaintBackground += new PaintEventHandler( HandlePaintToolbarBackground );
-            this._toolBar.ShowToolTips = true;
             this._toolBar.Size = new System.Drawing.Size(356, 29);
             this._toolBar.TabIndex = 1;
-            this._toolBar.TextAlign = System.Windows.Forms.ToolBarTextAlign.Right;
-            this._toolBar.Wrappable = false;
-			this._toolBar.Divider = false;
+            this._toolBar.Renderer = _toolbarRenderer;
 			//
             // _toolBarPanel
             // 
@@ -516,90 +539,12 @@ namespace JetBrains.Omea
             this._toolBarPanel.Name = "_toolBarPanel";
             this._toolBarPanel.Size = new System.Drawing.Size(600, 24);
             this._toolBarPanel.TabIndex = 8;
-/*
-            // 
-            // _quickFindPanel
-            // 
-            this._quickFindPanel.Controls.Add(this._btnClearQuickFind);
-            this._quickFindPanel.Controls.Add(this._btnGo);
-            this._quickFindPanel.Controls.Add(this._edtQuickFind);
-            this._quickFindPanel.Controls.Add(this.label1);
-            this._quickFindPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this._quickFindPanel.Location = new System.Drawing.Point(0, 0);
-            this._quickFindPanel.Name = "_quickFindPanel";
-            this._quickFindPanel.Size = new System.Drawing.Size(284, 28);
-            this._quickFindPanel.TabIndex = 6;
-            this._quickFindPanel.Paint += new System.Windows.Forms.PaintEventHandler(this._quickFindPanel_Paint);
-            // 
-            // _tbClearQuickFind
-            // 
-            this._btnClearQuickFind.BackColor = Color.Transparent;
-            this._btnClearQuickFind.ImageList = this._clearImageList;
-            this._btnClearQuickFind.Location = new System.Drawing.Point(241, 6);
-            this._btnClearQuickFind.Name = "_btnClearQuickFind";
-            this._btnClearQuickFind.NormalImageIndex = 0;
-            this._btnClearQuickFind.HotImageIndex = 1;
-            this._btnClearQuickFind.PressedImageIndex = 2;
-            this._btnClearQuickFind.Size = new System.Drawing.Size(43, 16);
-            this._btnClearQuickFind.TabIndex = 5;
-            this._btnClearQuickFind.Click += new EventHandler(this._tbClearQuickFind_ButtonClick);
-            this._btnClearQuickFind.ToolTip = "Clear search string and show all resources in the list";
-            // 
-            // _clearImageList
-            // 
-            this._clearImageList.ImageSize = new System.Drawing.Size(30, 16);
-            this._clearImageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("_clearImageList.ImageStream")));
-            this._clearImageList.TransparentColor = System.Drawing.Color.Transparent;
-            // 
-            // _tbQuickFind
-            // 
-            this._btnGo.BackColor = Color.Transparent;
-            this._btnGo.ImageList = this._goImageList;
-            this._btnGo.Location = new System.Drawing.Point(216, 6);
-            this._btnGo.Name = "_btnGo";
-            this._btnGo.NormalImageIndex = 0;
-            this._btnGo.HotImageIndex = 1;
-            this._btnGo.PressedImageIndex = 2;
-            this._btnGo.Size = new System.Drawing.Size(25, 16);
-            this._btnGo.TabIndex = 4;
-            this._btnGo.Click += new EventHandler(this._tbQuickFind_OnButtonClick);
-            this._btnGo.ToolTip = "Show only resources matching the search string";
-            // 
-            // _goImageList
-            // 
-            this._goImageList.ImageSize = new System.Drawing.Size(16, 16);
-            this._goImageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("_goImageList.ImageStream")));
-            this._goImageList.TransparentColor = System.Drawing.Color.Transparent;
-            // 
-            // _edtQuickFind
-            // 
-            this._edtQuickFind.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(204)));
-            this._edtQuickFind.Location = new System.Drawing.Point(68, 4);
-            this._edtQuickFind.Name = "_edtQuickFind";
-            this._edtQuickFind.Size = new Size(140, _edtQuickFind.PreferredHeight);
-            this._edtQuickFind.TabIndex = 3;
-            this._edtQuickFind.Text = "";
-            this._edtQuickFind.KeyDown += new System.Windows.Forms.KeyEventHandler(this._edtQuickFind_KeyDown);
-            this._edtQuickFind.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this._edtQuickFind_OnKeyPress);
-            // 
-            // label1
-            // 
-            this.label1.ClickableLink = false;
-            this.label1.Cursor = System.Windows.Forms.Cursors.Default;
-            this.label1.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(204)));
-            this.label1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label1.Location = new System.Drawing.Point(8, 6);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(53, 13);
-            this.label1.TabIndex = 2;
-*/
             // 
             // ResourceBrowser
             // 
             this.Controls.Add(this._listViewPanel);
             this.Controls.Add(this._webAddressPanel);
             this.Controls.Add(this._statusLineLabel);
-//            this.Controls.Add(this._quickFindPanel);
             this.Controls.Add(this._toolBarPanel);
             this.Controls.Add(this._captionPanel);
             this.Name = "ResourceBrowser";
@@ -610,7 +555,6 @@ namespace JetBrains.Omea
             this._captionPanel.ResumeLayout(false);
             this._webAddressPanel.ResumeLayout(false);
             this._toolBarPanel.ResumeLayout(false);
-//            this._quickFindPanel.ResumeLayout(false);
             this._listViewPanel.ResumeLayout( false );
             this.ResumeLayout(false);
 
@@ -623,10 +567,10 @@ namespace JetBrains.Omea
             _columnManager = Core.DisplayColumnManager as DisplayColumnManager;
             RestoreLayoutSettings();
             UpdateSettings();
-            Core.UIManager.AddOptionsChangesListener( "Omea", "General", new EventHandler( OnInterfaceOptionsChanged ) );
+            Core.UIManager.AddOptionsChangesListener( "Omea", "General", OnInterfaceOptionsChanged );
     
             _customProperties = Core.ResourceStore.FindResourcesLive( "PropType", "Custom", 1 );
-            _customProperties.ResourceDeleting += new ResourceIndexEventHandler( OnCustomPropertyDeleting );
+            _customProperties.ResourceDeleting += OnCustomPropertyDeleting;
 
             _itemCountWriter = Core.UIManager.GetStatusWriter( this, StatusPane.ResourceBrowser );
         }
@@ -692,11 +636,6 @@ namespace JetBrains.Omea
         }
 #endif
 
-        public ToolBar ResourceToolBar
-        {
-            get { return _toolBar; } 
-        }
-
         public ToolbarActionManager ToolBarActionManager
         {
             get { return _toolBarActionManager; }
@@ -710,7 +649,7 @@ namespace JetBrains.Omea
                 if ( _browseStack != value )
                 {
                     if ( value == null )
-                        throw new ArgumentNullException( "BrowseStack" );
+                        throw new ArgumentNullException( "value" );
 
                     _browseStack = value;
                 }
@@ -764,40 +703,6 @@ namespace JetBrains.Omea
                 }
                 return _singleResourceList [0];
             }
-        }
-
-        [DefaultValue(null)]
-        public ColorScheme ColorScheme
-        {
-            get { return _colorScheme; }
-            set
-            {
-                _colorScheme = value;
-                _linksBar.ColorScheme = value;
-                _linksPane.ColorScheme = value;
-                _seeAlsoBar.ColorScheme = value;
-                //_linksPaneSplitter.ColorScheme = value;
-                splitter1.ColorScheme = value;
-
-                SetToolbarColors( _toolBar );
-                SetToolbarColors( _urlBarToolbar );
-
-                Color borderColor = ColorScheme.GetColor( _colorScheme, "PaneCaption.Border", Color.Black );
-                _lowerPaneBackground.BorderColor = borderColor;
-                _listView.BorderColor = borderColor;
-                _listView.GroupHeaderColor = ColorScheme.GetColor( _colorScheme, "ResourceList.GroupHeader", SystemColors.Control );
-
-                if ( ContainsFocus )
-                    SetCaptionLabelActive();
-                else
-                    SetCaptionLabelInactive();
-            }
-        }
-
-        private void SetToolbarColors( GradientToolbar toolBar )
-        {
-            toolBar.GradientStartColor = ColorScheme.GetStartColor( _colorScheme, "Toolbar.Background", Color.White );
-            toolBar.GradientEndColor = ColorScheme.GetEndColor( _colorScheme, "Toolbar.Background", SystemColors.ControlDark );
         }
 
         /**
@@ -981,7 +886,8 @@ namespace JetBrains.Omea
             {
                 return true;
             }
-            else if ( _displayPane != null && _displayPane.CanExecuteCommand( DisplayPaneCommands.Forward ) )
+
+            if ( _displayPane != null && _displayPane.CanExecuteCommand( DisplayPaneCommands.Forward ) )
             {
                 return true;                
             }
@@ -1007,10 +913,12 @@ namespace JetBrains.Omea
 
         public void EndUpdate()
         {
+            #region Preconditions
             if ( _updateCount <= 0 )
             {
                 throw new InvalidOperationException( "EndUpdate() called without BeginUpdate()" );
             }
+            #endregion Preconditions
 
             _updateCount--;
             if ( _updateCount == 0 )
@@ -1042,8 +950,16 @@ namespace JetBrains.Omea
 
         public void DisplayResource( IResource res, bool backOnDelete )
         {
+            #region Preconditions
             if ( res == null )
                 throw new ArgumentNullException( "res" );
+            #endregion Preconditions
+
+            // If we are in the "List-Only" mode, switch back.
+            if( _mode == BrowserPanesVisibilityMode.ListOnly )
+            {
+                ShowContentPane();
+            }
 
             // need to check for count - the resource in singleResourceList may have been
             // deleted, and the list is live
@@ -1068,7 +984,7 @@ namespace JetBrains.Omea
             CancelWebMode();
             _seeAlsoBar.Visible = false;
             _listView.Visible = false;
-            splitter1.Visible = false;
+            _listAndContentSplitter.Visible = false;
             _lowerPaneBackground.Visible = true;
             _origResourceList = null;
             _highlightProvider = null;
@@ -1094,8 +1010,8 @@ namespace JetBrains.Omea
          * Displays the specified resource list in the resource browser.
          */
 
-        public void DisplayResourceList( IResource ownerResource, IResourceList resources, string caption, 
-            ColumnDescriptor[] columns )
+        public void DisplayResourceList( IResource ownerResource, IResourceList resources, 
+                                         string caption, ColumnDescriptor[] columns )
         {
             DisplayResourceList( ownerResource, resources, caption, columns, null, null );
         }
@@ -1106,7 +1022,7 @@ namespace JetBrains.Omea
          */
 
         public void DisplayResourceList( IResource ownerResource, IResourceList resources, string caption, 
-            ColumnDescriptor[] columns, IResource selectedResource )
+                                         ColumnDescriptor[] columns, IResource selectedResource )
         {
             DisplayResourceList( ownerResource, resources, caption, columns, selectedResource, null );
         }
@@ -1115,8 +1031,8 @@ namespace JetBrains.Omea
          * Displays the specified resource list without applying the tab filter.
          */
 
-        public void DisplayUnfilteredResourceList( IResource ownerResource, IResourceList resources, string caption, 
-            ColumnDescriptor[] columns )
+        public void DisplayUnfilteredResourceList( IResource ownerResource, IResourceList resources, 
+                                                   string caption, ColumnDescriptor[] columns )
         {
             ResourceListDisplayOptions options = new ResourceListDisplayOptions();
             options.Caption = caption;
@@ -1141,16 +1057,18 @@ namespace JetBrains.Omea
         }
 
         public void DisplayResourceList( IResource ownerResource, IResourceList resources, 
-            ResourceListDisplayOptions options ) 
+                                         ResourceListDisplayOptions options )
         {
+            #region Preconditions
             if ( resources == null )
                 throw new ArgumentNullException( "resources" );
+            #endregion Preconditions
 
             bool isSameList;
             if ( options.ThreadingHandler != null )
             {
-                isSameList = ( _dataProvider is ConversationDataProvider && 
-                    (_dataProvider as ConversationDataProvider).ResourceList == resources );
+                isSameList = (_dataProvider is ConversationDataProvider) && 
+                             ((_dataProvider as ConversationDataProvider).ResourceList == resources );
             }
             else
             {
@@ -1171,7 +1089,7 @@ namespace JetBrains.Omea
         }
 
         public void DisplayConfigurableResourceList( IResource ownerResource, IResourceList resList, 
-            ResourceListDisplayOptions options )
+                                                     ResourceListDisplayOptions options )
         {
             options = new ResourceListDisplayOptions( options );
             if ( ownerResource != null )
@@ -1194,7 +1112,7 @@ namespace JetBrains.Omea
             DisplayResourceList( ownerResource, resList, options );
         }
 
-        private bool ActiveTabHasNewspaperProviders()
+        private static bool ActiveTabHasNewspaperProviders()
         {
             string[] resTypes = Core.TabManager.CurrentTab.GetResourceTypes();
             if ( resTypes == null )
@@ -1239,10 +1157,13 @@ namespace JetBrains.Omea
 
         private void AttachDataProvider()
         {
+            #region Preconditions
             if ( _listView.DataProvider != null )
             {
                 throw new InvalidOperationException( "Old data provider was not detached before attaching new data provider" );
             }
+            #endregion Preconditions
+
             _dataProvider.ResourceCountChanged += HandleResourceCountChanged;
             _dataProvider.SortChanged += HandleSortChanged;
             _listView.DataProvider = _dataProvider;
@@ -1354,6 +1275,14 @@ namespace JetBrains.Omea
             }
         }
 
+        private void CheckPanesVisibility()
+        {
+            _listAndContentSplitter.Visible = !(_mode == BrowserPanesVisibilityMode.ContentOnly) && 
+                                !(_mode == BrowserPanesVisibilityMode.ListOnly);
+            _listViewPanel.Visible = _listView.Visible = (_mode != BrowserPanesVisibilityMode.ContentOnly);
+            _lowerPaneBackground.Visible = !(_mode == BrowserPanesVisibilityMode.ListOnly);
+        }
+
         private void ShowRegularResourceList( IResource ownerResource, IResourceList resources,
                                               IResourceList seeAlsoList, ResourceListDisplayOptions options )
         {
@@ -1375,14 +1304,7 @@ namespace JetBrains.Omea
             }
             columns = _columnManager.CreateTypeColumn( columns );
 
-            if( !_contentOnlyMode )
-            {
-                _listViewPanel.Visible = true;
-                _listView.Visible = true;
-                splitter1.Visible = true;
-            }
-            _lowerPaneBackground.Visible = true;
-            ConversationDataProvider conversationDataProvider = null;
+            CheckPanesVisibility();
 
             if ( options.ThreadingHandler == null )
             {
@@ -1396,8 +1318,7 @@ namespace JetBrains.Omea
             }
             else
             {
-                conversationDataProvider = new ConversationDataProvider( resources, 
-                    options.ThreadingHandler );
+                ConversationDataProvider conversationDataProvider = new ConversationDataProvider( resources, options.ThreadingHandler );
                 _dataProvider = conversationDataProvider;
             }
 
@@ -1491,6 +1412,7 @@ namespace JetBrains.Omea
             ColumnDescriptor[] columns = CheckGetDefaultColumns( null, _resourceList );
             _listState = _columnManager.GetListViewState( _ownerResource, _resourceList, columns, true );
             _groupItems = _listState.GroupItems;
+            
             ColumnDescriptor[] stateColumns = _listState.Columns;
             _columnManager.RestoreCustomComparers( columns, ref stateColumns );
             ShowListViewColumns( _listState.Columns );
@@ -1531,8 +1453,10 @@ namespace JetBrains.Omea
 
         public void ShowListViewColumns( ColumnDescriptor[] columns )
         {
+            #region Preconditions
             if ( columns == null )
                 throw new ArgumentNullException( "columns" );
+            #endregion Preconditions
             
             if ( _dataProvider != null )
             {
@@ -1588,7 +1512,7 @@ namespace JetBrains.Omea
             if ( _ownerResourceList != null )
             {
                 _ownerResourceList.Dispose();
-                _ownerResourceList.ResourceChanged -= new ResourcePropIndexEventHandler( HandleOwnerResourceChanged );
+                _ownerResourceList.ResourceChanged -= HandleOwnerResourceChanged;
                 _ownerResourceList = null;
             }
             if ( _resourceList != null )
@@ -1755,7 +1679,7 @@ namespace JetBrains.Omea
 
         public bool ResourceListSplitterVisible
         {
-            get { return splitter1.Visible; }
+            get { return _listAndContentSplitter.Visible; }
         }
 
         public bool NewspaperVisible
@@ -1772,7 +1696,7 @@ namespace JetBrains.Omea
             context.SetSelectedResourcesExpanded( SelectedResourcesExpanded );
             context.SetOwnerForm( FindForm() );
             string url = Core.WebBrowser.CurrentUrl;
-            if ( url != null && url.Length > 0 && url != "about:blank" )
+            if ( !string.IsNullOrEmpty( url ) && url != "about:blank" )
             {
             	context.SetCurrentUrl( url );
                 context.SetCurrentPageTitle( Core.WebBrowser.Title );
@@ -1796,7 +1720,7 @@ namespace JetBrains.Omea
                 {
                     selPlainText = _displayPane.GetSelectedPlainText();
                 }
-                if ( selText != null && selText.Length > 0 )
+                if ( !string.IsNullOrEmpty( selText ) )
                 {
                     context.SetSelectedText( selText, selPlainText, fmt );
                 }
@@ -1892,20 +1816,26 @@ namespace JetBrains.Omea
 
         private void DisplaySelectedResource()
         {
-            if ( Core.State == CoreState.ShuttingDown )
+            if ( Core.State != CoreState.ShuttingDown )
             {
-                return;
+                if( _mode != BrowserPanesVisibilityMode.ListOnly )
+                {
+                    IResource res = _listView.ActiveResource;
+                    if ( res != null )
+                    {
+                        DisplayResourceData( res );
+                    }
+                    else
+                    {
+                        DisplayEmptyLowerPane();
+                    }
+                }
             }
-            
-            IResource res = _listView.ActiveResource;
-            if ( res != null )
-            {
-                DisplayResourceData( res );
-            }
-            else
-            {
-                DisplayEmptyLowerPane();
-            }
+        }
+
+        private void HandleKeyNavigationCompleted( object sender, EventArgs e )
+        {
+            DisplaySelectedResource();
         }
 
         private void HandleResourceSelectionChanged( object sender, EventArgs e )
@@ -2097,8 +2027,8 @@ namespace JetBrains.Omea
         private void ShowDisplayPaneControl( Control ctl )
         {
             ctl.Dock = DockStyle.None;
-            ctl.Size = new Size( _bodyPane.ClientRectangle.Width - cSpaceMargin * 2 - 1, _bodyPane.ClientRectangle.Height - cSpaceMargin * 2 - 1 );
-            ctl.Location = new Point( cSpaceMargin, cSpaceMargin + 1 );
+            ctl.Size = new Size( _bodyPane.ClientRectangle.Width - _cSpaceMargin * 2 - 1, _bodyPane.ClientRectangle.Height - _cSpaceMargin * 2 - 1 );
+            ctl.Location = new Point( _cSpaceMargin, _cSpaceMargin + 1 );
             ctl.Anchor = AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Right | AnchorStyles.Bottom;
             while( _bodyPane.Controls.Count > 0 )
             {
@@ -2257,7 +2187,7 @@ namespace JetBrains.Omea
             }
         }
 
-        private void MarkResourceRead( IResource res )
+        private static void MarkResourceRead( IResource res )
         {
             if ( !res.IsDeleted )
             {
@@ -2279,11 +2209,6 @@ namespace JetBrains.Omea
                 }
                 e.Handled = true;
             }
-        }
-
-        private void HandleKeyNavigationCompleted( object sender, EventArgs e )
-        {
-            DisplaySelectedResource();
         }
 
         /**
@@ -2661,19 +2586,6 @@ namespace JetBrains.Omea
         #endregion StatusLine support
 
         #region Web mode support
-        public bool ContentOnlyMode
-        {
-            get { return _contentOnlyMode; }
-            set
-            {
-                if( _contentOnlyMode != value )
-                {
-                    _contentOnlyMode = value;
-                    ResourceListExpanded = !_contentOnlyMode;
-                }
-            }
-        }
-
         public bool WebPageMode
         {
             get { return _webPageMode; }
@@ -2694,9 +2606,8 @@ namespace JetBrains.Omea
                             _resourceListVisible = _listView.Visible;
                             _statusLineVisible   = _statusLineLabel.Visible;
                             _listView.Visible = false;
-                            splitter1.Visible = false;
+                            _listAndContentSplitter.Visible = false;
                             _statusLineLabel.Visible = false;
-//                            HideQuickFind();
                             _webModeHiddenControls.Clear();
                             if ( _displayPane != null && _displayPane.GetControl() != Core.WebBrowser )
                             {
@@ -2733,16 +2644,10 @@ namespace JetBrains.Omea
                             {
                                 ShowUrlBar( _urlBarText );
                             }
-/*
-                            if ( _edtQuickFind.Text.Length > 0 )
-                            {
-                                _quickFindPanel.Visible = true;
-                            }
-*/
                             _captionLabel.Text       = _webModeSavedCaption;
                             _listView.Visible        = _resourceListVisible;
                             _statusLineLabel.Visible = _statusLineVisible;
-                            splitter1.Visible        = true;
+                            _listAndContentSplitter.Visible        = true;
                         }
                     }
                     finally
@@ -2789,11 +2694,7 @@ namespace JetBrains.Omea
         {
             get
             {
-                if ( !_webAddressPanel.Visible )
-                {
-                    return null;
-                }
-                return _edtURL.Text;
+                return !_webAddressPanel.Visible ? null : _edtURL.Text;
             }
         }
 
@@ -2921,41 +2822,11 @@ namespace JetBrains.Omea
 
         private void SetCaptionLabelInactive()
         {
-            _captionLabel.BackColor = GUIControls.ColorScheme.GetColor( _colorScheme, "PaneCaption.Inactive", 
-                SystemColors.InactiveCaption );
+            _captionLabel.BackColor = ColorScheme.GetColor( _colorScheme, "PaneCaption.Inactive", SystemColors.InactiveCaption );
             _captionPanel.BackColor = _captionLabel.BackColor;
-            _captionLabel.ForeColor = GUIControls.ColorScheme.GetColor( _colorScheme, "PaneCaption.InactiveText", 
-                SystemColors.InactiveCaptionText );
-			_seeAlsoBar.Undercolor = GUIControls.ColorScheme.GetColor( _colorScheme, "PaneCaption.Inactive", 
-                                                            SystemColors.ActiveCaption );
+            _captionLabel.ForeColor = ColorScheme.GetColor( _colorScheme, "PaneCaption.InactiveText", SystemColors.InactiveCaptionText );
+			_seeAlsoBar.Undercolor = ColorScheme.GetColor( _colorScheme, "PaneCaption.Inactive", SystemColors.ActiveCaption );
             _seeAlsoBar.Active = false;
-        }
-
-        private void HandleCaptionPanelPaint( object sender, PaintEventArgs e )
-        {
-            Pen borderPen = ColorScheme.GetPen( _colorScheme, "PaneCaption.Border", SystemPens.Control );
-            e.Graphics.DrawRectangle( borderPen, 0, 0, 
-                _captionPanel.ClientRectangle.Width - 1, _captionPanel.ClientRectangle.Height - 1 );
-        }
-
-        private void HandleStatusLineLabelPaint( object sender, PaintEventArgs e )
-        {
-            Pen borderPen = ColorScheme.GetPen( _colorScheme, "PaneCaption.Border", SystemPens.Control );
-            e.Graphics.DrawLine( borderPen, 0, 0, 0, _statusLineLabel.Height - 1 );
-            e.Graphics.DrawLine( borderPen, _statusLineLabel.Width - 1, 0, _statusLineLabel.Width - 1,_statusLineLabel.Height - 1 );
-        }
-
-        private void HandlePaintToolbarBackground( object sender, PaintEventArgs e )
-        {
-            Pen borderPen = ColorScheme.GetPen( _colorScheme, "PaneCaption.Border", SystemPens.Control );
-            e.Graphics.DrawLine( borderPen, 0, 0, 0, e.ClipRectangle.Bottom - 1 );
-            e.Graphics.DrawLine( borderPen, e.ClipRectangle.Right - 1, 0, e.ClipRectangle.Right - 1, e.ClipRectangle.Bottom - 1 );
-        }
-
-        private void HandlePaintUrlBarBackground( object sender, PaintEventArgs e )
-        {
-            Pen borderPen = ColorScheme.GetPen( _colorScheme, "PaneCaption.Border", SystemPens.Control );
-            e.Graphics.DrawLine( borderPen, 0, 0, 0, e.ClipRectangle.Bottom - 1 );
         }
 
         private void _captionLabel_Click( object sender, EventArgs e )
@@ -2981,7 +2852,7 @@ namespace JetBrains.Omea
             SuspendLayout();
             if ( !_linksPaneWidthLoaded )
             {
-                int linksPaneWidth = Core.SettingStore.ReadInt( "ResourceBrowser", "LinksPaneWidth", cDefaultLinksPaneWidth );
+                int linksPaneWidth = Core.SettingStore.ReadInt( "ResourceBrowser", "LinksPaneWidth", _cDefaultLinksPaneWidth );
                 _linksPane.Width = (int) (Math.Min( linksPaneWidth, _lowerPane.Width - 30 ) / Core.ScaleFactor.Width);
                 _linksPaneWidthLoaded = true;
             }
@@ -3031,8 +2902,8 @@ namespace JetBrains.Omea
         
         public bool ResourceListExpanded
         {
-            get { return !splitter1.Collapsed; }
-            set { splitter1.Collapsed = !value; splitter1.Visible = value; }
+            get { return !_listAndContentSplitter.Collapsed; }
+            set { _listAndContentSplitter.Collapsed = !value; _listAndContentSplitter.Visible = value; }
         }
 
         #region UrlBar Mgmt
@@ -3122,25 +2993,6 @@ namespace JetBrains.Omea
 
         #endregion
 
-        private void _bodyPane_OnPaint( object sender, PaintEventArgs e )
-        {
-            if ( _bodyPaneFocused )
-            {
-                using( Pen borderPen = new Pen( Color.FromArgb( 135, 131, 164 ) ) )
-                {
-                    e.Graphics.DrawRectangle( borderPen, 
-                        new Rectangle( 3, 3, _bodyPane.ClientRectangle.Width - 7, _bodyPane.ClientRectangle.Height - 7 ) );
-                    e.Graphics.DrawRectangle( borderPen, 
-                        new Rectangle( 2, 2, _bodyPane.ClientRectangle.Width - 5, _bodyPane.ClientRectangle.Height - 5 ) );
-                    e.Graphics.DrawRectangle( borderPen, 
-                        new Rectangle( 1, 1, _bodyPane.ClientRectangle.Width - 3, _bodyPane.ClientRectangle.Height - 3 ) );
-                    e.Graphics.DrawRectangle( borderPen, 
-                        new Rectangle( 0, 0, _bodyPane.ClientRectangle.Width - 1, _bodyPane.ClientRectangle.Height - 1 ) );
-                    e.Graphics.DrawLine( borderPen, 4, 4, _bodyPane.ClientRectangle.Width - 4, 4 );
-                }
-            }
-        }
-
         private void _bodyPane_Enter( object sender, EventArgs e )
         {
             _bodyPaneFocused = true;
@@ -3162,13 +3014,7 @@ namespace JetBrains.Omea
             if ( _webAddressPanel.Width > 0 && _webAddressPanel.Height > 0 )
             {
                 Rectangle rc = _webAddressPanel.ClientRectangle;
-                using( Brush b = new LinearGradientBrush( rc,
-                           _urlBarToolbar.GradientStartColor, _urlBarToolbar.GradientEndColor, 
-                           LinearGradientMode.Vertical ) )
-                {
-                    e.Graphics.FillRectangle( b, rc );                    
-                }
-
+                GradientRenderer.Paint( e.Graphics, rc, Color.White, SystemColors.ControlDark, LinearGradientMode.Vertical );
                 Pen borderPen = ColorScheme.GetPen( _colorScheme, "PaneCaption.Border", SystemPens.Control );
                 e.Graphics.DrawLine( borderPen, rc.Right-1, 0, rc.Right-1, rc.Bottom-1 );
             }
@@ -3287,10 +3133,7 @@ namespace JetBrains.Omea
                 {
                     _verticalLayout = value;
 
-                    //--------------------------
-                    if( _contentOnlyMode )
-                        ContentOnlyMode = false;
-                    //--------------------------
+                    BrowserPanesMode = BrowserPanesVisibilityMode.Both;
 
                     if ( _listState != null )
                     {
@@ -3307,7 +3150,7 @@ namespace JetBrains.Omea
                     {
                         _listViewHeight = _listView.Height;
                         _listView.Dock = DockStyle.Left;
-                        splitter1.Dock = DockStyle.Left;
+                        _listAndContentSplitter.Dock = DockStyle.Left;
                         _listView.Width = _listViewWidth;
                         _lowerPane.BackColor = SystemColors.Window;
                     }
@@ -3315,7 +3158,7 @@ namespace JetBrains.Omea
                     {
                         _listViewWidth = _listView.Width;
                         _listView.Dock = DockStyle.Top;
-                        splitter1.Dock = DockStyle.Top;
+                        _listAndContentSplitter.Dock = DockStyle.Top;
                         _listView.Height = _listViewHeight;
                         _lowerPane.BackColor = SystemColors.Control;
                         _listViewPanel.DockPadding.All = 0;
@@ -3559,6 +3402,102 @@ namespace JetBrains.Omea
         public ColumnDescriptor[] GetDisplayedColumns()
         {
             return ((DisplayColumnManager)Core.DisplayColumnManager).ColumnDescriptorsFromList( _listView );
+        }
+
+        #region Paint
+        private void _bodyPane_OnPaint( object sender, PaintEventArgs e )
+        {
+            if ( _bodyPaneFocused )
+            {
+                using( Pen borderPen = new Pen( Color.FromArgb( 135, 131, 164 ) ) )
+                {
+                    e.Graphics.DrawRectangle( borderPen, 
+                        new Rectangle( 3, 3, _bodyPane.ClientRectangle.Width - 7, _bodyPane.ClientRectangle.Height - 7 ) );
+                    e.Graphics.DrawRectangle( borderPen, 
+                        new Rectangle( 2, 2, _bodyPane.ClientRectangle.Width - 5, _bodyPane.ClientRectangle.Height - 5 ) );
+                    e.Graphics.DrawRectangle( borderPen, 
+                        new Rectangle( 1, 1, _bodyPane.ClientRectangle.Width - 3, _bodyPane.ClientRectangle.Height - 3 ) );
+                    e.Graphics.DrawRectangle( borderPen, 
+                        new Rectangle( 0, 0, _bodyPane.ClientRectangle.Width - 1, _bodyPane.ClientRectangle.Height - 1 ) );
+                    e.Graphics.DrawLine( borderPen, 4, 4, _bodyPane.ClientRectangle.Width - 4, 4 );
+                }
+            }
+        }
+
+        private void HandleCaptionPanelPaint( object sender, PaintEventArgs e )
+        {
+            Pen borderPen = ColorScheme.GetPen( _colorScheme, "PaneCaption.Border", SystemPens.Control );
+            e.Graphics.DrawRectangle( borderPen, 0, 0, 
+                _captionPanel.ClientRectangle.Width - 1, _captionPanel.ClientRectangle.Height - 1 );
+        }
+
+        private void HandleStatusLineLabelPaint( object sender, PaintEventArgs e )
+        {
+            Pen borderPen = ColorScheme.GetPen( _colorScheme, "PaneCaption.Border", SystemPens.Control );
+            e.Graphics.DrawLine( borderPen, 0, 0, 0, _statusLineLabel.Height - 1 );
+            e.Graphics.DrawLine( borderPen, _statusLineLabel.Width - 1, 0, _statusLineLabel.Width - 1,_statusLineLabel.Height - 1 );
+        }
+
+        [DefaultValue(null)]
+        public ColorScheme ColorScheme
+        {
+            get { return _colorScheme; }
+            set
+            {
+                _colorScheme = value;
+                _linksBar.ColorScheme = value;
+                _linksPane.ColorScheme = value;
+                _seeAlsoBar.ColorScheme = value;
+                //_linksPaneSplitter.ColorScheme = value;
+                _listAndContentSplitter.ColorScheme = value;
+
+                SetToolbarColors( _toolBar );
+                SetToolbarColors( _urlBarToolbar );
+
+                Color borderColor = ColorScheme.GetColor( _colorScheme, "PaneCaption.Border", Color.Black );
+                _lowerPaneBackground.BorderColor = borderColor;
+                _listView.BorderColor = borderColor;
+                _listView.GroupHeaderColor = ColorScheme.GetColor( _colorScheme, "ResourceList.GroupHeader", SystemColors.Control );
+
+                if ( ContainsFocus )
+                    SetCaptionLabelActive();
+                else
+                    SetCaptionLabelInactive();
+            }
+        }
+
+        private void SetToolbarColors( ToolStrip toolBar )
+        {
+//            Color start = ColorScheme.GetStartColor( _colorScheme, "Toolbar.Background", Color.White );
+//            Color end = ColorScheme.GetEndColor( _colorScheme, "Toolbar.Background", SystemColors.ControlDark );
+//            toolBar.Renderer = new ToolBarRenderer( _colorScheme, start, end );
+//            toolBar.Renderer = new GradientRenderer( /*_colorScheme, */start, end );
+        }
+        #endregion Paint
+
+        private class ToolBarRenderer : GradientRenderer
+        {
+            private readonly ColorScheme _colorScheme;
+
+            public ToolBarRenderer( ColorScheme scheme, Color startColor, Color endColor )
+                : base( startColor, endColor )
+            {
+                _colorScheme = scheme;
+            }
+
+            protected override void OnRenderToolStripBackground(ToolStripRenderEventArgs e)
+            {
+                base.OnRenderToolStripBackground( e );
+//                Pen borderPen = ColorScheme.GetPen( _colorScheme, "PaneCaption.Border", SystemPens.Control );
+                Pen borderPen = ColorScheme.GetPen( _colorScheme, "PaneCaption.Border", SystemPens.Control );
+//                Color color = ColorScheme.GetColor( _colorScheme, "PaneCaption.Border", Color.Black );
+                borderPen = Pens.Black;
+                e.Graphics.DrawLine( borderPen, 0, 0, e.AffectedBounds.Right - 2, e.AffectedBounds.Bottom - 1 );
+
+                e.Graphics.DrawLine( borderPen, 0, 0, 0, e.AffectedBounds.Bottom - 1 );
+                e.Graphics.DrawLine( borderPen, 1, 0, 1, e.AffectedBounds.Bottom - 1 );
+                e.Graphics.DrawLine( borderPen, e.AffectedBounds.Right - 2, 0, e.AffectedBounds.Right - 2, e.AffectedBounds.Bottom - 1 );
+            }
         }
     }
 }

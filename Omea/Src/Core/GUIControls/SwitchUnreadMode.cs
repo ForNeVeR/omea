@@ -14,8 +14,8 @@ namespace JetBrains.Omea.GUIControls
     /// </summary>
     public class SwitchViewModeAction: IAction
     {
-        private string[] _resTypes;
-        private int _propToToggle;
+        private readonly string[] _resTypes;
+        private readonly int _propToToggle;
 
         protected SwitchViewModeAction( string[] resTypes, int propToToggle )
         {
@@ -111,7 +111,7 @@ namespace JetBrains.Omea.GUIControls
             return null;
         }
 
-        private void RedisplayResource( IResource res )
+        private static void RedisplayResource( IResource res )
         {
             AbstractViewPane viewPane = Core.LeftSidebar.GetPane( Core.LeftSidebar.ActivePaneId );
             if ( viewPane.SelectedResource == res )
@@ -126,23 +126,20 @@ namespace JetBrains.Omea.GUIControls
     {
         public SwitchUnreadModeAction( params string[] resTypes )
             : base( resTypes, Core.Props.DisplayUnread )
-        {
-        }
+        {}
     }
 
     public class SwitchThreadedModeAction: SwitchViewModeAction
     {
         public SwitchThreadedModeAction( params string[] resTypes )
             : base( resTypes, Core.Props.DisplayThreaded )
-        {
-        }
+        {}
     }
 
     public class SwitchNewspaperModeAction: SwitchViewModeAction
     {
         public SwitchNewspaperModeAction( params string[] resTypes )
             : base( resTypes, Core.Props.DisplayNewspaper )
-        {
-        }
+        {}
     }
 }

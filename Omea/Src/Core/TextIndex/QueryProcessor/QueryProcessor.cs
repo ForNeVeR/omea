@@ -8,7 +8,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using JetBrains.DataStructures;
-using JetBrains.Omea.Containers;
 using JetBrains.Omea.OpenAPI;
 using JetBrains.Omea.ResourceTools;
 
@@ -161,10 +160,9 @@ namespace JetBrains.Omea.TextIndex
             //  both arguments are normal terms which might be met in the index.
             else
             {
-                Entry[] rightIndices, leftIndices, result;
-
-                rightIndices = ExtractOperandFromStack( opStack );
-                leftIndices = ExtractOperandFromStack( opStack );
+                Entry[] result;
+                Entry[] rightIndices = ExtractOperandFromStack( opStack );
+                Entry[] leftIndices = ExtractOperandFromStack( opStack );
 
                 if( node.NodeType == QueryParserNode.Type.eoOr )
                     result = Join( leftIndices, rightIndices );
@@ -405,7 +403,7 @@ namespace JetBrains.Omea.TextIndex
 
         public static bool  MatchQuery( QueryPostfixForm postfixForm, IntHashTable tokens )
         {
-            Stack opStack = new Stack();
+            Stack<List<long>> opStack = new Stack<List<long>>();
             bool  result;
 
             try
@@ -426,30 +424,26 @@ namespace JetBrains.Omea.TextIndex
             return( result );
         }
 
-        private static void IteratePostfixExpression( IList<QueryParserNode> postfixForm, IntHashTable tokens, Stack opStack )
+        private static void IteratePostfixExpression( IList<QueryParserNode> postfixForm, IntHashTable tokens, Stack<List<long>> opStack )
         {
             for( int i = 0; i < postfixForm.Count; i++ )
             {
                 QueryParserNode  node = postfixForm[ i ];
-                if( node.NodeType == QueryParserNode.Type.eoTerm )
+                switch( node.NodeType )
                 {
-                    PushTermOnStack( ((TermNode)node).Term, tokens, opStack );
-                }
-                else
-                if( node.NodeType == QueryParserNode.Type.eoSection )
-                {
-                    UnarySectionOp( ((SectionNode)node).SectionName, opStack );
-                }
-                else
-                {
-                    BinaryOp( node, opStack );
+                    case QueryParserNode.Type.eoTerm:
+                        PushTermOnStack( ((TermNode)node).Term, tokens, opStack ); break;
+                    case QueryParserNode.Type.eoSection:
+                        UnarySectionOp( ((SectionNode)node).SectionName, opStack ); break;
+                    default:
+                        BinaryOp( node, opStack ); break;
                 }
             }
         }
 
-        private static void PushTermOnStack( string term, IntHashTable tokens, Stack opStack )
+        private static void PushTermOnStack( string term, IntHashTable tokens, Stack<List<long>> opStack )
         {
-            LongArrayList resultVal = null;
+            List<long> resultVal = null;
             if( FullTextIndexer.isValuableToken( term ) )
             {
                 int HC;
@@ -471,10 +465,10 @@ namespace JetBrains.Omea.TextIndex
                     Object val = tokens[ HC ];
                     if( val != null )
                     {
-                        resultVal = val as LongArrayList;
+                        resultVal = val as List<long>;
                         if( resultVal == null )
                         {
-                            resultVal = new LongArrayList();
+                            resultVal = new List<long>();
                             resultVal.Add( (long)val );
                         }
                     }
@@ -483,7 +477,7 @@ namespace JetBrains.Omea.TextIndex
             opStack.Push( resultVal );
         }
 
-        private static void  UnarySectionOp( string sectionName, Stack opStack )
+        private static void  UnarySectionOp( string sectionName, Stack<List<long>> opStack )
         {
             if( opStack.Peek() != null )
             {
@@ -496,16 +490,16 @@ namespace JetBrains.Omea.TextIndex
 
                 if( sectionId > 0 )
                 {
-                    LongArrayList  operand = (LongArrayList)opStack.Pop();
+                    List<long>  operand = opStack.Pop();
                     operand = SelectRestrictedMatchedEntries( operand, sectionId );
                     opStack.Push( operand );
                 }
             }
         }
 
-        private static LongArrayList SelectRestrictedMatchedEntries( LongArrayList offsets, uint sectionId )
+        private static List<long> SelectRestrictedMatchedEntries( IEnumerable<long> offsets, uint sectionId )
         {
-            LongArrayList result = new LongArrayList();
+            List<long> result = new List<long>();
             foreach( long offset in offsets )
             {
                 if( MaskEncoder.SectionId( offset ) == sectionId )
@@ -515,15 +509,15 @@ namespace JetBrains.Omea.TextIndex
             return (result.Count == 0) ? null : result;
         }
 
-        private static void  BinaryOp( QueryParserNode node, Stack opStack )
+        private static void  BinaryOp( QueryParserNode node, Stack<List<long>> opStack )
         {
             #region Preconditions
             if ( opStack.Count < 2 )
                 throw new ApplicationException( "QueryProcessor -- Insufficient number of operands in the operating stack" );
             #endregion Preconditions
             
-            LongArrayList result;
-            LongArrayList right = (LongArrayList)opStack.Pop(), left = (LongArrayList)opStack.Pop();
+            List<long> result;
+            List<long> right = opStack.Pop(), left = opStack.Pop();
 
             if( node.NodeType == QueryParserNode.Type.eoOr )
                 result = Join( left, right );
@@ -533,8 +527,8 @@ namespace JetBrains.Omea.TextIndex
             opStack.Push( result );
         }
 
-        private static LongArrayList Intercross( LongArrayList leftIndices, LongArrayList rightIndices,
-                                                 EntryProximity reqProximity )
+        private static List<long> Intercross( List<long> leftIndices, List<long> rightIndices,
+                                              EntryProximity reqProximity )
         {
             if(( leftIndices == null ) || ( rightIndices == null ))
                 return( null );
@@ -542,7 +536,7 @@ namespace JetBrains.Omea.TextIndex
             leftIndices.Sort();
             rightIndices.Sort();
 
-            LongArrayList result = new LongArrayList();
+            List<long> result = new List<long>();
 
             EntryProximity  scope = ProximityEstimator.EstimateProximity( leftIndices, rightIndices );
             if( scope <= reqProximity )
@@ -551,9 +545,9 @@ namespace JetBrains.Omea.TextIndex
             return (result.Count == 0) ? null : result;
         }
  
-        private static LongArrayList Join( LongArrayList leftIndices, LongArrayList rightIndices )
+        private static List<long> Join( IEnumerable<long> leftIndices, IEnumerable<long> rightIndices )
         {
-            LongArrayList result = new LongArrayList();
+            List<long> result = new List<long>();
 
             if( leftIndices != null )  result.AddRange( leftIndices );
             if( rightIndices != null ) result.AddRange( rightIndices );
@@ -562,10 +556,10 @@ namespace JetBrains.Omea.TextIndex
             return (result.Count == 0) ? null : result;
         }
 
-        private static LongArrayList JoinInstancesOfEntries( LongArrayList left, LongArrayList right,
-                                                             EntryProximity requiredProximity )
+        private static List<long> JoinInstancesOfEntries( List<long> left, List<long> right,
+                                                          EntryProximity requiredProximity )
         {
-            LongArrayList joinedList = new LongArrayList();
+            List<long> joinedList = new List<long>();
 
             if( requiredProximity == EntryProximity.Phrase )
             {
@@ -636,7 +630,7 @@ namespace JetBrains.Omea.TextIndex
             return( Result );
         }
 
-        internal static EntryProximity  EstimateProximity( LongArrayList Left, LongArrayList Right )
+        internal static EntryProximity  EstimateProximity( List<long> Left, List<long> Right )
         {
             int            iLeft = 0, iRight = 0;
             EntryProximity Result = EntryProximity.Document;

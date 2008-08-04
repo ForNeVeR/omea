@@ -30,8 +30,8 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
         /// </summary>
         /// <param name="repository">The repository to synchronize.</param>
 	    public abstract void UpdateRepository( IResource repository );
-	    public abstract string BuildFileName( IResource repository, IResource fileChange );
-	    public abstract string BuildLinkToFile( IResource repository, IResource fileChange );
+	    internal abstract string BuildFileName(IResource repository, FileChange fileChange);
+	    internal abstract string BuildLinkToFile(IResource repository, FileChange fileChange);
 
         protected static IResource FindChangeSet( IResource repository, int number )
         {
@@ -61,9 +61,7 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
             }
         }
 
-        private delegate void LinkChangeSetToContactDelegate( IResource repository, IResource resource, string user );
-
-        /// <summary>
+	    /// <summary>
         /// Locates or, if necessary, creates the Omea contact for the specified Perforce
         /// user, and links the resource to it.
         /// </summary>
@@ -73,14 +71,14 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
         {
             if ( !Core.ResourceStore.IsOwnerThread() )
             {
-                Core.ResourceAP.RunJob( new LinkChangeSetToContactDelegate( LinkChangeSetToContact ),
-                    repository, resource, user );
+                Core.ResourceAP.RunJob( "Linking changeset to contact",
+                    () => LinkChangeSetToContact (repository, resource, user));
                 return;
             }
             
-            IResourceList userRepMapList = Core.ResourceStore.FindResources( Props.UserToRepositoryMapResource,
+            BusinessObjectList<UserToRepositoryMap> userRepMapList = Core.ResourceStore.FindResources( UserToRepositoryMap.ResourceType,
                 Props.UserId, user );
-            userRepMapList = userRepMapList.Intersect( repository.GetLinksOfType( Props.UserToRepositoryMapResource,
+            userRepMapList = userRepMapList.Intersect( repository.GetLinksOfType( UserToRepositoryMap.ResourceType,
                 Props.UserRepository ) );
             
             if ( userRepMapList.Count == 0 )
@@ -89,19 +87,19 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
                 GetUserDetails( repository, user, out email, out fullName );
                 IContact contact = Core.ContactManager.FindOrCreateContact( email, fullName );
                 IResource contactRes = contact.Resource;
-                
-                IResource userRepMap = Core.ResourceStore.BeginNewResource( Props.UserToRepositoryMapResource );
-                userRepMap.SetProp( Props.UserId, user );
-                userRepMap.AddLink( Props.UserRepository, repository );
-                userRepMap.AddLink( Props.UserContact, contactRes );
-                userRepMap.EndUpdate();
+
+                UserToRepositoryMap userRepMap = UserToRepositoryMap.Create();
+                userRepMap.UserId = user;
+                userRepMap.UserRepository = repository;
+                userRepMap.UserContact = contactRes;
+                userRepMap.Save();
 
                 Core.ContactManager.LinkContactToResource( Core.ContactManager.Props.LinkFrom,
                     contactRes, resource, email, fullName );
             }
             else
             {
-                IResource contactRes = userRepMapList [0].GetLinkProp( Props.UserContact );
+                IResource contactRes = userRepMapList [0].UserContact;
                 IContact contact = Core.ContactManager.GetContact( contactRes );
                 Core.ContactManager.LinkContactToResource( Core.ContactManager.Props.LinkFrom,
                     contactRes, resource, contact.DefaultEmailAddress, contactRes.DisplayName );
@@ -142,8 +140,7 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
         private static IResource FindOrCreateFolder( IResource repository, string dir, bool canCreate )
         {
             // Example: //Root/folder/folder2
-            string folderName;
-            int pos = dir.LastIndexOf( '/' );
+	        int pos = dir.LastIndexOf( '/' );
             IResource parent;
             if ( pos <= 1 )
             {
@@ -153,27 +150,27 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
             {
                 parent = FindOrCreateFolder( repository, dir.Substring( 0, pos ), canCreate );
             }
-            folderName = dir.Substring( pos+1 );
+            string folderName = dir.Substring( pos+1 );
 
-            foreach( IResource child in parent.GetLinksTo( Props.FolderResource, Core.Props.Parent ) )
+            foreach( Folder child in parent.GetLinksTo( Folder.ResourceType, Core.PropIds.Parent) )
             {
-                if ( String.Compare( child.GetStringProp( Core.Props.Name ), folderName, true ) == 0 )
+                if ( String.Compare( child.Name, folderName, true ) == 0 )
                 {
-                    return child;
+                    return child.Resource;
                 }
             }
             if ( canCreate )
             {
-                ResourceProxy proxy = ResourceProxy.BeginNewResource( Props.FolderResource );
-                proxy.SetProp( Core.Props.Name, folderName );
-                proxy.AddLink( Core.Props.Parent, parent );
-                proxy.EndUpdate();
-                return proxy.Resource;
+                Folder folder = Folder.Create();
+                folder.Name = folderName;
+                folder.Parent = parent;
+                folder.Save();
+                return folder.Resource;
             }
 	        return null;
         }
 
-        protected string BuildPath( IResource resource )
+        protected static string BuildPath( IResource resource )
         {
             IResource parent = resource.GetLinkProp( Core.Props.Parent );
             if ( parent.Type == Props.FolderResource )
@@ -198,7 +195,7 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
 	    /// <param name="repository">The repository to which the file change belongs.</param>
 	    /// <param name="fileChange">The selected file change.</param>
 	    /// <returns>The text to display in the diff preview pane.</returns>
-	    public virtual string OnFileChangeSelected( IResource repository, IResource fileChange )
+	    internal virtual string OnFileChangeSelected(IResource repository, FileChange fileChange)
 	    {
 	        return null;
 	    }

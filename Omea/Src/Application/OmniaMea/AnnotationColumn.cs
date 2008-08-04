@@ -16,13 +16,13 @@ namespace JetBrains.Omea
 	internal class AnnotationColumn: ImageListColumn
 	{
         private readonly ContextMenuStrip _annotationContextMenu;
-        private readonly MenuActionManager _annotationActionManager;
+        private readonly ContextMenuActionManager _annotationActionManager;
 
 		public AnnotationColumn( int propId )
             : base( propId )
 		{
             _annotationContextMenu = new ContextMenuStrip();
-            _annotationActionManager = new MenuActionManager( _annotationContextMenu );
+            _annotationActionManager = new ContextMenuActionManager( _annotationContextMenu );
 
             _annotationActionManager.RegisterGroup( "", null, ListAnchor.Last );
             _annotationActionManager.RegisterAction( new AnnotateResourceAction(), "", ListAnchor.Last, "Annotate Resource", 

@@ -3,7 +3,6 @@
 /// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
 /// </copyright>
 
-using JetBrains.Omea.Base;
 using JetBrains.Omea.GUIControls;
 using JetBrains.Omea.OpenAPI;
 
@@ -17,7 +16,6 @@ namespace JetBrains.Omea.RSSPlugin
         private System.Windows.Forms.Button _btnSend;
         private System.Windows.Forms.Button _btnClose;
         private System.Windows.Forms.TextBox _body;
-        private string _url;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox _cmbFrom;
         private System.Windows.Forms.Label label2;
@@ -29,7 +27,10 @@ namespace JetBrains.Omea.RSSPlugin
         private System.Windows.Forms.TextBox _txtLink;
         private System.Windows.Forms.TextBox _txtOnPost;
         private System.Windows.Forms.Label label5;
-		/// <summary>
+
+        private readonly string _url;
+
+        /// <summary>
 		/// Required designer variable.
 		/// </summary>
 		private System.ComponentModel.Container components = null;
@@ -50,13 +51,13 @@ namespace JetBrains.Omea.RSSPlugin
                 _cmbFrom.Items.Add( address );
             }
             string name = Settings.SendFrom;
-            if ( !Utils.IsValidString( name ) )
+            if ( string.IsNullOrEmpty( name ) )
             {
                 name = Core.ContactManager.MySelf.Resource.DisplayName;
             }
             _txtName.Text = name;
             string sendEmail = Settings.SendEmail;
-            if ( !Utils.IsValidString( sendEmail ) )
+            if ( string.IsNullOrEmpty( sendEmail ) )
             {
                 sendEmail = Core.ContactManager.MySelf.DefaultEmailAddress;
             }
@@ -304,12 +305,12 @@ namespace JetBrains.Omea.RSSPlugin
             Settings.SendFrom.Save( _txtName.Text );
             
             WebPost.PostNewComment( _url, _txtSubject.Text, author, _txtLink.Text, _body.Text );
-            this.Close();
+            Close();
         }
 
         private void OnClose(object sender, System.EventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         private void OnTextChanged(object sender, System.EventArgs e)

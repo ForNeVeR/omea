@@ -10,53 +10,41 @@ using JetBrains.Omea.GUIControls;
 
 namespace JetBrains.Omea
 {
-	/**
-     * The caption of an expanded or collapsed pane, with a set of buttons (minimize,
-     * maximize, restore).
-     */
-
-    internal class PaneCaption : System.Windows.Forms.UserControl
+    /// <summary>
+    /// The caption of an expanded or collapsed pane, with a set of buttons (minimize, restore).
+    /// </summary>
+    internal class PaneCaption : UserControl
 	{
-        private System.Windows.Forms.Label _captionLabel;
-        private System.Windows.Forms.ImageList _iconList;
-        private GUIControls.ImageListPictureBox _maximizeBtn;
-        private System.ComponentModel.IContainer components;
-        private GUIControls.ImageListPictureBox _minimizeBtn;
-        private GUIControls.ImageListPictureBox _restoreBtn;
+        private Label _captionLabel;
+        private ImageList _iconList;
+        private ImageListPictureBox _minimizeBtn;
+        private ImageListPictureBox _restoreBtn;
 
-        private PaneCaptionButtons _captionButtons = 
-            PaneCaptionButtons.Maximize | PaneCaptionButtons.Minimize | PaneCaptionButtons.Restore;
+        private PaneCaptionButtons _captionButtons = (PaneCaptionButtons.Minimize | PaneCaptionButtons.Restore);
 
-        private System.Windows.Forms.Timer _restoreTimer;
-        private System.Windows.Forms.Timer _dragOverTimer;
-        private System.Windows.Forms.ToolTip _toolTip;
+        private Timer _restoreTimer;
+        private Timer _dragOverTimer;
+        private ToolTip _toolTip;
         private bool _active = true;
         private ColorScheme _colorScheme;
 
+        private System.ComponentModel.IContainer components;
+
 		public PaneCaption()
 		{
-			// This call is required by the Windows.Forms Form Designer.
 			InitializeComponent();
 
             TabStop = false;
 		}
 
-        /**
-         * Fired when the Maximize button is clicked on the pane caption.
-         */
-        
-        public event EventHandler MaximizeClick;
-
-        /**
-         * Fired when the Minimize button is clicked on the pane caption.
-         */
-
+        /// <summary>
+        /// Fired when the Minimize button is clicked on the pane caption.
+        /// </summary>
         public event EventHandler MinimizeClick;
 
-        /**
-         * Fired when the Restore button is clicked on the pane caption.
-         */
-
+        /// <summary>
+        /// Fired when the Restore button is clicked on the pane caption.
+        /// </summary>
         public event EventHandler RestoreClick;
 
         /// <summary> 
@@ -85,7 +73,6 @@ namespace JetBrains.Omea
             System.Resources.ResourceManager resources = new System.Resources.ResourceManager(typeof(PaneCaption));
             this._captionLabel = new System.Windows.Forms.Label();
             this._iconList = new System.Windows.Forms.ImageList(this.components);
-            this._maximizeBtn = new GUIControls.ImageListPictureBox();
             this._minimizeBtn = new GUIControls.ImageListPictureBox();
             this._restoreBtn = new GUIControls.ImageListPictureBox();
             this._restoreTimer = new System.Windows.Forms.Timer(this.components);
@@ -107,7 +94,6 @@ namespace JetBrains.Omea
             this._captionLabel.TabIndex = 1;
             this._captionLabel.Text = "label1";
             this._captionLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this._captionLabel.Click += new System.EventHandler(this._captionLabel_Click);
             this._captionLabel.DoubleClick += new System.EventHandler(this._captionLabel_DoubleClick);
             // 
             // _iconList
@@ -115,19 +101,6 @@ namespace JetBrains.Omea
             this._iconList.ImageSize = new System.Drawing.Size(16, 16);
             this._iconList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("_iconList.ImageStream")));
             this._iconList.TransparentColor = System.Drawing.Color.Transparent;
-            // 
-            // _maximizeBtn
-            // 
-            this._maximizeBtn.Dock = System.Windows.Forms.DockStyle.Right;
-            this._maximizeBtn.ImageIndex = 0;
-            this._maximizeBtn.ImageList = this._iconList;
-            this._maximizeBtn.Location = new System.Drawing.Point(133, 1);
-            this._maximizeBtn.Name = "_maximizeBtn";
-            this._maximizeBtn.Size = new System.Drawing.Size(16, 16);
-            this._maximizeBtn.TabIndex = 2;
-            this._maximizeBtn.Text = "imageListPictureBox1";
-            this._toolTip.SetToolTip(this._maximizeBtn, "Maximize Pane");
-            this._maximizeBtn.Click += new System.EventHandler(this._maximizeBtn_Click);
             // 
             // _minimizeBtn
             // 
@@ -167,16 +140,18 @@ namespace JetBrains.Omea
             // 
             // PaneCaption
             // 
+            Height = 18;
+            Visible = false;
+            Active = false;
+
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.Controls.Add(this._minimizeBtn);
             this.Controls.Add(this._restoreBtn);
-            this.Controls.Add(this._maximizeBtn);
             this.Controls.Add(this._captionLabel);
             this.DockPadding.All = 1;
             this.Name = "PaneCaption";
             this.Size = new System.Drawing.Size(150, 18);
             this.ResumeLayout(false);
-
         }
 		#endregion
 
@@ -202,7 +177,6 @@ namespace JetBrains.Omea
                 if ( _captionButtons != value )
                 {
                     _captionButtons = value;
-                    _maximizeBtn.Visible = ( (_captionButtons & PaneCaptionButtons.Maximize) != 0 );
                     _minimizeBtn.Visible = ( (_captionButtons & PaneCaptionButtons.Minimize) != 0 );
                     _restoreBtn.Visible  = ( (_captionButtons & PaneCaptionButtons.Restore) != 0 );
                 }
@@ -244,15 +218,7 @@ namespace JetBrains.Omea
 	            : ColorScheme.GetColor( _colorScheme, "PaneCaption.InactiveText", SystemColors.InactiveCaptionText );
 	    }
 
-	    private void _maximizeBtn_Click( object sender, System.EventArgs e )
-        {
-            if ( MaximizeClick != null )
-            {
-                MaximizeClick( this, EventArgs.Empty );
-            }
-        }
-
-        private void _minimizeBtn_Click( object sender, System.EventArgs e )
+        private void _minimizeBtn_Click( object sender, EventArgs e )
         {
             if ( MinimizeClick != null )
             {
@@ -260,7 +226,7 @@ namespace JetBrains.Omea
             }
         }
 
-        private void _restoreBtn_Click( object sender, System.EventArgs e )
+        private void _restoreBtn_Click( object sender, EventArgs e )
         {
             if ( RestoreClick != null )
             {
@@ -269,41 +235,20 @@ namespace JetBrains.Omea
         }
 
         /**
-         * Sets the timer which ensures that the pane is restored by a single-click
-         * and maximized by a double-click.
-         */
-        
-        private void _captionLabel_Click( object sender, System.EventArgs e )
-        {
-            if ( _maximizeBtn.Visible )
-            {
-                _restoreTimer.Start();
-            }
-            else
-            {
-                OnClick( e );
-            }
-        }
-
-        /**
          * A double-click on the header of a pane maximizes it if the Maximize button
          * is visible, and restores it otherwise.
          */
         
-        private void _captionLabel_DoubleClick( object sender, System.EventArgs e )
+        private void _captionLabel_DoubleClick( object sender, EventArgs e )
         {
             _restoreTimer.Stop();
-            if ( _maximizeBtn.Visible && MaximizeClick != null )
-            {
-                MaximizeClick( this, EventArgs.Empty );
-            }
-            else if ( _restoreBtn.Visible && RestoreClick != null )
+            if ( _restoreBtn.Visible && RestoreClick != null )
             {
                 RestoreClick( this, EventArgs.Empty );
             }
         }
 
-        private void _restoreTimer_Tick( object sender, System.EventArgs e )
+        private void _restoreTimer_Tick( object sender, EventArgs e )
         {
             _restoreTimer.Stop();
             if ( _restoreBtn.Visible )
@@ -326,7 +271,7 @@ namespace JetBrains.Omea
         protected override void OnDragEnter( DragEventArgs drgevent )
         {
             base.OnDragEnter( drgevent );
-            if ( _maximizeBtn.Visible || _restoreBtn.Visible )
+            if ( _restoreBtn.Visible )
             {
                 _dragOverTimer.Start();
             }
@@ -346,7 +291,7 @@ namespace JetBrains.Omea
          * When the drag has been hovering over the caption for 500 ms, restores the pane.
          */
         
-        private void _dragOverTimer_Tick( object sender, System.EventArgs e )
+        private void _dragOverTimer_Tick( object sender, EventArgs e )
         {
             _dragOverTimer.Stop();
             if ( RestoreClick != null )
@@ -370,6 +315,6 @@ namespace JetBrains.Omea
     [Flags]
     public enum PaneCaptionButtons
     {
-        None = 0, Maximize = 1, Minimize = 2, Restore = 4
+        None = 0, Minimize = 2, Restore = 4
     }
 }

@@ -12,9 +12,17 @@ using System.IO;
 using System.Reflection;
 using System.Text;
 using System.Threading;
+using System.Windows;
 using System.Windows.Forms;
+using System.Windows.Threading;
+using System.Xml;
+
+using System35;
+
 using DBIndex;
 using Ini;
+
+using JetBrains.Annotations;
 using JetBrains.Interop.WinApi;
 using JetBrains.Interop.WinApi.Wrappers;
 using JetBrains.Omea.AsyncProcessing;
@@ -34,11 +42,24 @@ using JetBrains.Omea.RemoteControl;
 using JetBrains.Omea.ResourceStore;
 using JetBrains.Omea.ResourceTools;
 using JetBrains.Omea.TextIndex;
+using JetBrains.UI.Hooks;
 using JetBrains.UI.Interop;
 using Microsoft.Win32;
 using PicoContainer.Defaults;
 
+using Application=System.Windows.Forms.Application;
+using ContextMenu=System.Windows.Forms.ContextMenu;
+using HorizontalAlignment=System.Windows.Forms.HorizontalAlignment;
+using Image=System.Drawing.Image;
+using Label=System.Windows.Forms.Label;
+using MenuItem=System.Windows.Forms.MenuItem;
+using MessageBox=System.Windows.Forms.MessageBox;
+using Panel=System.Windows.Forms.Panel;
+using Point=System.Drawing.Point;
+using Size=System.Drawing.Size;
+using SystemColors=System.Drawing.SystemColors;
 using Timer=System.Windows.Forms.Timer;
+using ToolTip=System.Windows.Forms.ToolTip;
 
 namespace JetBrains.Omea
 {
@@ -62,7 +83,7 @@ namespace JetBrains.Omea
 
         private IContainer components;
         private ContextMenuStrip _contextMenu;
-        private IniFile _iniFile;
+        private readonly IniFile _iniFile;
         private AsyncProcessor _resourceJobProcessor;
         private AsyncProcessor _networkJobProcessor;
         private ImageList _pluginImages8;
@@ -74,11 +95,9 @@ namespace JetBrains.Omea
         private TextIndexManager    _textIndexManager;
         
         private static CustomExceptionHandler _excHandler;
-        private static ProtocolHandlerManager _protocolHandlerManager = new ProtocolHandlerManager();
+        private static readonly ProtocolHandlerManager _protocolHandlerManager = new ProtocolHandlerManager();
         private ImageList _toolbarImages32;
         private ImageList _toolbarImages8;
-
-        private ActionManager _actionManager;
 
         private Panel _statusBarPanel;
         private StatusBar _statusBar;
@@ -95,38 +114,39 @@ namespace JetBrains.Omea
         internal ImageList _statesImageList;
         internal ToolTip _toolTip;
 
-        private ResourceBrowser _resourceBrowser;
-        private JetSplitter _leftSidebarSplitter;
-        private SidebarSwitcher _querySidebar;
         private Panel _contentAndRightSidebarPane;
+        private JetSplitter _rightSidebarSplitter;
+        private VerticalSidebar _rightSidebar;
         private Panel _contentPane;
+        private SidebarSwitcher _querySidebar;
+        private JetSplitter _leftSidebarSplitter;
+        private Panel _resourceBrowserBorder;
+        private ResourceBrowser _resourceBrowser;
+        private Panel _fillerPanel;
+
+		private ResourceTabsRow	_panelResourceTabsRow;
 
         private SizeF _scaleFactor;
 
         internal PluginEnvironment _theEnvironment;
         
-        private JetSplitter _rightSidebarSplitter;
         private WorkspaceButtonsRow _panelWorkspaceButtonsRow;
 
         private WorkspaceManager _workspaceManager;
-
-        private FlagColumn _flagColumn;
+        private ActionManager _actionManager;
         private ResourceIconManager _resourceIconManager;
 
-        private VerticalSidebar _rightSidebar;
-        private Panel _fillerPanel;
-        private Panel _resourceBrowserBorder;
-		private ResourceTabsRow	_panelResourceTabsRow;
+        private FlagColumn _flagColumn;
 
         internal WheelMessageFilter _messageFilter;
 
         private int _idleLastMessage = -1;
 
-        private ArrayList _backgroundExceptionList = new ArrayList();
+        private readonly ArrayList _backgroundExceptionList = new ArrayList();
 
         private ColorScheme _colorScheme;
 
-        private TrayIconManager  _trayIconManager;
+        private readonly TrayIconManager  _trayIconManager;
         private NotifyIcon      _notifyIcon;
         private ContextMenu     _notifyIconContextMenu;
         private MenuItem        _miOpenOmniaMea;
@@ -142,8 +162,8 @@ namespace JetBrains.Omea
         private bool _cancelStart = false;
         
         internal static UIAsyncProcessor _uiAsyncProcessor;
-        private UIManager _uiManager;
-        private RemoteControlServer _rcServer;
+        private readonly UIManager _uiManager;
+        private readonly RemoteControlServer _rcServer;
         internal static bool _skipPlugins = false;
         internal static bool _skipWizard = false;
         private bool _detailedProgress;
@@ -278,13 +298,13 @@ namespace JetBrains.Omea
                 _rightSidebar.Dock = DockStyle.Right;
                 _rightSidebar.Side = SidebarSide.Right;
                 _rightSidebar.Visible = false;
-                _rightSidebar.ExpandedChanged += OnRightSidebarExpand;
+//                _rightSidebar.ExpandedChanged += OnRightSidebarExpand;
                 _rightSidebar.PaneAdded += OnRightSidebarPaneAdded;
                 _rightSidebar.SizeChanged += HandleRightSidebarSizeChanged;
-                _rightSidebar.BackgroundColorSchemeKey = "TopBar.Background";
-                _rightSidebar.BackgroundFillHeight = 0;
-                _rightSidebar.CollapsedWidth = 34;
-                _rightSidebar.PaintSidebarBackground += HandlePaintRightSidebarBackground;
+//                _rightSidebar.BackgroundColorSchemeKey = "TopBar.Background";
+//                _rightSidebar.BackgroundFillHeight = 0;
+//                _rightSidebar.CollapsedWidth = 34;
+//                _rightSidebar.PaintSidebarBackground += HandlePaintRightSidebarBackground;
                 _contentAndRightSidebarPane.Controls.Add( _rightSidebar );
 
                 _leftSidebarSplitter.ControlToCollapse = _querySidebar;
@@ -687,7 +707,7 @@ namespace JetBrains.Omea
             // _contentAndRightSidebarPane
             //
             this._contentAndRightSidebarPane.Controls.Add(this._contentPane);
-            this._contentAndRightSidebarPane.Controls.Add(this._fillerPanel);
+//            this._contentAndRightSidebarPane.Controls.Add(this._fillerPanel);
             this._contentAndRightSidebarPane.Controls.Add(this._rightSidebarSplitter);
             this._contentAndRightSidebarPane.Name = "_contentAndRightSidebarPane";
 			_contentAndRightSidebarPane.Dock = DockStyle.Fill;
@@ -724,7 +744,6 @@ namespace JetBrains.Omea
             // 
             // _rightSideSplitter
             // 
-            this._rightSidebarSplitter.CollapsedChanged += new EventHandler( HandleRightSidebarCollapsedChanged );
             this._rightSidebarSplitter.Dock = System.Windows.Forms.DockStyle.Right;
             this._rightSidebarSplitter.Location = new System.Drawing.Point(935, 0);
             this._rightSidebarSplitter.Name = "_rightSidebarSplitter";
@@ -733,12 +752,14 @@ namespace JetBrains.Omea
             this._rightSidebarSplitter.TabIndex = 0;
             this._rightSidebarSplitter.TabStop = false;
             this._rightSidebarSplitter.Visible = false;
+            this._rightSidebarSplitter.VisibleChanged += new EventHandler( HandleRightSidebarCollapsedChanged );
             // 
             // _topBarPane
             // 
             _panelWorkspaceButtonsRow.Name = "_panelWorkspaceButtonsRow";
 			_panelWorkspaceButtonsRow.TabIndex = 2;
 			_panelWorkspaceButtonsRow.Dock = DockStyle.Top;
+/*
             // 
             // _fillerPanel
             // 
@@ -748,6 +769,7 @@ namespace JetBrains.Omea
             this._fillerPanel.Paint += new PaintEventHandler( HandlePaintFillerPanel );
             this._fillerPanel.Size = new System.Drawing.Size(940, 4);
             this._fillerPanel.TabIndex = 16;
+*/
             // 
             // _panelResourceTabsBar
             // 
@@ -841,9 +863,9 @@ namespace JetBrains.Omea
         {
             private delegate void ExecuteJobDelegate( AbstractJob job );
 
-            private MainFrame _mainFrame;
-            private ExecuteJobDelegate _executeJobMethod;
-            private Thread _startupThread;
+            private readonly MainFrame _mainFrame;
+            private readonly Thread _startupThread;
+            private readonly ExecuteJobDelegate _executeJobMethod;
             private int _reenteringJobsCount;
 
             public UIAsyncProcessor( MainFrame mainFrame )
@@ -879,11 +901,9 @@ namespace JetBrains.Omea
                 {
                     return base.PushJob( job, priority );
                 }
-                else
-                {
-                    _mainFrame.BeginInvoke( _executeJobMethod, new object[] { job } );
-                    return true;
-                }
+
+                _mainFrame.BeginInvoke( _executeJobMethod, new object[] { job } );
+                return true;
             }
 
             public override bool IsOwnerThread
@@ -1129,22 +1149,9 @@ namespace JetBrains.Omea
 
         private static string FindWorkingDirectory()
         {
-            if ( !RegUtil.CreateOmeaKey() )
-            {
-                MessageBox.Show( "Failed to open or create Omea registry key. Please reinstall Omea." );
-                return null;
-            }
+			string workDir = null;
 
-            string workDir = RegUtil.DatabasePath;
-            if ( workDir == null )
-            {
-                string defltFolder = Environment.GetFolderPath( Environment.SpecialFolder.LocalApplicationData );
-                workDir = Path.Combine( defltFolder, "JetBrains\\Omea\\" );
-
-                RegUtil.DatabasePath = Path.Combine( workDir, "db\\" );
-                RegUtil.LogPath = Path.Combine( workDir, "logs\\" );
-            }
-                
+			// Pass 1: Explicitly specified on the command-line
             string[] args = Environment.GetCommandLineArgs();
             for( int i = 0; i < args.Length - 1; i++ )
             {
@@ -1162,10 +1169,64 @@ namespace JetBrains.Omea
                     }
                 }
             }
-            return workDir;
+			if(workDir != null)
+				return workDir;	// Note: not written to the Registry
+
+			//////////////////////
+			// Pass 2: default workdir specified in the Registry
+
+			// Ensure Registry key
+            if ( !RegUtil.CreateOmeaKey() )
+            {
+            	ShowErrorMessage_RepairInstallation("Failed to open or create Omea registry key in the Current User Registry.");
+            	return null;
+            }
+
+			// Read from the Registry
+        	workDir = RegUtil.DatabasePath;
+        	if(workDir != null)
+        	{
+        		try
+        		{
+					return workDir = Path.GetFullPath(workDir);
+        		}
+        		catch(Exception ex)
+        		{
+        			ShowErrorMessage("The Registry setting for Omea Database Path is corrupt. Default database folder will be used.");
+        		}
+        	}
+
+        	// Pass 3: neither cmdline nor Registry default are set, create and write the default path
+        	string defltFolder = Environment.GetFolderPath( Environment.SpecialFolder.LocalApplicationData );
+        	workDir = Path.Combine(Path.Combine( defltFolder, "JetBrains" ), "Omea");
+
+        	// Save default paths
+        	RegUtil.DatabasePath = workDir;
+        	RegUtil.LogPath = Path.Combine( workDir, "logs" );
+
+        	return workDir;
         }
 
-        /// <summary>
+    	/// <summary>
+    	/// Reports an error in Omea configuration.
+    	/// Recommends repairing the installation.
+    	/// </summary>	// TODO: use for error messages
+    	private static void ShowErrorMessage_RepairInstallation([NotNull] string reason)
+    	{
+    		if(reason == null)
+    			throw new ArgumentNullException("reason");
+    		ShowErrorMessage(string.Format("{0}\n\nIt is recommended that you repair Omea installation.", reason));
+    	}
+
+		/// <summary>
+		/// Reports an error thru a standard message box.
+		/// </summary>
+    	private static void ShowErrorMessage(string error)
+    	{
+    		MessageBox.Show(error, "Omea – Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+    	}
+
+    	/// <summary>
         /// Under Windows XP or later, sets OmniaMea to use 32-bit icons. Otherwise,
         /// uses 8-bit icons.
         /// </summary>
@@ -1317,14 +1378,7 @@ namespace JetBrains.Omea
 
             Core.UIManager.RegisterWizardPane( "User Information", MySelfPane.MySelfPaneCreator, 100 );
 
-            if ( RunningTests )
-            {
-                _detailedProgress = true;
-            }
-            else
-            {
-                _detailedProgress = _iniFile.ReadBool( "Omea", "DetailedProgress", false );
-            }
+            _detailedProgress = RunningTests || _iniFile.ReadBool( "Omea", "DetailedProgress", false );
             
             if ( _excHandler != null )
             {
@@ -1373,30 +1427,29 @@ namespace JetBrains.Omea
             }
         }
 
-        public object RunWithProgressWindow( string progressTitle, Delegate method, params object[] args )
+        public void RunWithProgressWindow( [NotNull] string progressTitle, [NotNull] Action action )
         {
-            return RunWithProgressWindow( progressTitle, false, method, args );
+            RunWithProgressWindow( progressTitle, false, action );
         }
 
-        private object RunWithProgressWindow( string progressTitle, bool canMinimize,
-            Delegate method, params object[] args )
-        {
-            ProgressWindow progressWindow = new ProgressWindow( canMinimize );
-            _theEnvironment.SetProgressWindow( progressWindow );
-            progressWindow.Text = progressTitle;
-            DelegateJob progressJob = new DelegateJob( method, args );
-            progressWindow.Tag = progressJob;
+    	private void RunWithProgressWindow([NotNull] string progressTitle, bool canMinimize, [NotNull] Action action)
+    	{
+    		var progressWindow = new ProgressWindow(canMinimize);
+    		_theEnvironment.SetProgressWindow(progressWindow);
+    		try
+    		{
+    			progressWindow.Text = progressTitle;
+    			var job = new ActionJob(progressTitle, action);
+    			progressWindow.Tag = job;
 
-            progressWindow.OnFirstShow += OnShowProgressWindow;
-            progressWindow.ShowDialog( this );
-
-            if ( Core.ProgressWindow != null )
-            {
-                (Core.ProgressWindow as ProgressWindow).OnFirstShow -= OnShowProgressWindow;
-            }
-            _theEnvironment.SetProgressWindow( null );
-            return progressJob.ReturnValue;
-        }
+    			progressWindow.OnFirstShow += delegate { action(); };
+    			progressWindow.ShowDialog(this);
+    		}
+    		finally
+    		{
+    			_theEnvironment.SetProgressWindow(null);
+    		}
+    	}
 
     	private void RunWithSplashScreen(Delegate method)
     	{
@@ -1414,13 +1467,6 @@ namespace JetBrains.Omea
     			_theEnvironment.SetProgressWindow(null);
     		}
     	}
-
-        private static void OnShowProgressWindow( object sender, EventArgs e )
-        {
-            Control senderCtl = (Control) sender;
-            DelegateJob uow = (DelegateJob) senderCtl.Tag;
-            uow.NextMethod();
-        }
 
         private static AbstractOptionsPane CreateIndexPeriodPane()
         {
@@ -1473,7 +1519,7 @@ namespace JetBrains.Omea
             {
                 OnStartupProgress();
             }
-            catch( CancelStartupException )
+            catch( PluginLoader.CancelStartupException )
             {
                 _cancelStart = true;
             }
@@ -1484,7 +1530,7 @@ namespace JetBrains.Omea
                 {
                     ex = ex.InnerException;
                 }
-                if ( !(ex is CancelStartupException ) )
+                if ( !(ex is PluginLoader.CancelStartupException ) )
                 {
                     _excHandler.ReportException( ex, ExceptionReportFlags.Fatal );
                 }
@@ -1640,9 +1686,10 @@ namespace JetBrains.Omea
             //  their proper logic.
             InitializeQuerySidebar();
 
-            Loader pluginLoader = Core.PluginLoader as Loader;
+            PluginInterfaces pluginLoader = Core.PluginLoader as PluginInterfaces;
             pluginLoader.RegisterXmlConfigurationHandler( "actions", _actionManager.LoadXmlConfiguration );
             pluginLoader.RegisterXmlConfigurationHandler( "display-columns", ColumnConfigurationLoader.LoadXmlConfiguration );
+            pluginLoader.RegisterXmlConfigurationHandler( "resource-icons", LoadXmlConfiguration_ResourceIcons );
             pluginLoader.LoadXmlConfiguration( Assembly.GetExecutingAssembly() );
             
             CategoryUIHandler categoryUIHandler = new CategoryUIHandler( Core.CategoryManager as CategoryManager );
@@ -1660,7 +1707,7 @@ namespace JetBrains.Omea
             pluginLoader.RegisterResourceTextProvider( "Fragment", new FragmentTextProvider() );
             Core.ResourceIconManager.RegisterResourceLargeIcon( "Fragment", LoadIconFromAssembly( "FragmentLarge.ico" ) );
             Core.PluginLoader.RegisterResourceDeleter( "Fragment", new DefaultResourceDeleter() );
-            Core.FilterManager.RegisterRuleApplicableResourceType( "Fragment" );
+            Core.FilterEngine.RegisterRuleApplicableResourceType( "Fragment" );
 			ClippingNewspaperProvider.Register();
 			Core.ResourceStore.PropTypes.Register("Url", PropDataType.String);
 
@@ -1681,18 +1728,7 @@ namespace JetBrains.Omea
             _theEnvironment.SetState( CoreState.StartingPlugins );
             if ( !_skipPlugins )
             {
-                try
-                {
-                    pluginLoader.LoadPlugins();
-                }
-                catch( Loader.XPluginsRegKeyError )
-                {
-                    MessageBox.Show( this, "Could not load the list of " + ProductName +
-                        " plugins from the registry. Please reinstall " + ProductName + "." );
-                    _cancelStart = true;
-                    Close();
-                    return;
-                }
+                  pluginLoader.LoadPlugins();
             }
             if (_protocolHandlerManager.Registrations > 0 )
             {
@@ -1759,7 +1795,7 @@ namespace JetBrains.Omea
 
             _workspaceManager = Core.WorkspaceManager as WorkspaceManager;
             _workspaceManager.RegisterWorkspaceType( "Category",
-                new int[] { (Core.CategoryManager as CategoryManager).PropCategory }, WorkspaceResourceType.Filter  );
+                new[] { (Core.CategoryManager as CategoryManager).PropCategory }, WorkspaceResourceType.Filter  );
             _workspaceManager.SetWorkspaceTabName( "Category", "Categories" );
             _workspaceManager.RegisterWorkspaceType( "ResourceTreeRoot", new int[] {}, WorkspaceResourceType.Folder );
             _workspaceManager.SetWorkspaceTabName( "ResourceTreeRoot", "Categories" );
@@ -1789,8 +1825,15 @@ namespace JetBrains.Omea
 
             if ( Core.ProgressWindow != null )
             {
-                Core.ProgressWindow.UpdateProgress( 0, "Initializing view...", null );
+                Core.ProgressWindow.UpdateProgress( 0, "Initializing view…", null );
             }
+
+			// Init the Avalon application engine
+			Dispatcher.CurrentDispatcher.UnhandledException += (sender, args) => { args.Handled = true; Core.ReportException(args.Exception, false); };
+			AvalonOperationCrisp.Execute();	// Ensure the fonts are not affected by reduced antialiasing
+			new System.Windows.Application();	// Singleton Avalon application
+			System.Windows.Application.Current.ShutdownMode = ShutdownMode.OnExplicitShutdown;	// Don't kill app after popup Avalon windows close
+
             _rightSidebar.PopulateViewPanes();
             _rightSidebar.CurrentState = SidebarState.RestoreFromIni( "RightSidebar" );
         	_panelResourceTabsRow.ResourceTypeTabs.RestoreTabStates();
@@ -1798,7 +1841,7 @@ namespace JetBrains.Omea
 
             if (ObjectStore.ReadInt("Columns", "Version", 0) < 4)
 			{
-				Core.ResourceAP.RunJob( new MethodInvoker( ResourceListState.DeleteAllStates ) );
+				Core.ResourceAP.RunJob( "DeleteAllStates", ResourceListState.DeleteAllStates );
 				ObjectStore.WriteInt( "Columns", "Version", 4 );
 			}
             
@@ -1814,7 +1857,7 @@ namespace JetBrains.Omea
             }
             
             Trace.WriteLine( "Initializing criteria..." );
-            (Core.FilterManager as FilterManager).InitializeCriteria();
+            (Core.FilterEngine as FilterEngine).InitializeCriteria();
 
             Trace.WriteLine( "Setting unread state..." );
             ViewsCategoriesPane defaultTreePane = _querySidebar.DefaultViewPane as ViewsCategoriesPane;
@@ -1846,7 +1889,15 @@ namespace JetBrains.Omea
             _miExitOmniaMea.Enabled = true;
         }
 
-        private bool CheckBackup( string error )
+    	private void LoadXmlConfiguration_ResourceIcons(Assembly asmPlugin, XmlElement xmlElement)
+    	{
+    		var iconProvider = new ConfigurableIconProvider(asmPlugin, xmlElement);
+    		Core.ResourceIconManager.RegisterResourceIconProvider(iconProvider.ResourceTypes, iconProvider);
+    		foreach(string sResType in iconProvider.ResourceTypes)
+    			Core.ResourceIconManager.RegisterOverlayIconProvider(sResType, iconProvider);
+    	}
+
+    	private bool CheckBackup( string error )
         {
             DateTime time = MyPalStorage.BackupTime();
             if( time == DateTime.MinValue ) 
@@ -1973,7 +2024,7 @@ namespace JetBrains.Omea
         private bool InitializeResourceStore()
         {
             MyPalStorage.ResourceCacheSize = _iniFile.ReadInt( "ResourceStore", "ResourceCacheSize", 4096 );
-            JetBrains.Omea.Database.DBIndex._cacheSizeMultiplier =
+            Database.DBIndex._cacheSizeMultiplier =
                 _iniFile.ReadInt( "ResourceStore", "DBindexCacheSizeMultiplier", 2 );
             MyPalStorage.TraceOperations = _iniFile.ReadBool( "ResourceStore", "TraceOperations", false );
             MyPalStorage.SetProgressWindow( Core.ProgressWindow );
@@ -2067,7 +2118,7 @@ namespace JetBrains.Omea
 
         private void HandleIndexCorruptionDetected( object sender, EventArgs e )
         {
-            string title = "Database Index Corruption";
+            const string title = "Database Index Corruption";
             string message = Core.ProductFullName + " has detected a corruption of the database indexes. " +
                 Core.ProductFullName + " will now shutdown. Please restart " + Core.ProductFullName + 
                 " to get the indexes rebuilt.";
@@ -2082,7 +2133,7 @@ namespace JetBrains.Omea
 
         private void HandleResourceStoreIOError( object sender, ThreadExceptionEventArgs e )
         {
-            string title = "Database Reading or Writing Error";
+            const string title = "Database Reading or Writing Error";
             string message = Core.ProductFullName + " has detected an error when reading or writing the database:\r\n" +
                 e.Exception.Message +
                 "\r\n" + Core.ProductFullName + 
@@ -2120,7 +2171,7 @@ namespace JetBrains.Omea
                     new ReportErrorDelegate( ReportResourceStoreError ), title, message, false );
                 if ( Core.State == CoreState.Initializing || Core.State == CoreState.StartingPlugins )
                 {
-                    throw new CancelStartupException();
+                    throw new PluginLoader.CancelStartupException();
                 }
             }
         }
@@ -2134,7 +2185,7 @@ namespace JetBrains.Omea
             Close();
             if ( uiThread && ( state == CoreState.Initializing || state == CoreState.StartingPlugins ) )
             {
-                throw new CancelStartupException();
+                throw new PluginLoader.CancelStartupException();
             }
         }
 
@@ -2395,7 +2446,7 @@ namespace JetBrains.Omea
 						Trace.WriteLine( "--- Closing ---" );
 
                         _miExitOmniaMea.Enabled = false;
-                        RunWithProgressWindow( "Closing", false, new MethodInvoker( OnShutdownProgress ) );
+                        RunWithProgressWindow( "Closing", false, OnShutdownProgress);
 						LogManager.CloseUsageLog();
 					}
                 }
@@ -2461,14 +2512,7 @@ namespace JetBrains.Omea
                     _rightSidebar.CurrentState.SaveToIni( "RightSidebar" );
                     _resourceBrowser.Shutdown();
 
-                    foreach( IPlugin plugin in Core.PluginLoader as IEnumerable )
-                    {
-                        if ( _detailedProgress )
-                        {
-                            Core.ProgressWindow.UpdateProgress( 0, "Stopping " + plugin.GetType().Name + "...", null );
-                        }
-                        plugin.Shutdown();
-                    }
+					((PluginInterfaces)Core.PluginLoader).ShutdownPlugins(_detailedProgress);
 
                     if ( _detailedProgress )
                     {
@@ -2669,16 +2713,18 @@ namespace JetBrains.Omea
 		/// </summary>
         private void InitializeQuerySidebar()
 		{
+            Image img = Utils.TryGetEmbeddedResourceImageFromAssembly( Assembly.GetExecutingAssembly(), "OmniaMea.Icons.Views24.png" );
+
 			// Note: do not do SuspendLayout here, or the side bar won't restore the pane sizes properly
-			_querySidebar.DefaultPaneIcon = LoadIconFromAssembly( "views_categories.ico" );
+			_querySidebar.DefaultPaneIcon = img;
 			_correspondentCtrl = new CorrespondentCtrl();
 			_correspondentCtrl.IniSection = "DefaultCorrespondentCtrl";
 			_querySidebar.RegisterTab( "All", null, -1 );
 			_querySidebar.RegisterActivateAction( null, StandardViewPanes.ViewsCategories, "Views and Categories" );
 			_querySidebar.RegisterViewPaneShortcut( StandardViewPanes.ViewsCategories, Keys.Control | Keys.Alt | Keys.V );
 
-			_querySidebar.RegisterViewPane( StandardViewPanes.Correspondents, "All", "Correspondents",
-			                                LoadIconFromAssembly( "correspondents.ico" ), _correspondentCtrl );
+            img = Utils.TryGetEmbeddedResourceImageFromAssembly( Assembly.GetExecutingAssembly(), "OmniaMea.Icons.Correspondents24.png" );
+			_querySidebar.RegisterViewPane( StandardViewPanes.Correspondents, "All", "Correspondents", img, _correspondentCtrl );
 			_querySidebar.RegisterViewPaneShortcut( StandardViewPanes.Correspondents, Keys.Control | Keys.Alt | Keys.C );
 
 			// Register a drag'n'drop handler for the Views'n'Cats resource-tree-root
@@ -2691,7 +2737,9 @@ namespace JetBrains.Omea
         private static void InitializeOptionsDialog()
         {
             Core.UIManager.RegisterOptionsGroup( "Omea", "This option group contains several pages of settings that apply globally to your [product name] installation." );
-            Core.UIManager.RegisterOptionsPane( "Omea", "Plugins", PluginsConfigPane.PluginsConfigPaneCreator,
+            Core.UIManager.RegisterOptionsPane( "Omea", "Plugins (Old)", PluginsConfigPane.PluginsConfigPaneCreator,
+                "The Plugins options activate and deactivate plugins that support various features and types of resources." );
+            Core.UIManager.RegisterOptionsPane( "Omea", "Plugins", ()=>new OmeaPluginsPage(),
                 "The Plugins options activate and deactivate plugins that support various features and types of resources." );
             Core.UIManager.RegisterOptionsPane( "Omea", "Paths", DatabasePathOptionsPane.CreatePane, 
                 "The Paths options specify the locations where the Omea database and logs are stored." );
@@ -2733,12 +2781,15 @@ namespace JetBrains.Omea
 
         public bool RightSidebarExpanded
         {
-            get { return _rightSidebar.PaneCount > 0 && !_rightSidebarSplitter.Collapsed; }
+//            get { return _rightSidebar.PanesCount > 0 && !_rightSidebarSplitter.Collapsed; }
+            get { return _rightSidebar.PanesCount > 0 && _rightSidebarSplitter.Visible; }
             set
             {
-                if ( _rightSidebar.PaneCount > 0 )
+                if ( _rightSidebar.PanesCount > 0 )
                 {
-                    _rightSidebarSplitter.Collapsed = !value;
+                    _rightSidebar.Visible = value;
+                    _rightSidebarSplitter.Visible = value;
+//                    _rightSidebarSplitter.Collapsed = !value;
                 }
             }
         }
@@ -2776,18 +2827,19 @@ namespace JetBrains.Omea
 
         private void OnRightSidebarPaneAdded( object sender, EventArgs e )
         {
-            _rightSidebar.Visible = true;
-            if ( _rightSidebar.PaneCount == 1 )
+            if ( _rightSidebar.PanesCount == 1 )
             {
                 RightSidebarExpanded = _iniFile.ReadBool( "MainForm", "RightSidebarExpanded", true );                
             }
         }
 
+/*
         private void OnRightSidebarExpand( object sender, EventArgs e )
         {
             _rightSidebarSplitter.Visible = _rightSidebar.Expanded;
         }
 
+*/
         private void HandleRightSidebarSizeChanged( object sender, EventArgs e )
         {
             _fillerPanel.Invalidate();
@@ -2803,20 +2855,13 @@ namespace JetBrains.Omea
 		/// </summary>
         private void _resourceTypeTabs_TabSwitch( object sender, EventArgs e )
         {
-            LogManager.WriteToUsageLog( "[Switch] *Tab* to [" + Core.TabManager.CurrentTabId + "]" );
             _fillerPanel.Invalidate();
         }
 
         private static void _workspaceBar_WorkspaceChanged( object sender, ResourceEventArgs e )
         {
-            if ( e.Resource == null )
-            {
-                LogManager.WriteToUsageLog( "[Switch] *Workspace* to [Default]" );
-            }
-            else
-            {
-				LogManager.WriteToUsageLog( "[Switch] *Workspace* to [" + e.Resource.Id + "]" );
-            }
+            string wrsp = ((e.Resource == null) ? "Default" : e.Resource.Id.ToString());
+            LogManager.WriteToUsageLog( "[Switch] *Workspace* to [" + wrsp + "]" );
         }
 
         public IStatusWriter GetStatusWriter( object owner, StatusPane pane )
@@ -2857,6 +2902,7 @@ namespace JetBrains.Omea
             e.Graphics.DrawLine( borderPen, rcActiveTab.Right+1, 0, fillRight, 0 );
         }
 
+/*
         private void HandlePaintRightSidebarBackground( object sender, PaintEventArgs e )
         {
             if ( !_rightSidebar.Expanded )
@@ -2871,6 +2917,7 @@ namespace JetBrains.Omea
                 e.Graphics.FillRectangle( SystemBrushes.Control, 0, 150, 3, _rightSidebar.Height-150 );
             }
         }
+*/
 
         public void ReportBackgroundException( Exception ex )
         {
@@ -2985,7 +3032,7 @@ namespace JetBrains.Omea
                     }
                     catch( Exception ex )
                     {
-                        Trace.WriteLine( "Exception when restoring form settings: " + ex.ToString() );
+                        Trace.WriteLine( "Exception when restoring form settings: " + ex );
                     }
                 }
             }
@@ -3102,23 +3149,19 @@ namespace JetBrains.Omea
 			if ( m.Msg == Win32Declarations.WM_APPCOMMAND )
 			{
 				int appCommand = ( m.LParam.ToInt32() >> 16 ) & ~0xF000;
-				Trace.WriteLine( "AppCommand received: " + appCommand );
-				switch( appCommand )
-				{
-				case Win32Declarations.APPCOMMAND_BROWSER_BACKWARD:
-					if ( Core.State == CoreState.Running )
-					{
-						Core.ResourceBrowser.GoBack();
-					}
-					return true;
 
-				case Win32Declarations.APPCOMMAND_BROWSER_FORWARD:
-					if ( Core.State == CoreState.Running )
-					{
-						Core.ResourceBrowser.GoForward();
-					}
-					return true;
-				}
+				Trace.WriteLine( "AppCommand received: " + appCommand );
+                if ( Core.State == CoreState.Running )
+                {
+				    switch( appCommand )
+				    {
+				    case Win32Declarations.APPCOMMAND_BROWSER_BACKWARD:
+					    Core.ResourceBrowser.GoBack(); return true;
+
+				    case Win32Declarations.APPCOMMAND_BROWSER_FORWARD:
+					    Core.ResourceBrowser.GoForward(); return true;
+				    }
+                }
 			}
 			return false;
 		}
@@ -3128,8 +3171,4 @@ namespace JetBrains.Omea
 	#endregion
 
 	delegate void UpdateStatusTextDelegate( bool doEvents );
-
-    internal class CancelStartupException: Exception
-    {
-    }
 }

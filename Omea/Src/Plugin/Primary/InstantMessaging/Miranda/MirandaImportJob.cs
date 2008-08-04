@@ -21,18 +21,18 @@ namespace JetBrains.Omea.InstantMessaging.Miranda
 	internal class MirandaImportJob: ReenteringEnumeratorJob
 	{
         private IMirandaDB _db;
-        private string _dbPath;
+        private readonly string _dbPath;
         private int _contactIndex;
         private int _lastProgressUpdate = 0;
         private long _startTicks;
         private IEnumerator _contactEnumerator;
         private IResource _selfContact;
-        private Hashtable _selfAccounts = new Hashtable( new CaseInsensitiveHashCodeProvider(), new CaseInsensitiveComparer() );
-        private IntHashTableOfInt _lastEventOffsets = new IntHashTableOfInt();     // contact offset -> last event offset
-        private bool _traceImport;
+        private readonly Hashtable _selfAccounts = new Hashtable( new CaseInsensitiveHashCodeProvider(), new CaseInsensitiveComparer() );
+        private readonly IntHashTableOfInt _lastEventOffsets = new IntHashTableOfInt();     // contact offset -> last event offset
+        private readonly bool _traceImport;
         private DateTime _indexStartDate = DateTime.MinValue;
-        private AddressBook _mirandaAB;
-        private IMConversationsManager _conversationManager;
+        private readonly AddressBook _mirandaAB;
+        private readonly IMConversationsManager _conversationManager;
         private int _lastFileSize = -1;
         private int _lastSlackSpace = -1;
         private bool _dbErrorReported = false;
@@ -54,7 +54,6 @@ namespace JetBrains.Omea.InstantMessaging.Miranda
         public override string Name
         {
             get { return "Miranda Database Import"; }
-            set {  }
         }
 
         internal void ClearEventOffsets()
@@ -170,7 +169,7 @@ namespace JetBrains.Omea.InstantMessaging.Miranda
                 }
             }
             DelegateJob job = new DelegateJob( new ImportContactDelegate( ImportContact ),
-                new object[] { (IMirandaContact) _contactEnumerator.Current, false } );
+                new[] { _contactEnumerator.Current, false } );
             _contactIndex++;
             return job;
         }
@@ -189,7 +188,7 @@ namespace JetBrains.Omea.InstantMessaging.Miranda
                     IResource res = Core.ResourceStore.TryLoadResource( e.Key );
                     if ( res != null )
                     {
-                        Core.FilterManager.ExecRules( StandardEvents.ResourceReceived, res );
+                        Core.FilterEngine.ExecRules( StandardEvents.ResourceReceived, res );
                         Core.TextIndexManager.QueryIndexing( res.Id );
                     }
                 }
@@ -324,7 +323,7 @@ namespace JetBrains.Omea.InstantMessaging.Miranda
                 if ( firstName == "" && lastName == "" )
                 {
                     string contactName;
-                    if ( nick != null && nick.Length > 0 )
+                    if ( !string.IsNullOrEmpty( nick ) )
                         contactName = nick;
                     else
                         contactName = UIN.ToString();
@@ -375,7 +374,7 @@ namespace JetBrains.Omea.InstantMessaging.Miranda
                 return;
 
             ImportContactGeneric( contact, group, myself, "AIM", ResourceTypes.MirandaAIMAccount,
-                new int[] { Props.ScreenName, Props.NickName }, new object[] { screenName, nickName } );
+                new[] { Props.ScreenName, Props.NickName }, new object[] { screenName, nickName } );
         }
 
         private void ImportJabberContact( IMirandaContact contact, IMirandaContactSettings settings,
@@ -390,7 +389,7 @@ namespace JetBrains.Omea.InstantMessaging.Miranda
             string nickName = (string) settings.Settings ["Nick"];
 
             ImportContactGeneric( contact, group, myself, "JABBER", ResourceTypes.MirandaJabberAccount,
-                new int[] { Props.JabberId, Props.NickName }, new object[] { jabberID, nickName } );
+                new[] { Props.JabberId, Props.NickName }, new object[] { jabberID, nickName } );
         }
 
         private void ImportYahooContact( IMirandaContact contact, IMirandaContactSettings settings,
@@ -403,7 +402,7 @@ namespace JetBrains.Omea.InstantMessaging.Miranda
                 return;
 
             ImportContactGeneric( contact, group, myself, "YAHOO", ResourceTypes.MirandaYahooAccount,
-                new int[] { Props.YahooId, Props.NickName }, new object[] { yahooId, nickName } );
+                new[] { Props.YahooId, Props.NickName }, new object[] { yahooId, nickName } );
         }
 
         private void ImportContactGeneric( IMirandaContact contact, string group, bool myself, 
@@ -537,7 +536,7 @@ namespace JetBrains.Omea.InstantMessaging.Miranda
             }
         }
 
-        private void AssignCategory( IResource contactRes, string group )
+        private static void AssignCategory( IResource contactRes, string group )
         {
             if ( IniSettings.CreateCategories && group != null )
             {

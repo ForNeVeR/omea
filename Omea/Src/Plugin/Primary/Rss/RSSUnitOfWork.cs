@@ -94,7 +94,6 @@ namespace JetBrains.Omea.RSSPlugin
         public override string Name
         {
             get { return "Downloading " + _httpReader.URL; }
-            set {}
         }
 
         public Exception LastException
@@ -389,7 +388,8 @@ namespace JetBrains.Omea.RSSPlugin
             _failedFeeds = new ArrayList();
         }
 
-        public override string Name          { get { return "Creating Search Feed(s)"; } set { } }
+        public override string Name          { get { return "Creating Search Feed(s)"; }
+        }
         public RSSWorkStatus   Status        { get { return _currStatus;               } }
         public ArrayList       Feeds         { get { return _feedProxies;              } }
         public Exception       LastException { get { return _lastException; } }

@@ -16,7 +16,7 @@ using JetBrains.Omea.GUIControls;
 
 namespace JetBrains.Omea.HTMLPlugin
 {
-    [PluginDescriptionAttribute("JetBrains Inc.", "Html files viewer and plain text extractor, for search capabilities")]
+    [PluginDescriptionAttribute("HTML Documents", "JetBrains Inc.", "Html files viewer and plain text extractor, for search capabilities", PluginDescriptionFormat.PlainText, "Icons/HtmlPluginIcon.png")]
     public class HTMLPlugin : IPlugin, IResourceDisplayer, IResourceTextProvider
     {
         #region IPlugin Members
@@ -36,8 +36,7 @@ namespace JetBrains.Omea.HTMLPlugin
             IUIManager UIMgr = Core.UIManager;
             if( UIMgr.IsOptionsGroupRegistered( "Folders & Files" ) )
             {
-                UIMgr.AddOptionsChangesListener( "Folders & Files", "File Options",
-                    new EventHandler( OnFileOptionsChanged ) );
+                UIMgr.AddOptionsChangesListener( "Folders & Files", "File Options", OnFileOptionsChanged );
             }
         }
 
@@ -50,7 +49,7 @@ namespace JetBrains.Omea.HTMLPlugin
         private void OnFileOptionsChanged( object sender, EventArgs e )
         {
             Core.ResourceAP.QueueJob(
-                JobPriority.Immediate, new MethodInvoker( RegisterTypes ) );
+                JobPriority.Immediate, "Register HTML Types", new MethodInvoker( RegisterTypes ) );
         }
 
         #endregion
@@ -92,10 +91,10 @@ namespace JetBrains.Omea.HTMLPlugin
 
         public IDisplayPane CreateDisplayPane( string resourceType )
         {
-            return new BrowserDisplayPane( new DisplayResourceInBrowserDelegate( DisplayHTML ) );
+            return new BrowserDisplayPane( DisplayHTML );
         }
 
-        private void DisplayHTML( IResource resource, AbstractWebBrowser browser, WordPtr[] wordsToHighlight )
+        private static void DisplayHTML( IResource resource, AbstractWebBrowser browser, WordPtr[] wordsToHighlight )
         {
             try
             {
@@ -165,7 +164,7 @@ namespace JetBrains.Omea.HTMLPlugin
             Core.FileResourceManager.SetContentType( "TextFile", "text/plain" );
         }
 
-        private string[] LoadExtensionArray( string section, string key, string defaultValue )
+        private static string[] LoadExtensionArray( string section, string key, string defaultValue )
         {
             string exts = Core.SettingStore.ReadString( section, key );
             exts = ( exts.Length == 0 ) ? defaultValue : exts + "," + defaultValue;
@@ -182,7 +181,7 @@ namespace JetBrains.Omea.HTMLPlugin
          */
         private IResource _currentIndexedRes;
 
-        private void ProcessResourceStream( IResource resource, IResource source, StreamReader reader, 
+        private void ProcessResourceStream( IResource resource, IResource source, TextReader reader, 
             IResourceTextConsumer consumer )
         {
             _currentIndexedRes = resource;
@@ -191,7 +190,7 @@ namespace JetBrains.Omea.HTMLPlugin
                 using( HTMLParser parser = new HTMLParser( reader ) )
                 {
                     parser.CloseReader = false;
-                    parser.AddTagHandler( "link", new HTMLParser.TagHandler( LinkHandler ) );
+                    parser.AddTagHandler( "link", LinkHandler );
                     int docID = resource.Id;
                     string fragment;
                     while( !parser.Finished )
@@ -230,9 +229,9 @@ namespace JetBrains.Omea.HTMLPlugin
                                     url = url.Substring( "ftp://".Length );
                                 }
                             }
-                            if( url.IndexOfAny( Path.InvalidPathChars ) >= 0 )
+                            if( url.IndexOfAny( Path.GetInvalidPathChars() ) >= 0 )
                             {
-                                foreach( char invalidChar in Path.InvalidPathChars )
+                                foreach( char invalidChar in Path.GetInvalidPathChars() )
                                 {
                                     url = url.Replace( invalidChar, '-' );
                                 }

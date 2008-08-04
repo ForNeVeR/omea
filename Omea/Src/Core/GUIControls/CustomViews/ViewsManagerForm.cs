@@ -371,9 +371,9 @@ namespace JetBrains.Omea.GUIControls.CustomViews
                     //  subfolder, otherwize put it under the Root.
                     IResourceList selList = viewsTree.GetSelectedResources();
                     if( selList != null && selList.Count == 1 && selList[ 0 ].Type == FilterManagerProps.ViewFolderResName )
-                        Core.FilterManager.CreateViewFolder( name, selList[ 0 ].GetStringProp( Core.Props.Name ), 0 );
+                        Core.FilterRegistry.CreateViewFolder( name, selList[ 0 ].GetStringProp( Core.Props.Name ), 0 );
                     else
-                        Core.FilterManager.CreateViewFolder( name, null, 0 );
+                        Core.FilterRegistry.CreateViewFolder( name, null, 0 );
                     RemovedFolders.Remove( name );
                     AddedFolders.Add( name );
                 }
@@ -478,7 +478,7 @@ namespace JetBrains.Omea.GUIControls.CustomViews
             if( AddedViews.IndexOf( viewName ) != -1 )
             {
                 AddedViews.Remove( viewName );
-                Core.FilterManager.DeleteView( viewName );
+                Core.FilterRegistry.DeleteView( viewName );
             }
             else
             {
@@ -517,7 +517,7 @@ namespace JetBrains.Omea.GUIControls.CustomViews
                 }
             }
 
-            IResource newView = Core.FilterManager.CloneView( view, newName );
+            IResource newView = Core.FilterRegistry.CloneView( view, newName );
             Core.ResourceTreeManager.LinkToResourceRoot( newView, 0 );
             ((ResourceTreeDataProvider) viewsTree.DataProvider).SelectResource( newView );
 
@@ -532,7 +532,7 @@ namespace JetBrains.Omea.GUIControls.CustomViews
             EnableButtons( false );
 
             foreach( IResource view in RemovedViews.Keys )
-                Core.FilterManager.DeleteView( view.GetStringProp( Core.Props.Name ) );
+                Core.FilterRegistry.DeleteView( view.GetStringProp( Core.Props.Name ) );
 
             foreach( string str in AddedViews )
             {
@@ -549,7 +549,7 @@ namespace JetBrains.Omea.GUIControls.CustomViews
             EnableButtons( false );
 
             foreach( string str in AddedViews )
-                Core.FilterManager.DeleteView( str );
+                Core.FilterRegistry.DeleteView( str );
 
             //  Implement somewhat sophisticated model for folders
             //  recoverage since of unordered nature for storing removed
@@ -614,7 +614,7 @@ namespace JetBrains.Omea.GUIControls.CustomViews
             {
                 RestoreFolder( parent );
             }
-            Core.FilterManager.CreateViewFolder( folder, parent, 0 );
+            Core.FilterRegistry.CreateViewFolder( folder, parent, 0 );
             RemovedFolders.Remove( folder );
 	    }
         #endregion OK/Cancel
@@ -732,7 +732,7 @@ namespace JetBrains.Omea.GUIControls.CustomViews
             }
 
             bool accept = resTypeConforms && contentTypeConforms && 
-                          ( deepName == null || deepName != Core.FilterManager.ViewNameForSearchResults );
+                          ( deepName == null || deepName != Core.FilterRegistry.ViewNameForSearchResults );
             return accept && !_removedViews.ContainsKey( res.ToString() );
         }
         public void  TouchFilter()

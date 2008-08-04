@@ -12,6 +12,7 @@ using System.Threading;
 using System.Windows.Forms;
 using System.Xml;
 using JetBrains.Omea.AsyncProcessing;
+using JetBrains.Omea.Base;
 using JetBrains.Omea.Contacts;
 using JetBrains.Omea.OpenAPI;
 using JetBrains.Omea.Conversations;
@@ -20,18 +21,20 @@ using JetBrains.Omea.GUIControls;
 
 namespace JetBrains.Omea.InstantMessaging.Miranda
 {
-    [PluginDescriptionAttribute("JetBrains Inc.", "Miranda IM conversation viewer.\n Extracts Miranda database and converts it into searchable conversations.")]
+    [PluginDescriptionAttribute("Miranda IM", "JetBrains Inc.", "Miranda IM conversation viewer.\n Extracts Miranda database and converts it into searchable conversations.", PluginDescriptionFormat.PlainText, "Icons/MirandaPluginIcon.png")]
     public class MirandaPlugin: IPlugin, IResourceDisplayer
     {
         private const string _MirandaOptionsDescription = "The Miranda options enable you to specify which Miranda accounts should be indexed, and how [product name] should build conversations from Miranda messages.";
+
         private IResourceStore _store;
-        private static IMConversationsManager _convManager;
         private string _profileToIndex;
         private string _dbPath;
         private FileSystemWatcher _mirandaWatcher;
-        private static CorrespondentCtrl _correspondentPane;
         private MirandaImportJob _importJob;
         private AddressBook _mirandaAB;
+
+        private static IMConversationsManager _convManager;
+        private static CorrespondentCtrl _correspondentPane;
         private static MirandaPlugin _theInstance;
 
         void IPlugin.Register()
@@ -47,7 +50,7 @@ namespace JetBrains.Omea.InstantMessaging.Miranda
             colMgr.RegisterDisplayColumn( ResourceTypes.MirandaConversation, 0, new ColumnDescriptor( "From", 100 ) );
             colMgr.RegisterDisplayColumn( ResourceTypes.MirandaConversation, 1, new ColumnDescriptor( "To", 100 ) );
             colMgr.RegisterDisplayColumn( ResourceTypes.MirandaConversation, 2, 
-                new ColumnDescriptor( new string[] { Core.ResourceStore.PropTypes [Core.Props.Subject].Name, "DisplayName" }, 300, ColumnDescriptorFlags.AutoSize ) );
+                new ColumnDescriptor( new[] { Core.ResourceStore.PropTypes [Core.Props.Subject].Name, "DisplayName" }, 300, ColumnDescriptorFlags.AutoSize ) );
             colMgr.RegisterDisplayColumn( ResourceTypes.MirandaConversation, 3, new ColumnDescriptor( "Date", 120 ) );
 
             if( !_store.PropTypes.Exist( "ConversationList" ) )
@@ -62,8 +65,7 @@ namespace JetBrains.Omea.InstantMessaging.Miranda
             Core.PluginLoader.RegisterResourceTextProvider( ResourceTypes.MirandaConversation, _convManager );
             Core.PluginLoader.RegisterResourceTextProvider( "Contact", new MirandaContactTextProvider() );
             Core.PluginLoader.RegisterResourceDisplayer( ResourceTypes.MirandaConversation, this );
-            Core.ActionManager.RegisterLinkClickAction( new ConversationLinkClickAction(),
-                ResourceTypes.MirandaConversation, null );
+            Core.ActionManager.RegisterLinkClickAction( new ConversationLinkClickAction(), ResourceTypes.MirandaConversation, null );
 
             Core.PluginLoader.RegisterResourceSerializer( ResourceTypes.MirandaAIMAccount,
                 new MirandaAccountSerializer( Props.ScreenName ) );
@@ -84,9 +86,9 @@ namespace JetBrains.Omea.InstantMessaging.Miranda
                 _correspondentPane = new CorrespondentCtrl();
                 _correspondentPane.IniSection = "Miranda";
                 _correspondentPane.SetCorresponentFilterList( Core.ResourceStore.FindResourcesWithProp( null, Props.MirandaAcct ) );
-                Core.LeftSidebar.RegisterResourceStructurePane( "MirandaCorrespondents", "IM", "Miranda Correspondents", 
-                    LoadIconFromAssembly( "OmniaMea.InstantMessaging.Miranda.Icons.correspondents.ico" ), 
-                    _correspondentPane );
+
+                Image img = Utils.TryGetEmbeddedResourceImageFromAssembly( Assembly.GetExecutingAssembly(), "OmniaMea.InstantMessaging.Miranda.Icons.correspondents.ico" );
+                Core.LeftSidebar.RegisterResourceStructurePane( "MirandaCorrespondents", "IM", "Miranda Correspondents", img, _correspondentPane );
                 Core.LeftSidebar.RegisterViewPaneShortcut( "MirandaCorrespondents", Keys.Control | Keys.Alt | Keys.M );
 
                 SaveConversationAction saveConvAction = new SaveConversationAction( _convManager, Props.NickName );
@@ -99,7 +101,7 @@ namespace JetBrains.Omea.InstantMessaging.Miranda
                                                               "Send by Email", null, "MirandaConversation", null );
                 Core.ActionManager.RegisterActionComponent( mailConvAction, "SendByMail", "MirandaConversation", null );
 
-                Core.ResourceBrowser.RegisterLinksGroup( "Accounts", new int[] { Props.MirandaAcct }, ListAnchor.First );
+                Core.ResourceBrowser.RegisterLinksGroup( "Accounts", new[] { Props.MirandaAcct }, ListAnchor.First );
                 Core.ResourceBrowser.RegisterLinksPaneFilter( ResourceTypes.MirandaConversation, new ItemRecipientsFilter() );
 
                 _mirandaAB = new AddressBook( "Miranda Contacts", ResourceTypes.MirandaConversation );
@@ -153,12 +155,6 @@ namespace JetBrains.Omea.InstantMessaging.Miranda
             get { return _theInstance._importJob; }
         }
 
-        private static Icon LoadIconFromAssembly( string iconName )
-        {
-            Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream( iconName );
-            return ( stream != null ) ? new Icon( stream ) : null;
-        }
-
         private void ClearConversations()
         {
             _store.GetAllResources( ResourceTypes.MirandaConversation ).DeleteAll();
@@ -171,7 +167,7 @@ namespace JetBrains.Omea.InstantMessaging.Miranda
         void IPlugin.Startup()
         {
             _profileToIndex = Core.SettingStore.ReadString( "Miranda", "ProfileToIndex" );
-            if ( _profileToIndex == null || _profileToIndex.Length == 0 )
+            if ( string.IsNullOrEmpty( _profileToIndex ) )
                 return;
 
             _dbPath = ProfileManager.GetDatabasePath( _profileToIndex );
@@ -448,8 +444,7 @@ namespace JetBrains.Omea.InstantMessaging.Miranda
         {
             foreach( IResource account in res.GetLinksOfType( null, Props.MirandaAcct ) )
             {
-                foreach( int propId in new int[] { Props.NickName, Props.ScreenName,
-                    Props.JabberId, Props.YahooId } )
+                foreach( int propId in new[] { Props.NickName, Props.ScreenName, Props.JabberId, Props.YahooId } )
                 {
                     consumer.AddDocumentFragment( res.Id, account.GetStringProp( propId) );
                 }
@@ -555,11 +550,10 @@ namespace JetBrains.Omea.InstantMessaging.Miranda
 
     public class RebuildMirandaConversationsAction: IAction
     {
-        public void Execute( IActionContext context )
-        {
-            Core.UIManager.RunWithProgressWindow( "Rebuilding Miranda conversations...",
-                new MethodInvoker( MirandaPlugin.DoRebuildConversations ) );
-        }
+    	public void Execute(IActionContext context)
+    	{
+    		Core.UIManager.RunWithProgressWindow("Rebuilding Miranda conversations…", MirandaPlugin.DoRebuildConversations);
+    	}
 
         public void Update( IActionContext context, ref ActionPresentation presentation )
         {

@@ -62,9 +62,17 @@ namespace System.Collection.Generic
 		///
 		///<param name="item">The object to add to the <see cref="T:System.Collections.Generic.ICollection`1"></see>.</param>
 		///<exception cref="T:System.NotSupportedException">The <see cref="T:System.Collections.Generic.ICollection`1"></see> is read-only.</exception>
-		public void Add(TKey item)
+		void ICollection<TKey>.Add(TKey item)
 		{
 			_map.Add(item, 0);
+		}
+
+		public bool Add(TKey item)
+		{
+			if(_map.ContainsKey(item))
+				return false;
+			_map.Add(item, 0);
+			return true;
 		}
 
 		///<summary>
@@ -180,4 +188,10 @@ namespace System.Collection.Generic
 
 		#endregion
 	}
+}
+
+namespace System.Runtime.CompilerServices
+{
+  [AttributeUsage(AttributeTargets.Method | AttributeTargets.Class | AttributeTargets.Assembly)]
+  public sealed class ExtensionAttribute : Attribute { }
 }

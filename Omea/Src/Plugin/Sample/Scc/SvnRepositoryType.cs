@@ -39,7 +39,7 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
             int startRevision, lastRevision;
             if ( repository.HasProp( Props.LastRevision ) )
             {
-                startRevision = repository.GetIntProp( Props.LastRevision );
+                startRevision = repository.GetProp( Props.LastRevision );
                 lastRevision = -1;
             }
             else
@@ -67,11 +67,11 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
             ParseSvnLog( repository, startRevision, lastRevision );
         }
 
-	    private SvnRunner GetRunner( IResource repository )
+	    private static SvnRunner GetRunner( IResource repository )
 	    {
-	        return new SvnRunner( repository.GetStringProp( Props.RepositoryUrl ),
-	                              repository.GetPropText( Props.UserName ), 
-	                              repository.GetPropText( Props.Password ) );
+	        return new SvnRunner( repository.GetProp( Props.RepositoryUrl ),
+	                              repository.GetProp( Props.UserName ), 
+	                              repository.GetProp( Props.Password ) );
 	    }
 
 	    private void ParseSvnLog( IResource repository, int startRevision, int lastRevision )
@@ -127,19 +127,19 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
                 LinkChangeSetToContact( repository, proxy.Resource, author );
 
                 // Execute rules for the new changeset
-                Core.FilterManager.ExecRules( StandardEvents.ResourceReceived, proxy.Resource );
+                Core.FilterEngine.ExecRules( StandardEvents.ResourceReceived, proxy.Resource );
                 
                 // Request text indexing of the changeset
                 Core.TextIndexManager.QueryIndexing( proxy.Resource.Id );
 
-                if ( revision > repository.GetIntProp( Props.LastRevision ) )
+                if ( revision > repository.GetProp( Props.LastRevision ) )
                 {
                     new ResourceProxy( repository ).SetPropAsync( Props.LastRevision, revision );
                 }
             }
         }
 
-	    private void ProcessFileChanges( IResource repository, ResourceProxy csProxy, XmlElement node, int revision )
+	    private static void ProcessFileChanges( IResource repository, ResourceProxy csProxy, XmlElement node, int revision )
 	    {
 	        foreach( XmlElement pathNode in node.SelectNodes( "paths/path" ) )
 	        {
@@ -152,29 +152,29 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
 
                 IResource folder = FindOrCreateFolder( repository, folderName );
                 csProxy.AddLink( Props.AffectsFolder, folder );
-	            
-                ResourceProxy changeProxy = ResourceProxy.BeginNewResource( Props.FileChangeResource );
-                changeProxy.SetProp( Core.Props.Name, fileName );
-                changeProxy.AddLink( Props.AffectsFolder, folder );
-	            switch( action )
+
+	            FileChange fileChange = FileChange.Create();
+                fileChange.Name = fileName;
+                fileChange.AffectsFolder = folder;
+                switch( action )
 	            {
                     case "A":
-	                    changeProxy.SetProp( Props.ChangeType, "add" );
+	                    fileChange.ChangeType = "add";
 	                    break;
                     case "D":
-                        changeProxy.SetProp( Props.ChangeType, "delete" );
+                        fileChange.ChangeType = "delete";
                         break;
                     case "R":
-                        changeProxy.SetProp( Props.ChangeType, "replace" );
+                        fileChange.ChangeType = "replace";
                         break;
                     default:
-                        changeProxy.SetProp( Props.ChangeType, "change" );
+                        fileChange.ChangeType = "change";
                         break;
                 }
-                changeProxy.SetProp( Props.Revision, revision );
-                changeProxy.EndUpdate();
+                fileChange.Revision = revision;
+                fileChange.Save();
 
-                csProxy.AddLink( Props.Change, changeProxy.Resource );
+                csProxy.AddLink( Props.Change, fileChange.Resource );
 	            
 	        }
 	    }
@@ -186,52 +186,50 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
 	        fullName = userName;
 	    }
 
-	    public override string BuildFileName( IResource repository, IResource fileChange )
+	    internal override string BuildFileName(IResource repository, FileChange fileChange)
 	    {
-	        return BuildPath( fileChange.GetLinkProp( Props.AffectsFolder ) ) + "/" + 
-	               fileChange.GetStringProp( Core.Props.Name );
+	        return BuildPath( fileChange.AffectsFolder ) + "/" + fileChange.Name;
 	    }
 
-	    public override string BuildLinkToFile( IResource repository, IResource fileChange )
+	    internal override string BuildLinkToFile(IResource repository, FileChange fileChange)
 	    {
-	        string url = repository.GetPropText( Props.RepositoryUrl );
+	        string url = repository.GetProp( Props.RepositoryUrl );
 	        if ( url.StartsWith( "http://" ) )
 	        {
                 if ( url.EndsWith( "/" ) )
                 {
                     url = url.Substring( 0, url.Length - 1 );
                 }
-                return url + BuildPath( fileChange.GetLinkProp( Props.AffectsFolder ) ) + "/" +
-                    fileChange.GetStringProp( Core.Props.Name );
+                return url + BuildPath( fileChange.AffectsFolder ) + "/" + fileChange.Name;
             }
 	        return null;
 	    }
 
-	    public override string OnFileChangeSelected( IResource repository, IResource fileChange )
+	    internal override string OnFileChangeSelected(IResource repository, FileChange fileChange)
         {
             if ( !fileChange.HasProp( Props.Diff ) )
             {
                 Core.NetworkAP.QueueJob( JobPriority.Immediate, "Loading Subversion diff",
-                    new GetDiffDelegate( GetDiff ), repository, fileChange );
+                    () => GetDiff(repository, fileChange));
                 return "Loading diff...";
             }
 	        return null;
         }
 
-	    private void GetDiff( IResource repository, IResource fileChange )
+	    private void GetDiff( IResource repository, FileChange fileChange )
 	    {
 	        if ( fileChange.HasProp( Props.Diff ) )
 	        {
 	            return;
 	        }
 	        
-	        int revision = fileChange.GetIntProp( Props.Revision );
+	        int revision = fileChange.Revision;
 	        if ( revision == 1 )
 	        {
 	            return;
             }
 	        
-	        string repoRoot = repository.GetStringProp( Props.RepositoryRoot );
+	        string repoRoot = repository.GetProp( Props.RepositoryRoot );
 	        if ( repoRoot == null )
 	        {
 	            try
@@ -253,7 +251,8 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
 	        try
 	        {
                 string diff = svnRunner.GetDiff( repoPath, revision - 1, revision );
-                new ResourceProxy( fileChange ).SetPropAsync( Props.Diff, diff );
+                fileChange.Diff = diff;
+	            fileChange.SaveAsync();
 	            if ( diff == "" )
 	            {
 	                CheckBinaryFile( repository, repoRoot, repoPath, fileChange );
@@ -267,7 +266,7 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
 	        }
 	    }
 
-	    private void CheckBinaryFile( IResource repository, string repoRoot, string repoPath, IResource fileChange )
+	    private static void CheckBinaryFile( IResource repository, string repoRoot, string repoPath, FileChange fileChange )
 	    {
 	        SvnRunner svnRunner = GetRunner( repository );
 	        svnRunner.RepositoryUrl = repoRoot;
@@ -279,7 +278,8 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
 	            if ( !prop.StartsWith( "text/" ) && !prop.StartsWith( "image/x-xbitmap" ) &&
 	                !prop.StartsWith( "image/x-xpixmap" ) )
 	            {
-	                new ResourceProxy( fileChange ).SetPropAsync( Props.Binary, true );
+                    fileChange.Binary = true;
+	                fileChange.SaveAsync();
 	            }
 	        }
 	        catch( RunnerException ex )
@@ -287,7 +287,5 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
 	            SetLastError( repository, ex );
 	        }
 	    }
-
-	    private delegate void GetDiffDelegate( IResource repository, IResource fileChange );
 	}
 }

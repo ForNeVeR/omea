@@ -30,7 +30,6 @@ namespace JetBrains.Omea.OutlookPlugin
         public override string Name
         {
             get { return "MailSyncDescriptor"; } 
-            set { }
         }
 
         #endregion
@@ -98,7 +97,6 @@ namespace JetBrains.Omea.OutlookPlugin
         public override string Name
         {
             get { return "FreshMailEnumerator"; } 
-            set { }
         }
 
         #endregion
@@ -192,7 +190,6 @@ namespace JetBrains.Omea.OutlookPlugin
         public override string Name
         {
             get { return ""; }
-            set {}
         }
     }
 
@@ -251,7 +248,6 @@ namespace JetBrains.Omea.OutlookPlugin
         public override string Name
         {
             get { return ""; }
-            set {}
         }
     }
 
@@ -291,7 +287,6 @@ namespace JetBrains.Omea.OutlookPlugin
         public override string Name
         {
             get { return "Enumeration for mail"; }
-            set {}
         }
     }
 }

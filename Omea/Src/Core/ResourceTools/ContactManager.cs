@@ -5,6 +5,7 @@
 
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Diagnostics;
@@ -144,7 +145,7 @@ namespace JetBrains.Omea.Contacts
     {
         private const string                cFieldsDelimiter = "; ";
         private static IResourceStore       RStore;
-        private static readonly string[]    ContactNativeProps = new string[]
+        private static readonly string[]    ContactNativeProps =
         {
             "Title", "FirstName", "MiddleName", "LastName", "Suffix", "Specificator",
             "JobTitle", "Address", "Company", "Description", "HomePage", "Birthday",
@@ -1038,7 +1039,7 @@ namespace JetBrains.Omea.Contacts
                 }
                 else // (result.Count == 0)
                 {
-                    string fullName = Utils.MergeStrings( new string[]{ title, firstName, midName, lastName, suffix }, ' ' );
+                    string fullName = Utils.MergeStrings( new[]{ title, firstName, midName, lastName, suffix }, ' ' );
 
                     //  Perform search within ContactNames of contacts linked
                     //  to the specified account;
@@ -1080,8 +1081,9 @@ namespace JetBrains.Omea.Contacts
                                                           string ln, string suff, string addSpec )
         {
             //  Require that anything from the required fields is present.
-            if( !Utils.IsValidString( fn ) && !Utils.IsValidString( ln ) )
+            if( string.IsNullOrEmpty( fn ) && string.IsNullOrEmpty( ln ) )
                 return RStore.EmptyResourceList;
+
             if( fn == null ) fn = string.Empty;
             if( ln == null ) ln  = string.Empty;
 
@@ -1089,7 +1091,7 @@ namespace JetBrains.Omea.Contacts
             int  propF = _propLastName, propS = _propFirstName;
             string valF = ln;
             string valS = fn;
-            if( !Utils.IsValidString( ln ))
+            if( string.IsNullOrEmpty( ln ))
             {
                 valF = fn; propF = _propFirstName; valS = null;
             }
@@ -1097,12 +1099,14 @@ namespace JetBrains.Omea.Contacts
             //-----------------------------------------------------------------
             IResourceList temp = RStore.FindResources( "Contact", propF, valF );
             IResourceList result = RStore.EmptyResourceList;
-            IntArrayList contactIds = new IntArrayList();
-            bool isValidSecond = Utils.IsValidString( valS );
+            List<int> contactIds = new List<int>();
+            bool isValidSecond = !string.IsNullOrEmpty( valS );
+
             foreach( IResource res in temp )
             {
                 string prop = res.GetStringProp( propS );
-                bool   isValidProp = Utils.IsValidString( prop );
+                bool   isValidProp = !string.IsNullOrEmpty( prop );
+
                 if( ( isValidSecond && isValidProp && string.Compare( prop, valS, true ) == 0 ) ||
                     ( !isValidSecond && !isValidProp ) )
                 {
@@ -1118,11 +1122,11 @@ namespace JetBrains.Omea.Contacts
             //  To this point, basic set is constructed. If additional (optional)
             //  fields are give, restrict this set further.
             //-----------------------------------------------------------------
-            if( Utils.IsValidString( mn ))
+            if( !string.IsNullOrEmpty( mn ))
                 result = IntersectSets( result, mn, _propMiddleName );
-            if( Utils.IsValidString( title ))
+            if( !string.IsNullOrEmpty( title ))
                 result = IntersectSets( result, title, _propTitle );
-            if( Utils.IsValidString( suff ))
+            if( !string.IsNullOrEmpty( suff ))
                 result = IntersectSets( result, suff, _propSuffix );
 
             //-----------------------------------------------------------------
@@ -1140,7 +1144,7 @@ namespace JetBrains.Omea.Contacts
             //-----------------------------------------------------------------
             if( result.Count > 1 )
             {
-                contactIds = new IntArrayList();
+                contactIds = new List<int>();
                 foreach( IResource res in result )
                 {
                     if( !res.HasProp( Core.Props.IsDeleted ) )
@@ -1372,7 +1376,7 @@ namespace JetBrains.Omea.Contacts
         public IResource FindOrCreateEmailAccount( string email )
         {
             IResource emailAccount = null;
-            if( Utils.IsValidString( email ) )
+            if( !string.IsNullOrEmpty( email ) )
             {
                 emailAccount = RStore.FindUniqueResource( "EmailAccount", Props.EmailAddress, email );
                 if ( emailAccount == null )
@@ -1867,7 +1871,7 @@ namespace JetBrains.Omea.Contacts
                 throw new ArgumentException( "ContactManager -- contract violation: expected type [Contact]." );
             #endregion Preconditions
 
-            if( !Utils.IsValidString( senderName ))
+            if( string.IsNullOrEmpty( senderName ))
                 return;
 
             //-----------------------------------------------------------------
@@ -2443,7 +2447,7 @@ namespace JetBrains.Omea.Contacts
             {
                 Trace.WriteLine( "ContactManager -- FN and LN are still empty - analyzing log name" );
                 string userName = SystemInformation.UserName;
-                if( Utils.IsValidString( userName ))
+                if( !string.IsNullOrEmpty( userName ))
                 {
                     Trace.WriteLine( "ContactManager -- Log name is valid - [" + userName + "]" );
 
@@ -2522,8 +2526,8 @@ namespace JetBrains.Omea.Contacts
                                                     out string lName, out string suffix, out string addSpec )
         {
             string[] dotDelimitedFields = name.Split( '.' );
-            if( dotDelimitedFields != null && dotDelimitedFields.Length == 2 && 
-                Utils.IsValidString( dotDelimitedFields[ 0 ] ) && Utils.IsValidString( dotDelimitedFields[ 1 ] ))
+            if( dotDelimitedFields.Length == 2 && 
+                !string.IsNullOrEmpty( dotDelimitedFields[ 0 ] ) && !string.IsNullOrEmpty( dotDelimitedFields[ 1 ] ))
             {
                 fName = dotDelimitedFields[ 0 ];
                 lName = dotDelimitedFields[ 1 ];

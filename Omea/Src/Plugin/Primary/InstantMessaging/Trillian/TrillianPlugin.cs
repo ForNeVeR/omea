@@ -12,11 +12,10 @@ using JetBrains.Omea.GUIControls;
 
 namespace JetBrains.Omea.InstantMessaging.Trillian
 {
-	/**
-	 * The plugin for importing Trillian logs into OmniaMea.
-	 */
-
-    [PluginDescriptionAttribute("JetBrains Inc.", "Trillian IM conversation viewer.\n Extracts Trillian database and converts it into searchable conversations.")]
+	/// <summary>
+	/// The plugin for importing Trillian logs into OmniaMea.
+	/// </summary>
+    [PluginDescriptionAttribute("Trillian IM", "JetBrains Inc.", "Trillian IM conversation viewer.\n Extracts Trillian database and converts it into searchable conversations.", PluginDescriptionFormat.PlainText, "Icons/TrillainPluginIcon.png")]
     public class TrillianPlugin: IPlugin, IResourceDisplayer
 	{
         private ICore _environment;
@@ -89,10 +88,8 @@ namespace JetBrains.Omea.InstantMessaging.Trillian
             uiMgr.RegisterOptionsGroup( "Instant Messaging", "The Instant Messaging options enable you to control how [product name] works with supported instant messaging programs." );
             // Registers the options pane for the plugin to be shown in the Options
             // dialog and the Startup Wizard.
-            uiMgr.RegisterOptionsPane( "Instant Messaging", "Trillian", 
-                new OptionsPaneCreator( CreateTrillianOptionsPane ), null );
-            uiMgr.RegisterWizardPane( "Trillian",
-                new OptionsPaneCreator( CreateTrillianOptionsPane ), 11 );
+            uiMgr.RegisterOptionsPane( "Instant Messaging", "Trillian", CreateTrillianOptionsPane, null );
+            uiMgr.RegisterWizardPane( "Trillian", CreateTrillianOptionsPane, 11 );
         }
 
         /**
@@ -120,10 +117,8 @@ namespace JetBrains.Omea.InstantMessaging.Trillian
             // The properties for linking messages to accounts through which they were
             // sent or received.
 
-            _propFromAccount = _environment.ResourceStore.PropTypes.Register( "FromAccount", 
-                                                                            PropDataType.Link, PropTypeFlags.Internal );
-            _propToAccount   = _environment.ResourceStore.PropTypes.Register( "ToAccount", 
-                                                                            PropDataType.Link, PropTypeFlags.Internal );
+            _propFromAccount = _environment.ResourceStore.PropTypes.Register( "FromAccount", PropDataType.Link, PropTypeFlags.Internal );
+            _propToAccount   = _environment.ResourceStore.PropTypes.Register( "ToAccount", PropDataType.Link, PropTypeFlags.Internal );
 
             // The property for storing the last offset in the Trillian log which
             // was imported. This property is set on TrillianAccount instances.
@@ -225,8 +220,7 @@ namespace JetBrains.Omea.InstantMessaging.Trillian
         {
             if ( resourceType == _typeTrillianConversation )
             {
-                return new BrowserDisplayPane( 
-                    new DisplayResourceInBrowserDelegate( DisplayConversation ) );
+                return new BrowserDisplayPane( DisplayConversation );
             }
             return null;
         }
@@ -254,7 +248,7 @@ namespace JetBrains.Omea.InstantMessaging.Trillian
         {
             _environment.ProgressWindow.UpdateProgress( 0, "Importing Trillian profile " + profile.Name + "...", null );
             
-            ImportBuddyGroup( profile.Buddies, null );
+            ImportBuddyGroup( profile.Buddies );
 
             string name      = profile.ReadICQSetting( "name" );
             string nick      = profile.ReadICQSetting( "nick name" );
@@ -306,7 +300,7 @@ namespace JetBrains.Omea.InstantMessaging.Trillian
          * Imports a single buddy group.
          */
 
-        private void ImportBuddyGroup( TrillianBuddyGroup group, IResource rootCategory )
+        private void ImportBuddyGroup( TrillianBuddyGroup group )
         {
         	foreach( TrillianBuddy buddy in group.Buddies )
         	{
@@ -317,7 +311,7 @@ namespace JetBrains.Omea.InstantMessaging.Trillian
         	}
             foreach( TrillianBuddyGroup childGroup in group.Groups )
         	{
-                ImportBuddyGroup( childGroup, rootCategory );        		
+                ImportBuddyGroup( childGroup );        		
         	}
         }
 
@@ -341,7 +335,7 @@ namespace JetBrains.Omea.InstantMessaging.Trillian
             // contacts most of the time, and the user will need to use the contact merging
             // feature to link the Trillian conversations to the correct contact.
 
-            IContact contact = Core.ContactManager.FindOrCreateContact( null, (nick != null) ? nick : uin );
+            IContact contact = Core.ContactManager.FindOrCreateContact( null, nick ?? uin );
             contact.Resource.AddLink( _propTrillianAcct, account );
             return account;
         }
@@ -431,7 +425,8 @@ namespace JetBrains.Omea.InstantMessaging.Trillian
 
                 if ( correspondentAcct == null )
                 {
-                	if ( protocol == "ICQ" && IsNumeric( log.CurCorrespondentName ) )
+                    int foo;
+                	if ( protocol == "ICQ" && Int32.TryParse( log.CurCorrespondentName, out foo ) )
                 	{
                         messageBuffer.Add( msg );
                         continue;
@@ -482,19 +477,6 @@ namespace JetBrains.Omea.InstantMessaging.Trillian
                 {
                     _environment.TextIndexManager.QueryIndexing( conversation.Id );
                 }
-            }
-        }
-
-        private bool IsNumeric( string text )
-        {
-        	try
-        	{
-        		Int32.Parse( text );
-                return true;
-        	}
-            catch( Exception )
-            {
-            	return false;
             }
         }
     }

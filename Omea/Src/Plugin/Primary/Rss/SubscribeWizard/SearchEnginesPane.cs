@@ -372,7 +372,7 @@ namespace JetBrains.Omea.RSSPlugin.SubscribeWizard
 
         private bool IsValidForm()
         {
-            return Utils.IsValidString( _edtSearchQuery.Text ) && AnyItemChecked();
+            return !String.IsNullOrEmpty( _edtSearchQuery.Text ) && AnyItemChecked();
         }
 
         private bool AnyItemChecked()

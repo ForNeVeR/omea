@@ -54,7 +54,7 @@ namespace JetBrains.Omea.TextIndex
         {   get { return Path.Combine( DataDir, "stopwords.eng"); }    }
 
         public static string[] DictionaryFileNames
-        {   get { return new string[] { Path.Combine( DataDir, "oxford.lex" ), Path.Combine( DataDir, "derivates.dat") }; }   }
+        {   get { return new[] { Path.Combine( DataDir, "oxford.lex" ), Path.Combine( DataDir, "derivates.dat") }; }   }
 
         public static string TokenTreeFileName
         {   get { return Path.Combine( WorkDir, "_term.index.trie" ); }   }
@@ -140,9 +140,9 @@ namespace JetBrains.Omea.TextIndex
         public const string  DocHeaderExtension = ".header";
         public const string  IncChunkExtension = ".inc_";
 
-        private static DictionaryServer     _dictionaryServer = null;
-        private static ScriptMorphoAnalyzer _morphAn = null;
-        private static LexemeConstructor    _lexemeConstructor = null;
+        private static DictionaryServer     _dictionaryServer;
+        private static ScriptMorphoAnalyzer _morphAn;
+        private static LexemeConstructor    _lexemeConstructor;
         
         private static string _strWorkDir = ".";
         private static string _strDataDir = "data";

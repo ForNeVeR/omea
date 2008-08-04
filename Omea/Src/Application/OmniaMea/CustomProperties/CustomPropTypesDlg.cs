@@ -4,11 +4,11 @@
 /// </copyright>
 
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using JetBrains.Omea.GUIControls;
 using JetBrains.Omea.OpenAPI;
-using JetBrains.Omea.Containers;
 using JetBrains.Omea.FiltersManagement;
 
 namespace JetBrains.Omea.CustomProperties
@@ -36,12 +36,12 @@ namespace JetBrains.Omea.CustomProperties
 		private System.ComponentModel.Container components = null;
         private MenuItem miAddBoolProp;
 
-        private IntArrayList _deletedPropIDs = new IntArrayList();
+        private readonly List<int> _deletedPropIDs = new List<int>();
 
         private class PropTypeTag
         {
-        	public int PropID;
-            public PropDataType DataType;
+        	public readonly int PropID;
+            public readonly PropDataType DataType;
 
         	public PropTypeTag( int propID, PropDataType dataType )
         	{
@@ -52,14 +52,7 @@ namespace JetBrains.Omea.CustomProperties
 
 		public CustomPropTypesDlg()
 		{
-			//
-			// Required for Windows Form Designer support
-			//
 			InitializeComponent();
-
-			//
-			// TODO: Add any constructor code after InitializeComponent call
-			//
 		}
 
 		/// <summary>
@@ -227,7 +220,7 @@ namespace JetBrains.Omea.CustomProperties
             IResourceList customPropTypes = Core.ResourceStore.FindResources( "PropType", "Custom", 1 );
             foreach( IResource res in customPropTypes )
             {
-            	string name = res.GetStringProp( "Name" );
+            	string name = res.GetStringProp( Core.Props.Name );
                 PropDataType dataType = Core.ResourceStore.PropTypes [name].DataType;
                 if ( dataType != PropDataType.Link )
                 {
@@ -420,7 +413,7 @@ namespace JetBrains.Omea.CustomProperties
                     string propName = "Custom." + lvItem.Text;
                     int propID = store.PropTypes.Register( propName, tag.DataType );
                     store.PropTypes.RegisterDisplayName( propID, lvItem.Text );
-                    IResource res = store.FindUniqueResource( "PropType", "Name", propName );
+                    IResource res = store.FindUniqueResource( "PropType", Core.Props.Name, propName );
                     res.SetProp( "Custom", 1 );
 
                     Core.DisplayColumnManager.RegisterAvailableColumn( null, 
@@ -445,23 +438,23 @@ namespace JetBrains.Omea.CustomProperties
             IResource condition = null;
             if ( propType.DataType == PropDataType.String || propType.DataType == PropDataType.Date )
             {
-                condition = Core.FilterManager.CreateConditionTemplate( condName, condName,
+                condition = Core.FilterRegistry.CreateConditionTemplate( condName, condName,
                     null, ConditionOp.Eq, propType.Name );
             }
             else if ( propType.DataType == PropDataType.Int )
             {
-                condition = Core.FilterManager.CreateConditionTemplate( condName, condName,
+                condition = Core.FilterRegistry.CreateConditionTemplate( condName, condName,
                     null, ConditionOp.InRange, propType.Name, Int32.MinValue.ToString(), Int32.MaxValue.ToString() );
             }
             else if ( propType.DataType == PropDataType.Bool )
             {
-                condition = Core.FilterManager.CreateStandardCondition( condName, condName,
+                condition = Core.FilterRegistry.CreateStandardCondition( condName, condName,
                     null, propType.Name, ConditionOp.HasProp );
             }
 
             if ( condition != null )
             {
-                Core.FilterManager.AssociateConditionWithGroup( condition, "Custom Property Conditions" );
+                Core.FilterRegistry.AssociateConditionWithGroup( condition, "Custom Property Conditions" );
             }
 	    }
 
@@ -470,20 +463,12 @@ namespace JetBrains.Omea.CustomProperties
             IPropType propType = Core.ResourceStore.PropTypes [propID];
 
             //  remove condition template which is made from this property
-            IResourceList conditions;
-            if ( propType.DataType != PropDataType.Bool )
-            {
-                conditions = Core.ResourceStore.FindResources( FilterManagerProps.ConditionTemplateResName, 
-                                                               "Name", GetConditionName( propType ) );
-            }
-            else
-            {
-                conditions = Core.ResourceStore.FindResources( FilterManagerProps.ConditionResName, 
-                                                               "Name", GetConditionName( propType ) );
-            }
+            string resTypeName = (propType.DataType != PropDataType.Bool) ? FilterManagerProps.ConditionTemplateResName : 
+                                                                            FilterManagerProps.ConditionResName;
+            IResourceList conditions = Core.ResourceStore.FindResources( resTypeName, Core.Props.Name, GetConditionName( propType ) );
             if ( conditions.Count == 1 )
             {
-                conditions [0].Delete();
+                conditions[ 0 ].Delete();
             }
 
             //  remove views which use conditions based on condition templates
@@ -496,7 +481,7 @@ namespace JetBrains.Omea.CustomProperties
             }
             foreach( IResource res in views )
             {
-                Core.FilterManager.DeleteView( res );
+                Core.FilterRegistry.DeleteView( res );
             }
         }
 

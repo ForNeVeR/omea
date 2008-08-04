@@ -949,7 +949,6 @@ namespace JetBrains.Omea.OutlookPlugin
                 }
                 return name;
             }
-            set { }
         }
     }
     internal class NewMailDescriptor : MailDescriptor
@@ -977,7 +976,7 @@ namespace JetBrains.Omea.OutlookPlugin
                     }
                 }
             }
-            Core.FilterManager.ExecRules( StandardEvents.ResourceReceived, mail );
+            Core.FilterEngine.ExecRules( StandardEvents.ResourceReceived, mail );
         }
     }
     internal class SyncOnlyMailDescriptor : MailDescriptor

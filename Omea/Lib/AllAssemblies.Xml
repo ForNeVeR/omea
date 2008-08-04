@@ -2,13 +2,12 @@
 <!-- Defines the list of all the assemblies that comprise the Omea installation. -->
 <!-- For ease of access, this is done in the MSBuild format. -->
 <Project xmlns="urn:shemas-jetbrains-com:omea-all-assemblies">
-
 	<!-- Managed Product Assemblies. -->
 	<ItemGroup>
 		<AllAssemblies Include="CommonTests">
 			<MsiGuid>{e31fb1ac-51bc-47af-a214-014ea1113804}</MsiGuid>
 		</AllAssemblies>
-		<AllAssemblies Include="Contacts">
+		<AllAssemblies Include="Contacts.OmeaPlugin">
 			<MsiGuid>{a2a1ff44-1b5a-46ec-b5db-0ff496c2bdd7}</MsiGuid>
 		</AllAssemblies>
 		<AllAssemblies Include="DBIndex">
@@ -23,19 +22,19 @@
 		<AllAssemblies Include="DBUtils">
 			<MsiGuid>{3685dc4e-1269-4197-bd18-f61ef155f265}</MsiGuid>
 		</AllAssemblies>
-		<AllAssemblies Include="Debug">
+		<AllAssemblies Include="Debug.OmeaPlugin">
 			<MsiGuid>{7297b0a1-cf56-4750-bd4b-1469862384af}</MsiGuid>
 		</AllAssemblies>
 		<AllAssemblies Include="EMAPILib">
 			<MsiGuid>{67e5fca5-1314-4832-9def-3bdebaf51ff1}</MsiGuid>
 		</AllAssemblies>
-		<AllAssemblies Include="ExcelDoc">
+		<AllAssemblies Include="ExcelDoc.OmeaPlugin">
 			<MsiGuid>{8b8d9995-d636-410b-907e-ccf3cda73459}</MsiGuid>
 		</AllAssemblies>
-		<AllAssemblies Include="Favorites">
+		<AllAssemblies Include="Favorites.OmeaPlugin">
 			<MsiGuid>{b47dde0c-0689-4c3f-ac16-bca396bff044}</MsiGuid>
 		</AllAssemblies>
-		<AllAssemblies Include="File">
+		<AllAssemblies Include="File.OmeaPlugin">
 			<MsiGuid>{22f112ab-e505-4d41-9512-4ace2f28a7fc}</MsiGuid>
 		</AllAssemblies>
 		<AllAssemblies Include="GUIControls">
@@ -44,13 +43,13 @@
 		<AllAssemblies Include="GUIControlsTests">
 			<MsiGuid>{b2bca487-708f-4fe6-9fff-8b59c3a003c3}</MsiGuid>
 		</AllAssemblies>
-		<AllAssemblies Include="HTML">
+		<AllAssemblies Include="HTML.OmeaPlugin">
 			<MsiGuid>{a01c7182-f8a0-465e-9213-5940f660d782}</MsiGuid>
 		</AllAssemblies>
 		<AllAssemblies Include="Interop.Winapi">
 			<MsiGuid>{6ce4261c-3fe4-4c45-a7db-c7dd4b474457}</MsiGuid>
 		</AllAssemblies>
-		<AllAssemblies Include="ICQ">
+		<AllAssemblies Include="ICQ.OmeaPlugin">
 			<MsiGuid>{bfc6c662-d8ff-471d-9b97-60ae97f85219}</MsiGuid>
 		</AllAssemblies>
 		<AllAssemblies Include="JetBrainsShared">
@@ -62,10 +61,10 @@
 		<AllAssemblies Include="MaintenanceTool">
 			<MsiGuid>{db5780a9-9ea7-449d-bc44-4b28c4ffa5de}</MsiGuid>
 		</AllAssemblies>
-		<AllAssemblies Include="MemoryWatch">
+		<AllAssemblies Include="MemoryWatch.OmeaPlugin">
 			<MsiGuid>{66f19ce7-57ba-4b25-967c-22eb699b0a8a}</MsiGuid>
 		</AllAssemblies>
-		<AllAssemblies Include="Miranda">
+		<AllAssemblies Include="Miranda.OmeaPlugin">
 			<MsiGuid>{f685a564-155f-460c-b3cc-544c93d8a569}</MsiGuid>
 		</AllAssemblies>
 		<AllAssemblies Include="MshtmlBrowserControl">
@@ -77,10 +76,10 @@
 		<AllAssemblies Include="NetfxBootstrap">
 			<MsiGuid>{773e41fb-01ee-4efd-bc4c-7eac3ab2d7ad}</MsiGuid>
 		</AllAssemblies>
-		<AllAssemblies Include="Nntp">
+		<AllAssemblies Include="Nntp.OmeaPlugin">
 			<MsiGuid>{d3d4b5b7-b8ee-4495-9c65-5deb626a82e3}</MsiGuid>
 		</AllAssemblies>
-		<AllAssemblies Include="Notes">
+		<AllAssemblies Include="Notes.OmeaPlugin">
 			<MsiGuid>{f7f4605f-7990-4338-b27b-80177f7b6314}</MsiGuid>
 		</AllAssemblies>
 		<AllAssemblies Include="Omea">
@@ -101,10 +100,10 @@
 		<AllAssemblies Include="Org.Mentalis.Security">
 			<MsiGuid>{aa24b536-808b-4219-92e4-f81445825208}</MsiGuid>
 		</AllAssemblies>
-		<AllAssemblies Include="Outlook">
+		<AllAssemblies Include="Outlook.OmeaPlugin">
 			<MsiGuid>{26acf61e-061a-4539-84d9-1607d3fc354c}</MsiGuid>
 		</AllAssemblies>
-		<AllAssemblies Include="PDF">
+		<AllAssemblies Include="PDF.OmeaPlugin">
 			<MsiGuid>{a5bd4105-9a7f-4ef0-9906-348faa8fea49}</MsiGuid>
 		</AllAssemblies>
 		<AllAssemblies Include="PerformanceTests">
@@ -113,7 +112,7 @@
 		<AllAssemblies Include="PicoCore">
 			<MsiGuid>{5c5fd134-4317-431c-bd7f-9b96cfb9ffec}</MsiGuid>
 		</AllAssemblies>
-		<AllAssemblies Include="Pictures">
+		<AllAssemblies Include="Pictures.OmeaPlugin">
 			<MsiGuid>{b85e125c-3173-4752-9603-f51113709c31}</MsiGuid>
 		</AllAssemblies>
 		<AllAssemblies Include="ResourceStore">
@@ -125,7 +124,7 @@
 		<AllAssemblies Include="ResourceToolsTests">
 			<MsiGuid>{6cf1c24d-8198-4ac3-a0e1-c8f9b825670d}</MsiGuid>
 		</AllAssemblies>
-		<AllAssemblies Include="RSS">
+		<AllAssemblies Include="RSS.OmeaPlugin">
 			<MsiGuid>{9d572bf1-4b00-4f21-9499-7badee81c964}</MsiGuid>
 		</AllAssemblies>
 		<AllAssemblies Include="SpHeader">
@@ -134,7 +133,7 @@
 		<AllAssemblies Include="StressTests">
 			<MsiGuid>{237f1e4c-78d5-4dbf-8643-5acb19550594}</MsiGuid>
 		</AllAssemblies>
-		<AllAssemblies Include="Tasks">
+		<AllAssemblies Include="Tasks.OmeaPlugin">
 			<MsiGuid>{ba880285-16f7-4a91-9612-fd78730add68}</MsiGuid>
 		</AllAssemblies>
 		<AllAssemblies Include="TermIndexProfile">
@@ -146,18 +145,15 @@
 		<AllAssemblies Include="TextIndexTests">
 			<MsiGuid>{60e3a7bc-846d-458e-ad6f-2fb0b88a1cd0}</MsiGuid>
 		</AllAssemblies>
-		<AllAssemblies Include="Trillian">
+		<AllAssemblies Include="Trillian.OmeaPlugin">
 			<MsiGuid>{b5099c99-cb68-4556-b17d-77789ba7ddcf}</MsiGuid>
 		</AllAssemblies>
-		<AllAssemblies Include="WordDoc">
+		<AllAssemblies Include="WordDoc.OmeaPlugin">
 			<MsiGuid>{8587ffe6-be69-4779-8c7b-a96af790fd0e}</MsiGuid>
 		</AllAssemblies>
 	</ItemGroup>
-
 	<!-- COM Self-Reg DLLs. -->
-	<ItemGroup>
-	</ItemGroup>
-	
+	<ItemGroup></ItemGroup>
 	<!-- Reference DLLs. -->
 	<ItemGroup>
 		<References Include="AcroPDFLib.dll">

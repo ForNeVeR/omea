@@ -5,6 +5,7 @@
 
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Threading;
@@ -2193,17 +2194,19 @@ namespace JetBrains.Omea.ResourceStore
             {
                 rs = SelectResourcesWithProp( propType );
             }
-            
-            using( rs )
+
+        	List<int> ids = new List<int>();
+        	using( rs )
             {
-                using( SafeRecordEnumerator enumerator = new SafeRecordEnumerator( rs, "MyPalStorage.DeletePropsOfType()" ) )
+            	using( SafeRecordEnumerator enumerator = new SafeRecordEnumerator( rs, "MyPalStorage.DeletePropsOfType()" ) )
                 {
                     while( enumerator.MoveNext() )
                     {
                         IRecord rec = enumerator.Current;
                         if ( rec.GetIntValue( 1 ) == propType )
                         {
-                            int id = rec.GetIntValue( 0 );
+                        	ids.Add(rec.GetIntValue( 0 ));
+/*
                             IResource res = GetResourceFromCache( id );
                             if ( res != null )
                             {
@@ -2213,10 +2216,17 @@ namespace JetBrains.Omea.ResourceStore
                             {
                                 SafeDeleteRecord( rec, "MyPalStorage.DeletePropsOfType()" );
                             }
+*/
                         }
                     }
                 }
             }
+        	foreach(var id in ids)
+        	{
+        		IResource res = TryLoadResource(id);
+        		if(res != null)
+        			res.DeleteProp(propType);
+        	}
         }
 
         /**
@@ -2256,10 +2266,18 @@ namespace JetBrains.Omea.ResourceStore
             }
         }
 
-        public void RegisterLinkRestriction( string fromResourceType, int linkType,
+        public void RegisterLinkRestriction(string fromResourceType, int linkType,
             string toResourceType, int minCount, int maxCount)
         {
-            ResourceRestrictions.RegisterLinkRestriction( fromResourceType, linkType, toResourceType, minCount, maxCount );
+            ResourceRestrictions.RegisterLinkRestriction(fromResourceType, linkType, toResourceType, minCount, maxCount);
+        }
+
+
+        public void RegisterLinkRestriction(string fromResourceType, PropId<IResource> linkType, string toResourceType,
+                                            int minCount, int maxCount)
+        {
+            ResourceRestrictions.RegisterLinkRestriction(fromResourceType, linkType.Id, toResourceType,
+                minCount, maxCount);
         }
 
         public int GetMinLinkCountRestriction( string fromResourceType, int linkType )
@@ -2341,6 +2359,16 @@ namespace JetBrains.Omea.ResourceStore
             return FindResourcesInRange( SelectionType.Normal, resType, GetPropId( propName ), propValue, null );
         }
 
+        public IResourceList FindResources<T>(string resType, PropId<T> propId, T propValue)
+        {
+            return FindResources(resType, propId.Id, propValue);
+        }
+
+        public BusinessObjectList<T> FindResources<T, V>(ResourceTypeId<T> resType, PropId<V> propId, V propValue) where T : BusinessObject
+        {
+            return new BusinessObjectList<T>(resType, FindResources(resType.Name, propId, propValue));
+        }
+
         public IResourceList FindResourcesLive( string resType, int propID, object propValue )
         {
             if ( propValue == null )
@@ -2355,6 +2383,11 @@ namespace JetBrains.Omea.ResourceStore
                 throw new ArgumentNullException( "propValue" );
 
             return FindResourcesInRange( SelectionType.Live, resType, GetPropId( propName ), propValue, null );
+        }
+
+        public IResourceList FindResourcesLive<T>(string resType, PropId<T> propId, T propValue)
+        {
+            return FindResourcesLive(resType, propId.Id, propValue);
         }
 
         public IResourceList FindResources( SelectionType selType, string resType, int propID, object propValue )
@@ -2482,6 +2515,11 @@ namespace JetBrains.Omea.ResourceStore
             return FindResourcesWithProp( SelectionType.Normal, resType, GetPropId( propName ) );
         }
 
+        public IResourceList FindResourcesWithProp<T>(string resType, PropId<T> propId)
+        {
+            return FindResourcesWithProp(resType, propId.Id);
+        }
+
         public IResourceList FindResourcesWithPropLive( string resType, int propID )
         {
             return FindResourcesWithProp( SelectionType.Live, resType, propID );
@@ -2490,6 +2528,11 @@ namespace JetBrains.Omea.ResourceStore
         public IResourceList FindResourcesWithPropLive( string resType, string propName )
         {
             return FindResourcesWithProp( SelectionType.Live, resType, GetPropId( propName ) );
+        }
+
+        public IResourceList FindResourcesWithPropLive<T>(string resType, PropId<T> propId)
+        {
+            return FindResourcesWithPropLive(resType, propId.Id);
         }
 
         public IResourceList FindResourcesWithProp( SelectionType selType, string resType, int propID )
@@ -2663,6 +2706,11 @@ namespace JetBrains.Omea.ResourceStore
                 throw new ArgumentNullException( "resType" );
 
             return new ResourceList( new ResourceTypePredicate( resType ), false );
+        }
+
+        public BusinessObjectList<T> GetAllResources<T>(ResourceTypeId<T> resType) where T : BusinessObject
+        {
+            return new BusinessObjectList<T>(resType, GetAllResources(resType.Name));
         }
 
         public IResourceList GetAllResourcesLive( string resType )
@@ -2850,11 +2898,11 @@ namespace JetBrains.Omea.ResourceStore
                     }
                     if ( resType == "ResourceType" && ResourceTypes.Exist( name ) )
                     {
-                        (ResourceTypes [name] as ResourceTypeItem).SetOwnerPluginUnloaded();
+                        ((ResourceTypeItem)ResourceTypes [name]).SetOwnerPluginUnloaded();
                     }
                     else if ( resType == "PropType" && PropTypes.Exist( name ) )
                     {
-                        (PropTypes [name] as PropTypeItem).SetOwnerPluginUnloaded();
+                        ((PropTypeItem)PropTypes [name]).SetOwnerPluginUnloaded();
                     }
                 }
             }
@@ -2871,7 +2919,7 @@ namespace JetBrains.Omea.ResourceStore
             foreach( IDisplayNameProvider provider in _displayNameProviders )
             {
                 string displayName = provider.GetDisplayName( res );
-                if ( displayName != null && displayName.Length > 0 )
+                if ( !string.IsNullOrEmpty(displayName) )
                 {
                     return displayName;
                 }

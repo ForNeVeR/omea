@@ -186,7 +186,7 @@ namespace JetBrains.Omea.Nntp
             _unreadArticles.ResourceAdded += _unreadArticles_Updated;
             _unreadArticles.ResourceDeleting += _unreadArticles_Updated;
 
-            _formattingRules = Core.FilterManager.GetFormattingRules( false );
+            _formattingRules = Core.FilterRegistry.GetFormattingRules( false );
             _formattingRules.ResourceAdded += RuleConditionsListChanged;
             _formattingRules.ResourceDeleting += RuleConditionsListChanged;
             _formattingRules.ResourceChanged += RuleConditionsChanged;
@@ -276,20 +276,20 @@ namespace JetBrains.Omea.Nntp
 
         private IResourceList RecollectThreadHeads()
         {
-            IResource template = Core.FilterManager.Std.MessageIsInThreadOfX;
+            IResource template = Core.FilterRegistry.Std.MessageIsInThreadOfX;
             IResourceList heads = Core.ResourceStore.EmptyResourceList;
             IResourceList conditions = Core.ResourceStore.EmptyResourceList;
 
             foreach( IResource rule in _formattingRules )
             {
-                conditions = conditions.Union( Core.FilterManager.GetConditionsPlain( rule ) );
+                conditions = conditions.Union( Core.FilterRegistry.GetConditionsPlain( rule ) );
             }
-            conditions = conditions.Intersect( Core.FilterManager.GetLinkedConditions( template ) );
+            conditions = conditions.Intersect( Core.FilterRegistry.GetLinkedConditions( template ) );
 
             foreach( IResource condition in conditions )
             {
                 IResourceList conditionHeads = condition.GetLinksOfType( NntpPlugin._newsArticle,
-                                                                         Core.FilterManager.Props.SetValueLink );
+                                                                         Core.FilterRegistry.Props.SetValueLink );
                 heads = heads.Union( conditionHeads );
             }
 

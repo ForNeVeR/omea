@@ -5,10 +5,9 @@
 
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
-using JetBrains.Omea.Base;
-using JetBrains.Omea.Containers;
 using JetBrains.Omea.OpenAPI;
 using JetBrains.Omea.ResourceTools;
 using JetBrains.DataStructures;
@@ -23,17 +22,17 @@ namespace JetBrains.Omea.TextIndex
             WordPtr  inst1 = (WordPtr)x, inst2 = (WordPtr)y;
             if( inst1.SectionId < inst2.SectionId )
                 return -1;
-            else
+
             if( inst1.SectionId > inst2.SectionId )
                 return 1;
-            else
+
             if( inst1.StartOffset < inst2.StartOffset )
                 return -1;
-            else
+
             if( inst1.StartOffset > inst2.StartOffset )
                 return 1;
-            else
-                return 0;
+
+            return 0;
         }
     }
     #endregion Filters/Comparers
@@ -245,7 +244,7 @@ namespace JetBrains.Omea.TextIndex
         {
             int     shiftOffset = 0;
 
-            foreach( int border in Collector.SectionBorders )
+            foreach( int border in Collector._sectionBorders )
             {
                 if( border > leftBorder && border < rightBorder )
                 {
@@ -406,7 +405,7 @@ namespace JetBrains.Omea.TextIndex
 //            Shifts = shifts;
 //            Offsets = offsets;
             SectionStartOffset.Clear();
-            SectionBorders.Clear();
+            _sectionBorders.Clear();
             SavedNames.Clear();
         }
 
@@ -481,7 +480,7 @@ namespace JetBrains.Omea.TextIndex
             if( sectionName != LastSection )
             {
                 if( AccumulatedBody.Length > 0 )
-                    SectionBorders.Add( AccumulatedBody.Length );
+                    _sectionBorders.Add( AccumulatedBody.Length );
 
                 int  sectionId = (int)DocSectionHelper.OrderByFullName( sectionName );
                 if( !SectionStartOffset.ContainsKey( sectionId ))
@@ -501,14 +500,7 @@ namespace JetBrains.Omea.TextIndex
         private string          LastSection = "";
         private int             LastSectionId = 0;
         private int             LastSectionRestartsOffset = 0;
-        public  IntArrayList    SectionBorders = new IntArrayList();
-
-/*
-        private int[]           Shifts;
-        private InstanceOffset[] Offsets;
-        private int             LastProcessedOffset = -1;
-        private int             LastAccumulatedShift = 0;
-*/
+        public  List<int>       _sectionBorders = new List<int>();
 
         private readonly Hashtable  SavedNames = new Hashtable();
         private int             ResId;

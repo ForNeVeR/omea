@@ -220,7 +220,7 @@ namespace JetBrains.Omea.OutlookPlugin
         void IViewsConstructor.RegisterViewsFirstRun()
         {
             string[]        applTypes = new string[ 1 ] { STR.Email };
-            IFilterManager  fMgr = Core.FilterManager;
+            IFilterRegistry  fMgr = Core.FilterRegistry;
             IResource       cond;
 
             cond = fMgr.CreateConditionTemplate( LocatesInFolderName, LocatesInFolderDeep, applTypes, ConditionOp.In, STR.MAPIFolder, STR.MAPIFolder );
@@ -243,9 +243,9 @@ namespace JetBrains.Omea.OutlookPlugin
         void IViewsConstructor.RegisterViewsEachRun()
         {
             IResource res;
-            IFilterManager fMgr = Core.FilterManager;
-            string[]       applTypes = new string[ 1 ] { STR.Email };
-            fMgr.RegisterRuleApplicableResourceType( "Email" );
+            IFilterRegistry fMgr = Core.FilterRegistry;
+            string[]       applTypes = { STR.Email };
+            Core.FilterEngine.RegisterRuleApplicableResourceType( "Email" );
 
             //  Actions
             res = fMgr.RegisterRuleActionTemplate( MoveEmailToFolderName, MoveEmailToFolderDeep,
@@ -303,7 +303,7 @@ namespace JetBrains.Omea.OutlookPlugin
             //  Register standard (for the plugin) tray icon rule.
             //-----------------------------------------------------------------
             Core.TrayIconManager.RegisterTrayIconRule( "Unread mail message(s)", new string[ 1 ] { STR.Email },
-                                                       new IResource[] { Core.FilterManager.Std.ResourceIsUnread },
+                                                       new IResource[] { Core.FilterRegistry.Std.ResourceIsUnread },
                                                        null, OutlookPlugin.LoadIconFromAssembly( "OutlookPlugin.Icons.unread.ico" ) );
 
             //-----------------------------------------------------------------
@@ -316,7 +316,7 @@ namespace JetBrains.Omea.OutlookPlugin
                 IResourceList   linkedRules = action.GetLinksOfType( null, "LinkedAction" );
                 for( int i = 0; i < linkedRules.Count; i++ )
                 {
-                    linkedRules[ i ].SetProp( "LinkedAction", Core.FilterManager.Std.DeleteResourceAction );
+                    linkedRules[ i ].SetProp( "LinkedAction", Core.FilterRegistry.Std.DeleteResourceAction );
                 }
                 action.Delete();
             }
@@ -349,7 +349,7 @@ namespace JetBrains.Omea.OutlookPlugin
         void IViewsConstructor.RegisterViewsFirstRun()
         {
             IResource res;
-            IFilterManager fMgr = Core.FilterManager;
+            IFilterRegistry fMgr = Core.FilterRegistry;
 
             //  Conditions/Templates
             IResource myResType = Core.ResourceStore.FindUniqueResource( "ResourceType", Core.Props.Name, STR.Email );

@@ -39,8 +39,8 @@ namespace JetBrains.Omea.GUIControls.CustomViews
 		    BaseResource = view;
 
             ArrayList parameters = new ArrayList(), negParameters = new ArrayList();
-            ArrayList conds = CollectResourcesAndTemplates( view, parameters, Core.FilterManager.Props.LinkedConditions );
-            ArrayList excpts = CollectResourcesAndTemplates( view, negParameters, Core.FilterManager.Props.LinkedExceptions );
+            ArrayList conds = CollectResourcesAndTemplates( view, parameters, Core.FilterRegistry.Props.LinkedConditions );
+            ArrayList excpts = CollectResourcesAndTemplates( view, negParameters, Core.FilterRegistry.Props.LinkedExceptions );
             InitializePanelsAndButtons( conds, parameters, excpts, negParameters );
         }
 
@@ -211,8 +211,8 @@ namespace JetBrains.Omea.GUIControls.CustomViews
             IResource[][] conditions = Controls2Resources( panelConditions.Controls );
             if( query.Length > 0 )
             {
-                IResource   queryCondition = ((FilterManager)FMgr).CreateQueryConditionAux( null, query, comboSection.Text );
-                FilterManager.ReferCondition2Template( queryCondition, FMgr.Std.BodyMatchesSearchQueryXName );
+                IResource   queryCondition = ((FilterRegistry)FMgr).CreateQueryConditionAux( null, query, comboSection.Text );
+                FilterRegistry.ReferCondition2Template( queryCondition, FMgr.Std.BodyMatchesSearchQueryXName );
 
                 //  Copy query condition to every subgroup or create the single one.
                 if( conditions != null && conditions.Length > 0 )
@@ -231,7 +231,7 @@ namespace JetBrains.Omea.GUIControls.CustomViews
                 }
                 else
                 {
-                    conditions = FilterManager.Convert2Group( queryCondition );
+                    conditions = FilterRegistry.Convert2Group( queryCondition );
                 }
                 UpdateStoredQueriesList( query );
             }
@@ -302,7 +302,7 @@ namespace JetBrains.Omea.GUIControls.CustomViews
                 if( template != null )
                 {
                     string name = template.GetStringProp( Core.Props.Name );
-                    if(!( name == Core.FilterManager.Std.BodyMatchesSearchQueryXName ))
+                    if(!( name == Core.FilterRegistry.Std.BodyMatchesSearchQueryXName ))
                     {
                         result.Add( template );
                         paramList.Add( ConditionParams2ExplicitList( template, res ) );

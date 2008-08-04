@@ -522,7 +522,7 @@ namespace GUIControls.CustomViews
             else
             {
                 IResource[] conditions = new IResource[ 1 ];
-                conditions[ 0 ] = FilterConvertors.InstantiateTemplate( Core.FilterManager.Std.MessageIsInThreadOfX, root.ToResourceList(), null );
+                conditions[ 0 ] = FilterConvertors.InstantiateTemplate( Core.FilterRegistry.Std.MessageIsInThreadOfX, root.ToResourceList(), null );
 
                 Core.FormattingRuleManager.RegisterRule( ruleName, null, conditions, null,
                                                         checkBold.Checked, checkItalic.Checked,

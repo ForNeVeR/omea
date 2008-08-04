@@ -21,7 +21,8 @@ namespace JetBrains.Omea.GUIControls
 	{
         private class ConversationNode
         {
-            internal IResource Resource;
+            internal readonly IResource Resource;
+
             internal JetListViewNode LvNode;
             internal ConversationNode Parent;
             internal ArrayList Children;
@@ -100,7 +101,7 @@ namespace JetBrains.Omea.GUIControls
 
         private class ConversationNodeComparer: IComparer
         {
-            private ResourceComparer _resourceComparer;
+            private readonly ResourceComparer _resourceComparer;
 
             internal ConversationNodeComparer( ResourceComparer comparer )
             {
@@ -123,10 +124,10 @@ namespace JetBrains.Omea.GUIControls
             }
         }
 
-        private IResourceThreadingHandler _threadingHandler;
+        private readonly IResourceThreadingHandler _threadingHandler;
+        private readonly ArrayList _conversationRoots = new ArrayList();            // <ConversationNode>
+        private readonly IComparer _childComparer;
         private IntHashTable _conversationNodeMap;                         // resource ID -> ConversationNode
-        private ArrayList _conversationRoots = new ArrayList();            // <ConversationNode>
-        private IComparer _childComparer;
 	    private JetListViewNode _lastExpandingNode;
 
 	    public ConversationDataProvider( IResourceList resourceList, IResourceThreadingHandler threadingHandler )
@@ -171,21 +172,21 @@ namespace JetBrains.Omea.GUIControls
                 ArrayListPool.Dispose( topLevelNodes );
             }
 
-            _listView.ChildrenRequested += new RequestChildrenEventHandler( HandleChildrenRequested );
-            _listView.NodeCollection.NodeExpandChanging += new JetListViewNodeEventHandler( HandleExpandChanging );
+            _listView.ChildrenRequested += HandleChildrenRequested;
+            _listView.NodeCollection.NodeExpandChanging += HandleExpandChanging;
         }
 
 	    public override void Dispose()
 	    {
 	        if ( _listView != null )
 	        {
-                _listView.ChildrenRequested -= new RequestChildrenEventHandler( HandleChildrenRequested );
-                _listView.NodeCollection.NodeExpandChanging -= new JetListViewNodeEventHandler( HandleExpandChanging );
+                _listView.ChildrenRequested -= HandleChildrenRequested;
+                _listView.NodeCollection.NodeExpandChanging -= HandleExpandChanging;
             }
             base.Dispose();
 	    }
 
-	    private JetListViewNode AddListViewNode( ChildNodeCollection nodes, ConversationNode node )
+	    private static JetListViewNode AddListViewNode( ChildNodeCollection nodes, ConversationNode node )
         {
             JetListViewNode lvNode = nodes.Add( node.Resource );
             node.LvNode = lvNode;
@@ -243,7 +244,7 @@ namespace JetBrains.Omea.GUIControls
         /// </summary>
         /// <param name="topLevelNodes"></param>
         /// <param name="node"></param>
-        private void FillTopLevelNodes( ArrayList topLevelNodes, ConversationNode node )
+        private static void FillTopLevelNodes( ArrayList topLevelNodes, ConversationNode node )
         {
             lock( node )
             {
@@ -560,7 +561,7 @@ namespace JetBrains.Omea.GUIControls
                     ConversationNode parent = node.Parent;
                     if ( parent != null )
                     {
-                        if ( parent != null && parent.Children != null && parent.Children.Count == 0 &&
+                        if ( parent.Children != null && parent.Children.Count == 0 &&
                             !_threadingHandler.CanExpandThread( parent.Resource, ThreadExpandReason.Expand ) )
                         {
                             parent.LvNode.HasChildren = false;
@@ -577,7 +578,7 @@ namespace JetBrains.Omea.GUIControls
             OnResourceCountChanged();
 	    }
 
-	    private void RemoveLvNode( ConversationNode node )
+	    private static void RemoveLvNode( ConversationNode node )
 	    {
 	        if ( node.LvNode != null )
 	        {
@@ -635,7 +636,7 @@ namespace JetBrains.Omea.GUIControls
             return Core.ResourceStore.ListFromIds( resourceIds, false );
         }
 
-        private void CollectResourcesRecursive( ConversationNode convNode, IntArrayList resourceIds )
+        private static void CollectResourcesRecursive( ConversationNode convNode, IntArrayList resourceIds )
         {
             resourceIds.Add( convNode.Resource.Id );
             lock( convNode )

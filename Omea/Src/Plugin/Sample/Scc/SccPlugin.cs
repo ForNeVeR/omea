@@ -4,7 +4,7 @@
 /// </copyright>
 
 using System;
-using System.Collections;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Reflection;
 using System.Windows.Forms;
@@ -22,7 +22,7 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
         private Icon _openFolderIcon;
         private Icon _closedFolderIcon;
         private Icon _repositoryIcon;
-        private static ArrayList _repositoryTypes;
+        private static List<RepositoryType> _repositoryTypes;
         private static IResourceTreePane _folderTreePane;
 
         public static IStatusWriter StatusWriter
@@ -30,7 +30,7 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
             get { return _statusWriter; }
         }
 
-        public static IEnumerable RepositoryTypes
+        public static IEnumerable<RepositoryType> RepositoryTypes
         {
             get { return _repositoryTypes; }
         }
@@ -42,10 +42,8 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
 
         public void Register()
         {
-            _repositoryTypes = new ArrayList();
-            _repositoryTypes.Add( new P4RepositoryType() );
-            _repositoryTypes.Add( new SvnRepositoryType() );
-            
+            _repositoryTypes = new List<RepositoryType> {new P4RepositoryType(), new SvnRepositoryType()};
+
             Props.Register( this );
             
             // delete remnants of old version of the plugin
@@ -79,7 +77,7 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
             _folderTreePane = Core.LeftSidebar.RegisterResourceStructureTreePane( "SccFolders", 
                                                                                   "SCC", "Folders", null,
                                                                                   Props.RepositoryResource );
-            _folderTreePane.ToolTipCallback = new ResourceToolTipCallback( GetRepositoryToolTip );
+            _folderTreePane.ToolTipCallback = GetRepositoryToolTip;
 
             // Set sorting by name for the folder structure
             IResource folderRoot = Core.ResourceTreeManager.GetRootForType( Props.RepositoryResource );
@@ -114,7 +112,7 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
                 new string[] { Props.ChangeSetResource, Props.FolderResource, Props.RepositoryResource }, this );
 
             // Allow creating rules which affect resources of type ChangeSet
-            Core.FilterManager.RegisterRuleApplicableResourceType( Props.ChangeSetResource );
+            Core.FilterEngine.RegisterRuleApplicableResourceType( Props.ChangeSetResource );
             
             // Register display columns for multiline view
             Core.DisplayColumnManager.RegisterMultiLineColumn( Props.ChangeSetResource,
@@ -135,7 +133,7 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
             
             Core.ActionManager.RegisterMainMenuActionGroup( "SendReceiveActions", "Tools", ListAnchor.First );
             Core.ActionManager.RegisterMainMenuAction( new SynchronizeRepositoriesAction(), "SendReceiveActions",
-                                                       ListAnchor.Last, "Synchronize Repositories", null, null );
+                                                       ListAnchor.Last, "Synchronize Repositories", null, null, null );
             
             Core.ActionManager.RegisterActionComponent( new DeleteRepositoryAction(), "Delete",
                 Props.RepositoryResource, null );
@@ -145,9 +143,9 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
             Core.ActionManager.RegisterContextMenuActionGroup( "PropertiesActions", ListAnchor.Last );
             Core.ActionManager.RegisterContextMenuAction( new ToggleShowSubfolderContentsAction(), 
                                                           "PropertiesActions", ListAnchor.First, 
-                                                          "Show subfolder contents", Props.FolderResource, null );
+                                                          "Show subfolder contents", null, Props.FolderResource, null );
             Core.ActionManager.RegisterContextMenuAction( new RepositoryPropertiesAction(), "PropertiesActions", ListAnchor.First, 
-                                                          "Properties...", Props.RepositoryResource, null );
+                                                          "Properties...", null, Props.RepositoryResource, null );
         }
 
         public void Startup()
@@ -180,7 +178,7 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
                     Core.ProgressWindow.UpdateProgress( 0, "Updating repository " + res.DisplayName + "...", null );
                 }
                 
-                RepositoryType repType = GetRepositoryType( res.GetStringProp( Props.RepositoryType ) );
+                RepositoryType repType = GetRepositoryType( res );
                 if ( repType != null )
                 {
                     repType.UpdateRepository( res );
@@ -243,26 +241,24 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
             return null;
         }
 
-        private AbstractOptionsPane CreateSccOptionsPane()
+        private static AbstractOptionsPane CreateSccOptionsPane()
         {
             return new SccOptionsPane();
         }
 
         public static RepositoryType GetRepositoryType( string id )
         {
-            foreach( RepositoryType repType in _repositoryTypes )
-            {
-                if ( repType.Id == id )
-                {
-                    return repType;
-                }
-            }
-            return null;
+            return _repositoryTypes.Find(type => type.Id == id);
+        }
+
+        public static RepositoryType GetRepositoryType( IResource repository )
+        {
+            return GetRepositoryType(repository.GetProp(Props.RepositoryType)); 
         }
         
-        private string GetRepositoryToolTip( IResource res )
+        private static string GetRepositoryToolTip( IResource res )
         {
-            return res.GetStringProp( Props.LastError );
+            return res.GetProp( Props.LastError );
         }
     }
 
@@ -305,7 +301,7 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
             }
             if ( repository != null && repository.HasProp( Props.LastError ) )
             {
-                options.StatusLine = repository.GetStringProp( Props.LastError );
+                options.StatusLine = repository.GetProp( Props.LastError );
             }
             options.CaptionTemplate = "Changes in %OWNER%";
             IResourceList resourceList;
@@ -321,7 +317,7 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
             Core.ResourceBrowser.DisplayResourceList( res, resourceList, options );
         }
 
-        private IResourceList GatherContentsOfSubfolders( IResource folder, IResourceList changesets )
+        private static IResourceList GatherContentsOfSubfolders( IResource folder, IResourceList changesets )
         {
             changesets = changesets.Union( folder.GetLinksOfType( Props.ChangeSetResource, Props.AffectsFolder ), true );
             foreach( IResource subfolder in folder.GetLinksTo( Props.FolderResource, Core.Props.Parent ) )

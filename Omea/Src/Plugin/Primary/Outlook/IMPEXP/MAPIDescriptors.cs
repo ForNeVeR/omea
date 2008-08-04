@@ -206,8 +206,6 @@ namespace JetBrains.Omea.OutlookPlugin
         public override string Name
         {
             get { return "Process mail moving"; }
-            set
-            {}
         }
     }
 
@@ -412,7 +410,6 @@ namespace JetBrains.Omea.OutlookPlugin
         public override string Name
         {
             get { return "Deleting mail, task or contact"; }
-            set {}
         }
     }
 
@@ -474,8 +471,6 @@ namespace JetBrains.Omea.OutlookPlugin
         public override string Name
         {
             get { return "Process folder modified notification"; }
-            set
-            {}
         }
     }
 
@@ -638,8 +633,6 @@ namespace JetBrains.Omea.OutlookPlugin
         public override string Name
         {
             get { return "Process folder deleted notification"; }
-            set
-            {}
         }
     }
 }

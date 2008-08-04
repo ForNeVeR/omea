@@ -3,6 +3,7 @@
 #include "resource.h"
 
 #define WND_CLASS_NAME _T("OmeaLauncherSplash")
+#define WINDOW_NAME _T("Starting JetBrains Omea")
 
 HINSTANCE CSplash::m_hInstance = NULL;
 HWND CSplash::m_hWnd = NULL;
@@ -48,7 +49,7 @@ HRESULT CSplash::RegisterWndClass()
 HRESULT CSplash::CreateSplashWindow()
 {
 	// Window handle
-	m_hWnd = CreateWindowEx(WS_EX_LAYERED, WND_CLASS_NAME, WND_CLASS_NAME, WS_POPUP, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, NULL, NULL, m_hInstance, NULL);
+	m_hWnd = CreateWindowEx(WS_EX_LAYERED, WND_CLASS_NAME, WINDOW_NAME, WS_POPUP, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, NULL, NULL, m_hInstance, NULL);
 
 	if(m_hWnd == NULL)
 		return E_FAIL;

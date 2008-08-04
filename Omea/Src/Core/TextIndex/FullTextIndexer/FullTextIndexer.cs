@@ -9,7 +9,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Text;
-using JetBrains.Omea.AsyncProcessing;
 using JetBrains.Omea.Base;
 using JetBrains.Omea.TextIndex;
 using JetBrains.Omea.OpenAPI;	
@@ -38,12 +37,12 @@ namespace JetBrains.Omea.TextIndex
         {
             #region Preconditions
             if ( _textParser != null )
-                throw new InvalidOperationException( "FillTextIndexer.Initialize() invoked twice" );
+                throw new InvalidOperationException( "FillTextIndexer.Initialize() is invoked twice" );
             #endregion Preconditions
 
             _textParser  = new TextDocParser();
-
             _suppTrace = Core.SettingStore.ReadBool( "TextIndexing", "SuppressTraces", false );
+
             CleanIndexTempFiles();
             LoadExistingIndices();
         }
@@ -70,27 +69,17 @@ namespace JetBrains.Omea.TextIndex
         //---------------------------------------------------------------------
         private void LoadExistingIndices()
         {
-            Trace.WriteLineIf( !_suppTrace,  "-- FullTextIndexer -- full index is found during start-up - initializing accessors" );
             try
             {
-                if( TermIndexAccessor == null )
-                {
-                    DiscardTextIndex();
-                }
-                else 
-                {
-                    NotifyIndexLoaded();
-
-                    //  On startup, clean working directory - delete temp files
-                    //  produce by the defragmentation module. Files may not be
-                    //  removed in that module if e.g. there is no space for closing
-                    //  the output file.
-                    CleanPossibleUndeletedFiles();
-                }
+                LoadTermIndex();
                 if( _needDiscard )
                 {
+                    //  Discard reopens structures.
                     DiscardTextIndex();
                 }
+                NotifyIndexLoaded();
+
+                Trace.WriteLineIf( !_suppTrace,  "-- FullTextIndexer -- Text index is loaded or initialized" );
             }
             catch( FormatException )
             {
@@ -107,13 +96,11 @@ namespace JetBrains.Omea.TextIndex
 
         private void RerequestDocVersionsIndexing()
         {
-            Trace.WriteLineIf( !_suppTrace,  "-- FullTextIndexer -- " + DocVersionsToProcess.Count + " documents is rerequested for indexing" );
-            foreach( IntHashTableOfInt.Entry e in DocVersionsToProcess )
-            {
-                Trace.WriteLineIf( !_suppTrace,  "                      " + e.Key + " ID" );
+            Trace.WriteLineIf( !_suppTrace,  "-- FullTextIndexer -- " + _docVersionsToProcess.Count + " documents is rerequested for indexing" );
+
+            foreach( IntHashTableOfInt.Entry e in _docVersionsToProcess )
                 Core.TextIndexManager.QueryIndexing( e.Key );
-            }
-            DocVersionsToProcess.Clear();
+            _docVersionsToProcess.Clear();
         }
         #endregion Index Loading on Startup
 
@@ -129,29 +116,76 @@ namespace JetBrains.Omea.TextIndex
             ProximityPropId  = props.Register( "Proximity", PropDataType.Int, PropTypeFlags.Virtual );
             ContextHighlightPropId = props.Register( "HighlightContext", PropDataType.String, PropTypeFlags.Virtual );
 
-            _needDiscard = !props.Exist( "InTextIndex" ) || !File.Exists( OMEnv.TokenTreeFileName );
-            DocInIndexProp = props.Register( "InTextIndex", PropDataType.Bool, PropTypeFlags.Internal );
-
             props.Register( DocumentSectionResource.SectionHelpDescription, PropDataType.String, PropTypeFlags.Internal );
             props.Register( "SectionShortName", PropDataType.String, PropTypeFlags.Internal );
             props.Register( "SectionOrder", PropDataType.Int, PropTypeFlags.Internal );
 
             Core.ResourceStore.ResourceTypes.Register( DocumentSectionResource.DocSectionResName, "", ResourceTypeFlags.Internal | ResourceTypeFlags.NoIndex );
-            Core.ResourceStore.RegisterUniqueRestriction( DocumentSectionResource.DocSectionResName, props[ "Name" ].Id );
+            Core.ResourceStore.RegisterUniqueRestriction( DocumentSectionResource.DocSectionResName, Core.Props.Name );
 
             RegisterDocumentSection( DocumentSection.BodySection, "Full content of the resource", null );
             RegisterDocumentSection( DocumentSection.SubjectSection, "Describes subject (or heading, title) of the e-mail, article, etc", "SU" );
             RegisterDocumentSection( DocumentSection.AnnotationSection, "A note added by way of comment or explanation", "AN" );
             RegisterDocumentSection( DocumentSection.SourceSection, "Identifies a source of the resource - person, site, server, etc.", "SRC" );
+
+            RegisterIndexVersioningTypes();
         }
+
+        private void RegisterIndexVersioningTypes()
+        {
+            IPropTypeCollection props = Core.ResourceStore.PropTypes;
+
+            _needDiscard = !File.Exists( OMEnv.TokenTreeFileName );
+//            _needDiscard = !props.Exist( "InTextIndex" ) || !File.Exists( OMEnv.TokenTreeFileName );
+//            DocInIndexProp = props.Register( "InTextIndex", PropDataType.Bool, PropTypeFlags.Internal );
+
+            //  The resource (single and unique) of this type keeps the current version of the
+            //  text index. It has the single property "TextIndexVersion" (see below).
+            Core.ResourceStore.ResourceTypes.Register( "TextIndexVersion", "Name",
+                                                       ResourceTypeFlags.Internal | ResourceTypeFlags.NoIndex );
+
+            //  This property keeps the current version of the text index (do not mix it with
+            //  the version of text index format. Each time the index is rebuilt, the value of this
+            //  property is increased by 1, thus invalidating all resource which reference to the 
+            //  older version of the index through their "InTextIndexVersion" property (see below).
+            TextIndexVersionProp = props.Register( "TextIndexVersion", PropDataType.Int, PropTypeFlags.Internal );
+
+            //  Property "InTextIndexVersion" keeps the version of text index in which the
+            //  resource was indexed. If the value of this property is less than current version of
+            //  the index (in the "TextIndexVersion" property, see above), then this resource will be
+            //  reindexed.
+            DocInVersionIndexProp = props.Register( "InTextIndexVersion", PropDataType.Int, PropTypeFlags.Internal );
+
+            //  Delete the old property.
+            if( props.Exist( "InTextIndex" ))
+                props.Delete( props[ "InTextIndex" ].Id );
+
+            //  Load the current version of the index. In the case of the very first loading
+            //  (when switching to the new versioning scheme) version is set to 1 and written back
+            //  to the ResourceStore.
+            IResourceList versions = Core.ResourceStore.FindResourcesWithProp( null, TextIndexVersionProp );
+            if( versions.Count == 0 )
+            {
+                _indexVersionRes = Core.ResourceStore.BeginNewResource( "TextIndexVersion" );
+                _indexVersionRes.SetProp( TextIndexVersionProp, 1 );
+                _indexVersionRes.EndUpdate();
+            }
+            else
+            {
+                _indexVersionRes = versions[ 0 ];
+            }
+            _indexVersion = _indexVersionRes.GetIntProp( TextIndexVersionProp );
+        }
+
         private IResource RegisterDocumentSection( string sectionName )
         {
             return RegisterDocumentSection( sectionName, null, null );
         }
+
         private IResource RegisterDocumentSection( string sectionName, string description, string shortName )
         {
             int   sectionNum;
-            IResource section = Core.ResourceStore.FindUniqueResource( DocumentSectionResource.DocSectionResName, "Name", sectionName );
+            IResource section = Core.ResourceStore.FindUniqueResource( DocumentSectionResource.DocSectionResName, Core.Props.Name, sectionName );
             if( section == null )
             {
                 sectionNum = Core.ResourceStore.GetAllResources( DocumentSectionResource.DocSectionResName ).Count;
@@ -171,7 +205,7 @@ namespace JetBrains.Omea.TextIndex
             else
                 sectionNum = section.GetIntProp( "SectionOrder" );
 
-            SectionsMapping[ sectionName ] = sectionNum;
+            _sectionsMapping[ sectionName ] = sectionNum;
 
             return section;
         }
@@ -207,7 +241,7 @@ namespace JetBrains.Omea.TextIndex
                 }
                 Trace.WriteLineIf( !_suppTrace, " " );
 
-                DocVersionsToProcess[ docID ] = 1;
+                _docVersionsToProcess[ docID ] = 1;
             }
             else
             {
@@ -247,7 +281,7 @@ namespace JetBrains.Omea.TextIndex
         private int CheckSection( string sectionName )
         {
             int secId;
-            HashMap.Entry entry = SectionsMapping.GetEntry( sectionName );
+            HashMap.Entry entry = _sectionsMapping.GetEntry( sectionName );
             if( entry != null ) {
                 secId = (int) entry.Value;
             }
@@ -340,10 +374,10 @@ namespace JetBrains.Omea.TextIndex
             }
             else
             {
-                LongArrayList offsets = entry.Value as LongArrayList;
+                List<long> offsets = entry.Value as List<long>;
                 if( offsets == null )
                 {
-                    offsets = new LongArrayList( 4 );
+                    offsets = new List<long>( 4 );
                     offsets.Add( (long) entry.Value );
                     entry.Value = offsets;
                 }
@@ -366,13 +400,15 @@ namespace JetBrains.Omea.TextIndex
                 if( _termCounterInDoc.Count > 0 && ResourceProcessed != null )
                     ResourceProcessed( _lastDocID, null );
 
-                //  Prepare data for the next document
-                _termMaxFrequency = 0;
-                _termCounterInDoc.Clear();
                 ManageIndexChunk();
+
+                //  Prepare data for the next document
+                _termCounterInDoc.Clear();
+                _termMaxFrequency = 0;
                 _tokens.Clear();
                 _previewFragment.Length = 0;
                 _mustConstructPreview = false;
+
                 Flush();
                 if( _lastCollectTick + 5000 < Environment.TickCount )
                 {
@@ -381,7 +417,6 @@ namespace JetBrains.Omea.TextIndex
                 }
             }
         }
-
         #endregion Document Scope
 
         #region EndBatchUpdate and Chunk Construction
@@ -389,28 +424,15 @@ namespace JetBrains.Omea.TextIndex
         private void Flush()
         {
             Word.FlushTermTrie();
-            if( _termsAccessor != null ) 
-            {
-                _termsAccessor.Flush();
-            }
+            _termsAccessor.Flush();
         }
 
         public void EndBatchUpdate()
         {
-            if( _lastDocID == -1 )
-            {
-                Trace.WriteLineIf( !_suppTrace,  "-- FullTextIndexer -- EndBatchUpdate is called for empty batch" );
-            }
             DocumentDone();
-            TraceUpdateInformation();
             PropagateIndexInformation();
             Cleanup();
             RerequestDocVersionsIndexing();
-        }
-
-        private void  TraceUpdateInformation()
-        {
-            Trace.WriteLineIf( !_suppTrace,  "-- FullTextIndexer -- EndBatchUpdate, " + _finishedDocsInBatch.Count + " docs processed, LastDocID=" + _lastDocID );
         }
 
         private void  ManageIndexChunk()
@@ -418,10 +440,12 @@ namespace JetBrains.Omea.TextIndex
             if( _tokens.Count == 0 ) return;
             try
             {
-                FlushDocument();
+                IndexConstructor.FlushDocument( TermIndexAccessor, _lastDocID, _termMaxFrequency, _tokens );
+
                 IResource doc = Core.ResourceStore.TryLoadResource( _lastDocID );
-                if( doc != null ) 
+                if( doc != null )
                 {
+                    #region Pending Data Update
                     _pendingLock.Enter();
                     try
                     {
@@ -432,6 +456,8 @@ namespace JetBrains.Omea.TextIndex
                     {
                         _pendingLock.Exit();
                     }
+                    #endregion Pending Data Update
+
                     Core.ResourceAP.QueueJob( JobPriority.Immediate, _cJobName, new ResourceDelegate( SetIndexedProps ), doc );
                 }
             }
@@ -444,11 +470,6 @@ namespace JetBrains.Omea.TextIndex
             }
         }
 
-        private void  FlushDocument()
-        {
-            IndexConstructor.FlushDocument( TermIndexAccessor, _lastDocID, _termMaxFrequency, _tokens );
-        }
-
         /// <summary>
         /// Mark resource with a flag that it is now in the Text Index and assign
         /// a preview fragment (if necessary).
@@ -457,12 +478,13 @@ namespace JetBrains.Omea.TextIndex
         {
             if( !res.IsDeleted )
             {
-                res.SetProp( DocInIndexProp, true );
+                res.SetProp( DocInVersionIndexProp, _indexVersion );
 
                 string preview = _previewFragment.ToString();
                 if( preview.Length > 0 )
                     res.SetProp( Core.Props.PreviewText, preview );
 
+                #region Pending Data Update
                 _pendingLock.Enter();
                 try
                 {
@@ -472,6 +494,7 @@ namespace JetBrains.Omea.TextIndex
                 {
                     _pendingLock.Exit();
                 }
+                #endregion Pending Data Update
             }
         }
 
@@ -511,11 +534,12 @@ namespace JetBrains.Omea.TextIndex
 
         private void NotifyIndexLoaded()
         {
-            if( IndexLoaded != null && !_notificationAlreadyDone &&
-                _termsAccessor.LoadedRecords != 0 )
+            if( !_notificationAlreadyDone && _termsAccessor.TermsNumber != 0 )
             {
                 _notificationAlreadyDone = true;
-                IndexLoaded( this, EventArgs.Empty );
+
+                if( IndexLoaded != null )
+                    IndexLoaded( this, EventArgs.Empty );
             }
         }
 
@@ -540,11 +564,11 @@ namespace JetBrains.Omea.TextIndex
             IResource doc = Core.ResourceStore.TryLoadResource( docID );
             if( doc != null )
             {
-                bool propValue = doc.HasProp( DocInIndexProp );
+                #region Pending Data Update
                 _pendingLock.Enter();
                 try
                 {
-                    if( propValue )
+                    if( IsDocumentInCurrentTextIndex( doc ) )
                     {
                         return !_pendingDeletions.Contains( doc.Id );
                     }
@@ -554,14 +578,41 @@ namespace JetBrains.Omea.TextIndex
                 {
                     _pendingLock.Exit();
                 }
+                #endregion Pending Data Update
             }
             return false;
         }
 
-        public static bool IsDocumentPresent( int docID, TermIndexAccessor _accessor )
+        public bool IsDocumentPresentInternal( int docId )
         {
-            IResource doc = Core.ResourceStore.TryLoadResource( docID );
-            return doc != null;
+            IResource doc = Core.ResourceStore.TryLoadResource( docId );
+            if( doc != null )
+            {
+                #region Pending Data Update
+                _pendingLock.Enter();
+                try
+                {
+                    if( IsDocumentInCurrentTextIndex( doc ) )
+                    {
+                        return !_pendingDeletions.Contains( doc.Id );
+                    }
+                    return _pendingAddends.Contains( doc.Id );
+                }
+                finally
+                {
+                    _pendingLock.Exit();
+                }
+                #endregion Pending Data Update
+            }
+            return false;
+        }
+
+        public static bool IsDocumentInCurrentTextIndex( IResource doc )
+        {
+            //  If a resource contains no such property, "GetIntProp" returns "0",
+            //  and text index version starts from "1".
+            int indexVersion = doc.GetIntProp( DocInVersionIndexProp );
+            return (indexVersion == _indexVersion);
         }
 
         internal delegate void IntDelegate( int ind );
@@ -573,6 +624,7 @@ namespace JetBrains.Omea.TextIndex
                 throw new ApplicationException( "Intermodule communication error - caller CAN NOT call this method when index is not present" );
             #endregion Preconditions
 
+            #region Pending Data Update
             _pendingLock.Enter();
             try
             {
@@ -583,16 +635,20 @@ namespace JetBrains.Omea.TextIndex
             {
                 _pendingLock.Exit();
             }
+            #endregion Pending Data Update
+
             Core.ResourceAP.QueueJob( JobPriority.Immediate, "Marking document not present in text index", 
-                                      new IntDelegate( NotInIndex ), docID );
+                                      new IntDelegate( MarkNotInIndex ), docID );
         }
 
-        private void NotInIndex( int id )
+        private void MarkNotInIndex( int id )
         {
             IResource doc = Core.ResourceStore.TryLoadResource( id );
             if( doc != null ) 
             {
-                doc.DeleteProp( DocInIndexProp );
+                doc.SetProp( DocInVersionIndexProp, 0 );
+
+                #region Pending Data Update
                 _pendingLock.Enter();
                 try
                 {
@@ -602,13 +658,8 @@ namespace JetBrains.Omea.TextIndex
                 {
                     _pendingLock.Exit();
                 }
+                #endregion Pending Data Update
             }
-        }
-
-        public ArrayList  GetSimilarDocuments( int docID )
-        {
-            Debug.Assert( IsIndexPresent, "Intermodule communication error - caller CAN NOT call this method without opened text index" );
-            return( null );
         }
         #endregion
 
@@ -736,7 +787,7 @@ namespace JetBrains.Omea.TextIndex
                     ArrayList   list = new ArrayList();
                     foreach( Entry e in resultEntries )
                     {
-                        if( IsDocumentPresent( e.DocIndex ))
+                        if( IsDocumentPresentInternal( e.DocIndex ))
                             list.Add( e );
                     }
                     resultEntries = (list.Count > 0) ? (Entry[])list.ToArray( typeof(Entry) ) : null;
@@ -752,76 +803,70 @@ namespace JetBrains.Omea.TextIndex
         #endregion Query Processing
 
         #region Accessors and Closers
-        private static bool IsIndexPresentCheck()
+
+        private void LoadTermIndex()
         {
-            return( File.Exists( OMEnv.TermIndexFileName ) );
+            Trace.WriteLineIf( !_suppTrace,  "-- FullTextIndexer -- Started creating Accessor over [" + OMEnv.TermIndexFileName + "]" );
+            _termsAccessor = new TermIndexAccessor( OMEnv.TermIndexFileName );
+            _termsAccessor.Load();
+            Trace.WriteLineIf( !_suppTrace,  "-- FullTextIndexer -- TermIndexAccessor loaded " + _termsAccessor.TermsNumber + " terms" );
         }
 
         public TermIndexAccessor TermIndexAccessor
         {
             get
             {
-                if( _termsAccessor == null ) 
-                {
-                    _termsAccessor = new TermIndexAccessor( OMEnv.TermIndexFileName );
-
-                    Trace.WriteLineIf( !_suppTrace,  "-- FullTextIndexer -- Started loading Accessor [" + _termsAccessor.FileName + "]" );
-                    _termsAccessor.Load();
-                    Trace.WriteLineIf( !_suppTrace,  "-- FullTextIndexer -- TermIndexAccessor loaded " + _termsAccessor.TermsNumber + " terms" );
-                    Trace.WriteLineIf( !_suppTrace,  "-- FullTextIndexer -- Accessors have been loaded" );
-                }
+                #region Preconditions
+                if ( _termsAccessor == null ) 
+                    throw new ApplicationException( "FullTextIndexer -- TermIndex loading conditions violation - Index accessor is not initialized" );
+                #endregion Preconditions
                 return _termsAccessor;
-            }
-        }
-
-        //---------------------------------------------------------------------
-        //  Delete files produced by defragmentation module.
-        //---------------------------------------------------------------------
-        private static void CleanPossibleUndeletedFiles()
-        {
-            try
-            {
-                if( File.Exists( OMEnv.TermIndexFileName + "_" ) )
-                    File.Delete( OMEnv.TermIndexFileName + "_" );
-            }
-            catch( IOException e )
-            {
-                //  Generally, nothing to do.
-                Trace.WriteLine( !_suppTrace,  "-- FullTextIndexer -- Failed to delete output files from defragmentation with reason: " + e.Message );
             }
         }
 
         public void  CloseIndices()
         {
-            if( IsIndexPresentCheck() )
+            if( _termsAccessor != null )
             {
                 Flush();
                 TermIndexAccessor.Close();
             }
         }
 
+        private delegate void SimpleDelegate();
         public void  DiscardTextIndex()
         {
+            DiscardTextIndexImpl( true );
+        }
+
+        public void DiscardTextIndexImpl( bool reopenIndex )
+        {
+            #region Preconditions
+            if( _termsAccessor == null )
+                throw new ApplicationException( "FullTextIndexer -- TextIndexer is not initialized yet" );
+            #endregion Preconditions
+
             Trace.WriteLineIf( !_suppTrace,  "-- FullTextIndexer -- Discard Index is started." );
+
             Cleanup();
-            DocVersionsToProcess.Clear();
+
+            _docVersionsToProcess.Clear();
             _finishedDocsInBatch.Clear();
             _termCounterInDoc.Clear();
-
             _tokens.Clear();
 
-            if( _termsAccessor != null ) 
-            {
-                _termsAccessor.Discard();
-            }
-            _termsAccessor = null;
-
             CleanIndexTempFiles();
-            DeleteFile( OMEnv.WordformsFileName );
 
-            Core.ResourceAP.RunJob( "Marking all documents not present in text index",
-                new ResourceListDelegate( ClearIndexedProperty ),
-                Core.ResourceStore.FindResourcesWithProp( null, DocInIndexProp ) );
+            //  Discard data on disk and reopen data structures anew if necessary
+            _termsAccessor.Discard();
+            if( reopenIndex )
+            {
+                LoadTermIndex();
+            }
+
+            Core.ResourceAP.RunJob( "Marking all documents not present in text index", new SimpleDelegate( IncrementIndexVersionProperty ) );
+
+            #region Pending Data Update
             _pendingLock.Enter();
             try
             {
@@ -832,27 +877,15 @@ namespace JetBrains.Omea.TextIndex
             {
                 _pendingLock.Exit();
             }
+            #endregion Pending Data Update
 
-            //-------------------------------------------------------------
-            if( IsIndexPresentCheck() )
-            {
-                Trace.WriteLineIf( !_suppTrace,  "-- FullTextIndexer - Index components are not removed after index was discarded via Accessors" );
-                throw new FormatException( "FullTextIndexer -- Index components are not removed after index was discarded via Accessors" );
-            }
-            Trace.WriteLineIf( !_suppTrace,  "-- FullTextIndexer -- Index has been discarded completely." );
+            Trace.WriteLineIf( !_suppTrace,  "-- FullTextIndexer -- Index has been discarded successfully." );
         }
 
-        private static void ClearIndexedProperty( IResourceList list )
+        private static void IncrementIndexVersionProperty()
         {
-            AsyncProcessor ap = Core.ResourceAP as AsyncProcessor;
-            foreach( IResource res in list.ValidResources )
-            {
-                if( ap != null && ap.OutstandingJobs > 0 )
-                {
-                    ap.DoJobs();
-                }
-                res.DeleteProp( DocInIndexProp );
-            }
+            _indexVersion++;
+            _indexVersionRes.SetProp( TextIndexVersionProp, _indexVersion );
         }
 
         private static void DeleteFile( string fileName )
@@ -911,7 +944,7 @@ namespace JetBrains.Omea.TextIndex
         ///   the first chunk was successfully processed.
         /// </summary>
         public event EventHandler IndexLoaded;
-        private bool _notificationAlreadyDone = false;
+        private bool _notificationAlreadyDone;
 
         public event EventHandler ResourceProcessed;
 
@@ -923,35 +956,39 @@ namespace JetBrains.Omea.TextIndex
         public event UpdateFinishedEventHandler NextUpdateFinished;
 
         //---------------------------------------------------------------------
-        private const int    _ciMaxMeaningfulCount = 65000;
-        private readonly int _cPreviewSize = 120;
+        private const int   _ciMaxMeaningfulCount = 65000;
+        private const int   _cPreviewSize = 120;
         private const string _cJobName = "Marking document as present in text index";
 
         private TextDocParser       _textParser;
-        private TermIndexAccessor   _termsAccessor = null;
+        private TermIndexAccessor   _termsAccessor;
 
         private readonly IntHashTableOfInt  _termCounterInDoc = new IntHashTableOfInt( 2000 );
-        private readonly IntHashTableOfInt  DocVersionsToProcess = new IntHashTableOfInt();
+        private readonly IntHashTableOfInt  _docVersionsToProcess = new IntHashTableOfInt();
         private readonly IntHashTableOfInt  _finishedDocsInBatch = new IntHashTableOfInt();
-        private readonly HashMap            SectionsMapping = new HashMap();
+        private readonly HashMap            _sectionsMapping = new HashMap();
         private ushort                      _termMaxFrequency = 0;
         private readonly IntHashTable       _tokens = new IntHashTable( 2000 );
         private readonly IntHashSet         _pendingAddends = new IntHashSet( 100 );
         private readonly IntHashSet         _pendingDeletions = new IntHashSet( 100 );
         private SpinWaitLock                _pendingLock = new SpinWaitLock();
-        public static bool                  _suppTrace = false;
+        public static bool                  _suppTrace;
 
         private readonly StringBuilder  _previewFragment = new StringBuilder();
         private bool                    _mustConstructPreview;
 
-        private int                 _lastDocID = -1;
-        private uint                _prevSectionId;
-        public static int           SimilarityPropId, SearchRankPropId, ProximityPropId,
-                                    ContextPropId, ContextHighlightPropId, DocInIndexProp;
-        private bool                _needDiscard;
-        private static FullTextIndexer theIndexer;
-        private int                 _lastCollectTick;
+        private int                     _lastDocID = -1;
+        private uint                    _prevSectionId;
+        public static int               SimilarityPropId, SearchRankPropId, ProximityPropId,
+                                        ContextPropId, ContextHighlightPropId; //, DocInIndexProp;
+        public static int               TextIndexVersionProp, DocInVersionIndexProp;
+        private bool                    _needDiscard;
+        private int                     _lastCollectTick;
 
+        private static FullTextIndexer  theIndexer;
+        private static IResource        _indexVersionRes;
+        private static int              _indexVersion;
+        
         #endregion Attributes
     }
 }

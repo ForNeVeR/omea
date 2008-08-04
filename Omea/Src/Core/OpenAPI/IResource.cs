@@ -6,9 +6,25 @@
 using System;
 using System.Collections;
 using System.IO;
+using JetBrains.Annotations;
 
 namespace JetBrains.Omea.OpenAPI
 {
+    public class PropId<T>
+    {
+        private readonly int _id;
+
+        public PropId(int id)
+        {
+            _id = id;
+        }
+
+        public int Id
+        {
+            get { return _id; }
+        }
+    }
+
     /// <summary>
     /// Represents a single data object in the resource store. A resource has a type,
     /// a collection of typed properties and can have links to other resources.
@@ -161,7 +177,11 @@ namespace JetBrains.Omea.OpenAPI
         /// <para>Since version 2.2 it is possible to set a string value to a blob property.</para>
         /// </remarks>
         void SetProp( int propId, object propValue );
-		
+
+        void SetProp<T>( PropId<T> propId, T value );
+
+        void SetReverseLinkProp(PropId<IResource> propId, IResource propValue);
+        
         /// <summary>
         /// Deletes the property with the specified name.
         /// </summary>
@@ -195,6 +215,8 @@ namespace JetBrains.Omea.OpenAPI
         /// in the list of the links of the current resource until <see cref="EndUpdate"/>
         /// is called on the target.</remarks>
         void AddLink( int propId, IResource target );
+
+        void AddLink(PropId<IResource> propId, IResource target);
 
         /// <summary>
         /// Deletes a link with the specified property name to the specified resource.
@@ -252,6 +274,8 @@ namespace JetBrains.Omea.OpenAPI
         /// </remarks>
         /// <seealso cref="HasProp(string)"/>
         object GetProp( string propName );
+
+        T GetProp<T>( PropId<T> propId );
 
         /// <summary>
         /// Returns the value of the string property with the specified ID.
@@ -362,7 +386,7 @@ namespace JetBrains.Omea.OpenAPI
         IStringList GetStringListProp( string propName );
 
         /// <summary>
-        /// Returns a resource linked to the current resource with the link of specified
+        /// Returns a resource to which the current resource is linked with the link of specified
         /// name.
         /// </summary>
         /// <param name="propName">Name of the link property.</param>
@@ -377,7 +401,7 @@ namespace JetBrains.Omea.OpenAPI
         IResource GetLinkProp( string propName );
 
         /// <summary>
-        /// Returns a resource linked to the current resource with the link of specified
+        /// Returns a resource to which the current resource is linked with the link of specified
         /// property ID.
         /// </summary>
         /// <param name="propId">ID of the link property.</param>
@@ -390,6 +414,15 @@ namespace JetBrains.Omea.OpenAPI
         /// the method was called, not links to it.</para>
         /// </remarks>
         IResource GetLinkProp( int propId );
+
+        /// <summary>
+        /// Returns a resource which is linked to this resource with a directed link property of the
+        /// specified type.
+        /// </summary>
+        /// <param name="propId">ID of the directed link property type.</param>
+        /// <returns>A resource linked to this resource or null.</returns>
+        [CanBeNull]
+        IResource GetReverseLinkProp([NotNull] PropId<IResource> propId);
 
         /// <summary>
         /// Returns the textual representation of the value of the property with the specified name.
@@ -460,6 +493,11 @@ namespace JetBrains.Omea.OpenAPI
         /// <remarks>For directed links, both links from and to the resource are returned.</remarks>
         IResourceList GetLinksOfType( string resType, int propId );
 
+        IResourceList GetLinksOfType(string resType, PropId<IResource> propId);
+
+        BusinessObjectList<T> GetLinksOfType<T>(ResourceTypeId<T> resType, PropId<IResource> propId)
+            where T : BusinessObject;
+
         /// <summary>
         /// Returns the live list of the resources of the specified type linked to the current 
         /// resource with the link with the specified property name.
@@ -482,6 +520,8 @@ namespace JetBrains.Omea.OpenAPI
         /// <remarks>For directed links, both links from and to the resource are returned.</remarks>
         IResourceList GetLinksOfTypeLive( string resType, int propId );
 
+        IResourceList GetLinksOfTypeLive(string resType, PropId<IResource> propId);
+        
         /// <summary>
         /// Returns the non-live list of the resources of the specified type to which there are directed links
         /// from the current resource with the link with the specified property name.
@@ -503,6 +543,11 @@ namespace JetBrains.Omea.OpenAPI
         /// <returns>The list of linked resources, or an empty list if there are no linked resources.</returns>
         /// <remarks>This method can only be called for directed link properties.</remarks>
         IResourceList GetLinksFrom( string resType, int propId );
+
+        IResourceList GetLinksFrom(string resType, PropId<IResource> propId);
+        
+        BusinessObjectList<T> GetLinksFrom<T>(ResourceTypeId<T> resType, PropId<IResource> propId)
+            where T : BusinessObject;
 
         /// <summary>
         /// Returns the live list of the resources of the specified type to which there are directed links
@@ -547,6 +592,11 @@ namespace JetBrains.Omea.OpenAPI
         /// <returns>The list of linked resources, or an empty list if there are no linked resources.</returns>
         /// <remarks>This method can only be called for directed link properties.</remarks>
         IResourceList GetLinksTo( string resType, int propId );
+
+        IResourceList GetLinksTo(string resType, PropId<IResource> propId);
+
+        BusinessObjectList<T> GetLinksTo<T>(ResourceTypeId<T> resType, PropId<IResource> propId)
+            where T : BusinessObject;
 
         /// <summary>
         /// Returns the live list of the resources of the specified type from which there are directed links
@@ -605,6 +655,8 @@ namespace JetBrains.Omea.OpenAPI
         /// value of boolean properties.</para>
         /// </remarks>
         bool HasProp( int propId );
+
+        bool HasProp<T>( PropId<T> propId );
 
         /// <summary>
         /// Returns true if the current resource is linked to the specified resource with a link

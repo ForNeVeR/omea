@@ -100,7 +100,7 @@ namespace JetBrains.Omea
             Core.WorkspaceManager.AddToActiveWorkspace( res );
             res.EndUpdate();
             Core.TextIndexManager.QueryIndexing( res.Id );
-            Core.FilterManager.ExecRules( StandardEvents.ResourceReceived, res );
+            Core.FilterEngine.ExecRules( StandardEvents.ResourceReceived, res );
         }
 
         private static void DoCreateFragment( string subject, TextFormat textFormat, string text, 
@@ -201,7 +201,7 @@ namespace JetBrains.Omea
         {
             Core.WorkspaceManager.AddToActiveWorkspace( res );
             Core.TextIndexManager.QueryIndexing( res.Id );
-            Core.FilterManager.ExecRules( StandardEvents.ResourceReceived, res );
+            Core.FilterEngine.ExecRules( StandardEvents.ResourceReceived, res );
             FragmentEditPane editPane = (FragmentEditPane) tag;
             if ( editPane != null && editPane.OpenAfterSave )
             {

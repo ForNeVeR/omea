@@ -100,14 +100,12 @@ public  class   TermIndexAccessor : IndexAccessorImpl
     {
         base.Discard();
         if( File.Exists( IndexHeaderFileName )) 
-        {
             File.Delete( IndexHeaderFileName );
-        }
+
         Word.DisposeTermTrie();
+
         if( File.Exists( OMEnv.TokenTreeFileName ))
-        {
             File.Delete( OMEnv.TokenTreeFileName );
-        }
     }
     
     public override void  Load()
@@ -119,8 +117,8 @@ public  class   TermIndexAccessor : IndexAccessorImpl
 
         if( !File.Exists( IndexHeaderFileName ) )
         {
-            Trace.WriteLineIf( !FullTextIndexer._suppTrace,  "-- TermIndexAccessor - Header file [" + IndexHeaderFileName + "] does not exist." );
-            Trace.WriteLineIf( !FullTextIndexer._suppTrace,  "-- TermIndexAccessor - loading indices directly from index" );
+            Trace.WriteLineIf( !FullTextIndexer._suppTrace, "-- TermIndexAccessor - Header file [" + IndexHeaderFileName + "] does not exist." );
+            Trace.WriteLineIf( !FullTextIndexer._suppTrace, "-- TermIndexAccessor - loading indices directly from index" );
             TermId2RecordHandle.Open();
             LoadOffsetsFromIndex();
         }
@@ -129,16 +127,13 @@ public  class   TermIndexAccessor : IndexAccessorImpl
             bool status = TermId2RecordHandle.Open();
             if( status && TermId2RecordHandle.Count > 0 )
             {
-                Trace.WriteLineIf( !FullTextIndexer._suppTrace,  "-- TermIndexAccessor - loaded indices from header subcomponent" );
-                Trace.WriteLineIf( !FullTextIndexer._suppTrace,  "-- TermIndexAccessor - Number of loaded offsets: [" + TermId2RecordHandle.Count + "]" );
+                Trace.WriteLineIf( !FullTextIndexer._suppTrace, "-- TermIndexAccessor - loaded indices from header subcomponent" );
+                Trace.WriteLineIf( !FullTextIndexer._suppTrace, "-- TermIndexAccessor - Number of loaded offsets: [" + TermId2RecordHandle.Count + "]" );
             }
             else
             {
-                if( !status )
-                    Trace.WriteLineIf( !FullTextIndexer._suppTrace,  "-- TermIndexAccessor - Header file [" + IndexHeaderFileName + "] exists but did not open." );
-                else
-                    Trace.WriteLineIf( !FullTextIndexer._suppTrace,  "-- TermIndexAccessor - Header file [" + IndexHeaderFileName + "] exists, opened but its count is 0." );
-
+                Trace.WriteLineIf( !FullTextIndexer._suppTrace, "-- TermIndexAccessor - Header file [" + IndexHeaderFileName + "] exists" );
+                Trace.WriteLineIf( !FullTextIndexer._suppTrace, !status ? " but did not open." : ", opened but its count is 0." );
                 Trace.WriteLineIf( !FullTextIndexer._suppTrace,  "-- TermIndexAccessor - loading indices directly from index" );
                 TermId2RecordHandle.Clear();
                 LoadOffsetsFromIndex();
@@ -251,15 +246,18 @@ public  class   TermIndexAccessor : IndexAccessorImpl
     }
     #endregion AddRecord
 
-    //-------------------------------------------------------------------------
-    public int  TermsNumber   {  get{ return( TermId2RecordHandle.Count ); }  }
+    #region Accessors
+    public int  TermsNumber
+    {
+        get{  return( TermId2RecordHandle.Count );  }
+    }
 
     public bool TermExist( int termId )
     {  
         return( GetRecordHandle( termId ) > 0 );
     }
 
-    public IEnumerable   Keys
+    public IEnumerable Keys
     {
         get { return TermId2RecordHandle.GetAllKeys(); }
     }
@@ -273,6 +271,7 @@ public  class   TermIndexAccessor : IndexAccessorImpl
     {
         get { return _savedRecords; }
     }
+    #endregion Accessors
 
     //-------------------------------------------------------------------------
     private string IndexHeaderFileName

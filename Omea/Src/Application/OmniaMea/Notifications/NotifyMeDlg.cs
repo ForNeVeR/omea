@@ -20,10 +20,10 @@ namespace JetBrains.Omea
 
     public class NotifyMeDlg : DialogBase
 	{
-        private System.Windows.Forms.Button _btnOK;
-        private System.Windows.Forms.Button _btnCancel;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Panel _separator;
+        private Button _btnOK;
+        private Button _btnCancel;
+        private Label label1;
+        private Panel _separator;
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
@@ -36,14 +36,14 @@ namespace JetBrains.Omea
         private CheckBox[] _notifyMeConditionCheckboxes;
 
         private const string _playSoundTemplateName = "Play sound from %file%";
-        private System.Windows.Forms.Panel _actionPanel;
-        private System.Windows.Forms.TextBox _edtMessage;
-        private System.Windows.Forms.TextBox _edtSoundName;
-        private System.Windows.Forms.CheckBox _chkShowMessage;
-        private System.Windows.Forms.Button _btnBrowse;
-        private System.Windows.Forms.CheckBox _chkPlaySound;
-        private System.Windows.Forms.CheckBox _chkShowDesktopAlert;
-        private System.Windows.Forms.OpenFileDialog _openFileDialog;
+        private Panel   _actionPanel;
+        private TextBox _edtMessage;
+        private TextBox _edtSoundName;
+        private CheckBox _chkShowMessage;
+        private Button  _btnBrowse;
+        private CheckBox _chkPlaySound;
+        private CheckBox _chkShowDesktopAlert;
+        private OpenFileDialog _openFileDialog;
 
         private const string _showMessageTemplateName = "Display message box with %text%";
         private const int    _ConditionCheckboxVerSize = 24;
@@ -374,13 +374,13 @@ namespace JetBrains.Omea
          * Returns true if the specified condition template is used in the specified rule.
          */
 
-        private bool IsConditionTemplateUsed( IResource conditionTemplate, IResource rule )
+        private static bool IsConditionTemplateUsed( IResource conditionTemplate, IResource rule )
         {
-            string templateName = conditionTemplate.GetStringProp( "Name" );
-            foreach( IResource condition in Core.FilterManager.GetConditions( rule ) )
+            string templateName = conditionTemplate.GetStringProp( Core.Props.Name );
+            foreach( IResource condition in Core.FilterRegistry.GetConditions( rule ) )
             {
                 IResource template = condition.GetLinkProp( "TemplateLink" );
-                if(( template != null ) && ( template.GetStringProp( "Name" ) == templateName ))
+                if(( template != null ) && ( template.GetStringProp( Core.Props.Name ) == templateName ))
                     return true;
             }
             return false;
@@ -397,12 +397,12 @@ namespace JetBrains.Omea
             IResource rule = _targetResource.GetLinkProp( _propNotifyMeRule );
             if ( rule != null )
             {
-                IResourceList actions = Core.FilterManager.GetActions( rule );
+                IResourceList actions = Core.FilterRegistry.GetActions( rule );
                 foreach( IResource action in actions )
                 {
                     IResource template = action.GetLinkProp( "TemplateLink" );
-                    string    templateName = (template != null) ? template.GetStringProp( "Name" ) : string.Empty;
-                    if( action.GetStringProp( "Name" ) == "Show desktop alert" )
+                    string    templateName = (template != null) ? template.GetStringProp( Core.Props.Name ) : string.Empty;
+                    if( action.GetStringProp( Core.Props.Name ) == "Show desktop alert" )
                     {
                         _chkShowDesktopAlert.Checked = true;
                     }
@@ -425,7 +425,7 @@ namespace JetBrains.Omea
             IResource rule = _targetResource.GetLinkProp( _propNotifyMeRule );
             if ( rule != null )
             {
-                Core.FilterManager.DeleteRule( rule );
+                Core.FilterRegistry.DeleteRule( rule );
             }
 
             string ruleName;
@@ -435,7 +435,7 @@ namespace JetBrains.Omea
             if ( ruleActions.Length > 0 )
             {
                 string  ruleResType = Core.NotificationManager.GetRuleResourceType( _targetResource.Type );
-                rule = Core.FilterManager.RegisterRule( StandardEvents.ResourceReceived, ruleName,
+                rule = Core.FilterRegistry.RegisterRule( StandardEvents.ResourceReceived, ruleName,
                     ( ruleResType == null )? null : new string[ 1 ]{ ruleResType },
                     ruleConditions, null, ruleActions );
 
@@ -528,7 +528,7 @@ namespace JetBrains.Omea
             if ( param == null )
                 return null;
 
-            string visualName = conditionTemplate.GetStringProp( "Name" );
+            string visualName = conditionTemplate.GetStringProp( Core.Props.Name );
             if ( param != null )
             {
                 int startPercent = visualName.IndexOf( '%' );
@@ -560,14 +560,14 @@ namespace JetBrains.Omea
             return param;
         }
 
-        private void _chkPlaySound_CheckedChanged( object sender, System.EventArgs e )
+        private void _chkPlaySound_CheckedChanged( object sender, EventArgs e )
         {
             _edtSoundName.Enabled = _chkPlaySound.Checked;        
             _btnBrowse.Enabled = _chkPlaySound.Checked;
             UpdateButtonState();
         }
 
-        private void _chkShowMessage_CheckedChanged(object sender, System.EventArgs e)
+        private void _chkShowMessage_CheckedChanged(object sender, EventArgs e)
         {
             _edtMessage.Enabled = _chkShowMessage.Checked;
             if ( _chkShowMessage.Checked && _edtMessage.Text == "" )
@@ -603,7 +603,7 @@ namespace JetBrains.Omea
             _edtMessage.Text = msgBuilder.ToString();
         }
 
-        private void _btnBrowse_Click( object sender, System.EventArgs e )
+        private void _btnBrowse_Click( object sender, EventArgs e )
         {
             _openFileDialog.FileName = _edtSoundName.Text;
             if ( _openFileDialog.ShowDialog() == DialogResult.OK )
@@ -612,12 +612,12 @@ namespace JetBrains.Omea
             }
         }
 
-        private void _edtSoundName_TextChanged(object sender, System.EventArgs e)
+        private void _edtSoundName_TextChanged(object sender, EventArgs e)
         {
             UpdateButtonState();
         }
 
-        private void _edtMessage_TextChanged(object sender, System.EventArgs e)
+        private void _edtMessage_TextChanged(object sender, EventArgs e)
         {
             UpdateButtonState();
         }

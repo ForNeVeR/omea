@@ -73,7 +73,7 @@ namespace TextIndexTests
         {
             CloseStorage();
             indexer.CloseIndices();
-            indexer.DiscardTextIndex();
+            indexer.DiscardTextIndexImpl( false );
             Word.DisposeTermTrie();
             try
             {
@@ -108,13 +108,13 @@ namespace TextIndexTests
         void Handler_SimpleSequenceTest(object sender, EventArgs e)
         {
             bool isMatched = indexer.MatchQuery( "token2", _savedID, 10 );
-            AssertIfTrue( "Query [token2] must succeed", isMatched );
+            Assert.IsTrue( isMatched, "Query [token2] must succeed" );
 
             isMatched = indexer.MatchQuery( "token4", _savedID, 10 );
-            AssertIfTrue( "Query [token4] must succeed", isMatched );
+            Assert.IsTrue( isMatched, "Query [token4] must succeed" );
 
             isMatched = indexer.MatchQuery( "token7", _savedID, 10 );
-            AssertIfTrue( "Query [token7] must fail", !isMatched );
+            Assert.IsTrue( !isMatched, "Query [token7] must fail" );
         }
         #endregion SimpleSequence
 
@@ -136,13 +136,13 @@ namespace TextIndexTests
         void Handler_ConjunctionTest(object sender, EventArgs e)
         {
             bool isMatched = indexer.MatchQuery( "token2 token1", _savedID, 10 );
-            AssertIfTrue( "Query [token2 token1] must succeed", isMatched );
+            Assert.IsTrue( isMatched, "Query [token2 token1] must succeed" );
 
             isMatched = indexer.MatchQuery( "token2 token4", _savedID, 11 );
-            AssertIfTrue( "Query [token2 token4] must succeed", isMatched );
+            Assert.IsTrue( isMatched, "Query [token2 token4] must succeed" );
 
             isMatched = indexer.MatchQuery( "token4 token6", _savedID, 12 );
-            AssertIfTrue( "Query [token4 token6] must fail", !isMatched );
+            Assert.IsTrue( !isMatched, "Query [token4 token6] must fail" );
         }
         #endregion Conjunction
 
@@ -164,16 +164,16 @@ namespace TextIndexTests
         void Handler_DisjunctionTest(object sender, EventArgs e)
         {
             bool isMatched = indexer.MatchQuery( "token2 or token5", _savedID, 10 );
-            AssertIfTrue( "Query [token2 or token5] must succeed", isMatched );
+            Assert.IsTrue( isMatched, "Query [token2 or token5] must succeed" );
 
             isMatched = indexer.MatchQuery( "tokenX or token4", _savedID, 11 );
-            AssertIfTrue( "Query [tokenX or token4] must succeed", isMatched );
+            Assert.IsTrue( isMatched, "Query [tokenX or token4] must succeed" );
 
             isMatched = indexer.MatchQuery( "token4 or tokenX", _savedID, 12 );
-            AssertIfTrue( "Query [token4 or tokenX] must succeed", isMatched );
+            Assert.IsTrue( isMatched, "Query [token4 or tokenX] must succeed" );
 
             isMatched = indexer.MatchQuery( "tokenY or tokenX", _savedID, 13 );
-            AssertIfTrue( "Query [tokenY or tokenX] must fail", !isMatched );
+            Assert.IsTrue( !isMatched, "Query [tokenY or tokenX] must fail" );
         }
         #endregion Disjunction
 
@@ -185,9 +185,9 @@ namespace TextIndexTests
 
             IResource newRes = Core.ResourceStore.NewResource( "TestType" );
             _savedID = newRes.Id;
-            indexer.AddDocumentHeading( newRes.Id, "several tokens in the subject" );
-            indexer.AddDocumentFragment( newRes.Id, "token1 token2." );
-            indexer.AddDocumentFragment( newRes.Id, " token3 token4  token5. " );
+            indexer.AddDocumentHeading( newRes.Id, "severall tokens in the subject" );
+            indexer.AddDocumentFragment( newRes.Id, "token1 token20." );
+            indexer.AddDocumentFragment( newRes.Id, " token8 token9  token10. " );
             indexer.EndBatchUpdate();
 
             indexer.ResourceProcessed -= Handler_ProximitiesTest;
@@ -195,23 +195,18 @@ namespace TextIndexTests
 
         void Handler_ProximitiesTest(object sender, EventArgs e)
         {
-            bool isMatched = indexer.MatchQuery( "several near subject", _savedID, 10 );
-            AssertIfTrue( "Query [several near subject] must succeed", isMatched );
+            bool isMatched = indexer.MatchQuery( "severall near subject", _savedID, 10 );
+            Assert.IsTrue( isMatched, "Query [several near subject] must succeed" );
 
-            isMatched = indexer.MatchQuery( "token3 near token4", _savedID, 11 );
-            AssertIfTrue( "Query [token3 near token4] must succeed", isMatched );
+            isMatched = indexer.MatchQuery( "token8 near token9", _savedID, 11 );
+            Assert.IsTrue( isMatched, "Query [token8 near token9] must succeed" );
 
-            isMatched = indexer.MatchQuery( "several near token2", _savedID, 12 );
-            AssertIfTrue( "Query [several near token2] must fail", isMatched );
+            isMatched = indexer.MatchQuery( "severall near token20", _savedID, 12 );
+            Assert.IsTrue( !isMatched, "Query [several near token20] must fail" );
 
-            isMatched = indexer.MatchQuery( "\"token4 token5\"", _savedID, 13 );
-            AssertIfTrue( "Query [\"token4 token5\"] must succeed", isMatched );
+            isMatched = indexer.MatchQuery( "\"token8 token10\"", _savedID, 13 );
+            Assert.IsTrue( !isMatched, "Query [\"token8 token10\"] must fail" );
         }
         #endregion Different Proximities
-
-        private static void AssertIfTrue( string message, bool condition )
-        {
-            Assert.IsTrue( condition, message );
-        }
     }
 }

@@ -277,7 +277,6 @@ namespace JetBrains.Omea.OutlookPlugin
         public override string Name
         {
             get { return "Importing contact"; }
-            set { }
         }
     }
     
@@ -341,7 +340,6 @@ namespace JetBrains.Omea.OutlookPlugin
         public override string Name
         {
             get { return "importing contacts"; }
-            set { }
         }
     }
 }

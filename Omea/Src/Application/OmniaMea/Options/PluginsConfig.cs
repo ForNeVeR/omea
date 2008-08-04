@@ -39,7 +39,9 @@ namespace JetBrains.Omea.Plugins
         private System.Windows.Forms.Button _newBtn;
         private HashSet _activePlugins = new HashSet();
 
-        public static AbstractOptionsPane PluginsConfigPaneCreator()
+    	public readonly string _pluginsRegistryKeyPath = @"SOFTWARE\JetBrains\Omea\Plugins";
+
+    	public static AbstractOptionsPane PluginsConfigPaneCreator()
         {
             return new PluginsConfigPane();
         }
@@ -228,34 +230,34 @@ namespace JetBrains.Omea.Plugins
 
             _promptLabel.Text = "Changes will take effect after the restart of " + Core.ProductName;
             _pluginsHKCUKey = _pluginsHKLMKey = _pluginsConfigKey = null;
-            try 
+        	try 
             {
-                _pluginsHKCUKey = Registry.CurrentUser.OpenSubKey( (Core.PluginLoader as Loader).PluginRegistryKey, true );
+                _pluginsHKCUKey = Registry.CurrentUser.OpenSubKey( _pluginsRegistryKeyPath, true );
             }
             catch {}
             try 
             {
-                _pluginsConfigKey = _pluginsHKCUKey.OpenSubKey( Loader._configKey, true );
+                _pluginsConfigKey = _pluginsHKCUKey.OpenSubKey( _configKey, true );
             }
             catch {}
             try
             {
-                _pluginsHKLMKey = Registry.LocalMachine.OpenSubKey( (Core.PluginLoader as Loader).PluginRegistryKey, false );
+                _pluginsHKLMKey = Registry.LocalMachine.OpenSubKey( _pluginsRegistryKeyPath, false );
             }
             catch {}
             if( _pluginsHKCUKey == null )
             {
-                _pluginsHKCUKey = Registry.CurrentUser.CreateSubKey( (Core.PluginLoader as Loader).PluginRegistryKey );
+                _pluginsHKCUKey = Registry.CurrentUser.CreateSubKey( _pluginsRegistryKeyPath );
             }
             if( _pluginsConfigKey == null )
             {
-                _pluginsConfigKey = _pluginsHKCUKey.CreateSubKey( Loader._configKey );
+                _pluginsConfigKey = _pluginsHKCUKey.CreateSubKey( _configKey );
             }
 
             _activePlugins.Clear();
 
             string[] disabledPlugins = 
-                ( (string) _pluginsConfigKey.GetValue( Loader._disabledValue, string.Empty ) ).Split( ';' );
+                ( (string) _pluginsConfigKey.GetValue( _disabledValue, string.Empty ) ).Split( ';' );
             Array.Sort( disabledPlugins );
 
             EnumPlugins( _pluginsHKCUKey, disabledPlugins );
@@ -292,10 +294,10 @@ namespace JetBrains.Omea.Plugins
                 }
             }
 
-            object obj = _pluginsConfigKey.GetValue( Loader._disabledValue, string.Empty );
+            object obj = _pluginsConfigKey.GetValue( _disabledValue, string.Empty );
             if( !obj.Equals( disabled ) )
             {
-                _pluginsConfigKey.SetValue( Loader._disabledValue, disabled );
+                _pluginsConfigKey.SetValue( _disabledValue, disabled );
                 NeedRestart = true;
             }
         }
@@ -313,12 +315,13 @@ namespace JetBrains.Omea.Plugins
             while( LocationDialog.ShowDialog() == DialogResult.OK )
             {
                 string filename = LocationDialog.FileName;
-                if( Loader.IsOmniaMeaPlugin( filename ) )
+            	string sError;
+            	if( PluginInterfaces.IsOmeaPluginDll( new FileInfo(filename), out sError ) )
                 {
                     bool isAdded = false;
                     for( int i = 0; i < _pluginsList.Items.Count; ++i )
                     {
-                        if( _pluginsList.Items[ i ].SubItems[ 2 ].Text == filename )
+                        if( _pluginsList.Items[i].SubItems[ 2 ].Text == filename )
                         {
                             isAdded = true;
                             break;
@@ -356,7 +359,7 @@ namespace JetBrains.Omea.Plugins
                 bool isUnique = true;
                 for( int i = 0; i < _pluginsList.Items.Count; ++i )
                 {
-                    if( _pluginsList.Items[ i ].SubItems[ 1 ].Text == pluginName )
+                    if( _pluginsList.Items[i].SubItems[ 1 ].Text == pluginName )
                     {
                         isUnique = false;
                         break;
@@ -371,7 +374,7 @@ namespace JetBrains.Omea.Plugins
             RegistryKey PluginsKey = null;
             try
             {
-                PluginsKey = Registry.CurrentUser.OpenSubKey( (Core.PluginLoader as Loader).PluginRegistryKey, true );
+                PluginsKey = Registry.CurrentUser.OpenSubKey( _pluginsRegistryKeyPath, true );
             }
             catch( Exception e )
             {
@@ -408,7 +411,7 @@ namespace JetBrains.Omea.Plugins
                     bool isAdded = false;
                     for( int i = 0; i < _pluginsList.Items.Count; ++i )
                     {
-                        if( _pluginsList.Items[ i ].SubItems[ 2 ].Text == filename )
+                        if( _pluginsList.Items[i].SubItems[ 2 ].Text == filename )
                         {
                             isAdded = true;
                             break;
@@ -437,14 +440,18 @@ namespace JetBrains.Omea.Plugins
 
         private void _pluginsList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string author, description;
+            string author = "Unknown", description = "";
             foreach( ListViewItem item in _pluginsList.SelectedItems )
             {
-                string path = item.SubItems[ 2 ].Text;
-                Core.PluginLoader.GetPluginDescription( path, out author, out description );
-                _authorInfo.Text = (author != null) ? author : "Unknown";
-                _descriptionInfo.Text = (description != null) ? description : string.Empty;
+//                string path = item.SubItems[ 2 ].Text;
+//                Core.PluginLoader.GetPluginDescription( path, out author, out description );
+                _authorInfo.Text = author ?? "Unknown";
+                _descriptionInfo.Text = description ?? string.Empty;
             }
         }
+
+    	private const string _configKey = "Config";
+
+    	private const string _disabledValue = "Disabled";
     }
 }

@@ -168,7 +168,7 @@ namespace RSSPlugin
 			// 
 			// _toolbar
 			// 
-			_toolbar.DropDownArrows = true;
+//			_toolbar.DropDownArrows = true;
 			_toolbar.Location = new Point( 0, 0 );
 			_toolbar.Name = "_toolbar";
 			_toolbar.TabStop = true;

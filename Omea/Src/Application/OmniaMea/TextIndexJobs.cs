@@ -40,7 +40,6 @@ namespace JetBrains.Omea
         public override string  Name
         {
             get { return ( _res == null ) ? string.Empty : "Indexing " + _res.DisplayName;  }
-            set {}
         }
         public override int     GetHashCode()  {  return _docID;  }
         internal static void    ResetDocumentsIndexed() { _documentsIndexed = 0; }
@@ -72,7 +71,6 @@ namespace JetBrains.Omea
         public override string  Name
         {
             get { return "Removing resource " + _docID + " from text index";  }
-            set {}
         }
 
         protected override void Execute()
@@ -110,7 +108,6 @@ namespace JetBrains.Omea
         public override string Name
         {
             get { return "Defragmenting"; }
-            set {}
         }
 
         protected override void Execute()

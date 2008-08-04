@@ -5,6 +5,7 @@
 
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
@@ -33,7 +34,7 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
 	    private IResource _changeSet;
 	    private IResourceList _changeSetList;
 	    private IResourceList _selectedChangeList;
-        private Hashtable _linkTextMap;
+        private Dictionary<string, string> _linkTextMap;
 	    private DateTime _colorizeStartTime;
 	    
 		public ChangeSetDisplayPane()
@@ -188,32 +189,32 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
 	    {
 	        _changeSet = resource;
 	        _changeSetList = resource.ToResourceListLive();
-	        _changeSetList.ResourceChanged += new ResourcePropIndexEventHandler( HandleChangesetChanged );
+	        _changeSetList.ResourceChanged += HandleChangesetChanged;
             _edtDescription.Text = resource.GetPropText( Core.Props.LongBody );
             HighlightDescriptionLinks();
 
-            IResource repository = _changeSet.GetLinkProp( Props.ChangeSetRepository );
-            RepositoryType repType = SccPlugin.GetRepositoryType( repository.GetStringProp( Props.RepositoryType ) );
+            IResource repository = _changeSet.GetProp( Props.ChangeSetRepository );
+            RepositoryType repType = SccPlugin.GetRepositoryType( repository );
             repType.OnChangesetSelected( repository, _changeSet );
 	        
             _changedFilesList.BeginUpdate();
             try
             {
                 _changedFilesList.Items.Clear();
-                foreach( IResource fileChange in resource.GetLinksOfType( Props.FileChangeResource, 
+                foreach( FileChange fileChange in resource.GetLinksOfType( FileChange.ResourceType, 
                     Props.Change ) )
                 {
                     if ( Settings.HideUnchangedFiles )
                     {
-                        if ( !fileChange.HasProp( Props.Binary ) && 
-                            fileChange.GetStringProp( Props.ChangeType ) == "edit" &&
-                            fileChange.GetPropText( Props.Diff ).Length == 0 )
+                        if ( !fileChange.Binary && 
+                            fileChange.ChangeType == "edit" &&
+                            String.IsNullOrEmpty(fileChange.Diff) )
                         {
                             continue;
                         }
                     }
 
-                    _changedFilesList.Items.Add( new FileChangeWrapper( fileChange ) );
+                    _changedFilesList.Items.Add( fileChange );
                 }
             }
             finally
@@ -228,9 +229,9 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
             }
             else
             {
-                FileChangeWrapper wrapper = (FileChangeWrapper) _changedFilesList.Items [0];
-                _changedFilesList.SelectedItem = wrapper;
-                if ( repType.BuildLinkToFile( repository, wrapper.Resource ) == null )
+                FileChange fileChange = (FileChange) _changedFilesList.Items [0];
+                _changedFilesList.SelectedItem = fileChange;
+                if ( repType.BuildLinkToFile( repository, fileChange ) == null )
                 {
                     _lnkFileName.Links.Clear();
                 }
@@ -239,13 +240,12 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
 
 	    private void HighlightDescriptionLinks()
 	    {
-            _linkTextMap = new Hashtable();
-            foreach( IResource res in Core.ResourceStore.GetAllResources( Props.LinkRegexResource ) )
+            _linkTextMap = new Dictionary<string, string>();
+            foreach( LinkRegex res in Core.ResourceStore.GetAllResources( LinkRegex.ResourceType ) )
             {
-                string regexMatch = res.GetStringProp( Props.RegexMatch );
-                string regexReplace = res.GetStringProp( Props.RegexReplace );
-                if ( regexMatch == null || regexMatch.Length == 0 || 
-                     regexReplace == null || regexReplace.Length == 0 )
+                string regexMatch = res.RegexMatch;
+                string regexReplace = res.RegexReplace;
+                if ( String.IsNullOrEmpty(regexMatch) || String.IsNullOrEmpty(regexReplace))
                 {
                     continue;
                 }
@@ -319,7 +319,7 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
 	    private void _changedFilesList_SelectedIndexChanged( object sender, EventArgs e )
 	    {
 	        IResource selChange = null;
-	        FileChangeWrapper fileChange = (FileChangeWrapper) _changedFilesList.SelectedItem;
+	        FileChange fileChange = (FileChange) _changedFilesList.SelectedItem;
 	        if ( fileChange != null )
 	        {
 	            selChange = fileChange.Resource;
@@ -330,20 +330,20 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
 
 	    private void UpdateSelectedChange()
 	    {
-	        FileChangeWrapper fileChange = (FileChangeWrapper) _changedFilesList.SelectedItem;
+	        FileChange fileChange = (FileChange) _changedFilesList.SelectedItem;
 	        if ( fileChange != null )
 	        {
-	            IResource repository = _changeSet.GetLinkProp( Props.ChangeSetRepository );
-	            RepositoryType repType = SccPlugin.GetRepositoryType( repository.GetStringProp( Props.RepositoryType ) );
-	            string diffText = repType.OnFileChangeSelected( repository, fileChange.Resource );
-	            _lnkFileName.Text = repType.BuildFileName( repository, fileChange.Resource );
+	            IResource repository = _changeSet.GetProp( Props.ChangeSetRepository );
+	            RepositoryType repType = SccPlugin.GetRepositoryType( repository );
+	            string diffText = repType.OnFileChangeSelected( repository, fileChange );
+	            _lnkFileName.Text = repType.BuildFileName( repository, fileChange );
 	            if ( _lnkFileName.Links.Count == 1 )
 	            {
-	                _lnkFileName.Links [0].LinkData = fileChange.Resource;
+	                _lnkFileName.Links [0].LinkData = fileChange;
 	            }
                 
 	            _edtDiff.Clear();
-	            string changeType = fileChange.Resource.GetStringProp( Props.ChangeType );
+	            string changeType = fileChange.ChangeType;
 	            if ( changeType == "add" )
 	            {
 	                _edtDiff.Text = "New file";
@@ -352,14 +352,14 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
 	            {
 	                _edtDiff.Text = "File deleted";
 	            }
-	            else if ( fileChange.Resource.HasProp( Props.Binary ) )
+	            else if ( fileChange.Binary )
 	            {
 	                _edtDiff.Text = "Binary file";
 	            }
 	            else
 	            {
-	                string diff = fileChange.Resource.GetPropText( Props.Diff );
-	                if ( diff.Length == 0 )
+	                string diff = fileChange.Diff;
+	                if ( String.IsNullOrEmpty(diff) )
 	                {
 	                    _edtDiff.Text = diffText;
 	                }
@@ -382,7 +382,7 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
 	    /// </summary>
 	    /// <param name="diff">The input string in unified diff format.</param>
 	    /// <returns>The filtered string in unified diff format.</returns>
-	    private string FilterWhitespaceOnlyDiffs( string diff )
+	    private static string FilterWhitespaceOnlyDiffs( string diff )
 	    {
 	        string[] diffLines = diff.Split( '\n' );
 	        ArrayList resultLines = new ArrayList();
@@ -477,14 +477,13 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
         private void HandleChangesetChanged( object sender, ResourcePropIndexEventArgs e )
         {
             // redisplay resource only if interesting changes occur
-            if ( !e.ChangeSet.IsPropertyChanged( Props.Change ) && !e.ChangeSet.IsPropertyChanged( Core.Props.LongBody ) )
+            if ( !e.ChangeSet.IsPropertyChanged( Props.Change ) && !e.ChangeSet.IsPropertyChanged( Core.PropIds.LongBody ) )
             {
                 return;
             }
             if ( !Core.UserInterfaceAP.IsOwnerThread )
             {
-                Core.UIManager.QueueUIJob( new ResourcePropIndexEventHandler( HandleChangesetChanged ),
-                    sender, e );
+                Core.UIManager.QueueUIJob(() => HandleChangesetChanged(sender, e));
                 return;
             }
             if ( e.Resource == _changeSet )
@@ -501,11 +500,10 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
 	    {
 	        if ( !Core.UserInterfaceAP.IsOwnerThread )
 	        {
-	            Core.UIManager.QueueUIJob( new ResourcePropIndexEventHandler( HandleFileChangeChanged ),
-	                                       sender, e );
+	            Core.UIManager.QueueUIJob( () => HandleFileChangeChanged(sender, e));
 	            return;
 	        }
-	        FileChangeWrapper fileChange = (FileChangeWrapper) _changedFilesList.SelectedItem;
+	        FileChange fileChange = (FileChange) _changedFilesList.SelectedItem;
 	        if ( fileChange != null && fileChange.Resource == e.Resource )
 	        {
 	            UpdateSelectedChange();
@@ -520,9 +518,9 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
 
 	    private void _lnkFileName_LinkClicked( object sender, LinkLabelLinkClickedEventArgs e )
 	    {
-	        IResource repository = _changeSet.GetLinkProp( Props.ChangeSetRepository );
-	        RepositoryType repType = SccPlugin.GetRepositoryType( repository.GetStringProp( Props.RepositoryType ) );
-	        string url = repType.BuildLinkToFile( repository, (IResource) e.Link.LinkData );
+	        IResource repository = _changeSet.GetProp( Props.ChangeSetRepository );
+	        RepositoryType repType = SccPlugin.GetRepositoryType( repository );
+	        string url = repType.BuildLinkToFile( repository, (FileChange) e.Link.LinkData );
 	        if ( url != null )
 	        {
 	            Core.UIManager.OpenInNewBrowserWindow( url );
@@ -533,7 +531,7 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
 	    {
             if ( _linkTextMap.ContainsKey( e.LinkText ) )
             {
-                Core.UIManager.OpenInNewBrowserWindow( (string) _linkTextMap [e.LinkText] );
+                Core.UIManager.OpenInNewBrowserWindow( _linkTextMap [e.LinkText] );
             }
             else
             {
@@ -541,30 +539,7 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
             }
 	    }
 
-	    private class FileChangeWrapper
-	    {
-	        private IResource _fileChange;
-
-	        public FileChangeWrapper( IResource fileChange )
-	        {
-	            _fileChange = fileChange;
-	        }
-
-	        public IResource Resource
-	        {
-	            get { return _fileChange; }
-	        }
-
-	        public override string ToString()
-	        {
-	            return String.Format( "{0}#{1} ({2})",
-	                                  _fileChange.GetStringProp( Core.Props.Name ),
-	                                  _fileChange.GetIntProp( Props.Revision ),
-	                                  _fileChange.GetStringProp( Props.ChangeType ) );
-	        }
-	    }
-
-	    private enum CFM : uint
+        private enum CFM : uint
 	    {
 	        BOLD			= 0x00000001,
 	        ITALIC			= 0x00000002,
@@ -723,5 +698,15 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
 	        ASSOCIATEFONT2	= 0x0040,	// Associate plane-2 (surrogate) font
 	    }
 	}
+
+    internal partial class FileChange
+    {
+        public override string ToString()
+        {
+            return String.Format("{0}#{1} ({2})", Name, Revision, ChangeType);
+        }
+
+    }
+
 }
 

@@ -4,12 +4,12 @@
 /// </copyright>
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
 using System.Windows.Forms;
 using JetBrains.JetListViewLibrary;
 using JetBrains.Omea.Base;
-using JetBrains.Omea.Containers;
 using JetBrains.Omea.FiltersManagement;
 using JetBrains.Omea.OpenAPI;
 
@@ -23,7 +23,7 @@ namespace JetBrains.Omea.GUIControls
         private WorkspaceCategoryFilter _workspaceCategoryFilter;
         private ViewsCategoriesChildProvider _vcChildProvider;
         private IResource _lastActiveWorkspace = null;
-        private CategoryTotalCountDecorator _totalCountDecorator = new CategoryTotalCountDecorator();
+        private readonly CategoryTotalCountDecorator _totalCountDecorator = new CategoryTotalCountDecorator();
 
         public ViewsCategoriesPane()
 	    {
@@ -95,9 +95,9 @@ namespace JetBrains.Omea.GUIControls
     /// </summary>
     internal class WorkspaceCategoryFilter: IJetListViewNodeFilter, IDisposable
     {
-        private IResource _workspace;
-        private IResourceList _workspaceCategories;
-        private IntArrayList _workspaceCategoryList = new IntArrayList();
+        private readonly IResource _workspace;
+        private readonly IResourceList _workspaceCategories;
+        private readonly List<int> _workspaceCategoryList = new List<int>();
         
         internal WorkspaceCategoryFilter( IResource workspace, IResourceList workspaceCategories )
         {
@@ -261,7 +261,7 @@ namespace JetBrains.Omea.GUIControls
 					return DragDropEffects.None;
 
 				// Collect all the direct and indirect parents of the droptarget; then we'll check to avoid dropping parent on its children
-				IntArrayList parentList = new IntArrayList();
+				List<int> parentList = new List<int>();
 				IResource parent = targetResource;
 				while( parent != null )
 				{
@@ -277,15 +277,15 @@ namespace JetBrains.Omea.GUIControls
 						return DragDropEffects.None;
 					// Can drop only views, view-folders, and category-tree-roots on the views'n'cats tree root
 					if( !(
-						(FilterManager.IsViewOrFolder( res ))
+						(FilterRegistry.IsViewOrFolder( res ))
 							|| ((res.Type == "ResourceTreeRoot") && (res.HasProp( "RootResourceType" )) && (res.GetStringProp( "RootResourceType" ).StartsWith( "Category" )))
 						) )
 						return DragDropEffects.None;
 				}
 				return DragDropEffects.Move;
 			}
-			else
-				return DragDropEffects.None;
+
+            return DragDropEffects.None;
 		}
 
 		public void AddResourceDragData( IResourceList dragResources, IDataObject dataObject )

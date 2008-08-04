@@ -7,6 +7,7 @@ using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
+using GUIControls.Controls;
 using JetBrains.JetListViewLibrary;
 using JetBrains.Omea.OpenAPI;
 using JetBrains.Omea.ResourceTools;
@@ -19,20 +20,20 @@ namespace JetBrains.Omea.GUIControls
 	/// </summary>
 	public class ResourceTreePaneBase: AbstractViewPane, IResourceTreePane, IContextProvider, ICommandProcessor, IColorSchemeable
 	{
-        private GradientToolbar _toolBar;
+        private ToolStrip _toolBar;
 		/// <summary> 
 		/// Required designer variable.
 		/// </summary>
 		private Container components = null;
 
 	    protected ResourceListView2 _resourceTree;
-        private UnreadNodeDecorator _unreadDecorator;
-        private RichTextColumn _textColumn;
+        private readonly ToolbarActionManager _toolbarManager;
+        private readonly UnreadNodeDecorator _unreadDecorator;
+        private readonly RichTextColumn _textColumn;
 	    protected ResourceTreeDataProvider _dataProvider;
 	    protected int _parentProperty = -1;
 	    protected IResource _rootResource;
         private string _rootResourceType;
-        private ToolbarActionManager _toolbarManager;
 	    protected string[] _workspaceFilterTypes;
         private ResourceToolTipCallback _resourceToolTipCallback;
         private bool _populated = false;
@@ -102,22 +103,16 @@ namespace JetBrains.Omea.GUIControls
 		/// </summary>
 		private void InitializeComponent()
 		{
-            this._toolBar = new JetBrains.Omea.GUIControls.GradientToolbar();
+            this._toolBar = new ToolStrip();
             this.SuspendLayout();
             // 
             // _toolBar
             // 
-            this._toolBar.Appearance = System.Windows.Forms.ToolBarAppearance.Flat;
-            this._toolBar.ButtonSize = new System.Drawing.Size(29, 26);
-            this._toolBar.Divider = false;
-            this._toolBar.DropDownArrows = true;
-            this._toolBar.GradientEndColor = System.Drawing.SystemColors.ControlDark;
-            this._toolBar.GradientStartColor = System.Drawing.Color.White;
             this._toolBar.Location = new System.Drawing.Point(0, 0);
             this._toolBar.Name = "_toolBar";
-            this._toolBar.ShowToolTips = true;
             this._toolBar.Size = new System.Drawing.Size(150, 32);
             this._toolBar.TabIndex = 2;
+            this._toolBar.Renderer = new GradientRenderer( Color.White, SystemColors.ControlDark );
             // 
             // JetResourceTreePane
             // 
@@ -159,7 +154,7 @@ namespace JetBrains.Omea.GUIControls
                 if ( _rootResourceType != null )
                 {
                     _rootResource = Core.ResourceTreeManager.GetRootForType( _rootResourceType );
-                    _workspaceFilterTypes = new string[] { _rootResourceType };
+                    _workspaceFilterTypes = new[] { _rootResourceType };
                 }
             }
         }
@@ -191,7 +186,8 @@ namespace JetBrains.Omea.GUIControls
         public override void Populate()
 	    {
             _populated = true;
-            if ( _toolBar.Buttons.Count == 0 )
+//            if ( _toolBar.Buttons.Count == 0 )
+            if ( _toolBar.Items.Count == 0 )
             {
                 _toolBar.Visible = false;
             }
@@ -516,8 +512,10 @@ namespace JetBrains.Omea.GUIControls
 	        set
 	        {
 	            _colorScheme = value;
+/*
                 _toolBar.GradientStartColor = ColorScheme.GetStartColor( _colorScheme, "Toolbar.Background", Color.White );
                 _toolBar.GradientEndColor = ColorScheme.GetEndColor( _colorScheme, "Toolbar.Background", SystemColors.ControlDark );
+*/
             }
 	    }
 	}

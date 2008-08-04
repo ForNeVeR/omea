@@ -146,12 +146,10 @@ namespace JetBrains.Omea.GUIControls
         
         private delegate void SplitDelegate( IResource contact, IResource account );
 
-        private static void HardRemoveAccountFromContact( IResource accnt, IResource contact )
-        {
-            Core.UIManager.RunWithProgressWindow( "Removing Account from a Contact",
-                new SplitDelegate( (Core.ContactManager as ContactManager).HardRemoveAccountFromContact ),
-                contact, accnt );
-        }
+    	private static void HardRemoveAccountFromContact(IResource accnt, IResource contact)
+    	{
+    		Core.UIManager.RunWithProgressWindow("Removing Account from a Contact", delegate { ((ContactManager)Core.ContactManager).HardRemoveAccountFromContact(contact, accnt); });
+    	}
 
         private delegate IResource FindOrCreateEmailAccountDelegate(string email);
         

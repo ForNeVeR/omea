@@ -5,6 +5,7 @@
 
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Text;
@@ -132,24 +133,25 @@ namespace JetBrains.Omea
         public  bool                _isJobTraceSuppressed = false;
         private bool                _isCriticalIOCaseFlag = false,
                                     _isManuallySuspended = false;
-        private object              _isIdleIndexing = null;
-        private readonly IntHashSet _pendingDocs = new IntHashSet( 1000 );
+        private object              _isIdleIndexing;
         private SpinWaitLock        _pendingDocsLock = new SpinWaitLock();
-        private readonly AbstractNamedJob    _processPendingDocsDelegate;
-        private int                 _documentsIndexed = 0;
+        private readonly IntHashSet _pendingDocs = new IntHashSet( 1000 );
+        private readonly DelegateJob    _processPendingDocsDelegate;
+        private int                 _documentsIndexed;
 
         public event EventHandler   IndexLoaded;
 
         #region Ctor and Initialization
         internal TextIndexManager() : base( false )
         {
-            _processPendingDocsDelegate = new DelegateJob( "Indexing documents", 
-                                                            new MethodInvoker( ProcessPendingDocs ), new object[] {});
+            _processPendingDocsDelegate = new DelegateJob( "Indexing documents", new MethodInvoker( ProcessPendingDocs ), new object[] {});
+
             if( Core.ResourceStore.PropTypes.Exist( "QueuedForIndexing" ) ) 
             {
                 Core.ResourceStore.PropTypes.Delete( Core.ResourceStore.PropTypes[ "QueuedForIndexing" ].Id );
             }
             _statusWriter = Core.UIManager.GetStatusWriter( typeof(FullTextIndexer), StatusPane.UI );
+            _isJobTraceSuppressed = Core.SettingStore.ReadBool( "TextIndexing", "SuppressJobTraces", false );
 
             _textIndexer = new FullTextIndexer();
             _textIndexer.IndexLoaded += IndexLoadedNotification;
@@ -171,10 +173,7 @@ namespace JetBrains.Omea
             SetupDefragmentationQueue();
 
             _switchToIdleJob = new SwitchToIdleModeJob( this );
-
             QueueSwitchToIdleModeJob();
-
-            _isJobTraceSuppressed = Core.SettingStore.ReadBool( "TextIndexing", "SuppressJobTraces", false );
 
             Core.UIManager.RegisterIndicatorLight( "Text Index Manager", this, 30,
                                                    MainFrame.LoadIconFromAssembly( "textindex_idle.ico" ),
@@ -196,14 +195,16 @@ namespace JetBrains.Omea
         {
             _queryManager = new TextQueriesOptimizationManager( this, _textIndexer );
             _textIndexer.Initialize();
-            if (!IsIndexPresent())
+            if( !IsIndexPresent() )
             {
-                RebuildIndexImpl();
+                if( !IdleIndexingMode )
+                {
+                    RebuildIndexImpl();
+                }
             }
             else
             {
                 FixUnindexedResources();
-                FixUnappliedRuleResources();
             }
             ThreadStarted -= TextIndexProcessor_ThreadStarted;
             ThreadPriority = System.Threading.ThreadPriority.Lowest;
@@ -297,12 +298,13 @@ namespace JetBrains.Omea
         #endregion SearchProviders Registration API
 
         #region Getters/Setters
-        public      FullTextIndexer FullTextIndexer    {  get { return _textIndexer; } }
-        public      int  UprocessedJobsInQueue         {  get { return _pendingDocs.Count; } }
+        public  FullTextIndexer FullTextIndexer    {  get { return _textIndexer; } }
+        public  int  UprocessedJobsInQueue         {  get { return _pendingDocs.Count; } }
 
         public bool IdleIndexingMode
         {
-            get {
+            get
+            {
                 if( _isIdleIndexing == null )
                 {
                     _isIdleIndexing = ObjectStore.ReadBool( "TextIndex", "IdleIndexingMode", false );
@@ -330,8 +332,10 @@ namespace JetBrains.Omea
             ExceptionHandler = handler;
         }
 
-        //  NextUpdateFinished event is raised when new portion of documents is merged
-        //  into main or incremental index chunk and thus is available for searching.
+        ///<summary>
+        /// NextUpdateFinished event is raised when new portion of documents is merged
+        /// into main or incremental index chunk and thus is available for searching.
+        /// </summary>
         public void SetUpdateResultHandler( UpdateFinishedEventHandler h )
         {
             _textIndexer.NextUpdateFinished += h;
@@ -485,12 +489,6 @@ namespace JetBrains.Omea
             {
                 _textIndexer.EndBatchUpdate();
             }
-            catch( NullReferenceException ex )
-            {
-                Core.ReportException( ex, ExceptionReportFlags.AttachLog );
-                RebuildIndex();
-                return;
-            }
             catch( FormatException ex )
             {
                 Core.ReportException( ex, ExceptionReportFlags.AttachLog );
@@ -535,6 +533,7 @@ namespace JetBrains.Omea
                 //  before the indexing.
                 if( docID >= 0 )
                 {
+                    #region Pending Data Processing
                     _pendingDocsLock.Enter();
                     try
                     {
@@ -544,6 +543,8 @@ namespace JetBrains.Omea
                     {
                         _pendingDocsLock.Exit();
                     }
+                    #endregion Pending Data Processing
+
                     if( invokeProcessingPendingDocs ) 
                     {
                         QueueProcessingPendingDocs();
@@ -554,7 +555,7 @@ namespace JetBrains.Omea
 
         private void QueueProcessingPendingDocs()
         {
-            QueueJobAt( DateTime.Now.AddSeconds( 5 ), new MethodInvoker( DeferredProcessingPendingDocs ) );
+            QueueJobAt( DateTime.Now.AddSeconds( 3 ), new MethodInvoker( DeferredProcessingPendingDocs ) );
         }
         private void DeferredProcessingPendingDocs()
         {
@@ -574,28 +575,10 @@ namespace JetBrains.Omea
             int processed = 0;
             while( ( !IdleIndexingMode || Core.IsSystemIdle ) && !Finished && !IsIndexingSuspended ) 
             {
-                int docId = -1;
-                _pendingDocsLock.Enter();
-                try
-                {
-                    foreach( IntHashSet.Entry e in _pendingDocs )
-                    {
-                        docId = e.Key;
-                        break;
-                    }
-                    if( docId >= 0 )
-                    {
-                        _pendingDocs.Remove( docId );
-                    }
-                }
-                finally
-                {
-                    _pendingDocsLock.Exit();
-                }
+                int docId = GetNextDocId();
                 if( docId == -1 )
-                {
                     break;
-                }
+
                 processed++;
                 if( JobStartingDelegate != null )
                 {
@@ -618,6 +601,29 @@ namespace JetBrains.Omea
             }
         }
 
+        private int  GetNextDocId()
+        {
+            int docId = -1;
+            _pendingDocsLock.Enter();
+            try
+            {
+                foreach( IntHashSet.Entry e in _pendingDocs )
+                {
+                    docId = e.Key;
+                    break;
+                }
+                if( docId >= 0 )
+                {
+                    _pendingDocs.Remove( docId );
+                }
+            }
+            finally
+            {
+                _pendingDocsLock.Exit();
+            }
+            return docId;
+        }
+
         private void IndexDocument( int docId )
         {
             string jobNameSaved = _processPendingDocsDelegate.Name;
@@ -633,7 +639,7 @@ namespace JetBrains.Omea
                         builder.Append( "Indexing \"" );
                         builder.Append( resource.DisplayName );
                         builder.Append( '\"' );
-                        _processPendingDocsDelegate.Name = builder.ToString();
+                        _processPendingDocsDelegate.Rename(builder.ToString());
                     }
                     finally
                     {
@@ -679,12 +685,12 @@ namespace JetBrains.Omea
             }
             finally
             {
-                _processPendingDocsDelegate.Name = jobNameSaved;
+                _processPendingDocsDelegate.Rename(jobNameSaved);
             }
         }
         #endregion
 
-        //---------------------------------------------------------------------
+        #region Delete Document
         public void DeleteDocumentQueued( int resID )
         {
             if( IsIndexPresent() ) 
@@ -698,6 +704,7 @@ namespace JetBrains.Omea
             if( IsIndexPresent() )
                 _textIndexer.DeleteDocument( docID );
         }
+        #endregion Delete Document
 
         public bool IsIndexPresent()
         {
@@ -744,32 +751,6 @@ namespace JetBrains.Omea
             IterateOverResources( true );
         }
 
-        /// <summary>
-        ///  Collect all resources for which we did not manage to apply query
-        ///  rules (this situation happens when we closing application when merging
-        ///  chunk) and call the corresponding handler from FilterManager.
-        /// </summary>
-        private void  FixUnappliedRuleResources()
-        {
-            IResourceList list = Core.ResourceStore.FindResourcesWithProp( null, "QueryRulesRerunRequired" );
-            IResourceIdCollection coll = list.ResourceIds;
-            IntArrayList ids = IntArrayListPool.Alloc();
-            try
-            {
-                foreach (int i in coll)
-                    ids.Add( i );
-
-                _textIndexer.PropagateSearchableDocuments( ids );
-            }
-            finally
-            {
-                IntArrayListPool.Dispose( ids );
-            }
-
-            for( int i = 0; i < list.Count; i++ )
-                new ResourceProxy( list[ i ] ).DeleteProp( "QueryRulesRerunRequired" );
-        }
-
         private void  IterateOverResources( bool checkInIndex )
         {
             foreach( IResourceType resType in Core.ResourceStore.ResourceTypes )
@@ -808,7 +789,7 @@ namespace JetBrains.Omea
         ///  to the following criteria:
         ///  - have valid name
         ///  - be indexable
-        ///  - its oqner plugin must be loaded
+        ///  - its owner plugin must be loaded
         ///  - even if its plugin is loaded (or the owner may be omitted), it
         ///    must be either a file (for a FilePlugin to be able to index it) or
         ///    have some ITextIndexProvider, specific for this particular
@@ -822,6 +803,7 @@ namespace JetBrains.Omea
                     ( resType.HasFlag( ResourceTypeFlags.FileFormat ) ||
                       Core.PluginLoader.HasTypedTextProvider( resType.Name ));
         }
+
         #endregion Rebuild or Upgrade Index
 
         #region Free Space Analysis
@@ -905,7 +887,7 @@ namespace JetBrains.Omea
         private static IResourceList ConvertResultList( Entry[] entries, bool isSingleTerm,
                                                         int[] inDocIDs, out SimplePropertyProvider provider )
         {
-            IntArrayList IDs = new IntArrayList();
+            List<int> IDs = new List<int>();
             provider = new SimplePropertyProvider();
             if ( entries != null )
             {
@@ -926,9 +908,6 @@ namespace JetBrains.Omea
             return result;
         }
         #endregion Query Processing Marshaling
-        
-        #region Upgrade Code
-        #endregion Upgrade Code
     }
 
     #region SearchHighlightDataProvider
@@ -1059,9 +1038,9 @@ namespace JetBrains.Omea
 			//-----------------------------------------------------------------
 			//  Create condition from the query
 			//-----------------------------------------------------------------
-			IFilterManager fMgr = Core.FilterManager;
-			IResource queryCondition = ((FilterManager) fMgr).CreateStandardConditionAux( null, query, ConditionOp.QueryMatch );
-			FilterManager.ReferCondition2Template( queryCondition, fMgr.Std.BodyMatchesSearchQueryXName );
+			IFilterRegistry fMgr = Core.FilterRegistry;
+			IResource queryCondition = ((FilterRegistry) fMgr).CreateStandardConditionAux( null, query, ConditionOp.QueryMatch );
+			FilterRegistry.ReferCondition2Template( queryCondition, fMgr.Std.BodyMatchesSearchQueryXName );
 
             conditions.Add( queryCondition );
 
@@ -1069,12 +1048,12 @@ namespace JetBrains.Omea
             bool showContexts = Core.SettingStore.ReadBool( "Resources", "ShowSearchContext", true );
             bool showDelItems = Core.SettingStore.ReadBool( "Search", "ShowDeletedItems", true );
             IResource[]  condsList = (IResource[]) conditions.ToArray( typeof(IResource) );
-			IResource view = Core.ResourceStore.FindUniqueResource( FilterManagerProps.ViewResName, "DeepName", Core.FilterManager.ViewNameForSearchResults );
+			IResource view = Core.ResourceStore.FindUniqueResource( FilterManagerProps.ViewResName, "DeepName", Core.FilterRegistry.ViewNameForSearchResults );
 			if( view != null )
                 fMgr.ReregisterView( view, fMgr.ViewNameForSearchResults, resTypes, condsList, null );
 			else
                 view = fMgr.RegisterView( fMgr.ViewNameForSearchResults, resTypes, condsList, null );
-			Core.FilterManager.SetVisibleInAllTabs( view );
+			Core.FilterRegistry.SetVisibleInAllTabs( view );
 
 			//-----------------------------------------------------------------
 			//  Set additional properties characteristic only for "Search Results"

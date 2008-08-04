@@ -6,112 +6,113 @@
   </copyright>
 -->
 <Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{3F0FF59D-9EEB-407E-8DD5-7DE159ABBC35}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <RootNamespace>JetBrains.Interop.WinApi</RootNamespace>
-    <AssemblyName>Interop.WinApi</AssemblyName>
-    <ProductHomeDir>$(MSBuildProjectDirectory)/../../..</ProductHomeDir>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="JetBrains.Annotations, Version=4.0.0.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Lib\References\JetBrains.Annotations.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="src\Declarations\Constants\AccessRights.cs" />
-    <Compile Include="src\AssemblyInfo.cs" />
-    <Compile Include="src\Declarations\Constants\CombineRgnStyles.cs" />
-    <Compile Include="src\Declarations\Constants\DialogBoxCommandIds.cs" />
-    <Compile Include="src\Declarations\Constants\DialogCodes.cs" />
-    <Compile Include="src\Declarations\Constants\HeaderItemFlag.cs" />
-    <Compile Include="src\Declarations\Constants\HeaderItemMask.cs" />
-    <Compile Include="src\Declarations\Constants\MessageBoxFlags.cs" />
-    <Compile Include="src\Declarations\Constants\MsgWaitForMultipleObjectsFlags.cs" />
-    <Compile Include="src\Declarations\Constants\OFN.cs" />
-    <Compile Include="src\Declarations\Constants\QueueStatusFlags.cs" />
-    <Compile Include="src\Declarations\Constants\SetLayeredWindowAttributesFlags.cs" />
-    <Compile Include="src\Declarations\Constants\StockLogicalObjects.cs" />
-    <Compile Include="src\Declarations\Constants\SystemMetricsCodes.cs" />
-    <Compile Include="src\Declarations\Constants\WinDef.cs" />
-    <Compile Include="src\Declarations\Constants\WindowsNotify.cs" />
-    <Compile Include="src\Declarations\Constants\WinError.cs" />
-    <Compile Include="src\Declarations\Gdi32Dll.cs" />
-    <Compile Include="src\Declarations\Constants\HwndSpecial.cs" />
-    <Compile Include="src\Declarations\Constants\KeyStateMasks.cs" />
-    <Compile Include="src\Declarations\Constants\PenStyles.cs" />
-    <Compile Include="src\Declarations\Constants\PrintWindowFlags.cs" />
-    <Compile Include="src\Declarations\Constants\WmActivateCodes.cs" />
-    <Compile Include="src\Declarations\Constants\WmMouseActivateReturnCodes.cs" />
-    <Compile Include="src\Declarations\Interfaces\IClassFactory.cs" />
-    <Compile Include="src\Declarations\Kernel32Dll.cs" />
-    <Compile Include="src\Declarations\Constants\WindowClassStyles.cs" />
-    <Compile Include="src\Declarations\Constants\WindowExStyles.cs" />
-    <Compile Include="src\Declarations\Constants\WindowStyles.cs" />
-    <Compile Include="src\Declarations\Constants\ShowWindowCommands.cs" />
-    <Compile Include="src\Declarations\Constants\EditBoxControlMargins.cs" />
-    <Compile Include="src\Declarations\Macros.cs" />
-    <Compile Include="src\Declarations\Structures\DLGITEMTEMPLATE.cs" />
-    <Compile Include="src\Declarations\Structures\DLGTEMPLATE.cs" />
-    <Compile Include="src\Declarations\Structures\HDITEM.cs" />
-    <Compile Include="src\Declarations\Structures\MEMORYSTATUSEX.cs" />
-    <Compile Include="src\Declarations\Structures\OFNOTIFYEX.cs" />
-    <Compile Include="src\Declarations\Structures\OPENFILENAME.cs" />
-    <Compile Include="src\Declarations\Structures\POINT.cs" />
-    <Compile Include="src\Declarations\Structures\PROCESSENTRY32.cs" />
-    <Compile Include="src\Declarations\Constants\HResults.cs" />
-    <Compile Include="src\Declarations\Constants\GetAncestorFlags.cs" />
-    <Compile Include="src\Declarations\Constants\KeyAccessRights.cs" />
-    <Compile Include="src\Win32InteropException.cs" />
-    <Compile Include="src\Modules\UI\ControlPaintUnsafe.cs" />
-    <Compile Include="src\NoReorderAttribute.cs" />
-    <Compile Include="src\Declarations\User32Dll.cs" />
-    <Compile Include="src\Declarations\UxThemeDll.cs" />
-    <Compile Include="src\Declarations\Structures\RECT.cs" />
-    <Compile Include="src\Declarations\Constants\TH32CS.cs" />
-    <Compile Include="src\Declarations\Constants\ScrollWindowFlags.cs" />
-    <Compile Include="src\Declarations\Constants\SetWindowPosFlags.cs" />
-    <Compile Include="src\Declarations\Constants\WindowsMessages.cs" />
-    <Compile Include="src\Declarations\Constants\WindowLongPtrIndex.cs" />
-    <Compile Include="src\Wrappers\Win32Window.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{B4F97281-0DBD-4835-9ED8-7DFB966E87FF}" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="src\Declarations\Interop Rules.txt" />
-  </ItemGroup>
-  <Import Project="$(ProductHomeDir)/Build/Product.BeforeMicrosoftCommon.Targets" />
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <Import Project="$(ProductHomeDir)/Build/Product.AfterMicrosoftCommon.Targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+	<PropertyGroup>
+		<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+		<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+		<ProductVersion>9.0.21022</ProductVersion>
+		<SchemaVersion>2.0</SchemaVersion>
+		<ProjectGuid>{3F0FF59D-9EEB-407E-8DD5-7DE159ABBC35}</ProjectGuid>
+		<OutputType>Library</OutputType>
+		<RootNamespace>JetBrains.Interop.WinApi</RootNamespace>
+		<AssemblyName>Interop.WinApi</AssemblyName>
+		<ProductHomeDir>$(MSBuildProjectDirectory)/../../..</ProductHomeDir>
+		<TargetFrameworkVersion>v3.0</TargetFrameworkVersion>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+		<DebugSymbols>true</DebugSymbols>
+		<DebugType>full</DebugType>
+		<Optimize>false</Optimize>
+		<DefineConstants>DEBUG;TRACE</DefineConstants>
+		<ErrorReport>prompt</ErrorReport>
+		<WarningLevel>4</WarningLevel>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+		<DebugType>pdbonly</DebugType>
+		<Optimize>true</Optimize>
+		<DefineConstants>TRACE</DefineConstants>
+		<ErrorReport>prompt</ErrorReport>
+		<WarningLevel>4</WarningLevel>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+	</PropertyGroup>
+	<ItemGroup>
+		<Reference Include="JetBrains.Annotations, Version=4.0.0.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>..\..\..\Lib\References\JetBrains.Annotations.dll</HintPath>
+		</Reference>
+		<Reference Include="System" />
+		<Reference Include="System.Data" />
+		<Reference Include="System.Drawing" />
+		<Reference Include="System.Windows.Forms" />
+		<Reference Include="System.Xml" />
+	</ItemGroup>
+	<ItemGroup>
+		<Compile Include="src\Declarations\Constants\AccessRights.cs" />
+		<Compile Include="src\AssemblyInfo.cs" />
+		<Compile Include="src\Declarations\Constants\CombineRgnStyles.cs" />
+		<Compile Include="src\Declarations\Constants\DialogBoxCommandIds.cs" />
+		<Compile Include="src\Declarations\Constants\DialogCodes.cs" />
+		<Compile Include="src\Declarations\Constants\HeaderItemFlag.cs" />
+		<Compile Include="src\Declarations\Constants\HeaderItemMask.cs" />
+		<Compile Include="src\Declarations\Constants\MessageBoxFlags.cs" />
+		<Compile Include="src\Declarations\Constants\MsgWaitForMultipleObjectsFlags.cs" />
+		<Compile Include="src\Declarations\Constants\OFN.cs" />
+		<Compile Include="src\Declarations\Constants\QueueStatusFlags.cs" />
+		<Compile Include="src\Declarations\Constants\SetLayeredWindowAttributesFlags.cs" />
+		<Compile Include="src\Declarations\Constants\StockLogicalObjects.cs" />
+		<Compile Include="src\Declarations\Constants\SystemMetricsCodes.cs" />
+		<Compile Include="src\Declarations\Constants\WinDef.cs" />
+		<Compile Include="src\Declarations\Constants\WindowsNotify.cs" />
+		<Compile Include="src\Declarations\Constants\WinError.cs" />
+		<Compile Include="src\Declarations\Gdi32Dll.cs" />
+		<Compile Include="src\Declarations\Constants\HwndSpecial.cs" />
+		<Compile Include="src\Declarations\Constants\KeyStateMasks.cs" />
+		<Compile Include="src\Declarations\Constants\PenStyles.cs" />
+		<Compile Include="src\Declarations\Constants\PrintWindowFlags.cs" />
+		<Compile Include="src\Declarations\Constants\WmActivateCodes.cs" />
+		<Compile Include="src\Declarations\Constants\WmMouseActivateReturnCodes.cs" />
+		<Compile Include="src\Declarations\Interfaces\IClassFactory.cs" />
+		<Compile Include="src\Declarations\Kernel32Dll.cs" />
+		<Compile Include="src\Declarations\Constants\WindowClassStyles.cs" />
+		<Compile Include="src\Declarations\Constants\WindowExStyles.cs" />
+		<Compile Include="src\Declarations\Constants\WindowStyles.cs" />
+		<Compile Include="src\Declarations\Constants\ShowWindowCommands.cs" />
+		<Compile Include="src\Declarations\Constants\EditBoxControlMargins.cs" />
+		<Compile Include="src\Declarations\Macros.cs" />
+		<Compile Include="src\Declarations\Structures\DLGITEMTEMPLATE.cs" />
+		<Compile Include="src\Declarations\Structures\DLGTEMPLATE.cs" />
+		<Compile Include="src\Declarations\Structures\HDITEM.cs" />
+		<Compile Include="src\Declarations\Structures\MEMORYSTATUSEX.cs" />
+		<Compile Include="src\Declarations\Structures\OFNOTIFYEX.cs" />
+		<Compile Include="src\Declarations\Structures\OPENFILENAME.cs" />
+		<Compile Include="src\Declarations\Structures\POINT.cs" />
+		<Compile Include="src\Declarations\Structures\PROCESSENTRY32.cs" />
+		<Compile Include="src\Declarations\Constants\HResults.cs" />
+		<Compile Include="src\Declarations\Constants\GetAncestorFlags.cs" />
+		<Compile Include="src\Declarations\Constants\KeyAccessRights.cs" />
+		<Compile Include="src\Win32InteropException.cs" />
+		<Compile Include="src\Modules\UI\ControlPaintUnsafe.cs" />
+		<Compile Include="src\NoReorderAttribute.cs" />
+		<Compile Include="src\Declarations\User32Dll.cs" />
+		<Compile Include="src\Declarations\UxThemeDll.cs" />
+		<Compile Include="src\Declarations\Structures\RECT.cs" />
+		<Compile Include="src\Declarations\Constants\TH32CS.cs" />
+		<Compile Include="src\Declarations\Constants\ScrollWindowFlags.cs" />
+		<Compile Include="src\Declarations\Constants\SetWindowPosFlags.cs" />
+		<Compile Include="src\Declarations\Constants\WindowsMessages.cs" />
+		<Compile Include="src\Declarations\Constants\WindowLongPtrIndex.cs" />
+		<Compile Include="src\Wrappers\Win32Window.cs" />
+	</ItemGroup>
+	<ItemGroup>
+		<Service Include="{B4F97281-0DBD-4835-9ED8-7DFB966E87FF}" />
+	</ItemGroup>
+	<ItemGroup>
+		<Content Include="src\Declarations\Interop Rules.txt" />
+	</ItemGroup>
+	<Import Project="$(ProductHomeDir)/Build/Product.BeforeMicrosoftCommon.Targets" />
+	<Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+	<Import Project="$(ProductHomeDir)/Build/Product.AfterMicrosoftCommon.Targets" />
+	<!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>

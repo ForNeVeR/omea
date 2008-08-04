@@ -59,12 +59,28 @@ namespace JetBrains.Omea.PicoCore
 	        throw new NotImplementedException();
 	    }
 
+	    public IResourceList FindResources<T>(string resType, PropId<T> propId, T propValue)
+	    {
+	        throw new NotImplementedException();
+	    }
+
+	    public BusinessObjectList<T> FindResources<T, V>(ResourceTypeId<T> resType, PropId<V> propId, V propValue)
+	        where T : BusinessObject
+	    {
+	        throw new NotImplementedException();
+	    }
+
 	    public IResourceList FindResourcesLive( string resType, int propId, object propValue )
 	    {
 	        throw new NotImplementedException();
 	    }
 
 	    public IResourceList FindResourcesLive( string resType, string propName, object propValue )
+	    {
+	        throw new NotImplementedException();
+	    }
+
+	    public IResourceList FindResourcesLive<T>(string resType, PropId<T> propName, T propValue)
 	    {
 	        throw new NotImplementedException();
 	    }
@@ -119,12 +135,22 @@ namespace JetBrains.Omea.PicoCore
 	        throw new NotImplementedException();
 	    }
 
+	    public IResourceList FindResourcesWithProp<T>(string resType, PropId<T> propId)
+	    {
+	        throw new NotImplementedException();
+	    }
+
 	    public IResourceList FindResourcesWithPropLive( string resType, int propId )
 	    {
 	        throw new NotImplementedException();
 	    }
 
 	    public IResourceList FindResourcesWithPropLive( string resType, string propName )
+	    {
+	        throw new NotImplementedException();
+	    }
+
+	    public IResourceList FindResourcesWithPropLive<T>(string resType, PropId<T> propId)
 	    {
 	        throw new NotImplementedException();
 	    }
@@ -140,6 +166,11 @@ namespace JetBrains.Omea.PicoCore
 	    }
 
 	    public IResourceList GetAllResources( string resType )
+	    {
+	        throw new NotImplementedException();
+	    }
+
+	    public BusinessObjectList<T> GetAllResources<T>(ResourceTypeId<T> resType) where T : BusinessObject
 	    {
 	        throw new NotImplementedException();
 	    }
@@ -192,6 +223,12 @@ namespace JetBrains.Omea.PicoCore
 	    }
 
 	    public void RegisterLinkRestriction( string fromResourceType, int linkType, string toResourceType, int minCount, int maxCount )
+	    {
+	        throw new NotImplementedException();
+	    }
+
+	    public void RegisterLinkRestriction(string fromResourceType, PropId<IResource> linkType, string toResourceType,
+	                                        int minCount, int maxCount)
 	    {
 	        throw new NotImplementedException();
 	    }
@@ -284,6 +321,13 @@ namespace JetBrains.Omea.PicoCore
             return Register( name, dataType, PropTypeFlags.Normal );
         }
 
+
+        public PropId<T> Register<T>(string name, PropDataTypeGeneric<T> dataType)
+        {
+            int id = Register(name, dataType.Type);
+            return new PropId<T>(id);
+        }
+
         public int Register( string name, PropDataType dataType, PropTypeFlags flags )
         {
             _propTypes [name] = dataType;
@@ -304,6 +348,28 @@ namespace JetBrains.Omea.PicoCore
         }
 
         public void RegisterDisplayName( int propId, string fromDisplayName, string toDisplayName )
+        {
+            throw new NotImplementedException();
+        }
+
+        public void RegisterDisplayName(PropId<IResource> propId, string fromDisplayName, string toDisplayName)
+        {
+            throw new NotImplementedException();
+        }
+
+
+        public PropId<T> Register<T>(string name, PropDataTypeGeneric<T> dataType, PropTypeFlags flags,
+                                     IPlugin ownerPlugin)
+        {
+            throw new NotImplementedException();
+        }
+
+        public PropId<T> Register<T>(string name, PropDataTypeGeneric<T> dataType, PropTypeFlags flags)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void RegisterDisplayName<T>(PropId<T> propId, string displayName)
         {
             throw new NotImplementedException();
         }
@@ -578,6 +644,11 @@ namespace JetBrains.Omea.PicoCore
             throw new NotImplementedException();
         }
 
+        public IResource Find(Predicate<IResource> predicate)
+        {
+            throw new NotImplementedException();
+        }
+
         public int Count
         {
             get { return _resources.Count; }
@@ -707,6 +778,16 @@ namespace JetBrains.Omea.PicoCore
             _properties [propId] = propValue;
         }
 
+        public void SetProp<T>(PropId<T> propId, T value)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SetReverseLinkProp(PropId<IResource> propId, IResource propValue)
+        {
+            throw new NotImplementedException();
+        }
+
         public void DeleteProp( string propName )
         {
             throw new NotImplementedException();
@@ -726,6 +807,11 @@ namespace JetBrains.Omea.PicoCore
         {
             AddLinkSide( propId, this, (MockResource) target );
             AddLinkSide( propId, (MockResource) target, this );
+        }
+
+        public void AddLink(PropId<IResource> propId, IResource target)
+        {
+            AddLink(propId.Id, target);
         }
 
         private static void AddLinkSide( int propId, MockResource source, MockResource target )
@@ -770,6 +856,11 @@ namespace JetBrains.Omea.PicoCore
         public object GetProp( string propName )
         {
             return _properties [_store.GetPropId( propName )];
+        }
+
+        public T GetProp<T>(PropId<T> propId)
+        {
+            return (T) GetProp(propId.Id);
         }
 
         public string GetStringProp( int propId )
@@ -842,6 +933,11 @@ namespace JetBrains.Omea.PicoCore
             throw new NotImplementedException();
         }
 
+        public IResource GetReverseLinkProp(PropId<IResource> propId)
+        {
+            throw new NotImplementedException();
+        }
+
         public string GetPropText( string propName )
         {
             throw new NotImplementedException();
@@ -872,6 +968,16 @@ namespace JetBrains.Omea.PicoCore
             throw new NotImplementedException();
         }
 
+        public IResourceList GetLinksOfType(string resType, PropId<IResource> propId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public BusinessObjectList<T> GetLinksOfType<T>(ResourceTypeId<T> resType, PropId<IResource> propId) where T : BusinessObject
+        {
+            throw new NotImplementedException();
+        }
+
         public IResourceList GetLinksOfTypeLive( string resType, string propName )
         {
             throw new NotImplementedException();
@@ -882,12 +988,28 @@ namespace JetBrains.Omea.PicoCore
             throw new NotImplementedException();
         }
 
+        public IResourceList GetLinksOfTypeLive(string resType, PropId<IResource> propId)
+        {
+            throw new NotImplementedException();
+        }
+
         public IResourceList GetLinksFrom( string resType, string propName )
         {
             throw new NotImplementedException();
         }
 
         public IResourceList GetLinksFrom( string resType, int propId )
+        {
+            throw new NotImplementedException();
+        }
+
+        public IResourceList GetLinksFrom(string resType, PropId<IResource> propId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public BusinessObjectList<T> GetLinksFrom<T>(ResourceTypeId<T> resType, PropId<IResource> propId)
+            where T : BusinessObject
         {
             throw new NotImplementedException();
         }
@@ -908,6 +1030,17 @@ namespace JetBrains.Omea.PicoCore
         }
 
         public IResourceList GetLinksTo( string resType, int propId )
+        {
+            throw new NotImplementedException();
+        }
+
+        public IResourceList GetLinksTo(string resType, PropId<IResource> propId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public BusinessObjectList<T> GetLinksTo<T>(ResourceTypeId<T> resType, PropId<IResource> propId)
+            where T : BusinessObject
         {
             throw new NotImplementedException();
         }
@@ -933,6 +1066,11 @@ namespace JetBrains.Omea.PicoCore
         }
 
         public bool HasProp( int propId )
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool HasProp<T>(PropId<T> propId)
         {
             throw new NotImplementedException();
         }

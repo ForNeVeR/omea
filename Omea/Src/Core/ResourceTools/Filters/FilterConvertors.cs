@@ -12,7 +12,7 @@ namespace JetBrains.Omea.FiltersManagement
 {
 	public class FilterConvertors
 	{
-        private static readonly FilterManager fMgr = Core.FilterManager as FilterManager;
+        private static readonly FilterRegistry fMgr = Core.FilterRegistry as FilterRegistry;
 
         public static IResource InstantiateTemplate( IResource template, object param, string[] resTypes )
         {
@@ -62,7 +62,7 @@ namespace JetBrains.Omea.FiltersManagement
             else
                 throw new InvalidOperationException( "Not all Operations are supported now" );
 
-            FilterManager.ReferCondition2Template( condition, template );
+            FilterRegistry.ReferCondition2Template( condition, template );
 
             //-----------------------------------------------------------------
             //  Do not forget to set additional parameters from the template
@@ -85,7 +85,7 @@ namespace JetBrains.Omea.FiltersManagement
 	    public static IResource Template2Action( IResource template, object param, string representation )
         {
             if( template.Type != FilterManagerProps.RuleActionTemplateResName )
-                throw new ArgumentException( "FilterManager -- Invalid type of parameter - RuleActionTemplate is expected" );
+                throw new ArgumentException( "FilterRegistry -- Invalid type of parameter - RuleActionTemplate is expected" );
 
             IResource   action;
             ConditionOp op = (ConditionOp)template.GetProp( "ConditionOp" );
@@ -93,10 +93,10 @@ namespace JetBrains.Omea.FiltersManagement
             if( op == ConditionOp.In )
             {
                 if( param is IResourceList )
-                    action = FilterManager.RegisterRuleActionProxy( template, (IResourceList)param );
+                    action = FilterRegistry.RegisterRuleActionProxy( template, (IResourceList)param );
                 else
                 if( param is string )
-                    action = FilterManager.RegisterRuleActionProxy( template, (string)param );
+                    action = FilterRegistry.RegisterRuleActionProxy( template, (string)param );
                 else
                     throw new ArgumentException( "Illegal parameter type for the operation - string or Resource List expected" );
             }
@@ -104,7 +104,7 @@ namespace JetBrains.Omea.FiltersManagement
             if( op == ConditionOp.Eq )
             {
                 if( param is string )
-                    action = FilterManager.RegisterRuleActionProxy( template, (string)param );
+                    action = FilterRegistry.RegisterRuleActionProxy( template, (string)param );
                 else
                     throw new ArgumentException( "Illegal parameter type for the operation - string expected" );
             }
@@ -189,7 +189,7 @@ namespace JetBrains.Omea.FiltersManagement
                 if( afterPart != null )
                     condition = fMgr.CreateStandardConditionAux( resTypes, propName, ConditionOp.Gt, afterPart );
                 else
-                    throw new ArgumentException( "FilterManager -- Illegal format of Date interval for instantiation." );
+                    throw new ArgumentException( "FilterRegistry -- Illegal format of Date interval for instantiation." );
             }
             return condition;
         }
