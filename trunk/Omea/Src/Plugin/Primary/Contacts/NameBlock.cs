@@ -9,6 +9,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
+using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
 using ContactsPlugin.ContactBlocks;
@@ -244,7 +245,7 @@ namespace JetBrains.Omea.ContactsPlugin
             }
             else
             {
-                image = Utils.GetResourceImageFromAssembly( "Contacts", _cDefaultPictureIcon );
+                image = Utils.TryGetEmbeddedResourceImageFromAssembly( Assembly.GetExecutingAssembly(), _cDefaultPictureIcon );
             }
             _btnPicture.Image = image;
             _btnPicture.Click += _btnPicture_Click;

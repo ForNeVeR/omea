@@ -27,7 +27,7 @@ namespace JetBrains.Omea.OpenAPI
     }
 
     /// <summary>
-    /// Enumeration lists all possible operations supported by the FilterManager.
+    /// Enumeration lists all possible operations supported by the FilterRegistry.
     /// Possible operations are descibed below.
     /// </summary>
     public enum ConditionOp
@@ -88,7 +88,7 @@ namespace JetBrains.Omea.OpenAPI
     /// <summary>
     /// Provides services related to custom views, rules, conditions and rule actions.
     /// </summary>
-    public interface IFilterManager
+    public interface IFilterRegistry
     {
         #region Conditions
         /// <summary>
@@ -301,7 +301,6 @@ namespace JetBrains.Omea.OpenAPI
         #endregion Operations over Conditions
 
         #region Folders
-        //---------------------------------------------------------------------
         /// <summary>
         /// Create new view folder and link it to the base view folder. Method does
         /// not create new view folder if there is already exists one with such name,
@@ -329,7 +328,6 @@ namespace JetBrains.Omea.OpenAPI
         #endregion Folders
 
         #region Views
-        //---------------------------------------------------------------------
         /// <summary>
         /// Register a view with the given set of conditions and exceptions.
         /// It returns the existing view with such name and creates new view otherwise.
@@ -371,48 +369,6 @@ namespace JetBrains.Omea.OpenAPI
         void  ReregisterView ( IResource view, string name, string[] resTypes, IResource[][] conditionGroup, IResource[] exceptions );
 
         /// <summary>
-        /// Activates a view, that is extracts a set of resource matching the
-        /// view conditions/exceptions and passes the result to ResourceList Browser.
-        /// </summary>
-        /// <param name="view">Resource representing a view.</param>
-        /// <param name="viewName">Activated view name.</param>
-        /// <since>2.1</since>
-        IResourceList ExecView( IResource view, string viewName );
-
-        /// <summary>
-        /// Extract a set of resources matching the view's conditions/exceptions.
-        /// </summary>
-        /// <param name="view">Resource representing a view.</param>
-        /// <returns>Result list of resources.</returns>
-        IResourceList ExecView( IResource view );
-
-        /// <summary>
-        /// Extract a set of resources matching the view's conditions/exceptions from
-        /// a given initial set of resources.
-        /// </summary>
-        /// <param name="view">Resource representing a view.</param>
-        /// <param name="initialSet">List of resources from which matched resources must be selected.</param>
-        /// <returns>Result list of resources.</returns>
-        /// <since>544</since>
-        IResourceList ExecView( IResource view, IResourceList initialSet );
-
-        /// <param name="view">Resource representing a view.</param>
-        /// <param name="initialSet">List of resources from which matched resources must be selected.</param>
-        /// <param name="mode">Required mode of the resulting resource list (default is Snapshot).</param>
-        /// <since>1180</since>
-	    IResourceList ExecView( IResource view, IResourceList initialSet, SelectionType mode );
-
-        /// <summary>
-        /// </summary>
-        /// <param name="view">Resource representing a view.</param>
-        /// <param name="res">A resource which is checked against the view's conditions and exceptions.</param>
-        /// <param name="checkWorkspace">Perform match only for those resources which belong to the same
-        /// workspace as the view.</param>
-        /// <returns>True if a resource matches the conditions/exceptions of the view.</returns>
-        /// <since>438</since>
-        bool  MatchView( IResource view, IResource res, bool checkWorkspace );
-
-        /// <summary>
         /// Delete a view.
         /// </summary>
         /// <param name="viewName">Name of a view.</param>
@@ -441,34 +397,6 @@ namespace JetBrains.Omea.OpenAPI
         /// <since>403</since>
         bool    IsVisibleInAllTabs( IResource view );
         #endregion Views
-
-        #region Events Registration
-        /// <summary>
-        /// Register a string identifier of a logical event in the system. Using this
-        /// id core and plugins can mark that some event has occured and call
-        /// execution of rules for such an event over the needed resources.
-        /// </summary>
-        /// <param name="eventName">Name of an event.</param>
-        /// <param name="displayName">String which is shown in the combobox of the Edit Rule form.</param>
-        /// <since>556</since>
-        void    RegisterActivationEvent( string eventName, string displayName );
-
-        /// <summary>
-        /// Retrieves a collection of registered events and returns them in the
-        /// hashtable of pairs (eventName, displayName);
-        /// </summary>
-        /// <returns></returns>
-        /// <since>556</since>
-        Hashtable  GetRegisteredEvents();
-
-        /// <summary>
-        /// If a plugin registers task-specific actions and rules for some particular
-        /// resource type, this type must be registered in the system by means of this
-        /// method.
-        /// </summary>
-        /// <param name="resType">A string representing the name of a resource type.</param>
-        void    RegisterRuleApplicableResourceType( string resType );
-        #endregion Events Registration
 
         #region Rule Actions
         /// <summary>
@@ -665,33 +593,6 @@ namespace JetBrains.Omea.OpenAPI
         /// <param name="rule">A resource representing a rule.</param>
         /// <returns>True if a rule is active.</returns>
         bool        IsRuleActive( IResource rule );
-
-        /// <summary>
-        /// Activate execution of rules associated with the given event for the
-        /// given resource in the particular order (order can be changed by means
-        /// of method "AssignOrderNumber").
-        /// </summary>
-        /// <param name="eventName">Specifies the name of an event (resource received, resource is sent, ect)</param>
-        /// <param name="res">Resource for which rules are activated.</param>
-        /// <returns>True if any rule matched its condition against the resource
-        /// and was activated</returns>
-        bool        ExecRules( string eventName, IResource res );
-
-        /// <summary>
-        /// Activate the particular rule for the given list of resources.
-        /// </summary>
-        /// <param name="rule">Resource representing a rule.</param>
-        /// <param name="list">List of resources for which a rule is activated.</param>
-        /// <since>419</since>
-        void        ExecRule( IResource rule, IResourceList list );
-
-        /// <summary>
-        /// Apply rule's actions to a given resource.
-        /// </summary>
-        /// <param name="rule">A resource representing a rule.</param>
-        /// <param name="res">A resource which actions must be applied to.</param>
-        /// <since>544</since>
-        void        ApplyActions( IResource rule, IResource res );
         #endregion Rules
 
         #region Rename
@@ -779,7 +680,7 @@ namespace JetBrains.Omea.OpenAPI
 
         /// <summary>
         /// Extract all conditions that are derived from the given template and linked to
-        /// it with the <c>Core.FilterManager.Props.TemplateLink</c> link.
+        /// it with the <c>Core.FilterRegistry.Props.TemplateLink</c> link.
         /// </summary>
         /// <param name="conditionTemplate">Condition template resource.</param>
         /// <returns>List of conditions derived from the given template.</returns>
@@ -788,7 +689,6 @@ namespace JetBrains.Omea.OpenAPI
 
         #endregion Getters/Setters
 
-        //---------------------------------------------------------------------
         /// <summary>
         /// Access standard conditions and templates.
         /// </summary>
@@ -803,6 +703,110 @@ namespace JetBrains.Omea.OpenAPI
         /// <summary>
         /// </summary>
         IFilterManagerProps Props { get; }
+    }
+
+    public interface IFilterEngine
+    {
+        #region Views Execution
+        /// <summary>
+        /// Activates a view, that is extracts a set of resource matching the
+        /// view conditions/exceptions and passes the result to ResourceList Browser.
+        /// </summary>
+        /// <param name="view">Resource representing a view.</param>
+        /// <param name="viewName">Activated view name.</param>
+        /// <since>2.1</since>
+        IResourceList ExecView( IResource view, string viewName );
+
+        /// <summary>
+        /// Extract a set of resources matching the view's conditions/exceptions.
+        /// </summary>
+        /// <param name="view">Resource representing a view.</param>
+        /// <returns>Result list of resources.</returns>
+        IResourceList ExecView( IResource view );
+
+        /// <summary>
+        /// Extract a set of resources matching the view's conditions/exceptions from
+        /// a given initial set of resources.
+        /// </summary>
+        /// <param name="view">Resource representing a view.</param>
+        /// <param name="initialSet">List of resources from which matched resources must be selected.</param>
+        /// <returns>Result list of resources.</returns>
+        /// <since>544</since>
+        IResourceList ExecView( IResource view, IResourceList initialSet );
+
+        /// <param name="view">Resource representing a view.</param>
+        /// <param name="initialSet">List of resources from which matched resources must be selected.</param>
+        /// <param name="mode">Required mode of the resulting resource list (default is Snapshot).</param>
+        /// <since>1180</since>
+	    IResourceList ExecView( IResource view, IResourceList initialSet, SelectionType mode );
+
+        /// <summary>
+        /// </summary>
+        /// <param name="view">Resource representing a view.</param>
+        /// <param name="res">A resource which is checked against the view's conditions and exceptions.</param>
+        /// <param name="checkWorkspace">Perform match only for those resources which belong to the same
+        /// workspace as the view.</param>
+        /// <returns>True if a resource matches the conditions/exceptions of the view.</returns>
+        /// <since>438</since>
+        bool  MatchView( IResource view, IResource res, bool checkWorkspace );
+        #endregion Views Execution
+
+        #region Rules Execution
+        /// <summary>
+        /// Activate execution of rules associated with the given event for the
+        /// given resource in the particular order (order can be changed by means
+        /// of method "AssignOrderNumber").
+        /// </summary>
+        /// <param name="eventName">Specifies the name of an event (resource received, resource is sent, ect)</param>
+        /// <param name="res">Resource for which rules are activated.</param>
+        /// <returns>True if any rule matched its condition against the resource
+        /// and was activated</returns>
+        bool        ExecRules( string eventName, IResource res );
+
+        /// <summary>
+        /// Activate the particular rule for the given list of resources.
+        /// </summary>
+        /// <param name="rule">Resource representing a rule.</param>
+        /// <param name="list">List of resources for which a rule is activated.</param>
+        /// <since>419</since>
+        void        ExecRule( IResource rule, IResourceList list );
+
+        /// <summary>
+        /// Apply rule's actions to a given resource.
+        /// </summary>
+        /// <param name="rule">A resource representing a rule.</param>
+        /// <param name="res">A resource which actions must be applied to.</param>
+        /// <since>544</since>
+        void        ApplyActions( IResource rule, IResource res );
+        #endregion Rules Execution
+
+        #region Events Registration
+        /// <summary>
+        /// Register a string identifier of a logical event in the system. Using this
+        /// id core and plugins can mark that some event has occured and call
+        /// execution of rules for such an event over the needed resources.
+        /// </summary>
+        /// <param name="eventName">Name of an event.</param>
+        /// <param name="displayName">String which is shown in the combobox of the Edit Rule form.</param>
+        /// <since>556</since>
+        void    RegisterActivationEvent( string eventName, string displayName );
+
+        /// <summary>
+        /// Retrieves a collection of registered events and returns them in the
+        /// hashtable of pairs (eventName, displayName);
+        /// </summary>
+        /// <returns></returns>
+        /// <since>556</since>
+        Hashtable  GetRegisteredEvents();
+
+        /// <summary>
+        /// If a plugin registers task-specific actions and rules for some particular
+        /// resource type, this type must be registered in the system by means of this
+        /// method.
+        /// </summary>
+        /// <param name="resType">A string representing the name of a resource type.</param>
+        void    RegisterRuleApplicableResourceType( string resType );
+        #endregion Events Registration
     }
 
     public interface IFilterManagerProps

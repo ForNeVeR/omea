@@ -149,7 +149,7 @@ namespace JetBrains.Omea.Notes
 			// 
 			// _toolbar
 			// 
-			_toolbar.DropDownArrows = true;
+//			_toolbar.DropDownArrows = true;
 			_toolbar.Location = new Point( 36, 0 );
 			_toolbar.Name = "_toolbar";
 			_toolbar.TabStop = false;

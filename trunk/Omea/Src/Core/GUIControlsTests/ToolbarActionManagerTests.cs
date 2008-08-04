@@ -19,13 +19,15 @@ namespace GUIControlsTests
     public class ToolbarActionManagerTests
 	{
         private TestCore _core;
-        private ToolBar _toolBar;
+//        private ToolBar _toolBar;
+        private ToolStrip _toolBar;
         private ToolbarActionManager _actionManager;
         
         [SetUp] public void SetUp()
         {
             _core = new TestCore();
-            _toolBar = new ToolBar();
+//            _toolBar = new ToolBar();
+            _toolBar = new ToolStrip();
             _actionManager = new ToolbarActionManager( _toolBar );
         }
 
@@ -42,13 +44,18 @@ namespace GUIControlsTests
                 (Image) null, "My Action", "", null, null );
             _actionManager.UpdateToolbarActions();
 
+/*
             Assert.AreEqual( 2, _toolBar.Buttons.Count );
             Assert.AreEqual( ToolBarButtonStyle.Separator, _toolBar.Buttons [1].Style );
             Assert.AreEqual( false, _toolBar.Buttons [1].Visible );
+*/
+            Assert.AreEqual( 2, _toolBar.Items.Count );
+//            Assert.AreEqual( ToolBarButtonStyle.Separator, _toolBar.Items [1].Style );
+            Assert.AreEqual( false, _toolBar.Items [1].Visible );
 
             _actionManager.UnregisterAction( action );
-            Assert.AreEqual( 1, _toolBar.Buttons.Count );
-            Assert.AreEqual( ToolBarButtonStyle.Separator, _toolBar.Buttons [0].Style );
+            Assert.AreEqual( 1, _toolBar.Items.Count );
+//            Assert.AreEqual( ToolBarButtonStyle.Separator, _toolBar.Items [0].Style );
         }
 
         private class MockAction: IAction

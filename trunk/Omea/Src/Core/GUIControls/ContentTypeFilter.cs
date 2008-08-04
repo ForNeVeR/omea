@@ -60,7 +60,7 @@ namespace JetBrains.Omea.GUIControls
             //-----------------------------------------------------------------
             if( res.Type == FilterManagerProps.ViewResName )
             {
-                if( Core.FilterManager.IsVisibleInAllTabs( res ))
+                if( Core.FilterRegistry.IsVisibleInAllTabs( res ))
                     return true;
             }
                 
@@ -86,7 +86,7 @@ namespace JetBrains.Omea.GUIControls
                     foreach( IResource view in views )
                     {
                         if( IsWorkspaceFit( view ) && 
-                            Core.FilterManager.IsVisibleInAllTabs( view ) )
+                            Core.FilterRegistry.IsVisibleInAllTabs( view ) )
                         {
                             containsAllTypeViews = true;
                             break;

@@ -155,7 +155,7 @@
 			<column width="120">
 				<prop name="Date" />
 				<multiline row="0" startX="210" width="90" anchor="right" align="right" />
-				<comparer assembly="Rss" class="JetBrains.Omea.RSSPlugin.DateIndexComparer" />
+				<comparer assembly="Rss.OmeaPlugin" class="JetBrains.Omea.RSSPlugin.DateIndexComparer" />
 			</column>
 			<column width="100" showIfNotEmpty="1">
 				<prop name="RSSCategory" />

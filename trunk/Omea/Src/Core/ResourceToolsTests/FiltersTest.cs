@@ -18,13 +18,14 @@ namespace FilterManagerTests
         private IResourceStore _storage;
         private IResource   _emailResource, _newsResource, _rssResource;
         private IResource   category1, category2, category3;
-        private FilterManager _manager;
+        private FilterRegistry _registry;
+        private FilterEngine _engine;
         private UnreadManager _unreads;
         private IWorkspaceManager _wsManager;
         private MockResourceTabProvider _mockResourceTabProvider;
         private TestCore _core;
 
-        //---------------------------------------------------------------------
+        #region Setup
         [SetUp] public void SetUp()
         {
             _core = new TestCore();
@@ -32,7 +33,8 @@ namespace FilterManagerTests
 
             CreateNecessaryResources();
 
-            _manager = _core.FilterManager as FilterManager;
+            _registry = _core.FilterRegistry as FilterRegistry;
+            _engine = _core.FilterEngine as FilterEngine;
             _wsManager = _core.WorkspaceManager;
             _unreads = _core.UnreadManager as UnreadManager;
             _mockResourceTabProvider = _core.GetComponentInstanceOfType( typeof(MockResourceTabProvider) ) as MockResourceTabProvider;
@@ -43,12 +45,13 @@ namespace FilterManagerTests
         {
             _core.Dispose();
         }
+        #endregion Setup
 
         [Test] public void SeveralResTypeChosenForTab()
         {
-            IResource condition = _manager.RecreateStandardCondition( "Today", "Today", null, "Date", ConditionOp.InRange, "Today", "+1" );
-            IResource today = _manager.RegisterView( "Today", new IResource[ 1 ]{ condition }, null );
-            _manager.InitializeCriteria();
+            IResource condition = _registry.RecreateStandardCondition( "Today", "Today", null, "Date", ConditionOp.InRange, "Today", "+1" );
+            IResource today = _registry.RegisterView( "Today", new IResource[ 1 ]{ condition }, null );
+            _engine.InitializeCriteria();
             //Console.WriteLine( "After view is initialized: " + _unreads.GetUnreadCount( today ) + " + " + _unreads.GetPersistentUnreadCount( today ) );
             Assert.AreEqual( 3, Core.UnreadManager.GetUnreadCount( today ) );
 
@@ -57,27 +60,27 @@ namespace FilterManagerTests
 
             UnreadState myTabState = _unreads.SetUnreadState( "MyTab", null );
             /*
-            _manager.UpdateCountersOnTab( new string[2] { "Email", "RSSFeed" } );
+            _registry.UpdateCountersOnTab( new string[2] { "Email", "RSSFeed" } );
             Console.WriteLine( "After Tab is set to Email and RSSFed: " + _unreads.GetUnreadCount( today ) + " + " + _unreads.GetPersistentUnreadCount( today ) );
             */
             Assert.AreEqual( 2, myTabState.GetUnreadCount( today ) );
             Console.WriteLine( "(AUX): " + _unreads.GetUnreadCount( today ) + " + " + _unreads.GetPersistentUnreadCount( today ) );
 
             /*
-            _manager.UpdateCountersOnTab( null );
+            _registry.UpdateCountersOnTab( null );
             Console.WriteLine( _unreads.GetUnreadCount( today ) + " + " + _unreads.GetPersistentUnreadCount( today ) );
             Assert.AreEqual( 3, _unreads.GetUnreadCount( today ) );
 
-            _manager.UpdateCountersOnTab( new string[2] { "Email", "NewsArticle" } );
+            _registry.UpdateCountersOnTab( new string[2] { "Email", "NewsArticle" } );
             Assert.AreEqual( 2, _unreads.GetUnreadCount( today ) );
             */
         }
 
         [Test] public void MarkResourceRead()
         {
-            IResource condition = _manager.RecreateStandardCondition( "Today", "Today", null, "Date", ConditionOp.InRange, "Today", "+1" );
-            IResource today = _manager.RegisterView( "Today", new IResource[ 1 ]{ condition }, null );
-            _manager.InitializeCriteria();
+            IResource condition = _registry.RecreateStandardCondition( "Today", "Today", null, "Date", ConditionOp.InRange, "Today", "+1" );
+            IResource today = _registry.RegisterView( "Today", new IResource[ 1 ]{ condition }, null );
+            _engine.InitializeCriteria();
 
             UnreadState defaultUnreadState = _unreads.CurrentUnreadState;
 
@@ -102,9 +105,9 @@ namespace FilterManagerTests
             _wsManager.RegisterWorkspaceType( "Folder", new int[] { propInFolder },
                 WorkspaceResourceType.Container );
 
-            IResource condition = _manager.RecreateStandardCondition( "Today", "Today", null, "Date", ConditionOp.InRange, "Today", "+1" );
-            IResource today = _manager.RegisterView( "Today", new IResource[ 1 ]{ condition }, null );
-            _manager.InitializeCriteria();
+            IResource condition = _registry.RecreateStandardCondition( "Today", "Today", null, "Date", ConditionOp.InRange, "Today", "+1" );
+            IResource today = _registry.RegisterView( "Today", new IResource[ 1 ]{ condition }, null );
+            _engine.InitializeCriteria();
 
             IResource ws = _wsManager.CreateWorkspace( "Test" );
             IResource folder = _storage.NewResource( "Folder" );
@@ -122,9 +125,9 @@ namespace FilterManagerTests
             IResourceList   categories = category1.ToResourceList();
             categories = categories.Union( category2.ToResourceList() );
             categories = categories.Union( category3.ToResourceList() );
-            IResource condition = _manager.RecreateStandardCondition( "Available", "DeepName", null, "Category", ConditionOp.In, categories );
-            IResource available = _manager.RegisterView( "Available", new IResource[ 1 ]{ condition }, null );
-            _manager.InitializeCriteria();
+            IResource condition = _registry.RecreateStandardCondition( "Available", "DeepName", null, "Category", ConditionOp.In, categories );
+            IResource available = _registry.RegisterView( "Available", new IResource[ 1 ]{ condition }, null );
+            _engine.InitializeCriteria();
 
             IResource test1 = _storage.BeginNewResource( "Email" );
             test1.SetProp( "Name", "Email 1" );
@@ -139,17 +142,17 @@ namespace FilterManagerTests
             test2.SetProp( "Category", category3 );
             test2.EndUpdate();
 
-            IResourceList result = _manager.ExecView( available );
+            IResourceList result = _engine.ExecView( available );
             Assert.AreEqual( 2, result.Count, "Illegal number of matched objects" );
         }
 
         [Test] public void TestConditionOnSeveralResourceTypes()
         {
-            IResource x = _manager.RecreateStandardCondition( "New", "DeepName", new string[ 2 ]{ "Email", "Category" }, "Date", ConditionOp.InRange, "Today", "+1" );
-            IResource test = _manager.RegisterView( "TestNew", new string[ 2 ]{ "Email", "Category" }, new IResource[ 1 ]{ x }, null );
-            _manager.InitializeCriteria();
+            IResource x = _registry.RecreateStandardCondition( "New", "DeepName", new string[ 2 ]{ "Email", "Category" }, "Date", ConditionOp.InRange, "Today", "+1" );
+            IResource test = _registry.RegisterView( "TestNew", new string[ 2 ]{ "Email", "Category" }, new IResource[ 1 ]{ x }, null );
+            _engine.InitializeCriteria();
 
-            IResourceList result = _manager.ExecView( test );
+            IResourceList result = _engine.ExecView( test );
             Assert.AreEqual( 4, result.Count, "Illegal number of matched objects" );
         }
 

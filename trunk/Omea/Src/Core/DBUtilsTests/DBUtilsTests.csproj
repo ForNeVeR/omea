@@ -24,6 +24,7 @@
 		<RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
 		<OldToolsVersion>2.0</OldToolsVersion>
 		<ProductHomeDir>$(MSBuildProjectDirectory)/../../..</ProductHomeDir>
+		<TargetFrameworkVersion>v3.0</TargetFrameworkVersion>
 	</PropertyGroup>
 	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
 		<AllowUnsafeBlocks>false</AllowUnsafeBlocks>

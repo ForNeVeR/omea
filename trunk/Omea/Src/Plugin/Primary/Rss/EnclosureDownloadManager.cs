@@ -123,7 +123,7 @@ namespace JetBrains.Omea.RSSPlugin
                 proxy.DeleteProp( Props.EnclosureTempFile );
                 proxy.DeleteProp( Props.EnclosureDownloadedSize );
 
-                if( Utils.IsValidString( folder ) )
+                if( !string.IsNullOrEmpty( folder ) )
                     proxy.SetProp( Props.EnclosurePath, folder );
                 else
                     proxy.DeleteProp( Props.EnclosurePath );
@@ -188,7 +188,7 @@ namespace JetBrains.Omea.RSSPlugin
             {
                 _arEnclosureStateIcons = new Icon[5];
 
-                String[] sNames = new string[] {"NotDownloaded", "Planned", "Completed", "Failed", "InProgress"};
+                String[] sNames = new[] {"NotDownloaded", "Planned", "Completed", "Failed", "InProgress"};
                 for( int a = 0; a < sNames.Length; a++ )
                     _arEnclosureStateIcons[ a ] = RSSPlugin.LoadIconFromAssembly( string.Format( "download{0}.ico", sNames[ a ] ) );
             }
@@ -214,7 +214,7 @@ namespace JetBrains.Omea.RSSPlugin
         private readonly IResource _resource;
         private static bool _queued = false;
         private readonly string _directory;
-        private int _startPosition = 0;
+        private readonly int    _startPosition = 0;
         private static readonly char[] addedIllChars = {'\\', '/', ':', '?', '\"' };
 
         private DownloadEnclosure( IResource resource, FileStream file, string directory, int startPosition )
@@ -331,11 +331,11 @@ namespace JetBrains.Omea.RSSPlugin
             else
             {
                 dir = feed.GetStringProp( Props.EnclosurePath );
-                if ( !Utils.IsValidString( dir ) )
+                if ( string.IsNullOrEmpty( dir ) )
                 {
                     dir = Settings.EnclosurePath;
                     string feedName = feed.GetPropText( Core.Props.Name );
-                    if ( Settings.CreateSubfolderForEveryFeed && Utils.IsValidString( feedName ))
+                    if ( Settings.CreateSubfolderForEveryFeed && !string.IsNullOrEmpty( feedName ))
                     {
                         dir = Path.Combine( dir, ValidateName( feedName ) );
                     }

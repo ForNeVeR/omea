@@ -6,6 +6,7 @@
 using System;
 using System.Collections;
 using System.Diagnostics;
+using System.IO;
 using System.Runtime.Serialization;
 using System.Security.Permissions;
 
@@ -64,6 +65,35 @@ namespace JetBrains.Omea.OpenAPI
         /// </summary>
         StringList
     };
+
+    public class PropDataTypeGeneric<T>
+    {
+        private PropDataType _type;
+
+        internal PropDataTypeGeneric(PropDataType type)
+        {
+            _type = type;
+        }
+
+        public PropDataType Type
+        {
+            get { return _type; }
+        }
+    }
+
+    public class PropDataTypes
+    {
+        public static readonly PropDataTypeGeneric<int> Int = new PropDataTypeGeneric<int>(PropDataType.Int);
+        public static readonly PropDataTypeGeneric<string> String = new PropDataTypeGeneric<string>(PropDataType.String);
+        public static readonly PropDataTypeGeneric<DateTime> DateTime = new PropDataTypeGeneric<DateTime>(PropDataType.Date);
+        public static readonly PropDataTypeGeneric<IResource> Link = new PropDataTypeGeneric<IResource>(PropDataType.Link);
+        public static readonly PropDataTypeGeneric<Stream> Blob = new PropDataTypeGeneric<Stream>(PropDataType.Blob);
+        public static readonly PropDataTypeGeneric<double> Double = new PropDataTypeGeneric<double>(PropDataType.Double);
+        public static readonly PropDataTypeGeneric<string> LongString = new PropDataTypeGeneric<string>(PropDataType.LongString);
+        public static readonly PropDataTypeGeneric<bool> Bool = new PropDataTypeGeneric<bool>(PropDataType.Bool);
+        public static readonly PropDataTypeGeneric<IStringList> StringList = new PropDataTypeGeneric<IStringList>(PropDataType.StringList);
+    }
+    
 
     /// <summary>
     /// Specifies the special attributes of a property type.
@@ -264,6 +294,8 @@ namespace JetBrains.Omea.OpenAPI
         /// user have the prefix <c>Custom.</c></para></remarks>
         int Register( string name, PropDataType dataType );
 
+        PropId<T> Register<T>(string name, PropDataTypeGeneric<T> dataType);
+        
         /// <summary>
         /// Registers a new property type with the specified flags.
         /// </summary>
@@ -281,6 +313,8 @@ namespace JetBrains.Omea.OpenAPI
         /// Standard properties do not have any dotted prefixes. Custom properties defined by the
         /// user have the prefix <c>Custom.</c></para></remarks>
         int Register( string name, PropDataType dataType, PropTypeFlags flags );
+
+        PropId<T> Register<T>(string name, PropDataTypeGeneric<T> dataType, PropTypeFlags flags);
 
         /// <summary>
         /// Registers a new property type with the specified flags and owner plugin.
@@ -303,6 +337,8 @@ namespace JetBrains.Omea.OpenAPI
         /// user have the prefix <c>Custom.</c></para></remarks>
         int Register( string name, PropDataType dataType, PropTypeFlags flags, IPlugin ownerPlugin );
 
+        PropId<T> Register<T>(string name, PropDataTypeGeneric<T> dataType, PropTypeFlags flags, IPlugin ownerPlugin);
+
         /// <summary>
         /// Registers a user-visible name for a property type.
         /// </summary>
@@ -313,6 +349,8 @@ namespace JetBrains.Omea.OpenAPI
         /// links. For directed links, the <see cref="RegisterDisplayName(int, string, string)">
         /// three-parameter overload</see> must be used.</remarks>
         void RegisterDisplayName( int propId, string displayName );
+
+        void RegisterDisplayName<T>(PropId<T> propId, string displayName);
         
         /// <summary>
         /// Registers a user-visible name for a directed link property type.
@@ -324,6 +362,8 @@ namespace JetBrains.Omea.OpenAPI
         /// <param name="toDisplayName">The display name shown at the target end of the
         /// link.</param>
         void RegisterDisplayName( int propId, string fromDisplayName, string toDisplayName );
+
+        void RegisterDisplayName(PropId<IResource> propId, string fromDisplayName, string toDisplayName);
         
         /// <summary>
         /// Deletes a property type.
@@ -718,6 +758,10 @@ namespace JetBrains.Omea.OpenAPI
         /// Selection on link, long string, double and blob properties is not supported.</remarks>
         IResourceList FindResources( string resType, string propName, object propValue );
 
+        IResourceList FindResources<T>(string resType, PropId<T> propId, T propValue);
+
+        BusinessObjectList<T> FindResources<T, V>(ResourceTypeId<T> resType, PropId<V> propId, V propValue) where T : BusinessObject;
+        
         /// <summary>
         /// Returns the live list of resources for which the property with the specified ID 
         /// has the specified value.
@@ -743,7 +787,9 @@ namespace JetBrains.Omea.OpenAPI
         /// <remarks>Selection on bool properties is only supported if <paramref name="propValue"/> is true.
         /// Selection on link, long string, double and blob properties is not supported.</remarks>
         IResourceList FindResourcesLive( string resType, string propName, object propValue );
-        
+
+        IResourceList FindResourcesLive<T>(string resType, PropId<T> propName, T propValue);
+
         /// <summary>
         /// Returns an optionally live list of resources for which the property with the specified ID 
         /// has the specified value.
@@ -880,6 +926,8 @@ namespace JetBrains.Omea.OpenAPI
         /// other resources, it is not included.)</remarks>
         IResourceList FindResourcesWithProp( string resType, string propName );
 
+        IResourceList FindResourcesWithProp<T>(string resType, PropId<T> propId);
+        
         /// <summary>
         /// Returns the live list of resources which have the property with the specified ID.
         /// </summary>
@@ -908,6 +956,8 @@ namespace JetBrains.Omea.OpenAPI
         /// other resources, it is not included.)</remarks>
         IResourceList FindResourcesWithPropLive( string resType, string propName );
 
+        IResourceList FindResourcesWithPropLive<T>(string resType, PropId<T> propId);
+        
         /// <summary>
         /// Returns an optionally live list of resources which have the property with the specified ID.
         /// </summary>
@@ -944,6 +994,8 @@ namespace JetBrains.Omea.OpenAPI
         /// <param name="resType">The type of resources to return.</param>
         /// <returns>The list of all resources of that type.</returns>
         IResourceList GetAllResources( string resType );
+
+        BusinessObjectList<T> GetAllResources<T>(ResourceTypeId<T> resType) where T : BusinessObject;
 
         /// <summary>
         /// Returns a live list of all resources of the specified type.
@@ -1050,6 +1102,9 @@ namespace JetBrains.Omea.OpenAPI
         /// <c>Int32.MaxValue</c> if there is no limit.</param>
         void RegisterLinkRestriction( string fromResourceType, int linkType,
             string toResourceType, int minCount, int maxCount );
+
+        void RegisterLinkRestriction(string fromResourceType, PropId<IResource> linkType,
+            string toResourceType, int minCount, int maxCount);
 
         /// <summary>
         /// Returns the minimum link count restriction for the specified resource type and property type.
@@ -1289,7 +1344,10 @@ namespace JetBrains.Omea.OpenAPI
         /// </summary>
         /// <param name="propId">The ID of the property to check.</param>
         /// <returns>true if the property was changed, false otherwise.</returns>
+        [Obsolete]
         bool IsPropertyChanged( int propId );
+
+        bool IsPropertyChanged<T>(PropId<T> propId);
         
         /// <summary>
         /// Returns the value of the specified property before the change.

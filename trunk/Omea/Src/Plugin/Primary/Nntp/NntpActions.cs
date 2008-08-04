@@ -4,12 +4,12 @@
 /// </copyright>
 
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Forms;
 using JetBrains.Omea.Base;
-using JetBrains.Omea.Containers;
 using JetBrains.Omea.Conversations;
 using JetBrains.Omea.FiltersManagement;
 using JetBrains.Omea.GUIControls;
@@ -602,7 +602,7 @@ namespace JetBrains.Omea.Nntp
      */
     public class SubscribeAction: ActionOnResource
     {
-        private IResourceList _groups = null;
+        private IResourceList _groups;
 
         public override void Execute( IActionContext context )
         {
@@ -703,7 +703,7 @@ namespace JetBrains.Omea.Nntp
             {
                 IResourceList articles = group.GetLinksTo( NntpPlugin._newsArticle, NntpPlugin._propTo );
                 group.Delete();
-                IntArrayList contactIDs = new IntArrayList();
+                List<int> contactIDs = new List<int>();
                 foreach( IResource article in articles )
                 {
                     // do not delete crossposted articles
@@ -907,7 +907,7 @@ namespace JetBrains.Omea.Nntp
             IResource emailAcc = article.GetLinkProp( cm.Props.LinkEmailAcctFrom );
             string email = ( emailAcc == null ) ? string.Empty : emailAcc.GetPropText( cm.Props.EmailAddress );
             service.CreateEmail( subject, quote, EmailBodyFormat.PlainText,
-                new EmailRecipient[] { new EmailRecipient( name, email ) }, null, false );
+                new[] { new EmailRecipient( name, email ) }, null, false );
         }
 		
 		public override void Update(IActionContext context, ref ActionPresentation presentation)
@@ -1413,8 +1413,8 @@ namespace JetBrains.Omea.Nntp
         {
             IResource template = Core.ResourceStore.FindUniqueResource( FilterManagerProps.ConditionTemplateResName, Core.Props.Name,
                                                                         "Appeared in the %specified% newsgroup(s)" );
-            IResource condition = FilterConvertors.InstantiateTemplate( template, context.SelectedResources, new string[]{ "Article" } );
-            Core.FilteringFormsManager.ShowAdvancedSearchForm( "", new string[]{ "Article" }, new IResource[] { condition }, null );
+            IResource condition = FilterConvertors.InstantiateTemplate( template, context.SelectedResources, new[]{ "Article" } );
+            Core.FilteringFormsManager.ShowAdvancedSearchForm( "", new[]{ "Article" }, new[] { condition }, null );
         }
 
         public override void Update( IActionContext context, ref ActionPresentation presentation )
@@ -1439,8 +1439,8 @@ namespace JetBrains.Omea.Nntp
             }
             IResource template = Core.ResourceStore.FindUniqueResource( FilterManagerProps.ConditionTemplateResName, Core.Props.Name,
                                                                         "Appeared in the %specified% newsgroup(s)" );
-            IResource condition = FilterConvertors.InstantiateTemplate( template, selection, new string[]{ "Article" } );
-            Core.FilteringFormsManager.ShowAdvancedSearchForm( "", new string[]{ "Article" }, new IResource[] { condition }, null );
+            IResource condition = FilterConvertors.InstantiateTemplate( template, selection, new[]{ "Article" } );
+            Core.FilteringFormsManager.ShowAdvancedSearchForm( "", new[]{ "Article" }, new[] { condition }, null );
         }
 
         public override void Update( IActionContext context, ref ActionPresentation presentation )

@@ -4,6 +4,7 @@
 /// </copyright>
 
 using System;
+using System.Collections.Generic;
 using System.Text;
 using System.Windows.Forms;
 using JetBrains.Omea.Base;
@@ -27,10 +28,10 @@ namespace JetBrains.Omea.FiltersManagement
 			#region Preconditions
 
 			if( res == null )
-				throw new ArgumentNullException( "res", "FilterManager -- Input resource in node selection processing can not be NULL" );
+				throw new ArgumentNullException( "res", "FilterRegistry -- Input resource in node selection processing can not be NULL" );
 
-			if( !FilterManager.IsViewOrFolder( res ) )
-				throw new ArgumentException( "FilterManager -- IResourceTreeHandler is called with the resource of inappropriate type [" + res.Type + "]" );
+			if( !FilterRegistry.IsViewOrFolder( res ) )
+				throw new ArgumentException( "FilterRegistry -- IResourceTreeHandler is called with the resource of inappropriate type [" + res.Type + "]" );
 
 			#endregion Preconditions
 
@@ -50,7 +51,7 @@ namespace JetBrains.Omea.FiltersManagement
 				}
 				else
 				{
-					_lastSelectedResult = Core.FilterManager.ExecView( res, viewName );
+					_lastSelectedResult = Core.FilterEngine.ExecView( res, viewName );
 					ConfigureDisplayOptions( res, viewName, _lastSelectedResult );
 					Core.ResourceBrowser.DisplayConfigurableResourceList( res, _lastSelectedResult, _displayOptions );
 				}
@@ -66,7 +67,7 @@ namespace JetBrains.Omea.FiltersManagement
 
 		public bool CanRenameResource( IResource res )
 		{
-			return (res.GetStringProp( "DeepName" ) != Core.FilterManager.ViewNameForSearchResults);
+			return (res.GetStringProp( "DeepName" ) != Core.FilterRegistry.ViewNameForSearchResults);
 		}
 
 		public bool ResourceRenamed( IResource view, string newName )
@@ -120,7 +121,7 @@ namespace JetBrains.Omea.FiltersManagement
 				_lastErrorView = view;
 			}
 			else
-            if( deepName != Core.FilterManager.ViewNameForSearchResults )
+            if( deepName != Core.FilterRegistry.ViewNameForSearchResults )
 			{
 				if( !view.HasProp( "DefaultSort" ) )
                 {
@@ -143,12 +144,12 @@ namespace JetBrains.Omea.FiltersManagement
 				//  2. Text Index is completely loaded.
 				if( Core.State == CoreState.Running )
 				{
-					_displayOptions.HighlightDataProvider = FilterManager.Highlighter;
+					_displayOptions.HighlightDataProvider = FilterEngine.Highlighter;
 					_displayOptions.SeeAlsoBar = true;
 
-					string stopWordsMessage = FilterManager.VisualizeStopWords();
-					if( FilterManager._lastQueryError != null )
-						_displayOptions.StatusLine = FilterManager._lastQueryError;
+					string stopWordsMessage = FilterEngine.VisualizeStopWords();
+					if( FilterEngine._lastQueryError != null )
+						_displayOptions.StatusLine = FilterEngine._lastQueryError;
 					else if( stopWordsMessage.Length > 0 )
 						_displayOptions.StatusLine = stopWordsMessage;
 
@@ -188,7 +189,7 @@ namespace JetBrains.Omea.FiltersManagement
             }
             catch( InvalidResourceIdException )
             {
-                IntArrayList ids = new IntArrayList( result.Count );
+                List<int> ids = new List<int>( result.Count );
                 foreach( IResource res in result.ValidResources ) 
                 {
                     ids.Add( res.Id );
@@ -212,7 +213,7 @@ namespace JetBrains.Omea.FiltersManagement
 			if( Core.LeftSidebar != null && Core.LeftSidebar.DefaultViewPane != null )
 			{
 				IResource view = Core.LeftSidebar.DefaultViewPane.SelectedNode;
-				if( view != null && FilterManager.IsSearchResultsView( view ) )
+				if( view != null && FilterRegistry.IsSearchResultsView( view ) )
 
 				{
 					new ResourceProxy( view ).SetProp( "ForceExec", true );
@@ -235,10 +236,10 @@ namespace JetBrains.Omea.FiltersManagement
 
 		#region Attributes
 
-		private IResource _lastSelectedView = null;
-		private IResourceList _lastSelectedResult = null;
-		private IResource _lastSelectedWorkspace = null;
-		private IResource _lastErrorView = null;
+		private IResource _lastSelectedView;
+		private IResourceList _lastSelectedResult;
+		private IResource _lastSelectedWorkspace;
+		private IResource _lastErrorView;
 
 		private ResourceListDisplayOptions _displayOptions;
 
@@ -264,7 +265,7 @@ namespace JetBrains.Omea.FiltersManagement
 				IResourceList dragResources = (IResourceList)data.GetData( typeof(IResourceList) );
 
 				// Currently, only the Deleted Resources view has a drop handler
-				if( FilterManager.IsDeletedResourcesView( targetResource ) )
+				if( FilterRegistry.IsDeletedResourcesView( targetResource ) )
 				{
 					// Delete the resources dropped onto the deleted items view
 					foreach( IResource res in dragResources )
@@ -296,7 +297,7 @@ namespace JetBrains.Omea.FiltersManagement
 				IResourceList dragResources = (IResourceList)data.GetData( typeof(IResourceList) );
 
 				// Currently, only the Deleted Resources view has a drop handler
-				if( !FilterManager.IsDeletedResourcesView( targetResource ) )
+				if( !FilterRegistry.IsDeletedResourcesView( targetResource ) )
 					return DragDropEffects.None;
 
 				// Collect all the direct and indirect parents of the droptarget; then we'll check to avoid dropping parent on its children
@@ -416,7 +417,7 @@ namespace JetBrains.Omea.FiltersManagement
                         if( parentList.IndexOf( res.Id ) >= 0 )
                             return DragDropEffects.None;
                         // Can drop only views and view-folders on view-folders
-                        if( !FilterManager.IsViewOrFolder( res ) )
+                        if( !FilterRegistry.IsViewOrFolder( res ) )
                             return DragDropEffects.None;
                     }
                     return DragDropEffects.Move;

@@ -4,6 +4,7 @@
 /// </copyright>
 
 using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using JetBrains.Omea.Base;
 using JetBrains.Omea.Containers;
@@ -14,21 +15,22 @@ namespace JetBrains.Omea.InstantMessaging.ICQ
 {
 	internal class RebuildForm : DialogBase
 	{
-        private System.Windows.Forms.Button _okButton;
-        private System.Windows.Forms.Button _cancelButton;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ListView _UINsList;
-        private System.Windows.Forms.ColumnHeader columnHeader1;
-        private System.Windows.Forms.ColumnHeader columnHeader2;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.ImageList _optionsPaneImages;
+        private Button _okButton;
+        private Button _cancelButton;
+        private Label label5;
+        private ListView _UINsList;
+        private ColumnHeader columnHeader1;
+        private ColumnHeader columnHeader2;
+        private GroupBox groupBox1;
+        private ImageList _optionsPaneImages;
         private System.ComponentModel.IContainer components;
 
 		public RebuildForm()
 		{
 			InitializeComponent();
             RestoreSettings();
-            IntArrayList uins = (IntArrayList) UINsCollection.GetUINs().Clone();
+//            IntArrayList uins = (IntArrayList) UINsCollection.GetUINs().Clone();
+            List<int> uins = new List<int>( UINsCollection.GetUINs() );
             _UINsList.BeginUpdate();
             try
             {

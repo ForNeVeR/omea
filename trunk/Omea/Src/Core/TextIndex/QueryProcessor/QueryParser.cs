@@ -1,12 +1,12 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
+/// <copyright company="JetBrains">
+/// Copyright � 2003-2008 JetBrains s.r.o.
 /// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
 /// </copyright>
 
 using  System;
 using  System.Collections;
 using System.Collections.Generic;
-using  System.Diagnostics;
+using System.Diagnostics;
 using JetBrains.Omea.OpenAPI;
 
 namespace JetBrains.Omea.TextIndex
@@ -58,14 +58,14 @@ namespace JetBrains.Omea.TextIndex
             {
                 if( eoType == Type.eoAnd )
                     return EntryProximity.Document;
-                else
+
                 if( eoType == Type.eoNear )
                     return EntryProximity.Sentence;
-                else
+
                 if( eoType == Type.eoPhraseNear )
                     return EntryProximity.Phrase;
-                else
-                    throw new NotSupportedException( "OpNode -- Node of type [" + eoType + "] does not support proximity estimation." );
+
+                throw new NotSupportedException( "OpNode -- Node of type [" + eoType + "] does not support proximity estimation." );
             }
         }
 
@@ -94,9 +94,7 @@ namespace JetBrains.Omea.TextIndex
     public class  SectionNode : OpNode
     {
         public  SectionNode() : base( Type.eoSection ) {}
-        public  string  SectionName { get{ return Section; }  set{ Section = value; }}
-
-        private string Section;
+        public string SectionName { get; set; }
     }
     #endregion
 
@@ -146,7 +144,6 @@ namespace JetBrains.Omea.TextIndex
         #region Parser
         private static QueryParserNode ParseExpression()
         {
-            OpNode          nodeOp;
             QueryParserNode nodeLeftOperand = ProcessTerm();
 
             GetNextToken();
@@ -164,44 +161,36 @@ namespace JetBrains.Omea.TextIndex
                 BackToken();
                 return( nodeLeftOperand );
             }
+
+            QueryParserNode.Type typeNode;
+            if( !isPhrasalMode )
+            {
+                switch( strToken )
+                {
+                    case "and":  typeNode = QueryParserNode.Type.eoAnd; break;
+                    case "or":   typeNode = QueryParserNode.Type.eoOr;  break;
+                    case "near": typeNode = QueryParserNode.Type.eoNear; break;
+                    default:     typeNode = QueryParserNode.Type.eoAnd; BackToken(); break;
+                }
+            }
             else
             {
-                QueryParserNode.Type typeNode;
-                if( !isPhrasalMode )
-                {
-                    if( strToken == "and" )
-                        typeNode = QueryParserNode.Type.eoAnd;
-                    else
-                    if( strToken == "or" )
-                        typeNode = QueryParserNode.Type.eoOr;
-                    else
-                    if( strToken == "near" )
-                        typeNode = QueryParserNode.Type.eoNear;
-                    else
-                    {
-                        typeNode = QueryParserNode.Type.eoAnd;
-                        BackToken();
-                    }
-                }
-                else
-                {
-                    typeNode = QueryParserNode.Type.eoPhraseNear;
-                    BackToken();
-                }
-                
-                nodeOp = new OpNode( typeNode );
-                QueryParserNode nodeRightOperand = ParseExpression();
-                nodeOp.AddOperand( nodeLeftOperand );
-                nodeOp.AddOperand( nodeRightOperand );
-
-                return( nodeOp );
+                typeNode = QueryParserNode.Type.eoPhraseNear;
+                BackToken();
             }
+            
+            OpNode nodeOp = new OpNode( typeNode );
+            QueryParserNode nodeRightOperand = ParseExpression();
+            nodeOp.AddOperand( nodeLeftOperand );
+            nodeOp.AddOperand( nodeRightOperand );
+
+            return( nodeOp );
         }
 
         private static QueryParserNode  ProcessTerm()
         {
-            QueryParserNode nodeTerm, result;
-            result = nodeTerm = ProcessPrimaryLevel();
+            QueryParserNode nodeTerm;
+            QueryParserNode result = nodeTerm = ProcessPrimaryLevel();
             
             GetNextToken();
             if( strToken == "[" )
@@ -252,9 +241,7 @@ namespace JetBrains.Omea.TextIndex
                     if( isDelimitableToken( normToken ))
                         nodePrimaryToken = SplitTokenToTree( normToken );
                     else
-                    {
                         nodePrimaryToken = new TermNode( normToken );
-                    }
                 }
             }
 
@@ -368,9 +355,7 @@ namespace JetBrains.Omea.TextIndex
 
         private static QueryParserNode BuildTree( IList subtokens, QueryParserNode.Type opCode )
         {
-            QueryParserNode node;
-
-            node = new TermNode( (string)subtokens[ subtokens.Count - 1 ] );
+            QueryParserNode node = new TermNode( (string)subtokens[ subtokens.Count - 1 ] );
             for( int i = subtokens.Count - 2; i >= 0; i-- )
             {
                 TermNode leftOpnd = new TermNode( (string)subtokens[ i ] );
@@ -537,28 +522,15 @@ namespace JetBrains.Omea.TextIndex
         #endregion
 
         #region Attributes
+
         private static int     iCurrentOffset = 0;
         private static string  _query;
         private static string  strToken = "", strPrevToken = "";
         private static bool    isPhrasalMode = false;
 
         private static string _errorMessage;
-        #endregion Attributes
 
-/*
-        private void PrintTree( IList form )
-        {
-            Trace.WriteLine( "QueryParser ========================================================" );
-            for( int i = 0; i < form.Count; i++ )
-            {
-                if( ((QueryParserNode)form[ i ]).NodeType == QueryParserNode.Type.eoTerm )
-                    Trace.WriteLine( "QueryParser -- " + ((TermNode)form[ i ]).Term );
-                else
-                    Trace.WriteLine( "QueryParser -- " + ((QueryParserNode)form[ i ]).NodeType );
-            }
-            Trace.WriteLine( "QueryParser ========================================================" );
-        }
-*/
+        #endregion Attributes
     }
 
     public class QueryPostfixForm : List<QueryParserNode>

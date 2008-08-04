@@ -42,35 +42,35 @@ namespace FilterManagerTests
         [Test][ExpectedException(typeof(ArgumentException))]
         public void ViewNoConditionAllResourceTypes1()
         {
-            Core.FilterManager.RegisterView( "View", null, null );
+            Core.FilterRegistry.RegisterView( "View", null, null );
         }
 
         [Test][ExpectedException(typeof(ArgumentException))]
         public void ViewNoConditionAllResourceTypes2()
         {
-            Core.FilterManager.RegisterView( "View", null, (IResource[])null, null );
+            Core.FilterRegistry.RegisterView( "View", null,(IResource[]) null, null );
         }
 
         [Test]
         public void ViewNoConditionOneConformingType()
         {
-            IResource view = Core.FilterManager.RegisterView( "View", new string[]{ "Email" }, (IResource[])null, null );
-            IResourceList result = Core.FilterManager.ExecView( view );
+            IResource view = Core.FilterRegistry.RegisterView( "View", new[]{ "Email" }, (IResource[])null, null );
+            IResourceList result = Core.FilterEngine.ExecView( view );
             Assert.AreEqual( oneResourceTypeList.Count,  result.Count );
         }
 
         [Test]
         public void ViewNoConditionSeveralExistingTypesWithOneConforming()
         {
-            IResource view = Core.FilterManager.RegisterView( "View", new string[]{ "Email", "NewsArticle" }, (IResource[])null, null );
-            IResourceList result = Core.FilterManager.ExecView( view );
+            IResource view = Core.FilterRegistry.RegisterView( "View", new[]{ "Email", "NewsArticle" }, (IResource[])null, null );
+            IResourceList result = Core.FilterEngine.ExecView( view );
             Assert.AreEqual( oneResourceTypeList.Count,  result.Count );
         }
 
         [Test][ExpectedException(typeof(ArgumentException))]
         public void ViewNoConditionSeveralTypesWithNonExistingOne()
         {
-            Core.FilterManager.RegisterView( "View", new string[]{ "Email", "NewsArticle", "FakeResType" }, (IResource[])null, null );
+            Core.FilterRegistry.RegisterView( "View", new[]{ "Email", "NewsArticle", "FakeResType" }, (IResource[])null, null );
         }
 
         //---------------------------------------------------------------------
@@ -84,35 +84,35 @@ namespace FilterManagerTests
         [Test]
         public void ViewOneConditionNullTypeNullType()
         {
-            IResource condition = Core.FilterManager.CreateStandardCondition( "Condition", "DeepName", null, "Counter", ConditionOp.Gt, "4" );
-            IResource view = Core.FilterManager.RegisterView( "View", null, new IResource[]{ condition }, null );
-            IResourceList result = Core.FilterManager.ExecView( view );
+            IResource condition = Core.FilterRegistry.CreateStandardCondition( "Condition", "DeepName", null, "Counter", ConditionOp.Gt, "4" );
+            IResource view = Core.FilterRegistry.RegisterView( "View", null, new[]{ condition }, null );
+            IResourceList result = Core.FilterEngine.ExecView( view );
             Assert.AreEqual( oneResourceTypeList.Count / 2,  result.Count );
         }
 
         [Test]
         public void ViewOneConditionNullTypeOneConformingType()
         {
-            IResource condition = Core.FilterManager.CreateStandardCondition( "Condition", "DeepName", null, "Counter", ConditionOp.Gt, "4" );
-            IResource view = Core.FilterManager.RegisterView( "View", new string[]{ "Email" }, new IResource[]{ condition }, null );
-            IResourceList result = Core.FilterManager.ExecView( view );
+            IResource condition = Core.FilterRegistry.CreateStandardCondition( "Condition", "DeepName", null, "Counter", ConditionOp.Gt, "4" );
+            IResource view = Core.FilterRegistry.RegisterView( "View", new[]{ "Email" }, new[]{ condition }, null );
+            IResourceList result = Core.FilterEngine.ExecView( view );
             Assert.AreEqual( oneResourceTypeList.Count / 2,  result.Count );
         }
 
         [Test]
         public void ViewOneConditionNullTypeSeveralExistingTypesWithOneConforming()
         {
-            IResource condition = Core.FilterManager.CreateStandardCondition( "Condition", "DeepName", null, "Counter", ConditionOp.Gt, "4" );
-            IResource view = Core.FilterManager.RegisterView( "View", new string[]{ "Email", "NewsArticle" }, new IResource[]{ condition }, null );
-            IResourceList result = Core.FilterManager.ExecView( view );
+            IResource condition = Core.FilterRegistry.CreateStandardCondition( "Condition", "DeepName", null, "Counter", ConditionOp.Gt, "4" );
+            IResource view = Core.FilterRegistry.RegisterView( "View", new[]{ "Email", "NewsArticle" }, new[]{ condition }, null );
+            IResourceList result = Core.FilterEngine.ExecView( view );
             Assert.AreEqual( oneResourceTypeList.Count / 2,  result.Count );
         }
 
         [Test][ExpectedException(typeof(ArgumentException))]
         public void ViewOneConditionNullTypeSeveralTypesWithNonExistingOne()
         {
-            IResource condition = Core.FilterManager.CreateStandardCondition( "Condition", "DeepName", null, "Counter", ConditionOp.Gt, "4" );
-            Core.FilterManager.RegisterView( "View", new string[]{ "Email", "NewsArticle", "FakeResType" }, new IResource[]{ condition }, null );
+            IResource condition = Core.FilterRegistry.CreateStandardCondition( "Condition", "DeepName", null, "Counter", ConditionOp.Gt, "4" );
+            Core.FilterRegistry.RegisterView( "View", new[]{ "Email", "NewsArticle", "FakeResType" }, new[]{ condition }, null );
         }
 
         //---------------------------------------------------------------------
@@ -126,44 +126,44 @@ namespace FilterManagerTests
         [Test]
         public void ViewOneConditionOneTypeNullType()
         {
-            IResource condition = Core.FilterManager.CreateStandardCondition( "Condition", "DeepName", new string[]{ "Email" }, "Counter", ConditionOp.Gt, "4" );
-            IResource view = Core.FilterManager.RegisterView( "View", null, new IResource[]{ condition }, null );
-            IResourceList result = Core.FilterManager.ExecView( view );
+            IResource condition = Core.FilterRegistry.CreateStandardCondition( "Condition", "DeepName", new[]{ "Email" }, "Counter", ConditionOp.Gt, "4" );
+            IResource view = Core.FilterRegistry.RegisterView( "View", null, new[]{ condition }, null );
+            IResourceList result = Core.FilterEngine.ExecView( view );
             Assert.AreEqual( oneResourceTypeList.Count / 2,  result.Count );
         }
 
         [Test]
         public void ViewOneConditionOneTypeOneConformingType()
         {
-            IResource condition = Core.FilterManager.CreateStandardCondition( "Condition", "DeepName", new string[]{ "Email" }, "Counter", ConditionOp.Gt, "4" );
-            IResource view = Core.FilterManager.RegisterView( "View", new string[]{ "Email" }, new IResource[]{ condition }, null );
-            IResourceList result = Core.FilterManager.ExecView( view );
+            IResource condition = Core.FilterRegistry.CreateStandardCondition( "Condition", "DeepName", new[]{ "Email" }, "Counter", ConditionOp.Gt, "4" );
+            IResource view = Core.FilterRegistry.RegisterView( "View", new[]{ "Email" }, new[]{ condition }, null );
+            IResourceList result = Core.FilterEngine.ExecView( view );
             Assert.AreEqual( oneResourceTypeList.Count / 2,  result.Count );
         }
 
         [Test]
         public void ViewOneConditionOneTypeOneNonConformingType()
         {
-            IResource condition = Core.FilterManager.CreateStandardCondition( "Condition", "DeepName", new string[]{ "Email" }, "Counter", ConditionOp.Gt, "4" );
-            IResource view = Core.FilterManager.RegisterView( "View", new string[]{ "NewsArticle" }, new IResource[]{ condition }, null );
-            IResourceList result = Core.FilterManager.ExecView( view );
+            IResource condition = Core.FilterRegistry.CreateStandardCondition( "Condition", "DeepName", new[]{ "Email" }, "Counter", ConditionOp.Gt, "4" );
+            IResource view = Core.FilterRegistry.RegisterView( "View", new[]{ "NewsArticle" }, new[]{ condition }, null );
+            IResourceList result = Core.FilterEngine.ExecView( view );
             Assert.AreEqual( 0, result.Count );
         }
 
         [Test]
         public void ViewOneConditionOneTypeSeveralExistingTypesWithOneConforming()
         {
-            IResource condition = Core.FilterManager.CreateStandardCondition( "Condition", "DeepName", new string[]{ "Email" }, "Counter", ConditionOp.Gt, "4" );
-            IResource view = Core.FilterManager.RegisterView( "View", new string[]{ "Email", "NewsArticle" }, new IResource[]{ condition }, null );
-            IResourceList result = Core.FilterManager.ExecView( view );
+            IResource condition = Core.FilterRegistry.CreateStandardCondition( "Condition", "DeepName", new[]{ "Email" }, "Counter", ConditionOp.Gt, "4" );
+            IResource view = Core.FilterRegistry.RegisterView( "View", new[]{ "Email", "NewsArticle" }, new[]{ condition }, null );
+            IResourceList result = Core.FilterEngine.ExecView( view );
             Assert.AreEqual( oneResourceTypeList.Count / 2,  result.Count );
         }
 
         [Test][ExpectedException(typeof(ArgumentException))]
         public void ViewOneConditionOneTypeSeveralTypesWithNonExistingOne()
         {
-            IResource condition = Core.FilterManager.CreateStandardCondition( "Condition", "DeepName", new string[]{ "Email" }, "Counter", ConditionOp.Gt, "4" );
-            Core.FilterManager.RegisterView( "View", new string[]{ "Email", "NewsArticle", "FakeResType" }, new IResource[]{ condition }, null );
+            IResource condition = Core.FilterRegistry.CreateStandardCondition( "Condition", "DeepName", new[]{ "Email" }, "Counter", ConditionOp.Gt, "4" );
+            Core.FilterRegistry.RegisterView( "View", new[]{ "Email", "NewsArticle", "FakeResType" }, new[]{ condition }, null );
         }
 
         //---------------------------------------------------------------------
@@ -177,33 +177,33 @@ namespace FilterManagerTests
         [Test][ExpectedException(typeof(ArgumentException))]
         public void ViewOneExceptionNullTypeNullType()
         {
-            IResource condition = Core.FilterManager.CreateStandardCondition( "Condition", "DeepName", null, "Counter", ConditionOp.Gt, "4" );
-            Core.FilterManager.RegisterView( "View", null, (IResource[])null, new IResource[]{ condition } );
+            IResource condition = Core.FilterRegistry.CreateStandardCondition( "Condition", "DeepName", null, "Counter", ConditionOp.Gt, "4" );
+            Core.FilterRegistry.RegisterView( "View", null, (IResource[])null, new[]{ condition } );
         }
 
         [Test]
         public void ViewOneExceptionNullTypeOneConformingType()
         {
-            IResource condition = Core.FilterManager.CreateStandardCondition( "Condition", "DeepName", null, "Counter", ConditionOp.Gt, "4" );
-            IResource view = Core.FilterManager.RegisterView( "View", new string[]{ "Email" }, (IResource[])null, new IResource[]{ condition } );
-            IResourceList result = Core.FilterManager.ExecView( view );
+            IResource condition = Core.FilterRegistry.CreateStandardCondition( "Condition", "DeepName", null, "Counter", ConditionOp.Gt, "4" );
+            IResource view = Core.FilterRegistry.RegisterView( "View", new[]{ "Email" }, (IResource[])null, new[]{ condition } );
+            IResourceList result = Core.FilterEngine.ExecView( view );
             Assert.AreEqual( oneResourceTypeList.Count / 2,  result.Count );
         }
 
         [Test]
         public void ViewOneExceptionNullTypeSeveralExistingTypesWithOneConforming()
         {
-            IResource condition = Core.FilterManager.CreateStandardCondition( "Condition", "DeepName", null, "Counter", ConditionOp.Gt, "4" );
-            IResource view = Core.FilterManager.RegisterView( "View", new string[]{ "Email", "NewsArticle" }, (IResource[])null, new IResource[]{ condition } );
-            IResourceList result = Core.FilterManager.ExecView( view );
+            IResource condition = Core.FilterRegistry.CreateStandardCondition( "Condition", "DeepName", null, "Counter", ConditionOp.Gt, "4" );
+            IResource view = Core.FilterRegistry.RegisterView( "View", new[]{ "Email", "NewsArticle" }, (IResource[])null, new[]{ condition } );
+            IResourceList result = Core.FilterEngine.ExecView( view );
             Assert.AreEqual( oneResourceTypeList.Count / 2,  result.Count );
         }
 
         [Test][ExpectedException(typeof(ArgumentException))]
         public void ViewOneExceptionNullTypeSeveralTypesWithNonExistingOne()
         {
-            IResource condition = Core.FilterManager.CreateStandardCondition( "Condition", "DeepName", null, "Counter", ConditionOp.Gt, "4" );
-            Core.FilterManager.RegisterView( "View", new string[]{ "Email", "NewsArticle", "FakeResType" }, (IResource[])null, new IResource[]{ condition } );
+            IResource condition = Core.FilterRegistry.CreateStandardCondition( "Condition", "DeepName", null, "Counter", ConditionOp.Gt, "4" );
+            Core.FilterRegistry.RegisterView( "View", new[]{ "Email", "NewsArticle", "FakeResType" }, (IResource[])null, new[]{ condition } );
         }
 
         //---------------------------------------------------------------------
@@ -217,42 +217,42 @@ namespace FilterManagerTests
         [Test][ExpectedException(typeof(ArgumentException))]
         public void ViewOneExceptionOneTypeNullType()
         {
-            IResource condition = Core.FilterManager.CreateStandardCondition( "Condition", "DeepName", new string[]{ "Email" }, "Counter", ConditionOp.Gt, "4" );
-            Core.FilterManager.RegisterView( "View", null, (IResource[])null, new IResource[]{ condition } );
+            IResource condition = Core.FilterRegistry.CreateStandardCondition( "Condition", "DeepName", new[]{ "Email" }, "Counter", ConditionOp.Gt, "4" );
+            Core.FilterRegistry.RegisterView( "View", null, (IResource[])null, new[]{ condition } );
         }
 
         [Test]
         public void ViewOneExceptionOneTypeOneConformingType()
         {
-            IResource condition = Core.FilterManager.CreateStandardCondition( "Condition", "DeepName", new string[]{ "Email" }, "Counter", ConditionOp.Gt, "4" );
-            IResource view = Core.FilterManager.RegisterView( "View", new string[]{ "Email" }, (IResource[])null, new IResource[]{ condition } );
-            IResourceList result = Core.FilterManager.ExecView( view );
+            IResource condition = Core.FilterRegistry.CreateStandardCondition( "Condition", "DeepName", new[]{ "Email" }, "Counter", ConditionOp.Gt, "4" );
+            IResource view = Core.FilterRegistry.RegisterView( "View", new[]{ "Email" }, (IResource[])null, new[]{ condition } );
+            IResourceList result = Core.FilterEngine.ExecView( view );
             Assert.AreEqual( oneResourceTypeList.Count / 2,  result.Count );
         }
 
         [Test]
         public void ViewOneExceptionOneTypeOneNonConformingType()
         {
-            IResource condition = Core.FilterManager.CreateStandardCondition( "Condition", "DeepName", new string[]{ "Email" }, "Counter", ConditionOp.Gt, "4" );
-            IResource view = Core.FilterManager.RegisterView( "View", new string[]{ "NewsArticle" }, (IResource[])null, new IResource[]{ condition } );
-            IResourceList result = Core.FilterManager.ExecView( view );
+            IResource condition = Core.FilterRegistry.CreateStandardCondition( "Condition", "DeepName", new[]{ "Email" }, "Counter", ConditionOp.Gt, "4" );
+            IResource view = Core.FilterRegistry.RegisterView( "View", new[]{ "NewsArticle" }, (IResource[])null, new[]{ condition } );
+            IResourceList result = Core.FilterEngine.ExecView( view );
             Assert.AreEqual( 0, result.Count );
         }
 
         [Test]
         public void ViewOneExceptionOneTypeSeveralExistingTypesWithOneConforming()
         {
-            IResource condition = Core.FilterManager.CreateStandardCondition( "Condition", "DeepName", new string[]{ "Email" }, "Counter", ConditionOp.Gt, "4" );
-            IResource view = Core.FilterManager.RegisterView( "View", new string[]{ "Email", "NewsArticle" }, (IResource[])null, new IResource[]{ condition } );
-            IResourceList result = Core.FilterManager.ExecView( view );
+            IResource condition = Core.FilterRegistry.CreateStandardCondition( "Condition", "DeepName", new[]{ "Email" }, "Counter", ConditionOp.Gt, "4" );
+            IResource view = Core.FilterRegistry.RegisterView( "View", new[]{ "Email", "NewsArticle" }, (IResource[])null, new[]{ condition } );
+            IResourceList result = Core.FilterEngine.ExecView( view );
             Assert.AreEqual( oneResourceTypeList.Count / 2,  result.Count );
         }
 
         [Test][ExpectedException(typeof(ArgumentException))]
         public void ViewOneExceptionOneTypeSeveralTypesWithNonExistingOne()
         {
-            IResource condition = Core.FilterManager.CreateStandardCondition( "Condition", "DeepName", new string[]{ "Email" }, "Counter", ConditionOp.Gt, "4" );
-            Core.FilterManager.RegisterView( "View", new string[]{ "Email", "NewsArticle", "FakeResType" }, (IResource[])null, new IResource[]{ condition } );
+            IResource condition = Core.FilterRegistry.CreateStandardCondition( "Condition", "DeepName", new[]{ "Email" }, "Counter", ConditionOp.Gt, "4" );
+            Core.FilterRegistry.RegisterView( "View", new[]{ "Email", "NewsArticle", "FakeResType" }, (IResource[])null, new[]{ condition } );
         }
 
         //---------------------------------------------------------------------
@@ -267,49 +267,49 @@ namespace FilterManagerTests
         [Test]
         public void ViewOneConditionOneExceptionOneTypeNullType()
         {
-            IResource condition = Core.FilterManager.CreateStandardCondition( "Condition", "DeepName", new string[]{ "Email" }, "Counter", ConditionOp.Gt, "4" );
-            IResource exception = Core.FilterManager.CreateStandardCondition( "Exception", "DeepName1", new string[]{ "Email" }, "Counter", ConditionOp.Gt, "7" );
-            IResource view = Core.FilterManager.RegisterView( "View", null, new IResource[]{ condition }, new IResource[]{ exception } );
-            IResourceList result = Core.FilterManager.ExecView( view );
+            IResource condition = Core.FilterRegistry.CreateStandardCondition( "Condition", "DeepName", new[]{ "Email" }, "Counter", ConditionOp.Gt, "4" );
+            IResource exception = Core.FilterRegistry.CreateStandardCondition( "Exception", "DeepName1", new[]{ "Email" }, "Counter", ConditionOp.Gt, "7" );
+            IResource view = Core.FilterRegistry.RegisterView( "View", null, new[]{ condition }, new[]{ exception } );
+            IResourceList result = Core.FilterEngine.ExecView( view );
             Assert.AreEqual( 3,  result.Count );
         }
 
         [Test]
         public void ViewOneConditionOneExceptionOneTypeOneConformingType()
         {
-            IResource condition = Core.FilterManager.CreateStandardCondition( "Condition", "DeepName", new string[]{ "Email" }, "Counter", ConditionOp.Gt, "4" );
-            IResource exception = Core.FilterManager.CreateStandardCondition( "Exception", "DeepName1", new string[]{ "Email" }, "Counter", ConditionOp.Gt, "7" );
-            IResource view = Core.FilterManager.RegisterView( "View", new string[]{ "Email" }, new IResource[]{ condition }, new IResource[]{ exception } );
-            IResourceList result = Core.FilterManager.ExecView( view );
+            IResource condition = Core.FilterRegistry.CreateStandardCondition( "Condition", "DeepName", new[]{ "Email" }, "Counter", ConditionOp.Gt, "4" );
+            IResource exception = Core.FilterRegistry.CreateStandardCondition( "Exception", "DeepName1", new[]{ "Email" }, "Counter", ConditionOp.Gt, "7" );
+            IResource view = Core.FilterRegistry.RegisterView( "View", new[]{ "Email" }, new[]{ condition }, new[]{ exception } );
+            IResourceList result = Core.FilterEngine.ExecView( view );
             Assert.AreEqual( 3,  result.Count );
         }
 
         [Test]
         public void ViewOneConditionOneExceptionOneTypeOneNonConformingType()
         {
-            IResource condition = Core.FilterManager.CreateStandardCondition( "Condition", "DeepName", new string[]{ "Email" }, "Counter", ConditionOp.Gt, "4" );
-            IResource exception = Core.FilterManager.CreateStandardCondition( "Exception", "DeepName1", new string[]{ "Email" }, "Counter", ConditionOp.Gt, "7" );
-            IResource view = Core.FilterManager.RegisterView( "View", new string[]{ "NewsArticle" }, new IResource[]{ condition }, new IResource[]{ exception } );
-            IResourceList result = Core.FilterManager.ExecView( view );
+            IResource condition = Core.FilterRegistry.CreateStandardCondition( "Condition", "DeepName", new[]{ "Email" }, "Counter", ConditionOp.Gt, "4" );
+            IResource exception = Core.FilterRegistry.CreateStandardCondition( "Exception", "DeepName1", new[]{ "Email" }, "Counter", ConditionOp.Gt, "7" );
+            IResource view = Core.FilterRegistry.RegisterView( "View", new[]{ "NewsArticle" }, new[]{ condition }, new[]{ exception } );
+            IResourceList result = Core.FilterEngine.ExecView( view );
             Assert.AreEqual( 0, result.Count );
         }
 
         [Test]
         public void ViewOneConditionOneExceptionOneTypeSeveralExistingTypesWithOneConforming()
         {
-            IResource condition = Core.FilterManager.CreateStandardCondition( "Condition", "DeepName", new string[]{ "Email" }, "Counter", ConditionOp.Gt, "4" );
-            IResource exception = Core.FilterManager.CreateStandardCondition( "Exception", "DeepName1", new string[]{ "Email" }, "Counter", ConditionOp.Gt, "7" );
-            IResource view = Core.FilterManager.RegisterView( "View", new string[]{ "Email", "NewsArticle" }, new IResource[]{ condition }, new IResource[]{ exception } );
-            IResourceList result = Core.FilterManager.ExecView( view );
+            IResource condition = Core.FilterRegistry.CreateStandardCondition( "Condition", "DeepName", new[]{ "Email" }, "Counter", ConditionOp.Gt, "4" );
+            IResource exception = Core.FilterRegistry.CreateStandardCondition( "Exception", "DeepName1", new[]{ "Email" }, "Counter", ConditionOp.Gt, "7" );
+            IResource view = Core.FilterRegistry.RegisterView( "View", new[]{ "Email", "NewsArticle" }, new[]{ condition }, new[]{ exception } );
+            IResourceList result = Core.FilterEngine.ExecView( view );
             Assert.AreEqual( 3,  result.Count );
         }
 
         [Test][ExpectedException(typeof(ArgumentException))]
         public void ViewOneConditionOneExceptionOneTypeSeveralTypesWithNonExistingOne()
         {
-            IResource condition = Core.FilterManager.CreateStandardCondition( "Condition", "DeepName", new string[]{ "Email" }, "Counter", ConditionOp.Gt, "4" );
-            IResource exception = Core.FilterManager.CreateStandardCondition( "Exception", "DeepName1", new string[]{ "Email" }, "Counter", ConditionOp.Gt, "7" );
-            Core.FilterManager.RegisterView( "View", new string[]{ "Email", "NewsArticle", "FakeResType" }, new IResource[]{ condition }, new IResource[]{ exception } );
+            IResource condition = Core.FilterRegistry.CreateStandardCondition( "Condition", "DeepName", new[]{ "Email" }, "Counter", ConditionOp.Gt, "4" );
+            IResource exception = Core.FilterRegistry.CreateStandardCondition( "Exception", "DeepName1", new[]{ "Email" }, "Counter", ConditionOp.Gt, "7" );
+            Core.FilterRegistry.RegisterView( "View", new[]{ "Email", "NewsArticle", "FakeResType" }, new[]{ condition }, new[]{ exception } );
         }
 
         //---------------------------------------------------------------------
@@ -324,40 +324,40 @@ namespace FilterManagerTests
         [Test]
         public void ViewOneConditionOneExceptionOneTypeNullTypeResultEmpty()
         {
-            IResource condition = Core.FilterManager.CreateStandardCondition( "Condition", "DeepName", new string[]{ "Email" }, "Counter", ConditionOp.Gt, "4" );
-            IResource exception = Core.FilterManager.CreateStandardCondition( "Exception", "DeepName1", new string[]{ "Email" }, "Counter", ConditionOp.Gt, "3" );
-            IResource view = Core.FilterManager.RegisterView( "View", null, new IResource[]{ condition }, new IResource[]{ exception } );
-            IResourceList result = Core.FilterManager.ExecView( view );
+            IResource condition = Core.FilterRegistry.CreateStandardCondition( "Condition", "DeepName", new[]{ "Email" }, "Counter", ConditionOp.Gt, "4" );
+            IResource exception = Core.FilterRegistry.CreateStandardCondition( "Exception", "DeepName1", new[]{ "Email" }, "Counter", ConditionOp.Gt, "3" );
+            IResource view = Core.FilterRegistry.RegisterView( "View", null, new[]{ condition }, new[]{ exception } );
+            IResourceList result = Core.FilterEngine.ExecView( view );
             Assert.AreEqual( 0,  result.Count );
         }
 
         [Test]
         public void ViewOneConditionOneExceptionOneTypeOneConformingTypeResultEmpty()
         {
-            IResource condition = Core.FilterManager.CreateStandardCondition( "Condition", "DeepName", new string[]{ "Email" }, "Counter", ConditionOp.Gt, "4" );
-            IResource exception = Core.FilterManager.CreateStandardCondition( "Exception", "DeepName1", new string[]{ "Email" }, "Counter", ConditionOp.Gt, "3" );
-            IResource view = Core.FilterManager.RegisterView( "View", new string[]{ "Email" }, new IResource[]{ condition }, new IResource[]{ exception } );
-            IResourceList result = Core.FilterManager.ExecView( view );
+            IResource condition = Core.FilterRegistry.CreateStandardCondition( "Condition", "DeepName", new[]{ "Email" }, "Counter", ConditionOp.Gt, "4" );
+            IResource exception = Core.FilterRegistry.CreateStandardCondition( "Exception", "DeepName1", new[]{ "Email" }, "Counter", ConditionOp.Gt, "3" );
+            IResource view = Core.FilterRegistry.RegisterView( "View", new[]{ "Email" }, new[]{ condition }, new[]{ exception } );
+            IResourceList result = Core.FilterEngine.ExecView( view );
             Assert.AreEqual( 0,  result.Count );
         }
 
         [Test]
         public void ViewOneConditionOneExceptionOneTypeOneNonConformingTypeResultEmpty()
         {
-            IResource condition = Core.FilterManager.CreateStandardCondition( "Condition", "DeepName", new string[]{ "Email" }, "Counter", ConditionOp.Gt, "4" );
-            IResource exception = Core.FilterManager.CreateStandardCondition( "Exception", "DeepName1", new string[]{ "Email" }, "Counter", ConditionOp.Gt, "3" );
-            IResource view = Core.FilterManager.RegisterView( "View", new string[]{ "NewsArticle" }, new IResource[]{ condition }, new IResource[]{ exception } );
-            IResourceList result = Core.FilterManager.ExecView( view );
+            IResource condition = Core.FilterRegistry.CreateStandardCondition( "Condition", "DeepName", new[]{ "Email" }, "Counter", ConditionOp.Gt, "4" );
+            IResource exception = Core.FilterRegistry.CreateStandardCondition( "Exception", "DeepName1", new[]{ "Email" }, "Counter", ConditionOp.Gt, "3" );
+            IResource view = Core.FilterRegistry.RegisterView( "View", new[]{ "NewsArticle" }, new[]{ condition }, new[]{ exception } );
+            IResourceList result = Core.FilterEngine.ExecView( view );
             Assert.AreEqual( 0, result.Count );
         }
 
         [Test]
         public void ViewOneConditionOneExceptionOneTypeSeveralExistingTypesWithOneConformingResultEmpty()
         {
-            IResource condition = Core.FilterManager.CreateStandardCondition( "Condition", "DeepName", new string[]{ "Email" }, "Counter", ConditionOp.Gt, "4" );
-            IResource exception = Core.FilterManager.CreateStandardCondition( "Exception", "DeepName1", new string[]{ "Email" }, "Counter", ConditionOp.Gt, "3" );
-            IResource view = Core.FilterManager.RegisterView( "View", new string[]{ "Email", "NewsArticle" }, new IResource[]{ condition }, new IResource[]{ exception } );
-            IResourceList result = Core.FilterManager.ExecView( view );
+            IResource condition = Core.FilterRegistry.CreateStandardCondition( "Condition", "DeepName", new[]{ "Email" }, "Counter", ConditionOp.Gt, "4" );
+            IResource exception = Core.FilterRegistry.CreateStandardCondition( "Exception", "DeepName1", new[]{ "Email" }, "Counter", ConditionOp.Gt, "3" );
+            IResource view = Core.FilterRegistry.RegisterView( "View", new[]{ "Email", "NewsArticle" }, new[]{ condition }, new[]{ exception } );
+            IResourceList result = Core.FilterEngine.ExecView( view );
             Assert.AreEqual( 0,  result.Count );
         }
 
@@ -374,40 +374,40 @@ namespace FilterManagerTests
         [Test]
         public void ViewOneConditionOneEmptyResultExceptionOneTypeNullType()
         {
-            IResource condition = Core.FilterManager.CreateStandardCondition( "Condition", "DeepName", new string[]{ "Email" }, "Counter", ConditionOp.Gt, "4" );
-            IResource exception = Core.FilterManager.CreateStandardCondition( "Exception", "DeepName1", new string[]{ "Email" }, "Counter", ConditionOp.Lt, "4" );
-            IResource view = Core.FilterManager.RegisterView( "View", null, new IResource[]{ condition }, new IResource[]{ exception } );
-            IResourceList result = Core.FilterManager.ExecView( view );
+            IResource condition = Core.FilterRegistry.CreateStandardCondition( "Condition", "DeepName", new[]{ "Email" }, "Counter", ConditionOp.Gt, "4" );
+            IResource exception = Core.FilterRegistry.CreateStandardCondition( "Exception", "DeepName1", new[]{ "Email" }, "Counter", ConditionOp.Lt, "4" );
+            IResource view = Core.FilterRegistry.RegisterView( "View", null, new[]{ condition }, new[]{ exception } );
+            IResourceList result = Core.FilterEngine.ExecView( view );
             Assert.AreEqual( 5,  result.Count );
         }
 
         [Test]
         public void ViewOneConditionOneEmptyResultExceptionOneTypeOneConformingType()
         {
-            IResource condition = Core.FilterManager.CreateStandardCondition( "Condition", "DeepName", new string[]{ "Email" }, "Counter", ConditionOp.Gt, "4" );
-            IResource exception = Core.FilterManager.CreateStandardCondition( "Exception", "DeepName1", new string[]{ "Email" }, "Counter", ConditionOp.Lt, "4" );
-            IResource view = Core.FilterManager.RegisterView( "View", new string[]{ "Email" }, new IResource[]{ condition }, new IResource[]{ exception } );
-            IResourceList result = Core.FilterManager.ExecView( view );
+            IResource condition = Core.FilterRegistry.CreateStandardCondition( "Condition", "DeepName", new[]{ "Email" }, "Counter", ConditionOp.Gt, "4" );
+            IResource exception = Core.FilterRegistry.CreateStandardCondition( "Exception", "DeepName1", new[]{ "Email" }, "Counter", ConditionOp.Lt, "4" );
+            IResource view = Core.FilterRegistry.RegisterView( "View", new[]{ "Email" }, new[]{ condition }, new[]{ exception } );
+            IResourceList result = Core.FilterEngine.ExecView( view );
             Assert.AreEqual( 5,  result.Count );
         }
 
         [Test]
         public void ViewOneConditionOneEmptyResultExceptionOneTypeOneNonConformingTypeResultEmpty()
         {
-            IResource condition = Core.FilterManager.CreateStandardCondition( "Condition", "DeepName", new string[]{ "Email" }, "Counter", ConditionOp.Gt, "4" );
-            IResource exception = Core.FilterManager.CreateStandardCondition( "Exception", "DeepName1", new string[]{ "Email" }, "Counter", ConditionOp.Lt, "4" );
-            IResource view = Core.FilterManager.RegisterView( "View", new string[]{ "NewsArticle" }, new IResource[]{ condition }, new IResource[]{ exception } );
-            IResourceList result = Core.FilterManager.ExecView( view );
+            IResource condition = Core.FilterRegistry.CreateStandardCondition( "Condition", "DeepName", new[]{ "Email" }, "Counter", ConditionOp.Gt, "4" );
+            IResource exception = Core.FilterRegistry.CreateStandardCondition( "Exception", "DeepName1", new[]{ "Email" }, "Counter", ConditionOp.Lt, "4" );
+            IResource view = Core.FilterRegistry.RegisterView( "View", new[]{ "NewsArticle" }, new[]{ condition }, new[]{ exception } );
+            IResourceList result = Core.FilterEngine.ExecView( view );
             Assert.AreEqual( 0, result.Count );
         }
 
         [Test]
         public void ViewOneConditionOneEmptyResultExceptionOneTypeSeveralExistingTypesWithOneConformingResultEmpty()
         {
-            IResource condition = Core.FilterManager.CreateStandardCondition( "Condition", "DeepName", new string[]{ "Email" }, "Counter", ConditionOp.Gt, "4" );
-            IResource exception = Core.FilterManager.CreateStandardCondition( "Exception", "DeepName1", new string[]{ "Email" }, "Counter", ConditionOp.Lt, "4" );
-            IResource view = Core.FilterManager.RegisterView( "View", new string[]{ "Email", "NewsArticle" }, new IResource[]{ condition }, new IResource[]{ exception } );
-            IResourceList result = Core.FilterManager.ExecView( view );
+            IResource condition = Core.FilterRegistry.CreateStandardCondition( "Condition", "DeepName", new[]{ "Email" }, "Counter", ConditionOp.Gt, "4" );
+            IResource exception = Core.FilterRegistry.CreateStandardCondition( "Exception", "DeepName1", new[]{ "Email" }, "Counter", ConditionOp.Lt, "4" );
+            IResource view = Core.FilterRegistry.RegisterView( "View", new[]{ "Email", "NewsArticle" }, new[]{ condition }, new[]{ exception } );
+            IResourceList result = Core.FilterEngine.ExecView( view );
             Assert.AreEqual( 5,  result.Count );
         }
 
@@ -423,8 +423,8 @@ namespace FilterManagerTests
         {
             CreateLinkResources();
 
-            IResource view = Core.FilterManager.RegisterView( "View", new string[]{ "Attachment" }, (IResource[])null, null );
-            IResourceList result = Core.FilterManager.ExecView( view );
+            IResource view = Core.FilterRegistry.RegisterView( "View", new[]{ "Attachment" }, (IResource[])null, null );
+            IResourceList result = Core.FilterEngine.ExecView( view );
             Assert.AreEqual( 3,  result.Count );
         }
 
@@ -433,8 +433,8 @@ namespace FilterManagerTests
         {
             CreateLinkResources();
 
-            IResource view = Core.FilterManager.RegisterView( "View", new string[]{ "NewsAttachment" }, (IResource[])null, null );
-            IResourceList result = Core.FilterManager.ExecView( view );
+            IResource view = Core.FilterRegistry.RegisterView( "View", new[]{ "NewsAttachment" }, (IResource[])null, null );
+            IResourceList result = Core.FilterEngine.ExecView( view );
             Assert.AreEqual( 2,  result.Count );
         }
 
@@ -443,8 +443,8 @@ namespace FilterManagerTests
         {
             CreateLinkResources();
 
-            IResource view = Core.FilterManager.RegisterView( "View", new string[]{ "Attachment", "NewsAttachment" }, (IResource[])null, null );
-            IResourceList result = Core.FilterManager.ExecView( view );
+            IResource view = Core.FilterRegistry.RegisterView( "View", new[]{ "Attachment", "NewsAttachment" }, (IResource[])null, null );
+            IResourceList result = Core.FilterEngine.ExecView( view );
             Assert.AreEqual( 5,  result.Count );
         }
 
@@ -456,9 +456,9 @@ namespace FilterManagerTests
         {
             CreateLinkResources();
 
-            IResource condition = Core.FilterManager.CreateStandardCondition( "Condition", "DeepName", null, "Counter", ConditionOp.Gt, "4" );
-            IResource view = Core.FilterManager.RegisterView( "View", new string[]{ "Attachment" }, new IResource[] { condition }, null );
-            IResourceList result = Core.FilterManager.ExecView( view );
+            IResource condition = Core.FilterRegistry.CreateStandardCondition( "Condition", "DeepName", null, "Counter", ConditionOp.Gt, "4" );
+            IResource view = Core.FilterRegistry.RegisterView( "View", new[]{ "Attachment" }, new[] { condition }, null );
+            IResourceList result = Core.FilterEngine.ExecView( view );
             Assert.AreEqual( 1,  result.Count );
         }
 
@@ -467,9 +467,9 @@ namespace FilterManagerTests
         {
             CreateLinkResources();
 
-            IResource condition = Core.FilterManager.CreateStandardCondition( "Condition", "DeepName", null, "Counter", ConditionOp.Gt, "4" );
-            IResource view = Core.FilterManager.RegisterView( "View", new string[]{ "NewsAttachment" }, new IResource[] { condition }, null );
-            IResourceList result = Core.FilterManager.ExecView( view );
+            IResource condition = Core.FilterRegistry.CreateStandardCondition( "Condition", "DeepName", null, "Counter", ConditionOp.Gt, "4" );
+            IResource view = Core.FilterRegistry.RegisterView( "View", new[]{ "NewsAttachment" }, new[] { condition }, null );
+            IResourceList result = Core.FilterEngine.ExecView( view );
             Assert.AreEqual( 1,  result.Count );
         }
 
@@ -478,9 +478,9 @@ namespace FilterManagerTests
         {
             CreateLinkResources();
 
-            IResource condition = Core.FilterManager.CreateStandardCondition( "Condition", "DeepName", null, "Counter", ConditionOp.Gt, "4" );
-            IResource view = Core.FilterManager.RegisterView( "View", new string[]{ "Attachment", "NewsAttachment" }, new IResource[] { condition }, null );
-            IResourceList result = Core.FilterManager.ExecView( view );
+            IResource condition = Core.FilterRegistry.CreateStandardCondition( "Condition", "DeepName", null, "Counter", ConditionOp.Gt, "4" );
+            IResource view = Core.FilterRegistry.RegisterView( "View", new[]{ "Attachment", "NewsAttachment" }, new[] { condition }, null );
+            IResourceList result = Core.FilterEngine.ExecView( view );
             Assert.AreEqual( 2,  result.Count );
         }
 
@@ -492,9 +492,9 @@ namespace FilterManagerTests
         {
             CreateLinkResources();
 
-            IResource condition = Core.FilterManager.CreateStandardCondition( "Condition", "DeepName", null, "Counter", ConditionOp.Gt, "4" );
-            IResource view = Core.FilterManager.RegisterView( "View", new string[]{ "Attachment" }, (IResource[])null, new IResource[] { condition } );
-            IResourceList result = Core.FilterManager.ExecView( view );
+            IResource condition = Core.FilterRegistry.CreateStandardCondition( "Condition", "DeepName", null, "Counter", ConditionOp.Gt, "4" );
+            IResource view = Core.FilterRegistry.RegisterView( "View", new[]{ "Attachment" }, (IResource[])null, new[] { condition } );
+            IResourceList result = Core.FilterEngine.ExecView( view );
             Assert.AreEqual( 2,  result.Count );
         }
 
@@ -503,9 +503,9 @@ namespace FilterManagerTests
         {
             CreateLinkResources();
 
-            IResource condition = Core.FilterManager.CreateStandardCondition( "Condition", "DeepName", null, "Counter", ConditionOp.Gt, "4" );
-            IResource view = Core.FilterManager.RegisterView( "View", new string[]{ "NewsAttachment" }, (IResource[])null, new IResource[] { condition } );
-            IResourceList result = Core.FilterManager.ExecView( view );
+            IResource condition = Core.FilterRegistry.CreateStandardCondition( "Condition", "DeepName", null, "Counter", ConditionOp.Gt, "4" );
+            IResource view = Core.FilterRegistry.RegisterView( "View", new[]{ "NewsAttachment" }, (IResource[])null, new[] { condition } );
+            IResourceList result = Core.FilterEngine.ExecView( view );
             Assert.AreEqual( 1,  result.Count );
         }
 
@@ -514,9 +514,9 @@ namespace FilterManagerTests
         {
             CreateLinkResources();
 
-            IResource condition = Core.FilterManager.CreateStandardCondition( "Condition", "DeepName", null, "Counter", ConditionOp.Gt, "4" );
-            IResource view = Core.FilterManager.RegisterView( "View", new string[]{ "Attachment", "NewsAttachment" }, (IResource[])null, new IResource[] { condition } );
-            IResourceList result = Core.FilterManager.ExecView( view );
+            IResource condition = Core.FilterRegistry.CreateStandardCondition( "Condition", "DeepName", null, "Counter", ConditionOp.Gt, "4" );
+            IResource view = Core.FilterRegistry.RegisterView( "View", new[]{ "Attachment", "NewsAttachment" }, (IResource[])null, new[] { condition } );
+            IResourceList result = Core.FilterEngine.ExecView( view );
             Assert.AreEqual( 3,  result.Count );
         }
 
@@ -532,8 +532,8 @@ namespace FilterManagerTests
         {
             CreateLinkResources();
 
-            IResource view = Core.FilterManager.RegisterView( "View", new string[]{ "Attachment", "HtmlFile" }, (IResource[])null, null );
-            IResourceList result = Core.FilterManager.ExecView( view );
+            IResource view = Core.FilterRegistry.RegisterView( "View", new[]{ "Attachment", "HtmlFile" }, (IResource[])null, null );
+            IResourceList result = Core.FilterEngine.ExecView( view );
             Assert.AreEqual( 2,  result.Count );
         }
 
@@ -542,8 +542,8 @@ namespace FilterManagerTests
         {
             CreateLinkResources();
 
-            IResource view = Core.FilterManager.RegisterView( "View", new string[]{ "NewsAttachment", "HtmlFile" }, (IResource[])null, null );
-            IResourceList result = Core.FilterManager.ExecView( view );
+            IResource view = Core.FilterRegistry.RegisterView( "View", new[]{ "NewsAttachment", "HtmlFile" }, (IResource[])null, null );
+            IResourceList result = Core.FilterEngine.ExecView( view );
             Assert.AreEqual( 1,  result.Count );
         }
 
@@ -552,8 +552,8 @@ namespace FilterManagerTests
         {
             CreateLinkResources();
 
-            IResource view = Core.FilterManager.RegisterView( "View", new string[]{ "Attachment", "NewsAttachment", "HtmlFile" }, (IResource[])null, null );
-            IResourceList result = Core.FilterManager.ExecView( view );
+            IResource view = Core.FilterRegistry.RegisterView( "View", new[]{ "Attachment", "NewsAttachment", "HtmlFile" }, (IResource[])null, null );
+            IResourceList result = Core.FilterEngine.ExecView( view );
             Assert.AreEqual( 3,  result.Count );
         }
 
@@ -562,8 +562,8 @@ namespace FilterManagerTests
         {
             CreateLinkResources();
 
-            IResource view = Core.FilterManager.RegisterView( "View", new string[]{ "Attachment", "NewsAttachment", "HtmlFile", "TextFile" }, (IResource[])null, null );
-            IResourceList result = Core.FilterManager.ExecView( view );
+            IResource view = Core.FilterRegistry.RegisterView( "View", new[]{ "Attachment", "NewsAttachment", "HtmlFile", "TextFile" }, (IResource[])null, null );
+            IResourceList result = Core.FilterEngine.ExecView( view );
             Assert.AreEqual( 5,  result.Count );
         }
 
@@ -575,9 +575,9 @@ namespace FilterManagerTests
         {
             CreateLinkResources();
 
-            IResource condition = Core.FilterManager.CreateStandardCondition( "Condition", "DeepName", null, "Counter", ConditionOp.Gt, "4" );
-            IResource view = Core.FilterManager.RegisterView( "View", new string[]{ "Attachment", "HtmlFile" }, new IResource[] { condition }, null );
-            IResourceList result = Core.FilterManager.ExecView( view );
+            IResource condition = Core.FilterRegistry.CreateStandardCondition( "Condition", "DeepName", null, "Counter", ConditionOp.Gt, "4" );
+            IResource view = Core.FilterRegistry.RegisterView( "View", new[]{ "Attachment", "HtmlFile" }, new[] { condition }, null );
+            IResourceList result = Core.FilterEngine.ExecView( view );
             Assert.AreEqual( 0,  result.Count );
         }
 
@@ -586,9 +586,9 @@ namespace FilterManagerTests
         {
             CreateLinkResources();
 
-            IResource condition = Core.FilterManager.CreateStandardCondition( "Condition", "DeepName", null, "Counter", ConditionOp.Gt, "4" );
-            IResource view = Core.FilterManager.RegisterView( "View", new string[]{ "NewsAttachment", "HtmlFile" }, new IResource[] { condition }, null );
-            IResourceList result = Core.FilterManager.ExecView( view );
+            IResource condition = Core.FilterRegistry.CreateStandardCondition( "Condition", "DeepName", null, "Counter", ConditionOp.Gt, "4" );
+            IResource view = Core.FilterRegistry.RegisterView( "View", new[]{ "NewsAttachment", "HtmlFile" }, new[] { condition }, null );
+            IResourceList result = Core.FilterEngine.ExecView( view );
             Assert.AreEqual( 0,  result.Count );
         }
 
@@ -597,9 +597,9 @@ namespace FilterManagerTests
         {
             CreateLinkResources();
 
-            IResource condition = Core.FilterManager.CreateStandardCondition( "Condition", "DeepName", null, "Counter", ConditionOp.Gt, "4" );
-            IResource view = Core.FilterManager.RegisterView( "View", new string[]{ "Attachment", "NewsAttachment", "HtmlFile" }, new IResource[] { condition }, null );
-            IResourceList result = Core.FilterManager.ExecView( view );
+            IResource condition = Core.FilterRegistry.CreateStandardCondition( "Condition", "DeepName", null, "Counter", ConditionOp.Gt, "4" );
+            IResource view = Core.FilterRegistry.RegisterView( "View", new[]{ "Attachment", "NewsAttachment", "HtmlFile" }, new[] { condition }, null );
+            IResourceList result = Core.FilterEngine.ExecView( view );
             Assert.AreEqual( 0,  result.Count );
         }
 
@@ -608,9 +608,9 @@ namespace FilterManagerTests
         {
             CreateLinkResources();
 
-            IResource condition = Core.FilterManager.CreateStandardCondition( "Condition", "DeepName", null, "Counter", ConditionOp.Gt, "4" );
-            IResource view = Core.FilterManager.RegisterView( "View", new string[]{ "Attachment", "NewsAttachment", "HtmlFile", "TextFile" }, new IResource[] { condition }, null );
-            IResourceList result = Core.FilterManager.ExecView( view );
+            IResource condition = Core.FilterRegistry.CreateStandardCondition( "Condition", "DeepName", null, "Counter", ConditionOp.Gt, "4" );
+            IResource view = Core.FilterRegistry.RegisterView( "View", new[]{ "Attachment", "NewsAttachment", "HtmlFile", "TextFile" }, new[] { condition }, null );
+            IResourceList result = Core.FilterEngine.ExecView( view );
             Assert.AreEqual( 2,  result.Count );
         }
 
@@ -622,9 +622,9 @@ namespace FilterManagerTests
         {
             CreateLinkResources();
 
-            IResource condition = Core.FilterManager.CreateStandardCondition( "Condition", "DeepName", null, "Counter", ConditionOp.Gt, "4" );
-            IResource view = Core.FilterManager.RegisterView( "View", new string[]{ "Attachment", "HtmlFile" }, (IResource[])null, new IResource[] { condition } );
-            IResourceList result = Core.FilterManager.ExecView( view );
+            IResource condition = Core.FilterRegistry.CreateStandardCondition( "Condition", "DeepName", null, "Counter", ConditionOp.Gt, "4" );
+            IResource view = Core.FilterRegistry.RegisterView( "View", new[]{ "Attachment", "HtmlFile" }, (IResource[])null, new[] { condition } );
+            IResourceList result = Core.FilterEngine.ExecView( view );
             Assert.AreEqual( 2,  result.Count );
         }
 
@@ -633,9 +633,9 @@ namespace FilterManagerTests
         {
             CreateLinkResources();
 
-            IResource condition = Core.FilterManager.CreateStandardCondition( "Condition", "DeepName", null, "Counter", ConditionOp.Gt, "4" );
-            IResource view = Core.FilterManager.RegisterView( "View", new string[]{ "NewsAttachment", "HtmlFile" }, (IResource[])null, new IResource[] { condition } );
-            IResourceList result = Core.FilterManager.ExecView( view );
+            IResource condition = Core.FilterRegistry.CreateStandardCondition( "Condition", "DeepName", null, "Counter", ConditionOp.Gt, "4" );
+            IResource view = Core.FilterRegistry.RegisterView( "View", new[]{ "NewsAttachment", "HtmlFile" }, (IResource[])null, new[] { condition } );
+            IResourceList result = Core.FilterEngine.ExecView( view );
             Assert.AreEqual( 1,  result.Count );
         }
 
@@ -644,9 +644,9 @@ namespace FilterManagerTests
         {
             CreateLinkResources();
 
-            IResource condition = Core.FilterManager.CreateStandardCondition( "Condition", "DeepName", null, "Counter", ConditionOp.Gt, "4" );
-            IResource view = Core.FilterManager.RegisterView( "View", new string[]{ "Attachment", "NewsAttachment", "HtmlFile" }, (IResource[])null, new IResource[] { condition } );
-            IResourceList result = Core.FilterManager.ExecView( view );
+            IResource condition = Core.FilterRegistry.CreateStandardCondition( "Condition", "DeepName", null, "Counter", ConditionOp.Gt, "4" );
+            IResource view = Core.FilterRegistry.RegisterView( "View", new[]{ "Attachment", "NewsAttachment", "HtmlFile" }, (IResource[])null, new[] { condition } );
+            IResourceList result = Core.FilterEngine.ExecView( view );
             Assert.AreEqual( 3,  result.Count );
         }
 
@@ -655,9 +655,9 @@ namespace FilterManagerTests
         {
             CreateLinkResources();
 
-            IResource condition = Core.FilterManager.CreateStandardCondition( "Condition", "DeepName", null, "Counter", ConditionOp.Gt, "4" );
-            IResource view = Core.FilterManager.RegisterView( "View", new string[]{ "Attachment", "NewsAttachment", "HtmlFile", "TextFile" }, (IResource[])null, new IResource[] { condition } );
-            IResourceList result = Core.FilterManager.ExecView( view );
+            IResource condition = Core.FilterRegistry.CreateStandardCondition( "Condition", "DeepName", null, "Counter", ConditionOp.Gt, "4" );
+            IResource view = Core.FilterRegistry.RegisterView( "View", new[]{ "Attachment", "NewsAttachment", "HtmlFile", "TextFile" }, (IResource[])null, new[] { condition } );
+            IResourceList result = Core.FilterEngine.ExecView( view );
             Assert.AreEqual( 3,  result.Count );
         }
 

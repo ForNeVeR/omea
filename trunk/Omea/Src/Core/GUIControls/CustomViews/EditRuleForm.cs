@@ -44,7 +44,7 @@ namespace JetBrains.Omea.GUIControls.CustomViews
             Initialize( "Edit Action Rule", ruleName );
             BaseResource = RStore.FindUniqueResource( FilterManagerProps.RuleResName, "Name", ruleName );
             ArrayList parameters = new ArrayList();
-            ArrayList actions = CollectResourcesAndTemplates( BaseResource, parameters, Core.FilterManager.Props.LinkedActions );
+            ArrayList actions = CollectResourcesAndTemplates( BaseResource, parameters, Core.FilterRegistry.Props.LinkedActions );
             AddConditions( _panelActions, actions, parameters );
             InitializeBasePanels( BaseResource );
             InitializeEventsList( BaseResource );
@@ -72,13 +72,13 @@ namespace JetBrains.Omea.GUIControls.CustomViews
         private void  Initialize( string formTitle, string ruleName )
         {
 			InitializeComponent();
-            ValidResourceTypes = Core.ResourceStore.GetAllResources( FilterManager.RuleApplicableResourceTypeResName );
+            ValidResourceTypes = Core.ResourceStore.GetAllResources( FilterRegistry.RuleApplicableResourceTypeResName );
             _externalChecker = CheckValidActions;
             _editHeading.Text = InitialName = !String.IsNullOrEmpty( ruleName ) ? ruleName : string.Empty;
             Text = formTitle;
             _referenceTopic = "reference\\new_edit_rule.html";
 
-            EventDeepNamesMap = Core.FilterManager.GetRegisteredEvents();
+            EventDeepNamesMap = Core.FilterEngine.GetRegisteredEvents();
             foreach( string eventDeepName in EventDeepNamesMap.Keys )
             {
                 string eventDisplayName = (string) EventDeepNamesMap[ eventDeepName ];
@@ -317,7 +317,7 @@ namespace JetBrains.Omea.GUIControls.CustomViews
             IResourceList auxList = RStore.EmptyResourceList;
             foreach( IResource res in actions )
             {
-                if( Core.FilterManager.IsActionInstantiated( res ) )
+                if( Core.FilterRegistry.IsActionInstantiated( res ) )
                     auxList = auxList.Union( res.ToResourceList() );
             }
             actions = auxList;

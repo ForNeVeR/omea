@@ -8,6 +8,10 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 
+using System35;
+
+using JetBrains.Annotations;
+
 namespace JetBrains.Omea.OpenAPI
 {
     /// <summary>
@@ -660,28 +664,21 @@ namespace JetBrains.Omea.OpenAPI
         void QueueUIJob( Delegate method, params object[] args );
 
         /// <summary>
-        /// Shows the progress window and runs the specified delegate while the progress window
-        /// is visible.
+        /// Queues a job that is to be executed asynchronously in the UI thread.
         /// </summary>
-        /// <remarks>If you need to get the value returned by the method, use the
-        /// <see cref="RunWithProgressWindowEx"/> method.</remarks>
-        /// <param name="progressTitle">Title of the progress window.</param>
-        /// <param name="method">The method which is executed.</param>
-        /// <param name="args">The arguments of the method.</param>
-        void RunWithProgressWindow( string progressTitle, Delegate method, params object[] args );
-        
-        /// <summary>
-        /// Shows the progress window and runs the specified delegate while the progress window
-        /// is visible.
-        /// </summary>
-        /// <param name="progressTitle">Title of the progress window.</param>
-        /// <param name="method">The method which is executed.</param>
-        /// <param name="args">The arguments of the method.</param>
-        /// <returns>The value returned by the method.</returns>
-        /// <since>1.0.2</since>
-        object RunWithProgressWindowEx( string progressTitle, Delegate method, params object[] args );
+        /// <param name="action">The callback which will be called on the UI thread to perform the action.</param>
+        /// <remarks>You may use <see cref="QueueUIJob"/> if you need to execure an UI action from the resource thread.</remarks>
+        void QueueUIJob([NotNull] Action action);
 
         /// <summary>
+        /// Shows the progress window and runs the specified delegate while the progress window
+        /// is visible.
+        /// </summary>
+        /// <param name="progressTitle">Title of the progress window.</param>
+        /// <param name="action">The method which is executed.</param>
+        void RunWithProgressWindow([NotNull] string progressTitle, [NotNull] Action action );
+
+    	/// <summary>
         /// Shows the dialog prompting a user to enter a string.
         /// </summary>
         /// <param name="title">The title of the dialog.</param>

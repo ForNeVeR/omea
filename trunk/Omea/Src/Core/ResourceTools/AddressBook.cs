@@ -39,7 +39,7 @@ namespace JetBrains.Omea.ResourceTools
             _abResource = FindUniqueAB(  name );
             if ( _abResource == null )
             {
-                Core.ResourceAP.RunJob( new MethodInvoker( CreateAddressBook ) );
+                Core.ResourceAP.RunJob( "Creating the address book", new MethodInvoker( CreateAddressBook ) );
             }
             else
             //  Provide the upgrade between Resource store versions.

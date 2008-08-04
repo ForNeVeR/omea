@@ -8,6 +8,7 @@ using System.Drawing;
 using System.IO;
 using System.Reflection;
 using System.Windows.Forms;
+using JetBrains.Omea.Base;
 using JetBrains.Omea.Containers;
 using JetBrains.Omea.OpenAPI;
 using JetBrains.Omea.Contacts;
@@ -16,10 +17,10 @@ using JetBrains.Omea.GUIControls;
 
 namespace JetBrains.Omea.ContactsPlugin
 {
-    [PluginDescriptionAttribute("JetBrains Inc.", "Contact viewer and editor.")]
+    [PluginDescriptionAttribute("Contacts", "JetBrains Inc.", "Contact viewer and editor.", PluginDescriptionFormat.PlainText, "Icons/ContactsPluginIcon.png")]
     public class ContactsPlugin: IPlugin, IResourceDisplayer, IResourceTextProvider
     {
-        private static readonly string _tabName = "Contacts";
+        private const string _tabName = "Contacts";
         private IResourceTreePane _addressBookPane;
         private ColorScheme _colorScheme;
         private static ContactsPlugin _instance;
@@ -32,8 +33,7 @@ namespace JetBrains.Omea.ContactsPlugin
 
             _isReader = Core.ProductFullName.EndsWith( "Reader" );
 
-            _colorScheme = new ColorScheme( Assembly.GetExecutingAssembly(), "ContactsPlugin.Icons.",
-                Core.ResourceIconManager.IconColorDepth );
+            _colorScheme = new ColorScheme( Assembly.GetExecutingAssembly(), "ContactsPlugin.Icons.", Core.ResourceIconManager.IconColorDepth );
             Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream( "ContactsPlugin.Icons.ContactColorScheme.xml" );
             _colorScheme.Load( stream );
 
@@ -41,18 +41,18 @@ namespace JetBrains.Omea.ContactsPlugin
             Core.ResourceTreeManager.SetViewsExclusive( "Contact" );
 
             IUIManager uiMgr = Core.UIManager;
-            Core.TabManager.RegisterResourceTypeTab( _tabName, _tabName, new string[] { "Contact", "AddressBook" }, 10 );
+            Core.TabManager.RegisterResourceTypeTab( _tabName, _tabName, new[] { "Contact", "AddressBook" }, 10 );
             uiMgr.RegisterResourceSelectPane( "Contact", typeof(CorrespondentCtrl) );
             uiMgr.RegisterResourceSelectPane( "EmailAccount", typeof(EmailAccountSelector) );
 
             IWorkspaceManager mgr = Core.WorkspaceManager;
-            mgr.RegisterWorkspaceType( "Contact", new int[] { -Core.ContactManager.Props.LinkFrom, -Core.ContactManager.Props.LinkTo,
-                                                              -Core.ContactManager.Props.LinkCC }, WorkspaceResourceType.Filter );
+            mgr.RegisterWorkspaceType( "Contact", new[] { -Core.ContactManager.Props.LinkFrom, -Core.ContactManager.Props.LinkTo,
+                                                          -Core.ContactManager.Props.LinkCC }, WorkspaceResourceType.Filter );
 
 #if !READER
-            mgr.RegisterWorkspaceType( "EmailAccount", new int[] { -Core.ContactManager.Props.LinkEmailAcctFrom,
-                                                                   -Core.ContactManager.Props.LinkEmailAcctTo,
-                                                                   -Core.ContactManager.Props.LinkEmailAcctCC }, WorkspaceResourceType.Filter );
+            mgr.RegisterWorkspaceType( "EmailAccount", new[] { -Core.ContactManager.Props.LinkEmailAcctFrom,
+                                                               -Core.ContactManager.Props.LinkEmailAcctTo,
+                                                               -Core.ContactManager.Props.LinkEmailAcctCC }, WorkspaceResourceType.Filter );
             mgr.RegisterWorkspaceSelectorFilter( "EmailAccount", new EmailAccountFilter() );
             mgr.SetWorkspaceTabName( "EmailAccount", "Email Accounts" );
 #endif
@@ -90,10 +90,10 @@ namespace JetBrains.Omea.ContactsPlugin
                 IResource abRoot = AddressBook.AddressBookRoot;
                 if ( abRoot != null )
                 {
-                    _addressBookPane = Core.LeftSidebar.RegisterResourceStructureTreePane( "AddressBooks", _tabName, 
-                        "Address Books", LoadIconFromAssembly( "addressbook1.ico" ), "AddressBook" );
-                    _addressBookPane.RegisterToolbarAction( new CreateABAction(),
-                        LoadIconFromAssembly( "addressbook.ico" ), null, "Create Address Book", null );
+                    Assembly theAsm = Assembly.GetExecutingAssembly();
+                    Image img = Utils.TryGetEmbeddedResourceImageFromAssembly( theAsm, "ContactsPlugin.Icons.AddressBook24.png" );
+                    _addressBookPane = Core.LeftSidebar.RegisterResourceStructureTreePane( "AddressBooks", _tabName, "Address Books", img, "AddressBook" );
+                    _addressBookPane.RegisterToolbarAction( new CreateABAction(), LoadIconFromAssembly( "addressbook.ico" ), null, "Create Address Book", null );
                     Core.LeftSidebar.RegisterViewPaneShortcut( "AddressBooks", Keys.Control | Keys.Alt | Keys.D );
                 }
             }
@@ -109,7 +109,7 @@ namespace JetBrains.Omea.ContactsPlugin
 
             RegisterContactBlocks();
             Core.ResourceIconManager.RegisterResourceLargeIcon( "Contact", LoadIconFromAssembly( "ContactLarge.ico") );
-            Core.ResourceBrowser.RegisterLinksGroup( "Accounts", new int[] { Core.ContactManager.Props.LinkEmailAcct }, ListAnchor.First );
+            Core.ResourceBrowser.RegisterLinksGroup( "Accounts", new[] { Core.ContactManager.Props.LinkEmailAcct }, ListAnchor.First );
         }
 
         public void Startup()   {}
@@ -471,7 +471,7 @@ namespace JetBrains.Omea.ContactsPlugin
         /// </summary>
         private class ContactOverlayIconProvider: IOverlayIconProvider
         {
-            private Icon[]  _overlaySign = new Icon[ 1 ];
+            private readonly Icon[] _overlaySign = new Icon[ 1 ];
 
             public ContactOverlayIconProvider()
             {

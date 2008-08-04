@@ -48,7 +48,7 @@ namespace JetBrains.Omea.RSSPlugin
         private static int _propLastUpdateTime;
         private static int _propDownloadDate;
         private static int _propTransient;
-        private static int _propCommentCount;
+        private static PropId<int> _propCommentCount;
         private static int _propSelectedRSSItem;
         private static int _propSummary;
         private static int _propDefaultDesktopAlertRule;
@@ -114,7 +114,7 @@ namespace JetBrains.Omea.RSSPlugin
         internal static int LastUpdateTime { get { return _propLastUpdateTime; } }
         internal static int DownloadDate { get { return _propDownloadDate; } }
         internal static int Transient { get { return _propTransient; } }
-        internal static int CommentCount { get { return _propCommentCount; } }
+        internal static PropId<int> CommentCount { get { return _propCommentCount; } }
         internal static int SelectedRSSItem { get { return _propSelectedRSSItem; } }
         internal static int Summary { get { return _propSummary; } }
         internal static int DefaultDesktopAlertRule { get { return _propDefaultDesktopAlertRule; } }
@@ -225,8 +225,8 @@ namespace JetBrains.Omea.RSSPlugin
 
             _propTransient = store.PropTypes.Register( "Transient", PropDataType.Int,
                 PropTypeFlags.Internal );
-            _propCommentCount = store.PropTypes.Register( "CommentCount", PropDataType.Int );
-            store.PropTypes.RegisterDisplayName( _propCommentCount, "Comment Count" );
+            _propCommentCount = store.PropTypes.Register( "CommentCount", PropDataTypes.Int );
+            store.PropTypes.RegisterDisplayName( _propCommentCount.Id, "Comment Count" );
 
             _propSelectedRSSItem = store.PropTypes.Register( "SelectedRSSItem", PropDataType.Link,
                 PropTypeFlags.Internal );

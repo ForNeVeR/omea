@@ -7,12 +7,9 @@ using JetBrains.Omea.OpenAPI;
 
 namespace JetBrains.Omea.DebugPlugin
 {
-    [PluginDescriptionAttribute("JetBrains Inc.", "Allows to track various aspects of Omea internals.")]
+    [PluginDescription("Debug & Instrumentation", "JetBrains Inc.", "Allows to track various aspects of Omea internals.", PluginDescriptionFormat.PlainText, "Icons/DebugPluginIcon.png")]
 	public class DebugPlugin : IPlugin
 	{
-		public DebugPlugin()
-		{
-        }
         #region IPlugin Members
 
         public void Register()

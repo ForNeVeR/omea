@@ -835,6 +835,8 @@ namespace JetBrains.Omea.OpenAPI
     /// </summary>
     public interface IActionManager
     {
+        #region MainMenu
+
         /// <summary>
         /// Registers a top-level menu item in the main menu.
         /// </summary>
@@ -920,6 +922,10 @@ namespace JetBrains.Omea.OpenAPI
         /// <since>2.0</since>
         void SuppressMainMenuGroupSeparator( string groupId1, string groupId2 );
 
+        #endregion MainMenu
+
+        #region ToolBar
+
         /// <summary>
         /// Registers a group for toolbar actions. Actions from different groups are divided by
         /// separators on the toolbar.
@@ -998,6 +1004,10 @@ namespace JetBrains.Omea.OpenAPI
         /// <param name="action">The action to remove.</param>
         void UnregisterToolbarAction( IAction action );
 
+        #endregion ToolBar
+
+        #region UrlBar
+
         /// <summary>
         /// Registers a group for URL bar actions. The URL bar is the toolbar displayed to the
         /// left of the Web address box when a Web page is viewed. Actions from different groups 
@@ -1057,6 +1067,10 @@ namespace JetBrains.Omea.OpenAPI
         /// </summary>
         /// <param name="action">The action to remove.</param>
         void UnregisterUrlBarAction( IAction action );
+
+        #endregion UrlBar
+
+        #region ContextMenu
 
         /// <summary>
         /// Registers a group for context menu actions. Actions from different groups are divided
@@ -1126,6 +1140,10 @@ namespace JetBrains.Omea.OpenAPI
         /// <since>2.0</since>
         void SuppressContextMenuGroupSeparator( string groupId1, string groupId2 );
 
+        #endregion ContextMenu
+
+        #region DoubleClick Actions
+
         /// <summary>
         /// Registers an action which is executed when a resource is double-clicked.
         /// There can be only one action registered for each specific resource type, 
@@ -1152,6 +1170,10 @@ namespace JetBrains.Omea.OpenAPI
         /// </summary>
         /// <param name="action">The action to remove.</param>
         void UnregisterDoubleClickAction( IAction action );
+
+        #endregion DoubleClick Actions
+
+        #region Keyboard Actions
 
         /// <summary>
         /// Registers an action which is executed when a keyboard shortcut is pressed. There can
@@ -1180,6 +1202,10 @@ namespace JetBrains.Omea.OpenAPI
         /// <param name="action">The action to remove.</param>
         void UnregisterKeyboardAction( IAction action );
 
+        #endregion Keyboard Actions
+
+        #region LinkClick Actions
+
         /// <summary>
         /// Registers an action which is executed when a link to a resource of the specified type
         /// is clicked in the links pane or the shortcut bar. Only one link click action can be
@@ -1204,6 +1230,10 @@ namespace JetBrains.Omea.OpenAPI
         /// <param name="action">The action to remove.</param>
         void UnregisterLinkClickAction( IAction action );
 
+        #endregion LinkClick Actions
+
+        #region LinkPane Actions
+
         /// <summary>
         /// Registers an action which is shown as a link label on the links pane for a resource, and
         /// executed when the link label is clicked.
@@ -1227,6 +1257,10 @@ namespace JetBrains.Omea.OpenAPI
         /// </summary>
         /// <param name="action">The action to remove.</param>
         void UnregisterLinksPaneAction( IAction action );
+
+        #endregion LinkPane Actions
+
+        #region Action Execution
 
         /// <summary>
         /// Shows the context menu with actions for the specified context.
@@ -1254,13 +1288,6 @@ namespace JetBrains.Omea.OpenAPI
         void ExecuteDoubleClickAction( IResourceList selectedResources );   
 
         /// <summary>
-        /// Returns the double-click action registered for the specified resource.
-        /// </summary>
-        /// <param name="res">The resource for which the action is returned.</param>
-        /// <returns>The double-click action instance, or null if there is no action registered.</returns>
-        IAction GetDoubleClickAction( IResource res );
-
-        /// <summary>
         /// Executes the keyboard action for the specified shortcut key and context.
         /// </summary>
         /// <param name="context">The context in which the action is executed.</param>
@@ -1279,6 +1306,15 @@ namespace JetBrains.Omea.OpenAPI
         ///   of the specified resource or if the action was hidden or disabled.
         /// </returns>
         bool ExecuteLinkClickAction( IActionContext context );
+
+        #endregion Action Execution
+
+        /// <summary>
+        /// Returns the double-click action registered for the specified resource.
+        /// </summary>
+        /// <param name="res">The resource for which the action is returned.</param>
+        /// <returns>The double-click action instance, or null if there is no action registered.</returns>
+        IAction GetDoubleClickAction( IResource res );
 
         /// <summary>
         /// Returns the string representation of the keyboard shortcut for which the specified
@@ -1338,6 +1374,12 @@ namespace JetBrains.Omea.OpenAPI
         /// execute any of the plugin actions.</remarks>
         /// <param name="pluginAssembly">The plugin assembly</param>
         void DisableXmlActionConfiguration( Assembly pluginAssembly );
+
+        /// <summary>
+        /// Returns the current action context.
+        /// </summary>
+        /// <since>3.0</since>
+        IActionContext GetMainMenuActionContext();
     }
 
     public class ActionGroups

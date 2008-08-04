@@ -13,7 +13,9 @@ using JetBrains.Omea.Containers;
 namespace JetBrains.Omea.GUIControls
 {
 	/// <summary>
-	/// Establishes a binding between toolbar controls and corresponding actions by executing the action appropriate upon a button click and quering it for the button state periodically.
+	/// Establishes a binding between toolbar controls and corresponding actions by 
+	/// executing the action appropriate upon a button click and quering it for the
+	/// button state periodically.
 	/// </summary>
 	/// <remarks>
 	/// <para>Create a toolbar action manager and supply its the toolbar instance that it will be managing.
@@ -41,25 +43,19 @@ namespace JetBrains.Omea.GUIControls
 	/// </example>
     public class ToolbarActionManager: IDisposable
     {
-        private ToolBar            _toolBar;
-        private ImageList          _toolbarImages;
-        private IContextProvider   _contextProvider;
-        private int _lastVisibleActions;
-        private bool _toolbarVisible = true;
-
-        private static string _defaultGroupId = "<default>";
-
         private class ToolbarAction
         {
-            internal IAction _action;
-            internal ToolBarButton _toolbarButton;
-            internal string _defaultText;
-            internal string _defaultToolTip;
-            internal string _resType;
+//            internal readonly ToolBarButton _toolbarButton;
+            internal readonly ToolStripItem _toolbarButton;
+            internal readonly IAction   _action;
+            internal readonly string    _defaultText;
+            internal readonly string    _defaultToolTip;
+            internal readonly string    _resType;
             internal IActionStateFilter[] _filters;
 
-            public ToolbarAction( IAction action, ToolBarButton toolbarButton, string defaultText, 
-                string defaultToolTip, string resType, IActionStateFilter[] filters )
+//            public ToolbarAction( IAction action, ToolBarButton toolbarButton, string defaultText, 
+            public ToolbarAction( IAction action, ToolStripItem toolbarButton, string defaultText, 
+                                  string defaultToolTip, string resType, IActionStateFilter[] filters )
             {
                 _action = action;
                 _toolbarButton = toolbarButton;
@@ -73,7 +69,7 @@ namespace JetBrains.Omea.GUIControls
             {
                 if ( _filters == null || _filters.Length == 0 )
                 {
-                    _filters = new IActionStateFilter[] { filter };
+                    _filters = new[] { filter };
                 }
                 else
                 {
@@ -87,10 +83,9 @@ namespace JetBrains.Omea.GUIControls
 
         private class ToolbarActionGroup
         {
-            private string        _id;
-            private AnchoredList  _actions = new AnchoredList();   // <ToolbarAction>
-            private int           _startIndex;
-            private ToolBarButton _separator;
+            private int                 _startIndex;
+            private readonly string        _id;
+            private readonly AnchoredList  _actions = new AnchoredList();   // <ToolbarAction>
 
             public ToolbarActionGroup( string id )
             {
@@ -117,11 +112,8 @@ namespace JetBrains.Omea.GUIControls
                 get { return _startIndex + _actions.Count + 1; }
             }
 
-            internal ToolBarButton Separator
-            {
-                get { return _separator; }
-                set { _separator = value; }
-            }
+//            internal ToolBarButton Separator { get; set; }
+            internal ToolStripSeparator Separator { get; set; }
 
             internal AnchoredList Actions
             {
@@ -141,13 +133,21 @@ namespace JetBrains.Omea.GUIControls
             }
         }
 
-        private AnchoredList _actionGroups = new AnchoredList();        // <ToolbarActionGroup>
+        private const string _defaultGroupId = "<default>";
+
+        private readonly ToolStrip   _toolBar;
+        private readonly ImageList _toolbarImages;
+        private IContextProvider   _contextProvider;
+        private int     _lastVisibleActions;
+        private bool    _toolbarVisible = true;
+
+        private readonly AnchoredList _actionGroups = new AnchoredList();        // <ToolbarActionGroup>
 
 		/// <summary>
 		/// Initializes the instance and attaches it to the particular <see cref="ToolBar"/> control.
 		/// </summary>
 		/// <param name="toolBar">The toolbar to be controlled.</param>
-        public ToolbarActionManager( ToolBar toolBar )
+        public ToolbarActionManager( ToolStrip toolBar )
 		{
 			_toolBar = toolBar;
 			_toolbarImages = new ImageList();
@@ -159,7 +159,6 @@ namespace JetBrains.Omea.GUIControls
 
 				Core.UIManager.EnterIdle += IdleUpdateToolbarActions;
 			}
-			_toolBar.ButtonClick += OnToolbarButtonClick;
 			_toolBar.MouseEnter += IdleUpdateToolbarActions;
 		}
 
@@ -223,9 +222,8 @@ namespace JetBrains.Omea.GUIControls
                 newGroup.StartIndex = ((ToolbarActionGroup) _actionGroups [newGroupIndex-1]).EndIndex;
             }
 
-            ToolBarButton separator = new ToolBarButton( "" );
-            separator.Style = ToolBarButtonStyle.Separator;
-            _toolBar.Buttons.Insert( newGroup.StartIndex, separator );
+            ToolStripSeparator separator = new ToolStripSeparator();
+            _toolBar.Items.Insert( newGroup.StartIndex, separator );
             newGroup.Separator = separator;
             AdjustGroupIndices( newGroup, 1 );
         }
@@ -243,9 +241,9 @@ namespace JetBrains.Omea.GUIControls
         private void AdjustGroupIndices( ToolbarActionGroup group, int delta )
         {
             int groupIndex = _actionGroups.IndexOf( group );
-            for( int i=groupIndex+1; i<_actionGroups.Count; i++ )
+            for( int i = groupIndex + 1; i < _actionGroups.Count; i++ )
             {
-                ToolbarActionGroup nextGroup = (ToolbarActionGroup) _actionGroups [i];
+                ToolbarActionGroup nextGroup = (ToolbarActionGroup) _actionGroups [ i ];
                 nextGroup.StartIndex = nextGroup.StartIndex + delta;
             }
         }
@@ -262,7 +260,7 @@ namespace JetBrains.Omea.GUIControls
 		/// <param name="resourceType">Resource type that must be selected in the action context for this action to be available.</param>
 		/// <param name="filters">Action filter that determines availability of the action.</param>
         public void RegisterAction( IAction action, string groupId, ListAnchor anchor,
-            Image icon, string text, string tooltip, string resourceType, IActionStateFilter[] filters )
+                                    Image icon, string text, string tooltip, string resourceType, IActionStateFilter[] filters )
         {
             int imageIndex = -1;                                                   
             if ( icon != null )
@@ -285,7 +283,7 @@ namespace JetBrains.Omea.GUIControls
 		/// <param name="resourceType">Resource type that must be selected in the action context for this action to be available.</param>
 		/// <param name="filters">Action filter that determines availability of the action.</param>
         public void RegisterAction( IAction action, string groupId, ListAnchor anchor,
-            Icon icon, string text, string tooltip, string resourceType, IActionStateFilter[] filters )
+                                    Icon icon, string text, string tooltip, string resourceType, IActionStateFilter[] filters )
         {
             int imageIndex = -1;
             if ( icon != null )
@@ -297,8 +295,8 @@ namespace JetBrains.Omea.GUIControls
         }
 
         private void CreateToolbarButton( IAction action, string groupId, ListAnchor anchor,
-            int imageIndex, string text, string toolTip, string resourceType, 
-            IActionStateFilter[] filters )
+                                          int imageIndex, string text, string toolTip, string resourceType, 
+                                          IActionStateFilter[] filters )
         {
             if ( groupId == null )
             {
@@ -310,7 +308,8 @@ namespace JetBrains.Omea.GUIControls
             if ( group == null )
                 throw new ArgumentException( "\"" + groupId + "\" is not a registered toolbar action group.", "groupId" );
 
-            ToolBarButton button = new ToolBarButton( "" );
+            ToolStripButton button = new ToolStripButton();
+            button.Click += OnToolbarButtonClick;
 
 			// Set the tooltip
 			if(text == null)
@@ -339,7 +338,7 @@ namespace JetBrains.Omea.GUIControls
             {
                 throw new ActionException( String.Format("Attempt to register a duplicate toolbar action \"{0}\" in group \"{1}\" as \"{2}\", which conflicts with action \"{3}\" in the same group.", text, groupId, action.ToString(), ((ToolbarAction)group.Actions.FindByKey( action.ToString()) )._defaultText) );
             }
-            _toolBar.Buttons.Insert( group.StartIndex + index, button );
+            _toolBar.Items.Insert( group.StartIndex + index, button );
             AdjustGroupIndices( group, 1 );
         }
 
@@ -363,7 +362,7 @@ namespace JetBrains.Omea.GUIControls
                 ToolbarAction tbAction = group.FindActionInstance( action );
                 if ( tbAction != null )
                 {
-                    _toolBar.Buttons.Remove( tbAction._toolbarButton );
+                    _toolBar.Items.Remove( tbAction._toolbarButton );
                     group.Actions.Remove( tbAction );
                     AdjustGroupIndices( group, -1 );
                     break;
@@ -371,9 +370,9 @@ namespace JetBrains.Omea.GUIControls
             }
         }
 
-        private void OnToolbarButtonClick( object sender, ToolBarButtonClickEventArgs e )
+        private void OnToolbarButtonClick( object sender, EventArgs e )
         {
-            IAction action = ( IAction ) e.Button.Tag;
+            IAction action = ( IAction ) ((ToolStripButton)sender).Tag;
             if ( action != null )
             {
                 action.Execute( GetContext() );
@@ -429,7 +428,7 @@ namespace JetBrains.Omea.GUIControls
                 presentation.Reset();
                 presentation.Text = tbAction._defaultText;
                 presentation.ToolTip = tbAction._defaultToolTip;
-                ToolBarButton btn = tbAction._toolbarButton;
+                ToolStripButton btn = (ToolStripButton)tbAction._toolbarButton;
 
                 if ( tbAction._resType != null )
                 {
@@ -469,13 +468,9 @@ namespace JetBrains.Omea.GUIControls
                     btn.ToolTipText = presentation.ToolTip;
                     if ( presentation.Checked )
                     {
-                        btn.Style = ToolBarButtonStyle.ToggleButton;
-                        btn.Pushed = true;
+                        btn.CheckOnClick = true;
                     }
-                    else
-                    {
-                        btn.Pushed = false;
-                    }
+                    btn.Checked = presentation.Checked;
                 }
                 catch( SEHException )
                 {

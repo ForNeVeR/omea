@@ -5,6 +5,7 @@
 
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Diagnostics;
@@ -123,10 +124,7 @@ namespace JetBrains.Omea.InstantMessaging.ICQ.DBImport
                             {
                                 return true;
                             }
-                            else
-                            {
-                                _bNewFile = !OpenDBFiles( _iUIN );
-                            }
+                            _bNewFile = !OpenDBFiles( _iUIN );
                         }
                     }
                 }
@@ -212,7 +210,7 @@ namespace JetBrains.Omea.InstantMessaging.ICQ.DBImport
          * returns UIN by name of ICQ database file
          * if result <= 0 than sFileName is not a ICQ database file
          */
-        private int ExtractUINByFileName( string sFileName )
+        private static int ExtractUINByFileName( string sFileName )
         {
             int iUIN = 0;
             int iDotIndex = sFileName.ToLower().IndexOf( ".dat" );
@@ -249,7 +247,7 @@ namespace JetBrains.Omea.InstantMessaging.ICQ.DBImport
                 if( _iDBVersion != (int)DBVersion.db_2001a &&
                     _iDBVersion != (int)DBVersion.db_2000a &&
                     _iDBVersion != (int)DBVersion.db_2000b)
-                    throw new Exception( "ICQ DB version is not supported: " + _iDBVersion.ToString() );
+                    throw new Exception( "ICQ DB version is not supported: " + _iDBVersion );
             }
             catch( Exception e )
             {
@@ -403,14 +401,7 @@ namespace JetBrains.Omea.InstantMessaging.ICQ.DBImport
                     catch( EndOfStreamException )
                     {
                     }
-                    if( sUTF8Body.Length > 0 )
-                    {
-                        Result.Body = sUTF8Body;
-                    }
-                    else
-                    {
-                        Result.Body = sRTFBody;
-                    }
+                    Result.Body = (sUTF8Body.Length > 0) ? sUTF8Body : sRTFBody;
                 }
                 ICQContact theContact = ContactsFactory.GetInstance().GetContact( iUIN );
                 if( bIsMessageSent )
@@ -482,7 +473,8 @@ namespace JetBrains.Omea.InstantMessaging.ICQ.DBImport
                 Result.Time = ReadDateTime( iTimeStamp );
                 return Result;
             }
-            private void ParseProperty( ICQContact aContact, BinaryReader reader )
+
+            private static void ParseProperty( ICQContact aContact, BinaryReader reader )
             {
                 string sName = ReadANSIStr( reader );
                 switch( reader.ReadByte() )
@@ -724,7 +716,7 @@ namespace JetBrains.Omea.InstantMessaging.ICQ.DBImport
 
         #endregion
 
-        private string			_sDirectory;
+        private readonly string			_sDirectory;
         private IEnumerator		_itfFilesEnumerator;
         private BinaryReader    _fileDat;
         private BinaryReader    _fileIdx;
@@ -739,7 +731,7 @@ namespace JetBrains.Omea.InstantMessaging.ICQ.DBImport
         private DateTime        _boundDate;
         private IdxRecord       _Idx;
         private DatRecord       _datEntry;
-        private static int      _hourAddend = DateTime.Now.Hour - DateTime.UtcNow.Hour + 3;
+        private static readonly int      _hourAddend = DateTime.Now.Hour - DateTime.UtcNow.Hour + 3;
 			
     }
 
@@ -829,7 +821,7 @@ namespace JetBrains.Omea.InstantMessaging.ICQ.DBImport
 
         private delegate void UpdateRecordNumbersDelegate( string tableName, int count );
 
-        private void UpdateRecordNumbers( string tableName, int count )
+        private static void UpdateRecordNumbers( string tableName, int count )
         {
             if( !Core.NetworkAP.IsOwnerThread )
             {
@@ -1170,15 +1162,15 @@ namespace JetBrains.Omea.InstantMessaging.ICQ.DBImport
         }
 
         private bool			_enumUINsOnly;
-        private string          _directory;
+        private readonly string _directory;
         private int             _currentUIN;
-        private ICQContact      _currentContact;
+        private readonly ICQContact _currentContact;
         private DBFTable        _messages;
         private DBFTable        _users;
         private int             _messageRecord;
         private int             _userRecord;
         private bool            _skipUpdate;
-        private static int      _hourAddend = DateTime.Now.Hour - DateTime.UtcNow.Hour;
+        private static readonly int  _hourAddend = DateTime.Now.Hour - DateTime.UtcNow.Hour;
 
         #endregion
     }
@@ -1189,7 +1181,7 @@ namespace JetBrains.Omea.InstantMessaging.ICQ.DBImport
      */
     internal class Importer : IEnumerable, IEnumerator
     {
-        private static Importer theImporter = new Importer();
+        private static readonly Importer theImporter = new Importer();
         public static Importer GetInstance()
         {
             return theImporter;
@@ -1336,7 +1328,7 @@ namespace JetBrains.Omea.InstantMessaging.ICQ.DBImport
 
         private void EnumModernDatabases( string path )
         {
-            if( path == null || path.Length == 0 )
+            if( string.IsNullOrEmpty( path ) )
             {
                 return;
             }
@@ -1380,7 +1372,7 @@ namespace JetBrains.Omea.InstantMessaging.ICQ.DBImport
         private IEnumerator		_itfHKCUValueNamesEnumerator;
         private IEnumerator		_itf2003bHKLMValueNamesEnumerator;
         private IEnumerator		_itf2003bHKCUValueNamesEnumerator;
-        private Queue           _newDBs = new Queue();
+        private readonly Queue  _newDBs = new Queue();
         private const string	ICQDefaultPrefsRegKey = @"SOFTWARE\Mirabilis\ICQ\DefaultPrefs";
         private const string	ICQ2003bDefaultPrefsRegKey = @"SOFTWARE\Mirabilis\ICQ\ICQPro\DefaultPrefs";
     }
@@ -1450,8 +1442,8 @@ namespace JetBrains.Omea.InstantMessaging.ICQ.DBImport
             public ICQContact theContact;
             public DBVersion DBVersion;
         }
-        private static ContactsFactory		_theInstance = new ContactsFactory();
-        private IntHashTable				_Contacts = new IntHashTable();
+        private static readonly ContactsFactory _theInstance = new ContactsFactory();
+        private readonly IntHashTable           _Contacts = new IntHashTable();
     }
 
     /**
@@ -1459,7 +1451,8 @@ namespace JetBrains.Omea.InstantMessaging.ICQ.DBImport
      */
     internal class UINsCollection
     {
-        private static IntArrayList _UINs = new IntArrayList();
+//        private static IntArrayList _UINs = new IntArrayList();
+        private static readonly List<int> _UINs = new List<int>();
         private static bool         _hasModernDBs;
 
         static UINsCollection()
@@ -1502,7 +1495,7 @@ namespace JetBrains.Omea.InstantMessaging.ICQ.DBImport
             _UINs.Sort();
         }
 
-        public static IntArrayList GetUINs()
+        public static List<int> GetUINs()
         {
             return _UINs;
         }

@@ -24,7 +24,7 @@ namespace GUIControls.CustomViews
 
         public string DecorationKey { get { return _DecoratorKey; } }
 
-        public bool DecorateNode(IResource res, RichText nodeText)
+        public bool DecorateNode(IResource res, JetBrains.UI.RichText.RichText nodeText)
         {
             bool need2Decor = res.HasProp(Core.Props.LastError);
             if (need2Decor)

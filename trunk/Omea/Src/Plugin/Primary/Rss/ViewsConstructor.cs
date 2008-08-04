@@ -139,7 +139,7 @@ namespace JetBrains.Omea.RSSPlugin
         {
             IResource       res;
             string[]        applType = new string[] { "RSSItem" }, contactType = new string[] {"Contact"};
-            IFilterManager  fMgr = Core.FilterManager;
+            IFilterRegistry  fMgr = Core.FilterRegistry;
             IResource       myResType = Core.ResourceStore.FindUniqueResource( "ResourceType", "Name", "RSSItem" );
 
             res = fMgr.CreateStandardCondition( AuthorWrotePostName, AuthorWrotePostDeep, contactType, 
@@ -194,7 +194,7 @@ namespace JetBrains.Omea.RSSPlugin
         public void RegisterViewsEachRun()
         {
             string[]        applType = new string[] { "RSSItem" };
-            IFilterManager  fMgr = Core.FilterManager;
+            IFilterRegistry  fMgr = Core.FilterRegistry;
             INotificationManager notifMgr = Core.NotificationManager;
 
             notifMgr.RegisterNotifyMeResourceType( "RSSFeed", "RSSItem" );
@@ -213,7 +213,7 @@ namespace JetBrains.Omea.RSSPlugin
             fMgr.AssociateConditionWithGroup( feedCondition, RSSConditionsGroup );
 
             //  Rule Actions
-            fMgr.RegisterRuleApplicableResourceType( "RSSItem" );
+            Core.FilterEngine.RegisterRuleApplicableResourceType( "RSSItem" );
             fMgr.RegisterRuleAction( DownloadEnclosureName, DownloadEnclosureDeep, new EnclosureDownloadRuleAction(), applType );
 
             fMgr.RegisterRuleActionTemplate( DownloadEnclosureToName, DownloadEnclosureToDeep, new EnclosureDownloadToDirRuleActionTemplate(),
@@ -229,7 +229,7 @@ namespace JetBrains.Omea.RSSPlugin
         {
             IResource       res;
             string[]        applType = new string[] { "RSSItem" };
-            IFilterManager  fMgr = Core.FilterManager;
+            IFilterRegistry  fMgr = Core.FilterRegistry;
 
             //-----------------------------------------------------------------
             //  All conditions, templates and actions must have their deep names
@@ -310,7 +310,7 @@ namespace JetBrains.Omea.RSSPlugin
             }
             else
             {
-                IFilterManager mgr = Core.FilterManager;
+                IFilterRegistry mgr = Core.FilterRegistry;
                 IResource res = mgr.CreateConditionTemplate( RSSViewsConstructor.PostInCategoryName, RSSViewsConstructor.PostInCategoryDeep,
                                                              new string[] {"RSSItem"}, ConditionOp.Eq, "RSSCategory" );
                 mgr.AssociateConditionWithGroup( res, RSSViewsConstructor.RSSConditionsGroup );
@@ -325,7 +325,7 @@ namespace JetBrains.Omea.RSSPlugin
     {
         public void RegisterViewsFirstRun()
         {
-            IFilterManager mgr = Core.FilterManager;
+            IFilterRegistry mgr = Core.FilterRegistry;
             IResource res = mgr.CreateStandardCondition( RSSViewsConstructor.PostIsACommentName, RSSViewsConstructor.PostIsACommentDeep,
                                                          new string[] {"RSSItem"}, "FeedComment", ConditionOp.HasLink );
             mgr.AssociateConditionWithGroup( res, RSSViewsConstructor.RSSConditionsGroup );
@@ -333,7 +333,7 @@ namespace JetBrains.Omea.RSSPlugin
 
         public void RegisterViewsEachRun()
         {
-            IFilterManager fMgr = Core.FilterManager;
+            IFilterRegistry fMgr = Core.FilterRegistry;
             IResource res = fMgr.CreateConditionTemplate( RSSViewsConstructor.FeedInFolderName, RSSViewsConstructor.FeedInFolderDeep,
                                                           null, ConditionOp.In, Props.RSSFeedGroupResource, "RssItem>Parent" );
             fMgr.AssociateConditionWithGroup( res, RSSViewsConstructor.RSSConditionsGroup );

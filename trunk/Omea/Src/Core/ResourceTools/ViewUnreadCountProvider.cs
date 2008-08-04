@@ -26,7 +26,7 @@ namespace JetBrains.Omea.FiltersManagement
 	    public ViewUnreadCountProvider()
 	    {
             _unreadManager = Core.UnreadManager as UnreadManager;
-            _allViews = Core.FilterManager.GetViews();
+            _allViews = Core.FilterRegistry.GetViews();
             _allViews.ResourceAdded += HandleViewAdd;
             _allViews.ResourceDeleting += HandleViewDelete;
             _allViews.ResourceChanged += HandleViewChange;
@@ -110,6 +110,8 @@ namespace JetBrains.Omea.FiltersManagement
                 _unreadResourcesToView[ resList ] = view;
                 _viewToUnreadResources[ view.Id ] = resList;
                 AttachToList( resList );
+
+                _unreadManager.InvalidateUnreadCounter( view );
             }
         }
 
@@ -119,7 +121,7 @@ namespace JetBrains.Omea.FiltersManagement
         {
             return ViewCanBeUnread( view ) && 
                    Core.TextIndexManager.IsIndexPresent() &&
-                   FilterManager.HasQueryCondition( view );
+                   FilterRegistry.HasQueryCondition( view );
         }
 
         private void UpdateTextViews()
@@ -146,7 +148,7 @@ namespace JetBrains.Omea.FiltersManagement
             //  since text index ones requre handling of the "text index ready" event.
             foreach( IResource view in _allViews )
             {
-                if ( ViewCanBeUnread( view ) && !FilterManager.HasQueryCondition( view ) )
+                if ( ViewCanBeUnread( view ) && !FilterRegistry.HasQueryCondition( view ) )
                 {
                     IResourceList resList = ComputeList( view );
                     CrossRefItems( view, resList );
@@ -226,7 +228,7 @@ namespace JetBrains.Omea.FiltersManagement
 
         private static IResourceList ComputeList( IResource view )
         {
-            IResourceList list = Core.FilterManager.ExecView( view, null, SelectionType.Live );
+            IResourceList list = Core.FilterEngine.ExecView( view, null, SelectionType.Live );
             list = ResourceTypeHelper.ExcludeUnloadedPluginResources( list );
             list = list.Minus( Core.ResourceStore.FindResourcesWithProp( null, Core.Props.IsDeleted ) );
             list = list.Intersect( Core.ResourceStore.FindResourcesWithProp( null, Core.Props.IsUnread ), true );

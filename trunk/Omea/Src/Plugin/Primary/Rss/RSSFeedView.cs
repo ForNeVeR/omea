@@ -646,11 +646,11 @@ namespace JetBrains.Omea.RSSPlugin
                 //  for an URL. Just ignore such image specifications.
                 //  Test feed (for 16.02.06) was http://www.metalfan.ro/forum/rss.php
                 if ( !_feed.HasProp( Props.ImageContent ) && _feed.HasProp( Props.ImageURL ) &&
-                     Utils.IsValidString( _feed.GetStringProp( Props.ImageURL )))
+                     !string.IsNullOrEmpty( _feed.GetStringProp( Props.ImageURL )))
                 {
                     Core.NetworkAP.QueueJob( JobPriority.AboveNormal, 
                         new DownloadResourceBlobJob( _feed, Props.ImageContent, _feed.GetStringProp( Props.ImageURL ), 
-                        new ReadyDelegate( ImageContentDownloaded ) ) );
+                        ImageContentDownloaded ) );
                 }
                 SetImage();
                 InitSingleFeedSelection( _feed );
@@ -660,7 +660,7 @@ namespace JetBrains.Omea.RSSPlugin
 
         private void ImageContentDownloaded( bool ready )
         {
-            if ( !this.IsDisposed )
+            if ( !IsDisposed )
             {
                 try
                 {
@@ -711,7 +711,7 @@ namespace JetBrains.Omea.RSSPlugin
             _edtAddress.Text= feed.GetStringProp( Props.URL );
             _edtTitle.Text  = feed.GetStringProp( Core.Props.Name );
             string origName = feed.GetStringProp( Props.OriginalName );
-            if ( Utils.IsValidString( origName ) )
+            if ( !string.IsNullOrEmpty( origName ) )
             {
                 Text = origName;
             }

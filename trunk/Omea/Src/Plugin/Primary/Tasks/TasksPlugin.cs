@@ -19,7 +19,7 @@ using Tasks;
 
 namespace JetBrains.Omea.Tasks
 {
-    [PluginDescription("JetBrains Inc.", "Tasks viewer and editor. Control task completion, alerts and statuses.")]
+    [PluginDescription("Tasks", "JetBrains Inc.", "Tasks viewer and editor. Control task completion, alerts and statuses.", PluginDescriptionFormat.PlainText, "Icons/TasksPluginIcon.png")]
 	public class TasksPlugin : IPlugin, IResourceDisplayer, IResourceTextProvider, IResourceUIHandler, IResourceDragDropHandler
 	{
 		#region IPlugin Members : Registration and Startup
@@ -29,8 +29,9 @@ namespace JetBrains.Omea.Tasks
 
 			Core.ResourceTreeManager.SetViewsExclusive( "Task" );
 
-			Core.TabManager.RegisterResourceTypeTab( "Tasks", "Tasks", new string[] { "Task" }, 99);
-			Core.RightSidebar.RegisterPane(new TasksViewPane(), "ToDo", "To Do", LoadIconFromAssembly("TODO.ico"));
+            Core.TabManager.RegisterResourceTypeTab( "Tasks", "Tasks", new[]{ "Task" }, 99 );
+            Core.RightSidebar.RegisterPane( new TasksViewPane(), "ToDo", "To Do",
+                                            Utils.TryGetEmbeddedResourceImageFromAssembly( Assembly.GetExecutingAssembly(), "Tasks.Icons.TODO24.png" ) );
 
 			Core.PluginLoader.RegisterResourceTextProvider( "Task", this );
 			Core.PluginLoader.RegisterResourceDisplayer( "Task", this );
@@ -314,7 +315,6 @@ namespace JetBrains.Omea.Tasks
 			private IResource _task;
 
 			public RemindUOW(IResource task)
-				: base()
 			{
 				_task = task;
 			}
@@ -462,7 +462,7 @@ namespace JetBrains.Omea.Tasks
 		internal static Icon LoadIconFromAssembly(string name)
 		{
 			Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("Tasks.Icons." + name);
-			return new Icon(stream);
+			return new Icon( stream );
 		}
 
 		private static void UpdateToDoCount()

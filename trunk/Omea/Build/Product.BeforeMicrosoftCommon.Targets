@@ -23,7 +23,7 @@
 	</PropertyGroup>
 	<!-- Generic settings. -->
 	<PropertyGroup>
-		<TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+		<TargetFrameworkVersion>v3.0</TargetFrameworkVersion>
 		<DebugSymbols>True</DebugSymbols>
 		<DebugType>Full</DebugType>
 	</PropertyGroup>

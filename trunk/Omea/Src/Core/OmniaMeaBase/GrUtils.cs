@@ -84,7 +84,7 @@ namespace JetBrains.Omea.Base
                 }
 
                 // Wrap the offscreen bitmap into a .NET bitmap in order to save it
-                bmp = Bitmap.FromHbitmap(hBitmap);
+                bmp = Image.FromHbitmap( hBitmap);
             }
             finally
             {
@@ -108,38 +108,38 @@ namespace JetBrains.Omea.Base
             try
             {
                 // Get the display's Device Context so that the generated bitmaps were compatible
-                hdcDisplay = Win32Declarations.CreateDC("DISPLAY", null, null, IntPtr.Zero);
+                hdcDisplay = Win32Declarations.CreateDC( "DISPLAY", null, null, IntPtr.Zero );
                 if (hdcDisplay == IntPtr.Zero)
-                    throw new Exception("Failed to get the display device context.");
+                    throw new Exception( "Failed to get the display device context." );
 
                 // Create a pixel format compatible device context, and a bitmap to draw into using this context
-                hdcMem = Win32Declarations.CreateCompatibleDC(hdcDisplay);
+                hdcMem = Win32Declarations.CreateCompatibleDC( hdcDisplay );
                 if (hdcMem == IntPtr.Zero)
-                    throw new Exception("Could not cerate a compatible device context.");
-                hBitmap = Win32Declarations.CreateCompatibleBitmap(hdcDisplay, image.Width, image.Height);
+                    throw new Exception( "Could not cerate a compatible device context." );
+                hBitmap = Win32Declarations.CreateCompatibleBitmap( hdcDisplay, image.Width, image.Height );
                 if (hBitmap == IntPtr.Zero)
-                    throw new Exception("Could not cerate a compatible offscreen bitmap.");
-                Win32Declarations.SelectObject(hdcMem, hBitmap);
+                    throw new Exception( "Could not cerate a compatible offscreen bitmap." );
+                Win32Declarations.SelectObject( hdcMem, hBitmap );
 
                 // Attach a GDI+ Device Context to the offscreen facility, and render the scene
-                using (Graphics gm = Graphics.FromHdc(hdcMem))
+                using( Graphics gm = Graphics.FromHdc( hdcMem ) )
                 {
-                    gm.FillRectangle(backBrush, 0, 0, image.Width, image.Height);
-                    gm.DrawImage(image, 0, 0);
+                    gm.FillRectangle( backBrush, 0, 0, image.Width, image.Height );
+                    gm.DrawImage( image, 0, 0 );
                 }
 
                 // Wrap the offscreen bitmap into a .NET bitmap in order to save it
-                bmp = Bitmap.FromHbitmap(hBitmap);
+                bmp = Image.FromHbitmap( hBitmap );
             }
             finally
             {
                 // Cleanup the native resources in use
-                if (hBitmap != IntPtr.Zero)
-                    Win32Declarations.DeleteObject(hBitmap);
-                if (hdcMem != IntPtr.Zero)
-                    Win32Declarations.DeleteDC(hdcMem);
-                if (hdcDisplay != IntPtr.Zero)
-                    Win32Declarations.DeleteDC(hdcDisplay);
+                if( hBitmap != IntPtr.Zero )
+                    Win32Declarations.DeleteObject( hBitmap );
+                if( hdcMem != IntPtr.Zero )
+                    Win32Declarations.DeleteDC( hdcMem );
+                if( hdcDisplay != IntPtr.Zero )
+                    Win32Declarations.DeleteDC( hdcDisplay );
             }
             return bmp;
         }

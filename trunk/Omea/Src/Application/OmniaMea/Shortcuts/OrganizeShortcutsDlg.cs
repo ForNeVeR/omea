@@ -3,10 +3,10 @@
 /// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
 /// </copyright>
 
+using System.Collections.Generic;
 using System.Windows.Forms;
 using JetBrains.Omea.GUIControls;
 using JetBrains.Omea.OpenAPI;
-using JetBrains.Omea.Containers;
 
 namespace JetBrains.Omea
 {
@@ -16,22 +16,23 @@ namespace JetBrains.Omea
 
     public class OrganizeShortcutsDlg : DialogBase
 	{
-        private System.Windows.Forms.Button _btnOK;
-        private System.Windows.Forms.Button _btnCancel;
-        private System.Windows.Forms.Button _btnMoveUp;
-        private System.Windows.Forms.Button _btnMoveDown;
-        private System.Windows.Forms.Button _btnDelete;
-        private System.Windows.Forms.ListView _lvShortcuts;
-        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private Button _btnOK;
+        private Button _btnCancel;
+        private Button _btnMoveUp;
+        private Button _btnMoveDown;
+        private Button _btnDelete;
+        private ListView _lvShortcuts;
+        private ColumnHeader columnHeader1;
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
 		private System.ComponentModel.Container components = null;
-        private System.Windows.Forms.Button _btnRename;
-        private System.Windows.Forms.ColumnHeader columnHeader2;
-        private System.Windows.Forms.Button _btnHelp;
+        private Button _btnRename;
+        private ColumnHeader columnHeader2;
+        private Button _btnHelp;
 
-        private IntArrayList _deletedShortcutIDs = new IntArrayList();
+//        private readonly IntArrayList _deletedShortcutIDs = new IntArrayList();
+        private readonly List<int> _deletedShortcutIDs = new List<int>();
 
 		public OrganizeShortcutsDlg()
 		{
@@ -221,19 +222,14 @@ namespace JetBrains.Omea
             _lvShortcuts.SmallImageList = Core.ResourceIconManager.ImageList;
 
             IResourceList shortcuts = Core.ResourceStore.GetAllResources( "Shortcut" );
-            shortcuts.Sort( new int[] { ShortcutProps.Order }, true );
+            shortcuts.Sort( new[] { ShortcutProps.Order }, true );
             foreach( IResource res in shortcuts )
             {
                 IResource target = res.GetLinkProp( ShortcutProps.Target );
                 if ( target != null && Core.ResourceStore.ResourceTypes [target.Type].OwnerPluginLoaded )
                 {
-                    string name = res.GetStringProp( "Name" );
-                    if ( name == null )
-                    {
-                        name = target.DisplayName;
-                    }
-                    ListViewItem lvItem = _lvShortcuts.Items.Add( name, 
-                                                                  Core.ResourceIconManager.GetIconIndex( target ) );
+                    string name = res.GetStringProp( Core.Props.Name ) ?? target.DisplayName;
+                    ListViewItem lvItem = _lvShortcuts.Items.Add( name, Core.ResourceIconManager.GetIconIndex( target ) );
                     lvItem.Tag = res.Id;
                     lvItem.SubItems.Add( target.DisplayName );
                     if ( lvItem.Index == 0 )
@@ -294,10 +290,11 @@ namespace JetBrains.Omea
             }
         }
 
-        private void _lvShortcuts_Layout( object sender, System.Windows.Forms.LayoutEventArgs e )
+        private void _lvShortcuts_Layout( object sender, LayoutEventArgs e )
         {
-            _lvShortcuts.Columns [1].Width = _lvShortcuts.ClientSize.Width - _lvShortcuts.Columns [0].Width - 
-                SystemInformation.VerticalScrollBarWidth;
+            _lvShortcuts.Columns [1].Width = _lvShortcuts.ClientSize.Width -
+                                             _lvShortcuts.Columns [0].Width - 
+                                             SystemInformation.VerticalScrollBarWidth;
         }
 
         private void _lvShortcuts_SelectedIndexChanged( object sender, System.EventArgs e )

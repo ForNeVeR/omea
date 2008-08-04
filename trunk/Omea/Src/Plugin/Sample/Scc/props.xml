@@ -5,13 +5,36 @@
   You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
   </copyright>
 -->
-<props namespace="JetBrains.Omea.SamplePlugins.SccPlugin" static="1" visibility="internal" prefix="jetbrains.scc" summary="Definitions for the resource types and property types used by the plugin.">
+<props namespace="JetBrains.Omea.SamplePlugins.SccPlugin" static="1" visibility="internal" prefix="jetbrains.scc" ownerPlugin="1" summary="Definitions for the resource types and property types used by the plugin.">
 	<resourcetype name="Repository" dnTemplate="Name" resourceContainer="1" noIndex="1" />
-	<resourcetype name="ChangeSet" displayName="Changeset" dnTemplate="Subject" canBeUnread="1" />
-	<resourcetype name="Folder" dnTemplate="Name" resourceContainer="1" noIndex="1" />
-	<resourcetype name="FileChange" internal="1" noIndex="1" />
-	<resourcetype name="UserToRepositoryMap" internal="1" noIndex="1" />
-	<resourcetype name="LinkRegex" internal="1" noIndex="1" />
+	<resourcetype name="ChangeSet" displayName="Changeset" dnTemplate="Subject" canBeUnread="1"/>
+	
+	<resourcetype name="Folder" dnTemplate="Name" resourceContainer="1" noIndex="1">
+	  <coreProp name="Name"/>
+	  <coreProp name="Parent"/>
+        </resourcetype>
+	
+	<resourcetype name="FileChange" internal="1" noIndex="1">
+	  <coreProp name="Name"/>
+	  <prop name="AffectsFolder"/>
+	  <prop name="ChangeType"/>
+	  <prop name="Revision"/>
+	  <prop name="Diff"/>
+	  <prop name="Binary"/>
+	  <prop name="Change" reverseLink="1"/>
+	</resourcetype>
+	
+	<resourcetype name="UserToRepositoryMap" internal="1" noIndex="1">
+	  <prop name="UserId"/>
+	  <prop name="UserRepository"/>
+	  <prop name="UserContact"/>
+	</resourcetype>
+	
+	<resourcetype name="LinkRegex" internal="1" noIndex="1">
+	  <prop name="RegexMatch"/>
+	  <prop name="RegexReplace"/>
+	</resourcetype>
+	
 	<prop name="RepositoryType" dataType="String" internal="1" />
 	<prop name="ChangeSetNumber" dataType="Int" />
 	<prop name="Client" propName="P4Client" dataType="String" />

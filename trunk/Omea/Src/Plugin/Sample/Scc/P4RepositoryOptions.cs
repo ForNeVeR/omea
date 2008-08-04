@@ -300,13 +300,13 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
 	    {
 	        _repository = repository;
 	        _edtRepositoryName.Text = repository.GetStringProp( Core.Props.Name );
-	        _edtServerPort.Text = repository.GetStringProp( Props.P4ServerPort );
-	        _edtClient.Text = repository.GetStringProp( Props.P4Client );
-	        _edtUserName.Text = repository.GetStringProp( Props.UserName );
-	        _edtPassword.Text = repository.GetStringProp( Props.Password );
-	        _edtIgnoreClients.Text = repository.GetStringProp( Props.P4IgnoreChanges );
-	        _edtPathsToWatch.Lines = repository.GetPropText( Props.PathsToWatch ).Split( ';' );
-	        _edtP4WebPath.Text = repository.GetPropText( Props.P4WebUrl );
+	        _edtServerPort.Text = repository.GetProp( Props.P4ServerPort );
+	        _edtClient.Text = repository.GetProp( Props.P4Client );
+	        _edtUserName.Text = repository.GetProp( Props.UserName );
+	        _edtPassword.Text = repository.GetProp( Props.Password );
+	        _edtIgnoreClients.Text = repository.GetProp( Props.P4IgnoreChanges );
+	        _edtPathsToWatch.Lines = repository.GetProp( Props.PathsToWatch ).Split( ';' );
+	        _edtP4WebPath.Text = repository.GetProp( Props.P4WebUrl );
 	        DialogResult dr = ShowDialog( ownerWindow );
 	        if ( dr == DialogResult.OK )
 	        {
@@ -336,7 +336,7 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
 
 	    private bool CheckDeleteIgnoredClients()
 	    {
-	        string oldClientsText = _repository.GetStringProp( Props.P4IgnoreChanges );
+	        string oldClientsText = _repository.GetProp( Props.P4IgnoreChanges );
 	        if ( oldClientsText != null && _edtIgnoreClients.Text != oldClientsText && 
 	             _edtIgnoreClients.Text.Trim().Length > 0 )
 	        {

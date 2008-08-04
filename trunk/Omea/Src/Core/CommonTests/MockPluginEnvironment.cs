@@ -7,6 +7,9 @@ using System;
 using System.Drawing;
 using System.Net;
 using System.Windows.Forms;
+
+using System35;
+
 using JetBrains.Omea.OpenAPI;
 using System.IO;
 using NMock;
@@ -72,12 +75,12 @@ namespace CommonTests
             // TODO:  Add MockAsyncProcessor.CancelUnitsOfWork implementation
         }
 
-        void JetBrains.Omea.OpenAPI.IAsyncProcessor.CancelJobs(Delegate method)
+        void IAsyncProcessor.CancelJobs(Delegate method)
         {
             // TODO:  Add MockAsyncProcessor.OmniaMea.OpenAPI.IAsyncProcessor.CancelUnitsOfWork implementation
         }
 
-        void JetBrains.Omea.OpenAPI.IAsyncProcessor.CancelJobs(JetBrains.Omea.OpenAPI.JobFilter filter)
+        void IAsyncProcessor.CancelJobs(JobFilter filter)
         {
             // TODO:  Add MockAsyncProcessor.OmniaMea.OpenAPI.IAsyncProcessor.CancelUnitsOfWork implementation
         }
@@ -87,33 +90,87 @@ namespace CommonTests
             // TODO:  Add MockAsyncProcessor.RunUnitOfWork implementation
         }
 
-        public bool QueueJob(JetBrains.Omea.OpenAPI.JobPriority priority, string name, Delegate method, params object[] args)
+        public bool QueueJob(JobPriority priority, string name, Delegate method, params object[] args)
         {
             return true;// TODO:  Add MockAsyncProcessor.QueueJob implementation
         }
 
-        bool JetBrains.Omea.OpenAPI.IAsyncProcessor.QueueJob(JetBrains.Omea.OpenAPI.JobPriority priority, Delegate method, params object[] args)
+    	#region IAsyncProcessor Members
+
+    	/// <summary>
+    	/// Queues a named delegate for asynchronous execution with specified priority.
+    	/// These jobs are never merged.
+    	/// </summary>
+    	/// <param name="priority">The priority of this job.</param>
+    	/// <param name="name">Name of operation.</param>
+    	/// <param name="action">The delegate to be executed. Arguments should be passed via a closure.</param>
+    	/// <remarks>Name of operation is reflected by corresponding indicator light.</remarks>
+    	public void QueueJob(JobPriority priority, string name, Action action)
+    	{
+    		return; // TODO
+    	}
+
+    	/// <summary>
+    	/// Queues a named delegate for asynchronous execution with specified priority.
+    	/// </summary>
+    	/// <param name="priority">The priority of this job.</param>
+    	/// <param name="name">Name of operation.</param>
+    	/// <param name="identity">An optional identity. Jobs with equal non-<c>Null</c> identity will be merged together.</param>
+    	/// <param name="action">The delegate to be executed. Arguments should be passed via a closure.</param>
+    	/// <remarks>Name of operation is reflected by corresponding indicator light.</remarks>
+    	/// <returns><c>True</c> if the delegate was really queued, <c>False</c> if it was merged with an equal one.</returns>
+    	public bool QueueJob(JobPriority priority, string name, object identity, Action action)
+    	{
+    		return true; // TODO
+    	}
+
+    	bool IAsyncProcessor.QueueJob(JobPriority priority, Delegate method, params object[] args)
         {
            return true; // TODO:  Add MockAsyncProcessor.OmniaMea.OpenAPI.IAsyncProcessor.QueueJob implementation
         }
 
-        bool JetBrains.Omea.OpenAPI.IAsyncProcessor.QueueJob(JetBrains.Omea.OpenAPI.JobPriority priority, AbstractJob uow)
+        bool IAsyncProcessor.QueueJob(JobPriority priority, AbstractJob uow)
         {
             // TODO:  Add MockAsyncProcessor.OmniaMea.OpenAPI.IAsyncProcessor.QueueJob implementation
             return false;
         }
 
-        bool JetBrains.Omea.OpenAPI.IAsyncProcessor.QueueJob(string name, Delegate method, params object[] args)
+        bool IAsyncProcessor.QueueJob(string name, Delegate method, params object[] args)
         {
             return true;// TODO:  Add MockAsyncProcessor.OmniaMea.OpenAPI.IAsyncProcessor.QueueJob implementation
         }
 
-        bool JetBrains.Omea.OpenAPI.IAsyncProcessor.QueueJob(Delegate method, params object[] args)
+    	/// <summary>
+    	/// Queues a named delegate for asynchronous execution with normal priority.
+    	/// These jobs are never merged.
+    	/// </summary>
+    	/// <param name="name">Name of operation.</param>
+    	/// <param name="action">The delegate to be executed. Arguments should be passed via a closure.</param>
+    	/// <remarks>Name of operation is reflected by corresponding indicator light.</remarks>
+    	public void QueueJob(string name, Action action)
+    	{
+    		return; // TODO
+    	}
+
+    	/// <summary>
+    	/// Queues a named delegate for asynchronous execution with normal priority.
+    	/// </summary>
+    	/// <param name="name">Name of operation.</param>
+    	/// <param name="identity">An optional identity. Jobs with equal non-<c>Null</c> identity will be merged together.</param>
+    	/// <param name="action">The delegate to be executed. Arguments should be passed via a closure.</param>
+    	/// <remarks>Name of operation is reflected by corresponding indicator light.</remarks>
+    	/// <returns><c>True</c> if the delegate was really queued, <c>False</c> if it was merged with an equal one.</returns>
+    	public bool QueueJob(string name, object identity, Action action)
+    	{
+    		return true; // TODO
+    	}
+
+    	bool IAsyncProcessor.QueueJob(Delegate method, params object[] args)
         {
             return true;// TODO:  Add MockAsyncProcessor.OmniaMea.OpenAPI.IAsyncProcessor.QueueJob implementation
         }
 
-        bool JetBrains.Omea.OpenAPI.IAsyncProcessor.QueueJob(AbstractJob uow)
+        bool IAsyncProcessor.QueueJob(AbstractJob uow)
         {
             // TODO:  Add MockAsyncProcessor.OmniaMea.OpenAPI.IAsyncProcessor.QueueJob implementation
             return false;
@@ -124,17 +181,17 @@ namespace CommonTests
             // TODO:  Add MockAsyncProcessor.QueueJobAt implementation
         }
 
-        void JetBrains.Omea.OpenAPI.IAsyncProcessor.QueueJobAt(DateTime when, AbstractJob uow)
+        void IAsyncProcessor.QueueJobAt(DateTime when, AbstractJob uow)
         {
             // TODO:  Add MockAsyncProcessor.OmniaMea.OpenAPI.IAsyncProcessor.QueueJobAt implementation
         }
 
-        public void QueueIdleJob( JetBrains.Omea.OpenAPI.JobPriority priority, AbstractJob uow )
+        public void QueueIdleJob( JobPriority priority, AbstractJob uow )
         {
             // TODO:  Add MockAsyncProcessor.QueueIdleUnitOfWork implementation
         }
 
-        void JetBrains.Omea.OpenAPI.IAsyncProcessor.QueueIdleJob(AbstractJob uow)
+        void IAsyncProcessor.QueueIdleJob(AbstractJob uow)
         {
             // TODO:  Add MockAsyncProcessor.OmniaMea.OpenAPI.IAsyncProcessor.QueueIdleUnitOfWork implementation
         }
@@ -144,19 +201,30 @@ namespace CommonTests
             // TODO:  Add MockAsyncProcessor.CancelTimedUnitsOfWork implementation
         }
 
-        void JetBrains.Omea.OpenAPI.IAsyncProcessor.CancelTimedJobs(Delegate method)
+        void IAsyncProcessor.CancelTimedJobs(Delegate method)
         {
             // TODO:  Add MockAsyncProcessor.OmniaMea.OpenAPI.IAsyncProcessor.CancelTimedUnitsOfWork implementation
         }
 
-        void JetBrains.Omea.OpenAPI.IAsyncProcessor.CancelTimedJobs(JetBrains.Omea.OpenAPI.JobFilter filter)
+        void IAsyncProcessor.CancelTimedJobs(JobFilter filter)
         {
             // TODO:  Add MockAsyncProcessor.OmniaMea.OpenAPI.IAsyncProcessor.CancelTimedUnitsOfWork implementation
         }
 
         public void QueueJobAt( DateTime when, string name, Delegate method, params object[] args ) {}
 
-        public object RunJob( Delegate method, params object[] args )
+    	/// <summary>
+    	/// Queues a named delegate for execution at specified time.
+    	/// </summary>
+    	/// <param name="dateTime">The time when delegate should be executed.</param>
+    	/// <param name="name">Name of operation.</param>
+    	/// <param name="action">The delegate to be executed. Arguments should be passed via a closure.</param>
+    	/// <remarks>If time has passed, job is executed immediately. Name of operation is reflected by corresponding indicator light.</remarks>
+    	public void QueueJobAt(DateTime dateTime, string name, Action action)
+    	{
+		}
+
+    	public object RunJob( Delegate method, params object[] args )
         {
             return method.DynamicInvoke( args );
         }
@@ -166,7 +234,24 @@ namespace CommonTests
             return method.DynamicInvoke( args );
         }
 
-        public void RunUniqueJob( AbstractJob uow )
+    	/// <summary>
+    	/// Queues a named delegate for synchronous execution and waits until it is finished.
+    	/// </summary>
+    	/// <param name="name">Name of operation.</param>
+    	/// <param name="action">The delegate to be executed. Arguments and a return value should be passed via a closure.</param>
+    	/// <remarks>Jobs to be run are queued with the immediate priority.
+    	/// On attempt to run two or more equal jobs simultaneously the <c>AsyncProcessorException</c> is thrown.
+    	/// Name of operation is reflected by corresponding indicator light.</remarks>
+    	/// <returns>Whether the execution succeeded.</returns>
+    	public bool RunJob(string name, Action action)
+    	{
+    		action();
+			return true;
+    	}
+
+    	#endregion
+
+    	public void RunUniqueJob( AbstractJob uow )
         {
             
         }
@@ -264,34 +349,36 @@ namespace CommonTests
 
     public class MockPluginEnvironment : ICore, IDisposable
     {
-        IResourceStore Storage;
-        ISettingStore _settingStore;
-        IActionManager _actionManager;
-        IUIManager _uiManager;
-        IPluginLoader _pluginLoader;
-        IResourceBrowser _resourceBrowser;
-        ITabManager _tabManager;
-        MockAsyncProcessor _resourceAP;
-        IAsyncProcessor _networkAP;
-        IAsyncProcessor _uiAP;
+        readonly IResourceStore Storage;
+        readonly ISettingStore _settingStore;
+        readonly IActionManager _actionManager;
+        readonly IUIManager _uiManager;
+        readonly IPluginLoader _pluginLoader;
+        readonly IResourceBrowser _resourceBrowser;
+        readonly ITabManager _tabManager;
+        readonly MockAsyncProcessor _resourceAP;
+        readonly IAsyncProcessor _networkAP;
+        readonly IAsyncProcessor _uiAP;
 
-        IResourceIconManager _resourceIconManager;
-        INotificationManager _notificationManager;
-        ITextIndexManager    _textIndexManager;
+        readonly IResourceIconManager _resourceIconManager;
+        readonly INotificationManager _notificationManager;
+        readonly ITextIndexManager    _textIndexManager;
         IContactManager      _contactManager;
-        IMessageFormatter    _messageFormatter;
+        readonly IMessageFormatter    _messageFormatter;
         ISidebarSwitcher     _leftSidebar;
-        IDisplayColumnManager _displayColumnManager;
-        IFilterManager        _filterManager;
+        readonly IDisplayColumnManager _displayColumnManager;
+        IFilterRegistry        _filterRegistry;
 		IRemoteControlManager _rcManager;
-        ITrayIconManager      _trayIconManager;
-        IFormattingRuleManager _formattingRuleManager;
-        IExpirationRuleManager _expirationRuleManager;
-        IFilteringFormsManager _filteringFormsManager;
-        ISearchQueryExtensions _searchQueryExtensions;
+        readonly ITrayIconManager      _trayIconManager;
+        readonly IFormattingRuleManager _formattingRuleManager;
+        readonly IExpirationRuleManager _expirationRuleManager;
+        readonly IFilteringFormsManager _filteringFormsManager;
+        readonly IFilterEngine          _filterEngine;
+        readonly ISearchQueryExtensions _searchQueryExtensions;
         DefaultPicoContainer  _mockPicoContainer;
-        DefaultPicoContainer  _picoContainer;
+        readonly DefaultPicoContainer  _picoContainer;
         ICoreProps           _coreProps;
+        ICorePropIds           _corePropIds;
 
         public MockPluginEnvironment( IResourceStore storage )
         {
@@ -328,15 +415,20 @@ namespace CommonTests
             _messageFormatter = (IMessageFormatter) new DynamicMock( typeof(IMessageFormatter ) ).MockInstance;
             _displayColumnManager = (IDisplayColumnManager) new DynamicMock( typeof(IDisplayColumnManager) ).MockInstance;
 
-            DynamicMock filterManagerMock = new DynamicMock( typeof(IFilterManager) );
-            filterManagerMock.SetupResult( "ExecRules", true, typeof(string), typeof(IResource) );
-            _filterManager = (IFilterManager) filterManagerMock.MockInstance;
+//            DynamicMock filterManagerMock = new DynamicMock( typeof(IFilterRegistry) );
+            DynamicMock filterEngineMock = new DynamicMock( typeof(IFilterEngine) );
+            filterEngineMock.SetupResult( "ExecRules", true, typeof(string), typeof(IResource) );
+
+            DynamicMock filterManagerMock = new DynamicMock( typeof(IFilterRegistry) );
+            _filterRegistry = (IFilterRegistry) filterManagerMock.MockInstance;
+
 			_rcManager = (IRemoteControlManager) new DynamicMock( typeof(IRemoteControlManager) ).MockInstance;
             _trayIconManager = (ITrayIconManager) new DynamicMock( typeof(ITrayIconManager) ).MockInstance;
             _formattingRuleManager = (IFormattingRuleManager) new DynamicMock( typeof(IFormattingRuleManager) ).MockInstance;
             _expirationRuleManager = (IExpirationRuleManager) new DynamicMock( typeof(IExpirationRuleManager) ).MockInstance;
             _filteringFormsManager = (IFilteringFormsManager) new DynamicMock( typeof(IFilteringFormsManager) ).MockInstance;
             _searchQueryExtensions = (ISearchQueryExtensions) new DynamicMock( typeof(ISearchQueryExtensions) ).MockInstance;
+            _filterEngine = (IFilterEngine) new DynamicMock( typeof(IFilterEngine) ).MockInstance;
 
             theInstance = this;
         }
@@ -346,9 +438,9 @@ namespace CommonTests
             _contactManager = mgr;
         }
 
-        public void SetFilterManager( IFilterManager mgr )
+        public void SetFilterManager( IFilterRegistry mgr )
         {
-            _filterManager = mgr;
+            _filterRegistry = mgr;
         }
 
         public void SetCoreProps( ICoreProps props )
@@ -407,8 +499,9 @@ namespace CommonTests
         public override ISettingStore       SettingStore    { get{ return _settingStore; } }
         public override IPluginLoader       PluginLoader    { get{ return _pluginLoader; } }
         public override ITextIndexManager   TextIndexManager{ get{ return _textIndexManager; } }
-        public override IFilterManager      FilterManager   { get{ return _filterManager; } }
-        public override AbstractWebBrowser   WebBrowser       { get{ return null; } }
+        public override IFilterRegistry     FilterRegistry  { get{ return _filterRegistry; } }
+        public override IFilterEngine       FilterEngine    { get{ return _filterEngine; } }
+        public override AbstractWebBrowser   WebBrowser     { get{ return null; } }
         public override IWin32Window        MainWindow      { get{ return null; } }
         
         public override IUnreadManager      UnreadManager
@@ -449,6 +542,13 @@ namespace CommonTests
 
         public override IMessageFormatter    MessageFormatter    { get { return _messageFormatter; } }
         public override ICoreProps Props { get { return _coreProps; } }
+
+
+        public override ICorePropIds PropIds
+        {
+            get { return _corePropIds; }
+        }
+
         public override CoreState State { get { return CoreState.Running; } }
         public override event EventHandler StateChanged;
 

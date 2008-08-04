@@ -703,7 +703,7 @@ namespace JetBrains.Omea.Categories
                     if ( !res.IsDeleted )
                     {
                         res.EndUpdate();
-                        Core.FilterManager.ExecRules( StandardEvents.CategoryAssigned, res );
+                        Core.FilterEngine.ExecRules( StandardEvents.CategoryAssigned, res );
                     }
                 }
             }

@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Reflection;
 using System.Windows.Forms;
+using GUIControls.Controls;
 using JetBrains.Omea.Base;
 using JetBrains.Omea.OpenAPI;
 
@@ -16,7 +17,7 @@ namespace JetBrains.Omea.GUIControls
 	/// A toolbar which contais buttons and other controls applicable to formatting the content of rich editors, such as HTML or RTF editors.
 	/// The toolbar is bound to the control it rules over by giving it the proper command processor after creation.
 	/// </summary>
-	public class RichEditToolbar : GradientToolbar, IContextProvider
+	public class RichEditToolbar : ToolStrip, IContextProvider
 	{
 		/// <summary> 
 		/// Required designer variable.
@@ -67,15 +68,7 @@ namespace JetBrains.Omea.GUIControls
 			// RichEditToolbar
 			// 
 			this.Name = "RichEditToolbar";
-
-			DropDownArrows = true;
-			ShowToolTips = true;
-			Appearance = ToolBarAppearance.Flat;
-			//AutoSize = false;
-			Divider = true;
-			GradientEndColor = SystemColors.Control;
-			GradientStartColor = SystemColors.ControlLightLight;
-			TextAlign = ToolBarTextAlign.Right;
+            Renderer = new GradientRenderer( SystemColors.ControlLightLight, SystemColors.Control );
 		}
 
 		#endregion
@@ -133,7 +126,7 @@ namespace JetBrains.Omea.GUIControls
 		/// <returns>The loaded icon resource.</returns>
 		protected static Image LoadImage( string name )
 		{
-            Image icon = Utils.GetResourceImageFromAssembly( Assembly.GetExecutingAssembly(), "GUIControls.Icons." + name + ".ico" );
+            Image icon = Utils.TryGetEmbeddedResourceImageFromAssembly( Assembly.GetExecutingAssembly(), "GUIControls.Icons." + name + ".ico" );
             return icon;
 		}
 

@@ -12,6 +12,7 @@ using System.Diagnostics;
 using AxAcroPDFLib;
 
 using JetBrains.Build.InstallationData;
+using JetBrains.Interop.WinApi;
 using JetBrains.Omea.Base;
 using JetBrains.Omea.Base.Install;
 using JetBrains.Omea.COM;
@@ -23,7 +24,7 @@ using Microsoft.Win32;
 
 namespace JetBrains.Omea.PDFPlugin
 {
-	[PluginDescriptionAttribute("JetBrains Inc.", "Adobe PDF files viewer and plain text extractor, for search capabilities")]
+	[PluginDescriptionAttribute("PDF Douments", "JetBrains Inc.", "Adobe PDF files viewer and plain text extractor, for search capabilities", PluginDescriptionFormat.PlainText, "Icons/PdfPluginIcon.png")]
 	public class PDFPlugin : IPlugin, IResourceTextProvider
 	{
 		private AcrobatOcxDisplayer _ocxDisplayer;
@@ -34,7 +35,7 @@ namespace JetBrains.Omea.PDFPlugin
 			RegisterTypes();
 			Core.PluginLoader.RegisterResourceTextProvider( "PdfFile", this );
 
-			if ( Acrobat7Installed() )
+			if ( IsAcrobat7Installed() )
 			{
 				_acro7Displayer = new Acrobat7Displayer();
 				Core.PluginLoader.RegisterResourceDisplayer( "PdfFile", _acro7Displayer );
@@ -47,11 +48,11 @@ namespace JetBrains.Omea.PDFPlugin
 
 			if( !File.Exists( Application.StartupPath + "\\pdftotext.exe" ) )
 			{
-				System.Windows.Forms.MessageBox.Show( "PDF plugin can not find [pdftotext.exe] supplementary file", "Error while loading PDFPlugin" );
+				MessageBox.Show( "PDF plugin can not find [pdftotext.exe] supplementary file", "Error while loading PDFPlugin" );
 			}
 		}
 
-		private bool Acrobat7Installed()
+		private static bool IsAcrobat7Installed()
 		{
 			bool result = false;
 			RegistryKey regKey = Registry.ClassesRoot.OpenSubKey( "AcroExch.Document" );
@@ -139,7 +140,7 @@ namespace JetBrains.Omea.PDFPlugin
 		}
 
 		//---------------------------------------------------------------------
-		protected   void    ProcessPDFFile( int ID, string FileName, IResourceTextConsumer consumer )
+		protected static void    ProcessPDFFile( int ID, string FileName, IResourceTextConsumer consumer )
 		{
 			Process process = new Process();
 			Debug.WriteLine( "Starting indexing: " + FileName );
@@ -175,7 +176,7 @@ namespace JetBrains.Omea.PDFPlugin
 
 	internal class AcrobatOcxDisplayer : IResourceDisplayer, IDisplayPane, IDisposable
 	{
-		private AxPdfLib.AxPdf _axPdf;
+		private readonly AxPdfLib.AxPdf _axPdf;
 
 		public AcrobatOcxDisplayer()
 		{
@@ -206,7 +207,7 @@ namespace JetBrains.Omea.PDFPlugin
 			try
 			{
 				string  FileName = Core.FileResourceManager.GetSourceFile( resource );
-				Debug.Assert(( FileName != null ) && ( FileName.Length > 0 ));
+				Debug.Assert(!string.IsNullOrEmpty(FileName));
 				_axPdf.LoadFile( FileName );
 			}
 			catch( Exception exc )
@@ -249,7 +250,7 @@ namespace JetBrains.Omea.PDFPlugin
 
 	internal class Acrobat7Displayer: IResourceDisplayer, IDisplayPane, IDisposable
 	{
-		private AxAcroPDFLib.AxAcroPDF _axPdf;
+		private readonly AxAcroPDF _axPdf;
 
 		public Acrobat7Displayer()
 		{
@@ -285,15 +286,15 @@ namespace JetBrains.Omea.PDFPlugin
 				{
 					string  fileName = Core.FileResourceManager.GetSourceFile( resource );
 					if( fileName == null )
-						throw new ApplicationException( "PDFPlugin -- Can not restore PDF file from resource." );
+						throw new ApplicationException( "PDFPlugin — Can not restore PDF file from resource." );
 					_axPdf.LoadFile( fileName );
 				}
 				catch(COMException ex)
 				{
-					if(ex.ErrorCode == -0x7FFFBFFB)	// E_FAIL (?) an integer representation for 0x80004005
+					if(ex.ErrorCode == (int)HResults.E_FAIL)	// E_FAIL (?) an integer representation for 0x80004005
 						Trace.WriteLine("The Acro7 Control has told us that shit happens.", "PDF");
 					else
-						throw ex;	// Let it be processed the usual way
+						throw;	// Let it be processed the usual way
 				}
 			}
 			catch( Exception exc )

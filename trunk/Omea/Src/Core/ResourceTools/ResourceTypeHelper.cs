@@ -5,7 +5,7 @@
 
 using System;
 using System.Collections;
-using JetBrains.Omea.Containers;
+using System.Collections.Generic;
 using JetBrains.Omea.OpenAPI;
 
 namespace JetBrains.Omea.ResourceTools
@@ -295,7 +295,7 @@ namespace JetBrains.Omea.ResourceTools
         /// </summary>
         public static IResourceList  ExtractListForType( IResourceList list, string type )
         {
-            IntArrayList ids = new IntArrayList();
+            List<int> ids = new List<int>();
             foreach( IResource res in list )
             {
                 if( res.Type == type )

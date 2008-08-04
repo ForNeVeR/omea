@@ -14,19 +14,18 @@ namespace JetBrains.Omea
     /// <summary>
     /// Summary description for ProgressWindow.
     /// </summary>
-    public class ProgressWindow : System.Windows.Forms.Form, IProgressWindow
+    public class ProgressWindow : Form, IProgressWindow
     {
         private System.ComponentModel.IContainer components;
 
         private int _startTickCount;
-        private System.Windows.Forms.Label _statusLabel;
-        private System.Windows.Forms.ProgressBar _progressBar;
-        private System.Windows.Forms.Label _timeLabel;
+        private Label _statusLabel;
+        private ProgressBar _progressBar;
+        private Label _timeLabel;
         internal event EventHandler OnFirstShow;
-        private bool _interrupted = false;
-        private System.Windows.Forms.Timer _tmrUpdateElapsedTime;
-        private string _lastTimeMessage = null;
-        private string _lastProgressText = null;
+    	private Timer _tmrUpdateElapsedTime;
+        private string _lastTimeMessage;
+        private string _lastProgressText;
 
         public ProgressWindow( bool canMinimize )
         {
@@ -34,7 +33,7 @@ namespace JetBrains.Omea
             // Required for Windows Form Designer support
             //
             InitializeComponent();
-            this.Icon = Core.UIManager.ApplicationIcon;
+            Icon = Core.UIManager.ApplicationIcon;
 
             if ( canMinimize )
             {
@@ -133,12 +132,20 @@ namespace JetBrains.Omea
          * When the form is first shown, invokes a delegate to start the indexing
          * process after the form becomes visible.
          */
-		
-        private void ProgressWindow_VisibleChanged(object sender, System.EventArgs e)
-        {
-            VisibleChanged -= new EventHandler( ProgressWindow_VisibleChanged );
-            BeginInvoke( new MethodInvoker( FirstShow ) );
-        }
+
+    	private void ProgressWindow_VisibleChanged(object sender, EventArgs e)
+    	{
+    		try
+    		{
+    			VisibleChanged -= ProgressWindow_VisibleChanged;
+    			BeginInvoke(new MethodInvoker(FirstShow));
+    		}
+    		catch(Exception ex)
+    		{
+    			if(ICore.Instance != null)
+    				Core.ReportException(ex, false);
+    		}
+    	}
 
         /**
          * After the form is shown, starts the index building process.
@@ -163,12 +170,7 @@ namespace JetBrains.Omea
             _startTickCount = Environment.TickCount;
         }
 
-        public bool IsInterrupted()
-        {
-            return _interrupted;
-        }
-
-        private delegate void UpdateProgressDelegate( int percentage, string message, string timeMessage );
+    	private delegate void UpdateProgressDelegate( int percentage, string message, string timeMessage );
 
         /**
          * Called after a message has been scanned by SourceAccessors. Updates the
@@ -208,14 +210,14 @@ namespace JetBrains.Omea
         private void UpdateElapsedTime()
         {
             string elapsedTime = "Elapsed time: "+ TicksToString( Environment.TickCount - _startTickCount );
-            if ( _lastTimeMessage != null && _lastTimeMessage != "" )
+            if ( !string.IsNullOrEmpty(_lastTimeMessage) )
             {
                 elapsedTime += ", " + _lastTimeMessage;
             }
             _timeLabel.Text = elapsedTime;
         }
 
-        private string TicksToString( int ticks )
+        private static string TicksToString( int ticks )
         {
             int secs = ticks / 1000;
             return String.Format( "{0}:{1:d2}", secs / 60, secs % 60);
@@ -234,7 +236,7 @@ namespace JetBrains.Omea
             Win32Declarations.DrawMenuBar( Handle );
         }
 
-        private void _tmrUpdateElapsedTime_Tick( object sender, System.EventArgs e )
+        private void _tmrUpdateElapsedTime_Tick( object sender, EventArgs e )
         {
             UpdateElapsedTime();        
         }
@@ -242,7 +244,7 @@ namespace JetBrains.Omea
 
     internal class MockProgressWindow: IProgressWindow
     {
-        private bool _logToConsole;
+        private readonly bool _logToConsole;
 
         internal MockProgressWindow()
         {

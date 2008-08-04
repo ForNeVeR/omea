@@ -208,25 +208,6 @@
 			<color r="224" g="226" b="235" />
 		</BackgroundActive>
 	</Search>
-	<!--
-  <QuickFind>
-    <GoButton>
-      <imagelist width="16" height="16">
-        <icon name="quick_go.ico"/>
-        <icon name="quick_go_hot.ico"/>
-        <icon name="quick_go_pressed.ico"/>
-      </imagelist>
-    </GoButton>
-
-    <ClearButton>
-      <imagelist width="30" height="16">
-        <icon name="quick_clear.ico"/>
-        <icon name="quick_clear_hot.ico"/>
-        <icon name="quick_clear_pressed.ico"/>
-      </imagelist>
-    </ClearButton>
-  </QuickFind>
--->
 	<Splitter>
 		<Dot>
 			<color r="123" g="118" b="184" />

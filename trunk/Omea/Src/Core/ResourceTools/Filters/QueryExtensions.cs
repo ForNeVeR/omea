@@ -7,7 +7,6 @@ using System;
 using System.Collections;
 using System.Diagnostics;
 using JetBrains.DataStructures;
-using JetBrains.Omea.Base;
 using JetBrains.Omea.Containers;
 using JetBrains.Omea.OpenAPI;
 
@@ -15,19 +14,19 @@ namespace JetBrains.Omea.TextIndex
 {
     public class SearchQueryExtensions : ISearchQueryExtensions
     {
-        private HashMap _prep2ResTypeExtensions = new HashMap();
-        private HashMap _prep2TokenExtensions = new HashMap();
-        private HashMap _prep2FreestyleExtensions = new HashMap();
+        private readonly HashMap _prep2ResTypeExtensions = new HashMap();
+        private readonly HashMap _prep2TokenExtensions = new HashMap();
+        private readonly HashMap _prep2FreestyleExtensions = new HashMap();
 
         public void  RegisterResourceTypeRestriction( string prep, string displayType, string resType )
         {
             #region Preconditions
-            if( !Utils.IsValidString( prep ))
-                throw new ArgumentNullException( "SearchQueryExtensions -- Preposition is NULL or empty.");
-            if( !Utils.IsValidString( displayType ))
-                throw new ArgumentNullException( "SearchQueryExtensions -- Displayable name for a resource type is NULL or empty.");
-            if( !Utils.IsValidString( resType ))
-                throw new ArgumentNullException( "SearchQueryExtensions -- resource type name is NULL or empty.");
+            if( String.IsNullOrEmpty( prep ) )
+                throw new ArgumentNullException( "prep", "SearchQueryExtensions -- Preposition is NULL or empty.");
+            if( String.IsNullOrEmpty( displayType ) )
+                throw new ArgumentNullException( "displayType", "SearchQueryExtensions -- Displayable name for a resource type is NULL or empty.");
+            if( String.IsNullOrEmpty( resType ) )
+                throw new ArgumentNullException( "resType", "SearchQueryExtensions -- resource type name is NULL or empty." );
             #endregion Preconditions
 
             HashMap.Entry e = _prep2ResTypeExtensions.GetEntry( prep );
@@ -47,12 +46,12 @@ namespace JetBrains.Omea.TextIndex
         public void  RegisterSingleTokenRestriction ( string prep, string token, IResource stdCondition )
         {
             #region Preconditions
-            if( !Utils.IsValidString( prep ))
-                throw new ArgumentNullException( "SearchQueryExtensions -- Preposition is NULL or empty.");
-            if( !Utils.IsValidString( token ))
-                throw new ArgumentNullException( "SearchQueryExtensions -- Anchor token for a resource type is NULL or empty.");
+            if( String.IsNullOrEmpty( prep ) )
+                throw new ArgumentNullException( "prep", "SearchQueryExtensions -- Preposition is NULL or empty.");
+            if( String.IsNullOrEmpty( token ) )
+                throw new ArgumentNullException( "token", "SearchQueryExtensions -- Anchor token for a resource type is NULL or empty.");
             if( stdCondition == null )
-                throw new ArgumentNullException( "SearchQueryExtensions -- Mapped condition is null.");
+                throw new ArgumentNullException( "stdCondition", "SearchQueryExtensions -- Mapped condition is null.");
             #endregion Preconditions
             
             HashMap.Entry e = _prep2TokenExtensions.GetEntry( prep );
@@ -72,10 +71,10 @@ namespace JetBrains.Omea.TextIndex
         public void  RegisterFreestyleRestriction ( string prep, IQueryTokenMatcher matcher )
         {
             #region Preconditions
-            if( !Utils.IsValidString( prep ))
-                throw new ArgumentNullException( "SearchQueryExtensions -- Preposition is NULL or empty.");
+            if( String.IsNullOrEmpty( prep ) )
+                throw new ArgumentNullException( "prep", "SearchQueryExtensions -- Preposition is NULL or empty.");
             if( matcher == null )
-                throw new ArgumentNullException( "SearchQueryExtensions -- Token stream matcher handler is NULL.");
+                throw new ArgumentNullException( "matcher", "SearchQueryExtensions -- Token stream matcher handler is NULL.");
             #endregion Preconditions
             
             HashMap.Entry e = _prep2FreestyleExtensions.GetEntry( prep );
@@ -149,7 +148,7 @@ namespace JetBrains.Omea.TextIndex
             return (string[]) preps.ToArray( typeof(string) );
         }
 
-        private void  GetAnchors( HashMap map, ArrayList list )
+        private static void  GetAnchors( HashMap map, IList list )
         {
             foreach( HashMap.Entry e in map )
             {

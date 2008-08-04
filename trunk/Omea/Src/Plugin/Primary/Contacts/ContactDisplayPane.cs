@@ -224,7 +224,7 @@ namespace JetBrains.Omea.ContactsPlugin
             }
             else
             {
-                pic = Utils.GetResourceImageFromAssembly( "Contacts", _cDefaultPicture );
+                pic = Utils.TryGetEmbeddedResourceImageFromAssembly( Assembly.GetExecutingAssembly(), _cDefaultPicture );
             }
 
             string picName = pic.GetHashCode() + ".png";

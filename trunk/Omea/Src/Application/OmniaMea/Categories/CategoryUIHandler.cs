@@ -5,6 +5,7 @@
 
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
 using System.Windows.Forms;
@@ -250,7 +251,7 @@ namespace JetBrains.Omea.Categories
 					return DragDropEffects.None;
 
 				// Collect all the direct and indirect parents of the droptarget; then we'll check to avoid dropping parent on its children
-				IntArrayList parentList = new IntArrayList();
+				List<int> parentList = new List<int>();
 				IResource parent = targetResource;
 				while( parent != null )
 				{
@@ -258,17 +259,16 @@ namespace JetBrains.Omea.Categories
 					parent = parent.GetLinkProp( Core.Props.Parent );
 				}
 
-				bool bAllDroppable = true; // Feeds or groups are being dragged
 				foreach( IResource res in dragResources )
 				{
 					// Dropping parent over its child?
 					if( parentList.IndexOf( res.Id ) >= 0 )
 						return DragDropEffects.None;
 				}
-				return bAllDroppable ? DragDropEffects.Move : DragDropEffects.None;
+				return DragDropEffects.Move;
 			}
-			else
-				return DragDropEffects.None;
+
+            return DragDropEffects.None;
 		}
 
 		public void AddResourceDragData( IResourceList dragResources, IDataObject dataObject )

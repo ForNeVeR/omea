@@ -42,7 +42,6 @@ namespace JetBrains.Omea.OutlookPlugin
         public override string Name
         {
             get { return "Add subfolder: "; }
-            set { }
         }
     }
 }

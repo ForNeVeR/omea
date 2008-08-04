@@ -4,7 +4,7 @@
 /// </copyright>
 
 using System;
-using System.Collections;
+using System.Collections.Generic;
 using System.Web;
 using System.Windows.Forms;
 using JetBrains.Omea.OpenAPI;
@@ -16,8 +16,8 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
 	/// </summary>
 	public class P4RepositoryType: RepositoryType
 	{
-        private Hashtable _contactNameCache = new Hashtable();
-        private Hashtable _contactEmailCache = new Hashtable();
+        private readonly Dictionary<string, string> _contactNameCache = new Dictionary<string, string>();
+        private readonly Dictionary<string, string> _contactEmailCache = new Dictionary<string, string>();
         
 	    public override string Id
 	    {
@@ -31,7 +31,7 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
 
 	    public override bool EditRepository( IWin32Window ownerWindow, IResource repository )
 	    {
-	        using( P4RepositoryOptions dlg = new P4RepositoryOptions() )
+	        using( var dlg = new P4RepositoryOptions() )
 	        {
 	            return dlg.EditRepository( ownerWindow, repository ) == DialogResult.OK;
 	        }
@@ -43,7 +43,7 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
             {
                 if ( repository.HasProp( Props.LastRevision ) )
                 {
-                    int lastChangeSet = repository.GetIntProp( Props.LastRevision );
+                    int lastChangeSet = repository.GetProp( Props.LastRevision );
                     ChangeSetSummary[] summaries = CreateRunner( repository ).GetChangeSetsAfter( lastChangeSet, GetPathsToWatch( repository ) );
                     CreateChangeSetResources( repository, summaries );
                 }
@@ -68,10 +68,10 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
 	    /// <returns>The runner instance.</returns>
 	    private P4Runner CreateRunner( IResource repository )
 	    {
-	        return new P4Runner( repository.GetStringProp( Props.P4ServerPort ),
-	                             repository.GetStringProp( Props.P4Client ),
-	                             repository.GetStringProp( Props.UserName ),
-	                             repository.GetStringProp( Props.Password ) );
+	        return new P4Runner( repository.GetProp( Props.P4ServerPort ),
+	                             repository.GetProp( Props.P4Client ),
+	                             repository.GetProp( Props.UserName ),
+	                             repository.GetProp( Props.Password ) );
 	    }
 
 	    /// <summary>
@@ -80,7 +80,7 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
         /// <param name="changeSets">The change sets to be converted to resources.</param>
         private void CreateChangeSetResources( IResource repository, ChangeSetSummary[] changeSets )
         {
-            string[] ignoredClients = repository.GetStringProp( Props.P4IgnoreChanges ).Split( ';' );
+            string[] ignoredClients = repository.GetProp( Props.P4IgnoreChanges ).Split( ';' );
 
             foreach( ChangeSetSummary changeSet in changeSets )
             {
@@ -104,12 +104,12 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
                 LinkChangeSetToContact( repository, proxy.Resource, changeSet.User );
 
                 // Execute rules for the new changeset
-                Core.FilterManager.ExecRules( StandardEvents.ResourceReceived, proxy.Resource );
+                Core.FilterEngine.ExecRules( StandardEvents.ResourceReceived, proxy.Resource );
                 
                 // Request text indexing of the changeset
                 Core.TextIndexManager.QueryIndexing( proxy.Resource.Id );
 
-                if ( changeSet.Number > repository.GetIntProp( Props.LastRevision ) )
+                if ( changeSet.Number > repository.GetProp( Props.LastRevision ) )
                 {
                     new ResourceProxy( repository ).SetPropAsync( Props.LastRevision, changeSet.Number );
                 }
@@ -127,11 +127,9 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
             if ( changeSets.Count > 0 )
             {
                 Core.NetworkAP.QueueJob( "Describing Perforce changeset",
-                    new DescribeChangeSetsCallback( DescribeChangeSets ), repository, changeSets, 0 );
+                    () => DescribeChangeSets(repository, changeSets, 0 ));
             }
         }
-
-        private delegate void DescribeChangeSetsCallback( IResource repository, IResourceList changeSets, int index );
 
         /// <summary>
         /// Performs one step of the procedure to fetch the descriptions of change sets
@@ -142,14 +140,13 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
             IResource changeSet = Core.ResourceStore.TryLoadResource( changeSets.ResourceIds [index] );
             if ( changeSet != null )
             {
-                DescribeChangeSet( repository, changeSet.GetIntProp( Props.ChangeSetNumber ) );
+                DescribeChangeSet( repository, changeSet.GetProp( Props.ChangeSetNumber ) );
             }
 
             if ( index < changeSets.Count-1 )
             {
-                Core.NetworkAP.QueueJob( "Describing Perforce changeset",
-                    new DescribeChangeSetsCallback( DescribeChangeSets ), 
-                    repository, changeSets, index+1 );
+                Core.NetworkAP.QueueJob("Describing Perforce changeset",
+                                        () => DescribeChangeSets(repository, changeSets, index + 1));
             }
         }
 
@@ -195,12 +192,12 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
                 return;
             }
 
-            Core.ResourceAP.QueueJob( new SaveChangeSetDelegate( SaveChangeSet ), repository, changeSet, details );
+            Core.ResourceAP.QueueJob( "Saving changeset", () => SaveChangeSet(repository, changeSet, details ));
             
             SccPlugin.StatusWriter.ClearStatus();
         }
 
-        private void SaveChangeSet( IResource repository, IResource changeSet, ChangeSetDetails details )
+        private static void SaveChangeSet( IResource repository, IResource changeSet, ChangeSetDetails details )
         {
             if ( changeSet.HasProp( Props.Change ) )
             {
@@ -212,32 +209,30 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
 
             SetChangeSetDescription( proxy, details.Description );
 
-            foreach( FileChange fileChange in details.FileChanges )
+            foreach( var fileChangeData in details.FileChanges )
             {
-                int pos = fileChange.Path.LastIndexOf( '/' );
-                string folderName = fileChange.Path.Substring( 0, pos );
-                string fileName = fileChange.Path.Substring( pos+1 );
+                int pos = fileChangeData.Path.LastIndexOf( '/' );
+                string folderName = fileChangeData.Path.Substring( 0, pos );
+                string fileName = fileChangeData.Path.Substring( pos+1 );
 
                 IResource folder = FindOrCreateFolder( repository, folderName );
                 proxy.AddLink( Props.AffectsFolder, folder );
-                
-                ResourceProxy changeProxy = ResourceProxy.BeginNewResource( Props.FileChangeResource );
-                changeProxy.SetProp( Core.Props.Name, fileName );
-                changeProxy.AddLink( Props.AffectsFolder, folder );
-                changeProxy.SetProp( Props.ChangeType, fileChange.ChangeType );
-                changeProxy.SetProp( Props.Revision, fileChange.Revision );
-                changeProxy.SetProp( Props.Diff, fileChange.Diff );
-                changeProxy.SetProp( Props.Binary, fileChange.Binary );
-                changeProxy.EndUpdate();
 
-                proxy.AddLink( Props.Change, changeProxy.Resource );
+                var fileChange = FileChange.Create();
+                fileChange.Name = fileName;
+                fileChange.AffectsFolder = folder;
+                fileChange.ChangeType = fileChangeData.ChangeType;
+                fileChange.Revision = fileChangeData.Revision;
+                fileChange.Diff = fileChangeData.Diff;
+                fileChange.Binary = fileChangeData.Binary;
+                fileChange.Save();
+
+                proxy.AddLink( Props.Change, fileChange.Resource );
             }
 
             proxy.EndUpdate();
             Core.TextIndexManager.QueryIndexing( proxy.Resource.Id );
         }
-
-        private delegate void SaveChangeSetDelegate( IResource repository, IResource changeSet, ChangeSetDetails details );
 
 	    public override void OnChangesetSelected( IResource repository, IResource changeset )
 	    {
@@ -245,8 +240,7 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
 	        {
 	            Core.NetworkAP.QueueJob( JobPriority.Immediate, 
                     "Describing Perforce changeset",
-                    new DescribeChangeSetsCallback( DescribeChangeSets ),
-                    repository, changeset.ToResourceList(), 0 );
+                    () => DescribeChangeSets( repository, changeset.ToResourceList(), 0 ) );
 	        }
 	    }
 
@@ -256,7 +250,7 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
         /// </summary>
         /// <param name="details">The changeset details.</param>
         /// <returns>true if none of the files in the changeset belongs to a watched project.</returns>
-        private bool IsIgnoredChangeSet( IResource repository, ChangeSetDetails details )
+        private static bool IsIgnoredChangeSet( IResource repository, ChangeSetDetails details )
         {
 	        string[] pathsToWatch = GetPathsToWatch(repository);
 	        if ( pathsToWatch.Length == 0 )
@@ -264,7 +258,7 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
                 return false;
             }
             
-            foreach( FileChange fileChange in details.FileChanges )
+            foreach( FileChangeData fileChange in details.FileChanges )
             {
                 string fileChangePath = fileChange.Path.ToLower();
                 foreach( string path in pathsToWatch )
@@ -280,7 +274,7 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
 
 	    private static string[] GetPathsToWatch(IResource repository)
 	    {
-	        return repository.GetStringProp( Props.PathsToWatch ).Split( ';' );
+	        return repository.GetProp( Props.PathsToWatch ).Split( ';' );
 	    }
 
 	    /// <summary>
@@ -293,8 +287,8 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
         protected override void GetUserDetails( IResource repository, string userName, out string email, out string fullName )
         {
             string cacheKey = repository.Id + ":" + userName;
-            email = (string) _contactEmailCache [cacheKey];
-            fullName = (string) _contactNameCache [cacheKey];
+            email = _contactEmailCache [cacheKey];
+            fullName = _contactNameCache [cacheKey];
             if ( email == null && fullName == null )
             {
                 try
@@ -312,9 +306,9 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
             }
         }
 
-        public override string BuildLinkToFile( IResource repository, IResource fileChange )
+        internal override string BuildLinkToFile(IResource repository, FileChange fileChange)
         {
-            string url = repository.GetPropText( Props.P4WebUrl );
+            string url = repository.GetProp( Props.P4WebUrl );
             if ( url.Length == 0 )
             {
                 return null;
@@ -328,19 +322,18 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
                 url += "/";
             }
             
-            IResource changeSet = fileChange.GetLinkProp( -Props.Change );
-            string fileName = "/" + BuildPath( fileChange.GetLinkProp( Props.AffectsFolder ) ) + "/" +
-                              fileChange.GetStringProp( Core.Props.Name );
-            int csNumber = changeSet.GetIntProp( Props.ChangeSetNumber );
-            int revision = fileChange.GetIntProp( Props.Revision );
+            IResource changeSet = fileChange.Resource.GetReverseLinkProp( Props.Change );
+            string fileName = "/" + BuildPath( fileChange.GetProp( Props.AffectsFolder ) ) + "/" +
+                              fileChange.Name;
+            int csNumber = changeSet.GetProp( Props.ChangeSetNumber );
+            int revision = fileChange.GetProp( Props.Revision );
             url += "@md=c&sr=" + csNumber + "@" + HttpUtility.UrlEncode( fileName ) + '#' + revision;
             return url;
         }
 
-        public override string BuildFileName( IResource repository, IResource fileChange )
+        internal override string BuildFileName(IResource repository, FileChange fileChange)
         {
-            return "/" + BuildPath( fileChange.GetLinkProp( Props.AffectsFolder ) ) + 
-                "/" + fileChange.GetStringProp( Core.Props.Name );
+            return "/" + BuildPath( fileChange.AffectsFolder ) + "/" + fileChange.Name;
         }
 	}
 }

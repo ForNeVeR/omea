@@ -5,24 +5,24 @@
 
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using JetBrains.DataStructures;
-using JetBrains.Omea.Containers;
 using JetBrains.Omea.OpenAPI;
 
 namespace JetBrains.Omea.FiltersManagement
 {
     public class ExpirationRuleManager : IExpirationRuleManager
     {
-        private int             ExpRuleLinkId, ExpRuleOnDeletedLinkId;
-        private IResourceList   ExpRules;
-        private IResource[]     DummyConditionList;
+        private readonly int    ExpRuleLinkId, ExpRuleOnDeletedLinkId;
+        private readonly IResourceList   ExpRules;
+        private readonly IResource[]     DummyConditionList;
 
-        private Hashtable       TracedLinks = new Hashtable();
-        private Hashtable       TracedLists = new Hashtable();
-        private HashMap         _resourceTypesForDefaultExpirationRules = new HashMap( 2 );
+        private readonly Hashtable       TracedLinks = new Hashtable();
+        private readonly Hashtable       TracedLists = new Hashtable();
+        private readonly HashMap         _resourceTypesForDefaultExpirationRules = new HashMap( 2 );
 
-        private static Hashtable TypesMap = new Hashtable();
+        private static readonly Hashtable TypesMap = new Hashtable();
 
         #region Ctor
         public ExpirationRuleManager()
@@ -30,7 +30,7 @@ namespace JetBrains.Omea.FiltersManagement
             IResource dummyCond = Core.ResourceStore.FindUniqueResource( FilterManagerProps.ConditionResName, "Name", "DummyExpCondition" );
             if( dummyCond == null )
             {
-                dummyCond = Core.FilterManager.CreateStandardCondition( "DummyExpCondition", "DummyExpCondition", null, "Id", ConditionOp.Gt, "0" );
+                dummyCond = Core.FilterRegistry.CreateStandardCondition( "DummyExpCondition", "DummyExpCondition", null, "Id", ConditionOp.Gt, "0" );
                 dummyCond.SetProp( "Invisible", true );
             }
             DummyConditionList = new IResource[ 1 ] { dummyCond };
@@ -115,7 +115,7 @@ namespace JetBrains.Omea.FiltersManagement
         #region IExpirationRuleManager interface misc
         public void  UnregisterRule( string name )
         {
-            Core.FilterManager.DeleteRule( name );
+            Core.FilterRegistry.DeleteRule( name );
         }
 
         //  User registers the resource type of the "folder" and the link
@@ -153,10 +153,10 @@ namespace JetBrains.Omea.FiltersManagement
                 throw new ArgumentNullException( "newName", "ExpirationRuleManager -- New name for a rule is null or empty." );
             #endregion Preconditions
 
-            if( FilterManager.FindRuleByName( newName, "IsExpirationFilter" ) != null )
+            if( FilterRegistry.FindRuleByName( newName, "IsExpirationFilter" ) != null )
                 throw new ArgumentException( "ExpirationRuleManager -- An action rule with new name already exists." );
 
-            new ResourceProxy( rule ).SetProp( "Name", newName );
+            new ResourceProxy( rule ).SetProp( Core.Props.Name, newName );
         }
         #endregion IExpirationRuleManager interface misc
 
@@ -210,7 +210,7 @@ namespace JetBrains.Omea.FiltersManagement
                 string typeName = delType[ 0 ].GetStringProp( Core.Props.Name );
 
                 IResourceList list = Core.ResourceStore.FindResourcesWithProp( typeName, Core.Props.IsDeleted );
-                Core.FilterManager.ExecRule( rule, list );
+                Core.FilterEngine.ExecRule( rule, list );
             }
             else
                 throw new ApplicationException( "ExpirationFilterManager -- Unknown link between a rule and resources." );
@@ -230,7 +230,7 @@ namespace JetBrains.Omea.FiltersManagement
             ConstructName( folders, ref name, ref fullName );
             IResource[]  conditions = (count == -1 && conds != null && conds.Length > 0) ? conds : DummyConditionList;
 
-            IResource rule = Core.FilterManager.RegisterRule( StandardEvents.ResourceReceived, name, null,
+            IResource rule = Core.FilterRegistry.RegisterRule( StandardEvents.ResourceReceived, name, null,
                                                               conditions, excepts, actions );
             SetCommonProps( rule, fullName, count );
             LinkRuleToDependents( rule, folders );
@@ -253,7 +253,7 @@ namespace JetBrains.Omea.FiltersManagement
             ConstructName( baseType, isForDel, ref name, ref fullName );
             IResource[]  conditions = (count == -1 && conds != null && conds.Length > 0) ? conds : DummyConditionList;
 
-            IResource rule = Core.FilterManager.RegisterRule( StandardEvents.ResourceReceived, name, null,
+            IResource rule = Core.FilterRegistry.RegisterRule( StandardEvents.ResourceReceived, name, null,
                                                               conditions, excepts, actions );
             SetCommonProps( rule, fullName, count );
             LinkRuleToDependents( rule, baseType, isForDel ? ExpRuleOnDeletedLinkId : ExpRuleLinkId );
@@ -279,7 +279,7 @@ namespace JetBrains.Omea.FiltersManagement
             ConstructName( baseType, isForDel, ref name, ref fullName );
             IResource[]  conditions = (count == -1 && conds != null && conds.Length > 0) ? conds : DummyConditionList;
 
-            Core.FilterManager.ReregisterRule( StandardEvents.ResourceReceived, rule, name, null,
+            Core.FilterRegistry.ReregisterRule( StandardEvents.ResourceReceived, rule, name, null,
                                                conditions, excepts, actions );
             SetCommonProps( rule, fullName, count );
             LinkRuleToDependents( rule, baseType, isForDel ? ExpRuleOnDeletedLinkId : ExpRuleLinkId );
@@ -300,7 +300,7 @@ namespace JetBrains.Omea.FiltersManagement
             ConstructName( folders, ref name, ref fullName );
             IResource[]  conditions = (count == -1 && conds != null && conds.Length > 0) ? conds : DummyConditionList;
 
-            Core.FilterManager.ReregisterRule( StandardEvents.ResourceReceived, rule, name, null,
+            Core.FilterRegistry.ReregisterRule( StandardEvents.ResourceReceived, rule, name, null,
                                                conditions, excepts, actions );
             SetCommonProps( rule, fullName, count );
             LinkRuleToDependents( rule, folders );
@@ -385,10 +385,10 @@ namespace JetBrains.Omea.FiltersManagement
         internal delegate void  ExpRuleDelegate( IResource rule, IResource folder );
         private void  BaseResourceChanged( object sender, ResourcePropIndexEventArgs e )
         {
-            LinkChange[] changes;
-
             foreach( int linkId in TracedLinks.Keys )
             {
+                LinkChange[] changes;
+
                 //  For undirected links take always a positive value.
                 if( Core.ResourceStore.PropTypes[ linkId ].HasFlag( PropTypeFlags.DirectedLink ) )
                     changes = e.ChangeSet.GetLinkChanges( -linkId );
@@ -441,7 +441,7 @@ namespace JetBrains.Omea.FiltersManagement
 
             //  Phase 1. Collect a set of resources from the folder which
             //           match conditions from the rule.
-            IResourceList matched = Core.FilterManager.ExecView( rule, list );
+            IResourceList matched = Core.FilterEngine.ExecView( rule, list );
 
             //  Phase 2. If we have resource-count restriction on the rule,
             //           reduce the amount of matched resources to this count.
@@ -451,7 +451,8 @@ namespace JetBrains.Omea.FiltersManagement
                 if( countMargin > 0 && matched.Count > countMargin )
                 {
                     matched.Sort( new SortSettings( Core.Props.Date, false ) );
-                    IntArrayList ids = new IntArrayList( matched.Count - countMargin );
+
+                    List<int> ids = new List<int>( matched.Count - countMargin );
                     for( int i = countMargin; i < matched.Count; i++ )
                     {
                         ids.Add( matched[ i ].Id );
@@ -476,7 +477,7 @@ namespace JetBrains.Omea.FiltersManagement
             //           remove their authors
             for( int i = matched.Count - 1; i >= 0; i-- )
             {
-                Core.FilterManager.ApplyActions( rule, matched[ i ] );
+                Core.FilterEngine.ApplyActions( rule, matched[ i ] );
             }
 
             if( rule.HasProp( propDelContact ) )
@@ -515,12 +516,12 @@ namespace JetBrains.Omea.FiltersManagement
             IResourceList resTypes = Core.ResourceStore.GetAllResources( "ResourceType" );
             foreach( IResource type in resTypes )
             {
-                string typeName = type.GetStringProp( "Name" );
+                string typeName = type.GetStringProp( Core.Props.Name );
                 IResource rule = type.GetLinkProp( ExpRuleOnDeletedLinkId );
                 if( rule != null )
                 {
                     IResourceList list = Core.ResourceStore.FindResourcesWithProp( typeName, Core.Props.IsDeleted );
-                    Core.FilterManager.ExecRule( rule, list );
+                    Core.FilterEngine.ExecRule( rule, list );
                     Core.ResourceAP.QueueJobAt( DateTime.Now.AddHours( 1.0 ), new MethodInvoker( CleanDeletedItems ) );
                 }
             }

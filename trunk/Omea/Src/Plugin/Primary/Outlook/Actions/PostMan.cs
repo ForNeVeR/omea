@@ -93,7 +93,6 @@ namespace JetBrains.Omea.OutlookPlugin
         public override string Name
         {
             get { return "Send/Receive mail"; }
-            set { }
         }
     }
 }

@@ -164,7 +164,7 @@ namespace JetBrains.Omea.OutlookPlugin
             }
             foreach (IResource res in mails.ValidResources)
             {
-                Core.FilterManager.ExecRules( StandardEvents.CategoryAssigned, res );
+                Core.FilterEngine.ExecRules( StandardEvents.CategoryAssigned, res );
             }
         }
         public void Execute( IActionContext context )

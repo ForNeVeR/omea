@@ -531,7 +531,7 @@ namespace JetBrains.Omea.RSSPlugin.SubscribeWizard
 
         private void ShowErrorInformation( string text, string exceptionText )
         {
-            if( Utils.IsValidString( exceptionText ))
+            if( !String.IsNullOrEmpty( exceptionText ))
                 text += ": \"" + exceptionText + "\"";
             _feedAddressPane.ErrorMessage = text;
             _feedAddressPane.ProgressLabel.Text = "";

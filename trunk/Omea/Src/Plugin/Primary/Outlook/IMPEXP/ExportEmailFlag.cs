@@ -143,7 +143,6 @@ namespace JetBrains.Omea.OutlookPlugin
         public override string Name
         {
             get { return "Export mail flag"; }
-            set { }
         }
     }
 }

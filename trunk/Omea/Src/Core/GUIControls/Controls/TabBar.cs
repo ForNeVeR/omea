@@ -28,10 +28,8 @@ namespace JetBrains.Omea.GUIControls
 
         private class TabBarTab
         {
-            private string _text;
-            private object _tag;
-            private int _width;
-            private int _preferredWidth;
+            private readonly string _text;
+            private readonly object _tag;
 
             public TabBarTab( string text, object tag )
             {
@@ -49,20 +47,12 @@ namespace JetBrains.Omea.GUIControls
                 get { return _text; }
             }
 
-            public int Width
-            {
-                get { return _width; }
-                set { _width = value; }
-            }
+            public int Width { get; set; }
 
-            public int PreferredWidth
-            {
-                get { return _preferredWidth; }
-                set { _preferredWidth = value; }
-            }
+            public int PreferredWidth { get; set; }
         }
 
-        private ArrayList _tabs = new ArrayList();
+        private readonly ArrayList _tabs = new ArrayList();
         private int _activeTabIndex = -1;
         private IntPtr _fontHandle;
         private ColorScheme _colorScheme;
@@ -378,9 +368,9 @@ namespace JetBrains.Omea.GUIControls
                 ((TabBarTab) _tabs [index]).Width, ClientRectangle.Height );
         }
 
-        private GraphicsPath BuildBorderPath( Rectangle rc )
+        private static GraphicsPath BuildBorderPath( Rectangle rc )
         {
-            int radius = 5;
+            const int radius = 5;
             GraphicsPath gp = new GraphicsPath();
             int right = rc.Right-1;
             int bottom = rc.Bottom-1;

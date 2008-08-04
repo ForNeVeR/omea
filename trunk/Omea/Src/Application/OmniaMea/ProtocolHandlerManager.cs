@@ -18,17 +18,17 @@ namespace JetBrains.Omea
 {
 	public class ProtocolHandlerManager : ProtocolHandlersInResourceStore, IProtocolHandlerManager
 	{
-        private HashMap _handlers = new HashMap();
-        private HashMap _makeDefaultHandler = new HashMap();
+        private readonly HashMap _handlers = new HashMap();
+        private readonly HashMap _makeDefaultHandler = new HashMap();
         
         private string _openurl = null;
-        private OnRemoteInvokeDelegate _onRemoteInvokeDelegate = null;
+        private readonly OnRemoteInvokeDelegate _onRemoteInvokeDelegate = null;
         private delegate int OnRemoteInvokeDelegate( string url );
         private const string METHOD_NAME = "Omea.ProtocolHandlerManager.OpenURL";
 
 		public ProtocolHandlerManager()
 		{
-            _onRemoteInvokeDelegate = new OnRemoteInvokeDelegate( OnRemoteInvoke );
+            _onRemoteInvokeDelegate = OnRemoteInvoke;
 		}
 
         public void CheckProtocols( IWin32Window parent )
@@ -42,7 +42,7 @@ namespace JetBrains.Omea
             HashMap protocolSet = new HashMap( protocolHandlers.Count );
             foreach ( IResource protocol in protocolHandlers )
             {
-                string friendlyName = protocol.GetPropText( ProtocolHandlersInResourceStore._propFriendlyName );
+                string friendlyName = protocol.GetPropText( _propFriendlyName );
                 HashMap.Entry entry = protocolSet.GetEntry( friendlyName );
                 if ( entry == null )
                 {
@@ -66,7 +66,7 @@ namespace JetBrains.Omea
                 ArrayList list = (ArrayList)entry.Value;
                 foreach ( IResource protocol in list )
                 {
-                    string protocolName = protocol.GetStringProp( ProtocolHandlersInResourceStore.PROTOCOL );
+                    string protocolName = protocol.GetStringProp( PROTOCOL );
                     if ( !ProtocolHandlersInRegistry.IsDefaultHandler( protocolName ) )
                     {
                         CheckProtocols( parent, list );
@@ -76,9 +76,9 @@ namespace JetBrains.Omea
             }
         }
 
-        private void CheckProtocols( IWin32Window parent, ArrayList list )
+        private static void CheckProtocols( IWin32Window parent, ArrayList list )
         {
-            string friendlyName = ((IResource)list[0]).GetPropText( ProtocolHandlersInResourceStore._propFriendlyName );
+            string friendlyName = ((IResource)list[0]).GetPropText( _propFriendlyName );
             string message = Core.ProductFullName + " is not your default " + friendlyName + 
                 ". Would you like to make it your default " + friendlyName + "?";
             string checkBoxText = "&Check if " + Core.ProductFullName + " is the default " + friendlyName + " on startup";
@@ -86,14 +86,14 @@ namespace JetBrains.Omea
                 MessageBoxWithCheckBox.ShowYesNo( parent, message, Core.ProductFullName, checkBoxText, true );
             foreach ( IResource protocol in list )
             {
-                string protocolName = protocol.GetStringProp( ProtocolHandlersInResourceStore.PROTOCOL );
+                string protocolName = protocol.GetStringProp( PROTOCOL );
                 if ( !result.Checked )
                 {
-                    ProtocolHandlersInResourceStore.SetCheckNeeded( protocolName, false );
+                    SetCheckNeeded( protocolName, false );
                 }
                 if ( result.IdPressedButton == (int)DialogResult.Yes )
                 {
-                    ProtocolHandlerManager.SetAsDefaultHandler( protocol, result.Checked );
+                    SetAsDefaultHandler( protocol, result.Checked );
                 }
             }
         }
@@ -116,10 +116,9 @@ namespace JetBrains.Omea
             ProtocolHandlerManager manager = Core.ProtocolHandlerManager as ProtocolHandlerManager;
             Guard.NullLocalVariable( manager, "manager" );
 
-            string protocol = resProtocol.GetPropText( ProtocolHandlersInResourceStore._propProtocol );
-            ProtocolHandlersInRegistry.SetAsDefaultHandler( protocol, 
-                resProtocol.GetPropText( ProtocolHandlersInResourceStore._propFriendlyName ) );
-            ProtocolHandlerManager.SetCheckNeeded( protocol, check );
+            string protocol = resProtocol.GetPropText( _propProtocol );
+            ProtocolHandlersInRegistry.SetAsDefaultHandler( protocol, resProtocol.GetPropText( _propFriendlyName ) );
+            SetCheckNeeded( protocol, check );
             manager.InvokeMakeDefault( protocol );
         }
 
@@ -127,9 +126,9 @@ namespace JetBrains.Omea
         public int Registrations { get { return _handlers.Count; } }
         private class ProtocolHandler
         {
-            private string _protocol;
-            private string _friendlyName;
-            private ProtocolHandlerCallback _handler;
+            private readonly string _protocol;
+            private readonly string _friendlyName;
+            private readonly ProtocolHandlerCallback _handler;
 
             public ProtocolHandler( string protocol, string friendlyName, ProtocolHandlerCallback handler )
             {
@@ -212,7 +211,7 @@ namespace JetBrains.Omea
             }
         }
 
-        private void CheckParameters( string protocol, string friendlyName, ProtocolHandlerCallback handler )
+        private static void CheckParameters( string protocol, string friendlyName, ProtocolHandlerCallback handler )
         {
             Guard.NullArgument( protocol, "protocol" );
             Guard.NullArgument( friendlyName, "friendlyName" );
@@ -391,7 +390,7 @@ namespace JetBrains.Omea
             SaveProtocolSettings( proxy, friendlyName, defaultProtocol ? Default.Yes : Default.No );
         }
 
-        private void SaveProtocolSettings( ResourceProxy proxy, string friendlyName, Default defProtocol )
+        private static void SaveProtocolSettings( ResourceProxy proxy, string friendlyName, Default defProtocol )
         {
             CheckRegistration();
             proxy.AsyncPriority = JobPriority.Immediate;
@@ -407,7 +406,7 @@ namespace JetBrains.Omea
             }
         }
 
-        protected void SaveProtocolSettings( string protocol, string friendlyName, Default defProtocol )
+        protected static void SaveProtocolSettings( string protocol, string friendlyName, Default defProtocol )
         {
             CheckRegistration();
             IResource resProtocol = Core.ResourceStore.FindUniqueResource( PROTOCOL_HANDLER, _propProtocol, protocol );

@@ -24,7 +24,7 @@ namespace JetBrains.Omea.Categories
                 {
                     foreach( IResource res in context.SelectedResources )
                     {
-                        Core.FilterManager.ExecRules( StandardEvents.CategoryAssigned, res );
+                        Core.FilterEngine.ExecRules( StandardEvents.CategoryAssigned, res );
                     }
                 }
             }

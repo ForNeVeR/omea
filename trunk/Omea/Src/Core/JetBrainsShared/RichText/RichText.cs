@@ -4,9 +4,12 @@
 /// </copyright>
 
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Collections;
 using System.Diagnostics;
+
+using JetBrains.Annotations;
 using JetBrains.UI.Interop;
 
 namespace JetBrains.UI.RichText
@@ -681,6 +684,15 @@ namespace JetBrains.UI.RichText
             return GetCharByOffset( point.X, hdc );
         }
 
-        #endregion    
+        #endregion
+
+		/// <summary>
+		/// Gets a readonly collection of the <see cref="RichText"/> formatting elements.
+		/// </summary>
+		[NotNull]
+    	public IList<RichString> GetFormattedParts()
+    	{
+    		return (IList<RichString>)myParts.ToArray(typeof(RichString));
+    	}
     }
 }

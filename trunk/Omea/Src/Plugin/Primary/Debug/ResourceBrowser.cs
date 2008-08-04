@@ -12,33 +12,30 @@ namespace JetBrains.Omea.DebugPlugin
 {
 	public class ResourceBrowser : DialogBase
 	{
-        private System.Windows.Forms.ListBox _resourceTypes;
-        private System.Windows.Forms.ListView _resourcesView;
-		/// <summary>
-		/// Required designer variable.
-		/// </summary>
-		private System.ComponentModel.Container components = null;
-        private System.Windows.Forms.ColumnHeader columnHeader1;
-        private System.Windows.Forms.ColumnHeader columnHeader2;
-        private System.Windows.Forms.Button _btn_Close;
-        private System.Windows.Forms.TextBox _resID;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button _btn_ShowResource;
-        private IResourceStore _resourceStore;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Splitter splitter1;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox _count;
-        private System.Windows.Forms.Button _btnQuery;
+        private ListBox _resourceTypes;
+        private ListView _resourcesView;
+        private ColumnHeader columnHeader1;
+        private ColumnHeader columnHeader2;
+        private Button _btn_Close;
+        private TextBox _resID;
+        private Label label1;
+        private Button _btn_ShowResource;
+        private Panel panel1;
+        private Splitter splitter1;
+        private Panel panel2;
+        private Label label2;
+        private TextBox _count;
+        private Button _btnQuery;
+
         private int _id = 0;
+        private readonly IResourceStore _resourceStore;
+
+		private System.ComponentModel.Container components = null;
 
 		public ResourceBrowser( IResourceStore resourceStore )
 		{
-			//
-			// Required for Windows Form Designer support
-			//
 			InitializeComponent();
+
             RestoreSettings();
             _resourceStore = resourceStore;
             Populate();
@@ -62,8 +59,9 @@ namespace JetBrains.Omea.DebugPlugin
 
         class ResourceItem
         {
-            IResource _resource;
-            int _count;
+            readonly int _count;
+            readonly IResource _resource;
+
             public ResourceItem( IResource resource, int count )
             {
                 _resource = resource;
@@ -72,7 +70,7 @@ namespace JetBrains.Omea.DebugPlugin
             public IResource Resource { get { return _resource; } }
             public override string ToString()
             {
-                return _resource.ToString() + " (" + _count + ")";
+                return _resource + " (" + _count + ")";
             }
         }
         private void Populate()
@@ -279,7 +277,7 @@ namespace JetBrains.Omea.DebugPlugin
         }
 		#endregion
 
-        private void _resourceTypes_SelectedIndexChanged(object sender, System.EventArgs e)
+        private void _resourceTypes_SelectedIndexChanged(object sender, EventArgs e)
         {
             IResource resourceType = ((ResourceItem)_resourceTypes.SelectedItem).Resource;
             LoadResourceList( _resourceStore.GetAllResources( resourceType.GetStringProp("Name") ) );
@@ -301,7 +299,7 @@ namespace JetBrains.Omea.DebugPlugin
             _resourcesView.ResumeLayout();
         }
 
-        private void ShowResource( IResource resource )
+        private static void ShowResource( IResource resource )
         {
             try
             {
@@ -315,7 +313,7 @@ namespace JetBrains.Omea.DebugPlugin
             }
         }
 
-        private void _resourcesView_DoubleClick(object sender, System.EventArgs e)
+        private void _resourcesView_DoubleClick(object sender, EventArgs e)
         {
             try
             {
@@ -335,7 +333,7 @@ namespace JetBrains.Omea.DebugPlugin
             }
         }
 
-        private void OnShowResource(object sender, System.EventArgs e)
+        private void OnShowResource(object sender, EventArgs e)
         {
             try
             {
@@ -349,7 +347,7 @@ namespace JetBrains.Omea.DebugPlugin
         
         }
 
-        private void OnResourceIDChanged(object sender, System.EventArgs e)
+        private void OnResourceIDChanged(object sender, EventArgs e)
         {
             string text = _resID.Text;
             _id = -1;
@@ -364,7 +362,7 @@ namespace JetBrains.Omea.DebugPlugin
             _btn_ShowResource.Enabled = ( _id > -1 );
         }
 
-        private void _resID_KeyDown( object sender, System.Windows.Forms.KeyEventArgs e )
+        private void _resID_KeyDown( object sender, KeyEventArgs e )
         {
             if ( e.KeyCode == Keys.Enter )
             {
@@ -373,21 +371,21 @@ namespace JetBrains.Omea.DebugPlugin
             }
         }
 
-        private void OnClose(object sender, System.EventArgs e)
+        private void OnClose(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
 
-        private void OnQuery(object sender, System.EventArgs e)
+        private void OnQuery(object sender, EventArgs e)
         {
-            QueryForm frm = new QueryForm();
-            using ( frm )
+            QueryForm form = new QueryForm();
+            using ( form )
             {
-                if ( frm.ShowDialog() == System.Windows.Forms.DialogResult.OK )
+                if ( form.ShowDialog() == System.Windows.Forms.DialogResult.OK )
                 {
-                    if ( frm != null && frm.PropName != null )
+                    if ( form.PropName != null )
                     {
-                        LoadResourceList( Core.ResourceStore.FindResourcesWithProp( null, frm.PropName ) );
+                        LoadResourceList( Core.ResourceStore.FindResourcesWithProp( null, form.PropName ) );
                     }
                 }
             }

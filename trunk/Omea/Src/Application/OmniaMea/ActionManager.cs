@@ -88,10 +88,9 @@ namespace JetBrains.Omea
             internal Keys    ShortcutKey  { get { return _shortcutKey; } }
         }
 
-        private readonly ContextMenuStrip   _contextMenu;
-        private readonly MenuActionManager _contextMenuActionManager;
+        private readonly ContextMenuStrip         _contextMenu;
+        private readonly ContextMenuActionManager _contextMenuActionManager;
         
-
         private readonly MenuStrip      _mainMenu;
         private readonly Hashtable      _mainMenuActionManagers = new Hashtable();    // menu name -> MenuActionManager
 
@@ -115,27 +114,44 @@ namespace JetBrains.Omea
             _mainMenu        = mainMenu;
             _contextMenu     = contextMenu;
             _resourceBrowser = resourceBrowser;
+
             if ( _resourceBrowser != null )
-            {
-                _toolbarManager  = resourceBrowser.ToolBarActionManager;
-            }
+                _toolbarManager = resourceBrowser.ToolBarActionManager;
 
-            _contextMenuActionManager = new MenuActionManager( _contextMenu );
-            _contextMenuActionManager.PersistentMnemonics = false;
-            _contextMenuActionManager.AllowVisibleResTypeMismatched = false;
-
-//            Core.UIManager.EnterIdle += new EventHandler( Application_Idle );
-
-            foreach( ToolStripMenuItem menuItem in _mainMenu.Items )
-            {
-                menuItem.DropDownOpening += OnMainMenuPopup;
-            }
+            _contextMenuActionManager = new ContextMenuActionManager( _contextMenu );
+            Core.StateChanged += Core_StateChanged;
         }
 
+        /// <summary>
+        /// Activate menu initialization right after the Omea has initialized all its
+        /// plugins and they have inserted their corresponding menus into the common
+        /// menu framework.
+        /// </summary>
+        private void Core_StateChanged(object sender, EventArgs e)
+        {
+            if( Core.State == CoreState.Running )
+            {
+                Core.StateChanged -= Core_StateChanged;
+                MenuInitializationFinished();
+            }
+        }
+        
         public void EndUpdateActions()
         {
-//            Core.UIManager.EnterIdle -= new EventHandler( Application_Idle );
             _toolbarManager.Dispose();
+        }
+
+        /// <summary>
+        /// When after the Omea initialization the event queue becomes empty
+        /// (for the first time) we can prefill main menu submenus.
+        /// </summary>
+        public void MenuInitializationFinished()
+        {
+            foreach( DictionaryEntry de in _mainMenuActionManagers )
+            {
+            	MenuActionManager manager = (MenuActionManager) de.Value;
+                manager.FillMenuIfNecessary( GetMainMenuActionContext() );
+            }
         }
 
         internal void RegisterCoreActions( bool noTextIndex )
@@ -177,7 +193,6 @@ namespace JetBrains.Omea
 
             ToolStripMenuItem newSubMenu = new ToolStripMenuItem( menuName );
             _mainMenu.Items.Add( newSubMenu );
-            newSubMenu.DropDownOpening += OnMainMenuPopup;
             _mainMenu.Items.AddRange( (ToolStripItem[]) itemStack.ToArray( typeof( ToolStripItem ) ) );
         }
 
@@ -216,8 +231,7 @@ namespace JetBrains.Omea
             MenuActionManager manager = (MenuActionManager) _mainMenuActionManagers [menuName];
             if ( manager == null )
             {
-                manager = new MenuActionManager( mainMenuItem );
-                manager.AllowVisibleResTypeMismatched = true;
+                manager = new MainMenuActionManager( mainMenuItem );
                 _mainMenuActionManagers[ menuName ] = manager;
             }
             manager.RegisterGroup( groupId, submenuName, anchor );
@@ -277,20 +291,7 @@ namespace JetBrains.Omea
             return null;
         }
 
-        private void OnMainMenuPopup( object sender, EventArgs e )
-        {
-            ToolStripMenuItem menuItem = (ToolStripMenuItem) sender;
-            string menuName = StripMenuName( menuItem.Text );
-
-            MenuActionManager manager = (MenuActionManager) _mainMenuActionManagers[ menuName ];
-            if ( manager != null )
-            {
-                IActionContext context = GetMainMenuActionContext();
-                manager.ActionContext = context;
-            }
-        }
-
-        private static IActionContext GetMainMenuActionContext()
+        public IActionContext GetMainMenuActionContext()
         {
         	Form frm = (Form) Core.MainWindow;
             Control ctl = frm.ActiveControl;
@@ -499,14 +500,12 @@ namespace JetBrains.Omea
             {
                 return action.Action;
             }
-            else
+
+            foreach( FilteredAction genericAction in _genericDoubleClickActions )
             {
-                foreach( FilteredAction genericAction in _genericDoubleClickActions )
+                if ( genericAction.CanExecute( context ) )
                 {
-                    if ( genericAction.CanExecute( context ) )
-                    {
-                        return genericAction.Action;
-                    }
+                    return genericAction.Action;
                 }
             }
             return null;
@@ -595,6 +594,7 @@ namespace JetBrains.Omea
             _contextMenu.Show( ownerControl, new Point( x, y ) );
         }
 
+        #region Keyboard Actions
         /**
          * Registers a keyboard shortcut for the action.
          */
@@ -726,7 +726,9 @@ namespace JetBrains.Omea
             }
             return false;
         }
+        #endregion Keyboard Actions
 
+        #region LinksPane Actions
         /**
          * Registers an action for the Links pane.
          */
@@ -740,18 +742,8 @@ namespace JetBrains.Omea
         {
             LinksPaneActionManager.GetManager().UnregisterAction( action );
         }
+        #endregion LinksPane Actions
 
-/*
-        private void Application_Idle( object sender, EventArgs e )
-        {
-            foreach( DictionaryEntry de in _mainMenuActionManagers )
-            {
-            	MenuActionManager manager = (MenuActionManager) de.Value;
-                manager.UpdateMenuActions( GetMainMenuActionContext() );
-            }
-        }
-
-*/
         internal void RegisterCompositeAction( string id, CompositeAction action )
         {
         	_compositeActions [id] = action;
@@ -894,8 +886,8 @@ namespace JetBrains.Omea
                     string text = XmlTools.GetRequiredAttribute( actionNode, "name" );
                     string resType = XmlTools.GetOptionalAttribute( actionNode, "type" );
                     string iconPath = XmlTools.GetOptionalAttribute( actionNode, "icon" );
-//                    Image icon = ( iconPath == null ) ? null : Utils.GetResourceImageFromAssembly( pluginAssembly.GetName().Name, iconPath );
-                    Image icon = ( iconPath == null ) ? null : Utils.GetResourceImageFromAssembly( pluginAssembly, iconPath );
+//                    Image icon = ( iconPath == null ) ? null : Utils.TryGetEmbeddedResourceImageFromAssembly( pluginAssembly.GetName().Name, iconPath );
+                    Image icon = ( iconPath == null ) ? null : Utils.TryGetEmbeddedResourceImageFromAssembly( pluginAssembly, iconPath );
                     
                     XmlNode actionDefNode = GetActionDefNode( actionNode );
                     try
@@ -938,8 +930,8 @@ namespace JetBrains.Omea
                     string attrName = XmlTools.GetRequiredAttribute( actionNode, "name" );
                     string resType = XmlTools.GetOptionalAttribute( actionNode, "type" );
                     string iconPath = XmlTools.GetOptionalAttribute( actionNode, "icon" );
-//                    Image icon = ( iconPath == null ) ? null : Utils.GetResourceImageFromAssembly( pluginAssembly.GetName().Name, iconPath );
-                    Image icon = ( iconPath == null ) ? null : Utils.GetResourceImageFromAssembly( pluginAssembly, iconPath );
+//                    Image icon = ( iconPath == null ) ? null : Utils.TryGetEmbeddedResourceImageFromAssembly( pluginAssembly.GetName().Name, iconPath );
+                    Image icon = ( iconPath == null ) ? null : Utils.TryGetEmbeddedResourceImageFromAssembly( pluginAssembly, iconPath );
 
                     XmlNode actionDefNode = GetActionDefNode( actionNode );
                     try
@@ -1197,12 +1189,8 @@ namespace JetBrains.Omea
                 if ( actionAssembly == null )
                 {
                     actionAssembly = Utils.FindAssembly( attrAsm.Value );
-                    if( actionAssembly != null )
-                        _assemblyNameCache [attrAsm.Value] = actionAssembly;
+                    _assemblyNameCache [attrAsm.Value] = actionAssembly;
                 }
-
-                if ( actionAssembly == null )
-                    throw new ActionException( "Could not find action assembly " + attrAsm.Value );
             }
 
             return actionAssembly.GetType( actionClass, true );

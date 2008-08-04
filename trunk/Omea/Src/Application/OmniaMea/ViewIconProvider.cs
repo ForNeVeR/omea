@@ -37,10 +37,10 @@ namespace JetBrains.Omea.FiltersManagement
             }
             else
             {
-                IResourceList conditions = Core.FilterManager.GetConditionsPlain( res );
+                IResourceList conditions = Core.FilterRegistry.GetConditionsPlain( res );
                 foreach( IResource cond in conditions )
                 {
-                    if( cond.GetIntProp( Core.FilterManager.Props.OpProp ) == (int)ConditionOp.QueryMatch )
+                    if( cond.GetIntProp( Core.FilterRegistry.Props.OpProp ) == (int)ConditionOp.QueryMatch )
                     {
                         LoadIcon( ref _search, "search.ico" );
                         return _search;

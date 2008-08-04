@@ -37,7 +37,7 @@ namespace JetBrains.Omea.Tasks
         void IViewsConstructor.RegisterViewsFirstRun()
         {
             string[] applType = new string[ 1 ] { "Task" };
-            IFilterManager fMgr = Core.FilterManager;
+            IFilterRegistry fMgr = Core.FilterRegistry;
             IResourceTreeManager treeMgr = Core.ResourceTreeManager;
 
             IResource notStarted = fMgr.CreateStandardCondition( TaskNotStartedName, TaskNotStartedDeep, applType, "Status", ConditionOp.In, "0" );
@@ -92,7 +92,7 @@ namespace JetBrains.Omea.Tasks
         {
             string[]        applType = new string[ 1 ] { "Task" };
             IResource       res;
-            IFilterManager  fMgr = Core.FilterManager;
+            IFilterRegistry  fMgr = Core.FilterRegistry;
 
             //  Conditions/Templates
             res = fMgr.CreateConditionTemplateWithUIHandler( TaskOfPriorityName, TaskOfPriorityDeep, applType,
@@ -232,7 +232,7 @@ namespace JetBrains.Omea.Tasks
             }
 
             //  Tasks for "Next Week" view.
-            IFilterManager fMgr = Core.FilterManager;
+            IFilterRegistry fMgr = Core.FilterRegistry;
             IStandardConditions std = fMgr.Std;
             string[] applType = new string[ 1 ] { "Task" };
 

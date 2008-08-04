@@ -128,7 +128,7 @@ namespace JetBrains.Omea.Tasks
             presentation.Visible = (selected.Count == 1) && (selected[ 0 ].Type == "Task" );
         }
 
-        private void  CloneProps( IResource selected, IResource task )
+        private static void  CloneProps( IResource selected, IResource task )
         {
             SetProp( task, selected, Core.Props.Subject );
             SetProp( task, selected, TasksPlugin._propDescription );
@@ -302,17 +302,21 @@ namespace JetBrains.Omea.Tasks
         public void Execute( IActionContext context )
         {
             ISidebar rightSidebar = Core.RightSidebar;
-            bool expand = !rightSidebar.IsPaneExpanded( "ToDo" );
+//            bool expand = !rightSidebar.IsPaneExpanded( "ToDo" );
+            bool expand = !Core.UIManager.RightSidebarExpanded;
+            Core.UIManager.RightSidebarExpanded = expand;
             if ( expand )
             {
-                Core.UIManager.RightSidebarExpanded = true;
+//                Core.UIManager.RightSidebarExpanded = true;
+                rightSidebar.SetPaneExpanded( "ToDo", expand );
             }
-            rightSidebar.SetPaneExpanded( "ToDo", expand );
+//            rightSidebar.SetPaneExpanded( "ToDo", expand );
         }
 
         public void Update( IActionContext context, ref ActionPresentation presentation )
         {
-            presentation.Checked = Core.RightSidebar.IsPaneExpanded( "ToDo" );
+            presentation.Checked = Core.UIManager.RightSidebarExpanded &&
+                                   Core.RightSidebar.IsPaneExpanded( "ToDo" );
         }
     }
 

@@ -23,7 +23,7 @@ using Microsoft.Win32;
 
 namespace JetBrains.Omea.Nntp
 {
-    [PluginDescriptionAttribute("JetBrains Inc.", "Support for Usenet news infrastructure - news servers connection, newsgroups subscribtions, news downloading.")]
+    [PluginDescriptionAttribute("NNTP Newsgroups", "JetBrains Inc.", "Support for Usenet news infrastructure - news servers connection, newsgroups subscribtions, news downloading.", PluginDescriptionFormat.PlainText, "Icons/NntpPluginIcon.png")]
     public class NntpPlugin : IPlugin, IResourceDisplayer, IStreamProvider,
                               IResourceUIHandler, IResourceDragDropHandler
     {
@@ -57,17 +57,19 @@ namespace JetBrains.Omea.Nntp
                                        "the default encoding and message format used for newsgroups, and the marking of downloaded messages." );
             
             Core.TabManager.RegisterResourceTypeTab( "News", "News",
-                new string[] { _newsArticle, _newsGroup, _newsServer, _newsFolder, _newsLocalArticle }, _propAttachment, 3 );
-            _newsgroupsTreePane = Core.LeftSidebar.RegisterResourceStructureTreePane(
-                "Newsgroups", "News", "Newsgroups", LoadNewsIcon( "newsgroups1.ico" ), _newsGroup );
-            _newsgroupsTreePane.WorkspaceFilterTypes = new string[] { _newsServer, _newsGroup, _newsFolder };
+                new[] { _newsArticle, _newsGroup, _newsServer, _newsFolder, _newsLocalArticle }, _propAttachment, 3 );
+
+            Image img = Utils.TryGetEmbeddedResourceImageFromAssembly( Assembly.GetExecutingAssembly(), "NntpPlugin.Icons.Newsgroups24.png" );
+            _newsgroupsTreePane = Core.LeftSidebar.RegisterResourceStructureTreePane( "Newsgroups", "News", "Newsgroups", img, _newsGroup );
+            _newsgroupsTreePane.WorkspaceFilterTypes = new[] { _newsServer, _newsGroup, _newsFolder };
             _newsgroupsTreePane.ToolTipCallback = DisplayGroupOrServerError;
             Core.LeftSidebar.RegisterViewPaneShortcut( "Newsgroups", Keys.Control | Keys.Alt | Keys.N );
 
             CorrespondentCtrl correspondentPane = new CorrespondentCtrl();
             correspondentPane.IniSection = "NNTP";
-            Core.LeftSidebar.RegisterViewPane( "Correspondents", "News", "Correspondents", 
-                                               LoadNewsIcon( "correspondents.ico" ), correspondentPane );
+
+            img = Utils.TryGetEmbeddedResourceImageFromAssembly( Assembly.GetExecutingAssembly(), "NntpPlugin.Icons.Correspondents24.png" );
+            Core.LeftSidebar.RegisterViewPane( "Correspondents", "News", "Correspondents", img, correspondentPane );
             
             Core.ResourceTreeManager.SetResourceNodeSort( NewsFolders.Root, "NewsSortOrder VisibleOrder DisplayName" );
             uiMgr.RegisterResourceSelectPane( _newsGroup, typeof( NewgroupsSelectPane ) );
@@ -78,10 +80,10 @@ namespace JetBrains.Omea.Nntp
             uiMgr.RegisterDisplayInContextHandler( _newsGroup, new DisplayNewsgroupInContextHandler() );
 
             IWorkspaceManager workspaceMgr = Core.WorkspaceManager;
-            workspaceMgr.RegisterWorkspaceType( _newsGroup, new int[] { -_propTo }, WorkspaceResourceType.Container );
-            workspaceMgr.RegisterWorkspaceFolderType( _newsServer, _newsGroup, new int[] { -Core.Props.Parent } );
-            workspaceMgr.RegisterWorkspaceFolderType( _newsFolder, _newsGroup, new int[] { -Core.Props.Parent } );
-            workspaceMgr.RegisterWorkspaceType( _newsArticle, new int[] { -_propAttachment }, WorkspaceResourceType.None );
+            workspaceMgr.RegisterWorkspaceType( _newsGroup, new[] { -_propTo }, WorkspaceResourceType.Container );
+            workspaceMgr.RegisterWorkspaceFolderType( _newsServer, _newsGroup, new[] { -Core.Props.Parent } );
+            workspaceMgr.RegisterWorkspaceFolderType( _newsFolder, _newsGroup, new[] { -Core.Props.Parent } );
+            workspaceMgr.RegisterWorkspaceType( _newsArticle, new[] { -_propAttachment }, WorkspaceResourceType.None );
             workspaceMgr.RegisterWorkspaceSelectorFilter( _newsGroup, new NewsWorkspaceSelectorFilter() );
 
             IPluginLoader pluginLoader = Core.PluginLoader;
@@ -191,7 +193,7 @@ namespace JetBrains.Omea.Nntp
 
             //-----------------------------------------------------------------
             //  Decorators should be present here since some of them use live lists
-            //  constructed by means e.g. FilterManager and local views constructor
+            //  constructed by means e.g. FilterRegistry and local views constructor
             //  helper which might not be initialized on registering phase.
             //-----------------------------------------------------------------
             ((JetResourceTreePane)_newsgroupsTreePane).AddNodeDecorator( new NewsNodeDecorator() );
@@ -446,7 +448,7 @@ namespace JetBrains.Omea.Nntp
             IResourceList servers = Core.ResourceStore.FindResources( _newsServer, Core.Props.Name, name );
             if( servers.Count > 0 )
             {
-                servers.Sort( new int[] { ResourceProps.Id }, false );
+                servers.Sort( new[] { ResourceProps.Id }, false );
                 server = servers[ 0 ];
             }
             else
@@ -474,7 +476,7 @@ namespace JetBrains.Omea.Nntp
             {
                 if( server == null )
                 {
-                    groups.Sort( new int[] { ResourceProps.Id }, false );
+                    groups.Sort( new[] { ResourceProps.Id }, false );
                     group = groups[ 0 ];
                 }
                 else
@@ -739,7 +741,7 @@ namespace JetBrains.Omea.Nntp
                 // The resources we're dragging
                 IResourceList dragResources = (IResourceList)data.GetData( typeof(IResourceList) );
 
-                Core.ResourceAP.QueueJob( JobPriority.Immediate,
+                Core.ResourceAP.QueueJob( JobPriority.Immediate, "NNTP Article Dropped", 
                     new NewsResourcesDroppedDelegate( ResourcesDroppedImpl ), targetResource, dragResources );
             }
         }
@@ -997,7 +999,7 @@ namespace JetBrains.Omea.Nntp
             if( types.Exist( "DisplayPlainGroup" ) )
             {
                 IResourceList threadedResources =
-                    store.GetAllResources( new string[] { _newsGroup, _newsFolder, _newsServer } ).Minus(
+                    store.GetAllResources( new[] { _newsGroup, _newsFolder, _newsServer } ).Minus(
                     store.FindResourcesWithProp( null, "DisplayPlainGroup" ) );
                 foreach( IResource threaded in threadedResources )
                 {
@@ -1176,7 +1178,7 @@ namespace JetBrains.Omea.Nntp
                         if( freq > 0 )
                         {
                             Core.NetworkAP.QueueJobAt(
-                                serverResource.LastUpdateTime.AddMinutes( freq ),
+                                serverResource.LastUpdateTime.AddMinutes( freq ), "Deliver News", 
                                 new ResourceDelegate( NntpClientHelper.DeliverNewsFromServer ), server );
                         }
                     }

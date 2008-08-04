@@ -18,7 +18,7 @@ namespace JetBrains.Omea.RSSPlugin
 
     internal class StringBuilderDecor : BodyWriter
     {
-        private readonly StringBuilder _htmlText = null;
+        private readonly StringBuilder _htmlText;
         public StringBuilderDecor( string htmlText )
         {
             _htmlText = new StringBuilder( htmlText );
@@ -34,7 +34,7 @@ namespace JetBrains.Omea.RSSPlugin
     }
     internal class TextWriterDecor : BodyWriter
     {
-        private readonly TextWriter _writer = null;
+        private readonly TextWriter _writer;
         public TextWriterDecor( TextWriter writer )
         {
             Guard.NullArgument( writer, "writer" );
@@ -70,7 +70,7 @@ namespace JetBrains.Omea.RSSPlugin
         {
             if ( item.HasProp( Props.Link ) )
             {
-                bool    visibleAlias = Utils.IsValidString( alias );
+                bool    visibleAlias = !string.IsNullOrEmpty( alias );
                 string  link = HttpUtility.HtmlEncode( item.GetStringProp( Props.Link ) );
 
                 decor.AppendText( "<a href=\"" );
@@ -84,12 +84,7 @@ namespace JetBrains.Omea.RSSPlugin
                     decor.AppendText( "\"" );
                 }
                 decor.AppendText( ">" );
-
-                if ( visibleAlias )
-                    decor.AppendText( HttpUtility.HtmlEncode( alias ) );
-                else
-                    decor.AppendText( link );
-
+                decor.AppendText( visibleAlias ? HttpUtility.HtmlEncode( alias ) : link );
                 decor.AppendText( "</a>" );
             }
         }
@@ -115,7 +110,7 @@ namespace JetBrains.Omea.RSSPlugin
                 if ( item.HasProp( Props.CommentCount ) )
                 {
                     decor.AppendText( " (" );
-                    decor.AppendText( item.GetIntProp( Props.CommentCount ).ToString() );
+                    decor.AppendText( item.GetProp( Props.CommentCount ).ToString() );
                     decor.AppendText( ")" );
                 }
                 decor.AppendText( "</a>" );

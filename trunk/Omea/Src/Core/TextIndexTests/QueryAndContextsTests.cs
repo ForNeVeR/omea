@@ -5,7 +5,6 @@
 
 using System;
 using System.Collections;
-using System.Text;
 using NUnit.Framework;
 using CommonTests;
 using JetBrains.Omea.TextIndex;
@@ -19,8 +18,8 @@ namespace TextIndexTests
     public class QueryAndContextsTest: MyPalDBTests
     {
         public const int ThreadsNumber = 2;
-        private AsyncProcessor[]    _processors = new AsyncProcessor[ ThreadsNumber ];
         private FullTextIndexer     indexer;
+        private readonly AsyncProcessor[]  _processors = new AsyncProcessor[ ThreadsNumber ];
 
         #region Startup
         private static void ExceptionHandler( Exception e )
@@ -71,7 +70,7 @@ namespace TextIndexTests
         {
             CloseStorage();
             indexer.CloseIndices();
-            indexer.DiscardTextIndex();
+            indexer.DiscardTextIndexImpl( false );
             Word.DisposeTermTrie();
             try
             {
@@ -440,9 +439,9 @@ namespace TextIndexTests
                 thisSection = _storage.BeginNewResource( DocumentSectionResource.DocSectionResName );
                 thisSection.SetProp( "Name", sectionName );
                 thisSection.SetProp( "SectionOrder", sectionsNumber );
-                if( description != null || description == "" )
+                if( description != null )
                     thisSection.SetProp( "SectionHelpDescription", description );
-                if( shortName != null || shortName == "" )
+                if( shortName != null )
                     thisSection.SetProp( "SectionShortName", shortName );
                 thisSection.EndUpdate();
             }

@@ -5,62 +5,38 @@
 
 using System;
 using System.Reflection;
-using System.Threading;
+
+using System35;
+
+using JetBrains.Annotations;
 using JetBrains.Omea.OpenAPI;
 
 namespace JetBrains.Omea.AsyncProcessing
 {
-    public interface ICancelable
-    {
-        void OnCancel();
-    }
-
-    public class WaitForSingleObjectJob : AbstractJob
-    {
-        public WaitForSingleObjectJob( WaitHandle handle )
-        {
-            _handle = handle;
-        }
-        protected override void Execute()
-        {
-            if( _handle != null )
-            {
-                InvokeAfterWait( NextMethod, _handle );
-                _handle = null;
-            }
-        }
-        private WaitHandle _handle;
-    }
-
-    public class DelegateJob: SimpleJob
+    public class DelegateJob: AbstractNamedJob
     {
         private Delegate _method;
         private object[] _args;
         private object _retVal;
         private int _hashCode;
         private static object[] _emptyArgs = new object[] {};
-        
-        public DelegateJob( Delegate method, object[] args )
+
+    	[NotNull]
+    	private string _name = "";
+
+    	public DelegateJob( Delegate method, object[] args )
         {
             _method = method;
-            _args = args;
-            if ( _args == null )
-            {
-                _args = _emptyArgs;
-            }
-            _hashCode = ComputeHashCode();
+            _args = args ?? _emptyArgs;
+    		_hashCode = ComputeHashCode();
         }
 
         public DelegateJob( string name, Delegate method, object[] args )
         {
-            Name = name;
+            _name = name;
             _method = method;
-            _args = args;
-            if ( _args == null )
-            {
-                _args = _emptyArgs;
-            }
-            _hashCode = ComputeHashCode();
+            _args = args ?? _emptyArgs;
+        	_hashCode = ComputeHashCode();
         }
 
         public override int GetHashCode()
@@ -80,7 +56,7 @@ namespace JetBrains.Omea.AsyncProcessing
             {
                 for( int i = 0; i < _args.Length; ++i )
                 {
-                    result = Object.Equals( _args[ i ], job._args[ i ] );
+                    result = Equals( _args[ i ], job._args[ i ] );
                     if ( !result )
                     {
                         break;
@@ -98,12 +74,28 @@ namespace JetBrains.Omea.AsyncProcessing
             }
             catch( TargetParameterCountException )
             {
-                throw new TargetParameterCountException( "Parameter count mismatch when invoking method " +
-                    _method.Method.DeclaringType + "." + _method.Method.Name );
+                throw new TargetParameterCountException( string.Format("Parameter count mismatch when invoking method “{0}::{1}”.", _method.Method.DeclaringType.FullName, _method.Method.Name) );
             }
         }
 
-        public object ReturnValue
+    	[NotNull]
+    	public override string Name
+    	{
+    		get
+    		{
+    			return _name;
+    		}
+    	}
+
+    	[Obsolete("Avoid changing the job name. Currently, it's done in the text index only.")]
+    	public void Rename([NotNull] string name)
+    	{
+    		if(name == null)
+    			throw new ArgumentNullException("name");
+    		_name = name;
+    	}
+
+    	public object ReturnValue
         {
             get { return _retVal; }
         }
@@ -129,21 +121,6 @@ namespace JetBrains.Omea.AsyncProcessing
                 }
             }
             return result;
-        }
-    }
-
-    internal class DelegateJobFilter
-    {
-        private Delegate _method;
-
-        internal DelegateJobFilter( Delegate method )
-        {
-            _method = method;
-        }
-
-        public bool DoFilter( AbstractJob job )
-        {
-            return job is DelegateJob && ((DelegateJob) job).Method.Equals( _method );
         }
     }
 }

@@ -45,13 +45,15 @@ namespace JetBrains.Omea.PicoCore
 	    private INotificationManager _notificationManager;
 	    private IMessageFormatter _messageFormatter;
 	    private IRemoteControlManager _remoteControlManager;
-	    private IFilterManager _filterManager;
-	    private ITrayIconManager _trayIconManager;
+	    private IFilterRegistry         _filterRegistry;
+	    private IFilterEngine           _filterEngine;
+	    private ITrayIconManager        _trayIconManager;
 	    private IFormattingRuleManager _formattingRuleManager;
 	    private IExpirationRuleManager _expirationRuleManager;
 	    private IFilteringFormsManager _filteringFormsManager;
         private ISearchQueryExtensions _queryExtensions;
 	    private ICoreProps _coreProps;
+	    private ICorePropIds _corePropIds;
 
 	    protected PicoCore()
         {
@@ -60,15 +62,17 @@ namespace JetBrains.Omea.PicoCore
             _picoContainer.RegisterComponentImplementation( typeof(ResourceTreeManager) );
             _picoContainer.RegisterComponentImplementation( typeof(WorkspaceManager) );
             _picoContainer.RegisterComponentImplementation( typeof(UnreadManager) );
-            _picoContainer.RegisterComponentImplementation( typeof(FilterManager) );
+            _picoContainer.RegisterComponentImplementation( typeof(FilterRegistry) );
             _picoContainer.RegisterComponentImplementation( typeof(FormattingRuleManager) );
             _picoContainer.RegisterComponentImplementation( typeof(ExpirationRuleManager) );
             _picoContainer.RegisterComponentImplementation( typeof(FilteringFormsManager) );
+            _picoContainer.RegisterComponentImplementation( typeof(FilterEngine) );
             _picoContainer.RegisterComponentImplementation( typeof(ContactManager) );
             _picoContainer.RegisterComponentImplementation( typeof(FileResourceManager) );
             _picoContainer.RegisterComponentImplementation( typeof(NotificationManager) );
             _picoContainer.RegisterComponentImplementation( typeof(MessageFormatter) );
             _picoContainer.RegisterComponentImplementation( typeof(CoreProps) );
+            _picoContainer.RegisterComponentImplementation( typeof(CorePropIds) );
             _picoContainer.RegisterComponentImplementation( typeof(FavIconManager) );
             _picoContainer.RegisterComponentImplementation( typeof(SearchQueryExtensions) );
         }
@@ -346,16 +350,16 @@ namespace JetBrains.Omea.PicoCore
             }
         }
 
-        public override IFilterManager FilterManager
+        public override IFilterRegistry FilterRegistry
         {
             [DebuggerStepThrough] 
             get
             {
-                if ( _filterManager == null )
+                if ( _filterRegistry == null )
                 {
-                    _filterManager = (IFilterManager) _picoContainer.GetComponentInstanceOfType( typeof(IFilterManager) );
+                    _filterRegistry = (IFilterRegistry) _picoContainer.GetComponentInstanceOfType( typeof(IFilterRegistry) );
                 }
-                return _filterManager;
+                return _filterRegistry;
             }
         }
 
@@ -411,6 +415,19 @@ namespace JetBrains.Omea.PicoCore
             }
         }
 
+        public override IFilterEngine FilterEngine
+        {
+            [DebuggerStepThrough] 
+            get
+            {
+                if ( _filterEngine == null )
+                {
+                    _filterEngine = (IFilterEngine) _picoContainer.GetComponentInstanceOfType( typeof(IFilterEngine) );
+                }
+                return _filterEngine;
+            }
+        }
+
         public override ISearchQueryExtensions SearchQueryExtensions
         {
             [DebuggerStepThrough] 
@@ -437,7 +454,20 @@ namespace JetBrains.Omea.PicoCore
             }
         }
 
-        protected void RegisterComponentInstance( object impl )
+	    public override ICorePropIds PropIds
+	    {
+            [DebuggerStepThrough]
+            get
+            {
+                if (_corePropIds == null)
+                {
+                    _corePropIds = (ICorePropIds)_picoContainer.GetComponentInstanceOfType(typeof(ICorePropIds));
+                }
+                return _corePropIds;
+            }
+        }
+
+	    protected void RegisterComponentInstance( object impl )
         {
             _picoContainer.RegisterComponentInstance( impl );
         }

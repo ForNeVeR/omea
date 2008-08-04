@@ -4,6 +4,7 @@
 /// </copyright>
 
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
@@ -13,45 +14,45 @@ using JetBrains.Omea.OpenAPI;
 
 namespace JetBrains.Omea
 {
+    public enum SidebarSide { Left, Right };
+
     /// <summary>
     /// A pane with a row of vertical buttons and a stack of panes connected to those buttons.
     /// </summary>
     internal class VerticalSidebar : UserControl, ISidebar, IContextProvider
 	{
-        private SidebarBackground _buttonPane;
+        private const int _minPaneHeight = 120;
+
+        private Panel _contentPane;
+        private SidebarButtons _paneButtons;
+
+        private PaneData _lastActivePaneData;
+        private ColorScheme _colorScheme;
+        private SidebarSide _side = SidebarSide.Left;
+
+        private int _expandedWidth;
+        private int _updateCount;
+        private bool _expanded;
+        private readonly HashSet _populatedPanes = new HashSet();
+
 		/// <summary> 
 		/// Required designer variable.
 		/// </summary>
-		private Container components = null;
+		private Container components;
 
-        private SidebarSide _side = SidebarSide.Left;
-        private Panel _contentPane;
-        private int _expandedWidth;
-        private int _minPaneHeight = 120;
-        private int _updateCount;
-        private PaneData _lastActivePaneData;
-        private int _buttonHeight;
-        private int _collapsedWidth = 30;
-        private const int _defaultButtonHeight = 135;
-        private ColorScheme _colorScheme;
-        private bool _expanded = false;
-        private HashSet _populatedPanes = new HashSet();
-
-		private class PaneData
+		internal class PaneData
 		{
             public string PaneId;
-            public VerticalButton Button;
+            public int PaneHeight;
             public SidebarPaneBackground PaneBackground;
             public AbstractViewPane Pane;
-            public int PaneHeight;
             public PaneCaption PaneCaption;
             public Splitter PaneSplitter;
 
-		    public PaneData( string paneID, VerticalButton button, SidebarPaneBackground paneBackground,
-                AbstractViewPane pane, PaneCaption paneCaption, Splitter paneSplitter, int paneHeight )
+		    public PaneData( string paneID, SidebarPaneBackground paneBackground, AbstractViewPane pane, 
+                             PaneCaption paneCaption, Splitter paneSplitter, int paneHeight )
 		    {
 		        PaneId = paneID;
-                Button = button;
                 PaneBackground = paneBackground;
 		        Pane = pane;
                 PaneCaption = paneCaption;
@@ -64,8 +65,6 @@ namespace JetBrains.Omea
 		{
 			// This call is required by the Windows.Forms Form Designer.
 			InitializeComponent();
-
-            _buttonHeight = _defaultButtonHeight;
 
             SetStyle( ControlStyles.Selectable, false );
 		}
@@ -92,17 +91,16 @@ namespace JetBrains.Omea
 		/// </summary>
 		private void InitializeComponent()
 		{
-            this._buttonPane = new SidebarBackground();
+            this._paneButtons = new SidebarButtons();
             this._contentPane = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
-            // _buttonPane
+            // _paneButtons
             // 
-            this._buttonPane.Dock = System.Windows.Forms.DockStyle.Left;
-            this._buttonPane.Location = new System.Drawing.Point(0, 0);
-            this._buttonPane.Name = "_buttonPane";
-            this._buttonPane.Size = new System.Drawing.Size(30, 150);
-            this._buttonPane.TabIndex = 0;
+            this._paneButtons.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this._paneButtons.Name = "_paneButtons";
+            this._paneButtons.Size = new System.Drawing.Size(150, 30);
+            this._paneButtons.TabIndex = 0;
             // 
             // _contentPane
             // 
@@ -115,7 +113,7 @@ namespace JetBrains.Omea
             // VerticalSidebar
             // 
             this.Controls.Add(this._contentPane);
-            this.Controls.Add(this._buttonPane);
+            this.Controls.Add(this._paneButtons);
             this.Name = "VerticalSidebar";
             this.ResumeLayout(false);
 
@@ -125,31 +123,18 @@ namespace JetBrains.Omea
         public event EventHandler PaneAdded;
         public event EventHandler ExpandedChanged;
         
-        public event PaintEventHandler PaintSidebarBackground
-        {
-            add { _buttonPane.PaintSidebarBackground += value; }
-            remove { _buttonPane.PaintSidebarBackground -= value; }
-        }
-
         [DefaultValue(SidebarSide.Left)]
         public SidebarSide Side
 	    {
-	        get { return _side; }
-	        set 
-            { 
-                _side = value;
-                _buttonPane.Dock = (_side == SidebarSide.Left ) ? DockStyle.Left : DockStyle.Right;
-            }
+	        get { return _side;  }
+	        set { _side = value; }
 	    }
 
         public int ExpandedWidth
         {
-            get 
-            { 
-                if ( Expanded )
-                    return Width;
-
-                return _expandedWidth; 
+            get
+            {
+                return Expanded ? Width : _expandedWidth;
             }
             set
             {
@@ -161,23 +146,10 @@ namespace JetBrains.Omea
             }
         }
 
-        [DefaultValue(30)]
-        public int CollapsedWidth
-        {
-            get { return _collapsedWidth; }
-            set
-            {
-                _collapsedWidth = value;
-                if ( !_expanded )
-                {
-                    _buttonPane.Width = value;
-                }
-            }
-        }
-
         public bool Expanded
         {
-            get { return _expanded; }
+//            get { return _expanded; }
+            get { return true; }
         }
 
         private void SetExpanded( bool value )
@@ -185,14 +157,6 @@ namespace JetBrains.Omea
             if ( _expanded != value )
             {
                 _expanded = value;
-                if ( _expanded )
-                {
-                    _buttonPane.Width = 30;
-                }
-                else
-                {
-                    _buttonPane.Width = _collapsedWidth;
-                }
                 if ( ExpandedChanged != null )
                 {
                     ExpandedChanged( this, EventArgs.Empty );
@@ -200,9 +164,9 @@ namespace JetBrains.Omea
             }
         }
 
-        public int PaneCount
+        public int PanesCount
         {
-            get { return _buttonPane.Controls.Count; }
+            get { return _paneButtons.Items.Count; }
         }
 
 	    public ColorScheme ColorScheme
@@ -211,10 +175,8 @@ namespace JetBrains.Omea
 	        set 
             { 
                 _colorScheme = value; 
-                _buttonPane.ColorScheme = _colorScheme;
-                foreach( VerticalButton btn in _buttonPane.Controls )
+                foreach( ToolStripButton btn in _paneButtons.Items )
                 {
-                    btn.ColorScheme = _colorScheme;
                     PaneData paneData = (PaneData) btn.Tag;
                     paneData.PaneCaption.ColorScheme = _colorScheme;
                     paneData.PaneBackground.ColorScheme = _colorScheme;
@@ -227,67 +189,14 @@ namespace JetBrains.Omea
             }
 	    }
 
-        public string BackgroundColorSchemeKey
+        public void RegisterPane( AbstractViewPane pane, string id, string caption, Image icon )
         {
-            get { return _buttonPane.ColorSchemeKey; }
-            set { _buttonPane.ColorSchemeKey = value; }
-        }
-
-        public int BackgroundFillHeight
-        {
-            get { return _buttonPane.FillHeight; }
-            set { _buttonPane.FillHeight = value; }
-        }
-
-        public void RegisterPane( AbstractViewPane pane, string id, string caption, Icon icon )
-        {
-            int y = 0;
-            if ( _buttonPane.Controls.Count > 0 )
-            {
-                VerticalButton lastBtn = (VerticalButton) _buttonPane.Controls [_buttonPane.Controls.Count-1];
-                y = lastBtn.Bottom + 2;
-            }
-
-            VerticalButton btn = new VerticalButton();
-            btn.Location = new Point( _buttonPane.Width - 28, y );
-            btn.Anchor = AnchorStyles.Right | AnchorStyles.Top;
-            btn.Angle = (_side == SidebarSide.Left) ? 90 : 270;
-            btn.Text = caption;
-            btn.Font = new Font( "Tahoma", 10 );
-            btn.Icon = icon;
-            btn.BackColor = Color.FromArgb( 0, Color.Black );
-            btn.ColorScheme = _colorScheme;
-            btn.PressedChanged += new EventHandler( OnVerticalButtonPressed );
-
-            if ( btn.PreferredHeight > _defaultButtonHeight )
-            {
-                btn.HeightMultiplier = (double) btn.PreferredHeight / (double) _defaultButtonHeight;
-            }
-
-            btn.Size = new Size( 26, (int) (_buttonHeight * btn.HeightMultiplier ));
-
-            if ( GetPressedCount() == 0 && Width > _buttonPane.Width )
-            {
-                if ( _expandedWidth == 0 )
-                {
-                    _expandedWidth = Width;
-                }
-                
-                Width = _buttonPane.Width;
-            }
-
-            _buttonPane.Controls.Add( btn );
-
             PaneCaption paneCaption = new PaneCaption();
             paneCaption.Text = caption;
             paneCaption.Dock = DockStyle.Top;
-            paneCaption.Height = 18;
-            paneCaption.Visible = false;
-            paneCaption.Active = false;
             paneCaption.CaptionButtons = PaneCaptionButtons.Minimize;
-            paneCaption.Click += new EventHandler( OnPaneCaptionClick );
-            paneCaption.MinimizeClick += new EventHandler( OnPaneMinimize );
-            paneCaption.MaximizeClick += new EventHandler( OnPaneMaximize );
+            paneCaption.Click += OnPaneCaptionClick;
+            paneCaption.MinimizeClick += OnPaneMinimize;
             paneCaption.ColorScheme = _colorScheme;
             _contentPane.Controls.Add( paneCaption );
             _contentPane.Controls.SetChildIndex( paneCaption, 0 );
@@ -304,8 +213,8 @@ namespace JetBrains.Omea
             _contentPane.Controls.SetChildIndex( background, 0 );
             
             pane.ShowSelection = false;
-            pane.Enter += new EventHandler( OnPaneEnter );
-            pane.Leave += new EventHandler( OnPaneLeave );
+            pane.Enter += OnPaneEnter;
+            pane.Leave += OnPaneLeave;
 
             Splitter paneSplitter = new Splitter();
             paneSplitter.Dock = DockStyle.Top;
@@ -313,8 +222,7 @@ namespace JetBrains.Omea
             _contentPane.Controls.Add( paneSplitter );
             _contentPane.Controls.SetChildIndex( paneSplitter, 0 );
 
-            PaneData paneData = new PaneData( id, btn, background, pane, paneCaption, paneSplitter, paneHeight );
-            btn.Tag = paneData;
+            PaneData paneData = new PaneData( id, background, pane, paneCaption, paneSplitter, paneHeight );
             paneCaption.Tag = paneData;
 
             IColorSchemeable schemeable = pane as IColorSchemeable;
@@ -323,6 +231,9 @@ namespace JetBrains.Omea
                 schemeable.ColorScheme = _colorScheme;
             }
 
+            ToolStripButton button = _paneButtons.AddButton( paneData, icon, caption );
+            button.CheckedChanged += OnToolbarButtonClicked;
+
             AdjustDockAndSplitters( null, false );
             if ( PaneAdded != null )
             {
@@ -330,11 +241,60 @@ namespace JetBrains.Omea
             }
         }
 
+        public bool ContainsPane( string paneId )
+        {
+            AbstractViewPane pane = GetPane( paneId );
+            return pane != null;
+        }
+
+        public AbstractViewPane GetPane( string paneId )
+        {
+            ToolStripButton btn = _paneButtons.GetPaneButton( paneId );
+            return ((PaneData) btn.Tag).Pane;
+        }
+
+        public bool IsPaneExpanded( string paneId )
+        {                                                                                       
+            ToolStripButton btn = _paneButtons.GetPaneButton( paneId );
+            return btn.Checked;
+        }
+
+        public void SetPaneExpanded( string paneId, bool expanded )
+        {
+            ToolStripButton btn = _paneButtons.GetPaneButton( paneId );
+            btn.Checked = expanded;
+        }
+
+        public void SetPaneCaption( string paneId, string caption )
+        {
+            ToolStripButton btn = _paneButtons.GetPaneButton( paneId );
+            ((PaneData)btn.Tag).PaneCaption.Text = btn.ToolTipText = caption;
+        }
+
+        private int GetPressedCount()
+        {
+            return _paneButtons.CheckedButtonsCount;
+        }
+
+        public void ActivatePane( string paneId )
+        {
+            AbstractViewPane pane = GetPane( paneId );
+            pane.Focus();
+
+            // hack (see #5371, #5746)
+            IResource selResource = pane.SelectedResource;
+            if ( selResource != null ) 
+            {
+                pane.SelectResource( selResource, false );  
+            }  
+            _paneButtons.SetButtonPressed( paneId, true );
+        }
+
         public void PopulateViewPanes()
         {
-            foreach( VerticalButton btn in _buttonPane.Controls )
+            foreach( ToolStripButton btn in _paneButtons.Items )
             {
-                if ( btn.Pressed )
+                if ( btn.Checked )
                 {
                     PaneData paneData = (PaneData) btn.Tag;
                     if ( !_populatedPanes.Contains( paneData.PaneId ) )
@@ -344,12 +304,13 @@ namespace JetBrains.Omea
                     }
                 }
             }
+            _paneButtons.CheckButtonsState();
         }
 
         public void UpdateActiveWorkspace()
         {
             IResource workspace = Core.WorkspaceManager.ActiveWorkspace;
-            foreach( VerticalButton btn in _buttonPane.Controls )
+            foreach( ToolStripButton btn in _paneButtons.Items )
             {
                 PaneData paneData = (PaneData) btn.Tag;
                 if ( _populatedPanes.Contains( paneData.PaneId ) )
@@ -357,108 +318,6 @@ namespace JetBrains.Omea
                     paneData.Pane.SetActiveWorkspace( workspace );
                 }
             }
-        }
-
-        public bool IsPaneExpanded( string paneId )
-        {                                                                                       
-            foreach( VerticalButton btn in _buttonPane.Controls )
-            {
-                PaneData paneData = (PaneData) btn.Tag;
-                if ( paneData.PaneId == paneId )
-                    return paneData.Button.Pressed;
-            }
-            throw new ArgumentException( "Pane ID " + paneId + " not found" );
-        }
-
-        public void SetPaneExpanded( string paneId, bool expanded )
-        {
-            foreach( VerticalButton btn in _buttonPane.Controls )
-            {
-                PaneData paneData = (PaneData) btn.Tag;
-                if ( paneData.PaneId == paneId )
-                {
-                    SetButtonPressed( paneData.Button, expanded );
-                    return;
-                }
-            }
-            throw new ArgumentException( "Pane ID " + paneId + " not found" );
-        }
-
-        public void SetPaneCaption( string paneId, string caption )
-        {
-            foreach( VerticalButton btn in _buttonPane.Controls )
-            {
-                PaneData paneData = (PaneData) btn.Tag;
-                if ( paneData.PaneId == paneId )
-                {
-                    paneData.PaneCaption.Text = caption;
-                    paneData.Button.Text = caption;
-                    paneData.Button.Invalidate();
-                    return;
-                }
-            }
-            throw new ArgumentException( "Pane ID " + paneId + " not found" );
-        }
-
-        private int GetPressedCount()
-        {
-            int pressedCount = 0;
-            foreach( VerticalButton btn in _buttonPane.Controls )
-            {
-                if ( btn.Pressed )
-                {
-                    pressedCount++;
-                }
-            }
-            return pressedCount;
-        }
-
-        private void SetButtonPressed( VerticalButton button, bool pressed )
-        {
-            button.Pressed = pressed;
-        }
-
-        public void ActivatePane( string paneID )
-        {
-            foreach( VerticalButton btn in _buttonPane.Controls )
-            {
-                PaneData paneData = (PaneData) btn.Tag;
-                if ( paneData.PaneId == paneID )
-                {
-                    SetButtonPressed( paneData.Button, true );
-                    paneData.Pane.Focus();
-                    IResource selResource = paneData.Pane.SelectedResource;
-                    if ( selResource != null ) 
-                    {
-                        // hack (see #5371, #5746)
-                        paneData.Pane.SelectResource( selResource, false );  
-                    }  
-                    return;
-                }
-            }
-            throw new ArgumentException( "Pane ID " + paneID + " not found" );
-        }
-
-        public AbstractViewPane GetPane( string paneID )
-        {
-            foreach( VerticalButton btn in _buttonPane.Controls )
-            {
-                PaneData paneData = (PaneData) btn.Tag;
-                if ( paneData.PaneId == paneID )
-                    return paneData.Pane;
-            }
-            return null;
-        }
-
-        public bool ContainsPane( string paneId )
-        {
-            foreach( VerticalButton btn in _buttonPane.Controls )
-            {
-                PaneData paneData = (PaneData) btn.Tag;
-                if ( paneData.PaneId == paneId )
-                    return true;
-            }
-            return false;            
         }
 
         public void BeginUpdate()
@@ -483,7 +342,7 @@ namespace JetBrains.Omea
         /// <param name="res"></param>
         public void ForceSelectResource( IResource res )
         {
-            foreach( VerticalButton btn in _buttonPane.Controls )
+            foreach( ToolStripButton btn in _paneButtons.Items )
             {
                 PaneData paneData = (PaneData) btn.Tag;
                 CheckPopulatePane( paneData );
@@ -499,19 +358,21 @@ namespace JetBrains.Omea
         {
             get
             {
-                int[] paneHeights = new int [_buttonPane.Controls.Count];
+                int[] paneHeights = new int [ PanesCount ];
                 int activePaneIndex = -1;
                 IResource selectedResource = null;
-                for( int i=0; i<_buttonPane.Controls.Count; i++ )
+
+                for( int i = 0; i < _paneButtons.Items.Count; i++ )
                 {
-                    PaneData paneData = (PaneData) _buttonPane.Controls [i].Tag;
-                    if ( !paneData.Button.Pressed )
+                    ToolStripButton btn = (ToolStripButton)_paneButtons.Items[ i ];
+                    PaneData paneData = (PaneData) btn.Tag;
+                    if ( !btn.Checked )
                     {
-                        paneHeights [i] = -1;
+                        paneHeights[ i ] = -1;
                     }
                     else
                     {
-                        paneHeights [i] = paneData.PaneBackground.Height;
+                        paneHeights[ i ] = paneData.PaneBackground.Height;
                         if ( paneData == _lastActivePaneData )
                         {
                             activePaneIndex = i;
@@ -530,19 +391,20 @@ namespace JetBrains.Omea
                 int[] paneHeights = value.PaneHeights;
                 bool foundSelectedNode = false;
                 BeginUpdate();
-                for( int i=0; i<_buttonPane.Controls.Count; i++ )
+                for( int i = 0; i < _paneButtons.Items.Count; i++ )
                 {
                     if ( i >= paneHeights.Length )
                         break;
 
-                    PaneData paneData = (PaneData) _buttonPane.Controls [i].Tag;
+                    ToolStripButton btn = (ToolStripButton)_paneButtons.Items[ i ];
+                    PaneData paneData = (PaneData) btn.Tag;
                     if ( paneHeights [i] < 0 )
                     {
-                        SetButtonPressed( paneData.Button, false );
+                        _paneButtons.SetButtonPressed( paneData.PaneId, false );
                     }
                     else
                     {
-                        SetButtonPressed( paneData.Button, true );
+                        _paneButtons.SetButtonPressed( paneData.PaneId, true );
                         if ( paneHeights [i] > 0 )
                         {
                             paneData.PaneBackground.Height = paneHeights [i];
@@ -599,47 +461,43 @@ namespace JetBrains.Omea
             }
         }
 
-        private void OnVerticalButtonPressed( object sender, EventArgs e )
+        private void OnToolbarButtonClicked(object sender, EventArgs e)
         {
-            VerticalButton btn = (VerticalButton) sender;
-
+            ToolStripButton btn = (ToolStripButton) sender;
             SuspendLayout();
             try
             {
                 PaneData paneData = (PaneData) btn.Tag;
                 if ( _updateCount == 0 )
                 {
-                    AdjustDockAndSplitters( paneData, btn.Pressed );
+                    AdjustDockAndSplitters( paneData, btn.Checked );
                 }
 
                 bool focusedPaneHidden = false;
                 
-                if ( btn.Pressed )
+                if ( btn.Checked )
                 {
                     CheckPopulatePane( paneData );
                     paneData.PaneBackground.Height = paneData.PaneHeight;
                 }
                 else
                 {
-                    if ( paneData == _lastActivePaneData )
-                    {
-                        focusedPaneHidden = true;                        
-                    }
+                    focusedPaneHidden = ( paneData == _lastActivePaneData );
                     paneData.PaneHeight = paneData.PaneBackground.Height;
                     paneData.PaneBackground.Height = 0;
                 }
                 
-                paneData.PaneBackground.Visible = btn.Pressed;
-                paneData.PaneCaption.Visible = btn.Pressed;
+                paneData.PaneBackground.Visible = btn.Checked;
+                paneData.PaneCaption.Visible = btn.Checked;
 
                 if ( focusedPaneHidden )
                 {
                     bool foundActive = false;
-                    for( int i=0; i<_buttonPane.Controls.Count; i++ )
+                    foreach( ToolStripButton button in _paneButtons.Items )
                     {
-                        PaneData visibleData = DataAt( i );
-                        if ( visibleData.Button.Pressed )
+                        if( button.Checked )
                         {
+                            PaneData visibleData = (PaneData)button.Tag;
                             visibleData.Pane.Focus();
                             visibleData.Pane.UpdateSelection();
                             foundActive = true;
@@ -655,7 +513,7 @@ namespace JetBrains.Omea
                 if ( GetPressedCount() == 0 )
                 {
                     _expandedWidth = Width;
-                    Width = _collapsedWidth;
+                    Width = 0;
                 }
                 else
                 {
@@ -667,12 +525,14 @@ namespace JetBrains.Omea
                 ResumeLayout();
             }
 
-            if ( btn.Pressed )
+            if ( btn.Checked )
             {
                 UpdatePaneSizes( _minPaneHeight );
             }
 
-            SetExpanded( GetPressedCount() != 0 );
+//            SetExpanded( GetPressedCount() != 0 );
+
+            _paneButtons.CheckButtonsState();
         }
 
         private void CheckPopulatePane( PaneData paneData )
@@ -685,45 +545,38 @@ namespace JetBrains.Omea
             }
         }
 
-        /**
-         * Sets DockStyle.Fill for the last visible pane and DockStyle.Top 
-         * for the remaining ones. Also updates splitter visibility.
-         */
-
+        ///<summary>
+        /// Sets DockStyle.Fill for the last visible pane and DockStyle.Top 
+        /// for the remaining ones. Also updates splitter visibility.
+        ///</summary>
         private void AdjustDockAndSplitters( PaneData toggledPane, bool toggledPaneState )
         {
             bool lastPane = true;
             int visiblePanes = 0;
-            for( int i=_buttonPane.Controls.Count-1; i >= 0; i-- )
+            for( int i = PanesCount - 1; i >= 0; i-- )
             {
-                PaneData paneData = DataAt( i );
+                ToolStripButton btn = (ToolStripButton)_paneButtons.Items[ i ];
+                PaneData paneData = (PaneData)btn.Tag;
+
                 // don't check Visible because it will return false if the sidebar 
                 // as a whole is hidden
-                bool visible = paneData.Button.Pressed;
+                bool visible = btn.Checked;
                 if ( paneData == toggledPane )
                     visible = toggledPaneState;
 
                 if ( visible )
                 {
                     visiblePanes++;
-                    if ( lastPane )
-                    {
-                        paneData.PaneBackground.Dock = DockStyle.Fill;
-                        paneData.PaneSplitter.Visible = false;
-                        lastPane = false;
-                    }
-                    else
-                    {
-                        paneData.PaneBackground.Dock = DockStyle.Top;
-                        paneData.PaneSplitter.Visible = true;
-                    }
+                    paneData.PaneBackground.Dock = lastPane ? DockStyle.Fill : DockStyle.Top;
+                    paneData.PaneSplitter.Visible = !lastPane;
+                    lastPane = false;
                 }
                 else
                 {
                     paneData.PaneSplitter.Visible = false;
                 }
 
-                int paneIndex = _buttonPane.Controls.Count-1 - i;
+                int paneIndex = PanesCount - 1 - i;
                 _contentPane.Controls.SetChildIndex( paneData.PaneSplitter, paneIndex * 3 );
                 _contentPane.Controls.SetChildIndex( paneData.PaneBackground, paneIndex * 3 + 1 );
                 _contentPane.Controls.SetChildIndex( paneData.PaneCaption, paneIndex * 3 + 2 );
@@ -731,54 +584,50 @@ namespace JetBrains.Omea
 
             if ( visiblePanes > 0 )
             {
-                for( int i=0; i<_buttonPane.Controls.Count; i++ )
+                for( int i = 0; i < PanesCount; i++ )
                 {
-                    PaneData paneData = DataAt( i );
-                    bool visible = paneData.Button.Pressed;
-                    if ( paneData == toggledPane )
-                        visible = toggledPaneState;
+                    ToolStripButton btn = (ToolStripButton)_paneButtons.Items[ i ];
+                    PaneData paneData = (PaneData)btn.Tag;
+
+                    bool visible = btn.Checked;
+//                    if ( paneData == toggledPane )
+//                        visible = toggledPaneState;
 
                     if ( visible )
                     {
-                        if ( visiblePanes == 1 )
-                        {
-                            paneData.PaneCaption.CaptionButtons = PaneCaptionButtons.Minimize;
-                        }
-                        else
-                        {
-                            paneData.PaneCaption.CaptionButtons = PaneCaptionButtons.Minimize | PaneCaptionButtons.Maximize;
-                        }
+                        PaneCaptionButtons buttons = (visiblePanes > 1) ? PaneCaptionButtons.Minimize : PaneCaptionButtons.None;
+                        paneData.PaneCaption.CaptionButtons = buttons;
                     }
                 }
             }
+
+//            _paneButtons.Visible = ( _paneButtons.Items.Count > 1 );
         }
 
-        /**
-         * Updates the heights of panes so that all visible panes get their share of height.
-         */
-
+        ///<summary>
+        /// Updates the heights of panes so that all visible panes get their share of height.
+        ///</summary>
         private void UpdatePaneSizes( int minHeight )
         {
             int totalNeedHeight = 0;
-            for( int i=0; i<_buttonPane.Controls.Count; i++ )
+            for( int i = 0; i < PanesCount; i++ )
             {
-                PaneData paneData = DataAt( i );
-                if ( !paneData.Button.Pressed )
+                ToolStripButton btn = (ToolStripButton)_paneButtons.Items[ i ];
+                PaneData paneData = (PaneData)btn.Tag;
+                if( btn.Checked )
                 {
-                    continue;
-                }
-
-                int needHeight = minHeight - paneData.PaneBackground.Height;
-                if ( needHeight > 0 )
-                {
-                    totalNeedHeight += needHeight;
+                    int needHeight = minHeight - paneData.PaneBackground.Height;
+                    if( needHeight > 0 )
+                    {
+                        totalNeedHeight += needHeight;
+                    }
                 }
             }
 
             if ( totalNeedHeight > 0 )
             {
                 int totalAvailHeight = 0;
-                for( int i=0; i<_buttonPane.Controls.Count; i++ )
+                for( int i = 0; i < PanesCount; i++ )
                 {
                     PaneData paneData = DataAt( i );
                     if ( paneData.PaneBackground.Height > minHeight )
@@ -806,67 +655,29 @@ namespace JetBrains.Omea
             }
         }
 
-        /**
-         * When the size of the pane changes, ensures that all visible child panes get their 
-         * share of height.
-         */
-        
+        ///<summary>
+        /// When the size of the pane changes, ensures that all visible child panes get their 
+        /// share of height.
+        ///</summary>
         protected override void OnLayout( LayoutEventArgs levent )
         {
             base.OnLayout( levent );
             if ( levent.AffectedControl != null && levent.AffectedProperty != null )
             {
-                if ( levent.AffectedProperty.ToString() == "Bounds" )
+                if ( levent.AffectedProperty == "Bounds" )
                 {
                     Form frm = FindForm();
                     if ( frm != null && frm.WindowState != FormWindowState.Minimized )
                     {
                         UpdatePaneSizes( 40 );
-                        
-                        if ( _buttonPane.Controls.Count > 0 )
-                        {
-                            UpdateButtonHeight();
-                        }
                     }
                 }
             }
         }
 
-	    private void UpdateButtonHeight()
-	    {
-	        int newButtonHeight = (int) ( ( (double) ClientSize.Height / GetTotalMultiplier() ) - 2);
-	        if ( newButtonHeight > _defaultButtonHeight )
-	        {
-	            newButtonHeight = _defaultButtonHeight;
-	        }
-    
-	        if ( newButtonHeight != _buttonHeight )
-	        {
-                _buttonHeight = newButtonHeight;
-                int y = 0;
-                for( int i=0; i<_buttonPane.Controls.Count; i++ )
-                {
-                    PaneData data = DataAt( i );
-                    data.Button.Location = new Point( 2, y );
-                    data.Button.Size = new Size( 26, (int) ( _buttonHeight * data.Button.HeightMultiplier ) );
-                    y += data.Button.Height + 2;
-                }
-	        }
-	    }
-
-        private double GetTotalMultiplier()
-        {
-            double result = 0.0;
-            for( int i=0; i<_buttonPane.Controls.Count; i++ )
-            {
-                result += DataAt( i ).Button.HeightMultiplier;
-            }
-            return result;
-        }
-
 	    private PaneData DataForPane( Control pane )
         {
-            foreach( VerticalButton btn in _buttonPane.Controls )
+            foreach( ToolStripButton btn in _paneButtons.Items )
             {
                 PaneData data = (PaneData) btn.Tag;
                 if ( data.Pane == pane )
@@ -877,13 +688,19 @@ namespace JetBrains.Omea
 
         private PaneData DataAt( int index )
         {
-        	return (PaneData) _buttonPane.Controls [index].Tag;
+        	return (PaneData) _paneButtons.Items[ index ].Tag;
         }
 
         private void OnPaneEnter( object sender, EventArgs e )
         {
             SetActivePane( sender as Control );
             _lastActivePaneData.PaneCaption.Active = true;
+        }
+
+        private void OnPaneLeave( object sender, EventArgs e )
+        {
+            PaneData paneData = DataForPane( sender as Control );
+            paneData.PaneCaption.Active = false;
         }
 
         private void SetActivePane( Control senderCtl )
@@ -897,28 +714,22 @@ namespace JetBrains.Omea
             _lastActivePaneData.Pane.ShowSelection = true;
         }
 
-        private void OnPaneLeave( object sender, EventArgs e )
-        {
-            PaneData paneData = DataForPane( sender as Control );
-            paneData.PaneCaption.Active = false;
-        }
-
-        private void OnPaneCaptionClick( object sender, EventArgs e )
+        private static void OnPaneCaptionClick( object sender, EventArgs e )
         {
             PaneCaption caption = (PaneCaption) sender;
-            PaneData paneData = (PaneData) caption.Tag;
+            AbstractViewPane pane = ((PaneData)caption.Tag).Pane;
             
-            if ( !paneData.Pane.ContainsFocus )
+            if ( !pane.ContainsFocus )
             {
-                paneData.Pane.Focus();
+                pane.Focus();
             
                 // HACK: Remove when all panes are converted to JetListView
-                if ( !(paneData.Pane is ResourceTreePaneBase ))
+                if ( !(pane is ResourceTreePaneBase ))
                 {
-                    IResource node = paneData.Pane.SelectedResource;
-                    if ( node != null )
+                    IResource node = pane.SelectedResource;
+                    if( node != null )
                     {
-                        paneData.Pane.SelectResource( node, false );
+                        pane.SelectResource( node, false );
                     }
                 }
             }
@@ -928,22 +739,7 @@ namespace JetBrains.Omea
         {
             PaneCaption caption = (PaneCaption) sender;
             PaneData paneData = (PaneData) caption.Tag;
-            SetButtonPressed( paneData.Button, false );
-        }
-
-        private void OnPaneMaximize( object sender, EventArgs e )
-        {
-            PaneCaption caption = (PaneCaption) sender;
-            PaneData paneData = (PaneData) caption.Tag;
-            BeginUpdate();
-            foreach( VerticalButton btn in _buttonPane.Controls )
-            {
-                if ( btn.Tag != paneData )
-                {
-                    SetButtonPressed( btn, false );
-                }
-            }
-            EndUpdate();
+            _paneButtons.SetButtonPressed( paneData.PaneId, false );
         }
 
 	    public IActionContext GetContext( ActionContextKind kind )
@@ -960,12 +756,10 @@ namespace JetBrains.Omea
         }
 	}
 
-    public enum SidebarSide { Left, Right };
-
     internal class SidebarState
     {
-        private int[] _paneHeights;
-        private int _activePaneIndex;
+        private readonly int[] _paneHeights;
+        private readonly int _activePaneIndex;
         private IResource _selectedResource;
         
         internal SidebarState( int[] paneHeights, int activePaneIndex, IResource selectedResource )
@@ -993,15 +787,15 @@ namespace JetBrains.Omea
 
         public static SidebarState RestoreFromIni( string section )
         {
-            ISettingStore ini = ICore.Instance.SettingStore;
+            ISettingStore ini = Core.SettingStore;
             int count = ini.ReadInt( section, "PaneCount", 0 );
             if ( count == 0 )
                 return null;
 
-            int[] paneHeights = new int [count];
-            for( int i=0; i<count; i++ )
+            int[] paneHeights = new int[ count ];
+            for( int i = 0; i < count; i++ )
             {
-                paneHeights [i] = ini.ReadInt( section, "Pane" + i + "Height", 0 );
+                paneHeights[ i ] = ini.ReadInt( section, "Pane" + i + "Height", 0 );
             }
 
             int activePaneIndex = ini.ReadInt( section, "ActivePaneIndex", 0 );
@@ -1022,9 +816,9 @@ namespace JetBrains.Omea
 
         public void SaveToIni( string section )
         {
-            ISettingStore ini = ICore.Instance.SettingStore;
+            ISettingStore ini = Core.SettingStore;
             ini.WriteInt( section, "PaneCount", _paneHeights.Length );
-            for( int i=0; i<_paneHeights.Length; i++ )
+            for( int i = 0; i < _paneHeights.Length; i++ )
             {
                 ini.WriteInt( section, "Pane" + i + "Height", _paneHeights [i] );
             }
@@ -1032,4 +826,96 @@ namespace JetBrains.Omea
             ini.WriteInt( section, "SelectedResource", (_selectedResource == null) ? -1 : _selectedResource.Id );
         }
     }
+
+	/// <summary>
+	/// The container panel for the toolbar with icons corresponding to structural panes
+	/// possible within the particular resource tab.
+	/// </summary>
+	internal class SidebarButtons: Panel
+	{
+        private ToolStrip  _strip;
+        private readonly Dictionary<string,ToolStripButton> _mapId = new Dictionary<string, ToolStripButton>();
+//        private ColorScheme _colorScheme;
+//        private string _colorSchemeKey = "Sidebar.Background";
+
+        public SidebarButtons()
+        {
+            SetStyle( ControlStyles.ResizeRedraw, true );
+            SetStyle( ControlStyles.Opaque, false );
+
+            InitializeComponents();
+        }
+
+        private void InitializeComponents()
+        {
+            _strip = new ToolStrip();
+            _strip.AllowItemReorder = true;
+            _strip.CanOverflow = true;
+            _strip.GripStyle = ToolStripGripStyle.Hidden;
+            _strip.AutoSize = true;
+            _strip.ImageScalingSize = new Size( 24, 24 );
+
+            Controls.Add( _strip );
+        }
+
+        public ToolStripButton GetPaneButton( string paneId )
+        {
+            ToolStripButton btn = _mapId[ paneId ];
+            if( btn == null )
+                throw new ArgumentException( "Internal Error -- Invalid value for PaneID [" + paneId + "]" );
+            return btn;
+        }
+
+        public ToolStripButton AddButton( VerticalSidebar.PaneData paneData, Image image, string text )
+        {
+            ToolStripButton btn = new ToolStripButton();
+            btn.Image = image;
+            btn.ToolTipText = text;
+            btn.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            btn.CheckOnClick = true;
+            btn.Tag = paneData;
+            _strip.Items.Add( btn );
+            _mapId.Add( paneData.PaneId, btn );
+
+            return btn;
+        }
+
+        public void SetButtonPressed( string id, bool val )
+        {
+            ToolStripButton btn = _mapId[ id ];
+            if( btn != null )
+            {
+                btn.Checked = val;
+            }
+        }
+
+	    public int CheckedButtonsCount
+	    {
+	        get
+	        {
+                int count = 0;
+	            foreach( ToolStripButton btn in _strip.Items )
+	            {
+	                if( btn.Checked )
+                        count ++;
+	            }
+                return count;
+	        }
+	    }
+
+        public void CheckButtonsState()
+        {
+            bool enable = (CheckedButtonsCount > 1);
+            foreach( ToolStripButton btn in _strip.Items )
+            {
+                if( btn.Checked )
+                    btn.Enabled = enable;
+            }
+        }
+
+	    public ToolStripItemCollection Items
+	    {
+	        get {  return _strip.Items;  }
+	    }
+	}
 }

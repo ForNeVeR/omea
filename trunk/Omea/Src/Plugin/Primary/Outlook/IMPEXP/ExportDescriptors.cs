@@ -343,8 +343,6 @@ namespace JetBrains.Omea.OutlookPlugin
         public override string Name
         {
             get { return "Exporting contact"; }
-            set
-            {}
         }
     }
 
@@ -397,8 +395,6 @@ namespace JetBrains.Omea.OutlookPlugin
         public override string Name
         {
             get { return "Exporting contact"; }
-            set
-            {}
         }
     }
 }

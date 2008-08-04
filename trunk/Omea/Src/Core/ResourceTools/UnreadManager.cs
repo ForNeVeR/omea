@@ -27,11 +27,11 @@ namespace JetBrains.Omea.ResourceTools
 
     public class UnreadState
     {
-        private UnreadManager _unreadManager;
-        private string _tab;
-        private IResource _workspace;
-        private IntHashTableOfInt _unreadCountBuffer = new IntHashTableOfInt();
-        private IntHashTableOfInt _unreadCountersValid = new IntHashTableOfInt();
+        private readonly UnreadManager  _unreadManager;
+        private readonly string         _tab;
+        private readonly IResource      _workspace;
+        private readonly IntHashTableOfInt _unreadCountBuffer = new IntHashTableOfInt();
+        private readonly IntHashTableOfInt _unreadCountersValid = new IntHashTableOfInt();
 
         internal UnreadState( UnreadManager mgr, string tab, IResource workspace )
         {
@@ -140,20 +140,20 @@ namespace JetBrains.Omea.ResourceTools
 
     public class UnreadManager : IUnreadManager
     {
-        private IResourceStore _store;
-        private IResourceTabProvider _tabProvider;
-        private WorkspaceManager _workspaceManager;
-        private int            _propUnreadCount;
-        private ICoreProps     _coreProps;
+        private readonly IResourceStore     _store;
+        private readonly IResourceTabProvider _tabProvider;
+        private readonly WorkspaceManager   _workspaceManager;
+        private readonly int                _propUnreadCount;
+        private readonly ICoreProps         _coreProps;
 
-        private Hashtable _unreadStateTabMap = new Hashtable();  // tab ID -> IntHashTable<workspace ID, UnreadState>
-        private UnreadState _defaultUnreadState;
+        private readonly Hashtable _unreadStateTabMap = new Hashtable();  // tab ID -> IntHashTable<workspace ID, UnreadState>
+        private readonly UnreadState _defaultUnreadState;
         private UnreadState _curUnreadState;
-        private IntHashSet _unreadCountersChanged = new IntHashSet();
-        private HashMap _unreadCountProviders = new HashMap();   // resource type -> IUnreadCountProvider
+        private readonly IntHashSet _unreadCountersChanged = new IntHashSet();
+        private readonly HashMap _unreadCountProviders = new HashMap();   // resource type -> IUnreadCountProvider
 
         private bool _isEnabled = false;
-        private bool _traceUnreadCounters;
+        private readonly bool _traceUnreadCounters;
 
         public UnreadManager( WorkspaceManager workspaceManager, IResourceTabProvider tabProvider,
                               ISettingStore settingStore, ICoreProps coreProps )
@@ -166,7 +166,6 @@ namespace JetBrains.Omea.ResourceTools
             
             _store = Core.ResourceStore;
             _propUnreadCount = _store.PropTypes.Register( "UnreadCount", PropDataType.Int, PropTypeFlags.Internal );
-
             _traceUnreadCounters = settingStore.ReadBool( "UnreadCounters", "TraceUnreadCounters", false );
 
             Core.ResourceAP.JobFinished += environment_ResourceOperationFinished;
@@ -258,7 +257,7 @@ namespace JetBrains.Omea.ResourceTools
         {
             if ( _traceUnreadCounters )
             {
-                Trace.WriteLine( "Count for " + res.ToString() + " on " + _curUnreadState + " is " + count );
+                Trace.WriteLine( "Count for " + res + " on " + _curUnreadState + " is " + count );
             }
             _curUnreadState.UpdateUnreadCounter( res, count );
         }
@@ -296,14 +295,8 @@ namespace JetBrains.Omea.ResourceTools
             IUnreadCountProvider provider = (IUnreadCountProvider) _unreadCountProviders [res.Type];
             if ( provider == null )
             {
-                if ( state.IsPersistent )
-                {
-                    count = res.GetIntProp( _propUnreadCount );
-                }
-                else
-                {
-                    count = GetUnreadCountFromLinks( res, state );
-                }
+                count = state.IsPersistent ? res.GetIntProp( _propUnreadCount ) :
+                                             GetUnreadCountFromLinks( res, state );
             }
             else
             {
@@ -633,7 +626,7 @@ namespace JetBrains.Omea.ResourceTools
          * to the specified array list.
          */
 
-        private void FillStatesForTab( ArrayList states, IResourceList workspaces, string tab )
+        private void FillStatesForTab( IList states, IResourceList workspaces, string tab )
         {
             if ( tab == _tabProvider.GetDefaultTab() )
             {
@@ -737,7 +730,7 @@ namespace JetBrains.Omea.ResourceTools
                     {
                         int count = _defaultUnreadState.GetUnreadCount( res );
                         Trace.WriteLineIf( _traceUnreadCounters,
-                            "Flushing unread count " + count + " for resource " + res.ToString() );
+                            "Flushing unread count " + count + " for resource " + res );
                         res.SetProp( _propUnreadCount, count );
                     }
                 }
@@ -774,7 +767,7 @@ namespace JetBrains.Omea.ResourceTools
         /// Returns the list of all resources linked to the specified resource
         /// with links marked as CountUnread.
         /// </summary>
-        private IResourceList GetUnreadCountedLinks( IResource res, out int count )
+        private static IResourceList GetUnreadCountedLinks( IResource res, out int count )
         {
             IResourceList unreadCountedLinks = null;
             count = 0;

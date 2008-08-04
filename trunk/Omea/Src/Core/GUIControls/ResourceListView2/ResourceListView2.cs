@@ -5,6 +5,7 @@
 
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
@@ -828,7 +829,7 @@ namespace JetBrains.Omea.GUIControls
 
         public IResourceList GetSelectedResources()
         {
-            IntArrayList ids = new IntArrayList();
+            List<int> ids = new List<int> ();
             lock( _jetListView.Selection.SelectionLock )
             {
                 foreach( IResource res in _jetListView.Selection )
@@ -1307,40 +1308,24 @@ namespace JetBrains.Omea.GUIControls
 
 	public class ResourceItemEditEventArgs
 	{
-		private string _text;
-		private IResource _resource;
-		private JetListViewColumn _column;
-		private bool _cancelEdit;
+	    private readonly IResource _resource;
+		private readonly JetListViewColumn _column;
 
-		public ResourceItemEditEventArgs( string text, IResource resource, JetListViewColumn column )
+	    public ResourceItemEditEventArgs( string text, IResource resource, JetListViewColumn column )
 		{
-			_text = text;
+			Text = text;
 			_resource = resource;
 			_column = column;
-			_cancelEdit = false;
+			CancelEdit = false;
 		}
 
-		public string Text
-		{
-			get { return _text; }
-			set { _text = value; }
-		}
+	    public string Text { get; set; }
 
-		public IResource Resource
-		{
-			get { return _resource; }
-		}
+	    public IResource Resource {  get { return _resource; }  }
 
-		public JetListViewColumn Column
-		{
-			get { return _column; }
-		}
+		public JetListViewColumn Column {  get { return _column; }  }
 
-		public bool CancelEdit
-		{
-			get { return _cancelEdit; }
-			set { _cancelEdit = value; }
-		}
+	    public bool CancelEdit { get; set; }
 	}
 
 	public delegate void ResourceItemEditEventHandler( object sender, ResourceItemEditEventArgs e );

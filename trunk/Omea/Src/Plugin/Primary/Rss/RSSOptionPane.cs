@@ -717,7 +717,7 @@ namespace JetBrains.Omea.RSSPlugin
             IResource action = Core.ResourceStore.FindUniqueResource( "RuleAction", "Name", "Show desktop alert" );
             if ( action != null )
             {
-                IResource rule = Core.FilterManager.RegisterRule( StandardEvents.ResourceReceived, 
+                IResource rule = Core.FilterRegistry.RegisterRule( StandardEvents.ResourceReceived, 
                     "Desktop Alert: Received Feed Items", new string[] { "RSSItem" },
                     new IResource[] {}, new IResource[] {}, new IResource[] { action } );
                 rule.SetProp( Props.DefaultDesktopAlertRule, true );
@@ -728,7 +728,7 @@ namespace JetBrains.Omea.RSSPlugin
         {
             foreach( IResource res in FindDesktopAlertRules() )
             {
-                Core.FilterManager.DeleteRule( res );
+                Core.FilterRegistry.DeleteRule( res );
             }
         }
 

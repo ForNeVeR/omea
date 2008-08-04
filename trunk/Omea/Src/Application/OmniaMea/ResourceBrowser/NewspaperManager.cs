@@ -4,6 +4,7 @@
 /// </copyright>
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
@@ -363,17 +364,12 @@ namespace JetBrains.Omea
 			// Choose the new item
 			if( bForward )
 			{
-				if( bGlobal )
-					itemTarget = ItemsInView[ ItemsInView.Count - 1 ];
-				else
-					itemTarget = ItemsOnPage[ ItemsOnPage.Count - 1 ];
+				itemTarget = bGlobal ? ItemsInView[ ItemsInView.Count - 1 ] :
+                                       ItemsOnPage[ ItemsOnPage.Count - 1 ];
 			}
 			else
 			{
-				if( bGlobal )
-					itemTarget = ItemsInView[ 0 ];
-				else
-					itemTarget = ItemsOnPage[ 0 ];
+				itemTarget = bGlobal ? ItemsInView[ 0 ] : ItemsOnPage[ 0 ];
 			}
 
 			// Select item or, if it's already selected, make it visible
@@ -475,7 +471,8 @@ namespace JetBrains.Omea
 				if( (refetch) || (_itemsInViewLive == null) ) // Rebuild always on the first call, even if not requested explicitly
 				{
 					// Rebuild the view (both live and non-live versions)
-					_itemsInViewLive = CurrentFilteringView == null ? _itemsAvailLive : Core.FilterManager.ExecView( CurrentFilteringView, _itemsAvailLive );
+					_itemsInViewLive = (CurrentFilteringView == null) ? _itemsAvailLive :
+                                                                        Core.FilterEngine.ExecView( CurrentFilteringView, _itemsAvailLive );
 				}
 
 				// Update the dead snapshot
@@ -657,12 +654,14 @@ namespace JetBrains.Omea
 				return _nItemsPerPage; // Return the cached value of the combobox
 			}
 			set
-			{
-				// Check
-				if( value <= 0 )
-					throw new ArgumentOutOfRangeException( "ItemsPerPage", value, "Number of items per page cannot be negative." );
+            {
+                #region Preconditions
+                if ( value <= 0 )
+					throw new ArgumentOutOfRangeException( "value", value, "Number of items per page cannot be negative." );
+
 				if( value >= c_nMaxItemsOnPage )
-					throw new ArgumentOutOfRangeException( "ItemsPerPage", value, String.Format( "Number of items per page must be below {0}.", c_nMaxItemsOnPage ) );
+					throw new ArgumentOutOfRangeException( "value", value, String.Format( "Number of items per page must be below {0}.", c_nMaxItemsOnPage ) );
+                #endregion Preconditions
 
 				bool bChanged = false; // Determines whether to raise the Changed event
 
@@ -1063,9 +1062,8 @@ namespace JetBrains.Omea
 		/// </summary>
 		public class ItemAddedEventArgs
 		{
-			private IResource _itemNew;
-
-			private IResource _itemInsertBefore;
+			private readonly IResource _itemNew;
+			private readonly IResource _itemInsertBefore;
 
 			public ItemAddedEventArgs( IResource itemNew, IResource itemInsertBefore )
 			{
@@ -1554,9 +1552,9 @@ namespace JetBrains.Omea
             }
 
             // Wire up the events
-            _itemsAvailLive.ResourceAdded += new ResourceIndexEventHandler( OnItemAdded );
-            _itemsAvailLive.ResourceChanged += new ResourcePropIndexEventHandler( OnItemChanged );
-            _itemsAvailLive.ResourceDeleting += new ResourceIndexEventHandler( OnItemDeleting );
+            _itemsAvailLive.ResourceAdded += OnItemAdded;
+            _itemsAvailLive.ResourceChanged += OnItemChanged;
+            _itemsAvailLive.ResourceDeleting += OnItemDeleting;
 
             ////////////////////////////
             // Pick the resource types
@@ -1567,10 +1565,11 @@ namespace JetBrains.Omea
             // Update the views list
 
             // Pick only those views that intersect with this resource type list (or have no restrictions)
-            _viewsAll = Core.FilterManager.GetViews();
+            _viewsAll = Core.FilterRegistry.GetViews();
             _viewsFiltering = Core.ResourceStore.EmptyResourceList;
-		    IntArrayList viewIds = new IntArrayList();
+            List<int> viewIds = new List<int>();
             HashSet cache = null;
+
             foreach( IResource view in _viewsAll )
             {
                 if( IsFilteringView( view, ref cache ) )
@@ -1584,9 +1583,9 @@ namespace JetBrains.Omea
             }
 			
             // Monitor changes in views
-            _viewsAll.ResourceAdded += new ResourceIndexEventHandler( OnViewAdded );
-            _viewsAll.ResourceChanged += new ResourcePropIndexEventHandler( OnViewChanged );
-            _viewsAll.ResourceDeleting += new ResourceIndexEventHandler( OnViewDeleted );
+            _viewsAll.ResourceAdded += OnViewAdded;
+            _viewsAll.ResourceChanged += OnViewChanged;
+            _viewsAll.ResourceDeleting += OnViewDeleted;
 
             //////////////////////
             // Load the settings
@@ -1606,7 +1605,7 @@ namespace JetBrains.Omea
             SafeFireEvent( Initializing, EventArgs.Empty );
 
             // Listen to changes in the settings
-            Core.UIManager.AddOptionsChangesListener( "Omea", "General", new EventHandler( OnSettingsChanged ) );
+            Core.UIManager.AddOptionsChangesListener( "Omea", "General", OnSettingsChanged );
             OnSettingsChanged( null, EventArgs.Empty );
 
             // Fill the first page in
@@ -1625,7 +1624,7 @@ namespace JetBrains.Omea
 			Preconditions( Pre.Initialized );
 
 			// Stop listening to changes in the settings
-			Core.UIManager.RemoveOptionsChangesListener( "Omea", "General", new EventHandler( OnSettingsChanged ) );
+			Core.UIManager.RemoveOptionsChangesListener( "Omea", "General", OnSettingsChanged );
 
 			// Cancel the pending view updates
 			Core.UserInterfaceAP.CancelJobs( new MethodInvoker( RecalculateViewDeferred ) );
@@ -1650,16 +1649,16 @@ namespace JetBrains.Omea
 			// Deinit the items list
 			_itemsAvail = null;
 			_resourceTypes = null;
-			_itemsAvailLive.ResourceAdded -= new ResourceIndexEventHandler( OnItemAdded );
-			_itemsAvailLive.ResourceChanged -= new ResourcePropIndexEventHandler( OnItemChanged );
-			_itemsAvailLive.ResourceDeleting -= new ResourceIndexEventHandler( OnItemDeleting );
+			_itemsAvailLive.ResourceAdded -= OnItemAdded;
+			_itemsAvailLive.ResourceChanged -= OnItemChanged;
+			_itemsAvailLive.ResourceDeleting -= OnItemDeleting;
 			_itemsAvailLive = null;
 
 			// Deinit the filtering views list
 			_viewsFiltering = null;
-			_viewsAll.ResourceAdded -= new ResourceIndexEventHandler( OnViewAdded );
-			_viewsAll.ResourceChanged -= new ResourcePropIndexEventHandler( OnViewChanged );
-			_viewsAll.ResourceDeleting -= new ResourceIndexEventHandler( OnViewDeleted );
+			_viewsAll.ResourceAdded -= OnViewAdded;
+			_viewsAll.ResourceChanged -= OnViewChanged;
+			_viewsAll.ResourceDeleting -= OnViewDeleted;
 			_viewsAll = null;
 
 			// Mark as deinitialized
@@ -1807,7 +1806,7 @@ namespace JetBrains.Omea
 		{
 			Preconditions( Pre.Initialized );
 			if( (itemsOld == null) && (itemsNew == null) )
-				throw new ArgumentNullException( "Both lists of the page-switching function cannot be null simultaneously." );
+				throw new ArgumentNullException( "itemsOld", "Both lists of the page-switching function cannot be null simultaneously." );
 			Trace.WriteLine( String.Format( "Switching a page from {0} pcs to {1} pcs.", (itemsOld != null ? itemsOld.Count.ToString() : "<null>"), (itemsNew != null ? itemsNew.Count.ToString() : "<null>") ), "[NPV]" );
 
 			// Debug Output: dump all the items being added and removed; in non-release versions only
@@ -1885,15 +1884,14 @@ namespace JetBrains.Omea
 						if( itemsPersistent.Count != 0 )
 						{ // There are persistent items — choose the proper places to insert the newcomers
 							int nBefore = 0; // Index of the persistent item before which the newcomer should be inserted
-							IResource itemBefore;
-							for( int nNew = 0; nNew < arCome.Count; nNew++ )
+						    for( int nNew = 0; nNew < arCome.Count; nNew++ )
 							{
 								// Find the persistent item before which this one should be inserted — the first with a greater index
 								for(; (nBefore < arPersistent.Count) && (arPersistent[ nBefore ] <= arCome[ nNew ]); nBefore++ )
 									;
 
 								// Item before which to insert, or null, if beyond the end
-								itemBefore = nBefore < arPersistent.Count ? ItemsInView[ arPersistent[ nBefore ] ] : null;
+								IResource itemBefore = nBefore < arPersistent.Count ? ItemsInView[ arPersistent[ nBefore ] ] : null;
 
 								// Do the insert
 								FireItemAdded( new ItemAddedEventArgs( ItemsInView[ arCome[ nNew ] ], itemBefore ) );

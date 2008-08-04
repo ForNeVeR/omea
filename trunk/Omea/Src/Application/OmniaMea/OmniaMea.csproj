@@ -11,6 +11,7 @@
     <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{45561619-1C61-4293-B8B1-88A76A8190DC}</ProjectGuid>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ApplicationIcon>Icons\App.ico</ApplicationIcon>
@@ -23,9 +24,6 @@
     <TargetFileName>OmniaMea.dll</TargetFileName>
     <RootNamespace>OmniaMea</RootNamespace>
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
-    <!-- No specific CPU, but run under WOW on 64bit platforms. -->
-    <ProcessorArchitecture>msil</ProcessorArchitecture>
-    <PlatformTarget>x86</PlatformTarget>
     <OldToolsVersion>2.0</OldToolsVersion>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
@@ -45,6 +43,7 @@
     <ProductHomeDir>$(MSBuildProjectDirectory)/../../..</ProductHomeDir>
     <StartupObject>
     </StartupObject>
+    <TargetFrameworkVersion>v3.0</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -95,6 +94,20 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PresentationFramework">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="PresentationCore">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="ReachFramework" />
+    <Reference Include="UIAutomationProvider">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsFormsIntegration" />
     <Reference Include="CookComputing.XmlRpc">
       <Name>CookComputing.XmlRpc</Name>
       <HintPath>../../../Lib/References/CookComputing.XmlRpc.dll</HintPath>
@@ -102,6 +115,10 @@
     <Reference Include="ICSharpCode.SharpZipLib">
       <Name>ICSharpCode.SharpZipLib</Name>
       <HintPath>../../../Lib/References/ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="JetBrains.Annotations, Version=4.0.729.23, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\JetBrains\ReSharper\v4.0\vs9.0\Bin\JetBrains.Annotations.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.JScript">
       <Name>Microsoft.JScript</Name>
@@ -351,6 +368,15 @@
     <Compile Include="Options\MySelfPane.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Options\OmeaPluginsPageListEntry.cs">
+    </Compile>
+    <Compile Include="Options\OmeaPluginsPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Options\OmeaPluginsPageAssemblyInfo.cs">
+    </Compile>
+    <Compile Include="Options\OmeaPluginsPageListEntryNonPlugin.cs" />
+    <Compile Include="Options\OmeaPluginsPageListEntryPlugin.cs" />
     <Compile Include="Options\OptionsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -366,9 +392,11 @@
     <Compile Include="Options\StartupWizard.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="PluginDescription.cs" />
     <Compile Include="PluginEnvironment.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="PluginLoader.cs" />
     <Compile Include="Plugins.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -468,17 +496,11 @@
     <Compile Include="Sidebar\PaneCaption.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Sidebar\SidebarBackground.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Sidebar\SidebarPaneBackground.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Sidebar\SidebarSwitcher.cs">
       <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Sidebar\VerticalButton.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Sidebar\VerticalSidebar.cs">
       <SubType>UserControl</SubType>
@@ -491,6 +513,11 @@
     </Compile>
     <Compile Include="StatusPaneManager.cs">
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Stringtable.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Stringtable.resx</DependentUpon>
     </Compile>
     <Compile Include="TabSwitcher.cs">
       <SubType>UserControl</SubType>
@@ -540,6 +567,7 @@
     <Compile Include="Tests\StartupTest.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Tests\TestPluginLoader.cs" />
     <Compile Include="Tests\UIManagerTests.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -655,7 +683,6 @@
     <EmbeddedResource Include="Icons\categoriesBW.ico" />
     <EmbeddedResource Include="Icons\collapsegroups.ico" />
     <EmbeddedResource Include="Icons\CompletedFlag.ico" />
-    <EmbeddedResource Include="Icons\correspondents.ico" />
     <EmbeddedResource Include="Icons\DefaultColorScheme.xml" />
     <EmbeddedResource Include="Icons\delete.ico" />
     <EmbeddedResource Include="Icons\e-mail_account.ico" />
@@ -702,9 +729,6 @@
     <EmbeddedResource Include="Icons\property.ico" />
     <EmbeddedResource Include="Icons\PurpleFlag.ico" />
     <EmbeddedResource Include="Icons\quickfind.ico" />
-    <EmbeddedResource Include="Icons\quick_clear.ico" />
-    <EmbeddedResource Include="Icons\quick_clear_hot.ico" />
-    <EmbeddedResource Include="Icons\quick_clear_pressed.ico" />
     <EmbeddedResource Include="Icons\quick_go.ico" />
     <EmbeddedResource Include="Icons\quick_go_hot.ico" />
     <EmbeddedResource Include="Icons\quick_go_pressed.ico" />
@@ -729,7 +753,6 @@
     <EmbeddedResource Include="Icons\trayiconReader.ico" />
     <EmbeddedResource Include="Icons\trayiconReader8.ico" />
     <EmbeddedResource Include="Icons\updating.ico" />
-    <EmbeddedResource Include="Icons\views_categories.ico" />
     <EmbeddedResource Include="Icons\workspace.ico" />
     <EmbeddedResource Include="Icons\WorkspaceOtherView.ico" />
     <EmbeddedResource Include="Icons\Workspaces.Organize.Hot.ico" />
@@ -861,10 +884,6 @@
       <DependentUpon>SidebarSwitcher.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Sidebar\VerticalButton.resx">
-      <DependentUpon>VerticalButton.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="Sidebar\VerticalSidebar.resx">
       <DependentUpon>VerticalSidebar.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -933,6 +952,42 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Icons\splash_pro.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Icons\Views24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Icons\Correspondents24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Icons\twopanes.ico" />
+    <EmbeddedResource Include="Stringtable.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Stringtable.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\PluginGenericIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\PluginPrimaryGlyph.png" />
+    <Resource Include="Icons\PluginThirdPartyGlyph.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\AboutOmeaPlugins.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\DownloadMorePlugins.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\RefreshPlugins.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\NonPlugin.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="OmniaMea\" />

@@ -140,7 +140,7 @@ namespace JetBrains.Omea.ContactsPlugin
                 }
 
 
-                Core.FilterManager.ExecRules( StandardEvents.CategoryAssigned, _contact );
+                Core.FilterEngine.ExecRules( StandardEvents.CategoryAssigned, _contact );
             }
         }
 

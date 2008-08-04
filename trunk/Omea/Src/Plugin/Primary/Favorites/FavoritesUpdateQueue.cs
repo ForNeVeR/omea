@@ -60,7 +60,6 @@ namespace JetBrains.Omea.Favorites
         public override string Name
         {
             get { return "Downloading bookmarks"; }
-            set {}
         }
 
         private IResourceList   _weblinks;

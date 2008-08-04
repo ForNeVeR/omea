@@ -250,7 +250,6 @@ namespace JetBrains.Omea.OutlookPlugin
         public override string Name
         {
             get { return "Exporting info store: " + _name; }
-            set { }
         }
     }
 
@@ -320,7 +319,6 @@ namespace JetBrains.Omea.OutlookPlugin
             {
                 return "Refresh for folder";
             }
-            set { }
         }
     }
 
@@ -365,7 +363,6 @@ namespace JetBrains.Omea.OutlookPlugin
         public override string Name
         {
             get { return "Folder ignoring changed for folder: " + _folder.DisplayName; }
-            set { }
         }
     }
 }

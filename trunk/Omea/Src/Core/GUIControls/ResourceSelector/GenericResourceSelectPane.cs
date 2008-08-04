@@ -4,12 +4,11 @@
 /// </copyright>
 
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 using JetBrains.JetListViewLibrary;
-using JetBrains.Omea.Base;
-using JetBrains.Omea.Containers;
 using JetBrains.Omea.OpenAPI;
 
 namespace JetBrains.Omea.GUIControls
@@ -26,9 +25,9 @@ namespace JetBrains.Omea.GUIControls
         private Timer _tmrIncSearch;
 
         private CheckBoxColumn _chkColumn;
-        private ResourceNameJetFilter _nameFilter;
         private ResourceListView2 _listView;
         private ResourceListDataProvider _dataProvider;
+        private readonly ResourceNameJetFilter _nameFilter;
 
 		public GenericResourceSelectPane()
 		{
@@ -182,7 +181,7 @@ namespace JetBrains.Omea.GUIControls
         {
             if ( _chkColumn != null )
             {
-                IntArrayList resourceIds = new IntArrayList();
+                List<int> resourceIds = new List<int>();
                 foreach( IResource res in _dataProvider.ResourceList )
                 {
                     if ( _chkColumn.GetItemCheckState( res ) == CheckBoxState.Checked )
@@ -212,7 +211,7 @@ namespace JetBrains.Omea.GUIControls
             _nameFilter.FilterString = _findEdit.Text;
         }
 
-		private void _listView_DoubleClick(object sender, JetBrains.JetListViewLibrary.HandledEventArgs e)
+		private void _listView_DoubleClick(object sender, JetListViewLibrary.HandledEventArgs e)
         {
             OnAccept();
             e.Handled = true;

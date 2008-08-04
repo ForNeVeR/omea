@@ -45,7 +45,7 @@ namespace JetBrains.Omea.GUIControls
                 IResource wsp = Core.WorkspaceManager.ActiveWorkspace;
                 if( res.Type == FilterManagerProps.ViewResName )
                 {
-                    IResourceList total = Core.FilterManager.ExecView( res );
+                    IResourceList total = Core.FilterEngine.ExecView( res );
                     if( !res.HasProp( "ShowDeletedItems" ))
                         total = total.Minus( _allDeleted );
                     total = total.Intersect( _allTyped );
@@ -150,17 +150,17 @@ namespace JetBrains.Omea.GUIControls
         {
             Core.TextIndexManager.IndexLoaded -= TextIndexLoaded;
 
-            IResourceList allViews = Core.FilterManager.GetViews();
+            IResourceList allViews = Core.FilterRegistry.GetViews();
             foreach( IResource view in allViews )
             {
-                if( FilterManager.HasQueryCondition( view ) )
+                if( FilterRegistry.HasQueryCondition( view ) )
                     DecorateResource( view );
             }
         }
 
         public bool DecorateNode( IResource res, RichText nodeText )
         {
-            if( res.Type == FilterManagerProps.ViewResName && FilterManager.HasQueryCondition( res ))
+            if( res.Type == FilterManagerProps.ViewResName && FilterRegistry.HasQueryCondition( res ))
             {
                 bool ready = Core.TextIndexManager.IsIndexPresent();
                 nodeText.SetStyle( ready ? _normalStyle : _notReadyStyle, 0, nodeText.Length );

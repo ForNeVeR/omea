@@ -24,6 +24,7 @@
 		<!-- Prevent forcing JB copyrights over mentalis'.-->
 		<NoAssemblyVersion>True</NoAssemblyVersion>
 		<ProductHomeDir>$(MSBuildProjectDirectory)/../../..</ProductHomeDir>
+		<TargetFrameworkVersion>v3.0</TargetFrameworkVersion>
 	</PropertyGroup>
 	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
 		<AllowUnsafeBlocks>false</AllowUnsafeBlocks>

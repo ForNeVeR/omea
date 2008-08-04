@@ -230,7 +230,6 @@ namespace JetBrains.Omea.Net
         public override string Name
         {
             get { return "TCP connection to " + _server + ':' + _port; }
-            set {}
         }
 
         #endregion

@@ -7,7 +7,7 @@ using JetBrains.Omea.OpenAPI;
 
 namespace JetBrains.Omea.Pictures
 {
-    [PluginDescriptionAttribute("JetBrains Inc.", "Graphical files viewer in Omea.")]
+    [PluginDescriptionAttribute("Pictures", "JetBrains Inc.", "Graphical files viewer in Omea.", PluginDescriptionFormat.PlainText, "Icons/PicturesPluginIcon.png")]
 	public class PicturesPlugin : IPlugin, IResourceDisplayer
     {
         #region IPlugin Members

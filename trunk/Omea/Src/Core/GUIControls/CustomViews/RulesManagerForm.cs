@@ -56,7 +56,7 @@ namespace JetBrains.Omea.GUIControls.CustomViews
 	    private IResourceList _rulesWithErrors;
         //  aliases
         private static readonly IResourceStore Store = Core.ResourceStore;
-        private static readonly IFilterManager FMan = Core.FilterManager;
+        private static readonly IFilterRegistry FMan = Core.FilterRegistry;
         #endregion Attributes
 
         /// <summary>
@@ -662,7 +662,7 @@ namespace JetBrains.Omea.GUIControls.CustomViews
         {
             switch( Context )
             {
-                case "IsActionFilter": Core.FilterManager.RenameRule( rule, newName ); break;
+                case "IsActionFilter": Core.FilterRegistry.RenameRule( rule, newName ); break;
                 case "IsFormattingFilter": Core.FormattingRuleManager.RenameRule( rule, newName ); break;
                 case "IsTrayIconFilter": Core.TrayIconManager.RenameRule( rule, newName ); break;
                 case "IsExpirationFilter": Core.ExpirationRuleManager.RenameRule( rule, newName ); break;
@@ -675,7 +675,7 @@ namespace JetBrains.Omea.GUIControls.CustomViews
             string  ruleName = rule.GetStringProp( Core.Props.Name );
             switch( Context )
             {
-                case "IsActionFilter": Core.FilterManager.DeleteRule( ruleName ); break;
+                case "IsActionFilter": Core.FilterRegistry.DeleteRule( ruleName ); break;
                 case "IsFormattingFilter": Core.FormattingRuleManager.UnregisterRule( ruleName ); break;
                 case "IsTrayIconFilter": Core.TrayIconManager.UnregisterTrayIconRule( ruleName ); break;
                 case "IsExpirationFilter": Core.ExpirationRuleManager.UnregisterRule( ruleName ); break;
@@ -701,7 +701,7 @@ namespace JetBrains.Omea.GUIControls.CustomViews
             bool  exists = false;
             switch( Context )
             {
-                case "IsActionFilter": exists = (Core.FilterManager.FindRule( newName ) != null); break;
+                case "IsActionFilter": exists = (Core.FilterRegistry.FindRule( newName ) != null); break;
                 case "IsFormattingFilter": exists = (Core.FormattingRuleManager.FindRule( newName ) != null); break;
                 case "IsTrayIconFilter": exists = (Core.TrayIconManager.FindRule( newName ) != null); break;
                 default: Debug.Assert( false ); break;
@@ -719,14 +719,14 @@ namespace JetBrains.Omea.GUIControls.CustomViews
 
             IResource[][] conditionGroups;
             IResource[]   exceptions;
-            FilterManager.CloneConditionTypeLinks( from, out conditionGroups, out exceptions );
+            FilterRegistry.CloneConditionTypeLinks( from, out conditionGroups, out exceptions );
 
             IResourceList actionsList = FMan.GetActions( from );
             IResource[] actions = new IResource[ actionsList.Count ];
             for( int i = 0; i < actionsList.Count; i++ )
                 actions[ i ] = FMan.CloneAction( actionsList[ i ] );
 
-            string[] formTypes = FilterManager.CompoundType( from );
+            string[] formTypes = FilterRegistry.CompoundType( from );
             string   eventName = from.GetStringProp( "EventName" );
             IResource newRule = FMan.RegisterRule( eventName, newName, formTypes, conditionGroups, exceptions, actions );
             return newRule;

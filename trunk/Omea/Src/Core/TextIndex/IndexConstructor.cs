@@ -4,6 +4,7 @@
 /// </copyright>
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using JetBrains.DataStructures;
@@ -39,7 +40,7 @@ namespace JetBrains.Omea.TextIndex
         internal static void  WriteEntry(
             BinaryWriter writer, int docId, int termId, object instances, int maxTermInDoc )
         {
-            LongArrayList offsets = instances as LongArrayList;
+            List<long> offsets = instances as List<long>;
             int     instancesOnDoc = ( offsets == null ) ? 1 : offsets.Count;
             float   tfIdf = CalcMetric( instancesOnDoc, maxTermInDoc, 1.0 );
             if( offsets != null )
@@ -66,7 +67,7 @@ namespace JetBrains.Omea.TextIndex
             fileIndex.Write( 0x7FFFFFFF );        //  Maximal term/doc ID (to be written later)
         }
 
-        private static void WriteEntry( BinaryWriter writer, int docID, float tfIdf, LongArrayList offsets )
+        private static void WriteEntry( BinaryWriter writer, int docID, float tfIdf, ICollection<long> offsets )
         {
             WriteCount( writer, docID );
             writer.Write( tfIdf );
@@ -124,9 +125,7 @@ namespace JetBrains.Omea.TextIndex
 
         #region Attributes
         public  const   int         ciSignatureLength = 28;
-        private static  string      strWorkDir = null;
-
-        private static  IntHashTableOfInt hash = new IntHashTableOfInt( 10000 );
+        private static  string      strWorkDir;
         #endregion
     }
 }

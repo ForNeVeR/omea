@@ -26,7 +26,7 @@ namespace JetBrains.Omea.FiltersManagement
         }
 
         private IResourceList _formattingRuleList;
-        private readonly IFilterManager _fmgr;
+        private readonly IFilterRegistry _fmgr;
         private readonly ArrayList _formattingRules = new ArrayList();
         public event EventHandler FormattingRulesChanged;
 
@@ -34,8 +34,8 @@ namespace JetBrains.Omea.FiltersManagement
 
         #region Ctor and Initialization
 
-        //  IFilterManager in params is mostly for PicoContainer dependency.
-        public FormattingRuleManager( IFilterManager fmgr )
+        //  IFilterRegistry in params is mostly for PicoContainer dependency.
+        public FormattingRuleManager( IFilterRegistry fmgr )
         {
             _fmgr = fmgr;
             RegisterTypes();
@@ -62,7 +62,7 @@ namespace JetBrains.Omea.FiltersManagement
         {
             IResource rule = FindRule( name );
             ResourceProxy proxy = GetRuleProxy( rule );
-            FilterManager.InitializeView( proxy, name, types, conditions, exceptions );
+            FilterRegistry.InitializeView( proxy, name, types, conditions, exceptions );
             AddSpecificParams( proxy.Resource, name, isBold, isItalic, isUnderlined, isStrikeout, foreColor, backColor );
             CheckRuleInvisiblity( proxy.Resource, conditions );
             return proxy.Resource;
@@ -75,7 +75,7 @@ namespace JetBrains.Omea.FiltersManagement
         {
             ResourceProxy proxy = new ResourceProxy( baseRes );
             proxy.BeginUpdate();
-            FilterManager.InitializeView( proxy, name, types, conditions, exceptions );
+            FilterRegistry.InitializeView( proxy, name, types, conditions, exceptions );
             AddSpecificParams( baseRes, name, isBold, isItalic, isUnderlined, isStrikeout, foreColor, backColor );
             return baseRes;
         }
@@ -83,7 +83,7 @@ namespace JetBrains.Omea.FiltersManagement
         public void  UnregisterRule( string name )
         {
             IResource rule = FindRule( name );
-            Core.FilterManager.DeleteView( rule );
+            Core.FilterRegistry.DeleteView( rule );
         }
 
         public IResource FindRule( string name )
@@ -132,7 +132,7 @@ namespace JetBrains.Omea.FiltersManagement
             #endregion Preconditions
 
             ResourceProxy newRule = ResourceProxy.BeginNewResource( FilterManagerProps.ViewCompositeResName );
-            FilterManager.CloneView( sourceRule, newRule, newName );
+            FilterRegistry.CloneView( sourceRule, newRule, newName );
             CloneFormatting( sourceRule, newRule.Resource );
 
             return newRule.Resource;
@@ -168,8 +168,11 @@ namespace JetBrains.Omea.FiltersManagement
             {
                 foreach( FormattingRule rule in _formattingRules )
                 {
-                    if( _fmgr.IsRuleActive( rule.Resource ) && _fmgr.MatchView( rule.Resource, res, false ) )
+                    if( _fmgr.IsRuleActive( rule.Resource ) &&
+                        Core.FilterEngine.MatchView( rule.Resource, res, false ) )
+                    {
                         return rule.ItemFormat;
+                    }
                 }
             }
             return null;
@@ -219,11 +222,11 @@ namespace JetBrains.Omea.FiltersManagement
         {
             foreach( IResource cond in conditions )
             {
-                IResource template = cond.GetLinkProp( Core.FilterManager.Props.TemplateLink );
+                IResource template = cond.GetLinkProp( Core.FilterRegistry.Props.TemplateLink );
                 if( template != null &&
-                    template.Id == Core.FilterManager.Std.MessageIsInThreadOfX.Id )
+                    template.Id == Core.FilterRegistry.Std.MessageIsInThreadOfX.Id )
                 {
-                    new ResourceProxy( rule ).SetProp( Core.FilterManager.Props.Invisible, true );
+                    new ResourceProxy( rule ).SetProp( Core.FilterRegistry.Props.Invisible, true );
                 }
             }
         }
@@ -236,17 +239,17 @@ namespace JetBrains.Omea.FiltersManagement
         private static void  CheckValidInvisibleRules()
         {
             IResourceList list = Core.ResourceStore.FindResourcesWithProp( FilterManagerProps.ViewCompositeResName, "IsFormattingFilter" );
-            list = list.Intersect( Core.ResourceStore.FindResourcesWithProp( FilterManagerProps.ViewCompositeResName, Core.FilterManager.Props.Invisible ) );
+            list = list.Intersect( Core.ResourceStore.FindResourcesWithProp( FilterManagerProps.ViewCompositeResName, Core.FilterRegistry.Props.Invisible ) );
 
             for( int i = 0; i < list.Count; i++ )
             {
                 bool  valid = true;
-                IResourceList conds = Core.FilterManager.GetConditionsPlain( list[ i ] );
+                IResourceList conds = Core.FilterRegistry.GetConditionsPlain( list[ i ] );
                 foreach( IResource cond in conds )
                 {
-                    IResource template = cond.GetLinkProp( Core.FilterManager.Props.TemplateLink );
+                    IResource template = cond.GetLinkProp( Core.FilterRegistry.Props.TemplateLink );
                     if( template != null &&
-                        template.Id == Core.FilterManager.Std.MessageIsInThreadOfX.Id )
+                        template.Id == Core.FilterRegistry.Std.MessageIsInThreadOfX.Id )
                     {
                         IResourceList paramList = cond.GetLinksOfType( null, "LinkedSetValue" );
                         if( paramList.Count == 0 )
@@ -276,7 +279,7 @@ namespace JetBrains.Omea.FiltersManagement
             _formattingRuleList.ResourceChanged += OnFormattingRuleChanged;
             _formattingRuleList.ResourceDeleting += OnFormattingRuleDeleting;
 
-            _formattingRuleList.Sort( new int[]  { Core.FilterManager.Props.Invisible, Core.Props.Date, Core.Props.Order },
+            _formattingRuleList.Sort( new int[]  { Core.FilterRegistry.Props.Invisible, Core.Props.Date, Core.Props.Order },
                                       new bool[] { false, false, true } );
             ReloadFormattingRules( null );
         }

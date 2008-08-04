@@ -506,7 +506,7 @@ namespace JetBrains.Omea.DebugPlugin
     {
         public override void Execute( IActionContext context )
         {
-            Core.UIManager.RunWithProgressWindow( "Upgrading Contact Names Information to 2.5 format.", new MethodInvoker( DeleteCNs ));
+            Core.UIManager.RunWithProgressWindow( "Upgrading Contact Names Information to 2.5 format.", DeleteCNs );
         }
 
         private static void DeleteCNs()
@@ -717,7 +717,7 @@ namespace JetBrains.Omea.DebugPlugin
     {
 		public override void Execute( IActionContext context )
 		{
-            Core.UIManager.RunWithProgressWindow( "Deleting Outlook Resources", new MethodInvoker( Do ) );
+            Core.UIManager.RunWithProgressWindow( "Deleting Outlook Resources", Do );
 		}
         private void Do()
         {
@@ -977,11 +977,11 @@ namespace JetBrains.Omea.DebugPlugin
         {
             int count = 0;
             IResourceList list = Core.ResourceStore.FindResources( FilterManagerProps.ConditionResName, 
-                                                                   Core.FilterManager.Props.OpProp, (int)ConditionOp.QueryMatch );
+                                                                   Core.FilterRegistry.Props.OpProp, (int)ConditionOp.QueryMatch );
             Trace.WriteLine( "-----------------------------------------------------------------");
             foreach( IResource res in list )
             {
-                IResourceList groups = res.GetLinksOfType( FilterManagerProps.ConjunctionGroup, Core.FilterManager.Props.LinkedConditions );
+                IResourceList groups = res.GetLinksOfType( FilterManagerProps.ConjunctionGroup, Core.FilterRegistry.Props.LinkedConditions );
                 if( groups.Count == 0 )
                 {
                     Trace.WriteLine( "Condition [" + res.Id + "] is hanged");

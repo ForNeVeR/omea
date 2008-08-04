@@ -361,7 +361,7 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
 	    private void _btnEditRepository_Click( object sender, EventArgs e )
 	    {
 	        RepositoryItem item = (RepositoryItem) _lbxRepositories.SelectedItem;
-	        RepositoryType repType = SccPlugin.GetRepositoryType( item.Resource.GetStringProp( Props.RepositoryType ) );
+	        RepositoryType repType = SccPlugin.GetRepositoryType( item.Resource );
 	        repType.EditRepository( this, item.Resource );
 	        RefreshRepositoryList( item.Resource );
 	    }
@@ -372,28 +372,27 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
 	        {
 	            if ( dlg.ShowDialog( this ) == DialogResult.OK )
 	            {
-	                ResourceProxy proxy = ResourceProxy.BeginNewResource( Props.LinkRegexResource );
-	                proxy.SetProp( Props.RegexMatch, dlg.RegexMatch );
-	                proxy.SetProp( Props.RegexReplace, dlg.RegexReplace );
-	                proxy.EndUpdate();
-	                RefreshRegexList( proxy.Resource );
+	                LinkRegex linkRegex = LinkRegex.Create();
+	                linkRegex.RegexMatch = dlg.RegexMatch;
+	                linkRegex.RegexReplace = dlg.RegexReplace;
+                    linkRegex.Save();
+	                RefreshRegexList( linkRegex );
 	            }
 	        }
 	    }
 
-	    private void RefreshRegexList( IResource itemToSelect )
+	    private void RefreshRegexList( LinkRegex itemToSelect )
 	    {
 	        _lbxRegexes.Items.Clear();
-	        IResourceList repList = Core.ResourceStore.GetAllResources( Props.LinkRegexResource );
-	        foreach( IResource res in repList )
+	        BusinessObjectList<LinkRegex> repList = Core.ResourceStore.GetAllResources( LinkRegex.ResourceType );
+            foreach( LinkRegex res in repList )
 	        {
-	            LinkRegexItem item = new LinkRegexItem( res );
-	            _lbxRegexes.Items.Add( item );
-	            if ( res == itemToSelect )
-	            {
-	                _lbxRegexes.SelectedItem = item;
-	            }
+	            _lbxRegexes.Items.Add( res );
 	        }
+            if (itemToSelect != null)
+            {
+                _lbxRegexes.SelectedItem = itemToSelect;
+            }
 	        if ( _lbxRegexes.SelectedItem == null && _lbxRegexes.Items.Count > 0 )
 	        {
 	            _lbxRegexes.SelectedItem = _lbxRegexes.Items [0];
@@ -408,26 +407,24 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
 
 	    private void _btnRemoveRegex_Click(object sender, EventArgs e)
 	    {
-	        LinkRegexItem item = (LinkRegexItem) _lbxRegexes.SelectedItem;
-	        new ResourceProxy( item.Resource ).Delete();
+	        LinkRegex item = (LinkRegex) _lbxRegexes.SelectedItem;
+	        item.Delete();
 	        RefreshRegexList( null );
 	    }
 
 	    private void _btnEditRegex_Click( object sender, EventArgs e )
 	    {
-	        LinkRegexItem item = (LinkRegexItem) _lbxRegexes.SelectedItem;
+	        LinkRegex item = (LinkRegex) _lbxRegexes.SelectedItem;
 	        using( RegexOptions dlg = new RegexOptions() )
 	        {
-	            dlg.RegexMatch = item.Resource.GetStringProp( Props.RegexMatch );
-	            dlg.RegexReplace = item.Resource.GetStringProp( Props.RegexReplace );
+	            dlg.RegexMatch = item.RegexMatch;
+	            dlg.RegexReplace = item.RegexReplace;
 	            if ( dlg.ShowDialog( this ) == DialogResult.OK )
 	            {
-	                ResourceProxy proxy = new ResourceProxy( item.Resource );
-	                proxy.BeginUpdate();
-	                proxy.SetProp( Props.RegexMatch, dlg.RegexMatch );
-	                proxy.SetProp( Props.RegexReplace, dlg.RegexReplace );
-	                proxy.EndUpdate();
-	                RefreshRegexList( proxy.Resource );
+	                item.RegexMatch = dlg.RegexMatch;
+	                item.RegexReplace = dlg.RegexReplace;
+	                item.Save();
+	                RefreshRegexList( item );
 	            }
 	        }
 	    }
@@ -449,29 +446,16 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
 	        public override string ToString()
 	        {
 	            return _resource.GetProp( Core.Props.Name ) + " (" +
-	                   SccPlugin.GetRepositoryType( _resource.GetStringProp( Props.RepositoryType ) ).Name + ")";
-	        }
-	    }
-
-	    private class LinkRegexItem
-	    {
-	        private readonly IResource _resource;
-
-	        public LinkRegexItem( IResource resource )
-	        {
-	            _resource = resource;
-	        }
-
-	        public IResource Resource
-	        {
-	            get { return _resource; }
-	        }
-
-	        public override string ToString()
-	        {
-	            return _resource.GetStringProp( Props.RegexMatch ) + " -> " +
-	                   _resource.GetStringProp( Props.RegexReplace );
+	                   SccPlugin.GetRepositoryType( _resource ).Name + ")";
 	        }
 	    }
 	}
+
+    partial class LinkRegex
+    {
+        public override string ToString()
+        {
+            return RegexMatch + " -> " + RegexReplace;
+        }
+    }
 }

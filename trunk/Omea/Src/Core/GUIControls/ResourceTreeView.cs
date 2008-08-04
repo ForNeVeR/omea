@@ -1054,7 +1054,7 @@ namespace JetBrains.Omea.GUIControls
          * Gets the level of the node (0 if node=null, 1 if node is a top-level node, and so on)
          */
         
-        private int GetNodeLevel( TreeNode node )
+        private static int GetNodeLevel( TreeNode node )
         {
             int level = 0;
             while( node != null )

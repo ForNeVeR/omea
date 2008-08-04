@@ -22,13 +22,13 @@ using JetBrains.Omea.ResourceTools;
 
 namespace JetBrains.Omea.ExcelDocPlugin
 {
-	[PluginDescriptionAttribute("JetBrains Inc.", "Microsoft Excel files viewer and plain text extractor, for search capabilities")]
+	[PluginDescriptionAttribute("Excel Documents", "JetBrains Inc.", "Microsoft Excel files viewer and plain text extractor, for search capabilities", PluginDescriptionFormat.PlainText, "Icons/ExcelPluginIcon.png")]
 	public class ExcelDocPlugin: IPlugin, IResourceDisplayer, IResourceTextProvider
 	{
-		private Tracer _tracer = new Tracer( "ExcelDocPlugin" );
+		private readonly Tracer _tracer = new Tracer( "ExcelDocPlugin" );
 		private const string _converterName = "xlhtml-w32.exe";
 		private const string _MSExcelFile = "MSExcelFile";
-		private static string _tempDir = null;
+		private static string _tempDir;
 
 		#region IPlugin Members
 

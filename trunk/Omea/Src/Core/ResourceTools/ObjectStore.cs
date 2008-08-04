@@ -24,6 +24,7 @@ namespace JetBrains.Omea.ResourceTools
             _propStringValue = _store.PropTypes.Register( "StringValue", PropDataType.String, PropTypeFlags.Internal );
         }
 
+        #region Public Interface
         public static int ReadInt( string section, string key, int defaultValue )
         {
             return Instance.ReadIntImpl( section, key, defaultValue );
@@ -68,6 +69,7 @@ namespace JetBrains.Omea.ResourceTools
         {
             Instance.DeleteSectionImpl( section );
         }
+        #endregion Public Interface
 
         #region implementation details
 
@@ -209,7 +211,7 @@ namespace JetBrains.Omea.ResourceTools
             }
         }
         
-        private IResource GetValueResource( string section, string key, bool createIfNotFound )
+        private static IResource GetValueResource( string section, string key, bool createIfNotFound )
         {
             IResourceList sections = _store.FindResources( _sectionRes, Core.Props.Name, section );
             IResource result = null;

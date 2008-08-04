@@ -458,7 +458,7 @@ namespace JetBrains.Omea.OpenAPI
 
         /// <summary>
         /// Match a resource over the query using <c>TextQueriesOptimizationManager"</c>
-        /// class which interacts with FilterManager and FullTextIndexer on per-document
+        /// class which interacts with FilterRegistry and FullTextIndexer on per-document
         /// basis when they are to appear in the text index.
         /// </summary>
         /// <since>2.3 (2.5) (Grenache)</since>

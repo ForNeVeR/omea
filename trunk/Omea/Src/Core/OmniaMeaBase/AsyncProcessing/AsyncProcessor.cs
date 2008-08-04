@@ -10,6 +10,9 @@ using System.Threading;
 using System.Collections;
 using System.Windows.Forms;
 
+using System35;
+
+using JetBrains.Annotations;
 using JetBrains.Interop.WinApi;
 using JetBrains.Omea.Containers;
 using JetBrains.Omea.OpenAPI;
@@ -282,6 +285,16 @@ namespace JetBrains.Omea.AsyncProcessing
             return PushJob( new DelegateJob( name, method, args ) );
         }
 
+        public void QueueJob( [NotNull] string name, [NotNull] Action action )
+        {
+        	PushJob(new ActionJob(name, action));
+        }
+
+        public bool QueueJob([NotNull] string name, [NotNull] object identity, [NotNull] Action action)
+        {
+        	return PushJob(new ActionJob(name, action, identity));
+        }
+
         public bool QueueJob( JobPriority priority, AbstractJob job )
         {
             return PushJob( job, priority );
@@ -297,7 +310,17 @@ namespace JetBrains.Omea.AsyncProcessing
             return PushJob( new DelegateJob( name, method, args ), priority );
         }
 
-        protected delegate void QueueTimedJobDelegate( DateTime when, AbstractJob job );
+        public void QueueJob( JobPriority priority, [NotNull] string name, [NotNull] Action action )
+        {
+            PushJob( new ActionJob( name, action ), priority );
+        }
+
+        public bool QueueJob( JobPriority priority, [NotNull] string name, [NotNull] object identity, [NotNull] Action action)
+        {
+            return PushJob( new ActionJob( name, action, identity ), priority );
+        }
+
+    	private delegate void QueueTimedJobDelegate( DateTime when, AbstractJob job );
 
         public void QueueJobAt( DateTime when, AbstractJob job )
         {
@@ -327,6 +350,11 @@ namespace JetBrains.Omea.AsyncProcessing
         public void QueueJobAt( DateTime when, string name, Delegate method, params object[] args )
         {
             QueueJobAt( when, new DelegateJob( name, method, args ) );
+        }
+
+        public void QueueJobAt( DateTime when, string name, Action action )
+        {
+            QueueJobAt( when, new ActionJob( name, action ) );
         }
 
         protected delegate bool QueueIdleJobDelegate( JobPriority priority, AbstractJob job );
@@ -377,6 +405,12 @@ namespace JetBrains.Omea.AsyncProcessing
             DelegateJob job = new DelegateJob( name, method, args );
             job = (DelegateJob) RunJob( job, true );
             return ( job != null ) ? job.ReturnValue : null;
+        }
+
+        public bool RunJob([NotNull] string name, [NotNull] Action action )
+        {
+        	var job = new ActionJob(name, action);
+        	return RunJob( job, true ) != null;
         }
 
         public void RunUniqueJob( AbstractJob job )
@@ -628,7 +662,6 @@ namespace JetBrains.Omea.AsyncProcessing
                     }
                     return result;
                 }
-                set {}
             }
 
             public override int GetHashCode()
@@ -1510,47 +1543,27 @@ namespace JetBrains.Omea.AsyncProcessing
     		[DllImport("kernel32", CharSet = CharSet.Auto, SetLastError = true)]
     		public static extern uint WaitForMultipleObjects(uint nCount, IntPtr[] pHandles, bool fWaitAll, uint dwMilliseconds);
 
-    		public const uint INFINITE = 0xffffffff;
+    		private const uint QS_KEY = 0x1;
 
-    		public const uint WAIT_OBJECT_0 = 0;
+    		private const uint QS_MOUSEMOVE = 0x2;
 
-    		public const uint WAIT_FAILED = 0xffffffff;
+    		private const uint QS_MOUSEBUTTON = 0x4;
 
-    		public const uint WAIT_TIMEOUT = 258;
+    		private const uint QS_POSTMESSAGE = 0x8;
 
-    		public const uint QS_KEY = 0x1;
+    		private const uint QS_TIMER = 0x10;
 
-    		public const uint QS_MOUSEMOVE = 0x2;
+    		private const uint QS_PAINT = 0x20;
 
-    		public const uint QS_MOUSEBUTTON = 0x4;
+    		private const uint QS_SENDMESSAGE = 0x40;
 
-    		public const uint QS_POSTMESSAGE = 0x8;
+    		private const uint QS_HOTKEY = 0x80;
 
-    		public const uint QS_TIMER = 0x10;
+    		private const uint QS_RAWINPUT = 0x400;
 
-    		public const uint QS_PAINT = 0x20;
+    		internal const uint QS_ALLINPUT = (((QS_MOUSEMOVE | QS_MOUSEBUTTON) | QS_KEY | QS_RAWINPUT) | QS_POSTMESSAGE | QS_TIMER | QS_PAINT | QS_HOTKEY | QS_SENDMESSAGE);
 
-    		public const uint QS_SENDMESSAGE = 0x40;
-
-    		public const uint QS_HOTKEY = 0x80;
-
-    		public const uint QS_ALLPOSTMESSAGE = 0x100;
-
-    		public const uint QS_RAWINPUT = 0x400;
-
-    		public const uint QS_MOUSE = (QS_MOUSEMOVE | QS_MOUSEBUTTON);
-
-    		public const uint QS_INPUT = (QS_MOUSE | QS_KEY | QS_RAWINPUT);
-
-    		public const uint QS_ALLEVENTS = (QS_INPUT | QS_POSTMESSAGE | QS_TIMER | QS_PAINT | QS_HOTKEY);
-
-    		public const uint QS_ALLINPUT = (QS_INPUT | QS_POSTMESSAGE | QS_TIMER | QS_PAINT | QS_HOTKEY | QS_SENDMESSAGE);
-
-    		public const uint MWMO_WAITALL = 1;
-
-    		public const uint MWMO_ALERTABLE = 2;
-
-    		public const uint MWMO_INPUTAVAILABLE = 4;
+    		internal const uint MWMO_INPUTAVAILABLE = 4;
     	}
     }
 

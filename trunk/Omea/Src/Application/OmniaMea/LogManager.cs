@@ -25,7 +25,7 @@ namespace JetBrains.Omea
         private static string _logDir;
         private static string _logName;
         private static OmniaMeaTraceListener _traceListener;
-        private static string _usageLogId = null;
+        private static string _usageLogId;
 #if USAGE_LOG
         private static StreamWriter _usageLogWriter;
 #endif
@@ -67,7 +67,7 @@ namespace JetBrains.Omea
         internal static void InitializeUsageLog()
         {
             _usageLogId = Core.SettingStore.ReadString( "MainFrame", "UsageLogID ");
-            if ( _usageLogId == null || _usageLogId.Length == 0 )
+            if ( string.IsNullOrEmpty( _usageLogId ) )
             {
                 _usageLogId = Guid.NewGuid().ToString();
                 Core.SettingStore.WriteString( "MainFrame", "UsageLogID", _usageLogId );
@@ -180,7 +180,7 @@ namespace JetBrains.Omea
             }
             catch( Exception ex )
             {
-                Trace.WriteLine( "Error submitting usage log: " + ex.ToString() );
+                Trace.WriteLine( "Error submitting usage log: " + ex );
             }
 
             InitUsageLog();
@@ -271,7 +271,7 @@ namespace JetBrains.Omea
                 if ( _NewLine )
                     WriteDate();
                 base.Write(message);
-                base.Writer.Flush();
+                Writer.Flush();
             }
             catch( Exception )
             {
@@ -286,7 +286,7 @@ namespace JetBrains.Omea
                 if ( _NewLine )
                     WriteDate();
                 base.WriteLine( message );
-                base.Writer.Flush();
+                Writer.Flush();
                 _NewLine = true;
             }
             catch( Exception )
@@ -300,7 +300,7 @@ namespace JetBrains.Omea
             base.Write( DateTime.Now.ToString( "dd.MM.yyyy HH:mm:ss.fff " ) );
             
             string threadName = Thread.CurrentThread.Name;
-            base.Write( "[" + ((threadName != null && threadName.Length > 0 ) ? threadName [0] : '?' ) + "] " );
+            base.Write( "[" + ( !string.IsNullOrEmpty( threadName ) ? threadName [0] : '?' ) + "] " );
 
             _NewLine = false;
         }

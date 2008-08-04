@@ -4,6 +4,7 @@
 /// </copyright>
 
 using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using JetBrains.Omea.Base;
 using JetBrains.Omea.OpenAPI;
@@ -14,27 +15,29 @@ namespace JetBrains.Omea.InstantMessaging.ICQ
 {
 	public class ICQOptionsPane : AbstractOptionsPane
 	{
-        private System.Windows.Forms.ImageList _optionsPaneImages;
+        private ImageList _optionsPaneImages;
+        private Panel _conversationsPanel;
+        private GroupBox groupBox2;
+        private Label label3;
+        private Label label2;
+        private NumericUpDown _convsTimeSpan;
+        private Label label1;
+        private Panel panel1;
+        private Label label5;
+        private ListView _UINsList;
+        private ColumnHeader columnHeader1;
+        private GroupBox groupBox1;
+        private Label label4;
+        private ColumnHeader columnHeader2;
+        private CheckBox _indexOnlineCheckBox;
+        private ToolTip _indexOnlineToolTip;
+        private CheckBox _reverseModeCheckBox;
+        private CheckBox _importOnly2003bCheckbox;
+
         private System.ComponentModel.IContainer components;
         private decimal _minutes;
-        private System.Windows.Forms.Panel _conversationsPanel;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.NumericUpDown _convsTimeSpan;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ListView _UINsList;
-        private System.Windows.Forms.ColumnHeader columnHeader1;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ColumnHeader columnHeader2;
-        private System.Windows.Forms.CheckBox _indexOnlineCheckBox;
-        private System.Windows.Forms.ToolTip _indexOnlineToolTip;
-        private System.Windows.Forms.CheckBox _reverseModeCheckBox;
-        private System.Windows.Forms.CheckBox _importOnly2003bCheckbox;
-        private IntArrayList _uins;
+//        private IntArrayList _uins;
+        private List<int> _uins;
 
 		private ICQOptionsPane()
 		{
@@ -310,7 +313,8 @@ namespace JetBrains.Omea.InstantMessaging.ICQ
                 _indexOnlineCheckBox.Checked = ICQPlugin.GetBuildConverstionOnline();
                 _reverseModeCheckBox.Checked = ICQPlugin.GetReverseMode();
             }
-            _uins = (IntArrayList) UINsCollection.GetUINs().Clone();
+//            _uins = (IntArrayList) UINsCollection.GetUINs().Clone();
+            _uins = new List<int>( UINsCollection.GetUINs() );
             _UINsList.Items.Clear();
             for( int i = 0; i < _uins.Count; )
             {

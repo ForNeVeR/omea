@@ -4,7 +4,6 @@
 /// </copyright>
 
 using System;
-using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
@@ -56,7 +55,7 @@ namespace JetBrains.Omea.OutlookPlugin
         private Panel        _panel2;
         private JetLinkLabel _linkReceiveAttachedResources;
 
-        private bool _disposed = false;
+        private bool _disposed;
         private int _lastResourceId;
 
         private IResource _resource;
@@ -72,7 +71,7 @@ namespace JetBrains.Omea.OutlookPlugin
         /// <summary>
         /// Holds words that should be highlighted so that we could apply the highlighting when the mail body gets loaded at last.
         /// </summary>
-        private WordPtr[] _wordsToHighlight = null;
+        private WordPtr[] _wordsToHighlight;
 
         public MailBodyView()
         {
@@ -280,7 +279,7 @@ namespace JetBrains.Omea.OutlookPlugin
                     _largeImageIndicatorPath = Path.Combine( Path.GetTempPath(), _LargeImageIndicatorFileName );
 
                     Assembly theAssm = Assembly.GetExecutingAssembly();
-                    Image img = Utils.GetResourceImageFromAssembly( theAssm, _LargeImageIndicatorFileName);
+                    Image img = Utils.TryGetEmbeddedResourceImageFromAssembly( theAssm, _LargeImageIndicatorFileName);
                     img.Save( _largeImageIndicatorPath, ImageFormat.Png );
                 }
                 return _largeImageIndicatorPath;
@@ -412,7 +411,6 @@ namespace JetBrains.Omea.OutlookPlugin
             {
                 body += "</div>";
                 body += suffix;
-                Trace.WriteLine( "\n\n\n\n" + body + "\n\n\n\n" );
             }
             return body;
         }
@@ -459,7 +457,7 @@ namespace JetBrains.Omea.OutlookPlugin
             if( !File.Exists( filePath ) )
             {
                 Assembly theAssm = Assembly.GetExecutingAssembly();
-                Image img = Utils.GetResourceImageFromAssembly( theAssm, "OutlookPlugin.Icons.attachment32.png" );
+                Image img = Utils.TryGetEmbeddedResourceImageFromAssembly( theAssm, "OutlookPlugin.Icons.attachment32.png" );
                 img.Save( filePath, ImageFormat.Png );
             }
         }

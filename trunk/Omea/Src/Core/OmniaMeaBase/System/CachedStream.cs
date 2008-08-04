@@ -274,7 +274,8 @@ namespace JetBrains.Omea.Base
             _stream.EndWrite( asyncResult );
         }
 
-        protected override WaitHandle CreateWaitHandle()
+    	[Obsolete("CreateWaitHandle will be removed eventually.  Please use \"new ManualResetEvent(false)\" instead.")]
+    	protected override WaitHandle CreateWaitHandle()
         {
             throw new NotImplementedException();
         }

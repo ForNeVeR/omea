@@ -7,7 +7,6 @@ using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Reflection;
-using System.Threading;
 using System.Windows.Forms;
 
 using JetBrains.Interop.WinApi;
@@ -36,16 +35,13 @@ namespace JetBrains.Omea
         private JetLinkLabel _timeLabel;
         private JetLinkLabel _messageLabel;
         private Panel _loadingErrors;
-        private PictureBox _exclPicture;
-        private JetLinkLabel _lblClose;
         private int _startTickCount;
         private string _lastTimeMessage;
-        private int _errorsCount = 0;
 
         /// <summary>
 		/// Required designer variable.
 		/// </summary>
-		private System.ComponentModel.Container components = null;
+		private Container components = null;
 
 		private Timer _timerRemoveUnmanagedPreSplash;
 
@@ -114,7 +110,6 @@ namespace JetBrains.Omea
 				RECT rcClient = ClientRectangle;
 				User32Dll.FillRect(hdc, &rcClient, Gdi32Dll.GetStockObject((int)StockLogicalObjects.WHITE_BRUSH));
 				m.Result = (IntPtr)1; // Did it
-			Thread.Sleep(5000);
 				return;
 			}
 			base.WndProc(ref m);
@@ -258,7 +253,7 @@ namespace JetBrains.Omea
             if (_loadingErrors != null)
             {
                 Graphics g = e.Graphics;
-                Point[] track = new Point[4];
+                var track = new Point[4];
 
                 track[0].X = 0; track[0].Y = _BaseHeight;
                 track[1].X = 0; track[1].Y = _pictureBox1.Height - 1;
@@ -346,7 +341,7 @@ namespace JetBrains.Omea
 
             if ( !Core.UserInterfaceAP.IsOwnerThread )
             {
-                Core.UserInterfaceAP.QueueJob( JobPriority.Immediate,
+                Core.UserInterfaceAP.QueueJob( JobPriority.Immediate, "Update Progress",
                     new UpdateProgressDelegate( UpdateProgress ), percentage, message, timeMessage );
                 return;
             }
@@ -369,120 +364,5 @@ namespace JetBrains.Omea
             _timeLabel.Text = elapsedTime;
         }
         #endregion UpdateProgress
-
-        #region Add Error Record
-        public void AddErrorRecord( string pluginName, string message )
-        {
-            Label label = CreateErrorLabel(pluginName, message);
-            if (_loadingErrors == null)
-            {
-                Height += Math.Max(70, label.Height + 20);
-
-                CreatePanel();
-            }
-            else
-            if( _errorsCount < 3 )
-            {
-                int fitSpace = _loadingErrors.Height - label.Top;
-                if (fitSpace < label.Height)
-                {
-                    int shift = label.Height - fitSpace + 4;
-
-                    Height += shift;
-                }
-
-                _errorsCount++;
-            }
-            _loadingErrors.Controls.Add( label );
-            _pictureBox1.Invalidate();
-        }
-
-        private void CreatePanel()
-        {
-            _loadingErrors = new Panel();
-            _loadingErrors.AutoScroll = true;
-            _loadingErrors.Location = new Point(9, _BaseHeight + 4);
-            _loadingErrors.Size = new Size(382, 40);
-            _loadingErrors.Name = "_loadingErrors";
-            _loadingErrors.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
-            _loadingErrors.BorderStyle = BorderStyle.Fixed3D;
-
-            _exclPicture = new PictureBox();
-            _exclPicture.Anchor = AnchorStyles.Top;
-            _exclPicture.Location = new Point(4, _BaseHeight);
-            _exclPicture.Name = "_exclPicture";
-            _exclPicture.Size = new Size(17, 17);
-            _exclPicture.TabStop = false;
-            _exclPicture.Image = Image.FromStream( Assembly.GetExecutingAssembly().GetManifestResourceStream("OmniaMea.Icons.BackgroundException.ico"));
-
-            _lblClose = new JetLinkLabel();
-            _lblClose.Anchor = AnchorStyles.Bottom;
-            _lblClose.AutoSize = false;
-            _lblClose.BackColor = SystemColors.Window;
-            _lblClose.ForeColor = SystemColors.HotTrack;
-            _lblClose.ClickableLink = true;
-            _lblClose.Cursor = Cursors.Default;
-            _lblClose.EndEllipsis = false;
-            _lblClose.Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point, ((System.Byte)(204)));
-            _lblClose.Location = new Point(330, 350);
-            _lblClose.Name = "_lblClose";
-            _lblClose.Size = new Size(60, 18);
-            _lblClose.TabStop = false;
-            _lblClose.Text = "Continue...";
-            _lblClose.Click += _lblClose_Click;
-
-            Controls.Add(_lblClose);
-            Controls.Add(_exclPicture);
-            Controls.Add(_loadingErrors);
-
-            _loadingErrors.BringToFront();
-            _exclPicture.BringToFront();
-            _lblClose.BringToFront();
-        }
-
-        void _lblClose_Click(object sender, EventArgs e)
-        {
-            DialogResult = DialogResult.OK;
-        }
-
-        private Label CreateErrorLabel(string pluginName, string message)
-        {
-            int baseYCoordinate = CalcSummaryLabelHeights();
-
-            Label lblMessage = new Label();
-            lblMessage.Text = "Error occured in " + pluginName + ": " + message;
-            lblMessage.Location = new Point(8, baseYCoordinate );
-            lblMessage.FlatStyle = FlatStyle.System;
-            lblMessage.ForeColor = Color.Red;
-
-            Font font = lblMessage.Font;
-            float fontHeight = font.GetHeight( Graphics.FromHwnd(Handle) );
-            int currWidth = (int)Graphics.FromHwnd(Handle).MeasureString(lblMessage.Text, font).Width;
-
-            //  NB: the string width computation (line above) is often sucks giving
-            //      us lesser width than it is really. Thus we add some penalty.
-            currWidth += 20;
-
-            int lines = currWidth / 340 + 1;
-            int height = (lines == 1) ? 18 : (int)(lines * ( fontHeight + 2 ) );
-            lblMessage.Size = new Size( 360, height );
-
-            return lblMessage;
-        }
-
-        private int CalcSummaryLabelHeights()
-        {
-            int baseYCoordinate = 4;
-            if (_loadingErrors != null)
-            {
-                foreach (Control ctrl in _loadingErrors.Controls)
-                {
-                    baseYCoordinate += ctrl.Size.Height + 4;
-                }
-                baseYCoordinate += _loadingErrors.AutoScrollPosition.Y;
-            }
-            return baseYCoordinate;
-        }
-        #endregion Add Error Record
     }
 }

@@ -15,9 +15,10 @@
 		<OutputType>Library</OutputType>
 		<AppDesignerFolder>Properties</AppDesignerFolder>
 		<RootNamespace>WebContactPlugin</RootNamespace>
-		<AssemblyName>WebContact</AssemblyName>
+		<AssemblyName>WebContact.OmeaPlugin</AssemblyName>
 		<OldToolsVersion>2.0</OldToolsVersion>
 		<ProductHomeDir>$(MSBuildProjectDirectory)/../../../..</ProductHomeDir>
+		<TargetFrameworkVersion>v3.0</TargetFrameworkVersion>
 	</PropertyGroup>
 	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
 		<DebugSymbols>true</DebugSymbols>

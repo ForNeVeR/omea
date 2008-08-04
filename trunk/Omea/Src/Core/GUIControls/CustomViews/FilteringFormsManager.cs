@@ -144,7 +144,7 @@ namespace JetBrains.Omea.OpenAPI
         public void  ShowAdvancedSearchForm( string query, string[] resTypes,
                                              IResource[] conditions, IResource[] exceptions )
         {
-            IResource[][] group = FilterManager.Convert2Group( conditions );
+            IResource[][] group = FilterRegistry.Convert2Group( conditions );
             ShowAdvancedSearchForm( query, resTypes, group, exceptions );
         }
         public void  ShowAdvancedSearchForm( string query, string[] resTypes,
@@ -201,9 +201,9 @@ namespace JetBrains.Omea.OpenAPI
             #endregion Preconditions
 
             bool isStandard = true;
-            IResourceList conditions = Core.FilterManager.GetConditionsPlain( rule ),
-                          exceptions = Core.FilterManager.GetExceptions( rule ),
-                          actions = Core.FilterManager.GetActions( rule );
+            IResourceList conditions = Core.FilterRegistry.GetConditionsPlain( rule ),
+                          exceptions = Core.FilterRegistry.GetExceptions( rule ),
+                          actions = Core.FilterRegistry.GetActions( rule );
 
             isStandard =               CheckExpirationConditions( conditions );
             isStandard = isStandard && CheckExpirationExceptions( exceptions );
@@ -220,19 +220,19 @@ namespace JetBrains.Omea.OpenAPI
 
         private static bool  CheckExpirationExceptions( IResourceList exceptions )
         {
-            if( exceptions.IndexOf( Core.FilterManager.Std.ResourceIsFlagged ) != -1 )
+            if( exceptions.IndexOf( Core.FilterRegistry.Std.ResourceIsFlagged ) != -1 )
             {
-                exceptions = exceptions.Minus( Core.FilterManager.Std.ResourceIsFlagged.ToResourceList() );
-                exceptions = exceptions.Minus( Core.FilterManager.Std.ResourceIsAnnotated.ToResourceList() );
+                exceptions = exceptions.Minus( Core.FilterRegistry.Std.ResourceIsFlagged.ToResourceList() );
+                exceptions = exceptions.Minus( Core.FilterRegistry.Std.ResourceIsAnnotated.ToResourceList() );
             }
-            exceptions = exceptions.Minus( Core.FilterManager.Std.ResourceIsCategorized.ToResourceList() );
-            exceptions = exceptions.Minus( Core.FilterManager.Std.ResourceIsUnread.ToResourceList() );
+            exceptions = exceptions.Minus( Core.FilterRegistry.Std.ResourceIsCategorized.ToResourceList() );
+            exceptions = exceptions.Minus( Core.FilterRegistry.Std.ResourceIsUnread.ToResourceList() );
 
             if( exceptions.Count == 1 )
             {
                 IResource cond = exceptions[ 0 ];
                 IResource template = cond.GetLinkProp( "TemplateLink" );
-                if( template != null && template.Id == Core.FilterManager.Std.ReceivedInTheTimeSpanX.Id )
+                if( template != null && template.Id == Core.FilterRegistry.Std.ReceivedInTheTimeSpanX.Id )
                 {
                     string text = EditTimeSpanConditionForm.Condition2Text( cond );
                     string[] fields = text.Split( ' ' );
@@ -248,8 +248,8 @@ namespace JetBrains.Omea.OpenAPI
             if( actions.Count == 0 )
                 return false;
 
-            actions = actions.Minus( Core.FilterManager.Std.DeleteResourceAction.ToResourceList() );
-            actions = actions.Minus( Core.FilterManager.Std.MarkResourceAsReadAction.ToResourceList() );
+            actions = actions.Minus( Core.FilterRegistry.Std.DeleteResourceAction.ToResourceList() );
+            actions = actions.Minus( Core.FilterRegistry.Std.MarkResourceAsReadAction.ToResourceList() );
 
             return actions.Count == 0;
         }

@@ -74,7 +74,7 @@ namespace TextIndexTests
         {
             CloseStorage();
             indexer.CloseIndices();
-            indexer.DiscardTextIndex();
+            indexer.DiscardTextIndexImpl( false );
             Word.DisposeTermTrie();
 
             try
@@ -101,7 +101,7 @@ namespace TextIndexTests
         [Test] public void EmptyIndex()
         {
             indexer.EndBatchUpdate();
-            Assert.IsTrue( !indexer.IsDocumentPresent( 100 ) );
+            Assert.IsTrue( !indexer.IsDocumentPresentInternal( 100 ) );
         }
 
         [Test] public void AddNewDocumentWithZeroID()
@@ -116,7 +116,7 @@ namespace TextIndexTests
             IResource newRes = Core.ResourceStore.NewResource( "TestType" );
             indexer.AddDocumentFragment( newRes.Id, "one two three fourplay" );
             indexer.EndBatchUpdate();
-            AssertIfTrue( "document we have added is found in index", indexer.IsDocumentPresent( newRes.Id ) );
+            AssertIfTrue( "document we have added is found in index", indexer.IsDocumentPresentInternal( newRes.Id ) );
 
             Entry[]  result = indexer.ProcessQueryInternal( "fourplay" );
             AssertIfTrue( "Size of query result does not coinside with expected one", result.Length == 1 );
@@ -128,7 +128,7 @@ namespace TextIndexTests
             IResource newRes = Core.ResourceStore.NewResource( "TestType" );
             indexer.AddDocumentFragment( newRes.Id, "" );
             indexer.EndBatchUpdate();
-            AssertIfTrue( "empty document we have added is found in index !!!", !indexer.IsDocumentPresent( newRes.Id ) );
+            AssertIfTrue( "empty document we have added is found in index !!!", !indexer.IsDocumentPresentInternal( newRes.Id ) );
         }
 
         [Test] public void DeleteDocument()
@@ -175,27 +175,22 @@ namespace TextIndexTests
             //--
             Entry[]  result = indexer.ProcessQueryInternal( "fourplay" );
             AssertIfTrue( "Size of query result does not equal 2 (before removal)", result.Length == 2 );
-            Console.WriteLine( "Add/Delete - Passed 1" );
 
             //--
             indexer.DeleteDocument( newRes1.Id );
             result = indexer.ProcessQueryInternal( "fourplay" );
             AssertIfTrue( "Size of query result does not equal 1 (after removal)", result.Length == 1 );
-            Console.WriteLine( "Add/Delete - Passed 2" );
             
             //--
             IResource newRes3 = Core.ResourceStore.NewResource( "TestType" );
             indexer.AddDocumentFragment( newRes3.Id, "one fourplay" );
             indexer.EndBatchUpdate();
             result = indexer.ProcessQueryInternal( "fourplay" );
-            Console.WriteLine( "Got:" + result.Length + " results." );
             AssertIfTrue( "Size of query result does not equal 2 (after removal and addition)", result.Length == 2 );
-            Console.WriteLine( "Add/Delete - Passed 3" );
             
             //--
             result = indexer.ProcessQueryInternal( "one" );
-            if( result == null )
-                Console.Error.WriteLine( "Unexpected error - result list is empty - one elemented is expected" );
+            AssertIfTrue( "Unexpected error - result list is empty - one elemented is expected", result != null );
             AssertIfTrue( "Size of query result does not equal 1 (after removal double addition)", result.Length == 1 );
         }
 
@@ -207,7 +202,7 @@ namespace TextIndexTests
             //     (check cross-body acceptance).
             //  4. Add 10 documents. Ensure that all 10 are fired.
             //  5. Flush index. Ensure no document is fired.
-            indexer.NextUpdateFinished += new UpdateFinishedEventHandler( UpdateChunkHandler );
+            indexer.NextUpdateFinished += UpdateChunkHandler;
 
             UpdatePhaseCounter = 1;
             indexer.AddDocumentFragment( 10000, "one two three fourplay" );
@@ -239,7 +234,7 @@ namespace TextIndexTests
             indexer.AddDocumentFragment( newRes2.Id, "token8 token9 token7" );
             indexer.AddDocumentFragment( newRes1.Id, "token3 token4 token5" );
             indexer.EndBatchUpdate();
-            AssertIfTrue( "document we have added is not found in index", indexer.IsDocumentPresent( newRes1.Id ) );
+            AssertIfTrue( "document we have added is not found in index", indexer.IsDocumentPresentInternal( newRes1.Id ) );
 
             Entry[]  result = indexer.ProcessQueryInternal( "token1" );
             AssertIfTrue( "We must find one token from the first instance of the document", result.Length == 1 );

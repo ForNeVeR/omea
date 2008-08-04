@@ -236,10 +236,10 @@ namespace JetBrains.Omea
 		    _btnHideShowAnnotation.Click += new EventHandler(HideShowPanel_Click);
 		    _btnHideShowAnnotation.Cursor = System.Windows.Forms.Cursors.Hand;
 
-		    _btnHideShowAnnotation.AddIcon( Utils.GetResourceIconFromAssembly( "GUIControls", "GUIControls.Icons.CollapsePanel.ico" ), ImageListButton.ButtonState.Normal );
-		    _btnHideShowAnnotation.AddIcon( Utils.GetResourceIconFromAssembly( "GUIControls", "GUIControls.Icons.ExpandPanel.ico" ), ImageListButton.ButtonState.Normal );
-		    _btnHideShowAnnotation.AddIcon( Utils.GetResourceIconFromAssembly( "GUIControls", "GUIControls.Icons.CollapsePanelHover.ico" ), ImageListButton.ButtonState.Hot );
-		    _btnHideShowAnnotation.AddIcon( Utils.GetResourceIconFromAssembly( "GUIControls", "GUIControls.Icons.ExpandPanelHover.ico" ), ImageListButton.ButtonState.Hot );
+		    _btnHideShowAnnotation.AddIcon( Utils.TryGetEmbeddedResourceIconFromAssembly( "GUIControls", "GUIControls.Icons.CollapsePanel.ico" ), ImageListButton.ButtonState.Normal );
+		    _btnHideShowAnnotation.AddIcon( Utils.TryGetEmbeddedResourceIconFromAssembly( "GUIControls", "GUIControls.Icons.ExpandPanel.ico" ), ImageListButton.ButtonState.Normal );
+		    _btnHideShowAnnotation.AddIcon( Utils.TryGetEmbeddedResourceIconFromAssembly( "GUIControls", "GUIControls.Icons.CollapsePanelHover.ico" ), ImageListButton.ButtonState.Hot );
+		    _btnHideShowAnnotation.AddIcon( Utils.TryGetEmbeddedResourceIconFromAssembly( "GUIControls", "GUIControls.Icons.ExpandPanelHover.ico" ), ImageListButton.ButtonState.Hot );
             //
             // _selector
             //

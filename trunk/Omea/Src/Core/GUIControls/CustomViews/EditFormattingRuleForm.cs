@@ -38,7 +38,7 @@ namespace JetBrains.Omea.GUIControls.CustomViews
         public EditFormattingRuleForm( string ruleName )
                : base( "IsFormRuleLinked", true, false, false )
 		{
-            if( !String.IsNullOrEmpty( ruleName ) )
+            if( String.IsNullOrEmpty( ruleName ) )
                 throw new ArgumentNullException( "ruleName", "EditRuleForm -- Input rule name is NULL" );
 
             Initialize( ruleName );

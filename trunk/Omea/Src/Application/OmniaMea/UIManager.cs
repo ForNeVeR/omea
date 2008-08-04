@@ -13,7 +13,12 @@ using System.IO;
 using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
+
+using System35;
+
 using DBIndex;
+
+using JetBrains.Annotations;
 using JetBrains.Omea.Base;
 using JetBrains.Omea.GUIControls;
 using JetBrains.DataStructures;
@@ -40,7 +45,7 @@ namespace JetBrains.Omea
             {
                 get
                 {
-                    string result = ( _prompt == null ) ? string.Empty : _prompt;
+                    string result = _prompt ?? string.Empty;
                     string[] headers = _panePrompts.AllKeys;
                     Array.Sort( headers );
                     foreach( string header in headers )
@@ -74,9 +79,9 @@ namespace JetBrains.Omea
         private readonly Hashtable _resourceDefaultLocations = new Hashtable();
         private readonly HashSet _locationResTypes = new HashSet();
 
-        private IntHashTable _editWindows = new IntHashTable();         // resource ID -> ResourceEditWindow
-        private Hashtable _resourceSelectPanes = new Hashtable();       // resource type -> typeof(IResourceSelectPane)
-        private Hashtable _displayInContextHandlers = new Hashtable();  // resource type -> IDisplayInContextHandler
+        private readonly IntHashTable _editWindows = new IntHashTable();         // resource ID -> ResourceEditWindow
+        private readonly Hashtable _resourceSelectPanes = new Hashtable();       // resource type -> typeof(IResourceSelectPane)
+        private readonly Hashtable _displayInContextHandlers = new Hashtable();  // resource type -> IDisplayInContextHandler
 
         private int _sidebarUpdateCount;
 
@@ -460,13 +465,12 @@ namespace JetBrains.Omea
 
         public IResourceList SelectResources( string type, string caption )
         {
-            return new ResourceSelector().SelectResources( Core.MainWindow, new string[] { type }, 
-                                                           caption, null, null );
+            return new ResourceSelector().SelectResources( Core.MainWindow, new[] { type }, caption, null, null );
         }
 
         public IResourceList SelectResources( IWin32Window ownerWnd, string type, string caption )
         {
-            return new ResourceSelector().SelectResources( ownerWnd, new string[] { type }, caption, null, null );
+            return new ResourceSelector().SelectResources( ownerWnd, new[] { type }, caption, null, null );
         }
 
         /**
@@ -477,20 +481,19 @@ namespace JetBrains.Omea
 
         public IResourceList SelectResources( string type, string caption, IResourceList initialSelection )
         {
-            return new ResourceSelector().SelectResources( Core.MainWindow, new string[] { type }, 
-                                                           caption, initialSelection, null );
+            return new ResourceSelector().SelectResources( Core.MainWindow, new[] { type }, caption, initialSelection, null );
         }
 
         public IResourceList SelectResources( IWin32Window ownerWnd, string type, string caption, 
                                               IResourceList initialSelection )
         {
-            return new ResourceSelector().SelectResources( ownerWnd, new string[] { type }, caption, initialSelection, null );
+            return new ResourceSelector().SelectResources( ownerWnd, new[] { type }, caption, initialSelection, null );
         }
 
         public IResourceList SelectResources( IWin32Window ownerWnd, string type, string caption, 
                                               IResourceList initialSelection, string helpTopic )
         {
-            return new ResourceSelector().SelectResources( ownerWnd, new string[] { type }, caption, initialSelection, helpTopic );
+            return new ResourceSelector().SelectResources( ownerWnd, new[] { type }, caption, initialSelection, helpTopic );
         }
 
         /**
@@ -717,30 +720,28 @@ namespace JetBrains.Omea
                         {
                             viewPaneId = StandardViewPanes.ViewsCategories;
                         }
-                        if ( viewPaneId != null )
+
+                        BeginUpdateSidebar();
+                        if ( !Core.TabManager.ActivateTab( tabId ) )
                         {
-                            BeginUpdateSidebar();
-                            if ( !Core.TabManager.ActivateTab( tabId ) )
-                            {
-                                EndUpdateSidebar();
-                                return;
-                            }
-                            AbstractViewPane viewPane = Core.LeftSidebar.ActivateViewPane( tabId, viewPaneId );
                             EndUpdateSidebar();
-                        
-                            if ( viewPane == null )
+                            return;
+                        }
+                        AbstractViewPane viewPane = Core.LeftSidebar.ActivateViewPane( tabId, viewPaneId );
+                        EndUpdateSidebar();
+                    
+                        if ( viewPane == null )
+                        {
+                            // ActivateViewPane() may have caused event processing and change of active tab (OM-8213)
+                            return;
+                        }
+                        if ( viewPane.SelectResource( res, false ) || viewPane.SelectResource( location, false ) )
+                        {
+                            locationSelected = true;
+                            viewPane.Select();
+                            if ( location != res )
                             {
-                                // ActivateViewPane() may have caused event processing and change of active tab (OM-8213)
-                                return;
-                            }
-                            if ( viewPane.SelectResource( res, false ) || viewPane.SelectResource( location, false ) )
-                            {
-                                locationSelected = true;
-                                viewPane.Select();
-                                if ( location != res )
-                                {
-                                    contextFound = Core.ResourceBrowser.SelectResource( res );
-                                }
+                                contextFound = Core.ResourceBrowser.SelectResource( res );
                             }
                         }
                     }
@@ -787,14 +788,8 @@ namespace JetBrains.Omea
                 IResourceList locationList;
                 if ( Core.ResourceStore.PropTypes [linkData.PropId].HasFlag( PropTypeFlags.DirectedLink ) )
                 {
-                    if ( linkData.PropId < 0 )
-                    {
-                        locationList = res.GetLinksTo( linkData.ResType, -linkData.PropId );
-                    }
-                    else
-                    {
-                        locationList = res.GetLinksFrom( linkData.ResType, linkData.PropId );
-                    }
+                    locationList = linkData.PropId < 0 ? res.GetLinksTo( linkData.ResType, -linkData.PropId ) :
+                                                         res.GetLinksFrom( linkData.ResType, linkData.PropId );
                 }
                 else
                 {
@@ -831,14 +826,8 @@ namespace JetBrains.Omea
                     if ( Core.ResourceStore.PropTypes [propId].HasFlag( PropTypeFlags.DirectedLink ) )
                     {
                         // reverse direction of resource to location link
-                        if ( propId < 0 )
-                        {
-                            linkResult = location.GetLinksFrom( resType, -propId );
-                        }
-                        else
-                        {
-                            linkResult = location.GetLinksTo( resType, propId );
-                        }
+                        linkResult = propId < 0 ? location.GetLinksFrom( resType, -propId ) : 
+                                                  location.GetLinksTo( resType, propId );
                     }
                     else
                     {
@@ -864,7 +853,7 @@ namespace JetBrains.Omea
             return CanDropResource( targetRes, dropList, true );
         }
 
-        private bool CanDropResource( IResource targetRes, IResourceList dropList, bool sameView )
+        private static bool CanDropResource( IResource targetRes, IResourceList dropList, bool sameView )
         {
             if ( dropList.Count == 0 || dropList [0].Id == targetRes.Id )
                 return false;
@@ -961,7 +950,7 @@ namespace JetBrains.Omea
         }
 
         public void OpenResourceEditWindow( AbstractEditPane editPane, IResource res, bool newResource,
-            EditedResourceSavedDelegate savedDelegate, object savedDelegateTag )
+                                            EditedResourceSavedDelegate savedDelegate, object savedDelegateTag )
         {
             if ( res == null )
             {
@@ -1335,7 +1324,7 @@ namespace JetBrains.Omea
                 {
                     dlg.AllowEmptyString = true;
                 }
-                if ( dlg.ShowDialog( ownerWindow == null ? Core.MainWindow : ownerWindow ) == DialogResult.OK )
+                if ( dlg.ShowDialog( ownerWindow ?? Core.MainWindow ) == DialogResult.OK )
                 {
                     return dlg.StringText;
                 }
@@ -1348,19 +1337,19 @@ namespace JetBrains.Omea
         {
             Core.UserInterfaceAP.QueueJob( method, args );
         }
-        
 
-        public void RunWithProgressWindow( string progressTitle, Delegate method, params object[] args )
+        public void QueueUIJob(Action action)
         {
-            MainFrame.RunWithProgressWindow( progressTitle, method, args );
+            Core.UserInterfaceAP.QueueJob("", action);
         }
 
-        public object RunWithProgressWindowEx( string progressTitle, Delegate method, params object[] args )
+
+        public void RunWithProgressWindow( [NotNull] string progressTitle, [NotNull] Action action )
         {
-            return MainFrame.RunWithProgressWindow( progressTitle, method, args );
+            MainFrame.RunWithProgressWindow( progressTitle, action );
         }
 
-        internal void OnEnterIdle()
+    	internal void OnEnterIdle()
         {
             if ( EnterIdle != null )
             {
@@ -1462,7 +1451,7 @@ namespace JetBrains.Omea
         }
 
         public void ShowDesktopAlert( ImageList imageList, int imageIndex, string from, string subject, 
-            string body, EventHandler clickHandler )
+                                      string body, EventHandler clickHandler )
         {
             if ( !Core.UserInterfaceAP.IsOwnerThread )
             {
@@ -1475,7 +1464,7 @@ namespace JetBrains.Omea
         }
 
         private delegate void ShowDesktopAlertDelegate( ImageList imageList, int imageIndex, string from, 
-            string subject, string body, EventHandler clickHandler );
+                                                        string subject, string body, EventHandler clickHandler );
 
         private void PrepareBalloonForm()
         {

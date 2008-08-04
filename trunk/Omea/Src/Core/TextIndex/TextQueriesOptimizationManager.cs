@@ -129,8 +129,8 @@ namespace JetBrains.Omea.TextIndex
 
         private static IResourceList CollectAllTextConditions()
         {
-            // NOTE: Do not change to int value since FilterManager might not been initialized to that time.
-            string condProp = "ConditionOp" /*FilterManager.OpProp*/;
+            // NOTE: Do not change to int value since FilterRegistry might not been initialized to that time.
+            string condProp = "ConditionOp" /*FilterRegistry.OpProp*/;
 
             //  Get ALL conditions with text queries and remove those which are
             //  "hanged" due to the bug of Search Views cleanup.
@@ -159,7 +159,7 @@ namespace JetBrains.Omea.TextIndex
         {
             foreach( IResource res in _allTextConditions )
             {
-                string query = FilterManager.ConstructQuery( res );
+                string query = FilterRegistry.ConstructQuery( res );
                 if( !_activeQueries.Contains( query ) )
                 {
                     _activeQueries.Add( query );

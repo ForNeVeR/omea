@@ -49,13 +49,13 @@ namespace JetBrains.Omea.OutlookPlugin
 
     public class AttachmentHelper
     {
-        private string _fileName;
-        private string _fileType;
-        private int _index;
-        private int _size;
-        private int _attachMethod;
-        private string _contentID;
-        private int _num;
+        private readonly string _fileName;
+        private readonly string _fileType;
+        private readonly int _index;
+        private readonly int _size;
+        private readonly int _attachMethod;
+        private readonly string _contentID;
+        private readonly int _num;
 
         public AttachmentHelper( string fileName, string fileType, int index, int size, int attachMethod, string contentID, int num )
         {
@@ -79,11 +79,11 @@ namespace JetBrains.Omea.OutlookPlugin
 
     public class RecipientHelper
     {
-        private string _emailAddr;
-        private string _displayName;
-        private bool _isTo;
-        private bool _mySelf;
-        private IResource _person = null;
+        private readonly string _emailAddr;
+        private readonly string _displayName;
+        private readonly bool   _isTo;
+        private readonly bool   _mySelf;
+        private IResource       _person;
 
         public RecipientHelper( string emailAddr, string displayName, bool isTo, bool mySelf )
         {
@@ -111,14 +111,14 @@ namespace JetBrains.Omea.OutlookPlugin
         {
             senderName = string.Empty;
             senderEmail = message.GetStringProp( MAPIConst.PR_SENT_REPRESENTING_EMAIL_ADDRESS );
-            if ( !Utils.IsValidString( senderEmail ) )
+            if ( string.IsNullOrEmpty( senderEmail ) )
             {
                 senderEmail = message.GetStringProp( MAPIConst.PR_SENDER_EMAIL_ADDRESS );
             }
-            if( Utils.IsValidString( senderEmail ) )
+            if( !string.IsNullOrEmpty( senderEmail ) )
             {
                 senderName = message.GetStringProp( MAPIConst.PR_SENT_REPRESENTING_NAME );
-                if ( !Utils.IsValidString( senderName ) )
+                if ( string.IsNullOrEmpty( senderName ) )
                 {
                     senderName = message.GetStringProp( MAPIConst.PR_SENDER_NAME );
                 }

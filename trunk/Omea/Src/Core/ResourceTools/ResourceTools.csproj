@@ -8,7 +8,7 @@
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
 	<PropertyGroup>
 		<ProjectType>Local</ProjectType>
-		<ProductVersion>8.0.50727</ProductVersion>
+		<ProductVersion>9.0.21022</ProductVersion>
 		<SchemaVersion>2.0</SchemaVersion>
 		<ProjectGuid>{3866FB99-0922-4062-8880-B39DA0F1C15E}</ProjectGuid>
 		<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -23,6 +23,7 @@
 		<RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
 		<OldToolsVersion>2.0</OldToolsVersion>
 		<ProductHomeDir>$(MSBuildProjectDirectory)/../../..</ProductHomeDir>
+		<TargetFrameworkVersion>v3.0</TargetFrameworkVersion>
 	</PropertyGroup>
 	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
 		<AllowUnsafeBlocks>false</AllowUnsafeBlocks>
@@ -156,7 +157,8 @@
 		<Compile Include="Filters\FilterConvertors.cs">
 			<SubType>Code</SubType>
 		</Compile>
-		<Compile Include="Filters\FilterManager.cs">
+		<Compile Include="Filters\FilterEngine.cs" />
+		<Compile Include="Filters\FilterRegistry.cs">
 			<SubType>Code</SubType>
 		</Compile>
 		<Compile Include="Filters\FilterManagerStandards.cs">

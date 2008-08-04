@@ -5,7 +5,6 @@
 
 using System;
 using System.Collections;
-using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
@@ -26,7 +25,7 @@ using JetBrains.Omea.RSSPlugin.SubscribeWizard;
 
 namespace JetBrains.Omea.RSSPlugin
 {
-    [PluginDescription("JetBrains Inc.", "Support for RSS/Atom subscriptions.")]
+    [PluginDescription("RSS & Atom Feeds", "JetBrains Inc.", "Support for RSS/Atom subscriptions.", PluginDescriptionFormat.PlainText, "Icons/RssPluginIcon.png")]
     public class RSSPlugin : IPlugin, IResourceDisplayer, IResourceUIHandler,
                              IResourceTextProvider, IRssService
     {
@@ -47,32 +46,30 @@ namespace JetBrains.Omea.RSSPlugin
 
         private static FeedUnreadsFilter _feedsPaneUnreadFilter = new FeedUnreadsFilter();
         private static ErrorFeedFilter _feedsPaneErrorFilter = new ErrorFeedFilter();
-        private static PlaneListProvider   _feedsPlaneListProvider = new PlaneListProvider();
         private static String              _savedOrder;
 
-        private static FeedUpdateQueue _updateQueue = new FeedUpdateQueue();
+        private static readonly PlaneListProvider   _feedsPlaneListProvider = new PlaneListProvider();
+        private static readonly FeedUpdateQueue _updateQueue = new FeedUpdateQueue();
         private BlogExtensionManager _blogExtensionManager;
         private CommentThreadingHandler _commentThreadingHandler;
 
-        private IntHashTableOfInt _selectionMap = new IntHashTableOfInt(); // feed ID -> item ID
+        private readonly IntHashTableOfInt _selectionMap = new IntHashTableOfInt(); // feed ID -> item ID
 
-        private ImportManager _importManager = null;
-        Hashtable _feedImporters = new Hashtable();
+        private ImportManager _importManager;
+        readonly Hashtable _feedImporters = new Hashtable();
 
-		protected IStatusWriter _statuswriter = null;
+		protected IStatusWriter _statuswriter;
 
         public event ResourceEventHandler FeedUpdated;
 		public event EventHandler UpdateAllStarted;
 		public event EventHandler UpdateAllFinished;
-
-        private static MethodInvoker _scheduleUpdateDelegate = ScheduleUpdate;
 
 		/// <summary>
 		/// <c>True</c> if the “Update All Feeds” action is currently in progress.
 		/// Is reset to <c>False</c> automatically when all the pending updates finish.
 		/// Does not set to <c>True</c> if a schedulled update or a manual update of a single feed occurs.
 		/// </summary>
-		public bool	_isUpdatingAll = false;
+		public bool	_isUpdatingAll;
 
         public RSSPlugin()
         {
@@ -130,15 +127,14 @@ namespace JetBrains.Omea.RSSPlugin
                                        "The Feeds Enclosures options enable you to control when and where downloads RSS enclosures." );
 
             InitRootFeedGroup();
-            Core.TabManager.RegisterResourceTypeTab( "Feeds", "Feeds",
-                                                     new string[] {"RSSItem", "RSSFeed", "RSSFeedGroup"}, 4 );
+            Core.TabManager.RegisterResourceTypeTab( "Feeds", "Feeds", new[] {"RSSItem", "RSSFeed", "RSSFeedGroup"}, 4 );
 
 
             _rssTreePane = new JetResourceTreePane();
             _rssTreePane.RootResourceType = "RSSFeed";
-            Core.LeftSidebar.RegisterResourceStructurePane( "Feeds", "Feeds", "Feeds",
-                                                            LoadIconFromAssembly( "RSSfeeds.ico" ), _rssTreePane );
-            _rssTreePane.WorkspaceFilterTypes = new string[] {"RSSFeed", "RSSFeedGroup"};
+            Image img = Utils.TryGetEmbeddedResourceImageFromAssembly( Assembly.GetExecutingAssembly(), "RSSPlugin.Icons.RSSfeeds24.png" );
+            Core.LeftSidebar.RegisterResourceStructurePane( "Feeds", "Feeds", "Feeds", img, _rssTreePane );
+            _rssTreePane.WorkspaceFilterTypes = new[] {"RSSFeed", "RSSFeedGroup"};
             _groupUnreadCountDecorator = new GroupUnreadCountDecorator();
             _rssTreePane.AddNodeDecorator( _groupUnreadCountDecorator );
             _rssTreePane.AddNodeDecorator( new FeedActivenessDecorator() );
@@ -183,11 +179,9 @@ namespace JetBrains.Omea.RSSPlugin
             uiMgr.RegisterResourceSelectPane( "RSSFeed", typeof (ResourceTreeSelectPane) );
 
             IWorkspaceManager workspaceMgr = Core.WorkspaceManager;
-            workspaceMgr.RegisterWorkspaceType( "RSSFeed", new int[] {Props.RSSItem},
-                                                WorkspaceResourceType.Container );
-            workspaceMgr.RegisterWorkspaceFolderType( "RSSFeedGroup", "RSSFeed", new int[] {Props.RSSItem} );
-            workspaceMgr.RegisterWorkspaceType( "RSSItem",
-                new int[] { -Props.ItemComment }, WorkspaceResourceType.None );
+            workspaceMgr.RegisterWorkspaceType( "RSSFeed", new[] {Props.RSSItem}, WorkspaceResourceType.Container );
+            workspaceMgr.RegisterWorkspaceFolderType( "RSSFeedGroup", "RSSFeed", new[] {Props.RSSItem} );
+            workspaceMgr.RegisterWorkspaceType( "RSSItem", new[] { -Props.ItemComment }, WorkspaceResourceType.None );
 
             Core.PluginLoader.RegisterResourceTextProvider( "RSSItem", this );
             Core.PluginLoader.RegisterResourceDisplayer( "RSSItem", this );
@@ -253,7 +247,7 @@ namespace JetBrains.Omea.RSSPlugin
 			Core.DisplayColumnManager.RegisterPropertyToTextCallback( Props.EnclosureDownloadedSize, OnPropertyToSize );
 			Core.DisplayColumnManager.RegisterPropertyToTextCallback( Props.EnclosureSize, OnPropertyToSize );
 
-            Core.ResourceBrowser.RegisterLinksGroup( "Addresses", new int[] { Props.RSSItem }, ListAnchor.First );
+            Core.ResourceBrowser.RegisterLinksGroup( "Addresses", new[] { Props.RSSItem }, ListAnchor.First );
 
             Core.ResourceBrowser.SetDefaultViewSettings( "Feeds", AutoPreviewMode.Off, true );
         }
@@ -387,7 +381,7 @@ namespace JetBrains.Omea.RSSPlugin
             if ( Core.State == CoreState.Running )
             {
                 Utils.NetworkConnectedStateChanged += NetworkConnectedStateChanged;
-                Core.NetworkAP.QueueJobAt( DateTime.Now.AddSeconds( 5 ), _scheduleUpdateDelegate );
+                Core.NetworkAP.QueueJobAt( DateTime.Now.AddSeconds( 5 ), "Update Feeds", ScheduleUpdate );
                 EnclosureDownloadManager.DownloadNextEnclosure();
 
                 bool treeFormat = Core.SettingStore.ReadBool( IniKeys.Section, IniKeys.ShowPlaneList, false );
@@ -399,7 +393,7 @@ namespace JetBrains.Omea.RSSPlugin
         {
             if( Utils.IsNetworkConnectedLight() )
             {
-                Core.NetworkAP.QueueJob( _scheduleUpdateDelegate );
+                Core.NetworkAP.QueueJob( "Update Feeds", ScheduleUpdate );
             }
         }
 
@@ -448,7 +442,7 @@ namespace JetBrains.Omea.RSSPlugin
         {
             if( show )
             {
-                Core.UIManager.RunWithProgressWindow( "Sorting feeds", new MethodInvoker( SortFeeds ) );
+                Core.UIManager.RunWithProgressWindow( "Sorting feeds", SortFeeds );
             }
             else
             {
@@ -524,7 +518,7 @@ namespace JetBrains.Omea.RSSPlugin
                 if( feed.Type == Props.RSSFeedResource )
                 {
                     IResourceList posts = feed.GetLinksOfType( Props.RSSItemResource, Props.RSSItem );
-                    posts.Sort( new int[] { Core.Props.Date }, false );
+                    posts.Sort( new[] { Core.Props.Date }, false );
                     if( posts.Count > 0 )
                         time = posts[ 0 ].GetDateProp( Core.Props.Date );
                 }
@@ -633,11 +627,7 @@ namespace JetBrains.Omea.RSSPlugin
         {
             Assembly assembly = Assembly.GetExecutingAssembly();
             Stream stream = assembly.GetManifestResourceStream( "RSSPlugin.Icons." + name );
-            if ( stream != null )
-            {
-                return new Icon( stream );
-            }
-            return null;
+            return stream != null ? new Icon( stream ) : null;
         }
 
         public void ResourceNodeSelected( IResource res )
@@ -789,20 +779,9 @@ namespace JetBrains.Omea.RSSPlugin
             foreach ( IResource childGroup in res.GetLinksTo( "RSSFeedGroup", Core.Props.Parent ) )
             {
                 IResourceList childList = ItemsInGroupRecursive( childGroup, includeComments, ref haveComments );
-                if ( itemList == null )
-                {
-                    itemList = childList;
-                }
-                else
-                {
-                    itemList = itemList.Union( childList );
-                }
+                itemList = (itemList == null) ? childList : itemList.Union( childList );
             }
-            if ( itemList == null )
-            {
-                return Core.ResourceStore.EmptyResourceList;
-            }
-            return itemList;
+            return itemList ?? Core.ResourceStore.EmptyResourceList;
         }
 
         private static IResourceList GetUnreadResources( IResourceList resList )
@@ -948,7 +927,7 @@ namespace JetBrains.Omea.RSSPlugin
             return _updatePeriods[ index ];
         }
 
-        private static readonly string[] _updatePeriods = new string[] {"minutely", "hourly", "daily", "weekly"};
+        private static readonly string[] _updatePeriods = new[] { "minutely", "hourly", "daily", "weekly" };
 
         public static bool IsFeedsOrGroups( IResourceList resources )
         {
@@ -965,7 +944,7 @@ namespace JetBrains.Omea.RSSPlugin
         internal static bool HasComments( IResource rssItem )
         {
             if ( rssItem.HasProp( Props.CommentCount ) &&
-                rssItem.GetIntProp( Props.CommentCount ) == 0 )
+                rssItem.GetProp( Props.CommentCount ) == 0 )
             {
                 return false;
             }
@@ -1113,13 +1092,10 @@ namespace JetBrains.Omea.RSSPlugin
                 DateTime time = LastPostComparer.CalcTime( res );
                 return "Last updated: " + time.ToShortDateString();
             }
-            else
-            {
-                return res.GetStringProp( Core.Props.LastError );
-            }
+            return res.GetStringProp( Core.Props.LastError );
         }
 
-		/// <summary>
+        /// <summary>
 		/// The queue of feeds-to-update has gotten empty, and all the pending updates are thru.
 		/// Exit the “Is Updating All” state.
 		/// </summary>
@@ -1226,11 +1202,9 @@ namespace JetBrains.Omea.RSSPlugin
 
         internal static void SaveSubscription()
         {
-            string dbPath = RegUtil.DatabasePath;
-            if( dbPath == null )
-                dbPath = Application.StartupPath;
-
+            string dbPath = RegUtil.DatabasePath ?? Application.StartupPath;
             string fileName = Path.Combine( dbPath, ".Subscription.opml.sav" );
+
             ExportOpmlFileImpl( RootFeedGroup, fileName );
         }
     }
@@ -1265,206 +1239,6 @@ namespace JetBrains.Omea.RSSPlugin
         }
     }
 
-    internal class RSSFeedIconProvider : IResourceIconProvider, IOverlayIconProvider
-    {
-    	private static Icon[] _updating;
-    	private static Icon[] _error;
-    	private static Icon[] _paused;
-    	private static Icon _default;
-    	private readonly FavIconManager _favIconManager;
-
-    	public RSSFeedIconProvider()
-    	{
-    		_favIconManager = (FavIconManager)Core.GetComponentImplementation( typeof(FavIconManager) );
-    	}
-
-    	public Icon GetResourceIcon( IResource resource )
-    	{
-    		// Try to get the feed's favicon
-    		Icon favicon = TryGetResourceIcon( resource );
-    		if( favicon != null )
-    			return favicon;
-
-    		// No favicon available, return resource-type's default icon
-    		if( _default == null )
-    		{ // Delay-load the default icon
-    			_default = RSSPlugin.LoadIconFromAssembly( "RSSFeed.ico" );
-    		}
-    		return _default;
-    	}
-
-    	/// <summary>
-    	/// Almost the same as <see cref="IResourceIconProvider.GetResourceIcon"/>, but returns <c>Null</c> in case a customized favicon
-    	/// is not available for this feed (in which case the <see cref="GetResourceIcon"/> returns the default resource type icon).
-    	/// </summary>
-    	public Icon TryGetResourceIcon( IResource resource )
-    	{
-    		string feedUrl = resource.GetStringProp( Props.URL );
-    		return Utils.IsValidString( feedUrl ) ? _favIconManager.GetResourceFavIcon( feedUrl ) : null;
-    	}
-
-    	public Icon GetDefaultIcon( string resType )
-    	{
-    		return null;
-    	}
-
-    	#region IOverlayIconProvider Members
-
-    	public Icon[] GetOverlayIcons( IResource resource )
-    	{
-    		string updateStatus = resource.GetStringProp( Props.UpdateStatus );
-    		if( updateStatus == "(updating)" )
-    		{
-    			if( _updating == null )
-    			{
-    				_updating = new Icon[1];
-    				_updating[ 0 ] = RSSPlugin.LoadIconFromAssembly( "updating.ico" );
-    			}
-    			return _updating;
-    		}
-    		if( updateStatus == "(error)" )
-    		{
-    			if( _error == null )
-    			{
-    				_error = new Icon[1];
-    				_error[ 0 ] = RSSPlugin.LoadIconFromAssembly( "error.ico" );
-    			}
-    			return _error;
-    		}
-    		if( resource.HasProp( Props.IsPaused ) )
-    		{
-    			if( _paused == null )
-    			{
-    				_paused = new Icon[1];
-    				_paused[ 0 ] = RSSPlugin.LoadIconFromAssembly( "RSSFeedPaused.ico" );
-    			}
-    			return _paused;
-    		}
-    		return null;
-    	}
-
-    	#endregion
-    }
-
-	#region RSSItemIconProvider Class — Provides the Feed Item icons
-
-	/// <summary>
-	/// Provides an icon for the RSS Items, so that the icon corresponds to the icon of the parent feed.
-	/// </summary>
-	internal class RSSItemIconProvider : IResourceIconProvider
-	{
-		/// <summary>
-		/// An icon provider that gives an icon for the RSS Feed resources.
-		/// </summary>
-		private readonly RSSFeedIconProvider _feedprovider = null;
-
-		/// <summary>
-		/// A default icon for the RSS items.
-		/// </summary>
-		private Icon _iconDefault = null;
-
-		/// <summary>
-		/// A default icon for the unread RSS items.
-		/// </summary>
-		private Icon _iconDefaultUnread = null;
-
-		/// <summary>
-		/// Specifies whether the feed item should display the same favicon as the feed does.
-		/// This variable caches the corresponding value from Omea Settings.
-		/// </summary>
-		private bool _bUseFeedIcon = true;
-
-		/// <summary>
-		/// Constructs the object.
-		/// </summary>
-		/// <param name="feedprovider">Icon provider for the feed, which has a favicon as a resource icon.
-		/// If the corresponding option is enabled, the feed icon is propagated to the feed item icon.</param>
-		public RSSItemIconProvider( RSSFeedIconProvider feedprovider )
-		{
-			_feedprovider = feedprovider;
-
-			// Read the settings and listen to changes in them
-			Core.UIManager.AddOptionsChangesListener( "Internet", "Feeds", OnSettingsChanged );
-			OnSettingsChanged( null, EventArgs.Empty );
-		}
-
-		#region IResourceIconProvider Members
-
-		public Icon GetResourceIcon( IResource resItem )
-		{
-			if(_bUseFeedIcon)
-			{	// Return the feed's favicon for the feed item (if available)
-				IResourceList parents = resItem.GetLinksTo( "RSSFeed", "RSSItem" );
-				lock(parents)
-				{
-					if( parents.Count != 0 )
-					{
-						IResource feed = parents[ 0 ];
-						Icon	favicon = _feedprovider.TryGetResourceIcon( feed );
-						if(favicon != null)
-							return favicon;
-					}
-					else
-						Trace.WriteLine( "Warning: parentless RSS item enountered, cannot get feed icon for it." );
-				}
-			}
-
-			// Don't use the feed's favicon (either if option disabled or if the feed does not have a favicon)
-			return resItem.HasProp( Core.Props.IsUnread ) ? DefaultUnread : Default;
-		}
-
-		public Icon GetDefaultIcon( string resType )
-		{
-			return Default;
-		}
-
-		#endregion
-
-		#region Attributes
-
-		/// <summary>
-		/// Gets the default feed item icon (for the read resource).
-		/// </summary>
-		public Icon Default
-		{
-			get
-			{
-                if (_iconDefault == null)
-                    _iconDefault = RSSPlugin.LoadIconFromAssembly( "RSSItem.ico" );
-				return _iconDefault;
-			}
-		}
-
-		/// <summary>
-		/// Gets the default unread feed item icon.
-		/// </summary>
-		public Icon DefaultUnread
-		{
-			get
-			{
-				if( _iconDefaultUnread == null )
-					_iconDefaultUnread = RSSPlugin.LoadIconFromAssembly( "RSSItemUnread.ico" );
-				return _iconDefaultUnread;
-			}
-		}
-
-		#endregion
-
-		#region Implementation
-
-		/// <summary>
-		/// Settings have changed, re-query for them.
-		/// </summary>
-		protected void OnSettingsChanged( object sender, EventArgs args )
-		{
-			_bUseFeedIcon = Core.SettingStore.ReadBool( IniKeys.Section, IniKeys.PropagateFavIconToItems, _bUseFeedIcon );
-		}
-
-		#endregion
-	}
-
-	#endregion
-
 	internal class RSSItemDeleter : DefaultResourceDeleter
     {
         public override void DeleteResource( IResource res )
@@ -1498,7 +1272,7 @@ namespace JetBrains.Omea.RSSPlugin
 
     public class WebPost
     {
-        private static void AddItem( XmlTextWriter xmlWriter, string tag, string value )
+        private static void AddItem( XmlWriter xmlWriter, string tag, string value )
         {
             xmlWriter.WriteStartElement( tag );
             xmlWriter.WriteString( value );
@@ -1543,8 +1317,8 @@ namespace JetBrains.Omea.RSSPlugin
 
     internal class FeedUnreadsFilter : IResourceNodeFilter
     {
-        private bool        _hidden = false;
-        private Hashtable   _feedStati = new Hashtable();
+        private bool        _hidden;
+        private readonly Hashtable _feedStati = new Hashtable();
 
         public bool  Hide
         {
@@ -1583,8 +1357,8 @@ namespace JetBrains.Omea.RSSPlugin
 
     internal class ErrorFeedFilter : IResourceNodeFilter
     {
-        private bool        _hidden = false;
-        private Hashtable   _feedStati = new Hashtable();
+        private bool        _hidden;
+        private readonly Hashtable   _feedStati = new Hashtable();
 
         public bool  Hide
         {
@@ -1594,29 +1368,25 @@ namespace JetBrains.Omea.RSSPlugin
                 _feedStati.Clear();
             }
         }
-        public bool  AcceptNode( IResource node, int level )
-        {
-            bool  accept = true;
-            if( _hidden )
-            {
-                if( _feedStati.ContainsKey( node.Id ))
-                {
-                    accept = (bool) _feedStati[ node.Id ];
-                }
-                else
-                if( node.Type == Props.RSSFeedResource )
-                {
-                    _feedStati[ node.Id ] = accept = node.HasProp( Core.Props.LastError );
-                }
-                else
-                {
-                    IResourceList children = node.GetLinksTo( null, Core.Props.Parent );
-                    foreach( IResource child in children )
-                        accept = accept || AcceptNode( child, level + 1 );
-                }
-            }
-            return accept;
-        }
+
+    	public bool AcceptNode(IResource node, int level)
+    	{
+    		bool accept = true;
+    		if(_hidden)
+    		{
+    			if(_feedStati.ContainsKey(node.Id))
+    				accept = (bool)_feedStati[node.Id];
+    			else if(node.Type == Props.RSSFeedResource)
+    				_feedStati[node.Id] = accept = node.HasProp(Core.Props.LastError);
+    			else
+    			{
+    				IResourceList children = node.GetLinksTo(null, Core.Props.Parent);
+    				foreach(IResource child in children)
+    					accept = accept || AcceptNode(child, level + 1);
+    			}
+    		}
+    		return accept;
+    	}
     }
 
     internal class RSSRenameHandler : IResourceRenameHandler
@@ -1651,7 +1421,7 @@ namespace JetBrains.Omea.RSSPlugin
     	/// <summary>
     	/// Singleton instance.
     	/// </summary>
-    	private static EnclosureDownloadStateColumn _instance = null; // Do not initialize here, so that .cctor won't create an object
+    	private static EnclosureDownloadStateColumn _instance; // Do not initialize here, so that .cctor won't create an object
 		/// <summary>
 		/// Gets the singleton instance.
 		/// </summary>
@@ -1787,7 +1557,7 @@ namespace JetBrains.Omea.RSSPlugin
         {
             Guard.EmptyStringArgument( phrase, "phrase" );
             string[] strWords = phrase.Split( ' ' );
-            if ( strWords != null && strWords.Length > 0 )
+            if ( strWords.Length > 0 )
             {
                 _words = new WordPtr[strWords.Length];
                 for ( int i = 0; i < strWords.Length; ++i )

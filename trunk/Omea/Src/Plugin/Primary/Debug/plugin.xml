@@ -37,7 +37,7 @@
 				<action class="ShowObscureColumnDescriptors" name="Count obscure column descriptors" />
 				<action class="CorrectObscureColumnDescriptors" name="Delete obscure column descriptors" />
 				<action class="ListUnlinkedConditions" name="List Unlinked Conditions" />
-			</group>
+      </group>
 			<group id="ContactActions" menu="Debug">
 				<action class="CalcLinksStatisticsAction" name="Calc Links Statistics" />
 				<action class="AnalyzeContactNamesAction" name="Clean repeatable contact names" />

@@ -427,6 +427,86 @@ namespace JetBrains.UI.Interop
 		/// </summary>
 		[DllImport("kernel32.dll")]
 		public static extern int GetCurrentThreadId();
+		/// <summary>
+		/// Extends the window frame behind the client area.
+		/// If Desktop Window Manager (DWM) composition is toggled, this function must be called again. Handle the WM_DWMCOMPOSITIONCHANGED message for composition change notification. 
+		/// Negative margins are used to create the "sheet of glass" effect where the client area is rendered as a solid surface with no window border.
+		/// </summary>
+		/// <param name="hwnd">The handle to the window for which the frame is extended into the client area.</param>
+		/// <param name="margins"><see cref="MARGINS"/> that describes the margins to use when extending the frame into the client area.</param>
+		/// <returns>Returns S_OK if successful, or an error value otherwise.</returns>
+		[DllImport("dwmapi.dll", PreserveSig = true)]
+		public static extern int DwmExtendFrameIntoClientArea(IntPtr hwnd, MARGINS margins);
+
+		[DllImport("dwmapi.dll", PreserveSig = false)]
+		public static extern bool DwmIsCompositionEnabled();
+
+		/// <summary>
+		/// Returned by the GetThemeMargins function to define the margins of windows that have visual styles applied.
+		/// </summary>
+		[StructLayout(LayoutKind.Sequential)]
+		public class MARGINS
+		{
+			/// <summary>
+			/// Sets no margin.
+			/// </summary>
+			public MARGINS()
+				: this(0)
+			{
+			}
+
+			/// <summary>
+			/// Sets all margins to the same value.
+			/// </summary>
+			public MARGINS(int uniformvalue)
+			{
+				Left = Right = Top = Bottom = uniformvalue;
+			}
+
+			/// <summary>
+			/// Sets the margins so that they cover the whole surface.
+			/// </summary>
+			public static MARGINS WholeSurface
+			{
+				get
+				{
+					return new MARGINS(-1);
+				}
+			}
+			/// <summary>
+			/// Sets the margins so that they cover none of the window inner surface.
+			/// </summary>
+			public static MARGINS Null
+			{
+				get
+				{
+					return new MARGINS(0);
+				}
+			}
+
+			public int Left;
+
+			public int Right;
+
+			public int Top;
+
+			public int Bottom;
+		}
+		[DllImport("user32.dll", EntryPoint = "EnumWindows")]
+		public static extern bool EnumWindows(EnumWindowsCallback lpfn, int lParam);
+		public delegate bool EnumWindowsCallback(IntPtr hWnd, IntPtr lParam);
+		[DllImport("user32.dll", EntryPoint = "GetWindowThreadProcessId")]
+		public static extern int GetWindowThreadProcessId(IntPtr hWnd, out int lpdwProcessId);
+		public const uint SPI_GETCLEARTYPE = 0x1048;
+
+		public const uint SPI_GETFONTSMOOTHING = 0x004A;
+
+		public const uint SPI_SETFONTSMOOTHING = 0x004B;
+
+		public const uint SPI_GETFONTSMOOTHINGTYPE = 0x200A;
+
+		public const uint SPI_SETFONTSMOOTHINGTYPE = 0x200B;
+		public const uint FE_FONTSMOOTHINGCLEARTYPE = 0x0002;
 	}
 
 

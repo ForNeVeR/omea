@@ -1,9 +1,8 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
+/// <copyright company="JetBrains">
+/// Copyright � 2003-2008 JetBrains s.r.o.
 /// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
 /// </copyright>
 
-using System;
 using System.Drawing;
 using System.Windows.Forms;
 using JetBrains.Omea.GUIControls;
@@ -25,7 +24,7 @@ namespace JetBrains.Omea
 	    public void SetContents( Control contents )
         {
             Controls.Add( contents );
-            contents.Bounds = new Rectangle( 1, 1, Width-2, Height-2 );
+            contents.Bounds = new Rectangle( 1, 1, Width - 2, Height - 2 );
             contents.Anchor = AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Right | AnchorStyles.Bottom;
         }
 
@@ -39,7 +38,7 @@ namespace JetBrains.Omea
 	    {
 	        base.OnPaint( e );
             Pen pen = ColorScheme.GetPen( _colorScheme, "PaneCaption.Border", Pens.Black );
-            e.Graphics.DrawRectangle( pen, 0, 0, ClientRectangle.Width-1, ClientRectangle.Height-1 );
+            e.Graphics.DrawRectangle( pen, 0, 0, ClientRectangle.Width - 1, ClientRectangle.Height - 1 );
 	    }
 	}
 }

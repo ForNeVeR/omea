@@ -31,6 +31,8 @@ namespace JetBrains.Omea.GUIControls
 	{
 		#region Attributes
 
+        const int _nRightMargin = 2;
+
         private const string _ChooserTooltip = "Select where to search";
         private const string _NotReadyErrorMessage = "Text index is not built or loaded yet";
         private const string _NotReadyErrorCaption = "Search query failed";
@@ -55,8 +57,7 @@ namespace JetBrains.Omea.GUIControls
 		private JetLinkLabel        _labelAdvanced;
 		private ToolTip             _tipReason;
 
-		private ColorScheme         _colorScheme;
-		private static AdvancedSearchForm AdvSForm;
+	    private static AdvancedSearchForm AdvSForm;
 		private static string CurrentSearchText = string.Empty;
 
         private ISearchProvider _currentProvider;
@@ -65,10 +66,10 @@ namespace JetBrains.Omea.GUIControls
         private ArrayList       _searchProviders;
 
 		/// <summary>The command bar site.</summary>
-		protected ICommandBarSite _site = null;
+		protected ICommandBarSite _site;
 
 		/// <summary>The grip.</summary>
-		protected Grip _grip = null;
+		protected Grip _grip;
 
 		/// <summary>Scaling factor for the component.</summary>
 		protected SizeF _sizeScale = new SizeF( 1, 1 );
@@ -171,14 +172,10 @@ namespace JetBrains.Omea.GUIControls
 		}
 		#endregion
 
-		[DefaultValue( null )]
-		public ColorScheme ColorScheme
-		{
-			get {  return _colorScheme;  }
-			set {  _colorScheme = value; }
-		}
+	    [DefaultValue( null )]
+	    public ColorScheme ColorScheme { get; set; }
 
-		#region Visual Init
+	    #region Visual Init
 		private void InitializeComponent()
 		{
 			components = new Container();
@@ -201,7 +198,7 @@ namespace JetBrains.Omea.GUIControls
 			_btnProviderChooser.Size = new Size( 16, 16 );
 			_btnProviderChooser.Click += _btnProviderChooser_Click;
             _btnProviderChooser.BackColor = Color.Transparent;
-            _btnProviderChooser.AddIcon(Utils.GetResourceIconFromAssembly("GUIControls", "GUIControls.Icons.chooser.ico"), ImageListButton.ButtonState.Normal);
+            _btnProviderChooser.AddIcon(Utils.TryGetEmbeddedResourceIconFromAssembly("GUIControls", "GUIControls.Icons.chooser.ico"), ImageListButton.ButtonState.Normal);
             //
             // _panelChoosingButtons
             //
@@ -260,9 +257,9 @@ namespace JetBrains.Omea.GUIControls
 			_btnSearch.TabIndex = 3;
 			_btnSearch.Click += OnClick;
 			_btnSearch.BackColor = BackColor;
-			_btnSearch.AddIcon( Utils.GetResourceIconFromAssembly( "GUIControls", "GUIControls.Icons.SearchControl.Go.Normal.ico" ), ImageListButton.ButtonState.Normal);
-			_btnSearch.AddIcon( Utils.GetResourceIconFromAssembly( "GUIControls", "GUIControls.Icons.SearchControl.Go.Hot.ico" ), ImageListButton.ButtonState.Hot);
-			_btnSearch.AddIcon( Utils.GetResourceIconFromAssembly( "GUIControls", "GUIControls.Icons.SearchControl.Go.Disabled.ico" ), ImageListButton.ButtonState.Disabled);
+			_btnSearch.AddIcon( Utils.TryGetEmbeddedResourceIconFromAssembly( "GUIControls", "GUIControls.Icons.SearchControl.Go.Normal.ico" ), ImageListButton.ButtonState.Normal);
+			_btnSearch.AddIcon( Utils.TryGetEmbeddedResourceIconFromAssembly( "GUIControls", "GUIControls.Icons.SearchControl.Go.Hot.ico" ), ImageListButton.ButtonState.Hot);
+			_btnSearch.AddIcon( Utils.TryGetEmbeddedResourceIconFromAssembly( "GUIControls", "GUIControls.Icons.SearchControl.Go.Disabled.ico" ), ImageListButton.ButtonState.Disabled);
 			// 
 			// _lblAdvanced
 			// 
@@ -404,7 +401,6 @@ namespace JetBrains.Omea.GUIControls
 
 			using( new LayoutSuspender( _labelAdvanced ) )
 			using( new LayoutSuspender( _labelTitle ) )
-//			using( new LayoutSuspender( _panelChoosingButtons ) )
 			using( new LayoutSuspender( _searchQueryCombo ) )
 			using( new LayoutSuspender( _btnSearch ) )
 			{
@@ -412,9 +408,8 @@ namespace JetBrains.Omea.GUIControls
 				Rectangle rectInsideGrip = _grip.OnLayout( RectInsideBorder );
 
 				int nLeftMargin = rectInsideGrip.Left + 3; // Actually, that's all we have to do about the grip
-				int nRightMargin = 2;
 				int nAvailWidth = Width;
-				nAvailWidth -= nLeftMargin + nRightMargin; // Margins
+				nAvailWidth -= nLeftMargin + _nRightMargin; // Margins
 
 				// If we have too small width, start dropping the unnecessary controls
 				// Order: title, advanced, go, combo
@@ -452,7 +447,7 @@ namespace JetBrains.Omea.GUIControls
 
 				// Now, position the controls
 				int nLeft = nLeftMargin; // Current occupied space on the left
-				int nRight = nRightMargin; // Current occupied space on the right
+				int nRight = _nRightMargin; // Current occupied space on the right
 
 				if( bTakeTitle )
 				{
@@ -616,12 +611,9 @@ namespace JetBrains.Omea.GUIControls
 			//  forbid calling the processing during initialization
 			if( Core.State == CoreState.Running )
 			{
-				string searchText = _searchQueryCombo.Text;
-
-			    //  Check for mysterious case when the text value of standard control's
-			    //  property is null.
-			    if( searchText == null )
-				    searchText = string.Empty;
+			    //  Check also for mysterious case when the text value of standard 
+			    //  control's property is null.
+				string searchText = _searchQueryCombo.Text ?? string.Empty;
 			    searchText = searchText.Trim();
 
 				Trace.WriteLine( "Performing full-scale search using query: [" + searchText + "]" );
@@ -680,21 +672,21 @@ namespace JetBrains.Omea.GUIControls
 			//-----------------------------------------------------------------
 			//  Create condition from the query
 			//-----------------------------------------------------------------
-			IFilterManager fMgr = Core.FilterManager;
-			IResource queryCondition = ((FilterManager) fMgr).CreateStandardConditionAux( null, query, ConditionOp.QueryMatch );
-			FilterManager.ReferCondition2Template( queryCondition, fMgr.Std.BodyMatchesSearchQueryXName );
+			IFilterRegistry fMgr = Core.FilterRegistry;
+			IResource queryCondition = ((FilterRegistry) fMgr).CreateStandardConditionAux( null, query, ConditionOp.QueryMatch );
+			FilterRegistry.ReferCondition2Template( queryCondition, fMgr.Std.BodyMatchesSearchQueryXName );
 
             conditions.Add( queryCondition );
 
 			//-----------------------------------------------------------------
             bool showDelItems = Core.SettingStore.ReadBool( "Search", "ShowDeletedItems", true );
             IResource[]  condsList = (IResource[]) conditions.ToArray( typeof(IResource) );
-			IResource view = Core.ResourceStore.FindUniqueResource( FilterManagerProps.ViewResName, "DeepName", Core.FilterManager.ViewNameForSearchResults );
+			IResource view = Core.ResourceStore.FindUniqueResource( FilterManagerProps.ViewResName, "DeepName", Core.FilterRegistry.ViewNameForSearchResults );
 			if( view != null )
                 fMgr.ReregisterView( view, fMgr.ViewNameForSearchResults, resTypes, condsList, null );
 			else
                 view = fMgr.RegisterView( fMgr.ViewNameForSearchResults, resTypes, condsList, null );
-			Core.FilterManager.SetVisibleInAllTabs( view );
+			Core.FilterRegistry.SetVisibleInAllTabs( view );
 
 			//-----------------------------------------------------------------
 			//  Set additional properties characteristic only for "Search Results"
@@ -719,7 +711,7 @@ namespace JetBrains.Omea.GUIControls
 			//-----------------------------------------------------------------
 			Core.ResourceTreeManager.LinkToResourceRoot( view, int.MinValue );
 
-            new UserResourceOrder( Core.ResourceTreeManager.ResourceTreeRoot ).Insert( 0, new int[] {view.Id}, false, null );
+            new UserResourceOrder( Core.ResourceTreeManager.ResourceTreeRoot ).Insert( 0, new[] {view.Id}, false, null );
 
 			//-----------------------------------------------------------------
             //  If we still in the Running mode we can do some UI work...
@@ -845,12 +837,7 @@ namespace JetBrains.Omea.GUIControls
 			    _searchQueryCombo.SelectAll();
 			}
 
-            CurrentSearchText = _searchQueryCombo.Text;
-
-			//  Check for mysterious case when the text value of standard control's
-			//  property is null.
-			if( CurrentSearchText == null )
-				CurrentSearchText = string.Empty;
+            CurrentSearchText = _searchQueryCombo.Text ?? string.Empty;
 		}
 
         private void  ChangeProviderTo( int index )
@@ -977,12 +964,14 @@ namespace JetBrains.Omea.GUIControls
 
 		public void Populate()
 		{
-            EnableControls( false );
-            SetTooltip( "Text index is not yet available" );
-			_searchQueryCombo.Text = string.Empty;
+            if( !Core.TextIndexManager.IsIndexPresent() )
+            {
+                EnableControls( false );
+                SetTooltip( "Text index is not yet available" );
+                Core.TextIndexManager.IndexLoaded += OnIndexConstructionComplete;
+            }
 
-            Core.TextIndexManager.IndexLoaded += OnIndexConstructionComplete;
-
+            _searchQueryCombo.Text = string.Empty;
             InitializeSearchProviders();
 		}
 
@@ -1009,9 +998,14 @@ namespace JetBrains.Omea.GUIControls
 				AdvSForm.Activate();
 		}
 
+	    private string ProviderTitle
+	    {
+	        get {  return (_currentProvider == null) ? string.Empty : _currentProvider.Title;  }
+	    }
+
         private void SetTooltip()
         {
-            SetTooltip( Core.TextIndexManager.GetSearchProviderTitle( _currentProvider ) );
+            SetTooltip( ProviderTitle );
         }
 
         private void SetTooltip( string text )
@@ -1029,7 +1023,7 @@ namespace JetBrains.Omea.GUIControls
                 _searchQueryCombo.ForeColor == SystemColors.GrayText )
             {
                 _searchQueryCombo.ForeColor = SystemColors.GrayText;
-                _searchQueryCombo.Text = _currentProvider.Title;
+                _searchQueryCombo.Text = ProviderTitle;
             }
         }
 
@@ -1068,8 +1062,7 @@ namespace JetBrains.Omea.GUIControls
             string text = isp.Title;
             Icon   icon = isp.Icon;
 
-            SizeF textSize;
-            textSize = e.Graphics.MeasureString( text, SystemInformation.MenuFont );
+            SizeF textSize = e.Graphics.MeasureString( text, SystemInformation.MenuFont );
             e.ItemHeight = Math.Max( icon.Height, (int) Math.Ceiling( textSize.Height) );
             e.ItemWidth = _LeftIndent + icon.Width + 5 + (int) Math.Ceiling( textSize.Width );
         }
@@ -1089,17 +1082,14 @@ namespace JetBrains.Omea.GUIControls
             iconRegion.Width = icon.Width;
             textRegion.X += _LeftIndent + SystemInformation.MenuCheckSize.Width + icon.Width + _InterIconsIndent;
 
-            Brush brush;
-
             e.DrawBackground();
             if( (e.State & DrawItemState.Checked) != 0 )
                 ControlPaint.DrawMenuGlyph( e.Graphics, glyphRegion, MenuGlyph.Bullet );
             e.Graphics.DrawIcon( icon, iconRegion );
 
-            if( (e.State & DrawItemState.Selected) != 0 )
-                brush = SystemBrushes.FromSystemColor( SystemColors.Menu );
-            else
-                brush = SystemBrushes.FromSystemColor( SystemColors.MenuText );
+            Brush brush = ((e.State & DrawItemState.Selected) != 0) ? 
+                             SystemBrushes.FromSystemColor( SystemColors.Menu ) :
+                             SystemBrushes.FromSystemColor( SystemColors.MenuText );
             e.Graphics.DrawString( text, font, brush, textRegion );
         }
     }
@@ -1128,11 +1118,9 @@ namespace JetBrains.Omea.GUIControls
         {
             e.DrawBackground();
 
-            Brush brush;
-            if( (e.State & DrawItemState.Selected) != 0 )
-                brush = SystemBrushes.FromSystemColor( SystemColors.Menu );
-            else
-                brush = SystemBrushes.FromSystemColor( SystemColors.MenuText );
+            Brush brush = ((e.State & DrawItemState.Selected) != 0) ? 
+                            SystemBrushes.FromSystemColor( SystemColors.Menu ) :
+                            SystemBrushes.FromSystemColor( SystemColors.MenuText );
 
             e.Graphics.DrawString( ((ProvidersHeaderMenuItem) sender).Header, _itemFont, brush, e.Bounds );
         }
@@ -1164,7 +1152,7 @@ namespace JetBrains.Omea.GUIControls
         private void OnKeyPress( object sender, KeyPressEventArgs e )
         {
             if ( !e.KeyChar.Equals( (char)8 ) )
-                SearchItems( ref e );
+                SearchItems( e );
             else
                 e.Handled = false;
         }
@@ -1173,7 +1161,7 @@ namespace JetBrains.Omea.GUIControls
         /// Searches the combo box item list for a match and selects it.
         /// If no match is found, then selected index defaults to -1.
         /// </summary>
-        private void SearchItems( ref KeyPressEventArgs e )
+        private void SearchItems( KeyPressEventArgs e )
         {
             int selectionStart = SelectionStart;
             int selectionLength = SelectionLength;
@@ -1255,6 +1243,12 @@ namespace JetBrains.Omea.GUIControls
             Win32Declarations.SendMessage( handle, Win32Declarations.EM_SETMARGINS, (IntPtr)Win32Declarations.EC_LEFTMARGIN, (IntPtr)margin );
         }
         #endregion Controls Movement
+
+        protected override void OnEnabledChanged( EventArgs a )
+        {
+            base.OnEnabledChanged( a );
+            _control.Visible = Enabled;
+        }
    }
     #endregion ACMarginableComboBox
 }

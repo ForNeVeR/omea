@@ -5,11 +5,11 @@
 
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using NUnit.Framework;
 
 using JetBrains.Omea.ResourceStore;
 using JetBrains.Omea.OpenAPI;
-using JetBrains.Omea.Containers;
 
 namespace CommonTests
 {
@@ -896,7 +896,7 @@ namespace CommonTests
             IResource person = _storage.NewResource( "Person" );
             IResource email = _storage.NewResource( "Email" );
 
-            IntArrayList list = new IntArrayList();
+            List<int> list = new List<int>();
             list.Add( person.Id );
             list.Add( email.Id );
             IResourceList plainList = _storage.ListFromIds( list.ToArray(), false );

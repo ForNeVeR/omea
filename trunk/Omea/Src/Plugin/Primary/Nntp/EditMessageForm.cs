@@ -14,6 +14,7 @@ using System.Resources;
 using System.Text;
 using System.Web;
 using System.Windows.Forms;
+using GUIControls.Controls;
 using JetBrains.DataStructures;
 using JetBrains.Omea.Base;
 using JetBrains.Omea.Charsets;
@@ -42,7 +43,7 @@ namespace JetBrains.Omea.Nntp
 		private Panel _bodyPanel;
 		private ContextMenu _attachListMenu;
 		private MenuItem _removeAttachMenuItem;
-		private GradientToolbar _toolbar;
+		private ToolStrip _toolbar;
 		private ResourceListLinkLabel _groupsLabel;
 		private JetTextBox _fromTextLabel;
 		private ComboBox _fromComboBox;
@@ -159,6 +160,7 @@ namespace JetBrains.Omea.Nntp
 		private EditMessageForm()
 		{
 			InitializeComponent();
+
             Icon = Core.UIManager.ApplicationIcon;
             _attaches = Core.ResourceStore.EmptyResourceList;
             _fromTextLabel.Width = _fromComboBox.Width - SystemInformation.VerticalScrollBarWidth - 1;
@@ -187,9 +189,9 @@ namespace JetBrains.Omea.Nntp
             _bodyPanel.Controls.Add( _bodyListSplitter );
             _bodyPanel.Controls.Add( _attachList );
 
-            InitializeMenuToolBarManagers();
-
             InitializeColumns();
+
+            InitializeMenuToolBarManagers();
 
             InitializeFormSize();
 		}
@@ -490,7 +492,7 @@ namespace JetBrains.Omea.Nntp
 			_fromComboBox = new ComboBox();
 			_bodyListSplitter = new Splitter();
 			_bodyPanel = new Panel();
-			_toolbar = new GradientToolbar();
+			_toolbar = new ToolStrip();
 
 			mainMenu1 = new MenuStrip();
 			_fileMenuItem = new ToolStripMenuItem();
@@ -727,17 +729,11 @@ namespace JetBrains.Omea.Nntp
             // _toolbar
             // 
             this._toolbar.AllowDrop = true;
-            this._toolbar.Appearance = System.Windows.Forms.ToolBarAppearance.Flat;
-            this._toolbar.Divider = false;
-            this._toolbar.DropDownArrows = true;
-            this._toolbar.GradientEndColor = System.Drawing.SystemColors.Control;
-            this._toolbar.GradientStartColor = System.Drawing.SystemColors.ControlLightLight;
             this._toolbar.Location = new System.Drawing.Point(0, 0);
             this._toolbar.Name = "_toolbar";
-            this._toolbar.ShowToolTips = true;
+            this._toolbar.Renderer = new GradientRenderer( SystemColors.ControlLightLight, SystemColors.Control );
             this._toolbar.Size = new System.Drawing.Size(792, 26);
             this._toolbar.TabIndex = 11;
-            this._toolbar.TextAlign = System.Windows.Forms.ToolBarTextAlign.Right;
             this._toolbar.DragDrop += new System.Windows.Forms.DragEventHandler(this.EditMessageForm_DragDrop);
             this._toolbar.DragOver += new System.Windows.Forms.DragEventHandler(this.EditMessageForm_DragOver);
             // 
@@ -747,8 +743,8 @@ namespace JetBrains.Omea.Nntp
             // 
             // _fileMenuItem
             // 
-            _fileMenuItem.DropDownItems.AddRange( new ToolStripItem[] { _newMenuItem, _postMenuItem,
-                                                                        _menuSeparator1, _saveMenuItem, _saveAndCloseMenuItem,
+            _fileMenuItem.DropDownItems.AddRange( new ToolStripItem[] { _newMenuItem, _postMenuItem, _menuSeparator1,
+                                                                        _saveMenuItem, _saveAndCloseMenuItem,
                                                                         _menuSeparator4, _closeMenuItem});
             this._fileMenuItem.Text = "&File";
             // 
@@ -2043,15 +2039,13 @@ namespace JetBrains.Omea.Nntp
             }
             set
             {
-                bool lastValue = ArticleChanged;
+                // this property can be set from non-UI thread, so methods accessing the UI
+                // (like the ArticleChanged getter) should not be used here
                 _articleChanged = value;
                 IAsyncProcessor ap = Core.UserInterfaceAP;
                 if( !value )
                 {
-                    if( lastValue )
-                    {
-                        ap.CancelTimedJobs( _saveArticleDelegate );
-                    }
+                    ap.CancelTimedJobs( _saveArticleDelegate );
                 }
                 else
                 {

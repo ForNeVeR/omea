@@ -32,7 +32,7 @@ namespace JetBrains.Omea
         private VerticalSidebar _newActiveSidebar;
         private bool _expanded;
         private int _expandedWidth;
-        private Icon _defaultPaneIcon;
+        private Image _defaultPaneImage;
         private string _currentTabID;
         private ColorScheme _colorScheme;
         private readonly Hashtable _paneActivateActions = new Hashtable();    // AbstractViewPane -> IAction
@@ -86,10 +86,10 @@ namespace JetBrains.Omea
             }
         }
 
-	    public Icon DefaultPaneIcon
+	    public Image DefaultPaneIcon
 	    {
-	        get { return _defaultPaneIcon; }
-	        set { _defaultPaneIcon = value; }
+	        get { return _defaultPaneImage; }
+	        set { _defaultPaneImage = value; }
 	    }
 
 	    public int ExpandedWidth
@@ -171,7 +171,7 @@ namespace JetBrains.Omea
             pane.AddNodeFilter( filter );
             pane.ShowWorkspaceOtherView = true;
 
-            AddPane( tabId, StandardViewPanes.ViewsCategories, pane, "Views and Categories", _defaultPaneIcon );
+            AddPane( tabId, StandardViewPanes.ViewsCategories, pane, "Views and Categories", _defaultPaneImage );
         }
 
         /**
@@ -196,7 +196,7 @@ namespace JetBrains.Omea
          * Registers a view pane that will be shown in the sidebar.
          */
 
-        public void RegisterViewPane( string paneID, string tabID, string caption, Icon icon, AbstractViewPane viewPane )
+        public void RegisterViewPane( string paneID, string tabID, string caption, Image icon, AbstractViewPane viewPane )
         {
             RegisterActivateAction( tabID, paneID, caption );
             AddPane( tabID, paneID, viewPane, caption, icon );
@@ -206,7 +206,7 @@ namespace JetBrains.Omea
          * Register a view pane that displays a portion of the resource tree.
          */
 
-        public IResourceTreePane RegisterTreeViewPane( string paneID, string tabName, string caption, Icon icon, IResource rootResource )
+        public IResourceTreePane RegisterTreeViewPane( string paneID, string tabName, string caption, Image icon, IResource rootResource )
         {
             JetResourceTreePane pane = new JetResourceTreePane();
             pane.RootResource = rootResource;
@@ -220,7 +220,7 @@ namespace JetBrains.Omea
          */
 
         public void RegisterResourceStructurePane( string paneId, string tabId, string caption, 
-            Icon icon, AbstractViewPane viewPane )
+                                                   Image icon, AbstractViewPane viewPane )
         {
             RegisterActivateAction( tabId, paneId, caption );
             AddPane( tabId, paneId, viewPane, caption, icon );
@@ -228,8 +228,7 @@ namespace JetBrains.Omea
 
             if ( viewPane is JetResourceTreePane )
             {
-                ViewsCategoriesPane viewsCategoriesPane = (ViewsCategoriesPane) GetPane( tabId, 
-                    StandardViewPanes.ViewsCategories );
+                ViewsCategoriesPane viewsCategoriesPane = (ViewsCategoriesPane) GetPane( tabId, StandardViewPanes.ViewsCategories );
                 viewsCategoriesPane.ShowWorkspaceOtherView = false;
             }
         }
@@ -238,16 +237,15 @@ namespace JetBrains.Omea
          * Registers a resource structure pane based on a ResourceTreeView.
          */
         
-        public IResourceTreePane RegisterResourceStructureTreePane( string paneId, string tabId, 
-            string caption, Icon icon, IResource rootResource )
+        public IResourceTreePane RegisterResourceStructureTreePane( string paneId, string tabId, string caption,
+                                                                    Image icon, IResource rootResource )
         {
             JetResourceTreePane pane = new JetResourceTreePane();
             pane.RootResource = rootResource;
             pane.RootResourceType = null;
             RegisterResourceStructurePane( paneId, tabId, caption, icon, pane );
 
-            ViewsCategoriesPane viewsCategoriesPane = (ViewsCategoriesPane) GetPane( tabId, 
-                StandardViewPanes.ViewsCategories );
+            ViewsCategoriesPane viewsCategoriesPane = (ViewsCategoriesPane) GetPane( tabId, StandardViewPanes.ViewsCategories );
             viewsCategoriesPane.ShowWorkspaceOtherView = false;
             
             return pane;
@@ -258,12 +256,12 @@ namespace JetBrains.Omea
          * as the root of the ResourceTreeView.
          */
 
-        public IResourceTreePane RegisterResourceStructureTreePane( string paneId, string tabId, 
-            string caption, Icon icon, string rootResourceType )
+        public IResourceTreePane RegisterResourceStructureTreePane( string paneId, string tabId, string caption,
+                                                                    Image icon, string rootResType )
         {
             JetResourceTreePane treePane = (JetResourceTreePane) RegisterResourceStructureTreePane( paneId, tabId, caption, icon, 
-                Core.ResourceTreeManager.GetRootForType( rootResourceType ) );
-            treePane.RootResourceType = rootResourceType;
+                                                                 Core.ResourceTreeManager.GetRootForType( rootResType ) );
+            treePane.RootResourceType = rootResType;
             return treePane;
         }
 
@@ -284,7 +282,7 @@ namespace JetBrains.Omea
          * Registers a pane to be shown in the sidebar for the specified tab.
          */
         
-        public void AddPane( string tabID, string paneID, AbstractViewPane viewPane, string caption, Icon icon )
+        public void AddPane( string tabID, string paneID, AbstractViewPane viewPane, string caption, Image icon )
         {
             VerticalSidebar sidebar = GetSidebar( tabID );
             sidebar.RegisterPane( viewPane, paneID, caption, icon );
@@ -395,8 +393,7 @@ namespace JetBrains.Omea
             {
                 if ( !_activeSidebar.ContainsPane( paneId ) )
                 {
-                    throw new ArgumentException( "Pane ID " + paneId + " not found in sidebar of tab " +
-                        GetSidebarTab( _activeSidebar ) );
+                    throw new ArgumentException( "Pane ID " + paneId + " not found in sidebar of tab " + GetSidebarTab( _activeSidebar ) );
                 }
                 _activeSidebar.ActivatePane( paneId );
             }
@@ -501,7 +498,8 @@ namespace JetBrains.Omea
                 }
                 sidebar.ExpandedChanged += OnActiveSidebarExpandedChanged;
                 Expanded = sidebar.Expanded;
-                Width = Expanded ? ExpandedWidth : sidebar.CollapsedWidth;
+//                Width = Expanded ? ExpandedWidth : sidebar.CollapsedWidth;
+                Width = Expanded ? ExpandedWidth : 0;
             }
             else
             {
@@ -542,7 +540,8 @@ namespace JetBrains.Omea
                 ExpandedWidth = Width;
             }
             Expanded = _activeSidebar.Expanded;
-            Width = Expanded ? ExpandedWidth : _activeSidebar.CollapsedWidth;
+//            Width = Expanded ? ExpandedWidth : _activeSidebar.CollapsedWidth;
+            Width = Expanded ? ExpandedWidth : 0;
         }
 
 	    public IActionContext GetContext( ActionContextKind kind )

@@ -8,6 +8,9 @@ using System.Drawing;
 using System.IO;
 using System.Net;
 using System.Windows.Forms;
+
+using System35;
+
 using JetBrains.Omea.OpenAPI;
 using NMock;
 using PicoContainer.Defaults;
@@ -246,7 +249,36 @@ namespace JetBrains.Omea.PicoCore
             return true;// TODO:  Add MockAsyncProcessor.QueueJob implementation
         }
 
-        bool JetBrains.Omea.OpenAPI.IAsyncProcessor.QueueJob(JetBrains.Omea.OpenAPI.JobPriority priority, Delegate method, params object[] args)
+    	#region IAsyncProcessor Members
+
+    	/// <summary>
+    	/// Queues a named delegate for asynchronous execution with specified priority.
+    	/// These jobs are never merged.
+    	/// </summary>
+    	/// <param name="priority">The priority of this job.</param>
+    	/// <param name="name">Name of operation.</param>
+    	/// <param name="action">The delegate to be executed. Arguments should be passed via a closure.</param>
+    	/// <remarks>Name of operation is reflected by corresponding indicator light.</remarks>
+    	public void QueueJob(JobPriority priority, string name, Action action)
+    	{
+    		// TODO
+    	}
+
+    	/// <summary>
+    	/// Queues a named delegate for asynchronous execution with specified priority.
+    	/// </summary>
+    	/// <param name="priority">The priority of this job.</param>
+    	/// <param name="name">Name of operation.</param>
+    	/// <param name="identity">An optional identity. Jobs with equal non-<c>Null</c> identity will be merged together.</param>
+    	/// <param name="action">The delegate to be executed. Arguments should be passed via a closure.</param>
+    	/// <remarks>Name of operation is reflected by corresponding indicator light.</remarks>
+    	/// <returns><c>True</c> if the delegate was really queued, <c>False</c> if it was merged with an equal one.</returns>
+    	public bool QueueJob(JobPriority priority, string name, object identity, Action action)
+    	{
+    		return true; // TODO
+    	}
+
+    	bool JetBrains.Omea.OpenAPI.IAsyncProcessor.QueueJob(JetBrains.Omea.OpenAPI.JobPriority priority, Delegate method, params object[] args)
         {
             return true; // TODO:  Add MockAsyncProcessor.OmniaMea.OpenAPI.IAsyncProcessor.QueueJob implementation
         }
@@ -262,7 +294,32 @@ namespace JetBrains.Omea.PicoCore
             return true;// TODO:  Add MockAsyncProcessor.OmniaMea.OpenAPI.IAsyncProcessor.QueueJob implementation
         }
 
-        bool JetBrains.Omea.OpenAPI.IAsyncProcessor.QueueJob(Delegate method, params object[] args)
+    	/// <summary>
+    	/// Queues a named delegate for asynchronous execution with normal priority.
+    	/// These jobs are never merged.
+    	/// </summary>
+    	/// <param name="name">Name of operation.</param>
+    	/// <param name="action">The delegate to be executed. Arguments should be passed via a closure.</param>
+    	/// <remarks>Name of operation is reflected by corresponding indicator light.</remarks>
+    	public void QueueJob(string name, Action action)
+    	{
+    		// TODO
+    	}
+
+    	/// <summary>
+    	/// Queues a named delegate for asynchronous execution with normal priority.
+    	/// </summary>
+    	/// <param name="name">Name of operation.</param>
+    	/// <param name="identity">An optional identity. Jobs with equal non-<c>Null</c> identity will be merged together.</param>
+    	/// <param name="action">The delegate to be executed. Arguments should be passed via a closure.</param>
+    	/// <remarks>Name of operation is reflected by corresponding indicator light.</remarks>
+    	/// <returns><c>True</c> if the delegate was really queued, <c>False</c> if it was merged with an equal one.</returns>
+    	public bool QueueJob(string name, object identity, Action action)
+    	{
+    		return true; // TODO
+    	}
+
+    	bool JetBrains.Omea.OpenAPI.IAsyncProcessor.QueueJob(Delegate method, params object[] args)
         {
             return true;// TODO:  Add MockAsyncProcessor.OmniaMea.OpenAPI.IAsyncProcessor.QueueJob implementation
         }
@@ -310,7 +367,18 @@ namespace JetBrains.Omea.PicoCore
 
         public void QueueJobAt( DateTime when, string name, Delegate method, params object[] args ) {}
 
-        public object RunJob( Delegate method, params object[] args )
+    	/// <summary>
+    	/// Queues a named delegate for execution at specified time.
+    	/// </summary>
+    	/// <param name="dateTime">The time when delegate should be executed.</param>
+    	/// <param name="name">Name of operation.</param>
+    	/// <param name="action">The delegate to be executed. Arguments should be passed via a closure.</param>
+    	/// <remarks>If time has passed, job is executed immediately. Name of operation is reflected by corresponding indicator light.</remarks>
+    	public void QueueJobAt(DateTime dateTime, string name, Action action)
+    	{
+    	}
+
+    	public object RunJob( Delegate method, params object[] args )
         {
             return method.DynamicInvoke( args );
         }
@@ -320,7 +388,24 @@ namespace JetBrains.Omea.PicoCore
             return method.DynamicInvoke( args );
         }
 
-        public void RunUniqueJob( AbstractJob uow )
+    	/// <summary>
+    	/// Queues a named delegate for synchronous execution and waits until it is finished.
+    	/// </summary>
+    	/// <param name="name">Name of operation.</param>
+    	/// <param name="action">The delegate to be executed. Arguments and a return value should be passed via a closure.</param>
+    	/// <remarks>Jobs to be run are queued with the immediate priority.
+    	/// On attempt to run two or more equal jobs simultaneously the <c>AsyncProcessorException</c> is thrown.
+    	/// Name of operation is reflected by corresponding indicator light.</remarks>
+    	/// <returns>Whether the execution succeeded.</returns>
+    	public bool RunJob(string name, Action action)
+    	{
+    		action();
+			return true;
+    	}
+
+    	#endregion
+
+    	public void RunUniqueJob( AbstractJob uow )
         {
             
         }

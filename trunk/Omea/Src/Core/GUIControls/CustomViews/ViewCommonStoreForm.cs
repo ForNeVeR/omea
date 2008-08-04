@@ -70,7 +70,7 @@ namespace JetBrains.Omea.GUIControls.CustomViews
         private readonly Hashtable    _labelsOfBoxes = new Hashtable();
         private readonly Hashtable    _labelsOfPanels = new Hashtable();
 
-        protected IFilterManager      FMgr;
+        protected IFilterRegistry      FMgr;
         protected IResourceStore      RStore;
 
         protected Label         _lblHeading;
@@ -115,7 +115,7 @@ namespace JetBrains.Omea.GUIControls.CustomViews
         public ViewCommonDialogBase( string linkedPinnedPropName, bool mustHaveHeading,
                                   bool isAllResTypeAllowed, bool isQueryConditionsAllowed )
         {
-            FMgr = Core.FilterManager;
+            FMgr = Core.FilterRegistry;
             RStore = Core.ResourceStore;
             MustHaveHeading = mustHaveHeading;
             CanAllRTWithNoConditions = isAllResTypeAllowed;
@@ -170,8 +170,8 @@ namespace JetBrains.Omea.GUIControls.CustomViews
             RecreateResTypes( view );
 
             ArrayList parameters = new ArrayList(), negParameters = new ArrayList();
-            ArrayList conditions = CollectResourcesAndTemplates( view, parameters, Core.FilterManager.Props.LinkedConditions );
-            ArrayList exceptions = CollectResourcesAndTemplates( view, negParameters, Core.FilterManager.Props.LinkedExceptions );
+            ArrayList conditions = CollectResourcesAndTemplates( view, parameters, Core.FilterRegistry.Props.LinkedConditions );
+            ArrayList exceptions = CollectResourcesAndTemplates( view, negParameters, Core.FilterRegistry.Props.LinkedExceptions );
             InitializePanelsAndButtons( conditions, parameters, exceptions, negParameters );
         }
 
@@ -589,7 +589,7 @@ namespace JetBrains.Omea.GUIControls.CustomViews
 
         protected void  RecreateResTypes( IResource view )
         {
-            string[] types = FilterManager.CompoundType( view );
+            string[] types = FilterRegistry.CompoundType( view );
             RecreateResTypes( types );
         }
 
@@ -782,8 +782,8 @@ namespace JetBrains.Omea.GUIControls.CustomViews
             else
             if( op == ConditionOp.In )
             {
-                if( template.GetStringProp( "ChooseFromResourceType" ) == FilterManager.ExternalFileTag ||
-                    template.GetStringProp( "ChooseFromResourceType" ) == FilterManager.ExternalDirTag )
+                if( template.GetStringProp( "ChooseFromResourceType" ) == FilterRegistry.ExternalFileTag ||
+                    template.GetStringProp( "ChooseFromResourceType" ) == FilterRegistry.ExternalDirTag )
                 {
                     info.Parameters = res.GetStringProp( "ConditionVal" );
                 }
@@ -1344,7 +1344,7 @@ namespace JetBrains.Omea.GUIControls.CustomViews
             string      pattern = template.GetStringProp( "Name" );
             ConditionOp     templateOp = (ConditionOp)template.GetProp( "ConditionOp" );
             IResourceList   currentSelection = RStore.EmptyResourceList;
-            ITemplateParamUIHandler uiHandler = FilterManager.GetUIHandler( template.GetStringProp("Name") );
+            ITemplateParamUIHandler uiHandler = FilterRegistry.GetUIHandler( template.GetStringProp("Name") );
 
             string  currVal = ExtractParameterString( labelText, pattern );
 
@@ -1364,8 +1364,8 @@ namespace JetBrains.Omea.GUIControls.CustomViews
             else
             if( templateOp == ConditionOp.In )
             {
-                if( valueObjName != FilterManager.ExternalFileTag &&
-                    valueObjName != FilterManager.ExternalDirTag )
+                if( valueObjName != FilterRegistry.ExternalFileTag &&
+                    valueObjName != FilterRegistry.ExternalDirTag )
                 {
                     if( currVal != ExtractDefaultParameter( pattern ) )
                     {
@@ -1404,7 +1404,7 @@ namespace JetBrains.Omea.GUIControls.CustomViews
                         Debug.Assert( info.Parameters != null, "After any template editing, res list can not be null" );
                     }
 
-                    if( valueObjName == FilterManager.ExternalFileTag )
+                    if( valueObjName == FilterRegistry.ExternalFileTag )
                     {
                         string  filterMask = template.GetStringProp( "ApplicableToProp" );
 

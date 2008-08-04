@@ -56,8 +56,7 @@
 		</Upgrade>
 		<Icon Id="F.ProductIcon.ico" SourceFile="Files/ProductIcon.ico" />
 		<!-- Simple WiX UI. -->
-		<!-- <WixVariable Id="WixUILicenseRtf" Value="$(var.DynReferencesDir)\License\LicenseAgreement.rtf" /> -->
-		<!-- TODO: License!! -->
+		<WixVariable Id="WixUILicenseRtf" Value="Files/License.rtf" />
 		<UIRef Id="WixUI_InstallDir" />
 		<UIRef Id="WixUI_ErrorProgressText" />
 		<Media Id="1" Cabinet="General.cab" EmbedCab="yes" DiskPrompt="Main installation files cabinet" />

@@ -29,7 +29,7 @@ namespace JetBrains.Omea
 
         private void  AscribeDeepNames()
         {
-            IStandardConditions std = Core.FilterManager.Std;
+            IStandardConditions std = Core.FilterRegistry.Std;
             AscribeDeepName( FilterManagerProps.ConditionResName, std.ResourceIsUnreadName, std.ResourceIsUnreadNameDeep );
             AscribeDeepName( FilterManagerProps.ConditionResName, std.ResourceIsFlaggedName, std.ResourceIsFlaggedNameDeep );
             AscribeDeepName( FilterManagerProps.ConditionResName, std.ResourceIsAnnotatedName, std.ResourceIsAnnotatedNameDeep );
@@ -85,11 +85,11 @@ namespace JetBrains.Omea
         //---------------------------------------------------------------------
         private static void  CheckUniquenessOfFromContact()
         {
-            IResourceList list = Core.ResourceStore.FindResources( FilterManagerProps.ConditionTemplateResName, "DeepName", Core.FilterManager.Std.FromContactXNameDeep );
+            IResourceList list = Core.ResourceStore.FindResources( FilterManagerProps.ConditionTemplateResName, "DeepName", Core.FilterRegistry.Std.FromContactXNameDeep );
             if( list.Count > 1 )
             {
-                if( list[ 0 ].GetLinksOfType( null, Core.FilterManager.Props.TemplateLink ).Count <
-                    list[ 1 ].GetLinksOfType( null, Core.FilterManager.Props.TemplateLink ).Count )
+                if( list[ 0 ].GetLinksOfType( null, Core.FilterRegistry.Props.TemplateLink ).Count <
+                    list[ 1 ].GetLinksOfType( null, Core.FilterRegistry.Props.TemplateLink ).Count )
                 {
                     list[ 0 ].Delete();
                 }
@@ -201,12 +201,12 @@ namespace JetBrains.Omea
         private void  UpgradeConditions()
         {
             IResource res;
-            IFilterManager fMgr = Core.FilterManager;  // alias
+            IFilterRegistry fMgr = Core.FilterRegistry;  // alias
             IResourceStore Store = Core.ResourceStore; // alias
 
             #region Condition Renaming
             #region From Correspondent
-            IResource newRes = Core.ResourceStore.FindUniqueResource( FilterManagerProps.ConditionTemplateResName, "Name", Core.FilterManager.Std.FromContactXName );
+            IResource newRes = Core.ResourceStore.FindUniqueResource( FilterManagerProps.ConditionTemplateResName, "Name", Core.FilterRegistry.Std.FromContactXName );
             res = Core.ResourceStore.FindUniqueResource( FilterManagerProps.ConditionTemplateResName, "Name", "From %Correspondent(s)%" );
             if( res != null )
             {
@@ -214,14 +214,14 @@ namespace JetBrains.Omea
                 {
                     newRes.Delete();
                 }
-                res.SetProp( "Name", Core.FilterManager.Std.FromContactXName );
-                res.SetProp( "DeepName", Core.FilterManager.Std.FromContactXNameDeep );
-                res.SetProp( "_DisplayName", Core.FilterManager.Std.FromContactXName.Replace( "%", "" ) );
+                res.SetProp( "Name", Core.FilterRegistry.Std.FromContactXName );
+                res.SetProp( "DeepName", Core.FilterRegistry.Std.FromContactXNameDeep );
+                res.SetProp( "_DisplayName", Core.FilterRegistry.Std.FromContactXName.Replace( "%", "" ) );
             }
             #endregion From Correspondent
 
             #region To Correspondent
-            newRes = Core.ResourceStore.FindUniqueResource( FilterManagerProps.ConditionTemplateResName, "Name", Core.FilterManager.Std.ToContactXName );
+            newRes = Core.ResourceStore.FindUniqueResource( FilterManagerProps.ConditionTemplateResName, "Name", Core.FilterRegistry.Std.ToContactXName );
             res = Core.ResourceStore.FindUniqueResource( FilterManagerProps.ConditionTemplateResName, "Name", "Sent to %Correspondent(s)%" );
             if( res != null )
             {
@@ -231,9 +231,9 @@ namespace JetBrains.Omea
                     Trace.WriteLine( "ViewsInitializer -- Occasional [To Contact] has been found." );
                     newRes.Delete();
                 }
-                res.SetProp( "Name", Core.FilterManager.Std.ToContactXName );
-                res.SetProp( "DeepName", Core.FilterManager.Std.ToContactXNameDeep );
-                res.SetProp( "_DisplayName", Core.FilterManager.Std.ToContactXName.Replace( "%", "" ) );
+                res.SetProp( "Name", Core.FilterRegistry.Std.ToContactXName );
+                res.SetProp( "DeepName", Core.FilterRegistry.Std.ToContactXNameDeep );
+                res.SetProp( "_DisplayName", Core.FilterRegistry.Std.ToContactXName.Replace( "%", "" ) );
             }
             else
             if( newRes == null )
@@ -244,7 +244,7 @@ namespace JetBrains.Omea
             #endregion To Correspondent
 
             #region CC Correspondent
-            newRes = Core.ResourceStore.FindUniqueResource( FilterManagerProps.ConditionTemplateResName, "Name", Core.FilterManager.Std.CCContactXName );
+            newRes = Core.ResourceStore.FindUniqueResource( FilterManagerProps.ConditionTemplateResName, "Name", Core.FilterRegistry.Std.CCContactXName );
             res = Core.ResourceStore.FindUniqueResource( FilterManagerProps.ConditionTemplateResName, "Name", "Copied (CC) to %Correspondent(s)%" );
             if( res != null )
             {
@@ -252,9 +252,9 @@ namespace JetBrains.Omea
                 {
                     newRes.Delete();
                 }
-                res.SetProp( "Name", Core.FilterManager.Std.CCContactXName );
-                res.SetProp( "DeepName", Core.FilterManager.Std.CCContactXNameDeep );
-                res.SetProp( "_DisplayName", Core.FilterManager.Std.CCContactXName.Replace( "%", "" ) );
+                res.SetProp( "Name", Core.FilterRegistry.Std.CCContactXName );
+                res.SetProp( "DeepName", Core.FilterRegistry.Std.CCContactXNameDeep );
+                res.SetProp( "_DisplayName", Core.FilterRegistry.Std.CCContactXName.Replace( "%", "" ) );
             }
             if( newRes == null )
             {
@@ -552,7 +552,7 @@ namespace JetBrains.Omea
                                  Core.ResourceStore.GetAllResources( FilterManagerProps.RuleResName ));
             foreach( IResource res in list )
             {
-                IResourceList conds = Core.FilterManager.GetConditions( res ).Union( Core.FilterManager.GetExceptions( res ) );
+                IResourceList conds = Core.FilterRegistry.GetConditions( res ).Union( Core.FilterRegistry.GetExceptions( res ) );
                 foreach( IResource cond in conds )
                 {
                     if( cond.GetIntProp( "ConditionOp" ) == (int) ConditionOp.QueryMatch )
@@ -576,7 +576,7 @@ namespace JetBrains.Omea
             foreach( IResource res in list )
             {
                 res.DeleteProp( "ContentType" );
-                Core.FilterManager.SetVisibleInAllTabs( res );
+                Core.FilterRegistry.SetVisibleInAllTabs( res );
             }
 
             if( Core.ResourceStore.PropTypes.Exist( "ApplicableToType" ) )
@@ -747,9 +747,9 @@ namespace JetBrains.Omea
 
         private static void  SetDefaultPinning()
         {
-            Core.FilterManager.Std.ReceivedInTheTimeSpanX.SetProp( "IsAdvSearchLinked", true );
-            Core.FilterManager.Std.FromContactX.SetProp( "IsAdvSearchLinked", true );
-            Core.FilterManager.Std.ResourceIsUnread.SetProp( "IsTrayRuleLinked", true );
+            Core.FilterRegistry.Std.ReceivedInTheTimeSpanX.SetProp( "IsAdvSearchLinked", true );
+            Core.FilterRegistry.Std.FromContactX.SetProp( "IsAdvSearchLinked", true );
+            Core.FilterRegistry.Std.ResourceIsUnread.SetProp( "IsTrayRuleLinked", true );
         }
         #endregion SetDefaultPinning
 
@@ -771,17 +771,17 @@ namespace JetBrains.Omea
     {
         public void  RegisterViewsFirstRun()
         {
-            IFilterManager fMgr = Core.FilterManager;
+            IFilterRegistry fMgr = Core.FilterRegistry;
             IStandardConditions std = fMgr.Std;
 
             string  replyName = Core.ResourceStore.PropTypes[ Core.Props.Reply ].Name;
 
             //  We check for a link of reversed direction
-            Core.FilterManager.CreateStandardCondition( std.MessageHasReplyName, std.MessageHasReplyDeep,
+            Core.FilterRegistry.CreateStandardCondition( std.MessageHasReplyName, std.MessageHasReplyDeep,
                                                         null, "-" + replyName, ConditionOp.HasLink );
 
             replyName = Core.ResourceStore.PropTypes[ Core.Props.Reply ].Name;
-            Core.FilterManager.CreateStandardCondition( std.MessageIsAReplyName, std.MessageIsAReplyDeep,
+            Core.FilterRegistry.CreateStandardCondition( std.MessageIsAReplyName, std.MessageIsAReplyDeep,
                                                         null, replyName, ConditionOp.HasLink );
         }
         public void  RegisterViewsEachRun()
@@ -804,15 +804,15 @@ namespace JetBrains.Omea
             IResourceList list = Core.ResourceStore.GetAllResources( resName );
             foreach( IResource rule in list )
             {
-                IResourceList conds = Core.FilterManager.GetConditions( rule );
+                IResourceList conds = Core.FilterRegistry.GetConditions( rule );
                 if( conds.Count > 0 )
                 {
                     IResource group = Core.ResourceStore.NewResource( FilterManagerProps.ConjunctionGroup );
-                    rule.DeleteLinks( Core.FilterManager.Props.LinkedConditions );
+                    rule.DeleteLinks( Core.FilterRegistry.Props.LinkedConditions );
 
-                    rule.SetProp( Core.FilterManager.Props.LinkedConditions, group );
+                    rule.SetProp( Core.FilterRegistry.Props.LinkedConditions, group );
                     foreach( IResource cond in conds )
-                        group.AddLink( Core.FilterManager.Props.LinkedConditions, cond );
+                        group.AddLink( Core.FilterRegistry.Props.LinkedConditions, cond );
                 }
             }
         }

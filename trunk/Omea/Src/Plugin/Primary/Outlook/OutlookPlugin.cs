@@ -10,15 +10,15 @@ using System.Reflection;
 using System.Threading;
 using System.Windows.Forms;
 using JetBrains.Omea.AsyncProcessing;
+using JetBrains.Omea.Base;
 using JetBrains.Omea.Contacts;
 using JetBrains.Omea.Diagnostics;
 using JetBrains.Omea.OpenAPI;
 using JetBrains.Omea.GUIControls;
 
-
 namespace JetBrains.Omea.OutlookPlugin
 {
-    [PluginDescriptionAttribute("JetBrains Inc.", "Support for instant integration with Microsoft Outlook - Mails, Folders, Tasks, Categories, Contacts.")]
+    [PluginDescription("Outlook Synchronization", "JetBrains Inc.", "Support for instant integration with Microsoft Outlook — Mail messages, Folders, Tasks, Categories, Contacts.", PluginDescriptionFormat.PlainText, "Icons/OutlookPluginIcon.png")]
     public class OutlookPlugin: IPlugin, IEmailService
     {
         private bool _startupStatus = true;
@@ -27,7 +27,7 @@ namespace JetBrains.Omea.OutlookPlugin
         public static OutlookPlugin _plugin;
 
         private OutlookProcessor _outlookProcessor;
-        private OutlookUIHandler _outlookUIHandler = null;
+        private OutlookUIHandler _outlookUIHandler;
 
         public OutlookUIHandler OutlookUIHandler
         {
@@ -38,15 +38,7 @@ namespace JetBrains.Omea.OutlookPlugin
 
         static private string GetMAPIFolderToolTip( IResource folder )
         {
-            if ( Folder.IsIgnored( folder ) )
-            {
-                return "This folder is not indexed. Messages are not imported and processed.";
-            }
-            /*
-            int count = folder.GetLinkCount( PROP.MAPIFolder );
-            return "This folder contains " + count + " message(s).";
-            */
-            return null;
+            return Folder.IsIgnored( folder ) ? "This folder is not indexed. Messages are not imported and processed." : null;
         }
 
         public void Register()
@@ -89,32 +81,30 @@ namespace JetBrains.Omea.OutlookPlugin
                 
             IUIManager uiManager = Core.UIManager;
 
-            Core.TabManager.RegisterResourceTypeTab( "Email", "Mail",
-                new string[] { STR.Email, STR.MAPIFolder }, PROP.Attachment, 1 );
+            Core.TabManager.RegisterResourceTypeTab( "Email", "Mail", new[] { STR.Email, STR.MAPIFolder }, PROP.Attachment, 1 );
 
+            Image img = Utils.TryGetEmbeddedResourceImageFromAssembly( Assembly.GetExecutingAssembly(), "OutlookPlugin.Icons.Folders24.png" );
             IResourceTreePane outlookFolders = 
-                Core.LeftSidebar.RegisterResourceStructureTreePane( "MAPIFolders", "Email", "Outlook Folders", 
-                LoadIconFromAssembly( "OutlookPlugin.Icons.folders.ico" ), STR.MAPIFolder);
+                Core.LeftSidebar.RegisterResourceStructureTreePane( "MAPIFolders", "Email", "Outlook Folders", img, STR.MAPIFolder);
             if ( outlookFolders != null )
             {
                 outlookFolders.AddNodeFilter( new OutlookFoldersFilter() );
                 ((ResourceTreePaneBase)outlookFolders).AddNodeDecorator( new TotalCountDecorator( STR.MAPIFolder, PROP.MAPIFolder ) );
-                outlookFolders.ToolTipCallback = new ResourceToolTipCallback( GetMAPIFolderToolTip );
+                outlookFolders.ToolTipCallback = GetMAPIFolderToolTip;
                 Settings.OutlookFolders = outlookFolders;
 
                 Core.LeftSidebar.RegisterViewPaneShortcut( "MAPIFolders", Keys.Control | Keys.Alt | Keys.O );
             }
 
-            uiManager.RegisterResourceLocationLink( STR.Email, PROP.MAPIFolder, 
-                STR.MAPIFolder );
+            uiManager.RegisterResourceLocationLink( STR.Email, PROP.MAPIFolder, STR.MAPIFolder );
 
-            CorrespondentCtrl correspondentPane = new CorrespondentCtrl();
-            correspondentPane.IniSection = "Outlook";
-            Core.LeftSidebar.RegisterViewPane( "Correspondents", "Email", "Correspondents", 
-                LoadIconFromAssembly( "OutlookPlugin.Icons.correspondents.ico" ), correspondentPane );
+            CorrespondentCtrl correspondentPane = new CorrespondentCtrl {IniSection = "Outlook"};
+
+        	img = Utils.TryGetEmbeddedResourceImageFromAssembly( Assembly.GetExecutingAssembly(), "OutlookPlugin.Icons.Correspondents24.png" );
+            Core.LeftSidebar.RegisterViewPane( "Correspondents", "Email", "Correspondents", img, correspondentPane );
             
-            Core.LeftSidebar.RegisterViewPane( "Attachments", "Email", "Attachments", 
-                LoadIconFromAssembly( "OutlookPlugin.Icons.attachments.ico" ), new AttachmentsCtrl() );
+            img = Utils.TryGetEmbeddedResourceImageFromAssembly( Assembly.GetExecutingAssembly(), "OutlookPlugin.Icons.Attachments24.png" );
+            Core.LeftSidebar.RegisterViewPane( "Attachments", "Email", "Attachments", img, new AttachmentsCtrl() );
             Core.LeftSidebar.RegisterViewPaneShortcut( "Attachments", Keys.Control | Keys.Alt | Keys.T );
 
             RegisterCustomColumns();
@@ -125,17 +115,14 @@ namespace JetBrains.Omea.OutlookPlugin
             IWorkspaceManager workspaceMgr = Core.WorkspaceManager;
             if ( workspaceMgr != null )
             {
-                workspaceMgr.RegisterWorkspaceType( STR.MAPIFolder, 
-                    new int[] { PROP.MAPIFolder }, WorkspaceResourceType.Container );
-                workspaceMgr.RegisterWorkspaceType( STR.Email,
-                    new int[] { -PROP.Attachment }, WorkspaceResourceType.None );
+                workspaceMgr.RegisterWorkspaceType( STR.MAPIFolder, new[] { PROP.MAPIFolder }, WorkspaceResourceType.Container );
+                workspaceMgr.RegisterWorkspaceType( STR.Email, new[] { -PROP.Attachment }, WorkspaceResourceType.None );
                 workspaceMgr.RegisterWorkspaceSelectorFilter( STR.MAPIFolder, new OutlookFoldersFilter() );
             }
 
             ResourceTextProvider textProvider = new ResourceTextProvider();
             Core.PluginLoader.RegisterResourceTextProvider( STR.Email, textProvider );
             Core.PluginLoader.RegisterResourceTextProvider( STR.EmailFile, textProvider );
-//            Core.PluginLoader.RegisterResourceTextProvider( null, textProvider );
 
             ResourceDisplayer displayer = new ResourceDisplayer();
             Core.PluginLoader.RegisterResourceDisplayer( STR.Email, displayer );
@@ -183,7 +170,7 @@ namespace JetBrains.Omea.OutlookPlugin
             EmailThreadingHandler threadingHandler = new EmailThreadingHandler();
             Core.PluginLoader.RegisterResourceThreadingHandler( "Email", threadingHandler );
             Core.PluginLoader.RegisterResourceThreadingHandler( PROP.Attachment, threadingHandler );
-            Core.StateChanged += new EventHandler( Core_StateChanged );
+            Core.StateChanged += Core_StateChanged;
 
             Core.ResourceBrowser.SetDefaultViewSettings( "Email", AutoPreviewMode.UnreadItems, true );
 
@@ -248,7 +235,7 @@ namespace JetBrains.Omea.OutlookPlugin
             Core.DisplayColumnManager.RegisterCustomColumn( -PROP.Attachment, attachmentColumn );
         }
 
-        private static ManualResetEvent _firstIndexingEnd = new ManualResetEvent( false );
+        private static readonly ManualResetEvent _firstIndexingEnd = new ManualResetEvent( false );
         internal static void FinishInitialIndexingJob()
         {
             _firstIndexingEnd.Set();
@@ -316,7 +303,7 @@ namespace JetBrains.Omea.OutlookPlugin
                     }
                 }
             }
-            CreateEmailDelegate emailDelegate = new CreateEmailDelegate( OutlookFacadeHelper.CreateNewMessage );
+            CreateEmailDelegate emailDelegate = OutlookFacadeHelper.CreateNewMessage;
             try
             {
                 _outlookProcessor.RunJob( "Creation new mail", emailDelegate, 
@@ -332,7 +319,7 @@ namespace JetBrains.Omea.OutlookPlugin
 
         public void CreateEmail( string subject, string body, EmailBodyFormat bodyFormat, EmailRecipient[] recipients, string[] attachments, bool addSignature )
         {
-            CreateEmailWithRecipDelegate emailDelegate = new CreateEmailWithRecipDelegate( OutlookFacadeHelper.CreateNewMessage );
+            CreateEmailWithRecipDelegate emailDelegate = OutlookFacadeHelper.CreateNewMessage;
             try
             {
                 _outlookProcessor.RunUniqueJob( "Creation new mail", emailDelegate, subject, body, bodyFormat, recipients, attachments, addSignature );
@@ -372,7 +359,7 @@ namespace JetBrains.Omea.OutlookPlugin
             if ( Core.State == CoreState.Running )
             {
                 _outlookProcessor.ThreadPriority = ThreadPriority.BelowNormal;
-                Core.StateChanged -= new EventHandler( Core_StateChanged );
+                Core.StateChanged -= Core_StateChanged;
             }
         }
     }
@@ -394,12 +381,7 @@ namespace JetBrains.Omea.OutlookPlugin
     {
         public IResource GetThreadParent( IResource res )
         {
-            IResource parent = res.GetLinkProp( PROP.Attachment );
-            if ( parent == null )
-            {
-                parent = res.GetLinkProp( Core.Props.Reply );
-            }
-            return parent;
+        	return res.GetLinkProp( PROP.Attachment ) ?? res.GetLinkProp( Core.Props.Reply );
         }
 
         public IResourceList GetThreadChildren( IResource res )
@@ -425,8 +407,9 @@ namespace JetBrains.Omea.OutlookPlugin
 
     public class AttachmentsColumn : ICustomColumn
 	{
-        private int          _idAttach, _idResAttach;
-        private ImageList    _imageList;
+        private readonly int _idAttach;
+        private readonly int _idResAttach;
+        private readonly ImageList _imageList;
 
         public event ResourceEventHandler ResourceClicked;
 
@@ -435,21 +418,19 @@ namespace JetBrains.Omea.OutlookPlugin
             _idAttach = -Core.ResourceStore.PropTypes[ STR.Attachment ].Id;
 	        _idResAttach = Core.ResourceStore.PropTypes[ "InternalAttachment" ].Id;
 
-            _imageList = new ImageList();
-            _imageList.ColorDepth = ICore.Instance.ResourceIconManager.IconColorDepth;
+            _imageList = new ImageList {ColorDepth = ICore.Instance.ResourceIconManager.IconColorDepth};
 
-            AddIcon( header );
+	    	AddIcon( header );
             AddIcon( attach );
             AddIcon( resAttach );
 	    }
 
         public ImageList ImageList { get { return _imageList; } }
 
-        private int AddIcon( Icon icon )
+        private void AddIcon( Icon icon )
         {
-            int iconIndex = _imageList.Images.Count;
             _imageList.Images.Add( icon );
-            return iconIndex;
+            return;
         }
 
         public virtual void Draw( IResource res, Graphics g, Rectangle rc )

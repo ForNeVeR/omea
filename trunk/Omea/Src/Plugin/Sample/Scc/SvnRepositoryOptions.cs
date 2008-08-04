@@ -200,9 +200,9 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
 	    public DialogResult EditRepository( IWin32Window ownerWindow, IResource repository )
 	    {
 	        _edtName.Text = repository.GetPropText( Core.Props.Name );
-	        _edtUrl.Text = repository.GetPropText( Props.RepositoryUrl );
-            _edtUserName.Text = repository.GetPropText( Props.UserName );
-            _edtPassword.Text = repository.GetPropText( Props.Password );
+	        _edtUrl.Text = repository.GetProp( Props.RepositoryUrl );
+            _edtUserName.Text = repository.GetProp( Props.UserName );
+            _edtPassword.Text = repository.GetProp( Props.Password );
 	        DialogResult dr = ShowDialog( ownerWindow );
 	        if ( dr == DialogResult.OK )
 	        {

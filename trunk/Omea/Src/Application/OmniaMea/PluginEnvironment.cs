@@ -42,7 +42,7 @@ namespace JetBrains.Omea
 		{
 		    theInstance = this;
             RegisterComponentImplementation( typeof(ResourceTabProvider) );
-            RegisterComponentImplementation( typeof(Plugins.Loader) );
+            RegisterComponentImplementation( typeof(Plugins.PluginInterfaces) );
             RegisterComponentImplementation( typeof(DisplayColumnManager) );
         }
 

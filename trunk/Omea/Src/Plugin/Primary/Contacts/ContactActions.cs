@@ -167,22 +167,21 @@ namespace JetBrains.Omea.ContactsPlugin
         /// <returns>The merge result contact, or null if the user cancelled the merge operation.</returns>
         public static IResource ShowMergeDialog( IResourceList contacts, IResourceList defaultContactsToMerge )
         {
-            MergeContactsForm dlg = new MergeContactsForm( contacts, defaultContactsToMerge ); 
-            using( dlg )
-            {
-                if ( dlg.ShowDialog() == DialogResult.OK )
-                {
-                    //  a list of contacts can be changed in the dialog,
-                    //  e.g. new contacts may appeared.
-                    Cursor.Current = Cursors.WaitCursor;
-                    IResource result = (IResource) Core.UIManager.RunWithProgressWindowEx( "Merging Contacts...",
-                        new DelegateMerge( DoMerge ), 
-                        new object[] { dlg.FullName, dlg.ResultContacts, dlg.ShowOriginalNames } );
-                    Cursor.Current = Cursors.Default;
-                    return result;
-                }
-                return null;
-            }
+        	var dlg = new MergeContactsForm(contacts, defaultContactsToMerge);
+        	using(dlg)
+        	{
+        		if(dlg.ShowDialog() == DialogResult.OK)
+        		{
+        			//  a list of contacts can be changed in the dialog,
+        			//  e.g. new contacts may appeared.
+        			Cursor.Current = Cursors.WaitCursor;
+        			IResource result = null;
+        			Core.UIManager.RunWithProgressWindow("Merging Contacts…", delegate { result = DoMerge(dlg.FullName, dlg.ResultContacts, dlg.ShowOriginalNames); });
+        			Cursor.Current = Cursors.Default;
+        			return result;
+        		}
+        		return null;
+        	}
         }
 
         private static IResource DoMerge( string fullName, IResourceList contacts, bool showOrigNames )
@@ -218,24 +217,23 @@ namespace JetBrains.Omea.ContactsPlugin
             resultContacts = Core.ContactManager.Split( contact, contacts2Split );
         }
 
-        public void Execute( IActionContext context )
-        {
-            Debug.Assert( context.SelectedResources.Count == 1, "Contact splitting action is called with illegal number of parameters (only one contact is expected)" );
+    	public void Execute(IActionContext context)
+    	{
+    		Debug.Assert(context.SelectedResources.Count == 1, "Contact splitting action is called with illegal number of parameters (only one contact is expected)");
 
-            IResource contact = context.SelectedResources[ 0 ];
-            if( contact.Type == "ContactName" )
-                contact = contact.GetLinkProp( Core.ContactManager.Props.LinkBaseContact );
+    		IResource contact = context.SelectedResources[0];
+    		if(contact.Type == "ContactName")
+    			contact = contact.GetLinkProp(Core.ContactManager.Props.LinkBaseContact);
 
-            SplitContactForm form = new SplitContactForm( contact );
-            if( form.ShowDialog() == DialogResult.OK )
-            {
-                Cursor.Current = Cursors.WaitCursor;
-                Core.UIManager.RunWithProgressWindowEx( "Merging Contacts...", new DelegateSplit( DoSplit ), 
-                                                        new object[] { contact, form.Contacts2Split } );
-                Cursor.Current = Cursors.Default;
-                UpdateResourcePanes();
-            }
-        }
+    		var form = new SplitContactForm(contact);
+    		if(form.ShowDialog() == DialogResult.OK)
+    		{
+    			Cursor.Current = Cursors.WaitCursor;
+    			Core.UIManager.RunWithProgressWindow("Merging Contacts…", delegate { DoSplit(contact, form.Contacts2Split); });
+    			Cursor.Current = Cursors.Default;
+    			UpdateResourcePanes();
+    		}
+    	}
 
         public void Update( IActionContext context, ref ActionPresentation presentation )
         {
@@ -426,7 +424,7 @@ namespace JetBrains.Omea.ContactsPlugin
     public class MailToContactAction : IAction
     {
         static private IEmailService _emailService;
-        static private bool _init = false;
+        static private bool _init;
 
         static private IEmailService GetEmailService()
         {
@@ -467,14 +465,13 @@ namespace JetBrains.Omea.ContactsPlugin
 
     public class CleanUnusedContactsAction : IAction
     {
-        public void Execute( IActionContext context )
-        {
-            Core.UIManager.RunWithProgressWindowEx( "Deleting Contacts...",
-                                                    new ResourceDelegate( ExecuteMarshaller ),
-                                                    new object[] { context.SelectedResources[ 0 ] } );
-        }
+    	public void Execute(IActionContext context)
+    	{
+    		IResource resource = context.SelectedResources[0];
+    		Core.UIManager.RunWithProgressWindow("Deleting Contacts…", delegate { ExecuteMarshaller(resource); });
+    	}
 
-        public void Update( IActionContext context, ref ActionPresentation presentation )
+    	public void Update( IActionContext context, ref ActionPresentation presentation )
         {
             presentation.Visible = IsContactsTab() &&
                 (context.Instance == Core.LeftSidebar.DefaultViewPane) &&
@@ -511,12 +508,11 @@ namespace JetBrains.Omea.ContactsPlugin
         public override string Name
         {
             get { return "Performing cleaning of contacts"; }
-            set {}
         }
 
         public override void  EnumerationStarting()
         {
-            IResourceList  inView = Core.FilterManager.ExecView( SavedView );
+            IResourceList  inView = Core.FilterEngine.ExecView( SavedView );
             inView = inView.Intersect( Core.ResourceBrowser.FilterResourceList, true );
             ResourceIds = new IntArrayList( inView.ResourceIds );
             Percent = Index = 0;

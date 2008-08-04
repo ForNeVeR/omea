@@ -376,7 +376,7 @@ namespace JetBrains.Omea.MailParser
 
         internal static string FormattedHeader( string subject )
         {
-            return "<h1 class=\"OmeaHeader\">" + subject + "</h1><hr class=\"OmeaHeader\">\n";
+            return "<h1 class=\"OmeaHeader\">" + HttpUtility.HtmlEncode(subject) + "</h1><hr class=\"OmeaHeader\">\n";
         }
 
         internal static string FormattedHeaderWithStyle( string subject )

@@ -5,6 +5,7 @@
 
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Xml;
@@ -18,8 +19,13 @@ namespace JetBrains.Omea.Tools.PropGen
 	    private string _indent;
 	    private string _prefix;
 	    private string _defaultDataType;
+	    private string _visibility;
 	    private bool _ownerPlugin;
+	    private int _indentLevel;
 
+	    private readonly Dictionary<string, string> _dataTypes = new Dictionary<string, string>();
+	    private readonly Dictionary<string, string> _corePropTypes = new Dictionary<string, string>();
+                                                           
 	    /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -41,7 +47,23 @@ namespace JetBrains.Omea.Tools.PropGen
             }
         }
 
-        public void GenerateInterface( string xmlName, string csName )
+
+	    public PropGen()
+	    {
+	        _dataTypes["Int"] = "int";
+	        _dataTypes["String"] = "string";
+	        _dataTypes["Date"] = "DateTime";
+	        _dataTypes["Link"] = "IResource";
+	        _dataTypes["Blob"] = "Stream";
+	        _dataTypes["Double"] = "double";
+	        _dataTypes["LongString"] = "string";
+	        _dataTypes["Bool"] = "bool";
+
+	        _corePropTypes["Name"] = "String";
+	        _corePropTypes["Parent"] = "Link";
+	    }
+
+	    public void GenerateInterface( string xmlName, string csName )
         {
             _doc.Load( xmlName );
             _writer = new StreamWriter( csName );
@@ -67,6 +89,8 @@ namespace JetBrains.Omea.Tools.PropGen
                 _writer.WriteLine( "namespace " + nameSpace );
                 _writer.WriteLine( "{" );
             }
+
+	        _visibility = GetVisibility(_doc);
             
             _indent = new string( ' ', 4 );
             GenerateXmlDocComment( interfaceElement );
@@ -100,7 +124,7 @@ namespace JetBrains.Omea.Tools.PropGen
             if ( nameSpace.Length > 0 )
             {
                 _writer.WriteLine( "namespace " + nameSpace );
-                _writer.WriteLine( "{" );
+                OpenBrace();
             }
 
             string className = _doc.DocumentElement.GetAttribute( "class" );
@@ -108,7 +132,7 @@ namespace JetBrains.Omea.Tools.PropGen
             {
                 className = "Props";
             }
-            string visibility = GetVisibility( _doc );
+            _visibility = GetVisibility( _doc );
 
             _indent = new string( ' ', 4 );
             GenerateXmlDocComment( _doc.DocumentElement );
@@ -120,8 +144,8 @@ namespace JetBrains.Omea.Tools.PropGen
                 implements = ": " + interfaceNode.GetAttribute( "name" );
             }
 
-            _writer.WriteLine( "    {0} class {1}{2}", visibility, className, implements );
-            _writer.WriteLine( "    {" );
+            _writer.WriteLine( "    {0} class {1}{2}", _visibility, className, implements );
+            OpenBrace();
 
             _prefix = _doc.DocumentElement.GetAttribute( "prefix" );
             if ( _prefix.Length > 0 )
@@ -131,7 +155,6 @@ namespace JetBrains.Omea.Tools.PropGen
             _defaultDataType = _doc.DocumentElement.GetAttribute( "defaultDataType" );
             _ownerPlugin = _doc.DocumentElement.GetAttribute( "ownerPlugin" ) == "1";
 
-            _indent = new string( ' ', 8 );
             GenerateClassNameConstants();
             GeneratePropFields();
             _writer.WriteLine( "" );
@@ -155,7 +178,7 @@ namespace JetBrains.Omea.Tools.PropGen
                 string constructorVisibility = _doc.DocumentElement.GetAttribute( "constructor" );
                 if ( constructorVisibility.Length == 0 )
                 {
-                    constructorVisibility = visibility;
+                    constructorVisibility = _visibility;
                 }
                 _writer.WriteLine( "{0}{1} {2}( IResourceStore store )", 
                     _indent, constructorVisibility, className );
@@ -174,13 +197,31 @@ namespace JetBrains.Omea.Tools.PropGen
 
             _writer.WriteLine( _indent + "}" );
 
-            _writer.WriteLine( "    }" );
-            if ( _doc.DocumentElement.GetAttribute( "namespace" ).Length > 0 )
+            CloseBrace();
+
+            GenerateBusinessObjectClasses();
+
+            if (_doc.DocumentElement.GetAttribute("namespace").Length > 0)
             {
-                _writer.WriteLine( "}" );
+                CloseBrace();
             }
 
             _writer.Close();
+        }
+
+        private void OpenBrace()
+        {
+            _indentLevel += 4;
+            _writer.WriteLine("{0}{{", _indent);
+            _indent = new string(' ', _indentLevel);
+        }
+
+        private void CloseBrace()
+        {
+            _indentLevel -= 4;
+            _indent = new string(' ', _indentLevel);
+            _writer.WriteLine("{0}}}", _indent);
+            _writer.WriteLine("");
         }
 
 	    private void GenerateXmlDocComment( XmlElement element )
@@ -221,16 +262,23 @@ namespace JetBrains.Omea.Tools.PropGen
 
             foreach( XmlElement node in _doc.SelectNodes( "/props/prop" ) )
             {
-                _writer.WriteLine( "{0}private {1}int _prop{2};", _indent, prefix, GetPropName( node ) );
+                _writer.WriteLine( "{0}private {1}PropId<{2}> _prop{3};", _indent, prefix, 
+                    GetPropIdType(node), GetPropName( node ) );
             }
         }
 
-        private void GenerateInterfaceProperties()
+	    private string GetPropIdType(XmlElement node)
+	    {
+	        string dataType = node.GetAttribute("dataType");
+	        return _dataTypes[dataType];
+	    }
+
+	    private void GenerateInterfaceProperties()
         {
             foreach( XmlElement node in _doc.SelectNodes( "/props/prop" ) )
             {
                 GenerateXmlDocComment( node );
-                _writer.WriteLine( "{0}int {1} {{ get; }}", _indent, GetPropName( node) );
+                _writer.WriteLine( "{0}PropId<{1}> {2} {{ get; }}", _indent, GetPropIdType(node), GetPropName( node) );
             }
         }
 
@@ -241,9 +289,98 @@ namespace JetBrains.Omea.Tools.PropGen
             foreach( XmlElement node in _doc.SelectNodes( "/props/prop" ) )
             {
                 GenerateXmlDocComment( node );
-                _writer.WriteLine( "{0}{1} {2}int {3} {{ get {{ return _prop{3}; }} }}", 
-                    _indent, visibility, isStatic, GetPropName( node ) );
+                _writer.WriteLine( "{0}{1} {2}PropId<{3}> {4} {{ get {{ return _prop{4}; }} }}", 
+                    _indent, visibility, isStatic, GetPropIdType(node), GetPropName( node ) );
             }
+        }
+
+        private void GenerateBusinessObjectClasses()
+        {
+            foreach (XmlElement node in _doc.SelectNodes("/props/resourcetype"))
+            {
+                XmlNodeList coreProps = node.GetElementsByTagName("coreProp");
+                XmlNodeList props = node.GetElementsByTagName("prop");
+                if (coreProps.Count > 0 || props.Count > 0)
+                {
+                    string visibility = GetVisibility(_doc);
+                    string name = node.GetAttribute("name");
+                    _writer.WriteLine("{0}{1} partial class {2}: BusinessObject",
+                        _indent, visibility, name);
+                    OpenBrace();
+                    GenerateResourceTypeId(name);
+
+                    _writer.WriteLine("{0}public static {1}ResourceType ResourceType = {1}ResourceType.Instance;",
+                        _indent, name);
+                    _writer.WriteLine("");
+
+                    _writer.WriteLine("{0}public static {1} Create()", _indent, name);
+                    OpenBrace();
+                    _writer.WriteLine("{0}return new {1}();", _indent, name);
+                    CloseBrace();
+
+                    _writer.WriteLine("{0}protected {1}(): base(Props.{1}Resource)", _indent, name);
+                    OpenBrace();
+                    CloseBrace();
+
+                    _writer.WriteLine("{0}protected {1}(IResource res): base(res)", _indent, name);
+                    OpenBrace();
+                    CloseBrace();
+
+                    foreach(XmlElement element in coreProps)
+                    {
+                        GenerateCoreBusinessObjectProp(element.GetAttribute("name"));
+                    }
+                    foreach(XmlElement element in props)
+                    {
+                        GenerateBusinessObjectProp(element.GetAttribute("name"));
+                    }
+
+                    CloseBrace();
+                }
+            }
+        }
+
+        private void GenerateResourceTypeId(string name)
+        {
+            _writer.WriteLine("{0}{1} class {2}ResourceType: ResourceTypeId<{2}>",
+                _indent, _visibility, name);
+            OpenBrace();
+            _writer.WriteLine("{0}private {1}ResourceType(): base(Props.{1}Resource)",
+                _indent, name);
+            OpenBrace();
+            CloseBrace();
+
+            _writer.WriteLine("{0}public override {1} CreateBusinessObject(IResource res)",
+                _indent, name);
+            OpenBrace();
+            _writer.WriteLine("{0}return new {1}(res);", _indent, name);
+            CloseBrace();
+
+            _writer.WriteLine("{0}{1} static {2}ResourceType Instance = new {2}ResourceType();",
+                _indent, _visibility, name);
+            CloseBrace();
+        }
+
+        private void GenerateCoreBusinessObjectProp(string name)
+        {
+            string propIdType = _dataTypes[_corePropTypes[name]];
+            GenerateWrapperProp(propIdType, name, "Core.PropIds");
+        }
+
+	    private void GenerateWrapperProp(string propIdType, string name, string accessor)
+	    {
+	        _writer.WriteLine("{0}public {1} {2}", _indent, propIdType, name);
+	        OpenBrace();
+	        _writer.WriteLine("{0}get {{ return GetProp({1}.{2}); }}", _indent, accessor, name);
+	        _writer.WriteLine("{0}set {{ SetProp({1}.{2}, value); }}", _indent, accessor, name);
+	        CloseBrace();
+	    }
+
+	    private void GenerateBusinessObjectProp(string name)
+        {
+            XmlNode prop = _doc.SelectSingleNode("/props/prop[@name='" + name + "']");
+            string propIdType = _dataTypes[prop.Attributes["dataType"].Value];
+            GenerateWrapperProp(propIdType, name, "Props");
         }
 
         private void GeneratePropTypeRegistration()
@@ -258,7 +395,7 @@ namespace JetBrains.Omea.Tools.PropGen
                 {
                     dataType = _defaultDataType;
                 }
-                _writer.Write( "PropDataType." + dataType );
+                _writer.Write( "PropDataTypes." + dataType );
 
                 string flags = GetFlags( "PropTypeFlags", node );
                 if ( flags != "" )

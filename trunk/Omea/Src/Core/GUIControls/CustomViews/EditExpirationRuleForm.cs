@@ -145,7 +145,7 @@ namespace JetBrains.Omea.GUIControls.CustomViews
 			InitializeComponent();
 
             _baseFolders = folders;
-            ValidResourceTypes = Core.ResourceStore.GetAllResources( FilterManager.RuleApplicableResourceTypeResName );
+            ValidResourceTypes = Core.ResourceStore.GetAllResources( FilterRegistry.RuleApplicableResourceTypeResName );
             _externalChecker = CheckValidActions;
             _lblHeading.Visible = _editHeading.Visible = false;
             _referenceTopic = "reference\\auto_expiration_rule_dialog.htm";
@@ -157,7 +157,7 @@ namespace JetBrains.Omea.GUIControls.CustomViews
         private void  InitializeActions( IResource baseRes )
         {
             ArrayList parameters = new ArrayList();
-            ArrayList actions = CollectResourcesAndTemplates( baseRes, parameters, Core.FilterManager.Props.LinkedActions );
+            ArrayList actions = CollectResourcesAndTemplates( baseRes, parameters, Core.FilterRegistry.Props.LinkedActions );
             AddConditions( panelActions, actions, parameters );
         }
         #endregion Ctor
@@ -361,7 +361,7 @@ namespace JetBrains.Omea.GUIControls.CustomViews
             IResourceList auxList = RStore.EmptyResourceList;
             foreach( IResource res in actions )
             {
-                if( Core.FilterManager.IsActionInstantiated( res ) )
+                if( Core.FilterRegistry.IsActionInstantiated( res ) )
                     auxList = auxList.Union( res.ToResourceList() );
             }
             actions = auxList;

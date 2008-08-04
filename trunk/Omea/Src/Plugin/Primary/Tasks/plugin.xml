@@ -70,7 +70,7 @@
 		<columns type="Task">
 			<column width="14" fixedSize="1">
 				<prop name="Priority" />
-				<comparer assembly="Tasks" class="JetBrains.Omea.Tasks.TasksComparerByPriority" />
+				<comparer assembly="Tasks.OmeaPlugin" class="JetBrains.Omea.Tasks.TasksComparerByPriority" />
 				<multiline row="1" startX="80" width="14" anchor="right" align="right" />
 			</column>
 			<column width="300" autoSize="1">
