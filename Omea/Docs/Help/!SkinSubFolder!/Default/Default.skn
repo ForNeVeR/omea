@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="windows-1252"?>
+<!--
+SPDX-FileCopyrightText: Copyright © 1994-2004 eHelp Corporation. All rights reserved.
+
+SPDX-License-Identifier: LicenseRef-RoboHELP
+-->
 <sqwebskin version="1.2">
 	<summary>
 		<skinname>Default</skinname>

@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="windows-1252"?>
+<!--
+SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+
+SPDX-License-Identifier: GPL-2.0-only
+-->
+
 <rhpml majorversion="1" minorversion="0">
 	<fontsets>
 		<fontset>

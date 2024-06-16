@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+
+SPDX-License-Identifier: GPL-2.0-only
+-->
+
 <html>
 <script language="javascript1.2" src="whutils.js"></script>
 <script language="javascript1.2">
@@ -29,7 +35,7 @@ function parseParam(sParam)
 	if (sParam)
 	{
 		var nBPos=0;
-		do 
+		do
 		{
 			var nPos=sParam.indexOf(">>", nBPos);
 			if (nPos!=-1)
@@ -48,7 +54,7 @@ function parseParam(sParam)
 				break;
 			}
 		} while(nBPos < sParam.length);
-	}	
+	}
 }
 
 function parsePart(sPart)

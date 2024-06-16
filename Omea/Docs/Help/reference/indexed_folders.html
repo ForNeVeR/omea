@@ -1,5 +1,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--
+SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+
+SPDX-License-Identifier: GPL-2.0-only
+-->
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
@@ -20,39 +25,39 @@
 <div id="mainContent">
 	<h1>Indexed Folders</h1>
    	<p class="opt">You can access this option from the Main menu: <strong>Tools | Options: Folders &amp; Files: Indexed Folders</strong></p>
-   
-   	<p>This option category is where you specify which of your computer&#146;s folders are to be indexed, and when indexing 
+
+   	<p>This option category is where you specify which of your computer&#146;s folders are to be indexed, and when indexing
       should occur for each folder. You can also mark specific folders as <strong>excluded</strong> from indexing.</p>
 	<img src="../images/sshots/dialogs/pro/indexed_folders_options.png" width="678" height="571" alt="Indexed Folders Options" />
 	<p class="caption">Indexed Folders options in the Options dialog</p>
-		  
+
   	<h2>Controls</h2>
-  	<p>The controls for this option category enable you to view a list of indexed and excluded folders, add folders to 
+  	<p>The controls for this option category enable you to view a list of indexed and excluded folders, add folders to
   	or remove folders from the list, and set the indexing option for each folder in the list.</p>
-  
+
   	<div class="indent">
   		<h3>Add Button</h3>
-  		<p>Enables you to add an existing folder to the list of indexed folders, or create a new folder and add it to the list. 
-  		Clicking this button launches the <em>Browse for Folder</em> dialog, in which you select or create the folder 
+  		<p>Enables you to add an existing folder to the list of indexed folders, or create a new folder and add it to the list.
+  		Clicking this button launches the <em>Browse for Folder</em> dialog, in which you select or create the folder
   		you want to add to the indexed folders list.</p>
-		
-		<p>When you add a folder, all subfolders it contains (if any) are also included in the index. Any new subfolders you 
-		create in the future will also be indexed automatically. If you want to exclude a specific subfolder from indexing, 
+
+		<p>When you add a folder, all subfolders it contains (if any) are also included in the index. Any new subfolders you
+		create in the future will also be indexed automatically. If you want to exclude a specific subfolder from indexing,
 		you can do so. See <a href="#exclude">Excluding Folders from Indexing</a>, below.</p>
 
-		<h3>Remove Button</h3> 
+		<h3>Remove Button</h3>
 		<p>Removes the currently selected folder from the list of indexed folders.</p>
-		
-		<p>If you remove the wrong folder by accident you can either click the Cancel button, or you can use the Add button 
-		and add the folder again. Note that if you choose Cancel, you will lose any other changes you have made since you 
+
+		<p>If you remove the wrong folder by accident you can either click the Cancel button, or you can use the Add button
+		and add the folder again. Note that if you choose Cancel, you will lose any other changes you have made since you
    		opened the Options dialog.</p>
 
   		<h3>Folders List</h3>
   		<p>This list shows the folders currently selected for indexing. It has 2 columns: </p>
 		<ul>
-		 <li><strong>Folder</strong>: shows the folders currently selected for indexing, one folder per line.</li> 
-		<li><strong>Indexed</strong>: shows the current indexing option for the folder in the Folder column. Each line 
-		of the Indexed column contains a drop-down list of the indexing options. For more information on indexing options, 
+		 <li><strong>Folder</strong>: shows the folders currently selected for indexing, one folder per line.</li>
+		<li><strong>Indexed</strong>: shows the current indexing option for the folder in the Folder column. Each line
+		of the Indexed column contains a drop-down list of the indexing options. For more information on indexing options,
 		see <a href="#options">Indexing Options</a>, below.</li>
 		</ul>
 
@@ -60,60 +65,60 @@
   	</div>
 
   	<div class="note">
-		<p class="note">When you add a new folder to the list, the indexing option for it is set to <strong>On startup</strong> 
-	    by default. If you want a different indexing option for the newly added folder, use the drop-down list on the appropriate 
+		<p class="note">When you add a new folder to the list, the indexing option for it is set to <strong>On startup</strong>
+	    by default. If you want a different indexing option for the newly added folder, use the drop-down list on the appropriate
 		line to select a different option.</p>
   </div>
-	
+
 	<a name="options"></a>
 	<h2>Indexing Options</h2>
 	<p>The indexing option setting controls how/when Omea indexes each folder (and its subfolders). The options are as follows.</p>
-	<div class="indent">  
-		<h3>Immediately</h3>   
+	<div class="indent">
+		<h3>Immediately</h3>
 		<p>Any changes to the folder tree&#146;s content (additions, deletions, etc.) will be indexed immediately as they happen.</p>
-   
-		<h3>On Startup</h3>   
+
+		<h3>On Startup</h3>
 		<p>Any changes to the folder tree&#146;s content (additions, deletions, etc.) will be indexed next time you start Omea.</p>
 
 		<h3>Never</h3>
-		<p>The selected folder and everything it contains (files, subfolders) will <em>not</em> be indexed by Omea and will not be visible 
+		<p>The selected folder and everything it contains (files, subfolders) will <em>not</em> be indexed by Omea and will not be visible
 		or accessible in Omea. The folder and its contents still reside in the Windows file system... nothing is removed from disk.</p>
 	</div>
 
 	<h2>Including or Excluding Specific Folders</h2>
-	<p>When you set an indexing option on a folder, the setting applies to that folder and all sub-folders it may contain, including 
+	<p>When you set an indexing option on a folder, the setting applies to that folder and all sub-folders it may contain, including
    	sub-folders of the sub-folders down to the lowest level in the hierarchy.</p>
-   
+
 	<h3>Applying a Different Indexing Option to a Subfolder</h3>
-	<p>If you want a different indexing option applied to some subfolder of one of the folders in the list of indexed folders, you 
+	<p>If you want a different indexing option applied to some subfolder of one of the folders in the list of indexed folders, you
 	need to add that specific folder to the list and set the desired indexing option for it.</p>
-   
+
 	<h4>Example</h4>
-	<p>Suppose you have already added your <code>C:\My Documents</code> folder and applied the <em>On Startup</em> indexing option to it. 
-   		However, you have a subfolder <code>C:\My Documents\Correspondence</code> that you want to to have indexed immediately as its contents changes. 
+	<p>Suppose you have already added your <code>C:\My Documents</code> folder and applied the <em>On Startup</em> indexing option to it.
+   		However, you have a subfolder <code>C:\My Documents\Correspondence</code> that you want to to have indexed immediately as its contents changes.
    		To do that:</p>
 		<ol>
 			<li>Add the <code>C:\My Documents\Correspondence</code> folder to the list using the <strong>Add</strong> button</li>
-			<li>With the <code>C:\My Documents\Correspondence</code> folder selected in the list, select the <strong>Immediate</strong> option in 
+			<li>With the <code>C:\My Documents\Correspondence</code> folder selected in the list, select the <strong>Immediate</strong> option in
 			the drop-down list in the <strong>Indexed</strong> column.</li>
-		</ol>   
-	
+		</ol>
+
 	<a name="exclude"></a>
 	<h3>Excluding a Specific Folder from Indexing</h3>
-	<p>You can specifically exclude any folder from indexing, whether it is a top-level folder or some subfolder. To do this, 
+	<p>You can specifically exclude any folder from indexing, whether it is a top-level folder or some subfolder. To do this,
 	you need to add the specific folder to the list of indexed folders and apply the indexing option <em>Never </em>to it.</p>
 
 	<h4>Example</h4>
-	<p>Suppose you have already added your <code>C:\My Documents</code> folder. However, you have a subfolder <code>C:\My Documents\Personal Stuff</code> 
+	<p>Suppose you have already added your <code>C:\My Documents</code> folder. However, you have a subfolder <code>C:\My Documents\Personal Stuff</code>
 	that you want to <em>exclude</em> from indexing by Omea.
    		To do that:</p>
 		<ol>
 			<li>Add the <code>C:\My Documents\Personal Stuff</code> folder to the list using the <strong>Add</strong> button</li>
-			<li>With the <code>C:\My Documents\Personal Stuff</code> folder selected in the list, select the <strong>Never</strong> option in 
+			<li>With the <code>C:\My Documents\Personal Stuff</code> folder selected in the list, select the <strong>Never</strong> option in
 			the drop-down list in the <strong>Indexed</strong> column.</li>
-		</ol>   
-		
-	
+		</ol>
+
+
 		<div id="seealso">
 		<p class="seealso"><strong>See also:</strong></p>
 		<ul>
@@ -121,7 +126,7 @@
 			<li class="seealso"><a href="options_dialog.html">Options dialog</a></li>
 		</ul>
 	</div>
-	
+
 </div>
 
 <!-- Spellcheck: 11 Aug 2004 -->

@@ -1,4 +1,9 @@
 <?xml version='1.0' encoding='ISO-8859-1' ?>
+<!--
+SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+
+SPDX-License-Identifier: GPL-2.0-only
+-->
 <topictemplate>
  <topic type="normal">
   <add tag="head" pos="endbefore" >
@@ -46,7 +51,7 @@ else
 if (window.writeIntopicBar)
 	writeIntopicBar(";WH_WEBSKIN.topic.bar.top.pos;");
 //-->
-</script>"]]>	
+</script>"]]>
   </add>
   <add tag="body" pos="endbefore">
    <![CDATA["<script type=\"text/javascript\" language=\"javascript1.2\">
@@ -55,7 +60,7 @@ if (window.writeIntopicBar)
 	writeIntopicBar(";WH_WEBSKIN.topic.bar.bottom.pos;");
 //-->
 </script>";
-OutputInTopicNavBarDataWebSearch.form();]]>	
+OutputInTopicNavBarDataWebSearch.form();]]>
   </add>
  </topic>
  <topic type="frameset">

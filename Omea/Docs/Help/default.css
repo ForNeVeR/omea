@@ -1,3 +1,9 @@
+/*
+SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+
+SPDX-License-Identifier: GPL-2.0-only
+*/
+
 /*=(===============================================================)*/
 
 /*=(===============================================================)*/
@@ -78,7 +84,7 @@ SPAN.glosstext {
 	color: #0000ff;
 }
 
-OL, UL { 
-	margin-top: 0px; 
+OL, UL {
+	margin-top: 0px;
 	margin-bottom: 0px;
 }

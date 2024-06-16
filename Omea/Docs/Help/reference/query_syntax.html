@@ -1,4 +1,9 @@
 <!doctype HTML public "-//W3C//DTD HTML 4.0 Frameset//EN">
+<!--
+SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+
+SPDX-License-Identifier: GPL-2.0-only
+-->
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang=en lang=en>
 
@@ -44,10 +49,10 @@
 
 /*=(Generated Code)=================================================*/
 /*=(WARNING: DO NOT EDIT OR DELETE THIS SECTION!)===================*/
-/*begin!kadov{{=====================================================*/ 
+/*begin!kadov{{=====================================================*/
 LI.kadov-Ctexteg {
 }
-/*}}end!kadov=======================================================*/ 
+/*}}end!kadov=======================================================*/
 
 
 
@@ -91,8 +96,8 @@ LI.kadov-Ctexteg {
 <h1>Search Query Syntax</h1>
 
 <p> As you may have already discovered, doing a search in Omea  is easy because all you need to do is simply type one or more search terms (the words or phrase that best describe the information you want to find) into the <a href="../search/basic_search.html">Basic Search</a> field and hit <strong>Enter</strong> key or use the <a href="../search/adv_search.html">Advanced Search</a> for searching resources in Omea or run the <a href="../search/quick_find.html">Quick Find</a> in the set of resources you are currently working with.</p>
-<p>Search query syntax can help you to make the searches you run in Omea more accurate because you can combine the syntax characters with keywords you enter in <a 
- href="../search/basic_search.html">Basic</a> or <a href="../search/adv_search.html">Advanced</a> 
+<p>Search query syntax can help you to make the searches you run in Omea more accurate because you can combine the syntax characters with keywords you enter in <a
+ href="../search/basic_search.html">Basic</a> or <a href="../search/adv_search.html">Advanced</a>
    searches. </p>
 <p></p>
 <div class=tip>
@@ -100,40 +105,40 @@ LI.kadov-Ctexteg {
 </div>
 <h2>Use <em>AND</em> or <em>Space</em> to Create Inclusive Queries</h2>
 
-<p>If you type <strong>AND</strong> between the search keywords, the search results will 
- contain documents (resources) with <em>both</em> the words that come before and after <strong>AND</strong>. For example, 
- if you enter <code><strong>jetbrains AND omea</strong></code>, the search results 
+<p>If you type <strong>AND</strong> between the search keywords, the search results will
+ contain documents (resources) with <em>both</em> the words that come before and after <strong>AND</strong>. For example,
+ if you enter <code><strong>jetbrains AND omea</strong></code>, the search results
  will contain <em>only items that contain both</em> <strong>jetbrains</strong> and <strong>omea</strong>. </p>
 
-<p>If you leave a <em>space</em> between keywords, it will mean the same for Omea as if  you write 
- <strong>AND</strong> between words. For example, <code><strong>jetbrains AND omea</strong></code> 
- and <code><strong>jetbrains omea</strong></code> are actually the <em>same 
+<p>If you leave a <em>space</em> between keywords, it will mean the same for Omea as if  you write
+ <strong>AND</strong> between words. For example, <code><strong>jetbrains AND omea</strong></code>
+ and <code><strong>jetbrains omea</strong></code> are actually the <em>same
  query</em> and will return <em>identical results</em>.</p>
 
 <h2>Use <em>OR</em> to Create  Queries</h2>
 
-<p>Use <strong>OR</strong> between keywords 
+<p>Use <strong>OR</strong> between keywords
  to create queries which return one of the words which you specify in the search query or both words in the search query.</p>
-<p> For example, if you type the query <code><strong>jetbrains OR omea</strong></code>, it will  return resources that contain the word <em>jetbrains</em>, or the word <em>omea</em>, 
+<p> For example, if you type the query <code><strong>jetbrains OR omea</strong></code>, it will  return resources that contain the word <em>jetbrains</em>, or the word <em>omea</em>,
    or both. </p>
 <h2>Restrict Search Scope with <em>NEAR</em></h2>
 
-<p>Use <strong>NEAR</strong>  to restrict the scope of 
- the search for <em>two keywords</em> so that the search will return results where these two words both occur in the 
+<p>Use <strong>NEAR</strong>  to restrict the scope of
+ the search for <em>two keywords</em> so that the search will return results where these two words both occur in the
  same sentence.</p>
 
-<p>For example, if you type the query <code><strong>jetbrains NEAR omea</strong></code>, the search 
- will return resources in which the words <em>jetbrains</em> and <em>omea</em> 
+<p>For example, if you type the query <code><strong>jetbrains NEAR omea</strong></code>, the search
+ will return resources in which the words <em>jetbrains</em> and <em>omea</em>
  (in upper, lower, or mixed case) occur in the <em>same sentence</em>. Thus, Omea may find this:</p>
 
-<p class=texteg><em style="font-style: italic;">JetBrains has added some 
- super new features to Omea, a  new tool that helps you tame electronic 
+<p class=texteg><em style="font-style: italic;">JetBrains has added some
+ super new features to Omea, a  new tool that helps you tame electronic
  information overload.</em></p>
 
 <p>But the following text would not show up because these two words are in different sentences:</p>
 
-<p class=texteg><em style="font-style: italic;">Omea is a super new tool 
- that helps you tame electronic information overload. From JetBrains, makers 
+<p class=texteg><em style="font-style: italic;">Omea is a super new tool
+ that helps you tame electronic information overload. From JetBrains, makers
  of the award-winning Java™ IDE </em>IntelliJ IDEA.</p>
 
 <h2>Exact Phrase Matching with <em>Parentheses</em> (&quot;&quot;)</h2>
@@ -144,16 +149,16 @@ LI.kadov-Ctexteg {
 
 <h2>Combining Syntax Elements into Sub-queries</h2>
 
-<p>You can create more refined searches by combining syntax elements to 
+<p>You can create more refined searches by combining syntax elements to
  form sub-queries. A sub-query is placed in parentheses, <strong>()</strong>.</p>
 
-<p>The query <code><strong>JetBrains OR (Omea AND organizer)</strong></code> 
- searches for items containing the word <em>JetBrains</em>, or both the 
+<p>The query <code><strong>JetBrains OR (Omea AND organizer)</strong></code>
+ searches for items containing the word <em>JetBrains</em>, or both the
  words <em>Omea</em> and <em>organizer</em>.</p>
 
 <div class=tip>
-<p class=tip>The query syntax elements <strong>AND</strong>, <strong>OR</strong>, 
- and <strong>NEAR</strong> are rendered here in uppercase letters, but 
+<p class=tip>The query syntax elements <strong>AND</strong>, <strong>OR</strong>,
+ and <strong>NEAR</strong> are rendered here in uppercase letters, but
  this is not required. You can use lowercase in your queries if you prefer.</p>
 </div>
 <a name="restrictingsections"></a>
@@ -174,16 +179,16 @@ LI.kadov-Ctexteg {
 <p class=seealso><strong style="font-weight: bold;">See also:</strong></p>
 
 <ol>
-	
+
 	<li class=seealso><a href="../search/index.html">Search Overview</a></li>
-	
+
 	<li class=seealso><a href="../search/basic_search.html">Basic Search</a></li>
-	
+
 	<li class=seealso><a href="../search/adv_search.html">Advanced Search</a></li>
-	
+
 	<li class=seealso><a href="../search/quick_find.html">Quick Find</a></li>
-	
-	<li class=seealso><a href="../search/find_in_resource.html">Find in 
+
+	<li class=seealso><a href="../search/find_in_resource.html">Find in
  Resource</a></li>
 </ol>
 </div>

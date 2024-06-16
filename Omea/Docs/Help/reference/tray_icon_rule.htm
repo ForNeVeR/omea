@@ -1,4 +1,9 @@
 <!doctype HTML public "-//W3C//DTD HTML 4.0 Frameset//EN">
+<!--
+SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+
+SPDX-License-Identifier: GPL-2.0-only
+-->
 
 <html>
 
@@ -68,20 +73,20 @@
 <div id=mainContent>
 <h1>New Tray Icon  Rule/Edit Tray Icon Rule Dialog</h1>
 
-<p>You can access this dialog from the <a href="manage_rules.html">Manage Rules</a> 
+<p>You can access this dialog from the <a href="manage_rules.html">Manage Rules</a>
  dialog, <strong>Tray Icon</strong> tab:</p>
 
 <ul>
-	
+
 	<li class=kadov-p><em style="font-style: italic;">New</em> button (launches the
     <strong>New Tray Icon Rule</strong> dialog)</li>
-	
+
 	<li class=kadov-p><em style="font-style: italic;">Edit</em> button (launches the <strong>Edit Tray Icon Rule</strong> dialog)
  </li>
 </ul>
 
-<p>The <strong>New Tray Icon Rule/Edit Tray Icon Rule</strong> dialog is used to create/edit such resource handling 
- rules as changing Omea's tray icon if the specified conditions and exceptions are met. The precondition for all tray icon rules is that the resources which this rule handles are not read. The same dialog is used for creating a new Tray Icon Rule and editing an 
+<p>The <strong>New Tray Icon Rule/Edit Tray Icon Rule</strong> dialog is used to create/edit such resource handling
+ rules as changing Omea's tray icon if the specified conditions and exceptions are met. The precondition for all tray icon rules is that the resources which this rule handles are not read. The same dialog is used for creating a new Tray Icon Rule and editing an
  existing Tray Icon Rule. The only difference to the look of the dialog is the title.</p>
 <p><img src="../images/sshots/dialogs/shared/new_edit_tray_icon_rule.png" alt="New Tray Icon Rule and Edit Tray Icon Rule dialogs" width="835" height="475"></p>
 <p>&nbsp;
@@ -96,7 +101,7 @@
 
 <h3>Active for</h3>
 
-<p>Field to set for which type of resources the rule is to be applied. 
+<p>Field to set for which type of resources the rule is to be applied.
  This field is, actually, a link to call another dialog - <a href="Choose_Recourse_Types_Dialog.htm"><i>Choose Resource Type</i></a>. </p>
 
 <h3>Conditions/Exceptions</h3>
@@ -130,14 +135,14 @@
   <li>status of resources which you have specified as conditions and exceptions in the <strong>New/Edit Tray Icon Rule</strong> dialogs </li>
 </ul>
 <p>So if you have several Tray Icon Rules, the tray icons alter as you read the items and  their status is changed to &#8220;Read&#8221;. </p>
-<p>You can track this behavior by the <em>Change tray icon when one resource becomes read</em> option in <a href="outlook_general.html">Omea's General Options</a>. This option controls the behavior of tray icons which you have selected in tray icon rules. When checked, <span style="x-condition: READER;">Omea Reader's</span><span 
+<p>You can track this behavior by the <em>Change tray icon when one resource becomes read</em> option in <a href="outlook_general.html">Omea's General Options</a>. This option controls the behavior of tray icons which you have selected in tray icon rules. When checked, <span style="x-condition: READER;">Omea Reader's</span><span
  style="x-condition: PRO;">Omea Pro's</span> tray icon specified in tray icon rules <em>will change when you have read</em> (and/or marked as <em>Read</em>) <em>at least one resource</em> which is specified as condition in the tray icon rule <em>to the different tray icon</em> (if you have more than one tray icon rules; you can change the order of the tray icon rules in <a href="manage_rules.html">Manage Rules</a> dialog) <em>or to usual Omea's icon</em> when all tray icon rules have been applied. </p>
 <h2>Pins</h2>
 <p>You can now use pins if you want Omea to reuse the conditions which you have once defined in any of the dialogs for defining rules. To pin the condition, just click the <strong>Pin </strong> button (<img src="../images/iconsMarks/ico_pinned_condition.png" width="15" height="15" class="linkIcon">). Once you pin some condition, it will always appear in the <strong>Rules Manager</strong> dialog if you click the <strong>New</strong> button in appropriate tab. Such condition as &#8220;Resource is not read&#8221; is always pre-pined in the <strong>New Tray Icon Rule</strong> dialog. </p>
 <img src="../images/sshots/dialogs/shared/new_tray_icon_rule_pined_condition.png" width="413" height="189" alt="Pined Condition example" >
 <p class="caption">Pined Condition in the New Tray Icon Rule dialog</p>
  <div class="note">
- 
+
 
 <div class="noteImg"
 	style="/*begin!kadov{{*/ x-right: 944px; x-bottom: 3017px; /*}}end!kadov*/ ">

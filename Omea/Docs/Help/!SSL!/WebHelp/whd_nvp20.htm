@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+
+SPDX-License-Identifier: GPL-2.0-only
+-->
+
 <html>
 <head>
 <title>navigation pane</title>
@@ -83,22 +89,22 @@ function window_OnLoad()
 	else if (gsInitPane == "toc")
 	{
 		oMsg=new whMessage(WH_MSG_SHOWTOC,this,1,null)
-		SendMessage(oMsg);	
+		SendMessage(oMsg);
 	}
 	else if (gsInitPane=="idx")
 	{
 		oMsg=new whMessage(WH_MSG_SHOWIDX,this,1,null)
-		SendMessage(oMsg);	
+		SendMessage(oMsg);
 	}
 	else if (gsInitPane=="fts")
 	{
 		oMsg=new whMessage(WH_MSG_SHOWFTS,this,1,null)
-		SendMessage(oMsg);	
+		SendMessage(oMsg);
 	}
 	else if (gsInitPane=="glo")
 	{
 		oMsg=new whMessage(WH_MSG_SHOWGLO,this,1,null)
-		SendMessage(oMsg);	
+		SendMessage(oMsg);
 	}
 }
 
@@ -137,7 +143,7 @@ function CheckLoadingPhase2()
 				if (gnVerMinor != 4.60) {
 					alert("Unable to load applet. If you are using an old version of Netscape, the prefs.js file needs to be edited.");
 				}
-			}	
+			}
 		}
 	}
 }
@@ -155,14 +161,14 @@ function CheckAppletLoaded()
 	}
 }
 
-function reDo() 
+function reDo()
 {
-	if (innerWidth != origWidth || innerHeight != origHeight)  
+	if (innerWidth != origWidth || innerHeight != origHeight)
 	{
 		//reloaded applet if nessary
 		gbretried = 0;
 
-		if (gnVerMinor == 4.60) 
+		if (gnVerMinor == 4.60)
 		{
 			//reload the applet again.
 			document.location.reload();
@@ -175,7 +181,7 @@ function reDo()
 function onSendMessage(oMsg)
 {
 	if (oMsg)
-	{	
+	{
 		var nMsgId = oMsg.nMessageId;
 		var WebHelpApplet = null;
 		if (gbNav4)
@@ -305,7 +311,7 @@ if(window.gbWhUtil&&window.gbWhMsg&&window.gbWhVer&&window.gbWhProxy)
 		setTimeout("CheckLoadingPhase0()", 1000);
 	}
 
-	if (gbNav4) 
+	if (gbNav4)
 	{
 		origWidth = innerWidth;
 		origHeight = innerHeight;
