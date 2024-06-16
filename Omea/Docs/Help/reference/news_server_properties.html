@@ -1,5 +1,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--
+SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+
+SPDX-License-Identifier: GPL-2.0-only
+-->
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
@@ -14,7 +19,7 @@
 <!-- Conditional Headers -->
 <div style="x-condition: PRO;">
 	<div id="helpHeader">
-		<div id="helpHeaderImg"></div>   		
+		<div id="helpHeaderImg"></div>
 		<p class="helpHeader">Omea Pro Help: Reference: News Server Properties/Add News Server</p>
 	</div>
 </div>
@@ -28,16 +33,16 @@
 
 <div id="mainContent">
    <h1>News Server Properties/Add News Server Dialog</h1>
-   <p>This dialog enables you to configure an Internet news server for use with 
-   <span style="x-condition: READER;">Omea Reader</span><span style="x-condition: PRO;">Omea Pro</span>. 
-	The dialog appears with a different title depending on how you invoke it, although it always contains 
-	the same data fields and options. 
+   <p>This dialog enables you to configure an Internet news server for use with
+   <span style="x-condition: READER;">Omea Reader</span><span style="x-condition: PRO;">Omea Pro</span>.
+	The dialog appears with a different title depending on how you invoke it, although it always contains
+	the same data fields and options.
    </p>
-   
-   <p>The dialog is invoked from the <a href="manage_newsgroups.html">Manage 
+
+   <p>The dialog is invoked from the <a href="manage_newsgroups.html">Manage
    Newsgroups dialog</a>. When invoked with the <a href="manage_newsgroups.html#add">
-   Add button</a>, the dialog title is <em>Add News Server</em>. When invoked 
-   with the Properties button, the title is <em>News Server Properties</em>. 
+   Add button</a>, the dialog title is <em>Add News Server</em>. When invoked
+   with the Properties button, the title is <em>News Server Properties</em>.
    The slight differences in functionality are noted later in this topic.</p>
 	   <img src="../images/sshots/dialogs/shared/add_news_server.png" width="452" height="368" alt="The Add News Server dialog" />
 		<p class="caption">Add News Server dialog</p>
@@ -45,7 +50,7 @@
 	   <p class="caption">News Server Properties dialog</p>
 
        <div class="note">
-	   
+
 <div class="noteImg"
 	style="/*begin!kadov{{*/ x-right: 944px; x-bottom: 3017px; /*}}end!kadov*/ ">
     <p>&nbsp;</p>
@@ -57,36 +62,36 @@
 
   <h3>General Tab </h3>
   <h4>Server</h4>
-  <p>Contains the Internet address of the news server. News server addresses 
+  <p>Contains the Internet address of the news server. News server addresses
   typically have a format like: <em>news.domain-name.ext</em></p>
-  
-  <p>In the <em>Add News Server</em> form, this field is empty and you must 
+
+  <p>In the <em>Add News Server</em> form, this field is empty and you must
   enter the address of the news server you want to add.</p>
-  
-  <p>In the <em>News Server Properties</em> form, this field contains the address  
-  of the currently selected server in the News Servers list. You can modify the 
+
+  <p>In the <em>News Server Properties</em> form, this field contains the address
+  of the currently selected server in the News Servers list. You can modify the
   address if you wish.</p>
-  
+
   <div class="note">
-  
+
 <div class="noteImg"
 	style="/*begin!kadov{{*/ x-right: 944px; x-bottom: 3017px; /*}}end!kadov*/ ">
     <p>&nbsp;</p>
   </div>
-    <p class="note">If you want to <em>remove</em> the currently selected server 
+    <p class="note">If you want to <em>remove</em> the currently selected server
 	from the News Servers list, you should use the <a href="manage_newsgroups.html#remove">
-	Remove button</a> in the Manage Newsgroups dialog, rather than deleting 
+	Remove button</a> in the Manage Newsgroups dialog, rather than deleting
 	the newsgroup server address from this field in this dialog.</p>
   </div>
-  
- <h4>Port</h4> 
- <p>This is the port number of the host computer for the news server specified in 
+
+ <h4>Port</h4>
+ <p>This is the port number of the host computer for the news server specified in
  <em>Server</em>. The default port number is 119, which is typically used by many news server hosts.</p>
  <a name=displayas></a>
  <h4>Display As</h4>
- <p>Here you can specify how you want the news server specified in <em>Server</em> 
- to appear in the Newsgroups panel of the News resource tab. For example, for 
- the server <code>news.jetbrains.com</code> you might enter <em>JetBrains News 
+ <p>Here you can specify how you want the news server specified in <em>Server</em>
+ to appear in the Newsgroups panel of the News resource tab. For example, for
+ the server <code>news.jetbrains.com</code> you might enter <em>JetBrains News
  Server</em>.</p>
  <h4>Your Name</h4>
  <p>Enter your name as you want it to appear in any newsgroup articles you post or reply to in newsgroups hosted on the news server specified in <em>Server</em>. By default this field contains the name configured for MS Outlook e-mail.</p>
@@ -99,18 +104,18 @@
  <p class="caption">Abbreviating the  newsgroups names</p>
  <h3>Security Tab </h3>
  <h4>Authentication Required Check Box</h4>
- <p>If the news server specified in <em>Server</em> requires authentication for 
+ <p>If the news server specified in <em>Server</em> requires authentication for
  access, check this box. Otherwise, leave it unchecked.</p>
- 
+
  <h4>User Name</h4>
  <p>This field is enabled for editing only when <em>Authentication Required</em> is checked.</p>
  <p>Enter your user name on the news server specified in <em>Server</em>.</p>
- 
+
 <h4>Password</h4>
- <p>This field is enabled for editing only when <em>Authentication Required</em> 
+ <p>This field is enabled for editing only when <em>Authentication Required</em>
  is checked.</p>
  <p>Enter your password on the news server specified in <em>Server</em>.</p>
- 
+
  <h4>This Server Requires Secure Connection (SSL) Check Box</h4>
  <p>You can get the information concerning whether you have to set this option from the administrator  of the news server you want to subscribe to. </p>
  <h3>Download Tab</h3>
@@ -166,7 +171,7 @@
  When this box is checked, the space under this option becomes available for creating and editing the signature
  and you can change <strong>Signature in Replies</strong> setting.</p>
  <div class="note">
- 
+
 <div class="noteImg"
 	style="/*begin!kadov{{*/ x-right: 944px; x-bottom: 3017px; /*}}end!kadov*/ ">
     <p>&nbsp;</p>
@@ -176,7 +181,7 @@
  <h4>Signature in Replies</h4>
  <p>Allows you to optionally include your signature when you reply to the newsgroups messages and select the position of your signature in the reply form. </p>
  <div class="note">
- 
+
 <div class="noteImg"
 	style="/*begin!kadov{{*/ x-right: 944px; x-bottom: 3017px; /*}}end!kadov*/ ">
     <p>&nbsp;</p>
@@ -184,11 +189,11 @@
    <p class="note">You can create different signatures for different news servers. </p>
  </div>
  <h3>OK Button</h3>
- <p>Accepts/applies changes to the fields and options, and closes the dialog. 
+ <p>Accepts/applies changes to the fields and options, and closes the dialog.
 This button is disabled if the <em>Server</em> field is empty.</p>
 
 <h3>Cancel Button</h3>
-<p>Discards any changes you may have made in the fields and options, and closes 
+<p>Discards any changes you may have made in the fields and options, and closes
 the dialog.</p>
 <h2>Customizing the Properties of Several News Servers </h2>
 <p>You can now easily change the options of several news servers which you are subscribed to in <span style="x-condition: READER;">Omea Reader</span><span style="x-condition: PRO;">Omea Pro. </span>To do so, press and hold down <strong>Ctrl</strong> button and select the news servers for which you want to customize their settings. Then right-click and select <strong>Properties</strong>.<br />

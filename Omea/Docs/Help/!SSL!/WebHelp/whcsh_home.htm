@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+
+SPDX-License-Identifier: GPL-2.0-only
+-->
+
 <html>
 <script language="javascript1.2" src="whver.js"></script>
 <script language="javascript1.2" src="whmozemu.js"></script>
@@ -31,7 +37,7 @@ var CMD_SHOWGLOSSARY=4;
 var CMD_SHOWNONE=0;
 
 var RHWO_LOCATION=0x01;		/*need location bar?*/
-var RHWO_MENUBAR=0x02;		/*need menubar?*/		
+var RHWO_MENUBAR=0x02;		/*need menubar?*/
 var RHWO_RESIZABLE=0x04;	/*resizable window?*/
 var RHWO_TOOLBAR=0x08;		/*need toolbar?*/
 var RHWO_STATUS=0x10;		/*need statusbar?*/
@@ -380,7 +386,7 @@ function fetchURL(sStr,nId,bUseStr)
 					}
 				}
 			}
-			
+
 		}
 		else if(gaProj[i].nLoadState==0)
 		{
@@ -475,7 +481,7 @@ function putCshData(strProj,aCsh,aWnd,aRmtProj)
 			fetchURL(gsStr,gnId,gbUseStr);
 		else
 			SwitchURL();
-			
+
 	}
 }
 
@@ -519,21 +525,21 @@ function getBrowserOptionString(oWnd)
 	else
 		strOpts+="location=no";
 	if(oWnd.nBOptions&RHWO_TOOLBAR)
-		strOpts+=",toolbar=yes";		
+		strOpts+=",toolbar=yes";
 	else
-		strOpts+=",toolbar=no";		
+		strOpts+=",toolbar=no";
 	if(oWnd.nBOptions&RHWO_MENUBAR)
-		strOpts+=",menubar=yes";		
+		strOpts+=",menubar=yes";
 	else
 		strOpts+=",menubar=no";
 	if(oWnd.nBOptions&RHWO_STATUS)
-		strOpts+=",status=yes";		
+		strOpts+=",status=yes";
 	else
-		strOpts+=",status=no";		
+		strOpts+=",status=no";
 	if(oWnd.nBOptions&RHWO_SCROLLBARS)
 		strOpts+=",scrollbars=yes";
 	else
-		strOpts+=",scrollbars=no";	
+		strOpts+=",scrollbars=no";
 	if(oWnd.nBOptions&RHWO_RESIZABLE)
 		strOpts+=",resizable=yes";
 	else

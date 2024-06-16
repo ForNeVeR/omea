@@ -1,3 +1,9 @@
+/*
+SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+
+SPDX-License-Identifier: GPL-2.0-only
+*/
+
 /*=(===============================================================)*/
 
 /*=(===============================================================)*/
@@ -51,12 +57,12 @@ H6 /*begin!kadov{{*/ ,LI.kadov-H6 /*}}end!kadov*/   {
 }
 
 A:link {
-	x-text-underline: normal;/*begin!kadov{{*/ text-decoration: underline; /*}}end!kadov*/ 
+	x-text-underline: normal;/*begin!kadov{{*/ text-decoration: underline; /*}}end!kadov*/
 	color: #0000ff;
 }
 
 A:visited {
-	x-text-underline: normal;/*begin!kadov{{*/ text-decoration: underline; /*}}end!kadov*/ 
+	x-text-underline: normal;/*begin!kadov{{*/ text-decoration: underline; /*}}end!kadov*/
 	color: #0000ff;
 }
 
@@ -93,7 +99,7 @@ SPAN.glosstext {
 	color: #0000ff;
 }
 
-OL, UL { 
-	margin-top: 0px; 
+OL, UL {
+	margin-top: 0px;
 	margin-bottom: 0px;
 }

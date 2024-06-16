@@ -1,4 +1,9 @@
 <?xml version="1.0" ?>
+<!--
+SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+
+SPDX-License-Identifier: GPL-2.0-only
+-->
 <!DOCTYPE polprojfile>
 <ppfml version="1.00" project="OmniaMeaHelp">
  <windowlist>

@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+
+SPDX-License-Identifier: GPL-2.0-only
+-->
+
 <html>
 <head>
 <title>Omea Help</title>
@@ -43,7 +49,7 @@ else
 	else if (gbMac && gbIE4 && !gbIE5)
 		document.location = "whnjs.htm";
 	//figure out which mode is the best
-	else 
+	else
 	{
 		nViewFrameType=nWebhelpNavPaneMode;
 		if (nWebhelpNavPaneMode==1||nWebhelpNavPaneMode == 2)
@@ -66,7 +72,7 @@ else
 if (nViewFrameType!=-1)
 {
 	var gbWindows = ((gAgent.indexOf("win") != -1) || (gAgent.indexOf("16bit") != -1));
-	//The colordepth of the 16 color on Windows is 1. 
+	//The colordepth of the 16 color on Windows is 1.
 	if ((gbWindows) && (gbNav4) && (window.screen) && (window.screen.colorDepth <= 4))
 	{
 	   alert("WebHelp has detected that your display is set to 16 colors. For full WebHelp support, please set your display to use 256 or more colors.");
@@ -78,7 +84,7 @@ if (nViewFrameType!=-1)
 		strPane = strPaneDHTML;
 	else if (nViewFrameType == 2)
 		strPane = strPaneApplet;
-	else 
+	else
 		strPane = strPaneList;
 
 	var oParam = new Object();
@@ -109,7 +115,7 @@ if (nViewFrameType!=-1)
 		strHTML += "<frame title=\"navigation frame\" src=\"" + strPane + "\" name=\"bsscleft\"  scrolling=\"no\"></frame>";
 		strHTML += "<frame title=\"topic frame\" src=\"" + strDefaultTopic + "\" name=\"bsscright\" scrolling=\"auto\"></frame>";
 		strHTML += "</frameset>";
-	} 
+	}
 	else if (nViewFrameType == 4)
 	{
 		//no navipane at all
