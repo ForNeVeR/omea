@@ -1,0 +1,5 @@
+SPDX-FileCopyrightText: NMock Development Team
+
+SPDX-License-Identifier: BSD-3-Clause
+
+See https://nmock.sourceforge.net/license.html: the original sources for nmock.dll have no license, so I, Friedrich von Never, maintainer of the Omea project (https://github.com/ForNeVeR/omea/), assumed that NMock 1 uses the same license as NMock 2, at 2024-06-24.
