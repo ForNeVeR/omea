@@ -1,4 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+
+SPDX-License-Identifier: GPL-2.0-only
+-->
+
 <GuidCache xmlns="urn:shemas-jetbrains-com:guid-cache">
 	<Strict Id="MsiComponent_RegistryData_Hklm" Value="{3DBF1093-2727-48E7-85FD-02BC6DEE687E}" />
 	<Strict Id="MsiComponent_RegistryData_Hkcu" Value="{42119BEC-DD54-4688-82AA-BCC4BAF68E86}" />
