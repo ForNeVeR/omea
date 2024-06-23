@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<!-- Copyright (c) Microsoft Corporation.  All rights reserved. -->
+<!--
+SPDX-FileCopyrightText: Microsoft Corporation.  All rights reserved.
+
+SPDX-License-Identifier: LicenseRef-VS2008-Redist
+ -->
+
 <assembly xmlns="urn:schemas-microsoft-com:asm.v1" manifestVersion="1.0">
     <noInheritable/>
     <assemblyIdentity
