@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
+
 using System;
 using System.Threading;
 
@@ -63,7 +67,7 @@ namespace JetBrains.Util
 			if(s == null)
 				throw new ArgumentNullException("s");
 
-			return s.Contains(" ") ? '“' + s + '”' : s;
+			return s.Contains(" ") ? 'ï¿½' + s + 'ï¿½' : s;
 		}
 
 		/// <summary>
