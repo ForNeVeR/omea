@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
+
 using System;
 using System.Diagnostics;
 using System.Reflection;
@@ -191,7 +195,7 @@ namespace OmniaMea
 				Core.ReportBackgroundException(ex);
 			}
 
-			// Use the local class name (remove the common “Plugin” suffix)
+			// Use the local class name (remove the common ï¿½Pluginï¿½ suffix)
 			return _regexPluginClassLocalName.Replace(plugintype.Name, "");
 		}
 

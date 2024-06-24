@@ -1,4 +1,10 @@
-﻿<FlowDocument xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+﻿<!--
+SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+
+SPDX-License-Identifier: GPL-2.0-only
+-->
+
+<FlowDocument xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
 	<Paragraph>The Omea application core only provides the basic infrastructure. All of the functionality is contributed by various plugins, for example, RSS feeds support is brought by the RSS Plugin.</Paragraph>
 	<Paragraph>Plugins communicate with the application core through the Open API. The same interface is available to built-in plugins and third-party plugins.</Paragraph>
 	<Paragraph>Plugin creation is documented on Omea Wiki.</Paragraph>
