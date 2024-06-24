@@ -1,4 +1,10 @@
 <?xml version="1.0"?>
+<!--
+SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+
+SPDX-License-Identifier: GPL-2.0-only
+-->
+
 <project name="OmeaTest" default="test" currentframework="net-1.1">
   <property name="build.dir" value="debug"/>
   <property name="build.dir.release" value="release"/>

@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+
+SPDX-License-Identifier: GPL-2.0-only
+-->
+
 <html>
 <head>
 <title>Search Form</title>
@@ -54,7 +60,7 @@ function beforeInit()
 			gfunLookUp(true);
 		}
 	}
-	init();	
+	init();
 }
 
 function window_unload()
@@ -74,7 +80,7 @@ function onSendMessage(oMsg)
 		document.FtsInputForm.keywordField.focus();
 	}
 	else if (oMsg.nMessageId == WH_MSG_SHOWIDX ||
-		oMsg.nMessageId == WH_MSG_SHOWTOC || 
+		oMsg.nMessageId == WH_MSG_SHOWTOC ||
 		oMsg.nMessageId == WH_MSG_SHOWGLO)
 	{
 		document.FtsInputForm.keywordField.blur();
@@ -113,16 +119,16 @@ if (window.gbWhForm)
 	gsTitle = "Type in the word(s) to search for:";
 	gsTitle = "Type in the word(s) to search for:";
 	setGoImage1("");
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
 	setGoText("Go");
 	setFont("Title", "Arial","9pt","#000000","normal","normal","none");
-	
-	
+
+
 	document.write(getFormHTML());
 	writeFormStyle();
 	window.onload = beforeInit;

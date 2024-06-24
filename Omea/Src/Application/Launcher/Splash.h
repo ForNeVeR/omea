@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
+
 #pragma once
 
 /// A singleton splashscreen window to be displayed by the launcher even before the netfx is started up (which can take much time).

@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
+
 using System.Windows;
 using System.Windows.Documents;
 using System.Windows.Media;

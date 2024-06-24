@@ -1,0 +1,96 @@
+* The following is a file Redistrb.txt from RoboHELP Office 13 installation:
+
+RoboHELP Office Redistributables
+
+Please refer to the "Redistributables" section of the eHelp Corporation
+License Agreement card that you received with this product for specific
+requirements regarding the eHelp Corporation Redistributables and 
+MS-Redistributables.
+
+The eHelp Corporation Redistributables for this product are listed below:
+-------------------------------------------------------------------------
+
+CSH.DLL
+INETWH16.DLL
+INETWH32.DLL
+HTMLWH.DLL
+ROBOEX32.DLL
+Popup.ocx
+Npwsc32.dll
+
+RHMMPLAY.DLL
+RHGBTN32.DLL	
+
+ActxWH.dll
+HelpDesk.hlp
+HelpDesk.ocx
+Helpdesk.cnt
+
+HHActiveX.dll
+cshtml.dll
+
+
+The MS-Redistributables for this product are listed below:
+----------------------------------------------------------
+
+mfc40.dll
+Msvcrt40.dll
+Mfc42.dll
+msvcirt.dll
+Msvcrt.dll
+Msvcrt10.dll
+Oleaut32.dll
+Olepro32.dll
+
+hha.dll
+hhctrl.ocx
+itcc.dll
+itircl.dll
+itss.dll
+hh.exe
+HHupd.exe
+
+
+Internet Explorer 6.0
+
+* The following is a license agreement from https://downloads.hpe.com/pub/softlib2/software1/doc/p901717227/v40250/robohelp.txt:
+
+
+EHELP CORPORATION 
+END-USER  LICENSE AGREEMENT
+This product is licensed under US and International Copyright and other Intellectual Property laws. Specific copyright notices are listed in the product About box. GIF-LZW capability licensed from Unisys under U.S. Patent No. 4,558,302 and foreign counterparts.
+IMPORTANT-READ CAREFULLY. THIS IS A LEGAL AGREEMENT BETWEEN YOU AND EHELP CORPORATION FOR THE SOFTWARE PRODUCT IDENTIFIED ABOVE, WHICH INCLUDES COMPUTER SOFTWARE AND RELATED DOCUMENTATION. BY CLICKING ON THE "YES" BUTTON BELOW, YOU ACKNOWLEDGE THAT YOU HAVE READ THESE TERMS AND AGREE TO BE BOUND BY THEM. IF YOU DO NOT AGREE TO THESE TERMS, EHELP IS UNWILLING TO GRANT YOU THIS LICENSE AND YOU SHOULD CLICK ON THE "NO" BUTTON, IN WHICH CASE: (1) IF YOU RECEIVED THIS SOFTWARE ON CD-ROM, WITHIN THIRTY (30) DAYS OF PURCHASE, YOU MAY RETURN THE UNUSED SOFTWARE PRODUCT TO THE LOCATION WHERE YOU OBTAINED IT FOR A REFUND, WHICH MAY BE SUBJECT TO A RESTOCKING FEE; OR (2) IF YOU RECEIVED THIS SOFTWARE VIA DOWNLOAD FROM AN INTERNET WEB SITE, THEN YOU MUST DELETE ALL OF THE DOWNLOADED FILES AND YOU MAY OBTAIN A REFUND IN ACCORDANCE WITH THE REFUND POLICY OF SUCH INTERNET WEB SITE.
+LICENSE GRANT:  Subject to the terms and conditions of this Agreement, eHelp Corporation, a Delaware corporation whose address is 10590 West Ocean Air Drive, San Diego, CA 92130 USA ("eHelp") hereby grants to you a personal, non-exclusive license (a "License") to use the software product identified above (the "Software") and the accompanying printed materials (the "Documentation") on the terms set forth below.  eHelp reserves all rights to the Software and Documentation not expressly granted to you.  
+1. SCOPE OF LICENSE. THIS LICENSE GRANTS YOU THE FOLLOWING RIGHTS:
+* Software. Except as set forth under License Packs, the Software is provided under a single-user license. A single individual may use the software on a single computer. You may also install a copy for that same individual's exclusive use on either a home or portable computer. A License for the Software may not be shared by multiple individuals on a single computer or used concurrently on different computers.
+* Storage/Network Use. You may store or install a copy of the Software on a storage device, such as a network server, used only to install or run the Software over an internal network; however, you must acquire and dedicate a license for each individual who will use the Software. If the Software is installed on a network server or other system that physically allows shared access to the Software, you agree to provide technical or procedural methods to prevent use of the Software by individuals not specifically licensed to use the Software pursuant to this Agreement.
+* License Pack. If you have acquired this Agreement in an eHelp Corporation License Pack, you may make the number of additional copies of the Software authorized on the printed copy of this Agreement that accompanies your purchase, or on any License Pack specific information that is included in your downloaded files, and you may use each copy in the manner specified above. You are also entitled to make a corresponding number of secondary copies for home and portable computer use as specified above.
+* Support. Information regarding support of this product is located within the Support section of eHelp's Internet web site at www.ehelp.com.
+* Subject to any limitations provided by this Agreement, you may freely distribute copies of applications and source code generated with the Software.
+2. RESTRICTIONS.
+* Reverse Engineering. You may not modify, translate, reverse engineer, decompile, disassemble (except to the extent applicable laws specifically prohibit such restrictions) or create derivative works based on the Software or Documentation, or any portion thereof.
+* Copying. You may not copy the Software or Documentation except as specifically provided by this Agreement.
+* Separation of Components. The Software is licensed as a single product. You may not separate the Software's component parts for use on more than one computer.
+* Transfer. You may not rent, lease, lend or otherwise temporarily transfer the Software or Documentation, but you may transfer the software and documentation together on a permanent basis provided you retain no copies and the recipient agrees to the terms of this End-User License Agreement
+* Proprietary Notices. You may not remove any proprietary notices, labels or marks on the Software or Documentation.
+* Upgrades. If this version of the Software is an upgrade from another version or other  product, this upgrade License supersedes and replaces any previous License. You may use the Software only in conjunction with the upgraded product, unless you destroy the upgraded product.
+* Use of eHelp's Name. You may not use eHelp's or eHelp's suppliers' name, logos, or trademarks in any manner including, without limitation, in your advertising or marketing materials, except as is necessary to affix the appropriate copyright or other proprietary notices as required herein. 
+3. TITLE.
+All title, ownership rights, and intellectual property rights in and to the Software and Documentation and any copies thereof are vested in and shall remain in eHelp and/or its suppliers. The Software and the Documentation is protected by the copyright laws and other intellectual property laws of the United States and international treaties. 
+4. REDISTRIBUTABLES.
+* eHelp Redistributables.  Subject to the terms and conditions of this Agreement, eHelp grants you the non-exclusive, royalty-free right to reproduce and distribute, in object code form only, the eHelp Redistributables identified in the REDISTRB.TXT file on the Software CD-ROM or downloaded file index, provided, that you (a) do not distribute the Redistributables as a stand-alone product, except however, that you may distribute updates of the Redistributables separately for purposes of updating an existing end user of your previously-distributed product that uses the Redistributables; (b) except as required herein, do not use eHelp's name, logo, or  trademarks in connection with any product that incorporates the Redistributables; (c) include eHelp's copyright notice for the Redistributables (Portions copyright (c) eHelp Corporation. All rights reserved.) on the title page of any documentation, on the product CD, and/or in the About box for any software product that incorporates the Redistributables; (d) agree to indemnify, defend and hold eHelp harmless from any and all liabilities (including attorney's fees) incurred by eHelp from any claims, lawsuits, or other legal proceedings that arise from or are related to the use or distribution of any software application product that you reproduced and/or distributed that incorporates the Redistributables; and (e) do not incorporate the Redistributables into any software product which would compete with the Software. 
+* MS-Redistributables.  Subject to the terms and conditions of this Agreement, eHelp grants you the non-exclusive, royalty-free right to reproduce and distribute, in object code form only, the MS-Redistributables identified in the REDISTRB.TXT file on the Software CD-ROM or downloaded file index, that you (a) do not distribute the MS-Redistributables as a stand-alone product, provided, however, that you may distribute updates of the MS-Redistributables separately for purposes of updating an existing end user of your previously-distributed  product that uses MS-Redistributables; (b) except as required herein, do not use Microsoft's name, logo, or trademarks to market any Help system that incorporates the MS-Redistributables; (c) include the following copyright notice for the MS-Redistributables (Portions copyright (c) Microsoft Corporation.  All rights reserved.) on the product CD, disk label, the title page of the documentation, and/or the About box for any software application product that incorporates the MS-Redistributables; (d) agree to indemnify, defend and hold eHelp and Microsoft harmless from any and all liabilities (including attorney's fees) incurred by eHelp or Microsoft from any claims, lawsuits, or other legal proceedings that arise from or are related to the use or distribution of any software application product that you reproduced and/or distributed that incorporates the Redistributables; (e) do not incorporate the MS-Redistributables into any software product which would compete with the Software, and (f) if Microsoft makes a new release of the MS-Redistributables (other than an Update release), use all reasonable efforts to cease distribution of the older version and commence distribution of the new release.  You may continue to distribute existing inventory that contains the older release for up to 3 months following such new release.
+* Distribution of any Software code, other than the Redistributables and MS-Redistributables, is specifically prohibited.
+5. TERMINATION.
+The License is in effect until terminated. You may terminate this License by ceasing any use of the Software and Documentation, and deleting or otherwise destroying the Software and Documentation.  The License will terminate immediately and automatically if you breach any of the terms of this Agreement or otherwise fail to comply with the limitations described herein. If you received this License as part of any eHelp Beta program, then this License will terminate upon the first public announcement by eHelp that the commercial release of the Software is available, and you will be required to obtain a license for the commercial version of the Software.  On any termination, you must destroy all copies of the Software and Documentation.  Sections 2, 3, 8 and 9 shall survive any termination of this Agreement.
+6. EXPORT CONTROLS.
+This Software is subject to the export control laws of the United States. You may not export or re-export the Software or any part thereof without the appropriate United States and foreign government licenses. You shall otherwise comply with all applicable export control laws and shall indemnify, defend, and hold eHelp and its suppliers harmless from any and all liabilities (including attorney's fees) arising from or related to your violation of such export control laws.
+7. U.S. GOVERNMENT END-USERS.
+The Software and Documentation is a "commercial item" as that term is defined at 48 C.F.R. 2.101, consisting of "commercial computer software" and "commercial computer software documentation" as such terms are used in 48 C.F.R. 12.212.  Consistent with 48 C.F.R. 12.212 and 48 C.F.R. 227.7202-1 through 227.7202-4, all U.S. Government end users acquire the Software and Documentation with only those rights set forth therein.
+8. LIMITED WARRANTY.
+eHelp warrants that the media containing the Software, if such media is provided by eHelp, is free from defects in material and workmanship and will so remain for ninety (90) days from the date you acquired the Software. eHelp's sole liability, and your sole and exclusive remedy, for any breach of this warranty shall be, in eHelp's sole discretion: (i) to replace your defective media; or (ii) if the above remedy is impracticable, to refund the License fee you paid for the Software. Replaced Software and Documentation shall be covered by this limited warranty for the period remaining under the warranty that covered the original Software, or if longer, for thirty (30) days after the date of shipment to you of the replaced Software. Only if you inform eHelp of such defect with the Software during the applicable warranty period and provide evidence of the date you acquired the Software will eHelp be obligated to honor this warranty. eHelp will use commercially reasonable efforts to replace or refund pursuant to the foregoing warranty within thirty (30) days of being so notified. THIS IS A LIMITED WARRANTY AND IT IS THE ONLY WARRANTY MADE BY EHELP. EXCEPT FOR THE LIMITED WARRANTY SET FORTH HEREIN, THE SOFTWARE AND DOCUMENTATION ARE PROVIDED "AS IS" AND EHELP MAKES NO OTHER WARRANTY, REPRESENTATION, OR CONDITION, EXPRESS, IMPLIED, OR STATUTORY,  AND EXPRESSLY DISCLAIMS THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT OF THIRD PARTY RIGHTS.  SOME JURISDICTIONS DO NOT ALLOW LIMITATIONS ON HOW LONG AN IMPLIED WARRANTY OR CONDITION LASTS, SO THESE LIMITATIONS MAY NOT APPLY TO YOU IN THEIR ENTIRETY. NO EHELP AGENT, OR EMPLOYEE IS AUTHORIZED TO MAKE ANY MODIFICATIONS, EXTENSIONS, OR ADDITIONS TO THIS WARRANTY. If any modification is made to the Software or Documentation by you during the warranty period; if the media is subjected to accident, abuse, or improper use; or if you violate the terms of this Agreement, then this warranty shall immediately be voided. This warranty shall not apply if the Software is used on or in conjunction with hardware or software other than the unmodified version of hardware and software with which the Software was designed to be used as described in the Documentation.  THIS WARRANTY GIVES YOU SPECIFIC LEGAL RIGHTS, AND YOU MAY HAVE OTHER LEGAL RIGHTS THAT VARY FROM STATE TO STATE OR BY JURISDICTION.
+9. LIMITATION OF LIABILITY.
+UNDER NO CIRCUMSTANCES AND UNDER NO LEGAL THEORY, TORT, CONTRACT, OR OTHERWISE, SHALL EHELP OR ITS SUPPLIERS OR RESELLERS BE LIABLE TO YOU OR ANY OTHER PERSON FOR ANY INDIRECT, SPECIAL, EXEMPLARY, INCIDENTAL, OR CONSEQUENTIAL DAMAGES OF ANY CHARACTER INCLUDING, WITHOUT LIMITATION, DAMAGES FOR LOSS OF GOODWILL, WORK STOPPAGE, COMPUTER FAILURE OR MALFUNCTION EVEN IF EHELP SHALL HAVE BEEN INFORMED OF THE POSSIBILITY OF SUCH DAMAGES.  IN NO EVENT SHALL THE AGGREGATE LIABILITY OF EHELP, ITS SUPPLIERS AND RESELLERS UNDER THIS AGREEMENT EXCEED EHELP'S LIST PRICE FOR A LICENSE TO THE SOFTWARE AND DOCUMENTATION. THIS LIMITATION OF LIABILITY SHALL NOT APPLY TO LIABILITY FOR DEATH OR PERSONAL INJURY TO THE EXTENT APPLICABLE LAW PROHIBITS SUCH LIMITATION. FURTHERMORE, SOME STATES DO NOT ALLOW THE EXCLUSION OR LIMITATION OF INCIDENTAL OR CONSEQUENTIAL DAMAGES, SO THIS LIMITATION AND EXCLUSION MAY NOT APPLY TO YOU IN ITS ENTIRETY.
+10. GENERAL.
+This Agreement represents the complete agreement concerning this license between the parties and supersedes all prior or contemporaneous agreements and representations between them with respect to the subject matter. This Agreement may be amended only in a writing executed by both parties. THE ACCEPTANCE OF ANY PURCHASE ORDER PLACED BY YOU IS EXPRESSLY MADE CONDITIONAL ON YOUR ASSENT TO THE TERMS SET FORTH HEREIN, AND NOT THOSE CONTAINED IN YOUR PURCHASE ORDER,  AND SUCH PURCHASE ORDER TERMS SHALL HAVE NO EFFECT ON THIS LICENSE AGREEMENT. If any provision of this Agreement is held to be unenforceable for any reason, such provision shall be reformed only to the extent necessary to make it enforceable and the remainder of this Agreement shall nonetheless remain in full force and effect. This Agreement shall be governed by and construed under California law as such law applies to agreements between California residents entered into and to be performed within California, except as governed by Federal law. All disputes arising under this Agreement shall be brought in the court of competent jurisdiction in San Diego County, State of California in the United States, and you consent to the personal jurisdiction of such court. The application of the United Nations Convention of Contracts for the International Sale of Goods is expressly excluded.
+

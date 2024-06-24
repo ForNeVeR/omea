@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+
+SPDX-License-Identifier: GPL-2.0-only
+-->
+
 <html>
 <head>
 <title>Index form</title>
@@ -48,7 +54,7 @@ function onSendMessage(oMessage)
 		document.IndexInputForm.keywordField.focus();
 	}
 	else if (oMessage.nMessageId == WH_MSG_SHOWFTS ||
-		oMessage.nMessageId == WH_MSG_SHOWTOC || 
+		oMessage.nMessageId == WH_MSG_SHOWTOC ||
 		oMessage.nMessageId == WH_MSG_SHOWGLO)
 	{
 		document.IndexInputForm.keywordField.blur();
@@ -70,16 +76,16 @@ if (window.gbWhForm)
 	gsTitle = "Type in the keyword to find:";
 	gsTitle = "Type in the keyword to find:";
 
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
 	setGoText("Go");
 	setFont("Title", "Arial","9pt","#000000","normal","normal","none");
-	
-	
+
+
 	document.write(getFormHTML());
 	writeFormStyle();
 }

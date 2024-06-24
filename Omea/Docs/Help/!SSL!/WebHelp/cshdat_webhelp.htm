@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+
+SPDX-License-Identifier: GPL-2.0-only
+-->
+
 <html>
 <head>
 <title>Omea Help</title>
@@ -15,7 +21,7 @@ var gstrWindowOption = "";
 var gstrURL = "";
 var gbWithNavPane = false;
 
-function CshEntityItem(strAliasId, nTopicNum, strUrl) 
+function CshEntityItem(strAliasId, nTopicNum, strUrl)
 {
     this.strAliasId = strAliasId;
     this.nTopicNum = nTopicNum;
@@ -65,7 +71,7 @@ function GetTopicNumber(strHashString)
 		}
 		else
 			gstrWindowOption = strWindowOption;
-		return GetTopicNumberOnly(strHashString.substring(0, nTopicEndPos));		
+		return GetTopicNumberOnly(strHashString.substring(0, nTopicEndPos));
 	}
 }
 
@@ -155,7 +161,7 @@ function FindTopicByTopicNum(nTopicNum)
 				var strHomePage = getHomePage();
 				if (strHomePage.length != 0)
 					strURL = strHomePage + strURL;
-			}	
+			}
 			RedirectTo(strURL);
 			return true;
 		}
@@ -207,14 +213,14 @@ function getHash()
 //Find CSH according to hash string after this page
 if (getHash().length > 0)
 {
-   // VH 05/16/00 now support 
+   // VH 05/16/00 now support
    // TopicID=
    // TopicNumber=
-   // RemoteURL=   
+   // RemoteURL=
    // and WindowsOptions
    // with the format #a=xxx,b=xxx,c=xxx...
    var strHashString = getHash().toString();
-   // change ? to : for remote URL. because java applet have some problem to pass a URL with two : inside the URL so we changed it. 
+   // change ? to : for remote URL. because java applet have some problem to pass a URL with two : inside the URL so we changed it.
    // so here need to change it back.
    strHashString = strHashString.substring(1,strHashString.length);
    strHashString = strHashString.replace("%072%057%057", "://");
@@ -226,7 +232,7 @@ if (getHash().length > 0)
    }
    else
    {
-      if (gstrURL.length > 0) 
+      if (gstrURL.length > 0)
 	RedirectTo(gstrURL);
       else
       	RedirectToHomePage();

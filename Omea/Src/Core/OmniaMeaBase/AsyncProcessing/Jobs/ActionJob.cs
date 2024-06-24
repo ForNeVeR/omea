@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
+
 using System;
 
 using System35;
@@ -76,7 +80,7 @@ namespace JetBrains.Omea.AsyncProcessing
 		///<filterpriority>2</filterpriority>
 		public override string ToString()
 		{
-			return string.Format("Job “{0}”", Name);
+			return string.Format("Job ï¿½{0}ï¿½", Name);
 		}
 
 		/// <summary>

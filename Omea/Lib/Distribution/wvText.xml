@@ -1,3 +1,10 @@
+<!--
+SPDX-FileCopyrightText: 2008 wvWare converter contributors
+SPDX-FileCopyrightText: 2008 JetBrains s.r.o.
+
+SPDX-License-Identifier: GPL-2.0-only
+-->
+
 <main>
 <charentity>
 <begin>ABW</begin>
@@ -79,13 +86,13 @@
 </entry>
 
 <!-- the only thing of significance -->
-<text>	
+<text>
 <begin></begin>
 <end>
 </end>
 </text>
 
-<!-- 
+<!--
 this tableoverride option can be used to turn off handling of
 these tags in tables, which I find is necessary for at least netscape
 -->
@@ -127,7 +134,7 @@ text that has been deleted and will be displayed with strikethrough when
 revision marked text is to be displayed
 
 use either this line...
---> 
+-->
 <RMarkDel><begin></begin>
 <end></end>
 </RMarkDel>
@@ -202,7 +209,7 @@ text whose properties have been changed since the last time revision marks have 
 and will be displayed with a note showing the change points.
 
 use either this line (which admit it a bit scary looking, but harmless)...
---> 
+-->
 <PropRMark><begin><ibstPropRMark/></begin><end></end></PropRMark>
 
 <!--
@@ -326,7 +333,7 @@ border-bottom: thin <borderbottomstyle/> <borderbottomcolor/>
 <end><waveu.end/><dotdotdashu.end/><dotdashu.end/><dotu.end/><dashu.end/><thicku.end/><hiddenu.end/><dottedu.end/><doubleu.end/><wordu.end/><singleu.end/><sub.end/><super.end/><dstrike.end/><imprint.end/><emboss.end/><lowercase.end/><shadow.end/><RMark.end/><vanish.end/><caps.end/><smallcaps.end/><outline.end/><RMarkDel.end/><strike.end/><italic.end/><bold.end/><fontstr.end/><animation.end/><DispFldRMark.end/><PropRMark.end/></end>
 </character>
 
-<text>	
+<text>
 <begin></begin>
 <end>
 </end>
@@ -341,7 +348,7 @@ border-bottom: thin <borderbottomstyle/> <borderbottomcolor/>
 <end></end>
 </character>
 
-<text>	
+<text>
 <begin></begin>
 <end>
 </end>

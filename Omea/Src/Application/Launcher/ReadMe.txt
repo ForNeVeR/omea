@@ -1,15 +1,19 @@
+SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+
+SPDX-License-Identifier: GPL-2.0-only
+
 ========================================================================
     WIN32 APPLICATION : Launcher Project Overview
 ========================================================================
 
-AppWizard has created this Launcher application for you.  
+AppWizard has created this Launcher application for you.
 This file contains a summary of what you will find in each of the files that
 make up your Launcher application.
 
 
 Launcher.vcproj
-    This is the main project file for VC++ projects generated using an Application Wizard. 
-    It contains information about the version of Visual C++ that generated the file, and 
+    This is the main project file for VC++ projects generated using an Application Wizard.
+    It contains information about the version of Visual C++ that generated the file, and
     information about the platforms, configurations, and project features selected with the
     Application Wizard.
 

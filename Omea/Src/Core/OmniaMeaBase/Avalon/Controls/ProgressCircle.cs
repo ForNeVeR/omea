@@ -1,4 +1,8 @@
-﻿using System.Windows;
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
+
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Media;
@@ -66,7 +70,7 @@ namespace JetBrains.UI.Avalon.Controls
 		#region Overrides
 
 		///<summary>
-		///Called to arrange and size the content of a <see cref="T:System.Windows.Controls.Control"></see> object. 
+		///Called to arrange and size the content of a <see cref="T:System.Windows.Controls.Control"></see> object.
 		///</summary>
 		///
 		///<returns>
@@ -81,7 +85,7 @@ namespace JetBrains.UI.Avalon.Controls
 		}
 
 		///<summary>
-		///Called to remeasure a control. 
+		///Called to remeasure a control.
 		///</summary>
 		///
 		///<returns>
@@ -95,7 +99,7 @@ namespace JetBrains.UI.Avalon.Controls
 		}
 
 		///<summary>
-		///Called when the <see cref="P:System.Windows.Controls.Primitives.RangeBase.Maximum"></see> property changes. 
+		///Called when the <see cref="P:System.Windows.Controls.Primitives.RangeBase.Maximum"></see> property changes.
 		///</summary>
 		///
 		///<param name="newMaximum">New value of the <see cref="P:System.Windows.Controls.Primitives.RangeBase.Maximum"></see> property.</param>
@@ -107,7 +111,7 @@ namespace JetBrains.UI.Avalon.Controls
 		}
 
 		///<summary>
-		/// Called when the <see cref="P:System.Windows.Controls.Primitives.RangeBase.Minimum"></see> property changes. 
+		/// Called when the <see cref="P:System.Windows.Controls.Primitives.RangeBase.Minimum"></see> property changes.
 		///</summary>
 		///
 		///<param name="oldMinimum">Old value of the <see cref="P:System.Windows.Controls.Primitives.RangeBase.Minimum"></see> property.</param>
@@ -119,7 +123,7 @@ namespace JetBrains.UI.Avalon.Controls
 		}
 
 		///<summary>
-		/// Called when the <see cref="P:System.Windows.Controls.Primitives.RangeBase.Value"></see> property changes. 
+		/// Called when the <see cref="P:System.Windows.Controls.Primitives.RangeBase.Value"></see> property changes.
 		///</summary>
 		///
 		///<param name="oldValue">Old value of the <see cref="P:System.Windows.Controls.Primitives.RangeBase.Value"></see> property</param>

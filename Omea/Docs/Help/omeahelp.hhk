@@ -1,3 +1,8 @@
+<!--
+SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+
+SPDX-License-Identifier: GPL-2.0-only
+-->
 <html>
 <!-- Sitemap 1.0 -->
 <object type="text/site properties">
@@ -172,7 +177,7 @@
     </object>
     <li><object type="text/sitemap">
       <param name="Name" value="indexing">
-      <param name="Name" value="Indexing Your Computer’s Resources">
+      <param name="Name" value="Indexing Your Computerï¿½s Resources">
       <param name="Local" value="getstarted\indexing_your_computers_resources.html">
     </object>
     <li><object type="text/sitemap">
