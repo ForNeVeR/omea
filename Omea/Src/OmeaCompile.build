@@ -1,9 +1,15 @@
 <?xml version="1.0"?>
+<!--
+SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+
+SPDX-License-Identifier: GPL-2.0-only
+-->
+
 <project name="OmeaCompile" currentframework="net-1.1">
   <property name="build.omea.pro"       value="true" overwrite="false" />
   <property name="build.omea.reader"    value="true" overwrite="false" />
   <property name="trace"                value="true" overwrite="false" />
-    
+
   <target name="OpenAPI.csproj">
     <csc target="library" output="${build.dir}/OpenAPI.dll" debug="${build.debug}" define="TRACE"
         doc="${build.dir}/OpenAPI.xml">
@@ -54,7 +60,7 @@
       </sources>
     </csc>
   </target>
- 
+
   <target name="OmniaMeaBase.csproj" depends="OpenAPI.csproj,JetBrainsShared.csproj,Mentalis">
     <csc target="library" output="${build.dir}/OmniaMeaBase.dll" debug="${build.debug}" define="TRACE">
       <sources basedir="OmniaMeaBase">
@@ -81,9 +87,9 @@
   <target name="DBIndex" depends="OmniaMeaBase.csproj">
     <mkdir dir="${build.dir}/obj/DBIndex"/>
 
-    <cl outputdir="${build.dir}/obj/DBIndex" 
+    <cl outputdir="${build.dir}/obj/DBIndex"
         managedextensions="true" options="/MT /Og /Ob1 /Os /Oy /G6 /D WIN32 /D NDEBUG /D _WINDLL /D _MBCS /FD /EHsc /Zp4 /W3 /nologo /c /clr /TP /Zl">
-        
+
       <arg value="/Zi" if="${build.debug}"/>
 
       <sources basedir="DBIndex">
@@ -105,7 +111,7 @@
         options="/DLL /NOENTRY /INCREMENTAL:NO /NOLOGO /OPT:REF /OPT:ICF /FIXED:No">
 
       <arg value="/DEBUG" if="${build.debug}"/>
-      
+
       <sources>
         <include name="${build.dir}/obj/DBIndex/*.obj"/>
         <include name="msvcrt.lib" asis="true"/>
@@ -123,7 +129,7 @@
     <mkdir dir="${build.dir.release}/obj/launcher"/>
     <mkdir dir="${build.dir.release}/obj/reader_launcher"/>
 
-    <cl outputdir="${build.dir.release}/obj/launcher" 
+    <cl outputdir="${build.dir.release}/obj/launcher"
         options="/w /EHsc">
 
       <sources basedir="Launcher">
@@ -144,7 +150,7 @@
       </sources>
     </link>
 
-    <cl outputdir="${build.dir.release}/obj/reader_launcher" 
+    <cl outputdir="${build.dir.release}/obj/reader_launcher"
         options="/w /EHsc /D READER">
 
       <sources basedir="Launcher">
@@ -169,7 +175,7 @@
   <target name="EMAPILib">
     <mkdir dir="${build.dir}/obj/EMAPILib"/>
 
-    <cl outputdir="${build.dir}/obj/EMAPILib" 
+    <cl outputdir="${build.dir}/obj/EMAPILib"
         managedextensions="true" options="/MT /Od /G6 /D WIN32 /D _WINDLL /EHsc /W4 /D _MBCS /TP /Wp64 /nologo /Gd /NODEFAULTLIB">
 
       <arg value="/D NDEBUG" unless="${build.debug}"/>
@@ -195,7 +201,7 @@
         options="/DLL /NOENTRY /OPT:REF /OPT:ICF /DELAYLOAD:&quot;mapi32.dll&quot; /INCLUDE:&quot;__DllMainCRTStartup@12&quot;">
 
       <arg value="/DEBUG" if="${build.debug}"/>
-      
+
       <sources>
         <include name="${build.dir}/obj/EMAPILib/*.obj"/>
         <include name="msvcrtd.lib" asis="true" if="${build.debug}"/>
@@ -224,7 +230,7 @@
   </target>
 
   <target name="SpHeader.csproj">
-    <csc target="library" output="${build.dir}/SpHeader.dll" debug="${build.debug}" define="TRACE"> 
+    <csc target="library" output="${build.dir}/SpHeader.dll" debug="${build.debug}" define="TRACE">
       <sources basedir="SpHeader">
         <include name="*.cs"/>
         <include name="Tests/*.cs" if="${build.debug}"/>
@@ -237,7 +243,7 @@
   </target>
 
   <target name="JetListView.csproj" depends="JetBrainsShared.csproj,OmniaMeaBase.csproj,SpHeader.csproj">
-    <csc target="library" output="${build.dir}/JetListView.dll" debug="${build.debug}" define="TRACE"> 
+    <csc target="library" output="${build.dir}/JetListView.dll" debug="${build.debug}" define="TRACE">
       <nowarn>
         <warning number="67"/>
       </nowarn>
@@ -260,7 +266,7 @@
   </target>
 
   <target name="DBUtils.csproj" depends="DBIndex,OmniaMeaBase.csproj,JetBrainsShared.csproj">
-    <csc target="library" output="${build.dir}/DBUtils.dll" debug="${build.debug}" define="TRACE"> 
+    <csc target="library" output="${build.dir}/DBUtils.dll" debug="${build.debug}" define="TRACE">
       <sources basedir="DBUtils">
         <include name="**/*.cs"/>
       </sources>
@@ -292,7 +298,7 @@
   </target>
 
   <target name="ResourceTools.csproj" depends="ResourceStore.csproj">
-    <csc target="library" output="${build.dir}/ResourceTools.dll" debug="${build.debug}" define="TRACE"> 
+    <csc target="library" output="${build.dir}/ResourceTools.dll" debug="${build.debug}" define="TRACE">
       <sources basedir="ResourceTools">
         <include name="**/*.cs"/>
       </sources>
@@ -306,7 +312,7 @@
   </target>
 
   <target name="TextIndex.csproj" depends="ResourceTools.csproj">
-    <csc target="library" output="${build.dir}/TextIndex.dll" debug="${build.debug}" define="TRACE"> 
+    <csc target="library" output="${build.dir}/TextIndex.dll" debug="${build.debug}" define="TRACE">
       <sources basedir="TextIndex">
         <include name="**/*.cs"/>
       </sources>
@@ -410,7 +416,7 @@
       </references>
     </csc>
   </target>
-  
+
   <target name="OmniaMeaBaseTests.csproj" depends="DBIndex">
     <csc target="library" output="${build.dir}/OmniaMeaBaseTests.dll" debug="${build.debug}" define="TRACE">
       <sources basedir="OmniaMeaBase/OmniaMeaBaseTests">
@@ -426,8 +432,8 @@
     </csc>
 
   </target>
-  
-  <target name="build" 
+
+  <target name="build"
     depends="DBIndex,launcher,EMAPILib,mshtml-site,PicoCore.csproj,GUIControlsTests.csproj,ResourceToolsTests.csproj,OmniaMeaBaseTests.csproj,TextIndex.csproj">
 
     <csc target="exe" output="${build.dir}/DBUtilsTests.exe" debug="${build.debug}" define="TRACE">
@@ -441,7 +447,7 @@
       </references>
     </csc>
 
-    <csc target="exe" output="${build.dir}/TermIndexProfile.exe" debug="${build.debug}" define="TRACE"> 
+    <csc target="exe" output="${build.dir}/TermIndexProfile.exe" debug="${build.debug}" define="TRACE">
       <sources basedir="TermIndexProfile">
         <include name="**/*.cs"/>
       </sources>
@@ -592,7 +598,7 @@
         <include name="${build.dir}/ResourceTools.dll"/>
         <include name="${build.dir}/GUIControls.dll"/>
         <include name="${build.dir}/JetListView.dll"/>
-        <include name="${build.dir}/JetBrainsShared.dll"/>        
+        <include name="${build.dir}/JetBrainsShared.dll"/>
       </references>
     </csc>
 

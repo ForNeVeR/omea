@@ -1,4 +1,10 @@
 <?xml version="1.0"?>
+<!--
+SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+
+SPDX-License-Identifier: GPL-2.0-only
+-->
+
 <project name="OmniaMea" default="build" currentframework="net-1.1">
   <property name="build.dir.debug"      value="debug" overwrite="false" />
   <property name="build.dir.release"    value="release" overwrite="false" />
@@ -24,13 +30,13 @@
 
     <!-- <delete>
       <fileset basedir="${archive.dir}">
-        <include name="OmeaDebug-*.zip"/>        
+        <include name="OmeaDebug-*.zip"/>
       </fileset>
     </delete> -->
   </target>
-  
+
   <target name="init" depends="mkdir">
-    
+
     <!-- Revert unchanged files -->
     <exec program="p4.exe" commandline="revert -a" failonerror="false"/>
 
@@ -82,7 +88,7 @@
           string	buildVersionComma = String.Format("{0},{1},{2},{3}", buildMajor, buildMinor, buildBuild, buildRevision);
           string	buildVersionDot = String.Format("{0}.{1}.{2}.{3}", buildMajor, buildMinor, buildBuild, buildRevision);
           project.Log(Level.Info, "Version was set to [" + buildVersionComma + "].");
-          
+
           // Store those as properties
           project.Properties["build.version.major"] = buildMajor.ToString();
           project.Properties["build.version.minor"] = buildMinor.ToString();
@@ -90,7 +96,7 @@
           project.Properties["build.version.revision"] = buildRevision.ToString();
           project.Properties["build.version.full.comma"] = buildVersionComma;
           project.Properties["build.version.full.dot"] = buildVersionDot;
-          
+
           // Build ID (day number - dot - a number of this build on this day)
           string buildID = buildBuild.ToString() + "." + buildRevision.ToString();
           try
@@ -98,7 +104,7 @@
 			project.Properties ["build.number"] = buildID;
 		  }
 		  catch(Exception ex) {}	// Fails under TeamCity, as the property is readonly there
-          
+
 			/////////////////////////////////
 			// Update versions of AssemblyVersion files in several projects
 			string[] sModuleList = new string[]
@@ -128,7 +134,7 @@
 			// Open those files for editing
 			string	sCheckinComment = String.Format("Version number set to [{0}].", buildVersionComma);
 			using(new PerforceClient(project, sModuleList, sCheckinComment))
-			{          
+			{
 				// Rewrite the version info for managed projects
 				foreach( string module in sModuleList )
 				{
@@ -137,7 +143,7 @@
 					sw.WriteLine("// DO NOT MODIFY this file manually for your changes will be overwritten on the next build run");
 					sw.WriteLine("// Generated on {0} for version {1}", DateTime.Now.ToString("s"), buildVersionComma);
 					sw.WriteLine();
-					sw.WriteLine("{0} System.Reflection;", (module.EndsWith(".js") ? "import" : "using")); 
+					sw.WriteLine("{0} System.Reflection;", (module.EndsWith(".js") ? "import" : "using"));
 					sw.WriteLine();
 
 					sw.WriteLine("[assembly: AssemblyVersion(\"{0}\")]", buildVersionDot );
@@ -153,7 +159,7 @@
 					sw.Close();
 				}
 			}
-          
+
           /*
           // Rewrite the version info for C++ projects
           foreach(string module in new string[]{"MshtmlBrowser\\MshtmlSite"})
@@ -162,10 +168,10 @@
 			  StreamReader sr = new StreamReader(new FileStream(module + "\\AssemblyVersion.rc", FileMode.Open, FileAccess.Read, FileShare.Read), Encoding.Default);	// Avoid locking access to the file; use ANSI codepage
 			  string	sRes = sr.ReadToEnd();
 			  sr.Close();
-			  
+
 				// Modify the version info
 				sRes = Regex.Replace(sRes, @"(?<prefix>(PRODUCTVERSION|FILEVERSION)\s+)\d.\d.\d.\d(?<suffix>.*)", "${prefix}" + buildVersionComma + "${suffix}");
-              
+
               // Write back
               sw = new StreamWriter(new FileStream(module + "\\AssemblyVersion.rc", FileMode.Create, FileAccess.Write, FileShare.Read), Encoding.Default);	// Avoid locking access to the file; use ANSI codepage
               sw.Write(sRes);
@@ -180,35 +186,35 @@
           sw.Write( "!define MUI_VERSION_MINOR " + buildNumber.ToString() + "\n" );
           sw.Close();
         }
-        
+
 public class PerforceClient : IDisposable
 {
 	/// NANT project.
 	Project	_oNantProject;
-	
+
 	/// List of the P4 paths of the files to checkin.
 	/// Non-null only in between the checkout and checkin.
 	Hashtable	_filelist = null;
-	
+
 	/// Checkin comment.
 	string	_description = null;
-	
+
 	public PerforceClient(Project project)
 	{
 		if(project == null)
 			throw new ArgumentNullException("project");
 		_oNantProject = project;
 	}
-	
+
 	public PerforceClient(Project project, string[] filenames, string description)
 	{
 		if(project == null)
 			throw new ArgumentNullException("project");
 		_oNantProject = project;
-		
+
 		CheckOut(filenames, description);
 	}
-	
+
 	/// Performs checkout of the files specified and remembers the list
 	public void CheckOut(string[] filenames, string description)
 	{
@@ -216,18 +222,18 @@ public class PerforceClient : IDisposable
 			throw new ObjectDisposedException(typeof(PerforceClient).Name);
 		if(_filelist != null)
 			throw new InvalidOperationException("Cannot checkout for the second time.");
-			
-		_oNantProject.Log(Level.Info, "Initiating checkout. " + description);			
-		
+
+		_oNantProject.Log(Level.Info, "Initiating checkout. " + description);
+
 		// Prepare the command
 		StringWriter	sw = new StringWriter();
 		sw.Write("edit");
 		foreach(string filename in filenames)
-			sw.Write(" {0}", filename);			
-			
+			sw.Write(" {0}", filename);
+
 		// Invoke P4
 		string sEditList = RunProcess(_oNantProject, "Checkout", "p4.exe", sw.ToString(), null);
-	
+
 		// Build the list of checked-out files
 		Regex	regexFiles = new Regex("(//[^ #]+)");
 		Match	matchFiles = regexFiles.Match(sEditList);
@@ -235,20 +241,20 @@ public class PerforceClient : IDisposable
 		while(matchFiles.Success)
 		{
 			_filelist[matchFiles.Value] = true;
-			matchFiles = matchFiles.NextMatch();		
+			matchFiles = matchFiles.NextMatch();
 		}
-		
+
 		_description = description;	// Store
 	}
-	
+
 	/// Checks in the previously checked-out files.
 	public void CheckIn()
 	{
 		if(_oNantProject == null)
 			throw new ObjectDisposedException(typeof(PerforceClient).Name);
 		if(_filelist == null)
-			throw new InvalidOperationException("Must checkout before checkin.");		
-			
+			throw new InvalidOperationException("Must checkout before checkin.");
+
 		_oNantProject.Log(Level.Info, "Initiating checkin. " + _description);
 
 		// Generate the changespec
@@ -291,47 +297,47 @@ public class PerforceClient : IDisposable
 			process.StandardInput.Write(stdin);
 			process.StandardInput.Close();
 		}
-		
+
 		// Retrieve the output
 		string	sInfo = process.StandardOutput.ReadToEnd();
 		string	sError = process.StandardError.ReadToEnd();
-		
+
 		// Wait synchronously for the process to complete
 		process.WaitForExit();
 
-		// Print the output	
+		// Print the output
 		if(sInfo.Length != 0)
 			project.Log(Level.Info, sInfo);
 		if(sError.Length != 0)
 			project.Log(Level.Error, sError);
-		
+
 		// Check for faulires
 		if(process.ExitCode != 0)
 			throw new Exception(String.Format("{0} has failed with exit code {1}.", name, process.ExitCode));
 		project.Log(Level.Info, String.Format("{0} completed in {1}.", name, process.ExitTime - timeStart));
-		
+
 		return sInfo;
 	}
-	
+
 	public void Dispose()
 	{
 		// Disposed already
 		if(_oNantProject == null)
 			return;
-			
+
 		// No pending files
 		if(_filelist == null)
 			return;
-			
+
 		CheckIn();
 	}
-	
+
 	~PerforceClient()
 	{
 		Dispose();
 	}
 }
-        
+
       ]]></code>
     </script>
 
@@ -360,12 +366,12 @@ public class PerforceClient : IDisposable
     <call target="ExcelDocPlugin"/>
     <delete file="Dotfuscated\map.xml" failonerror="false" /> <!-- The file needs to be deleted for the obfuscator to succeed. -->
     <exec program="C:\Program Files\PreEmptive Solutions\Dotfuscator Standard Edition 2.0\dotfuscator.exe"
-      commandline="OmniaMeaDotfuscator.xml"/>      
+      commandline="OmniaMeaDotfuscator.xml"/>
 
     <copy file="Dotfuscated\map.xml" tofile="${map.dir}\map-${build.number}.xml"/>
     <property name="build.dir.obfuscated" value="Dotfuscated"/>
   </target>
-    
+
   <target name="OmniaMeaBaseTests">
     <nunit2>
       <formatter type="Plain"/>
@@ -379,7 +385,7 @@ public class PerforceClient : IDisposable
       <test assemblyname="${build.dir.debug}/DBUtilsTests.exe"/>
     </nunit2>
   </target>
-  
+
   <target name="JetListViewTests">
     <nunit2>
       <formatter type="Plain"/>
@@ -493,11 +499,11 @@ public class PerforceClient : IDisposable
      <exec program="makensis.exe"
            commandline="/DBINARIES_LOCATION=../../${build.dir.release} /DOBFUSC_LOCATION=../../${build.dir.obfuscated} /DBUILD=${build.version.build} /DREADER=1 OmniaMeaSetup.nsi"
            workingdir="Setup/NSISSetup"/>
-     
+
      <exec program="makensis.exe"
            commandline="/DBINARIES_LOCATION=../../${build.dir.release} /DOBFUSC_LOCATION=../../${build.dir.obfuscated} /DBUILD=${build.version.build} BeelaxyPlugin.nsi"
            workingdir="Setup/NSISSetup"/>
-     
+
      <zip zipfile="${archive.dir}/OmeaDebug-${build.number}.zip">
        <fileset basedir="${build.dir.debug}">
          <include name="*.*"/>
@@ -505,7 +511,7 @@ public class PerforceClient : IDisposable
          <excludes name="*-results.xml"/>
          <excludes name="DBUtilsTests.exe"/>
          <excludes name="_*"/>
-         <excludes name="*.exp"/>        
+         <excludes name="*.exp"/>
        </fileset>
      </zip>
 
@@ -523,13 +529,13 @@ public class PerforceClient : IDisposable
 
      <copy file="${build.dir.release}/MemoryWatchPlugin.dll" todir="${archive.dir}"/>
 
-     <copy file="${build.dir.release}/Setup/OmeaSetup.exe" 
+     <copy file="${build.dir.release}/Setup/OmeaSetup.exe"
            tofile="${archive.dir}/OmeaSetup-${build.number}.exe"/>
 
-     <copy file="${build.dir.release}/Setup/OmeaReaderSetup.exe" 
+     <copy file="${build.dir.release}/Setup/OmeaReaderSetup.exe"
            tofile="${archive.dir}/OmeaReaderSetup-${build.number}.exe"/>
 
-     <copy file="${build.dir.release}/Setup/OmeaBeelaxySetup.exe" 
+     <copy file="${build.dir.release}/Setup/OmeaBeelaxySetup.exe"
            tofile="${archive.dir}/OmeaBeelaxySetup-${build.number}.exe"/>
 
 	<!-- Copy IexploreBeelaxy installer files to the archive storage, including version-independent and versioned filenames -->
@@ -546,7 +552,7 @@ public class PerforceClient : IDisposable
 
      <copy file="\OmniaMea\build.id" tofile="\OmniaMea\build.integration"/>
 
-     <!-- <exec program="cmd.exe" 
+     <!-- <exec program="cmd.exe"
           commandline="/c echo RedirectTemp /files/OmniaMeaSetup-latest.exe http://omniamea-unit.labs.intellij.net/files/OmniaMeaSetup-${build.number}.exe"
           output="${archive.dir}/.htaccess"
           append="true"/> -->
@@ -568,7 +574,7 @@ public class PerforceClient : IDisposable
              line = line.Trim();
              if ( line.IndexOf("OmeaSetup-latest.exe") >= 0 )
              {
-               line = "RedirectTemp /files/OmeaSetup-latest.exe http://omniamea-unit.labs.intellij.net/files/OmeaSetup-" + build + ".exe";             
+               line = "RedirectTemp /files/OmeaSetup-latest.exe http://omniamea-unit.labs.intellij.net/files/OmeaSetup-" + build + ".exe";
              }
              else if ( line.IndexOf("OmeaReaderSetup-latest.exe") >= 0 )
              {
@@ -588,7 +594,7 @@ public class PerforceClient : IDisposable
            sw = File.CreateText( "\\Program Files\\Apache Group\\Apache2\\htdocs\\build.txt" );
            sw.Write( build );
            sw.Close();
-         
+
 			// Write the timestamp
 			sw = new StreamWriter("\\Program Files\\Apache Group\\Apache2\\htdocs\\BuildTime.txt");
 			sw.Write(DateTime.Now.ToString("F"));
@@ -597,7 +603,7 @@ public class PerforceClient : IDisposable
        ]]></code>
      </script>
 
-     <exec program="p4.exe" 
+     <exec program="p4.exe"
            commandline="revert Setup\NSISSetup\version.nsi" failonerror="false"/>
   </target>
 
