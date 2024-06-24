@@ -1,4 +1,8 @@
-﻿using System;
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
@@ -207,7 +211,7 @@ namespace JetBrains.Util.Interop
 			public struct IMAGE_THUNK_DATA
 			{
 				//union {
-				//void* ForwarderString;      // PBYTE 
+				//void* ForwarderString;      // PBYTE
 				public void* Function; // PDWORD
 
 				//void* Ordinal;

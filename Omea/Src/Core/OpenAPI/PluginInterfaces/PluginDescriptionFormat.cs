@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
+
 using System.Windows.Controls;
 using System.Windows.Documents;
 
@@ -16,7 +20,7 @@ namespace JetBrains.Omea.OpenAPI
 		/// Mirosoft RichTextFormat.
 		/// </summary>
 		/// <example><code>
-		/// {\rtf1\ansi………
+		/// {\rtf1\ansiï¿½ï¿½ï¿½
 		/// </code></example>
 		Rtf = 1,
 		/// <summary>

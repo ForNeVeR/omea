@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
+
 using System;
 using System.IO;
 using System.Reflection;
@@ -42,7 +46,7 @@ namespace GUIControls.RichText
 
 		/// <summary>
 		/// <para>Parses inline XAML and returns a flow document with that content inside.</para>
-		/// <para>“Inline” means inline XAML elements, in the same syntax as inside a <see cref="TextBlock"/>.</para>
+		/// <para>ï¿½Inlineï¿½ means inline XAML elements, in the same syntax as inside a <see cref="TextBlock"/>.</para>
 		/// <para>Suppose that your content will be wrapped into a <see cref="Paragraph"/> or a <see cref="TextBlock"/> element and parsed with a XAML reader.</para>
 		/// <para>Basically, this can be a string with formatting elements inside.</para>
 		/// </summary>
