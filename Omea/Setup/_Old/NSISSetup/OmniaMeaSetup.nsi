@@ -1,3 +1,7 @@
+; SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+;
+; SPDX-License-Identifier: GPL-2.0-only
+
 !verbose 2
 
 ;!define OBFUSC_LOCATION "C:\Bin"
@@ -98,7 +102,7 @@ check_IsLaunched:
   Call IsDotNETVersionInstalled
   StrCmp $0 1 found.NETFramework
   StrCpy $0 "v2.0"
-  Call IsDotNETVersionInstalled  
+  Call IsDotNETVersionInstalled
   StrCmp $0 1 found.NETFramework
   MessageBox MB_YESNO ".NET Framework version 1.1 or later is required, but not installed. \
              Do you wish to continue?" IDYES found.NETFramework IDNO exit_installer
@@ -225,7 +229,7 @@ continue_for_current_user:
   !else
     CreateShortCut "$DESKTOP\${MUI_PRODUCT}.lnk" \
                    "$INSTDIR\OmeaLauncher.exe" "" "" "" SW_SHOWNORMAL
-!endif  
+!endif
 skip_desktop_shortcut:
   !insertmacro MUI_INSTALLOPTIONS_READ $R2 "Desktop.ini" "Field 2" "State"
   StrCmp $R2 1 "" skip_quicklaunch_shortcut
@@ -490,7 +494,7 @@ Section "Mozilla/Firefox Integration" CopyMozilla
   SetOutPath "$INSTDIR"
   File "${BINARIES_LOCATION}\omeaconnector.xpi"
   File "${BINARIES_LOCATION}\InstallOmeaConnector.html"
- 
+
   Call GetParameters
   Pop $R0
   StrCmp $R0 "-silent" skip_mozilla_installconnector
