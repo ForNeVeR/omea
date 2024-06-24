@@ -7,11 +7,14 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
+// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 namespace OmniaMea {
     using System;
-    
-    
+
+
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -23,15 +26,15 @@ namespace OmniaMea {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Stringtable {
-        
+
         private static global::System.Resources.ResourceManager resourceMan;
-        
+
         private static global::System.Globalization.CultureInfo resourceCulture;
-        
+
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
         internal Stringtable() {
         }
-        
+
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
@@ -45,7 +48,7 @@ namespace OmniaMea {
                 return resourceMan;
             }
         }
-        
+
         /// <summary>
         ///   Overrides the current thread's CurrentUICulture property for all
         ///   resource lookups using this strongly typed resource class.
@@ -59,7 +62,7 @@ namespace OmniaMea {
                 resourceCulture = value;
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to About Omea Plugins.
         /// </summary>
@@ -68,7 +71,7 @@ namespace OmniaMea {
                 return ResourceManager.GetString("AboutPluginsCommandText", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to About Omea Plugins.
         /// </summary>
@@ -77,7 +80,7 @@ namespace OmniaMea {
                 return ResourceManager.GetString("AboutPluginsCommandTooltip", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Changes will take effect after Omea restart.
         /// </summary>
@@ -86,7 +89,7 @@ namespace OmniaMea {
                 return ResourceManager.GetString("ChangesAfterRestart", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Close.
         /// </summary>
@@ -95,7 +98,7 @@ namespace OmniaMea {
                 return ResourceManager.GetString("Close", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Could not load plugin..
         /// </summary>
@@ -104,7 +107,7 @@ namespace OmniaMea {
                 return ResourceManager.GetString("CouldNotLoadPlugin", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Disabled.
         /// </summary>
@@ -113,7 +116,7 @@ namespace OmniaMea {
                 return ResourceManager.GetString("Disabled", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Download.
         /// </summary>
@@ -122,7 +125,7 @@ namespace OmniaMea {
                 return ResourceManager.GetString("DownloadCommandText", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Download More Plugins.
         /// </summary>
@@ -131,7 +134,7 @@ namespace OmniaMea {
                 return ResourceManager.GetString("DownloadCommandTooltip", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Enabled.
         /// </summary>
@@ -140,7 +143,7 @@ namespace OmniaMea {
                 return ResourceManager.GetString("Enabled", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Enabled.
         /// </summary>
@@ -149,7 +152,7 @@ namespace OmniaMea {
                 return ResourceManager.GetString("EnabledColumnHeader", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to File.
         /// </summary>
@@ -158,7 +161,7 @@ namespace OmniaMea {
                 return ResourceManager.GetString("File", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Load Plugin Assemblies.
         /// </summary>
@@ -167,7 +170,7 @@ namespace OmniaMea {
                 return ResourceManager.GetString("JobLoadPluginAssemblies", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Load plugin assembly info..
         /// </summary>
@@ -176,7 +179,7 @@ namespace OmniaMea {
                 return ResourceManager.GetString("JobLoadPluginAssemblyInfo", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Startup {0} Plugin.
         /// </summary>
@@ -185,7 +188,7 @@ namespace OmniaMea {
                 return ResourceManager.GetString("JobStartingPlugin", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Loading plugins….
         /// </summary>
@@ -194,7 +197,7 @@ namespace OmniaMea {
                 return ResourceManager.GetString("LoadingPluginsProgressMessage", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Looking for plugins….
         /// </summary>
@@ -203,7 +206,7 @@ namespace OmniaMea {
                 return ResourceManager.GetString("LookingForPlugins", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Would you like to disable loading the {0} plugin? It can be enabled back at Options | Omea | Plugins..
         /// </summary>
@@ -212,7 +215,7 @@ namespace OmniaMea {
                 return ResourceManager.GetString("MessageBoxDisableFailedPlugin", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Error Loading Plugin – Omea.
         /// </summary>
@@ -221,7 +224,7 @@ namespace OmniaMea {
                 return ResourceManager.GetString("MessageBoxFailedPluginTitle", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to The {0} plugin could not be loaded..
         /// </summary>
@@ -230,7 +233,7 @@ namespace OmniaMea {
                 return ResourceManager.GetString("MessageBoxPluginCouldNotBeLoaded", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Omea Plugins were not found in this assembly..
         /// </summary>
@@ -239,7 +242,7 @@ namespace OmniaMea {
                 return ResourceManager.GetString("NoPluginsInAssembly", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Not a plugin.
         /// </summary>
@@ -248,7 +251,7 @@ namespace OmniaMea {
                 return ResourceManager.GetString("NotAPlugin", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Anonymous.
         /// </summary>
@@ -257,7 +260,7 @@ namespace OmniaMea {
                 return ResourceManager.GetString("PluginAuthorUnavailableText", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Plugin.
         /// </summary>
@@ -266,7 +269,7 @@ namespace OmniaMea {
                 return ResourceManager.GetString("PluginColumnHeader", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to This is a third-party plugin.
         /// </summary>
@@ -275,7 +278,7 @@ namespace OmniaMea {
                 return ResourceManager.GetString("PluginDescDebug_IsNonPrimary", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to This is a core Omea plugin.
         /// </summary>
@@ -284,7 +287,7 @@ namespace OmniaMea {
                 return ResourceManager.GetString("PluginDescDebug_IsPrimary", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to from.
         /// </summary>
@@ -293,7 +296,7 @@ namespace OmniaMea {
                 return ResourceManager.GetString("PluginDescDebug_LoadedFrom", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to This plugin has no description..
         /// </summary>
@@ -302,7 +305,7 @@ namespace OmniaMea {
                 return ResourceManager.GetString("PluginDescriptionUnavailableText", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Plugin icon.
         /// </summary>
@@ -311,7 +314,7 @@ namespace OmniaMea {
                 return ResourceManager.GetString("PluginIcon", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Third-Party Plugin.
         /// </summary>
@@ -320,7 +323,7 @@ namespace OmniaMea {
                 return ResourceManager.GetString("PluginIsNotPrimary", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Core Plugin.
         /// </summary>
@@ -329,7 +332,7 @@ namespace OmniaMea {
                 return ResourceManager.GetString("PluginIsPrimary", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Will be loaded on next Omea run.
         /// </summary>
@@ -338,7 +341,7 @@ namespace OmniaMea {
                 return ResourceManager.GetString("PluginWillBeLoaded", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Will not be loaded on next Omea run.
         /// </summary>
@@ -347,7 +350,7 @@ namespace OmniaMea {
                 return ResourceManager.GetString("PluginWillNotBeLoaded", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to by.
         /// </summary>
@@ -356,7 +359,7 @@ namespace OmniaMea {
                 return ResourceManager.GetString("PluginWrittenBy", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Refresh.
         /// </summary>
@@ -365,7 +368,7 @@ namespace OmniaMea {
                 return ResourceManager.GetString("RefreshCommandText", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Refresh.
         /// </summary>
@@ -374,7 +377,7 @@ namespace OmniaMea {
                 return ResourceManager.GetString("RefreshCommandTooltip", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Show _developer info.
         /// </summary>
@@ -383,7 +386,7 @@ namespace OmniaMea {
                 return ResourceManager.GetString("ShowDeveloperInfo", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Starting plugins….
         /// </summary>
@@ -392,7 +395,7 @@ namespace OmniaMea {
                 return ResourceManager.GetString("StartingPluginsProgressMessage", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Stopping {0}….
         /// </summary>

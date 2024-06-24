@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
+
 #include "StdAfx.h"
 #include "Splash.h"
 #include "resource.h"
@@ -16,11 +20,11 @@ HRESULT CSplash::ShowWindow(HINSTANCE hInstance)
 	if(FAILED(hRet = RegisterWndClass()))
 		return hRet;
 	if(FAILED(hRet = CreateSplashWindow()))
-		return hRet;	
+		return hRet;
 	if(FAILED(hRet = RenderSplash()))
-		return hRet;	
+		return hRet;
 	if(FAILED(hRet = PumpMessagesOnce()))
-		return hRet;	
+		return hRet;
 
 	return S_OK;
 }
