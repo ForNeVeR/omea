@@ -1,3 +1,7 @@
+; SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+;
+; SPDX-License-Identifier: GPL-2.0-only
+
  ; AcrobatReaderInstalled
  ;
  ; Usage:
@@ -9,7 +13,7 @@ Function AcrobatReaderInstalled
   Push $0
   Push $1
 
-#read adobe acrobat reader installation path  
+#read adobe acrobat reader installation path
   ReadRegStr $0 HKEY_LOCAL_MACHINE "Software\Adobe\Acrobat Reader\5.0\InstallPath" ""
 # remove trailing back slash
   Push $0
