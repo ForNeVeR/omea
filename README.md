@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2024 Friedrich von Never <friedrich@fornever.me>
+
+SPDX-License-Identifier: GPL-2.0-only
+-->
+
 Omea
 ====
 Omea is "the integrated information environment" as the authors put it, most famous for its RSS reading capabilities. Read more on [the official site][jetbrains.omea].
