@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using JetBrains.Omea.GUIControls;
@@ -19,7 +18,7 @@ namespace JetBrains.Omea
         private RTFDisplayPane _rtfDisplayPane;
         private Panel _panel;
         private IResource _displayedResource;
-        
+
         public FragmentDisplayPane()
         {
             _panel = new Panel();
@@ -136,7 +135,7 @@ namespace JetBrains.Omea
 				_rtfDisplayPane.GetControl().Visible = false;
                 WebSecurityContext context = WebSecurityContext.Restricted;
                 context.WorkOffline = false;
-                Core.WebBrowser.ShowHtml( resource.GetPropText( Core.Props.LongBody ), context, 
+                Core.WebBrowser.ShowHtml( resource.GetPropText( Core.Props.LongBody ), context,
                     DocumentSection.RestrictResults( wordsToHighlight, DocumentSection.BodySection ) );
 			}
 		}
@@ -145,7 +144,7 @@ namespace JetBrains.Omea
 
         public IActionContext GetContext( ActionContextKind kind )
         {
-            return new ActionContext( kind, null, 
+            return new ActionContext( kind, null,
                 (_displayedResource == null) ? null : _displayedResource.ToResourceList() );
         }
 	}

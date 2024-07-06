@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 #include "CharsStorage.h"
 #define long __int32
@@ -78,9 +77,9 @@ EntryIDSPtr Helper::HexToEntryID( String* hex )
 
 EMAPILib::MAPINtf* Helper::GetNewMailNtf( _NOTIFICATION notification )
 {
-    String* entryID = 
+    String* entryID =
         Helper::EntryIDToHex( (LPBYTE)notification.info.newmail.lpEntryID, notification.info.newmail.cbEntryID );
-    String* parentID = 
+    String* parentID =
         Helper::EntryIDToHex( (LPBYTE)notification.info.newmail.lpParentID, notification.info.newmail.cbParentID );
 
     return new EMAPILib::MAPINtf( parentID, entryID );
@@ -88,9 +87,9 @@ EMAPILib::MAPINtf* Helper::GetNewMailNtf( _NOTIFICATION notification )
 
 EMAPILib::MAPINtf* Helper::GetMAPINtf( _NOTIFICATION notification )
 {
-    String* entryID = 
+    String* entryID =
         Helper::EntryIDToHex( (LPBYTE)notification.info.obj.lpEntryID, notification.info.obj.cbEntryID );
-    String* parentID = 
+    String* parentID =
         Helper::EntryIDToHex( (LPBYTE)notification.info.obj.lpParentID, notification.info.obj.cbParentID );
 
     return new EMAPILib::MAPINtf( parentID, entryID );
@@ -98,13 +97,13 @@ EMAPILib::MAPINtf* Helper::GetMAPINtf( _NOTIFICATION notification )
 
 EMAPILib::MAPIFullNtf* Helper::GetMAPIFullNtf( _NOTIFICATION notification )
 {
-    String* entryID = 
+    String* entryID =
         Helper::EntryIDToHex( (LPBYTE)notification.info.obj.lpEntryID, notification.info.obj.cbEntryID );
-    String* parentID = 
+    String* parentID =
         Helper::EntryIDToHex( (LPBYTE)notification.info.obj.lpParentID, notification.info.obj.cbParentID );
-    String* oldParentID = 
+    String* oldParentID =
         Helper::EntryIDToHex( (LPBYTE)notification.info.obj.lpOldParentID, notification.info.obj.cbOldParentID );
-    String* oldEntryID = 
+    String* oldEntryID =
         Helper::EntryIDToHex( (LPBYTE)notification.info.obj.lpOldID, notification.info.obj.cbOldID );
 
     return new EMAPILib::MAPIFullNtf( parentID, entryID, oldParentID, oldEntryID );

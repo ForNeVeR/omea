@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Windows.Forms;
@@ -66,11 +65,11 @@ namespace OmniaMea.Tests
         {
             _resourceBrowser.DisplayResourceList( null, _core.ResourceStore.GetAllResources( "Email" ),
                 "", new ColumnDescriptor[] {});
-        } 
+        }
 
         private void ShowThreadedEmails()
         {
-            _resourceBrowser.DisplayThreadedResourceList( null, _core.ResourceStore.GetAllResources( "Email" ), 
+            _resourceBrowser.DisplayThreadedResourceList( null, _core.ResourceStore.GetAllResources( "Email" ),
                 "", null, _propReply, new ColumnDescriptor[] {}, null );
         }
 
@@ -210,7 +209,7 @@ namespace OmniaMea.Tests
 
         [Test] public void ShowIfNotEmpty_IsEmpty()
         {
-            _cdDate.Flags |= ColumnDescriptorFlags.ShowIfNotEmpty;            
+            _cdDate.Flags |= ColumnDescriptorFlags.ShowIfNotEmpty;
             ShowPlainEmails();
             _resourceBrowser.ShowListViewColumns( new ColumnDescriptor[] { _cdIcon, _cdName, _cdDate } );
             Assert.AreEqual( 2, _jetListView.Header.Sections.Count );

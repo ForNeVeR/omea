@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Text;
@@ -104,7 +103,7 @@ namespace JetBrains.Omea.Nntp
         public static string GenerateArticleId( IResource article, string domainName )
         {
             StringBuilder builder = StringBuilderPool.Alloc();
-            try 
+            try
             {
                 builder.Append( '<' );
                 builder.AppendFormat( "{0:x4}", Environment.MachineName.ToLower().GetHashCode() );
@@ -304,7 +303,7 @@ namespace JetBrains.Omea.Nntp
 
         private bool HasAttachment( IResource res )
         {
-            return res.HasProp( -_propNewsAttachment ) || 
+            return res.HasProp( -_propNewsAttachment ) ||
                 ( _propAttachment != 0 && res.HasProp( -_propAttachment ) );
         }
 
@@ -327,18 +326,18 @@ namespace JetBrains.Omea.Nntp
                     SubscribeForm.SubscribeToGroups();
                 }
             }
-            else 
+            else
             {
                 Core.UIManager.BeginUpdateSidebar();
-                try 
+                try
                 {
                     if ( !Core.TabManager.ActivateTab( "News" ) )
                     {
                         return;
-                    }            
+                    }
                     Core.LeftSidebar.ActivateViewPane( "Newsgroups" );
                 }
-                finally 
+                finally
                 {
                     Core.UIManager.EndUpdateSidebar();
                 }
@@ -351,7 +350,7 @@ namespace JetBrains.Omea.Nntp
         }
     }
 
-    
+
     internal class NntpRenameHandler : IResourceRenameHandler
     {
         public bool CanRenameResource( IResource res, ref string editText )

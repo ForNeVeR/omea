@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -31,10 +30,10 @@ namespace JetBrains.JetListViewLibrary
             {
                 if ( !MoveNextStep() )
                     return false;
-                
+
                 if ( !_skipFiltered )
                     return true;
-                
+
                 JetListViewNode curNode = (JetListViewNode) Current;
 
                 if ( _minLevel != -1 && curNode.Level < _minLevel )
@@ -134,7 +133,7 @@ namespace JetBrains.JetListViewLibrary
         }
 
     }
-    
+
     /// <summary>
     /// Enumerator of visible items in reverse order in a JetListViewNodeCollection.
     /// </summary>

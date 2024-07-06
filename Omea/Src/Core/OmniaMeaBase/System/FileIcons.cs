@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.IO;
@@ -13,7 +12,7 @@ namespace JetBrains.Omea.Base
 {
     /// <summary>
     /// Get icons registered for paritular file extensions.
-    /// Manages cache for non-application types of files (*.exe, *.dll) 
+    /// Manages cache for non-application types of files (*.exe, *.dll)
     /// </summary>
     public class FileIcons
     {
@@ -69,7 +68,7 @@ namespace JetBrains.Omea.Base
                     WindowsAPI.SHFILEINFO fileInfo = new WindowsAPI.SHFILEINFO();
                     WindowsAPI.SHGetFileInfo(path, 0, ref fileInfo, (uint)Marshal.SizeOf(fileInfo),
                                               WindowsAPI.SHGFI_ICON | format );
-                    
+
                     result = Icon.FromHandle(fileInfo.hIcon);
                     if( format == WindowsAPI.SHGFI_SMALLICON )
                         _files2SmallIcons[ extension ] = result;

@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 // JetBrains Omea Mshtml Browser Component
 //
@@ -32,7 +31,7 @@ package JetBrains.Omea.GUIControls.MshtmlBrowser
 	public class MshtmlBrowserNest extends AbstractWebBrowser
 	{
 		private var _browser : MshtmlBrowserControl;
-		/// <summary> 
+		/// <summary>
 		/// Required designer variable.
 		/// </summary>
 		private var components : System.ComponentModel.Container = null;
@@ -45,14 +44,14 @@ package JetBrains.Omea.GUIControls.MshtmlBrowser
 			// TODO: Add any initialization after the InitializeComponent call
 
 		}
-		
+
 		/// Provides direct access to the browser control wrapped by this object.
 		public function get BrowserControl() : MshtmlBrowserControl
 		{
 			return _browser;
 		}
 
-		/// <summary> 
+		/// <summary>
 		/// Clean up any resources being used.
 		/// </summary>
 		protected function Dispose( disposing : boolean ) : void
@@ -67,25 +66,25 @@ package JetBrains.Omea.GUIControls.MshtmlBrowser
 			super.Dispose( disposing );
 		}
 
-		/// <summary> 
-		/// Required method for Designer support - do not modify 
+		/// <summary>
+		/// Required method for Designer support - do not modify
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private function InitializeComponent() : void
 		{
 			this._browser = new MshtmlBrowserControl();
 			this.SuspendLayout();
-			// 
+			//
 			// _browser
-			// 
+			//
 			this._browser.Dock = System.Windows.Forms.DockStyle.Fill;
 			this._browser.Location = new System.Drawing.Point(0, 0);
 			this._browser.Name = "_browser";
 			this._browser.Size = new System.Drawing.Size(376, 352);
 			this._browser.TabIndex = 0;
-			// 
+			//
 			// MshtmlBrowserNest
-			// 
+			//
 			this.Controls.Add(this._browser);
 			this.Name = "MshtmlBrowserNest";
 			this.Size = new System.Drawing.Size(376, 352);
@@ -148,35 +147,35 @@ package JetBrains.Omea.GUIControls.MshtmlBrowser
 
 		public function get SelectedText() : String
 		{ return _browser.SelectedText; }
-		
+
 		public function get Title() : String
 		{ return _browser.Title; }
-		
+
 		public function remove_TitleChanged( handler : EventHandler ) : void
 		{	_browser.remove_TitleChanged( handler ); }
 		public function add_TitleChanged( handler : EventHandler ) : void
 		{	_browser.add_TitleChanged( handler );	}
-		
+
 		public function get SecurityContext() : WebSecurityContext
 		{	return _browser.SecurityContext;	}
 		public function set SecurityContext( value : WebSecurityContext )
-		{	_browser.SecurityContext = value;	}		
-		
+		{	_browser.SecurityContext = value;	}
+
 		public function get ContextProvider() : IContextProvider
 		{	return _browser.ContextProvider;	}
 		public function set ContextProvider( value : IContextProvider )
 		{	_browser.ContextProvider = value;	}
-		
+
 		public function get Html() : System.String
 		{	return _browser.Html;	}
 		public function set Html( value : System.String )
 		{	_browser.Html = value;	}
-		
+
 		public function NewInstance() : AbstractWebBrowser
 		{
 			return new MshtmlBrowserNest();
-		}	
-		
+		}
+
 		Browsable(true) ComVisible(true) Category("Appearance") Description("Border style") DefaultValue(System.Windows.Forms.BorderStyle.None)
 		public function get BorderStyle() : System.Windows.Forms.BorderStyle
 		{
@@ -186,12 +185,12 @@ package JetBrains.Omea.GUIControls.MshtmlBrowser
 		{
 			_browser.BorderStyle = value;
 		}
-		
+
 		public function Exec(code : System.String) : System.Object
 		{
 			return _browser.Exec(code);
 		}
-		
+
 		public function get HtmlDocument() : IHtmlDomDocument
 		{
 			return _browser.ManagedHtmlDocument;
@@ -201,22 +200,22 @@ package JetBrains.Omea.GUIControls.MshtmlBrowser
 		{	_browser.remove_KeyDown( handler ); }
 		public function add_KeyDown( handler : KeyEventHandler ) : void
 		{	_browser.add_KeyDown( handler );	}
-		
+
 		public function remove_ContextMenu( handler : ContextMenuEventHandler ) : void
 		{	_browser.remove_ContextMenu( handler ); }
 		public function add_ContextMenu( handler : ContextMenuEventHandler ) : void
 		{	_browser.add_ContextMenu( handler );	}
-		
+
 		public function remove_DocumentComplete( handler : JetBrains.Omea.OpenAPI.DocumentCompleteEventHandler ) : void
 		{	_browser.remove_DocumentComplete( handler ); }
 		public function add_DocumentComplete( handler : JetBrains.Omea.OpenAPI.DocumentCompleteEventHandler ) : void
 		{	_browser.add_DocumentComplete( handler );	}
-		
+
 		public function get ReadyState() : BrowserReadyState
-		{	return _browser.ReadyState;	}		
-		
+		{	return _browser.ReadyState;	}
+
 		public function Stop() : void
-		{	_browser.Stop();	}		
+		{	_browser.Stop();	}
 
 		public function remove_BeforeNavigate( handler : JetBrains.Omea.OpenAPI.BeforeNavigateEventHandler ) : void
 		{	_browser.remove_BeforeNavigate( handler ); }

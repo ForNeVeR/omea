@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Windows.Forms;
@@ -19,7 +18,7 @@ namespace JetBrains.Omea.Tasks
         Normal, High, Low
     }
 
-    /** 
+    /**
      * for selected resources, creates new task
      */
     public class NewTaskAction : IAction
@@ -77,7 +76,7 @@ namespace JetBrains.Omea.Tasks
             {
                 foreach( IResource target in selectedResources )
                 {
-                    if( target.Type != "Task" && 
+                    if( target.Type != "Task" &&
                         !Core.ResourceStore.ResourceTypes[ target.Type ].HasFlag( ResourceTypeFlags.Internal ) )
                     {
                         target.AddLink( TasksPlugin._linkTarget, task );
@@ -162,7 +161,7 @@ namespace JetBrains.Omea.Tasks
         }
     }
 
-    /** 
+    /**
      * mark selected tasks as completed
      */
     public class MarkTasksCompletedAction : IAction

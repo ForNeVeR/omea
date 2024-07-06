@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -21,11 +20,11 @@ namespace JetBrains.Omea.MailParser
 
     internal class MailBodyFormatter
     {
-        private const string _cDefaultStyleTmpl = "<style>\n" + 
-                                                  "    body, td { font-family: $FontFace$; font-size: $FontSize$pt; }\n" + 
-                                                  "    .oddquote { background-color: #f0f0f0; color: #800080; }\n" + 
-                                                  "    .evenquote { background-color: #e0e0e0; color: #800000; }\n" + 
-                                                  "    .outlookquote { color: #008080; }\n" + 
+        private const string _cDefaultStyleTmpl = "<style>\n" +
+                                                  "    body, td { font-family: $FontFace$; font-size: $FontSize$pt; }\n" +
+                                                  "    .oddquote { background-color: #f0f0f0; color: #800080; }\n" +
+                                                  "    .evenquote { background-color: #e0e0e0; color: #800000; }\n" +
+                                                  "    .outlookquote { color: #008080; }\n" +
                                                   "    .sig { font-size: 8pt; font-style: italic; }\n" + "</style>\n";
         private const string _cTableStartTag = "<table border=\"0\" cellpadding=\"5\" cellspacing=\"0\" width=\"95%\">";
         private const string _cTabSubst = "&nbsp;&nbsp;&nbsp;&nbsp;";
@@ -105,9 +104,9 @@ namespace JetBrains.Omea.MailParser
                     {
                         _builder.Append( converter.ConvertLinks( ReplaceSpaces( HTMLEncode( para.Text ), noWrap ) ) );
                     }
-                    else 
+                    else
                     {
-                        // show an extra separator line above and below every quoted 
+                        // show an extra separator line above and below every quoted
                         // plain-text paragraph
                         if ( i > 0 )
                         {
@@ -215,7 +214,7 @@ namespace JetBrains.Omea.MailParser
     {
         private const int  _iDefaultMessageWidth = 50;
         private const string _cDefaultDualHeaderStyle =
-            "<style type=\"text/css\" media=\"screen\"> .OmeaHeader { display: none; }</style>\n" + 
+            "<style type=\"text/css\" media=\"screen\"> .OmeaHeader { display: none; }</style>\n" +
             "<style type=\"text/css\" media=\"print\"> .OmeaHeader { margin: 0; padding: 0; font-size: 130%; color: #000; }</style>\n";
 
         private readonly MailQuoteProcessor _quoter = new MailQuoteProcessor();
@@ -453,7 +452,7 @@ namespace JetBrains.Omea.MailParser
         private string CleanPreviewText( string body, int lines, bool skipQuoting )
         {
             StringBuilder resultBuilder = StringBuilderPool.Alloc();
-            try 
+            try
             {
                 int pos = 0;
                 int foundLines = 0;
@@ -669,7 +668,7 @@ namespace JetBrains.Omea.MailParser
 				// Advance
 				shift++;
 			}
-			
+
 			// Copy content after the last marker
 			stripped.Append( content.Substring( pos, content.Length - pos ) );
 

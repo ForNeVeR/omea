@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System.IO;
 
@@ -28,7 +27,7 @@ namespace JetBrains.Omea.OpenAPI
             ResourceTypeFlags flags,
             IPlugin ownerPlugin,
             params string[] extensions );
-        
+
         /// <summary>
         /// Removes the registration of the specified resource type as a file format
         /// resource type.
@@ -75,10 +74,10 @@ namespace JetBrains.Omea.OpenAPI
         /// Returns the name of a disk file containing the data of the specified
         /// file format resource.
         /// </summary>
-        /// <remarks><para>If the source of the specified resource is a file, returns the name 
+        /// <remarks><para>If the source of the specified resource is a file, returns the name
         /// of that file. If it's a different resource, saves the stream of the
         /// resource to a temporary file and returns the name of that file.</para>
-        /// <para>After the plugin is done using the file, it must call 
+        /// <para>After the plugin is done using the file, it must call
         /// <see cref="CleanupSourceFile"/> to delete the temporary files which may have been
         /// created.</para>
         /// </remarks>
@@ -109,7 +108,7 @@ namespace JetBrains.Omea.OpenAPI
         /// <remarks></remarks>
         /// <since>1.0.2</since>
         string GetUniqueTempDirectory();
-        
+
         /// <summary>
         /// ID of the "Charset" property type.
         /// </summary>

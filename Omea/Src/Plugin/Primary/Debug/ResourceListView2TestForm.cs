@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Windows.Forms;
@@ -85,7 +84,7 @@ namespace JetBrains.Omea.DebugPlugin
                 */
                 _resourceListView.FullRowSelect = true;
             }
-            
+
 
             /*
             int propId = Core.ResourceStore.GetPropId( "Annotation" );
@@ -138,19 +137,19 @@ namespace JetBrains.Omea.DebugPlugin
             this._edtSearch = new JetTextBox();
             this._topPanel.SuspendLayout();
             this.SuspendLayout();
-            // 
+            //
             // _topPanel
-            // 
+            //
             this._topPanel.Controls.Add(this._edtSearch);
             this._topPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this._topPanel.Location = new System.Drawing.Point(0, 0);
             this._topPanel.Name = "_topPanel";
             this._topPanel.Size = new System.Drawing.Size(292, 28);
             this._topPanel.TabIndex = 0;
-            // 
+            //
             // _edtSearch
-            // 
-            this._edtSearch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._edtSearch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._edtSearch.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(204)));
             this._edtSearch.Location = new System.Drawing.Point(4, 4);
@@ -159,9 +158,9 @@ namespace JetBrains.Omea.DebugPlugin
             this._edtSearch.TabIndex = 0;
             this._edtSearch.Text = "";
             this._edtSearch.IncrementalSearchUpdated += new EventHandler(_edtSearch_IncrementalSearchUpdated);
-            // 
+            //
             // ResourceListView2TestForm
-            // 
+            //
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
             this.ClientSize = new System.Drawing.Size(292, 266);
             this.Controls.Add(this._topPanel);

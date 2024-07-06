@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Diagnostics;
@@ -15,7 +14,7 @@ using JetBrains.Omea.ResourceTools;
 
 namespace JetBrains.Omea.Nntp
 {
-    /** 
+    /**
       * processing article: parsing headers, parsing multi-part bodies,
       *                     creating attachments, etc
       */
@@ -26,7 +25,7 @@ namespace JetBrains.Omea.Nntp
 
     internal class NewsArticleParser
     {
-        /** 
+        /**
          * all article's processing should be performed in the resource thread
          * this function is called if article is downloaded from a group
          */
@@ -39,7 +38,7 @@ namespace JetBrains.Omea.Nntp
             {
                 return;
             }
-            
+
             articleId = ParseTools.EscapeCaseSensitiveString( articleId );
             // is article deleted?
             if( NewsArticleHelper.IsArticleDeleted( articleId ) )
@@ -113,7 +112,7 @@ namespace JetBrains.Omea.Nntp
                         }
                         else if( Utils.StartsWith( line, "newsgroups: ", true ) )
                         {
-                            if( line.IndexOf( ',' ) > 12 ) 
+                            if( line.IndexOf( ',' ) > 12 )
                             {
                                 ParseNewsgroups( article, groupRes, serverRes, line.Substring( 12 ) );
                             }
@@ -380,7 +379,7 @@ namespace JetBrains.Omea.Nntp
             Core.TextIndexManager.QueryIndexing( article.Id );
         }
 
-        /** 
+        /**
          * preparing article lines: gathering line-broken headers,
          * trimimg, replacing tabs in headers with spaces
          */
@@ -562,7 +561,7 @@ namespace JetBrains.Omea.Nntp
             {
                 date = RFC822DateParser.ParseDate( dateValue );
                 article.SetProp( Core.Props.Date, date );
-                
+
                 if( threadDate == DateTime.MinValue || threadDate < date )
                     article.SetProp( NntpPlugin._propLastArticleDate, date );
             }
@@ -793,7 +792,7 @@ namespace JetBrains.Omea.Nntp
             {
                 foreach( IResource wsp in localArticle.GetLinksOfType( "Workspace", "WorkspaceVisible" ) )
                 {
-                    Core.WorkspaceManager.AddResourceToWorkspace( wsp, articleRes );                    
+                    Core.WorkspaceManager.AddResourceToWorkspace( wsp, articleRes );
                 }
                 Core.ContactManager.UnlinkContactInformation( localArticle );
                 localArticle.Delete();

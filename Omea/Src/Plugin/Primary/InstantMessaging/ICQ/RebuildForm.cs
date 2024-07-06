@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections.Generic;
@@ -91,9 +90,9 @@ namespace JetBrains.Omea.InstantMessaging.ICQ
             this._optionsPaneImages = new System.Windows.Forms.ImageList(this.components);
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.SuspendLayout();
-            // 
+            //
             // _okButton
-            // 
+            //
             this._okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this._okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
             this._okButton.Location = new System.Drawing.Point(104, 156);
@@ -101,19 +100,19 @@ namespace JetBrains.Omea.InstantMessaging.ICQ
             this._okButton.TabIndex = 1;
             this._okButton.Text = "OK";
             this._okButton.Click += new System.EventHandler(this._okButton_Click);
-            // 
+            //
             // _cancelButton
-            // 
+            //
             this._cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this._cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this._cancelButton.Location = new System.Drawing.Point(188, 156);
             this._cancelButton.Name = "_cancelButton";
             this._cancelButton.TabIndex = 2;
             this._cancelButton.Text = "Cancel";
-            // 
+            //
             // label5
-            // 
-            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label5.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
@@ -122,11 +121,11 @@ namespace JetBrains.Omea.InstantMessaging.ICQ
             this.label5.Size = new System.Drawing.Size(256, 20);
             this.label5.TabIndex = 14;
             this.label5.Text = "Select ICQ profiles:";
-            // 
+            //
             // _UINsList
-            // 
-            this._UINsList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-                | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._UINsList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._UINsList.CheckBoxes = true;
             this._UINsList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
@@ -142,33 +141,33 @@ namespace JetBrains.Omea.InstantMessaging.ICQ
             this._UINsList.SmallImageList = this._optionsPaneImages;
             this._UINsList.TabIndex = 0;
             this._UINsList.View = System.Windows.Forms.View.Details;
-            // 
+            //
             // columnHeader1
-            // 
+            //
             this.columnHeader1.Width = 120;
-            // 
+            //
             // columnHeader2
-            // 
+            //
             this.columnHeader2.Width = 76;
-            // 
+            //
             // _optionsPaneImages
-            // 
+            //
             this._optionsPaneImages.ImageSize = new System.Drawing.Size(16, 16);
             this._optionsPaneImages.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("_optionsPaneImages.ImageStream")));
             this._optionsPaneImages.TransparentColor = System.Drawing.Color.Transparent;
-            // 
+            //
             // groupBox1
-            // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Location = new System.Drawing.Point(8, 144);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(256, 4);
             this.groupBox1.TabIndex = 15;
             this.groupBox1.TabStop = false;
-            // 
+            //
             // RebuildForm
-            // 
+            //
             this.AcceptButton = this._okButton;
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
             this.CancelButton = this._cancelButton;

@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 using System;
 using System.Drawing;
 using System.IO;
@@ -68,7 +67,7 @@ namespace JetBrains.Omea.Maintenance
 		{
 			if( disposing )
 			{
-				if( components != null ) 
+				if( components != null )
 				{
 					components.Dispose();
 				}
@@ -119,23 +118,23 @@ namespace JetBrains.Omea.Maintenance
             this._performancePage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this._resourceCacheSizeTrackBar)).BeginInit();
             this.SuspendLayout();
-            // 
+            //
             // _imageList
-            // 
+            //
             this._imageList.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
             this._imageList.ImageSize = new System.Drawing.Size(16, 16);
             this._imageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("_imageList.ImageStream")));
             this._imageList.TransparentColor = System.Drawing.Color.Transparent;
-            // 
+            //
             // _statusBar
-            // 
+            //
             this._statusBar.Location = new System.Drawing.Point(0, 328);
             this._statusBar.Name = "_statusBar";
             this._statusBar.Size = new System.Drawing.Size(616, 22);
             this._statusBar.TabIndex = 1;
-            // 
+            //
             // _tabs
-            // 
+            //
             this._tabs.Alignment = System.Windows.Forms.TabAlignment.Bottom;
             this._tabs.Controls.Add(this._dbPage);
             this._tabs.Controls.Add(this._textIndexPage);
@@ -149,9 +148,9 @@ namespace JetBrains.Omea.Maintenance
             this._tabs.ShowToolTips = true;
             this._tabs.Size = new System.Drawing.Size(616, 328);
             this._tabs.TabIndex = 2;
-            // 
+            //
             // _dbPage
-            // 
+            //
             this._dbPage.Controls.Add(this._tablesListView);
             this._dbPage.Controls.Add(this._pathBox);
             this._dbPage.Controls.Add(this.splitter1);
@@ -164,9 +163,9 @@ namespace JetBrains.Omea.Maintenance
             this._dbPage.TabIndex = 0;
             this._dbPage.Text = "Resource Store";
             this._dbPage.ToolTipText = "Manage database of resources";
-            // 
+            //
             // _tablesListView
-            // 
+            //
             this._tablesListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
                                                                                               this._nameHeader,
                                                                                               this._recordsHeader,
@@ -179,29 +178,29 @@ namespace JetBrains.Omea.Maintenance
             this._tablesListView.Size = new System.Drawing.Size(405, 260);
             this._tablesListView.TabIndex = 6;
             this._tablesListView.View = System.Windows.Forms.View.Details;
-            // 
+            //
             // _nameHeader
-            // 
+            //
             this._nameHeader.Text = "Table";
             this._nameHeader.Width = 100;
-            // 
+            //
             // _recordsHeader
-            // 
+            //
             this._recordsHeader.Text = "Record Count";
             this._recordsHeader.Width = 100;
-            // 
+            //
             // _fragmentationHeader
-            // 
+            //
             this._fragmentationHeader.Text = "Fragmentation";
             this._fragmentationHeader.Width = 100;
-            // 
+            //
             // _occupiedSpaceHeader
-            // 
+            //
             this._occupiedSpaceHeader.Text = "Occupied Space";
             this._occupiedSpaceHeader.Width = 100;
-            // 
+            //
             // _pathBox
-            // 
+            //
             this._pathBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this._pathBox.Dock = System.Windows.Forms.DockStyle.Top;
             this._pathBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(204)));
@@ -211,18 +210,18 @@ namespace JetBrains.Omea.Maintenance
             this._pathBox.Size = new System.Drawing.Size(405, 13);
             this._pathBox.TabIndex = 5;
             this._pathBox.Text = "";
-            // 
+            //
             // splitter1
-            // 
+            //
             this.splitter1.Dock = System.Windows.Forms.DockStyle.Right;
             this.splitter1.Location = new System.Drawing.Point(405, 28);
             this.splitter1.Name = "splitter1";
             this.splitter1.Size = new System.Drawing.Size(3, 273);
             this.splitter1.TabIndex = 4;
             this.splitter1.TabStop = false;
-            // 
+            //
             // _resultsPanel
-            // 
+            //
             this._resultsPanel.Controls.Add(this._resultsBox);
             this._resultsPanel.Controls.Add(this.label1);
             this._resultsPanel.Dock = System.Windows.Forms.DockStyle.Right;
@@ -230,9 +229,9 @@ namespace JetBrains.Omea.Maintenance
             this._resultsPanel.Name = "_resultsPanel";
             this._resultsPanel.Size = new System.Drawing.Size(200, 273);
             this._resultsPanel.TabIndex = 3;
-            // 
+            //
             // _resultsBox
-            // 
+            //
             this._resultsBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this._resultsBox.Location = new System.Drawing.Point(0, 23);
             this._resultsBox.Multiline = true;
@@ -241,9 +240,9 @@ namespace JetBrains.Omea.Maintenance
             this._resultsBox.Size = new System.Drawing.Size(200, 250);
             this._resultsBox.TabIndex = 6;
             this._resultsBox.Text = "";
-            // 
+            //
             // label1
-            // 
+            //
             this.label1.Dock = System.Windows.Forms.DockStyle.Top;
             this.label1.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(204)));
@@ -253,9 +252,9 @@ namespace JetBrains.Omea.Maintenance
             this.label1.TabIndex = 5;
             this.label1.Text = "Results";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
+            //
             // _toolBar
-            // 
+            //
             this._toolBar.Buttons.AddRange(new System.Windows.Forms.ToolBarButton[] {
                                                                                         this._refreshDbButton,
                                                                                         this._diagnoseTablesButton,
@@ -269,22 +268,22 @@ namespace JetBrains.Omea.Maintenance
             this._toolBar.TabIndex = 1;
             this._toolBar.TextAlign = System.Windows.Forms.ToolBarTextAlign.Right;
             this._toolBar.ButtonClick += new System.Windows.Forms.ToolBarButtonClickEventHandler(this._toolBar_ButtonClick);
-            // 
+            //
             // _refreshDbButton
-            // 
+            //
             this._refreshDbButton.Text = "Refresh";
-            // 
+            //
             // _diagnoseTablesButton
-            // 
+            //
             this._diagnoseTablesButton.Text = "Diagnose";
             this._diagnoseTablesButton.ToolTipText = "Diagnose selected tables";
-            // 
+            //
             // _rebuildIndexesButton
-            // 
+            //
             this._rebuildIndexesButton.Text = "Rebuild Indexes";
-            // 
+            //
             // _textIndexPage
-            // 
+            //
             this._textIndexPage.ImageIndex = 1;
             this._textIndexPage.Location = new System.Drawing.Point(4, 4);
             this._textIndexPage.Name = "_textIndexPage";
@@ -293,9 +292,9 @@ namespace JetBrains.Omea.Maintenance
             this._textIndexPage.Text = "Text Index";
             this._textIndexPage.ToolTipText = "Manage text index";
             this._textIndexPage.Visible = false;
-            // 
+            //
             // _performancePage
-            // 
+            //
             this._performancePage.Controls.Add(this.label4);
             this._performancePage.Controls.Add(this.label3);
             this._performancePage.Controls.Add(this.label2);
@@ -306,36 +305,36 @@ namespace JetBrains.Omea.Maintenance
             this._performancePage.TabIndex = 2;
             this._performancePage.Text = "Performance";
             this._performancePage.ToolTipText = "Tune performance settings";
-            // 
+            //
             // label4
-            // 
+            //
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.Location = new System.Drawing.Point(528, 40);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(92, 23);
             this.label4.TabIndex = 3;
             this.label4.Text = "More speed";
-            // 
+            //
             // label3
-            // 
+            //
             this.label3.Location = new System.Drawing.Point(168, 40);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(112, 23);
             this.label3.TabIndex = 2;
             this.label3.Text = "Less memory";
-            // 
+            //
             // label2
-            // 
+            //
             this.label2.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label2.Location = new System.Drawing.Point(8, 8);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(152, 23);
             this.label2.TabIndex = 1;
             this.label2.Text = "Resources cache size:";
-            // 
+            //
             // _resourceCacheSizeTrackBar
-            // 
-            this._resourceCacheSizeTrackBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._resourceCacheSizeTrackBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._resourceCacheSizeTrackBar.Location = new System.Drawing.Point(160, 4);
             this._resourceCacheSizeTrackBar.Maximum = 64;
@@ -343,9 +342,9 @@ namespace JetBrains.Omea.Maintenance
             this._resourceCacheSizeTrackBar.Size = new System.Drawing.Size(436, 45);
             this._resourceCacheSizeTrackBar.TabIndex = 0;
             this._resourceCacheSizeTrackBar.ValueChanged += new System.EventHandler(this._resourceCacheSizeTrackBar_ValueChanged);
-            // 
+            //
             // MainForm
-            // 
+            //
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
             this.ClientSize = new System.Drawing.Size(616, 350);
             this.Controls.Add(this._tabs);
@@ -375,7 +374,7 @@ namespace JetBrains.Omea.Maintenance
 		/// The main entry point for the application.
 		/// </summary>
 		[STAThread]
-		static void Main() 
+		static void Main()
 		{
             OMEnv.WorkDir = RegUtil.DatabasePath;
             MyPalStorage.DBPath = Path.Combine( OMEnv.WorkDir, "db" );
@@ -408,7 +407,7 @@ namespace JetBrains.Omea.Maintenance
         private void MainForm_Activated(object sender, System.EventArgs e)
         {
 #if READER
-           Text = "JetBrains Omea Reader Maintenance Tool"; 
+           Text = "JetBrains Omea Reader Maintenance Tool";
 #else
            Text = "JetBrains Omea Pro Maintenance Tool";
 #endif

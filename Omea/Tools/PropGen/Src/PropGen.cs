@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -25,7 +24,7 @@ namespace JetBrains.Omea.Tools.PropGen
 
 	    private readonly Dictionary<string, string> _dataTypes = new Dictionary<string, string>();
 	    private readonly Dictionary<string, string> _corePropTypes = new Dictionary<string, string>();
-                                                           
+
 	    /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -83,7 +82,7 @@ namespace JetBrains.Omea.Tools.PropGen
                 _writer.WriteLine( "using JetBrains.Omea.OpenAPI;" );
             }
             _writer.WriteLine( "" );
-            
+
             if ( nameSpace.Length > 0 )
             {
                 _writer.WriteLine( "namespace " + nameSpace );
@@ -91,7 +90,7 @@ namespace JetBrains.Omea.Tools.PropGen
             }
 
 	        _visibility = GetVisibility(_doc);
-            
+
             _indent = new string( ' ', 4 );
             GenerateXmlDocComment( interfaceElement );
 
@@ -180,19 +179,19 @@ namespace JetBrains.Omea.Tools.PropGen
                 {
                     constructorVisibility = _visibility;
                 }
-                _writer.WriteLine( "{0}{1} {2}( IResourceStore store )", 
+                _writer.WriteLine( "{0}{1} {2}( IResourceStore store )",
                     _indent, constructorVisibility, className );
                 _writer.WriteLine( _indent + "{" );
                 _indent = new string( ' ', 12 );
             }
-            
+
 
             GeneratePropTypeRegistration();
             _writer.WriteLine( "" );
             GenerateResourceTypeRegistration();
             GenerateUniqueRestrictions();
             GenerateLinkRestrictions();
-            
+
             _indent = new string( ' ', 8 );
 
             _writer.WriteLine( _indent + "}" );
@@ -262,7 +261,7 @@ namespace JetBrains.Omea.Tools.PropGen
 
             foreach( XmlElement node in _doc.SelectNodes( "/props/prop" ) )
             {
-                _writer.WriteLine( "{0}private {1}PropId<{2}> _prop{3};", _indent, prefix, 
+                _writer.WriteLine( "{0}private {1}PropId<{2}> _prop{3};", _indent, prefix,
                     GetPropIdType(node), GetPropName( node ) );
             }
         }
@@ -289,7 +288,7 @@ namespace JetBrains.Omea.Tools.PropGen
             foreach( XmlElement node in _doc.SelectNodes( "/props/prop" ) )
             {
                 GenerateXmlDocComment( node );
-                _writer.WriteLine( "{0}{1} {2}PropId<{3}> {4} {{ get {{ return _prop{4}; }} }}", 
+                _writer.WriteLine( "{0}{1} {2}PropId<{3}> {4} {{ get {{ return _prop{4}; }} }}",
                     _indent, visibility, isStatic, GetPropIdType(node), GetPropName( node ) );
             }
         }
@@ -454,7 +453,7 @@ namespace JetBrains.Omea.Tools.PropGen
                 string displayNameTemplate = node.GetAttribute( "dnTemplate" );
                 if ( displayNameTemplate.StartsWith( "Core." ) )
                 {
-                    displayNameTemplate = "Core.ResourceStore.PropTypes [Core.Props." + 
+                    displayNameTemplate = "Core.ResourceStore.PropTypes [Core.Props." +
                         displayNameTemplate.Substring( 5 ) + "].Name";
                 }
                 else
@@ -463,7 +462,7 @@ namespace JetBrains.Omea.Tools.PropGen
                 }
                 _writer.Write( "{0}store.ResourceTypes.Register( {1}Resource, \"{2}\", {3}",
                     _indent, name, displayName, displayNameTemplate );
-                
+
                 string flags = GetFlags( "ResourceTypeFlags", node );
                 if ( flags != "" )
                 {
@@ -477,7 +476,7 @@ namespace JetBrains.Omea.Tools.PropGen
 
                 if ( _ownerPlugin )
                 {
-                    _writer.Write( ", ownerPlugin" );                    
+                    _writer.Write( ", ownerPlugin" );
                 }
                 _writer.WriteLine( " );" );
             }

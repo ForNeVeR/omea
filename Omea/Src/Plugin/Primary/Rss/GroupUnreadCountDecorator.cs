@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Diagnostics;
@@ -32,7 +31,7 @@ namespace JetBrains.Omea.RSSPlugin
             _groupUnreadCounts.MissingKeyValue = 0;
             _propUnreadCount = Core.ResourceStore.PropTypes ["UnreadCount"].Id;
             _propWorkspaceVisible = Core.ResourceStore.PropTypes ["WorkspaceVisible"].Id;
-            
+
             _feeds = Core.ResourceStore.FindResourcesWithPropLive( "RSSFeed", Core.Props.Parent );
             _feeds.ResourceAdded += new ResourceIndexEventHandler( _feeds_ResourceAdded );
             _feeds.ResourceDeleting += new ResourceIndexEventHandler( _feeds_ResourceDeleting );
@@ -97,7 +96,7 @@ namespace JetBrains.Omea.RSSPlugin
             {
                 return;
             }
-            if ( e.ChangeSet.IsPropertyChanged( Core.Props.Parent ) || 
+            if ( e.ChangeSet.IsPropertyChanged( Core.Props.Parent ) ||
                 (_activeWs != null && e.ChangeSet.GetLinkChange( _propWorkspaceVisible, _activeWs.Id ) != LinkChangeType.None  ) )
             {
                 UpdateGroupUnreadCount( true );
@@ -132,7 +131,7 @@ namespace JetBrains.Omea.RSSPlugin
                 return;
 
             IResource group = feed.GetLinkProp( Core.Props.Parent );
-            while( group != null && group.Type == "RSSFeedGroup" && 
+            while( group != null && group.Type == "RSSFeedGroup" &&
                 (_activeWs == null || group.HasLink( _propWorkspaceVisible, _activeWs ) ) )
             {
                 int newUnreadCount = GetGroupUnreadCount( group ) + countDelta;
@@ -192,7 +191,7 @@ namespace JetBrains.Omea.RSSPlugin
                 Trace.WriteLineIf( Settings.Trace, group.DisplayName + ": Included " + feedCount + " unreads from feed " + feed.DisplayName );
                 count += feedCount;
             }
-            
+
             if ( GetGroupUnreadCount( group ) != count )
             {
                 SetGroupUnreadCount( group, count );
@@ -203,7 +202,7 @@ namespace JetBrains.Omea.RSSPlugin
             }
             else
             {
-                Trace.WriteLineIf( Settings.Trace, "Skipped update of group unread count for " + group.DisplayName + 
+                Trace.WriteLineIf( Settings.Trace, "Skipped update of group unread count for " + group.DisplayName +
                                                    " because the value did not change" );
             }
         }

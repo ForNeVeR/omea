@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Diagnostics;
@@ -21,7 +20,7 @@ namespace JetBrains.Omea.RSSPlugin
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox _txtLogin;
         private System.Windows.Forms.TextBox _txtPasswd;
-		/// <summary> 
+		/// <summary>
 		/// Required designer variable.
 		/// </summary>
 		private System.ComponentModel.Container components = null;
@@ -36,7 +35,7 @@ namespace JetBrains.Omea.RSSPlugin
             _importer = importer;
 		}
 
-		/// <summary> 
+		/// <summary>
 		/// Clean up any resources being used.
 		/// </summary>
 		protected override void Dispose( bool disposing )
@@ -52,8 +51,8 @@ namespace JetBrains.Omea.RSSPlugin
 		}
 
 		#region Component Designer generated code
-		/// <summary> 
-		/// Required method for Designer support - do not modify 
+		/// <summary>
+		/// Required method for Designer support - do not modify
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent()
@@ -63,9 +62,9 @@ namespace JetBrains.Omea.RSSPlugin
             this._txtLogin = new System.Windows.Forms.TextBox();
             this._txtPasswd = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
-            // 
+            //
             // label1
-            // 
+            //
             this.label1.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label1.Location = new System.Drawing.Point(8, 8);
             this.label1.Name = "label1";
@@ -73,9 +72,9 @@ namespace JetBrains.Omea.RSSPlugin
             this.label1.TabIndex = 0;
             this.label1.Text = "Bloglines login:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
+            //
             // label2
-            // 
+            //
             this.label2.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label2.Location = new System.Drawing.Point(8, 32);
             this.label2.Name = "label2";
@@ -83,20 +82,20 @@ namespace JetBrains.Omea.RSSPlugin
             this.label2.TabIndex = 1;
             this.label2.Text = "Bloglines password:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
+            //
             // _txtLogin
-            // 
-            this._txtLogin.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._txtLogin.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._txtLogin.Location = new System.Drawing.Point(136, 8);
             this._txtLogin.Name = "_txtLogin";
             this._txtLogin.Size = new System.Drawing.Size(232, 24);
             this._txtLogin.TabIndex = 2;
             this._txtLogin.Text = "";
-            // 
+            //
             // _txtPasswd
-            // 
-            this._txtPasswd.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._txtPasswd.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._txtPasswd.Location = new System.Drawing.Point(136, 32);
             this._txtPasswd.Name = "_txtPasswd";
@@ -104,9 +103,9 @@ namespace JetBrains.Omea.RSSPlugin
             this._txtPasswd.Size = new System.Drawing.Size(232, 24);
             this._txtPasswd.TabIndex = 3;
             this._txtPasswd.Text = "";
-            // 
+            //
             // BloglinesImporterPane
-            // 
+            //
             this.Controls.Add(this._txtPasswd);
             this.Controls.Add(this._txtLogin);
             this.Controls.Add(this.label2);
@@ -188,7 +187,7 @@ namespace JetBrains.Omea.RSSPlugin
 
             WebClient client = new WebClient();
             client.Headers.Add( "Authorization", "basic " + authInfo );
-            
+
             ImportUtils.UpdateProgress( 20, _progressMessage );
 
             try

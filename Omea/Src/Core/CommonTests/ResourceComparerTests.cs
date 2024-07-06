@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using JetBrains.Omea.OpenAPI;
 using JetBrains.Omea.ResourceStore;
@@ -12,12 +11,12 @@ namespace CommonTests
 	/**
      * Unit tests for the ResourceComparer class.
      */
-    
+
     [TestFixture]
     public class ResourceComparerTests: MyPalDBTests
 	{
         private ResourceList _ownerList;
-        
+
         [SetUp] public void SetUp()
         {
             InitStorage();
@@ -39,7 +38,7 @@ namespace CommonTests
 
             Assert.AreEqual( ResourceProps.Type, settings.SortProps [0] );
             Assert.AreEqual( _propFirstName, settings.SortProps [1] );
-            
+
             Assert.AreEqual( false, settings.SortDirections [0] );
             Assert.AreEqual( true, settings.SortDirections [1] );
 

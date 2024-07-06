@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Drawing;
@@ -29,12 +28,12 @@ namespace JetBrains.Omea.PicoCore
         private IAsyncProcessor _resourceAP;
         private IAsyncProcessor _networkAP;
         private IAsyncProcessor _uiAP;
-        
+
         public TestCore()
             : this( typeof(TestResourceStore) )
         {
         }
-        
+
         public TestCore( Type resourceStoreType )
 	    {
             theInstance = this;
@@ -94,8 +93,8 @@ namespace JetBrains.Omea.PicoCore
             _networkAP = asyncProcessor;
         }
 
-        public override IProtocolHandlerManager ProtocolHandlerManager 
-        { 
+        public override IProtocolHandlerManager ProtocolHandlerManager
+        {
             get { return _protocolManager; }
         }
 
@@ -118,12 +117,12 @@ namespace JetBrains.Omea.PicoCore
 	    {
 	        get { return null; }
 	    }
-	    
+
         public override IAsyncProcessor ResourceAP
 	    {
 	        get { return _resourceAP; }
 	    }
-	    
+
         public override IAsyncProcessor NetworkAP
 	    {
 	        get { return _networkAP; }
@@ -382,7 +381,7 @@ namespace JetBrains.Omea.PicoCore
         {
             return method.DynamicInvoke( args );
         }
-    
+
         public object RunJob( string name, Delegate method, params object[] args )
         {
             return method.DynamicInvoke( args );
@@ -407,14 +406,14 @@ namespace JetBrains.Omea.PicoCore
 
     	public void RunUniqueJob( AbstractJob uow )
         {
-            
+
         }
 
         public object RunUniqueJob( Delegate method, params object[] args )
         {
             return method.DynamicInvoke( args );
         }
-        
+
         public object RunUniqueJob( string name, Delegate method, params object[] args )
         {
             return method.DynamicInvoke( args );
@@ -470,7 +469,7 @@ namespace JetBrains.Omea.PicoCore
     {
         public void RegisterResourceTypeTab( string tabID, string tabName, string resType, int order ) { }
         public void RegisterResourceTypeTab( string tabID, string tabName, string[] resTypes, int order ) { }
-        public void RegisterResourceTypeTab( string tabID, string tabName, string[] resTypes, int linkPropID, 
+        public void RegisterResourceTypeTab( string tabID, string tabName, string[] resTypes, int linkPropID,
             int order ) { }
 
         public void SetDefaultSelectedResource( string tabName, IResource res ) { }

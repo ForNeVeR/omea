@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -20,7 +19,7 @@ namespace JetBrains.Omea
     /**
      * Manages the columns displayed in the ResourceBrowser.
      */
-    
+
     internal class DisplayColumnManager: IDisplayColumnManager, IDisplayColumnManagerEx
     {
         internal class DisplayColumn
@@ -74,7 +73,7 @@ namespace JetBrains.Omea
             private readonly Color _textColor;
             private readonly HorizontalAlignment _textAlign;
 
-            public ResourceColumnScheme( int[] propIds, int startRow, int endRow, int startX, int width, 
+            public ResourceColumnScheme( int[] propIds, int startRow, int endRow, int startX, int width,
                 MultiLineColumnFlags flags, Color textColor, HorizontalAlignment textAlign )
             {
                 _propIds   = propIds;
@@ -149,10 +148,10 @@ namespace JetBrains.Omea
                 Core.ResourceAP.RunJob( new MethodInvoker( RegisterProps ) );
             }
 
-            RegisterAllTypesMultiLineColumn( ResourceProps.Type, 0, 0, 0, 24, 
+            RegisterAllTypesMultiLineColumn( ResourceProps.Type, 0, 0, 0, 24,
                 MultiLineColumnFlags.AnchorLeft, SystemColors.ControlText, HorizontalAlignment.Left );
 
-            RegisterDefaultMultiLineColumn( ResourceProps.DisplayName, 0, 0, 0, 120, 
+            RegisterDefaultMultiLineColumn( ResourceProps.DisplayName, 0, 0, 0, 120,
                 MultiLineColumnFlags.AnchorLeft | MultiLineColumnFlags.AnchorRight, SystemColors.ControlText, HorizontalAlignment.Left );
             RegisterDefaultMultiLineColumn( Core.Props.Date, 0, 0, 120, 80,
                 MultiLineColumnFlags.AnchorRight, SystemColors.ControlText, HorizontalAlignment.Right );
@@ -235,7 +234,7 @@ namespace JetBrains.Omea
                 }
             }
         }
-        
+
         /**
          * Register a custom draw handler for a property column.
          */
@@ -259,35 +258,35 @@ namespace JetBrains.Omea
             _propToTextConverters [propId] = new PropertyToTextConverter( propToText );
         }
 
-        public void RegisterAllTypesMultiLineColumn( int propId, int startRow, int endRow, 
+        public void RegisterAllTypesMultiLineColumn( int propId, int startRow, int endRow,
             int startX, int width, MultiLineColumnFlags flags, Color textColor, HorizontalAlignment textAlign )
         {
-            RegisterMultiLineColumn( "?", new int[] { propId }, startRow, endRow, startX, width, flags, 
+            RegisterMultiLineColumn( "?", new int[] { propId }, startRow, endRow, startX, width, flags,
                 textColor, textAlign );
         }
 
-        public void RegisterDefaultMultiLineColumn( int propId, int startRow, int endRow, 
+        public void RegisterDefaultMultiLineColumn( int propId, int startRow, int endRow,
             int startX, int width, MultiLineColumnFlags flags, Color textColor, HorizontalAlignment textAlign )
         {
-            RegisterMultiLineColumn( "*", new int[] { propId }, startRow, endRow, startX, width, flags, 
+            RegisterMultiLineColumn( "*", new int[] { propId }, startRow, endRow, startX, width, flags,
                 textColor, textAlign );
         }
 
-        public void RegisterDefaultMultiLineColumn( int[] propIds, int startRow, int endRow, 
+        public void RegisterDefaultMultiLineColumn( int[] propIds, int startRow, int endRow,
             int startX, int width, MultiLineColumnFlags flags, Color textColor, HorizontalAlignment textAlign )
         {
-            RegisterMultiLineColumn( "*", propIds, startRow, endRow, startX, width, flags, 
+            RegisterMultiLineColumn( "*", propIds, startRow, endRow, startX, width, flags,
                 textColor, textAlign );
         }
 
-        public void RegisterMultiLineColumn( string resourceType, int propId, int startRow, int endRow, 
+        public void RegisterMultiLineColumn( string resourceType, int propId, int startRow, int endRow,
             int startX, int width, MultiLineColumnFlags flags, Color textColor, HorizontalAlignment textAlign )
         {
             RegisterMultiLineColumn( resourceType, new int[] { propId }, startRow, endRow,
                 startX, width, flags, textColor, textAlign );
         }
 
-        public void RegisterMultiLineColumn( string resourceType, int[] propIds, int startRow, int endRow, 
+        public void RegisterMultiLineColumn( string resourceType, int[] propIds, int startRow, int endRow,
             int startX, int width, MultiLineColumnFlags flags, Color textColor, HorizontalAlignment textAlign )
         {
             ArrayList list = (ArrayList) _columnSchemeMap [resourceType];
@@ -343,7 +342,7 @@ namespace JetBrains.Omea
                 pos++;
             columns.Insert( pos, column );
         }
-        
+
         /**
          * Returns the list of available columns for the specified resource list.
          */
@@ -432,7 +431,7 @@ namespace JetBrains.Omea
                 IntArrayListPool.Dispose(  propIDs );
             }
         }
-        
+
         /**
          * Returns the list of columns for the specified resource list.
          */
@@ -441,7 +440,7 @@ namespace JetBrains.Omea
         {
             if ( resList == null )
                 throw new ArgumentNullException( "resList" );
-            
+
             return GetColumnsForTypes( resList.GetAllTypes() );
         }
 
@@ -583,7 +582,7 @@ namespace JetBrains.Omea
             return false;
         }
 
-        private static bool FindDescriptorInList( string propName, ArrayList columnList, 
+        private static bool FindDescriptorInList( string propName, ArrayList columnList,
                                                   ref ColumnDescriptor descriptor )
         {
             foreach( DisplayColumn col in columnList )
@@ -605,11 +604,11 @@ namespace JetBrains.Omea
         internal void SaveListViewState( ResourceListView2 listView, ResourceListDataProvider dataProvider,
             ResourceListState state, bool async  )
         {
-            ColumnDescriptor[] columns = ColumnDescriptorsFromList( listView ); 
+            ColumnDescriptor[] columns = ColumnDescriptorsFromList( listView );
             columns = UpdateColumnsFromState( columns, state );
             state.SaveState( columns, dataProvider.SortSettings, async );
         }
-        
+
         /// <summary>
         /// Returns an array of ColumnDescriptors describing the current column configuration
         /// of the ListView.
@@ -659,7 +658,7 @@ namespace JetBrains.Omea
             return (ColumnDescriptor[]) columnDescriptors.ToArray( typeof (ColumnDescriptor) );
         }
 
-        internal ResourceListState GetListViewState( IResource ownerResource, IResourceList resList, 
+        internal ResourceListState GetListViewState( IResource ownerResource, IResourceList resList,
                                                      ColumnDescriptor[] defaultColumns, bool defaultGroupItems )
         {
             ResourceListState state;
@@ -676,7 +675,7 @@ namespace JetBrains.Omea
                     }
                 }
             }
-    
+
             if ( columnScheme != null )
             {
                 state = ResourceListState.FromResource( columnScheme );
@@ -808,7 +807,7 @@ namespace JetBrains.Omea
          * Shows the specified list of columns in the list view.
          */
 
-        internal void ShowListViewColumns( ResourceListView2 listView, 
+        internal void ShowListViewColumns( ResourceListView2 listView,
             ColumnDescriptor[] columns, ResourceListDataProvider dataProvider, bool setGroupProviders )
         {
             ColumnDescriptor[] oldColumns = ColumnDescriptorsFromList( listView );
@@ -826,7 +825,7 @@ namespace JetBrains.Omea
             }
         }
 
-        private void RecreateListViewColumns( ResourceListView2 listView, ColumnDescriptor[] columns, 
+        private void RecreateListViewColumns( ResourceListView2 listView, ColumnDescriptor[] columns,
                                               ResourceListDataProvider dataProvider, bool setGroupProviders )
         {
             bool haveTreeColumn = false;
@@ -839,14 +838,14 @@ namespace JetBrains.Omea
                     int[] propIds = PropNamesToIDs( desc.PropNames, true );
                     ResourcePropsColumn colHdr;
 
-                    if ( dataProvider is ConversationDataProvider && !haveTreeColumn && 
+                    if ( dataProvider is ConversationDataProvider && !haveTreeColumn &&
                         ((propIds.Length == 1 && propIds [0] == ResourceProps.Type) || ( desc.Flags & ColumnDescriptorFlags.FixedSize ) == 0 ) )
                     {
                         haveTreeColumn = true;
                         ConversationStructureColumn col = new ConversationStructureColumn( dataProvider as ConversationDataProvider );
                         listView.Columns.Add( col );
                     }
-                    
+
                     if ( propIds.Length == 1 && propIds [0] == ResourceProps.Type )
                     {
                         colHdr = listView.AddIconColumn();
@@ -893,11 +892,11 @@ namespace JetBrains.Omea
             }
             finally
             {
-                listView.Columns.EndUpdate();                    
+                listView.Columns.EndUpdate();
             }
         }
 
-        private void UpdateListViewColumns( ResourceListView2 listView, ColumnDescriptor[] columns, 
+        private void UpdateListViewColumns( ResourceListView2 listView, ColumnDescriptor[] columns,
             ResourceListDataProvider dataProvider, bool setGroupProviders )
         {
             foreach( JetListViewColumn col in listView.Columns )
@@ -969,7 +968,7 @@ namespace JetBrains.Omea
                         column.SortMenuDescText = "Newest on top";
                         break;
                     }
-                    if ( propType == PropDataType.String || propType == PropDataType.LongString || 
+                    if ( propType == PropDataType.String || propType == PropDataType.LongString ||
                         propType == PropDataType.Link )
                     {
                         column.SortMenuAscText = "A on top";
@@ -1015,7 +1014,7 @@ namespace JetBrains.Omea
             for( int i=0; i<propIDs.Length; i++ )
             {
                 PropDataType propType = Core.ResourceStore.PropTypes [ propIDs [i] ].DataType;
-                if ( propType == PropDataType.Double ) 
+                if ( propType == PropDataType.Double )
                     return HorizontalAlignment.Right;
             }
             return HorizontalAlignment.Left;
@@ -1044,7 +1043,7 @@ namespace JetBrains.Omea
         {
             for( int i=0; i<column.PropIds.Length; i++ )
             {
-                column.SetPropToTextConverter( column.PropIds [i], 
+                column.SetPropToTextConverter( column.PropIds [i],
                     (PropertyToTextConverter) _propToTextConverters [column.PropIds [i]] );
             }
         }
@@ -1115,8 +1114,8 @@ namespace JetBrains.Omea
             {
                 if ( !usedColumns [i] )
                 {
-                    int index = (i == 0) 
-                        ? 0 
+                    int index = (i == 0)
+                        ? 0
                         : FindColumn( result, state.Columns [i-1] )+1;
                     result.Insert( index, state.Columns [i] );
                 }

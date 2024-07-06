@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Drawing;
@@ -50,7 +49,7 @@ namespace JetBrains.JetListViewLibrary.Tests
 
         [Test] public void TestDrawStretch()
         {
-            _defaultScheme.AddColumn( _column1, 0, 0, 0, 100, ColumnAnchor.Left | ColumnAnchor.Right, 
+            _defaultScheme.AddColumn( _column1, 0, 0, 0, 100, ColumnAnchor.Left | ColumnAnchor.Right,
                 SystemColors.ControlText, HorizontalAlignment.Left );
 
             _renderer.VisibleWidth = 120;
@@ -61,9 +60,9 @@ namespace JetBrains.JetListViewLibrary.Tests
 
         [Test] public void TwoColumns()
         {
-            _defaultScheme.AddColumn( _column1, 0, 0, 0, 80, ColumnAnchor.Left | ColumnAnchor.Right, 
+            _defaultScheme.AddColumn( _column1, 0, 0, 0, 80, ColumnAnchor.Left | ColumnAnchor.Right,
                 SystemColors.ControlText, HorizontalAlignment.Left );
-            _defaultScheme.AddColumn( _column2, 0, 0, 80, 20, ColumnAnchor.Left | ColumnAnchor.Right, 
+            _defaultScheme.AddColumn( _column2, 0, 0, 80, 20, ColumnAnchor.Left | ColumnAnchor.Right,
                 SystemColors.ControlText, HorizontalAlignment.Left );
 
             _renderer.VisibleWidth = 100;
@@ -74,9 +73,9 @@ namespace JetBrains.JetListViewLibrary.Tests
 
         [Test] public void TwoRows()
         {
-            _defaultScheme.AddColumn( _column1, 0, 0, 0, 100, ColumnAnchor.Left | ColumnAnchor.Right, 
+            _defaultScheme.AddColumn( _column1, 0, 0, 0, 100, ColumnAnchor.Left | ColumnAnchor.Right,
                 SystemColors.ControlText, HorizontalAlignment.Left );
-            _defaultScheme.AddColumn( _column2, 1, 1, 0, 100, ColumnAnchor.Left | ColumnAnchor.Right, 
+            _defaultScheme.AddColumn( _column2, 1, 1, 0, 100, ColumnAnchor.Left | ColumnAnchor.Right,
                 SystemColors.ControlText, HorizontalAlignment.Left );
 
             _renderer.DrawRow( null, new Rectangle( 0, 0, 100, 50 ), _testNode, RowState.None );
@@ -86,9 +85,9 @@ namespace JetBrains.JetListViewLibrary.Tests
 
         [Test] public void RightAnchor()
         {
-            _defaultScheme.AddColumn( _column1, 0, 0, 0, 80, ColumnAnchor.Left | ColumnAnchor.Right, 
+            _defaultScheme.AddColumn( _column1, 0, 0, 0, 80, ColumnAnchor.Left | ColumnAnchor.Right,
                 SystemColors.ControlText, HorizontalAlignment.Left );
-            _defaultScheme.AddColumn( _column2, 0, 0, 80, 20, ColumnAnchor.Right, 
+            _defaultScheme.AddColumn( _column2, 0, 0, 80, 20, ColumnAnchor.Right,
                 SystemColors.ControlText, HorizontalAlignment.Left );
 
             _renderer.VisibleWidth = 120;
@@ -99,19 +98,19 @@ namespace JetBrains.JetListViewLibrary.Tests
 
         [Test] public void RowHeight()
         {
-            _defaultScheme.AddColumn( _column1, 0, 0, 0, 100, ColumnAnchor.Left | ColumnAnchor.Right, 
+            _defaultScheme.AddColumn( _column1, 0, 0, 0, 100, ColumnAnchor.Left | ColumnAnchor.Right,
                 SystemColors.ControlText, HorizontalAlignment.Left );
-            _defaultScheme.AddColumn( _column2, 1, 1, 0, 100, ColumnAnchor.Left | ColumnAnchor.Right, 
+            _defaultScheme.AddColumn( _column2, 1, 1, 0, 100, ColumnAnchor.Left | ColumnAnchor.Right,
                 SystemColors.ControlText, HorizontalAlignment.Left );
 
-            Assert.AreEqual( 40, _renderer.GetRowHeight( _testNode ) );            
+            Assert.AreEqual( 40, _renderer.GetRowHeight( _testNode ) );
         }
 
         [Test] public void UpdateItem()
         {
-            _defaultScheme.AddColumn( _column1, 0, 0, 0, 100, ColumnAnchor.Left | ColumnAnchor.Right, 
+            _defaultScheme.AddColumn( _column1, 0, 0, 0, 100, ColumnAnchor.Left | ColumnAnchor.Right,
                 SystemColors.ControlText, HorizontalAlignment.Left );
-            _defaultScheme.AddColumn( _column2, 1, 1, 0, 100, ColumnAnchor.Left | ColumnAnchor.Right, 
+            _defaultScheme.AddColumn( _column2, 1, 1, 0, 100, ColumnAnchor.Left | ColumnAnchor.Right,
                 SystemColors.ControlText, HorizontalAlignment.Left );
 
             _renderer.UpdateItem( "Test" );
@@ -121,9 +120,9 @@ namespace JetBrains.JetListViewLibrary.Tests
 
         [Test] public void ColumnBounds()
         {
-            _defaultScheme.AddColumn( _column1, 0, 0, 0, 100, ColumnAnchor.Left | ColumnAnchor.Right, 
+            _defaultScheme.AddColumn( _column1, 0, 0, 0, 100, ColumnAnchor.Left | ColumnAnchor.Right,
                 SystemColors.ControlText, HorizontalAlignment.Left );
-            _defaultScheme.AddColumn( _column2, 1, 1, 0, 100, ColumnAnchor.Left | ColumnAnchor.Right, 
+            _defaultScheme.AddColumn( _column2, 1, 1, 0, 100, ColumnAnchor.Left | ColumnAnchor.Right,
                 SystemColors.ControlText, HorizontalAlignment.Left );
 
             _renderer.VisibleWidth = 120;
@@ -132,9 +131,9 @@ namespace JetBrains.JetListViewLibrary.Tests
 
         [Test] public void ColumnAt()
         {
-            _defaultScheme.AddColumn( _column1, 0, 0, 0, 100, ColumnAnchor.Left | ColumnAnchor.Right, 
+            _defaultScheme.AddColumn( _column1, 0, 0, 0, 100, ColumnAnchor.Left | ColumnAnchor.Right,
                 SystemColors.ControlText, HorizontalAlignment.Left );
-            _defaultScheme.AddColumn( _column2, 1, 1, 0, 100, ColumnAnchor.Left | ColumnAnchor.Right, 
+            _defaultScheme.AddColumn( _column2, 1, 1, 0, 100, ColumnAnchor.Left | ColumnAnchor.Right,
                 SystemColors.ControlText, HorizontalAlignment.Left );
 
             _renderer.VisibleWidth = 120;
@@ -144,9 +143,9 @@ namespace JetBrains.JetListViewLibrary.Tests
 
         [Test] public void HandleMouseDown()
         {
-            _defaultScheme.AddColumn( _column1, 0, 0, 0, 100, ColumnAnchor.Left | ColumnAnchor.Right, 
+            _defaultScheme.AddColumn( _column1, 0, 0, 0, 100, ColumnAnchor.Left | ColumnAnchor.Right,
                 SystemColors.ControlText, HorizontalAlignment.Left );
-            _defaultScheme.AddColumn( _column2, 1, 1, 0, 100, ColumnAnchor.Left | ColumnAnchor.Right, 
+            _defaultScheme.AddColumn( _column2, 1, 1, 0, 100, ColumnAnchor.Left | ColumnAnchor.Right,
                 SystemColors.ControlText, HorizontalAlignment.Left );
 
             _renderer.VisibleWidth = 120;
@@ -158,15 +157,15 @@ namespace JetBrains.JetListViewLibrary.Tests
         {
             TreeStructureColumn column = new TreeStructureColumn();
             column.Width = 20;
-            _defaultScheme.AddColumn( column, 0, 0, 0, 0, ColumnAnchor.Left | ColumnAnchor.Right, 
+            _defaultScheme.AddColumn( column, 0, 0, 0, 0, ColumnAnchor.Left | ColumnAnchor.Right,
                 SystemColors.ControlText, HorizontalAlignment.Left );
-            _defaultScheme.AddColumn( _column1, 0, 0, 0, 100, ColumnAnchor.Left | ColumnAnchor.Right, 
+            _defaultScheme.AddColumn( _column1, 0, 0, 0, 100, ColumnAnchor.Left | ColumnAnchor.Right,
                 SystemColors.ControlText, HorizontalAlignment.Left );
             _defaultScheme.AlignTopLevelItems = true;
-            
+
             _renderer.DrawRow( null, new Rectangle( 0, 0, 100, 20 ), _testNode, RowState.None );
             Assert.AreEqual( new Rectangle( 20, 0, 80, 20 ), _column1.LastDrawItemRect );
-            
+
             JetListViewNode childNode = _nodeCollection.Add( "Child", _testNode );
 
             _renderer.DrawRow( null, new Rectangle( 0, 0, 100, 20 ), childNode, RowState.None );

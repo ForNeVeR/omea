@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -62,7 +61,7 @@ namespace JetBrains.Omea.Base
         }
         public override bool Defined
         {
-            get 
+            get
             {
                 return _resource.HasProp( _propId );
             }
@@ -90,7 +89,7 @@ namespace JetBrains.Omea.Base
         {
             new ResourceProxy( Resource ).SetProp( PropId, value );
         }
-        public static implicit operator bool( BoolResourceSetting setting ) 
+        public static implicit operator bool( BoolResourceSetting setting )
         {
             return (bool)setting.Value;
         }
@@ -103,7 +102,7 @@ namespace JetBrains.Omea.Base
         public IntResourceSetting( IResource resource, int propId, int Default, ResourceSettingChanged callBack ):
             base( resource, propId, Default, callBack )
         {}
-        public static implicit operator int( IntResourceSetting setting ) 
+        public static implicit operator int( IntResourceSetting setting )
         {
             return (int)setting.Value;
         }
@@ -116,7 +115,7 @@ namespace JetBrains.Omea.Base
         public DateResourceSetting( IResource resource, int propId, DateTime Default, ResourceSettingChanged callBack ):
             base( resource, propId, Default, callBack )
         {}
-        public static implicit operator DateTime( DateResourceSetting setting ) 
+        public static implicit operator DateTime( DateResourceSetting setting )
         {
             return (DateTime)setting.Value;
         }
@@ -134,7 +133,7 @@ namespace JetBrains.Omea.Base
         {
             _deletePropIfStringEmpty = deletePropIfStringEmpty;
         }
-        public static implicit operator string( StringResourceSetting setting ) 
+        public static implicit operator string( StringResourceSetting setting )
         {
             return (string)setting.Value;
         }
@@ -179,7 +178,7 @@ namespace JetBrains.Omea.Base
         }
         public override bool Different
         {
-            get 
+            get
             {
                 object value = null;
                 foreach ( Setting setting in _settings )
@@ -201,7 +200,7 @@ namespace JetBrains.Omea.Base
 
         public override bool Defined
         {
-            get 
+            get
             {
                 bool defined = false;
                 bool notDefined = false;
@@ -255,7 +254,7 @@ namespace JetBrains.Omea.Base
                 setting.Save( value );
             }
         }
-        public override object Value 
+        public override object Value
         {
             get
             {
@@ -290,7 +289,7 @@ namespace JetBrains.Omea.Base
             }
             return settingArray;
         }
-        
+
         public static SettingArray IntAsBoolFromResourceList( IResourceList resourceList, int propId, bool Default )
         {
             return IntAsBoolFromResourceList( resourceList, propId, Default, null );
@@ -327,7 +326,7 @@ namespace JetBrains.Omea.Base
     public class StringSettingArray : SettingArray
     {
         public StringSettingArray( string Default ) : base( Default ){}
-        public static implicit operator string( StringSettingArray setting ) 
+        public static implicit operator string( StringSettingArray setting )
         {
             return (string)setting.Value;
         }
@@ -335,7 +334,7 @@ namespace JetBrains.Omea.Base
     public class IntSettingArray : SettingArray
     {
         public IntSettingArray( int Default ) : base( Default ){}
-        public static implicit operator int( IntSettingArray setting ) 
+        public static implicit operator int( IntSettingArray setting )
         {
             return (int)setting.Value;
         }
@@ -343,7 +342,7 @@ namespace JetBrains.Omea.Base
     public class BoolSettingArray : SettingArray
     {
         public BoolSettingArray( bool Default ) : base( Default ){}
-        public static implicit operator bool( BoolSettingArray setting ) 
+        public static implicit operator bool( BoolSettingArray setting )
         {
             return (bool)setting.Value;
         }
@@ -351,7 +350,7 @@ namespace JetBrains.Omea.Base
     public class DateSettingArray : SettingArray
     {
         public DateSettingArray( DateTime Default ) : base( Default ){}
-        public static implicit operator DateTime( DateSettingArray setting ) 
+        public static implicit operator DateTime( DateSettingArray setting )
         {
             return (DateTime)setting.Value;
         }
@@ -359,7 +358,7 @@ namespace JetBrains.Omea.Base
     public class IntAsBoolSettingArray : SettingArray
     {
         public IntAsBoolSettingArray( bool Default ) : base( Default ){}
-        public static implicit operator bool( IntAsBoolSettingArray setting ) 
+        public static implicit operator bool( IntAsBoolSettingArray setting )
         {
             return (bool)setting.Value;
         }
@@ -401,7 +400,7 @@ namespace JetBrains.Omea.Base
             }
             return ((int)_setting.Value) > 0 ? true : false;
         }
-        public static implicit operator bool( IntAsBoolResourceSetting setting ) 
+        public static implicit operator bool( IntAsBoolResourceSetting setting )
         {
             return (bool)setting.Value;
         }

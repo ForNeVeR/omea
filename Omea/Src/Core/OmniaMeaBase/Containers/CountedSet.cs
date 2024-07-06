@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -48,11 +47,11 @@ namespace JetBrains.Omea.Containers
             {
                 Entry e1 = (Entry) x;
                 Entry e2 = (Entry) y;
-                return e2.Count - e1.Count;                
+                return e2.Count - e1.Count;
             }
         }
 
-        
+
         private ArrayList _entryList = new ArrayList();
         private HashMap _entryMap = new HashMap();
 
@@ -60,7 +59,7 @@ namespace JetBrains.Omea.Containers
         {
             if ( val == null )
                 throw new ArgumentNullException( "val" );
-            
+
             Entry e = (Entry) _entryMap [val];
             if ( e == null )
             {

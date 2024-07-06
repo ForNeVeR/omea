@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System.ComponentModel;
 using System.Windows.Forms;
@@ -32,7 +31,7 @@ namespace JetBrains.Omea.OutlookPlugin
         {
             if( disposing )
             {
-                if (components != null) 
+                if (components != null)
                 {
                     components.Dispose();
                 }
@@ -52,9 +51,9 @@ namespace JetBrains.Omea.OutlookPlugin
             this._syncTaskCategory = new JetBrains.Omea.GUIControls.CheckBoxSettingEditor();
             this._taskExport = new JetBrains.Omea.GUIControls.CheckBoxSettingEditor();
             this.SuspendLayout();
-            // 
+            //
             // label1
-            // 
+            //
             this.label1.Dock = System.Windows.Forms.DockStyle.Top;
             this.label1.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label1.Location = new System.Drawing.Point(0, 0);
@@ -63,11 +62,11 @@ namespace JetBrains.Omea.OutlookPlugin
             this.label1.TabIndex = 3;
             this.label1.Text = "Select the Outlook task folders you would like to synchronize with Omea. Tasks fr" +
                 "om the selected folders will be imported into Omea.";
-            // 
+            //
             // _treeView
-            // 
-            this._treeView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-                | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._treeView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._treeView.DoubleBuffer = false;
             this._treeView.ImageIndex = -1;
@@ -80,10 +79,10 @@ namespace JetBrains.Omea.OutlookPlugin
             this._treeView.Size = new System.Drawing.Size(284, 92);
             this._treeView.TabIndex = 4;
             this._treeView.ThreeStateCheckboxes = false;
-            // 
+            //
             // _syncTaskCategory
-            // 
-            this._syncTaskCategory.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._syncTaskCategory.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._syncTaskCategory.Changed = false;
             this._syncTaskCategory.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -94,10 +93,10 @@ namespace JetBrains.Omea.OutlookPlugin
             this._syncTaskCategory.TabIndex = 18;
             this._syncTaskCategory.Tag = "";
             this._syncTaskCategory.Text = "&Synchronize categories for tasks";
-            // 
+            //
             // _taskExport
-            // 
-            this._taskExport.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._taskExport.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._taskExport.Changed = false;
             this._taskExport.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -107,9 +106,9 @@ namespace JetBrains.Omea.OutlookPlugin
             this._taskExport.Size = new System.Drawing.Size(272, 24);
             this._taskExport.TabIndex = 11;
             this._taskExport.Text = "&Export tasks to Outlook";
-            // 
+            //
             // OutlookOptionsPane_Tasks
-            // 
+            //
             this.Controls.Add(this._taskExport);
             this.Controls.Add(this._syncTaskCategory);
             this.Controls.Add(this._treeView);

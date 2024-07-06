@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections.Generic;
@@ -14,7 +13,7 @@ using JetBrains.Omea.OpenAPI;
 namespace JetBrains.Omea.GUIControls
 {
     /// <summary>
-    /// The default implementation of AbstractResourceSelectPane which is used when 
+    /// The default implementation of AbstractResourceSelectPane which is used when
     /// a type-specific implementation is not registered.
     /// </summary>
     public class GenericResourceSelectPane: AbstractResourceSelectPane
@@ -39,7 +38,7 @@ namespace JetBrains.Omea.GUIControls
             _listView.FullRowSelect = true;
 		}
 
-		/// <summary> 
+		/// <summary>
 		/// Clean up any resources being used.
 		/// </summary>
 		protected override void Dispose( bool disposing )
@@ -55,8 +54,8 @@ namespace JetBrains.Omea.GUIControls
 		}
 
 		#region Component Designer generated code
-		/// <summary> 
-		/// Required method for Designer support - do not modify 
+		/// <summary>
+		/// Required method for Designer support - do not modify
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent()
@@ -67,10 +66,10 @@ namespace JetBrains.Omea.GUIControls
             this._tmrIncSearch = new Timer(this.components);
             this._listView = new ResourceListView2();
             this.SuspendLayout();
-            // 
+            //
             // _findEdit
-            // 
-            this._findEdit.Anchor = ((AnchorStyles)(((AnchorStyles.Top | AnchorStyles.Left) 
+            //
+            this._findEdit.Anchor = ((AnchorStyles)(((AnchorStyles.Top | AnchorStyles.Left)
                 | AnchorStyles.Right)));
             this._findEdit.Location = new Point(48, 0);
             this._findEdit.Name = "_findEdit";
@@ -78,26 +77,26 @@ namespace JetBrains.Omea.GUIControls
             this._findEdit.TabIndex = 6;
             this._findEdit.Text = "";
             this._findEdit.TextChanged += new EventHandler(this.OnSearchTextChanged);
-            // 
+            //
             // _lblFind
-            // 
+            //
             this._lblFind.FlatStyle = FlatStyle.System;
             this._lblFind.Location = new Point(8, 4);
             this._lblFind.Name = "_lblFind";
             this._lblFind.Size = new Size(32, 16);
             this._lblFind.TabIndex = 8;
             this._lblFind.Text = "Find:";
-            // 
+            //
             // _tmrIncSearch
-            // 
+            //
             this._tmrIncSearch.Interval = 300;
             this._tmrIncSearch.Tick += new EventHandler(this.OnSearchTimerTick);
-            // 
+            //
             // _listView
-            // 
+            //
             this._listView.AllowDrop = true;
-            this._listView.Anchor = ((AnchorStyles)((((AnchorStyles.Top | AnchorStyles.Bottom) 
-                | AnchorStyles.Left) 
+            this._listView.Anchor = ((AnchorStyles)((((AnchorStyles.Top | AnchorStyles.Bottom)
+                | AnchorStyles.Left)
                 | AnchorStyles.Right)));
             this._listView.ExecuteDoubleClickAction = false;
             this._listView.FullRowSelect = true;
@@ -109,9 +108,9 @@ namespace JetBrains.Omea.GUIControls
             this._listView.Size = new Size(228, 124);
             this._listView.TabIndex = 9;
 			this._listView.DoubleClick += new JetBrains.JetListViewLibrary.HandledEventHandler(_listView_DoubleClick);
-            // 
+            //
             // GenericResourceSelectPane
-            // 
+            //
             this.Controls.Add(this._listView);
             this.Controls.Add(this._findEdit);
             this.Controls.Add(this._lblFind);

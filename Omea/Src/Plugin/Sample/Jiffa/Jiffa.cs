@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Drawing;
@@ -25,7 +24,7 @@ namespace JetBrains.Omea.Jiffa
 		///<summary>
 		///
 		///            Registers the plugin resource types, actions and other services.
-		///            
+		///
 		///</summary>
 		///
 		///<remarks>
@@ -105,7 +104,7 @@ namespace JetBrains.Omea.Jiffa
 			///<summary>
 			///
 			///            For the specified context, updates the presentation state of an action.
-			///            
+			///
 			///</summary>
 			///
 			///<param name="context">
@@ -146,7 +145,7 @@ namespace JetBrains.Omea.Jiffa
 
 			/*
 				ResourceProxy proxy = ResourceProxy.BeginNewResource(Types.JiraServer);
-				proxy.AddLink(Core.Props.Parent, Core.ResourceTreeManager.GetRootForType(Types.JiraServer)); 
+				proxy.AddLink(Core.Props.Parent, Core.ResourceTreeManager.GetRootForType(Types.JiraServer));
 				proxy.EndUpdate();
 
 				server = new JiraServer(proxy.Resource);
@@ -221,7 +220,7 @@ namespace JetBrains.Omea.Jiffa
 		///
 		///            Performs the longer initialization activities of the plugin and starts up
 		///            background activities, if any are necessary.
-		///            
+		///
 		///</summary>
 		///
 		///<remarks>
@@ -248,12 +247,12 @@ namespace JetBrains.Omea.Jiffa
 		///<summary>
 		///
 		///            Terminates the plugin.
-		///            
+		///
 		///</summary>
 		///
 		///<remarks>
 		///If the plugin needs any shutdown activities (like deleting temporary
-		///            files), these should be performed in these method. All <see cref="T:JetBrains.Omea.OpenAPI.Core" /> services 
+		///            files), these should be performed in these method. All <see cref="T:JetBrains.Omea.OpenAPI.Core" /> services
 		///            are still available when the method is called.
 		///</remarks>
 		///

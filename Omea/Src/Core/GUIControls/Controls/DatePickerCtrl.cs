@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.ComponentModel;
@@ -27,7 +26,7 @@ namespace JetBrains.Omea.GUIControls
 			InitializeComponent();
 		}
 
-		/// <summary> 
+		/// <summary>
 		/// Clean up any resources being used.
 		/// </summary>
 		protected override void Dispose( bool disposing )
@@ -43,8 +42,8 @@ namespace JetBrains.Omea.GUIControls
 		}
 
 		#region Component Designer generated code
-		/// <summary> 
-		/// Required method for Designer support - do not modify 
+		/// <summary>
+		/// Required method for Designer support - do not modify
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent()
@@ -56,11 +55,11 @@ namespace JetBrains.Omea.GUIControls
             this._btnClear = new System.Windows.Forms.Button();
             this._toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
-            // 
+            //
             // _textBox
-            // 
-            this._textBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-                | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._textBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._textBox.Location = new System.Drawing.Point(0, 0);
             this._textBox.Name = "_textBox";
@@ -68,9 +67,9 @@ namespace JetBrains.Omea.GUIControls
             this._textBox.Size = new System.Drawing.Size(196, 20);
             this._textBox.TabIndex = 0;
             this._textBox.Text = "";
-            // 
+            //
             // _btnDate
-            // 
+            //
             this._btnDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this._btnDate.Image = ((System.Drawing.Image)(resources.GetObject("_btnDate.Image")));
             this._btnDate.Location = new System.Drawing.Point(200, 0);
@@ -79,9 +78,9 @@ namespace JetBrains.Omea.GUIControls
             this._btnDate.TabIndex = 1;
             this._toolTip.SetToolTip(this._btnDate, "Select Date");
             this._btnDate.Click += new System.EventHandler(this._btnDate_Click);
-            // 
+            //
             // _btnClear
-            // 
+            //
             this._btnClear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this._btnClear.Image = ((System.Drawing.Image)(resources.GetObject("_btnClear.Image")));
             this._btnClear.Location = new System.Drawing.Point(200, 0);
@@ -91,9 +90,9 @@ namespace JetBrains.Omea.GUIControls
             this._toolTip.SetToolTip(this._btnClear, "Clear Date");
             this._btnClear.Visible = false;
             this._btnClear.Click += new System.EventHandler(this._btnClear_Click);
-            // 
+            //
             // DatePickerCtrl
-            // 
+            //
             this.Controls.Add(this._btnClear);
             this.Controls.Add(this._btnDate);
             this.Controls.Add(this._textBox);
@@ -106,7 +105,7 @@ namespace JetBrains.Omea.GUIControls
 
         public DateTime CurrentDate
         {
-            get 
+            get
             {
                 return _currentDate;
             }
@@ -147,7 +146,7 @@ namespace JetBrains.Omea.GUIControls
                 {
                     dlg.Date = _currentDate;
                 }
-            
+
                 if ( dlg.ShowDialog() == DialogResult.OK )
                 {
                     _currentDate = dlg.Date;

@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -69,7 +68,7 @@ namespace JetBrains.Omea.FiltersManagement
 
         #region ITrayIconManager methods
         #region Old-style interface
-        public IResource  RegisterTrayIconRule( string name, string[] types, 
+        public IResource  RegisterTrayIconRule( string name, string[] types,
                                                 IResource[] conditions, IResource[] exceptions,
                                                 Icon icon )
         {
@@ -85,7 +84,7 @@ namespace JetBrains.Omea.FiltersManagement
         }
         #endregion Old-style interface
 
-        public IResource  RegisterTrayIconRule( string name, string[] types, 
+        public IResource  RegisterTrayIconRule( string name, string[] types,
                                                 IResource[][] conditions, IResource[] exceptions,
                                                 Icon icon )
         {
@@ -192,7 +191,7 @@ namespace JetBrains.Omea.FiltersManagement
 
             WatchedLists.Remove( oldName );
             WatchedIcons.Remove( oldName );
-    
+
             new ResourceProxy( rule ).SetProp( Core.Props.Name, newName );
         }
 
@@ -340,7 +339,7 @@ namespace JetBrains.Omea.FiltersManagement
                 int count = WatchersOrder.Count;
 
                 //  Avoid setting new icon if it is already set.
-                if( count == 0 || 
+                if( count == 0 ||
                     ((IResourceList) sender).Count == 1 ||
                     (string)WatchersOrder[ count - 1 ] != name )
                 {

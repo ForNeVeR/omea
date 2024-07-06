@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -98,7 +97,7 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
             get { return _diffBuilder.ToString(); }
         }
     }
-    
+
     internal class ChangeSetDetails
     {
         public ChangeSetDetails( string description, FileChangeData[] fileChanges )
@@ -110,7 +109,7 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
         public string Description { get; set; }
         public FileChangeData[] FileChanges { get; set; }
     }
-    
+
     /// <summary>
     /// Base class for running executables and catching their console output.
     /// </summary>
@@ -138,7 +137,7 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
             return stdout;
         }
     }
-    
+
     /// <summary>
 	/// Supports running Perforce commands and parsing their output.
 	/// </summary>
@@ -246,7 +245,7 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
         private ChangeSetSummary ParseChangesLine( string[] modHeaderFields )
         {
             int changeSetNo = Int32.Parse( modHeaderFields [1] );
-    
+
             DateTime changeTime = DateTime.ParseExact(modHeaderFields [3] + " " + modHeaderFields [4],
                 "yyyy/MM/dd HH:mm:ss", CultureInfo.InvariantCulture);
 

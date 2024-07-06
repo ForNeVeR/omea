@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System.Collections;
 using System.Windows.Forms;
@@ -185,7 +184,7 @@ namespace GUIControls.CustomViews
                 groupActions.Height -= delta;
                 this.Height -= delta;
 
-                labelExcept.Visible = checkFlaggedResources.Visible = 
+                labelExcept.Visible = checkFlaggedResources.Visible =
                 checkCategorizedResources.Visible = checkUnreadResources.Visible = false;
 
                 delta = checkUnreadResources.Bottom - labelExcept.Top;
@@ -254,9 +253,9 @@ namespace GUIControls.CustomViews
             this.groupWhen.SuspendLayout();
             this.groupActions.SuspendLayout();
             this.SuspendLayout();
-            // 
+            //
             // numericOlderValue
-            // 
+            //
             this.numericOlderValue.Location = new System.Drawing.Point(172, 40);
             this.numericOlderValue.Maximum = new System.Decimal(new int[] {
                                                                               1000,
@@ -278,9 +277,9 @@ namespace GUIControls.CustomViews
                                                                             0,
                                                                             0});
             this.numericOlderValue.ValueChanged += new System.EventHandler(this.numericOlderValue_ValueChanged);
-            // 
+            //
             // comboTimeUnits
-            // 
+            //
             this.comboTimeUnits.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboTimeUnits.Items.AddRange(new object[] {
                                                                 "Hours",
@@ -293,9 +292,9 @@ namespace GUIControls.CustomViews
             this.comboTimeUnits.Name = "comboTimeUnits";
             this.comboTimeUnits.Size = new System.Drawing.Size(68, 21);
             this.comboTimeUnits.TabIndex = 6;
-            // 
+            //
             // numericCountResources
-            // 
+            //
             this.numericCountResources.Location = new System.Drawing.Point(172, 16);
             this.numericCountResources.Maximum = new System.Decimal(new int[] {
                                                                                   100000,
@@ -317,9 +316,9 @@ namespace GUIControls.CustomViews
                                                                                 0,
                                                                                 0});
             this.numericCountResources.ValueChanged += new System.EventHandler(this.numericCountResources_ValueChanged);
-            // 
+            //
             // labelIn
-            // 
+            //
             this.labelIn.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.labelIn.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(204)));
             this.labelIn.Location = new System.Drawing.Point(8, 8);
@@ -327,9 +326,9 @@ namespace GUIControls.CustomViews
             this.labelIn.Size = new System.Drawing.Size(296, 16);
             this.labelIn.TabIndex = 0;
             this.labelIn.Text = "For";
-            // 
+            //
             // labelExcept
-            // 
+            //
             this.labelExcept.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.labelExcept.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(204)));
             this.labelExcept.Location = new System.Drawing.Point(12, 92);
@@ -337,36 +336,36 @@ namespace GUIControls.CustomViews
             this.labelExcept.Size = new System.Drawing.Size(44, 16);
             this.labelExcept.TabIndex = 0;
             this.labelExcept.Text = "Except:";
-            // 
+            //
             // checkFlaggedResources
-            // 
+            //
             this.checkFlaggedResources.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.checkFlaggedResources.Location = new System.Drawing.Point(16, 112);
             this.checkFlaggedResources.Name = "checkFlaggedResources";
             this.checkFlaggedResources.Size = new System.Drawing.Size(196, 20);
             this.checkFlaggedResources.TabIndex = 7;
             this.checkFlaggedResources.Text = "Flagged and annotated resources";
-            // 
+            //
             // checkCategorizedResources
-            // 
+            //
             this.checkCategorizedResources.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.checkCategorizedResources.Location = new System.Drawing.Point(16, 136);
             this.checkCategorizedResources.Name = "checkCategorizedResources";
             this.checkCategorizedResources.Size = new System.Drawing.Size(196, 20);
             this.checkCategorizedResources.TabIndex = 8;
             this.checkCategorizedResources.Text = "Categorized resources";
-            // 
+            //
             // checkUnreadResources
-            // 
+            //
             this.checkUnreadResources.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.checkUnreadResources.Location = new System.Drawing.Point(16, 160);
             this.checkUnreadResources.Name = "checkUnreadResources";
             this.checkUnreadResources.Size = new System.Drawing.Size(112, 20);
             this.checkUnreadResources.TabIndex = 9;
             this.checkUnreadResources.Text = "Unread resources";
-            // 
+            //
             // checkDeleteResources
-            // 
+            //
             this.checkDeleteResources.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.checkDeleteResources.Location = new System.Drawing.Point(12, 20);
             this.checkDeleteResources.Name = "checkDeleteResources";
@@ -374,9 +373,9 @@ namespace GUIControls.CustomViews
             this.checkDeleteResources.TabIndex = 10;
             this.checkDeleteResources.Text = "Delete resources";
             this.checkDeleteResources.CheckedChanged += new System.EventHandler(this.checkDeleteResources_CheckedChanged);
-            // 
+            //
             // checkMarkRead
-            // 
+            //
             this.checkMarkRead.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.checkMarkRead.Location = new System.Drawing.Point(12, 64);
             this.checkMarkRead.Name = "checkMarkRead";
@@ -384,9 +383,9 @@ namespace GUIControls.CustomViews
             this.checkMarkRead.TabIndex = 11;
             this.checkMarkRead.Text = "Mark resources Read";
             this.checkMarkRead.CheckedChanged += new System.EventHandler(this.checkMarkRead_CheckedChanged);
-            // 
+            //
             // buttonOK
-            // 
+            //
             this.buttonOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.buttonOK.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -395,9 +394,9 @@ namespace GUIControls.CustomViews
             this.buttonOK.TabIndex = 20;
             this.buttonOK.Text = "OK";
             this.buttonOK.Click += new System.EventHandler(this.buttonOK_Click);
-            // 
+            //
             // buttonCancel
-            // 
+            //
             this.buttonCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.buttonCancel.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -405,9 +404,9 @@ namespace GUIControls.CustomViews
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.TabIndex = 21;
             this.buttonCancel.Text = "Cancel";
-            // 
+            //
             // buttonAdvanced
-            // 
+            //
             this.buttonAdvanced.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonAdvanced.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.buttonAdvanced.Location = new System.Drawing.Point(270, 332);
@@ -415,9 +414,9 @@ namespace GUIControls.CustomViews
             this.buttonAdvanced.TabIndex = 22;
             this.buttonAdvanced.Text = "Advanced...";
             this.buttonAdvanced.Click += new System.EventHandler(this.buttonAdvanced_Click);
-            // 
+            //
             // checkDeleteRelatedContacts
-            // 
+            //
             this.checkDeleteRelatedContacts.Enabled = false;
             this.checkDeleteRelatedContacts.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.checkDeleteRelatedContacts.Location = new System.Drawing.Point(28, 40);
@@ -425,10 +424,10 @@ namespace GUIControls.CustomViews
             this.checkDeleteRelatedContacts.Size = new System.Drawing.Size(148, 20);
             this.checkDeleteRelatedContacts.TabIndex = 10;
             this.checkDeleteRelatedContacts.Text = "Delete related contacts";
-            // 
+            //
             // groupConditions
-            // 
-            this.groupConditions.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this.groupConditions.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this.groupConditions.Controls.Add(this.groupWhen);
             this.groupConditions.Controls.Add(this.labelExcept);
@@ -442,10 +441,10 @@ namespace GUIControls.CustomViews
             this.groupConditions.TabIndex = 7;
             this.groupConditions.TabStop = false;
             this.groupConditions.Text = "Conditions";
-            // 
+            //
             // groupWhen
-            // 
-            this.groupWhen.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this.groupWhen.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this.groupWhen.Controls.Add(this.radioCount);
             this.groupWhen.Controls.Add(this.numericCountResources);
@@ -459,9 +458,9 @@ namespace GUIControls.CustomViews
             this.groupWhen.TabIndex = 5;
             this.groupWhen.TabStop = false;
             this.groupWhen.Text = "When";
-            // 
+            //
             // radioCount
-            // 
+            //
             this.radioCount.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.radioCount.Location = new System.Drawing.Point(12, 16);
             this.radioCount.Name = "radioCount";
@@ -469,18 +468,18 @@ namespace GUIControls.CustomViews
             this.radioCount.TabIndex = 1;
             this.radioCount.Text = "There are more than";
             this.radioCount.CheckedChanged += new System.EventHandler(this.radioCount_CheckedChanged);
-            // 
+            //
             // labelRes
-            // 
+            //
             this.labelRes.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.labelRes.Location = new System.Drawing.Point(232, 20);
             this.labelRes.Name = "labelRes";
             this.labelRes.Size = new System.Drawing.Size(72, 16);
             this.labelRes.TabIndex = 5;
             this.labelRes.Text = "resources";
-            // 
+            //
             // radioOlder
-            // 
+            //
             this.radioOlder.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.radioOlder.Location = new System.Drawing.Point(12, 40);
             this.radioOlder.Name = "radioOlder";
@@ -488,10 +487,10 @@ namespace GUIControls.CustomViews
             this.radioOlder.TabIndex = 4;
             this.radioOlder.Text = "Resources are older than";
             this.radioOlder.CheckedChanged += new System.EventHandler(this.radioOlder_CheckedChanged);
-            // 
+            //
             // groupActions
-            // 
-            this.groupActions.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this.groupActions.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this.groupActions.Controls.Add(this.checkDeleteResources);
             this.groupActions.Controls.Add(this.checkMarkRead);
@@ -503,9 +502,9 @@ namespace GUIControls.CustomViews
             this.groupActions.TabIndex = 10;
             this.groupActions.TabStop = false;
             this.groupActions.Text = "Actions";
-            // 
+            //
             // EditExpirationRuleSimpleForm
-            // 
+            //
             this.AcceptButton = this.buttonOK;
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
             this.CancelButton = this.buttonCancel;

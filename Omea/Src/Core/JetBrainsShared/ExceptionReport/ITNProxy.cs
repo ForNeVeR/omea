@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -22,7 +21,7 @@ namespace JetBrains.ExceptionReport
 	 public static int PostNewThread(string product, string title, string description,
 		  string userName, string password, int buildNumber, string osVersion)
 	 {
-	 	
+
 		 Hashtable paramsHash = new Hashtable();
 		 paramsHash ["username"] = userName;
 		 paramsHash ["pwd"] = password;
@@ -121,6 +120,6 @@ namespace JetBrains.ExceptionReport
       XmlDocument xmlDocument = new XmlDocument();
       xmlDocument.Load(webResponse.GetResponseStream());
       return xmlDocument;
-    }   
+    }
   }
 }

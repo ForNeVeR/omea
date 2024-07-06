@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -90,9 +89,9 @@ namespace JetBrains.Omea
 			this._panelFormBody.SuspendLayout();
 			this._canvasPanel.SuspendLayout();
 			this.SuspendLayout();
-			// 
+			//
 			// _cancelButton
-			// 
+			//
 			this._cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this._cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
 			this._cancelButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -101,9 +100,9 @@ namespace JetBrains.Omea
 			this._cancelButton.TabIndex = 2;
 			this._cancelButton.Text = "Cancel";
 			this._cancelButton.Click += new System.EventHandler(this._cancelButton_Click);
-			// 
+			//
 			// _okButton
-			// 
+			//
 			this._okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this._okButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this._okButton.Location = new System.Drawing.Point(376, 532);
@@ -111,11 +110,11 @@ namespace JetBrains.Omea
 			this._okButton.TabIndex = 1;
 			this._okButton.Text = "OK";
 			this._okButton.Click += new System.EventHandler(this._okButton_Click);
-			// 
+			//
 			// _panelFormBody
-			// 
-			this._panelFormBody.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-				| System.Windows.Forms.AnchorStyles.Left) 
+			//
+			this._panelFormBody.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+				| System.Windows.Forms.AnchorStyles.Left)
 				| System.Windows.Forms.AnchorStyles.Right)));
 			this._panelFormBody.Controls.Add(this._canvasPanel);
 			this._panelFormBody.Controls.Add(this.splitter1);
@@ -124,9 +123,9 @@ namespace JetBrains.Omea
 			this._panelFormBody.Name = "_panelFormBody";
 			this._panelFormBody.Size = new System.Drawing.Size(692, 516);
 			this._panelFormBody.TabIndex = 0;
-			// 
+			//
 			// _canvasPanel
-			// 
+			//
 			this._canvasPanel.Controls.Add(this._panePanel);
 			this._canvasPanel.Controls.Add(this._captionLabel);
 			this._canvasPanel.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -135,19 +134,19 @@ namespace JetBrains.Omea
 			this._canvasPanel.Size = new System.Drawing.Size(512, 516);
 			this._canvasPanel.TabIndex = 0;
 			this._canvasPanel.Paint += new System.Windows.Forms.PaintEventHandler(this._canvasPanel_Paint);
-			// 
+			//
 			// _panePanel
-			// 
-			this._panePanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-				| System.Windows.Forms.AnchorStyles.Left) 
+			//
+			this._panePanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+				| System.Windows.Forms.AnchorStyles.Left)
 				| System.Windows.Forms.AnchorStyles.Right)));
 			this._panePanel.Location = new System.Drawing.Point(8, 28);
 			this._panePanel.Name = "_panePanel";
 			this._panePanel.Size = new System.Drawing.Size(496, 480);
 			this._panePanel.TabIndex = 0;
-			// 
+			//
 			// _captionLabel
-			// 
+			//
 			this._captionLabel.AutoSize = false;
 			this._captionLabel.BackColor = System.Drawing.SystemColors.ActiveCaption;
 			this._captionLabel.ClickableLink = false;
@@ -159,18 +158,18 @@ namespace JetBrains.Omea
 			this._captionLabel.Size = new System.Drawing.Size(512, 20);
 			this._captionLabel.TabIndex = 3;
 			this._captionLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-			// 
+			//
 			// splitter1
-			// 
+			//
 			this.splitter1.BackColor = System.Drawing.SystemColors.ControlLight;
 			this.splitter1.Location = new System.Drawing.Point(176, 0);
 			this.splitter1.Name = "splitter1";
 			this.splitter1.Size = new System.Drawing.Size(4, 516);
 			this.splitter1.TabIndex = 12;
 			this.splitter1.TabStop = false;
-			// 
+			//
 			// _panesView
-			// 
+			//
 			this._panesView.Dock = System.Windows.Forms.DockStyle.Left;
 			this._panesView.HideSelection = false;
 			this._panesView.ImageIndex = -1;
@@ -180,9 +179,9 @@ namespace JetBrains.Omea
 			this._panesView.Size = new System.Drawing.Size(176, 516);
 			this._panesView.TabIndex = 1;
 			this._panesView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this._panesView_AfterSelect);
-			// 
+			//
 			// _btnHelp
-			// 
+			//
 			this._btnHelp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this._btnHelp.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this._btnHelp.Location = new System.Drawing.Point(628, 532);
@@ -190,9 +189,9 @@ namespace JetBrains.Omea
 			this._btnHelp.TabIndex = 4;
 			this._btnHelp.Text = "Help";
 			this._btnHelp.Click += new System.EventHandler(this._btnHelp_Click);
-			// 
+			//
 			// _applyButton
-			// 
+			//
 			this._applyButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this._applyButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this._applyButton.Location = new System.Drawing.Point(544, 532);
@@ -200,9 +199,9 @@ namespace JetBrains.Omea
 			this._applyButton.TabIndex = 3;
 			this._applyButton.Text = "&Apply";
 			this._applyButton.Click += new System.EventHandler(this._applyButton_Click);
-			// 
+			//
 			// OptionsForm
-			// 
+			//
 			this.AcceptButton = this._okButton;
 			this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
 			this.CancelButton = this._cancelButton;
@@ -386,7 +385,7 @@ namespace JetBrains.Omea
 
         private void OptionsForm_HelpRequested( object sender, HelpEventArgs hlpevent )
         {
-            ShowActivePaneHelp();        
+            ShowActivePaneHelp();
         }
 
         private void ShowActivePaneHelp()
@@ -400,7 +399,7 @@ namespace JetBrains.Omea
                     topic = optionsPane.GetHelpKeyword();
                 }
             }
-            
+
             if ( topic == null )
             {
                 topic = "/reference/options_dialog.html";
@@ -445,7 +444,7 @@ namespace JetBrains.Omea
                                     }
                                 }
 
-                            }        
+                            }
                             foreach( TreeNode paneNode in rootNode.Nodes )
                             {
                                 AbstractOptionsPane pane = paneNode.Tag as AbstractOptionsPane;

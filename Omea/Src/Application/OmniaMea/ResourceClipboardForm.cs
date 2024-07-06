@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System.Windows.Forms;
 using JetBrains.JetListViewLibrary;
@@ -103,9 +102,9 @@ namespace JetBrains.Omea
             this._lblHint = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
-            // 
+            //
             // _lvResources
-            // 
+            //
             this._lvResources.AllowDrop = true;
             this._lvResources.Dock = System.Windows.Forms.DockStyle.Fill;
             this._lvResources.EmptyDropHandler = new DnDHandler( this );
@@ -120,20 +119,20 @@ namespace JetBrains.Omea
             this._lvResources.KeyDown += new System.Windows.Forms.KeyEventHandler(this._lvResources_KeyDown);
             this._lvResources.ResourceDrop += new GUIControls.ResourceDragEventHandler(this._lvResources_ResourceDrop);
             this._lvResources.ResourceDragOver += new ResourceDragEventHandler( _lvResources_ResourceDragOver );
-            // 
+            //
             // panel1
-            // 
+            //
             this.panel1.Controls.Add(this._lblHint);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(356, 18);
             this.panel1.TabIndex = 1;
-            // 
+            //
             // _lblHint
-            // 
+            //
             this._lblHint.AllowDrop = true;
-            this._lblHint.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this._lblHint.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._lblHint.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._lblHint.Location = new System.Drawing.Point(4, 2);
@@ -143,9 +142,9 @@ namespace JetBrains.Omea
             this._lblHint.Text = "Drop resources to add them to the clipboard";
             this._lblHint.DragEnter += new System.Windows.Forms.DragEventHandler(this._lblHint_DragEnter);
             this._lblHint.DragDrop += new System.Windows.Forms.DragEventHandler(this._lblHint_DragDrop);
-            // 
+            //
             // ResourceClipboardForm
-            // 
+            //
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
             this.ClientSize = new System.Drawing.Size(356, 90);
             this.Controls.Add(this._lvResources);
@@ -201,7 +200,7 @@ namespace JetBrains.Omea
                     contentsList.Add( dropResList.ResourceIds [i] );
                 }
             }
-            
+
             for( int i=contentsList.Count-1; i >= 0; i-- )
             {
                 IResource content;
@@ -221,9 +220,9 @@ namespace JetBrains.Omea
                         new MethodInvoker( content.EndUpdate ) );
                 }
             }
-            
+
 	        // we need a live list
-            ClipboardContents = Core.ResourceStore.ListFromIds( contentsList, true ); 
+            ClipboardContents = Core.ResourceStore.ListFromIds( contentsList, true );
 	        AutoGrow();
 	    }
 
@@ -274,7 +273,7 @@ namespace JetBrains.Omea
                 if ( itemsHeight > lvHeight && itemsHeight < 200 )
                 {
                     int heightDelta = Height - _lvResources.ClientSize.Height;
-                    Height = itemsHeight + heightDelta + 4;                	
+                    Height = itemsHeight + heightDelta + 4;
                 }
             }
         }
@@ -287,7 +286,7 @@ namespace JetBrains.Omea
                 IResourceStore store = Core.ResourceStore;
                 if ( _lvResources.GetSelectedResources().Count == _lvResources.JetListView.Nodes.Count )
                 {
-                	ClipboardContents = store.EmptyResourceList;                    
+                	ClipboardContents = store.EmptyResourceList;
                 }
                 else
                 {
@@ -401,7 +400,7 @@ namespace JetBrains.Omea
     /**
      * Action for showing and hiding the resource clipboard window.
      */
-    
+
     public class ShowResourceClipboardAction: IAction
     {
         public void Execute( IActionContext context )
@@ -435,7 +434,7 @@ namespace JetBrains.Omea
 
         public void Update( IActionContext context, ref ActionPresentation presentation )
         {
-            presentation.Visible = (context.Instance is ResourceClipboardForm) && 
+            presentation.Visible = (context.Instance is ResourceClipboardForm) &&
                                    (context.SelectedResources.Count > 0);
         }
     }

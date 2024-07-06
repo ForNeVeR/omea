@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Diagnostics;
@@ -108,17 +107,17 @@ namespace JetBrains.Omea.GUIControls.CustomViews
             this.checkKeepDialogOpen = new CheckBox();
             this.comboSearchQueryAndHistory = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
-            // 
+            //
             // labelInSection
-            // 
+            //
             this.labelInSection.Location = new System.Drawing.Point(8, 32);
             this.labelInSection.Size = new System.Drawing.Size(60, 16);
             this.labelInSection.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(204)));
             this.labelInSection.TabIndex = 4;
             this.labelInSection.Text = "In section:";
-            // 
+            //
             // comboSection
-            // 
+            //
             this.comboSection.Location = new System.Drawing.Point(72, 29);
             this.comboSection.Size = new System.Drawing.Size(130, 16);
             this.comboSection.Name = "comboSection";
@@ -126,9 +125,9 @@ namespace JetBrains.Omea.GUIControls.CustomViews
             this.comboSection.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(204)));
             this.comboSection.SelectedValueChanged += new EventHandler( comboSection_SelectedValueChanged );
             this.comboSection.TabIndex = 5;
-            // 
+            //
             // comboSearchQueryAndHistory
-            // 
+            //
             this.comboSearchQueryAndHistory.Anchor = (AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right);
             this.comboSearchQueryAndHistory.Location = new System.Drawing.Point(72, 4);
             this.comboSearchQueryAndHistory.Size = new System.Drawing.Size(300, 21);
@@ -152,9 +151,9 @@ namespace JetBrains.Omea.GUIControls.CustomViews
             this.checkKeepDialogOpen.CheckedChanged += new EventHandler(checkKeepDialogOpen_CheckedChanged);
             this.checkKeepDialogOpen.Anchor = (AnchorStyles)(AnchorStyles.Bottom | AnchorStyles.Left);
             this.checkKeepDialogOpen.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            // 
+            //
             // AdvancedSearchForm
-            // 
+            //
             this.okButton.Text = "Search";
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
             this.ClientSize = new System.Drawing.Size(398, ciFormHeight);
@@ -269,7 +268,7 @@ namespace JetBrains.Omea.GUIControls.CustomViews
             //  if search is done specifically for the particular resource
             //  type - set the focus onto that tab.
             Core.ResourceTreeManager.LinkToResourceRoot( BaseResource, 1 );
-            if(( CurrentResTypeDeep != null ) && 
+            if(( CurrentResTypeDeep != null ) &&
                ( CurrentResTypeDeep.IndexOf( '|' ) == -1 ) && ( CurrentResTypeDeep.IndexOf( '#' ) == -1 ))
                 Core.TabManager.SelectResourceTypeTab( CurrentResTypeDeep );
             else

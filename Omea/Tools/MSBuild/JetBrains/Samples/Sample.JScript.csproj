@@ -1,9 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <!--
-  <copyright company="JetBrains">
-  Copyright © 2003-2008 JetBrains s.r.o.
-  You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-  </copyright>
+SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+
+SPDX-License-Identifier: GPL-2.0-only
 -->
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 	<PropertyGroup>
@@ -42,7 +41,7 @@
 		<Compile Include="Sample.JScript.js" />
 	</ItemGroup>
 	<Import Project="JScript.targets" />
-	<!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+	<!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>

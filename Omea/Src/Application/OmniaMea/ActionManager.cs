@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -43,7 +42,7 @@ namespace JetBrains.Omea
             {
                 ActionPresentation presentation = new ActionPresentation();
                 presentation.Reset();
-                
+
                 if ( _filters != null )
                 {
                     foreach( IActionStateFilter filter in _filters )
@@ -76,7 +75,7 @@ namespace JetBrains.Omea
             private readonly string _resourceType;
             private readonly Keys _shortcutKey;
 
-            public KeyboardAction( IAction action, Keys shortcutKey, string resourceType, 
+            public KeyboardAction( IAction action, Keys shortcutKey, string resourceType,
                 IActionStateFilter[] filters )
                 : base( action, filters )
             {
@@ -90,7 +89,7 @@ namespace JetBrains.Omea
 
         private readonly ContextMenuStrip         _contextMenu;
         private readonly ContextMenuActionManager _contextMenuActionManager;
-        
+
         private readonly MenuStrip      _mainMenu;
         private readonly Hashtable      _mainMenuActionManagers = new Hashtable();    // menu name -> MenuActionManager
 
@@ -135,7 +134,7 @@ namespace JetBrains.Omea
                 MenuInitializationFinished();
             }
         }
-        
+
         public void EndUpdateActions()
         {
             _toolbarManager.Dispose();
@@ -181,14 +180,14 @@ namespace JetBrains.Omea
                 if ( StripMenuName( item.Text ) == StripMenuName( menuName ) )
                     return;
             }
-            
+
             int index = FindMainMenuInsertIndex( anchor );
             ArrayList itemStack = new ArrayList();
             while( _mainMenu.Items.Count > index )
             {
                 int lastIndex = _mainMenu.Items.Count - 1;
                 itemStack.Insert( 0, _mainMenu.Items[ lastIndex ] );
-                _mainMenu.Items.RemoveAt( lastIndex );                
+                _mainMenu.Items.RemoveAt( lastIndex );
             }
 
             ToolStripMenuItem newSubMenu = new ToolStripMenuItem( menuName );
@@ -248,11 +247,11 @@ namespace JetBrains.Omea
                     return;
                 }
             }
-            throw new ArgumentException( "Groups '" + groupId1 + "' and '" + groupId2 + 
+            throw new ArgumentException( "Groups '" + groupId1 + "' and '" + groupId2 +
                                          " ' not found or found in different menus" );
         }
 
-        public void RegisterMainMenuAction( IAction action, string groupId, ListAnchor anchor, string text, 
+        public void RegisterMainMenuAction( IAction action, string groupId, ListAnchor anchor, string text,
                                             Image icon, string resourceType, IActionStateFilter[] filters )
         {
             foreach( DictionaryEntry de in _mainMenuActionManagers )
@@ -266,7 +265,7 @@ namespace JetBrains.Omea
             }
             throw new ArgumentException( "Invalid action group name " + groupId, "groupId" );
         }
-        
+
         public void UnregisterMainMenuAction( IAction action )
         {
             foreach( DictionaryEntry de in _mainMenuActionManagers )
@@ -438,7 +437,7 @@ namespace JetBrains.Omea
             if ( action != null )
             {
                 try
-                {                                                      
+                {
                     action.Execute( context );
                 }
                 catch( Exception e )
@@ -534,7 +533,7 @@ namespace JetBrains.Omea
         }
 
         /**
-         * Registers an action which is executed when a link is clicked in the 
+         * Registers an action which is executed when a link is clicked in the
          * links pane.
          */
 
@@ -567,7 +566,7 @@ namespace JetBrains.Omea
             if ( context == null )
                 throw new ArgumentNullException( "context" );
             #endregion Preconditions
-            
+
             if ( context.SelectedResources.Count > 0 )
             {
                 FilteredAction action = (FilteredAction) _linkClickActions [context.SelectedResources [0].Type];
@@ -599,7 +598,7 @@ namespace JetBrains.Omea
          * Registers a keyboard shortcut for the action.
          */
 
-        public void RegisterKeyboardAction( IAction action, Keys shortcutKey, string resourceType, 
+        public void RegisterKeyboardAction( IAction action, Keys shortcutKey, string resourceType,
                                             IActionStateFilter[] filters )
         {
             KeyboardAction kbdAction = new KeyboardAction( action, shortcutKey, resourceType, filters );
@@ -648,10 +647,10 @@ namespace JetBrains.Omea
             {
                 Keys key = (Keys) _actionToKey [action];
                 string result = (string) _keysConverter.ConvertTo( key, typeof(string) );
-                
-                // KeysConverter converts Ctrl+digit combinations to Ctrl+D#, 
+
+                // KeysConverter converts Ctrl+digit combinations to Ctrl+D#,
                 // instead of the correct Ctrl+#
-                if ( result.Length >= 2 && Char.IsDigit( result, result.Length-1 ) && 
+                if ( result.Length >= 2 && Char.IsDigit( result, result.Length-1 ) &&
                     result [result.Length-2] == 'D' )
                 {
                     result = result.Substring( 0, result.Length-2 ) + result.Substring( result.Length-1 );
@@ -697,7 +696,7 @@ namespace JetBrains.Omea
 
         /**
          * Tries to find a keyboard action registered for the specified shortcut
-         * key and resources. Returns true if the action has been successfully 
+         * key and resources. Returns true if the action has been successfully
          * executed and false otherwise.
          */
 
@@ -712,7 +711,7 @@ namespace JetBrains.Omea
                 string[] resTypes = context.SelectedResources.GetAllTypes();
                 foreach( KeyboardAction keyAction in keyActions )
                 {
-                    if ( keyAction.ResourceType != null && 
+                    if ( keyAction.ResourceType != null &&
                         (resTypes.Length != 1 || resTypes [0] != keyAction.ResourceType ) )
                     {
                         continue;
@@ -752,8 +751,8 @@ namespace JetBrains.Omea
         /**
          * Registers a component that is contributed by a plugin to a composite action.
          */
-        
-        public void RegisterActionComponent( IAction action, string compositeId, 
+
+        public void RegisterActionComponent( IAction action, string compositeId,
                                              string resourceType, IActionStateFilter[] filters )
         {
             CompositeAction composite = (CompositeAction) _compositeActions [compositeId];
@@ -807,12 +806,12 @@ namespace JetBrains.Omea
                 }
                 catch( XmlToolsException e )
                 {
-                    throw new ActionException( "Error loading <" + childNode.Name + "> for " + 
+                    throw new ActionException( "Error loading <" + childNode.Name + "> for " +
                         pluginAssembly.GetName().Name + ": " + e.Message );
                 }
                 catch( ActionException e )
                 {
-                    throw new ActionException( "Error loading <" + childNode.Name + "> for " + 
+                    throw new ActionException( "Error loading <" + childNode.Name + "> for " +
                         pluginAssembly.GetName().Name + ": " + e.Message );
                 }
             }
@@ -833,7 +832,7 @@ namespace JetBrains.Omea
          * If the specified node contains an actiondef reference, returns the actiondef
          * node. Otherwise, returns the node itself.
          */
-        
+
         private XmlNode GetActionDefNode( XmlNode node )
         {
             XmlAttribute attr = node.Attributes ["ref"];
@@ -864,13 +863,13 @@ namespace JetBrains.Omea
             foreach( XmlNode groupNode in node.SelectNodes( "group" ) )
             {
                 string groupId = XmlTools.GetRequiredAttribute( groupNode, "id" );
-                
+
                 XmlAttribute attrMenu = groupNode.Attributes ["menu"];
                 if ( attrMenu != null )
                 {
                     XmlAttribute attrSubmenu = groupNode.Attributes ["submenu"];
                     ListAnchor anchor = LoadListAnchor( groupNode );
-                    RegisterMainMenuActionGroup( groupId, attrMenu.Value, 
+                    RegisterMainMenuActionGroup( groupId, attrMenu.Value,
                         ( attrSubmenu == null ) ? null : attrSubmenu.Value, anchor );
                 }
 
@@ -888,7 +887,7 @@ namespace JetBrains.Omea
                     string iconPath = XmlTools.GetOptionalAttribute( actionNode, "icon" );
 //                    Image icon = ( iconPath == null ) ? null : Utils.TryGetEmbeddedResourceImageFromAssembly( pluginAssembly.GetName().Name, iconPath );
                     Image icon = ( iconPath == null ) ? null : Utils.TryGetEmbeddedResourceImageFromAssembly( pluginAssembly, iconPath );
-                    
+
                     XmlNode actionDefNode = GetActionDefNode( actionNode );
                     try
                     {
@@ -910,7 +909,7 @@ namespace JetBrains.Omea
          */
 
         private void LoadContextMenuActions( Assembly pluginAssembly, XmlNode node, string ns )
-        {   
+        {
             foreach( XmlNode groupNode in node.SelectNodes( "group" ) )
             {
                 string groupId = XmlTools.GetRequiredAttribute( groupNode, "id" );
@@ -968,7 +967,7 @@ namespace JetBrains.Omea
                     IAction action = CreateActionFromXml( pluginAssembly, actionDefNode, ns );
                     IActionStateFilter[] filters = LoadFiltersFromXml( pluginAssembly, actionDefNode, ns,
                                                                        TabFilterMode.TabOnly );
-                
+
                     RegisterKeyboardAction( action, shortcut,
                                             attrResType == null ? null : attrResType.Value, filters );
                 }
@@ -992,9 +991,9 @@ namespace JetBrains.Omea
                 try
                 {
                     IAction action = CreateActionFromXml( pluginAssembly, actionDefNode, ns );
-                    IActionStateFilter[] filters = LoadFiltersFromXml( pluginAssembly, actionDefNode, ns, 
+                    IActionStateFilter[] filters = LoadFiltersFromXml( pluginAssembly, actionDefNode, ns,
                                                                        TabFilterMode.None );
-                
+
                     RegisterDoubleClickAction( action,
                                                (attrResType == null ? null : attrResType.Value), filters );
                 }
@@ -1046,7 +1045,7 @@ namespace JetBrains.Omea
                         IActionStateFilter[] filters = LoadFiltersFromXml( pluginAssembly, actionDefNode, ns,
                                                                            TabFilterMode.TabOnly );
                         IAction action = CreateActionFromXml( pluginAssembly, actionDefNode, ns );
-                    
+
                         if ( urlbar )
                         {
                             RegisterUrlBarAction( action, groupId, anchor, new Icon( stream ), text, tooltip, filters );
@@ -1054,7 +1053,7 @@ namespace JetBrains.Omea
                         else
                         {
                             string type = ( attrType == null ) ? null : attrType.Value;
-                            RegisterToolbarAction( action, groupId, anchor, new Icon( stream ), text, tooltip, 
+                            RegisterToolbarAction( action, groupId, anchor, new Icon( stream ), text, tooltip,
                                                    type, filters );
                         }
                     }
@@ -1082,7 +1081,7 @@ namespace JetBrains.Omea
                     IAction action = CreateActionFromXml( pluginAssembly, actionDefNode, ns );
                     IActionStateFilter[] filters = LoadFiltersFromXml( pluginAssembly, actionDefNode, ns,
                                                                        TabFilterMode.None );
-                
+
                     RegisterLinksPaneAction( action, name, (attrType == null ) ? null : attrType.Value, filters );
                 }
                 catch( Exception ex )
@@ -1095,7 +1094,7 @@ namespace JetBrains.Omea
         /**
          * Loads the link click actions from the XML file.
          */
-        
+
         private void LoadLinkClickActions( Assembly pluginAssembly, XmlNode node, string ns )
         {
             foreach( XmlNode actionNode in node.SelectNodes( "action" ) )
@@ -1131,10 +1130,10 @@ namespace JetBrains.Omea
         	    try
         	    {
         	        IAction action = CreateActionFromXml( pluginAssembly, actionDefNode, ns );
-        	        IActionStateFilter[] filters = LoadFiltersFromXml( pluginAssembly, actionNode, ns, 
+        	        IActionStateFilter[] filters = LoadFiltersFromXml( pluginAssembly, actionNode, ns,
         	                                                           TabFilterMode.TabOrAll );
 
-        	        RegisterActionComponent( action, id, ( attrType == null ) ? null : attrType.Value, 
+        	        RegisterActionComponent( action, id, ( attrType == null ) ? null : attrType.Value,
         	                                 filters );
         	    }
         	    catch( Exception ex )
@@ -1168,7 +1167,7 @@ namespace JetBrains.Omea
             IAction action = ( actionParams == null )
                 ? (IAction) Activator.CreateInstance( actionType )
                 : (IAction) Activator.CreateInstance( actionType, actionParams );
-                
+
             _xmlActionCache.Add( cacheKey, action );
             return action;
         }
@@ -1266,7 +1265,7 @@ namespace JetBrains.Omea
         /**
          * Loads an array of action state filters from the specified XML node.
          */
-         
+
         private IActionStateFilter[] LoadFiltersFromXml( Assembly pluginAssembly, XmlNode node, string ns,
                                                          TabFilterMode tabFilterMode )
         {
@@ -1292,7 +1291,7 @@ namespace JetBrains.Omea
                     string cacheKey = "";
                     filterParams = ParseActionParameters( paramNodes, ref cacheKey );
                 }
-                
+
                 IActionStateFilter filter;
                 if ( filterParams != null )
                 {

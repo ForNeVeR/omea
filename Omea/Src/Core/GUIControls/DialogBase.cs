@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Drawing;
@@ -58,9 +57,9 @@ namespace JetBrains.Omea.GUIControls
         private void InitializeComponent()
         {
             System.Resources.ResourceManager resources = new System.Resources.ResourceManager(typeof(DialogBase));
-            // 
+            //
             // DialogBase
-            // 
+            //
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
             this.ClientSize = new System.Drawing.Size(292, 271);
             this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(204)));
@@ -95,7 +94,7 @@ namespace JetBrains.Omea.GUIControls
         }
 
         /**
-         * Saves the setting store used by the form and restores its settings 
+         * Saves the setting store used by the form and restores its settings
          * from the INI file.
          */
 
@@ -157,7 +156,7 @@ namespace JetBrains.Omea.GUIControls
             string section = GetFormSettingsSection();
             bool maximized = (WindowState == FormWindowState.Maximized);
             settingStore.WriteBool( section, "Maximized", maximized );
-            if ( !maximized ) 
+            if ( !maximized )
             {
                 settingStore.WriteInt( section, "X", Location.X );
                 settingStore.WriteInt( section, "Y", Location.Y );

@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Diagnostics;
@@ -18,7 +17,7 @@ namespace JetBrains.Omea.TextIndex
             isInitializationComplete = false;
             isErrorFlagRaised = false;
             _indexFileName = fileName;
-            try 
+            try
             {
                 _indexFile = new BlobFileSystem( fileName, OMEnv.CachingStrategy, TEXTINDEX_FS_CLUSTER_SIZE );
                 _indexFile.ManualFlush = true;
@@ -39,7 +38,7 @@ namespace JetBrains.Omea.TextIndex
             if( !_indexFile.IsValidHandle( HandleOfHeaderFile ) )
             {
                 int handle;
-                using( BinaryWriter writer = _indexFile.AllocFile( out handle ) ) 
+                using( BinaryWriter writer = _indexFile.AllocFile( out handle ) )
                 {
                     if( HandleOfHeaderFile != handle )
                     {
@@ -48,15 +47,15 @@ namespace JetBrains.Omea.TextIndex
                     IndexConstructor.WriteSignature( writer );
                 }
             }
-            else 
+            else
             {
-                using( BinaryReader header = _indexFile.GetFileReader( HandleOfHeaderFile ) ) 
+                using( BinaryReader header = _indexFile.GetFileReader( HandleOfHeaderFile ) )
                 {
                     header.ReadInt64(); // skip date
                     int version = header.ReadInt32();
-                    if( version != Version ) 
+                    if( version != Version )
                     {
-                        throw new FormatException( "Version of current index is not consistent with currently implemented(" + 
+                        throw new FormatException( "Version of current index is not consistent with currently implemented(" +
                                                    version + ":" + Version + ". Force index reconstruction" );
                     }
                 }

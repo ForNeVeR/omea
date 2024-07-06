@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 #pragma once
 
@@ -30,12 +29,12 @@
 #include <mapiform.h>
 #include <exchform.h>
 
-#ifndef PR_MSG_EDITOR_FORMAT 
+#ifndef PR_MSG_EDITOR_FORMAT
     #define PR_MSG_EDITOR_FORMAT PROP_TAG( PT_LONG, 0x5909 )
-    #define EDITOR_FORMAT_DONTKNOW ((int)0) 
-    #define EDITOR_FORMAT_PLAINTEXT ((int)1) 
-    #define EDITOR_FORMAT_HTML ((int)2) 
-    #define EDITOR_FORMAT_RTF ((int)3) 
+    #define EDITOR_FORMAT_DONTKNOW ((int)0)
+    #define EDITOR_FORMAT_PLAINTEXT ((int)1)
+    #define EDITOR_FORMAT_HTML ((int)2)
+    #define EDITOR_FORMAT_RTF ((int)3)
 #endif
 
 #define PR_BODY_HTML PROP_TAG(PT_TSTRING, 0x1013)

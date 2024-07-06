@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System.IO;
 using System;
@@ -15,7 +14,7 @@ namespace JetBrains.Omea.Database
 	public class DBHelper
 	{
         private static Tracer _tracer = new Tracer( "(DBUtils) DBHelper" );
-                
+
         //-------------------------------------------------------------------------------------
 
 		public const string cFileExtension = ".dbUtil";
@@ -79,7 +78,7 @@ namespace JetBrains.Omea.Database
 		{
 			return Path.Combine( path, dbName ) + "." + tblName + ".table.dbUtil";
 		}
-		public static string GetFullNameForIndex( string path, string dbName, string tblName, 
+		public static string GetFullNameForIndex( string path, string dbName, string tblName,
 			string indexName )
 		{
 			return Path.Combine( path, dbName ) + "_btree." + tblName + "." + indexName +".index.dbUtil";

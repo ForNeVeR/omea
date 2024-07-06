@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.ComponentModel;
@@ -18,17 +17,17 @@ namespace JetBrains.Omea.OpenAPI
     /// Flags that define the input string options.
     /// </summary>
     [Flags]
-    public enum InputStringFlags 
-    { 
+    public enum InputStringFlags
+    {
         /// <summary>
         /// No special options.
         /// </summary>
-        None = 0, 
-        
+        None = 0,
+
         /// <summary>
         /// An empty string is a valid input.
         /// </summary>
-        AllowEmpty = 1 
+        AllowEmpty = 1
     }
 
     /// <summary>
@@ -89,7 +88,7 @@ namespace JetBrains.Omea.OpenAPI
         /// <para>If the pane contains options, which are essential for the plugin and must be set before its first run, the pane should also be submitted to the <see cref="RegisterWizardPane"/> funciton to ensure that it comes up when the plugin is run for the first time.</para>
         /// </remarks>
         void RegisterOptionsPane( string group, string header, OptionsPaneCreator creator, string prompt );
-        
+
         /// <summary><seealso cref="RegisterOptionsPane"/><seealso cref="RemoveOptionsChangesListener"/>
         /// Registers a callback which is called when any changes are made in the Options dialog pane
         /// with the specified header.
@@ -216,7 +215,7 @@ namespace JetBrains.Omea.OpenAPI
         /// <param name="dialogCaption">The caption of the dialog.</param>
         /// <param name="initialSelection">The resource which is initially selected in the dialog.</param>
         /// <returns>The selected resource, or null if the dialog was cancelled.</returns>
-        IResource SelectResource( IWin32Window ownerWindow, string type, string dialogCaption, 
+        IResource SelectResource( IWin32Window ownerWindow, string type, string dialogCaption,
             IResource initialSelection );
 
         /// <summary>
@@ -229,9 +228,9 @@ namespace JetBrains.Omea.OpenAPI
         /// <param name="initialSelection">The resource which is initially selected in the dialog.</param>
         /// <param name="helpTopic">The help topic which is displayed when the "Help" button is pressed.</param>
         /// <returns>The selected resource, or null if the dialog was cancelled.</returns>
-        IResource SelectResource( IWin32Window ownerWindow, string type, string dialogCaption, 
+        IResource SelectResource( IWin32Window ownerWindow, string type, string dialogCaption,
             IResource initialSelection, string helpTopic );
-        
+
         /// <summary>
         /// Shows the dialog to select multiple resources of the specified type.
         /// </summary>
@@ -267,7 +266,7 @@ namespace JetBrains.Omea.OpenAPI
         /// <param name="dialogCaption">The caption of the dialog.</param>
         /// <returns>The selected resources, or null if the dialog was cancelled.</returns>
         IResourceList SelectResourcesFromList( IResourceList resList, string dialogCaption );
-        
+
         /// <summary>
         /// Shows the dialog to select multiple resources of the specified type, with specified
         /// dialog owner window.
@@ -287,9 +286,9 @@ namespace JetBrains.Omea.OpenAPI
         /// <param name="dialogCaption">The caption of the dialog.</param>
         /// <param name="initialSelection">The resources which are initially selected in the dialog.</param>
         /// <returns>The selected resources, or null if the dialog was cancelled.</returns>
-        IResourceList SelectResources( IWin32Window ownerWindow, string type, string dialogCaption, 
+        IResourceList SelectResources( IWin32Window ownerWindow, string type, string dialogCaption,
             IResourceList initialSelection );
-        
+
         /// <summary>
         /// Shows the dialog to select multiple resources of any of the specified types, with specified
         /// dialog owner window and initial selection.
@@ -299,7 +298,7 @@ namespace JetBrains.Omea.OpenAPI
         /// <param name="dialogCaption">The caption of the dialog.</param>
         /// <param name="initialSelection">The resources which are initially selected in the dialog.</param>
         /// <returns>The selected resources, or null if the dialog was cancelled.</returns>
-        IResourceList SelectResources( IWin32Window ownerWindow, string[] types, string dialogCaption, 
+        IResourceList SelectResources( IWin32Window ownerWindow, string[] types, string dialogCaption,
             IResourceList initialSelection );
 
         /// <summary>
@@ -311,7 +310,7 @@ namespace JetBrains.Omea.OpenAPI
         /// <param name="dialogCaption">The caption of the dialog.</param>
         /// <returns>The selected resources, or null if the dialog was cancelled.</returns>
         IResourceList SelectResourcesFromList( IWin32Window ownerWindow, IResourceList resList, string dialogCaption );
-        
+
         /// <summary>
         /// Shows the dialog to select multiple resources from the specified list, with specified
         /// dialog owner window.
@@ -322,9 +321,9 @@ namespace JetBrains.Omea.OpenAPI
         /// <param name="initialSelection">The resources which are initially selected in the dialog.</param>
         /// <returns>The selected resources, or null if the dialog was cancelled.</returns>
         /// <since>2.0</since>
-        IResourceList SelectResourcesFromList( IWin32Window ownerWindow, IResourceList resList, 
+        IResourceList SelectResourcesFromList( IWin32Window ownerWindow, IResourceList resList,
             string dialogCaption, IResourceList initialSelection );
-        
+
         /// <summary>
         /// Shows the dialog to select multiple resources of the specified type, with specified
         /// dialog owner window, initial selection and a "Help" button.
@@ -335,7 +334,7 @@ namespace JetBrains.Omea.OpenAPI
         /// <param name="initialSelection">The resources which are initially selected in the dialog.</param>
         /// <param name="helpTopic">The help topic which is displayed when the "Help" button is pressed.</param>
         /// <returns>The selected resources, or null if the dialog was cancelled.</returns>
-        IResourceList SelectResources( IWin32Window ownerWindow, string type, string dialogCaption, 
+        IResourceList SelectResources( IWin32Window ownerWindow, string type, string dialogCaption,
             IResourceList initialSelection, string helpTopic );
 
         /// <summary>
@@ -348,9 +347,9 @@ namespace JetBrains.Omea.OpenAPI
         /// <param name="initialSelection">The resources which are initially selected in the dialog.</param>
         /// <param name="helpTopic">The help topic which is displayed when the "Help" button is pressed.</param>
         /// <returns>The selected resources, or null if the dialog was cancelled.</returns>
-        IResourceList SelectResources( IWin32Window ownerWindow, string[] types, string dialogCaption, 
+        IResourceList SelectResources( IWin32Window ownerWindow, string[] types, string dialogCaption,
             IResourceList initialSelection, string helpTopic );
-        
+
         /// <summary>
         /// Shows the dialog to select multiple resources from the specified list, with specified
         /// dialog owner window, initial selection and a "Help" button.
@@ -360,7 +359,7 @@ namespace JetBrains.Omea.OpenAPI
         /// <param name="dialogCaption">The caption of the dialog.</param>
         /// <param name="helpTopic">The help topic which is displayed when the "Help" button is pressed.</param>
         /// <returns>The selected resources, or null if the dialog was cancelled.</returns>
-        IResourceList SelectResourcesFromList( IWin32Window ownerWindow, IResourceList resList, 
+        IResourceList SelectResourcesFromList( IWin32Window ownerWindow, IResourceList resList,
             string dialogCaption, string helpTopic );
 
         /// <summary>
@@ -413,7 +412,7 @@ namespace JetBrains.Omea.OpenAPI
         /// <param name="defaultContentType">The default content type for the new category</param>
         /// <returns>The created category, or null if the user cancelled the dialog.</returns>
         /// <since>2.0</since>
-        IResource ShowNewCategoryDialog( IWin32Window ownerWindow, string defaultName, IResource defaultParent, 
+        IResource ShowNewCategoryDialog( IWin32Window ownerWindow, string defaultName, IResource defaultParent,
             string defaultContentType );
 
         /// <summary>
@@ -462,7 +461,7 @@ namespace JetBrains.Omea.OpenAPI
         /// sidebar pane switches. To override this behavior, use <see cref="DisplayResourceInContext(IResource, bool)"/>.
         /// </para></remarks>
         void DisplayResourceInContext( IResource res );
-        
+
         /// <summary>
         /// Displays the resource in its appropriate context in Omea, optionally performing a navigation even
         /// if the resource is visible in the currently displayed list.
@@ -486,7 +485,7 @@ namespace JetBrains.Omea.OpenAPI
         /// <param name="handler">The handler implementation.</param>
         /// <since>2.0</since>
         void RegisterDisplayInContextHandler( string resType, IDisplayInContextHandler handler );
-        
+
         /// <summary>
         /// Registers the link type between a resource and its location resource, used to display
         /// the resource in context.
@@ -497,7 +496,7 @@ namespace JetBrains.Omea.OpenAPI
         /// <param name="propId">The ID of a link property type which links the resource to its location.</param>
         /// <param name="locationResType">The type of the location resource.</param>
         void RegisterResourceLocationLink( string resType, int propId, string locationResType );
-        
+
         /// <summary>
         /// Registers the default location resource for the specified resource type.
         /// <seealso cref="DisplayResourceInContext(IResource)"/>
@@ -550,7 +549,7 @@ namespace JetBrains.Omea.OpenAPI
         /// resource is currently being dragged. If false, the drag was started from a different view.</param>
         /// <returns>The drag/drop effects to display.</returns>
         /// <since>2.0</since>
-        DragDropEffects ProcessDragOver( IResource targetRes, IDataObject data, DragDropEffects allowedEffect, 
+        DragDropEffects ProcessDragOver( IResource targetRes, IDataObject data, DragDropEffects allowedEffect,
             int keyState, bool sameView );
 
         /// <summary>
@@ -615,7 +614,7 @@ namespace JetBrains.Omea.OpenAPI
         /// <seealso cref="EndUpdateSidebar"/>
         /// <seealso cref="IsSidebarUpdating"/>
         /// </summary>
-        /// <remarks>During batch navigation operations, tab and sidebar pane switches do not cause 
+        /// <remarks>During batch navigation operations, tab and sidebar pane switches do not cause
         /// redisplaying of resource lists in the resource browser.</remarks>
         void BeginUpdateSidebar();
 
@@ -625,7 +624,7 @@ namespace JetBrains.Omea.OpenAPI
         /// <seealso cref="BeginUpdateSidebar"/>
         /// <seealso cref="IsSidebarUpdating"/>
         /// </summary>
-        /// <remarks><para>During batch navigation operations, tab and sidebar pane switches do not cause 
+        /// <remarks><para>During batch navigation operations, tab and sidebar pane switches do not cause
         /// redisplaying of resource lists in the resource browser.</para>
         /// <para>Note that ending a batch navigation operation does not cause an immediate
         /// update of the resource browser. The resource browser must be updated explicitly,
@@ -638,7 +637,7 @@ namespace JetBrains.Omea.OpenAPI
         /// <seealso cref="EndUpdateSidebar"/>
         /// </summary>
         /// <returns>true if a batch navigation operation is in progress, false otherwise.</returns>
-        /// <remarks>During batch navigation operations, tab and sidebar pane switches do not cause 
+        /// <remarks>During batch navigation operations, tab and sidebar pane switches do not cause
         /// redisplaying of resource lists in the resource browser.</remarks>
         bool IsSidebarUpdating();
 
@@ -648,7 +647,7 @@ namespace JetBrains.Omea.OpenAPI
         /// <param name="owner">The object which owns the status writer.</param>
         /// <param name="pane">The status bar pane in which the status writer displays the data.</param>
         /// <returns>The status writer instance.</returns>
-        /// <remarks><para>If the status writer for the same owner is requested multiple times, 
+        /// <remarks><para>If the status writer for the same owner is requested multiple times,
         /// the same instance is returned.</para>
         /// <para>When the status writer is no longer needed, the <see cref="IStatusWriter.ClearStatus"/>
         /// method must be called.</para>
@@ -690,9 +689,9 @@ namespace JetBrains.Omea.OpenAPI
         /// <param name="ownerWindow">The window owning the dialog, or null if the dialog is
         /// owned by the main Omea window.</param>
         /// <returns>The string entered by the user, or null if the dialog was cancelled.</returns>
-        string InputString( string title, string prompt, string initialValue, 
+        string InputString( string title, string prompt, string initialValue,
             ValidateStringDelegate validateDelegate, IWin32Window ownerWindow );
-        
+
         /// <summary>
         /// Shows the dialog prompting a user to enter a string, with possibility to specify extra options.
         /// </summary>
@@ -706,11 +705,11 @@ namespace JetBrains.Omea.OpenAPI
         /// owned by the main Omea window.</param>
         /// <param name="flags">Additional options for the dialog.</param>
         /// <returns>The string entered by the user, or null if the dialog was cancelled.</returns>
-        string InputString( string title, string prompt, string initialValue, 
+        string InputString( string title, string prompt, string initialValue,
             ValidateStringDelegate validateDelegate, IWin32Window ownerWindow, InputStringFlags flags );
 
         /// <summary>
-        /// Shows the dialog prompting a user to enter a string, with possibility to specify 
+        /// Shows the dialog prompting a user to enter a string, with possibility to specify
         /// extra options and a Help button.
         /// </summary>
         /// <param name="title">The title of the dialog.</param>
@@ -725,8 +724,8 @@ namespace JetBrains.Omea.OpenAPI
         /// <param name="helpTopic">The name of the help topic which is displayed when the
         /// user presses the "Help" button.</param>
         /// <returns>The string entered by the user, or null if the dialog was cancelled.</returns>
-        string InputString( string title, string prompt, string initialValue, 
-            ValidateStringDelegate validateDelegate, IWin32Window ownerWindow, InputStringFlags flags, 
+        string InputString( string title, string prompt, string initialValue,
+            ValidateStringDelegate validateDelegate, IWin32Window ownerWindow, InputStringFlags flags,
             string helpTopic );
 
         /// <summary>
@@ -806,7 +805,7 @@ namespace JetBrains.Omea.OpenAPI
         /// </summary>
         /// <since>1.0.2</since>
         event CancelEventHandler MainWindowClosing;
-        
+
         /// <summary>
         /// Gets the name and path of the Omea .CHM help file.
         /// </summary>
@@ -839,7 +838,7 @@ namespace JetBrains.Omea.OpenAPI
 		/// <remarks>
 		/// <para>This function always opens the resource in a new window of the external browser.
 		/// Omea options regarding opening of the links in the internal browser are ignored.
-		/// The browser is encouraged to open a new window for the link, 
+		/// The browser is encouraged to open a new window for the link,
 		/// regardless of the browser's settings for reusing the existing window for opening the new links.</para>
 		/// <para>It depends on Omea settings whether the new Web page is opened thru DDE or Shell Run. The default is to use the DDE.</para>
 		/// </remarks>

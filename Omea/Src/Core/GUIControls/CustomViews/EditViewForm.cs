@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Drawing;
@@ -112,18 +111,18 @@ namespace JetBrains.Omea.GUIControls.CustomViews
                 this.checkInWsps = new System.Windows.Forms.CheckBox();
                 this.buttonChooseWsps = new System.Windows.Forms.Button();
                 this.textWsps = new System.Windows.Forms.TextBox();
-                // 
+                //
                 // checkInWsps
-                // 
+                //
                 this.checkInWsps.FlatStyle = System.Windows.Forms.FlatStyle.System;
                 this.checkInWsps.Location = new Point( 8, _ciFormHeight - 89 );
                 this.checkInWsps.Size = new Size( 100, 20 );
                 this.checkInWsps.Text = "In Workspaces:";
                 this.checkInWsps.CheckStateChanged += new EventHandler(checkInWsps_CheckStateChanged);
                 this.checkInWsps.Anchor = (AnchorStyles)(AnchorStyles.Bottom | AnchorStyles.Left);
-                // 
+                //
                 // buttonChooseWsps
-                // 
+                //
                 this.buttonChooseWsps.Anchor = (AnchorStyles)(AnchorStyles.Bottom | AnchorStyles.Left);
                 this.buttonChooseWsps.FlatStyle = System.Windows.Forms.FlatStyle.System;
                 this.buttonChooseWsps.Location = new System.Drawing.Point(110, _ciFormHeight - 90);
@@ -132,9 +131,9 @@ namespace JetBrains.Omea.GUIControls.CustomViews
                 this.buttonChooseWsps.TabIndex = 6;
                 this.buttonChooseWsps.Text = "Choose...";
                 this.buttonChooseWsps.Click += new EventHandler(buttonChooseWsps_Click);
-                // 
+                //
                 // textWsps
-                // 
+                //
                 this.textWsps.Anchor = (AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right);
                 this.textWsps.Location = new System.Drawing.Point(180, _ciFormHeight - 90);
                 this.textWsps.Name = "textWsps";
@@ -156,9 +155,9 @@ namespace JetBrains.Omea.GUIControls.CustomViews
                 PlaceBottomControls( _ciShortFormHeight );
             }
 
-            // 
+            //
             // ViewConstructorForm
-            // 
+            //
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
             this.Name = "ViewConstructorForm";
             this.Text = "New View";
@@ -179,7 +178,7 @@ namespace JetBrains.Omea.GUIControls.CustomViews
             okButton.Enabled = false;
             if( isResourceNewAndNameExist( FilterManagerProps.ViewResName ) )
             {
-                DialogResult result = MessageBox.Show( this, "View with such name already exists. Do you want to overwrite it?", 
+                DialogResult result = MessageBox.Show( this, "View with such name already exists. Do you want to overwrite it?",
                                                        "Names collision", MessageBoxButtons.YesNo );
                 if( result == DialogResult.No )
                     return;

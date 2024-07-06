@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Text;
@@ -37,7 +36,7 @@ namespace JetBrains.Omea.Contacts
 
         //---------------------------------------------------------------------
         public bool IsImported
-        { 
+        {
             get { return _resource.HasProp( ContactManager._propImported ); }
         }
         public bool IsMyself
@@ -67,12 +66,12 @@ namespace JetBrains.Omea.Contacts
             get { return GetStringProp( ContactManager._propTitle ); }
             set { SetProp( ContactManager._propTitle, value ); }
         }
-        public string FirstName 
+        public string FirstName
         {
             get { return GetStringProp( ContactManager._propFirstName ); }
             set { SetProp( ContactManager._propFirstName, value ); }
         }
-        public string MiddleName 
+        public string MiddleName
         {
             get { return GetStringProp( ContactManager._propMiddleName ); }
             set { SetProp( ContactManager._propMiddleName, value ); }
@@ -97,12 +96,12 @@ namespace JetBrains.Omea.Contacts
             get { return GetStringProp( ContactManager._propAddress ); }
             set { SetProp( ContactManager._propAddress, value ); }
         }
-        public string Company 
+        public string Company
         {
             get { return GetStringProp( ContactManager._propCompany ); }
             set { SetProp( ContactManager._propCompany, value ); }
         }
-        public string JobTitle 
+        public string JobTitle
         {
             get { return GetStringProp( ContactManager._propJobTitle ); }
             set { SetProp( ContactManager._propJobTitle, value ); }
@@ -120,7 +119,7 @@ namespace JetBrains.Omea.Contacts
                 DateTime curr = DateTime.MinValue;
                 if( _resource.HasProp( Core.ContactManager.Props.LastCorrespondenceDate ))
                     _resource.GetDateProp( Core.ContactManager.Props.LastCorrespondenceDate );
-                
+
                 //  Do not allow to set earlier date than the current one.
                 if( value < curr )
                     throw new ArgumentException( "IContact -- Can not set the date earlier than the current one" );
@@ -136,13 +135,13 @@ namespace JetBrains.Omea.Contacts
 
         public string ContactBody
         {
-            get 
+            get
             {
                 StringBuilder text = StringBuilderPool.Alloc();
                 try
                 {
                     //-------------------------------------------------------------
-                    text.AppendFormat( "{0} {1} {2} {3} {4} {5} {6} {7} {8} ", Title, FirstName, MiddleName, LastName, Suffix, 
+                    text.AppendFormat( "{0} {1} {2} {3} {4} {5} {6} {7} {8} ", Title, FirstName, MiddleName, LastName, Suffix,
                         Address, Company, JobTitle, HomePage );
                     foreach( string phoneName in GetPhoneNames() )
                     {
@@ -184,7 +183,7 @@ namespace JetBrains.Omea.Contacts
                     //-------------------------------------------------------------
                     string resultText = text.ToString();
                     resultText = ContactResolver.CompressBlanks( resultText );
-                
+
                     return resultText;
                 }
                 finally

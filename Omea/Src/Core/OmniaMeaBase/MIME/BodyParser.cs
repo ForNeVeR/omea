@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Text;
@@ -29,7 +28,7 @@ namespace JetBrains.Omea.MIME
 
     public class MessagePart
     {
-        /** 
+        /**
          * ctor for body part
          */
         internal MessagePart( string body, MessagePartTypes type )
@@ -38,7 +37,7 @@ namespace JetBrains.Omea.MIME
             _body = body;
         }
 
-        /** 
+        /**
          * ctor for attachment parts
          */
         internal MessagePart( byte[] bytes, string name )
@@ -90,7 +89,7 @@ namespace JetBrains.Omea.MIME
         private string              _contentId;
     }
 
-    /** 
+    /**
      * MultiPartBody class parses multi-part mime message or plaintext
      * message with uuencoded insertions
      * GetParts() returns list of parts: body and attachments if any
@@ -98,7 +97,7 @@ namespace JetBrains.Omea.MIME
     public class MultiPartBodyParser
     {
         private static readonly char[] _boundaryDelimiters = new char[] {' ', ';' };
-        
+
         public MultiPartBodyParser()
         {
             _bodyBuilder = new StringBuilder();
@@ -120,10 +119,10 @@ namespace JetBrains.Omea.MIME
             _body = body;
             _content_type = content_type;
             _content_transfer_encoding = content_transfer_encoding;
-    
+
             string lowerContentType = content_type.ToLower();
             _charset = DetectCharset( lowerContentType, content_type, defaultCharset );
-    
+
             if( lowerContentType.StartsWith( "multipart" ) )
             {
                 ProcessMutipartBody();
@@ -132,8 +131,8 @@ namespace JetBrains.Omea.MIME
             {
                 ProcessSingleBody();
             }
-    
-            /** 
+
+            /**
              * the last part is always body because it could be combined
              * from several multipart entities, as well as it could be separated
              * with several uuencoded insertions
@@ -145,7 +144,7 @@ namespace JetBrains.Omea.MIME
             if( _htmlBodyBuilder.Length > 0 )
             {
                 string htmlBody = _htmlBodyBuilder.ToString();
-                if( htmlBody.IndexOf( '\0' ) > 0 ) 
+                if( htmlBody.IndexOf( '\0' ) > 0 )
                 {
                     htmlBody = htmlBody.Substring( 2 ).Replace( "\0", string.Empty );
                 }
@@ -191,7 +190,7 @@ namespace JetBrains.Omea.MIME
         private void ProcessSingleBody()
         {
             string[] lines = _body.Split( '\n' );
-            
+
             _partBuilder.Length = 0;
             if( _content_type.ToLower().IndexOf( "/html" ) < 0 )
             {
@@ -235,7 +234,7 @@ namespace JetBrains.Omea.MIME
                     {
                         MessagePart attachment =  (MessagePart) _parts[i];
                         attachment.Name = MIMEParser.TranslateRawStringInCharset( _charset, attachment.Name );
-                    }                
+                    }
                 }
             }
         }
@@ -326,7 +325,7 @@ namespace JetBrains.Omea.MIME
 
         private void ProcessMutipartBody()
         {
-            /** 
+            /**
              * extract boundary from content-type
              */
             string boundary = string.Empty;
@@ -572,7 +571,7 @@ namespace JetBrains.Omea.MIME
             if( MIME_encoding == MessagePartEncoding.Base64 )
             {
                 StringBuilder builder = StringBuilderPool.Alloc();
-                try 
+                try
                 {
                     for( ; i < lines.Length; ++i )
                     {

@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -76,7 +75,7 @@ namespace JetBrains.Omea.ResourceTools
         }
 
         ///<summary>
-        /// Checks if any resources in the specified resource list have the 
+        /// Checks if any resources in the specified resource list have the
         /// Internal flag.
         ///</summary>
         public static bool AnyResourcesInternal( IResourceList resList )
@@ -174,7 +173,7 @@ namespace JetBrains.Omea.ResourceTools
         public static bool IsBaseResourceTypeActive( string type )
         {
             return  type == null ||
-                   ( Core.ResourceStore.ResourceTypes.Exist( type ) && 
+                   ( Core.ResourceStore.ResourceTypes.Exist( type ) &&
                     Core.ResourceStore.ResourceTypes[ type ].OwnerPluginLoaded );
         }
 
@@ -185,7 +184,7 @@ namespace JetBrains.Omea.ResourceTools
         /// <param name="type">Resource type name.</param>
         public static bool IsFileFormatResType( string type )
         {
-            return Core.ResourceStore.ResourceTypes.Exist( type ) && 
+            return Core.ResourceStore.ResourceTypes.Exist( type ) &&
                    Core.ResourceStore.ResourceTypes[ type ].HasFlag( ResourceTypeFlags.FileFormat );
         }
 
@@ -384,7 +383,7 @@ namespace JetBrains.Omea.ResourceTools
                 string[] resTypes = (string[]) unloadedResourceTypes.ToArray( typeof(string) );
                 excludedTypes = Core.ResourceStore.GetAllResourcesLive( resTypes );
             }
-            
+
             foreach( IPropType pt in Core.ResourceStore.PropTypes )
             {
                 if ( pt.HasFlag( PropTypeFlags.SourceLink ) && !pt.OwnerPluginLoaded )
@@ -406,7 +405,7 @@ namespace JetBrains.Omea.ResourceTools
             {
                 IResourceStore store = ICore.Instance.ResourceStore;
                 _customProperties = store.FindResourcesLive( "PropType", "Custom", 1 );
-                _customProperties = _customProperties.Minus( store.FindResources( "PropType", 
+                _customProperties = _customProperties.Minus( store.FindResources( "PropType",
                     "DataType", (int) PropDataType.Link ) );
                 _customProperties.ResourceAdded += OnCustomPropertyAdded;
                 _customProperties.ResourceDeleting += OnCustomPropertyDeleting;

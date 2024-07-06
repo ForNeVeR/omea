@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -29,7 +28,7 @@ namespace JetBrains.Omea.FilePlugin
         private HashMap _initialStatuses;
         private bool _wereChanges;
         private IResource _statusChangingFolder;
-        
+
         internal SetFoldersForm()
         {
             InitializeComponent();
@@ -163,13 +162,13 @@ namespace JetBrains.Omea.FilePlugin
             this._statusBox = new System.Windows.Forms.ComboBox();
             this._foldersTooltip = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
-            // 
+            //
             // _folderList
-            // 
+            //
             this._folderList.AllowColumnReorder = false;
             this._folderList.AllowDrop = true;
-            this._folderList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-                | System.Windows.Forms.AnchorStyles.Left) 
+            this._folderList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._folderList.AutoScroll = true;
             this._folderList.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
@@ -193,18 +192,18 @@ namespace JetBrains.Omea.FilePlugin
             this._folderList.HandleCreated += new System.EventHandler(this._folderList_ListHandleCreated);
             this._folderList.ColumnSizeChanged += new System.EventHandler(this._folderList_ColumnSizeChanged);
             this._folderList.SelectionChanged += new System.EventHandler(this._folderList_SelectedIndexChanged);
-            // 
+            //
             // _addBtn
-            // 
+            //
             this._addBtn.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._addBtn.Location = new System.Drawing.Point(0, 0);
             this._addBtn.Name = "_addBtn";
             this._addBtn.TabIndex = 1;
             this._addBtn.Text = "&Add...";
             this._addBtn.Click += new System.EventHandler(this._addBtn_Click);
-            // 
+            //
             // _deleteBtn
-            // 
+            //
             this._deleteBtn.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._deleteBtn.Location = new System.Drawing.Point(80, 0);
             this._deleteBtn.Name = "_deleteBtn";
@@ -212,9 +211,9 @@ namespace JetBrains.Omea.FilePlugin
             this._deleteBtn.Text = "&Remove";
             this._deleteBtn.Enabled = false;
             this._deleteBtn.Click += new System.EventHandler(this._deleteBtn_Click);
-            // 
+            //
             // _statusBox
-            // 
+            //
             this._statusBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this._statusBox.Location = new System.Drawing.Point(192, 0);
             this._statusBox.Name = "_statusBox";
@@ -222,9 +221,9 @@ namespace JetBrains.Omea.FilePlugin
             this._statusBox.TabIndex = 3;
             this._statusBox.Visible = false;
             this._statusBox.Leave += new System.EventHandler(this._statusBox_Leave);
-            // 
+            //
             // SetFoldersForm
-            // 
+            //
             this.Controls.Add(this._statusBox);
             this.Controls.Add(this._deleteBtn);
             this.Controls.Add(this._addBtn);

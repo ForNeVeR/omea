@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Diagnostics;
@@ -17,12 +16,12 @@ namespace JetBrains.Omea.ResourceStore
     internal class ResourceLinkPredicate: ResourceListPredicate
     {
         private Resource _baseResource;
-        private int      _propType; 
+        private int      _propType;
         private int      _directPropType;
         private int      _reversePropType;
         private bool     _directed;
         private int      _knownType = -1;
-        
+
         internal ResourceLinkPredicate( Resource baseResource, int propType, bool directed )
         {
             _baseResource = baseResource;
@@ -86,8 +85,8 @@ namespace JetBrains.Omea.ResourceStore
             {
                 case LinkChangeType.Add:    return PredicateMatch.Add;
                 case LinkChangeType.Delete: return PredicateMatch.Del;
-                default:                
-                    return res.HasLink( propID, _baseResource ) 
+                default:
+                    return res.HasLink( propID, _baseResource )
                         ? PredicateMatch.Match
                         : PredicateMatch.None;
             }
@@ -119,7 +118,7 @@ namespace JetBrains.Omea.ResourceStore
                 return false;
 
             ResourceLinkPredicate rhs = (ResourceLinkPredicate) obj;
-            return rhs._baseResource.Id == _baseResource.Id && 
+            return rhs._baseResource.Id == _baseResource.Id &&
                 rhs._propType == _propType &&
                 rhs._directed == _directed;
         }
@@ -130,4 +129,3 @@ namespace JetBrains.Omea.ResourceStore
         }
     }
 }
-                                        

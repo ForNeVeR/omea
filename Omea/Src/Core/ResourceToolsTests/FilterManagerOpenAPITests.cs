@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using   System;
 using   JetBrains.Omea.PicoCore;
@@ -867,7 +866,7 @@ namespace FilterManagerTests
         {
             IResourceList toContacts = res.GetLinksOfType( "Contact", "To" );
             return( res.GetLinksOfType( "Contact", "CC" ).Count == 0 &&
-                toContacts.Count == 1 && 
+                toContacts.Count == 1 &&
                 toContacts[ 0 ].Id == Core.ContactManager.MySelf.Resource.Id );
         }
 

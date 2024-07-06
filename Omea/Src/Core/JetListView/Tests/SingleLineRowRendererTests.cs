@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Drawing;
@@ -18,7 +17,7 @@ namespace JetBrains.JetListViewLibrary.Tests
         private SingleLineRowRenderer _rowRenderer;
         private int _scrollRangeChanges;
         private MockControlPainter _controlPainter;
-        
+
         [SetUp] public void SetUp()
         {
             _nodeCollection = new JetListViewNodeCollection( null );
@@ -159,7 +158,7 @@ namespace JetBrains.JetListViewLibrary.Tests
         {
             SetupTreeStructureColumn();
             SetupSizeToContentColumn();
-            
+
             _controlPainter.SetExpectedSize( "Test", new Size( 10, 10 ) );
 	        JetListViewNode node = _nodeCollection.Add( "Test" );
             _nodeCollection.Add( "Test", node );
@@ -172,7 +171,7 @@ namespace JetBrains.JetListViewLibrary.Tests
         {
             SetupTreeStructureColumn();
             SetupSizeToContentColumn();
-            
+
             _controlPainter.SetExpectedSize( "Test", new Size( 10, 10 ) );
             JetListViewNode node = _nodeCollection.Add( "Test" );
             JetListViewNode child = _nodeCollection.Add( "Test", node );
@@ -185,7 +184,7 @@ namespace JetBrains.JetListViewLibrary.Tests
         {
             SetupTreeStructureColumn();
             SetupSizeToContentColumn();
-            
+
             _controlPainter.SetExpectedSize( "Test", new Size( 10, 10 ) );
             JetListViewNode node = _nodeCollection.Add( "Test" );
             JetListViewNode child = _nodeCollection.Add( "Test", node );
@@ -198,7 +197,7 @@ namespace JetBrains.JetListViewLibrary.Tests
         {
             SetupTreeStructureColumn();
             SetupSizeToContentColumn();
-            
+
             _controlPainter.SetExpectedSize( "Test", new Size( 10, 10 ) );
             JetListViewNode node = _nodeCollection.Add( "Test" );
             JetListViewNode child = _nodeCollection.Add( "Test", node );
@@ -227,7 +226,7 @@ namespace JetBrains.JetListViewLibrary.Tests
             MockJetListViewColumn col = new MockJetListViewColumn();
             col.Width = 100;
             _columnCollection.Add( col );
-            
+
             JetListViewNode node = _nodeCollection.Add( "Test" );
             JetListViewNode child = _nodeCollection.Add( "Child", node );
 
@@ -282,7 +281,7 @@ namespace JetBrains.JetListViewLibrary.Tests
 
         [Test] public void SizeToContentOnUpdate()
         {
-            SetupSizeToContentColumn();            
+            SetupSizeToContentColumn();
             _controlPainter.SetExpectedSize( "MockComparable:LongTest", new Size( 20, 10 ) );
             _controlPainter.SetExpectedSize( "MockComparable:Test", new Size( 10, 10 ) );
 
@@ -313,7 +312,7 @@ namespace JetBrains.JetListViewLibrary.Tests
         [Test] public void AutoSize()
         {
             _rowRenderer.VisibleWidth = 10;
-            
+
             MockJetListViewColumn col = new MockJetListViewColumn();
             col.AutoSize = true;
             _columnCollection.Add( col );
@@ -390,7 +389,7 @@ namespace JetBrains.JetListViewLibrary.Tests
         [Test] public void AutoSizeMinWidthMultiple()
         {
             _rowRenderer.VisibleWidth = 30;
-            
+
             _columnCollection.BeginUpdate();
             MockJetListViewColumn col = new MockJetListViewColumn();
             col.AutoSize = true;
@@ -424,7 +423,7 @@ namespace JetBrains.JetListViewLibrary.Tests
             col2.FixedSize = true;
             col2.Width = 20;
             _columnCollection.Add( col2 );
-            
+
             SetupSizeToContentColumn();
             _controlPainter.SetExpectedSize( "Test", new Size( 10, 10 ) );
             _rowRenderer.ScrollRangeChanged += new EventHandler( HandleScrollRangeChanged );
@@ -435,7 +434,7 @@ namespace JetBrains.JetListViewLibrary.Tests
 
 	    private void HandleScrollRangeChanged( object sender, EventArgs e )
 	    {
-            _scrollRangeChanges++;	        
+            _scrollRangeChanges++;
 	    }
 	}
 }

@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -24,7 +23,7 @@ namespace JetBrains.Omea.InstantMessaging.Trillian
         // Resource types used by the plugin.
         private const string _typeTrillianAccount = "TrillianAccount";
         private const string _typeTrillianConversation = "TrillianConversation";
-        
+
         // IDs of the properties used by the plugin. Initialized in RegisterTypes().
         private int _propProtocol;
         private int _propIMAddress;
@@ -43,13 +42,13 @@ namespace JetBrains.Omea.InstantMessaging.Trillian
 
         // The address book where we will collect the contacts imported from Trillian.
         private AddressBook _trillianAB;
-        
+
         /**
          * Initializes the plugin, registers the resource and property types
          * and UI elements used by the plugin, returns the array of resource
          * types for which the plugin is responsible.
          */
-        
+
         public void Register()
         {
             _environment = ICore.Instance;
@@ -136,7 +135,7 @@ namespace JetBrains.Omea.InstantMessaging.Trillian
             // Also note that, for contact merging to work correctly, we need to mark
             // the link type with the ContactAccount flag.
 
-            _propTrillianAcct = _environment.ResourceStore.PropTypes.Register( "TrillianAcct", 
+            _propTrillianAcct = _environment.ResourceStore.PropTypes.Register( "TrillianAcct",
                                                                              PropDataType.Link, PropTypeFlags.ContactAccount );
             _environment.ResourceStore.PropTypes.RegisterDisplayName( _propTrillianAcct, "Trillian Account");
 
@@ -146,7 +145,7 @@ namespace JetBrains.Omea.InstantMessaging.Trillian
             // be linked to Contact resources. We set the Internal flag because the
             // account does not need to appear in any views, and the NoIndex flag because
             // the account has no data that could be added to the full-text index.
-            
+
             _environment.ResourceStore.ResourceTypes.Register( _typeTrillianAccount, "Protocol IMAddress",
                 ResourceTypeFlags.Internal | ResourceTypeFlags.NoIndex );
         }
@@ -165,7 +164,7 @@ namespace JetBrains.Omea.InstantMessaging.Trillian
         }
 
         /**
-         * Performs the startup activities of the plugin and starts any 
+         * Performs the startup activities of the plugin and starts any
          * background processes (if needed). Returns true if the startup
          * was successful.
          */
@@ -175,8 +174,8 @@ namespace JetBrains.Omea.InstantMessaging.Trillian
             // Read the "profiles to index" setting. Note that the Startup Wizard
             // is invoked after Register(), so it's too early to read settings in
             // Register().
-            
-            string profilesToIndex = _environment.SettingStore.ReadString( "Trillian", 
+
+            string profilesToIndex = _environment.SettingStore.ReadString( "Trillian",
                 "ProfilesToIndex" );
             ArrayList profileList = new ArrayList( profilesToIndex.Split( ';' ) );
             if ( profileList.Count == 0 )
@@ -215,7 +214,7 @@ namespace JetBrains.Omea.InstantMessaging.Trillian
          * resources in an instance of the embedded browser and pass to it the delegate
          * that will format our resources as HTML.
          */
-        
+
         public IDisplayPane CreateDisplayPane( string resourceType )
         {
             if ( resourceType == _typeTrillianConversation )
@@ -229,7 +228,7 @@ namespace JetBrains.Omea.InstantMessaging.Trillian
          * This method is called by IEBrowserDisplayPane to display the specified resource
          * in the browser.
          */
-        
+
         private void DisplayConversation( IResource resource, AbstractWebBrowser browser, WordPtr[] wordsToHighlight )
         {
             // Ask ConversationManager to format the conversation as HTML and
@@ -247,7 +246,7 @@ namespace JetBrains.Omea.InstantMessaging.Trillian
         private void ImportProfile( TrillianProfile profile )
         {
             _environment.ProgressWindow.UpdateProgress( 0, "Importing Trillian profile " + profile.Name + "...", null );
-            
+
             ImportBuddyGroup( profile.Buddies );
 
             string name      = profile.ReadICQSetting( "name" );
@@ -281,7 +280,7 @@ namespace JetBrains.Omea.InstantMessaging.Trillian
                 }
             }
 
-            
+
 
 
             /*
@@ -306,12 +305,12 @@ namespace JetBrains.Omea.InstantMessaging.Trillian
         	{
         		IResource account = FindOrCreateTrillianAccount( buddy.Protocol, buddy.Address, buddy.Nick );
                 IResource contact = account.GetLinkProp( _propTrillianAcct );
-                
+
                 _trillianAB.AddContact( contact );
         	}
             foreach( TrillianBuddyGroup childGroup in group.Groups )
         	{
-                ImportBuddyGroup( childGroup );        		
+                ImportBuddyGroup( childGroup );
         	}
         }
 
@@ -328,7 +327,7 @@ namespace JetBrains.Omea.InstantMessaging.Trillian
                 return existingAccount;
 
             IResource account = CreateTrillianAccount( protocol, uin, nick );
-            
+
             // Now link the account to a contact. Since Trillian, unlike ICQ or Miranda,
             // doesn't store any information about contacts in the contact list, we could
             // identify the contact only by nickname. This means that we'll create bogus
@@ -352,7 +351,7 @@ namespace JetBrains.Omea.InstantMessaging.Trillian
 
             IResourceList resList = _environment.ResourceStore.FindResources( _typeTrillianAccount,
                 _propIMAddress, uin );
-                
+
             foreach( IResource res in resList )
             {
                 if ( res.GetStringProp( _propProtocol ) == protocol )
@@ -431,7 +430,7 @@ namespace JetBrains.Omea.InstantMessaging.Trillian
                         messageBuffer.Add( msg );
                         continue;
                 	}
-                    correspondentAcct = FindOrCreateTrillianAccount( protocol, log.GetName(), 
+                    correspondentAcct = FindOrCreateTrillianAccount( protocol, log.GetName(),
                         log.CurCorrespondentName );
 
                     ImportFromBuffer( messageBuffer, selfAccount, correspondentAcct );

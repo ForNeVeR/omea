@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.ComponentModel;
@@ -20,14 +19,14 @@ namespace JetBrains.JetListViewLibrary
     public class JetListViewColumn: IDisposable
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public const int MinimumColumnWidth = 0;
 
         private JetListViewColumnCollection _owner = null;
         private int _width = MinimumColumnWidth;
         private int _autoSizeMinWidth = 0;
-        
+
         private bool _autoSize = false;
         private bool _sizeToContent = false;
         private bool _handleAllClicks = false;
@@ -35,7 +34,7 @@ namespace JetBrains.JetListViewLibrary
         private int _rightMargin = 2;
         private bool _fixedSize = false;
         /// <summary>
-        /// 
+        ///
         /// </summary>
         private HorizontalAlignment _alignment = HorizontalAlignment.Left;
         private StringAlignment _verticalAlignment = StringAlignment.Center;
@@ -47,7 +46,7 @@ namespace JetBrains.JetListViewLibrary
         private SortIcon _sortIcon = SortIcon.None;
 
         #region Callback variables
-        
+
         private ItemColorCallback _foreColorCallback;
         private ItemColorCallback _backColorCallback;
         private ItemFontCallback _fontCallback;
@@ -56,7 +55,7 @@ namespace JetBrains.JetListViewLibrary
 	    protected ItemTextCallback _itemToolTipCallback;
 	    protected bool _showHeader;
         protected bool _noWrap = true;
-        
+
         private static FontCache _fontCache = new FontCache();
 
 	    #endregion Callback variables
@@ -75,7 +74,7 @@ namespace JetBrains.JetListViewLibrary
         public event EventHandler WidthChanged;
         public event EventHandler SortIconChanged;
         public event ItemMouseEventHandler MouseDown;
-        
+
         /// <summary>
         /// Occurs when the text of the column is changed.
         /// </summary>
@@ -240,14 +239,14 @@ namespace JetBrains.JetListViewLibrary
 	    }
 
 	    /// <summary>
-        /// 
+        ///
         /// </summary>
         public bool AutoSize
         {
             get
             {
                 return _autoSize;
-            }   
+            }
             set
             {
                 if ( _autoSize != value )
@@ -310,7 +309,7 @@ namespace JetBrains.JetListViewLibrary
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public bool FixedSize
         {
@@ -400,13 +399,13 @@ namespace JetBrains.JetListViewLibrary
         {
         }
 
-        protected internal virtual void DrawNode( Graphics g, Rectangle rc, JetListViewNode node, 
+        protected internal virtual void DrawNode( Graphics g, Rectangle rc, JetListViewNode node,
                                                   RowState state, string highlightText )
         {
             DrawItem( g, rc, node.Data, state, highlightText );
         }
-        
-        protected internal virtual void DrawItem( Graphics g, Rectangle rc, object item, 
+
+        protected internal virtual void DrawItem( Graphics g, Rectangle rc, object item,
                                                   RowState state, string highlightText )
         {
             #region Preconditions
@@ -416,11 +415,11 @@ namespace JetBrains.JetListViewLibrary
             }
             #endregion Preconditions
 
-            Rectangle rcText = new Rectangle( rc.Left + _leftMargin, rc.Top, 
+            Rectangle rcText = new Rectangle( rc.Left + _leftMargin, rc.Top,
                 rc.Width - _leftMargin - _rightMargin, rc.Height );
 
             Rectangle rcFocus = rc;
-            if ( _alignment == HorizontalAlignment.Left && 
+            if ( _alignment == HorizontalAlignment.Left &&
                 ( ( state & (RowState.ActiveSelected | RowState.InactiveSelected | RowState.Focused | RowState.DropTarget) ) != 0 ||
                 highlightText != null ) )
             {
@@ -455,13 +454,13 @@ namespace JetBrains.JetListViewLibrary
 	        g.DrawRectangle( Pens.BlueViolet, rcFocus );
 	    }
 
-	    protected internal Color DrawItemBackground( Graphics g, Rectangle rc, Rectangle rcFocus, 
+	    protected internal Color DrawItemBackground( Graphics g, Rectangle rc, Rectangle rcFocus,
             object item, RowState state, string highlightText )
 	    {
 	        Color textColor = GetItemForeColor( item );
 	        if ( ( state & RowState.Disabled ) != 0 )
 	        {
-	            textColor = SystemColors.GrayText;                
+	            textColor = SystemColors.GrayText;
 	        }
 	        else if ( highlightText != null )
 	        {
@@ -529,13 +528,13 @@ namespace JetBrains.JetListViewLibrary
             int index = itemText.ToLower().IndexOf( hlText.ToLower() );
             if ( index != 0 )
             {
-                return 0;                
+                return 0;
             }
             string itemHlText = itemText.Substring( index, hlText.Length );
             return _owner.ControlPainter.MeasureText( g, itemHlText, GetItemFont( item ) ).Width;
         }
 
-        protected internal virtual void DrawItemText( Graphics g, Rectangle rcText, 
+        protected internal virtual void DrawItemText( Graphics g, Rectangle rcText,
             object item, Color textColor, RowState state, string highlightText )
         {
             string text = GetItemText( item, rcText.Width );
@@ -547,7 +546,7 @@ namespace JetBrains.JetListViewLibrary
                 Rectangle rcHighlight, rcRest;
                 BuildHighlightRects( g,item, highlightText, rcText, 0, out rcHighlight, out rcRest );
 
-                _owner.ControlPainter.DrawText( g, text.Substring( 0, highlightText.Length ), 
+                _owner.ControlPainter.DrawText( g, text.Substring( 0, highlightText.Length ),
                     itemFont, SystemColors.HighlightText, rcHighlight, fmt );
                 _owner.ControlPainter.DrawText( g, text.Substring( highlightText.Length ),
                     itemFont, textColor, rcRest, fmt );

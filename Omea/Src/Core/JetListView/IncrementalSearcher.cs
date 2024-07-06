@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -22,7 +21,7 @@ namespace JetBrains.JetListViewLibrary
         private string _incSearchBuffer = "";
         private bool _incSearching;
 
-	    public IncrementalSearcher( JetListViewNodeCollection nodeCollection, 
+	    public IncrementalSearcher( JetListViewNodeCollection nodeCollection,
             RowListRenderer rowListRenderer, SelectionModel selection )
 	    {
 	        _nodeCollection = nodeCollection;
@@ -56,7 +55,7 @@ namespace JetBrains.JetListViewLibrary
             {
                 return false;
             }
-            
+
             JetListViewNode startNode = _selection.ActiveNode;
             if ( startNode == null )
             {
@@ -72,14 +71,14 @@ namespace JetBrains.JetListViewLibrary
 
                 if ( startNode != _nodeCollection.Nodes [0] )
                 {
-                    return SearchEnumerator( text, 
+                    return SearchEnumerator( text,
                         _nodeCollection.EnumerateVisibleNodesForward( _nodeCollection.Nodes [0] ), startNode );
                 }
             }
             return false;
         }
 
-        private bool SearchEnumerator( string text, IEnumerator searchEnumerator, 
+        private bool SearchEnumerator( string text, IEnumerator searchEnumerator,
             JetListViewNode stopNode )
         {
             while( searchEnumerator.MoveNext() )
@@ -87,7 +86,7 @@ namespace JetBrains.JetListViewLibrary
                 JetListViewNode curNode = (JetListViewNode) searchEnumerator.Current;
                 if ( curNode == stopNode )
                 {
-                    return false;                    
+                    return false;
                 }
 
                 if ( _rowRenderer.MatchIncrementalSearch( curNode, text ) )
@@ -133,7 +132,7 @@ namespace JetBrains.JetListViewLibrary
             JetListViewNode startNode = (dir == MoveDirection.Down)
                 ? _nodeCollection.Nodes [0]
                 : _nodeCollection.LastNode;
-            
+
             if ( curNode == startNode )
             {
                 return false;
@@ -154,10 +153,10 @@ namespace JetBrains.JetListViewLibrary
             {
                 ClearIncrementalSearch();
             }
-            else if ( ( keyData == Keys.F3 || keyData == ( Keys.Shift | Keys.F3 ) ) && 
+            else if ( ( keyData == Keys.F3 || keyData == ( Keys.Shift | Keys.F3 ) ) &&
                 _incSearchBuffer.Length > 0 )
             {
-                if ( !IncrementalSearchNext( _incSearchBuffer, 
+                if ( !IncrementalSearchNext( _incSearchBuffer,
                     (keyData == Keys.F3) ? MoveDirection.Down : MoveDirection.Up ) )
                 {
                     Win32Declarations.MessageBeep( -1 );
@@ -203,7 +202,7 @@ namespace JetBrains.JetListViewLibrary
         {
             if ( !_incSearching )
             {
-                ClearIncrementalSearch();                
+                ClearIncrementalSearch();
             }
         }
 	}

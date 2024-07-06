@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Drawing;
@@ -85,18 +84,18 @@ namespace JetBrains.Omea.DebugPlugin
             this.labelNormForm = new System.Windows.Forms.Label();
             this.labelHC = new System.Windows.Forms.Label();
             this.SuspendLayout();
-            // 
+            //
             // buttonShowContent
-            // 
+            //
             this.buttonShowContent.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.buttonShowContent.Location = new System.Drawing.Point(168, 4);
             this.buttonShowContent.Name = "buttonShowContent";
             this.buttonShowContent.TabIndex = 7;
             this.buttonShowContent.Text = "Show";
             this.buttonShowContent.Click += new System.EventHandler(this.buttonShowContent_Click);
-            // 
+            //
             // buttonOK
-            // 
+            //
             this.buttonOK.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.buttonOK.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.buttonOK.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -105,17 +104,17 @@ namespace JetBrains.Omea.DebugPlugin
             this.buttonOK.Name = "buttonOK";
             this.buttonOK.TabIndex = 9;
             this.buttonOK.Text = "OK";
-            // 
+            //
             // textTermID
-            // 
+            //
             this.textTermID.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(204)));
             this.textTermID.Location = new System.Drawing.Point(64, 4);
             this.textTermID.Name = "textTermID";
             this.textTermID.TabIndex = 6;
             this.textTermID.Text = "";
-            // 
+            //
             // labelTermID
-            // 
+            //
             this.labelTermID.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.labelTermID.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(204)));
             this.labelTermID.Location = new System.Drawing.Point(8, 8);
@@ -123,11 +122,11 @@ namespace JetBrains.Omea.DebugPlugin
             this.labelTermID.Size = new System.Drawing.Size(44, 16);
             this.labelTermID.TabIndex = 5;
             this.labelTermID.Text = "&Term ID:";
-            // 
+            //
             // listEntries
-            // 
-            this.listEntries.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-                | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this.listEntries.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this.listEntries.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
                                                                                           this.TermNumber,
@@ -142,46 +141,46 @@ namespace JetBrains.Omea.DebugPlugin
             this.listEntries.TabIndex = 10;
             this.listEntries.View = System.Windows.Forms.View.Details;
             this.listEntries.DoubleClick += new System.EventHandler(this.DoubleClickedItem);
-            // 
+            //
             // TermNumber
-            // 
+            //
             this.TermNumber.Text = "N";
             this.TermNumber.Width = 33;
-            // 
+            //
             // DocID
-            // 
+            //
             this.DocID.Text = "Doc ID";
             this.DocID.Width = 59;
-            // 
+            //
             // InstancesNumber
-            // 
+            //
             this.InstancesNumber.Text = "Count";
             this.InstancesNumber.Width = 47;
-            // 
+            //
             // ChainedBy
-            // 
+            //
             this.ChainedBy.Text = "Chained By";
             this.ChainedBy.Width = 68;
-            // 
+            //
             // labelNormForm
-            // 
+            //
             this.labelNormForm.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.labelNormForm.Location = new System.Drawing.Point(8, 32);
             this.labelNormForm.Name = "labelNormForm";
             this.labelNormForm.Size = new System.Drawing.Size(236, 20);
             this.labelNormForm.TabIndex = 11;
             this.labelNormForm.Text = "Normalized Form:";
-            // 
+            //
             // labelHC
-            // 
+            //
             this.labelHC.Location = new System.Drawing.Point(8, 52);
             this.labelHC.Name = "labelHC";
             this.labelHC.Size = new System.Drawing.Size(236, 20);
             this.labelHC.TabIndex = 12;
             this.labelHC.Text = "Hash value:";
-            // 
+            //
             // ViewTermIndexContentForm
-            // 
+            //
             this.AcceptButton = this.buttonShowContent;
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
             this.CancelButton = this.buttonOK;

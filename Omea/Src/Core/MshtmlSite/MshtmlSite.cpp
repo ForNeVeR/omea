@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 // JetBrains Omea Mshtml Browser Component
 //
@@ -18,8 +17,8 @@
 #include "resource.h"
 
 // The module attribute causes DllMain, DllRegisterServer and DllUnregisterServer to be automatically implemented for you
-[ module(dll, uuid = "{05765213-D08D-4A03-8E16-215CCBE5F01A}", 
-		 name = "MshtmlSite", 
+[ module(dll, uuid = "{05765213-D08D-4A03-8E16-215CCBE5F01A}",
+		 name = "MshtmlSite",
 		 helpstring = "MshtmlSite 1.0 Type Library",
 		 resource_name = "IDR_MSHTMLSITE") ]
 class CMshtmlSiteModule

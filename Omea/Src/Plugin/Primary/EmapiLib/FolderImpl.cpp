@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 #include "folderimpl.h"
 #include "messageimpl.h"
@@ -51,7 +50,7 @@ void EMAPILib::FolderImpl::CopyTo( IEFolder* destFolder )
 void EMAPILib::FolderImpl::SetMessageStatus( String* entryID, int newStatus, int newStatusMask )
 {
     CheckDisposed();
-    if ( entryID == NULL ) 
+    if ( entryID == NULL )
     {
         Guard::ThrowArgumentNullException( "entryID" );
     }
@@ -61,7 +60,7 @@ void EMAPILib::FolderImpl::SetMessageStatus( String* entryID, int newStatus, int
 int EMAPILib::FolderImpl::GetMessageStatus( String* entryID )
 {
     CheckDisposed();
-    if ( entryID == NULL ) 
+    if ( entryID == NULL )
     {
         Guard::ThrowArgumentNullException( "entryID" );
     }
@@ -83,7 +82,7 @@ String* EMAPILib::FolderImpl::GetFolderID()
 EMAPILib::IEFolder* EMAPILib::FolderImpl::CreateSubFolder( String* name )
 {
     CheckDisposed();
-    if ( name == NULL ) 
+    if ( name == NULL )
     {
         Guard::ThrowArgumentNullException( "name" );
     }
@@ -100,7 +99,7 @@ EMAPILib::IETable* EMAPILib::FolderImpl::GetEnumTableForOwnEmail( )
     ETableSPtr table = (*_eFolder)->GetTable();
     if ( !table.IsNull() )
     {
-        SizedSPropTagArray( 3, atProps ) = 
+        SizedSPropTagArray( 3, atProps ) =
         { 3, (int)PR_SENDER_EMAIL_ADDRESS, (int)PR_SENDER_NAME, (int)PR_MESSAGE_DELIVERY_TIME };
         table->SetColumns( (LPSPropTagArray)&atProps );
         return new ETableImpl( table );
@@ -122,12 +121,12 @@ EMAPILib::IETable* EMAPILib::FolderImpl::GetEnumTable( DateTime dt )
 
         static int tag = GetTag();
 
-        const SizedSPropTagArray( 8, atProps ) = 
-        { 8, (int)PR_ENTRYID, (int)0x66700102, (int)PR_LAST_MODIFICATION_TIME, (int)PR_MESSAGE_CLASS, 
+        const SizedSPropTagArray( 8, atProps ) =
+        { 8, (int)PR_ENTRYID, (int)0x66700102, (int)PR_LAST_MODIFICATION_TIME, (int)PR_MESSAGE_CLASS,
             (int)PR_MESSAGE_FLAGS, (int)PR_MESSAGE_DELIVERY_TIME, tag, PR_BODY };
 
         /*
-        const SizedSPropTagArray( 5, atProps ) = 
+        const SizedSPropTagArray( 5, atProps ) =
         { 5, (int)PR_ENTRYID, (int)PR_TRANSPORT_MESSAGE_HEADERS, (int)PR_MESSAGE_DELIVERY_TIME, 0x801D0003, 0x80240003 };
         */
         HRESULT hr = table->SetColumns( (LPSPropTagArray)&atProps );
@@ -166,7 +165,7 @@ EMAPILib::IETable* EMAPILib::FolderImpl::GetEnumTableForRecordKey( String* recor
     ETableSPtr table = (*_eFolder)->GetTable();
     if ( !table.IsNull() )
     {
-        const SizedSPropTagArray( 3, atProps ) = 
+        const SizedSPropTagArray( 3, atProps ) =
             { 3, (int)PR_ENTRYID, (int)0x66700102, (int)PR_RECORD_KEY };
         table->SetColumns( (LPSPropTagArray)&atProps );
         EntryIDSPtr entry = Helper::HexToEntryID( recordKey );
@@ -218,7 +217,7 @@ EMAPILib::IEMessage* EMAPILib::FolderImpl::OpenMessage( String* entryID )
     {
         Guard::ThrowArgumentNullException( "entryID" );
     }
-    if ( entryID->get_Length() == 0 ) 
+    if ( entryID->get_Length() == 0 )
         throw new System::ArgumentException( "entryID shold not be empty" );
     EntryIDSPtr entry = Helper::HexToEntryID( entryID );
     EMessageSPtr message = (*_eFolder)->OpenMessage( entry );

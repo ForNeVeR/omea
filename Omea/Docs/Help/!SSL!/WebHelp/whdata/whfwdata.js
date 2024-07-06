@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 //	WebHelp 5.10.001
 var gWEA = new Array();
@@ -11,14 +10,14 @@ function aWE()
 	gWEA[len] = new ftsEntry(aWE.arguments);
 }
 
-function ftsEntry(fn_arguments) 
+function ftsEntry(fn_arguments)
 {
-	if (fn_arguments.length && fn_arguments.length >= 1) 
+	if (fn_arguments.length && fn_arguments.length >= 1)
 	{
 		this.sItemName = fn_arguments[0];
 		this.aTopics = null;
 		var nLen = fn_arguments.length;
-		if (nLen > 1) 
+		if (nLen > 1)
 		{
 			this.aTopics = new Array();
 			for (var i = 0; i < nLen - 1; i ++ )
@@ -32,7 +31,7 @@ function ftsEntry(fn_arguments)
 function window_OnLoad()
 {
 	if (parent && parent != this) {
-		if (parent.putFtsWData) 
+		if (parent.putFtsWData)
 		{
 			parent.putFtsWData(gWEA);
 		}

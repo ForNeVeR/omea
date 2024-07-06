@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using JetBrains.Omea.OpenAPI;
@@ -13,7 +12,7 @@ namespace JetBrains.Omea.ResourceTools
      * A simple implementation of IPropertyProvider - the class which can be used
      * to attach extra "virtual" properties to resource lists.
      */
-    
+
     public class SimplePropertyProvider: IPropertyProvider
 	{
         private IntHashTable _propHashTable = new IntHashTable();
@@ -43,7 +42,7 @@ namespace JetBrains.Omea.ResourceTools
                 ResourceChanged( this, new PropertyProviderChangeEventArgs( resourceID, propID, oldValue ) );
             }
         }
-        
+
         public bool HasProp( int propID )
         {
             lock( _propHashTable )

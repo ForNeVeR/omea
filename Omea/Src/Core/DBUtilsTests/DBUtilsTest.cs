@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using JetBrains.Omea.Database;
@@ -12,7 +11,7 @@ namespace DBUtil
     /// <summary>
     /// Summary description for DBUtilsTest.
     /// </summary>
-    /// 
+    ///
 
     public class DBTest
     {
@@ -44,10 +43,10 @@ namespace DBUtil
             database.Build = "Build";
             TableStructure tblPeople = database.CreateTable( "People" );
             tblPeople.CreateColumn( "Id", ColumnType.Integer, true );
-            ColumnStructure colName = 
+            ColumnStructure colName =
                 tblPeople.CreateColumn( "Name", ColumnType.String, true );
             colName = colName;
-            ColumnStructure colAge = 
+            ColumnStructure colAge =
                 tblPeople.CreateColumn( "Age", ColumnType.Integer, false );
             colAge = colAge;
             tblPeople.CreateColumn( "Birthday", ColumnType.DateTime, false );
@@ -55,10 +54,10 @@ namespace DBUtil
 
             TableStructure tblBooks = database.CreateTable( "Books" );
             tblBooks.CreateColumn( "Id", ColumnType.Integer, true );
-            ColumnStructure  colBookName = 
+            ColumnStructure  colBookName =
                 tblBooks.CreateColumn( "Name", ColumnType.String, true );
             colBookName = colBookName;
-            ColumnStructure colPrice = 
+            ColumnStructure colPrice =
                 tblBooks.CreateColumn( "Price", ColumnType.Integer, false );
             colPrice = colPrice;
 
@@ -120,9 +119,9 @@ namespace DBUtil
         {
             DBTest.CreateDB();
             DBStructure dbStruct = new DBStructure( "", "MyPal" );
-			
+
             dbStruct.LoadStructure();
-			
+
             IDatabase database = dbStruct.OpenDatabase( );
             ITable people = database.GetTable( "People" );
             IRecord record = people.NewRecord();

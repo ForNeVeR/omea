@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System.Collections;
 using System.Windows.Forms;
@@ -55,9 +54,9 @@ namespace JetBrains.Omea
 		/// </summary>
 		private void InitializeComponent()
 		{
-            // 
+            //
             // ProtocolHandlerOptionsPane
-            // 
+            //
             this.Name = "ProtocolHandlerOptionsPane";
             this.Size = new System.Drawing.Size(524, 320);
             this.Load += new System.EventHandler(this.OnLoad);
@@ -78,9 +77,9 @@ namespace JetBrains.Omea
 
                 IResource handler = (IResource)_handlers[0];
 
-                string friendlyName = handler.GetPropText( ProtocolHandlersInResourceStore._propFriendlyName ) + ": "; 
+                string friendlyName = handler.GetPropText( ProtocolHandlersInResourceStore._propFriendlyName ) + ": ";
                 _friendlyName.Text = friendlyName.Substring( 0, 1 ).ToUpper() + friendlyName.Remove( 0, 1 );
-                
+
                 bool isDefaultHandler = true;
                 foreach ( IResource protocol in handlers )
                 {
@@ -101,32 +100,32 @@ namespace JetBrains.Omea
                 }
 
                 int coordY = index * 25 + 12;
-                // 
+                //
                 // _friendlyName
-                // 
+                //
                 _friendlyName.FlatStyle = System.Windows.Forms.FlatStyle.System;
                 _friendlyName.Location = new System.Drawing.Point(8, coordY );
                 _friendlyName.Size = new System.Drawing.Size( 200, 20 );
                 _friendlyName.TabIndex = 0;
-                // 
+                //
                 // _defaultText
-                // 
+                //
                 _defaultText.FlatStyle = System.Windows.Forms.FlatStyle.System;
                 _defaultText.Location = new System.Drawing.Point(216, coordY );
                 _defaultText.Size = new System.Drawing.Size(92, 20 );
                 _defaultText.TabIndex = 2;
-                // 
+                //
                 // _makeDefault
-                // 
+                //
                 _makeDefault.FlatStyle = System.Windows.Forms.FlatStyle.System;
                 _makeDefault.Location = new System.Drawing.Point(328, coordY - 4 );
                 _makeDefault.Size = new System.Drawing.Size(88, 23 );
                 _makeDefault.TabIndex = 1;
                 _makeDefault.Text = "Make Default";
                 _makeDefault.Click += new System.EventHandler(this.OnClick);
-                // 
+                //
                 // ProtocolHandlerOptionsPane
-                // 
+                //
                 pane.Controls.Add( _friendlyName );
                 pane.Controls.Add( _defaultText );
                 if ( handler.GetPropText( ProtocolHandlersInResourceStore._propProtocol ).ToLower() != "http" )
@@ -140,8 +139,8 @@ namespace JetBrains.Omea
                 IResource handler = (IResource)_handlers[0];
                 string friendlyName = handler.GetPropText( ProtocolHandlersInResourceStore._propFriendlyName );
                 string message = "Would you like to check on Omea startup that it is the default '" + friendlyName + "' ?";
-                DialogResult result = 
-                    MessageBox.Show( message, Core.ProductFullName, MessageBoxButtons.YesNoCancel, 
+                DialogResult result =
+                    MessageBox.Show( message, Core.ProductFullName, MessageBoxButtons.YesNoCancel,
                         MessageBoxIcon.Question, MessageBoxDefaultButton.Button3 );
                 if ( result == DialogResult.Cancel )
                 {

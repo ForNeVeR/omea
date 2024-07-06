@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -19,14 +18,14 @@ namespace JetBrains.JetListViewLibrary
         /// <summary>
         /// The left edge of the column is anchored to the left side of the view area.
         /// </summary>
-        Left = 1, 
-        
+        Left = 1,
+
         /// <summary>
         /// The right edge of the column is anchored to the right side of the view area.
         /// </summary>
         Right = 2
     }
-    
+
     /// <summary>
     /// Describes the layout of a single column in a multiline column scheme.
     /// </summary>
@@ -158,7 +157,7 @@ namespace JetBrains.JetListViewLibrary
             ColumnAnchor anchor, Color textColor, HorizontalAlignment textAlign )
         {
             _columns.Add( column );
-            _columnSettings.Add( new MultiLineColumnSetting( column, startRow, endRow, startX, width, anchor, 
+            _columnSettings.Add( new MultiLineColumnSetting( column, startRow, endRow, startX, width, anchor,
                 textColor, textAlign ) );
         }
 
@@ -182,7 +181,7 @@ namespace JetBrains.JetListViewLibrary
                 return maxY;
             }
         }
-        
+
         /// <summary>
         /// Returns the number of rows in the column scheme.
         /// </summary>

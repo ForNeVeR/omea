@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.IO;
@@ -37,7 +36,7 @@ namespace JetBrains.Omea.OpenAPI
         /// </summary>
         void DoImportCache();
 	}
-		
+
     /// <summary>
     /// Parser for a single element in an RSS or ATOM feed.
     /// </summary>
@@ -51,7 +50,7 @@ namespace JetBrains.Omea.OpenAPI
         /// parsers).</param>
         /// <param name="reader">The reader positioned after the starting tag of the element.</param>
         void ParseValue( IResource resource, XmlReader reader );
-        
+
         /// <summary>
         /// Checks if a Read() call is needed to move to the next element after
         /// <see cref="ParseValue"/> is completed.
@@ -149,7 +148,7 @@ namespace JetBrains.Omea.OpenAPI
         /// diagnostic messages only).</param>
         /// <param name="importPreview">Whether a preview dialog should be shown before
         /// completing the import.</param>
-        void ImportOpmlStream( Stream importStream, IResource importRoot, 
+        void ImportOpmlStream( Stream importStream, IResource importRoot,
             string importFileName, bool importPreview );
 
         /// <summary>
@@ -199,12 +198,12 @@ namespace JetBrains.Omea.OpenAPI
         /// An event which is fired on the resource thread when the update of an RSS or ATOM feed is completed.
         /// </summary>
         /// <remarks>
-        /// <para>As the event is fired on the resource thread, you don't need to marshal non-read-only 
-        /// resource operations by using the <see cref="ResourceProxy"/>. All the resource modifications 
+        /// <para>As the event is fired on the resource thread, you don't need to marshal non-read-only
+        /// resource operations by using the <see cref="ResourceProxy"/>. All the resource modifications
         /// can be made from the current thread.</para>
-        /// <para>However, thus the UI operations must be marshalled to the UI thread. 
-        /// This can be done by either calling <see cref="System.Windows.Forms.Control.BeginInvoke"/> 
-        /// or using the <see cref="IUIManager.QueueUIJob"/>. You should not call the synchronous 
+        /// <para>However, thus the UI operations must be marshalled to the UI thread.
+        /// This can be done by either calling <see cref="System.Windows.Forms.Control.BeginInvoke"/>
+        /// or using the <see cref="IUIManager.QueueUIJob"/>. You should not call the synchronous
         /// <see cref="System.Windows.Forms.Control.Invoke"/> from the resource thread.</para>
         /// </remarks>
         event ResourceEventHandler FeedUpdated;

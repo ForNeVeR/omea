@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.IO;
@@ -89,7 +88,7 @@ namespace JetBrains.Omea.Base
         {
             return _stream.ToString();
         }
- 
+
         public override bool CanRead
         {
             get
@@ -172,7 +171,7 @@ namespace JetBrains.Omea.Base
                     {
                         throw new InvalidOperationException( "Can't seek before the begin of stream." );
                     }
-                    
+
                     _position = _length - offset;
                     break;
                 }
@@ -297,7 +296,7 @@ namespace JetBrains.Omea.Base
         #endregion
 
         #endregion
-        
+
         #region implementation details
 
         internal Stream GetUnderlyingStream()
@@ -412,7 +411,7 @@ namespace JetBrains.Omea.Base
                             else if( page.Offset + page.Size > length )
                             {
                                 int newSize = (int) ( length - page.Offset );
-                                if( newSize != page.Size ) 
+                                if( newSize != page.Size )
                                 {
                                     page.Size = newSize;
                                     page.SetDirty();
@@ -693,19 +692,19 @@ namespace JetBrains.Omea.Base
             public CachedStream _owner;
             public int _offset;
 
-            public CachedPageKey( CachedStream owner, int offset ) 
+            public CachedPageKey( CachedStream owner, int offset )
             {
                 _owner = owner;
                 _offset = offset;
             }
 
-            public override bool Equals( object o ) 
+            public override bool Equals( object o )
             {
                 CachedPageKey right = (CachedPageKey)o;
                 return Object.ReferenceEquals( right._owner, _owner ) && right._offset == _offset;
             }
 
-            public override int GetHashCode() 
+            public override int GetHashCode()
             {
                 return _owner.GetHashCode() + _offset;
             }
@@ -785,7 +784,7 @@ namespace JetBrains.Omea.Base
 
         public byte this[ int index ]
         {
-            get 
+            get
             {
                 if( index >= _size )
                 {
@@ -850,5 +849,5 @@ namespace JetBrains.Omea.Base
         private int                 _size;
         private byte[]              _page;
         private bool                _isDirty;
-    }    
+    }
 }

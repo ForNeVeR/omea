@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 // © JetBrains, Inc, 2005
 // Written by (H) Serge Baltic
@@ -11,7 +10,7 @@
 #include "..\JetIe.h"
 #include "Resource.h"
 
-COmeaSettingStore::COmeaSettingStore() : 
+COmeaSettingStore::COmeaSettingStore() :
 	CSettingStore(_T("JetBrains"), _T("IexploreOmea"))
 {
 	// Fill in the options list
@@ -23,7 +22,7 @@ COmeaSettingStore::COmeaSettingStore() :
 	AddEntryDefinition(setDeferredSubmitInterval, _T("Deferred Requests"), _T("Submit Attempts Interval"), (long)60);
 
 	// Interval, in seconds, between the submission attempts, when we're starting Omea and waiting for it to start processing the requests
-	AddEntryDefinition(setOmeaStartSubmitInterval, _T("Deferred Requests"), _T("Submit Attempts Interval when Starting Omea"), (long)5);	
+	AddEntryDefinition(setOmeaStartSubmitInterval, _T("Deferred Requests"), _T("Submit Attempts Interval when Starting Omea"), (long)5);
 
 	// Allows retrying top submit the request queue on timer (if not allowed, will be submitted only on successful request)
 	AddEntryDefinition(setAllowSubmitAttempts, _T("Deferred Requests"), _T("Allow Submit Attempts"), (long)1);

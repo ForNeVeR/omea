@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -19,7 +18,7 @@ namespace JetBrains.Omea.ResourceStore
         private string _mask;
 		private string[] _alternatives;
         private BitArray _properties;
-        
+
         public DisplayNameMask( string mask, bool validate )
 		{
             _mask = mask;
@@ -57,7 +56,7 @@ namespace JetBrains.Omea.ResourceStore
         /**
          * Returns true if the display name mask depends on the specified property.
          */
-        
+
         public bool DependsOnProperty( int propID )
         {
             if ( _properties == null || propID >= _properties.Length )
@@ -77,7 +76,7 @@ namespace JetBrains.Omea.ResourceStore
             bool wasSpace = false;
             bool foundProps = false;
             StringBuilder result = StringBuilderPool.Alloc();
-            try 
+            try
             {
                 while ( pos < mask.Length )
                 {
@@ -146,7 +145,7 @@ namespace JetBrains.Omea.ResourceStore
             }
         }
 
-        private static bool CalcProperty( string propName, Resource res, 
+        private static bool CalcProperty( string propName, Resource res,
             StringBuilder result, bool wasSpace, BitArray properties, bool validate )
         {
             bool foundProps = false;
@@ -155,7 +154,7 @@ namespace JetBrains.Omea.ResourceStore
                 return false;
             }
             int propID = MyPalStorage.Storage.GetPropId( propName );
-    
+
             if ( res != null && res.HasProp( propID ) )
             {
                 foundProps = true;

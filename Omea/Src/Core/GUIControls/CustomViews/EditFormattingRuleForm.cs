@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Diagnostics;
@@ -76,7 +75,7 @@ namespace JetBrains.Omea.GUIControls.CustomViews
         #region RecreateFormatting
         private void RecreateFormatting( IResource rule )
         {
-            RecreateFormatting( rule.HasProp( "IsBold" ), rule.HasProp( "IsItalic" ), 
+            RecreateFormatting( rule.HasProp( "IsBold" ), rule.HasProp( "IsItalic" ),
                                 rule.HasProp( "IsUnderline" ), rule.HasProp( "IsStrikeout" ),
                                 rule.GetStringProp( "ForeColor" ), rule.GetStringProp( "BackColor" ) );
         }
@@ -139,61 +138,61 @@ namespace JetBrains.Omea.GUIControls.CustomViews
             this.labelSample = new System.Windows.Forms.Label();
             this.boxFormatting = new GroupBox();
             this.SuspendLayout();
-            // 
-            // boxFormatting 
-            // 
+            //
+            // boxFormatting
+            //
             this.boxFormatting.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.boxFormatting.Location = new Point( 7, 467 );
             this.boxFormatting.Size = new Size( 385, 90 );
             this.boxFormatting.Text = "Formatting";
             this.boxFormatting.Anchor = (AnchorStyles)(AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right);
-            // 
+            //
             // checkBold
-            // 
+            //
             this.checkBold.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.checkBold.Location = new Point( 8, 15 );
             this.checkBold.Size = new Size( 50, 20 );
             this.checkBold.Text = "Bold";
             this.checkBold.CheckStateChanged += new EventHandler(CheckStateChanged);
             this.checkBold.Anchor = (AnchorStyles)(AnchorStyles.Bottom | AnchorStyles.Left);
-            // 
+            //
             // checkItalic
-            // 
+            //
             this.checkItalic.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.checkItalic.Location = new Point( 60, 15 );
             this.checkItalic.Size = new Size( 50, 20 );
             this.checkItalic.Text = "Italic";
             this.checkItalic.CheckStateChanged += new EventHandler(CheckStateChanged);
             this.checkItalic.Anchor = (AnchorStyles)(AnchorStyles.Bottom | AnchorStyles.Left);
-            // 
+            //
             // checkUnderline
-            // 
+            //
             this.checkUnderline.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.checkUnderline.Location = new Point( 120, 15 );
             this.checkUnderline.Size = new Size( 75, 20 );
             this.checkUnderline.Text = "Underline";
             this.checkUnderline.CheckedChanged += new EventHandler(CheckStateChanged);
             this.checkUnderline.Anchor = (AnchorStyles)(AnchorStyles.Bottom | AnchorStyles.Left);
-            // 
+            //
             // checkStrikeout
-            // 
+            //
             this.checkStrikeout.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.checkStrikeout.Location = new Point( 200, 15 );
             this.checkStrikeout.Size = new Size( 75, 20 );
             this.checkStrikeout.Text = "Strikeout";
             this.checkStrikeout.CheckStateChanged += new EventHandler(CheckStateChanged);
             this.checkStrikeout.Anchor = (AnchorStyles)(AnchorStyles.Bottom | AnchorStyles.Left);
-            // 
+            //
             // labelBackground
-            // 
+            //
             this.labelBackground.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.labelBackground.Location = new Point( 8, 40 );
             this.labelBackground.Size = new Size( 90, 16 );
             this.labelBackground.Text = "Background Color:";
             this.labelBackground.Anchor = (AnchorStyles)(AnchorStyles.Bottom | AnchorStyles.Left);
-            // 
+            //
             // panelBackground
-            // 
+            //
             this.panelBackground.AutoScroll = false;
             this.panelBackground.BackColor = System.Drawing.SystemColors.Window;
             this.panelBackground.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
@@ -202,9 +201,9 @@ namespace JetBrains.Omea.GUIControls.CustomViews
             this.panelBackground.Size = new System.Drawing.Size(70, 20);
             this.panelBackground.TabIndex = 4;
             this.panelBackground.Anchor = (AnchorStyles)(AnchorStyles.Bottom | AnchorStyles.Left);
-            // 
+            //
             // buttonChangeBackground
-            // 
+            //
             this.buttonChangeBackground.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.buttonChangeBackground.Location = new System.Drawing.Point(180, 38);
             this.buttonChangeBackground.Size = new System.Drawing.Size(22, 20);
@@ -213,17 +212,17 @@ namespace JetBrains.Omea.GUIControls.CustomViews
             this.buttonChangeBackground.Text = "...";
             this.buttonChangeBackground.Click += new EventHandler(buttonChangeBackground_Click);
             this.buttonChangeBackground.Anchor = (AnchorStyles)(AnchorStyles.Bottom | AnchorStyles.Left);
-            // 
+            //
             // labelForeground
-            // 
+            //
             this.labelForeground.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.labelForeground.Location = new Point( 8, 65 );
             this.labelForeground.Size = new Size( 90, 16 );
             this.labelForeground.Text = "Foreground Color:";
             this.labelForeground.Anchor = (AnchorStyles)(AnchorStyles.Bottom | AnchorStyles.Left);
-            // 
+            //
             // panelForeground
-            // 
+            //
             this.panelForeground.AutoScroll = false;
             this.panelForeground.BackColor = System.Drawing.Color.Black;
             this.panelForeground.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
@@ -232,9 +231,9 @@ namespace JetBrains.Omea.GUIControls.CustomViews
             this.panelForeground.Size = new System.Drawing.Size(70, 20);
             this.panelForeground.TabIndex = 4;
             this.panelForeground.Anchor = (AnchorStyles)(AnchorStyles.Bottom | AnchorStyles.Left);
-            // 
+            //
             // buttonChangeForeground
-            // 
+            //
             this.buttonChangeForeground.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.buttonChangeForeground.Location = new System.Drawing.Point(180, 63);
             this.buttonChangeForeground.Size = new System.Drawing.Size(22, 20);
@@ -243,9 +242,9 @@ namespace JetBrains.Omea.GUIControls.CustomViews
             this.buttonChangeForeground.Text = "...";
             this.buttonChangeForeground.Click += new EventHandler(buttonChangeForeground_Click);
             this.buttonChangeForeground.Anchor = (AnchorStyles)(AnchorStyles.Bottom | AnchorStyles.Left);
-            // 
+            //
             // panelSample
-            // 
+            //
             this.panelSample.AutoScroll = false;
             this.panelSample.BackColor = System.Drawing.Color.White;
             this.panelSample.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
@@ -254,16 +253,16 @@ namespace JetBrains.Omea.GUIControls.CustomViews
             this.panelSample.Size = new System.Drawing.Size(83, 45);
             this.panelSample.TabIndex = 4;
             this.panelSample.Anchor = (AnchorStyles)(AnchorStyles.Bottom | AnchorStyles.Left);
-            // 
+            //
             // labelSample
-            // 
+            //
             this.labelSample.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.labelSample.Location = new Point( 9, 15 );
             this.labelSample.Size = new Size( 70, 16 );
             this.labelSample.Text = "AaBbCcDdEe";
-            // 
+            //
             // EditFormattingRuleForm
-            // 
+            //
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
             this.ClientSize = new System.Drawing.Size(398, ciFormHeight);
             this.MinimumSize = new Size( 320, 350 );
@@ -305,7 +304,7 @@ namespace JetBrains.Omea.GUIControls.CustomViews
             if( areNamesDiffer( _editHeading.Text, InitialName ) &&
                ( Core.FormattingRuleManager.FindRule( _editHeading.Text ) != null ))
             {
-                DialogResult result = MessageBox.Show( this, "A Font and Color rule with such name already exists. Do you want to overwrite it?", 
+                DialogResult result = MessageBox.Show( this, "A Font and Color rule with such name already exists. Do you want to overwrite it?",
                                                        "Names collision", MessageBoxButtons.YesNo );
                 if( result == DialogResult.No )
                     return;

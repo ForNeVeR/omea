@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using JetBrains.Omea.OpenAPI;
 
@@ -76,8 +75,8 @@ namespace JetBrains.Omea.Favorites
         }
 
 		#region Component Designer generated code
-		/// <summary> 
-		/// Required method for Designer support - do not modify 
+		/// <summary>
+		/// Required method for Designer support - do not modify
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent()
@@ -88,10 +87,10 @@ namespace JetBrains.Omea.Favorites
             this._importOnStartupButton = new System.Windows.Forms.RadioButton();
             this._howToImportGroupBox.SuspendLayout();
             this.SuspendLayout();
-            // 
+            //
             // _importCheckBox
-            // 
-            this._importCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._importCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._importCheckBox.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._importCheckBox.Location = new System.Drawing.Point(0, 0);
@@ -100,10 +99,10 @@ namespace JetBrains.Omea.Favorites
             this._importCheckBox.TabIndex = 2;
             this._importCheckBox.Text = "Import bookmarks from &Opera";
             this._importCheckBox.CheckedChanged += new System.EventHandler(this._importCheckBox_CheckedChanged);
-            // 
+            //
             // _howToImportGroupBox
-            // 
-            this._howToImportGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._howToImportGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._howToImportGroupBox.Controls.Add(this._importImmediatelyButton);
             this._howToImportGroupBox.Controls.Add(this._importOnStartupButton);
@@ -113,27 +112,27 @@ namespace JetBrains.Omea.Favorites
             this._howToImportGroupBox.TabIndex = 3;
             this._howToImportGroupBox.TabStop = false;
             this._howToImportGroupBox.Text = "&How to import";
-            // 
+            //
             // _importImmediatelyButton
-            // 
+            //
             this._importImmediatelyButton.Location = new System.Drawing.Point(8, 16);
             this._importImmediatelyButton.Name = "_importImmediatelyButton";
             this._importImmediatelyButton.Size = new System.Drawing.Size(436, 24);
             this._importImmediatelyButton.TabIndex = 1;
             this._importImmediatelyButton.Text = "Immediately &after changes";
-            // 
+            //
             // _importOnStartupButton
-            // 
-            this._importOnStartupButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._importOnStartupButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._importOnStartupButton.Location = new System.Drawing.Point(8, 40);
             this._importOnStartupButton.Name = "_importOnStartupButton";
             this._importOnStartupButton.Size = new System.Drawing.Size(440, 24);
             this._importOnStartupButton.TabIndex = 0;
             this._importOnStartupButton.Text = "On &startup only";
-            // 
+            //
             // OperaOptionsPane
-            // 
+            //
             this.Controls.Add(this._howToImportGroupBox);
             this.Controls.Add(this._importCheckBox);
             this.Name = "OperaOptionsPane";

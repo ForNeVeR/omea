@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Drawing;
@@ -24,8 +23,8 @@ namespace JetBrains.Omea.GUIControls
 		protected string _emptyText;
         protected Timer _incSearchTimer = new Timer();
 		/// <summary>
-		/// Indicates the current running-state of the <see cref="_incSearchTimer"/> timer; 
-		/// the timer's own <see cref="Timer.Enabled"/> property is updated asynchronously 
+		/// Indicates the current running-state of the <see cref="_incSearchTimer"/> timer;
+		/// the timer's own <see cref="Timer.Enabled"/> property is updated asynchronously
 		/// to avoid fucking reentrancy on <see cref="Timer.Stop"/>.
 		/// </summary>
 		protected bool	_bSearchTimerRunning = false;
@@ -46,7 +45,7 @@ namespace JetBrains.Omea.GUIControls
 		/// Context provider.
 		/// </summary>
 		protected IContextProvider	_contextProvider;
-        
+
         public JetTextBox()
 		{
             _incSearchTimer.Interval = 300;
@@ -336,7 +335,7 @@ namespace JetBrains.Omea.GUIControls
 					contextBase = ((IContextProvider)Parent).GetContext( kind );
 					break;
 				}
-                
+
 				ctrlCurrent = ctrlCurrent.Parent;	// Go up
 			}
 

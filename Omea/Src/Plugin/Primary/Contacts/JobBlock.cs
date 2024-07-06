@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 
 using JetBrains.Omea.OpenAPI;
@@ -12,7 +11,7 @@ namespace JetBrains.Omea.ContactsPlugin
 	/**
      * Contact view block for editing work information.
      */
-    
+
     internal class JobBlock: AbstractContactViewBlock
 	{
         private System.Windows.Forms.Label label3;
@@ -36,7 +35,7 @@ namespace JetBrains.Omea.ContactsPlugin
             return new JobBlock();
         }
 
-		/// <summary> 
+		/// <summary>
 		/// Clean up any resources being used.
 		/// </summary>
 		protected override void Dispose( bool disposing )
@@ -52,8 +51,8 @@ namespace JetBrains.Omea.ContactsPlugin
 		}
 
 		#region Component Designer generated code
-		/// <summary> 
-		/// Required method for Designer support - do not modify 
+		/// <summary>
+		/// Required method for Designer support - do not modify
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent()
@@ -63,10 +62,10 @@ namespace JetBrains.Omea.ContactsPlugin
             this.label4 = new System.Windows.Forms.Label();
             this._company = new JetBrains.Omea.ContactsPlugin.PropertyEditor();
             this.SuspendLayout();
-            // 
+            //
             // _jobTitle
-            // 
-            this._jobTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._jobTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._jobTitle.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(204)));
             this._jobTitle.Location = new System.Drawing.Point(92, 4);
@@ -75,9 +74,9 @@ namespace JetBrains.Omea.ContactsPlugin
             this._jobTitle.ReadOnly = false;
             this._jobTitle.Size = new System.Drawing.Size(120, 24);
             this._jobTitle.TabIndex = 8;
-            // 
+            //
             // label3
-            // 
+            //
             this.label3.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label3.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(204)));
             this.label3.Location = new System.Drawing.Point(4, 4);
@@ -85,9 +84,9 @@ namespace JetBrains.Omea.ContactsPlugin
             this.label3.Size = new System.Drawing.Size(56, 16);
             this.label3.TabIndex = 9;
             this.label3.Text = "Job Title:";
-            // 
+            //
             // label4
-            // 
+            //
             this.label4.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label4.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(204)));
             this.label4.Location = new System.Drawing.Point(4, 32);
@@ -95,10 +94,10 @@ namespace JetBrains.Omea.ContactsPlugin
             this.label4.Size = new System.Drawing.Size(64, 16);
             this.label4.TabIndex = 11;
             this.label4.Text = "Company:";
-            // 
+            //
             // _company
-            // 
-            this._company.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._company.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._company.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(204)));
             this._company.Location = new System.Drawing.Point(92, 32);
@@ -107,9 +106,9 @@ namespace JetBrains.Omea.ContactsPlugin
             this._company.ReadOnly = false;
             this._company.Size = new System.Drawing.Size(120, 24);
             this._company.TabIndex = 10;
-            // 
+            //
             // JobBlock
-            // 
+            //
             this.Controls.Add(this._jobTitle);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label4);

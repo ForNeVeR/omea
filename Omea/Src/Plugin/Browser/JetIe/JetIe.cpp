@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 // © JetBrains Inc, 2005
 // Written by (H) Serge Baltic
@@ -69,7 +68,7 @@ CStringA CJetIe::UrlEncode(CStringW sSource)
 			sRet.AppendChar(ToHexChar((sSource[a] & 0x000F) >> 0x00));
 		}
 	}
-	
+
 	return sRet;
 }
 
@@ -363,7 +362,7 @@ CStringW CJetIe::HashMd5(CStringW sData)
 	// Create and init the hash
 	CHashHandle	hash;
 	CHECK_BOOL(CryptCreateHash(cryptProv.GetHandle(), CALG_MD5, NULL, NULL, &hash));
-	CHECK_BOOL(CryptHashData(hash, (const BYTE*)(LPCSTR)sMultibyteData, sMultibyteData.GetLength(), NULL));	
+	CHECK_BOOL(CryptHashData(hash, (const BYTE*)(LPCSTR)sMultibyteData, sMultibyteData.GetLength(), NULL));
 
 	// Retrieve the hashed value
 	DWORD	dwSize = NULL;
@@ -617,7 +616,7 @@ bool CJetIe::GetSelectedText(MSHTMLLite::IHTMLDocument2Ptr oDoc, CStringW *psTex
 		*psText = sText;
 	if(psHtml != NULL)
 		*psHtml = sHtml;
-	return bHasSel;		
+	return bHasSel;
 }
 
 CStringW CJetIe::GetDllVersion(__int64 *pMyVersion) throw(_com_error)
@@ -650,7 +649,7 @@ CStringW CJetIe::GetDllVersion(__int64 *pMyVersion) throw(_com_error)
 
 		// If specified, fill in the version-as-a-number
 		if(pMyVersion != NULL)
-			*pMyVersion = (((__int64)pVI->dwProductVersionMS) << 32) || ((__int64)pVI->dwProductVersionMS);			
+			*pMyVersion = (((__int64)pVI->dwProductVersionMS) << 32) || ((__int64)pVI->dwProductVersionMS);
 
 		return sVersion;
 	}

@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 // JetBrains Omea Mshtml Browser Component
 //
@@ -30,39 +29,39 @@ package JetBrains.Omea.GUIControls.MshtmlBrowser.Tests
 		var	_contentOut : StringBuilder;	// Builds the expected output content
 		var	_offset : int;	// Current offset in the input content
 		var	_rand : Random;
-		
+
 		public SetUpAttribute function Setup() : void
 		{
 			_words = new ArrayList();
-			_hashColoring = new Hashtable();			
+			_hashColoring = new Hashtable();
 			_contentIn = new StringBuilder();
 			_contentOut = new StringBuilder();
 			_offset = 0;
 			_currentColor = 0;
 			_rand = new Random(0x100);
-			
+
 			CreateColors(3);
 		}
-		
+
 		public TearDownAttribute function Shutdown() : void
 		{
 			_words = null;
 			_hashColoring = null;
-			_contentIn = null;			
-			_contentOut = null;			
+			_contentIn = null;
+			_contentOut = null;
 		}
-		
+
 		// Create some <num> human-readable colors and assign to the browser object
 		public function CreateColors( num : int ) : void
 		{
 			var	colors : MshtmlBrowserControl.BiColor[] = new MshtmlBrowserControl.BiColor[ num ];
-			
+
 			for(var a : int = 0; a < num; a++)
 				colors[a] = new MshtmlBrowserControl.BiColor(String.Format("Hilite{0}F", a), String.Format("Hilite{0}B", a));
-				
+
 			MshtmlBrowserControl.HiliteColors = colors;
 		}
-		
+
 		// Adds some text/html to the input content, not intended for matching
 		public function AddText( text : System.String ) : void
 		{
@@ -70,7 +69,7 @@ package JetBrains.Omea.GUIControls.MshtmlBrowser.Tests
 			_contentOut.Append(text);
 			_offset += text.Length;
 		}
-		
+
 		// Adds a search hit to the content and the expected form to the output content.
 		// match — search result, as if received from the text index
 		// original — for checking the highlighting in common color
@@ -81,13 +80,13 @@ package JetBrains.Omea.GUIControls.MshtmlBrowser.Tests
 				original = match;
 			if(escaped == null)
 				escaped = match;
-				
+
 			var	word : WordPtr;
 			word.StartOffset = _offset;
 			word.Text = match;
 			word.Original = original;
 			_words.Add(word);
-			
+
 			// Guess the color
 			var color : MshtmlBrowserControl.BiColor;
 			if( _hashColoring.ContainsKey( word.Original ) )	// Source already known and has a color assigned
@@ -97,17 +96,17 @@ package JetBrains.Omea.GUIControls.MshtmlBrowser.Tests
 				color = MshtmlBrowserControl.HiliteColors[ _currentColor++ ];
 				_currentColor = _currentColor < MshtmlBrowserControl.HiliteColors.Length ? _currentColor : 0;	// Wrap around
 				_hashColoring[ word.Original ] = color;
-			}			
-			
+			}
+
 			_contentIn.Append(escaped);
-			
+
 			_contentOut.Append(String.Format("<span style=\"color: {0}; background-color: {1};\" title=\"Search result for {2}\">", color.ForeColor, color.BackColor, word.Original));
 			_contentOut.Append(escaped);
-			_contentOut.Append( "</span>" );			
-			
-			_offset += escaped.Length;			
+			_contentOut.Append( "</span>" );
+
+			_offset += escaped.Length;
 		}
-		
+
 		// Invokes hilite and checks the result
 		// Forces the catchup (shifts offsets a little bit) if specified
 		public function DoCheck( bForceCatchup ) : void
@@ -119,24 +118,24 @@ package JetBrains.Omea.GUIControls.MshtmlBrowser.Tests
 				word = _words[a];
 				if( (bForceCatchup) && (NoDupeChars(word.Text)) )	// Don't shift words that have duplicate characters — they're not guaranteed to succeed in finding
 				{
-					word.StartOffset -= _rand.Next(word.Text.Length);	// Shift at no more than the word length					
+					word.StartOffset -= _rand.Next(word.Text.Length);	// Shift at no more than the word length
 					word.StartOffset = word.StartOffset > 0 ? word.StartOffset : 0;	// Don't allow to be negative
 				}
 				wordsPtr[a] = word;
 			}
-				
+
 			var	result : System.String = MshtmlBrowserControl.HiliteMain(_contentIn.ToString(), wordsPtr);
-			
+
 			Assert.IsNotNull(result);
-			
+
 			// Strip out the span IDs which are random and cannot be checked by equality
 			var regex : Regex = new Regex(" id\=\"SearchHit\-[a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+\-[a-f0-9]+\"", RegexOptions.None);
 			result = regex.Replace(result, "");
-			
+
 			Assert.AreEqual(_contentOut.ToString(), result);
 			Trace.WriteLine("[OMEA.MSHTML] Test produced: " + result);
 		}
-		
+
 		// Checks if all the chars in the string are unique
 		public static function NoDupeChars( s : System.String ) : boolean
 		{
@@ -146,16 +145,16 @@ package JetBrains.Omea.GUIControls.MshtmlBrowser.Tests
 				if(hash.ContainsKey(ch))
 					return false;
 				hash[ch] = true;
-			}			
+			}
 			return true;
 		}
-		
+
 		public TestAttribute function None() : void
 		{
 			AddText("Hello, World!");
 			DoCheck(false);
 		}
-		
+
 		public TestAttribute function One() : void
 		{
 			AddText("So ");
@@ -164,7 +163,7 @@ package JetBrains.Omea.GUIControls.MshtmlBrowser.Tests
 			DoCheck(false);
 			DoCheck(true);
 		}
-		
+
 		public TestAttribute function PlainMatches() : void
 		{
 			AddText("Rain, oh ");
@@ -181,7 +180,7 @@ package JetBrains.Omea.GUIControls.MshtmlBrowser.Tests
 			DoCheck(false);
 			DoCheck(true);
 		}
-		
+
 		public TestAttribute function SimpleCatchup() : void
 		{
 			var	word : WordPtr;
@@ -190,12 +189,12 @@ package JetBrains.Omea.GUIControls.MshtmlBrowser.Tests
 			word.StartOffset = 0;
 			var	words : WordPtr[] = new WordPtr[1];
 			words[0] = word;
-			
+
 			var result = MshtmlBrowserControl.HiliteMain("The runaway train.", words);
-			
+
 			Assert.IsNotNull(result);
 		}
-		
+
 		public TestAttribute function SimpleFallback() : void
 		{
 			var	word : WordPtr;
@@ -204,12 +203,12 @@ package JetBrains.Omea.GUIControls.MshtmlBrowser.Tests
 			word.StartOffset = 8;
 			var	words : WordPtr[] = new WordPtr[1];
 			words[0] = word;
-			
+
 			var result = MshtmlBrowserControl.HiliteMain("runaway train", words);
-			
+
 			Assert.IsTrue(result == null);
 		}
-		
+
 		public TestAttribute function EntityMatches() : void
 		{
 			AddText("Rain, oh ");
@@ -226,7 +225,7 @@ package JetBrains.Omea.GUIControls.MshtmlBrowser.Tests
 			DoCheck(false);
 			DoCheck(true);
 		}
-		
+
 		public TestAttribute function SameColor() : void
 		{
 			AddText("We ");
@@ -240,7 +239,7 @@ package JetBrains.Omea.GUIControls.MshtmlBrowser.Tests
 			AddText(" ");
 			AddMatch("west", "west", "west");
 			AddText("!");
-			
+
 			DoCheck(false);
 			DoCheck(true);
 		}

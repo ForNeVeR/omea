@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using NUnit.Framework;
 
@@ -12,7 +11,7 @@ namespace CommonTests
     /**
      * Tests for the core ResourceStore functionality.
      */
-    
+
     [TestFixture]
     public class MyPalStorageTests: MyPalDBTests
     {
@@ -92,7 +91,7 @@ namespace CommonTests
             res.SetProp( "DataType", (int) PropDataType.Int );
         }
 
-        [Test, ExpectedException(typeof(StorageException))] 
+        [Test, ExpectedException(typeof(StorageException))]
         public void CheckInvalidPropType()
         {
             IPropType propType = _storage.PropTypes [-255];
@@ -197,7 +196,7 @@ namespace CommonTests
             {
                 Assert.IsFalse( resType.Name == "Test" );
             }
-            
+
             ReopenStorage();
             Assert.IsTrue( !_storage.ResourceTypes.Exist( "Test" ) );
 
@@ -209,7 +208,7 @@ namespace CommonTests
         {
             int propAuthor = _storage.PropTypes.Register( "Author", PropDataType.Link );
             Assert.AreEqual( "Author", _storage.PropTypes.GetPropDisplayName( propAuthor ) );
-            
+
             _storage.PropTypes.RegisterDisplayName( propAuthor, "Creator" );
             Assert.AreEqual( "Creator", _storage.PropTypes.GetPropDisplayName( propAuthor ) );
 
@@ -240,4 +239,4 @@ namespace CommonTests
             Assert.AreEqual( PropDataType.String, _storage.PropTypes [ResourceProps.DisplayName].DataType );
         }
     }
-} 
+}

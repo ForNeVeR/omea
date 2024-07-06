@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 //	WebHelp 5.10.003
 var gsSK2=null;
@@ -302,7 +301,7 @@ function loadFts()
 			}
 			loadFD();
 
-		}				
+		}
 	}
 }
 
@@ -313,7 +312,7 @@ function loadFD()
 		gnLoadFts=1;
 		loadData2(gaData[gnCLF].sPPath+gaData[gnCLF].sDPath+gaData[gnCLF].sFtsFile);
 	}
-	else 
+	else
 	{
 		var oMsg = new whMessage(WH_MSG_BACKUPSEARCH, this, 1, null);
 		if (SendMessage(oMsg))
@@ -373,7 +372,7 @@ function findOneKey()
 		}
 
 		gsSK=sInput;
-		
+
 		if((sCW=="or")||((nSep>=0)&&(gsFtsBreakChars.charAt(nSep)=="|"))){
 			gnCurrentOp=0;
 			gbNot=false;
@@ -586,7 +585,7 @@ function mergewithPreviousResult(aTI)
 						removeItemFromArray(gaTI,i);
 						i--;
 					}
-				}				
+				}
 			}
 		}
 	}else{
@@ -747,7 +746,7 @@ function beginLoading()
 		document.body.insertAdjacentHTML("afterBegin",writeLoadingDiv());
 		oDiv=getElement(gsLoadingDivID);
 	}
-	
+
 	if(oDiv)
 	{
 		oDiv.style.top=document.body.scrollTop;

@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 
@@ -63,7 +62,7 @@ namespace JetBrains.Omea.OpenAPI
 
         /// <summary>
         /// Method tries to find an empty contact linked to the given account and update its fields.
-        /// Otherwise new contact (possibly empty) is created with the specified name fields. 
+        /// Otherwise new contact (possibly empty) is created with the specified name fields.
         /// </summary>
         /// <returns>The wrapper for the contact resource.</returns>
         /// <remarks>1. Method does not link email account resource with the newly created contact.
@@ -131,7 +130,7 @@ namespace JetBrains.Omea.OpenAPI
         IContact FindOrCreateContact( string email, string firstName, string lastName );
 
         /// <summary>
-        /// Locates an existing contact or creates a new contact with the specified set 
+        /// Locates an existing contact or creates a new contact with the specified set
         /// of name fields and e-mail address.
         /// </summary>
         /// <param name="email">The e-mail address of the contact to find or create.</param>
@@ -541,7 +540,7 @@ namespace JetBrains.Omea.OpenAPI
         void UpdateNameFields( string title, string firstName, string midName, string lastName, string suffix );
 
         /// <summary>
-        /// Breaks the specified full name into components and sets the name fields of the contact to the 
+        /// Breaks the specified full name into components and sets the name fields of the contact to the
         /// resulting components.
         /// </summary>
         /// <param name="fullName">The full name of the contact.</param>

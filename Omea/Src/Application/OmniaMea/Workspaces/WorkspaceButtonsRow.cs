@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -26,7 +25,7 @@ namespace JetBrains.Omea
 	{
 		#region Data
 
-		/// <summary> 
+		/// <summary>
 		/// Required designer variable.
 		/// </summary>
 		private Container components = null;
@@ -83,7 +82,7 @@ namespace JetBrains.Omea
 			_nTitleWidth = JetLinkLabel.GetTextSize( this, Text, Font ).Width;
 		}
 
-		/// <summary> 
+		/// <summary>
 		/// Clean up any resources being used.
 		/// </summary>
 		protected override void Dispose( bool disposing )
@@ -102,8 +101,8 @@ namespace JetBrains.Omea
 
 		#region Visual Init
 
-		/// <summary> 
-		/// Required method for Designer support - do not modify 
+		/// <summary>
+		/// Required method for Designer support - do not modify
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponentSelf()
@@ -180,7 +179,7 @@ namespace JetBrains.Omea
 
 		/// <summary>
 		/// Colors used in painting.
-		/// Are filled in by <see cref="SetColors"/> invoked from the <see cref="OnLayout"/> step 
+		/// Are filled in by <see cref="SetColors"/> invoked from the <see cref="OnLayout"/> step
 		/// just because in this case it won't happen on each painting, and the layouter is guaranteed to be called on each change
 		/// that may potentionally affect the coloring.
 		/// </summary>
@@ -726,7 +725,7 @@ namespace JetBrains.Omea
 
 		/// <summary>
 		/// A sub-function of the <see cref="OnLayout"/> function.
-		/// Negotiates the sizes of the main parts according to the user draggings and min/max size constraints, 
+		/// Negotiates the sizes of the main parts according to the user draggings and min/max size constraints,
 		/// returns the part sizes or zeros if the corresponding part should be turned off.
 		/// </summary>
 		private void OnLayout_NegotiateParts( Rectangle rcClient, Size sizeShortcutsMin, Size sizeShortcutsMax, Size sizeWorkspaceMin, Size sizeWorkspaceMax, out int nTitlePart, out int nWspPart, out int nShortcutsPart, out int nFreeSpacePart )
@@ -940,7 +939,7 @@ namespace JetBrains.Omea
 			Rectangle spartRightVBorder = new Rectangle( borders[ 1 ] + (Const.HorSpacingWhenBorder - Const.VerticalRightBorderWidth) / 2, part.Top, Const.VerticalRightBorderWidth, part.Height ); // Rectangle of the right vertical border
 
 			/////////////////////////////////////////////////////
-			// Define the sub-parts around the vertical borders 
+			// Define the sub-parts around the vertical borders
 			// (the vertical borders are not included in either of the sparts; the sparts occupy the whole height)
 			Rectangle spartLeftmost = Rectangle.FromLTRB( part.Left, part.Top, spartLeftVBorder.Left, part.Bottom ); // Subpart to the left of the left vertical border
 			Rectangle spartInbetween = Rectangle.FromLTRB( spartLeftVBorder.Right, part.Top, spartRightVBorder.Left, part.Bottom ); // Subpart between the two vertical borders
@@ -1081,7 +1080,7 @@ namespace JetBrains.Omea
 			bool bAboveBorder = true;
 
 			// Check if the control represents a workspace button and if it's an active button
-			// If yes, it's the only control that is painted below the border and should use a solid brush 
+			// If yes, it's the only control that is painted below the border and should use a solid brush
 			WorkspaceButton wb = sender as WorkspaceButton;
 			if( (wb != null) && (wb.Active) )
 				bAboveBorder = false;

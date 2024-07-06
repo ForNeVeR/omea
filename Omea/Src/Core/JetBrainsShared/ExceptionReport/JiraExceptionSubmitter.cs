@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Net;
@@ -169,10 +168,10 @@ namespace JetBrains.ExceptionReport
                     MapIdToName( issue, statuses, "status" ) );
                 requestDescription.DocumentElement.SetAttribute( "resolution",
                     MapIdToName( issue, resolutions, "resolution" ) );
-                
+
                 XmlElement fixVersionNodes = requestDescription.CreateElement( "fixVersions" );
                 requestDescription.DocumentElement.AppendChild( fixVersionNodes );
-                
+
                 object[] fixVersions = (object[]) issue ["fixVersions"];
                 foreach( object fixVersionObj in fixVersions )
                 {

@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections.Generic;
@@ -1581,7 +1580,7 @@ namespace JetBrains.Omea
             {
                 _viewsFiltering = Core.ResourceStore.ListFromIds( viewIds, false );
             }
-			
+
             // Monitor changes in views
             _viewsAll.ResourceAdded += OnViewAdded;
             _viewsAll.ResourceChanged += OnViewChanged;
@@ -1773,7 +1772,7 @@ namespace JetBrains.Omea
 		/// <summary>
 		/// Updates the number of pages in the newspaper.
 		/// Also this function notifies of switching the pages which causes the set of items to update, in case the object is in working state.
-		/// This function is called initially and from <see cref="RecalculatePage"/>. Does not update <see cref="ItemsOnPage"/>, 
+		/// This function is called initially and from <see cref="RecalculatePage"/>. Does not update <see cref="ItemsOnPage"/>,
 		///		this must be done by the caller.
 		/// </summary>
 		protected void Repaginate()

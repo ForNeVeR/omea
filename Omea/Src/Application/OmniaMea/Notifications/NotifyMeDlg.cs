@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Drawing;
@@ -96,44 +95,44 @@ namespace JetBrains.Omea
             this._openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this._actionPanel.SuspendLayout();
             this.SuspendLayout();
-            // 
+            //
             // _btnOK
-            // 
+            //
             this._btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this._btnOK.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._btnOK.Location = new System.Drawing.Point(220, 252);
             this._btnOK.Name = "_btnOK";
             this._btnOK.TabIndex = 0;
             this._btnOK.Text = "OK";
-            // 
+            //
             // _btnCancel
-            // 
+            //
             this._btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this._btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._btnCancel.Location = new System.Drawing.Point(304, 252);
             this._btnCancel.Name = "_btnCancel";
             this._btnCancel.TabIndex = 1;
             this._btnCancel.Text = "Cancel";
-            // 
+            //
             // label1
-            // 
+            //
             this.label1.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label1.Location = new System.Drawing.Point(4, 4);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(148, 16);
             this.label1.TabIndex = 2;
             this.label1.Text = "Notify when messages arrive:";
-            // 
+            //
             // _separator
-            // 
+            //
             this._separator.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this._separator.Location = new System.Drawing.Point(4, 44);
             this._separator.Name = "_separator";
             this._separator.Size = new System.Drawing.Size(380, 4);
             this._separator.TabIndex = 3;
-            // 
+            //
             // _actionPanel
-            // 
+            //
             this._actionPanel.Controls.Add(this._edtMessage);
             this._actionPanel.Controls.Add(this._edtSoundName);
             this._actionPanel.Controls.Add(this._chkShowMessage);
@@ -144,9 +143,9 @@ namespace JetBrains.Omea
             this._actionPanel.Name = "_actionPanel";
             this._actionPanel.Size = new System.Drawing.Size(384, 84);
             this._actionPanel.TabIndex = 10;
-            // 
+            //
             // _edtMessage
-            // 
+            //
             this._edtMessage.Enabled = false;
             this._edtMessage.Location = new System.Drawing.Point(128, 56);
             this._edtMessage.Name = "_edtMessage";
@@ -154,9 +153,9 @@ namespace JetBrains.Omea
             this._edtMessage.TabIndex = 15;
             this._edtMessage.Text = "";
             this._edtMessage.TextChanged += new System.EventHandler(this._edtMessage_TextChanged);
-            // 
+            //
             // _edtSoundName
-            // 
+            //
             this._edtSoundName.Enabled = false;
             this._edtSoundName.Location = new System.Drawing.Point(128, 28);
             this._edtSoundName.Name = "_edtSoundName";
@@ -164,9 +163,9 @@ namespace JetBrains.Omea
             this._edtSoundName.TabIndex = 12;
             this._edtSoundName.Text = "";
             this._edtSoundName.TextChanged += new System.EventHandler(this._edtSoundName_TextChanged);
-            // 
+            //
             // _chkShowMessage
-            // 
+            //
             this._chkShowMessage.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._chkShowMessage.Location = new System.Drawing.Point(8, 60);
             this._chkShowMessage.Name = "_chkShowMessage";
@@ -174,18 +173,18 @@ namespace JetBrains.Omea
             this._chkShowMessage.TabIndex = 14;
             this._chkShowMessage.Text = "Show Message";
             this._chkShowMessage.CheckedChanged += new System.EventHandler(this._chkShowMessage_CheckedChanged);
-            // 
+            //
             // _btnBrowse
-            // 
+            //
             this._btnBrowse.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._btnBrowse.Location = new System.Drawing.Point(304, 28);
             this._btnBrowse.Name = "_btnBrowse";
             this._btnBrowse.TabIndex = 13;
             this._btnBrowse.Text = "Browse...";
             this._btnBrowse.Click += new System.EventHandler(this._btnBrowse_Click);
-            // 
+            //
             // _chkPlaySound
-            // 
+            //
             this._chkPlaySound.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._chkPlaySound.Location = new System.Drawing.Point(8, 32);
             this._chkPlaySound.Name = "_chkPlaySound";
@@ -193,22 +192,22 @@ namespace JetBrains.Omea
             this._chkPlaySound.TabIndex = 11;
             this._chkPlaySound.Text = "Play Sound";
             this._chkPlaySound.CheckedChanged += new System.EventHandler(this._chkPlaySound_CheckedChanged);
-            // 
+            //
             // _chkShowDesktopAlert
-            // 
+            //
             this._chkShowDesktopAlert.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._chkShowDesktopAlert.Location = new System.Drawing.Point(8, 4);
             this._chkShowDesktopAlert.Name = "_chkShowDesktopAlert";
             this._chkShowDesktopAlert.Size = new System.Drawing.Size(172, 20);
             this._chkShowDesktopAlert.TabIndex = 10;
             this._chkShowDesktopAlert.Text = "Show Desktop Alert";
-            // 
+            //
             // _openFileDialog
-            // 
+            //
             this._openFileDialog.Filter = "Sound files (*.WAV)|*.WAV|All files|*.*";
-            // 
+            //
             // NotifyMeDlg
-            // 
+            //
             this.AcceptButton = this._btnOK;
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
             this.CancelButton = this._btnCancel;
@@ -312,7 +311,7 @@ namespace JetBrains.Omea
                 chkCondition.Text = GetNotifyConditionName( condition );
                 chkCondition.Size = new Size( Width - 12, _ConditionCheckboxVerSize );
                 chkCondition.CheckedChanged += new EventHandler( OnConditionCheckedChanged );
-                
+
                 if ( rule != null )
                 {
                     chkCondition.Checked = IsConditionTemplateUsed( condition, rule );
@@ -335,7 +334,7 @@ namespace JetBrains.Omea
 	    /**
          * If all conditions are unchecked, disables the OK button
          */
-        
+
         private void UpdateButtonState()
 	    {
             bool anyChecked = true;
@@ -447,7 +446,7 @@ namespace JetBrains.Omea
          * Returns the array of conditions for the selected condition template
          * or templates.
          */
-        
+
         private IResource[] BuildRuleConditions( out string ruleName )
         {
             StringBuilder ruleNameBuilder = new StringBuilder( "Notify Me: " );
@@ -472,7 +471,7 @@ namespace JetBrains.Omea
                     }
                 }
             }
-            
+
             ruleName = ruleNameBuilder.ToString();
             return (IResource[]) conditions.ToArray( typeof(IResource) );
         }
@@ -480,7 +479,7 @@ namespace JetBrains.Omea
         /**
          * Creates a condition with an appropriate parameter from the specified template.
          */
-        
+
         private IResource BuildRuleCondition( IResource conditionTemplate )
         {
             IResource param = GetConditionParameter( conditionTemplate );
@@ -491,7 +490,7 @@ namespace JetBrains.Omea
         /**
          * Returns an array of rule actions currently checked in the dialog.
          */
-        
+
         private IResource[] BuildRuleActions()
         {
             ArrayList ruleActions = new ArrayList();
@@ -521,7 +520,7 @@ namespace JetBrains.Omea
          * Returns the name of the condition displayed in the dialog for the specified
          * condition template.
          */
-        
+
         private string GetNotifyConditionName( IResource conditionTemplate )
         {
             IResource param = GetConditionParameter( conditionTemplate );
@@ -537,7 +536,7 @@ namespace JetBrains.Omea
                     int endPercent = visualName.IndexOf( '%', startPercent+1 );
                     if ( endPercent >= 0 )
                     {
-                        return visualName.Substring( 0, startPercent ) + "'" + param.DisplayName + 
+                        return visualName.Substring( 0, startPercent ) + "'" + param.DisplayName +
                             "'" + visualName.Substring( endPercent+1 );
                     }
                 }
@@ -549,11 +548,11 @@ namespace JetBrains.Omea
          * Returns either the target resource or the resource linked to it with the
          * link type registered for the specified condition.
          */
-   
+
         private IResource GetConditionParameter( IResource conditionTemplate )
         {
             int linkType = Core.NotificationManager.GetConditionLinkType( _targetResource.Type, conditionTemplate );
-            
+
             IResource param = (linkType == 0)
                 ? _targetResource
                 : _targetResource.GetLinkProp( linkType );
@@ -562,7 +561,7 @@ namespace JetBrains.Omea
 
         private void _chkPlaySound_CheckedChanged( object sender, EventArgs e )
         {
-            _edtSoundName.Enabled = _chkPlaySound.Checked;        
+            _edtSoundName.Enabled = _chkPlaySound.Checked;
             _btnBrowse.Enabled = _chkPlaySound.Checked;
             UpdateButtonState();
         }

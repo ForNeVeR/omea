@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.IO;
@@ -61,7 +60,7 @@ namespace JetBrains.Omea.Database
                 string secondColumn = structReader.ReadString();
                 if ( _compoundIndexes.Contains( firstColumn ) )
                 {
-                    throw new IndexAlreadyExistsException( "Table structure already contains such compound index: " +  
+                    throw new IndexAlreadyExistsException( "Table structure already contains such compound index: " +
                         firstColumn + " : " + secondColumn );
                 }
                 _compoundIndexes.Add( firstColumn, secondColumn );
@@ -77,8 +76,8 @@ namespace JetBrains.Omea.Database
                     compoundWithValue.valueColumn = structReader.ReadString();
                     if ( _compoundIndexesWithValue.Contains( compoundWithValue.firstColumn ) )
                     {
-                        throw new IndexAlreadyExistsException( "Table structure already contains such compound index with value" +  
-                            compoundWithValue.firstColumn + " : " + compoundWithValue.secondColumn + 
+                        throw new IndexAlreadyExistsException( "Table structure already contains such compound index with value" +
+                            compoundWithValue.firstColumn + " : " + compoundWithValue.secondColumn +
                             " : " + compoundWithValue.valueColumn );
                     }
                     _compoundIndexesWithValue.Add( compoundWithValue.firstColumn, compoundWithValue );
@@ -136,7 +135,7 @@ namespace JetBrains.Omea.Database
 
         public DatabaseMode Mode
         {
-            get 
+            get
             {
                 return _dbStructure.Mode;
             }
@@ -163,8 +162,8 @@ namespace JetBrains.Omea.Database
 
             column.DropIndex();
 
-            string strFullPath = 
-                DBHelper.GetFullNameForIndex( _dbStructure.Path, _dbStructure.Name, 
+            string strFullPath =
+                DBHelper.GetFullNameForIndex( _dbStructure.Path, _dbStructure.Name,
                 Name, column.Name );
             try
             {
@@ -227,8 +226,8 @@ namespace JetBrains.Omea.Database
                 _table.DropCompoundIndex( columnName1 + "#" + columnName2 );
             }
 
-            string strFullPath = 
-                DBHelper.GetFullNameForIndex( _dbStructure.Path, _dbStructure.Name, 
+            string strFullPath =
+                DBHelper.GetFullNameForIndex( _dbStructure.Path, _dbStructure.Name,
                 Name, columnName1 + "#" + columnName2 );
             File.Delete( strFullPath );
             /*try
@@ -256,8 +255,8 @@ namespace JetBrains.Omea.Database
                 _table.DropCompoundIndexWithValue( columnName1 + "#" + columnName2 );
             }
 
-            string strFullPath = 
-                DBHelper.GetFullNameForIndex( _dbStructure.Path, _dbStructure.Name, 
+            string strFullPath =
+                DBHelper.GetFullNameForIndex( _dbStructure.Path, _dbStructure.Name,
                 Name, columnName1 + "#" + columnName2 );
             try
             {
@@ -273,7 +272,7 @@ namespace JetBrains.Omea.Database
         public ColumnStructure CreateColumn( string name, ColumnType type, bool indexPresent )
         {
             _tracer.Trace( "CreateColumn : " + name );
-            if ( !_columns.Contains( name ) ) 
+            if ( !_columns.Contains( name ) )
             {
                 ColumnStructure column = new ColumnStructure( name, type, indexPresent );
                 _columns.Add( name, column );
@@ -284,7 +283,7 @@ namespace JetBrains.Omea.Database
 
         public ColumnStructure GetColumn( string name )
         {
-            if ( !_columns.Contains( name ) ) 
+            if ( !_columns.Contains( name ) )
             {
                 throw new ColumnDoesNotExistException( string.Empty, name );
             }
@@ -294,7 +293,7 @@ namespace JetBrains.Omea.Database
 
         private void CheckIfColumnExists( string columnName )
         {
-            if ( !_columns.Contains( columnName ) ) 
+            if ( !_columns.Contains( columnName ) )
             {
                 throw new ColumnDoesNotExistException( "Column does not exist", columnName );
             }
@@ -347,18 +346,18 @@ namespace JetBrains.Omea.Database
             }
         }
 
-        internal bool Dirty 
-        { 
-            get { return _dirty; } 
-            set 
+        internal bool Dirty
+        {
+            get { return _dirty; }
+            set
             {
                 if ( _dirty != value )
                 {
-                    _dirty = value; 
+                    _dirty = value;
                     _dbStructure.SaveStructure();
                 }
-            } 
-        } 
+            }
+        }
 
         internal void SaveStructure( BinaryWriter structWriter )
         {
@@ -399,7 +398,7 @@ namespace JetBrains.Omea.Database
                 tableDesign.AddColumn( column );
                 if ( colStructure.HasIndex )
                 {
-                    IDBIndex dbIndex = 
+                    IDBIndex dbIndex =
                         new DBIndex( tableDesign, colStructure.Name, column.GetFixedFactory(), null, null, null );
                     tableDesign.AddIndex( colStructure.Name, dbIndex );
                 }
@@ -412,9 +411,9 @@ namespace JetBrains.Omea.Database
                 string secondName = (string)entry.Value;
                 Column secondColumn = tableDesign.GetColumn( secondName );
                 string compoundName = firstName + "#" + secondName;
-                IDBIndex dbIndex = 
-                    new DBIndex( tableDesign, compoundName,  
-                                    new FixedLengthKey_Compound( firstColumn.GetFixedFactory(), secondColumn.GetFixedFactory() ), 
+                IDBIndex dbIndex =
+                    new DBIndex( tableDesign, compoundName,
+                                    new FixedLengthKey_Compound( firstColumn.GetFixedFactory(), secondColumn.GetFixedFactory() ),
                                         firstColumn.GetFixedFactory(), secondColumn.GetFixedFactory(), null );
                 tableDesign.AddCompoundIndex( compoundName, dbIndex );
             }
@@ -427,9 +426,9 @@ namespace JetBrains.Omea.Database
                 Column secondColumn = tableDesign.GetColumn( secondName );
                 Column valueColumn = tableDesign.GetColumn( compoundWithValue.valueColumn );
                 string compoundName = firstName + "#" + secondName;
-                IDBIndex dbIndex = 
-                    new DBIndex( tableDesign, compoundName,  
-                    new FixedLengthKey_CompoundWithValue( firstColumn.GetFixedFactory(), secondColumn.GetFixedFactory(), valueColumn.GetFixedFactory() ), 
+                IDBIndex dbIndex =
+                    new DBIndex( tableDesign, compoundName,
+                    new FixedLengthKey_CompoundWithValue( firstColumn.GetFixedFactory(), secondColumn.GetFixedFactory(), valueColumn.GetFixedFactory() ),
                     firstColumn.GetFixedFactory(), secondColumn.GetFixedFactory(), valueColumn.GetFixedFactory() );
                 tableDesign.AddCompoundIndexWithValue( compoundName, dbIndex, valueColumn.Name );
             }

@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -31,7 +30,7 @@ namespace OutlookPlugin.Tests
             OutlookSession.Initialize( );
         }
 
-        [TearDown] 
+        [TearDown]
         public void TearDown()
         {
             TearDownOutlook();
@@ -62,7 +61,7 @@ namespace OutlookPlugin.Tests
                 Assert.IsNotNull( messages );
                 using ( messages )
                 {
-                    
+
                     Assert.AreEqual( 1, messages.GetCount() );
                     IEMessage mail = messages.OpenMessage( 0 );
                     Assert.IsNotNull( mail );
@@ -94,7 +93,7 @@ namespace OutlookPlugin.Tests
                 Assert.IsNotNull( messages );
                 using ( messages )
                 {
-                    
+
                     Assert.AreEqual( 1, messages.GetCount() );
                     IEMessage task = messages.OpenMessage( 0 );
                     Assert.IsNotNull( task );
@@ -129,7 +128,7 @@ namespace OutlookPlugin.Tests
                         ArrayList categories = OutlookSession.GetCategories( task );
                         Assert.AreEqual( null, categories );
                     }
-                    
+
                 }
             }
         }
@@ -139,7 +138,7 @@ namespace OutlookPlugin.Tests
             public bool FolderFetched(FolderDescriptor parent, FolderDescriptor folder, out FolderDescriptor folderTag)
             {
                 folderTag = folder;
-                IEFolder mapiFolder = 
+                IEFolder mapiFolder =
                     OutlookSession.OpenFolder( folder.FolderIDs.EntryId, folder.FolderIDs.StoreId );
                 if ( mapiFolder != null )
                 {
@@ -233,7 +232,7 @@ namespace OutlookPlugin.Tests
 
 
         }
-        [Test]//, Ignore( "Investigating problems on OMNIAMEA-UNIT")] 
+        [Test]//, Ignore( "Investigating problems on OMNIAMEA-UNIT")]
         public void FreshMailTest()
         {
             foreach ( IEMsgStore msgStore in OutlookSession.GetMsgStores() )

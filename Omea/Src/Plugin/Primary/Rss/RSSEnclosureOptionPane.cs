@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using JetBrains.Omea.GUIControls;
@@ -15,7 +14,7 @@ namespace JetBrains.Omea.RSSPlugin
     /// </summary>
     public class RSSEnclosureOptionPane: AbstractOptionsPane
     {
-        /// <summary> 
+        /// <summary>
         /// Required designer variable.
         /// </summary>
         private System.ComponentModel.Container components = null;
@@ -43,7 +42,7 @@ namespace JetBrains.Omea.RSSPlugin
             InitializeComponent();
         }
 
-        /// <summary> 
+        /// <summary>
         /// Clean up any resources being used.
         /// </summary>
         protected override void Dispose( bool disposing )
@@ -59,8 +58,8 @@ namespace JetBrains.Omea.RSSPlugin
         }
 
         #region Component Designer generated code
-        /// <summary> 
-        /// Required method for Designer support - do not modify 
+        /// <summary>
+        /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
@@ -79,9 +78,9 @@ namespace JetBrains.Omea.RSSPlugin
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.SuspendLayout();
-            // 
+            //
             // _chkDownloadPeriod
-            // 
+            //
             this._chkDownloadPeriod.Changed = false;
             this._chkDownloadPeriod.InvertValue = false;
             this._chkDownloadPeriod.Location = new System.Drawing.Point(0, 132);
@@ -90,33 +89,33 @@ namespace JetBrains.Omea.RSSPlugin
             this._chkDownloadPeriod.TabIndex = 7;
             this._chkDownloadPeriod.Text = "Download fro&m";
             this._chkDownloadPeriod.CheckedChanged+=new EventHandler(_chkDownloadPeriod_CheckedChanged);
-            // 
+            //
             // _edtStartDownload
-            // 
+            //
             this._edtStartDownload.Location = new System.Drawing.Point(120, 132);
             this._edtStartDownload.Name = "_edtStartDownload";
             this._edtStartDownload.Size = new System.Drawing.Size(70, 20);
             this._edtStartDownload.TabIndex = 8;
-            // 
+            //
             // label5
-            // 
+            //
             this.label5.Location = new System.Drawing.Point(190, 134);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(16, 20);
             this.label5.TabIndex = 9;
             this.label5.Text = "&to";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
+            //
             // _edtFinishDownload
-            // 
+            //
             this._edtFinishDownload.Location = new System.Drawing.Point(206, 132);
             this._edtFinishDownload.Name = "_edtFinishDownload";
             this._edtFinishDownload.Size = new System.Drawing.Size(70, 20);
             this._edtFinishDownload.TabIndex = 10;
-            // 
+            //
             // _browseForFolderControl
-            // 
-            this._browseForFolderControl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._browseForFolderControl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._browseForFolderControl.Changed = true;
             this._browseForFolderControl.Location = new System.Drawing.Point(0, 104);
@@ -124,9 +123,9 @@ namespace JetBrains.Omea.RSSPlugin
             this._browseForFolderControl.SelectedPath = "";
             this._browseForFolderControl.Size = new System.Drawing.Size(392, 24);
             this._browseForFolderControl.TabIndex = 6;
-            // 
+            //
             // _chkShowDesktopAlertDownloadComplete
-            // 
+            //
             this._chkShowDesktopAlertDownloadComplete.Changed = false;
             this._chkShowDesktopAlertDownloadComplete.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._chkShowDesktopAlertDownloadComplete.InvertValue = false;
@@ -135,9 +134,9 @@ namespace JetBrains.Omea.RSSPlugin
             this._chkShowDesktopAlertDownloadComplete.Size = new System.Drawing.Size(372, 20);
             this._chkShowDesktopAlertDownloadComplete.TabIndex = 2;
             this._chkShowDesktopAlertDownloadComplete.Text = "Show desktop alert when enclosure downloading &completes";
-            // 
+            //
             // _chkShowDesktopAlertDownloadFailed
-            // 
+            //
             this._chkShowDesktopAlertDownloadFailed.Changed = false;
             this._chkShowDesktopAlertDownloadFailed.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._chkShowDesktopAlertDownloadFailed.InvertValue = false;
@@ -146,9 +145,9 @@ namespace JetBrains.Omea.RSSPlugin
             this._chkShowDesktopAlertDownloadFailed.Size = new System.Drawing.Size(372, 20);
             this._chkShowDesktopAlertDownloadFailed.TabIndex = 3;
             this._chkShowDesktopAlertDownloadFailed.Text = "Show desktop alert when enclosure downloading &fails";
-            // 
+            //
             // _chkCreateSubfolderForEveryFeed
-            // 
+            //
             this._chkCreateSubfolderForEveryFeed.Changed = false;
             this._chkCreateSubfolderForEveryFeed.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._chkCreateSubfolderForEveryFeed.InvertValue = false;
@@ -157,53 +156,53 @@ namespace JetBrains.Omea.RSSPlugin
             this._chkCreateSubfolderForEveryFeed.Size = new System.Drawing.Size(372, 20);
             this._chkCreateSubfolderForEveryFeed.TabIndex = 3;
             this._chkCreateSubfolderForEveryFeed.Text = "Create subfolder for every feed.";
-            // 
+            //
             // button1
-            // 
+            //
             this.button1.Location = new System.Drawing.Point(0, 0);
             this.button1.Name = "button1";
             this.button1.TabIndex = 0;
-            // 
+            //
             // label3
-            // 
+            //
             this.label3.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label3.Location = new System.Drawing.Point(0, 4);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(104, 16);
             this.label3.TabIndex = 0;
             this.label3.Text = "Show desktop alert";
-            // 
+            //
             // groupBox2
-            // 
-            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.Location = new System.Drawing.Point(108, 4);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(296, 8);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
-            // 
+            //
             // label1
-            // 
+            //
             this.label1.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label1.Location = new System.Drawing.Point(0, 84);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(244, 16);
             this.label1.TabIndex = 4;
             this.label1.Text = "&Destination folder for downloaded feed enclosures";
-            // 
+            //
             // groupBox1
-            // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Location = new System.Drawing.Point(248, 84);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(156, 8);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
-            // 
+            //
             // RSSEnclosureOptionPane
-            // 
+            //
             this.Controls.Add(this.label3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this._chkShowDesktopAlertDownloadComplete);
@@ -269,7 +268,7 @@ namespace JetBrains.Omea.RSSPlugin
             //  parseable time of day.
             _chkDownloadPeriod.Checked = _chkDownloadPeriod.Checked && validTime;
             _edtStartDownload.Enabled = _edtFinishDownload.Enabled = _chkDownloadPeriod.Checked;
-                
+
             _chkShowDesktopAlertDownloadComplete.SetSetting( Settings.ShowDesktopAlertWhenEncosureDownloadingComplete );
             _chkShowDesktopAlertDownloadFailed.SetSetting( Settings.ShowDesktopAlertWhenEncosureDownloadingFailed );
             _chkCreateSubfolderForEveryFeed.SetSetting( Settings.CreateSubfolderForEveryFeed );
@@ -282,7 +281,7 @@ namespace JetBrains.Omea.RSSPlugin
 
         public override void OK()
         {
-            _chkDownloadPeriod.Checked = _chkDownloadPeriod.Checked && 
+            _chkDownloadPeriod.Checked = _chkDownloadPeriod.Checked &&
                                          _edtStartDownload.TimeParseable() && _edtFinishDownload.TimeParseable();
 
             Settings.EnclosureDownloadStartHour.Save( _edtStartDownload.Value );
@@ -300,7 +299,7 @@ namespace JetBrains.Omea.RSSPlugin
             IResourceList allFeeds = Core.ResourceStore.GetAllResources( "RSSFeed" );
             foreach( IResource feed in allFeeds )
             {
-                if( feed.GetIntProp( Props.UpdateFrequency ) == oldFreq && 
+                if( feed.GetIntProp( Props.UpdateFrequency ) == oldFreq &&
                     feed.GetStringProp( Props.UpdatePeriod ) == oldPeriod )
                 {
                     feed.BeginUpdate();

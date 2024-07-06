@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using JetBrains.JetListViewLibrary;
@@ -104,7 +103,7 @@ namespace GUIControlsTests
             Assert.AreEqual( CollapseState.Collapsed, node.CollapseState );
 
             node.Expanded = true;
-            Assert.AreEqual( 1, node.Nodes.Count ); 
+            Assert.AreEqual( 1, node.Nodes.Count );
         }
 
         [Test] public void AddNewThread()
@@ -223,7 +222,7 @@ namespace GUIControlsTests
 
             ShowThreadedEmails();
             _listView.Nodes [0].Expanded = true;
-            
+
             Assert.AreEqual( 2, _listView.NodeCollection.VisibleItemCount );
 
             // [-] email1
@@ -270,7 +269,7 @@ namespace GUIControlsTests
             ShowThreadedEmails();
             _listView.Nodes [1].Expanded = true;
             _listView.Nodes [0].Expanded = true;
-            
+
             Assert.AreEqual( 6, _listView.NodeCollection.VisibleItemCount );
 
             // [-] email1
@@ -299,7 +298,7 @@ namespace GUIControlsTests
             IResource email1 = CreateEmail( "Email1", DateTime.Now.AddSeconds( -10 ), null, false );
             IResource email2 = CreateEmail( "Email2", DateTime.Now.AddSeconds( -9 ), email1, false );
             IResource email3 = CreateEmail( "Email3", DateTime.Now.AddSeconds( -8 ), email2, false );
-                        
+
             ShowThreadedEmails();
             _listView.Nodes [0].Expanded = true;
 
@@ -343,7 +342,7 @@ namespace GUIControlsTests
             IResource email2 = CreateEmail( "Email2", DateTime.Now.AddSeconds( -5 ), email1, false );
 
             ShowThreadedEmails( _core.ResourceStore.FindResourcesLive( "Email", "IsUnread", true ) );
-            
+
             Assert.AreEqual( 1, _listView.NodeCollection.VisibleItemCount );
 
             IResource email3 = CreateEmail( "Email3", DateTime.Now, email2, true );
@@ -435,7 +434,7 @@ namespace GUIControlsTests
 
             IResource email1 = CreateEmail( "Email1", DateTime.Now.AddSeconds( -10 ), null, true );
             email2.AddLink( _propReply, email1 );
-            
+
             Assert.AreEqual( 1, _listView.NodeCollection.VisibleItemCount );
 
             _listView.Nodes [0].Expanded = true;
@@ -449,7 +448,7 @@ namespace GUIControlsTests
         {
             IResource email1 = CreateEmail( "Email1", DateTime.Now.AddSeconds( -7 ), null, true );
             IResource email2 = CreateEmail( "Email2", DateTime.Now.AddSeconds( -5 ), null, true );
-            
+
             ShowThreadedEmails();
 
             Assert.AreEqual( 2, _listView.NodeCollection.VisibleItemCount );
@@ -458,7 +457,7 @@ namespace GUIControlsTests
             Assert.AreEqual( 1, _listView.Nodes.Count );
             Assert.AreEqual( 1, _listView.NodeCollection.VisibleItemCount );
             Assert.AreEqual( email1, _listView.Nodes [0].Data );
-            
+
             Assert.AreEqual( 1, _listView.Selection.Count );
             Assert.AreEqual( email1, _listView.Selection.ActiveNode.Data );
         }
@@ -561,7 +560,7 @@ namespace GUIControlsTests
             IResource email3 = CreateEmail( "Email3", now.AddSeconds( -6 ), null, true );
 
             ShowThreadedEmails( Core.ResourceStore.FindResourcesWithProp( "Email", "IsUnread" ) );
-            
+
             Assert.AreEqual( email0, _listView.Nodes [0].Data );
             Assert.AreEqual( email3, _listView.Nodes [1].Data );
             Assert.AreEqual( email2, _listView.Nodes [2].Data );

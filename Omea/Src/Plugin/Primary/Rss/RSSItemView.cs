@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.ComponentModel;
@@ -24,7 +23,7 @@ namespace JetBrains.Omea.RSSPlugin
         private const string _DefaultStylePath = "RSSPlugin.Styles.Default.css";
         private const string _LocalLinkIconPath = "RSSPlugin.Icons.Anchor.gif";
 
-        /// <summary> 
+        /// <summary>
         /// Required designer variable.
         /// </summary>
         private Container components = null;
@@ -131,7 +130,7 @@ namespace JetBrains.Omea.RSSPlugin
                         }
                         catch( DirectoryNotFoundException )
                         {
-                            //  do nothing. May be try out another path later.   
+                            //  do nothing. May be try out another path later.
                         }
                     }
                     if( outstream != null )
@@ -153,7 +152,7 @@ namespace JetBrains.Omea.RSSPlugin
             return Utils.StreamToString( strm );
         }
 
-        /// <summary> 
+        /// <summary>
         /// Clean up any resources being used.
         /// </summary>
         protected override void Dispose( bool disposing )
@@ -169,8 +168,8 @@ namespace JetBrains.Omea.RSSPlugin
         }
 
         #region Component Designer generated code
-        /// <summary> 
-        /// Required method for Designer support - do not modify 
+        /// <summary>
+        /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
@@ -267,7 +266,7 @@ namespace JetBrains.Omea.RSSPlugin
 
                         //  We do not expect any extra "href" link nor immediate close tag
                         //  inside current "<a href" and its closing "</a>" tag.
-                        if( indexClose != -1 && ( indexAnyHref == -1 || indexAnyHref > indexClose ) && 
+                        if( indexClose != -1 && ( indexAnyHref == -1 || indexAnyHref > indexClose ) &&
                             ( indexImmClose == -1 || indexImmClose >= indexClose ))
                         {
                             InsertLocalLink( ref body, res, indexClose );

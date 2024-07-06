@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Drawing;
@@ -251,7 +250,7 @@ namespace JetBrains.Omea.FilePlugin
                     {
                         string droppedName = file.GetPropText( Core.Props.Name );
                         string dest = Path.Combine( directory, droppedName );
-    
+
                         if( file.Type == _folderResourceType )
                         {
                             if( ( keyState & 8 ) != 0 )
@@ -361,8 +360,8 @@ namespace JetBrains.Omea.FilePlugin
                 folderRes.SetProp( "Internal", 1 );
                 Core.ResourceStore.ResourceTypes ["FileFolder"].DisplayName = "File Folder";
             }
-            
-            /** 
+
+            /**
              * file folders statuses:
              *   0 - monitored (immediate)
              *   1 - deferred
@@ -372,14 +371,14 @@ namespace JetBrains.Omea.FilePlugin
             _propDirectory = store.PropTypes.Register( "Directory", PropDataType.String );
             _propSize = store.PropTypes.Register( "Size", PropDataType.Int );
             _propFileType = store.PropTypes.Register( "FileType", PropDataType.String );
-            _propParentFolder = store.PropTypes.Register( "ParentFolder", 
+            _propParentFolder = store.PropTypes.Register( "ParentFolder",
                 PropDataType.Link, PropTypeFlags.DirectedLink | PropTypeFlags.SourceLink, this );
             store.PropTypes.RegisterDisplayName( _propParentFolder, "Folder", "File" );
             _propNew = store.PropTypes.Register( "New", PropDataType.Bool, PropTypeFlags.Internal );
             _propDeleted = store.PropTypes.Register( "Deleted", PropDataType.Bool, PropTypeFlags.Internal );
             _propDeletedFile = store.PropTypes.Register( "DeletedFile", PropDataType.Bool, PropTypeFlags.Internal );
 
-            Core.WorkspaceManager.RegisterWorkspaceContainerType( _folderResourceType, 
+            Core.WorkspaceManager.RegisterWorkspaceContainerType( _folderResourceType,
                 new[] { _propParentFolder }, _propParentFolder );
             Core.WorkspaceManager.RegisterWorkspaceSelectorFilter( _folderResourceType, new FoldersFilter() );
 
@@ -558,7 +557,7 @@ namespace JetBrains.Omea.FilePlugin
                                 FileInfo fi = IOTools.GetFileInfo( fullname );
                                 if( viewHidden || ( fi.Attributes & FileAttributes.Hidden ) == 0 )
                                 {
-                                    fileNames.Add( file.GetPropText( Core.Props.Name ) );    
+                                    fileNames.Add( file.GetPropText( Core.Props.Name ) );
                                 }
                             }
                         }
@@ -626,7 +625,7 @@ namespace JetBrains.Omea.FilePlugin
             {
                 if ( res.Type == _folderResourceType && res.HasProp( _propNew ) )
                     return false;
-                
+
                 if ( res.HasProp( _propParentFolder ) && res.Type != _folderResourceType )
                     return false;
 

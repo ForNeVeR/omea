@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -23,10 +22,10 @@ namespace JetBrains.DataStructures
         {
             5,11,23,47,97,197,397,797,1597,3203,6421,12853,25717,51437,102877,205759,
             411527,823117,1646237,3292489,6584983,13169977,26339969,52679969,105359939,
-            210719881,421439783,842879579,1685759167,		  
+            210719881,421439783,842879579,1685759167,
             433,877,1759,3527,7057,14143,28289,56591,113189,226379,452759,905551,1811107,
             3622219,7244441,14488931,28977863,57955739,115911563,231823147,463646329,927292699,
-            1854585413,		  
+            1854585413,
             953,1907,3821,7643,15287,30577,61169,122347,244703,489407,978821,1957651,3915341,
             7830701,15661423,31322867,62645741,125291483,250582987,501165979,1002331963,
             2004663929,
@@ -42,7 +41,7 @@ namespace JetBrains.DataStructures
             1344393353,
             3,7,17,37,79,163,331,673,1361,2729,5471,10949,21911,43853,87719,175447,350899,
             701819,1403641,2807303,5614657,11229331,22458671,44917381,89834777,179669557,
-            359339171,718678369,1437356741,		  
+            359339171,718678369,1437356741,
             43,89,179,359,719,1439,2879,5779,11579,23159,46327,92657,185323,370661,741337,
             1482707,2965421,5930887,11861791,23723597,47447201,94894427,189788857,379577741,
             759155483,1518310967,
@@ -63,7 +62,7 @@ namespace JetBrains.DataStructures
                 {
                     return TableSizes[ i ];
                 }
-                if( c < 0 ) 
+                if( c < 0 )
                 {
                     lo = i + 1;
                 }
@@ -181,14 +180,14 @@ namespace JetBrains.DataStructures
 
         public void Clear()
         {
-            if( _initialSize != _size ) 
+            if( _initialSize != _size )
             {
                 _count = 0;
                 ReHash( 0 );
             }
             else
             {
-                if( _count > 0 ) 
+                if( _count > 0 )
                 {
                     _count = 0;
                     _firstFree = 0;
@@ -307,7 +306,7 @@ namespace JetBrains.DataStructures
                 desiredSize = _initialSize;
             }
             uint size = HashtableParams.AdjustHashtableSize( desiredSize );
-            if( size != _size ) 
+            if( size != _size )
             {
                 _firstFree = 0;
                 bucket[] oldBuckets = _buckets;
@@ -318,7 +317,7 @@ namespace JetBrains.DataStructures
                     for( uint i = 1, j = 0; i < oldBuckets.Length; ++i )
                     {
                         object key = oldBuckets[ i ].key;
-                        if( key != null ) 
+                        if( key != null )
                         {
                             ++j;
                             _buckets[ j ].key = key;
@@ -510,14 +509,14 @@ namespace JetBrains.DataStructures
 
         public void Clear()
         {
-            if( _initialSize != _size ) 
+            if( _initialSize != _size )
             {
                 _count = 0;
                 ReHash( 0 );
             }
             else
             {
-                if( _count > 0 ) 
+                if( _count > 0 )
                 {
                     _count = 0;
                     _firstFree = 0;
@@ -620,7 +619,7 @@ namespace JetBrains.DataStructures
                 desiredSize = _initialSize;
             }
             uint size = HashtableParams.AdjustHashtableSize( desiredSize );
-            if( size != _size ) 
+            if( size != _size )
             {
                 _firstFree = 0;
                 bucket[] oldBuckets = _buckets;
@@ -631,7 +630,7 @@ namespace JetBrains.DataStructures
                     for( uint i = 1, j = 0; i < oldBuckets.Length; ++i )
                     {
                         object key = oldBuckets[ i ].key;
-                        if( key != null ) 
+                        if( key != null )
                         {
                             ++j;
                             _buckets[ j ].key = key;
@@ -780,14 +779,14 @@ namespace JetBrains.DataStructures
 
         public void Clear()
         {
-            if( _initialSize != _size ) 
+            if( _initialSize != _size )
             {
                 _count = 0;
                 ReHash( 0 );
             }
             else
             {
-                if( _count > 0 ) 
+                if( _count > 0 )
                 {
                     _count = 0;
                     _firstFree = 0;
@@ -902,7 +901,7 @@ namespace JetBrains.DataStructures
                 desiredSize = _initialSize;
             }
             uint size = HashtableParams.AdjustHashtableSize( desiredSize );
-            if( size != _size ) 
+            if( size != _size )
             {
                 _firstFree = 0;
                 bucket[] oldBuckets = _buckets;
@@ -913,7 +912,7 @@ namespace JetBrains.DataStructures
                     for( uint i = 1, j = 0; i < oldBuckets.Length; ++i )
                     {
                         int key = oldBuckets[ i ].key;
-                        if( key != Int32.MaxValue ) 
+                        if( key != Int32.MaxValue )
                         {
                             ++j;
                             _buckets[ j ].key = key;
@@ -1089,14 +1088,14 @@ namespace JetBrains.DataStructures
 
         public void Clear()
         {
-            if( _initialSize != _hashTable.Length ) 
+            if( _initialSize != _hashTable.Length )
             {
                 _count = 0;
                 ReHash( 0 );
             }
             else
             {
-                if( _count > 0 ) 
+                if( _count > 0 )
                 {
                     _count = 0;
                     _firstFree = 0;
@@ -1202,13 +1201,13 @@ namespace JetBrains.DataStructures
         }
 
         /// <summary>
-        /// Returns the size of the memory occupied by the hashtable structures. Does not 
+        /// Returns the size of the memory occupied by the hashtable structures. Does not
         /// include the memory occupied by the objects stored in the hashtable.
         /// </summary>
         /// <returns>The size of the hashtable structures in bytes.</returns>
         public virtual int EstimateMemorySize()
         {
-            return 8 + 12 + 4 * _hashTable.Length + 12 * _buckets.Length;            
+            return 8 + 12 + 4 * _hashTable.Length + 12 * _buckets.Length;
         }
 
         #endregion
@@ -1222,7 +1221,7 @@ namespace JetBrains.DataStructures
                 desiredSize = _initialSize;
             }
             uint size = HashtableParams.AdjustHashtableSize( desiredSize );
-            if( _hashTable == null || size != _hashTable.Length ) 
+            if( _hashTable == null || size != _hashTable.Length )
             {
                 _firstFree = 0;
                 bucket[] oldBuckets = _buckets;
@@ -1233,7 +1232,7 @@ namespace JetBrains.DataStructures
                     for( uint i = 1, j = 0; i < oldBuckets.Length; ++i )
                     {
                         int key = oldBuckets[ i ].key;
-                        if( key != Int32.MaxValue ) 
+                        if( key != Int32.MaxValue )
                         {
                             ++j;
                             _buckets[ j ].key = key;
@@ -1416,14 +1415,14 @@ namespace JetBrains.DataStructures
 
         public void Clear()
         {
-            if( _initialSize != _size ) 
+            if( _initialSize != _size )
             {
                 _count = 0;
                 ReHash( 0 );
             }
             else
             {
-                if( _count > 0 ) 
+                if( _count > 0 )
                 {
                     _count = 0;
                     _firstFree = 0;
@@ -1540,7 +1539,7 @@ namespace JetBrains.DataStructures
                 desiredSize = _initialSize;
             }
             uint size = HashtableParams.AdjustHashtableSize( desiredSize );
-            if( size != _size ) 
+            if( size != _size )
             {
                 _firstFree = 0;
                 bucket[] oldBuckets = _buckets;
@@ -1551,7 +1550,7 @@ namespace JetBrains.DataStructures
                     for( uint i = 1, j = 0; i < oldBuckets.Length; ++i )
                     {
                         int key = oldBuckets[ i ].key;
-                        if( key != _missingKeyValue ) 
+                        if( key != _missingKeyValue )
                         {
                             ++j;
                             _buckets[ j ].key = key;
@@ -1702,11 +1701,11 @@ namespace JetBrains.DataStructures
                 desiredSize = _initialSize;
             }
             uint size = HashtableParams.AdjustHashtableSize( desiredSize );
-            if( _hashTable == null || size != _hashTable.Length ) 
+            if( _hashTable == null || size != _hashTable.Length )
             {
                 _firstFree = 0;
                 bucket[] oldBuckets = _buckets;
-                if( _count > 0 ) 
+                if( _count > 0 )
                 {
                     uint count = 0;
                     for( int i = 1; i < oldBuckets.Length; ++i )
@@ -1745,7 +1744,7 @@ namespace JetBrains.DataStructures
                     for( uint i = 1, j = 0; i < oldBuckets.Length; ++i )
                     {
                         int key = oldBuckets[ i ].key;
-                        if( key != Int32.MaxValue ) 
+                        if( key != Int32.MaxValue )
                         {
                             ++j;
                             _buckets[ j ].key = key;

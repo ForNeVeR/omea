@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Diagnostics;
@@ -49,7 +48,7 @@ namespace JetBrains.Omea.InstantMessaging.Miranda
             IDisplayColumnManager colMgr = Core.DisplayColumnManager;
             colMgr.RegisterDisplayColumn( ResourceTypes.MirandaConversation, 0, new ColumnDescriptor( "From", 100 ) );
             colMgr.RegisterDisplayColumn( ResourceTypes.MirandaConversation, 1, new ColumnDescriptor( "To", 100 ) );
-            colMgr.RegisterDisplayColumn( ResourceTypes.MirandaConversation, 2, 
+            colMgr.RegisterDisplayColumn( ResourceTypes.MirandaConversation, 2,
                 new ColumnDescriptor( new[] { Core.ResourceStore.PropTypes [Core.Props.Subject].Name, "DisplayName" }, 300, ColumnDescriptorFlags.AutoSize ) );
             colMgr.RegisterDisplayColumn( ResourceTypes.MirandaConversation, 3, new ColumnDescriptor( "Date", 120 ) );
 
@@ -80,9 +79,9 @@ namespace JetBrains.Omea.InstantMessaging.Miranda
                 uiMgr.RegisterWizardPane( "Miranda", CreateMirandaOptions, 11 );
                 uiMgr.RegisterOptionsPane( "Instant Messaging", "Miranda", CreateMirandaOptions, _MirandaOptionsDescription );
                 uiMgr.AddOptionsChangesListener( "Instant Messaging", "Miranda", OnMirandaOptionsChanged );
-                
+
                 Core.TabManager.RegisterResourceTypeTab( "IM", "IM", "MirandaConversation", 2 );
-                
+
                 _correspondentPane = new CorrespondentCtrl();
                 _correspondentPane.IniSection = "Miranda";
                 _correspondentPane.SetCorresponentFilterList( Core.ResourceStore.FindResourcesWithProp( null, Props.MirandaAcct ) );
@@ -92,12 +91,12 @@ namespace JetBrains.Omea.InstantMessaging.Miranda
                 Core.LeftSidebar.RegisterViewPaneShortcut( "MirandaCorrespondents", Keys.Control | Keys.Alt | Keys.M );
 
                 SaveConversationAction saveConvAction = new SaveConversationAction( _convManager, Props.NickName );
-                Core.ActionManager.RegisterContextMenuAction( saveConvAction, ActionGroups.ITEM_OPEN_ACTIONS, ListAnchor.Last, 
+                Core.ActionManager.RegisterContextMenuAction( saveConvAction, ActionGroups.ITEM_OPEN_ACTIONS, ListAnchor.Last,
                                                               "Save to File...", null, "MirandaConversation", null );
                 Core.ActionManager.RegisterActionComponent( saveConvAction, "SaveAs", "MirandaConversation", null );
 
                 EmailConversationAction mailConvAction = new EmailConversationAction( _convManager, Props.NickName );
-                Core.ActionManager.RegisterContextMenuAction( mailConvAction, ActionGroups.ITEM_OPEN_ACTIONS, ListAnchor.Last, 
+                Core.ActionManager.RegisterContextMenuAction( mailConvAction, ActionGroups.ITEM_OPEN_ACTIONS, ListAnchor.Last,
                                                               "Send by Email", null, "MirandaConversation", null );
                 Core.ActionManager.RegisterActionComponent( mailConvAction, "SendByMail", "MirandaConversation", null );
 
@@ -111,7 +110,7 @@ namespace JetBrains.Omea.InstantMessaging.Miranda
                 //  ContentType property so that it could be filtered out when
                 //  this plugin is switched off.
                 _mirandaAB.Resource.SetProp( Core.Props.ContentType, ResourceTypes.MirandaConversation );
-                
+
                 Core.ResourceBrowser.SetDefaultViewSettings( "IM", AutoPreviewMode.Off, true );
             }
 
@@ -121,7 +120,7 @@ namespace JetBrains.Omea.InstantMessaging.Miranda
         private void RegisterTypes()
         {
             _store.RegisterUniqueRestriction( ResourceTypes.MirandaYahooAccount, Props.YahooId );
-    
+
             IResource typeMirandaMessage = _store.FindUniqueResource( "ResourceType", "Name", "MirandaMessage" );
             if ( typeMirandaMessage != null )
             {
@@ -188,7 +187,7 @@ namespace JetBrains.Omea.InstantMessaging.Miranda
                 Core.ResourceAP.QueueIdleJob( new DelegateJob( new MethodInvoker( DoIdleImport ), new object[] {} ) );
             }
 
-            if ( IniSettings.SyncImmediate ) 
+            if ( IniSettings.SyncImmediate )
             {
                 CreateMirandaWatcher();
             }
@@ -204,7 +203,7 @@ namespace JetBrains.Omea.InstantMessaging.Miranda
 
             if ( _dbPath != null && File.Exists( _dbPath ) )
             {
-                _mirandaWatcher = new FileSystemWatcher( Path.GetDirectoryName( _dbPath ), 
+                _mirandaWatcher = new FileSystemWatcher( Path.GetDirectoryName( _dbPath ),
                     Path.GetFileName( _dbPath ) );
                 _mirandaWatcher.NotifyFilter = NotifyFilters.LastWrite | NotifyFilters.FileName;
                 _mirandaWatcher.Changed += AsyncImportDatabase;
@@ -259,14 +258,14 @@ namespace JetBrains.Omea.InstantMessaging.Miranda
             ImportDatabase();
         }
 
-        /** 
+        /**
          * event handler on changes in Miranda databases
          * starts async update of Miranda history
          */
 
         private void AsyncImportDatabase( object sender, FileSystemEventArgs e )
         {
-            Core.ResourceAP.QueueJobAt( DateTime.Now.AddSeconds( 10 ), 
+            Core.ResourceAP.QueueJobAt( DateTime.Now.AddSeconds( 10 ),
                 new MethodInvoker( ImportDatabase ) );
         }
 
@@ -320,7 +319,7 @@ namespace JetBrains.Omea.InstantMessaging.Miranda
                 Core.ProductFullName, MessageBoxButtons.YesNo );
             if ( dr == DialogResult.Yes )
             {
-                Core.SettingStore.WriteString( "Miranda", "ProfileToIndex", "" );                
+                Core.SettingStore.WriteString( "Miranda", "ProfileToIndex", "" );
             }
         }
 
@@ -351,7 +350,7 @@ namespace JetBrains.Omea.InstantMessaging.Miranda
             {
                 fromContact = conversation.GetLinkProp( "To" );
             }
-            
+
             Core.UIManager.BeginUpdateSidebar();
             Core.TabManager.CurrentTabId = "IM";
             Core.LeftSidebar.ActivateViewPane( "MirandaCorrespondents" );
@@ -372,7 +371,7 @@ namespace JetBrains.Omea.InstantMessaging.Miranda
         internal static void Register( IPlugin ownerPlugin )
         {
             IResourceStore store = Core.ResourceStore;
-            store.ResourceTypes.Register( MirandaICQAccount, "Miranda ICQ Account", "NickName UIN", 
+            store.ResourceTypes.Register( MirandaICQAccount, "Miranda ICQ Account", "NickName UIN",
                                           ResourceTypeFlags.Internal | ResourceTypeFlags.NoIndex, ownerPlugin );
             store.ResourceTypes.Register( MirandaAIMAccount, "Miranda AIM Account", "ScreenName",
                                           ResourceTypeFlags.Internal | ResourceTypeFlags.NoIndex, ownerPlugin );
@@ -380,7 +379,7 @@ namespace JetBrains.Omea.InstantMessaging.Miranda
                                           ResourceTypeFlags.Internal | ResourceTypeFlags.NoIndex, ownerPlugin );
             store.ResourceTypes.Register( MirandaYahooAccount, "Miranda Yahoo Account", "YahooID",
                                           ResourceTypeFlags.Internal | ResourceTypeFlags.NoIndex, ownerPlugin );
-            store.ResourceTypes.Register( MirandaConversation, "Miranda Conversation", 
+            store.ResourceTypes.Register( MirandaConversation, "Miranda Conversation",
                                           Core.ResourceStore.PropTypes[ Core.Props.Subject ].Name );
         }
     }
@@ -402,7 +401,7 @@ namespace JetBrains.Omea.InstantMessaging.Miranda
         {
             IResourceStore store = Core.ResourceStore;
             IPropTypeCollection propTypes = store.PropTypes;
-            
+
             _propUIN                = propTypes.Register( "UIN", PropDataType.Int );
             _propNickName           = propTypes.Register( "NickName", PropDataType.String );
             _propScreenName         = propTypes.Register( "ScreenName", PropDataType.String );

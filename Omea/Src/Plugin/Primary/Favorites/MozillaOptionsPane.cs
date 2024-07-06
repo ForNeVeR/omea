@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -15,7 +14,7 @@ namespace JetBrains.Omea.Favorites
         private System.Windows.Forms.CheckedListBox _profilesList;
         private System.Windows.Forms.Label label1;
         private string _savedProfiles;
-    
+
         private MozillaOptionsPane()
         {
             InitializeComponent();
@@ -26,9 +25,9 @@ namespace JetBrains.Omea.Favorites
             this.label1 = new System.Windows.Forms.Label();
             this._profilesList = new System.Windows.Forms.CheckedListBox();
             this.SuspendLayout();
-            // 
+            //
             // label1
-            // 
+            //
             this.label1.AutoSize = true;
             this.label1.Dock = System.Windows.Forms.DockStyle.Top;
             this.label1.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -38,17 +37,17 @@ namespace JetBrains.Omea.Favorites
             this.label1.TabIndex = 1;
             this.label1.Text = "Import bookmarks from the following &Mozilla or Firefox profiles:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
+            //
             // _profilesList
-            // 
+            //
             this._profilesList.Dock = System.Windows.Forms.DockStyle.Fill;
             this._profilesList.Location = new System.Drawing.Point(0, 16);
             this._profilesList.Name = "_profilesList";
             this._profilesList.Size = new System.Drawing.Size(376, 229);
             this._profilesList.TabIndex = 2;
-            // 
+            //
             // MozillaOptionsPane
-            // 
+            //
             this.Controls.Add(this._profilesList);
             this.Controls.Add(this.label1);
             this.Name = "MozillaOptionsPane";

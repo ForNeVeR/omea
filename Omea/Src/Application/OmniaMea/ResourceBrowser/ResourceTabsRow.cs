@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.ComponentModel;
@@ -20,7 +19,7 @@ namespace JetBrains.Omea
 	{
 		#region Data
 
-		/// <summary> 
+		/// <summary>
 		/// Required designer variable.
 		/// </summary>
 		private Container components = null;
@@ -67,7 +66,7 @@ namespace JetBrains.Omea
 			InitializeComponentSelf();
 		}
 
-		/// <summary> 
+		/// <summary>
 		/// Clean up any resources being used.
 		/// </summary>
 		protected override void Dispose( bool disposing )
@@ -86,8 +85,8 @@ namespace JetBrains.Omea
 
 		#region Visual Init
 
-		/// <summary> 
-		/// Required method for Designer support - do not modify 
+		/// <summary>
+		/// Required method for Designer support - do not modify
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponentSelf()
@@ -95,7 +94,7 @@ namespace JetBrains.Omea
 			components = new Container();
 			using( new LayoutSuspender( this ) )
 			{
-				// _barResourceTypeTabs 
+				// _barResourceTypeTabs
 				_barResourceTypeTabs = new TabSwitcher();
 				_barResourceTypeTabs.Font = new Font( "Tahoma", 9.75F, FontStyle.Regular, GraphicsUnit.Point, ((Byte) (204)) );
 				_barResourceTypeTabs.Name = "_barResourceTypeTabs";

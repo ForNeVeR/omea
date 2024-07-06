@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 #pragma once
 
@@ -40,7 +39,7 @@ public:
     EMAPIFolderSPtr GetReceiveFolder( LPSTR messageClass ) const;
     void Advise( MsgStoreAdviseSink* pSink );
     void Unadvise();
-    void AddRecipient( const EMessageSPtr& eMessage, LPWSTR displayName, LPWSTR email, 
+    void AddRecipient( const EMessageSPtr& eMessage, LPWSTR displayName, LPWSTR email,
         LPSTR displayNameA, LPSTR emailA, int recType ) const;
     void OpenForm( const EMessageSPtr& message, int verbID );
 

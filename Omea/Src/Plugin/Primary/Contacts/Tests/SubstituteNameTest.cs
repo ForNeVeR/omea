@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using JetBrains.Omea.Contacts;
 using JetBrains.Omea.OpenAPI;
@@ -19,7 +18,7 @@ namespace JetBrains.Omea.ContactsPlugin.Tests
         private IResourceStore _storage;
         private TestCore _core;
         private IContactManager _contactManager;
-        
+
         [SetUp] public void SetUp()
         {
             _core = new TestCore();
@@ -95,7 +94,7 @@ namespace JetBrains.Omea.ContactsPlugin.Tests
             _email.AddLink( Core.ContactManager.Props.LinkNameFrom, contactName );
             _email.AddLink( _contactManager.Props.LinkFrom, _contact2 );
             _email.AddLink( Core.ContactManager.Props.LinkNameFrom, contactName2 );
-            Assert.AreEqual( "Dmitry Jemerov (JetBrains), Michael Gerasimov", 
+            Assert.AreEqual( "Dmitry Jemerov (JetBrains), Michael Gerasimov",
                 ContactsPlugin.SubstituteName( _email, _contactManager.Props.LinkFrom ) );
         }
     }

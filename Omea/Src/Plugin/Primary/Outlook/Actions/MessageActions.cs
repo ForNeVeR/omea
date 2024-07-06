@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -69,7 +68,7 @@ namespace JetBrains.Omea.OutlookPlugin
             }
             catch ( Exception exception )
             {
-                StandartJobs.MessageBox( "Operation cannot be completed.\nReason: " + exception.Message, "Outlook Plugin", 
+                StandartJobs.MessageBox( "Operation cannot be completed.\nReason: " + exception.Message, "Outlook Plugin",
                     MessageBoxButtons.OK, MessageBoxIcon.Error );
             }
         }
@@ -177,7 +176,7 @@ namespace JetBrains.Omea.OutlookPlugin
                     {
                         string path = Core.FileResourceManager.GetUniqueTempDirectory();
                         path = Path.Combine( path, SaveToMSGAction.GetFileName( resource ) + ".msg" );
-                        message.SaveToMSG( path );			
+                        message.SaveToMSG( path );
                         try
                         {
                             Process.Start( path );
@@ -754,7 +753,7 @@ namespace JetBrains.Omea.OutlookPlugin
         {
             if ( selectedResources.Count > 0 )
             {
-                string input = 
+                string input =
                     Core.UIManager.InputString( "Create New Folder", "Please, enter the name for new folder.", "", null, null );
                 if ( input != null && input.Length > 0 )
                 {
@@ -1107,7 +1106,7 @@ namespace JetBrains.Omea.OutlookPlugin
                     if ( attach.GetLinkCount( PROP.Attachment ) == 0 )
                     {
                         presentation.Visible = false;
-                        return; 
+                        return;
                     }
                 }
             }

@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Windows.Forms;
@@ -33,7 +32,7 @@ namespace JetBrains.Omea
 
         public ColumnDescriptor[] Columns
         {
-            get { return _columns; }       
+            get { return _columns; }
             set { _columns = value; }
         }
 
@@ -86,7 +85,7 @@ namespace JetBrains.Omea
 
             SortSettings sortSettings = LoadSortSettings( res, props );
 
-            ResourceListState result = new ResourceListState( columns, sortSettings, 
+            ResourceListState result = new ResourceListState( columns, sortSettings,
                 res.HasProp( props.GroupItems ) );
             result._columnSchemeResource = res;
 
@@ -96,7 +95,7 @@ namespace JetBrains.Omea
             }
             if ( res.HasProp( props.ColumnSchemeOwner ) )
             {
-                result.SetOwner( res.GetLinkProp( props.ColumnSchemeOwner ), 
+                result.SetOwner( res.GetLinkProp( props.ColumnSchemeOwner ),
                     res.GetStringProp( props.ColumnSchemeTab ) );
             }
 
@@ -136,7 +135,7 @@ namespace JetBrains.Omea
                 }
 
                 _columnSchemeResource.BeginUpdate();
-                oldColumnDescriptors = _columnSchemeResource.GetLinksOfType( "ColumnDescriptor", 
+                oldColumnDescriptors = _columnSchemeResource.GetLinksOfType( "ColumnDescriptor",
                     props.ColumnDescriptor );
                 oldColumnDescriptors.Sort( new int[] { props.ColumnOrder }, true );
             }
@@ -200,7 +199,7 @@ namespace JetBrains.Omea
                 _columnSchemeResource.SetProp( props.ColumnSchemeTab, _ownerTab );
             }
             _columnSchemeResource.SetProp( props.GroupItems, _groupItems );
- 
+
             _columnSchemeResource.EndUpdate();
         }
 
@@ -237,7 +236,7 @@ namespace JetBrains.Omea
                         }
                     }
                 }
-    
+
                 bool sortAsc = res.HasProp( props.ColumnSortAsc );
                 return new SortSettings( sortProps.ToArray(), sortAsc );
             }
@@ -291,7 +290,7 @@ namespace JetBrains.Omea
                     }
                 }
             }
-    
+
             if ( !columnPropsOK )
             {
                 columnProps.Clear();

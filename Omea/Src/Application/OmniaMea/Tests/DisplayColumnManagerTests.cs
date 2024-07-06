@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Drawing;
@@ -23,7 +22,7 @@ namespace GUIControlsTests
         private int _propName;
         private IResource _email;
         private IResourceList _emails;
-        
+
         [SetUp] public void SetUp()
         {
             _core = new TestCore();
@@ -48,7 +47,7 @@ namespace GUIControlsTests
 
         [Test] public void TestRegisterDisplayColumn()
         {
-            _displayColumnManager.RegisterDisplayColumn( "Email", 5, 
+            _displayColumnManager.RegisterDisplayColumn( "Email", 5,
                 new ColumnDescriptor( "Name", 100 )  );
             _displayColumnManager.RegisterDisplayColumn( "Email", 1,
                 new ColumnDescriptor( "Received", 20 ) );
@@ -58,11 +57,11 @@ namespace GUIControlsTests
             Assert.AreEqual( "Received", descriptors [0].PropNames [0] );
             Assert.AreEqual( "Name", descriptors [1].PropNames [0] );
         }
-        
-        [Test, ExpectedException(typeof(ArgumentException))] 
+
+        [Test, ExpectedException(typeof(ArgumentException))]
         public void RegisterDisplayColumnWithInvalidProperty()
         {
-            _displayColumnManager.RegisterDisplayColumn( "Email", 5, 
+            _displayColumnManager.RegisterDisplayColumn( "Email", 5,
                 new ColumnDescriptor( "Someshit", 100 )  );
         }
 
@@ -82,7 +81,7 @@ namespace GUIControlsTests
 
             _storage.NewResource( "Email" );
             IResourceList emails = _storage.GetAllResources( "Email" );
-            
+
             IntArrayList propIds = _displayColumnManager.GetAvailableColumns( emails );
             Assert.AreEqual( 2, propIds.Count );
             Assert.IsTrue( propIds.IndexOf( _storage.GetPropId( "Name" ) ) >= 0 );
@@ -113,7 +112,7 @@ namespace GUIControlsTests
             _displayColumnManager.RemoveAvailableColumn( "Email", "Name" );
 
             IResourceList emails = _storage.GetAllResources( "Email" );
-            
+
             IntArrayList propIds = _displayColumnManager.GetAvailableColumns( emails );
             Assert.AreEqual( 1, propIds.Count );
             Assert.AreEqual( _storage.GetPropId( "Received" ), propIds [0] );
@@ -136,9 +135,9 @@ namespace GUIControlsTests
             ColumnDescriptor stateSubjectColumn = new ColumnDescriptor( "Subject", 100 );
             ColumnDescriptor stateDateColumn = new ColumnDescriptor( "Date", 50, ColumnDescriptorFlags.ShowIfNotEmpty );
 
-            ResourceListState state = new ResourceListState( 
+            ResourceListState state = new ResourceListState(
                 new ColumnDescriptor[] { stateSubjectColumn, stateDateColumn }, null, true );
-            
+
             ColumnDescriptor[] result = _displayColumnManager.UpdateColumnsFromState( new ColumnDescriptor[] { listSubjectColumn },
                 state );
             Assert.AreEqual( 2, result.Length );
@@ -154,10 +153,10 @@ namespace GUIControlsTests
             ColumnDescriptor listReceivedColumn = new ColumnDescriptor( "Received", 100 );
             ColumnDescriptor stateReceivedColumn = new ColumnDescriptor( "Received", 100 );
 
-            ResourceListState state = new ResourceListState( 
+            ResourceListState state = new ResourceListState(
                 new ColumnDescriptor[] { stateSubjectColumn, stateDateColumn, stateReceivedColumn }, null, true );
-            
-            ColumnDescriptor[] result = _displayColumnManager.UpdateColumnsFromState( 
+
+            ColumnDescriptor[] result = _displayColumnManager.UpdateColumnsFromState(
                 new ColumnDescriptor[] { listSubjectColumn, listReceivedColumn }, state );
             Assert.AreEqual( 3, result.Length );
             Assert.AreEqual( "Subject", result [0].PropNames [0] );
@@ -189,7 +188,7 @@ namespace GUIControlsTests
 
         [Test] public void TestGetDefaultColumns()
         {
-            _displayColumnManager.RegisterDisplayColumn( "Email", 5, 
+            _displayColumnManager.RegisterDisplayColumn( "Email", 5,
                 new ColumnDescriptor( "Name", 100 )  );
             _displayColumnManager.RegisterDisplayColumn( null, 1,
                 new ColumnDescriptor( "Received", 20 ) );
@@ -202,7 +201,7 @@ namespace GUIControlsTests
 
         [Test] public void TestAddAnyTypeColumns()
         {
-            _displayColumnManager.RegisterDisplayColumn( "Email", 5, 
+            _displayColumnManager.RegisterDisplayColumn( "Email", 5,
                 new ColumnDescriptor( "Name", 100 )  );
             _displayColumnManager.RegisterDisplayColumn( null, 1,
                 new ColumnDescriptor( "Received", 20 ) );

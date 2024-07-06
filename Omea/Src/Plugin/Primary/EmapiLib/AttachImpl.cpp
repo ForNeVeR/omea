@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 #include "attachimpl.h"
 #include "messageimpl.h"
@@ -26,14 +25,14 @@ void EMAPILib::AttachImpl::Dispose()
     _eAttach = NULL;
 }
 System::Byte EMAPILib::AttachImpl::ReadToEnd()[]
-{ 
+{
     CharBufferSPtr buffer = (*_eAttach)->ReadToEnd();
     if ( buffer.IsNull() ) return new unsigned char __gc[0];
 
     int count = buffer->Length() - 1;
     unsigned char destination __gc[] = new unsigned char __gc[count];
     Helper::MarshalCopy( (byte*)buffer->GetRawChars(), destination, 0, count );
-    return destination; 
+    return destination;
 }
 EMAPILib::IEMessage* EMAPILib::AttachImpl::OpenMessage()
 {

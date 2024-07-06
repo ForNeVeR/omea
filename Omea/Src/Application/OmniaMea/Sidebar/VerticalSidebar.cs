@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections.Generic;
@@ -35,7 +34,7 @@ namespace JetBrains.Omea
         private bool _expanded;
         private readonly HashSet _populatedPanes = new HashSet();
 
-		/// <summary> 
+		/// <summary>
 		/// Required designer variable.
 		/// </summary>
 		private Container components;
@@ -49,7 +48,7 @@ namespace JetBrains.Omea
             public PaneCaption PaneCaption;
             public Splitter PaneSplitter;
 
-		    public PaneData( string paneID, SidebarPaneBackground paneBackground, AbstractViewPane pane, 
+		    public PaneData( string paneID, SidebarPaneBackground paneBackground, AbstractViewPane pane,
                              PaneCaption paneCaption, Splitter paneSplitter, int paneHeight )
 		    {
 		        PaneId = paneID;
@@ -60,7 +59,7 @@ namespace JetBrains.Omea
                 PaneHeight = paneHeight;
 		    }
 		}
-        
+
         public VerticalSidebar()
 		{
 			// This call is required by the Windows.Forms Form Designer.
@@ -69,7 +68,7 @@ namespace JetBrains.Omea
             SetStyle( ControlStyles.Selectable, false );
 		}
 
-		/// <summary> 
+		/// <summary>
 		/// Clean up any resources being used.
 		/// </summary>
 		protected override void Dispose( bool disposing )
@@ -85,8 +84,8 @@ namespace JetBrains.Omea
 		}
 
 		#region Component Designer generated code
-		/// <summary> 
-		/// Required method for Designer support - do not modify 
+		/// <summary>
+		/// Required method for Designer support - do not modify
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent()
@@ -94,24 +93,24 @@ namespace JetBrains.Omea
             this._paneButtons = new SidebarButtons();
             this._contentPane = new System.Windows.Forms.Panel();
             this.SuspendLayout();
-            // 
+            //
             // _paneButtons
-            // 
+            //
             this._paneButtons.Dock = System.Windows.Forms.DockStyle.Bottom;
             this._paneButtons.Name = "_paneButtons";
             this._paneButtons.Size = new System.Drawing.Size(150, 30);
             this._paneButtons.TabIndex = 0;
-            // 
+            //
             // _contentPane
-            // 
+            //
             this._contentPane.Dock = System.Windows.Forms.DockStyle.Fill;
             this._contentPane.Location = new System.Drawing.Point(30, 0);
             this._contentPane.Name = "_contentPane";
             this._contentPane.Size = new System.Drawing.Size(120, 150);
             this._contentPane.TabIndex = 1;
-            // 
+            //
             // VerticalSidebar
-            // 
+            //
             this.Controls.Add(this._contentPane);
             this.Controls.Add(this._paneButtons);
             this.Name = "VerticalSidebar";
@@ -122,7 +121,7 @@ namespace JetBrains.Omea
 
         public event EventHandler PaneAdded;
         public event EventHandler ExpandedChanged;
-        
+
         [DefaultValue(SidebarSide.Left)]
         public SidebarSide Side
 	    {
@@ -172,9 +171,9 @@ namespace JetBrains.Omea
 	    public ColorScheme ColorScheme
 	    {
 	        get { return _colorScheme; }
-	        set 
-            { 
-                _colorScheme = value; 
+	        set
+            {
+                _colorScheme = value;
                 foreach( ToolStripButton btn in _paneButtons.Items )
                 {
                     PaneData paneData = (PaneData) btn.Tag;
@@ -211,7 +210,7 @@ namespace JetBrains.Omea
             background.Height = 0;
             _contentPane.Controls.Add( background );
             _contentPane.Controls.SetChildIndex( background, 0 );
-            
+
             pane.ShowSelection = false;
             pane.Enter += OnPaneEnter;
             pane.Leave += OnPaneLeave;
@@ -254,7 +253,7 @@ namespace JetBrains.Omea
         }
 
         public bool IsPaneExpanded( string paneId )
-        {                                                                                       
+        {
             ToolStripButton btn = _paneButtons.GetPaneButton( paneId );
             return btn.Checked;
         }
@@ -283,10 +282,10 @@ namespace JetBrains.Omea
 
             // hack (see #5371, #5746)
             IResource selResource = pane.SelectedResource;
-            if ( selResource != null ) 
+            if ( selResource != null )
             {
-                pane.SelectResource( selResource, false );  
-            }  
+                pane.SelectResource( selResource, false );
+            }
             _paneButtons.SetButtonPressed( paneId, true );
         }
 
@@ -380,7 +379,7 @@ namespace JetBrains.Omea
                         }
                     }
                 }
-                    
+
                 return new SidebarState( paneHeights, activePaneIndex, selectedResource );
             }
             set
@@ -474,7 +473,7 @@ namespace JetBrains.Omea
                 }
 
                 bool focusedPaneHidden = false;
-                
+
                 if ( btn.Checked )
                 {
                     CheckPopulatePane( paneData );
@@ -486,7 +485,7 @@ namespace JetBrains.Omea
                     paneData.PaneHeight = paneData.PaneBackground.Height;
                     paneData.PaneBackground.Height = 0;
                 }
-                
+
                 paneData.PaneBackground.Visible = btn.Checked;
                 paneData.PaneCaption.Visible = btn.Checked;
 
@@ -546,7 +545,7 @@ namespace JetBrains.Omea
         }
 
         ///<summary>
-        /// Sets DockStyle.Fill for the last visible pane and DockStyle.Top 
+        /// Sets DockStyle.Fill for the last visible pane and DockStyle.Top
         /// for the remaining ones. Also updates splitter visibility.
         ///</summary>
         private void AdjustDockAndSplitters( PaneData toggledPane, bool toggledPaneState )
@@ -558,7 +557,7 @@ namespace JetBrains.Omea
                 ToolStripButton btn = (ToolStripButton)_paneButtons.Items[ i ];
                 PaneData paneData = (PaneData)btn.Tag;
 
-                // don't check Visible because it will return false if the sidebar 
+                // don't check Visible because it will return false if the sidebar
                 // as a whole is hidden
                 bool visible = btn.Checked;
                 if ( paneData == toggledPane )
@@ -656,7 +655,7 @@ namespace JetBrains.Omea
         }
 
         ///<summary>
-        /// When the size of the pane changes, ensures that all visible child panes get their 
+        /// When the size of the pane changes, ensures that all visible child panes get their
         /// share of height.
         ///</summary>
         protected override void OnLayout( LayoutEventArgs levent )
@@ -718,11 +717,11 @@ namespace JetBrains.Omea
         {
             PaneCaption caption = (PaneCaption) sender;
             AbstractViewPane pane = ((PaneData)caption.Tag).Pane;
-            
+
             if ( !pane.ContainsFocus )
             {
                 pane.Focus();
-            
+
                 // HACK: Remove when all panes are converted to JetListView
                 if ( !(pane is ResourceTreePaneBase ))
                 {
@@ -761,7 +760,7 @@ namespace JetBrains.Omea
         private readonly int[] _paneHeights;
         private readonly int _activePaneIndex;
         private IResource _selectedResource;
-        
+
         internal SidebarState( int[] paneHeights, int activePaneIndex, IResource selectedResource )
         {
             _paneHeights = paneHeights;

@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -21,7 +20,7 @@ namespace JetBrains.UI.Components.CustomListView
   /// <summary>
   /// Summary description for CustomListView.
   /// </summary>
-  public class CustomListView : System.Windows.Forms.ListView 
+  public class CustomListView : System.Windows.Forms.ListView
   {
     /// <summary>
     /// Item painter to use
@@ -47,7 +46,7 @@ namespace JetBrains.UI.Components.CustomListView
         default:
           base.WndProc(ref m);
           break;
-      }      
+      }
     }
 
     /// <summary>
@@ -66,7 +65,7 @@ namespace JetBrains.UI.Components.CustomListView
         case Win32Declarations.NM_CUSTOMDRAW:
           NMLVCUSTOMDRAW customDraw;
           customDraw = (NMLVCUSTOMDRAW)Marshal.PtrToStructure(m.LParam, typeof(NMLVCUSTOMDRAW));
-          
+
           OnCustomDraw(ref customDraw, ref m);
 
           break;
@@ -101,7 +100,7 @@ namespace JetBrains.UI.Components.CustomListView
       try
       {
         using (Graphics g = Graphics.FromHdc(customDraw.nmcd.hdc))
-        { 
+        {
           Rectangle rect = new Rectangle(customDraw.nmcd.rc.left, customDraw.nmcd.rc.top, customDraw.nmcd.rc.right - customDraw.nmcd.rc.left, customDraw.nmcd.rc.bottom - customDraw.nmcd.rc.top);
           g.FillRectangle(new SolidBrush(BackColor), rect);
         }
@@ -131,7 +130,7 @@ namespace JetBrains.UI.Components.CustomListView
       {
         System.Diagnostics.Trace.WriteLine("CustomListView.DrawItem failed : " + ex, "UI");
       }
-    }    
+    }
     #endregion
 
     /// <summary>
@@ -139,13 +138,13 @@ namespace JetBrains.UI.Components.CustomListView
     /// </summary>
     private void OnCustomDraw( ref NMLVCUSTOMDRAW customDraw, ref Message m )
     {
-      ListViewItem item;      
+      ListViewItem item;
 
       switch (customDraw.nmcd.dwDrawStage)
       {
         case Win32Declarations.CDDS_PREPAINT:
           m.Result = (IntPtr)(Win32Declarations.CDRF_NOTIFYITEMDRAW | Win32Declarations.CDRF_NOTIFYPOSTPAINT);
-          break;        
+          break;
         case Win32Declarations.CDDS_ITEMPREPAINT:
           item = Items[customDraw.nmcd.dwItemSpec];
 
@@ -156,7 +155,7 @@ namespace JetBrains.UI.Components.CustomListView
           else
             m.Result = (IntPtr)Win32Declarations.CDRF_NOTIFYITEMDRAW;
 
-          break;          
+          break;
         case Win32Declarations.CDDS_ITEMPOSTPAINT:
           DrawItem(ref customDraw);
           break;
@@ -166,7 +165,7 @@ namespace JetBrains.UI.Components.CustomListView
         default:
           m.Result = (IntPtr)Win32Declarations.CDRF_DODEFAULT;
           break;
-      }      
-    }    
+      }
+    }
   }
 }

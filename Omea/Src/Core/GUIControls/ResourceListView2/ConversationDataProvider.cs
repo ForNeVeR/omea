@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System.Collections;
 using System.Diagnostics;
@@ -107,7 +106,7 @@ namespace JetBrains.Omea.GUIControls
             {
                 _resourceComparer = comparer;
             }
-            
+
             public int Compare( object x, object y )
             {
                 ConversationNode lhs = x as ConversationNode;
@@ -147,7 +146,7 @@ namespace JetBrains.Omea.GUIControls
             }
 
             ArrayList topLevelNodes = ArrayListPool.Alloc();
-            try 
+            try
             {
                 foreach( ConversationNode node in _conversationRoots )
                 {
@@ -163,7 +162,7 @@ namespace JetBrains.Omea.GUIControls
                     JetListViewNode lvNode = AddListViewNode( _listView.Nodes, node );
                     if ( node.Children != null || _threadingHandler.CanExpandThread( node.Resource, ThreadExpandReason.Expand ) )
                     {
-                        lvNode.HasChildren = true;                     
+                        lvNode.HasChildren = true;
                     }
                 }
             }
@@ -278,10 +277,10 @@ namespace JetBrains.Omea.GUIControls
             }
 
             IResource res = (IResource) e.Node.Data;
-            e.Handled = _threadingHandler.HandleThreadExpand( res, 
-                (e.Reason == RequestChildrenReason.Enumerate 
+            e.Handled = _threadingHandler.HandleThreadExpand( res,
+                (e.Reason == RequestChildrenReason.Enumerate
                     ? ThreadExpandReason.Enumerate : ThreadExpandReason.Expand ) );
-                    
+
 	        BuildConversation( res, (e.Node == _lastExpandingNode && e.Node.Level == 0 ) );
 	    }
 
@@ -312,7 +311,7 @@ namespace JetBrains.Omea.GUIControls
                 }
 	            if ( expandNode )
 	            {
-	                node.LvNode.ExpandAll();	            
+	                node.LvNode.ExpandAll();
 	            }
 	        }
 	    }
@@ -379,7 +378,7 @@ namespace JetBrains.Omea.GUIControls
                     }
                 }
             }
-    
+
 
             OnResourceCountChanged();
 	    }
@@ -394,12 +393,12 @@ namespace JetBrains.Omea.GUIControls
             RemoveChildRoots( resource );
             if ( lvNode != null && ( node.Children != null || _threadingHandler.CanExpandThread( node.Resource, ThreadExpandReason.Expand ) ) )
             {
-                lvNode.HasChildren = true;                     
+                lvNode.HasChildren = true;
             }
 	    }
 
         /// <summary>
-        /// If the specified root resource of a conversation was added to the list 
+        /// If the specified root resource of a conversation was added to the list
         /// later than its children, the children appeared as "intermediate" roots.
         /// Now that we have the real root, the "intermediate" roots need to be
         /// removed.
@@ -426,7 +425,7 @@ namespace JetBrains.Omea.GUIControls
                 JetListViewNode parentLvNode = parentNode.LvNode;
                 if ( parentLvNode.Level == 0 && parentLvNode.Nodes.Count == 0 )
                 {
-                    // for a root thread which has not yet been expanded, 
+                    // for a root thread which has not yet been expanded,
                     // only mark that it has children
                     parentLvNode.HasChildren = true;
                 }
@@ -479,8 +478,8 @@ namespace JetBrains.Omea.GUIControls
                         UpdateItemThread( e.Resource, node );
                     }
                 }
-                else if ( node != null )  // if we use a live snapshot list, it's possible to get 
-                    // ResourceChanged notifications for nodes which weren't included 
+                else if ( node != null )  // if we use a live snapshot list, it's possible to get
+                    // ResourceChanged notifications for nodes which weren't included
                     // in predicate GetMatchingResources() output (OM-8711)
                 {
                     _listView.UpdateItemSafe( e.Resource );
@@ -570,7 +569,7 @@ namespace JetBrains.Omea.GUIControls
                     }
                     lock( _conversationNodeMap )
                     {
-                        _conversationNodeMap.Remove( e.Resource.Id );                    
+                        _conversationNodeMap.Remove( e.Resource.Id );
                     }
                 }
 	        }

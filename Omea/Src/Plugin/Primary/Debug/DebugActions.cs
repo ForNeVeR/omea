@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Diagnostics;
@@ -254,7 +253,7 @@ namespace JetBrains.Omea.DebugPlugin
     {
         public override void Execute( IActionContext context )
         {
-            IResource resTypeResource = Core.UIManager.SelectResource( "ResourceType", 
+            IResource resTypeResource = Core.UIManager.SelectResource( "ResourceType",
                 "Select a resource type to restrict deletion" );
             if ( resTypeResource != null )
             {
@@ -372,8 +371,8 @@ namespace JetBrains.Omea.DebugPlugin
             for( int i = 0; i < allCNames.Count; i++ )
             {
                 IResource name = allCNames[ i ];
-                int linksCount = name.GetLinksOfType( null, Core.ContactManager.Props.LinkNameTo ).Count + 
-                                 name.GetLinksOfType( null, Core.ContactManager.Props.LinkNameFrom ).Count + 
+                int linksCount = name.GetLinksOfType( null, Core.ContactManager.Props.LinkNameTo ).Count +
+                                 name.GetLinksOfType( null, Core.ContactManager.Props.LinkNameFrom ).Count +
                                  name.GetLinksOfType( null, Core.ContactManager.Props.LinkNameCC ).Count;
                 if( linksCount == 0 )
                 {
@@ -413,15 +412,15 @@ namespace JetBrains.Omea.DebugPlugin
                 }
             }
             MessageBox.Show( "Found " + hangedCount + " hanged contact names by \"without emailAccount\" link only. " +
-                             "Counted " + fromMyselfCount + " contact from Myself." + 
+                             "Counted " + fromMyselfCount + " contact from Myself." +
                              "Counter " + trueDuplicatesCount + " contacts from Myself and having duplicates.");
         }
 
         private bool  PassedTest( IResource cName, IResource baseContact )
         {
             bool  hasDuplicate = false;
-            IResourceList linkedMails = cName.GetLinksOfType( null, Core.ContactManager.Props.LinkNameTo ).Union( 
-                                        cName.GetLinksOfType( null, Core.ContactManager.Props.LinkNameFrom ).Union( 
+            IResourceList linkedMails = cName.GetLinksOfType( null, Core.ContactManager.Props.LinkNameTo ).Union(
+                                        cName.GetLinksOfType( null, Core.ContactManager.Props.LinkNameFrom ).Union(
                                         cName.GetLinksOfType( null, Core.ContactManager.Props.LinkNameCC ) ));
             if( linkedMails.Count == 1 )
             {
@@ -484,7 +483,7 @@ namespace JetBrains.Omea.DebugPlugin
                     }
                 }
             }
-            MessageBox.Show( "To be cleaned " + count + " completely unnecessary contact names (" + count * 3 + 
+            MessageBox.Show( "To be cleaned " + count + " completely unnecessary contact names (" + count * 3 +
                              " unnecessary links), " + derivedNamesCount + " derived contact names" );
         }
         private static String CleanedName( String name )
@@ -513,7 +512,7 @@ namespace JetBrains.Omea.DebugPlugin
         {
             int  count = 0, illegallyNamedCount = 0;
             IResourceList contacts = Core.ResourceStore.GetAllResources( "Contact" );
-            ContactManager.UnlinkIdenticalContactNames( contacts, Core.ProgressWindow, 
+            ContactManager.UnlinkIdenticalContactNames( contacts, Core.ProgressWindow,
                                                        ref count, ref illegallyNamedCount );
             MessageBox.Show( count + " completely unnecessary contact names removed, of that - " +
                              illegallyNamedCount + " illegally named Contact Names" );
@@ -562,7 +561,7 @@ namespace JetBrains.Omea.DebugPlugin
 
         public void Update( IActionContext context, ref ActionPresentation presentation )
         {
-            presentation.Visible = (context.Kind == ActionContextKind.ContextMenu) && 
+            presentation.Visible = (context.Kind == ActionContextKind.ContextMenu) &&
                                    (context.SelectedResources.Count == 1);
             presentation.Enabled = Core.TextIndexManager.IsIndexPresent();
         }
@@ -596,7 +595,7 @@ namespace JetBrains.Omea.DebugPlugin
             }
 
             if( unindexedIDs.Count == 0 )
-                MessageBox.Show( "Resource Store and Text Index are in sync", "Synchronization results", 
+                MessageBox.Show( "Resource Store and Text Index are in sync", "Synchronization results",
                                  MessageBoxButtons.OK, MessageBoxIcon.Information );
             else
             {
@@ -976,7 +975,7 @@ namespace JetBrains.Omea.DebugPlugin
         public override void Execute( IActionContext context )
         {
             int count = 0;
-            IResourceList list = Core.ResourceStore.FindResources( FilterManagerProps.ConditionResName, 
+            IResourceList list = Core.ResourceStore.FindResources( FilterManagerProps.ConditionResName,
                                                                    Core.FilterRegistry.Props.OpProp, (int)ConditionOp.QueryMatch );
             Trace.WriteLine( "-----------------------------------------------------------------");
             foreach( IResource res in list )

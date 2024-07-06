@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Windows.Forms;
@@ -55,7 +54,7 @@ namespace GUIControlsTests
             Assert.IsTrue( _linksBar.Controls [2] is ResourceLinkLabel );
         }
 
-        [Test, Ignore("fails once in a while on build machine")] 
+        [Test, Ignore("fails once in a while on build machine")]
         public void TypeFilterTest()
         {
             IResource email = _storage.NewResource( "Email" );
@@ -66,7 +65,7 @@ namespace GUIControlsTests
             Assert.AreEqual( 1, _linksBar.Controls.Count );
         }
 
-        [Test, Ignore("fails once in a while on build machine")] 
+        [Test, Ignore("fails once in a while on build machine")]
         public void SameLinkNameFilterTest()
         {
             IResource email = _storage.NewResource( "Email" );
@@ -77,11 +76,11 @@ namespace GUIControlsTests
 
             _linksBar.DisplayLinks( email, new HidePersonFilter() );
             Assert.AreEqual( 3, _linksBar.Controls.Count );
-            
+
             Assert.IsTrue( _linksBar.Controls [1].Visible );
             Assert.AreEqual( 4, _linksBar.Controls [1].Left );
             Assert.AreEqual( "Author:", _linksBar.Controls [1].Text );
-            
+
             ResourceLinkLabel person2Label = _linksBar.Controls [2] as ResourceLinkLabel;
             Assert.IsNotNull( person2Label );
             Assert.AreEqual( person2, person2Label.Resource );

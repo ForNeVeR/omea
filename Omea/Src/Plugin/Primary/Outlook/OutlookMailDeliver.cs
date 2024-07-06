@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Diagnostics;
@@ -211,13 +210,13 @@ namespace JetBrains.Omea.OutlookPlugin
                         ShowErrorMessage();
                         return;
                     }
-                    
+
                     /*
                     Parameters [0] = (int) 13;
                     Parameters [1] = (int) 32828;
-                    
+
                     object button = oDocument.GetType().InvokeMember( "FindControl",BindingFlags.InvokeMethod,null,oDocument, Parameters );
-                    
+
                     object controls = button.GetType().InvokeMember( "Controls", BindingFlags.GetProperty, null, button, new object[] {} );
                     object control0 = controls.GetType().InvokeMember( "Item", BindingFlags.GetProperty, null, controls, new object[] { 2 } );
                     control0.GetType().InvokeMember( "Execute",BindingFlags.InvokeMethod,null,button, new object[] {} );
@@ -405,7 +404,7 @@ namespace JetBrains.Omea.OutlookPlugin
             }
             catch ( System.Threading.ThreadAbortException ex )
             {
-                Tracer._TraceException( ex );                    
+                Tracer._TraceException( ex );
             }
             catch ( Exception exception )
             {
@@ -431,7 +430,7 @@ namespace JetBrains.Omea.OutlookPlugin
             Win32Declarations.SendMessage( mainWnd, Win32Declarations.WM_SETFOCUS, IntPtr.Zero, IntPtr.Zero );
             int SIZE_MINIMIZED = 1;
             Win32Declarations.SendMessage( mainWnd, Win32Declarations.WM_SIZE, (IntPtr)SIZE_MINIMIZED, IntPtr.Zero );
-            
+
             DebugMessageBox( "after WM_SETFOCUS" );
             Tracer._Trace("GUI activated");
         }

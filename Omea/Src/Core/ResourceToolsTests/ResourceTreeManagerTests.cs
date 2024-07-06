@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -20,7 +19,7 @@ namespace ResourceToolsTests
         private TestCore _core;
         private IResourceStore _storage;
         private IResourceTreeManager _manager;
-        
+
         [SetUp] public void SetUp()
         {
             _core = new TestCore();
@@ -85,14 +84,14 @@ namespace ResourceToolsTests
             IResource folder2 = _storage.NewResource( "Folder" );
             IResource folder3 = _storage.NewResource( "Folder" );
             folder2.AddLink( Core.Props.Parent, folder3 );
-            
+
             MockResourceListListener listener = new MockResourceListListener();
             MockResourceListListener listener2 = new MockResourceListListener();
             _manager.RegisterTreeListener( folder, Core.Props.Parent, listener );
             _manager.RegisterTreeListener( folder3, Core.Props.Parent, listener2 );
-            
+
             folder2.SetProp( Core.Props.Parent, folder );
-            
+
             Assert.AreEqual( 1, listener._addedResources.Count );
             Assert.AreEqual( folder2, listener._addedResources [0] );
             Assert.AreEqual( 0, listener._changedResources.Count );
@@ -118,7 +117,7 @@ namespace ResourceToolsTests
             internal ArrayList _addedResources = new ArrayList();
             internal ArrayList _changedResources = new ArrayList();
             internal ArrayList _removedResources = new ArrayList();
-            
+
             public void ResourceAdded( IResource res )
             {
                 _addedResources.Add( res );

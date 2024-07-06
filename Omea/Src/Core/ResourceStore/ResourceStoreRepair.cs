@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -76,7 +75,7 @@ namespace JetBrains.Omea.ResourceStore
             {
                 Console.WriteLine( "Too many errors found, stopping further report" );
             }
-            _errorCount++;                                        
+            _errorCount++;
         }
 
         public bool FixErrors
@@ -179,7 +178,7 @@ namespace JetBrains.Omea.ResourceStore
                 ShowProgress( "Link restrictions were not checked because errors were found on earlier stages" );
             }
 
-            ShowProgress( "Processed {0} resources, {1} properties and {2} links", 
+            ShowProgress( "Processed {0} resources, {1} properties and {2} links",
                 _resCount, _propCount, _linkCount );
             if ( _errorCount == 0 )
             {
@@ -198,7 +197,7 @@ namespace JetBrains.Omea.ResourceStore
             int propDataType = GetPropId( "DataType" );
             int propFlags    = GetPropId( "Flags" );
             int typePropType = GetResourceTypeId( "PropType" );
-                
+
             bool needRebuildIndexes = false;
             if ( _propTypes.PeekNextID() > 65536 )
             {
@@ -334,7 +333,7 @@ namespace JetBrains.Omea.ResourceStore
             {
                 needRebuildIndexes = true;
             }
-            
+
             using( IResultSet rs = _resTypes.CreateResultSet( 0 ) )
             {
                 foreach( IRecord rec in rs )
@@ -517,7 +516,7 @@ namespace JetBrains.Omea.ResourceStore
         {
             HashSet resPropTypes = new HashSet();
             int lastResID = -1;
-            
+
             using( IResultSet rs = propTable.CreateResultSet( 0 ) )
             {
                 IEnumerator enumerator = rs.GetEnumerator();
@@ -799,7 +798,7 @@ namespace JetBrains.Omea.ResourceStore
             RepairUniqueRestrictions();
         }
 
-        private void RepairLinkRestrictions()                                                
+        private void RepairLinkRestrictions()
         {
             IResourceStore store = MyPalStorage.Storage;
             IResourceList restrictionsList = store.GetAllResources( "LinkRestriction" );
@@ -853,7 +852,7 @@ namespace JetBrains.Omea.ResourceStore
 	        int minCount = lr.GetIntProp( "MinCount" );
 	        int maxCount = lr.GetIntProp( "MaxCount" );
             string linkTypeName = (string) _propTypeMap [linkType];
-    
+
 	        IResourceList links;
             int linkTypeReverse;
 	        if ( store.PropTypes [linkType].HasFlag( PropTypeFlags.DirectedLink) )
@@ -866,8 +865,8 @@ namespace JetBrains.Omea.ResourceStore
 	            links = resource.GetLinksOfType( null, linkType );
                 linkTypeReverse = linkType;
 	        }
-    
-	        /** 
+
+	        /**
              * check destination resource types
              */
 	        if( toResourceType != null )
@@ -905,10 +904,10 @@ namespace JetBrains.Omea.ResourceStore
 	                }
 	            }
 	        }
-	        /** 
+	        /**
              * check counts
              */
-	        
+
             if( links.Count < minCount )
 	        {
 	            ReportError( String.Format( "Not enough links of type {3} for resource '{2}' {0} minimum, {1} found",
@@ -996,7 +995,7 @@ namespace JetBrains.Omea.ResourceStore
                     }
                 }
             }
-            
+
             restrictionsList = store.GetAllResources( "UniqueRestriction" );
 
             foreach( HashSet.Entry E in involvedResTypes )
@@ -1031,7 +1030,7 @@ namespace JetBrains.Omea.ResourceStore
                                 }
                                 if ( propValueSet.Contains( propValue ) )
                                 {
-                                    ReportError( "Unique property value restriction violated: resource ID=" 
+                                    ReportError( "Unique property value restriction violated: resource ID="
                                         + resource.Id + " property " + store.PropTypes [propId].Name + ", value " + propValue );
                                     if( _fixErrors && IsSafeToDeleteResource( resource ) )
                                     {

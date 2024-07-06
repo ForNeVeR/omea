@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Diagnostics;
@@ -51,8 +50,8 @@ namespace JetBrains.Omea.ContactsPlugin
 
         private void InitializeLists()
         {
-            IResourceList contactKeepers = 
-                SourceContact.GetLinksOfType( "ContactSerializationBlobKeeper", 
+            IResourceList contactKeepers =
+                SourceContact.GetLinksOfType( "ContactSerializationBlobKeeper",
                                               ContactManager._propSerializationBlobLink );
             if( contactKeepers.Count == 0 )
                 throw new ArgumentException( "SplitContactForm -- input contact is not splittable" );
@@ -95,10 +94,10 @@ namespace JetBrains.Omea.ContactsPlugin
             this.buttonOK = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
+            //
             // listLeavedContacts
-            // 
-            this.listLeavedContacts.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            //
+            this.listLeavedContacts.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                 | System.Windows.Forms.AnchorStyles.Left)));
             this.listLeavedContacts.IntegralHeight = false;
             this.listLeavedContacts.Location = new System.Drawing.Point(4, 28);
@@ -108,29 +107,29 @@ namespace JetBrains.Omea.ContactsPlugin
             this.listLeavedContacts.TabIndex = 2;
             this.listLeavedContacts.DoubleClick += new System.EventHandler(this.buttonOneToSplitted_Click);
             this.listLeavedContacts.SelectedIndexChanged += new System.EventHandler(this.listLeavedContacts_SelectedIndexChanged);
-            // 
+            //
             // labelLeaveContacts
-            // 
+            //
             this.labelLeaveContacts.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.labelLeaveContacts.Location = new System.Drawing.Point(4, 8);
             this.labelLeaveContacts.Name = "labelLeaveContacts";
             this.labelLeaveContacts.Size = new System.Drawing.Size(156, 18);
             this.labelLeaveContacts.TabIndex = 1;
             this.labelLeaveContacts.Text = "Merged Contacts:";
-            // 
+            //
             // labelSplitContactsInto
-            // 
+            //
             this.labelSplitContactsInto.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.labelSplitContactsInto.Location = new System.Drawing.Point(240, 8);
             this.labelSplitContactsInto.Name = "labelSplitContactsInto";
             this.labelSplitContactsInto.Size = new System.Drawing.Size(132, 18);
             this.labelSplitContactsInto.TabIndex = 7;
             this.labelSplitContactsInto.Text = "Contacts to Extract:";
-            // 
+            //
             // listSplittedContacts
-            // 
-            this.listSplittedContacts.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-                | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this.listSplittedContacts.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this.listSplittedContacts.IntegralHeight = false;
             this.listSplittedContacts.Location = new System.Drawing.Point(240, 28);
@@ -140,9 +139,9 @@ namespace JetBrains.Omea.ContactsPlugin
             this.listSplittedContacts.TabIndex = 8;
             this.listSplittedContacts.DoubleClick += new System.EventHandler(this.buttonOneToLeaved_Click);
             this.listSplittedContacts.SelectedIndexChanged += new System.EventHandler(this.listSplittedContacts_SelectedIndexChanged);
-            // 
+            //
             // buttonOneToSplitted
-            // 
+            //
             this.buttonOneToSplitted.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.buttonOneToSplitted.Location = new System.Drawing.Point(176, 60);
             this.buttonOneToSplitted.Name = "buttonOneToSplitted";
@@ -150,9 +149,9 @@ namespace JetBrains.Omea.ContactsPlugin
             this.buttonOneToSplitted.TabIndex = 3;
             this.buttonOneToSplitted.Text = ">";
             this.buttonOneToSplitted.Click += new System.EventHandler(this.buttonOneToSplitted_Click);
-            // 
+            //
             // buttonOneToLeaved
-            // 
+            //
             this.buttonOneToLeaved.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.buttonOneToLeaved.Location = new System.Drawing.Point(176, 100);
             this.buttonOneToLeaved.Name = "buttonOneToLeaved";
@@ -160,9 +159,9 @@ namespace JetBrains.Omea.ContactsPlugin
             this.buttonOneToLeaved.TabIndex = 4;
             this.buttonOneToLeaved.Text = "<";
             this.buttonOneToLeaved.Click += new System.EventHandler(this.buttonOneToLeaved_Click);
-            // 
+            //
             // buttonAllToSplitted
-            // 
+            //
             this.buttonAllToSplitted.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.buttonAllToSplitted.Location = new System.Drawing.Point(176, 140);
             this.buttonAllToSplitted.Name = "buttonAllToSplitted";
@@ -170,9 +169,9 @@ namespace JetBrains.Omea.ContactsPlugin
             this.buttonAllToSplitted.TabIndex = 5;
             this.buttonAllToSplitted.Text = ">>";
             this.buttonAllToSplitted.Click += new System.EventHandler(this.buttonAllToSplitted_Click);
-            // 
+            //
             // buttonAllToLeaved
-            // 
+            //
             this.buttonAllToLeaved.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.buttonAllToLeaved.Location = new System.Drawing.Point(176, 180);
             this.buttonAllToLeaved.Name = "buttonAllToLeaved";
@@ -180,9 +179,9 @@ namespace JetBrains.Omea.ContactsPlugin
             this.buttonAllToLeaved.TabIndex = 6;
             this.buttonAllToLeaved.Text = "<<";
             this.buttonAllToLeaved.Click += new System.EventHandler(this.buttonAllToLeaved_Click);
-            // 
+            //
             // buttonOK
-            // 
+            //
             this.buttonOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonOK.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.buttonOK.Location = new System.Drawing.Point(240, 292);
@@ -190,9 +189,9 @@ namespace JetBrains.Omea.ContactsPlugin
             this.buttonOK.TabIndex = 9;
             this.buttonOK.Text = "OK";
             this.buttonOK.Click += new System.EventHandler(this.buttonOK_Click);
-            // 
+            //
             // buttonCancel
-            // 
+            //
             this.buttonCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.buttonCancel.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -200,9 +199,9 @@ namespace JetBrains.Omea.ContactsPlugin
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.TabIndex = 10;
             this.buttonCancel.Text = "Cancel";
-            // 
+            //
             // SplitContactForm
-            // 
+            //
             this.AcceptButton = this.buttonOK;
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
             this.CancelButton = this.buttonCancel;

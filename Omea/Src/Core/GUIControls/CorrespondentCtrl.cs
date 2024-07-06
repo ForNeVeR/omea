@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections.Generic;
@@ -17,10 +16,10 @@ using JetBrains.Omea.ResourceTools;
 namespace JetBrains.Omea.GUIControls
 {
     /**
-     * The pane displaying the list of correspondents with support for 
+     * The pane displaying the list of correspondents with support for
      * incremental search and category filtering.
      */
-    
+
     public class CorrespondentCtrl: AbstractViewPane, IResourceSelectPane, IContextProvider
     {
         private System.ComponentModel.IContainer components;
@@ -60,7 +59,7 @@ namespace JetBrains.Omea.GUIControls
             _txtFind.EmptyText = "<start typing a name here>";
         }
 
-        /// <summary> 
+        /// <summary>
         /// Clean up any resources being used.
         /// </summary>
         protected override void Dispose( bool disposing )
@@ -78,7 +77,7 @@ namespace JetBrains.Omea.GUIControls
 
         #region Populate
         public override void Populate()
-        {   
+        {
             AddressBook.Initialize();
 
             _cmbCategory.BeginUpdate();
@@ -264,7 +263,7 @@ namespace JetBrains.Omea.GUIControls
                 selectSuccess = _dataProvider.FindResourceNode( node );
                 if ( !selectSuccess )
                 {
-                    if ( node.Type == "Contact" && _lastWorkspace == null && 
+                    if ( node.Type == "Contact" && _lastWorkspace == null &&
                         _cmbCategory.SelectedIndex != 0  )
                     {
                         // show All contacts and retry selection
@@ -296,7 +295,7 @@ namespace JetBrains.Omea.GUIControls
         {
             if ( workspace == _lastWorkspace )
                 return;
-            
+
             _lastWorkspace = workspace;
             if ( workspace == null )
             {
@@ -345,8 +344,8 @@ namespace JetBrains.Omea.GUIControls
         }
 
         #region Component Designer generated code
-        /// <summary> 
-        /// Required method for Designer support - do not modify 
+        /// <summary>
+        /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
@@ -357,12 +356,12 @@ namespace JetBrains.Omea.GUIControls
             this._lblShowCategory = new System.Windows.Forms.Label();
             this._txtFind = new JetBrains.Omea.GUIControls.JetTextBox();
             this.SuspendLayout();
-            // 
+            //
             // _listQueries
-            // 
+            //
             this._listContacts.AllowDrop = true;
-            this._listContacts.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-                | System.Windows.Forms.AnchorStyles.Left) 
+            this._listContacts.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._listContacts.BorderStyle = BorderStyle.None;
             this._listContacts.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
@@ -375,10 +374,10 @@ namespace JetBrains.Omea.GUIControls
             this._listContacts.DoubleClick += new HandledEventHandler(this._listQueries_DoubleClick);
             this._listContacts.MouseUp += new System.Windows.Forms.MouseEventHandler(this._listQueries_MouseUp);
             this._listContacts.KeyDown += new System.Windows.Forms.KeyEventHandler(this._listQueries_KeyDown);
-            // 
+            //
             // _cmbCategory
-            // 
-            this._cmbCategory.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._cmbCategory.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._cmbCategory.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this._cmbCategory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -388,19 +387,19 @@ namespace JetBrains.Omea.GUIControls
             this._cmbCategory.TabIndex = 1;
             this._cmbCategory.KeyDown += new System.Windows.Forms.KeyEventHandler(this._cmbCategory_KeyDown);
             this._cmbCategory.SelectedIndexChanged += new System.EventHandler(this.OnSelectedCategoryChanged);
-            // 
+            //
             // _lblShowCategory
-            // 
+            //
             this._lblShowCategory.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._lblShowCategory.Location = new System.Drawing.Point(4, 32);
             this._lblShowCategory.Name = "_lblShowCategory";
             this._lblShowCategory.Size = new System.Drawing.Size(40, 16);
             this._lblShowCategory.TabIndex = 5;
             this._lblShowCategory.Text = "Show:";
-            // 
+            //
             // _txtFind
-            // 
-            this._txtFind.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._txtFind.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._txtFind.EmptyText = null;
             this._txtFind.ForeColor = System.Drawing.Color.DarkGray;
@@ -411,9 +410,9 @@ namespace JetBrains.Omea.GUIControls
             this._txtFind.Text = "";
             this._txtFind.KeyDown += new System.Windows.Forms.KeyEventHandler(this._txtFind_KeyDown);
             this._txtFind.IncrementalSearchUpdated += new System.EventHandler(this.OnIncrementalSearchUpdated);
-            // 
+            //
             // CorrespondentCtrl
-            // 
+            //
             this.Controls.Add(this._cmbCategory);
             this.Controls.Add(this._lblShowCategory);
             this.Controls.Add(this._txtFind);
@@ -460,7 +459,7 @@ namespace JetBrains.Omea.GUIControls
             correspondents = correspondents.Intersect( _selectionSourceList, true );
             correspondents = correspondents.Intersect( _correspondentFilterList, true );
             correspondents = correspondents.Minus( Core.ResourceStore.FindResourcesWithProp( null, Core.Props.IsDeleted ) );
-            
+
             ShowCorrespondents( correspondents );
         }
 
@@ -547,7 +546,7 @@ namespace JetBrains.Omea.GUIControls
         {
             if ( _listContacts.ActiveResource == null )
                 return;
-            
+
             // workaround for bug #1595: if the selected correspondent is deleted, update list
             // even if we don't have focus
             // (is the ContainsFocus condition correct in general?)
@@ -562,7 +561,7 @@ namespace JetBrains.Omea.GUIControls
                 return;
 
             _forceUpdate = false;
-            
+
             UpdateSelection();
         }
 
@@ -788,7 +787,7 @@ namespace JetBrains.Omea.GUIControls
 
         private void _cmbCategory_KeyDown(object sender, KeyEventArgs e)
         {
-            ActionContext context = new ActionContext( ActionContextKind.Keyboard, null, 
+            ActionContext context = new ActionContext( ActionContextKind.Keyboard, null,
                                                        _listContacts.GetSelectedResources() );
             if( Core.ActionManager.ExecuteKeyboardAction( context, e.KeyData ) )
             {
@@ -815,7 +814,7 @@ namespace JetBrains.Omea.GUIControls
             SetSelectorMode();
             _checkedResources = new List<int>();
             _selectionSourceList = baseList;
-            
+
             Populate();
             SelectResource( selection, false );
         }
@@ -825,7 +824,7 @@ namespace JetBrains.Omea.GUIControls
             SetSelectorMode();
             _checkedResources = new List<int>();
             _selectionSourceList = baseList;
-            
+
             _checkBoxColumn = new CheckBoxColumn();
             _checkBoxColumn.AfterCheck += HandleAfterCheck;
             _listContacts.Columns.Insert( 0, _checkBoxColumn );
@@ -870,7 +869,7 @@ namespace JetBrains.Omea.GUIControls
         }
 
         /// <summary>
-        /// Restores the checked state of resources after a different category 
+        /// Restores the checked state of resources after a different category
         /// has been selected.
         /// </summary>
         private void UpdateCheckedResources()
@@ -901,7 +900,7 @@ namespace JetBrains.Omea.GUIControls
         {
             if ( _updatingCheckedResources )
                 return;
-            
+
             IResource res = (IResource) e.Item;
 
             if ( e.NewState == CheckBoxState.Checked )

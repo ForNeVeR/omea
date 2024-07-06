@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using JetBrains.Omea.OpenAPI;
 using JetBrains.Omea.Contacts;
@@ -15,7 +14,7 @@ namespace JetBrains.Omea.ContactsPlugin
     internal class AddressBlock : AbstractContactViewBlock
 	{
         private Omea.ContactsPlugin.PropertyEditor _streetAddress;
-		/// <summary> 
+		/// <summary>
 		/// Required designer variable.
 		/// </summary>
 		private System.ComponentModel.Container components = null;
@@ -36,7 +35,7 @@ namespace JetBrains.Omea.ContactsPlugin
             return new AddressBlock();
         }
 
-		/// <summary> 
+		/// <summary>
 		/// Clean up any resources being used.
 		/// </summary>
 		protected override void Dispose( bool disposing )
@@ -52,8 +51,8 @@ namespace JetBrains.Omea.ContactsPlugin
 		}
 
 		#region Component Designer generated code
-		/// <summary> 
-		/// Required method for Designer support - do not modify 
+		/// <summary>
+		/// Required method for Designer support - do not modify
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent()
@@ -61,11 +60,11 @@ namespace JetBrains.Omea.ContactsPlugin
             this._streetAddress = new Omea.ContactsPlugin.PropertyEditor();
             this._lblAddress = new System.Windows.Forms.Label();
             this.SuspendLayout();
-            // 
+            //
             // _streetAddress
-            // 
-            this._streetAddress.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-                | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._streetAddress.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._streetAddress.Location = new System.Drawing.Point(4, 4);
             this._streetAddress.Multiline = true;
@@ -73,9 +72,9 @@ namespace JetBrains.Omea.ContactsPlugin
             this._streetAddress.ReadOnly = false;
             this._streetAddress.Size = new System.Drawing.Size(140, 104);
             this._streetAddress.TabIndex = 1;
-            // 
+            //
             // _lblAddress
-            // 
+            //
             this._lblAddress.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._lblAddress.Location = new System.Drawing.Point(4, 4);
             this._lblAddress.Name = "_lblAddress";
@@ -83,9 +82,9 @@ namespace JetBrains.Omea.ContactsPlugin
             this._lblAddress.TabIndex = 15;
             this._lblAddress.Text = "Address:";
             this._lblAddress.Visible = false;
-            // 
+            //
             // AddressBlock
-            // 
+            //
             this.Controls.Add(this._lblAddress);
             this.Controls.Add(this._streetAddress);
             this.Name = "AddressBlock";

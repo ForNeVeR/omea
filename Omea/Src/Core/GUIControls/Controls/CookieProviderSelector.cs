@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using JetBrains.Omea.HttpTools;
@@ -67,7 +66,7 @@ namespace JetBrains.Omea.GUIControls
             {
                 object item = _cookieProvidersBox.SelectedItem;
                 return ( item == null ) ? CookieProviderItem._noneSelection : ( (CookieProviderItem) item ).ToString();
-            } 
+            }
         }
 
 		protected override void Dispose( bool disposing )
@@ -83,8 +82,8 @@ namespace JetBrains.Omea.GUIControls
 		}
 
 		#region Component Designer generated code
-		/// <summary> 
-		/// Required method for Designer support - do not modify 
+		/// <summary>
+		/// Required method for Designer support - do not modify
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent()
@@ -92,27 +91,27 @@ namespace JetBrains.Omea.GUIControls
             this.label1 = new System.Windows.Forms.Label();
             this._cookieProvidersBox = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
-            // 
+            //
             // label1
-            // 
+            //
             this.label1.Location = new System.Drawing.Point(0, 2);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(108, 22);
             this.label1.TabIndex = 0;
             this.label1.Text = "Use &cookies from";
-            // 
+            //
             // _cookieProvidersBox
-            // 
-            this._cookieProvidersBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._cookieProvidersBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._cookieProvidersBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this._cookieProvidersBox.Location = new System.Drawing.Point(108, 0);
             this._cookieProvidersBox.Name = "_cookieProvidersBox";
             this._cookieProvidersBox.Size = new System.Drawing.Size(252, 21);
             this._cookieProvidersBox.TabIndex = 1;
-            // 
+            //
             // CookieProviderSelector
-            // 
+            //
             this.Controls.Add(this._cookieProvidersBox);
             this.Controls.Add(this.label1);
             this.Name = "CookieProviderSelector";

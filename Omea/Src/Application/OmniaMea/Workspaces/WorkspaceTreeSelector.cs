@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -18,7 +17,7 @@ namespace JetBrains.Omea.Workspaces
     /// </summary>
     internal class WorkspaceTreeSelector: UserControl, IResourceChildProvider, IWorkspaceSelector
     {
-        /// <summary> 
+        /// <summary>
         /// Required designer variable.
         /// </summary>
         private System.ComponentModel.Container components = null;
@@ -55,7 +54,7 @@ namespace JetBrains.Omea.Workspaces
             _workspaceManager = Core.WorkspaceManager as WorkspaceManager;
         }
 
-        /// <summary> 
+        /// <summary>
         /// Clean up any resources being used.
         /// </summary>
         protected override void Dispose( bool disposing )
@@ -71,8 +70,8 @@ namespace JetBrains.Omea.Workspaces
         }
 
         #region Component Designer generated code
-        /// <summary> 
-        /// Required method for Designer support - do not modify 
+        /// <summary>
+        /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
@@ -138,7 +137,7 @@ namespace JetBrains.Omea.Workspaces
             {
                 _tvAvailable.ParentProperty = Core.Props.Parent;
             }
-            
+
             _tvAvailable.MultiSelect = true;
             _tvAvailable.HideSelection = false;
             _tvAvailable.ExecuteDoubleClickAction = false;
@@ -167,7 +166,7 @@ namespace JetBrains.Omea.Workspaces
             UpdateAvailableTreeSelection();
             UpdateWorkspaceTreeSelection();
 
-            Controls.AddRange( new Control[] { _lblAvailable, _tvAvailable, 
+            Controls.AddRange( new Control[] { _lblAvailable, _tvAvailable,
                                                  _btnAdd, _btnAddWithChildren, _btnRemove, _lblProcessing,
                                                  _lblInWorkspace, _tvInWorkspace } );
         }
@@ -221,7 +220,7 @@ namespace JetBrains.Omea.Workspaces
         {
             BeginWorkspaceOperation();
             Core.ResourceAP.QueueJob( JobPriority.Immediate, new ResourceListDelegate( DoAdd ),
-                _tvAvailable.SelectedResources );                               
+                _tvAvailable.SelectedResources );
         }
 
         private void DoAdd( IResourceList resList )
@@ -320,7 +319,7 @@ namespace JetBrains.Omea.Workspaces
 
         private void DoRemove( IResourceList selResourceList )
         {
-            _workspaceManager.RemoveResourcesFromWorkspace( _currentWorkspace, 
+            _workspaceManager.RemoveResourcesFromWorkspace( _currentWorkspace,
                 _tvInWorkspace.SelectedResources );
         }
 
@@ -329,7 +328,7 @@ namespace JetBrains.Omea.Workspaces
             IResourceList result = null;
             if ( parent.Type == "Workspace" )
             {
-                result = parent.GetLinksToLive( null, "InWorkspace" ).Union( 
+                result = parent.GetLinksToLive( null, "InWorkspace" ).Union(
                          parent.GetLinksToLive( null, "InWorkspaceRecursive" ) );
                 result.Sort( new SortSettings( Core.Props.Name, true ) );
             }
@@ -354,7 +353,7 @@ namespace JetBrains.Omea.Workspaces
                     nextParent = nextParent.GetLinkProp( _tvInWorkspace.ParentProperty );
                 }
             }
-            
+
             if ( result != null )
             {
                 IResourceList filterList = null;
@@ -386,7 +385,7 @@ namespace JetBrains.Omea.Workspaces
             base.OnSizeChanged( e );
 
             int middleSpaceX = (int) (48 * Core.ScaleFactor.Width);
-            
+
             _lblAvailable.Location = new Point( 0, 0 );
             _lblInWorkspace.Location = new Point( Width / 2 + middleSpaceX, 0 );
 
@@ -395,10 +394,10 @@ namespace JetBrains.Omea.Workspaces
 
             _tvInWorkspace.Location = new Point( Width / 2 + middleSpaceX, 20 );
             _tvInWorkspace.Size = _tvAvailable.Size;
- 
+
             Size btnSize = new Size( (int) (72 * Core.ScaleFactor.Width),
                 (int) (24 * Core.ScaleFactor.Height) );
-            
+
             int btnX = (int) (Width / 2 - (36 * Core.ScaleFactor.Width ));
             _btnAdd.Location = new Point( btnX, 24 );
             _btnAdd.Size = btnSize;

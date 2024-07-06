@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -187,10 +186,10 @@ namespace JetBrains.JetListViewLibrary
             if ( startLvNode != null )
             {
                 return new GroupedItemEnumerator( this,
-                    _nodeCollection.GetDirectionalEnumerator( startLvNode, direction ), direction, 
+                    _nodeCollection.GetDirectionalEnumerator( startLvNode, direction ), direction,
                     (direction == MoveDirection.Down) );
             }
-            
+
             GroupHeaderNode startHeaderNode = startNode as GroupHeaderNode;
             Debug.Assert( startHeaderNode.TopNode != null );
             if ( startHeaderNode.TopNode == null )
@@ -217,14 +216,14 @@ namespace JetBrains.JetListViewLibrary
 	            GroupHeaderNode startHeaderNode = (GroupHeaderNode) startNode;
 	            startLvNode = startHeaderNode.TopNode;
 	        }
-    
+
 	        JetListViewNode endLvNode = endNode as JetListViewNode;
 	        if ( endLvNode == null )
 	        {
 	            GroupHeaderNode endHeaderNode = (GroupHeaderNode) endNode;
 	            endLvNode = endHeaderNode.TopNode;
 	        }
-            
+
 	        int orderDiff = _nodeCollection.CompareVisibleOrder( startLvNode, endLvNode );
 	        if ( orderDiff == 0 && startNode is GroupHeaderNode && !(endNode is GroupHeaderNode) )
 	        {
@@ -498,7 +497,7 @@ namespace JetBrains.JetListViewLibrary
                     {
                         _curHeaderNode = newHeaderNode;
                         // if we're enumerating from middle of a group, we can't overwrite topNode
-                        if ( !_skipFirstGroupHeader || _curHeaderNode.TopNode == null )  
+                        if ( !_skipFirstGroupHeader || _curHeaderNode.TopNode == null )
                         {
                             _curHeaderNode.TopNode = curNode;
                         }

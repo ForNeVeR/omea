@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Diagnostics;
@@ -161,7 +160,7 @@ namespace JetBrains.Omea.OutlookPlugin
         }
         public static bool IsRoot( IResource folder )
         {
-            return folder == _mapiFolderRoot; 
+            return folder == _mapiFolderRoot;
         }
 
         public static void AddSubFolder( FolderDescriptor folder, FolderDescriptor subFolder )
@@ -172,7 +171,7 @@ namespace JetBrains.Omea.OutlookPlugin
                 parentFolder = Find( folder.FolderIDs.EntryId );
             }
             IResource resFolder = FindOrCreate( subFolder, parentFolder );
-            if ( Folder.IsParentRoot( resFolder ) || Folder.IsParentParentRoot( resFolder ) ) 
+            if ( Folder.IsParentRoot( resFolder ) || Folder.IsParentParentRoot( resFolder ) )
             {
                 SetDefault( resFolder, true );
             }
@@ -207,7 +206,7 @@ namespace JetBrains.Omea.OutlookPlugin
         }
         public static bool HasDeletedItemsAsAncestor( IResource folder )
         {
-            IResource current = Folder.GetParent( folder ); 
+            IResource current = Folder.GetParent( folder );
             while ( !Folder.IsRoot( current ) )
             {
                 if ( Folder.IsDeletedItems( current ) ) return true;
@@ -231,11 +230,11 @@ namespace JetBrains.Omea.OutlookPlugin
         }
         public static void IgnoreDeletedItemsIfNoIgnoredFolders()
         {
-            IResourceList ignoredFolders = 
+            IResourceList ignoredFolders =
                 Core.ResourceStore.FindResources( STR.MAPIFolder, PROP.IgnoredFolder, 1 );
             if ( ignoredFolders.Count == 0 )
             {
-                IResourceList folders = 
+                IResourceList folders =
                     Core.ResourceStore.FindResources( STR.MAPIFolder, PROP.DeletedItemsFolder, true );
                 foreach ( IResource folder in folders )
                 {
@@ -254,7 +253,7 @@ namespace JetBrains.Omea.OutlookPlugin
             }
         }
         public static bool IsIgnored( IResource folder )
-        { 
+        {
             if ( folder == null ) return true;
             return ( folder.GetIntProp( PROP.IgnoredFolder ) == 1 );
         }
@@ -267,14 +266,14 @@ namespace JetBrains.Omea.OutlookPlugin
             return Core.ResourceStore.FindResources( STR.MAPIFolder, PROP.ContainerClass, type );
         }
 
-        public static string GetContainerClass( IResource folder ) 
-        { 
+        public static string GetContainerClass( IResource folder )
+        {
             Guard.NullArgument( folder, "folder" );
-            return folder.GetPropText( PROP.ContainerClass ); 
+            return folder.GetPropText( PROP.ContainerClass );
         }
-        public static bool IsIMAPFolder( IResource folder ) 
-        { 
-            return GetContainerClass( folder ) == FolderType.IMAP; 
+        public static bool IsIMAPFolder( IResource folder )
+        {
+            return GetContainerClass( folder ) == FolderType.IMAP;
         }
         public static void SetIgnoreImport( IResource folder, bool ignore )
         {
@@ -282,9 +281,9 @@ namespace JetBrains.Omea.OutlookPlugin
             folder.SetProp( PROP.IgnoreContactImport, ignore );
         }
         public static bool IsIgnoreImport( IResource folder )
-        { 
+        {
             Guard.NullArgument( folder, "folder" );
-            return folder.HasProp( PROP.IgnoreContactImport ); 
+            return folder.HasProp( PROP.IgnoreContactImport );
         }
         public static bool IsFolderOfType( IResource folder, string type )
         {
@@ -316,9 +315,9 @@ namespace JetBrains.Omea.OutlookPlugin
             return folder.GetLinksOfType( STR.Task, PROP.MAPIFolder );
         }
         public static IResource GetSelectedMail( IResource folder )
-        { 
+        {
             Guard.NullArgument( folder, "folder" );
-            return folder.GetLinkProp( PROP.SelectedInFolder ); 
+            return folder.GetLinkProp( PROP.SelectedInFolder );
         }
         public static void SetSeeAll( IResource folder, bool seeAll )
         {
@@ -326,9 +325,9 @@ namespace JetBrains.Omea.OutlookPlugin
             folder.SetProp( PROP.SeeAll, seeAll );
         }
         public static bool GetSeeAll( IResource folder )
-        { 
+        {
             Guard.NullArgument( folder, "folder" );
-            return folder.HasProp( PROP.SeeAll ); 
+            return folder.HasProp( PROP.SeeAll );
         }
         public static IResourceList GetSubFolders( IResource folder )
         {
@@ -338,7 +337,7 @@ namespace JetBrains.Omea.OutlookPlugin
 
         public static bool IsAncestor( IResource folder, IResource possibleAncestor )
         {
-            IResource current = Folder.GetParent( folder ); 
+            IResource current = Folder.GetParent( folder );
             while ( !Folder.IsRoot( current ) )
             {
                 if ( current == possibleAncestor ) return true;
@@ -385,7 +384,7 @@ namespace JetBrains.Omea.OutlookPlugin
         {
             Guard.NullArgument( folderDescriptor, "folderDescriptor" );
             IResource MAPIStore = FindOrCreateMAPIStore( folderDescriptor.FolderIDs.StoreId );
-            IResource resFolder = 
+            IResource resFolder =
                 Core.ResourceStore.FindUniqueResource( STR.MAPIFolder, PROP.EntryID, folderDescriptor.FolderIDs.EntryId );
             if ( resFolder != null )
             {
@@ -417,8 +416,8 @@ namespace JetBrains.Omea.OutlookPlugin
                 resFolder.SetProp( PROP.ContainerClass, containerClass );
             }
             containerClass = resFolder.GetPropText( PROP.ContainerClass );
-            bool visible = 
-                ( containerClass.Length == 0 || containerClass == FolderType.Mail || 
+            bool visible =
+                ( containerClass.Length == 0 || containerClass == FolderType.Mail ||
                 containerClass == FolderType.Post || containerClass == FolderType.IMAP || containerClass == FolderType.Dav );
             resFolder.SetProp( PROP.MAPIVisible, visible );
 
@@ -482,7 +481,7 @@ namespace JetBrains.Omea.OutlookPlugin
 
         public static IResourceList GetDefaultDeletedItemsFolder()
         {
-            return Core.ResourceStore.FindResources( STR.MAPIFolder, 
+            return Core.ResourceStore.FindResources( STR.MAPIFolder,
                 PROP.DefaultDeletedItems, true );
         }
         private static bool IsParentParentRoot( IResource folder )

@@ -1,4 +1,9 @@
 <!doctype HTML public "-//W3C//DTD HTML 4.0 Frameset//EN">
+<!--
+SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+
+SPDX-License-Identifier: GPL-2.0-only
+-->
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang=en lang=en>
 
@@ -64,9 +69,9 @@
 <div id=mainContent>
 <h1>Using Advanced Search</h1>
 
-<p>You can use the Advanced Search feature to limit the types of resources 
- you want to search... only e-mails, for example. You can also add other 
- conditions such as limiting search to a particular correspondent, or to 
+<p>You can use the Advanced Search feature to limit the types of resources
+ you want to search... only e-mails, for example. You can also add other
+ conditions such as limiting search to a particular correspondent, or to
  resources received within some time frame.</p>
 
 <!--kadov_tag{{<implicit_p>}}--><img src="../images/sshots/shared/advanced_search.png"
@@ -75,49 +80,49 @@
 									style="width: 336px; height: 59px;"
 									width=336
 									height=59
-									border=0> 
+									border=0>
 
 <p class=caption>Launching Advanced Search</p>
 
 <p>There are 5 kinds of criteria that you can specify for advanced Search:</p>
 
 <ul>
-	
-	<li class=kadov-p><strong style="font-weight: bold;">Search keyword(s):</strong> 
- The word, words, or phase that found items must contain. You can use <a 
- href="../reference/query_syntax.html">Search Query Syntax</a> along with 
+
+	<li class=kadov-p><strong style="font-weight: bold;">Search keyword(s):</strong>
+ The word, words, or phase that found items must contain. You can use <a
+ href="../reference/query_syntax.html">Search Query Syntax</a> along with
  keywords.</li>
-	
-	<li class=kadov-p><strong style="font-weight: bold;">Section:</strong> 
- The section(s) of the resource(s) in which the search keyword(s) must 
+
+	<li class=kadov-p><strong style="font-weight: bold;">Section:</strong>
+ The section(s) of the resource(s) in which the search keyword(s) must
  occur.</li>
-	
-	<li class=kadov-p><strong style="font-weight: bold;">Resource type(s):</strong> 
+
+	<li class=kadov-p><strong style="font-weight: bold;">Resource type(s):</strong>
  The type(s) of resource(s) that the search applies to.</li>
-	
-	<li class=kadov-p><strong style="font-weight: bold;">Conditions:</strong> 
- Some criteria that must be met in order for an item to be returned by 
- the Search. For example, a condition might specify that some specific 
+
+	<li class=kadov-p><strong style="font-weight: bold;">Conditions:</strong>
+ Some criteria that must be met in order for an item to be returned by
+ the Search. For example, a condition might specify that some specific
  text must appear in the found resource(s).</li>
-	
-	<li class=kadov-p><strong style="font-weight: bold;">Exceptions:</strong> 
- Any exception(s) to the Condition(s). For example, a Condition might specify 
- that a resource must be from a particular sender. An Exception might specify 
- some text in the resource which, if present, would prevent the resource 
- from being returned in search results even though the sender condition 
+
+	<li class=kadov-p><strong style="font-weight: bold;">Exceptions:</strong>
+ Any exception(s) to the Condition(s). For example, a Condition might specify
+ that a resource must be from a particular sender. An Exception might specify
+ some text in the resource which, if present, would prevent the resource
+ from being returned in search results even though the sender condition
  is matched.</li>
 </ul>
 
 <h2>Starting a New Search</h2>
 
-<p>There is no single set of steps for specifying an Advanced Search, because 
- each one can contain almost any combination of the many criteria. The 
+<p>There is no single set of steps for specifying an Advanced Search, because
+ each one can contain almost any combination of the many criteria. The
  basic steps are:</p>
 
 <ol>
-	
+
 	<li class=kadov-p>
-	Click the <strong>Advanced</strong> link in the Search box to launch 
+	Click the <strong>Advanced</strong> link in the Search box to launch
  the <strong>Advanced Search</strong> dialog.<br />
 	<img src="../images/sshots/dialogs/shared/advanced_search.png"
 		alt="Advanced Search dialog"
@@ -125,12 +130,12 @@
 		style="width: 348px; height: 435px;"
 		width=348
 		height=435
-		border=0> 
-	
+		border=0>
+
 	<p class=caption>Advanced Search dialog</p>
 	</li>
-	
-	<li class=kadov-p>Specify the search keyword(s), including any Search 
+
+	<li class=kadov-p>Specify the search keyword(s), including any Search
  Query Syntax elements.
 	  <div class=tip>
 	  <strong>
@@ -141,14 +146,14 @@
         <p class=tip>Now the &#8220;search history&#8221; is stored in the drop-down list of the &#8220;Search for:&#8221; entry field. Click the drop-down arrow and select the word or phrase you have previously searched for. </p>
       </div>
 	</li>
-	<li class=kadov-p>Specify what resource type(s) the search applies 
- to. By default, a new search applies to all supported resource types. 
- If you want to limit the search to just one or two types, you must explicitly 
+	<li class=kadov-p>Specify what resource type(s) the search applies
+ to. By default, a new search applies to all supported resource types.
+ If you want to limit the search to just one or two types, you must explicitly
  specify these.</li>
-	
+
 	<li class=kadov-p>Define one or more Conditions. (Optional)</li>
-	
-	<li class=kadov-p>Define one or more Exceptions to the Conditions. 
+
+	<li class=kadov-p>Define one or more Exceptions to the Conditions.
  (Optional) </li>
 </ol>
 
@@ -158,17 +163,17 @@
 	style="/*begin!kadov{{*/ x-right: 747px; x-bottom: 776px; /*}}end!kadov*/ ">
           <p>&nbsp;</p>
         </div>
-<p class=tip>One good way to learn how Advanced Search works is to select 
- some resources you already have and practice creating searches that find 
+<p class=tip>One good way to learn how Advanced Search works is to select
+ some resources you already have and practice creating searches that find
  them.</p>
 </div>
 
 <h2>Saving Searches for Later Reuse</h2>
-<p>You can convert the results any search, Basic or Advanced, to a View. 
- Clicking on the View gives you access to all the resources turned up by 
- the search. This way, if you create a complex search that you will need 
- again, you don’t have to specify the search criteria every time. For information, 
- see <em>Organizing Using Views:</em> <a href="../organizing/organizing_using_views.html#newfromsearch">Creating 
+<p>You can convert the results any search, Basic or Advanced, to a View.
+ Clicking on the View gives you access to all the resources turned up by
+ the search. This way, if you create a complex search that you will need
+ again, you don’t have to specify the search criteria every time. For information,
+ see <em>Organizing Using Views:</em> <a href="../organizing/organizing_using_views.html#newfromsearch">Creating
  a View from Search Results</a>.</p>
 <h2>Search in This <span style="x-condition: PRO;">Folder,</span> Newsgroup, Feed&#8230;</h2>
 <p>You can run a little bit different &#8220;type&#8221; of advanced search but &#8212; its scope will be limited to the currently selected <span style="x-condition: PRO;">Outlook folder,</span> newsgroup or newsgroups, feed or feeds. This will allow you to perform the advanced search without any need to customize the conditions in the <strong>Advanced Search</strong> dialog. </p>
@@ -177,24 +182,24 @@
 <p class=seealso><strong style="font-weight: bold;">See also:</strong></p>
 
 <ol>
-	
-	<li class=seealso><a href="../overview/key_concepts.html#search">Overview: 
+
+	<li class=seealso><a href="../overview/key_concepts.html#search">Overview:
  Finding Resources</a></li>
-	
+
 	<li class=seealso><a href="basic_search.html">Basic Search</a></li>
-	
+
 	<li class=seealso><a href="quick_find.html">Quick Find</a></li>
-	
+
 	<li class=seealso><a href="find_in_resource.html">Find in Resource</a></li>
-	
+
 	<li class=seealso><a title="Edit Time Span Dialog"
-						href="../reference/edit_time_span_dialog.htm">Edit 
+						href="../reference/edit_time_span_dialog.htm">Edit
  Time Span Dialog</a></li>
-	
-	<li class=seealso><a href="../reference/query_syntax.html">Search Query 
+
+	<li class=seealso><a href="../reference/query_syntax.html">Search Query
  Syntax</a></li>
-	
-	<li class=seealso><a href="../organizing/custom_properties.html">Custom 
+
+	<li class=seealso><a href="../organizing/custom_properties.html">Custom
  Properties</a></li>
 </ol>
 </div>

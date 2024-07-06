@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 // PopupNotification.cpp : Implementation of CPopupNotification
 //
@@ -163,7 +162,7 @@ STDMETHODIMP CPopupNotification::Show(VARIANT Text, VARIANT Title, VARIANT Mood,
 		pt.y += 10;
 		RECT	rc = {pt.x, pt.y, pt.x + POPUP_WINDOW_WIDTH, pt.y + POPUP_WINDOW_HEIGHT};
 		// TODO: fit into screen, of the current monitor
-			
+
 		// Initiate window creation
 		if(Create(hwndParent, rc, sTitle, WS_POPUP, WS_EX_NOACTIVATE) == NULL)
 			CJetIeException::ThrowSystemError();
@@ -344,7 +343,7 @@ LRESULT CPopupNotification::OnNcCalcSize(UINT uMsg, WPARAM wParam, LPARAM lParam
 	TRACE(L"OnNcCalcSize");
 	if(wParam)	// wParam is True
 	{
-		// If wParam is TRUE, it specifies that the application should indicate which part of the client area contains valid information. The system copies the valid information to the specified area within the new client area. 
+		// If wParam is TRUE, it specifies that the application should indicate which part of the client area contains valid information. The system copies the valid information to the specified area within the new client area.
 		bHandled = TRUE;
 		return TRUE;	// The client area is preserved and aligned in the top-left corner of the new area
 	}
@@ -379,7 +378,7 @@ LRESULT CPopupNotification::OnNcHitTest(UINT uMsg, WPARAM wParam, LPARAM lParam,
 LRESULT CPopupNotification::OnTimer(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled)
 {
 	if(wParam == TIMER_EXPIRE)	// A timeout has expired. It's time to close the popup.
-	{		
+	{
 		KillTimer(TIMER_EXPIRE);
 		KillTimer(TIMER_TRANSPARENCY);
 		//AnimateWindow(m_hWnd, TIMEOUT_ANIMATE, AW_BLEND | AW_HIDE);
@@ -391,7 +390,7 @@ LRESULT CPopupNotification::OnTimer(UINT uMsg, WPARAM wParam, LPARAM lParam, BOO
 		KillTimer(TIMER_TRANSPARENCY);	// One-time action
 		SetTransparent(!m_bMouseIn);	// Transparent if mouse is not above this window
 	}
-	//else if(wParam == 
+	//else if(wParam ==
 	bHandled = TRUE;
 	return 0;
 }
@@ -523,12 +522,12 @@ CRect CPopupNotification::PerformLayout()
 	if(m_rcText.Height() < nIconSize)
 	{	// V-center the text within the window
 		int	nMoveDown = (nIconSize - m_rcText.Height()) / 2;
-		m_rcText.top += nMoveDown;	
+		m_rcText.top += nMoveDown;
 		m_rcText.bottom += nMoveDown;
 	}
 
 	/////////////////////////////////////
-	// Adjust the Client Rect and Parts 
+	// Adjust the Client Rect and Parts
 	// according to the new size
 
 	// Difference in each direction
@@ -587,5 +586,5 @@ CRect CPopupNotification::PerformLayout()
 	}
 
 	// Return the new window size and position
-	return rcWindow;	
+	return rcWindow;
 }

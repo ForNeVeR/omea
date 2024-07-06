@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Drawing;
@@ -134,17 +133,17 @@ namespace JetBrains.Omea.Tasks
         #endregion
 
 		#region Component Designer generated code
-		/// <summary> 
-		/// Required method for Designer support - do not modify 
+		/// <summary>
+		/// Required method for Designer support - do not modify
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent()
 		{
             #region Controls creation
             this.tabsTaskPages = new TabControl();
-            this.pageGeneral = new TabPage(); 
-            this.pageLinked  = new TabPage(); 
-            this.pageRecurrence  = new TabPage(); 
+            this.pageGeneral = new TabPage();
+            this.pageLinked  = new TabPage();
+            this.pageRecurrence  = new TabPage();
             this._subjectDescriptionPanel = new JetBrains.Omea.GUIControls.CustomStylePanel();
             this._descriptionBox = new JetTextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -193,7 +192,7 @@ namespace JetBrains.Omea.Tasks
             radioEveryWeekday = new RadioButton();
             textEveryXDay = new TextBox();
             labelDays = new Label();
-            
+
             radioWeekEvery = new RadioButton();
             textEveryXWeek = new TextBox();
             labelWeeks = new Label();
@@ -263,10 +262,10 @@ namespace JetBrains.Omea.Tasks
             #endregion Controls creation
 
             #region Tab Controls
-            // 
+            //
             // tabViews
-            // 
-            this.tabsTaskPages.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            //
+            this.tabsTaskPages.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                 | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
             this.tabsTaskPages.Location = new System.Drawing.Point(4, 4);
             this.tabsTaskPages.Name = "tabsTaskPages";
@@ -301,12 +300,12 @@ namespace JetBrains.Omea.Tasks
             pageRecurrence.TabIndex = 3;
             pageRecurrence.Text = "Recurrence";
             #endregion Tab Controls
-        
+
             #region Description Panel
-            // 
+            //
             // _subjectDescriptionPanel
-            // 
-            this._subjectDescriptionPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | 
+            //
+            this._subjectDescriptionPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom |
                 System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
             this._subjectDescriptionPanel.BorderColor = System.Drawing.Color.Black;
             this._subjectDescriptionPanel.Controls.Add(this._descriptionBox);
@@ -318,9 +317,9 @@ namespace JetBrains.Omea.Tasks
             this._subjectDescriptionPanel.Size = new System.Drawing.Size(350, 110);
             this._subjectDescriptionPanel.TabIndex = 0;
             this._subjectDescriptionPanel.Paint += new System.Windows.Forms.PaintEventHandler(this._subjectDescriptionPanel_Paint);
-            // 
+            //
             // labelSubject
-            // 
+            //
             this.labelSubject.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.labelSubject.Location = new System.Drawing.Point(8, 8);
             this.labelSubject.Name = "labelSubject";
@@ -328,10 +327,10 @@ namespace JetBrains.Omea.Tasks
             this.labelSubject.TabIndex = 4;
             this.labelSubject.Text = "Subject:";
             this.labelSubject.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
+            //
             // _subjectBox
-            // 
-            this._subjectBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._subjectBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._subjectBox.Location = new System.Drawing.Point(72, 8);
             this._subjectBox.Name = "_subjectBox";
@@ -339,9 +338,9 @@ namespace JetBrains.Omea.Tasks
             this._subjectBox.TabIndex = 0;
             this._subjectBox.Text = "";
             this._subjectBox.TextChanged += new System.EventHandler(this._subjectBox_TextChanged);
-            // 
+            //
             // label2
-            // 
+            //
             this.label2.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label2.Location = new System.Drawing.Point(8, 32);
             this.label2.Name = "label2";
@@ -349,11 +348,11 @@ namespace JetBrains.Omea.Tasks
             this.label2.TabIndex = 6;
             this.label2.Text = "Description:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
+            //
             // _descriptionBox
-            // 
-            this._descriptionBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-                | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._descriptionBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._descriptionBox.Location = new System.Drawing.Point(72, 32);
             this._descriptionBox.Multiline = true;
@@ -366,10 +365,10 @@ namespace JetBrains.Omea.Tasks
             #endregion Description Panel
 
             #region Properties Panel
-            // 
+            //
             // _propertiesPanel
-            // 
-            this._propertiesPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._propertiesPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._propertiesPanel.BorderColor = System.Drawing.Color.Black;
             this._propertiesPanel.Controls.Add(this._workspaceReminder);
@@ -391,9 +390,9 @@ namespace JetBrains.Omea.Tasks
             this._propertiesPanel.Size = new System.Drawing.Size(350, 130);
             this._propertiesPanel.TabIndex = 1;
             this._propertiesPanel.Paint += new System.Windows.Forms.PaintEventHandler(this._propertiesPanel_Paint);
-            // 
+            //
             // labelStartDate
-            // 
+            //
             this.labelStartDate.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.labelStartDate.Location = new System.Drawing.Point(8, 10);
             this.labelStartDate.Name = "labelStartDate";
@@ -401,9 +400,9 @@ namespace JetBrains.Omea.Tasks
             this.labelStartDate.TabIndex = 1;
             this.labelStartDate.Text = "S&tart date and time:";
             this.labelStartDate.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
+            //
             // _startDateTime
-            // 
+            //
             this._startDateTime.Anchor = (System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left);
             this._startDateTime.CurrentDateTime = new System.DateTime(((long)(0)));
             this._startDateTime.Location = new System.Drawing.Point(112, 8);
@@ -412,9 +411,9 @@ namespace JetBrains.Omea.Tasks
             this._startDateTime.Size = new System.Drawing.Size(200, 28);
             this._startDateTime.TabIndex = 2;
             this._startDateTime.ValidStateChanged += new ValidStateEventHandler( TimeFormatStateChanged );
-            // 
+            //
             // labelDueDate
-            // 
+            //
             this.labelDueDate.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.labelDueDate.Location = new System.Drawing.Point(8, 34);
             this.labelDueDate.Name = "labelDueDate";
@@ -422,9 +421,9 @@ namespace JetBrains.Omea.Tasks
             this.labelDueDate.TabIndex = 3;
             this.labelDueDate.Text = "&Due date and time:";
             this.labelDueDate.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
+            //
             // _dueDateTime
-            // 
+            //
             this._dueDateTime.Anchor = (System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left);
             this._dueDateTime.CurrentDateTime = new System.DateTime(((long)(0)));
             this._dueDateTime.Location = new System.Drawing.Point(112, 32);
@@ -433,9 +432,9 @@ namespace JetBrains.Omea.Tasks
             this._dueDateTime.Size = new System.Drawing.Size(200, 28);
             this._dueDateTime.TabIndex = 4;
             this._dueDateTime.ValidStateChanged += new ValidStateEventHandler( TimeFormatStateChanged );
-            // 
+            //
             // label9
-            // 
+            //
             this.label9.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label9.Location = new System.Drawing.Point(8, 58);
             this.label9.Name = "label9";
@@ -443,9 +442,9 @@ namespace JetBrains.Omea.Tasks
             this.label9.TabIndex = 5;
             this.label9.Text = "&Reminder at:";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
+            //
             // _reminderDateTime
-            // 
+            //
             this._reminderDateTime.Anchor = (System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left);
             this._reminderDateTime.CurrentDateTime = new System.DateTime(((long)(0)));
             this._reminderDateTime.Location = new System.Drawing.Point(112, 56);
@@ -455,9 +454,9 @@ namespace JetBrains.Omea.Tasks
             this._reminderDateTime.TabIndex = 6;
             this._reminderDateTime.ValidStateChanged += new ValidStateEventHandler( TimeFormatStateChanged );
 
-            // 
+            //
             // labelPriority
-            // 
+            //
             this.labelPriority.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.labelPriority.Location = new System.Drawing.Point(340, 10);
             this.labelPriority.Name = "labelPriority";
@@ -465,17 +464,17 @@ namespace JetBrains.Omea.Tasks
             this.labelPriority.TabIndex = 7;
             this.labelPriority.Text = "&Priority:";
             this.labelPriority.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
+            //
             // _priorityBox
-            // 
+            //
             this._priorityBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this._priorityBox.Location = new System.Drawing.Point(420, 8);
             this._priorityBox.Name = "_priorityBox";
             this._priorityBox.Size = new System.Drawing.Size(80, 21);
             this._priorityBox.TabIndex = 8;
-            // 
+            //
             // labelStatus
-            // 
+            //
             this.labelStatus.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.labelStatus.Location = new System.Drawing.Point(340, 34);
             this.labelStatus.Name = "labelStatus";
@@ -483,18 +482,18 @@ namespace JetBrains.Omea.Tasks
             this.labelStatus.TabIndex = 9;
             this.labelStatus.Text = "St&atus:";
             this.labelStatus.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
+            //
             // _statusBox
-            // 
+            //
             this._statusBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this._statusBox.Location = new System.Drawing.Point(420, 32);
             this._statusBox.Name = "_statusBox";
             this._statusBox.Size = new System.Drawing.Size(80, 21);
             this._statusBox.TabIndex = 10;
             this._statusBox.SelectedIndexChanged += new System.EventHandler(this._statusBox_SelectedIndexChanged);
-            // 
+            //
             // labelDateComplete
-            // 
+            //
             this.labelDateComplete.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.labelDateComplete.Location = new System.Drawing.Point(340, 58);
             this.labelDateComplete.Name = "labelDateComplete";
@@ -502,9 +501,9 @@ namespace JetBrains.Omea.Tasks
             this.labelDateComplete.TabIndex = 11;
             this.labelDateComplete.Text = "Date &complete:";
             this.labelDateComplete.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
+            //
             // _completeDateTime
-            // 
+            //
             this._completeDateTime.Anchor = (System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left);
             this._completeDateTime.CurrentDateTime = new System.DateTime(((long)(0)));
             this._completeDateTime.Location = new System.Drawing.Point(420, 56);
@@ -515,9 +514,9 @@ namespace JetBrains.Omea.Tasks
             this._completeDateTime.AutoSetTime = true;
             this._completeDateTime.ValidStateChanged += new ValidStateEventHandler( TimeFormatStateChanged );
 
-            // 
+            //
             // _workspaceReminder
-            // 
+            //
             this._workspaceReminder.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._workspaceReminder.Location = new System.Drawing.Point(8, 92);
             this._workspaceReminder.Name = "_workspaceReminder";
@@ -525,10 +524,10 @@ namespace JetBrains.Omea.Tasks
             this._workspaceReminder.TabIndex = 13;
             this._workspaceReminder.Text = "Remind on activation of &workspace:";
             this._workspaceReminder.CheckedChanged += new System.EventHandler(this._workspaceReminder_CheckedChanged);
-            // 
+            //
             // _workspacesBox
-            // 
-            this._workspacesBox.Anchor = (System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left); 
+            //
+            this._workspacesBox.Anchor = (System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left);
             this._workspacesBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this._workspacesBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this._workspacesBox.Location = new System.Drawing.Point(216, 92);
@@ -538,10 +537,10 @@ namespace JetBrains.Omea.Tasks
             #endregion Properties Panel
 
             #region Linked Tab Content
-            // 
+            //
             // labelLinkedRes
-            // 
-            this.labelLinkedRes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this.labelLinkedRes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this.labelLinkedRes.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.labelLinkedRes.Location = new System.Drawing.Point(8, 8);
@@ -549,12 +548,12 @@ namespace JetBrains.Omea.Tasks
             this.labelLinkedRes.Size = new System.Drawing.Size(244, 20);
             this.labelLinkedRes.TabIndex = 0;
             this.labelLinkedRes.Text = "Linked resources:";
-            // 
+            //
             // _attachedResources
-            // 
+            //
             this._attachedView.AllowDrop = true;
-            this._attachedView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-                | System.Windows.Forms.AnchorStyles.Left) 
+            this._attachedView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._attachedView.ContextMenu = this._targetsContextMenu;
             this._attachedView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
@@ -566,13 +565,13 @@ namespace JetBrains.Omea.Tasks
             this._attachedView.TabIndex = 1;
             this._attachedView.EmptyDropHandler = new DnDHandler( this );
             this._attachedView.KeyDown += new System.Windows.Forms.KeyEventHandler(this._attachedResources_KeyDown);
-            // 
+            //
             // _targetsContextMenu
-            // 
+            //
             this._targetsContextMenu.MenuItems.AddRange(new MenuItem[] { this._removeFromTaskMenuItem } );
-            // 
+            //
             // _removeFromTaskMenuItem
-            // 
+            //
             this._removeFromTaskMenuItem.Index = 0;
             this._removeFromTaskMenuItem.Text = "Remove from Task";
             this._removeFromTaskMenuItem.Click += new System.EventHandler(this._removeFromTaskMenuItem_Click);
@@ -588,9 +587,9 @@ namespace JetBrains.Omea.Tasks
             #endregion Linked Tab Content
 
             #region Categories
-            // 
+            //
             // _categoriesButton
-            // 
+            //
             this._btnCategories.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this._btnCategories.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._btnCategories.Location = new System.Drawing.Point(4, 250);
@@ -599,10 +598,10 @@ namespace JetBrains.Omea.Tasks
             this._btnCategories.TabIndex = 3;
             this._btnCategories.Text = "Categories...";
             this._btnCategories.Click += new System.EventHandler(this._categoriesButton_Click);
-            // 
+            //
             // BoxCategories
-            // 
-            this.BoxCategories.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this.BoxCategories.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this.BoxCategories.Location = new System.Drawing.Point(110, 250);
             this.BoxCategories.Name = "BoxCategories";
@@ -743,7 +742,7 @@ namespace JetBrains.Omea.Tasks
             this.labelRegDaysAfter.Size = new System.Drawing.Size(180, 20);
             this.labelRegDaysAfter.Text = "day(s) after each task is completed";
             #endregion Panel Daily
-            
+
             #region Panel Weekly
             this.panelWeekly.Controls.Add(radioWeekEvery);
             this.panelWeekly.Controls.Add(textEveryXWeek);
@@ -857,7 +856,7 @@ namespace JetBrains.Omea.Tasks
             this.labelRegWeeksAfter.Size = new System.Drawing.Size(180, 20);
             this.labelRegWeeksAfter.Text = "week(s) after each task is completed";
             #endregion Panel Weekly
-            
+
             #region Panel Monthly
             this.panelMonthly.Controls.Add(radioRegenerateMonth);
             this.panelMonthly.Controls.Add(textRegMonthsAfter);
@@ -983,7 +982,7 @@ namespace JetBrains.Omea.Tasks
             this.labelRegMonthsAfter.Size = new System.Drawing.Size(190, 20);
             this.labelRegMonthsAfter.Text = "month(s) after each task is completed";
             #endregion Panel Monthly
-            
+
             #region Panel Yearly
             this.panelYearly.Controls.Add(radioEvery2);
             this.panelYearly.Controls.Add(cmbMonth);
@@ -1169,7 +1168,7 @@ namespace JetBrains.Omea.Tasks
             this.dateEndByDate.Size = new System.Drawing.Size(128, 21);
             this.dateEndByDate.TabIndex = 7;
             #endregion Range Box
-            
+
             this.buttonClear.Anchor = (System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left);
             this.buttonClear.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.buttonClear.Location = new System.Drawing.Point(8, 250);
@@ -1179,9 +1178,9 @@ namespace JetBrains.Omea.Tasks
             this.buttonClear.Text = "Clear pattern";
             #endregion
 
-            // 
+            //
             // TaskEditPane
-            // 
+            //
             tabsTaskPages.Controls.Add( pageGeneral );
             tabsTaskPages.Controls.Add( pageLinked );
 //            tabsTaskPages.Controls.Add( pageRecurrence );
@@ -1225,7 +1224,7 @@ namespace JetBrains.Omea.Tasks
                 _attachedView.ContextMenu = null;
             }
             this._attachedView.RootResource = res;
-            
+
             /**
              * subject and description
              **/
@@ -1359,9 +1358,9 @@ namespace JetBrains.Omea.Tasks
             _descriptionBox.Select();
             // need to pass status and priority as parameters because .NET 2.0 doesn't allow to
             // access ComboBox.SelectedIndex from a non-UI thread. DatePickerCtrl uses ComboBox as well.
-            Core.ResourceAP.RunUniqueJob( new SaveTaskDelegate(DoSaveTask), 
+            Core.ResourceAP.RunUniqueJob( new SaveTaskDelegate(DoSaveTask),
                 _statusBox.SelectedIndex,
-                _priorityBox.SelectedIndex, 
+                _priorityBox.SelectedIndex,
                 _startDateTime.CurrentDateTime,
                 _dueDateTime.CurrentDateTime,
                 _reminderDateTime.CurrentDateTime,
@@ -1526,7 +1525,7 @@ namespace JetBrains.Omea.Tasks
         {
             IResourceList currAttachs = _task.GetLinksTo( null, TasksPlugin._linkTarget );
             IntArrayList remainedTargetIds = new IntArrayList( currAttachs.ResourceIds );
-                
+
             foreach( int id in _oldTargets )
             {
                 if( remainedTargetIds.IndexOf( id ) < 0 )
@@ -1628,7 +1627,7 @@ namespace JetBrains.Omea.Tasks
 
             public void AddResourceDragData( IResourceList dragResources, IDataObject dataObject )
             {
-                
+
             }
             public DragDropEffects DragOver( IResource targetResource, IDataObject data, DragDropEffects allowedEffect, int keyState )
             {

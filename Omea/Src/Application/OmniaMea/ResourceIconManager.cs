@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -18,7 +17,7 @@ namespace JetBrains.Omea
 	/**
      * Manages the ImageList of resource icons.
      */
-    
+
     internal class ResourceIconManager: IResourceIconManager
 	{
         private Hashtable    _resourceIconProviders = new Hashtable();  // resource type -> IResourceIconProvider
@@ -109,7 +108,7 @@ namespace JetBrains.Omea
         /**
          * Returns the default icon index for the specified resource type.
          */
-        
+
         public int GetDefaultIconIndex( string resType )
         {
             if ( Core.ResourceStore == null )

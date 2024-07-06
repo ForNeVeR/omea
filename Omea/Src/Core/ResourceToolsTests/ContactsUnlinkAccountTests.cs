@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using JetBrains.Omea.Contacts;
@@ -30,7 +29,7 @@ namespace ContactsTests
             _contactManager = (ContactManager) _core.ContactManager;
             _storage.PropTypes.Register( "LinkedSetValue", PropDataType.Link, PropTypeFlags.Internal );
 
-            linkAttachment = Core.ResourceStore.PropTypes.Register( "Attachment", 
+            linkAttachment = Core.ResourceStore.PropTypes.Register( "Attachment",
                 PropDataType.Link, PropTypeFlags.SourceLink | PropTypeFlags.DirectedLink );
             Core.ResourceStore.PropTypes.RegisterDisplayName( linkAttachment, "Outlook Message", "Outlook Attachment" );
         }
@@ -459,7 +458,7 @@ namespace ContactsTests
             attach.SetProp( _contactManager.Props.LinkFrom, main.Resource );
             attach.SetProp( _contactManager.Props.LinkTo, extra.Resource );
             attach.SetProp( "Attachment", email );
- 
+
             //-----------------------------------------------------------------
             _contactManager.HardRemoveAccountFromContact( main.Resource, account1 );
             //-----------------------------------------------------------------
@@ -503,7 +502,7 @@ namespace ContactsTests
             attach.SetProp( _contactManager.Props.LinkTo, to3.Resource );
             attach.SetProp( _contactManager.Props.LinkFrom, extra.Resource );
             attach.SetProp( "Attachment", email );
- 
+
             //-----------------------------------------------------------------
             _contactManager.HardRemoveAccountFromContact( to1.Resource, account1 );
             //-----------------------------------------------------------------

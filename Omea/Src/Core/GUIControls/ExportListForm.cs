@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.IO;
@@ -160,10 +159,10 @@ namespace GUIControls
             this.boxExportFormat.SuspendLayout();
             this.boxDelimiters.SuspendLayout();
             this.SuspendLayout();
-            // 
+            //
             // boxRange
-            // 
-            this.boxRange.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this.boxRange.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this.boxRange.Controls.Add(this.radioTyped);
             this.boxRange.Controls.Add(this.radioOwnerResource);
@@ -175,10 +174,10 @@ namespace GUIControls
             this.boxRange.TabIndex = 0;
             this.boxRange.TabStop = false;
             this.boxRange.Text = "Select range of resources";
-            // 
+            //
             // radioTyped
-            // 
-            this.radioTyped.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this.radioTyped.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this.radioTyped.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.radioTyped.Location = new System.Drawing.Point(8, 68);
@@ -186,10 +185,10 @@ namespace GUIControls
             this.radioTyped.Size = new System.Drawing.Size(212, 20);
             this.radioTyped.TabIndex = 2;
             this.radioTyped.Text = "&All resource of type";
-            // 
+            //
             // radioOwnerResource
-            // 
-            this.radioOwnerResource.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this.radioOwnerResource.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this.radioOwnerResource.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.radioOwnerResource.Location = new System.Drawing.Point(8, 42);
@@ -197,19 +196,19 @@ namespace GUIControls
             this.radioOwnerResource.Size = new System.Drawing.Size(212, 20);
             this.radioOwnerResource.TabIndex = 1;
             this.radioOwnerResource.Text = "&Resources in ";
-            // 
+            //
             // radioSelected
-            // 
+            //
             this.radioSelected.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.radioSelected.Location = new System.Drawing.Point(8, 16);
             this.radioSelected.Name = "radioSelected";
             this.radioSelected.Size = new System.Drawing.Size(132, 20);
             this.radioSelected.TabIndex = 0;
             this.radioSelected.Text = "S&elected resources";
-            // 
+            //
             // boxExportFormat
-            // 
-            this.boxExportFormat.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this.boxExportFormat.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this.boxExportFormat.Controls.Add(this.radioXml);
             this.boxExportFormat.Controls.Add(this.boxDelimiters);
@@ -223,9 +222,9 @@ namespace GUIControls
             this.boxExportFormat.TabIndex = 1;
             this.boxExportFormat.TabStop = false;
             this.boxExportFormat.Text = "Export format";
-            // 
+            //
             // radioXml
-            // 
+            //
             this.radioXml.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.radioXml.Location = new System.Drawing.Point(12, 20);
             this.radioXml.Name = "radioXml";
@@ -233,10 +232,10 @@ namespace GUIControls
             this.radioXml.TabIndex = 7;
             this.radioXml.Text = "&XML";
             this.radioXml.CheckedChanged += new System.EventHandler(this.Format_CheckedChanged);
-            // 
+            //
             // boxDelimiters
-            // 
-            this.boxDelimiters.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this.boxDelimiters.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this.boxDelimiters.Controls.Add(this.radioTabs);
             this.boxDelimiters.Controls.Add(this.radioString);
@@ -248,9 +247,9 @@ namespace GUIControls
             this.boxDelimiters.TabStop = false;
             this.boxDelimiters.Text = "Delimit fileds with";
             this.boxDelimiters.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            // 
+            //
             // radioTabs
-            // 
+            //
             this.radioTabs.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.radioTabs.Location = new System.Drawing.Point(8, 16);
             this.radioTabs.Name = "radioTabs";
@@ -258,9 +257,9 @@ namespace GUIControls
             this.radioTabs.TabIndex = 4;
             this.radioTabs.Text = "T&abs";
             this.radioTabs.CheckedChanged += new System.EventHandler(this.Delimiter_CheckedChanged);
-            // 
+            //
             // radioString
-            // 
+            //
             this.radioString.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.radioString.Location = new System.Drawing.Point(64, 16);
             this.radioString.Name = "radioString";
@@ -268,10 +267,10 @@ namespace GUIControls
             this.radioString.TabIndex = 5;
             this.radioString.Text = "St&ring:";
             this.radioString.CheckedChanged += new System.EventHandler(this.Delimiter_CheckedChanged);
-            // 
+            //
             // textDelimiter
-            // 
-            this.textDelimiter.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this.textDelimiter.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this.textDelimiter.Location = new System.Drawing.Point(128, 16);
             this.textDelimiter.Name = "textDelimiter";
@@ -279,9 +278,9 @@ namespace GUIControls
             this.textDelimiter.TabIndex = 6;
             this.textDelimiter.Text = "";
             this.textDelimiter.TextChanged += new System.EventHandler(this.textDelimiter_TextChanged);
-            // 
+            //
             // radioHtml
-            // 
+            //
             this.radioHtml.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.radioHtml.Location = new System.Drawing.Point(12, 128);
             this.radioHtml.Name = "radioHtml";
@@ -289,9 +288,9 @@ namespace GUIControls
             this.radioHtml.TabIndex = 8;
             this.radioHtml.Text = "&Html";
             this.radioHtml.CheckedChanged += new System.EventHandler(this.Format_CheckedChanged);
-            // 
+            //
             // radioText
-            // 
+            //
             this.radioText.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.radioText.Location = new System.Drawing.Point(12, 52);
             this.radioText.Name = "radioText";
@@ -308,19 +307,19 @@ namespace GUIControls
             this.checkHeader.Text = "&Include header";
             this.checkHeader.Name = "checkHeader";
             this.checkHeader.TabIndex = 8;
-            // 
+            //
             // btnFile
-            // 
+            //
             this.btnFile.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.btnFile.Location = new System.Drawing.Point(8, 300);
             this.btnFile.Name = "btnFile";
             this.btnFile.TabIndex = 9;
             this.btnFile.Text = "&Save to...";
             this.btnFile.Click += new System.EventHandler(this.btnFile_Click);
-            // 
+            //
             // textFile
-            // 
-            this.textFile.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this.textFile.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this.textFile.Location = new System.Drawing.Point(88, 300);
             this.textFile.Name = "textFile";
@@ -328,27 +327,27 @@ namespace GUIControls
             this.textFile.TabIndex = 10;
             this.textFile.Text = "";
             this.textFile.TextChanged += new System.EventHandler(this.textFile_TextChanged);
-            // 
+            //
             // btnOK
-            // 
+            //
             this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnOK.Location = new System.Drawing.Point(240, 16);
             this.btnOK.Name = "btnOK";
             this.btnOK.TabIndex = 11;
             this.btnOK.Text = "OK";
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
-            // 
+            //
             // btnCancel
-            // 
+            //
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Location = new System.Drawing.Point(240, 48);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.TabIndex = 12;
             this.btnCancel.Text = "Cancel";
-            // 
+            //
             // ExportListForm
-            // 
+            //
             this.AcceptButton = this.btnOK;
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
             this.CancelButton = this.btnCancel;
@@ -418,7 +417,7 @@ namespace GUIControls
             }
             if( !String.IsNullOrEmpty( textDelimiter.Text ) )
                 Core.SettingStore.WriteString( "Omea", "ExportListStringDelimiter", textDelimiter.Text );
-            
+
             Core.SettingStore.WriteBool( "Omea", "IncludeHeaders", checkHeader.Checked );
 
             DialogResult = DialogResult.OK;
@@ -596,7 +595,7 @@ namespace GUIControls
             }
             writer.WriteEndElement();
         }
-        
+
         private static void WriteResourceProperty2Entry( IResource res, IResourceProperty prop, XmlTextWriter writer )
         {
             int    propId = Core.ResourceStore.PropTypes[ prop.Name ].Id;
@@ -725,4 +724,3 @@ namespace GUIControls
         #endregion Writing
     }
 }
-    

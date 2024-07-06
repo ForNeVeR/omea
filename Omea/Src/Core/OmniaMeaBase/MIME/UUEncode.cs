@@ -1,14 +1,13 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System.Text;
 using JetBrains.Omea.Base;
 
 namespace JetBrains.Omea.MIME
 {
-    /** 
+    /**
      * UUencoder/-decoder
      */
     public class UUParser
@@ -58,7 +57,7 @@ namespace JetBrains.Omea.MIME
                 result[ --j ] = (byte) ( code & 255 );
                 code >>= 8;
             }
-            
+
             return result;
         }
 
@@ -71,7 +70,7 @@ namespace JetBrains.Omea.MIME
             int i = 0;
             uint code;
             StringBuilder builder = StringBuilderPool.Alloc();
-            try 
+            try
             {
                 while( len > 0 )
                 {
@@ -80,7 +79,7 @@ namespace JetBrains.Omea.MIME
                     builder.Append( _UUAlphabet[ (int) ( ( code >> 12 ) & 0x3f ) ] );
                     builder.Append( _UUAlphabet[ (int) ( ( code >> 6 ) & 0x3f ) ] );
                     builder.Append( _UUAlphabet[ (int) ( code & 0x3f ) ] );
-                
+
                     i += 3;
                     len -= 3;
                 }

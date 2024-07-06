@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections.Generic;
@@ -45,7 +44,7 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
             _repositoryTypes = new List<RepositoryType> {new P4RepositoryType(), new SvnRepositoryType()};
 
             Props.Register( this );
-            
+
             // delete remnants of old version of the plugin
             if ( Core.ResourceStore.ResourceTypes.Exist( "jetbrains.p4.ChangeSet" ) )
             {
@@ -65,16 +64,16 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
 
             Core.TabManager.RegisterResourceTypeTab( "SCC", "SCC", Props.ChangeSetResource, 80 );
 
-            Core.DisplayColumnManager.RegisterDisplayColumn( Props.ChangeSetResource, 0, 
+            Core.DisplayColumnManager.RegisterDisplayColumn( Props.ChangeSetResource, 0,
                                                              new ColumnDescriptor( "From", 150 ) );
-            Core.DisplayColumnManager.RegisterDisplayColumn( Props.ChangeSetResource, 1, 
+            Core.DisplayColumnManager.RegisterDisplayColumn( Props.ChangeSetResource, 1,
                                                              new ColumnDescriptor( "Subject", 300 ) );
-            Core.DisplayColumnManager.RegisterDisplayColumn( Props.ChangeSetResource, 2, 
+            Core.DisplayColumnManager.RegisterDisplayColumn( Props.ChangeSetResource, 2,
                                                              new ColumnDescriptor( "Date", 120 ) );
 
             // Register a standard tree pane for showing the folder structure of the Perforce
             // repository and the changesets in each folder.
-            _folderTreePane = Core.LeftSidebar.RegisterResourceStructureTreePane( "SccFolders", 
+            _folderTreePane = Core.LeftSidebar.RegisterResourceStructureTreePane( "SccFolders",
                                                                                   "SCC", "Folders", null,
                                                                                   Props.RepositoryResource );
             _folderTreePane.ToolTipCallback = GetRepositoryToolTip;
@@ -82,7 +81,7 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
             // Set sorting by name for the folder structure
             IResource folderRoot = Core.ResourceTreeManager.GetRootForType( Props.RepositoryResource );
             Core.ResourceTreeManager.SetResourceNodeSort( folderRoot, "Name" );
-            
+
             // Register a custom sidebar pane for showing the list of Perforce developers and
             // the changesets done by each developer.
             Core.LeftSidebar.RegisterViewPane( "SccDevelopers", "SCC", "Developers", null,
@@ -91,12 +90,12 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
             Core.PluginLoader.RegisterResourceUIHandler( Props.FolderResource, new SccFolderUIHandler() );
 
             Core.PluginLoader.RegisterResourceDisplayer( Props.ChangeSetResource, this );
-            Core.PluginLoader.RegisterResourceTextProvider( Props.ChangeSetResource, 
+            Core.PluginLoader.RegisterResourceTextProvider( Props.ChangeSetResource,
                                                             new ChangeSetTextProvider() );
 
-            Core.UIManager.RegisterOptionsGroup( "Development", 
+            Core.UIManager.RegisterOptionsGroup( "Development",
                                                  "The Development options pane controls different development-related plugins" );
-            Core.UIManager.RegisterOptionsPane( "Development", "Source Control", new OptionsPaneCreator( CreateSccOptionsPane ), 
+            Core.UIManager.RegisterOptionsPane( "Development", "Source Control", new OptionsPaneCreator( CreateSccOptionsPane ),
                                                 "The Source Control options pane specifies the source control repositories monitored by the SCC plugin" );
             Core.UIManager.RegisterWizardPane( "Source Control", new OptionsPaneCreator( CreateSccOptionsPane ), 15  );
 
@@ -108,43 +107,43 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
             _closedFolderIcon = new Icon( iconAssembly.GetManifestResourceStream( "SccPlugin.ClosedFolder.ico" ) );
             _repositoryIcon = new Icon( iconAssembly.GetManifestResourceStream( "SccPlugin.repository.ico" ) );
 
-            Core.ResourceIconManager.RegisterResourceIconProvider( 
+            Core.ResourceIconManager.RegisterResourceIconProvider(
                 new string[] { Props.ChangeSetResource, Props.FolderResource, Props.RepositoryResource }, this );
 
             // Allow creating rules which affect resources of type ChangeSet
             Core.FilterEngine.RegisterRuleApplicableResourceType( Props.ChangeSetResource );
-            
+
             // Register display columns for multiline view
             Core.DisplayColumnManager.RegisterMultiLineColumn( Props.ChangeSetResource,
                                                                Core.ContactManager.Props.LinkFrom,
-                                                               0, 0, 0, 120, 
+                                                               0, 0, 0, 120,
                                                                MultiLineColumnFlags.AnchorLeft | MultiLineColumnFlags.AnchorRight,
                                                                SystemColors.WindowText, HorizontalAlignment.Left );
             Core.DisplayColumnManager.RegisterMultiLineColumn( Props.ChangeSetResource,
                                                                Core.Props.Date,
-                                                               0, 0, 120, 80, 
+                                                               0, 0, 120, 80,
                                                                MultiLineColumnFlags.AnchorRight,
                                                                SystemColors.WindowText, HorizontalAlignment.Right );
             Core.DisplayColumnManager.RegisterMultiLineColumn( Props.ChangeSetResource,
                                                                Core.Props.Subject,
-                                                               1, 1, 0, 144, 
+                                                               1, 1, 0, 144,
                                                                MultiLineColumnFlags.AnchorLeft | MultiLineColumnFlags.AnchorRight,
                                                                Color.FromArgb( 112, 112, 112 ), HorizontalAlignment.Left );
-            
+
             Core.ActionManager.RegisterMainMenuActionGroup( "SendReceiveActions", "Tools", ListAnchor.First );
             Core.ActionManager.RegisterMainMenuAction( new SynchronizeRepositoriesAction(), "SendReceiveActions",
                                                        ListAnchor.Last, "Synchronize Repositories", null, null, null );
-            
+
             Core.ActionManager.RegisterActionComponent( new DeleteRepositoryAction(), "Delete",
                 Props.RepositoryResource, null );
             Core.ActionManager.RegisterActionComponent( new SynchronizeRepositoryAction(), "Refresh",
                 Props.RepositoryResource, null );
-            
+
             Core.ActionManager.RegisterContextMenuActionGroup( "PropertiesActions", ListAnchor.Last );
-            Core.ActionManager.RegisterContextMenuAction( new ToggleShowSubfolderContentsAction(), 
-                                                          "PropertiesActions", ListAnchor.First, 
+            Core.ActionManager.RegisterContextMenuAction( new ToggleShowSubfolderContentsAction(),
+                                                          "PropertiesActions", ListAnchor.First,
                                                           "Show subfolder contents", null, Props.FolderResource, null );
-            Core.ActionManager.RegisterContextMenuAction( new RepositoryPropertiesAction(), "PropertiesActions", ListAnchor.First, 
+            Core.ActionManager.RegisterContextMenuAction( new RepositoryPropertiesAction(), "PropertiesActions", ListAnchor.First,
                                                           "Properties...", null, Props.RepositoryResource, null );
         }
 
@@ -177,14 +176,14 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
                 {
                     Core.ProgressWindow.UpdateProgress( 0, "Updating repository " + res.DisplayName + "...", null );
                 }
-                
+
                 RepositoryType repType = GetRepositoryType( res );
                 if ( repType != null )
                 {
                     repType.UpdateRepository( res );
                 }
             }
-            
+
             _statusWriter.ClearStatus();
         }
 
@@ -253,9 +252,9 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
 
         public static RepositoryType GetRepositoryType( IResource repository )
         {
-            return GetRepositoryType(repository.GetProp(Props.RepositoryType)); 
+            return GetRepositoryType(repository.GetProp(Props.RepositoryType));
         }
-        
+
         private static string GetRepositoryToolTip( IResource res )
         {
             return res.GetProp( Props.LastError );
@@ -278,7 +277,7 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
             get { return Core.SettingStore.ReadInt( "SccPlugin", "PollInterval", 5 ); }
             set { Core.SettingStore.WriteInt( "SccPlugin", "PollInterval", value ); }
         }
-        
+
         internal static bool HideUnchangedFiles
         {
             get { return Core.SettingStore.ReadBool( "SccPlugin", "HideUnchangedFiles", false ); }

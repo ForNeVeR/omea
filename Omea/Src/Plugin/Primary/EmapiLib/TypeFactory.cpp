@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 #pragma unmanaged
 
@@ -123,8 +122,8 @@ ETableSPtr TypeFactory::CreateAttachmentsETable( LPMAPITABLE lpMAPITable )
     }
 
     ETable* pTable = new ETable( lpMAPITable );
-    const SizedSPropTagArray( 6, atProps ) = 
-        { 6, (int)PR_ATTACH_SIZE, (int)PR_ATTACH_METHOD, (int)PR_ATTACH_LONG_FILENAME, 
+    const SizedSPropTagArray( 6, atProps ) =
+        { 6, (int)PR_ATTACH_SIZE, (int)PR_ATTACH_METHOD, (int)PR_ATTACH_LONG_FILENAME,
                 (int)PR_ATTACH_FILENAME, (int)PR_DISPLAY_NAME, (int)PR_ATTACH_NUM };
     pTable->SetColumns( (LPSPropTagArray)&atProps );
     return ETableSPtr( pTable );

@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 // JetBrains Omea Mshtml Browser Component
 //
@@ -73,7 +72,7 @@ STDMETHODIMP CMshtmlHostWindow::GetHostInfo(DOCHOSTUIINFO* pInfo)
 	TRACE(_T("[OMEA.MSHTML] GetHostInfo call has occured\n"));
 	if (pInfo == NULL)
 		return E_POINTER;
-	
+
 	pInfo->cbSize = sizeof(DOCHOSTUIINFO);
 	pInfo->pchHostCss = NULL;
 	pInfo->pchHostNS = NULL;
@@ -94,24 +93,24 @@ STDMETHODIMP CMshtmlHostWindow::GetHostInfo(DOCHOSTUIINFO* pInfo)
 	}
 
 	TRACE(_T("[OMEA.MSHTML] Returning host UI info: %#010X\n"), pInfo->dwFlags);
-	
+
 	return S_OK;
 }
-// Allows the host to replace the IE4/MSHTML menus and toolbars. 
+// Allows the host to replace the IE4/MSHTML menus and toolbars.
 STDMETHODIMP CMshtmlHostWindow::ShowUI(DWORD dwID, IOleInPlaceActiveObject* pActiveObject, IOleCommandTarget* pCommandTarget, IOleInPlaceFrame* pFrame, IOleInPlaceUIWindow* pDoc)
 {
 	HRESULT hr = m_bAllowShowUI ? S_FALSE : S_OK;
 	if (m_spIDocHostUIHandlerDispatch != NULL)
 		m_spIDocHostUIHandlerDispatch->ShowUI(
 		dwID,
-		pActiveObject, 
-		pCommandTarget, 
-		pFrame, 
+		pActiveObject,
+		pCommandTarget,
+		pFrame,
 		pDoc,
 		&hr);
 	return hr;
 }
-// Called when IE4/MSHTML removes its menus and toolbars. 
+// Called when IE4/MSHTML removes its menus and toolbars.
 STDMETHODIMP CMshtmlHostWindow::HideUI()
 {
 	HRESULT hr = S_OK;
@@ -119,7 +118,7 @@ STDMETHODIMP CMshtmlHostWindow::HideUI()
 		hr = m_spIDocHostUIHandlerDispatch->HideUI();
 	return hr;
 }
-// Notifies the host that the command state has changed. 
+// Notifies the host that the command state has changed.
 STDMETHODIMP CMshtmlHostWindow::UpdateUI()
 {
 	HRESULT hr = S_OK;
@@ -143,7 +142,7 @@ STDMETHODIMP CMshtmlHostWindow::OnDocWindowActivate(BOOL fActivate)
 		hr = m_spIDocHostUIHandlerDispatch->OnDocWindowActivate(fActivate ? ATL_VARIANT_TRUE : ATL_VARIANT_FALSE);
 	return hr;
 }
-// Called from the IE4/MSHTML implementation of IOleInPlaceActiveObject::OnFrameWindowActivate. 
+// Called from the IE4/MSHTML implementation of IOleInPlaceActiveObject::OnFrameWindowActivate.
 STDMETHODIMP CMshtmlHostWindow::OnFrameWindowActivate(BOOL fActivate)
 {
 	HRESULT hr = S_OK;
@@ -165,7 +164,7 @@ STDMETHODIMP CMshtmlHostWindow::ResizeBorder(LPCRECT prcBorder, IOleInPlaceUIWin
 		fFrameWindow ? ATL_VARIANT_TRUE : ATL_VARIANT_FALSE);
 	return hr;
 }
-// Called by IE4/MSHTML when IOleInPlaceActiveObject::TranslateAccelerator or IOleControlSite::TranslateAccelerator is called. 
+// Called by IE4/MSHTML when IOleInPlaceActiveObject::TranslateAccelerator or IOleControlSite::TranslateAccelerator is called.
 STDMETHODIMP CMshtmlHostWindow::TranslateAccelerator(LPMSG lpMsg, const GUID* pguidCmdGroup, DWORD nCmdID)
 {
 	HRESULT hr = S_FALSE;
@@ -175,12 +174,12 @@ STDMETHODIMP CMshtmlHostWindow::TranslateAccelerator(LPMSG lpMsg, const GUID* pg
 		lpMsg->message,
 		lpMsg->wParam,
 		lpMsg->lParam,
-		CComBSTR(*pguidCmdGroup), 
+		CComBSTR(*pguidCmdGroup),
 		nCmdID,
 		&hr);
 	return hr;
 }
-// Returns the registry key under which IE4/MSHTML stores user preferences. 
+// Returns the registry key under which IE4/MSHTML stores user preferences.
 // Returns S_OK if successful, or S_FALSE otherwise. If S_FALSE, IE4/MSHTML will default to its own user options.
 
 STDMETHODIMP CMshtmlHostWindow::GetOptionKeyPath(LPOLESTR* pchKey, DWORD dwReserved)
@@ -218,7 +217,7 @@ STDMETHODIMP CMshtmlHostWindow::GetDropTarget(IDropTarget* pDropTarget, IDropTar
 	if (ppDropTarget == NULL)
 		return E_POINTER;
 	*ppDropTarget = NULL;
-	
+
 	HRESULT hr = E_NOTIMPL;
 	if (m_spIDocHostUIHandlerDispatch != NULL)
 	{
@@ -254,7 +253,7 @@ STDMETHODIMP CMshtmlHostWindow::TranslateUrl(DWORD dwTranslate, OLECHAR* pchURLI
 	if (ppchURLOut == NULL)
 		return E_POINTER;
 	*ppchURLOut = NULL;
-	
+
 	HRESULT hr = S_FALSE;
 	if (m_spIDocHostUIHandlerDispatch != NULL)
 	{
@@ -274,14 +273,14 @@ STDMETHODIMP CMshtmlHostWindow::TranslateUrl(DWORD dwTranslate, OLECHAR* pchURLI
 	return hr;
 }
 // Called on the host by IE4/MSHTML to allow the host to replace IE4/MSHTML's data object.
-// This allows the host to block certain clipboard formats or support additional clipboard formats. 
+// This allows the host to block certain clipboard formats or support additional clipboard formats.
 STDMETHODIMP CMshtmlHostWindow::FilterDataObject(IDataObject* pDO, IDataObject** ppDORet)
 {
 	ATLASSERT(ppDORet != NULL);
 	if (ppDORet == NULL)
 		return E_POINTER;
 	*ppDORet = NULL;
-	
+
 	HRESULT hr = S_FALSE;
 	if (m_spIDocHostUIHandlerDispatch != NULL)
 	{
@@ -334,13 +333,13 @@ STDMETHODIMP CMshtmlHostWindow::ShowHelp(HWND /*hwnd*/, LPOLESTR /*pszHelpFile*/
 
 STDMETHODIMP CMshtmlHostWindow::SetSecuritySite(IInternetSecurityMgrSite * /*pSite*/)
 {
-	/*TRACE("return INET_E_DEFAULT_ACTION\r\n");*/ return INET_E_DEFAULT_ACTION; 
+	/*TRACE("return INET_E_DEFAULT_ACTION\r\n");*/ return INET_E_DEFAULT_ACTION;
 }
 
 STDMETHODIMP CMshtmlHostWindow::GetSecuritySite(IInternetSecurityMgrSite ** /*ppSite*/)
 {
 	TRACE(_T("CMshtmlHostWindow::GetSecuritySite\n"));
-	/*TRACE("return INET_E_DEFAULT_ACTION\r\n");*/ return INET_E_DEFAULT_ACTION; 
+	/*TRACE("return INET_E_DEFAULT_ACTION\r\n");*/ return INET_E_DEFAULT_ACTION;
 }
 
 STDMETHODIMP CMshtmlHostWindow::MapUrlToZone(LPCWSTR /*pwszUrl*/, DWORD * /*pdwZone*/, DWORD /*dwFlags*/)
@@ -349,7 +348,7 @@ STDMETHODIMP CMshtmlHostWindow::MapUrlToZone(LPCWSTR /*pwszUrl*/, DWORD * /*pdwZ
 	// Determine which Internet Security Zone to display the content in
 	//if(_bstr_t(pwszUrl) == _bstr_t(L"about:blank"))
 	//TRACE(_T("SecurityManager::MapUrlToZone, %s\n"), pwszUrl);
-	/*TRACE("return INET_E_DEFAULT_ACTION\r\n");*/ return INET_E_DEFAULT_ACTION; 
+	/*TRACE("return INET_E_DEFAULT_ACTION\r\n");*/ return INET_E_DEFAULT_ACTION;
 	//CoInternetCreateSecuritymanager(nil, SecManager, 0);
 //CoInternetCreateZoneManager(nil, ZoneManager, 0);
 
@@ -385,7 +384,7 @@ STDMETHODIMP CMshtmlHostWindow::ProcessUrlAction(LPCWSTR pwszUrl, DWORD dwAction
 
 	// No special security override, return the default
 	return INET_E_DEFAULT_ACTION;	// Relay to the default security manager
-    
+
 	/*
 	TRACE(_T("[OMEA.MSHTML.SECACCESS]\n"));
 	TRACE(_T("[OMEA.MSHTML] Processing the URL action for %s"), pwszUrl);
@@ -438,19 +437,19 @@ STDMETHODIMP CMshtmlHostWindow::ProcessUrlAction(LPCWSTR pwszUrl, DWORD dwAction
 STDMETHODIMP CMshtmlHostWindow::QueryCustomPolicy(LPCWSTR pwszUrl, REFGUID /*guidKey*/, BYTE ** /*ppPolicy*/, DWORD * /*pcbPolicy*/, BYTE * /*pContext*/, DWORD /*cbContext*/, DWORD /*dwReserved*/)
 {
 	TRACE(_T("SecurityManager::QueryCustomPolicy, %s\n"), pwszUrl);
-	/*TRACE("return INET_E_DEFAULT_ACTION\r\n");*/ return INET_E_DEFAULT_ACTION; 
+	/*TRACE("return INET_E_DEFAULT_ACTION\r\n");*/ return INET_E_DEFAULT_ACTION;
 }
 
 STDMETHODIMP CMshtmlHostWindow::SetZoneMapping(DWORD /*dwZone*/, LPCWSTR lpszPattern, DWORD /*dwFlags*/)
 {
 	TRACE(_T("SecurityManager::SetZoneMapping, %s\n"), lpszPattern);
-	/*TRACE("return INET_E_DEFAULT_ACTION\r\n");*/ return INET_E_DEFAULT_ACTION; 
+	/*TRACE("return INET_E_DEFAULT_ACTION\r\n");*/ return INET_E_DEFAULT_ACTION;
 }
 
 STDMETHODIMP CMshtmlHostWindow::GetZoneMappings(DWORD /*dwZone*/, IEnumString ** /*ppenumString*/, DWORD /*dwFlags*/)
 {
 	TRACE(_T("SecurityManager::GetZoneMappings\n"));
-	/*TRACE("return INET_E_DEFAULT_ACTION\r\n");*/ return INET_E_DEFAULT_ACTION; 
+	/*TRACE("return INET_E_DEFAULT_ACTION\r\n");*/ return INET_E_DEFAULT_ACTION;
 }
 
 //^ IInternetSecurityManager

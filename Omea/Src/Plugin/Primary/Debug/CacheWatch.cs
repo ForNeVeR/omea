@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Drawing;
@@ -20,7 +19,7 @@ namespace JetBrains.Omea.DebugPlugin
 	/**
      * The form for viewing some internal metrics of OmniaMea
      */
-    
+
     public class CacheWatch : DialogBase
 	{
         private System.Windows.Forms.Button _btnGC;
@@ -83,9 +82,9 @@ namespace JetBrains.Omea.DebugPlugin
             this._lblUpdatingResourceCount = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.SuspendLayout();
-            // 
+            //
             // _btnGC
-            // 
+            //
             this._btnGC.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._btnGC.Location = new System.Drawing.Point(8, 92);
             this._btnGC.Name = "_btnGC";
@@ -93,53 +92,53 @@ namespace JetBrains.Omea.DebugPlugin
             this._btnGC.TabIndex = 0;
             this._btnGC.Text = "Collect Garbage";
             this._btnGC.Click += new System.EventHandler(this._btnGC_Click);
-            // 
+            //
             // label1
-            // 
+            //
             this.label1.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label1.Location = new System.Drawing.Point(8, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(156, 17);
             this.label1.TabIndex = 1;
             this.label1.Text = "ResourceWeakCache Count:";
-            // 
+            //
             // _lblWeakCacheCount
-            // 
+            //
             this._lblWeakCacheCount.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._lblWeakCacheCount.Location = new System.Drawing.Point(188, 9);
             this._lblWeakCacheCount.Name = "_lblWeakCacheCount";
             this._lblWeakCacheCount.Size = new System.Drawing.Size(48, 17);
             this._lblWeakCacheCount.TabIndex = 2;
             this._lblWeakCacheCount.Text = "label2";
-            // 
+            //
             // _tmrUpdate
-            // 
+            //
             this._tmrUpdate.Enabled = true;
             this._tmrUpdate.Interval = 500;
             this._tmrUpdate.Tick += new System.EventHandler(this._tmrUpdate_Tick);
-            // 
+            //
             // label2
-            // 
+            //
             this.label2.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label2.Location = new System.Drawing.Point(8, 30);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(140, 17);
             this.label2.TabIndex = 3;
             this.label2.Text = "LiveResourceList Count:";
-            // 
+            //
             // _lblLiveResourceListCount
-            // 
+            //
             this._lblLiveResourceListCount.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._lblLiveResourceListCount.Location = new System.Drawing.Point(188, 30);
             this._lblLiveResourceListCount.Name = "_lblLiveResourceListCount";
             this._lblLiveResourceListCount.Size = new System.Drawing.Size(48, 17);
             this._lblLiveResourceListCount.TabIndex = 4;
             this._lblLiveResourceListCount.Text = "label2";
-            // 
+            //
             // _lblResourceWeakCacheDetails
-            // 
-            this._lblResourceWeakCacheDetails.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-                | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._lblResourceWeakCacheDetails.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._lblResourceWeakCacheDetails.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._lblResourceWeakCacheDetails.Location = new System.Drawing.Point(256, 9);
@@ -147,9 +146,9 @@ namespace JetBrains.Omea.DebugPlugin
             this._lblResourceWeakCacheDetails.Size = new System.Drawing.Size(180, 174);
             this._lblResourceWeakCacheDetails.TabIndex = 5;
             this._lblResourceWeakCacheDetails.Text = "label3";
-            // 
+            //
             // _btnWeakCacheDetails
-            // 
+            //
             this._btnWeakCacheDetails.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._btnWeakCacheDetails.Location = new System.Drawing.Point(8, 120);
             this._btnWeakCacheDetails.Name = "_btnWeakCacheDetails";
@@ -157,9 +156,9 @@ namespace JetBrains.Omea.DebugPlugin
             this._btnWeakCacheDetails.TabIndex = 6;
             this._btnWeakCacheDetails.Text = "Cache Details";
             this._btnWeakCacheDetails.Click += new System.EventHandler(this._btnWeakCacheDetails_Click);
-            // 
+            //
             // _btnTraceLiveLists
-            // 
+            //
             this._btnTraceLiveLists.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._btnTraceLiveLists.Location = new System.Drawing.Point(8, 152);
             this._btnTraceLiveLists.Name = "_btnTraceLiveLists";
@@ -167,27 +166,27 @@ namespace JetBrains.Omea.DebugPlugin
             this._btnTraceLiveLists.TabIndex = 7;
             this._btnTraceLiveLists.Text = "Trace live lists";
             this._btnTraceLiveLists.Click += new System.EventHandler(this._btnTraceLiveLists_Click);
-            // 
+            //
             // _lblUpdatingResourceCount
-            // 
+            //
             this._lblUpdatingResourceCount.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._lblUpdatingResourceCount.Location = new System.Drawing.Point(188, 52);
             this._lblUpdatingResourceCount.Name = "_lblUpdatingResourceCount";
             this._lblUpdatingResourceCount.Size = new System.Drawing.Size(48, 17);
             this._lblUpdatingResourceCount.TabIndex = 9;
             this._lblUpdatingResourceCount.Text = "label2";
-            // 
+            //
             // label4
-            // 
+            //
             this.label4.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label4.Location = new System.Drawing.Point(8, 52);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(140, 17);
             this.label4.TabIndex = 8;
             this.label4.Text = "Updating resource count:";
-            // 
+            //
             // CacheWatch
-            // 
+            //
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
             this.ClientSize = new System.Drawing.Size(440, 186);
             this.Controls.Add(this._lblUpdatingResourceCount);
@@ -227,7 +226,7 @@ namespace JetBrains.Omea.DebugPlugin
         {
             HashSet hashSet = new HashSet();
             int totalMemorySize = 0;
-            
+
             CountedSet cacheEntries = new CountedSet();
             foreach( IntHashTable.Entry entry in MyPalStorage.Storage.ResourceWeakCache )
             {

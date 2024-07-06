@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -34,12 +33,12 @@ namespace JetBrains.Omea.Categories
         {
             _store = store;
             _resourceTreeManager = resourceTreeManager;
-            _store.ResourceTypes.Register( "Category", "Category", "Name", 
+            _store.ResourceTypes.Register( "Category", "Category", "Name",
                 ResourceTypeFlags.ResourceContainer | ResourceTypeFlags.Internal | ResourceTypeFlags.NoIndex );
             _store.ResourceTypes.Register( "ResourceTreeRoot", "ResourceTreeRoot", "", ResourceTypeFlags.Internal | ResourceTypeFlags.NoIndex );
 
             _propCategory = ResourceTypeHelper.UpdatePropTypeRegistration( "Category", PropDataType.Link, PropTypeFlags.CountUnread );
-            
+
             _propCategoryExpanded = _store.PropTypes.Register( "CategoryExpanded", PropDataType.Int, PropTypeFlags.Internal );
             _propCategoryExpandedInSelector = _store.PropTypes.Register( "CategoryExpandedInSelector", PropDataType.Int, PropTypeFlags.Internal );
             _propShowContentsRecursively = _store.PropTypes.Register( "ShowContentsRecursively", PropDataType.Bool, PropTypeFlags.Internal );
@@ -64,7 +63,7 @@ namespace JetBrains.Omea.Categories
         }
 
         /**
-         * Creates the new category root resource (which is the standard root of 
+         * Creates the new category root resource (which is the standard root of
          * resource type Category) and, if necessary, deletes the old root (which
          * was a category marked with the IsRoot property).
          */
@@ -112,7 +111,7 @@ namespace JetBrains.Omea.Categories
 
 	    public IResource FindRootForTypedCategory( string resType )
 	    {
-	        return Core.ResourceStore.FindUniqueResource( "ResourceTreeRoot", "RootResourceType", 
+	        return Core.ResourceStore.FindUniqueResource( "ResourceTreeRoot", "RootResourceType",
                 "Category:" + resType );
 	    }
 
@@ -127,7 +126,7 @@ namespace JetBrains.Omea.Categories
         }
 
         /**
-         * Adds a category link between a resource and a category and updates 
+         * Adds a category link between a resource and a category and updates
          * the category intersections with all other categories to which the
          * resource belongs.
          */
@@ -198,7 +197,7 @@ namespace JetBrains.Omea.Categories
         }
 
         /**
-         * If there are any resources or subcategories connected to the category, 
+         * If there are any resources or subcategories connected to the category,
          * shows a confirmation dialog.
          */
 
@@ -232,7 +231,7 @@ namespace JetBrains.Omea.Categories
 
                 if ( categoryList.Count == 1 )
                 {
-                    msg += "in the category " + categoryList [0].DisplayName + 
+                    msg += "in the category " + categoryList [0].DisplayName +
                         ". Are you sure you wish to delete the category?";
                 }
                 else
@@ -277,7 +276,7 @@ namespace JetBrains.Omea.Categories
 
         public IResource FindOrCreateCategory( IResource parentCategory, string name )
         {
-            if ( parentCategory == null ) 
+            if ( parentCategory == null )
                 parentCategory = RootCategory;
 
             IResource category = FindCategory( parentCategory, name );
@@ -290,7 +289,7 @@ namespace JetBrains.Omea.Categories
 
         public IResource FindCategory( IResource parentCategory, string name )
         {
-            if ( parentCategory == null ) 
+            if ( parentCategory == null )
                 parentCategory = RootCategory;
 
             IResourceList categories = parentCategory.GetLinksTo( "Category", Core.Props.Parent );
@@ -357,7 +356,7 @@ namespace JetBrains.Omea.Categories
                                                "Rename Category", MessageBoxButtons.OK );
                 return false;
             }
-            
+
             IResource existingCategory = FindCategory( category.GetLinkProp( Core.Props.Parent ), newName );
             if ( existingCategory != null && existingCategory != category )
             {
@@ -388,7 +387,7 @@ namespace JetBrains.Omea.Categories
                 result += GetUnmatchingResources( child, contentType );
             }
             return result;
-        }                                                                             
+        }
 
         /**
          * Sets the specified content type for a category and its subcategories.
@@ -404,7 +403,7 @@ namespace JetBrains.Omea.Categories
             {
                 new ResourceProxy( res ).DeleteProp( Core.Props.ContentType );
             }
-            
+
             foreach( IResource child in res.GetLinksTo( "Category", Core.Props.Parent ) )
             {
                 SetContentTypeRecursive( child, contentType );

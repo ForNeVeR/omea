@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -68,11 +67,11 @@ namespace JetBrains.Omea.SamplePlugins.PostToConfluence
             this.button1 = new System.Windows.Forms.Button();
             this._lblProgress = new System.Windows.Forms.Label();
             this.SuspendLayout();
-            // 
+            //
             // _tvPages
-            // 
-            this._tvPages.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-                | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._tvPages.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._tvPages.ImageIndex = -1;
             this._tvPages.Location = new System.Drawing.Point(4, 4);
@@ -81,9 +80,9 @@ namespace JetBrains.Omea.SamplePlugins.PostToConfluence
             this._tvPages.Size = new System.Drawing.Size(284, 228);
             this._tvPages.Sorted = true;
             this._tvPages.TabIndex = 0;
-            // 
+            //
             // _btnOK
-            // 
+            //
             this._btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this._btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this._btnOK.Enabled = false;
@@ -92,9 +91,9 @@ namespace JetBrains.Omea.SamplePlugins.PostToConfluence
             this._btnOK.Name = "_btnOK";
             this._btnOK.TabIndex = 1;
             this._btnOK.Text = "OK";
-            // 
+            //
             // button1
-            // 
+            //
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button1.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -102,9 +101,9 @@ namespace JetBrains.Omea.SamplePlugins.PostToConfluence
             this.button1.Name = "button1";
             this.button1.TabIndex = 2;
             this.button1.Text = "Cancel";
-            // 
+            //
             // _lblProgress
-            // 
+            //
             this._lblProgress.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this._lblProgress.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._lblProgress.Location = new System.Drawing.Point(8, 240);
@@ -113,9 +112,9 @@ namespace JetBrains.Omea.SamplePlugins.PostToConfluence
             this._lblProgress.TabIndex = 3;
             this._lblProgress.Text = "Loading pages...";
             this._lblProgress.Visible = false;
-            // 
+            //
             // BrowsePagesDialog
-            // 
+            //
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
             this.ClientSize = new System.Drawing.Size(292, 271);
             this.Controls.Add(this._lblProgress);
@@ -140,9 +139,9 @@ namespace JetBrains.Omea.SamplePlugins.PostToConfluence
 	    public string SpaceKey
 	    {
 	        get { return _spaceKey; }
-	        set 
-            { 
-                _spaceKey = value; 
+	        set
+            {
+                _spaceKey = value;
                 Text = "Browse Pages in Space " + _spaceKey;
             }
 	    }
@@ -202,7 +201,7 @@ namespace JetBrains.Omea.SamplePlugins.PostToConfluence
 	        Hashtable nodes = new Hashtable();
 	        PageNode rootNode = new PageNode( null );
 	        nodes [0L] = rootNode;
-    
+
 	        foreach( RemotePageSummary summary in summaries )
 	        {
 	            PageNode parentNode = (PageNode) nodes [summary.parentId];

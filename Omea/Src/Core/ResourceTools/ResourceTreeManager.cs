@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -155,7 +154,7 @@ namespace JetBrains.Omea.ResourceTools
                 }
             }
         }
-        
+
         private IntHashTable _treeListenerManagers = new IntHashTable();  // parent prop ID -> TreeListenerManager
 
         public ResourceTreeManager( IResourceStore store )
@@ -172,10 +171,10 @@ namespace JetBrains.Omea.ResourceTools
             _rootOfRoots = GetRootForType( _resTreeRoot );
             _rootOfRoots.SetProp( "SortPropStr", "RootSortOrder" );
         }
-        
+
         private void RegisterTreeProps()
         {
-            _store.ResourceTypes.Register( _resTreeRoot, "", 
+            _store.ResourceTypes.Register( _resTreeRoot, "",
                 ResourceTypeFlags.Internal | ResourceTypeFlags.NoIndex | ResourceTypeFlags.ResourceContainer );
 
             _store.PropTypes.Register( "SortProp", PropDataType.Int, PropTypeFlags.Internal );
@@ -193,7 +192,7 @@ namespace JetBrains.Omea.ResourceTools
 
 	    public IResource GetRootForType( string resType )
         {
-            IResourceList resList = _store.FindResources( _resTreeRoot, 
+            IResourceList resList = _store.FindResources( _resTreeRoot,
                 _propRootResType, resType );
 
             if ( resList.Count > 0 )

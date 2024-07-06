@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -261,7 +260,7 @@ namespace JetBrains.Omea.Favorites
         }
 
         #endregion
-        
+
         #region implementation details
 
         private string GetFolderBookmarkId( IResource res )
@@ -378,7 +377,7 @@ namespace JetBrains.Omea.Favorites
             else
             {
                 StringBuilder historyStr = StringBuilderPool.Alloc();
-                try 
+                try
                 {
                     historyStr.AppendFormat( "{0}\x01{1}\x01{2}\x01{3}\x01{4}\x01{5}\x01{6}\x01{7}\x01{8}",
                         change.type, change.id, change.rdfid, change.oldparent, change.oldparent_id,

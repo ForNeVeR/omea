@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -55,7 +54,7 @@ namespace JetBrains.Omea.Nntp
             uiMgr.RegisterOptionsPane( "Internet", "Newsgroups", NntpOptionsPane.NntpOptionsPaneCreator,
                                        "The Newsgroups options enable you to control the downloading of newsgroup articles, " +
                                        "the default encoding and message format used for newsgroups, and the marking of downloaded messages." );
-            
+
             Core.TabManager.RegisterResourceTypeTab( "News", "News",
                 new[] { _newsArticle, _newsGroup, _newsServer, _newsFolder, _newsLocalArticle }, _propAttachment, 3 );
 
@@ -70,7 +69,7 @@ namespace JetBrains.Omea.Nntp
 
             img = Utils.TryGetEmbeddedResourceImageFromAssembly( Assembly.GetExecutingAssembly(), "NntpPlugin.Icons.Correspondents24.png" );
             Core.LeftSidebar.RegisterViewPane( "Correspondents", "News", "Correspondents", img, correspondentPane );
-            
+
             Core.ResourceTreeManager.SetResourceNodeSort( NewsFolders.Root, "NewsSortOrder VisibleOrder DisplayName" );
             uiMgr.RegisterResourceSelectPane( _newsGroup, typeof( NewgroupsSelectPane ) );
 
@@ -125,7 +124,7 @@ namespace JetBrains.Omea.Nntp
             {
                 if ( NewsFolders.IsDefaultFolder( folder ) )
                 {
-                    folder.SetProp( "VisibleInAllWorkspaces", true );                                
+                    folder.SetProp( "VisibleInAllWorkspaces", true );
                 }
             }
 
@@ -424,7 +423,7 @@ namespace JetBrains.Omea.Nntp
                 {
                     HandleArticle( url, null );
                 }
-                else 
+                else
                 {
                     HandleGroup( url, null );
                 }
@@ -646,14 +645,14 @@ namespace JetBrains.Omea.Nntp
         /// </summary>
         /// <param name="targetResource">The resource over which the drag happens.</param>
         /// <param name="data">The <see cref="IDataObject"/> containing the dragged data.</param>
-        /// <param name="allowedEffect">The drag-and-drop operations which are allowed by the 
+        /// <param name="allowedEffect">The drag-and-drop operations which are allowed by the
         /// originator (or source) of the drag event.</param>
-        /// <param name="keyState">The current state of the SHIFT, CTRL, and ALT keys, 
+        /// <param name="keyState">The current state of the SHIFT, CTRL, and ALT keys,
         /// as well as the state of the mouse buttons.</param>
         /// <returns>The target drop effect.</returns>
         public DragDropEffects DragOver( IResource targetResource, IDataObject data, DragDropEffects allowedEffect, int keyState )
         {
-            if( data.GetDataPresent( typeof(IResourceList) ) ) // Dragging resources over			
+            if( data.GetDataPresent( typeof(IResourceList) ) ) // Dragging resources over
             {
                 // The resources we're dragging
                 IResourceList dragResources = (IResourceList)data.GetData( typeof(IResourceList) );
@@ -728,9 +727,9 @@ namespace JetBrains.Omea.Nntp
         /// </summary>
         /// <param name="targetResource">The drop target resource.</param>
         /// <param name="data">The <see cref="IDataObject"/> containing the dragged data.</param>
-        /// <param name="allowedEffect">The drag-and-drop operations which are allowed by the 
+        /// <param name="allowedEffect">The drag-and-drop operations which are allowed by the
         /// originator (or source) of the drag event.</param>
-        /// <param name="keyState">The current state of the SHIFT, CTRL, and ALT keys, 
+        /// <param name="keyState">The current state of the SHIFT, CTRL, and ALT keys,
         /// as well as the state of the mouse buttons.</param>
         public void Drop( IResource targetResource, IDataObject data, DragDropEffects allowedEffect, int keyState )
         {
@@ -741,7 +740,7 @@ namespace JetBrains.Omea.Nntp
                 // The resources we're dragging
                 IResourceList dragResources = (IResourceList)data.GetData( typeof(IResourceList) );
 
-                Core.ResourceAP.QueueJob( JobPriority.Immediate, "NNTP Article Dropped", 
+                Core.ResourceAP.QueueJob( JobPriority.Immediate, "NNTP Article Dropped",
                     new NewsResourcesDroppedDelegate( ResourcesDroppedImpl ), targetResource, dragResources );
             }
         }
@@ -779,7 +778,7 @@ namespace JetBrains.Omea.Nntp
             IPropTypeCollection propTypes = store.PropTypes;
             _propPort = propTypes.Register( "Port", PropDataType.Int, PropTypeFlags.Internal );
             _propLastUpdated = propTypes.Register( "LastUpdated", PropDataType.Date, PropTypeFlags.Internal );
-            
+
             _propTo = propTypes.Register( "Newsgroups", PropDataType.Link, PropTypeFlags.DirectedLink | PropTypeFlags.CountUnread );
             propTypes.RegisterDisplayName( _propTo, "Newsgroups", "Articles" );
             _propRawSubject = propTypes.Register( "RawSubject", PropDataType.LongString, PropTypeFlags.Internal );
@@ -880,7 +879,7 @@ namespace JetBrains.Omea.Nntp
             UpdateArticleHeaders();
             UpdateArticleHtmlBodies();
         }
-        
+
         private static void RegisterDisplayColumns()
         {
             ImageListColumn attachmentColumn = new ImageListColumn( -_propAttachment );
@@ -1072,7 +1071,7 @@ namespace JetBrains.Omea.Nntp
                 ObjectStore.WriteBool( "NNTP", "UpdateRepliesToMyPosts", true );
             }
         }
-        
+
         private static void UpdateArticleHeaders()
         {
             IProgressWindow pw = Core.ProgressWindow;
@@ -1124,7 +1123,7 @@ namespace JetBrains.Omea.Nntp
                 Core.ResourceStore.PropTypes.Delete( obsoleteId );
             }
         }
-        
+
         private static void  ProcessResources( IntHashSet result, IntHashSet source )
         {
             IntHashSet temp = new IntHashSet();
@@ -1178,7 +1177,7 @@ namespace JetBrains.Omea.Nntp
                         if( freq > 0 )
                         {
                             Core.NetworkAP.QueueJobAt(
-                                serverResource.LastUpdateTime.AddMinutes( freq ), "Deliver News", 
+                                serverResource.LastUpdateTime.AddMinutes( freq ), "Deliver News",
                                 new ResourceDelegate( NntpClientHelper.DeliverNewsFromServer ), server );
                         }
                     }
@@ -1207,7 +1206,7 @@ namespace JetBrains.Omea.Nntp
                 filterLocalArticles = false; // forcedly don't minus local articles from default folder's view
             }
             else
-            {    
+            {
                 IResourceList groups = new NewsTreeNode( res ).Groups;
                 articles = Core.ResourceStore.EmptyResourceList;
                 foreach( IResource group in groups )
@@ -1255,7 +1254,7 @@ namespace JetBrains.Omea.Nntp
                         break;
                     }
                 }
-                if( groupRes == null ) 
+                if( groupRes == null )
                 {
                     groupRes = store.BeginNewResource( _newsGroup );
                 }
@@ -1300,7 +1299,7 @@ namespace JetBrains.Omea.Nntp
             if( servers.Count > 0 )
             {
                 IResource outbox = NewsFolders.Outbox;
-                IResourceList localArticles = outbox.GetLinksTo( _newsLocalArticle, _propTo ).Minus( 
+                IResourceList localArticles = outbox.GetLinksTo( _newsLocalArticle, _propTo ).Minus(
                     Core.ResourceStore.FindResourcesWithProp( null, Core.Props.IsDeleted ) );
                 if( localArticles.Count > 0 )
                 {
@@ -1377,7 +1376,7 @@ namespace JetBrains.Omea.Nntp
             {
                 _pausedSign[ 0 ] = LoadNewsIcon( "pause.ico" );
             }
-            
+
             private Icon GroupMainIcon
             {
                 get

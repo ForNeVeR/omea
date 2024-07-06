@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.IO;
@@ -36,8 +35,8 @@ namespace JetBrains.Omea.Pictures
 		}
 
 		#region Component Designer generated code
-		/// <summary> 
-		/// Required method for Designer support - do not modify 
+		/// <summary>
+		/// Required method for Designer support - do not modify
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent()
@@ -47,17 +46,17 @@ namespace JetBrains.Omea.Pictures
             this._picturebox = new System.Windows.Forms.PictureBox();
             this._picturePanel.SuspendLayout();
             this.SuspendLayout();
-            // 
+            //
             // _errorLabel
-            // 
+            //
             this._errorLabel.Location = new System.Drawing.Point(8, 8);
             this._errorLabel.Name = "_errorLabel";
             this._errorLabel.Size = new System.Drawing.Size(272, 23);
             this._errorLabel.TabIndex = 1;
             this._errorLabel.Text = "Could not display image, it probably is corrupted.";
-            // 
+            //
             // _picturePanel
-            // 
+            //
             this._picturePanel.AutoScroll = true;
             this._picturePanel.Controls.Add(this._picturebox);
             this._picturePanel.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -66,16 +65,16 @@ namespace JetBrains.Omea.Pictures
             this._picturePanel.Size = new System.Drawing.Size(456, 304);
             this._picturePanel.TabIndex = 2;
             this._picturePanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this._picturePanel_MouseDown);
-            // 
+            //
             // _pictureBox
-            // 
+            //
             this._picturebox.Name = "_picturebox";
             this._picturebox.TabIndex = 1;
             this._picturebox.TabStop = false;
             this._picturebox.MouseDown += new System.Windows.Forms.MouseEventHandler(this._picturePanel_MouseDown);
-            // 
+            //
             // PicturePreview
-            // 
+            //
             this.Controls.Add(this._picturePanel);
             this.Controls.Add(this._errorLabel);
             this.Name = "PicturePreview";

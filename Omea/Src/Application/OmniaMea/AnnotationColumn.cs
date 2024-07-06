@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System.Drawing;
 using System.Windows.Forms;
@@ -25,9 +24,9 @@ namespace JetBrains.Omea
             _annotationActionManager = new ContextMenuActionManager( _annotationContextMenu );
 
             _annotationActionManager.RegisterGroup( "", null, ListAnchor.Last );
-            _annotationActionManager.RegisterAction( new AnnotateResourceAction(), "", ListAnchor.Last, "Annotate Resource", 
+            _annotationActionManager.RegisterAction( new AnnotateResourceAction(), "", ListAnchor.Last, "Annotate Resource",
                                                      null, null, new IActionStateFilter[] { new InternalResourceFilter() } );
-            _annotationActionManager.RegisterAction( new DeleteAnnotationAction(), "", ListAnchor.Last, "Delete Annotation", 
+            _annotationActionManager.RegisterAction( new DeleteAnnotationAction(), "", ListAnchor.Last, "Delete Annotation",
                                                      null, null, new IActionStateFilter[] { new InternalResourceFilter() } );
 
             ShowTooltips = true;

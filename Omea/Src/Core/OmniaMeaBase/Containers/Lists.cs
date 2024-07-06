@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -12,7 +11,7 @@ using JetBrains.Omea.Base;
 
 namespace JetBrains.Omea.Containers
 {
-    /** 
+    /**
      * ArrayList of ints
      */
 
@@ -148,7 +147,7 @@ namespace JetBrains.Omea.Containers
         public void Insert( int index, int value )
         {
             if(( index < 0 ) || ( index > _size ))
-                throw new ArgumentOutOfRangeException( "index", index, 
+                throw new ArgumentOutOfRangeException( "index", index,
                     "Insertion index is out of bounds: current size = " + _size.ToString() );
 
             if ( _size == _items.Length )
@@ -169,7 +168,7 @@ namespace JetBrains.Omea.Containers
             }
         }
 
-        public void RemoveRange( int index, int count )  
+        public void RemoveRange( int index, int count )
         {
             if ( index < 0 )
                 throw new ArgumentOutOfRangeException( "index" );
@@ -177,11 +176,11 @@ namespace JetBrains.Omea.Containers
                 throw new ArgumentOutOfRangeException( "count" );
             if ( _size - index < count )
                 throw new ArgumentException( "_size - index < count" );
-    
-            if (count > 0) 
+
+            if (count > 0)
             {
                 _size -= count;
-                if (index < _size) 
+                if (index < _size)
                 {
                     Array.Copy(_items, index + count, _items, index, _size - index);
                 }
@@ -192,7 +191,7 @@ namespace JetBrains.Omea.Containers
         public int IndexOf( int value )
         {
             int size = _size;
-            
+
             if( ( size & 1 ) == 0)
             {
                 for( int i = 0; i < size; ++i )
@@ -224,11 +223,11 @@ namespace JetBrains.Omea.Containers
 
         public void RemoveAt( int index )
         {
-            if ( index < 0 || index >= _size ) 
+            if ( index < 0 || index >= _size )
                 throw new ArgumentOutOfRangeException( "index" );
 
             _size--;
-            if (index < _size) 
+            if (index < _size)
             {
                 Array.Copy(_items, index + 1, _items, index, _size - index);
             }
@@ -262,20 +261,20 @@ namespace JetBrains.Omea.Containers
 
         public int this[int index]
         {
-            get 
-            { 
-                if (index < 0 || index >= _size) 
+            get
+            {
+                if (index < 0 || index >= _size)
                 {
-                    throw new ArgumentOutOfRangeException( "index", index, 
+                    throw new ArgumentOutOfRangeException( "index", index,
                         "Specified argument was out of the range of valid values: list size=" + _size );
                 }
                 return _items [index];
             }
             set
             {
-                if (index < 0 || index >= _size) 
+                if (index < 0 || index >= _size)
                 {
-                    throw new ArgumentOutOfRangeException( "index", index, 
+                    throw new ArgumentOutOfRangeException( "index", index,
                         "Specified argument was out of the range of valid values: list size=" + _size );
                 }
                 _items [index] = value;
@@ -297,16 +296,16 @@ namespace JetBrains.Omea.Containers
         {
             int lo = 0;
             int hi = _size - 1;
-            while (lo <= hi) 
+            while (lo <= hi)
             {
                 int i = (lo + hi) >> 1;
                 int c = _items[ i ] - value;
                 if (c == 0) return i;
-                if (c < 0) 
+                if (c < 0)
                 {
                     lo = i + 1;
                 }
-                else 
+                else
                 {
                     hi = i - 1;
                 }
@@ -343,7 +342,7 @@ namespace JetBrains.Omea.Containers
             int capacity = Capacity;
             if( capacity < requestCapacity )
             {
-                do 
+                do
                 {
                     capacity = AdjustCapacity( ( ( capacity + 1 ) * 13 ) >> 3 ); // phi's rational approximation
                 }
@@ -361,7 +360,7 @@ namespace JetBrains.Omea.Containers
         {
             if ( _size == 0 )
                 return;
-            
+
             int srcIndex  = 1;
             int destIndex = 0;
             while( srcIndex < _size )
@@ -411,7 +410,7 @@ namespace JetBrains.Omea.Containers
                     index2++;
                 }
             }
-            
+
             // only one of these for loops will have >0 steps
             for( int i=index1; i < count1; i++ )
             {
@@ -459,7 +458,7 @@ namespace JetBrains.Omea.Containers
                     index2++;
                 }
             }
-            
+
             // only one of these for loops will have >0 steps
             for( int i=index1; i < count1; i++ )
             {
@@ -762,37 +761,37 @@ namespace JetBrains.Omea.Containers
             private IntArrayList _list;
             private int _index;
             private int _version;
-						    
-            internal IntArrayListEnumerator( IntArrayList list ) 
+
+            internal IntArrayListEnumerator( IntArrayList list )
             {
                 _list = list;
                 _index = -1;
                 _version = list._version;
             }
 
-            public Object Clone() 
+            public Object Clone()
             {
                 return MemberwiseClone();
             }
-    
-            public virtual bool MoveNext() 
+
+            public virtual bool MoveNext()
             {
-                if ( _version != _list._version ) 
+                if ( _version != _list._version )
                     throw new InvalidOperationException( "Collection was modified; enumeration operation may not execute." );
-                if ( _index != -2 && _index < (_list.Count-1) ) 
+                if ( _index != -2 && _index < (_list.Count-1) )
                 {
                     _index++;
                     return true;
                 }
-                else 
+                else
                     _index = -2;
 
                 return false;
             }
-    
-            object IEnumerator.Current 
+
+            object IEnumerator.Current
             {
-                get 
+                get
                 {
                     if ( _index == -1 )
                         throw new InvalidOperationException( "Enumeration has not started. Call MoveNext." );
@@ -804,7 +803,7 @@ namespace JetBrains.Omea.Containers
 
             public int Current
             {
-                get 
+                get
                 {
                     if ( _index == -1 )
                         throw new InvalidOperationException( "Enumeration has not started. Call MoveNext." );
@@ -813,10 +812,10 @@ namespace JetBrains.Omea.Containers
                     return _list [_index];
                 }
             }
-    
-            public virtual void Reset() 
+
+            public virtual void Reset()
             {
-                if (_version != _list._version) 
+                if (_version != _list._version)
                     throw new InvalidOperationException( "Collection was modified; enumeration operation may not execute." );
                 _index = -1;
             }
@@ -834,7 +833,7 @@ namespace JetBrains.Omea.Containers
 
         public ComparableArrayList() : base() {}
         public ComparableArrayList( ICollection coll ): base(coll) {}
-    	
+
         public override bool Equals( object obj )
         {
             if ( obj == null || !(obj is ComparableArrayList) )
@@ -869,7 +868,7 @@ namespace JetBrains.Omea.Containers
         public override string ToString()
         {
             StringBuilder builder = StringBuilderPool.Alloc();
-            try 
+            try
             {
                 for( int i=0; i<Count; i++ )
                 {

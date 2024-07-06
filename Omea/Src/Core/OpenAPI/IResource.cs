@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -59,10 +58,10 @@ namespace JetBrains.Omea.OpenAPI
         int TypeId { get; }
 
         /// <summary>
-        /// The default string representation of the resource in the user interface. 
+        /// The default string representation of the resource in the user interface.
         /// </summary>
         /// <remarks>By default, the display name is automatically generated from the properties of the resource,
-        /// based on the template which is specified when the resource type is registered. 
+        /// based on the template which is specified when the resource type is registered.
         /// If a display name for a resource is assigned explicitly, it overrides the default generated
         /// display name, but an explicitly assigned display name is not updated automatically
         /// when the properties of a resource are changed.
@@ -108,7 +107,7 @@ namespace JetBrains.Omea.OpenAPI
         /// </summary>
         /// <remarks>
         /// The resource is actually deleted only after it has been removed from all live resource
-        /// lists, so this method can return true even if the resource still exists (and is being 
+        /// lists, so this method can return true even if the resource still exists (and is being
         /// removed from resource lists).
         /// </remarks>
         bool IsDeleting { get; }
@@ -121,7 +120,7 @@ namespace JetBrains.Omea.OpenAPI
         /// all writer methods throws a <see cref="ResourceDeletedException"/>.
         /// </remarks>
         bool IsDeleted { get; }
-        
+
         /// <summary>
         /// Returns true if the resource is transient and not yet saved to the resource store.
         /// </summary>
@@ -154,7 +153,7 @@ namespace JetBrains.Omea.OpenAPI
         /// <para>Setting the property value to null is equivalent to <see cref="DeleteProp(string)"/>.</para>
         /// </remarks>
         void SetProp( string propName, object propValue );
-        
+
         /// <summary>
         /// Sets the property with the specified ID to the specified value.
         /// </summary>
@@ -181,14 +180,14 @@ namespace JetBrains.Omea.OpenAPI
         void SetProp<T>( PropId<T> propId, T value );
 
         void SetReverseLinkProp(PropId<IResource> propId, IResource propValue);
-        
+
         /// <summary>
         /// Deletes the property with the specified name.
         /// </summary>
         /// <param name="propName">Name of the property to delete.</param>
         /// <remarks>For link properties, this works as <see cref="DeleteLinks(string)"/>.</remarks>
         void DeleteProp( string propName );
-        
+
         /// <summary>
         /// Deletes the property with the specified ID.
         /// </summary>
@@ -205,7 +204,7 @@ namespace JetBrains.Omea.OpenAPI
         /// in the list of the links of the current resource until <see cref="EndUpdate"/>
         /// is called on the target.</remarks>
         void AddLink( string propName, IResource target );
-        
+
         /// <summary>
         /// Adds a link with the specified property ID to the specified target resource.
         /// </summary>
@@ -255,7 +254,7 @@ namespace JetBrains.Omea.OpenAPI
         /// Returns the value of the property with the specified ID.
         /// </summary>
         /// <param name="propId">ID of the property.</param>
-        /// <returns>Value of the property, or null if no value was assigned for the current 
+        /// <returns>Value of the property, or null if no value was assigned for the current
         /// resource.</returns>
         /// <remarks>For bool properties, a non-null value (<c>true</c> or <c>false</c>) is always returned.
         /// <para>For link properties, the return value is the same as for <see cref="GetLinkProp(int)"/></para>.
@@ -267,7 +266,7 @@ namespace JetBrains.Omea.OpenAPI
         /// Returns the value of the property with the specified name.
         /// </summary>
         /// <param name="propName">Name of the property.</param>
-        /// <returns>Value of the property, or null if no value was assigned for the current 
+        /// <returns>Value of the property, or null if no value was assigned for the current
         /// resource.</returns>
         /// <remarks>For bool properties, a non-null value (true or false) is always returned.
         /// <para>For link properties, the return value is the same as for <see cref="GetLinkProp(string)"/></para>.
@@ -281,7 +280,7 @@ namespace JetBrains.Omea.OpenAPI
         /// Returns the value of the string property with the specified ID.
         /// </summary>
         /// <param name="propId">ID of the property.</param>
-        /// <returns>Value of the property, or null if no value was assigned for the current 
+        /// <returns>Value of the property, or null if no value was assigned for the current
         /// resource.</returns>
         string GetStringProp( int propId );
 
@@ -289,7 +288,7 @@ namespace JetBrains.Omea.OpenAPI
         /// Returns the value of the string property with the specified name.
         /// </summary>
         /// <param name="propName">Name of the property.</param>
-        /// <returns>Value of the property, or null if no value was assigned for the current 
+        /// <returns>Value of the property, or null if no value was assigned for the current
         /// resource.</returns>
         string GetStringProp( string propName );
 
@@ -297,7 +296,7 @@ namespace JetBrains.Omea.OpenAPI
         /// Returns the value of the int property with the specified ID.
         /// </summary>
         /// <param name="propId">ID of the property.</param>
-        /// <returns>Value of the property, or 0 if no value was assigned for the current 
+        /// <returns>Value of the property, or 0 if no value was assigned for the current
         /// resource.</returns>
         int GetIntProp( int propId );
 
@@ -305,7 +304,7 @@ namespace JetBrains.Omea.OpenAPI
         /// Returns the value of the int property with the specified name.
         /// </summary>
         /// <param name="propName">Name of the property.</param>
-        /// <returns>Value of the property, or 0 if no value was assigned for the current 
+        /// <returns>Value of the property, or 0 if no value was assigned for the current
         /// resource.</returns>
         int GetIntProp( string propName );
 
@@ -313,7 +312,7 @@ namespace JetBrains.Omea.OpenAPI
         /// Returns the value of the date/time property with the specified ID.
         /// </summary>
         /// <param name="propId">ID of the property.</param>
-        /// <returns>Value of the property, or <see cref="DateTime.MinValue"/> if no value 
+        /// <returns>Value of the property, or <see cref="DateTime.MinValue"/> if no value
         /// was assigned for the current resource.</returns>
         DateTime GetDateProp( int propId );
 
@@ -321,7 +320,7 @@ namespace JetBrains.Omea.OpenAPI
         /// Returns the value of the date/time property with the specified name.
         /// </summary>
         /// <param name="propName">Name of the property.</param>
-        /// <returns>Value of the property, or <see cref="DateTime.MinValue"/> if no value 
+        /// <returns>Value of the property, or <see cref="DateTime.MinValue"/> if no value
         /// was assigned for the current resource.</returns>
         DateTime GetDateProp( string propName );
 
@@ -329,7 +328,7 @@ namespace JetBrains.Omea.OpenAPI
         /// Returns the value of the double property with the specified ID.
         /// </summary>
         /// <param name="propId">ID of the property.</param>
-        /// <returns>Value of the property, or 0.0 if no value 
+        /// <returns>Value of the property, or 0.0 if no value
         /// was assigned for the current resource.</returns>
         double GetDoubleProp( int propId );
 
@@ -337,7 +336,7 @@ namespace JetBrains.Omea.OpenAPI
         /// Returns the value of the double property with the specified name.
         /// </summary>
         /// <param name="propName">Name of the property.</param>
-        /// <returns>Value of the property, or 0.0 if no value 
+        /// <returns>Value of the property, or 0.0 if no value
         /// was assigned for the current resource.</returns>
         double GetDoubleProp( string propName );
 
@@ -345,7 +344,7 @@ namespace JetBrains.Omea.OpenAPI
         /// Returns the value of the blob property with the specified ID.
         /// </summary>
         /// <param name="propId">ID of the property.</param>
-        /// <returns>Value of the property, or null if no value 
+        /// <returns>Value of the property, or null if no value
         /// was assigned for the current resource.</returns>
         /// <remarks>A new stream is created every time the property is accessed. All
         /// streams are opened over the same backing file for reading and writing, with
@@ -358,7 +357,7 @@ namespace JetBrains.Omea.OpenAPI
         /// Returns the value of the blob property with the specified name.
         /// </summary>
         /// <param name="propName">Name of the property.</param>
-        /// <returns>Value of the property, or null if no value 
+        /// <returns>Value of the property, or null if no value
         /// was assigned for the current resource.</returns>
         /// <remarks>A new stream is created every time the property is accessed. All
         /// streams are opened over the same backing file for reading and writing, with
@@ -437,7 +436,7 @@ namespace JetBrains.Omea.OpenAPI
         /// separated with commas.</para>
         /// </remarks>
         string GetPropText( string propName );
-        
+
         /// <summary>
         /// Returns the textual representation of the value of the property with the specified ID.
         /// </summary>
@@ -470,9 +469,9 @@ namespace JetBrains.Omea.OpenAPI
         /// resource are counted. To count links to the resource, specify a negative property
         /// ID (for example, -5 instead of 5).</remarks>
         int GetLinkCount( int propId );
-        
+
         /// <summary>
-        /// Returns the non-live list of the resources of the specified type linked to the current 
+        /// Returns the non-live list of the resources of the specified type linked to the current
         /// resource with the link with the specified property name.
         /// </summary>
         /// <param name="resType">Type of the resources which are returned, or null if resources
@@ -481,9 +480,9 @@ namespace JetBrains.Omea.OpenAPI
         /// <returns>The list of linked resources, or an empty list if there are no linked resources.</returns>
         /// <remarks>For directed links, both links from and to the resource are returned.</remarks>
         IResourceList GetLinksOfType( string resType, string propName );
-        
+
         /// <summary>
-        /// Returns the non-live list of the resources of the specified type linked to the current 
+        /// Returns the non-live list of the resources of the specified type linked to the current
         /// resource with the link with the specified property ID.
         /// </summary>
         /// <param name="resType">Type of the resources which are returned, or null if resources
@@ -499,7 +498,7 @@ namespace JetBrains.Omea.OpenAPI
             where T : BusinessObject;
 
         /// <summary>
-        /// Returns the live list of the resources of the specified type linked to the current 
+        /// Returns the live list of the resources of the specified type linked to the current
         /// resource with the link with the specified property name.
         /// </summary>
         /// <param name="resType">Type of the resources which are returned, or null if resources
@@ -510,7 +509,7 @@ namespace JetBrains.Omea.OpenAPI
         IResourceList GetLinksOfTypeLive( string resType, string propName );
 
         /// <summary>
-        /// Returns the live list of the resources of the specified type linked to the current 
+        /// Returns the live list of the resources of the specified type linked to the current
         /// resource with the link with the specified property ID.
         /// </summary>
         /// <param name="resType">Type of the resources which are returned, or null if resources
@@ -521,7 +520,7 @@ namespace JetBrains.Omea.OpenAPI
         IResourceList GetLinksOfTypeLive( string resType, int propId );
 
         IResourceList GetLinksOfTypeLive(string resType, PropId<IResource> propId);
-        
+
         /// <summary>
         /// Returns the non-live list of the resources of the specified type to which there are directed links
         /// from the current resource with the link with the specified property name.
@@ -545,7 +544,7 @@ namespace JetBrains.Omea.OpenAPI
         IResourceList GetLinksFrom( string resType, int propId );
 
         IResourceList GetLinksFrom(string resType, PropId<IResource> propId);
-        
+
         BusinessObjectList<T> GetLinksFrom<T>(ResourceTypeId<T> resType, PropId<IResource> propId)
             where T : BusinessObject;
 
@@ -559,7 +558,7 @@ namespace JetBrains.Omea.OpenAPI
         /// <returns>The list of linked resources, or an empty list if there are no linked resources.</returns>
         /// <remarks>This method can only be called for directed link properties.</remarks>
         IResourceList GetLinksFromLive( string resType, string propName );
-        
+
         /// <summary>
         /// Returns the live list of the resources of the specified type to which there are directed links
         /// from the current resource with the link with the specified property ID.
@@ -636,7 +635,7 @@ namespace JetBrains.Omea.OpenAPI
         /// <remarks>
         /// <para>For directed link properties, <c>HasProp()</c> returns <c>true</c> only if there
         /// are links from the resource. </para>
-        /// <para>For boolean properties, "the resource has the property" and "the value of the 
+        /// <para>For boolean properties, "the resource has the property" and "the value of the
         /// property is true" are the same thing. Thus, you can use <c>HasProp()</c> to get the
         /// value of boolean properties.</para>
         /// </remarks>
@@ -650,7 +649,7 @@ namespace JetBrains.Omea.OpenAPI
         /// <remarks>
         /// <para>For directed link properties, <c>HasProp()</c> returns <c>true</c> only if there
         /// are links from the resource. </para>
-        /// <para>For boolean properties, "the resource has the property" and "the value of the 
+        /// <para>For boolean properties, "the resource has the property" and "the value of the
         /// property is true" are the same thing. Thus, you can use <c>HasProp()</c> to get the
         /// value of boolean properties.</para>
         /// </remarks>
@@ -712,7 +711,7 @@ namespace JetBrains.Omea.OpenAPI
         /// Checks if any properties of the resource were changed after a call to <see cref="BeginUpdate()"/>.
         /// </summary>
         /// <returns>true if any properties were changed, false otherwise.</returns>
-        /// <remarks>This method can only be called between <see cref="BeginUpdate()"/> and 
+        /// <remarks>This method can only be called between <see cref="BeginUpdate()"/> and
         /// <see cref="EndUpdate()"/>. Setting a property to the same value as the current value
         /// of the property does not cause the resource to be changed.</remarks>
         bool IsChanged();
@@ -735,7 +734,7 @@ namespace JetBrains.Omea.OpenAPI
     /// <summary>
     /// Represents the value of a string list property of a resource.
     /// </summary>
-    /// <remarks><para>The order of the strings in the list is persistent - the strings 
+    /// <remarks><para>The order of the strings in the list is persistent - the strings
     /// are enumerated in the list in the same order as they were added.</para>
     /// <para>The list may contain duplicate strings.</para></remarks>
     public interface IStringList: IDisposable, IEnumerable
@@ -769,17 +768,17 @@ namespace JetBrains.Omea.OpenAPI
         /// <remarks>If the string is encountered multiple times in the list, only
         /// the first instance is removed.</remarks>
         void Remove( string value );
-        
+
         /// <summary>
         /// Removes all strings from the list.
         /// </summary>
         void Clear();
-        
+
         /// <summary>
         /// Returns the zero-based index of the first occurrence of a string in the list.
         /// </summary>
         /// <param name="value">The string to locate.</param>
-        /// <returns>The zero-based index of the string, or -1 if the string is not 
+        /// <returns>The zero-based index of the string, or -1 if the string is not
         /// present in the list.</returns>
         int IndexOf( string value );
     }
@@ -810,17 +809,17 @@ namespace JetBrains.Omea.OpenAPI
         /// The name of the property type.
         /// </summary>
         string Name   { get; }
-        
+
         /// <summary>
         /// The numeric ID of the property type.
         /// </summary>
         int PropId    { get; }
-        
+
         /// <summary>
         /// The data type of the property type.
         /// </summary>
         PropDataType DataType { get; }
-        
+
         /// <summary>
         /// The value of the property for the resource.
         /// </summary>

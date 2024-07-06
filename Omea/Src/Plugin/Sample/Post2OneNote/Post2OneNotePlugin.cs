@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System.Web;
 using System.Windows.Forms;
@@ -46,7 +45,7 @@ namespace JetBrains.Omea.SamplePlugins.Post2OneNotePlugin
 		private class PostAction : IAction
 		{
 			private delegate void ErrorReportJob( string message );
-			
+
 			private bool _isContext;
 			public PostAction(bool isContext)
 			{
@@ -56,7 +55,7 @@ namespace JetBrains.Omea.SamplePlugins.Post2OneNotePlugin
 			#region IAction members
 			public void Execute( IActionContext context )
 			{
-				if ( SelectionIsUseful(context) ) 
+				if ( SelectionIsUseful(context) )
 				{
 					PostItem(context.SelectedText, context.SelectedTextFormat == TextFormat.Html);
 				}
@@ -96,10 +95,10 @@ namespace JetBrains.Omea.SamplePlugins.Post2OneNotePlugin
 
 			private bool SelectionIsUseful(IActionContext ctx)
 			{
-				return null != ctx.SelectedText && 
-					ctx.SelectedText.Length > 0 && 
+				return null != ctx.SelectedText &&
+					ctx.SelectedText.Length > 0 &&
 					(
-						ctx.SelectedTextFormat == TextFormat.Html || 
+						ctx.SelectedTextFormat == TextFormat.Html ||
 						ctx.SelectedTextFormat == TextFormat.PlainText
 					);
 			}
@@ -113,7 +112,7 @@ namespace JetBrains.Omea.SamplePlugins.Post2OneNotePlugin
 			{
 				PostItem(html, isHtml, "Clipping");
 			}
-				
+
 			private void PostItem( string html, bool isHtml, string name )
 			{
 				try
@@ -142,6 +141,6 @@ namespace JetBrains.Omea.SamplePlugins.Post2OneNotePlugin
 				MessageBox.Show(message, "Post to OneNote", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
 		}
-		#endregion 
+		#endregion
 	}
 }

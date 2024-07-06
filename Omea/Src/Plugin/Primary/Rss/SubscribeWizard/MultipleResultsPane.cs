@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -21,7 +20,7 @@ namespace JetBrains.Omea.RSSPlugin.SubscribeWizard
         private JetListView _resultList;
         private System.Windows.Forms.Button btnSelAll;
         private System.Windows.Forms.Button btnUnselAll;
-		/// <summary> 
+		/// <summary>
 		/// Required designer variable.
 		/// </summary>
 		private System.ComponentModel.Container components = null;
@@ -64,14 +63,14 @@ namespace JetBrains.Omea.RSSPlugin.SubscribeWizard
             _columnScheme = new MultiLineColumnScheme();
             _resultList.ColumnScheme = _columnScheme;
             _columnScheme.AddColumn( _checkColumn, 0, 0, 0, 20, ColumnAnchor.Left, SystemColors.ControlText,
-                HorizontalAlignment.Left ); 
+                HorizontalAlignment.Left );
             _columnScheme.AddColumn( _nameColumn, 0, 0, 20, 80, ColumnAnchor.Left | ColumnAnchor.Right, SystemColors.ControlText,
-                HorizontalAlignment.Left ); 
+                HorizontalAlignment.Left );
             _columnScheme.AddColumn( _urlColumn, 1, 1, 20, 80, ColumnAnchor.Left | ColumnAnchor.Right, SystemColors.ControlText,
-                HorizontalAlignment.Left ); 
+                HorizontalAlignment.Left );
         }
 
-	    /// <summary> 
+	    /// <summary>
 		/// Clean up any resources being used.
 		/// </summary>
 		protected override void Dispose( bool disposing )
@@ -87,8 +86,8 @@ namespace JetBrains.Omea.RSSPlugin.SubscribeWizard
 		}
 
 		#region Component Designer generated code
-		/// <summary> 
-		/// Required method for Designer support - do not modify 
+		/// <summary>
+		/// Required method for Designer support - do not modify
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent()
@@ -98,9 +97,9 @@ namespace JetBrains.Omea.RSSPlugin.SubscribeWizard
             this.btnSelAll = new System.Windows.Forms.Button();
             this.btnUnselAll = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
+            //
             // label1
-            // 
+            //
             this.label1.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label1.Location = new System.Drawing.Point(8, 28);
             this.label1.Name = "label1";
@@ -109,18 +108,18 @@ namespace JetBrains.Omea.RSSPlugin.SubscribeWizard
             this.label1.Text = "OmniaMea has found multiple feeds for the site. Please select the feed to which " +
                                "you want to subscribe:";
             this.label1.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top;
-            // 
+            //
             // _resultPanel
-            // 
+            //
             this._resultList.Location = new System.Drawing.Point(8, 64);
             this._resultList.KeyDown += new KeyEventHandler( OnResultKeyDown );
             this._resultList.Name = "_resultList";
             this._resultList.Size = new System.Drawing.Size(280, 324);
             this._resultList.TabIndex = 1;
             this._resultList.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Bottom | AnchorStyles.Top;
-            // 
+            //
             // btnSelAll
-            // 
+            //
             this.btnSelAll.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.btnSelAll.Location = new System.Drawing.Point(295, 64);
             this.btnSelAll.Text = "Select All";
@@ -129,9 +128,9 @@ namespace JetBrains.Omea.RSSPlugin.SubscribeWizard
             this.btnSelAll.Click += new EventHandler(btnSelAll_Click);
             this.btnSelAll.TabIndex = 2;
             this.btnSelAll.Anchor = AnchorStyles.Right | AnchorStyles.Top;
-            // 
+            //
             // btnUnselAll
-            // 
+            //
             this.btnUnselAll.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.btnUnselAll.Location = new System.Drawing.Point(295, 94);
             this.btnUnselAll.Text = "Unselect All";
@@ -140,9 +139,9 @@ namespace JetBrains.Omea.RSSPlugin.SubscribeWizard
             this.btnUnselAll.Click += new EventHandler(btnUnselAll_Click);
             this.btnUnselAll.TabIndex = 3;
             this.btnUnselAll.Anchor = AnchorStyles.Right | AnchorStyles.Top;
-            // 
+            //
             // MultipleResultsPane
-            // 
+            //
             this.Controls.Add(this._resultList);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnSelAll);
@@ -172,7 +171,7 @@ namespace JetBrains.Omea.RSSPlugin.SubscribeWizard
                     {
                         _checkColumn.SetItemCheckState( result, CheckBoxState.Checked );
                     }
-                    _haveAvailableResults = true;                    
+                    _haveAvailableResults = true;
                 }
             }
             NextPredicate( _haveAvailableResults );

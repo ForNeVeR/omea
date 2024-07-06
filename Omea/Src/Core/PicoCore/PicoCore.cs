@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Diagnostics;
@@ -79,7 +78,7 @@ namespace JetBrains.Omea.PicoCore
 
 	    public override IResourceStore ResourceStore
 	    {
-	        [DebuggerStepThrough] 
+	        [DebuggerStepThrough]
             get
 	        {
 	            if ( _resourceStore == null )
@@ -92,7 +91,7 @@ namespace JetBrains.Omea.PicoCore
 
 	    public override IWorkspaceManager WorkspaceManager
         {
-            [DebuggerStepThrough] 
+            [DebuggerStepThrough]
             get
             {
                 if ( _workspaceManager == null )
@@ -105,7 +104,7 @@ namespace JetBrains.Omea.PicoCore
 
         public override ICategoryManager CategoryManager
         {
-            [DebuggerStepThrough] 
+            [DebuggerStepThrough]
             get
             {
                 if ( _categoryManager == null )
@@ -118,7 +117,7 @@ namespace JetBrains.Omea.PicoCore
 
         public override IResourceTreeManager ResourceTreeManager
         {
-            [DebuggerStepThrough] 
+            [DebuggerStepThrough]
             get
             {
                 if ( _resourceTreeManager == null )
@@ -131,7 +130,7 @@ namespace JetBrains.Omea.PicoCore
 
         public override IUnreadManager UnreadManager
         {
-            [DebuggerStepThrough] 
+            [DebuggerStepThrough]
             get
             {
                 if ( _unreadManager == null )
@@ -144,7 +143,7 @@ namespace JetBrains.Omea.PicoCore
 
         public override IPluginLoader PluginLoader
         {
-            [DebuggerStepThrough] 
+            [DebuggerStepThrough]
             get
             {
                 if ( _pluginLoader == null )
@@ -157,7 +156,7 @@ namespace JetBrains.Omea.PicoCore
 
         public override ISettingStore SettingStore
         {
-            [DebuggerStepThrough] 
+            [DebuggerStepThrough]
             get
             {
                 if ( _settingStore == null )
@@ -170,7 +169,7 @@ namespace JetBrains.Omea.PicoCore
 
         public override ITextIndexManager TextIndexManager
         {
-            [DebuggerStepThrough] 
+            [DebuggerStepThrough]
             get
             {
                 if ( _textIndexManager == null )
@@ -183,7 +182,7 @@ namespace JetBrains.Omea.PicoCore
 
         public override IResourceIconManager ResourceIconManager
         {
-            [DebuggerStepThrough] 
+            [DebuggerStepThrough]
             get
             {
                 if ( _resourceIconManager == null )
@@ -196,7 +195,7 @@ namespace JetBrains.Omea.PicoCore
 
         public override IUIManager UIManager
         {
-            [DebuggerStepThrough] 
+            [DebuggerStepThrough]
             get
             {
                 if ( _uiManager == null )
@@ -209,7 +208,7 @@ namespace JetBrains.Omea.PicoCore
 
         public override IContactManager ContactManager
         {
-            [DebuggerStepThrough] 
+            [DebuggerStepThrough]
             get
             {
                 if ( _contactManager == null )
@@ -222,7 +221,7 @@ namespace JetBrains.Omea.PicoCore
 
         public override IActionManager ActionManager
         {
-            [DebuggerStepThrough] 
+            [DebuggerStepThrough]
             get
             {
                 if ( _actionManager == null )
@@ -235,7 +234,7 @@ namespace JetBrains.Omea.PicoCore
 
         public override IResourceBrowser ResourceBrowser
         {
-            [DebuggerStepThrough] 
+            [DebuggerStepThrough]
             get
             {
                 if ( _resourceBrowser == null )
@@ -248,7 +247,7 @@ namespace JetBrains.Omea.PicoCore
 
         public override IDisplayColumnManager DisplayColumnManager
         {
-            [DebuggerStepThrough] 
+            [DebuggerStepThrough]
             get
             {
                 if ( _displayColumnManager == null )
@@ -261,7 +260,7 @@ namespace JetBrains.Omea.PicoCore
 
         public override ITabManager TabManager
         {
-            [DebuggerStepThrough] 
+            [DebuggerStepThrough]
             get
             {
                 if ( _tabManager == null )
@@ -274,7 +273,7 @@ namespace JetBrains.Omea.PicoCore
 
         public override ISidebarSwitcher LeftSidebar
         {
-            [DebuggerStepThrough] 
+            [DebuggerStepThrough]
             get
             {
                 if ( _sidebarSwitcher == null )
@@ -287,7 +286,7 @@ namespace JetBrains.Omea.PicoCore
 
         public override ISidebar RightSidebar
         {
-            [DebuggerStepThrough] 
+            [DebuggerStepThrough]
             get
             {
                 if ( _rightSidebar == null )
@@ -300,7 +299,7 @@ namespace JetBrains.Omea.PicoCore
 
         public override IFileResourceManager FileResourceManager
         {
-            [DebuggerStepThrough] 
+            [DebuggerStepThrough]
             get
             {
                 if ( _fileResourceManager == null )
@@ -313,7 +312,7 @@ namespace JetBrains.Omea.PicoCore
 
         public override INotificationManager NotificationManager
         {
-            [DebuggerStepThrough] 
+            [DebuggerStepThrough]
             get
             {
                 if ( _notificationManager == null )
@@ -326,7 +325,7 @@ namespace JetBrains.Omea.PicoCore
 
         public override IMessageFormatter MessageFormatter
         {
-            [DebuggerStepThrough] 
+            [DebuggerStepThrough]
             get
             {
                 if ( _messageFormatter == null )
@@ -339,7 +338,7 @@ namespace JetBrains.Omea.PicoCore
 
         public override IRemoteControlManager RemoteControllerManager
         {
-            [DebuggerStepThrough] 
+            [DebuggerStepThrough]
             get
             {
                 if ( _remoteControlManager == null )
@@ -352,7 +351,7 @@ namespace JetBrains.Omea.PicoCore
 
         public override IFilterRegistry FilterRegistry
         {
-            [DebuggerStepThrough] 
+            [DebuggerStepThrough]
             get
             {
                 if ( _filterRegistry == null )
@@ -365,7 +364,7 @@ namespace JetBrains.Omea.PicoCore
 
         public override ITrayIconManager TrayIconManager
         {
-            [DebuggerStepThrough] 
+            [DebuggerStepThrough]
             get
             {
                 if ( _trayIconManager == null )
@@ -378,7 +377,7 @@ namespace JetBrains.Omea.PicoCore
 
         public override IFormattingRuleManager FormattingRuleManager
         {
-            [DebuggerStepThrough] 
+            [DebuggerStepThrough]
             get
             {
                 if ( _formattingRuleManager == null )
@@ -391,7 +390,7 @@ namespace JetBrains.Omea.PicoCore
 
         public override IExpirationRuleManager ExpirationRuleManager
         {
-            [DebuggerStepThrough] 
+            [DebuggerStepThrough]
             get
             {
                 if ( _expirationRuleManager == null )
@@ -404,7 +403,7 @@ namespace JetBrains.Omea.PicoCore
 
         public override IFilteringFormsManager FilteringFormsManager
         {
-            [DebuggerStepThrough] 
+            [DebuggerStepThrough]
             get
             {
                 if ( _filteringFormsManager == null )
@@ -417,7 +416,7 @@ namespace JetBrains.Omea.PicoCore
 
         public override IFilterEngine FilterEngine
         {
-            [DebuggerStepThrough] 
+            [DebuggerStepThrough]
             get
             {
                 if ( _filterEngine == null )
@@ -430,7 +429,7 @@ namespace JetBrains.Omea.PicoCore
 
         public override ISearchQueryExtensions SearchQueryExtensions
         {
-            [DebuggerStepThrough] 
+            [DebuggerStepThrough]
             get
             {
                 if ( _queryExtensions == null )
@@ -443,7 +442,7 @@ namespace JetBrains.Omea.PicoCore
 
         public override ICoreProps Props
         {
-            [DebuggerStepThrough] 
+            [DebuggerStepThrough]
             get
             {
                 if ( _coreProps == null )

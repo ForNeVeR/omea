@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -28,7 +27,7 @@ namespace JetBrains.Omea
         }
 
         /// <summary>
-        /// If the array of column descriptors has any "show if not empty" or "show if distinct" columns, 
+        /// If the array of column descriptors has any "show if not empty" or "show if distinct" columns,
         /// removes the columns which are empty or non-distinct from the column array.
         /// </summary>
         /// <param name="columns">The array of columns to filter.</param>
@@ -139,7 +138,7 @@ namespace JetBrains.Omea
                     return true;
                 }
             }
-            
+
             for( int i=0; i<_distinctPropIds.Count; i++ )
             {
                 if ( !ValueMatchesDistinctColumn( res, i ) )

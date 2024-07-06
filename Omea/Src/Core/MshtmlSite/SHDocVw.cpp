@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 // Created by Microsoft (R) C/C++ Compiler Version 13.10.3077 (830a7814).
 //
@@ -183,22 +182,22 @@ VARIANT_BOOL IWebBrowser::GetBusy ( ) {
 //
 
 HRESULT DWebBrowserEvents::BeforeNavigate ( _bstr_t URL, long Flags, _bstr_t TargetFrameName, VARIANT * PostData, _bstr_t Headers, VARIANT_BOOL * Cancel ) {
-    return _com_dispatch_method(this, 0x64, DISPATCH_METHOD, VT_EMPTY, NULL, 
+    return _com_dispatch_method(this, 0x64, DISPATCH_METHOD, VT_EMPTY, NULL,
         L"\x0008\x0003\x0008\x400c\x0008\x400b", (BSTR)URL, Flags, (BSTR)TargetFrameName, PostData, (BSTR)Headers, Cancel);
 }
 
 HRESULT DWebBrowserEvents::NavigateComplete ( _bstr_t URL ) {
-    return _com_dispatch_method(this, 0x65, DISPATCH_METHOD, VT_EMPTY, NULL, 
+    return _com_dispatch_method(this, 0x65, DISPATCH_METHOD, VT_EMPTY, NULL,
         L"\x0008", (BSTR)URL);
 }
 
 HRESULT DWebBrowserEvents::StatusTextChange ( _bstr_t Text ) {
-    return _com_dispatch_method(this, 0x66, DISPATCH_METHOD, VT_EMPTY, NULL, 
+    return _com_dispatch_method(this, 0x66, DISPATCH_METHOD, VT_EMPTY, NULL,
         L"\x0008", (BSTR)Text);
 }
 
 HRESULT DWebBrowserEvents::ProgressChange ( long Progress, long ProgressMax ) {
-    return _com_dispatch_method(this, 0x6c, DISPATCH_METHOD, VT_EMPTY, NULL, 
+    return _com_dispatch_method(this, 0x6c, DISPATCH_METHOD, VT_EMPTY, NULL,
         L"\x0003\x0003", Progress, ProgressMax);
 }
 
@@ -207,7 +206,7 @@ HRESULT DWebBrowserEvents::DownloadComplete ( ) {
 }
 
 HRESULT DWebBrowserEvents::CommandStateChange ( long Command, VARIANT_BOOL Enable ) {
-    return _com_dispatch_method(this, 0x69, DISPATCH_METHOD, VT_EMPTY, NULL, 
+    return _com_dispatch_method(this, 0x69, DISPATCH_METHOD, VT_EMPTY, NULL,
         L"\x0003\x000b", Command, Enable);
 }
 
@@ -216,32 +215,32 @@ HRESULT DWebBrowserEvents::DownloadBegin ( ) {
 }
 
 HRESULT DWebBrowserEvents::NewWindow ( _bstr_t URL, long Flags, _bstr_t TargetFrameName, VARIANT * PostData, _bstr_t Headers, VARIANT_BOOL * Processed ) {
-    return _com_dispatch_method(this, 0x6b, DISPATCH_METHOD, VT_EMPTY, NULL, 
+    return _com_dispatch_method(this, 0x6b, DISPATCH_METHOD, VT_EMPTY, NULL,
         L"\x0008\x0003\x0008\x400c\x0008\x400b", (BSTR)URL, Flags, (BSTR)TargetFrameName, PostData, (BSTR)Headers, Processed);
 }
 
 HRESULT DWebBrowserEvents::TitleChange ( _bstr_t Text ) {
-    return _com_dispatch_method(this, 0x71, DISPATCH_METHOD, VT_EMPTY, NULL, 
+    return _com_dispatch_method(this, 0x71, DISPATCH_METHOD, VT_EMPTY, NULL,
         L"\x0008", (BSTR)Text);
 }
 
 HRESULT DWebBrowserEvents::FrameBeforeNavigate ( _bstr_t URL, long Flags, _bstr_t TargetFrameName, VARIANT * PostData, _bstr_t Headers, VARIANT_BOOL * Cancel ) {
-    return _com_dispatch_method(this, 0xc8, DISPATCH_METHOD, VT_EMPTY, NULL, 
+    return _com_dispatch_method(this, 0xc8, DISPATCH_METHOD, VT_EMPTY, NULL,
         L"\x0008\x0003\x0008\x400c\x0008\x400b", (BSTR)URL, Flags, (BSTR)TargetFrameName, PostData, (BSTR)Headers, Cancel);
 }
 
 HRESULT DWebBrowserEvents::FrameNavigateComplete ( _bstr_t URL ) {
-    return _com_dispatch_method(this, 0xc9, DISPATCH_METHOD, VT_EMPTY, NULL, 
+    return _com_dispatch_method(this, 0xc9, DISPATCH_METHOD, VT_EMPTY, NULL,
         L"\x0008", (BSTR)URL);
 }
 
 HRESULT DWebBrowserEvents::FrameNewWindow ( _bstr_t URL, long Flags, _bstr_t TargetFrameName, VARIANT * PostData, _bstr_t Headers, VARIANT_BOOL * Processed ) {
-    return _com_dispatch_method(this, 0xcc, DISPATCH_METHOD, VT_EMPTY, NULL, 
+    return _com_dispatch_method(this, 0xcc, DISPATCH_METHOD, VT_EMPTY, NULL,
         L"\x0008\x0003\x0008\x400c\x0008\x400b", (BSTR)URL, Flags, (BSTR)TargetFrameName, PostData, (BSTR)Headers, Processed);
 }
 
 HRESULT DWebBrowserEvents::Quit ( VARIANT_BOOL * Cancel ) {
-    return _com_dispatch_method(this, 0x67, DISPATCH_METHOD, VT_EMPTY, NULL, 
+    return _com_dispatch_method(this, 0x67, DISPATCH_METHOD, VT_EMPTY, NULL,
         L"\x400b", Cancel);
 }
 
@@ -258,7 +257,7 @@ HRESULT DWebBrowserEvents::WindowActivate ( ) {
 }
 
 HRESULT DWebBrowserEvents::PropertyChange ( _bstr_t Property ) {
-    return _com_dispatch_method(this, 0x70, DISPATCH_METHOD, VT_EMPTY, NULL, 
+    return _com_dispatch_method(this, 0x70, DISPATCH_METHOD, VT_EMPTY, NULL,
         L"\x0008", (BSTR)Property);
 }
 
@@ -517,17 +516,17 @@ void IWebBrowser2::PutResizable ( VARIANT_BOOL Value ) {
 //
 
 HRESULT DWebBrowserEvents2::StatusTextChange ( _bstr_t Text ) {
-    return _com_dispatch_method(this, 0x66, DISPATCH_METHOD, VT_EMPTY, NULL, 
+    return _com_dispatch_method(this, 0x66, DISPATCH_METHOD, VT_EMPTY, NULL,
         L"\x0008", (BSTR)Text);
 }
 
 HRESULT DWebBrowserEvents2::ProgressChange ( long Progress, long ProgressMax ) {
-    return _com_dispatch_method(this, 0x6c, DISPATCH_METHOD, VT_EMPTY, NULL, 
+    return _com_dispatch_method(this, 0x6c, DISPATCH_METHOD, VT_EMPTY, NULL,
         L"\x0003\x0003", Progress, ProgressMax);
 }
 
 HRESULT DWebBrowserEvents2::CommandStateChange ( long Command, VARIANT_BOOL Enable ) {
-    return _com_dispatch_method(this, 0x69, DISPATCH_METHOD, VT_EMPTY, NULL, 
+    return _com_dispatch_method(this, 0x69, DISPATCH_METHOD, VT_EMPTY, NULL,
         L"\x0003\x000b", Command, Enable);
 }
 
@@ -540,32 +539,32 @@ HRESULT DWebBrowserEvents2::DownloadComplete ( ) {
 }
 
 HRESULT DWebBrowserEvents2::TitleChange ( _bstr_t Text ) {
-    return _com_dispatch_method(this, 0x71, DISPATCH_METHOD, VT_EMPTY, NULL, 
+    return _com_dispatch_method(this, 0x71, DISPATCH_METHOD, VT_EMPTY, NULL,
         L"\x0008", (BSTR)Text);
 }
 
 HRESULT DWebBrowserEvents2::PropertyChange ( _bstr_t szProperty ) {
-    return _com_dispatch_method(this, 0x70, DISPATCH_METHOD, VT_EMPTY, NULL, 
+    return _com_dispatch_method(this, 0x70, DISPATCH_METHOD, VT_EMPTY, NULL,
         L"\x0008", (BSTR)szProperty);
 }
 
 HRESULT DWebBrowserEvents2::BeforeNavigate2 ( IDispatch * pDisp, VARIANT * URL, VARIANT * Flags, VARIANT * TargetFrameName, VARIANT * PostData, VARIANT * Headers, VARIANT_BOOL * Cancel ) {
-    return _com_dispatch_method(this, 0xfa, DISPATCH_METHOD, VT_EMPTY, NULL, 
+    return _com_dispatch_method(this, 0xfa, DISPATCH_METHOD, VT_EMPTY, NULL,
         L"\x0009\x400c\x400c\x400c\x400c\x400c\x400b", pDisp, URL, Flags, TargetFrameName, PostData, Headers, Cancel);
 }
 
 HRESULT DWebBrowserEvents2::NewWindow2 ( IDispatch * * ppDisp, VARIANT_BOOL * Cancel ) {
-    return _com_dispatch_method(this, 0xfb, DISPATCH_METHOD, VT_EMPTY, NULL, 
+    return _com_dispatch_method(this, 0xfb, DISPATCH_METHOD, VT_EMPTY, NULL,
         L"\x4009\x400b", ppDisp, Cancel);
 }
 
 HRESULT DWebBrowserEvents2::NavigateComplete2 ( IDispatch * pDisp, VARIANT * URL ) {
-    return _com_dispatch_method(this, 0xfc, DISPATCH_METHOD, VT_EMPTY, NULL, 
+    return _com_dispatch_method(this, 0xfc, DISPATCH_METHOD, VT_EMPTY, NULL,
         L"\x0009\x400c", pDisp, URL);
 }
 
 HRESULT DWebBrowserEvents2::DocumentComplete ( IDispatch * pDisp, VARIANT * URL ) {
-    return _com_dispatch_method(this, 0x103, DISPATCH_METHOD, VT_EMPTY, NULL, 
+    return _com_dispatch_method(this, 0x103, DISPATCH_METHOD, VT_EMPTY, NULL,
         L"\x0009\x400c", pDisp, URL);
 }
 
@@ -574,107 +573,107 @@ HRESULT DWebBrowserEvents2::OnQuit ( ) {
 }
 
 HRESULT DWebBrowserEvents2::OnVisible ( VARIANT_BOOL Visible ) {
-    return _com_dispatch_method(this, 0xfe, DISPATCH_METHOD, VT_EMPTY, NULL, 
+    return _com_dispatch_method(this, 0xfe, DISPATCH_METHOD, VT_EMPTY, NULL,
         L"\x000b", Visible);
 }
 
 HRESULT DWebBrowserEvents2::OnToolBar ( VARIANT_BOOL ToolBar ) {
-    return _com_dispatch_method(this, 0xff, DISPATCH_METHOD, VT_EMPTY, NULL, 
+    return _com_dispatch_method(this, 0xff, DISPATCH_METHOD, VT_EMPTY, NULL,
         L"\x000b", ToolBar);
 }
 
 HRESULT DWebBrowserEvents2::OnMenuBar ( VARIANT_BOOL MenuBar ) {
-    return _com_dispatch_method(this, 0x100, DISPATCH_METHOD, VT_EMPTY, NULL, 
+    return _com_dispatch_method(this, 0x100, DISPATCH_METHOD, VT_EMPTY, NULL,
         L"\x000b", MenuBar);
 }
 
 HRESULT DWebBrowserEvents2::OnStatusBar ( VARIANT_BOOL StatusBar ) {
-    return _com_dispatch_method(this, 0x101, DISPATCH_METHOD, VT_EMPTY, NULL, 
+    return _com_dispatch_method(this, 0x101, DISPATCH_METHOD, VT_EMPTY, NULL,
         L"\x000b", StatusBar);
 }
 
 HRESULT DWebBrowserEvents2::OnFullScreen ( VARIANT_BOOL FullScreen ) {
-    return _com_dispatch_method(this, 0x102, DISPATCH_METHOD, VT_EMPTY, NULL, 
+    return _com_dispatch_method(this, 0x102, DISPATCH_METHOD, VT_EMPTY, NULL,
         L"\x000b", FullScreen);
 }
 
 HRESULT DWebBrowserEvents2::OnTheaterMode ( VARIANT_BOOL TheaterMode ) {
-    return _com_dispatch_method(this, 0x104, DISPATCH_METHOD, VT_EMPTY, NULL, 
+    return _com_dispatch_method(this, 0x104, DISPATCH_METHOD, VT_EMPTY, NULL,
         L"\x000b", TheaterMode);
 }
 
 HRESULT DWebBrowserEvents2::WindowSetResizable ( VARIANT_BOOL Resizable ) {
-    return _com_dispatch_method(this, 0x106, DISPATCH_METHOD, VT_EMPTY, NULL, 
+    return _com_dispatch_method(this, 0x106, DISPATCH_METHOD, VT_EMPTY, NULL,
         L"\x000b", Resizable);
 }
 
 HRESULT DWebBrowserEvents2::WindowSetLeft ( long Left ) {
-    return _com_dispatch_method(this, 0x108, DISPATCH_METHOD, VT_EMPTY, NULL, 
+    return _com_dispatch_method(this, 0x108, DISPATCH_METHOD, VT_EMPTY, NULL,
         L"\x0003", Left);
 }
 
 HRESULT DWebBrowserEvents2::WindowSetTop ( long Top ) {
-    return _com_dispatch_method(this, 0x109, DISPATCH_METHOD, VT_EMPTY, NULL, 
+    return _com_dispatch_method(this, 0x109, DISPATCH_METHOD, VT_EMPTY, NULL,
         L"\x0003", Top);
 }
 
 HRESULT DWebBrowserEvents2::WindowSetWidth ( long Width ) {
-    return _com_dispatch_method(this, 0x10a, DISPATCH_METHOD, VT_EMPTY, NULL, 
+    return _com_dispatch_method(this, 0x10a, DISPATCH_METHOD, VT_EMPTY, NULL,
         L"\x0003", Width);
 }
 
 HRESULT DWebBrowserEvents2::WindowSetHeight ( long Height ) {
-    return _com_dispatch_method(this, 0x10b, DISPATCH_METHOD, VT_EMPTY, NULL, 
+    return _com_dispatch_method(this, 0x10b, DISPATCH_METHOD, VT_EMPTY, NULL,
         L"\x0003", Height);
 }
 
 HRESULT DWebBrowserEvents2::WindowClosing ( VARIANT_BOOL IsChildWindow, VARIANT_BOOL * Cancel ) {
-    return _com_dispatch_method(this, 0x107, DISPATCH_METHOD, VT_EMPTY, NULL, 
+    return _com_dispatch_method(this, 0x107, DISPATCH_METHOD, VT_EMPTY, NULL,
         L"\x000b\x400b", IsChildWindow, Cancel);
 }
 
 HRESULT DWebBrowserEvents2::ClientToHostWindow ( long * CX, long * CY ) {
-    return _com_dispatch_method(this, 0x10c, DISPATCH_METHOD, VT_EMPTY, NULL, 
+    return _com_dispatch_method(this, 0x10c, DISPATCH_METHOD, VT_EMPTY, NULL,
         L"\x4003\x4003", CX, CY);
 }
 
 HRESULT DWebBrowserEvents2::SetSecureLockIcon ( long SecureLockIcon ) {
-    return _com_dispatch_method(this, 0x10d, DISPATCH_METHOD, VT_EMPTY, NULL, 
+    return _com_dispatch_method(this, 0x10d, DISPATCH_METHOD, VT_EMPTY, NULL,
         L"\x0003", SecureLockIcon);
 }
 
 HRESULT DWebBrowserEvents2::FileDownload ( VARIANT_BOOL * Cancel ) {
-    return _com_dispatch_method(this, 0x10e, DISPATCH_METHOD, VT_EMPTY, NULL, 
+    return _com_dispatch_method(this, 0x10e, DISPATCH_METHOD, VT_EMPTY, NULL,
         L"\x400b", Cancel);
 }
 
 HRESULT DWebBrowserEvents2::NavigateError ( IDispatch * pDisp, VARIANT * URL, VARIANT * Frame, VARIANT * StatusCode, VARIANT_BOOL * Cancel ) {
-    return _com_dispatch_method(this, 0x10f, DISPATCH_METHOD, VT_EMPTY, NULL, 
+    return _com_dispatch_method(this, 0x10f, DISPATCH_METHOD, VT_EMPTY, NULL,
         L"\x0009\x400c\x400c\x400c\x400b", pDisp, URL, Frame, StatusCode, Cancel);
 }
 
 HRESULT DWebBrowserEvents2::PrintTemplateInstantiation ( IDispatch * pDisp ) {
-    return _com_dispatch_method(this, 0xe1, DISPATCH_METHOD, VT_EMPTY, NULL, 
+    return _com_dispatch_method(this, 0xe1, DISPATCH_METHOD, VT_EMPTY, NULL,
         L"\x0009", pDisp);
 }
 
 HRESULT DWebBrowserEvents2::PrintTemplateTeardown ( IDispatch * pDisp ) {
-    return _com_dispatch_method(this, 0xe2, DISPATCH_METHOD, VT_EMPTY, NULL, 
+    return _com_dispatch_method(this, 0xe2, DISPATCH_METHOD, VT_EMPTY, NULL,
         L"\x0009", pDisp);
 }
 
 HRESULT DWebBrowserEvents2::UpdatePageStatus ( IDispatch * pDisp, VARIANT * nPage, VARIANT * fDone ) {
-    return _com_dispatch_method(this, 0xe3, DISPATCH_METHOD, VT_EMPTY, NULL, 
+    return _com_dispatch_method(this, 0xe3, DISPATCH_METHOD, VT_EMPTY, NULL,
         L"\x0009\x400c\x400c", pDisp, nPage, fDone);
 }
 
 HRESULT DWebBrowserEvents2::PrivacyImpactedStateChange ( VARIANT_BOOL bImpacted ) {
-    return _com_dispatch_method(this, 0x110, DISPATCH_METHOD, VT_EMPTY, NULL, 
+    return _com_dispatch_method(this, 0x110, DISPATCH_METHOD, VT_EMPTY, NULL,
         L"\x000b", bImpacted);
 }
 
 HRESULT DWebBrowserEvents2::NewWindow3 ( IDispatch * * ppDisp, VARIANT_BOOL * Cancel, unsigned long dwFlags, _bstr_t bstrUrlContext, _bstr_t bstrUrl ) {
-    return _com_dispatch_method(this, 0x111, DISPATCH_METHOD, VT_EMPTY, NULL, 
+    return _com_dispatch_method(this, 0x111, DISPATCH_METHOD, VT_EMPTY, NULL,
         L"\x4009\x400b\x0003\x0008\x0008", ppDisp, Cancel, dwFlags, (BSTR)bstrUrlContext, (BSTR)bstrUrl);
 }
 
@@ -683,12 +682,12 @@ HRESULT DWebBrowserEvents2::NewWindow3 ( IDispatch * * ppDisp, VARIANT_BOOL * Ca
 //
 
 HRESULT DShellWindowsEvents::WindowRegistered ( long lCookie ) {
-    return _com_dispatch_method(this, 0xc8, DISPATCH_METHOD, VT_EMPTY, NULL, 
+    return _com_dispatch_method(this, 0xc8, DISPATCH_METHOD, VT_EMPTY, NULL,
         L"\x0003", lCookie);
 }
 
 HRESULT DShellWindowsEvents::WindowRevoked ( long lCookie ) {
-    return _com_dispatch_method(this, 0xc9, DISPATCH_METHOD, VT_EMPTY, NULL, 
+    return _com_dispatch_method(this, 0xc9, DISPATCH_METHOD, VT_EMPTY, NULL,
         L"\x0003", lCookie);
 }
 
@@ -856,7 +855,7 @@ _variant_t IShellUIHelper::ShowBrowserUI ( _bstr_t bstrName, VARIANT * pvarIn ) 
 //
 
 HRESULT DShellNameSpaceEvents::FavoritesSelectionChange ( long cItems, long hItem, _bstr_t strName, _bstr_t strUrl, long cVisits, _bstr_t strDate, long fAvailableOffline ) {
-    return _com_dispatch_method(this, 0x1, DISPATCH_METHOD, VT_EMPTY, NULL, 
+    return _com_dispatch_method(this, 0x1, DISPATCH_METHOD, VT_EMPTY, NULL,
         L"\x0003\x0003\x0008\x0008\x0003\x0008\x0003", cItems, hItem, (BSTR)strName, (BSTR)strUrl, cVisits, (BSTR)strDate, fAvailableOffline);
 }
 
@@ -1458,7 +1457,7 @@ VARIANT_BOOL ISearchAssistantOC3::GetUseSearchCompanion ( ) {
 //
 
 HRESULT _SearchAssistantEvents::OnNextMenuSelect ( long idItem ) {
-    return _com_dispatch_method(this, 0x1, DISPATCH_METHOD, VT_EMPTY, NULL, 
+    return _com_dispatch_method(this, 0x1, DISPATCH_METHOD, VT_EMPTY, NULL,
         L"\x0003", idItem);
 }
 

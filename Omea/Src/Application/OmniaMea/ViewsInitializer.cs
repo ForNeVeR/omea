@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -216,7 +215,7 @@ namespace JetBrains.Omea
             thisWeek.SetProp( Core.Props.DisplayThreaded, true );
             lastWeek.SetProp( Core.Props.DisplayThreaded, true );
             thisMonth.SetProp( Core.Props.DisplayThreaded, true );
-            lastMonth.SetProp( Core.Props.DisplayThreaded, true );            
+            lastMonth.SetProp( Core.Props.DisplayThreaded, true );
         }
         #endregion FirstRun
 
@@ -271,7 +270,7 @@ namespace JetBrains.Omea
                                                 null, new ResourceHasEmptyContent() );
             fMgr.MarkConditionOnlyForRule( res );
 
-            res = fMgr.CreateStandardCondition( FilterManagerStandards.DummyConditionName, FilterManagerStandards.DummyConditionName, 
+            res = fMgr.CreateStandardCondition( FilterManagerStandards.DummyConditionName, FilterManagerStandards.DummyConditionName,
                                                 null, "Id", ConditionOp.Gt, "0" );
             res.SetProp( "Invisible", true );
 
@@ -310,7 +309,7 @@ namespace JetBrains.Omea
         private static void RegisterRulesActions()
         {
             IResource       res;
-            IFilterRegistry  fmgr = Core.FilterRegistry; 
+            IFilterRegistry  fmgr = Core.FilterRegistry;
             IStandardConditions std = fmgr.Std;
 
             //  Register them here since they require live object as parameter

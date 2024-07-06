@@ -1,10 +1,9 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 // JetIePlugin.cpp : Implementation of DLL Exports.
-// 
+//
 // CJetIePlugin implements the DLLs main object that is in charge of registering and unregistering it,
 // and provides the proper class factory for creating the objects. Note that the need in
 // the dynamic class factory is detected in here as well, thus this object takes part in IE controls
@@ -35,15 +34,15 @@ typedef CBeelaxyHelper CSomeHelper;
 
 // The module attribute causes DllMain, DllRegisterServer and DllUnregisterServer to be automatically implemented for you
 #ifdef JETIE_OMEA
-[ module(dll, uuid = "{633820F7-C04E-4152-B64F-1147B881F998}", 
-		 name = "IexploreOmea", 
+[ module(dll, uuid = "{633820F7-C04E-4152-B64F-1147B881F998}",
+		 name = "IexploreOmea",
 		 helpstring = "Internet Explorer Omea Add-on Type Library",
 		 resource_name = "IDR_IEXPLOREJETPLUGIN")
 ]
 #endif
 #ifdef JETIE_BEELAXY
-[ module(dll, uuid = "{633820F8-C04E-4152-B64F-1147B881F998}", 
-		 name = "IexploreBeelaxy", 
+[ module(dll, uuid = "{633820F8-C04E-4152-B64F-1147B881F998}",
+		 name = "IexploreBeelaxy",
 		 helpstring = "Internet Explorer Beelaxy Add-on Type Library",
 		 resource_name = "IDR_IEXPLOREJETPLUGIN")
 ]
@@ -103,7 +102,7 @@ public:
 		COM_CATCH_SILENT();
 
 		return CLASS_E_CLASSNOTAVAILABLE;	// Could not instantiate
-	}	
+	}
 
 	STDMETHOD(RegisterServer)(BOOL bRegTypeLib = FALSE, const CLSID* pCLSID = NULL)
 	{

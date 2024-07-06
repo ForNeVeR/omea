@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Windows.Forms;
@@ -114,9 +113,9 @@ namespace JetBrains.Omea.DebugPlugin
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
-            // 
+            //
             // _resourceTypes
-            // 
+            //
             this._resourceTypes.Dock = System.Windows.Forms.DockStyle.Left;
             this._resourceTypes.Location = new System.Drawing.Point(0, 0);
             this._resourceTypes.Name = "_resourceTypes";
@@ -124,9 +123,9 @@ namespace JetBrains.Omea.DebugPlugin
             this._resourceTypes.Sorted = true;
             this._resourceTypes.TabIndex = 0;
             this._resourceTypes.SelectedIndexChanged += new System.EventHandler(this._resourceTypes_SelectedIndexChanged);
-            // 
+            //
             // _resourcesView
-            // 
+            //
             this._resourcesView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
                                                                                              this.columnHeader2,
                                                                                              this.columnHeader1});
@@ -139,19 +138,19 @@ namespace JetBrains.Omea.DebugPlugin
             this._resourcesView.TabIndex = 1;
             this._resourcesView.View = System.Windows.Forms.View.Details;
             this._resourcesView.DoubleClick += new System.EventHandler(this._resourcesView_DoubleClick);
-            // 
+            //
             // columnHeader2
-            // 
+            //
             this.columnHeader2.Text = "ID";
             this.columnHeader2.Width = 71;
-            // 
+            //
             // columnHeader1
-            // 
+            //
             this.columnHeader1.Text = "DisplayName";
             this.columnHeader1.Width = 409;
-            // 
+            //
             // _btn_Close
-            // 
+            //
             this._btn_Close.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this._btn_Close.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this._btn_Close.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -161,9 +160,9 @@ namespace JetBrains.Omea.DebugPlugin
             this._btn_Close.TabIndex = 5;
             this._btn_Close.Text = "Close";
             this._btn_Close.Click += new System.EventHandler(this.OnClose);
-            // 
+            //
             // _resID
-            // 
+            //
             this._resID.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this._resID.Location = new System.Drawing.Point(224, 162);
             this._resID.Name = "_resID";
@@ -172,9 +171,9 @@ namespace JetBrains.Omea.DebugPlugin
             this._resID.Text = "";
             this._resID.KeyDown += new System.Windows.Forms.KeyEventHandler(this._resID_KeyDown);
             this._resID.TextChanged += new System.EventHandler(this.OnResourceIDChanged);
-            // 
+            //
             // _btn_ShowResource
-            // 
+            //
             this._btn_ShowResource.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this._btn_ShowResource.Enabled = false;
             this._btn_ShowResource.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -184,9 +183,9 @@ namespace JetBrains.Omea.DebugPlugin
             this._btn_ShowResource.TabIndex = 7;
             this._btn_ShowResource.Text = "Show Resource";
             this._btn_ShowResource.Click += new System.EventHandler(this.OnShowResource);
-            // 
+            //
             // label1
-            // 
+            //
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label1.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label1.Location = new System.Drawing.Point(148, 167);
@@ -194,11 +193,11 @@ namespace JetBrains.Omea.DebugPlugin
             this.label1.Size = new System.Drawing.Size(72, 17);
             this.label1.TabIndex = 8;
             this.label1.Text = "Resource ID:";
-            // 
+            //
             // panel1
-            // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-                | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Controls.Add(this.splitter1);
@@ -207,35 +206,35 @@ namespace JetBrains.Omea.DebugPlugin
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(580, 148);
             this.panel1.TabIndex = 10;
-            // 
+            //
             // panel2
-            // 
+            //
             this.panel2.Controls.Add(this._resourcesView);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(131, 0);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(449, 148);
             this.panel2.TabIndex = 2;
-            // 
+            //
             // splitter1
-            // 
+            //
             this.splitter1.Location = new System.Drawing.Point(128, 0);
             this.splitter1.Name = "splitter1";
             this.splitter1.Size = new System.Drawing.Size(3, 148);
             this.splitter1.TabIndex = 1;
             this.splitter1.TabStop = false;
-            // 
+            //
             // label2
-            // 
+            //
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label2.Location = new System.Drawing.Point(12, 164);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(40, 16);
             this.label2.TabIndex = 11;
             this.label2.Text = "Count:";
-            // 
+            //
             // _count
-            // 
+            //
             this._count.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this._count.Location = new System.Drawing.Point(56, 160);
             this._count.Name = "_count";
@@ -243,18 +242,18 @@ namespace JetBrains.Omea.DebugPlugin
             this._count.Size = new System.Drawing.Size(76, 21);
             this._count.TabIndex = 12;
             this._count.Text = "";
-            // 
+            //
             // _btnQuery
-            // 
+            //
             this._btnQuery.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this._btnQuery.Location = new System.Drawing.Point(404, 164);
             this._btnQuery.Name = "_btnQuery";
             this._btnQuery.TabIndex = 13;
             this._btnQuery.Text = "Query";
             this._btnQuery.Click += new System.EventHandler(this.OnQuery);
-            // 
+            //
             // ResourceBrowser
-            // 
+            //
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
             this.CancelButton = this._btn_Close;
             this.ClientSize = new System.Drawing.Size(580, 194);
@@ -344,7 +343,7 @@ namespace JetBrains.Omea.DebugPlugin
             {
                 MessageBox.Show( exception.Message );
             }
-        
+
         }
 
         private void OnResourceIDChanged(object sender, EventArgs e)

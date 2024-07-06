@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System.Diagnostics;
 using System.Drawing;
@@ -34,19 +33,19 @@ namespace JetBrains.Omea.GUIControls
         /**
          * State from which the values of unread counters are taken.
          */
-        
+
         public UnreadState UnreadState
         {
             get { return _unreadState; }
-            set 
-            { 
+            set
+            {
                 if ( _unreadState != value )
                 {
                     if ( _unreadState != null )
                     {
                         _unreadState.UnreadCountChanged -= OnUnreadCountChanged;
                     }
-                    _unreadState = value; 
+                    _unreadState = value;
                     if ( _unreadState != null )
                     {
                         _unreadState.UnreadCountChanged += OnUnreadCountChanged;
@@ -93,7 +92,7 @@ namespace JetBrains.Omea.GUIControls
          * When the unread count for a resource changes in the unread state, updates
          * the rich text for the respective tree node.
          */
-        
+
         private void OnUnreadCountChanged( object sender, ResourceEventArgs e )
         {
             if ( DecorationChanged != null )

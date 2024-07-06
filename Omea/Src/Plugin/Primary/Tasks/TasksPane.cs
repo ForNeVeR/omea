@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Drawing;
@@ -50,9 +49,9 @@ namespace JetBrains.Omea.Tasks
             _tasksTree = new DecoResourceTreeView();
             _editNewTask = new TextBox();
             SuspendLayout();
-            // 
+            //
             // _tasksTreeView2
-            // 
+            //
             _tasksTree.AllowDrop = true;
             _tasksTree.Anchor = (AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right);
             _tasksTree.BackColor = SystemColors.Window;
@@ -69,9 +68,9 @@ namespace JetBrains.Omea.Tasks
             _tasksTree.KeyDown += _tasksTreeView_KeyDown;
             _tasksTree.AfterItemEdit += _tasksTreeView_AfterLabelEdit;
             _tasksTree.BeforeItemEdit += _tasksTreeView_BeforeLabelEdit;
-            // 
+            //
             // _newTaskEditBox
-            // 
+            //
             _editNewTask.AllowDrop = true;
             _editNewTask.Anchor = (AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right);
             _editNewTask.ForeColor = Color.Gray;
@@ -85,9 +84,9 @@ namespace JetBrains.Omea.Tasks
             _editNewTask.DragDrop += _newTaskEditBox_DragDrop;
             _editNewTask.Leave += _newTaskEditBox_Leave;
             _editNewTask.Enter += _newTaskEditBox_Enter;
-            // 
+            //
             // TasksViewPane
-            // 
+            //
             Controls.Add(_editNewTask);
             Controls.Add(_tasksTree);
             Font = new Font("Tahoma", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
@@ -245,7 +244,7 @@ namespace JetBrains.Omea.Tasks
                         {
                             return;
                         }
-                    }   
+                    }
                     e.Handled = true;
                     new DeAttachResourcesFromTaskInPane().Execute( new ActionContext( ActionContextKind.Other, this, null ) );
                 }
@@ -406,12 +405,12 @@ namespace JetBrains.Omea.Tasks
                         Win32Declarations.DeleteObject( clipRgn );
                         clipRgn = IntPtr.Zero;
                     }
-                    Win32Declarations.IntersectClipRect( hdc, (int) rcClip.Left, (int) rcClip.Top, 
+                    Win32Declarations.IntersectClipRect( hdc, (int) rcClip.Left, (int) rcClip.Top,
                                                               (int) rcClip.Right, (int) rcClip.Bottom );
 
                     int ildState = ( ( state & RowState.ActiveSelected ) != 0 )
                         ? Win32Declarations.ILD_SELECTED : Win32Declarations.ILD_NORMAL;
-                    
+
                     Win32Declarations.ImageList_Draw( TasksPlugin._ImageList.Handle, 0, hdc,
                                                       midPointX - 8, midPointY - 8, ildState );
 

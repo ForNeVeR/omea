@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -15,7 +14,7 @@ namespace JetBrains.Omea.InstantMessaging.Miranda
 {
     internal interface IMirandaDB
     {
-        IMirandaContact UserContact { get; }        
+        IMirandaContact UserContact { get; }
         IEnumerable Contacts { get; }
         int ContactCount { get; }
         int FileSize { get; }
@@ -39,7 +38,7 @@ namespace JetBrains.Omea.InstantMessaging.Miranda
 
     internal interface IMirandaContactSettings
     {
-        string ModuleName { get; }        
+        string ModuleName { get; }
         IDictionary Settings { get; }
     }
 
@@ -63,7 +62,7 @@ namespace JetBrains.Omea.InstantMessaging.Miranda
     /**
      * A Miranda database.
      */
-    
+
 	internal class MirandaDB: IMirandaDB
 	{
         private int _contactCount;
@@ -185,7 +184,7 @@ namespace JetBrains.Omea.InstantMessaging.Miranda
         private int _ofsFirst;
         protected int _ofsCurrent;
         private IMirandaObject _currentObject;
-        
+
         internal MirandaEnumerator( MirandaDB db, BinaryReader reader, int ofsFirst )
         {
             _db = db;
@@ -264,7 +263,7 @@ namespace JetBrains.Omea.InstantMessaging.Miranda
         private int _timestampFirstUnread;
 
         private const int SIGNATURE_CONTACT = 0x43DECADE;
-        
+
         internal MirandaContact( MirandaDB db, BinaryReader reader, int ofs )
         {
             Debug.Assert( ofs != 0 );
@@ -352,7 +351,7 @@ namespace JetBrains.Omea.InstantMessaging.Miranda
         private Hashtable _settings;
 
         private const int SIGNATURE_CONTACT_SETTINGS = 0x53DECADE;
-        
+
         internal MirandaContactSettings( MirandaDB db, BinaryReader reader, int ofs )
         {
             Guard.NullArgument( db, "db" );
@@ -459,17 +458,17 @@ namespace JetBrains.Omea.InstantMessaging.Miranda
                     _value = blobBytes;
                     break;
                 }
-                
+
                 case DBVT_ASCIIZ:
                 {
                     int cbString = reader.ReadUInt16();
                     _value = new string( reader.ReadChars( cbString ) );
-                    break;    
+                    break;
                 }
 
                 default:
                     throw new MirandaDatabaseCorruptedException( "Unknown or unsupported value type " + dataValueType );
-                    
+
             }
         }
 
@@ -513,7 +512,7 @@ namespace JetBrains.Omea.InstantMessaging.Miranda
         private int _flags;
         private int _eventType;
         private string _eventData;
-        
+
         internal MirandaEvent( MirandaDB db, BinaryReader reader, int ofs )
         {
             reader.BaseStream.Position = ofs;
@@ -523,13 +522,13 @@ namespace JetBrains.Omea.InstantMessaging.Miranda
 
             reader.ReadInt32();  // skip _ofsPrev
             _ofsNext = reader.ReadInt32();
-            
+
             int ofsModuleName = reader.ReadInt32();
             _moduleName = db.GetModuleName( ofsModuleName );
 
             int timestamp = reader.ReadInt32();
             _timestamp = new DateTime( 1970, 1, 1 ).AddDays( (double ) timestamp / ( 24 * 60 * 60 ) );
-            
+
             _flags = reader.ReadInt16();
             _eventType = reader.ReadInt32();
             int cbBlob = reader.ReadInt32();

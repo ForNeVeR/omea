@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -19,7 +18,7 @@ namespace JetBrains.Omea.ResourceTools
     {
         Add, Remove, Change
     }
-    
+
     /**
 	 * A notification on a single change in a ResourceList.
 	 */
@@ -62,12 +61,12 @@ namespace JetBrains.Omea.ResourceTools
         {
             get { return _index; }
         }
-        
+
         internal void SetIndex( int value )
         {
             if ( value < 0 )
             {
-                throw new ArgumentOutOfRangeException( "value", 
+                throw new ArgumentOutOfRangeException( "value",
                     "Trying to set negative index in ResourceListEvent: value=" + value );
             }
             _index = value;
@@ -92,7 +91,7 @@ namespace JetBrains.Omea.ResourceTools
                 return _changeSet;
             }
         }
-        
+
         internal void SetChangeSet( IPropertyChangeSet changeSet )
         {
             _changeSet = changeSet;
@@ -116,7 +115,7 @@ namespace JetBrains.Omea.ResourceTools
         }
 
     }
-    
+
     /**
 	 * A queue for ResourceList events which can merge and modify unprocessed
      * events to ensure that the receiving side always receives consistent
@@ -186,7 +185,7 @@ namespace JetBrains.Omea.ResourceTools
             if ( Interlocked.Increment( ref _processingLevel ) == 1 )
             {
                 Monitor.Enter( _resList );   // to prevent deadlock, always lock the list before locking the queue
-                // (when we enter ResourceDeleting, the list lock is held 
+                // (when we enter ResourceDeleting, the list lock is held
                 // and then the queue locks itself)
                 Monitor.Enter( _events );
             }
@@ -202,7 +201,7 @@ namespace JetBrains.Omea.ResourceTools
         {
             if ( _processingLevel == 0 )
                 throw new InvalidOperationException( "Attempt to call EndProcessEvents() without matching BeginProcessEvents()" );
-            
+
             if ( Interlocked.Decrement( ref _processingLevel ) == 0 )
             {
                 Monitor.Exit( _events );
@@ -224,10 +223,10 @@ namespace JetBrains.Omea.ResourceTools
                 _events.RemoveAt( 0 );
                 if ( ev.ResourceList == _resList )
                 {
-                    return ev;                    
+                    return ev;
                 }
             }
-            
+
             return null;
         }
 
@@ -286,12 +285,12 @@ namespace JetBrains.Omea.ResourceTools
                 return;
             }
 
-            // C0 A1 A2 A3 R1  
+            // C0 A1 A2 A3 R1
 
             for( int i=_events.Count-1; i >= 0; i-- )
             {
                 //             i
-                // C0 A1 A2 A3 R1  
+                // C0 A1 A2 A3 R1
 
                 ResourceListEvent ev = (ResourceListEvent) _events [i];
                 if ( ev.ResourceList != _resList )
@@ -307,7 +306,7 @@ namespace JetBrains.Omea.ResourceTools
                     // Remove eats all previous events with the same resource, up to and including the Add
 
                     //          j  i
-                    // C0 A1 A2 A3 R1  
+                    // C0 A1 A2 A3 R1
 
                     for( int j=i-1; j >= 0; j-- )
                     {
@@ -315,28 +314,28 @@ namespace JetBrains.Omea.ResourceTools
                         if ( ev2.ResourceID == ev.ResourceID )
                         {
                             //    j        i
-                            // C0 A1 A2 A3 R1  
+                            // C0 A1 A2 A3 R1
 
                             _events.RemoveAt( j );
 
                             //    j        i
-                            // C0 A2 A3 R1  
-                            
+                            // C0 A2 A3 R1
+
                             i--;
 
                             //    j     i
-                            // C0 A2 A3 R1  
-                            
+                            // C0 A2 A3 R1
+
                             if ( ev2.EventType == EventType.Add )
                             {
                                 // adjust the index of events following the removed Add
                                 discardRemove = true;
 
                                 //    jk     i
-                                // C0 A2 A3 R1  
+                                // C0 A2 A3 R1
 
                                 int maxAdjustIndex = ev2.Index;
-                                
+
                                 for( int k=j; k <= i; k++ )
                                 {
                                     ResourceListEvent ev3 = (ResourceListEvent) _events [k];
@@ -358,7 +357,7 @@ namespace JetBrains.Omea.ResourceTools
                                     }
                                 }
                                 //    j     ik
-                                // C0 A1 A2 R1  
+                                // C0 A1 A2 R1
                                 break;
                             }
                         }
@@ -370,7 +369,7 @@ namespace JetBrains.Omea.ResourceTools
                         continue;
                     }
                     //    j     ik
-                    // C0 A1 A2  
+                    // C0 A1 A2
                 }
                 else if ( ev.EventType == EventType.Change )
                 {
@@ -425,7 +424,7 @@ namespace JetBrains.Omea.ResourceTools
         {
             if ( _resList == null || e.Index < 0 )
                 return;
-            
+
             lock( _resList )
             {
                 lock( _events )

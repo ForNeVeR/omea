@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections.Generic;
@@ -199,9 +198,9 @@ namespace JetBrains.Omea.FiltersManagement
             if ( Core.ResourceStore.PropTypes.Exist( "SearchRank", "Proximity" ) )
             {
                 IDisplayColumnManager colMgr = Core.DisplayColumnManager;
-                colMgr.RegisterDisplayColumn( null, 11000, 
+                colMgr.RegisterDisplayColumn( null, 11000,
                     new ColumnDescriptor( "SearchRank", 50, ColumnDescriptorFlags.ShowIfNotEmpty ) );
-                colMgr.RegisterDisplayColumn( null, 12000, 
+                colMgr.RegisterDisplayColumn( null, 12000,
                     new ColumnDescriptor( "Proximity", 70, ColumnDescriptorFlags.ShowIfNotEmpty ) );
             }
 
@@ -370,7 +369,7 @@ namespace JetBrains.Omea.FiltersManagement
             return cond;
         }
         #endregion StandardCondition
-        
+
         #region StandardConditionAux
         public  IResource CreateStandardConditionAux( string[] types, string propName,
                                                       ConditionOp op, params string[] val )
@@ -495,7 +494,7 @@ namespace JetBrains.Omea.FiltersManagement
         }
 
         //---------------------------------------------------------------------
-        //  Standard query condition is a condition with one operand (query 
+        //  Standard query condition is a condition with one operand (query
         //  string) and the section specificator.
         //---------------------------------------------------------------------
         private void CreateQueryCondition( ResourceProxy proxy, string query, string sectionName )
@@ -531,7 +530,7 @@ namespace JetBrains.Omea.FiltersManagement
         }
 
         //---------------------------------------------------------------------
-        //  Standard range condition is a condition with three operands and 
+        //  Standard range condition is a condition with three operands and
         //  an operation InRange
         //---------------------------------------------------------------------
         private static void CreateStandardRangeCondition( ResourceProxy proxy, string propName,
@@ -709,7 +708,7 @@ namespace JetBrains.Omea.FiltersManagement
         {
             IResource group = CreateConditionGroup( groupName );
             proxy.SetProp( Core.Props.Parent, group );
-        } 
+        }
         #endregion
 
         #region ConditionTemplates
@@ -1038,7 +1037,7 @@ namespace JetBrains.Omea.FiltersManagement
             proxy.SetProp( "ForceExec", true );
             proxy.DeleteProp( Core.Props.LastError );
             proxy.DeleteLinks( _props._linkedConditionsLink ); // delete rest of links
-            proxy.DeleteLinks( _props._linkedExceptionsLink ); 
+            proxy.DeleteLinks( _props._linkedExceptionsLink );
 
             AddLinks( proxy, conditionGroups, _props._linkedConditionsLink, FilterManagerProps.ConditionResName );
             AddLinks( proxy, exceptions, _props._linkedExceptionsLink, FilterManagerProps.ConditionResName );
@@ -1303,7 +1302,7 @@ namespace JetBrains.Omea.FiltersManagement
             IResource rule = Core.ResourceStore.FindUniqueResource( FilterManagerProps.RuleResName, Core.Props.Name, name );
             if( rule != null )
                 DeleteRule( rule );
-            
+
             ResourceProxy proxy = ResourceProxy.BeginNewResource( FilterManagerProps.RuleResName );
             InitializeRule( proxy, name, eventName, types, conditions, exceptions, actions );
 
@@ -1395,7 +1394,7 @@ namespace JetBrains.Omea.FiltersManagement
             }
         }
         #endregion Rule Registration
-        
+
         #region RuleAction Registration
         public IResource RegisterRuleAction( string name, string deepName, IRuleAction executor )
         {
@@ -1516,7 +1515,7 @@ namespace JetBrains.Omea.FiltersManagement
             #region Preconditions
             if( action.Type != FilterManagerProps.RuleActionTemplateResName && action.Type != FilterManagerProps.RuleActionResName )
             {
-                throw new InvalidOperationException( "FilterRegistry -- input parameter is not of type [" + 
+                throw new InvalidOperationException( "FilterRegistry -- input parameter is not of type [" +
                                                      FilterManagerProps.RuleActionTemplateResName + "] or [" + FilterManagerProps.RuleActionResName + "]" );
             }
             #endregion Preconditions
@@ -1647,7 +1646,7 @@ namespace JetBrains.Omea.FiltersManagement
             if( rule == null )
                 throw new ArgumentNullException( "rule", "FilterRegistry -- Input rule resource is null." );
             #endregion Preconditions
-            
+
             DeactivateRule( rule );
             SetProperty( rule, Core.Props.LastError, reason );
         }
@@ -2079,7 +2078,7 @@ namespace JetBrains.Omea.FiltersManagement
                 foreach( IResource res in list )
                 {
                     if( checkType != null && res.Type != checkType )
-                        throw new InvalidOperationException( "FilterRegistry -- Illegal type of resource is given for linking: " + 
+                        throw new InvalidOperationException( "FilterRegistry -- Illegal type of resource is given for linking: " +
                                                              res.Type + " (type " + checkType + " was expected)" );
                     proxyView.AddLink( linkId, res );
                 }
@@ -2153,7 +2152,7 @@ namespace JetBrains.Omea.FiltersManagement
 
         public IResourceList GetFormattingRules( bool visible )
         {
-            IResourceList result = Core.ResourceStore.FindResourcesLive( null, "IsFormattingFilter", true ).Intersect( 
+            IResourceList result = Core.ResourceStore.FindResourcesLive( null, "IsFormattingFilter", true ).Intersect(
                                    Core.ResourceStore.FindResourcesLive( null, _props._invisibleProp, (!visible) ), true );
             return result;
         }

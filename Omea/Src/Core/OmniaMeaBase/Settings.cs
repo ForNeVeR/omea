@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -76,7 +75,7 @@ namespace JetBrains.Omea.Base
             string report = "\nSettings:\n";
             foreach ( INISetting setting in _settings )
             {
-                report += setting.Section + "." + setting.Key + " = " + 
+                report += setting.Section + "." + setting.Key + " = " +
                     setting.Value + "\n";
             }
             return report;
@@ -136,7 +135,7 @@ namespace JetBrains.Omea.Base
         {
             Core.SettingStore.WriteBool( Section, Key, (bool)value );
         }
-        public static implicit operator bool( BoolSetting setting ) 
+        public static implicit operator bool( BoolSetting setting )
         {
             return (bool)setting.Value;
         }
@@ -155,7 +154,7 @@ namespace JetBrains.Omea.Base
         {
             Core.SettingStore.WriteInt( Section, Key, (int)value );
         }
-        public static implicit operator int( IntSetting setting ) 
+        public static implicit operator int( IntSetting setting )
         {
             return (int)setting.Value;
         }
@@ -174,7 +173,7 @@ namespace JetBrains.Omea.Base
         {
             Core.SettingStore.WriteDate( Section, Key, (DateTime)value );
         }
-        public static implicit operator DateTime( DateSetting setting ) 
+        public static implicit operator DateTime( DateSetting setting )
         {
             return (DateTime)setting.Value;
         }
@@ -205,7 +204,7 @@ namespace JetBrains.Omea.Base
         {
             Core.SettingStore.WriteString( Section, Key, (string)value );
         }
-        public static implicit operator string( StringSetting setting ) 
+        public static implicit operator string( StringSetting setting )
         {
             return (string)setting.Value;
         }

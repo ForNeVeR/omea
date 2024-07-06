@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Windows.Forms;
@@ -23,7 +22,7 @@ namespace JetBrains.Omea.GUIControls
 
         private IResourceList       _resList;
 
-        /// <summary> 
+        /// <summary>
 		/// Required designer variable.
 		/// </summary>
 		private System.ComponentModel.Container components = null;
@@ -36,7 +35,7 @@ namespace JetBrains.Omea.GUIControls
 			InitializeComponent();
 		}
 
-		/// <summary> 
+		/// <summary>
 		/// Clean up any resources being used.
 		/// </summary>
 		protected override void Dispose( bool disposing )
@@ -52,8 +51,8 @@ namespace JetBrains.Omea.GUIControls
 		}
 
 		#region Component Designer generated code
-		/// <summary> 
-		/// Required method for Designer support - do not modify 
+		/// <summary>
+		/// Required method for Designer support - do not modify
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent()
@@ -64,9 +63,9 @@ namespace JetBrains.Omea.GUIControls
             this._imgResIcon = new GUIControls.ImageListPictureBox();
             this._borderPanel.SuspendLayout();
             this.SuspendLayout();
-            // 
+            //
             // _borderPanel
-            // 
+            //
             this._borderPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this._borderPanel.Controls.Add(this._btnResourceSelector);
             this._borderPanel.Controls.Add(this._resNameLabel);
@@ -77,9 +76,9 @@ namespace JetBrains.Omea.GUIControls
             this._borderPanel.Size = new System.Drawing.Size(204, 24);
             this._borderPanel.TabIndex = 0;
             this._borderPanel.DoubleClick += new System.EventHandler(this._borderPanel_DoubleClick);
-            // 
+            //
             // _btnResourceSelector
-            // 
+            //
             this._btnResourceSelector.Anchor = (AnchorStyles.Top | AnchorStyles.Bottom| AnchorStyles.Right);
             this._btnResourceSelector.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._btnResourceSelector.Location = new System.Drawing.Point(180, 0);
@@ -88,9 +87,9 @@ namespace JetBrains.Omea.GUIControls
             this._btnResourceSelector.TabIndex = 2;
             this._btnResourceSelector.Text = "...";
             this._btnResourceSelector.Click += new System.EventHandler(this.OnResourceSelectorClick);
-            // 
+            //
             // _resNameLabel
-            // 
+            //
             this._resNameLabel.Anchor = (AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right);
             this._resNameLabel.AutoSize = true;
             this._resNameLabel.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -100,18 +99,18 @@ namespace JetBrains.Omea.GUIControls
             this._resNameLabel.TabIndex = 1;
             this._resNameLabel.UseMnemonic = false;
             this._resNameLabel.DoubleClick += new System.EventHandler(this._borderPanel_DoubleClick);
-            // 
+            //
             // _imgResIcon
-            // 
+            //
             this._imgResIcon.ImageIndex = 0;
             this._imgResIcon.Location = new System.Drawing.Point(2, 2);
             this._imgResIcon.Name = "_imgResIcon";
             this._imgResIcon.Size = new System.Drawing.Size(16, 16);
             this._imgResIcon.TabIndex = 0;
             this._imgResIcon.TabStop = false;
-            // 
+            //
             // ResourceSelBox
-            // 
+            //
             this.Controls.Add(this._borderPanel);
             this.Name = "ResourceSelBox";
             this.Size = new System.Drawing.Size(204, 24);
@@ -126,11 +125,11 @@ namespace JetBrains.Omea.GUIControls
             get { return _btnResourceSelector.Visible; }
             set { _btnResourceSelector.Visible = value; }
         }
-        
+
         public IResource Resource
         {
-            get 
-            { 
+            get
+            {
                 return ( _resList != null && _resList.Count == 1 ) ? _resList [0] : null;
             }
             set
@@ -160,7 +159,7 @@ namespace JetBrains.Omea.GUIControls
         /**
          * Shows the resource icon and display name in the control.
          */
-        
+
         private void UpdateCurrentResource()
         {
             if ( _resList != null && _resList.Count == 1  )
@@ -185,7 +184,7 @@ namespace JetBrains.Omea.GUIControls
             {
                 _resNameLabel.Text = "(" + _resList.Count + " resources)";
             }
-            
+
             _btnResourceSelector.Enabled = (_resList == null || _resList.Count <= 1);
         }
 

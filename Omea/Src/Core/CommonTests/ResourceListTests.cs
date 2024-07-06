@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -105,7 +104,7 @@ namespace CommonTests
         [Test] public void FindDateResources()
         {
             DateTime dt = DateTime.Now;
-			
+
             IResource res = _storage.NewResource( "Email" );
             res.SetProp( _propReceived, dt );
 
@@ -115,7 +114,7 @@ namespace CommonTests
 
         [Test, ExpectedException( typeof(StorageException) ) ]
         public void FindBoolFalseResources()
-        {                                
+        {
             IResourceList resList = _storage.FindResources( null, _propUnread, false );
             resList = resList;
         }
@@ -191,7 +190,7 @@ namespace CommonTests
 
             IResourceList resList = _storage.FindResourcesWithPropLive( null, _propSubject );
             IResourceList resList2 = _storage.FindResourcesWithPropLive( null, _propAuthor );
-            Assert.AreEqual( 1, resList.Count );    
+            Assert.AreEqual( 1, resList.Count );
             Assert.AreEqual( 2, resList2.Count );
 
             email.Delete();
@@ -201,7 +200,7 @@ namespace CommonTests
             email2.Delete();                    // this used to trigger #1251
         }
 
-        [Test, ExpectedException(typeof(StorageException))] 
+        [Test, ExpectedException(typeof(StorageException))]
         public void FindResourcesWithLongStringProp()  // #5472
         {
             int prop = _storage.PropTypes.Register( "LongString", PropDataType.LongString );
@@ -486,7 +485,7 @@ namespace CommonTests
         [Test] public void MultiTypeResourcesLive()
         {
             IResourceList emailsAndPersons = _storage.GetAllResourcesLive( new string[] { "Email", "Person" } );
-            
+
             IResource email = _storage.NewResource( "Email" );
             IResource person = _storage.NewResource( "Person" );
 
@@ -525,7 +524,7 @@ namespace CommonTests
         {
             IResource person1 = _storage.NewResource( "Person" );
             person1.SetProp( "FirstName", "Vasya" );
-			
+
             IResource person2 = _storage.NewResource( "Person" );
             person2.SetProp( "FirstName", "Kolya" );
 
@@ -639,7 +638,7 @@ namespace CommonTests
             IResource email1 = _storage.NewResource( "Email" );
             email1.SetProp( _propSubject, "First" );
             email1.SetProp( _propSize, 100 );
-            
+
             IResource email2 = _storage.NewResource( "Email" );
             email2.SetProp( _propSubject, "Second" );
             email2.SetProp( _propSize, 50 );
@@ -790,7 +789,7 @@ namespace CommonTests
             IResourceList intList = resList1.Union( resList2, true );
             Assert.AreEqual( 16, intList.Count );
         }
-        
+
         [Test] public void Intersect()
         {
             IResource person1 = CreatePerson( "Vasya", null ); person1 = person1;
@@ -858,7 +857,7 @@ namespace CommonTests
             IResourceList intList = resList1.Intersect( resList2 );
             Assert.AreEqual( 6, intList.Count );
         }
-        
+
         [Test] public void IntersectAllowMerge()
         {
             for( int i=0; i<20; i++ )
@@ -1075,7 +1074,7 @@ namespace CommonTests
             IResource email = _storage.NewResource( "Email" );
             email.BeginUpdate();
             email.SetProp( _propSubject, "Test" );
-            email.SetProp( _propUnread, true );            
+            email.SetProp( _propUnread, true );
             email.EndUpdate();
 
             Assert.AreEqual( 1, _changedResources.Count );
@@ -1187,10 +1186,10 @@ namespace CommonTests
             IResource person = _storage.NewResource( "Person" );
             person.SetProp( _propFirstName, "Dmitry" );
             person.SetProp( _propUnread, true );
-            
+
             IResourceList resList = _storage.GetAllResourcesLive( "Person" );
             AttachHandlers( resList );
-            
+
             person.DeleteProp( _propFirstName );
             Assert.AreEqual( 1, _changedResources.Count );
             ResourcePropIndexEventArgs args = (ResourcePropIndexEventArgs) _changedResources [0];
@@ -1208,7 +1207,7 @@ namespace CommonTests
             IResource email1 = _storage.NewResource( "Email" );
             IResource person = _storage.NewResource( "Person" );
             IResource person2 = _storage.NewResource( "Person" );
-            
+
             IResourceList resList = _storage.GetAllResourcesLive( "Email" );
             AttachHandlers( resList );
 
@@ -1223,7 +1222,7 @@ namespace CommonTests
             Assert.IsTrue( args.ChangeSet.IsPropertyChanged( _propAuthor ) );
             Assert.AreEqual( LinkChangeType.Add, args.ChangeSet.GetLinkChange( _propAuthor, person.Id ) );
             Assert.AreEqual( LinkChangeType.Add, args.ChangeSet.GetLinkChange( _propReply, person2.Id ) );
-            
+
             Assert.AreEqual( LinkChangeType.None, args.ChangeSet.GetLinkChange( _propAuthor, person2.Id ) );
             Assert.IsTrue( !args.ChangeSet.IsPropertyChanged( _propSubject ) );
         }
@@ -1263,7 +1262,7 @@ namespace CommonTests
             Assert.AreEqual( 0, resList.Count );
         }
 
-        [Test, ExpectedException( typeof(ResourceDeletedException) )] 
+        [Test, ExpectedException( typeof(ResourceDeletedException) )]
         public void BeginUpdateAfterDelete()
         {
             IResource email = _storage.NewResource( "Email" );
@@ -1364,7 +1363,7 @@ namespace CommonTests
             Assert.AreEqual( 1, _changedResources.Count );
             ResourcePropIndexEventArgs args = (ResourcePropIndexEventArgs) _changedResources [0];
             Assert.IsTrue( args.ChangeSet.IsDisplayNameAffected );
-            
+
             person.SetProp( _propSize, 100 );
             Assert.AreEqual( 2, _changedResources.Count );
             args = (ResourcePropIndexEventArgs) _changedResources [1];
@@ -1576,7 +1575,7 @@ namespace CommonTests
             IResource res = _storage.NewResource( "Person" );
             IResourceList resList = _storage.GetAllResources( "Person" );
             Assert.IsTrue( resList.Count == 1 );
-            
+
             res.Delete();
             IResource res1 = resList [0];
             Assert.IsTrue( res1.IsDeleted );
@@ -1727,4 +1726,4 @@ namespace CommonTests
         }
     }
 }
-                                                 
+

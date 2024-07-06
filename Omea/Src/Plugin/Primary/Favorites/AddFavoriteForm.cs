@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Drawing;
@@ -195,9 +194,9 @@ namespace JetBrains.Omea.Favorites
 			this._selectFolderPanel.SuspendLayout();
 			this._buttonsPanel.SuspendLayout();
 			this.SuspendLayout();
-			// 
+			//
 			// _mainPanel
-			// 
+			//
 			this._mainPanel.Controls.Add(this._unitBox);
 			this._mainPanel.Controls.Add(this._fakeTextBox);
 			this._mainPanel.Controls.Add(this._URLBox);
@@ -211,9 +210,9 @@ namespace JetBrains.Omea.Favorites
 			this._mainPanel.Name = "_mainPanel";
 			this._mainPanel.Size = new System.Drawing.Size(512, 88);
 			this._mainPanel.TabIndex = 0;
-			// 
+			//
 			// _unitBox
-			// 
+			//
 			this._unitBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this._unitBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this._unitBox.Items.AddRange(new object[] {
@@ -224,9 +223,9 @@ namespace JetBrains.Omea.Favorites
 			this._unitBox.Name = "_unitBox";
 			this._unitBox.Size = new System.Drawing.Size(76, 21);
 			this._unitBox.TabIndex = 6;
-			// 
+			//
 			// _fakeTextBox
-			// 
+			//
 			this._fakeTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this._fakeTextBox.Enabled = false;
 			this._fakeTextBox.Location = new System.Drawing.Point(376, 62);
@@ -234,10 +233,10 @@ namespace JetBrains.Omea.Favorites
 			this._fakeTextBox.Size = new System.Drawing.Size(32, 21);
 			this._fakeTextBox.TabIndex = 5;
 			this._fakeTextBox.Text = "";
-			// 
+			//
 			// _URLBox
-			// 
-			this._URLBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			//
+			this._URLBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
 				| System.Windows.Forms.AnchorStyles.Right)));
 			this._URLBox.Location = new System.Drawing.Point(60, 6);
 			this._URLBox.Name = "_URLBox";
@@ -245,19 +244,19 @@ namespace JetBrains.Omea.Favorites
 			this._URLBox.TabIndex = 1;
 			this._URLBox.Text = "http://";
 			this._URLBox.TextChanged += new System.EventHandler(this._URLBox_TextChanged);
-			// 
+			//
 			// _nameBox
-			// 
-			this._nameBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			//
+			this._nameBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
 				| System.Windows.Forms.AnchorStyles.Right)));
 			this._nameBox.Location = new System.Drawing.Point(60, 34);
 			this._nameBox.Name = "_nameBox";
 			this._nameBox.Size = new System.Drawing.Size(444, 21);
 			this._nameBox.TabIndex = 3;
 			this._nameBox.Text = "";
-			// 
+			//
 			// _hoursBox
-			// 
+			//
 			this._hoursBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this._hoursBox.Enabled = false;
 			this._hoursBox.Location = new System.Drawing.Point(376, 62);
@@ -281,10 +280,10 @@ namespace JetBrains.Omea.Favorites
 																	0,
 																	0,
 																	0});
-			// 
+			//
 			// _updateCheckBox
-			// 
-			this._updateCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			//
+			this._updateCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
 				| System.Windows.Forms.AnchorStyles.Right)));
 			this._updateCheckBox.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this._updateCheckBox.Location = new System.Drawing.Point(8, 62);
@@ -293,9 +292,9 @@ namespace JetBrains.Omea.Favorites
 			this._updateCheckBox.TabIndex = 4;
 			this._updateCheckBox.Text = "&Download the page and notify me when it is updated every";
 			this._updateCheckBox.CheckedChanged += new System.EventHandler(this._updateCheckBox_CheckedChanged);
-			// 
+			//
 			// label2
-			// 
+			//
 			this.label2.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this.label2.Location = new System.Drawing.Point(8, 10);
 			this.label2.Name = "label2";
@@ -303,9 +302,9 @@ namespace JetBrains.Omea.Favorites
 			this.label2.TabIndex = 0;
 			this.label2.Text = "&URL:";
 			this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			// 
+			//
 			// label1
-			// 
+			//
 			this.label1.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this.label1.Location = new System.Drawing.Point(8, 38);
 			this.label1.Name = "label1";
@@ -313,9 +312,9 @@ namespace JetBrains.Omea.Favorites
 			this.label1.TabIndex = 2;
 			this.label1.Text = "&Name:";
 			this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			// 
+			//
 			// _selectFolderPanel
-			// 
+			//
 			this._selectFolderPanel.Controls.Add(this._createInLabel);
 			this._selectFolderPanel.Controls.Add(this._createInCombo);
 			this._selectFolderPanel.Dock = System.Windows.Forms.DockStyle.Top;
@@ -323,9 +322,9 @@ namespace JetBrains.Omea.Favorites
 			this._selectFolderPanel.Name = "_selectFolderPanel";
 			this._selectFolderPanel.Size = new System.Drawing.Size(512, 32);
 			this._selectFolderPanel.TabIndex = 1;
-			// 
+			//
 			// _createInLabel
-			// 
+			//
 			this._createInLabel.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this._createInLabel.Location = new System.Drawing.Point(8, 9);
 			this._createInLabel.Name = "_createInLabel";
@@ -333,10 +332,10 @@ namespace JetBrains.Omea.Favorites
 			this._createInLabel.TabIndex = 0;
 			this._createInLabel.Text = "Create in &folder:";
 			this._createInLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			// 
+			//
 			// _createInCombo
-			// 
-			this._createInCombo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			//
+			this._createInCombo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
 				| System.Windows.Forms.AnchorStyles.Right)));
 			this._createInCombo.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
 			this._createInCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -344,9 +343,9 @@ namespace JetBrains.Omea.Favorites
 			this._createInCombo.Name = "_createInCombo";
 			this._createInCombo.Size = new System.Drawing.Size(400, 22);
 			this._createInCombo.TabIndex = 1;
-			// 
+			//
 			// _buttonsPanel
-			// 
+			//
 			this._buttonsPanel.Controls.Add(this._okButton);
 			this._buttonsPanel.Controls.Add(this._cancelButton);
 			this._buttonsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -354,9 +353,9 @@ namespace JetBrains.Omea.Favorites
 			this._buttonsPanel.Name = "_buttonsPanel";
 			this._buttonsPanel.Size = new System.Drawing.Size(512, 34);
 			this._buttonsPanel.TabIndex = 2;
-			// 
+			//
 			// _okButton
-			// 
+			//
 			this._okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this._okButton.Enabled = false;
 			this._okButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -365,9 +364,9 @@ namespace JetBrains.Omea.Favorites
 			this._okButton.TabIndex = 0;
 			this._okButton.Text = "OK";
 			this._okButton.Click += new System.EventHandler(this.OKButton_Click);
-			// 
+			//
 			// _cancelButton
-			// 
+			//
 			this._cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this._cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
 			this._cancelButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -375,9 +374,9 @@ namespace JetBrains.Omea.Favorites
 			this._cancelButton.Name = "_cancelButton";
 			this._cancelButton.TabIndex = 1;
 			this._cancelButton.Text = "Cancel";
-			// 
+			//
 			// AddFavoriteForm
-			// 
+			//
 			this.AcceptButton = this._okButton;
 			this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
 			this.CancelButton = this._cancelButton;

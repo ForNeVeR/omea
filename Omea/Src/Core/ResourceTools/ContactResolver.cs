@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Text.RegularExpressions;
@@ -19,7 +18,7 @@ namespace JetBrains.Omea.Contacts
 
         //---------------------------------------------------------------------
         /// <summary>
-        /// Method performs a try to extract First name (FN) and Last name (LN) from 
+        /// Method performs a try to extract First name (FN) and Last name (LN) from
         /// Sender name string. The following templates are supported:
         /// "FN LN", "LN, FN", "FN LN, Jr", "FN LN, Sr", "FN X. LN", "FN.LN@...",
         /// "FN LN (string matching the email)", "FN LN (E-mail)", "FN LN (E-mail2)" etc.
@@ -36,8 +35,8 @@ namespace JetBrains.Omea.Contacts
         /// <param name="suffix">(out) Resolved Suffix (Sr, Jr, I, II, etc)</param>
         /// <param name="addSpec">(out) Resolved additional specificator (e.g. "(E-mail)")</param>
         /// <returns></returns>
-        public static bool ResolveName( string senderName, string email, 
-                                        out string title, out string firstName, 
+        public static bool ResolveName( string senderName, string email,
+                                        out string title, out string firstName,
                                         out string middleName, out string lastName,
                                         out string suffix, out string addSpec )
         {
@@ -47,7 +46,7 @@ namespace JetBrains.Omea.Contacts
             //  this case is allowed.
             if( senderName == null || senderName.Length == 0 )
                 return false;
-            
+
             string cleanedSenderName, cleanedName;
             cleanedSenderName = cleanedName = CleanSenderName( senderName );
 

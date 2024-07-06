@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Drawing;
@@ -11,7 +10,7 @@ using JetBrains.Omea.OpenAPI;
 namespace JetBrains.Omea.GUIControls
 {
 	public delegate void LoadTextDelegate( IResource res, RichTextBox richTextBox );
-    
+
     /// <summary>
     /// Implementation of IDisplayPane based on a RichTextBox.
     /// </summary>
@@ -21,11 +20,11 @@ namespace JetBrains.Omea.GUIControls
         private JetRichTextBox _richTextBox;
         private IResource _resource;
 
-        
+
         public RTFDisplayPane( LoadTextDelegate textLoader )
 		{
             _richTextLoader = textLoader;
-            
+
 		    _richTextBox = new JetRichTextBox();
 		    _richTextBox.Multiline = true;
 		    _richTextBox.ReadOnly = true;

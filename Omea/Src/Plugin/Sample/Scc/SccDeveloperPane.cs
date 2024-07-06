@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Windows.Forms;
@@ -16,12 +15,12 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
 	public class SccDeveloperPane: AbstractViewPane
 	{
         private System.Windows.Forms.ListView _lvDevelopers;
-		/// <summary> 
+		/// <summary>
 		/// Required designer variable.
 		/// </summary>
 		private System.ComponentModel.Container components = null;
         private System.Windows.Forms.ColumnHeader colName;
-        
+
         /// <summary>
         /// The list of contacts which have a Perforce user login.
         /// </summary>
@@ -36,7 +35,7 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
 
 		}
 
-		/// <summary> 
+		/// <summary>
 		/// Clean up any resources being used.
 		/// </summary>
 		protected override void Dispose( bool disposing )
@@ -52,8 +51,8 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
 		}
 
 		#region Component Designer generated code
-		/// <summary> 
-		/// Required method for Designer support - do not modify 
+		/// <summary>
+		/// Required method for Designer support - do not modify
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent()
@@ -61,9 +60,9 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
             this._lvDevelopers = new System.Windows.Forms.ListView();
             this.colName = new System.Windows.Forms.ColumnHeader();
             this.SuspendLayout();
-            // 
+            //
             // _lvDevelopers
-            // 
+            //
             this._lvDevelopers.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
                                                                                             this.colName});
             this._lvDevelopers.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -76,13 +75,13 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
             this._lvDevelopers.View = System.Windows.Forms.View.Details;
             this._lvDevelopers.Layout += new System.Windows.Forms.LayoutEventHandler(this._lvDevelopers_Layout);
             this._lvDevelopers.SelectedIndexChanged += new System.EventHandler(this._lvDevelopers_SelectedIndexChanged);
-            // 
+            //
             // colName
-            // 
+            //
             this.colName.Width = 120;
-            // 
+            //
             // P4DeveloperPane
-            // 
+            //
             this.Controls.Add(this._lvDevelopers);
             this.Name = "P4DeveloperPane";
             this.ResumeLayout(false);
@@ -158,7 +157,7 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
             else
             {
                 IResource developer = (IResource) _lvDevelopers.SelectedItems [0].Tag;
-                Core.ResourceBrowser.DisplayResourceList( developer, 
+                Core.ResourceBrowser.DisplayResourceList( developer,
                     developer.GetLinksOfTypeLive( Props.ChangeSetResource, Core.ContactManager.Props.LinkFrom ),
                     "Changesets by " + developer.DisplayName, null );
             }

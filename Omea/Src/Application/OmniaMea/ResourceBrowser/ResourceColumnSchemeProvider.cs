@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -23,7 +22,7 @@ namespace JetBrains.Omea
 	    private Hashtable _multiLineColumnSchemes = new Hashtable();
         private ColumnSchemeKey _key = new ColumnSchemeKey();
 
-	    public ResourceColumnSchemeProvider( DisplayColumnManager displayColumnManager, 
+	    public ResourceColumnSchemeProvider( DisplayColumnManager displayColumnManager,
             ResourceListView2 resourceListView )
 	    {
 	        _displayColumnManager = displayColumnManager;
@@ -48,15 +47,15 @@ namespace JetBrains.Omea
 	    {
 	        MultiLineColumnScheme scheme = new MultiLineColumnScheme();
             scheme.AlignTopLevelItems = _displayColumnManager.GetAlignTopLevelItems( res.Type );
-            
+
             ArrayList allTypesColumnSchemes = _displayColumnManager.GetResourceColumnSchemes( "?" );
             ArrayList resourceColumnSchemes = _displayColumnManager.GetResourceColumnSchemes( res.Type );
-            
+
             ConversationStructureColumn structureColumn = FindConversationColumn();
             if ( structureColumn != null )
             {
                 structureColumn.Indent = 8;
-                scheme.AddColumn( structureColumn, 0, 0, 0, 0, ColumnAnchor.Left, SystemColors.ControlText, 
+                scheme.AddColumn( structureColumn, 0, 0, 0, 0, ColumnAnchor.Left, SystemColors.ControlText,
                                   HorizontalAlignment.Left );
             }
 
@@ -204,7 +203,7 @@ namespace JetBrains.Omea
             return false;
 	    }
 
-	    private void StretchColumnsToHidden( MultiLineColumnScheme scheme, 
+	    private void StretchColumnsToHidden( MultiLineColumnScheme scheme,
 	                                         DisplayColumnManager.ResourceColumnScheme resScheme, int indent )
 	    {
             foreach( MultiLineColumnSetting setting in scheme.ColumnSettings )
@@ -218,7 +217,7 @@ namespace JetBrains.Omea
                     }
                     else if ( ( setting.Anchor & ColumnAnchor.Right ) != 0 )
                     {
-                        setting.StartX += resScheme.Width;                        
+                        setting.StartX += resScheme.Width;
                     }
                 }
             }

@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Diagnostics;
@@ -16,7 +15,7 @@ namespace JetBrains.Omea.OpenAPI
     public enum  EntryProximity { Phrase = 1, Sentence = 2, Document = 3  }
 
     /// <summary>
-    /// DocumentSectionResource describes names of resource types and properties, 
+    /// DocumentSectionResource describes names of resource types and properties,
     /// necessary for referencing of their resources in other components (like
     /// AdvancedSearchForm).
     /// </summary>
@@ -115,8 +114,8 @@ namespace JetBrains.Omea.OpenAPI
         /// <summary>
         /// The text is requested for indexing. The complete text of the document should be returned.
         /// </summary>
-        Indexing, 
-        
+        Indexing,
+
         /// <summary>
         /// The text is requested for showing the context of a search result. If extracting the text
         /// takes a long time, the extraction should not be performed, and
@@ -297,10 +296,10 @@ namespace JetBrains.Omea.OpenAPI
         /// <param name="len">The length of a highlighted section.</param>
         public OffsetData( int start, int len )
         {
-            Start = start; 
+            Start = start;
             Length = len;
         }
-        
+
         /// <summary>
         /// The start of a highlighted section.
         /// </summary>
@@ -326,7 +325,7 @@ namespace JetBrains.Omea.OpenAPI
         /// <remarks>An implementation of this interface for a specific search is returned
         /// by <see cref="ITextIndexManager.ProcessQuery(string, int[], out IHighlightDataProvider, out string[], out string)"/>.</remarks>
         bool GetHighlightData( IResource res, out WordPtr[] words );
-        
+
         /// <summary>
         /// Requests asynchronous context retrieval for the specified list of resource IDs.
         /// </summary>
@@ -365,7 +364,7 @@ namespace JetBrains.Omea.OpenAPI
             if( docs != null )
                 Array.Copy( docs, DocsArray, docs.Length );
         }
-        
+
         /// <summary>
         /// Returns the array of IDs of resources which are available for searching.
         /// </summary>
@@ -374,7 +373,7 @@ namespace JetBrains.Omea.OpenAPI
         {
             return DocsArray;
         }
-        
+
         private  int[]  DocsArray;
     }
 
@@ -512,9 +511,9 @@ namespace JetBrains.Omea.OpenAPI
         ///          not read yet.
         /// </summary>
         void  RegisterSingleTokenRestriction ( string anchor, string token, IResource stdCondition );
-        
+
         /// <summary>
-        /// Register phrase "anchor text" which gives this text for parsing to the 
+        /// Register phrase "anchor text" which gives this text for parsing to the
         /// IQueryTokenMatcher object. If IQueryTokenMatcher manages to parse the
         /// "text" (that is to extract proper parameters to some ConditionTemplate)
         /// then it produces an instance of that ConditionTemplate as the
@@ -524,7 +523,7 @@ namespace JetBrains.Omea.OpenAPI
         ///          from a person with "Greg" as a first or last name.
         /// </summary>
         void  RegisterFreestyleRestriction ( string anchor, IQueryTokenMatcher matcher );
-        
+
         /// <summary>
         /// Get a resource type name registered for given anchor and a token
         /// from the query.
@@ -532,7 +531,7 @@ namespace JetBrains.Omea.OpenAPI
         /// <returns>Resource type name if such is registered for given anchor and token,
         /// NULL if no such combination is registered</returns>
         string  GetResourceTypeRestriction( string anchor, string token );
-        
+
         /// <summary>
         /// Get a condition resource registered for given anchor and a token
         /// from the query.
@@ -540,7 +539,7 @@ namespace JetBrains.Omea.OpenAPI
         /// <returns>A condition if such is registered for given anchor and token,
         /// NULL if no such combination is registered.</returns>
         IResource  GetSingleTokenRestriction( string anchor, string token );
-        
+
         /// <summary>
         /// Get a generated condition resource (proxy condition as a result of
         /// condition template instantiation) registered for given anchor and

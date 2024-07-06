@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -14,14 +13,14 @@ namespace JetBrains.Omea.ResourceStore
 	/**
      * The union of multiple predicates.
      */
-    
+
     internal class UnionPredicate: ResourceListDerivedPredicate
     {
         internal UnionPredicate( params ResourceListPredicate[] predicates )
             : base( predicates )
         {
         }
-        
+
         protected override string GetDerivationName()
         {
             return "Union";
@@ -56,7 +55,7 @@ namespace JetBrains.Omea.ResourceStore
             {
                 result.Sort();
             }
-            
+
             for( int i=1; i<_sourcePredicates.Length; i++ )
             {
                 IntArrayList list2 = _sourcePredicates [i].GetMatchingResources( out srcSortedById );
@@ -67,7 +66,7 @@ namespace JetBrains.Omea.ResourceStore
                 result = IntArrayList.MergeSorted( result, list2 );
             }
 
-            return result;            
+            return result;
         }
 
         internal override PredicateMatch MatchResource( IResource res, IPropertyChangeSet cs )
@@ -118,7 +117,7 @@ namespace JetBrains.Omea.ResourceStore
                 {
                     PlainListPredicate plainList = _sourcePredicates [i] as PlainListPredicate;
                     if ( plainList != null )
-                    {       
+                    {
                         plainListCount++;
                         if ( plainListCount > 1 || plainList.Count == 0 )
                         {
@@ -134,7 +133,7 @@ namespace JetBrains.Omea.ResourceStore
         private ResourceListPredicate OptimizePlainLists()
         {
             ArrayList predicates = ArrayListPool.Alloc();
-            try 
+            try
             {
                 PlainListPredicate plainList = new PlainListPredicate( new IntArrayList() );
                 for( int i=0; i<_sourcePredicates.Length; i++ )

@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 // Generates a series of the CMAH html files. A design-time tool, should not be included into compilation
 // The CMAH files enable for handling the Internet Explorer context menu commands dynamically and are included into the DLL resources.
@@ -29,7 +28,7 @@ function CreateCmah(sObjectName, sPath)
 	{
 		var	sw = new StreamWriter(sPath + "/IDR_CMAH_" + (a + 1000) + ".html");
 		sw.WriteLine("<script language=\"jscript\">");
-		
+
 		sw.WriteLine("try { new ActiveXObject(\"" + sObjectName + ".ActionManager\").ExecuteContextMenuAction(" + (a + 1000) + ", external.menuArguments.document); }");
 		sw.WriteLine("catch(e)");
 		sw.WriteLine("{ try { new ActiveXObject(\"" + sObjectName + ".PopupNotification\").Show(\"The operation could not be completed.\\n\" + e.message, \"\", \"Stop\"); } catch(e){} }");

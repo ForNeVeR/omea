@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -25,7 +24,7 @@ namespace JetBrains.Omea.FiltersManagement
 
         internal static IHighlightDataProvider Highlighter;
         private readonly Hashtable   RegisteredEvents = new Hashtable();
-        
+
         private static string[] _lastStopList;
         internal static string  _lastQueryError;
         private bool            _isVerbose;
@@ -153,14 +152,14 @@ namespace JetBrains.Omea.FiltersManagement
 	        if( view.Type != FilterManagerProps.ViewResName && view.Type != FilterManagerProps.RuleResName && view.Type != FilterManagerProps.ViewCompositeResName )
 	            throw new InvalidOperationException( "FilterRegistry -- Can not apply [ExecView] to inappropriate resource (of type" + view.Type + ")" );
             #endregion Preconditions
-    
+
             //  Process special case when the initial set is empty, it is
             //  unambiguously matches the result.
             if( initialSet != null && initialSet.Count == 0 )
                 return _store.EmptyResourceList;
 
 	        IResourceList result = _store.EmptyResourceList;
-    
+
 	        //-----------------------------------------------------------------
 	        //  If an error occured while executing a view/rule, we reflect that
 	        //  fact with setting the Error Message text into the "LastError" prop.
@@ -202,7 +201,7 @@ namespace JetBrains.Omea.FiltersManagement
 	            for( int i = 0; i < exceptions.Count; i++ )
 	                result = result.Minus( ExecCondition( exceptions[ i ], mode, resTypes, resLinks ) );
 	        }
-    
+
             if( initialSet != null )
                 result = result.Intersect( initialSet );
 
@@ -221,7 +220,7 @@ namespace JetBrains.Omea.FiltersManagement
             {
                 string resTypes = view.GetStringProp( Core.Props.ContentType );
                 string resLinks = view.GetStringProp( "ContentLinks" );
-                isMatched = ( resTypes == null && resLinks == null ) || 
+                isMatched = ( resTypes == null && resLinks == null ) ||
                             ( resTypes != null && resTypes.IndexOf( res.Type ) != -1 ) ||
                             ( resLinks != null && isLinkPresent( resLinks, res ) );
 
@@ -282,7 +281,7 @@ namespace JetBrains.Omea.FiltersManagement
             {
                 string  resTypes = view.GetStringProp( Core.Props.ContentType );
                 string  resLinks = view.GetStringProp( "ContentLinks" );
-                isMatched = ( resTypes == null && resLinks == null ) || 
+                isMatched = ( resTypes == null && resLinks == null ) ||
                             ( resTypes != null && resTypes.IndexOf( res.Type ) != -1 );
 
                 if ( isMatched )
@@ -412,11 +411,11 @@ namespace JetBrains.Omea.FiltersManagement
         ///  Apply a rule to a list of resources. First, select resources which match the rule,
         ///  then apply rule actions to them.
         ///  Used in "Apply Rules..." dialog and via ExpirationRulesManager
-        /// 
+        ///
         /// TODO: Since this call is performed by the user-call (and not by an Omea
         /// subsystem during the normal resource lifecycle), we can not rely on the
         /// "hot" resource information like the text conditions which were passed successfully
-        /// during the last text index analysis. Since that method uses a batch "ExecView" 
+        /// during the last text index analysis. Since that method uses a batch "ExecView"
         /// on the conditional part of the rule instead of MatchView (per resource), some
         /// rules will not match completely due to the restricted nature of some conditions
         /// (several of them are suited ONLY for matching via MatchView).
@@ -466,7 +465,7 @@ namespace JetBrains.Omea.FiltersManagement
         }
 
         /// <summary>
-        /// Active rule: is not turned off, sorted by the order and either contains 
+        /// Active rule: is not turned off, sorted by the order and either contains
         /// query conditions or not depending on the given parameter.
         /// </summary>
         private static IResourceList GetActiveRules( bool isQueryRule )
@@ -539,7 +538,7 @@ namespace JetBrains.Omea.FiltersManagement
         }
         #endregion Actions Enumeration
         #endregion ExecRules/Actions
-        
+
         #region ExecCondition: ListContext
         private IResourceList   ExecCondition( IResource condition, SelectionType mode,
                                                string resTypes, string resLinks )
@@ -563,10 +562,10 @@ namespace JetBrains.Omea.FiltersManagement
                                             condition.GetLinksOfType( null, _props._linkedExceptionsLink ));
                 if( parentViews.Count == 1 )
                 {
-                    new ResourceProxy( parentViews[ 0 ] ).SetProp( 
+                    new ResourceProxy( parentViews[ 0 ] ).SetProp(
                             Core.Props.LastError, "Internal error has occured while executing view \"" +
                             parentViews[ 0 ].DisplayName + "\". " );
-                    Trace.WriteLine( "FilterRegistry -- exception caught while executing view [" + 
+                    Trace.WriteLine( "FilterRegistry -- exception caught while executing view [" +
                                      parentViews[ 0 ].DisplayName + "] with reason [" + e.Message + "]." );
                 }
             }
@@ -669,7 +668,7 @@ namespace JetBrains.Omea.FiltersManagement
                     result = ExecDirectSetOnCyclicProperty( condition, propName );
                 }
                 else
-                if(( propName.IndexOf( cPropertyPathDelimiter ) != -1 ) && 
+                if(( propName.IndexOf( cPropertyPathDelimiter ) != -1 ) &&
                    ( op != ConditionOp.QueryMatch ))
                 {
                     string[]    propPath = propName.Split( cPropertyPathDelimiter );
@@ -773,7 +772,7 @@ namespace JetBrains.Omea.FiltersManagement
         {
             ConditionOp  op = (ConditionOp)condition.GetIntProp( _props._opProp );
             #region Preconditions
-            if( op != ConditionOp.QueryMatch && op != ConditionOp.HasLink && 
+            if( op != ConditionOp.QueryMatch && op != ConditionOp.HasLink &&
                 op != ConditionOp.HasProp && op != ConditionOp.HasNoProp )
                 throw new InvalidOperationException( "Unknown type of predicate condition" );
             if( op == ConditionOp.HasNoProp && resType == null )
@@ -811,7 +810,7 @@ namespace JetBrains.Omea.FiltersManagement
             {
                 string query = FilterRegistry.ConstructQuery( condition );
                 _lastQueryError = null;
- 
+
                 result = Core.TextIndexManager.ProcessQuery( query, null, out Highlighter, out _lastStopList, out _lastQueryError );
                 if( resType != null )
                     result = result.Intersect( _store.GetAllResourcesLive( resType ), true);
@@ -901,7 +900,7 @@ namespace JetBrains.Omea.FiltersManagement
         private IResourceList ExecSetCondition( IResource condition, SelectionType mode, string resType, string propName )
         {
             ConditionOp op = (ConditionOp)condition.GetIntProp( _props._opProp );
-            Debug.Assert( op == ConditionOp.In || op == ConditionOp.Eq || op == ConditionOp.Has, 
+            Debug.Assert( op == ConditionOp.In || op == ConditionOp.Eq || op == ConditionOp.Has,
                           "Mismatch between operation type and condition type" );
 
             string[]        valuesSet = CollectSetValuesFromCondition( condition );
@@ -922,11 +921,11 @@ namespace JetBrains.Omea.FiltersManagement
 
             return( result );
         }
-        
+
         private IResourceList  ExecDirectSetCondition( IResource condition, string resType, string propName )
         {
             ConditionOp op = (ConditionOp)condition.GetIntProp( _props._opProp );
-            Debug.Assert( op == ConditionOp.In || op == ConditionOp.Eq || op == ConditionOp.Has, 
+            Debug.Assert( op == ConditionOp.In || op == ConditionOp.Eq || op == ConditionOp.Has,
                           "Mismatch between operation type and condition type" );
 
             IResourceList   result = _store.EmptyResourceList;
@@ -1002,7 +1001,7 @@ namespace JetBrains.Omea.FiltersManagement
 
             return( result );
         }
-        
+
         private bool  MatchConditionOnResource( IResource condition, IResource res )
         {
             bool    result = false;
@@ -1016,7 +1015,7 @@ namespace JetBrains.Omea.FiltersManagement
                 string      propName = condition.GetStringProp( _props._appliedToNameProp );
                 ConditionOp op = (ConditionOp)condition.GetIntProp( _props._opProp );
 
-                if(( propName.IndexOf( '*' ) == propName.Length - 1 ) && 
+                if(( propName.IndexOf( '*' ) == propName.Length - 1 ) &&
                    ( op != ConditionOp.QueryMatch ))
                 {
                     Debug.Assert( op == ConditionOp.In );
@@ -1024,7 +1023,7 @@ namespace JetBrains.Omea.FiltersManagement
                     result = MatchDirectSetOnCyclicProperty( condition, propName, res );
                 }
                 else
-                if(( propName.IndexOf( cPropertyPathDelimiter ) != -1 ) && 
+                if(( propName.IndexOf( cPropertyPathDelimiter ) != -1 ) &&
                    ( op != ConditionOp.QueryMatch ))
                 {
                     string[]    propPath = propName.Split( cPropertyPathDelimiter );
@@ -1232,11 +1231,11 @@ namespace JetBrains.Omea.FiltersManagement
                 }
                 else
                 if( actualValue is int )
-                    result = ((int)actualValue >= (int)propLowerCasted ) && 
+                    result = ((int)actualValue >= (int)propLowerCasted ) &&
                              ((int)actualValue <= (int)propUpperCasted );
                 else
                 if( actualValue is float )
-                    result = ((float)actualValue > (float)propLowerCasted ) && 
+                    result = ((float)actualValue > (float)propLowerCasted ) &&
                              ((float)actualValue < (float)propUpperCasted );
             }
 
@@ -1246,7 +1245,7 @@ namespace JetBrains.Omea.FiltersManagement
         private bool MatchSetCondition( IResource condition, string propName, IResource res )
         {
             ConditionOp  op = (ConditionOp)condition.GetIntProp( _props._opProp );
-            Debug.Assert( op == ConditionOp.In || op == ConditionOp.Eq || op == ConditionOp.Has, 
+            Debug.Assert( op == ConditionOp.In || op == ConditionOp.Eq || op == ConditionOp.Has,
                           "Mismatch between operation type and condition type" );
 
             string[]    valuesSet = CollectSetValuesFromCondition( condition );
@@ -1291,7 +1290,7 @@ namespace JetBrains.Omea.FiltersManagement
         private bool  MatchDirectSetConditionDirected( IResource condition, string propName, IResource res )
         {
             ConditionOp  op = (ConditionOp)condition.GetIntProp( _props._opProp );
-            Debug.Assert( op == ConditionOp.In || op == ConditionOp.Eq || op == ConditionOp.Has, 
+            Debug.Assert( op == ConditionOp.In || op == ConditionOp.Eq || op == ConditionOp.Has,
                           "Mismatch between operation type and condition type" );
 
             IResourceList   possible = condition.GetLinksOfType( null, _props._setValueLinkProp );
@@ -1338,7 +1337,7 @@ namespace JetBrains.Omea.FiltersManagement
                 IResource res = Core.ResourceStore.BeginNewResource( FilterRegistry.RuleApplicableResourceTypeResName );
                 res.SetProp( Core.Props.Name, type );
                 res.EndUpdate();
-            }                                                                                                    
+            }
         }
         #endregion Rule Events Registration
 
@@ -1356,7 +1355,7 @@ namespace JetBrains.Omea.FiltersManagement
         }
 
         private object  CastValueToPropertyType( string propName, string propValue,
-                                                 out object propValueCasted, 
+                                                 out object propValueCasted,
                                                  out object propMaxValueCasted,
                                                  out object propMinValueCasted )
         {
@@ -1364,7 +1363,7 @@ namespace JetBrains.Omea.FiltersManagement
             propValueCasted = propMaxValueCasted = propMinValueCasted = "";
             PropDataType  type = _store.PropTypes [propName].DataType;
             RenewFixedDateAnchors();
-            
+
             try
             {
                 //  for link - comparison with DisplayName => string type
@@ -1439,7 +1438,7 @@ namespace JetBrains.Omea.FiltersManagement
             propUpper = propUpper.TrimStart();
 
             //-----------------------------------------------------------------
-            //  Currently for date doman we support units of measurements - 
+            //  Currently for date doman we support units of measurements -
             //  hours, days, weeks and months (all have standard size, but months vary)
             //-----------------------------------------------------------------
 
@@ -1502,7 +1501,7 @@ namespace JetBrains.Omea.FiltersManagement
                 }
                 catch( Exception )
                 {
-                    Trace.WriteLine( "FilterRegistry -- error in conversion of upper range value with lower=" + 
+                    Trace.WriteLine( "FilterRegistry -- error in conversion of upper range value with lower=" +
                                      propLowerCasted + " and CastedInt=" + propUpper );
                 }
             }
@@ -1519,10 +1518,10 @@ namespace JetBrains.Omea.FiltersManagement
             if( resTypeCompound != null || resLinks != null )
             {
                 string[]  formats, resTypes;
-                string[]  linkTypes = null; 
+                string[]  linkTypes = null;
                 if ( resLinks != null )
                 {
-                    linkTypes = resLinks.Split( '|' );   
+                    linkTypes = resLinks.Split( '|' );
                 }
                 ResourceTypeHelper.ExtractFormatFields( resTypeCompound, out resTypes, out formats );
 

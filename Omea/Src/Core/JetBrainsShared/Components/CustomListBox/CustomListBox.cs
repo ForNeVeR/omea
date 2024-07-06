@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Drawing;
@@ -41,7 +40,7 @@ namespace JetBrains.UI.Components.CustomListBox
 
     public IItemPainter ItemPainter
     {
-      get { return myItemPainter; }      
+      get { return myItemPainter; }
       set { myItemPainter = value; }
     }
 
@@ -68,14 +67,14 @@ namespace JetBrains.UI.Components.CustomListBox
 
     #region Component Designer generated code
     /// <summary>
-    /// Required method for Designer support - do not modify 
+    /// Required method for Designer support - do not modify
     /// the contents of this method with the code editor.
     /// </summary>
     private void InitializeComponent()
     {
-      // 
+      //
       // CustomListBox
-      // 
+      //
       this.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
     }
     #endregion
@@ -167,9 +166,9 @@ namespace JetBrains.UI.Components.CustomListBox
 
     public override int SelectedIndex
     {
-      get 
-      { 
-        return base.SelectedIndex; 
+      get
+      {
+        return base.SelectedIndex;
       }
       set
       {
@@ -200,7 +199,7 @@ namespace JetBrains.UI.Components.CustomListBox
 
     protected override void WndProc(ref Message m)
     {
-      if ((m.Msg >= Win32Declarations.WM_MOUSEFIRST && m.Msg <= Win32Declarations.WM_MOUSELAST) || 
+      if ((m.Msg >= Win32Declarations.WM_MOUSEFIRST && m.Msg <= Win32Declarations.WM_MOUSELAST) ||
         (m.Msg >= Win32Declarations.WM_NCMOUSEFIRST && m.Msg <= Win32Declarations.WM_NCMOUSELAST))
         if (MouseEvent != null)
           MouseEvent(this, ref m);

@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Diagnostics;
@@ -12,7 +11,7 @@ namespace JetBrains.Omea.Favorites
 {
     internal class FavoritesTools
     {
-        /** 
+        /**
          * returns action flags for group of favorites (IAction.Update methods)
          */
         public static void IActionUpdateWeblinks( IActionContext context, ref ActionPresentation presentation )
@@ -44,7 +43,7 @@ namespace JetBrains.Omea.Favorites
             Create, Delete, Update, Edit
         }
 
-        /** 
+        /**
          * returns action flags for group of weblinks or folders (IAction.Update methods)
          */
         public static void IActionUpdateWeblinksOrFolders(
@@ -84,7 +83,7 @@ namespace JetBrains.Omea.Favorites
                                 }
                                 break;
                             }
-                            
+
                             case ActionType.Update:
                             {
                                 if( !profile.CanRename( res, out error ) )

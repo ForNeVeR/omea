@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Drawing;
@@ -57,7 +56,7 @@ namespace JetBrains.Omea.GUIControls
                         exclusiveType = type;
                 }
             }
-            
+
             //-----------------------------------------------------------------
             EditViewForm  form = new EditViewForm( exclusiveType );
             if( form.ShowDialog( Core.MainWindow ) == DialogResult.OK )
@@ -82,10 +81,10 @@ namespace JetBrains.Omea.GUIControls
         {
             if( context.Kind == ActionContextKind.ContextMenu )
             {
-                presentation.Visible = (context.Instance == Core.LeftSidebar.DefaultViewPane) && 
+                presentation.Visible = (context.Instance == Core.LeftSidebar.DefaultViewPane) &&
                                        ((context.SelectedResources.Count == 0) ||
-                                        ((context.SelectedResources.Count == 1) && 
-                                         (context.SelectedResources[ 0 ].Type == FilterManagerProps.ViewResName || 
+                                        ((context.SelectedResources.Count == 1) &&
+                                         (context.SelectedResources[ 0 ].Type == FilterManagerProps.ViewResName ||
                                           context.SelectedResources[ 0 ].Type == FilterManagerProps.ViewFolderResName)));
             }
         }
@@ -199,7 +198,7 @@ namespace JetBrains.Omea.GUIControls
         {
             if( context.SelectedResources.Count > 1 )
             {
-                if( MessageBox.Show( "Delete all selected views?", "Delete Views", 
+                if( MessageBox.Show( "Delete all selected views?", "Delete Views",
                                      MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation ) == DialogResult.Yes )
                 {
                     for( int i = 0; i < context.SelectedResources.Count; i++ )
@@ -209,7 +208,7 @@ namespace JetBrains.Omea.GUIControls
             else
             {
                 string name = context.SelectedResources[ 0 ].GetPropText( Core.Props.Name );
-                if( MessageBox.Show( "Delete view \"" + name + "\"?", "Delete View", 
+                if( MessageBox.Show( "Delete view \"" + name + "\"?", "Delete View",
                                      MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation ) == DialogResult.Yes )
                     Core.FilterRegistry.DeleteView( context.SelectedResources[ 0 ] );
             }
@@ -259,7 +258,7 @@ namespace JetBrains.Omea.GUIControls
                     isViewExclusive = isViewExclusive || Core.ResourceTreeManager.AreViewsExclusive( resType );
                 if( isViewExclusive )
                     proxy.SetProp( Core.Props.ContentType, currTabResTypes[ 0 ] );
-            }            
+            }
             proxy.EndUpdate();
 
             //-----------------------------------------------------------------
@@ -273,15 +272,15 @@ namespace JetBrains.Omea.GUIControls
         {
             if( context.Kind == ActionContextKind.ContextMenu )
             {
-                presentation.Visible = (context.Instance == Core.LeftSidebar.DefaultViewPane) && 
+                presentation.Visible = (context.Instance == Core.LeftSidebar.DefaultViewPane) &&
                                        ((context.SelectedResources.Count == 0) ||
-                                        ((context.SelectedResources.Count == 1) && 
+                                        ((context.SelectedResources.Count == 1) &&
                                          (context.SelectedResources[ 0 ].Type == FilterManagerProps.ViewFolderResName)));
             }
         }
         private static bool IsSingleViewFolder( IActionContext context )
         {
-            return context.SelectedResources.Count == 1 && 
+            return context.SelectedResources.Count == 1 &&
                    context.SelectedResources[ 0 ].Type == FilterManagerProps.ViewFolderResName;
         }
 
@@ -312,13 +311,13 @@ namespace JetBrains.Omea.GUIControls
             {
                 IResource folder = context.SelectedResources[ 0 ];
                 string name = folder.GetStringProp( Core.Props.Name );
-                if( MessageBox.Show( "Delete View Folder \"" + name + "\" and all Views it contains?", "Views Manager", 
+                if( MessageBox.Show( "Delete View Folder \"" + name + "\" and all Views it contains?", "Views Manager",
                                     MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation ) == DialogResult.Yes )
                     DeleteFolder( folder );
             }
             else
             {
-                if( MessageBox.Show( "Delete " + count + " View Folders and all Views they contain?", "Views Manager", 
+                if( MessageBox.Show( "Delete " + count + " View Folders and all Views they contain?", "Views Manager",
                                     MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation ) == DialogResult.Yes )
                 {
                     lock( context.SelectedResources )
@@ -435,7 +434,7 @@ namespace JetBrains.Omea.GUIControls
                     case 2: resList = Core.TabManager.CurrentTab.GetFilterList( false ); break;
                     case 3: resList = CollectResources(); break;
                 }
-                Core.ResourceAP.QueueJob( JobPriority.AboveNormal, "Manually apply rules", 
+                Core.ResourceAP.QueueJob( JobPriority.AboveNormal, "Manually apply rules",
                                           new ApplyRulesDelegate( ApplyRules ), resList, form.SelectedRules );
             }
         }
@@ -529,7 +528,7 @@ namespace JetBrains.Omea.GUIControls
             IResource linkedExpRule = context.SelectedResources[ 0 ].GetLinkProp( "ExpirationRuleLink" );
             for( int i = 1; i < context.SelectedResources.Count; i++ )
             {
-                linkedExpRule = (linkedExpRule == null) ? 
+                linkedExpRule = (linkedExpRule == null) ?
                                 null : context.SelectedResources[ i ].GetLinkProp( "ExpirationRuleLink" );
             }
 
@@ -558,7 +557,7 @@ namespace JetBrains.Omea.GUIControls
 
         public void Update( IActionContext context, ref ActionPresentation presentation )
         {
-            presentation.Visible = (context.Kind == ActionContextKind.ContextMenu) && 
+            presentation.Visible = (context.Kind == ActionContextKind.ContextMenu) &&
                                    (context.SelectedResources.Count > 0);
             presentation.Enabled = false;
             foreach( IResource res in context.SelectedResources )
@@ -684,7 +683,7 @@ namespace JetBrains.Omea.GUIControls
             foreach( IResource view in _views )
             {
                 IResourceList  inView = Core.FilterEngine.ExecView( view );
-                
+
                 IResource ws = Core.WorkspaceManager.ActiveWorkspace;
                 if ( ws != null )
                 {
@@ -698,7 +697,7 @@ namespace JetBrains.Omea.GUIControls
                     {
                         res.DeleteProp( "IsUnread" );
                     }
-                }            
+                }
             }
         }
     }
@@ -714,9 +713,9 @@ namespace JetBrains.Omea.GUIControls
 
         public void Update( IActionContext context, ref ActionPresentation presentation )
         {
-            presentation.Visible = presentation.Enabled = 
+            presentation.Visible = presentation.Enabled =
                 (context.Instance == Core.LeftSidebar.DefaultViewPane) &&
-                (context.SelectedResources.Count == 1 ) && 
+                (context.SelectedResources.Count == 1 ) &&
                 (context.SelectedResources[ 0 ].Type == FilterManagerProps.ViewResName) &&
                 (context.SelectedResources[ 0 ].GetStringProp( "DeepName" ) == FilterManagerProps.ViewDeletedItemsDeepName);
 
@@ -824,7 +823,7 @@ namespace JetBrains.Omea.GUIControls
             }
         }
     }
-    
+
     public class WatchThreadAction: ActionOnSingleResource
     {
         public override void Execute( IActionContext context )
@@ -918,7 +917,7 @@ namespace JetBrains.Omea.GUIControls
             {
                 IResource wsp = Core.WorkspaceManager.ActiveWorkspace;
                 IResourceList total = GetNodeResourceList( res );
-                if( wsp != null ) 
+                if( wsp != null )
                 {
                     total = total.Intersect( wsp.GetLinksOfType( null, "WorkspaceVisible" ), true );
                 }
@@ -946,7 +945,7 @@ namespace JetBrains.Omea.GUIControls
                     result = result.Union( GetNodeResourceList( child ) );
                 }
             }
-            if( !res.HasProp( "ShowDeletedItems" )) 
+            if( !res.HasProp( "ShowDeletedItems" ))
             {
                 result = result.Minus( _allDel );
             }
@@ -956,7 +955,7 @@ namespace JetBrains.Omea.GUIControls
         private void OnContainerChanged( object sender, ResourcePropIndexEventArgs args )
         {
             IPropertyChangeSet set = args.ChangeSet;
-            if( set.IsPropertyChanged( _itemLink ) || ( _folderLink >= 0 && set.IsPropertyChanged( _folderLink ) ) ) 
+            if( set.IsPropertyChanged( _itemLink ) || ( _folderLink >= 0 && set.IsPropertyChanged( _folderLink ) ) )
             {
                 if( DecorationChanged != null )
                 {

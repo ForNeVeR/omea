@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -21,7 +20,7 @@ namespace JetBrains.Omea.GUIControls
 	/// </summary>
 	public class TabBar: Control, ICommandBar
 	{
-		/// <summary> 
+		/// <summary>
 		/// Required designer variable.
 		/// </summary>
 		private System.ComponentModel.Container components = null;
@@ -80,7 +79,7 @@ namespace JetBrains.Omea.GUIControls
 				| ControlStyles.UserPaint
 				| ControlStyles.Opaque
 				| ControlStyles.DoubleBuffer
-                
+
 			          , true );
 			SetStyle( ControlStyles.Selectable
 				| ControlStyles.ContainerControl
@@ -88,7 +87,7 @@ namespace JetBrains.Omea.GUIControls
 			          , false );
 		}
 
-		/// <summary> 
+		/// <summary>
 		/// Clean up any resources being used.
 		/// </summary>
 		protected override void Dispose( bool disposing )
@@ -105,8 +104,8 @@ namespace JetBrains.Omea.GUIControls
 		}
 
 		#region Component Designer generated code
-		/// <summary> 
-		/// Required method for Designer support - do not modify 
+		/// <summary>
+		/// Required method for Designer support - do not modify
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent()
@@ -119,8 +118,8 @@ namespace JetBrains.Omea.GUIControls
         public ColorScheme ColorScheme
 	    {
 	        get { return _colorScheme; }
-	        set 
-            { 
+	        set
+            {
                 if ( _colorScheme != value )
                 {
                     _colorScheme = value;
@@ -144,7 +143,7 @@ namespace JetBrains.Omea.GUIControls
                 logPixY = Win32Declarations.GetDeviceCaps( hdc, Win32Declarations.LOGPIXELSY );
                 g.ReleaseHdc( hdc );
             }
-        
+
             _fontHandle = Win32Declarations.CreateFont( (int) (-Font.SizeInPoints * logPixY / 72),
                 0, 0, 0, Win32Declarations.FW_NORMAL, 0, 0, 0, 0, 0, 0, 0, 0, Font.Name );
         }
@@ -168,7 +167,7 @@ namespace JetBrains.Omea.GUIControls
             }
             CalcPreferredWidth( newTab );
             newTab.Width = newTab.PreferredWidth;
-            
+
 			// Request relayouting
 			if(_site != null)	// Needed?
 				_site.PerformLayout( this );
@@ -320,14 +319,14 @@ namespace JetBrains.Omea.GUIControls
                 {
                     g.FillPath( GUIControls.ColorScheme.GetBrush( _colorScheme, "ResourceTypeTabs.InactiveBackground",
                         rc, SystemBrushes.Control ), gp );
-                    
+
                     Rectangle rcGradient = new Rectangle( rc.Left, rc.Bottom-6, rc.Width, 6 );
                     g.FillRectangle( GUIControls.ColorScheme.GetBrush( _colorScheme, "ResourceTypeTabs.InactiveBackgroundBottom",
                         rcGradient, SystemBrushes.Control ), rcGradient );
                 }
-            
-                g.DrawPath( GUIControls.ColorScheme.GetPen( _colorScheme, 
-                    (index == _activeTabIndex) ? "PaneCaption.Border" : "ResourceTypeTabs.Border", 
+
+                g.DrawPath( GUIControls.ColorScheme.GetPen( _colorScheme,
+                    (index == _activeTabIndex) ? "PaneCaption.Border" : "ResourceTypeTabs.Border",
                     Pens.Black ), gp );
             }
 
@@ -341,12 +340,12 @@ namespace JetBrains.Omea.GUIControls
                 int oldColor = Win32Declarations.SetTextColor( hdc, ColorTranslator.ToWin32( clrText ) );
                 IntPtr oldFont = Win32Declarations.SelectObject( hdc, _fontHandle );
                 BackgroundMode oldBkMode = Win32Declarations.SetBkMode( hdc, BackgroundMode.TRANSPARENT );
-                
+
                 RECT rect = Win32Declarations.RectangleToRECT( rc );
                 Win32Declarations.DrawText( hdc, tabText, tabText.Length, ref rect,
-                    DrawTextFormatFlags.DT_CENTER | DrawTextFormatFlags.DT_VCENTER | DrawTextFormatFlags.DT_NOPREFIX | 
+                    DrawTextFormatFlags.DT_CENTER | DrawTextFormatFlags.DT_VCENTER | DrawTextFormatFlags.DT_NOPREFIX |
                     DrawTextFormatFlags.DT_END_ELLIPSIS | DrawTextFormatFlags.DT_SINGLELINE );
-                
+
                 Win32Declarations.SetBkMode( hdc, oldBkMode );
                 Win32Declarations.SelectObject( hdc, oldFont );
                 Win32Declarations.SetTextColor( hdc, oldColor );

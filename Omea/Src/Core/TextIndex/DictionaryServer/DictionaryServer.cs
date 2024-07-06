@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using   System;
 using   System.Text;
@@ -12,14 +11,14 @@ using   JetBrains.Omea.Base;
 using   JetBrains.DataStructures;
 
 /*
-  DictionaryServer is a component to access string data by string Key. 
-  DictionaryServer collects data from one or several plain text files 
+  DictionaryServer is a component to access string data by string Key.
+  DictionaryServer collects data from one or several plain text files
   where lines are sorted case-insensitively (it is an obligatory condition,
   otherwise DictionaryServer will not work properly) to make loading data
   quicker. Each source text file can contain lines of two different formats:
     1) <key_value>
        Search is performed only for presence of the given Key.
-  
+
     2) <key_value>$<data_value>
        Search is performed for presence of the given Key and DataValue is
        returned
@@ -230,7 +229,7 @@ namespace JetBrains.Omea.TextIndex
                 if( (string)aUnitedDictionary[ i ] == (string)aUnitedDictionary[ i + 1 ] )
                     aUnitedDictionary.RemoveAt( i );
                 else
-                    if( ((string)aUnitedDictionary[ i + 1 ]).StartsWith( (string)aUnitedDictionary[ i ] ) && 
+                    if( ((string)aUnitedDictionary[ i + 1 ]).StartsWith( (string)aUnitedDictionary[ i ] ) &&
                     ((string)aUnitedDictionary[ i + 1 ]).Length > ((string)aUnitedDictionary[ i ]).Length &&
                     ((string)aUnitedDictionary[ i + 1 ])[ ((string)aUnitedDictionary[ i ]).Length ] == '$' )
                 {
@@ -408,7 +407,7 @@ namespace JetBrains.Omea.TextIndex
             int     maskLen = mask.Length;
             int     baseIndex = BaseIndices[ keyIndex ];
             int     keyLen = BaseIndices[ keyIndex + 1 ] - baseIndex - 1;
-            return(( keyLen > maskLen ) && ( DicBase[ baseIndex + maskLen ] == '$' ) && 
+            return(( keyLen > maskLen ) && ( DicBase[ baseIndex + maskLen ] == '$' ) &&
                 ( CompareStrings( mask, keyIndex ) == -maskLen ));
         }
 
@@ -477,7 +476,7 @@ namespace JetBrains.Omea.TextIndex
             ArrayList   forms = (ArrayList) e.Value;
             if( mapVariant > forms.Count )
             {
-                throw new ArgumentOutOfRangeException( "DictionaryServer -- Mapping variant [" + mapVariant + 
+                throw new ArgumentOutOfRangeException( "DictionaryServer -- Mapping variant [" + mapVariant +
                     "] is greater than the number of possible wordforms " + forms.Count );
             }
 

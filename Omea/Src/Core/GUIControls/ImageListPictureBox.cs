@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System.ComponentModel;
 using System.Drawing;
@@ -46,7 +45,7 @@ namespace JetBrains.Omea.GUIControls
 
 		#region Component Designer generated code
 		/// <summary>
-		/// Required method for Designer support - do not modify 
+		/// Required method for Designer support - do not modify
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent()
@@ -79,8 +78,8 @@ namespace JetBrains.Omea.GUIControls
                 }
                 return _imageIndices [0];
             }
-            set 
-            { 
+            set
+            {
                 if ( _imageIndices.Length != 1 || _imageIndices [0] != value )
                 {
                     _imageIndices = new int[] { value };
@@ -95,8 +94,8 @@ namespace JetBrains.Omea.GUIControls
         public int[] ImageIndices
         {
             get { return _imageIndices; }
-            set 
-            { 
+            set
+            {
                 if ( value == null )
                 {
                     _imageIndices = new int[] {};

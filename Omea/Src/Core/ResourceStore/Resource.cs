@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -17,11 +16,11 @@ using JetBrains.DataStructures;
 namespace JetBrains.Omea.ResourceStore
 {
     /**
-     * A resource is any object living in the MyPal database. Resources have 
+     * A resource is any object living in the MyPal database. Resources have
      * properties (of string, int and date types) and are linked to other resources.
      * Properties are stored in the hashtable which Resource inherits.
      */
-	
+
     public class Resource: IntHashTable, IResource
     {
         internal class PropertyCollection: IPropertyCollection
@@ -128,7 +127,7 @@ namespace JetBrains.Omea.ResourceStore
                 get { return MyPalStorage.Storage.GetPropName( _propId ); }
             }
 
-            public int PropId 
+            public int PropId
             {
                 get { return _propId; }
             }
@@ -140,8 +139,8 @@ namespace JetBrains.Omea.ResourceStore
 
             public object Value
             {
-                get 
-                { 
+                get
+                {
                     if ( MyPalStorage.Storage.GetPropDataType( _propId ) == PropDataType.Link )
                         return _owner.GetLinkProp( _propId );
                     else
@@ -174,7 +173,7 @@ namespace JetBrains.Omea.ResourceStore
         /**
          * Creates a new or lazy-loaded resource with the specified type.
          */
-		
+
         internal Resource( int ID, int typeID, bool isNew )
         {
             _ID = ID;
@@ -200,7 +199,7 @@ namespace JetBrains.Omea.ResourceStore
         /**
          * Returns the ID of the resource, or -1 if the resource has been deleted.
          */
-		
+
         public int Id
         {
             [DebuggerStepThrough] get { return _ID; }
@@ -237,7 +236,7 @@ namespace JetBrains.Omea.ResourceStore
         }
 
         /**
-         * Returns the ID of the type of the resource.	
+         * Returns the ID of the type of the resource.
          */
 
         public int TypeId
@@ -249,7 +248,7 @@ namespace JetBrains.Omea.ResourceStore
          * Returns the display name of the resource (the default text representation
          * that will be shown to users).
          */
-		
+
         public string DisplayName
         {
             get
@@ -359,10 +358,10 @@ namespace JetBrains.Omea.ResourceStore
 
         public IPropertyCollection Properties
         {
-            get 
-            { 
+            get
+            {
                 CheckLoadAllProperties();
-                return new PropertyCollection( this ); 
+                return new PropertyCollection( this );
             }
         }
 
@@ -382,9 +381,9 @@ namespace JetBrains.Omea.ResourceStore
         }
 
         /**
-         * Sets a property of the resource to the specified value.	
+         * Sets a property of the resource to the specified value.
          */
-		
+
         public void SetProp( string propName, object propValue )
         {
             int propId = MyPalStorage.Storage.GetPropId( propName );
@@ -435,14 +434,14 @@ namespace JetBrains.Omea.ResourceStore
             }
             if ( dataType == PropDataType.StringList )
             {
-                throw new StorageException( "Please use IResource.GetStringListProp() and methods of IStringList " + 
+                throw new StorageException( "Please use IResource.GetStringListProp() and methods of IStringList " +
                     " to change values of string list properties" );
             }
             if ( dataType == PropDataType.Blob && propValue is string )
             {
                 propValue = new JetMemoryStream( Encoding.UTF8.GetBytes( (string) propValue ), true );
             }
-            
+
             object oldValue;
             Lock();
             try
@@ -454,7 +453,7 @@ namespace JetBrains.Omea.ResourceStore
 
                 bool newProp = false;
                 oldValue = GetPropValue( propId );
-                
+
                 if ( dataType == PropDataType.Bool )
                 {
                     bool oldBoolValue = (oldValue != null);
@@ -483,7 +482,7 @@ namespace JetBrains.Omea.ResourceStore
                     if( newProp || dataType != PropDataType.Blob || IsTransient )
                     {
                             this[propId] = propValue;
-                    }                    
+                    }
                 }
 
                 if( !IsTransient )
@@ -522,7 +521,7 @@ namespace JetBrains.Omea.ResourceStore
             {
                 UnLock();
             }
-            
+
             MyPalStorage.Storage.OnResourceSaved( this, propId, oldValue );
         }
 
@@ -643,7 +642,7 @@ namespace JetBrains.Omea.ResourceStore
                 object val = GetPropValue( propId );
                 if ( val == null && propType == PropDataType.Bool )
                     return false;
-                
+
                 return val;
             }
             finally
@@ -653,8 +652,8 @@ namespace JetBrains.Omea.ResourceStore
         }
 
         /**
-         * Returns the value of the specified string property. Returns null if 
-         * there is no such property, throws an exception if the property is not 
+         * Returns the value of the specified string property. Returns null if
+         * there is no such property, throws an exception if the property is not
          * of the string type.
          */
 
@@ -665,7 +664,7 @@ namespace JetBrains.Omea.ResourceStore
 
         /**
          * Returns the value of the string property with the specified ID.
-         * Returns null if there is no such property, throws an exception 
+         * Returns null if there is no such property, throws an exception
          * if the property is not of the string type.
          */
 
@@ -676,7 +675,7 @@ namespace JetBrains.Omea.ResourceStore
 
         /**
          * Returns the value of the specified integer property. Returns 0 if
-         * there is no such property, throws an exception if the property is not 
+         * there is no such property, throws an exception if the property is not
          * of the integer type.
          */
 
@@ -687,7 +686,7 @@ namespace JetBrains.Omea.ResourceStore
 
         /**
          * Returns the value of the integer property with the specified ID. Returns 0
-         * there is no such property, throws an exception if the property is not 
+         * there is no such property, throws an exception if the property is not
          * of the integer type.
          */
 
@@ -756,7 +755,7 @@ namespace JetBrains.Omea.ResourceStore
         {
             if ( _ID == -1 )
                 throw new ResourceDeletedException();
-            
+
             IBLOB blob = (IBLOB) GetPropObject( propId, PropDataType.Blob );
             if ( blob != null )
             {
@@ -769,7 +768,7 @@ namespace JetBrains.Omea.ResourceStore
                     MyPalStorage.Storage.OnIOErrorDetected( ex );
                 }
             }
-            return null;            
+            return null;
         }
 
         /**
@@ -789,7 +788,7 @@ namespace JetBrains.Omea.ResourceStore
         {
             if ( MyPalStorage.Storage.GetPropDataType( propId ) != PropDataType.StringList )
             {
-                throw new StorageException( MyPalStorage.Storage.GetPropName( propId ) + 
+                throw new StorageException( MyPalStorage.Storage.GetPropName( propId ) +
                     " is not a StringList property" );
             }
 
@@ -835,7 +834,7 @@ namespace JetBrains.Omea.ResourceStore
                     {
                         return MyPalStorage.Storage.TryLoadResource( linkList [0] );
                     }
-                    
+
                     // for transient resources, the link list may contain deleted resources,
                     // and no one notifies us about their deletion => skip deleted resources now
                     while( linkList.Count > 0 )
@@ -948,7 +947,7 @@ namespace JetBrains.Omea.ResourceStore
          * Returns the value of the specified property, or null if there is no such
          * property. Throws an exception if the property is not of the specified type.
          */
-		
+
         private object GetPropObject( int propId, PropDataType expectType )
         {
             PropDataType propType = MyPalStorage.Storage.GetPropDataType( propId );
@@ -959,7 +958,7 @@ namespace JetBrains.Omea.ResourceStore
                 // which is not an error
                 if ( (propType != PropDataType.LongString) || (expectType != PropDataType.String ) )
                 {
-                    throw new StorageException( MyPalStorage.Storage.GetPropName( propId ) + 
+                    throw new StorageException( MyPalStorage.Storage.GetPropName( propId ) +
                         " is not a " + expectType + " property" );
                 }
             }
@@ -980,7 +979,7 @@ namespace JetBrains.Omea.ResourceStore
          * Returns the textual (user-visible) representation of the specified
          * property. Supports link properties, too.
          */
-		
+
         public string GetPropText( string propName )
         {
             return GetPropText( MyPalStorage.Storage.GetPropId( propName ) );
@@ -1117,7 +1116,7 @@ namespace JetBrains.Omea.ResourceStore
             }
             finally
             {
-                UnLock();   
+                UnLock();
             }
             if ( propId > 0 || !MyPalStorage.Storage.IsLinkDirected( propId ) )
             {
@@ -1140,7 +1139,7 @@ namespace JetBrains.Omea.ResourceStore
                 {
                     toPropId = -toPropId;
                 }
-                        
+
                 using( IResultSet rs = MyPalStorage.Storage.GetLinksTo( _ID, toPropId ) )
                 {
                     SafeRecordValueEnumerator enumerator = new SafeRecordValueEnumerator( rs, "Resource.HasLinkProp" );
@@ -1181,14 +1180,14 @@ namespace JetBrains.Omea.ResourceStore
                 {
                     LoadProperties( propType );
                 }
-                
+
                 _propLoadedMask = (ushort) (_propLoadedMask | (1 << (int) propType));
             }
         }
 
         /**
          * Ensures that all properties of the resource are loaded.
-         */ 
+         */
 
         private void CheckLoadAllProperties()
         {
@@ -1232,7 +1231,7 @@ namespace JetBrains.Omea.ResourceStore
             {
                 throw new ArgumentNullException( "target" );
             }
-            
+
             Resource targetResource = (Resource) target;
             if ( _ID == -1 )
                 throw new ResourceDeletedException( "The link source resource has been deleted" );
@@ -1248,7 +1247,7 @@ namespace JetBrains.Omea.ResourceStore
             }
             if ( targetResource.Id == _ID )
             {
-                throw new StorageException( "Cannot link a resource to itself (resource type " + Type + 
+                throw new StorageException( "Cannot link a resource to itself (resource type " + Type +
                     ", property type " + MyPalStorage.Storage.PropTypes [propId].Name + ")" );
             }
 
@@ -1274,7 +1273,7 @@ namespace JetBrains.Omea.ResourceStore
             {
                 if ( targetResource.IsDeleting )
                 {
-                    return;                    
+                    return;
                 }
                 AddLinkSide( targetResource, reversePropId, this );
                 MyPalStorage.Storage.SaveLink( Id, target.Id, propId );
@@ -1304,7 +1303,7 @@ namespace JetBrains.Omea.ResourceStore
             {
                 if ( from.IsDeleting )
                     return false;
-                
+
                 IntArrayList linkList = from.GetLinkList( propId );
                 if ( linkList == null )
                 {
@@ -1323,7 +1322,7 @@ namespace JetBrains.Omea.ResourceStore
             {
                 from.UnLock();
             }
-            
+
             return true;
         }
 
@@ -1401,7 +1400,7 @@ namespace JetBrains.Omea.ResourceStore
                 throw new StorageException( propId + " is not a link property" );
 
             Resource targetRes = (Resource) target;
-            
+
             if ( _ID == -1 )
                 throw new ResourceDeletedException();
 
@@ -1412,7 +1411,7 @@ namespace JetBrains.Omea.ResourceStore
                 {
                     DeleteLinkSide( targetRes, -propId, this );
                 }
-            }                           
+            }
 
             DeleteLinkSide( this, propId, targetRes );
             if ( !IsTransient )
@@ -1488,7 +1487,7 @@ namespace JetBrains.Omea.ResourceStore
          * the specified resource.
          * @return true if the link to the specified resource was found.
          */
-        
+
         private bool DeleteLinksExcept( int propId, int exceptResourceId )
         {
             bool foundExisting = false;
@@ -1582,7 +1581,7 @@ namespace JetBrains.Omea.ResourceStore
         {
             return GetLinksOfType( resType, MyPalStorage.Storage.GetPropId( propName ), false, false );
         }
- 
+
         /**
          * Returns a list of all resources of the specified type linked to the resource
          * with a link of the specified ID.
@@ -1779,13 +1778,13 @@ namespace JetBrains.Omea.ResourceStore
                 UnLock();
             }
         }
-        
+
         public int[] GetLinkTypeIds()
         {
             return GetLinkTypeIds( true );
         }
-        
-        
+
+
         /**
          * Returns a list of the IDs of distinct link types present in the resource.
          */
@@ -1846,7 +1845,7 @@ namespace JetBrains.Omea.ResourceStore
             {
                 MyPalStorage.Storage.CheckEndUpdate( this );
             }
-            
+
             try
             {
                 MyPalStorage.Storage.OnResourceDeleting( this );
@@ -1887,7 +1886,7 @@ namespace JetBrains.Omea.ResourceStore
 
                 int originalId = _ID;
                 _ID = -1;
-            
+
                 Clear();
                 this[ ResourceProps.Id ] = originalId;
             }
@@ -1968,7 +1967,7 @@ namespace JetBrains.Omea.ResourceStore
         {
             if ( _ID == -1 )
                 return;
-            
+
             // we need to get a real ID before the OnResourceSaved notification is fired
             if ( IsTransient && MyPalStorage.Storage.GetResourceUpdateCount( this ) == 1 )
             {
@@ -1985,7 +1984,7 @@ namespace JetBrains.Omea.ResourceStore
         {
             if ( _ID == -1 )
                 return false;
-            
+
             return MyPalStorage.Storage.IsResourceChanged( this );
         }
 
@@ -2228,7 +2227,7 @@ namespace JetBrains.Omea.ResourceStore
                 return;
 
             IntArrayList loadedLinkTypes = IntArrayListPool.Alloc();
-            try 
+            try
             {
                 using( IResultSet rs = MyPalStorage.Storage.GetLinksFrom( _ID ) )
                 {
@@ -2279,7 +2278,7 @@ namespace JetBrains.Omea.ResourceStore
             }
         }
 
-        private int LoadLinksFromResultSet( IResultSet resultSet, IntArrayList loadedLinkTypes, 
+        private int LoadLinksFromResultSet( IResultSet resultSet, IntArrayList loadedLinkTypes,
             int targetPropIndex, int directionModifier )
         {
             PropTypeCollection propTypes = MyPalStorage.Storage.PropTypes as PropTypeCollection;
@@ -2362,7 +2361,7 @@ namespace JetBrains.Omea.ResourceStore
             _propLoadedMask = (ushort) (_propLoadedMask & 0x3FFF);
 
             ArrayList addedLinks = ArrayListPool.Alloc();
-            try 
+            try
             {
                 IntArrayList emptyLinkLists = null;
                 Lock();
@@ -2378,19 +2377,19 @@ namespace JetBrains.Omea.ResourceStore
                             {
                                 if ( MyPalStorage.Storage.IsLinkDirected( propId ) )
                                     propId = -propId;
-                            
+
                                 Resource target = (Resource) MyPalStorage.Storage.LoadResource( linkList [i], true, -1 );
                                 if ( target.IsDeleting )
                                 {
                                     linkList.RemoveAt( i );
                                     continue;
                                 }
-                            
+
                                 if ( AddLinkSide( target, propId, this ) )
                                 {
                                     addedLinks.Add( new Pair( linkList [i], propId ) );
                                 }
-                            
+
                                 if ( propEntry.Key < 0 )
                                 {
                                     MyPalStorage.Storage.SaveLink( linkList [i], _ID, -propEntry.Key );
@@ -2474,7 +2473,7 @@ namespace JetBrains.Omea.ResourceStore
 
                     switch( Core.ResourceStore.PropTypes [e.Key].DataType )
                     {
-                        case PropDataType.Int: 
+                        case PropDataType.Int:
                             result += 12; break;
 
                         case PropDataType.String:
@@ -2511,11 +2510,11 @@ namespace JetBrains.Omea.ResourceStore
                             }
                             else
                             {
-                                result += 12;                                    
+                                result += 12;
                             }
                             break;
 
-                        case PropDataType.Bool: 
+                        case PropDataType.Bool:
                             result += 12; break;
 
                         case PropDataType.StringList:

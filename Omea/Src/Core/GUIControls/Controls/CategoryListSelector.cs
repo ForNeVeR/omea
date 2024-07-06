@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Windows.Forms;
@@ -16,7 +15,7 @@ namespace JetBrains.Omea.GUIControls
     /// </summary>
     public class CategoriesSelector : UserControl
     {
-        /// <summary> 
+        /// <summary>
         /// Required designer variable.
         /// </summary>
         private System.ComponentModel.Container components = null;
@@ -56,9 +55,9 @@ namespace JetBrains.Omea.GUIControls
             _boxCategories = new TextBox();
 
             SuspendLayout();
-            // 
+            //
             // _categoriesButton
-            // 
+            //
             _btnCategories.Anchor = (AnchorStyles.Top | AnchorStyles.Left);
             _btnCategories.FlatStyle = FlatStyle.System;
             _btnCategories.Location = new System.Drawing.Point(0, 7);
@@ -67,9 +66,9 @@ namespace JetBrains.Omea.GUIControls
             _btnCategories.TabIndex = 4;
             _btnCategories.Text = "&Categories...";
             _btnCategories.Click += _btnCategories_Click;
-            // 
+            //
             // _boxCategories
-            // 
+            //
             _boxCategories.Anchor = (AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right);
             _boxCategories.Location = new System.Drawing.Point(100, 8);
             _boxCategories.Name = "_boxCategories";
@@ -77,9 +76,9 @@ namespace JetBrains.Omea.GUIControls
             _boxCategories.TabStop = false;
             _boxCategories.Text = "";
             _boxCategories.ReadOnly = true;
-            // 
+            //
             // CategoriesSelector
-            // 
+            //
             Controls.Add(_btnCategories);
             Controls.Add(_boxCategories);
             Name = "Categories Selector";

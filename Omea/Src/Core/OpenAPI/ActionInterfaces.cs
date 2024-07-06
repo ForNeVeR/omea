@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Drawing;
@@ -19,29 +18,29 @@ namespace JetBrains.Omea.OpenAPI
     	/// <summary>
     	/// The action is invoked from the main menu.
     	/// </summary>
-        MainMenu, 
-        
+        MainMenu,
+
         /// <summary>
         /// The action is invoked from the context menu.
         /// </summary>
-        ContextMenu, 
-        
+        ContextMenu,
+
         /// <summary>
         /// The action is invoked from the main toolbar, the URL bar or the toolbar in a resource
         /// tree pane.
         /// </summary>
-        Toolbar, 
-        
+        Toolbar,
+
         /// <summary>
         /// The action is invoked from a keyboard shortcut.
         /// </summary>
-        Keyboard, 
-        
+        Keyboard,
+
         /// <summary>
         /// The action is invoked from a link in the Actions group of the links pane.
         /// </summary>
-        LinksPane, 
-        
+        LinksPane,
+
         /// <summary>
         /// The action is invoked from a different, unspecified location.
         /// </summary>
@@ -92,16 +91,16 @@ namespace JetBrains.Omea.OpenAPI
         IResource         ListOwnerResource  { get; }
 
         /// <summary>
-        /// If the action was invoked by right-clicking a resource link label - the ID of the 
+        /// If the action was invoked by right-clicking a resource link label - the ID of the
         /// link property displayed by the link label. Otherwise, -1.
         /// </summary>
         int               LinkPropId         { get; }
-        
+
         /// <summary>
         /// If the action was invoked by right-clicking a resource link label - the resource on
         /// the other end of the clicked link. Otherwise, null.
         /// </summary>
-        /// <remarks>If the link label in the resource links pane is clicked, 
+        /// <remarks>If the link label in the resource links pane is clicked,
         /// <see cref="SelectedResources"/> holds the resource the link to which was clicked,
         /// and <code>LinkTargetResource</code> holds the resource currently displayed
         /// in the resource browser.</remarks>
@@ -119,7 +118,7 @@ namespace JetBrains.Omea.OpenAPI
         /// </summary>
         /// <since>2.0</since>
         string            CurrentPageTitle   { get; }
-        
+
         /// <summary>
         /// The command processor which can execute the local (context-dependent) commands
         /// for the current context.
@@ -136,7 +135,7 @@ namespace JetBrains.Omea.OpenAPI
         Form OwnerForm { get; }
 
         /// <summary>
-        /// The text currently selected in the active display pane (in plain-text format), or 
+        /// The text currently selected in the active display pane (in plain-text format), or
         /// null if the action was not invoked from a display pane.
         /// </summary>
         string            SelectedPlainText  { get; }
@@ -265,14 +264,14 @@ namespace JetBrains.Omea.OpenAPI
         /// resource list.</remarks>
         public IResourceList SelectedResources
         {
-        	get 
-            { 
-                if ( _selectedResources == null || 
+        	get
+            {
+                if ( _selectedResources == null ||
                     ( _selectedResources.Count == 1 && _selectedResources.ResourceIds [0] == -1 ) )
                 {
                 	return Core.ResourceStore.EmptyResourceList;
                 }
-                return _selectedResources; 
+                return _selectedResources;
             }
         }
 
@@ -306,10 +305,10 @@ namespace JetBrains.Omea.OpenAPI
         }
 
         /// <summary>
-        /// Sets the expanded list of selected resources in the action context to the specified 
+        /// Sets the expanded list of selected resources in the action context to the specified
         /// value.
         /// </summary>
-        /// <param name="selectedResourcesExpanded">The expanded list of selected resources, or null 
+        /// <param name="selectedResourcesExpanded">The expanded list of selected resources, or null
         /// if there are no selected resources.</param>
         public void SetSelectedResourcesExpanded( IResourceList selectedResourcesExpanded )
         {
@@ -341,19 +340,19 @@ namespace JetBrains.Omea.OpenAPI
         }
 
         /// <summary>
-        /// If the action was invoked by right-clicking a resource link label - the ID of the 
+        /// If the action was invoked by right-clicking a resource link label - the ID of the
         /// link property displayed by the link label. Otherwise, -1.
         /// </summary>
         public int LinkPropId
         {
             get { return _linkPropId; }
         }
-   
+
         /// <summary>
         /// If the action was invoked by right-clicking a resource link label - the resource on
         /// the other end of the clicked link. Otherwise, null.
         /// </summary>
-        /// <remarks>If the link label in the resource links pane is clicked, 
+        /// <remarks>If the link label in the resource links pane is clicked,
         /// <see cref="SelectedResources"/> holds the resource the link to which was clicked,
         /// and <code>LinkTargetResource</code> holds the resource currently displayed
         /// in the resource browser.</remarks>
@@ -421,12 +420,12 @@ namespace JetBrains.Omea.OpenAPI
         /// class.</remarks>
         public ICommandProcessor CommandProcessor
     	{
-    		get 
-            { 
+    		get
+            {
                 if ( _commandProcessor == null )
                     return _dummyCommandProcessor;
 
-                return _commandProcessor; 
+                return _commandProcessor;
             }
     	}
 
@@ -452,7 +451,7 @@ namespace JetBrains.Omea.OpenAPI
         }
 
         /// <summary>
-        /// The text currently selected in the active display pane (in plain-text format), or 
+        /// The text currently selected in the active display pane (in plain-text format), or
         /// null if the action was not invoked from a display pane.
         /// </summary>
         public string SelectedPlainText
@@ -663,7 +662,7 @@ namespace JetBrains.Omea.OpenAPI
         {
             if ( context.SelectedResources == null || context.SelectedResources.Count == 0 )
             {
-                presentation.Visible = false;            	
+                presentation.Visible = false;
             }
         }
     }
@@ -708,7 +707,7 @@ namespace JetBrains.Omea.OpenAPI
         void IAction.Execute( IActionContext context )
         {
             _selectedResources = context.SelectedResources;
-            if ( _asynchronous ) 
+            if ( _asynchronous )
             {
                 ICore.Instance.ResourceAP.QueueJob( new MethodInvoker( ExecuteOperation ) );
             }
@@ -733,29 +732,29 @@ namespace JetBrains.Omea.OpenAPI
     /// <summary>
     /// Specifies the mode of positioning an item relatively to another item in a list.
     /// </summary>
-    public enum AnchorType 
-    { 
+    public enum AnchorType
+    {
         /// <summary>
         /// The item is placed in the beginning of the list.
         /// </summary>
-        First, 
-        
+        First,
+
         /// <summary>
         /// The item is placed in the end of the list.
         /// </summary>
-        Last, 
-        
+        Last,
+
         /// <summary>
         /// The item is placed before the specified item in the list.
         /// </summary>
-        Before, 
-        
+        Before,
+
         /// <summary>
         /// The item is placed after the specified item in the list.
         /// </summary>
-        After 
+        After
     };
-    
+
     /// <summary>
     /// Specifies the position of an item relative to other items in a list.
     /// </summary>
@@ -871,7 +870,7 @@ namespace JetBrains.Omea.OpenAPI
         /// </param>
         /// <param name="menuName">
         ///   Name of the top-level menu under which the action group is placed. Must contain the
-        ///   name of one of the existing menus (File, Edit, View, Go, Tools Actions or Help). 
+        ///   name of one of the existing menus (File, Edit, View, Go, Tools Actions or Help).
         /// </param>
         /// <param name="submenuName">
         ///   Name of the submenu under the top-level menu in which the action group is placed.
@@ -905,7 +904,7 @@ namespace JetBrains.Omea.OpenAPI
         ///   If the filters have marked the presentation as hidden, the Update() method of the
         ///   action itself is not called.
         /// </param>
-        void RegisterMainMenuAction( IAction action, string groupId, ListAnchor anchor, string text, 
+        void RegisterMainMenuAction( IAction action, string groupId, ListAnchor anchor, string text,
                                      Image icon, string resourceType, IActionStateFilter[] filters );
 
         /// <summary>
@@ -997,7 +996,7 @@ namespace JetBrains.Omea.OpenAPI
         /// (the string returned by the ToString() method of the action).</param>
         /// <param name="filter">The filter to be registered.</param>
         void RegisterToolbarActionFilter( string actionId, IActionStateFilter filter );
-        
+
         /// <summary>
         /// Removes an action and its menu item from the toolbar.
         /// </summary>
@@ -1010,7 +1009,7 @@ namespace JetBrains.Omea.OpenAPI
 
         /// <summary>
         /// Registers a group for URL bar actions. The URL bar is the toolbar displayed to the
-        /// left of the Web address box when a Web page is viewed. Actions from different groups 
+        /// left of the Web address box when a Web page is viewed. Actions from different groups
         /// are divided by separators on the toolbar.
         /// </summary>
         /// <param name="groupId">
@@ -1021,7 +1020,7 @@ namespace JetBrains.Omea.OpenAPI
         ///   Anchor for specifying the position of this group relative to other groups.
         /// </param>
         void RegisterUrlBarActionGroup( string groupId, ListAnchor anchor );
-        
+
         /// <summary>
         /// Registers an action which is executed when a button on the URL bar is clicked. The button
         /// icon is specified as an Icon instance.
@@ -1123,7 +1122,7 @@ namespace JetBrains.Omea.OpenAPI
         ///   If the filters have marked the presentation as hidden, the Update() method of the
         ///   action itself is not called.
         /// </param>
-        void RegisterContextMenuAction( IAction action, string groupId, ListAnchor anchor, string text, 
+        void RegisterContextMenuAction( IAction action, string groupId, ListAnchor anchor, string text,
                                         Image icon, string resourceType, IActionStateFilter[] filters );
 
         /// <summary><seealso cref="IAction"/><seealso cref="RegisterContextMenuAction"/>
@@ -1146,10 +1145,10 @@ namespace JetBrains.Omea.OpenAPI
 
         /// <summary>
         /// Registers an action which is executed when a resource is double-clicked.
-        /// There can be only one action registered for each specific resource type, 
+        /// There can be only one action registered for each specific resource type,
         /// and multiple actions which apply to all types. The actions applying to all
         /// types are tried only if no resource-type-specific action is registered for the
-        /// type of the double-clicked resource, and the first action which is not disabled 
+        /// type of the double-clicked resource, and the first action which is not disabled
         /// or hidden is executed.
         /// </summary>
         /// <param name="action">The action which is registered.</param>
@@ -1193,7 +1192,7 @@ namespace JetBrains.Omea.OpenAPI
         ///   If the filters have marked the presentation as hidden, the Update() method of the
         ///   action itself is not called.
         /// </param>
-        void RegisterKeyboardAction( IAction action, Keys shortcutKey, string resourceType, 
+        void RegisterKeyboardAction( IAction action, Keys shortcutKey, string resourceType,
             IActionStateFilter[] filters );
 
         /// <summary>
@@ -1251,7 +1250,7 @@ namespace JetBrains.Omea.OpenAPI
         ///   action itself is not called.
         /// </param>
         void RegisterLinksPaneAction( IAction action, string text, string resourceType, IActionStateFilter[] filters );
-        
+
         /// <summary>
         /// Removes an action from the list of link pane label actions.
         /// </summary>
@@ -1285,7 +1284,7 @@ namespace JetBrains.Omea.OpenAPI
         /// Executes the double-click action for every resource in the specified list.
         /// </summary>
         /// <param name="selectedResources">The resources for which the double-click action should be executed.</param>
-        void ExecuteDoubleClickAction( IResourceList selectedResources );   
+        void ExecuteDoubleClickAction( IResourceList selectedResources );
 
         /// <summary>
         /// Executes the keyboard action for the specified shortcut key and context.
@@ -1330,8 +1329,8 @@ namespace JetBrains.Omea.OpenAPI
 
         /// <summary>
         /// Returns the string representation of the keyboard shortcut for which the specified
-        /// action is registered, if the shortcut is available in the specified context. 
-        /// If the action was registered for multiple keyboard shortcuts, returns the one which 
+        /// action is registered, if the shortcut is available in the specified context.
+        /// If the action was registered for multiple keyboard shortcuts, returns the one which
         /// was most recently registered.
         /// </summary>
         /// <param name="action">The action for which the shortcut should be returned.</param>
@@ -1363,7 +1362,7 @@ namespace JetBrains.Omea.OpenAPI
         ///   If the filters have marked the presentation as hidden, the Update() method of the
         ///   action itself is not called.
         /// </param>
-        void RegisterActionComponent( IAction action, string compositeId, string resourceType, 
+        void RegisterActionComponent( IAction action, string compositeId, string resourceType,
             IActionStateFilter[] filters );
 
         /// <summary>
@@ -1387,7 +1386,7 @@ namespace JetBrains.Omea.OpenAPI
         public const string ITEM_OPEN_ACTIONS   = "ItemOpenActions";
         public const string ITEM_FIND_ACTIONS   = "ItemFindActions";
         public const string ITEM_MODIFY_ACTIONS = "ItemModifyActions";
-        
+
         public const string VIEW_GOTO_ACTIONS     = "ViewGotoActions";
         public const string VIEW_VIEWPANE_ACTIONS   = "ViewViewpaneActions";
 

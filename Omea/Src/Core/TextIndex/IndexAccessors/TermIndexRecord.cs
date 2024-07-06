@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using   System;
 using   System.IO;
@@ -26,14 +25,14 @@ namespace JetBrains.Omea.TextIndex
 //-----------------------------------------------------------------------------
 
 public class TermIndexRecord
-{    
+{
     public TermIndexRecord( BinaryReader reader )
     {
-        try 
+        try
         {
             listTemporaryStorage.Clear();
             HC = IndexConstructor.ReadCount( reader );
-            while( true ) 
+            while( true )
             {
                 ParseEntry( reader );
 //                _chainsCount++;
@@ -69,11 +68,11 @@ public class TermIndexRecord
         new_.TfIdf      = reader.ReadSingle();
         instancesNumber = IndexConstructor.ReadCount( reader ) + 1;
 
-        if( instancesNumber < 0 ) 
+        if( instancesNumber < 0 )
         {
             throw new FormatException( "TermIndexRecord -- Illegal number of instances for a TermIndex record (" + instancesNumber + ") - possible index corruption" );
         }
-            
+
         // NB: Discuss an OpenAPI issue for getting current maximal vlaue of document Id
         //     from the ResourceStore.
         //            if( new_.DocIndex >= 10000000 )
@@ -188,12 +187,12 @@ public  class   Entry : IComparable
 
     //-------------------------------------------------------------------------
     public  int     DocIndex
-    {  
+    {
         get{ return iDocIndex; }
         set{ iDocIndex = value; }
     }
     public  float   TfIdf
-    {  
+    {
         get{ return fTfIdf; }
         set{ fTfIdf = value; }
     }
@@ -203,7 +202,7 @@ public  class   Entry : IComparable
         set{ aInstances = value;   }
     }
     public  int     Count
-    {  
+    {
         get{ return aInstances.Length; }
     }
     public  InstanceOffset  Instance( int i_ )
@@ -213,7 +212,7 @@ public  class   Entry : IComparable
         return( aInstances[ i_ ] );
     }
     public  EntryProximity  Proximity
-    {  
+    {
         set{ ResultProximity = value; }
         get{ return ResultProximity;  }
     }

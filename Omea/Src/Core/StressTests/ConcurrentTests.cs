@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -155,12 +154,12 @@ namespace CommonTests
         private ArrayList _runners = new ArrayList();
         private ArrayList _threads = new ArrayList();
         private int _timeout = 10000;
-        
+
         public AsyncTestCollection( IResourceStore store )
         {
             _resourceStore = store;
         }
-        
+
         public IList Runners
         {
             get { return _runners; }
@@ -169,9 +168,9 @@ namespace CommonTests
         public int Timeout
         {
             get { return _timeout; }
-            set { _timeout = value; }        
+            set { _timeout = value; }
         }
-        
+
         public void AddRunner( TestRunner runner )
         {
             _runners.Add( runner );
@@ -219,7 +218,7 @@ namespace CommonTests
             get { return _store; }
             set { _store = value; }
         }
-        
+
         public IList Exceptions
         {
             get { return _exceptions; }
@@ -264,7 +263,7 @@ namespace CommonTests
 
             IResource theRes = _store.NewResource( "Email" );
             theRes.SetProp( "Subject", "Test " + _index );
-            
+
             for( int count=0; count<100; count++ )
             {
                 int resCount = resList.Count;
@@ -363,7 +362,7 @@ namespace CommonTests
         }
 
     }
-    
+
     class FindResourcesTestRunner: TestRunner
     {
         protected override void RunTests()
@@ -371,7 +370,7 @@ namespace CommonTests
             ArrayList resourceLists = new ArrayList();
             for( int i=0; i<500; i++ )
             {
-                IResourceList resList = _store.FindResourcesInRange( SelectionType.LiveSnapshot, null, "Received", 
+                IResourceList resList = _store.FindResourcesInRange( SelectionType.LiveSnapshot, null, "Received",
                     DateTime.Today, DateTime.MaxValue );
                 int cnt = resList.Count; cnt = cnt;
                 resourceLists.Add( resList );
@@ -403,7 +402,7 @@ namespace CommonTests
                 allEmails.Sort( "Subject" );
                 int cnt = allEmails.Count;  // ensures that the list is instantiated
                 cnt = cnt;
-                
+
                 IResource newEmail = _store.BeginNewResource( "Email" );
                 newEmail.SetProp( "Subject", i.ToString() );
                 newEmail.EndUpdate();
@@ -435,4 +434,4 @@ namespace CommonTests
 
         }
     }
-}                                                                  
+}

@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -29,7 +28,7 @@ namespace JetBrains.Omea.RemoteControl
 		private const string _regRunPath            = "ControlRun";
 		private const int    _basePort              = 3566;
         private const int    _portDivider           = 97; // Prime number
-		
+
         private const string _threadName = "RemoteControl server";
 
         private static Type _typeString = Type.GetType( "System.String" );
@@ -379,7 +378,7 @@ namespace JetBrains.Omea.RemoteControl
                 FormatError( req.Version, _defaultFormatter(), socketStream, 403, "Invalid secure key" );
                 return;
             }
-			
+
             // Try to find formatter
             int frmEnd = req.URL.IndexOf( '/', keyEnd + 1 );
             if(frmEnd < 0)
@@ -543,7 +542,7 @@ namespace JetBrains.Omea.RemoteControl
         #endregion
 
         #region IDisposable methods
-		
+
         public void Dispose()
         {
             Stop();
@@ -552,7 +551,7 @@ namespace JetBrains.Omea.RemoteControl
         #endregion
 
         #region IRemoteControlManager methods
-		
+
         public bool AddRemoteCall(string rcName, Delegate method)
         {
             // check delegate
@@ -581,7 +580,7 @@ namespace JetBrains.Omea.RemoteControl
         {
             if( type == _typeString || type == _typeInt || type == _typeBool )
                 return true;
-			
+
             if( type.IsValueType && !type.IsPrimitive )
             {
                 MemberInfo[] fields = type.GetMembers();

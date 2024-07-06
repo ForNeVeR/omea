@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Drawing;
@@ -50,7 +49,7 @@ namespace JetBrains.Omea
             SetStyle( ControlStyles.UserPaint, true );
         }
 
-        /// <summary> 
+        /// <summary>
         /// Clean up any resources being used.
         /// </summary>
         protected override void Dispose( bool disposing )
@@ -66,8 +65,8 @@ namespace JetBrains.Omea
         }
 
         #region Component Designer generated code
-        /// <summary> 
-        /// Required method for Designer support - do not modify 
+        /// <summary>
+        /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
@@ -77,9 +76,9 @@ namespace JetBrains.Omea
             this._borderPanel = new System.Windows.Forms.Panel();
             this._borderPanel.SuspendLayout();
             this.SuspendLayout();
-            // 
+            //
             // _borderPanel
-            // 
+            //
             this._borderPanel.AutoScroll = true;
             this._borderPanel.BorderStyle = BorderStyle.None;
             this._borderPanel.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -88,9 +87,9 @@ namespace JetBrains.Omea
             this._borderPanel.Size = new System.Drawing.Size(150, 150);
             this._borderPanel.TabIndex = 0;
             this._borderPanel.Paint += new PaintEventHandler(_borderPanel_Paint);
-            // 
+            //
             // LinksPane
-            // 
+            //
             this.Controls.Add( _borderPanel );
             this.Name = "LinksPane";
             this.Layout += new System.Windows.Forms.LayoutEventHandler(this.LinksPane_Layout);
@@ -136,7 +135,7 @@ namespace JetBrains.Omea
         /**
          * Moves to the pool or disposes the controls added to the links pane.
          */
-        
+
         private void RemoveAllControls()
         {
             _linkTypeLabelPool.MoveControlsToPool();
@@ -245,7 +244,7 @@ namespace JetBrains.Omea
             while( section != null )
             {
                 AddLinkTypeLabel( ref curX, ref curY, section.Name );
-                
+
                 LinkItem lastLinkItem = null;
                 for( int i=0; i < 5 && i < section.LinkItems.Count; i++ )
                 {
@@ -272,7 +271,7 @@ namespace JetBrains.Omea
                 {
                     AddLinkGroupSeparator( ref curY );
                 }
-                
+
                 section = section.NextSection;
             }
         }
@@ -305,7 +304,7 @@ namespace JetBrains.Omea
             linkLabel.Resource = linkRes;
             linkLabel.LinkOwnerResource = linkOwnerRes;
             linkLabel.LinkType = Math.Abs( linkType );
-            linkLabel.Bounds = new Rectangle( _linkLabelX, curY, Width - _linkLabelX - 4, 
+            linkLabel.Bounds = new Rectangle( _linkLabelX, curY, Width - _linkLabelX - 4,
                 (int) ( 19 * Core.ScaleFactor.Height ) );
             linkLabel.EndEllipsis = true;
             return linkLabel;
@@ -314,7 +313,7 @@ namespace JetBrains.Omea
         /**
          * Creates a resource link label for the pool.
          */
-        
+
         private Control OnCreateResourceLinkLabel()
         {
             ResourceLinkLabel linkLabel = new ResourceLinkLabel();
@@ -349,7 +348,7 @@ namespace JetBrains.Omea
             lbl.Font = new Font( "Tahoma", 8 );
             lbl.EndEllipsis = true;
             _borderPanel.Controls.Add( lbl );
-            return lbl;            
+            return lbl;
         }
 
         /**
@@ -399,7 +398,7 @@ namespace JetBrains.Omea
             separator.Location = new Point( 0, curY );
             curY += 3;
         }
-        
+
         private void linkLabel_LinkContextMenu( object sender, ResourceLinkLabelEventArgs e )
         {
             ResourceLinkLabel linkLabel = (ResourceLinkLabel) sender;

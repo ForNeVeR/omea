@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.IO;
@@ -85,11 +84,11 @@ namespace RSSPlugin.Tests
 
         [Test] public void TestImportFeedInOutline()
         {
-            StringReader reader = new StringReader( 
+            StringReader reader = new StringReader(
                 "<opml version=\"1.0\">" +
                     "<body><outline text=\"Some Text\">" +
-                        "<outline type=\"rss\" text=\".Avery Blog\" title=\".Avery Blog\" xmlUrl=\"http://dotavery.com/blog/Rss.aspx\"/>" + 
-                        "<outline type=\"rss\" text=\"mercola.com blog\" title=\"mercola.com blog\" xmlUrl=\"http://mercola.com/blog/rss.xml\"/>" + 
+                        "<outline type=\"rss\" text=\".Avery Blog\" title=\".Avery Blog\" xmlUrl=\"http://dotavery.com/blog/Rss.aspx\"/>" +
+                        "<outline type=\"rss\" text=\"mercola.com blog\" title=\"mercola.com blog\" xmlUrl=\"http://mercola.com/blog/rss.xml\"/>" +
                     "</outline>" +
                     "<outline text=\"Some Text 2\"></outline>" +
                 "</body></opml>" );
@@ -115,11 +114,11 @@ namespace RSSPlugin.Tests
             IResource feed = _storage.NewResource( "RSSFeed" );
             feed.SetProp( "URL", "http://dotavery.com/blog/Rss.aspx" );
 
-            StringReader reader = new StringReader( 
+            StringReader reader = new StringReader(
                 "<opml version=\"1.0\">" +
                 "<body><outline text=\"Some Text\">" +
-                "<outline type=\"rss\" text=\".Avery Blog\" title=\".Avery Blog\" xmlUrl=\"http://dotavery.com/blog/Rss.aspx\"/>" + 
-                "<outline type=\"rss\" text=\"mercola.com blog\" title=\"mercola.com blog\" xmlUrl=\"http://mercola.com/blog/rss.xml\"/>" + 
+                "<outline type=\"rss\" text=\".Avery Blog\" title=\".Avery Blog\" xmlUrl=\"http://dotavery.com/blog/Rss.aspx\"/>" +
+                "<outline type=\"rss\" text=\"mercola.com blog\" title=\"mercola.com blog\" xmlUrl=\"http://mercola.com/blog/rss.xml\"/>" +
                 "</outline>" +
                 "<outline text=\"Some Text 2\"></outline>" +
                 "</body></opml>" );
@@ -158,11 +157,11 @@ namespace RSSPlugin.Tests
             IResource feed = _storage.NewResource( "RSSFeed" );
             feed.SetProp( "URL", "http://dotavery.com/blog/Rss.aspx" );
 
-            StringReader reader = new StringReader( 
+            StringReader reader = new StringReader(
                 "<opml version=\"1.0\">" +
                 "<body><outline text=\"Some Text\">" +
-                "<outline type=\"rss\" text=\".Avery Blog\" title=\".Avery Blog\" xmlUrl=\"http://dotavery.com/blog/Rss.aspx\"></outline>" + 
-                "<outline type=\"rss\" text=\"mercola.com blog\" title=\"mercola.com blog\" xmlUrl=\"http://mercola.com/blog/rss.xml\"></outline>" + 
+                "<outline type=\"rss\" text=\".Avery Blog\" title=\".Avery Blog\" xmlUrl=\"http://dotavery.com/blog/Rss.aspx\"></outline>" +
+                "<outline type=\"rss\" text=\"mercola.com blog\" title=\"mercola.com blog\" xmlUrl=\"http://mercola.com/blog/rss.xml\"></outline>" +
                 "</outline>" +
                 "<outline text=\"Some Text 2\"></outline>" +
                 "</body></opml>" );

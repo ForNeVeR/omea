@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -15,7 +14,7 @@ namespace JetBrains.JetListViewLibrary
     {
         IViewNode MoveByPage( IViewNode startNode, MoveDirection direction );
     }
-    
+
     /// <summary>
 	/// Manages the selection state and selection actions of items in JetListView.
 	/// </summary>
@@ -114,7 +113,7 @@ namespace JetBrains.JetListViewLibrary
         internal MouseHandleResult HandleMouseDown( IViewNode itemNode, Keys modifiers )
 	    {
             MouseHandleResult result = 0;
-            
+
             _processedMouseDown = false;
             if ( itemNode == null )
             {
@@ -155,7 +154,7 @@ namespace JetBrains.JetListViewLibrary
                     {
                         UnselectNode( itemNode );
                     }
-                    
+
                 }
                 else if ( modifiers == Keys.None )
                 {
@@ -187,7 +186,7 @@ namespace JetBrains.JetListViewLibrary
                 {
                     if ( selNodes [i] != node )
                     {
-                        UnselectNode( selNodes [i] );                        
+                        UnselectNode( selNodes [i] );
                     }
                 }
             }
@@ -489,7 +488,7 @@ namespace JetBrains.JetListViewLibrary
         /// </summary>
         public void MoveDown()
         {
-            MoveSelection( MoveDirection.Down, Keys.None );            
+            MoveSelection( MoveDirection.Down, Keys.None );
         }
 
         private void MoveSelection( MoveDirection direction, Keys modifiers )
@@ -511,9 +510,9 @@ namespace JetBrains.JetListViewLibrary
                     if ( !enumerator.MoveNext() )
                         return;
                 }
-            
+
                 destNode = enumerator.CurrentNode;
-                
+
                 // skip group headers
                 if ( destNode is GroupHeaderNode )
                 {
@@ -551,7 +550,7 @@ namespace JetBrains.JetListViewLibrary
             }
             else
             {
-                SelectAndFocusNode( destNode );    
+                SelectAndFocusNode( destNode );
             }
         }
 
@@ -615,7 +614,7 @@ namespace JetBrains.JetListViewLibrary
                 {
                     prevNode = enumerator.CurrentNode;
                 }
-            
+
                 if ( nextNode == null )
                 {
                     if ( prevNode != null )
@@ -632,7 +631,7 @@ namespace JetBrains.JetListViewLibrary
                     JetListViewNode prevLvNode = prevNode as JetListViewNode;
                     JetListViewNode nextLvNode = nextNode as JetListViewNode;
                     int removedNodeLevel = (viewNode as JetListViewNode).Level;
-                    if ( prevLvNode != null && nextLvNode != null && 
+                    if ( prevLvNode != null && nextLvNode != null &&
                         prevLvNode.Level == removedNodeLevel && nextLvNode.Level != removedNodeLevel )
                     {
                         SelectAndFocusNode( prevNode );
@@ -686,7 +685,7 @@ namespace JetBrains.JetListViewLibrary
                                     UnselectNode( selNode );
                                 }
                             }
-                
+
                             if ( Count == 0 )
                             {
                                 IVisibleNodeEnumerator enumerator = _visibleNodeCollection.GetFullEnumerator();

@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 
@@ -51,7 +50,7 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
 	    public string GetXmlLog( int startRevision, int lastRevision )
 	    {
 	        string lastRevStr = (lastRevision >= 0) ? lastRevision.ToString() : "HEAD";
-	        return ReadStdout( "svn.exe", GetLoginParameters() + "log " + _repositoryUrl + 
+	        return ReadStdout( "svn.exe", GetLoginParameters() + "log " + _repositoryUrl +
 	                                      " -r" + startRevision + ":" + lastRevStr +
 	                                      " -v --xml" );
 	    }
@@ -69,7 +68,7 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
 	        }
 	        return "Failed to get diff: " + diff;
 	    }
-	    
+
 	    public string GetProperty( string repositoryPath, string propName )
 	    {
             string url = BuildFullRepositoryPath( repositoryPath );

@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -306,7 +305,7 @@ namespace JetBrains.Omea.GUIControls
 
 			/// <summary>
 			/// Maps the original word forms to the corresponding color for highlighting.
-			/// Holds the original search string entries that we have met, mapped to the indexes of highlighting colors. 
+			/// Holds the original search string entries that we have met, mapped to the indexes of highlighting colors.
 			/// Provides for highlighing tokens produced from the same search entry with the same color.
 			/// </summary>
 			public Hashtable HashSources;

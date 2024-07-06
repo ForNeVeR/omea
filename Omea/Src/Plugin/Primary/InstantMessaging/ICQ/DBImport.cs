@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -22,7 +21,7 @@ namespace JetBrains.Omea.InstantMessaging.ICQ.DBImport
     public enum DBVersion
     {
         db_Undefined = 0,
-        db_99A = 10, 
+        db_99A = 10,
         db_99B = 14,
         db_2000a = 17,
         db_2000b = 18,
@@ -170,7 +169,7 @@ namespace JetBrains.Omea.InstantMessaging.ICQ.DBImport
                     break;
                 }
                 _iCurrentIdx = _Idx.Next;
-                if( _Idx.Code == -2 && _Idx.DatPos != -1 && 
+                if( _Idx.Code == -2 && _Idx.DatPos != -1 &&
                     _datEntry.ReadDatRecord( _Idx.DatPos, _fileDat, CurrentDBVersion ) )
                 {
                     // parse dat entry and save it if ok
@@ -311,7 +310,7 @@ namespace JetBrains.Omea.InstantMessaging.ICQ.DBImport
                     Next = reader.ReadInt32();
                     Prev = reader.ReadInt32();
                     DatPos = reader.ReadInt32();
-                } 
+                }
                 catch { return false; }
                 return true;
             }
@@ -343,7 +342,7 @@ namespace JetBrains.Omea.InstantMessaging.ICQ.DBImport
             {
                 try
                 {
-							
+
                     switch( Command )
                     {
                             // long message (ICQ99a-2002a)
@@ -732,7 +731,7 @@ namespace JetBrains.Omea.InstantMessaging.ICQ.DBImport
         private IdxRecord       _Idx;
         private DatRecord       _datEntry;
         private static readonly int      _hourAddend = DateTime.Now.Hour - DateTime.UtcNow.Hour + 3;
-			
+
     }
 
     /**
@@ -1175,7 +1174,7 @@ namespace JetBrains.Omea.InstantMessaging.ICQ.DBImport
         #endregion
     }
 
-    
+
     /**
      * the Importer singleton class enumerates ICQ databases
      */
@@ -1336,7 +1335,7 @@ namespace JetBrains.Omea.InstantMessaging.ICQ.DBImport
             {
                 try
                 {
-                    Convert.ToInt32( IOTools.GetFileName( path ) );   
+                    Convert.ToInt32( IOTools.GetFileName( path ) );
                 }
                 catch
                 {
@@ -1466,10 +1465,10 @@ namespace JetBrains.Omea.InstantMessaging.ICQ.DBImport
             theImporter.Reset();
 
             _hasModernDBs = false;
-    
+
             IntHashSet uins = new IntHashSet();
             int lastUIN = 0;
-    
+
             foreach( IICQDatabase D in theImporter )
             {
                 _hasModernDBs = _hasModernDBs || D is ICQModernDatabase;

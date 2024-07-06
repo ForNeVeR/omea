@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System.Drawing;
 using System.Text;
@@ -15,7 +14,7 @@ namespace JetBrains.Omea.InstantMessaging.ICQ
     {
         private System.Windows.Forms.Label _lblICQ;
         private JetTextBox _uinsList;
-    
+
         private ICQContactBlock()
         {
             InitializeComponent();
@@ -43,7 +42,7 @@ namespace JetBrains.Omea.InstantMessaging.ICQ
                     _uinsList.ForeColor = SystemColors.ControlText;
                     _uinsList.Enabled = true;
                     StringBuilder uinBuilder = StringBuilderPool.Alloc();
-                    try 
+                    try
                     {
                         foreach( IResource uin in uinList )
                         {
@@ -75,19 +74,19 @@ namespace JetBrains.Omea.InstantMessaging.ICQ
             _lblICQ = new System.Windows.Forms.Label();
             _uinsList = new JetTextBox();
             SuspendLayout();
-            // 
+            //
             // _lblICQ
-            // 
+            //
             _lblICQ.FlatStyle = System.Windows.Forms.FlatStyle.System;
             _lblICQ.Location = new Point(4, 0);
             _lblICQ.Name = "_lblICQ";
             _lblICQ.Size = new Size(68, 16);
             _lblICQ.TabIndex = 2;
             _lblICQ.Text = "ICQ:";
-            // 
+            //
             // _uinsList
-            // 
-            _uinsList.Anchor = (((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            //
+            _uinsList.Anchor = (((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                 | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
             _uinsList.BackColor = SystemColors.Control;
             _uinsList.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -100,9 +99,9 @@ namespace JetBrains.Omea.InstantMessaging.ICQ
             _uinsList.Size = new Size(120, 24);
             _uinsList.TabIndex = 3;
             _uinsList.Text = "";
-            // 
+            //
             // ICQContactBlock
-            // 
+            //
             Controls.Add(_uinsList);
             Controls.Add(_lblICQ);
             Name = "ICQContactBlock";

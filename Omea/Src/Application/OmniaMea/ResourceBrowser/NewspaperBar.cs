@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -67,7 +66,7 @@ namespace JetBrains.Omea
 		/// </summary>
 		protected NewspaperManager _man = null;
 
-		/// <summary> 
+		/// <summary>
 		/// Required designer variable.
 		/// </summary>
 		protected Container components = null;
@@ -131,7 +130,7 @@ namespace JetBrains.Omea
 			_man.PagingChanged += new EventHandler(OnManPagingChanged);
 		}
 
-		/// <summary> 
+		/// <summary>
 		/// Clean up any resources being used.
 		/// </summary>
 		protected override void Dispose(bool disposing)
@@ -161,15 +160,15 @@ namespace JetBrains.Omea
 
 		#region Visual Init
 
-		/// <summary> 
+		/// <summary>
 		/// Visual Init.
 		/// </summary>
 		protected void InitializeComponentSelf()
 		{
 			SuspendLayout();
-			// 
+			//
 			// _labelShow
-			// 
+			//
 			_labelShow = new JetLinkLabel();
 			_labelShow.BackColor = Color.Transparent;
 			_labelShow.Name = "_labelShow";
@@ -178,9 +177,9 @@ namespace JetBrains.Omea
 			_labelShow.ClickableLink = false;
 			_labelShow.Visible = false;
 			_labelShow.AutoSize = true;
-			// 
+			//
 			// _comboView
-			// 
+			//
 			_comboView = new ResourceComboBox();
 			_comboView.DropDownStyle = ComboBoxStyle.DropDownList;
 			_comboView.Name = "_comboView";
@@ -191,9 +190,9 @@ namespace JetBrains.Omea
 			_comboView.CloseUp += new EventHandler(OnViewsCloseUp);
 			_comboView.Visible = false;
 			_comboView.Width = 150;
-			// 
+			//
 			// _labelWithItems
-			// 
+			//
 			_labelWithItems = new JetLinkLabel();
 			_labelWithItems.BackColor = Color.Transparent;
 			_labelWithItems.Name = "_labelWithItems";
@@ -202,9 +201,9 @@ namespace JetBrains.Omea
 			_labelWithItems.ClickableLink = false;
 			_labelWithItems.Visible = false;
 			_labelWithItems.AutoSize = true;
-			// 
+			//
 			// _comboItemsPerPage
-			// 
+			//
 			_comboItemsPerPage = new ResourceComboBox();
 			_comboItemsPerPage.Name = "_comboItemsPerPage";
 			_comboItemsPerPage.TabIndex = 2;
@@ -216,9 +215,9 @@ namespace JetBrains.Omea
 			_comboItemsPerPage.Leave += new EventHandler(OnItemsPerPageLeave);
 			_comboItemsPerPage.Visible = false;
 			_comboItemsPerPage.Width = 75;
-			// 
+			//
 			// _labelItemsPerPage
-			// 
+			//
 			_labelItemsPerPage = new JetLinkLabel();
 			_labelItemsPerPage.BackColor = Color.Transparent;
 			_labelItemsPerPage.Name = "_labelItemsPerPage";
@@ -247,9 +246,9 @@ namespace JetBrains.Omea
 			_btnNextPage.AddIcon(new Icon(Assembly.GetExecutingAssembly().GetManifestResourceStream("OmniaMea.Icons.Newspaper.NextPage.Normal.ico")), ImageListButton.ButtonState.Normal);
 			_btnNextPage.AddIcon(new Icon(Assembly.GetExecutingAssembly().GetManifestResourceStream("OmniaMea.Icons.Newspaper.NextPage.Hot.ico")), ImageListButton.ButtonState.Hot);
 			_btnNextPage.AddIcon(new Icon(Assembly.GetExecutingAssembly().GetManifestResourceStream("OmniaMea.Icons.Newspaper.NextPage.Disabled.ico")), ImageListButton.ButtonState.Disabled);
-			// 
+			//
 			// NewspaperBar
-			// 
+			//
 			Controls.Add(_labelItemsPerPage);
 			Controls.Add(_comboItemsPerPage);
 			Controls.Add(_labelWithItems);

@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 namespace JetBrains.Omea.SamplePlugins.LiveJournalPlugin
 {
@@ -91,9 +90,9 @@ namespace JetBrains.Omea.SamplePlugins.LiveJournalPlugin
             this.comboPeriod = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.numericudUpdate)).BeginInit();
             this.SuspendLayout();
-            // 
+            //
             // buttonImport
-            // 
+            //
             this.buttonImport.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.buttonImport.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.buttonImport.Location = new System.Drawing.Point(80, 104);
@@ -101,18 +100,18 @@ namespace JetBrains.Omea.SamplePlugins.LiveJournalPlugin
             this.buttonImport.TabIndex = 7;
             this.buttonImport.Text = "&Import";
             this.buttonImport.Click += new System.EventHandler(this.buttonImport_Click);
-            // 
+            //
             // buttonCancel
-            // 
+            //
             this.buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.buttonCancel.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.buttonCancel.Location = new System.Drawing.Point(176, 104);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.TabIndex = 8;
             this.buttonCancel.Text = "&Cancel";
-            // 
+            //
             // labelLJUsername
-            // 
+            //
             this.labelLJUsername.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.labelLJUsername.Location = new System.Drawing.Point(8, 8);
             this.labelLJUsername.Name = "labelLJUsername";
@@ -120,26 +119,26 @@ namespace JetBrains.Omea.SamplePlugins.LiveJournalPlugin
             this.labelLJUsername.TabIndex = 0;
             this.labelLJUsername.Text = "&LJ username:";
             this.labelLJUsername.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
+            //
             // textLJUsername
-            // 
+            //
             this.textLJUsername.Location = new System.Drawing.Point(96, 8);
             this.textLJUsername.Name = "textLJUsername";
             this.textLJUsername.Size = new System.Drawing.Size(224, 20);
             this.textLJUsername.TabIndex = 1;
             this.textLJUsername.Text = "";
-            // 
+            //
             // textPassword
-            // 
+            //
             this.textPassword.Location = new System.Drawing.Point(96, 40);
             this.textPassword.Name = "textPassword";
             this.textPassword.PasswordChar = '*';
             this.textPassword.Size = new System.Drawing.Size(224, 20);
             this.textPassword.TabIndex = 3;
             this.textPassword.Text = "";
-            // 
+            //
             // labelPassword
-            // 
+            //
             this.labelPassword.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.labelPassword.Location = new System.Drawing.Point(8, 40);
             this.labelPassword.Name = "labelPassword";
@@ -147,9 +146,9 @@ namespace JetBrains.Omea.SamplePlugins.LiveJournalPlugin
             this.labelPassword.TabIndex = 2;
             this.labelPassword.Text = "&Password:";
             this.labelPassword.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
+            //
             // numericudUpdate
-            // 
+            //
             this.numericudUpdate.Location = new System.Drawing.Point(96, 72);
             this.numericudUpdate.Minimum = new System.Decimal(new int[] {
                                                                             1,
@@ -165,9 +164,9 @@ namespace JetBrains.Omea.SamplePlugins.LiveJournalPlugin
                                                                           0,
                                                                           0,
                                                                           0});
-            // 
+            //
             // cbUpdate
-            // 
+            //
             this.cbUpdate.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.cbUpdate.Location = new System.Drawing.Point(8, 72);
             this.cbUpdate.Name = "cbUpdate";
@@ -175,9 +174,9 @@ namespace JetBrains.Omea.SamplePlugins.LiveJournalPlugin
             this.cbUpdate.TabIndex = 4;
             this.cbUpdate.Text = "&Update every";
             this.cbUpdate.CheckedChanged += new System.EventHandler(this.cbUpdate_CheckedChanged);
-            // 
+            //
             // comboPeriod
-            // 
+            //
             this.comboPeriod.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboPeriod.Items.AddRange(new object[] {
                                                              "minutes",
@@ -188,9 +187,9 @@ namespace JetBrains.Omea.SamplePlugins.LiveJournalPlugin
             this.comboPeriod.Name = "comboPeriod";
             this.comboPeriod.Size = new System.Drawing.Size(121, 21);
             this.comboPeriod.TabIndex = 6;
-            // 
+            //
             // FriendsImportForm
-            // 
+            //
             this.AcceptButton = this.buttonImport;
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
             this.CancelButton = this.buttonCancel;
@@ -222,7 +221,7 @@ namespace JetBrains.Omea.SamplePlugins.LiveJournalPlugin
         {
             _login = textLJUsername.Text;
             _password = textPassword.Text;
-            _updateFreq = cbUpdate.Checked ? (int) numericudUpdate.Value : -1; 
+            _updateFreq = cbUpdate.Checked ? (int) numericudUpdate.Value : -1;
             _updatePeriod = comboPeriod.SelectedIndex;
         }
 

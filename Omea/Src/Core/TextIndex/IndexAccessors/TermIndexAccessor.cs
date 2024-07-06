@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -82,7 +81,7 @@ public  class   TermIndexAccessor : IndexAccessorImpl
     #region Init-Discard
 
     public TermIndexAccessor( string fileName ) : base( fileName ) {}
-    
+
     public override void  Close()
     {
         base.Close();
@@ -99,7 +98,7 @@ public  class   TermIndexAccessor : IndexAccessorImpl
     public override void  Discard()
     {
         base.Discard();
-        if( File.Exists( IndexHeaderFileName )) 
+        if( File.Exists( IndexHeaderFileName ))
             File.Delete( IndexHeaderFileName );
 
         Word.DisposeTermTrie();
@@ -107,7 +106,7 @@ public  class   TermIndexAccessor : IndexAccessorImpl
         if( File.Exists( OMEnv.TokenTreeFileName ))
             File.Delete( OMEnv.TokenTreeFileName );
     }
-    
+
     public override void  Load()
     {
         base.Load();
@@ -153,7 +152,7 @@ public  class   TermIndexAccessor : IndexAccessorImpl
             {
                 break;
             }
-            if( handle != HandleOfHeaderFile ) 
+            if( handle != HandleOfHeaderFile )
             {
                 TermIndexRecord record = GetRecordByHandle( handle );
                 recordKey.SetIntKey( record.HC );
@@ -253,7 +252,7 @@ public  class   TermIndexAccessor : IndexAccessorImpl
     }
 
     public bool TermExist( int termId )
-    {  
+    {
         return( GetRecordHandle( termId ) > 0 );
     }
 

@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 ///////////////////////////////
 // COM Error Handling Helpers
@@ -31,7 +30,7 @@ inline HRESULT ComCheckError(IUnknown *pInterface, const IID &iid, HRESULT hr)
 
 /// Checks the boolean return value. FALSE indicates a failure, in this case the last system error is converted into an HRESULT and thrown as a simple COM error.
 #define CHECK_BOOL(x)	if(!(x)) CHECK(AtlHresultFromLastError())
-	
+
 /// Outputs the com error represented by e variable to the standard debug.
 #define COM_TRACE()		TRACE(_T("[MSHTML] COM Error %#010X in %s: %s (%s:%s:%d)\r\n"), (DWORD)e.Error(), (LPCTSTR)e.Source(), (LPCTSTR)e.Description(), __FILE__, __FUNCTION__, __LINE__)
 

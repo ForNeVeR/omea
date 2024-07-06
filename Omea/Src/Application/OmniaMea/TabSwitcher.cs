@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -21,8 +20,8 @@ namespace JetBrains.Omea
 	/// The control that manages switching between resource type tabs.
 	/// </summary>
 	/// <remarks>
-	/// The <see cref="ICommandBar"/> and <see cref="ICommandBarSite"/> interface implementations are just forwarders 
-	/// between the site of this command bar and the underlying <see cref="TabBar"/> control 
+	/// The <see cref="ICommandBar"/> and <see cref="ICommandBarSite"/> interface implementations are just forwarders
+	/// between the site of this command bar and the underlying <see cref="TabBar"/> control
 	/// that rendsers the tabs.
 	/// </remarks>
 	internal class TabSwitcher : UserControl, ITabManager, ICommandBar, ICommandBarSite
@@ -225,7 +224,7 @@ namespace JetBrains.Omea
 		/// </summary>
 		private TabBar _tabBar;
 
-		/// <summary> 
+		/// <summary>
 		/// Required designer variable.
 		/// </summary>
 		private Container components = null;
@@ -298,7 +297,7 @@ namespace JetBrains.Omea
 
 	    private void CoreStateChanged( object sender, EventArgs e )
 	    {
-            if( Core.State == CoreState.Running ) 
+            if( Core.State == CoreState.Running )
             {
                 Core.StateChanged -= CoreStateChanged;
                 if( _tabBar.TabCount < 3 )
@@ -308,7 +307,7 @@ namespace JetBrains.Omea
             }
 	    }
 
-	    /// <summary> 
+	    /// <summary>
 		/// Clean up any resources being used.
 		/// </summary>
 		protected override void Dispose( bool disposing )
@@ -327,8 +326,8 @@ namespace JetBrains.Omea
 
 		#region Component Designer generated code
 
-		/// <summary> 
-		/// Required method for Designer support - do not modify 
+		/// <summary>
+		/// Required method for Designer support - do not modify
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent()
@@ -336,9 +335,9 @@ namespace JetBrains.Omea
 			this._tabBar = new TabBar();
 			this._tabBar.SuspendLayout();
 			this.SuspendLayout();
-			// 
+			//
 			// _tabControl
-			// 
+			//
 			this._tabBar.Dock = System.Windows.Forms.DockStyle.Fill;
             //  Workaround fix for OMs:12240, 13178, 13119, 13100, 13066, 12265, etc.
             //  This code should be substed when a better solution will be found
@@ -355,9 +354,9 @@ namespace JetBrains.Omea
 			this._tabBar.Size = new System.Drawing.Size( 150, 150 );
 			this._tabBar.TabIndex = 0;
 			this._tabBar.SelectedIndexChanged += new System.EventHandler( this.OnSelectedTabChange );
-			// 
+			//
 			// TabSwitcher
-			// 
+			//
 			this.Controls.Add( this._tabBar );
 			this.Name = "TabSwitcher";
 			this._tabBar.ResumeLayout( false );
@@ -464,7 +463,7 @@ namespace JetBrains.Omea
 		#region Operations
 
 		/// <summary>
-		/// Returns the list of resource types displayed in the specified tab, or null if 
+		/// Returns the list of resource types displayed in the specified tab, or null if
 		/// all resources are displayed.
 		/// </summary>
 		public string[] GetTabResourceTypes( string tabId )
@@ -725,7 +724,7 @@ namespace JetBrains.Omea
 			for( int i = 0; i < _tabBar.TabCount; i++ )
 			{
 				GoTabAction action = new GoTabAction( this, i );
-				Core.ActionManager.RegisterMainMenuAction( action, ActionGroups.GO_TAB_ACTIONS, ListAnchor.Last, 
+				Core.ActionManager.RegisterMainMenuAction( action, ActionGroups.GO_TAB_ACTIONS, ListAnchor.Last,
 				                                           _tabBar.GetTabText( i ), null, null, null );
 				if ( i < 9 )
 				{
@@ -824,7 +823,7 @@ namespace JetBrains.Omea
 		}
 
 		/// <summary>
-		/// Loads the pane switcher state for all workspaces and all tabs currently present 
+		/// Loads the pane switcher state for all workspaces and all tabs currently present
 		/// in the UI and puts data in the _tabStates hash.
 		/// </summary>
 		public void RestoreTabStates()
@@ -868,9 +867,9 @@ namespace JetBrains.Omea
 	            _activeWorkspaceWatchList.ResourceChanged -= OnActiveWorkspaceChanged;
 	            _activeWorkspaceWatchList = null;
 	        }
-    
+
 	        _activeWorkspace = Core.WorkspaceManager.ActiveWorkspace;
-    
+
 	        int newWorkspaceID = (_activeWorkspace == null) ? 0 : _activeWorkspace.Id;
 	        if( _activeWorkspace != null )
 	        {
@@ -882,7 +881,7 @@ namespace JetBrains.Omea
 	        {
 	            _activeWorkspaceFilterList = null;
 	        }
-    
+
 	        int newSelectedIndex = GetWorkspaceTab( newWorkspaceID );
 	        if( newSelectedIndex != _tabBar.SelectedIndex &&
 	            newSelectedIndex >= 0 && newSelectedIndex < _tabBar.TabCount )
@@ -955,7 +954,7 @@ namespace JetBrains.Omea
 
                 Trace.WriteLine( "Showing panes in QuerySidebar" );
 				_querySidebar.ShowPanesForTab( tabId, state.SidebarState );
-                
+
                 ResourceTreePaneBase defaultViewPane = _querySidebar.DefaultViewPane as ResourceTreePaneBase;
                 if ( defaultViewPane != null )
                 {

@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Threading;
@@ -41,7 +40,7 @@ namespace CommonTests
             CloseStorage();
             Trace.Listeners.Remove( _traceListener );
         }
-        
+
         [Test]
         public void StressMTStorageTest()
         {
@@ -95,7 +94,7 @@ namespace CommonTests
                     _processors[ i ].QueueJob( new ChangeLinks( _storage ) );
                     _processors[ i ].QueueJob( new NewSimpleResourceType( _storage, count++ ) );
                     _processors[ i ].QueueJob( new NewSimpleLink( _storage ) );
-                    
+
                 }
             }
 
@@ -193,19 +192,19 @@ namespace CommonTests
         private IResourceStore _store;
         private static int _resourceTypeID = -1;
         private static int _linkTypeID = -1;
-        public NewSimpleLink( IResourceStore store ) 
+        public NewSimpleLink( IResourceStore store )
             : base()
-        { 
-            _store = store; 
+        {
+            _store = store;
         }
         protected override void Execute()
         {
             IResource res = _store.LoadResource( 28 );
             if ( _resourceTypeID == -1 )
             {
-                _resourceTypeID = 
+                _resourceTypeID =
                     _store.ResourceTypes.Register( "New Resource Type", string.Empty );
-                _linkTypeID = 
+                _linkTypeID =
                     _store.PropTypes.Register( "New Link", PropDataType.Link );
             }
             IResource target = _store.NewResource( "New Resource Type" );
@@ -215,10 +214,10 @@ namespace CommonTests
     internal class NewSimpleResource : AbstractJob
     {
         private IResourceStore _store;
-        public NewSimpleResource( IResourceStore store ) 
+        public NewSimpleResource( IResourceStore store )
             : base()
-        { 
-            _store = store; 
+        {
+            _store = store;
         }
         protected override void Execute()
         {
@@ -230,10 +229,10 @@ namespace CommonTests
     {
         private IResourceStore _store;
         private int _index;
-        public NewSimpleProperty( IResourceStore store, int index ) 
+        public NewSimpleProperty( IResourceStore store, int index )
             : base()
-        { 
-            _store = store; 
+        {
+            _store = store;
             _index = index;
         }
         protected override void Execute()
@@ -245,10 +244,10 @@ namespace CommonTests
     {
         private IResourceStore _store;
         private int _index;
-        public NewSimpleResourceType( IResourceStore store, int index ) 
+        public NewSimpleResourceType( IResourceStore store, int index )
             : base()
-        { 
-            _store = store; 
+        {
+            _store = store;
             _index = index;
         }
         protected override void Execute()

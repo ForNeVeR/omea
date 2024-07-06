@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -47,7 +46,7 @@ namespace JetBrains.Omea.OutlookPlugin
             //if ( exception is NullReferenceException )
             MsgBox.Error( "Outlook Plugin", "Operation cannot be completed.\nReason: " + exception.Message );
         }
-        
+
         public static ArrayList GetRecipientsArray( EmailRecipient[] recipients )
         {
             if ( recipients == null )
@@ -112,7 +111,7 @@ namespace JetBrains.Omea.OutlookPlugin
             try
             {
                 outlook = new _com_Outlook_Application();
-            
+
                 session = outlook.NameSpace;
                 session.Logon( );
                 mailItem = session.GetItemFromID( EntryID, StoreID );
@@ -139,17 +138,17 @@ namespace JetBrains.Omea.OutlookPlugin
         public abstract bool ReplyAllMessage( IResource mail, string EntryID, string StoreID );
         public abstract bool ReplyMessage( IResource mail, string EntryID, string StoreID );
         public abstract bool DisplayMessage( string EntryID, string StoreID );
-        public abstract bool CreateNewMessage( string subject, string body, EmailBodyFormat bodyFormat, IResourceList recipients, 
+        public abstract bool CreateNewMessage( string subject, string body, EmailBodyFormat bodyFormat, IResourceList recipients,
             string[] attachments, bool useTemplatesInBody );
-        public abstract bool CreateNewMessage( string subject, string body, EmailBodyFormat bodyFormat, EmailRecipient[] recipients, 
+        public abstract bool CreateNewMessage( string subject, string body, EmailBodyFormat bodyFormat, EmailRecipient[] recipients,
             string[] attachments, bool useTemplatesInBody );
-        
+
     }
     public class EMapiFormHelper : FormHelper
     {
         private static Regex _rxHtmlComment = new Regex( @"\<\!\-\-.+\-\-\>", RegexOptions.Singleline );
 
-        public override bool CreateNewMessage( string subject, string body, EmailBodyFormat bodyFormat, EmailRecipient[] recipients, 
+        public override bool CreateNewMessage( string subject, string body, EmailBodyFormat bodyFormat, EmailRecipient[] recipients,
             string[] attachments, bool useTemplatesInBody )
         {
             ArrayList recipList = GetRecipientsArray( recipients );
@@ -163,7 +162,7 @@ namespace JetBrains.Omea.OutlookPlugin
             }
             return CreateNewMessage( subject, body, bodyFormat, recipList, attachList, useTemplatesInBody );
         }
-        public override bool CreateNewMessage( string subject, string body, EmailBodyFormat bodyFormat, IResourceList recipients, 
+        public override bool CreateNewMessage( string subject, string body, EmailBodyFormat bodyFormat, IResourceList recipients,
             string[] attachments, bool useTemplatesInBody )
         {
             ArrayList recipList = GetRecipientsArray( recipients );
@@ -178,7 +177,7 @@ namespace JetBrains.Omea.OutlookPlugin
             return CreateNewMessage( subject, body, bodyFormat, recipList, attachList, useTemplatesInBody );
         }
 
-        private bool CreateNewMessage( string subject, string body, EmailBodyFormat bodyFormat, ArrayList recipients, 
+        private bool CreateNewMessage( string subject, string body, EmailBodyFormat bodyFormat, ArrayList recipients,
             ArrayList attachments, bool useTemplatesInBody )
         {
             try
@@ -210,7 +209,7 @@ namespace JetBrains.Omea.OutlookPlugin
                 IEMsgStore msgStore = OutlookSession.GetDefaultMsgStore();
                 if ( msgStore != null )
                 {
-                    return msgStore.CreateNewMessage( subject, body, mailBodyFormat, recipients, 
+                    return msgStore.CreateNewMessage( subject, body, mailBodyFormat, recipients,
                         attachments, OutlookSession.GetOutlookDefaultEncodingOut() );
                 }
                 else
@@ -486,7 +485,7 @@ namespace JetBrains.Omea.OutlookPlugin
             #endregion
         }
 
-        private bool CreateNewMessage( string subject, string body, EmailBodyFormat bodyFormat, ArrayList recipients, 
+        private bool CreateNewMessage( string subject, string body, EmailBodyFormat bodyFormat, ArrayList recipients,
             string[] attachments, bool useTemplatesInBody, ArrayList categories )
         {
             Settings.LoadSettings();
@@ -556,10 +555,10 @@ namespace JetBrains.Omea.OutlookPlugin
                 COM_Object.ReleaseIfNotNull( newMail );
                 COM_Object.ReleaseIfNotNull( outlook );
             }
-            return false;       
+            return false;
         }
 
-        public override bool CreateNewMessage( string subject, string body, EmailBodyFormat bodyFormat, EmailRecipient[] recipients, 
+        public override bool CreateNewMessage( string subject, string body, EmailBodyFormat bodyFormat, EmailRecipient[] recipients,
             string[] attachments, bool useTemplatesInBody )
         {
             ArrayList recipientsArray = null;
@@ -569,7 +568,7 @@ namespace JetBrains.Omea.OutlookPlugin
             }
             return CreateNewMessage( subject, body, bodyFormat, recipientsArray, attachments, useTemplatesInBody, null );
         }
-        public override bool CreateNewMessage( string subject, string body, EmailBodyFormat bodyFormat, IResourceList recipients, 
+        public override bool CreateNewMessage( string subject, string body, EmailBodyFormat bodyFormat, IResourceList recipients,
             string[] attachments, bool useTemplatesInBody )
         {
             ArrayList recipientsArray = null;
@@ -632,20 +631,20 @@ namespace JetBrains.Omea.OutlookPlugin
             get
             {
                 return Settings.UseFormsWithOutlookModel ? _outlookFormHelper : _mapiFormHelper;
-            } 
+            }
         }
 
         static public IEmailService GetEmailService()
         {
             return (IEmailService) Core.PluginLoader.GetPluginService( typeof( IEmailService ) );
         }
-        
-        static public void CreateNewMessage( string subject, string body, EmailBodyFormat bodyFormat, IResourceList recipients, 
+
+        static public void CreateNewMessage( string subject, string body, EmailBodyFormat bodyFormat, IResourceList recipients,
             string[] attachments, bool useTemplatesInBody )
         {
             FormHelper.CreateNewMessage( subject, body, bodyFormat, recipients, attachments, useTemplatesInBody );
         }
-        static public void CreateNewMessage( string subject, string body, EmailBodyFormat bodyFormat, EmailRecipient[] recipients, 
+        static public void CreateNewMessage( string subject, string body, EmailBodyFormat bodyFormat, EmailRecipient[] recipients,
             string[] attachments, bool useTemplatesInBody )
         {
             FormHelper.CreateNewMessage( subject, body, bodyFormat, recipients, attachments, useTemplatesInBody );

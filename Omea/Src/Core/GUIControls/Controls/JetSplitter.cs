@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.ComponentModel;
@@ -116,10 +115,10 @@ namespace JetBrains.Omea.GUIControls
 	    private void UpdateLayout()
 	    {
 	        _isVertical = ( Dock == DockStyle.Left || Dock == DockStyle.Right );
-    
+
 	        _splitterSize = _isVertical ? ClientSize.Height : ClientSize.Width;
 	        _splitterCenterSize = Math.Min( 120, (int) (_splitterSize * 0.7) );
-    
+
 	        if ( _isVertical )
 	        {
 	            _splitterCenterRect = new Rectangle( ClientRectangle.Left,
@@ -132,7 +131,7 @@ namespace JetBrains.Omea.GUIControls
 	        }
 	        else
 	        {
-	            _splitterCenterRect = new Rectangle( 
+	            _splitterCenterRect = new Rectangle(
 	                ClientRectangle.Left + (ClientRectangle.Width - _splitterCenterSize) / 2,
 	                ClientRectangle.Top,
 	                _splitterCenterSize,
@@ -158,7 +157,7 @@ namespace JetBrains.Omea.GUIControls
 
             if ( _fillGradient )
             {
-                Brush backBrush = new LinearGradientBrush( ClientRectangle, 
+                Brush backBrush = new LinearGradientBrush( ClientRectangle,
                     SystemColors.ControlLightLight, SystemColors.ControlDark,
                     _isVertical ? LinearGradientMode.Horizontal : LinearGradientMode.Vertical );
                 using( backBrush )
@@ -171,8 +170,8 @@ namespace JetBrains.Omea.GUIControls
 
             if ( _fillCenterRect )
             {
-                ColorScheme.DrawRectangle( e.Graphics, _colorScheme, "Splitter.CenterBorder", 
-                    new Rectangle( rcSplitterCenter.Left, rcSplitterCenter.Top, 
+                ColorScheme.DrawRectangle( e.Graphics, _colorScheme, "Splitter.CenterBorder",
+                    new Rectangle( rcSplitterCenter.Left, rcSplitterCenter.Top,
                     rcSplitterCenter.Width-1, rcSplitterCenter.Height-1 ),
                     SystemPens.Control );
             }
@@ -188,7 +187,7 @@ namespace JetBrains.Omea.GUIControls
 
             if ( _fillCenterRect && rcSplitterCenter.Width > 0 && rcSplitterCenter.Height > 0 )
             {
-                ColorScheme.FillRectangle( e.Graphics, _colorScheme, 
+                ColorScheme.FillRectangle( e.Graphics, _colorScheme,
                     _isVertical ? "Splitter.CenterVert" : "Splitter.CenterHorz",
                     rcSplitterCenter, SystemBrushes.Control );
             }
@@ -210,14 +209,14 @@ namespace JetBrains.Omea.GUIControls
 
                 if ( Dock == DockStyle.Top && _controlToCollapse.Visible )
                 {
-                    e.Graphics.FillPolygon( arrowBrush, 
+                    e.Graphics.FillPolygon( arrowBrush,
                         new Point[] { new Point( _splitterCenter -_splitterArrowSize, ClientRectangle.Bottom-1 ),
                                         new Point( _splitterCenter + _splitterArrowSize + 1, ClientRectangle.Bottom-1 ),
                                         new Point( _splitterCenter, ClientRectangle.Top-1 ) } );
                 }
                 if ( Dock == DockStyle.Top && !_controlToCollapse.Visible )
                 {
-                    e.Graphics.FillPolygon( arrowBrush, 
+                    e.Graphics.FillPolygon( arrowBrush,
                         new Point[] { new Point( _splitterCenter - _splitterArrowSize, ClientRectangle.Top ),
                                         new Point( _splitterCenter + _splitterArrowSize + 1, ClientRectangle.Top ),
                                         new Point( _splitterCenter, ClientRectangle.Bottom ) } );
@@ -225,7 +224,7 @@ namespace JetBrains.Omea.GUIControls
                 if ( ( Dock == DockStyle.Left && _controlToCollapse.Visible ) ||
                         ( Dock == DockStyle.Right && !_controlToCollapse.Visible ) )
                 {
-                    e.Graphics.FillPolygon( arrowBrush, 
+                    e.Graphics.FillPolygon( arrowBrush,
                         new Point[] { new Point( ClientRectangle.Right-1, _splitterCenter -_splitterArrowSize ),
                                         new Point( ClientRectangle.Right-1, _splitterCenter + _splitterArrowSize + 1 ),
                                         new Point( ClientRectangle.Left-1, _splitterCenter ) } );
@@ -233,7 +232,7 @@ namespace JetBrains.Omea.GUIControls
                 if ( ( Dock == DockStyle.Right && _controlToCollapse.Visible ) ||
                         ( Dock == DockStyle.Left && !_controlToCollapse.Visible ) )
                 {
-                    e.Graphics.FillPolygon( arrowBrush, 
+                    e.Graphics.FillPolygon( arrowBrush,
                         new Point[] { new Point( ClientRectangle.Left, _splitterCenter -_splitterArrowSize ),
                                         new Point( ClientRectangle.Left, _splitterCenter + _splitterArrowSize + 1 ),
                                         new Point( ClientRectangle.Right, _splitterCenter ) } );
@@ -241,8 +240,8 @@ namespace JetBrains.Omea.GUIControls
             }
             else
             {
-                for( int coord=_splitterCenter - _splitterCenterSize/2 + 10; 
-                     coord < _splitterCenter + _splitterCenterSize/2 - 10; 
+                for( int coord=_splitterCenter - _splitterCenterSize/2 + 10;
+                     coord < _splitterCenter + _splitterCenterSize/2 - 10;
                      coord += 3 )
                 {
                     DrawCenterDot( e.Graphics, coord );
@@ -253,7 +252,7 @@ namespace JetBrains.Omea.GUIControls
         private void DrawCenterDot( Graphics g, int coord )
         {
             Rectangle rcDot = _isVertical
-                ? new Rectangle( _splitterMiddle, coord, 1, 1 ) 
+                ? new Rectangle( _splitterMiddle, coord, 1, 1 )
                 : new Rectangle( coord, _splitterMiddle, 1, 1 );
 
             ColorScheme.DrawRectangle( g, _colorScheme, "Splitter.Dot", rcDot, Pens.Black );

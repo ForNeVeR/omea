@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Drawing;
@@ -78,13 +77,13 @@ namespace JetBrains.Omea.OutlookPlugin
 			Core.PluginLoader.RegisterResourceUIHandler( STR.MAPIFolder, _outlookUIHandler );
 			Core.PluginLoader.RegisterResourceDragDropHandler( STR.MAPIFolder, _outlookUIHandler );
 			Core.PluginLoader.RegisterResourceDragDropHandler( Core.ResourceTreeManager.GetRootForType( STR.MAPIFolder ).Type, new OutlookRootDragDropHandler());
-                
+
             IUIManager uiManager = Core.UIManager;
 
             Core.TabManager.RegisterResourceTypeTab( "Email", "Mail", new[] { STR.Email, STR.MAPIFolder }, PROP.Attachment, 1 );
 
             Image img = Utils.TryGetEmbeddedResourceImageFromAssembly( Assembly.GetExecutingAssembly(), "OutlookPlugin.Icons.Folders24.png" );
-            IResourceTreePane outlookFolders = 
+            IResourceTreePane outlookFolders =
                 Core.LeftSidebar.RegisterResourceStructureTreePane( "MAPIFolders", "Email", "Outlook Folders", img, STR.MAPIFolder);
             if ( outlookFolders != null )
             {
@@ -102,7 +101,7 @@ namespace JetBrains.Omea.OutlookPlugin
 
         	img = Utils.TryGetEmbeddedResourceImageFromAssembly( Assembly.GetExecutingAssembly(), "OutlookPlugin.Icons.Correspondents24.png" );
             Core.LeftSidebar.RegisterViewPane( "Correspondents", "Email", "Correspondents", img, correspondentPane );
-            
+
             img = Utils.TryGetEmbeddedResourceImageFromAssembly( Assembly.GetExecutingAssembly(), "OutlookPlugin.Icons.Attachments24.png" );
             Core.LeftSidebar.RegisterViewPane( "Attachments", "Email", "Attachments", img, new AttachmentsCtrl() );
             Core.LeftSidebar.RegisterViewPaneShortcut( "Attachments", Keys.Control | Keys.Alt | Keys.T );
@@ -147,7 +146,7 @@ namespace JetBrains.Omea.OutlookPlugin
             //-----------------------------------------------------------------
             Core.PluginLoader.RegisterPluginService( this );
 
-            Core.ResourceIconManager.RegisterPropTypeIcon( PROP.Attachment, 
+            Core.ResourceIconManager.RegisterPropTypeIcon( PROP.Attachment,
                 LoadIconFromAssembly( "OutlookPlugin.Icons.attachment.ico" ) );
 
             Core.ResourceBrowser.RegisterLinksPaneFilter( STR.Email, new OutlookLinksPaneFilter() );
@@ -181,33 +180,33 @@ namespace JetBrains.Omea.OutlookPlugin
         {
             IUIManager uiManager = Core.UIManager;
             uiManager.RegisterOptionsGroup( "MS Outlook", "This option group contains several pages of setting that control the way [product name] works with Microsoft Outlook's e-mail client." );
-            
+
             OptionsPaneCreator outlookPaneCreator =OutlookOptionsPane.OutlookOptionsPaneCreator;
             uiManager.RegisterOptionsPane( "MS Outlook", STR.OUTLOOK_GENERAL, outlookPaneCreator,
                                            "The Outlook General options enable you to control e-mail delivery, change e-mail addresses that [product name] recognizes as yours, control the display of embedded pictures, control the marking of messages after forwards or replies, and to create [product name] categories from Outlook mailing lists." );
 
-            uiManager.RegisterWizardPane( STR.OUTLOOK_GENERAL, OutlookOptionsPane.OutlookOptionsPaneCreator, 3 );            
+            uiManager.RegisterWizardPane( STR.OUTLOOK_GENERAL, OutlookOptionsPane.OutlookOptionsPaneCreator, 3 );
 
             if ( Core.ResourceStore.GetAllResources( STR.MAPIInfoStore ).Count > 1 )
             {
                 uiManager.RegisterOptionsPane( "MS Outlook", "Outlook Information Stores", OutlookOptionsPane_InfoStores.CreateOptionsPane,
                     "The Outlook Information Stores options enable you to select which information stores are included in indexing." );
 
-                uiManager.RegisterWizardPane( "Outlook Information Stores", OutlookOptionsPane_InfoStores.CreateOptionsPane, 4 );            
+                uiManager.RegisterWizardPane( "Outlook Information Stores", OutlookOptionsPane_InfoStores.CreateOptionsPane, 4 );
             }
             else
             {
                 OutlookSession.OutlookProcessor.SynchronizeFolderStructure();
                 OutlookSession.OutlookProcessor.SynchronizeOutlookAddressBooks();
             }
-            
+
             OptionsPaneCreator outlookPaneCreatorIgnoredFolders = OutlookOptionsPane_IgnoredFolders.OptionsPaneCreator;
             uiManager.RegisterOptionsPane( "MS Outlook", STR.OUTLOOK_FOLDERS, outlookPaneCreatorIgnoredFolders,
                                            "The Outlook Folders options enable you specify which Outlook folders are indexed by [product name]." );
             uiManager.RegisterWizardPane( STR.OUTLOOK_FOLDERS, outlookPaneCreatorIgnoredFolders, 5 );
-    
+
             OptionsPaneCreator outlookPaneCreatorAddressBooks = OutlookOptionsPane_AddressBooks.OptionsPaneCreator;
-    
+
             uiManager.RegisterOptionsPane( "MS Outlook", STR.OUTLOOK_ADDRESS_BOOKS, outlookPaneCreatorAddressBooks,
                                            "The Address Books options enable you to select which Outlook address books are accessible from within [product name]." );
             uiManager.RegisterWizardPane( STR.OUTLOOK_ADDRESS_BOOKS, outlookPaneCreatorAddressBooks, 6 );
@@ -216,7 +215,7 @@ namespace JetBrains.Omea.OutlookPlugin
             uiManager.RegisterOptionsPane( "MS Outlook", STR.OUTLOOK_TASKS_PANE, outlookPaneCreatorTasks,
                 "The Tasks options enable you to select which Outlook task folders are accessible from within [product name]." );
             uiManager.RegisterWizardPane( STR.OUTLOOK_TASKS_PANE, outlookPaneCreatorTasks, 7 );
-            
+
         }
 
         private static void RegisterCustomColumns()
@@ -290,7 +289,7 @@ namespace JetBrains.Omea.OutlookPlugin
 
         #region IEmailService Members
 
-        public void CreateEmail(string subject, string body, EmailBodyFormat bodyFormat, IResourceList recipients, string[] attachments, 
+        public void CreateEmail(string subject, string body, EmailBodyFormat bodyFormat, IResourceList recipients, string[] attachments,
             bool useTemplatesInBody )
         {
             if ( recipients != null && recipients.Count > 0 )
@@ -306,13 +305,13 @@ namespace JetBrains.Omea.OutlookPlugin
             CreateEmailDelegate emailDelegate = OutlookFacadeHelper.CreateNewMessage;
             try
             {
-                _outlookProcessor.RunJob( "Creation new mail", emailDelegate, 
+                _outlookProcessor.RunJob( "Creation new mail", emailDelegate,
                     subject, body, bodyFormat, recipients, attachments, useTemplatesInBody );
             }
             catch ( OutlookThreadTimeoutException ex )
             {
                 _tracer.TraceException( ex );
-                _outlookProcessor.QueueJob( JobPriority.AboveNormal, "Creation new mail", emailDelegate, 
+                _outlookProcessor.QueueJob( JobPriority.AboveNormal, "Creation new mail", emailDelegate,
                     subject, body, bodyFormat, recipients, attachments, useTemplatesInBody );
             }
         }
@@ -436,7 +435,7 @@ namespace JetBrains.Omea.OutlookPlugin
         public virtual void Draw( IResource res, Graphics g, Rectangle rc )
         {
             int x = rc.Left + (rc.Width - _imageList.ImageSize.Width) / 2;
-            
+
             if ( res.HasProp( _idAttach ) )
             {
                 _imageList.Draw( g, x, rc.Top, 1 );
@@ -480,7 +479,7 @@ namespace JetBrains.Omea.OutlookPlugin
 
         public virtual bool ShowContextMenu( IActionContext context, Control ownerControl, Point pt )
         {
-            return false;        	
+            return false;
         }
 	}
 }

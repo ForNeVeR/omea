@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -27,14 +26,14 @@ namespace JetBrains.Omea.GUIControls
 	/**
      * A tree view displaying a resource in each of its nodes.
      */
-    
+
     public class ResourceTreeView: CustomTreeView
 	{
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
 		private System.ComponentModel.Container components = null;
-        
+
         private IResource           _rootResource;
         private int                 _parentProperty    = -1;
         private int                 _openProperty      = -1;
@@ -167,7 +166,7 @@ namespace JetBrains.Omea.GUIControls
              * remove events have been processed, so the check for existing nodes
              * will work correctly.
              */
-            
+
             internal void ProcessPostponedUpdates()
             {
                 foreach( int resourceID in _postponedResourceAdds )
@@ -189,11 +188,11 @@ namespace JetBrains.Omea.GUIControls
                     }
                     return null;
                 }
-                
+
                 IResource res;
 
                 // if the tree is filtered, we can't use the list index as the insert position
-                // => find the previous visible node and use its index + 1                
+                // => find the previous visible node and use its index + 1
                 int listIndex = _childResources.IndexOf( resourceId );
                 int insertIndex = 0;
                 while( listIndex > 0 )
@@ -207,7 +206,7 @@ namespace JetBrains.Omea.GUIControls
                         break;
                     }
                 }
-                
+
                 try
                 {
                     res = Core.ResourceStore.LoadResource( resourceId );
@@ -216,7 +215,7 @@ namespace JetBrains.Omea.GUIControls
                 {
                     return null;
                 }
-                
+
                 TreeNode newNode = _tree.AddResourceNode( _node, insertIndex, res );
                 return newNode;
             }
@@ -226,7 +225,7 @@ namespace JetBrains.Omea.GUIControls
                 IResource res = Core.ResourceStore.LoadResource( ev.ResourceID );
                 if ( CheckRefreshFilter( res ) )
                     return;
-                    
+
                 TreeNode node = _tree.GetResourceNode( _node, ev.ResourceID );
                 if ( node != null )
                 {
@@ -242,7 +241,7 @@ namespace JetBrains.Omea.GUIControls
                         _tree.UpdateNodeRichText( node, false );
                     }
 
-                    if ( _tree.IsHandleCreated && node.Nodes.Count == 0 && 
+                    if ( _tree.IsHandleCreated && node.Nodes.Count == 0 &&
                         res.GetLinksTo( null, _tree.ParentProperty ).Count > 0 )
                     {
                         _tree.SetNodeChildCount( node, 1 );
@@ -274,7 +273,7 @@ namespace JetBrains.Omea.GUIControls
                 }
                 return false;
             }
-            
+
             private void ProcessNodeRemove( int resourceID )
             {
                 TreeNode node = _tree.GetResourceNode( _node, resourceID );
@@ -303,7 +302,7 @@ namespace JetBrains.Omea.GUIControls
                     {
                         Trace.WriteLine( "Null reference exception when removing node from tree" );
                     }
-                    
+
                     _tree.RemoveResourceNode( resourceID );
                     if ( _tree.IsHandleCreated && parent != null && parent.Nodes.Count == 0 )
                     {
@@ -357,7 +356,7 @@ namespace JetBrains.Omea.GUIControls
             _garbageRemoveTimer = new Timer( components );
             _garbageRemoveTimer.Interval = 300;
             _garbageRemoveTimer.Tick += _garbageRemoveTimer_OnTick;
-            
+
             _searchWindow.TreeView = this;
 
             if ( ICore.Instance != null )
@@ -406,7 +405,7 @@ namespace JetBrains.Omea.GUIControls
 
 		#region Component Designer generated code
 		/// <summary>
-		/// Required method for Designer support - do not modify 
+		/// Required method for Designer support - do not modify
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent()
@@ -522,11 +521,11 @@ namespace JetBrains.Omea.GUIControls
         }
 
         /**
-         * If DelaySaveChecked is set, the Checked property of the nodes is set not 
+         * If DelaySaveChecked is set, the Checked property of the nodes is set not
          * immediately after a checkbox has been toggled, but by an explicit call to
          * SaveCheckedState().
          */
-        
+
         [DefaultValue(false)]
         public bool DelaySaveChecked
         {
@@ -544,7 +543,7 @@ namespace JetBrains.Omea.GUIControls
         [Browsable(false), DefaultValue(null)]
         public IResource SelectedResource
         {
-            get 
+            get
             {
                 if ( SelectedNode == null )
                     return null;
@@ -594,7 +593,7 @@ namespace JetBrains.Omea.GUIControls
 
         [DefaultValue(false)]
         public bool DropOnEmpty
-        { 
+        {
             get { return _dropOnEmpty; }
             set { _dropOnEmpty = value; }
         }
@@ -648,7 +647,7 @@ namespace JetBrains.Omea.GUIControls
         public event ResourceDragEventHandler ResourceDrop;
         public event TreeViewEventHandler ResourceAdded;
 
-        
+
         /**
          * Sets the root resource and parent property ID in a single call,
          * and does not update the tree.
@@ -659,7 +658,7 @@ namespace JetBrains.Omea.GUIControls
             _rootResource = root;
             _parentProperty = parentProp;
         }
-        
+
         public void AddNodeDecorator( IResourceNodeDecorator decorator )
         {
             AddNodeDecorator( decorator, false );
@@ -698,7 +697,7 @@ namespace JetBrains.Omea.GUIControls
          * Removes the specified filter from the tree. Returns true if the filter
          * was actually removed.
          */
-        
+
         public bool RemoveNodeFilter( IResourceNodeFilter filter )
         {
             int index = _nodeFilters.IndexOf( filter );
@@ -729,13 +728,13 @@ namespace JetBrains.Omea.GUIControls
          * @param keepSelection If false, the selection will not be set to the node
          * which was previously selected.
          */
-        
+
         public void UpdateNodeFilter( bool keepSelection )
         {
             // if the handle has not yet been created, the tree was not yet built,
             // so when the handle is created, it will be built with the correct filter
             if ( IsHandleCreated )
-            {           
+            {
                 if ( keepSelection )
                     _resourceToSelect = SelectedResource;
                 else
@@ -809,7 +808,7 @@ namespace JetBrains.Omea.GUIControls
             _resourceToNodeMap.Clear();
             _resourceToNodeMapNew.Clear();
         }
-        
+
         private void RecreateTree()
         {
             ClearNodeData();
@@ -918,18 +917,18 @@ namespace JetBrains.Omea.GUIControls
             {
                 children = _resourceChildProvider.GetChildResources( this, parent );
             }
-    
+
             if ( children == null )
             {
                 children = parent.GetLinksToLive( null, _parentProperty );
-            
+
                 string nodeSort = Core.ResourceTreeManager.GetResourceNodeSort( parent );
                 if ( nodeSort != null )
                 {
                     children.Sort( nodeSort );
                 }
             }
-    
+
             ResourceNodeData parentData = new ResourceNodeData( this, parentNode, children );
             _nodeData [parent.Id] = parentData;
             return children;
@@ -941,7 +940,7 @@ namespace JetBrains.Omea.GUIControls
             {
                 return null;
             }
-            
+
             int iconIndex = -1;
             if ( ICore.Instance != null )
             {
@@ -1053,7 +1052,7 @@ namespace JetBrains.Omea.GUIControls
         /**
          * Gets the level of the node (0 if node=null, 1 if node is a top-level node, and so on)
          */
-        
+
         private static int GetNodeLevel( TreeNode node )
         {
             int level = 0;
@@ -1069,7 +1068,7 @@ namespace JetBrains.Omea.GUIControls
          * Checks if the specified node, with the specified parent node, matches the
          * tree filter conditions.
          */
-        
+
         public bool FiltersAccept( IResource res, TreeNode parentNode )
         {
             int level = GetNodeLevel( parentNode );
@@ -1087,7 +1086,7 @@ namespace JetBrains.Omea.GUIControls
          * Notifies the tree that because of a change in filtering conditions the specified
          * node matches or no longer matches the filtering conditions.
          */
-        
+
         public void RefreshFilterForNode( IResource res )
         {
             if ( InvokeRequired && IsHandleCreated )
@@ -1235,12 +1234,12 @@ namespace JetBrains.Omea.GUIControls
             if ( _checkedProperty != -1 && !_delaySaveChecked )
             {
                 IResource res = (IResource) e.Node.Tag;
-                new ResourceProxy( res ).SetPropAsync( _checkedProperty, 
+                new ResourceProxy( res ).SetPropAsync( _checkedProperty,
                     e.Node.Checked ? _checkedSetValue : _checkedUnsetValue );
             }
         }
 
-        private void OnResourceOperationFinished( object sender, EventArgs e ) 
+        private void OnResourceOperationFinished( object sender, EventArgs e )
         {
             if ( !IsHandleCreated )
                 return;
@@ -1266,7 +1265,7 @@ namespace JetBrains.Omea.GUIControls
          * to be processed at the end of the resource operation, or processes it
          * immediately if it was not invoked from the resource thread.
          */
-        
+
         private void OnDecorationChanged( object sender, ResourceEventArgs e )
         {
             if ( Core.State == CoreState.ShuttingDown )
@@ -1303,7 +1302,7 @@ namespace JetBrains.Omea.GUIControls
          * Processes the changes in resource tree nodes that have been accumulated by operations
          * running in the resource thread.
          */
-        
+
         public void ProcessPendingUpdates()
         {
             if ( Core.State == CoreState.ShuttingDown )
@@ -1337,11 +1336,11 @@ namespace JetBrains.Omea.GUIControls
                 {
                     oldSelectedResource = SelectedResource;
                 }
-            
+
                 // ResourceNodeData.ProcessPendingUpdates() can modify the hashtable,
                 // so we cannot use foreach enumeration
                 ArrayList dataToUpdate = ArrayListPool.Alloc();
-                try 
+                try
                 {
                     foreach( IntHashTable.Entry entry in _nodeData )
                     {
@@ -1349,17 +1348,17 @@ namespace JetBrains.Omea.GUIControls
                     }
                     foreach( ResourceNodeData resourceNodeData in dataToUpdate )
                     {
-                        resourceNodeData.ProcessPendingUpdates();                
+                        resourceNodeData.ProcessPendingUpdates();
                     }
                 }
-                finally 
+                finally
                 {
                     ArrayListPool.Dispose( dataToUpdate );
                 }
 
                 foreach ( ResourceNodeData resourceNodeData in _postponedUpdateNodeData )
                 {
-                    resourceNodeData.ProcessPostponedUpdates();              
+                    resourceNodeData.ProcessPostponedUpdates();
                 }
                 _postponedUpdateNodeData.Clear();
                 foreach( int resourceId in _postponedRemoveNodeData )
@@ -1439,7 +1438,7 @@ namespace JetBrains.Omea.GUIControls
         /**
          * Handles the WM_CONTEXTMENU message to show the context menu for the node.
          */
-        
+
         protected override void WndProc( ref Message m )
         {
             if ( m.Msg == Win32Declarations.WM_LBUTTONDOWN )
@@ -1459,7 +1458,7 @@ namespace JetBrains.Omea.GUIControls
             }
 
             base.WndProc( ref m );
-            if ( m.Msg == Win32Declarations.WM_CONTEXTMENU && ICore.Instance != null && 
+            if ( m.Msg == Win32Declarations.WM_CONTEXTMENU && ICore.Instance != null &&
                 _showContextMenu && Visible && IsHandleCreated )
             {
                 Point selectedNodeTop = new Point( 0, 0 );
@@ -1512,9 +1511,9 @@ namespace JetBrains.Omea.GUIControls
             TreeNode node;
             if ( Nodes.Count == 0 )
                 return null;
-    
+
             ArrayList parentStack = ArrayListPool.Alloc();
-            try 
+            try
             {
                 IResource parent = res;
                 do
@@ -1524,7 +1523,7 @@ namespace JetBrains.Omea.GUIControls
                     if ( parent == null )
                         return null;
                 } while( parent != _rootResource );
-    
+
                 node = Nodes [0];
                 foreach( IResource parentRes in parentStack )
                 {
@@ -1546,7 +1545,7 @@ namespace JetBrains.Omea.GUIControls
         }
 
         /**
-         * Selects the node tagged with the specified resource. Returns true if 
+         * Selects the node tagged with the specified resource. Returns true if
          * the node was found in the tree, false otherwise.
          */
 
@@ -1568,7 +1567,7 @@ namespace JetBrains.Omea.GUIControls
                 SelectedNode = null;
                 return true;
             }
-            
+
             TreeNode node = FindResourceNode( res );
             if ( node != null )
             {
@@ -1598,9 +1597,9 @@ namespace JetBrains.Omea.GUIControls
                 SelectedNode = null;
                 return;
             }
-            
+
             ArrayList treeNodes = ArrayListPool.Alloc();
-            try 
+            try
             {
                 foreach( IResource res in resList )
                 {
@@ -1652,10 +1651,10 @@ namespace JetBrains.Omea.GUIControls
          * When items are dragged, stores the ResourceList of the selected node
          * to the drag object.
          */
-        
+
         protected override void OnItemDrag( ItemDragEventArgs e )
         {
-            IResourceList resList; 
+            IResourceList resList;
             TreeNode dragNode = (TreeNode) e.Item;
             if ( dragNode.IsSelected )
             {
@@ -1708,7 +1707,7 @@ namespace JetBrains.Omea.GUIControls
                     IResource target = (node == null) ? null : (IResource) node.Tag;
                     ResourceDragEventArgs args = new ResourceDragEventArgs( target, droppedResources );
                     ResourceDragOver( this, args );
-                    drgevent.Effect = args.Effect;                
+                    drgevent.Effect = args.Effect;
                 }
             }
             else
@@ -1719,7 +1718,7 @@ namespace JetBrains.Omea.GUIControls
             {
                 _dropHighlightNode = node;
                 SetDropHighlightNode( node );
-            
+
                 if ( node != null && !node.IsExpanded )
                 {
                     _expandTimer.Stop();
@@ -1782,12 +1781,12 @@ namespace JetBrains.Omea.GUIControls
         {
             if ( _dragScrollUp )
             {
-                Win32Declarations.SendMessage( Handle, Win32Declarations.WM_VSCROLL, 
+                Win32Declarations.SendMessage( Handle, Win32Declarations.WM_VSCROLL,
                     new IntPtr( Win32Declarations.SB_LINEUP ), IntPtr.Zero );
             }
             else
             {
-                Win32Declarations.SendMessage( Handle, Win32Declarations.WM_VSCROLL, 
+                Win32Declarations.SendMessage( Handle, Win32Declarations.WM_VSCROLL,
                     new IntPtr( Win32Declarations.SB_LINEDOWN ), IntPtr.Zero );
             }
         }
@@ -1837,7 +1836,7 @@ namespace JetBrains.Omea.GUIControls
                     _lastKeyDownHandled = false;
                 }
             }
-            
+
             if ( !e.Handled && e.KeyData == Keys.F2 )
             {
                 if ( SelectedNode != null && LabelEdit )

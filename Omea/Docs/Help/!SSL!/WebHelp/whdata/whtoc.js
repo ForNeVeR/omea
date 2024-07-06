@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 //	WebHelp 5.10.001
 // const strings
@@ -18,10 +17,10 @@ function aPE(sProjPath, sRootPath)
 	gaProj[gaProj.length] = new tocProjEntry(sProjPath, sRootPath);
 }
 
-function tocProjEntry(sProjPath, sRootPath) 
+function tocProjEntry(sProjPath, sRootPath)
 {
 	if(sProjPath.lastIndexOf("/")!=sProjPath.length-1)
-		sProjPath+="/";	
+		sProjPath+="/";
 	this.sPPath = sProjPath;
 	this.sRPath = sRootPath;
 }

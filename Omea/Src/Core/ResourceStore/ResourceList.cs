@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -38,7 +37,7 @@ namespace JetBrains.Omea.ResourceStore
         private bool _explicitSort = false;
         private bool _updatePriority = false;
         private ValidResourcesEnumerable _validResourcesEnumerable = null;
-                                                      
+
         private event ResourceIndexEventHandler ResourceAddedInternal;
         private event ResourceIndexEventHandler ResourceDeletingInternal;
         private event ResourcePropIndexEventHandler ResourceChangedInternal;
@@ -54,7 +53,7 @@ namespace JetBrains.Omea.ResourceStore
         {
             _updatePriority = true;
         }
-        
+
         private void SetLive()
         {
             if ( !_handlersAttached )
@@ -119,7 +118,7 @@ namespace JetBrains.Omea.ResourceStore
         /**
          * Disconnects the handlers of the resource list and moves it back to predicate state.
          */
-        
+
         public void Deinstantiate()
         {
             lock( this )
@@ -204,7 +203,7 @@ namespace JetBrains.Omea.ResourceStore
                 ChangedResourceDeletingInternal -= value;
             }
         }
-		
+
         protected void Add( IResource res )
         {
             int index = -1;
@@ -324,7 +323,7 @@ namespace JetBrains.Omea.ResourceStore
          * change of the specified property. (If no watches have been added, changes of any
          * properties are reported to the client.
          */
-        
+
         public void AddPropertyWatch( int propID )
         {
             if ( propID == ResourceProps.DisplayName )
@@ -388,7 +387,7 @@ namespace JetBrains.Omea.ResourceStore
                     break;
 
                 case PredicateMatch.Match:
-                    if ( ( ResourceChangedInternal != null || _lastComparer != null ) && 
+                    if ( ( ResourceChangedInternal != null || _lastComparer != null ) &&
                         ChangesIntersectWatches( changeSet) )
                     {
                         int index = -1;
@@ -434,7 +433,7 @@ namespace JetBrains.Omea.ResourceStore
                             RemoveAt( prevResource, index-1, null );
                             index--;
                         }
-                        continue;                        
+                        continue;
                     }
                     prevCmpResult = _lastComparer.CompareResources( prevResource, res );
                     break;
@@ -453,12 +452,12 @@ namespace JetBrains.Omea.ResourceStore
                             }
                             RemoveAt( nextResource, index+1, null );
                         }
-                        continue;                        
+                        continue;
                     }
                     nextCmpResult = _lastComparer.CompareResources( res, nextResource );
                     break;
                 }
-                        
+
                 if ( prevCmpResult > 0 || nextCmpResult > 0 )
                 {
                     int newIndex;
@@ -479,41 +478,41 @@ namespace JetBrains.Omea.ResourceStore
 
         public int Count
         {
-            get 
-            { 
+            get
+            {
                 Instantiate();
-                return _list.Count; 
+                return _list.Count;
             }
         }
-		
+
         public IResource this[ int index ]
         {
-            get 
-            { 
+            get
+            {
                 Instantiate();
-                return MyPalStorage.Storage.LoadResource( _list [index], true, _predicate.GetKnownType() ); 
+                return MyPalStorage.Storage.LoadResource( _list [index], true, _predicate.GetKnownType() );
             }
         }
 
         public IResourceIdCollection ResourceIds
         {
-            get 
-            { 
+            get
+            {
                 Instantiate();
                 if ( _idCollection == null )
                 {
                     _idCollection = new ResourceIdCollection( this );
                 }
-                return _idCollection; 
+                return _idCollection;
             }
         }
 
         protected internal IntArrayList ResourceIdArray
         {
-            get 
-            { 
+            get
+            {
                 Instantiate();
-                return _list; 
+                return _list;
             }
         }
 
@@ -605,7 +604,7 @@ namespace JetBrains.Omea.ResourceStore
             {
                 return;
             }
-            
+
             MyPalStorage.Storage.OnResourceSaved( res, e.PropId, e.OldValue );
         }
 
@@ -613,7 +612,7 @@ namespace JetBrains.Omea.ResourceStore
          * Checks if any of the resources in the list has the property with
          * the specified name.
          */
-		
+
         public bool HasProp( string propName )
         {
             return HasProp( MyPalStorage.Storage.GetPropId( propName ) );
@@ -740,7 +739,7 @@ namespace JetBrains.Omea.ResourceStore
 
                     HashSet processedTypes = new HashSet();
                     ArrayList resTypeList = ArrayListPool.Alloc();
-                    try 
+                    try
                     {
                         foreach( IResource res in ValidResources )
                         {
@@ -802,11 +801,11 @@ namespace JetBrains.Omea.ResourceStore
         {
             if ( MyPalStorage.Storage.GetPropDataType( propId ) == PropDataType.Link )
                 return res.GetPropText( propId );
-    
+
             object propValue = GetPropValue( res, propId );
             if ( propValue == null )
                 return "";
-    
+
             if ( propValue is Double )
             {
                 double dblValue = (double) propValue;
@@ -817,7 +816,7 @@ namespace JetBrains.Omea.ResourceStore
         }
 
         /**
-         * Checks if the object at the specified index in the list has the 
+         * Checks if the object at the specified index in the list has the
          * specified property.
          */
 
@@ -838,8 +837,8 @@ namespace JetBrains.Omea.ResourceStore
 
         public string SortProps
         {
-            get 
-            { 
+            get
+            {
                 if ( _lastComparer == null )
                     return "";
                 return _lastComparer.SortSettings.ToString( MyPalStorage.Storage );
@@ -911,7 +910,7 @@ namespace JetBrains.Omea.ResourceStore
          * Finds an index in the sorted order where the specified resource
          * should be inserted.
          */
-		
+
         private int FindInsertIndex( IResource res )
         {
             if ( _lastComparer == null )
@@ -1057,7 +1056,7 @@ namespace JetBrains.Omea.ResourceStore
             // to reduce the overhead on multiple resource cache accesses, sort the
             // IResource ArrayList instead of the actual resource ID list
             IResource[] resList = new IResource [_list.Count];
-    
+
             int destCount = 0;
             if ( instantiating )
             {
@@ -1067,7 +1066,7 @@ namespace JetBrains.Omea.ResourceStore
                 {
                     try
                     {
-                        IResource res = MyPalStorage.Storage.LoadResource( _list [i], true, 
+                        IResource res = MyPalStorage.Storage.LoadResource( _list [i], true,
                             _predicate.GetKnownType() );
                         if ( !res.IsDeleted )
                         {
@@ -1084,14 +1083,14 @@ namespace JetBrains.Omea.ResourceStore
             {
                 for( int i=0; i<_list.Count; i++ )
                 {
-                    resList [i] = MyPalStorage.Storage.LoadResource( _list [i], true, 
+                    resList [i] = MyPalStorage.Storage.LoadResource( _list [i], true,
                         _predicate.GetKnownType() );
                 }
                 destCount = _list.Count;
             }
-    
+
             Array.Sort( resList, 0, destCount, _lastComparer );
-    
+
             if ( instantiating )
             {
                 int destIndex = 0;
@@ -1209,9 +1208,9 @@ namespace JetBrains.Omea.ResourceStore
                     return MergeListData( destList, srcList );
                 }
             }
-            
+
             UnionPredicate pred = new UnionPredicate( _predicate, otherList._predicate );
-            
+
             ResourceList result = new ResourceList( pred, _isLive || otherList.IsLive );
             return MergeListData( result, this, otherList );
         }
@@ -1266,7 +1265,7 @@ namespace JetBrains.Omea.ResourceStore
          * Merges the data on liveness, virtual properties, sorting from the source list
          * into the destination list.
          */
-        
+
         private static ResourceList MergeListData( ResourceList dest, ResourceList source )
         {
             if ( source.IsLive )

@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Diagnostics;
@@ -11,7 +10,7 @@ using JetBrains.Omea.OpenAPI;
 namespace JetBrains.Omea.SamplePlugins.Dictionary
 {
 	/// <summary>
-	/// Sample plugin for JetBrains Omea which allows to look up the selected word 
+	/// Sample plugin for JetBrains Omea which allows to look up the selected word
 	/// at dictionary.reference.com.
 	/// Copyright (C) 2004 by JetBrains s.r.o. All Rights Reserved.
 	/// </summary>
@@ -25,8 +24,8 @@ namespace JetBrains.Omea.SamplePlugins.Dictionary
 	    {
             // Register the action group where the action will be placed.
             const string actionGroupName = "DictionaryPlugin.Actions";
-            Core.ActionManager.RegisterContextMenuActionGroup( actionGroupName, ListAnchor.Last ); 
-            
+            Core.ActionManager.RegisterContextMenuActionGroup( actionGroupName, ListAnchor.Last );
+
             // Register the action. The action applies to all resource types,
             // and no special filters are required.
             Core.ActionManager.RegisterContextMenuAction( new DictionaryLookupAction(),
@@ -69,8 +68,8 @@ namespace JetBrains.Omea.SamplePlugins.Dictionary
         /// </summary>
         public void Update( IActionContext context, ref ActionPresentation presentation )
         {
-            presentation.Visible = ( context.SelectedPlainText != null && 
+            presentation.Visible = ( context.SelectedPlainText != null &&
                 context.SelectedPlainText.Length > 0 );
         }
-    }   
+    }
 }

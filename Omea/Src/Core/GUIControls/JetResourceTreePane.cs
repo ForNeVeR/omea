@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Windows.Forms;
@@ -40,7 +39,7 @@ namespace JetBrains.Omea.GUIControls
             }
             else
             {
-                _dataProvider.ResourceChildProvider = new JetWorkspaceResourcesProvider( _dataProvider, workspace, 
+                _dataProvider.ResourceChildProvider = new JetWorkspaceResourcesProvider( _dataProvider, workspace,
                     _workspaceFilterTypes, _rootResource );
                 bool otherViewVisible = (Core.WorkspaceManager as WorkspaceManager).HasResourcesOutsideContainers( workspace );
                 if ( _treeTypeFilter == null )
@@ -51,7 +50,7 @@ namespace JetBrains.Omea.GUIControls
                 {
                     _treeTypeFilter.OtherViewVisible = otherViewVisible;
                 }
-                    
+
                 _resourceTree.Filters.Add( _treeTypeFilter );
             }
             _dataProvider.RebuildTree();
@@ -68,7 +67,7 @@ namespace JetBrains.Omea.GUIControls
         private WorkspaceManager _workspaceManager;
         private IResource _treeRoot;
 
-        public JetWorkspaceResourcesProvider( ResourceTreeDataProvider dataProvider, IResource workspace, 
+        public JetWorkspaceResourcesProvider( ResourceTreeDataProvider dataProvider, IResource workspace,
             string[] workspaceFilterTypes, IResource treeRoot )
         {
             _workspaceManager = Core.WorkspaceManager as WorkspaceManager;
@@ -119,7 +118,7 @@ namespace JetBrains.Omea.GUIControls
                 // if it's a container that is not linked recursively - do not show children
                 return Core.ResourceStore.EmptyResourceList;
             }
-            
+
             result = parent.GetLinksToLive( null, _dataProvider.ParentProperty );
             result = result.Minus( _workspace.GetLinksToLive( null, _workspaceManager.Props.ExcludeFromWorkspace ) );
             string sortProps = Core.ResourceTreeManager.GetResourceNodeSort( parent );
@@ -157,7 +156,7 @@ namespace JetBrains.Omea.GUIControls
             if ( node.Level == 0 )
             {
                 IResource res = (IResource) node.Data;
-                return (Array.IndexOf( _resTypes, res.Type ) >= 0 || 
+                return (Array.IndexOf( _resTypes, res.Type ) >= 0 ||
                     ( res.Type == "WorkspaceOtherView" && _otherViewVisible ));
             }
             return true;

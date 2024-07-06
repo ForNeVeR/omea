@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 #ifndef _OMEA_BTREEPAGE_H
 #define _OMEA_BTREEPAGE_H
@@ -91,7 +90,7 @@ namespace DBIndex
 		virtual int DecCount() = 0;
 		__forceinline bool IsFull() const { return GetCount() == MAX_KEYS_IN_PAGE; }
 		__forceinline bool IsAlmostFull() const { return GetCount() >= ALMOST_FULL_PAGE_SIZE; }
-		
+
 	protected:
 
 		BTreePageBase( int fileHandle, int offset )

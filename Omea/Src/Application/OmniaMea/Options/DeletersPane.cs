@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System.Windows.Forms;
 using JetBrains.DataStructures;
@@ -163,25 +162,25 @@ namespace JetBrains.Omea
 		}
 
 		#region Component Designer generated code
-		/// <summary> 
-		/// Required method for Designer support - do not modify 
+		/// <summary>
+		/// Required method for Designer support - do not modify
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent()
 		{
             this._deletersListView = new JetListView();
             this.SuspendLayout();
-            // 
+            //
             // _deletersListView
-            // 
+            //
             this._deletersListView.Dock = System.Windows.Forms.DockStyle.Fill;
             this._deletersListView.Location = new System.Drawing.Point(0, 0);
             this._deletersListView.Name = "_deletersListView";
             this._deletersListView.Size = new System.Drawing.Size(184, 156);
             this._deletersListView.TabIndex = 0;
-            // 
+            //
             // DeletersPane
-            // 
+            //
             this.Controls.Add(this._deletersListView);
             this.Name = "DeletersPane";
             this.Size = new System.Drawing.Size(184, 156);

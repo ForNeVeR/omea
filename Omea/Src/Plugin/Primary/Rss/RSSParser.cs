@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -77,7 +76,7 @@ namespace JetBrains.Omea.RSSPlugin
     public class FeedNameParser : FeedElementParser
     {
         public FeedNameParser() : base( Props.OriginalName ) {}
-        
+
         public override void ParseValue( IResource resource, XmlReader reader )
         {
             base.ParseValue( resource, reader );
@@ -385,10 +384,10 @@ namespace JetBrains.Omea.RSSPlugin
         internal void ParseAuthorString( IResource feed, string creator )
         {
             feed.SetProp( Props.Author, creator );
-    
+
             string email = null;
             string name = null;
-    
+
             Match m = _creatorRX.Match( creator );
             if ( m.Success )
             {
@@ -412,7 +411,7 @@ namespace JetBrains.Omea.RSSPlugin
                     }
                 }
             }
-    
+
             if ( email != null )
             {
                 if ( !feed.HasProp( Props.AuthorEmail ) )
@@ -467,7 +466,7 @@ namespace JetBrains.Omea.RSSPlugin
 	///   external (!) link (from the point of view of post author, not Atom
 	///   standard).
 	/// - "enclosure" value, which describes an enclosure location, size and type.
-	///   
+	///
 	///   NB: for a compatibility with illegally-formed ATOM feeds, there are
 	///       entries which contain "link" relations without any "rel" attribute.
 	/// </summary>
@@ -518,10 +517,10 @@ namespace JetBrains.Omea.RSSPlugin
             resource.SetProp( Props.EnclosureURL, href );
             if ( type.Length > 0 )
             {
-                resource.SetProp( Props.EnclosureType, type );                    
+                resource.SetProp( Props.EnclosureType, type );
             }
             //   resource.SetProp( Props.EnclosureType, type );
-		                
+
             string length = reader.GetAttribute( "length" );
             if ( !string.IsNullOrEmpty( length ) )
             {
@@ -625,7 +624,7 @@ namespace JetBrains.Omea.RSSPlugin
             int startDepth = reader.Depth;
             while ( reader.Read() )
             {
-                if ( reader.NodeType == XmlNodeType.Element && 
+                if ( reader.NodeType == XmlNodeType.Element &&
                     ( reader.NamespaceURI == RSSParser.NamespaceATOM03 || reader.NamespaceURI == RSSParser.NamespaceATOM10 ) )
                 {
                     if ( reader.LocalName == "name" )
@@ -747,8 +746,8 @@ namespace JetBrains.Omea.RSSPlugin
 */
                 Core.ReportBackgroundException( new ApplicationException( "RssParser -- Processing base64-mode content for text." ) );
             }
-            
-            if ( content != null ) 
+
+            if ( content != null )
             {
                 resource.SetProp( _propID, content );
             }
@@ -805,7 +804,7 @@ namespace JetBrains.Omea.RSSPlugin
                     content = HtmlTools.StripHTML( content );
                 }
             }
-            
+
             if ( content != null )
             {
                 resource.SetProp( _propId, content );
@@ -953,7 +952,7 @@ namespace JetBrains.Omea.RSSPlugin
             _rssItemElements[ ns + ":enclosure" ] = new EnclosureParser();
             _rssItemElements[ ns + ":author" ] = new ItemAuthorParser();
             _rssItemElements[ ns + ":source" ] = new SourceTagParser();
-    
+
             _rssChannelElements[ ns + ":managingEditor" ] = new FeedAuthorParser();
             _rssChannelElements[ ns + ":pubDate" ] = new RFCDateParser( Props.PubDate );
             _rssChannelElements[ ns + ":title" ] = new FeedNameParser();
@@ -1054,7 +1053,7 @@ namespace JetBrains.Omea.RSSPlugin
 
             string encodingName = ( encoding == null ) ? null : encoding.BodyName;
             XmlPreparer preparer = new XmlPreparer( stream, encodingName );
-            
+
             XmlTextReader baseReader;
             if ( preparer.PrepareXML() )
             {
@@ -1082,7 +1081,7 @@ namespace JetBrains.Omea.RSSPlugin
             while ( reader.Read() )
             {
                 if ( reader.NodeType == XmlNodeType.Element &&
-                    ( reader.LocalName == "channel" || 
+                    ( reader.LocalName == "channel" ||
                     ( ( reader.NamespaceURI == NamespaceATOM03 || reader.NamespaceURI == NamespaceATOM10 ) && reader.LocalName == "feed" ) ) )
                 {
                     if ( reader.LocalName == "channel" )
@@ -1106,7 +1105,7 @@ namespace JetBrains.Omea.RSSPlugin
         public bool FoundChannel { get { return _foundChannel; } }
 
         /**
-         * Parses the DeletedItems property of a feed to get the HashSet of 
+         * Parses the DeletedItems property of a feed to get the HashSet of
          * items which were marked as deleted after previous parse, and clears
          * the HashSet of items that will be marked as deleted after the current
          * parse.
@@ -1274,7 +1273,7 @@ namespace JetBrains.Omea.RSSPlugin
                     IFeedElementParser parser = (IFeedElementParser)itemElements[ attrName ];
                     if ( parser != null )
                     {
-                        if( Settings.Trace ) 
+                        if( Settings.Trace )
                         {
                             Trace.WriteLine( "Invoking handler " + parser + " for element " + attrName );
                         }
@@ -1283,7 +1282,7 @@ namespace JetBrains.Omea.RSSPlugin
                     }
                     else
                     {
-                        if( Settings.Trace ) 
+                        if( Settings.Trace )
                         {
                             Trace.WriteLine( "Handler not found for element " + attrName );
                         }
@@ -1304,7 +1303,7 @@ namespace JetBrains.Omea.RSSPlugin
         private void AddOrUpdateItemToFeed( IResource item )
         {
             Guard.NullArgument( item, "item" );
-            if( Settings.Trace ) 
+            if( Settings.Trace )
             {
                 Trace.WriteLine( "Parsed item with subject " + item.GetPropText( Core.Props.Subject ) );
             }
@@ -1346,7 +1345,7 @@ namespace JetBrains.Omea.RSSPlugin
 
         private void UpdateItemToFeed(IResource item, IResource oldItem)
         {
-            try 
+            try
             {
                 Guard.NullArgument( item, "item" );
                 Guard.NullArgument( oldItem, "oldItem" );
@@ -1367,7 +1366,7 @@ namespace JetBrains.Omea.RSSPlugin
                     UpdateProp( item, oldItem, Props.EnclosureDownloadingState );
                 }
             }
-            finally 
+            finally
             {
                 int newId = item.GetIntProp( Props._propFake );
                 int id = oldItem.GetLinksOfType( Props.RSSFeedResource, Props.RSSItem )[ 0 ].Id;
@@ -1391,7 +1390,7 @@ namespace JetBrains.Omea.RSSPlugin
                 item.ClearProperties();
                 return;
             }
-            try 
+            try
             {
 
                 int feedIndex = _feed.GetIntProp( Props.LastItemIndex );
@@ -1542,7 +1541,7 @@ namespace JetBrains.Omea.RSSPlugin
                 list = list.Intersect( _feed.GetLinksFrom( null, Props.RSSItem ), true );
                 foreach ( IResource candidate in list.ValidResources )
                 {
-                    if ( subject.Equals( candidate.GetPropText( Core.Props.Subject ) ) && 
+                    if ( subject.Equals( candidate.GetPropText( Core.Props.Subject ) ) &&
                         longBody.Equals( candidate.GetPropText( Core.Props.LongBody ) ) )
                     {
                         return candidate;
@@ -1615,14 +1614,14 @@ namespace JetBrains.Omea.RSSPlugin
             }
             else
             {
-                if( Settings.Trace ) 
+                if( Settings.Trace )
                 {
                     Trace.WriteLine( "Found item with same GUID " + item.GetPropText( Props.GUID ) );
                 }
             }
 
             IResource candidate = PrepareSubjectAndBody( item );
-            
+
             if ( oldItem == null && !_allowEqualPosts )
             {
                 oldItem = candidate;
@@ -1768,7 +1767,7 @@ namespace JetBrains.Omea.RSSPlugin
         private static string NormalizeWhiteSpace( string s )
         {
             StringBuilder result = StringBuilderPool.Alloc();
-            try 
+            try
             {
                 char lastChar = '\0';
                 for ( int i = 0; i < s.Length; i++ )

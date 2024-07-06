@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using JetBrains.Omea.OpenAPI;
@@ -53,10 +52,10 @@ namespace JetBrains.Omea.ResourceStore
             if ( res.TypeId == _resTypeId )
             {
                 return (cs != null && ( cs.IsNewResource || cs.IsPropertyChanged( ResourceProps.Type ) ) )
-                    ? PredicateMatch.Add 
+                    ? PredicateMatch.Add
                     : PredicateMatch.Match;
             }
-            else if ( cs != null && cs.IsPropertyChanged( ResourceProps.Type ) && 
+            else if ( cs != null && cs.IsPropertyChanged( ResourceProps.Type ) &&
                 (int) cs.GetOldValue( ResourceProps.Type ) == _resTypeId )
             {
                 return PredicateMatch.Del;
@@ -68,7 +67,7 @@ namespace JetBrains.Omea.ResourceStore
         {
             return "Type(" + MyPalStorage.Storage.ResourceTypes [_resTypeId].Name + ")";
         }
-    
+
         internal override int GetSelectionCost()
         {
             return 5;

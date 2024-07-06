@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using JetBrains.Omea.OpenAPI;
@@ -32,7 +31,7 @@ namespace CommonTests
             int fromLink  = _storage.PropTypes.Register( "From", PropDataType.Link );
             int toLink  = _storage.PropTypes.Register( "To", PropDataType.Link );
             int aLink  = _storage.PropTypes.Register( "aLink", PropDataType.Link );
-            
+
             Assert.AreEqual( 0, _storage.GetMinLinkCountRestriction( "Email", fromLink ) );
             Assert.AreEqual( Int32.MaxValue, _storage.GetMaxLinkCountRestriction( "Email", fromLink ) );
 
@@ -316,7 +315,7 @@ namespace CommonTests
         [Test] public void DirectedLinkRestrictionRepair()
         {
             int parentLink = _storage.PropTypes.Register( "ParentLink", PropDataType.Link, PropTypeFlags.DirectedLink );
-            
+
             IResource email = _storage.NewResource( "Email" );
             IResource from1 = _storage.NewResource( "Person" );
             IResource from2 = _storage.NewResource( "Person" );
@@ -362,7 +361,7 @@ namespace CommonTests
             _storage.RegisterUniqueRestriction( "Someshit", _propSubject );
         }
 
-        [Test, ExpectedException(typeof(ResourceRestrictionException))] 
+        [Test, ExpectedException(typeof(ResourceRestrictionException))]
         public void CustomRestriction()
         {
             _storage.RegisterCustomRestriction( "Email", _propSize, new CustomResourceRestriction() );
@@ -370,7 +369,7 @@ namespace CommonTests
             email.SetProp( _propSize, 200 );
         }
 
-        [Test, ExpectedException(typeof(ResourceRestrictionException))] 
+        [Test, ExpectedException(typeof(ResourceRestrictionException))]
         public void CustomRestrictionAfterReopen()
         {
             _storage.RegisterCustomRestriction( "Email", _propSize, new CustomResourceRestriction() );
@@ -397,7 +396,7 @@ namespace CommonTests
             email.SetProp( _propSize, 200 );
         }
 
-        [Test, ExpectedException( typeof(ResourceRestrictionException))] 
+        [Test, ExpectedException( typeof(ResourceRestrictionException))]
         public void RestrictionOnDelete()
         {
             _storage.RegisterRestrictionOnDelete( "Email", new CustomResourceRestriction() );
@@ -429,7 +428,7 @@ namespace CommonTests
             _storage.RegisterUniqueRestriction( "Email", propId );
             _storage.PropTypes.Delete( propId );
             Assert.AreEqual( initialRestrictionCount, _storage.GetAllResources( "UniqueRestriction" ).Count );
-            
+
             // verify exception OM-8941 does not happen
             _storage.NewResource( "Email" );
         }
@@ -441,7 +440,7 @@ namespace CommonTests
             _storage.RegisterLinkRestriction( "Email", propId, null, 1, 1 );
             _storage.PropTypes.Delete( propId );
             Assert.AreEqual( initialRestrictionCount, _storage.GetAllResources( "LinkRestriction" ).Count );
-            
+
             // verify exception OM-8941 does not happen
             _storage.NewResource( "Email" );
         }
@@ -489,7 +488,7 @@ namespace CommonTests
             res.AddLink( fromLink, email2 );
             res.AddLink( fromLink, email3 );
 
-            _storage.RegisterLinkRestriction( "Person", fromLink, "Email", 0, 1 );            
+            _storage.RegisterLinkRestriction( "Person", fromLink, "Email", 0, 1 );
             res.DeleteLink( fromLink, email3 );
         }
 

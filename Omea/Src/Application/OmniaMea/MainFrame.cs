@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -93,7 +92,7 @@ namespace JetBrains.Omea
         private bool                _noTextIndex = false;
         private bool                _textIndexExists = false;
         private TextIndexManager    _textIndexManager;
-        
+
         private static CustomExceptionHandler _excHandler;
         private static readonly ProtocolHandlerManager _protocolHandlerManager = new ProtocolHandlerManager();
         private ImageList _toolbarImages32;
@@ -129,7 +128,7 @@ namespace JetBrains.Omea
         private SizeF _scaleFactor;
 
         internal PluginEnvironment _theEnvironment;
-        
+
         private WorkspaceButtonsRow _panelWorkspaceButtonsRow;
 
         private WorkspaceManager _workspaceManager;
@@ -160,7 +159,7 @@ namespace JetBrains.Omea
         private FormWindowState _oldWindowState = FormWindowState.Normal;
 
         private bool _cancelStart = false;
-        
+
         internal static UIAsyncProcessor _uiAsyncProcessor;
         private readonly UIManager _uiManager;
         private readonly RemoteControlServer _rcServer;
@@ -194,15 +193,15 @@ namespace JetBrains.Omea
                 _uiAsyncProcessor = new UIAsyncProcessor( this );
                 _theEnvironment.SetUserInterfaceAP( _uiAsyncProcessor );
                 _uiAsyncProcessor.ExceptionHandler = ReportAsyncException;
-                    
-                _theEnvironment.SetProtocolHandlerManager( _protocolHandlerManager ); 
-                _theEnvironment.SetState( CoreState.Initializing ); 
+
+                _theEnvironment.SetProtocolHandlerManager( _protocolHandlerManager );
+                _theEnvironment.SetState( CoreState.Initializing );
 
                 _theEnvironment.SetMainWindow( this );
                 _theEnvironment.SetExcHandler( _excHandler );
 
                 Icon appIcon;
-#if !READER            
+#if !READER
                 appIcon = LoadIconFromAssembly( "App.ico" );
 #else
                 appIcon = LoadIconFromAssembly( "AppReader.ico" );
@@ -221,14 +220,14 @@ namespace JetBrains.Omea
                 _theEnvironment.RegisterComponentInstance( _iniFile );
                 LogManager.InitializeUsageLog();
 
-                OMEnv.WorkDir = workDir; 
+                OMEnv.WorkDir = workDir;
                 OMEnv.DataDir = Path.Combine( Application.StartupPath, "data" );
                 MyPalStorage.DBPath = Path.Combine( workDir, "db" );
 
                 //  Enable backup by default.
                 _iniFile.WriteBool( "ResourceStore", "EnableBackup", true );
                 _iniFile.WriteString( "ResourceStore", "BackupPath", Path.Combine( workDir, "backup" ) );
-            
+
                 ArrayList absentFiles = new ArrayList();
                 if ( !OMEnv.IsDictionaryPresent( absentFiles ) )
                 {
@@ -277,7 +276,7 @@ namespace JetBrains.Omea
                 InitPluginImageBitDepth();
                 if ( _pluginImageBitDepth == 8 )
                 {
-#if !READER            
+#if !READER
                     _notifyIcon.Icon = LoadIconFromAssembly( "trayicon8.ico" );
 #else
                     _notifyIcon.Icon = LoadIconFromAssembly( "trayiconReader8.ico" );
@@ -285,7 +284,7 @@ namespace JetBrains.Omea
                 }
                 else
                 {
-#if !READER            
+#if !READER
                     _notifyIcon.Icon = LoadIconFromAssembly( "trayicon.ico" );
 #else
                     _notifyIcon.Icon = LoadIconFromAssembly( "trayiconReader.ico" );
@@ -352,12 +351,12 @@ namespace JetBrains.Omea
                 {
                     Text = "JetBrains " + Core.ProductFullName + " “" + EAPVersionName + "” v" + verProduct;
                 }
-            
+
                 _theEnvironment.SetProductVersion( verProduct );
                 Trace.WriteLine( "Current build is " + verProduct );
 
                 HttpReader.LoadHttpConfig();
-            
+
 #if READER
             HttpReader.UserAgent = Text + " (http://www.jetbrains.com/omea/reader/)";
 #else
@@ -399,7 +398,7 @@ namespace JetBrains.Omea
                     Trace.WriteLine( "Not running under Windows XP, or no color scheme is active" );
                     LoadColorScheme( "DefaultColorScheme.xml" );
                 }
-            
+
                 if ( _excHandler != null )
                 {
                     _excHandler.OwnerControl = this;
@@ -420,7 +419,7 @@ namespace JetBrains.Omea
             catch( Exception ex )
             {
                 Trace.WriteLine( "Error initializing embedded browser: " + ex );
-                MessageBox.Show( "Error initializing embedded browser: " + ex.Message + 
+                MessageBox.Show( "Error initializing embedded browser: " + ex.Message +
                     "\r\nPlease reinstall " + Core.ProductFullName + ".", Core.ProductFullName );
                 _cancelStart = true;
                 return;
@@ -474,7 +473,7 @@ namespace JetBrains.Omea
         {
             if( disposing )
             {
-                if (components != null) 
+                if (components != null)
                 {
                     components.Dispose();
                 }
@@ -547,15 +546,15 @@ namespace JetBrains.Omea
             this.SuspendLayout();
 
             #region MenuStrip
-            // 
+            //
             // _mainMenu
-            // 
+            //
             _mainMenu.Name = "Main Menu";
             _mainMenu.Text = "Main Menu";
             _mainMenu.Dock = DockStyle.Top;
             _mainMenu.Height = 24;
             _mainMenu.TabIndex = 1;
-            this._mainMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {  this._menuFile, this._menuEdit, this._menuView, 
+            this._mainMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {  this._menuFile, this._menuEdit, this._menuView,
                                                                                       this._menuSearch, this._menuGo, this._menuTools,
                                                                                       this._menuActions, this._menuWSpaces, this._menuHelp});
             this._menuFile.Text = "&File";
@@ -570,45 +569,45 @@ namespace JetBrains.Omea
 
             #endregion MenuStrip
 
-            // 
+            //
             // _toolbarImages8
-            // 
+            //
             this._toolbarImages8.ImageSize = new System.Drawing.Size(16, 16);
             this._toolbarImages8.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("_toolbarImages8.ImageStream")));
             this._toolbarImages8.TransparentColor = System.Drawing.Color.Transparent;
-            // 
+            //
             // _pluginImages8
-            // 
+            //
             this._pluginImages8.ImageSize = new System.Drawing.Size(16, 16);
             this._pluginImages8.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("_pluginImages8.ImageStream")));
             this._pluginImages8.TransparentColor = System.Drawing.Color.Transparent;
-            // 
+            //
             // _pluginImages32
-            // 
+            //
             this._pluginImages32.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
             this._pluginImages32.ImageSize = new System.Drawing.Size(16, 16);
             this._pluginImages32.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("_pluginImages32.ImageStream")));
             this._pluginImages32.TransparentColor = System.Drawing.Color.Transparent;
-            // 
+            //
             // _toolbarImages32
-            // 
+            //
             this._toolbarImages32.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
             this._toolbarImages32.ImageSize = new System.Drawing.Size(16, 16);
             this._toolbarImages32.TransparentColor = System.Drawing.Color.Transparent;
 
             #region StatusBar
-            // 
+            //
             // _statusBarPanel
-            // 
+            //
             this._statusBarPanel.Controls.Add(this._statusBar);
             this._statusBarPanel.Name = "_statusBarPanel";
             this._statusBarPanel.Size = new System.Drawing.Size(940, 22);	// Defines the size
             this._statusBarPanel.TabIndex = 5;
 			this._statusBarPanel.Dock = DockStyle.Bottom;
 
-            // 
+            //
             // _statusBar
-            // 
+            //
             this._statusBar.Font = new System.Drawing.Font("Tahoma", 8F);
             this._statusBar.Location = new System.Drawing.Point(0, 0);
             this._statusBar.Name = "_statusBar";
@@ -623,30 +622,30 @@ namespace JetBrains.Omea
             this._statusBar.SizingGrip = false;
             this._statusBar.TabIndex = 2;
             this._statusBar.PanelClick += new System.Windows.Forms.StatusBarPanelClickEventHandler(this._statusBar_PanelClick);
-            // 
+            //
             // _itemStatusPanel
-            // 
+            //
             this._itemStatusPanel.Width = 70;
-            // 
+            //
             // _uiStatusPanel
-            // 
+            //
             this._uiStatusPanel.Width = 400;
-            // 
+            //
             // _netStatusPanel
-            // 
+            //
             this._netStatusPanel.AutoSize = System.Windows.Forms.StatusBarPanelAutoSize.Spring;
             this._netStatusPanel.Width = 200;
-            // 
+            //
             // _backgroundExceptionPanel
-            // 
+            //
             this._backgroundExceptionPanel.Width = 20;
-            // 
+            //
             // _indicatorStatusPanel
-            // 
+            //
             this._indicatorStatusPanel.Width = 130;
-            // 
+            //
             // _indicatorsPanel
-            // 
+            //
             this._indicatorsPanel.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             this._indicatorsPanel.BorderStyle = BorderStyle.None;
             this._indicatorsPanel.Controls.Add(this._memUsageLabel);
@@ -655,9 +654,9 @@ namespace JetBrains.Omea
             this._indicatorsPanel.Size = new System.Drawing.Size(124, 18);
             this._indicatorsPanel.TabIndex = 0;
             this._indicatorsPanel.Resize +=new EventHandler(_indicatorsPanel_Resize);
-            // 
+            //
             // _memUsageLabel
-            // 
+            //
             this._memUsageLabel.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this._memUsageLabel.Dock = DockStyle.None;
             this._memUsageLabel.Anchor = AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Bottom;
@@ -668,9 +667,9 @@ namespace JetBrains.Omea
             this._memUsageLabel.TabIndex = 3;
             this._memUsageLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this._memUsageLabel.FlatStyle = FlatStyle.System;
-            // 
+            //
             // _statesImageList
-            // 
+            //
             this._statesImageList.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
             this._statesImageList.ImageSize = new System.Drawing.Size(16, 16);
             this._statesImageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("_statesImageList.ImageStream")));
@@ -678,9 +677,9 @@ namespace JetBrains.Omea
 
             #endregion StatusBar
 
-            // 
+            //
             // _querySidebar
-            // 
+            //
             this._querySidebar.ColorScheme = null;
             this._querySidebar.DefaultPaneIcon = null;
             this._querySidebar.Dock = System.Windows.Forms.DockStyle.Left;
@@ -691,9 +690,9 @@ namespace JetBrains.Omea
             this._querySidebar.Size = new System.Drawing.Size(200, 406);
             this._querySidebar.TabIndex = 3;
             this._querySidebar.ExpandedChanged += new System.EventHandler(this._querySidebar_ExpandedChanged);
-            // 
+            //
             // _resourceBrowser
-            // 
+            //
             this._resourceBrowser.DefaultColumns = null;
             this._resourceBrowser.Dock = System.Windows.Forms.DockStyle.Fill;
             this._resourceBrowser.LinksPaneExpanded = false;
@@ -711,9 +710,9 @@ namespace JetBrains.Omea
             this._contentAndRightSidebarPane.Controls.Add(this._rightSidebarSplitter);
             this._contentAndRightSidebarPane.Name = "_contentAndRightSidebarPane";
 			_contentAndRightSidebarPane.Dock = DockStyle.Fill;
-            // 
+            //
             // _contentPane
-            // 
+            //
             this._contentPane.Controls.Add(this._resourceBrowserBorder);
             this._contentPane.Controls.Add(this._leftSidebarSplitter);
             this._contentPane.Controls.Add(this._querySidebar);
@@ -722,9 +721,9 @@ namespace JetBrains.Omea
             this._contentPane.Name = "_contentPane";
             this._contentPane.Size = new System.Drawing.Size(940, 402);
             this._contentPane.TabIndex = 7;
-            // 
+            //
             // _resourceBrowserBorder
-            // 
+            //
             this._resourceBrowserBorder.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this._resourceBrowserBorder.Controls.Add(this._resourceBrowser);
             this._resourceBrowserBorder.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -732,18 +731,18 @@ namespace JetBrains.Omea
             this._resourceBrowserBorder.Name = "_resourceBrowserBorder";
             this._resourceBrowserBorder.Size = new System.Drawing.Size(730, 406);
             this._resourceBrowserBorder.TabIndex = 17;
-            // 
+            //
             // _splitter
-            // 
+            //
             this._leftSidebarSplitter.CollapsedChanged += new EventHandler( HandleLeftSidebarCollapsedChanged );
             this._leftSidebarSplitter.Location = new System.Drawing.Point(200, 0);
             this._leftSidebarSplitter.Name = "_leftSidebarSplitter";
             this._leftSidebarSplitter.Size = new System.Drawing.Size(5, 406);
             this._leftSidebarSplitter.TabIndex = 8;
             this._leftSidebarSplitter.TabStop = false;
-            // 
+            //
             // _rightSideSplitter
-            // 
+            //
             this._rightSidebarSplitter.Dock = System.Windows.Forms.DockStyle.Right;
             this._rightSidebarSplitter.Location = new System.Drawing.Point(935, 0);
             this._rightSidebarSplitter.Name = "_rightSidebarSplitter";
@@ -753,16 +752,16 @@ namespace JetBrains.Omea
             this._rightSidebarSplitter.TabStop = false;
             this._rightSidebarSplitter.Visible = false;
             this._rightSidebarSplitter.VisibleChanged += new EventHandler( HandleRightSidebarCollapsedChanged );
-            // 
+            //
             // _topBarPane
-            // 
+            //
             _panelWorkspaceButtonsRow.Name = "_panelWorkspaceButtonsRow";
 			_panelWorkspaceButtonsRow.TabIndex = 2;
 			_panelWorkspaceButtonsRow.Dock = DockStyle.Top;
 /*
-            // 
+            //
             // _fillerPanel
-            // 
+            //
             this._fillerPanel.Dock = DockStyle.Top;
             this._fillerPanel.Location = new System.Drawing.Point(0, 70);
             this._fillerPanel.Name = "_fillerPanel";
@@ -770,58 +769,58 @@ namespace JetBrains.Omea
             this._fillerPanel.Size = new System.Drawing.Size(940, 4);
             this._fillerPanel.TabIndex = 16;
 */
-            // 
+            //
             // _panelResourceTabsBar
-            // 
+            //
         	_panelResourceTabsRow.Name = "_panelResourceTabsRow";
         	_panelResourceTabsRow.TabIndex = 3;
 			_panelResourceTabsRow.Dock = DockStyle.Top;
 
             #region TaskBar Icon
-            // 
+            //
             // _notifyIcon
-            // 
+            //
             this._notifyIcon.ContextMenu = this._notifyIconContextMenu;
             this._notifyIcon.Text = "JetBrains Omea";
             this._notifyIcon.Visible = true;
             this._notifyIcon.DoubleClick += new System.EventHandler(this._notifyIcon_DoubleClick);
-            // 
+            //
             // _notifyIconContextMenu
-            // 
+            //
             this._notifyIconContextMenu.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
                                                                                                    this._miOpenOmniaMea,
                                                                                                    this._miSeparator,
                                                                                                    this._miExitOmniaMea});
-            // 
+            //
             // _miOpenOmniaMea
-            // 
+            //
             this._miOpenOmniaMea.DefaultItem = true;
             this._miOpenOmniaMea.Index = 0;
             this._miOpenOmniaMea.Text = "Open Omea";
             this._miOpenOmniaMea.Click += new System.EventHandler(this.miOpenOmniaMea_Click);
-            // 
+            //
             // _miSeparator
-            // 
+            //
             this._miSeparator.Index = 1;
             this._miSeparator.Text = "-";
-            // 
+            //
             // _miExitOmniaMea
-            // 
+            //
             this._miExitOmniaMea.Enabled = false;
             this._miExitOmniaMea.Index = 2;
             this._miExitOmniaMea.Text = "Exit Omea";
             this._miExitOmniaMea.Click += new System.EventHandler(this.miExitOmniaMea_Click);
             #endregion TaskBar Icon
 
-            // 
+            //
             // _uiUpdateTimer
-            // 
+            //
             this._uiUpdateTimer.Enabled = true;
             this._uiUpdateTimer.Interval = 500;
             this._uiUpdateTimer.Tick += new System.EventHandler(this._uiUpdateTimer_Tick);
-            // 
+            //
             // MainFrame
-            // 
+            //
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
             this.ClientSize = new System.Drawing.Size(940, 501);
 
@@ -830,7 +829,7 @@ namespace JetBrains.Omea
 			this.Controls.Add(this._panelWorkspaceButtonsRow);
             this.Controls.Add( _mainMenu );
             this.Controls.Add(this._statusBarPanel);
-#if !READER            
+#if !READER
             this.Icon = LoadIconFromAssembly( "App.ico" );
 #else
             this.Icon = LoadIconFromAssembly( "AppReader.ico" );
@@ -1033,7 +1032,7 @@ namespace JetBrains.Omea
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        public static void Main() 
+        public static void Main()
         {
             string startDirectory = Environment.CurrentDirectory;
             string[] args = Environment.GetCommandLineArgs();
@@ -1082,7 +1081,7 @@ namespace JetBrains.Omea
                         }
                         else
                         {
-                            new RemoteControlClient( RemoteControlServer.configuredPort, 
+                            new RemoteControlClient( RemoteControlServer.configuredPort,
                                 RemoteControlServer.protectionKey ).SendRequest( "MainFrame.Restore" );
                         }
                     }
@@ -1232,7 +1231,7 @@ namespace JetBrains.Omea
         /// </summary>
         private void InitResourceIconManager()
         {
-            if ( _pluginImageBitDepth == 32 ) 
+            if ( _pluginImageBitDepth == 32 )
             {
                 AddIconFromAssembly( "back.ico", _toolbarImages32 );
                 AddIconFromAssembly( "forward.ico", _toolbarImages32 );
@@ -1248,7 +1247,7 @@ namespace JetBrains.Omea
             Icon propIcon = LoadIconFromAssembly( "property.ico" );
             Icon linkIcon = LoadIconFromAssembly( "link.ico" );
             _resourceIconManager.SetDefaultPropIcons( propIcon, linkIcon );
-            _resourceIconManager.RegisterResourceIconProvider( "ResourceType", 
+            _resourceIconManager.RegisterResourceIconProvider( "ResourceType",
                 new ResourceTypeIconProvider( linkIcon ) );
             _resourceIconManager.RegisterResourceIconProvider( "PropType",
                 new PropTypeIconProvider( _resourceIconManager, propIcon ) );
@@ -1298,7 +1297,7 @@ namespace JetBrains.Omea
             {
                 if ( ver.Version.Major > 5 || (ver.Version.Major == 5 && ver.Version.Minor >= 1) )
                 {
-                    Trace.WriteLine( "Version.Major=" + ver.Version.Major + 
+                    Trace.WriteLine( "Version.Major=" + ver.Version.Major +
                         ", Version.Minor=" + ver.Version.Minor + ", switching to 32-bit icons" );
                     _pluginImageBitDepth = 32;
                 }
@@ -1372,14 +1371,14 @@ namespace JetBrains.Omea
             _actionManager = new ActionManager( _mainMenu, _contextMenu, _resourceBrowser );
             _theEnvironment.RegisterComponentInstance( _actionManager );
 
-#if !READER            
+#if !READER
             Core.UIManager.RegisterWizardPane( "Indexing period", CreateIndexPeriodPane, -1 );
 #endif
 
             Core.UIManager.RegisterWizardPane( "User Information", MySelfPane.MySelfPaneCreator, 100 );
 
             _detailedProgress = RunningTests || _iniFile.ReadBool( "Omea", "DetailedProgress", false );
-            
+
             if ( _excHandler != null )
             {
                 RunWithSplashScreen( new MethodInvoker( OnStartupProgressExc ) );
@@ -1499,8 +1498,8 @@ namespace JetBrains.Omea
 
                     if( Core.SettingStore.ReadBool( "Startup", "AskFullIndexing", true ) )
                     {
-                        MessageBoxWithCheckBox.Result dr = MessageBoxWithCheckBox.ShowYesNo( this, 
-                            "The last time you ran " + ProductName + ", you only indexed the data since " + 
+                        MessageBoxWithCheckBox.Result dr = MessageBoxWithCheckBox.ShowYesNo( this,
+                            "The last time you ran " + ProductName + ", you only indexed the data since " +
                             indexStartDate.ToShortDateString() + ". Would you like to perform a full indexing now?",
                             ProductName, "Never &ask again", false );
                         if ( dr.IdPressedButton == (int)DialogResult.Yes )
@@ -1525,7 +1524,7 @@ namespace JetBrains.Omea
             }
             catch( Exception ex )
             {
-                while( ex is AsyncProcessorException || ex is TargetInvocationException || 
+                while( ex is AsyncProcessorException || ex is TargetInvocationException ||
                     ex is PicoInvocationTargetInitializationException )
                 {
                     ex = ex.InnerException;
@@ -1541,7 +1540,7 @@ namespace JetBrains.Omea
         private void OnStartupProgress()
         {
             bool forceWizard = false;
-            bool unreadManagerEnabled = true;    
+            bool unreadManagerEnabled = true;
             foreach( string arg in Environment.GetCommandLineArgs() )
             {
                 string strippedArg = arg.Substring( 1 );
@@ -1563,7 +1562,7 @@ namespace JetBrains.Omea
             CheckQuickIndexing();
 
             bool dbOpened = false;
-            while( !dbOpened ) 
+            while( !dbOpened )
             {
                 dbOpened = true;
                 try
@@ -1579,7 +1578,7 @@ namespace JetBrains.Omea
                 }
                 catch( EndOfStreamException )
                 {
-                    if( !CheckBackup( "Database structure corruption detected" ) ) 
+                    if( !CheckBackup( "Database structure corruption detected" ) )
                     {
                         return;
                     }
@@ -1587,7 +1586,7 @@ namespace JetBrains.Omea
                 }
                 catch( ColumnAlreadyExistsException )
                 {
-                    if( !CheckBackup( "Database structure corruption detected" ) ) 
+                    if( !CheckBackup( "Database structure corruption detected" ) )
                     {
                         return;
                     }
@@ -1595,7 +1594,7 @@ namespace JetBrains.Omea
                 }
                 catch( IndexAlreadyExistsException )
                 {
-                    if( !CheckBackup( "Database structure corruption detected" ) ) 
+                    if( !CheckBackup( "Database structure corruption detected" ) )
                     {
                         return;
                     }
@@ -1603,7 +1602,7 @@ namespace JetBrains.Omea
                 }
                 catch( DataCorruptedException )
                 {
-                    if( !CheckBackup( "Fatal data corruption detected" ) ) 
+                    if( !CheckBackup( "Fatal data corruption detected" ) )
                     {
                         return;
                     }
@@ -1611,7 +1610,7 @@ namespace JetBrains.Omea
                 }
                 catch( TableDoesNotExistException ex )
                 {
-                    if( !CheckBackup("Database structure corruption detected (table " + ex.ParamName + " is missing)" ) ) 
+                    if( !CheckBackup("Database structure corruption detected (table " + ex.ParamName + " is missing)" ) )
                     {
                         return;
                     }
@@ -1619,7 +1618,7 @@ namespace JetBrains.Omea
                 }
                 catch( MyPalStorage.IndexRebuildException ex)
                 {
-                    if( !CheckBackup( "Failed to rebuild database indexes: " + ex.Message ) ) 
+                    if( !CheckBackup( "Failed to rebuild database indexes: " + ex.Message ) )
                     {
                         return;
                     }
@@ -1635,7 +1634,7 @@ namespace JetBrains.Omea
                 }
                 catch( CannotGetVersionInfoException ex )
                 {
-                    if( !CheckBackup( "Error opening database: " + ex.Message ) ) 
+                    if( !CheckBackup( "Error opening database: " + ex.Message ) )
                     {
                         return;
                     }
@@ -1643,7 +1642,7 @@ namespace JetBrains.Omea
                 }
                 catch( BackwardIncompatibility )
                 {
-                    if( !CheckBackup( "Error opening database. Possible reason is attempt to open database created by a later version of Omea or database corruption" ) ) 
+                    if( !CheckBackup( "Error opening database. Possible reason is attempt to open database created by a later version of Omea or database corruption" ) )
                     {
                         return;
                     }
@@ -1691,7 +1690,7 @@ namespace JetBrains.Omea
             pluginLoader.RegisterXmlConfigurationHandler( "display-columns", ColumnConfigurationLoader.LoadXmlConfiguration );
             pluginLoader.RegisterXmlConfigurationHandler( "resource-icons", LoadXmlConfiguration_ResourceIcons );
             pluginLoader.LoadXmlConfiguration( Assembly.GetExecutingAssembly() );
-            
+
             CategoryUIHandler categoryUIHandler = new CategoryUIHandler( Core.CategoryManager as CategoryManager );
             pluginLoader.RegisterResourceUIHandler( "Category", categoryUIHandler );
             pluginLoader.RegisterResourceUIHandler( "ResourceTreeRoot", new CategoryRootUIHandler(  ) );
@@ -1716,9 +1715,9 @@ namespace JetBrains.Omea
 
             Core.PluginLoader.RegisterPluginService( new SimpleMapiEmailService() );
 
-            Core.RemoteControllerManager.AddRemoteCall( "Omea.CreateClipping.1", 
+            Core.RemoteControllerManager.AddRemoteCall( "Omea.CreateClipping.1",
                 new CreateFragmentDelegate( CreateFragmentAction.CreateHtmlFragment ) );
-            Core.RemoteControllerManager.AddRemoteCall( "Omea.CreateClippingSilent.1", 
+            Core.RemoteControllerManager.AddRemoteCall( "Omea.CreateClippingSilent.1",
                 new CreateFragmentDelegate( CreateFragmentAction.CreateHtmlFragmentSilent ) );
 
             _protocolHandlerManager.AddRemoteCall();
@@ -1732,7 +1731,7 @@ namespace JetBrains.Omea
             }
             if (_protocolHandlerManager.Registrations > 0 )
             {
-                Core.UIManager.RegisterOptionsPane( "Omea", "Default Application", ProtocolHandlerOptionsPane.Creator, 
+                Core.UIManager.RegisterOptionsPane( "Omea", "Default Application", ProtocolHandlerOptionsPane.Creator,
                     "The Default Application options allow to configure the default applications for processing URLs." );
             }
 
@@ -1800,18 +1799,18 @@ namespace JetBrains.Omea
             _workspaceManager.RegisterWorkspaceType( "ResourceTreeRoot", new int[] {}, WorkspaceResourceType.Folder );
             _workspaceManager.SetWorkspaceTabName( "ResourceTreeRoot", "Categories" );
             _workspaceManager.RegisterWorkspaceSelectorFilter( "Category", new CategoryNodeFilter(), null );
-            Core.ResourceAP.RunJob( new MethodInvoker( _workspaceManager.CheckRebuildWorkspaceLinks ) ); 
+            Core.ResourceAP.RunJob( new MethodInvoker( _workspaceManager.CheckRebuildWorkspaceLinks ) );
 
             FlagColumn.FillImagesAndActions();
-                
+
             // register the component after the plugins have started up, to make sure
             // all the plugins will be able to override it
             _actionManager.RegisterActionComponent( new IEBrowserAction( "Refresh" ), "Refresh", null, null );
             _actionManager.RegisterActionComponent( new MarkAllAsReadAction(), "MarkAllRead", null, null );
             _actionManager.RegisterActionComponent( new SendCurrentUrlAction(), "SendByMail", null, null );
-            _actionManager.RegisterMainMenuAction( new OpenUrlAction( "mailto:feedback.omea@jetbrains.com"), "HelpWebsiteActions", 
+            _actionManager.RegisterMainMenuAction( new OpenUrlAction( "mailto:feedback.omea@jetbrains.com"), "HelpWebsiteActions",
                                                    ListAnchor.First, "Send Questions or Feedback by E-mail", null, null, null );
-            
+
 #if READER
             _actionManager.RegisterMainMenuAction( new OpenUrlAction( "http://www.jetbrains.com/omea/"),
                 "HelpWebsiteActions", ListAnchor.First, "Upgrade to Omea Pro", null, null );
@@ -1819,7 +1818,7 @@ namespace JetBrains.Omea
                 "HelpWebsiteActions", ListAnchor.First, "Product Web Page", null, null );
 
 #else
-            _actionManager.RegisterMainMenuAction( new OpenUrlAction( "http://www.jetbrains.com/omea/"), "HelpWebsiteActions", 
+            _actionManager.RegisterMainMenuAction( new OpenUrlAction( "http://www.jetbrains.com/omea/"), "HelpWebsiteActions",
                                                    ListAnchor.First, "Product Web Page", null, null, null );
 #endif
 
@@ -1844,7 +1843,7 @@ namespace JetBrains.Omea
 				Core.ResourceAP.RunJob( "DeleteAllStates", ResourceListState.DeleteAllStates );
 				ObjectStore.WriteInt( "Columns", "Version", 4 );
 			}
-            
+
         	_panelResourceTabsRow.ResourceTypeTabs.DefaultViewResource =
                 MyPalStorage.Storage.FindUniqueResource( FilterManagerProps.ViewResName, "Name", "Today" );
 
@@ -1855,7 +1854,7 @@ namespace JetBrains.Omea
             {
             	_panelResourceTabsRow.ResourceTypeTabs.SelectLastTab();
             }
-            
+
             Trace.WriteLine( "Initializing criteria..." );
             (Core.FilterEngine as FilterEngine).InitializeCriteria();
 
@@ -1900,7 +1899,7 @@ namespace JetBrains.Omea
     	private bool CheckBackup( string error )
         {
             DateTime time = MyPalStorage.BackupTime();
-            if( time == DateTime.MinValue ) 
+            if( time == DateTime.MinValue )
             {
                 MessageBox.Show( this, error + '.', "Database is Lost", MessageBoxButtons.OK, MessageBoxIcon.Error );
             }
@@ -1959,8 +1958,8 @@ namespace JetBrains.Omea
             {
                 if ( curBuild < creatorBuild )
                 {
-                    DialogResult dr = MessageBox.Show( 
-                        "You are trying to run " + Core.ProductFullName + " build " + curBuild + 
+                    DialogResult dr = MessageBox.Show(
+                        "You are trying to run " + Core.ProductFullName + " build " + curBuild +
                         " on the database created by a newer version of the product, build " + creatorBuild +
                         ".\r\nThis is NOT SUPPORTED and can lead to problems including DATA CORRUPTION.\r\nDo you wish to continue?",
                         Core.ProductFullName, MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation );
@@ -1983,7 +1982,7 @@ namespace JetBrains.Omea
             {
                 return 0;
             }
-            
+
             int pos = build.IndexOf( '.' );
             if ( pos > 0 )
             {
@@ -2038,7 +2037,7 @@ namespace JetBrains.Omea
                     _excHandler.NewDatabase = true;
                 }
             }
-            else 
+            else
             {
                 if ( CheckOlderBuildDB() )
                 {
@@ -2076,7 +2075,7 @@ namespace JetBrains.Omea
                 repair.RepairRestrictions();
                 _iniFile.WriteBool( "ResourceStore", "RepairRequired", false );
             }
-            
+
             if ( _excHandler != null )
             {
                 if ( !_excHandler.NewDatabase )
@@ -2100,7 +2099,7 @@ namespace JetBrains.Omea
             Exception ex = MyPalStorage.RunFullRepair( Repair_OnRepairProgress );
             if ( ex != null && MyPalStorage.BackupTime() == DateTime.MinValue )
             {
-                MessageBox.Show( "Fatal error when repairing the database: " + ex + 
+                MessageBox.Show( "Fatal error when repairing the database: " + ex +
                     "\nPlease email feedback.omea@jetbrains.com to get help with repairing the database.",
                                  Core.ProductFullName, MessageBoxButtons.OK, MessageBoxIcon.Error );
                 return false;
@@ -2112,7 +2111,7 @@ namespace JetBrains.Omea
         {
             if ( Core.ProgressWindow != null )
             {
-                Core.ProgressWindow.UpdateProgress( 0, e.Message, "" );                
+                Core.ProgressWindow.UpdateProgress( 0, e.Message, "" );
             }
         }
 
@@ -2120,7 +2119,7 @@ namespace JetBrains.Omea
         {
             const string title = "Database Index Corruption";
             string message = Core.ProductFullName + " has detected a corruption of the database indexes. " +
-                Core.ProductFullName + " will now shutdown. Please restart " + Core.ProductFullName + 
+                Core.ProductFullName + " will now shutdown. Please restart " + Core.ProductFullName +
                 " to get the indexes rebuilt.";
 
             if ( _excHandler != null )
@@ -2136,7 +2135,7 @@ namespace JetBrains.Omea
             const string title = "Database Reading or Writing Error";
             string message = Core.ProductFullName + " has detected an error when reading or writing the database:\r\n" +
                 e.Exception.Message +
-                "\r\n" + Core.ProductFullName + 
+                "\r\n" + Core.ProductFullName +
                 " will now shutdown. ";
 
             if ( e.Exception is UnauthorizedAccessException )
@@ -2149,7 +2148,7 @@ namespace JetBrains.Omea
                 message += "Please ensure that the disk containing the database is connected and working properly and restart " +
                     Core.ProductFullName + ".";
             }
-            
+
             if ( _excHandler != null )
             {
                 _excHandler.IgnoreAllExceptions();
@@ -2167,7 +2166,7 @@ namespace JetBrains.Omea
             }
             else
             {
-                Core.UserInterfaceAP.QueueJob( JobPriority.Immediate, 
+                Core.UserInterfaceAP.QueueJob( JobPriority.Immediate,
                     new ReportErrorDelegate( ReportResourceStoreError ), title, message, false );
                 if ( Core.State == CoreState.Initializing || Core.State == CoreState.StartingPlugins )
                 {
@@ -2210,9 +2209,9 @@ namespace JetBrains.Omea
 
             NotifyMeDlg.RegisterTypes();
 
-            store.ResourceTypes.Register( "Folder", "Name", 
+            store.ResourceTypes.Register( "Folder", "Name",
                 ResourceTypeFlags.Internal | ResourceTypeFlags.ResourceContainer | ResourceTypeFlags.NoIndex );
-			store.ResourceTypes.Register( "TransientContainer", "Name", 
+			store.ResourceTypes.Register( "TransientContainer", "Name",
 				ResourceTypeFlags.Internal | ResourceTypeFlags.NoIndex );
 
             store.PropTypes.Register( "AnnotationLastModifiedDate", PropDataType.Date );
@@ -2224,12 +2223,12 @@ namespace JetBrains.Omea
             {
                 _iniFile.WriteBool( "Resources", "LinkedToRegistered", true );
                 store.PropTypes.Register( "Linked To", PropDataType.Link );
-                
+
                 IResource res = store.FindUniqueResource( "PropType", "Name", "Linked To" );
                 res.SetProp( "Custom", 1 );
             }
 
-            store.ResourceTypes.Register( "DeletedResourcePlaceholder", "", 
+            store.ResourceTypes.Register( "DeletedResourcePlaceholder", "",
                 ResourceTypeFlags.NoIndex | ResourceTypeFlags.Internal );
             if ( store.GetAllResources( "DeletedResourcePlaceholder" ).Count == 0 )
             {
@@ -2242,7 +2241,7 @@ namespace JetBrains.Omea
             if( _forceBlobsUpdate || ObjectStore.ReadBool( "Startup", "NeedUpdateBlobProperties", true ) )
             {
                 string[] blobFiles = Directory.GetFiles( MyPalStorage.DBPath, "*.blob" );
-                if( blobFiles.Length > 0 ) 
+                if( blobFiles.Length > 0 )
                 {
                     IResourceStore store = Core.ResourceStore;
                     IProgressWindow pw = Core.ProgressWindow;
@@ -2251,7 +2250,7 @@ namespace JetBrains.Omea
                     {
                         allResourceTypes.Add( type.Name );
                     }
-                
+
                     string[] allResourceTypeNames = (string[]) allResourceTypes.ToArray( typeof( String ) );
                     IResourceList allResources = store.GetAllResources( allResourceTypeNames );
                     int count = allResources.Count;
@@ -2260,7 +2259,7 @@ namespace JetBrains.Omea
                     byte[] buffer = new byte[ 4096 ];
                     ArrayList blobProps = new ArrayList();
 
-                    foreach( IResource res in allResources.ValidResources ) 
+                    foreach( IResource res in allResources.ValidResources )
                     {
                         if( pw != null && ( i++ & 0xff ) == 0 )
                         {
@@ -2281,7 +2280,7 @@ namespace JetBrains.Omea
                             //
                             // This strange (at the first look) code just rewrites blob properties
                             // Newly set properties should be written into the blob file system
-                            // 
+                            //
                             Stream stream = res.GetBlobProp( id );
                             tempStream.SetLength( 0 );
                             int readBytes;
@@ -2303,7 +2302,7 @@ namespace JetBrains.Omea
                 }
             }
         }
-        
+
         private static void UpdateLongBodyProperties()
         {
             if( Core.ResourceStore.PropTypes.Exist( "LongBody" ) )
@@ -2316,7 +2315,7 @@ namespace JetBrains.Omea
                 {
                     allResourceTypes.Add( type.Name );
                 }
-                
+
                 string[] allResourceTypeNames = (string[]) allResourceTypes.ToArray( typeof( String ) );
                 IResourceList allResources = store.GetAllResources( allResourceTypeNames );
                 int count = allResources.Count;
@@ -2331,7 +2330,7 @@ namespace JetBrains.Omea
                     {
                         res.SetProp( Core.Props.LongBody, res.GetPropText( obsoleteId ) );
                     }
-                }                                                        
+                }
                 Core.ResourceStore.PropTypes.Delete( obsoleteId );
             }
         }
@@ -2354,7 +2353,7 @@ namespace JetBrains.Omea
             //  Annotation Column and Icon Provider
 
             colMgr.RegisterDisplayColumn( null, 10000, new ColumnDescriptor( "Annotation", 20, ColumnDescriptorFlags.FixedSize ) );
-            colMgr.RegisterAllTypesMultiLineColumn( Core.Props.Annotation, 1, 1, -20, 20, 
+            colMgr.RegisterAllTypesMultiLineColumn( Core.Props.Annotation, 1, 1, -20, 20,
                 MultiLineColumnFlags.AnchorRight, SystemColors.ControlText, HorizontalAlignment.Left );
 
             int propAnnotation = MyPalStorage.Storage.GetPropId( "Annotation" );
@@ -2374,7 +2373,7 @@ namespace JetBrains.Omea
             AddResourceFlag( "GreenFlag", "Green Flag", "OmniaMea.Icons.GreenFlag.ico", completedFlag );
             AddResourceFlag( "YellowFlag", "Yellow Flag", "OmniaMea.Icons.YellowFlag.ico", completedFlag );
             AddResourceFlag( "BlueFlag", "Blue Flag", "OmniaMea.Icons.BlueFlag.ico", completedFlag );
-            
+
             ColumnDescriptor flagColDesc = new ColumnDescriptor( "Flag", 20, ColumnDescriptorFlags.FixedSize );
             flagColDesc.CustomComparer = new FlagComparer();
             colMgr.RegisterDisplayColumn( null, 9000, flagColDesc );
@@ -2384,9 +2383,9 @@ namespace JetBrains.Omea
             _flagColumn = new FlagColumn( flagIconProvider );
             colMgr.RegisterCustomColumn( ResourceFlag.PropFlag, _flagColumn );
 
-            colMgr.RegisterAllTypesMultiLineColumn( ResourceFlag.PropFlag, 1, 1, -40, 20, 
+            colMgr.RegisterAllTypesMultiLineColumn( ResourceFlag.PropFlag, 1, 1, -40, 20,
                 MultiLineColumnFlags.AnchorRight, SystemColors.ControlText, HorizontalAlignment.Left );
-           
+
             //  Category Icon Provider and Column
 
             int  catLinkId = MyPalStorage.Storage.GetPropId( "Category" );
@@ -2399,7 +2398,7 @@ namespace JetBrains.Omea
             categories.ShowTooltips = true;
             colMgr.RegisterDisplayColumn( null, 8000, new ColumnDescriptor( "Category", 20, ColumnDescriptorFlags.FixedSize ) );
             colMgr.RegisterCustomColumn( catLinkId, categories );
-            colMgr.RegisterAllTypesMultiLineColumn( catLinkId, 1, 1, -60, 20, 
+            colMgr.RegisterAllTypesMultiLineColumn( catLinkId, 1, 1, -60, 20,
                 MultiLineColumnFlags.AnchorRight, SystemColors.ControlText, HorizontalAlignment.Left );
 
             ColumnFormatter.GetInstance().RegisterFormatters();
@@ -2489,7 +2488,7 @@ namespace JetBrains.Omea
                     {
                         _actionManager.EndUpdateActions();
                     }
-            
+
                     //_resourceJobProcessor.RunJob( new MethodInvoker( _panelWorkspaceButtonsRow.WorkspaceButtonsManager.SaveVisibilityList ) );
 
                     if ( _detailedProgress )
@@ -2504,7 +2503,7 @@ namespace JetBrains.Omea
                     {
                         _networkJobProcessor.QueueEndOfWork();
                     }
-            
+
                     _resourceBrowser.DisposeDisplayPane();
 
                     SaveFormSettings();
@@ -2518,7 +2517,7 @@ namespace JetBrains.Omea
                     {
                         Core.ProgressWindow.UpdateProgress( 0, "Stopping network AsyncProcessor...", null );
                     }
-            
+
                     if ( _networkJobProcessor != null )
                     {
                         _networkJobProcessor.Dispose();
@@ -2606,7 +2605,7 @@ namespace JetBrains.Omea
             Size baseSize = AutoScaleBaseSize;
             SizeF curSizeF = GetAutoScaleSize( Font );
             Size curSize = new Size( (int) curSizeF.Width, (int) curSizeF.Height );
-            
+
             _scaleFactor = new SizeF(
                 AdjustScale( (float) curSize.Width / (float) baseSize.Width ),
                 AdjustScale( (float) curSize.Height / (float) baseSize.Height ) );
@@ -2623,19 +2622,19 @@ namespace JetBrains.Omea
         {
             if (scale < 0.92)
             {
-                return (scale + 0.08f); 
+                return (scale + 0.08f);
             }
             if (scale < 1)
             {
-                return 1; 
+                return 1;
             }
             if (scale > 1.01)
             {
-                return (scale + 0.08f); 
+                return (scale + 0.08f);
             }
             return scale;
         }
-        
+
         private void RestoreFormSettings()
         {
             if ( _iniFile == null )
@@ -2706,7 +2705,7 @@ namespace JetBrains.Omea
 
         //
         // -- IUIManager implementation --------------------------------------
-        // 
+        //
 
 		/// <summary>
 		/// Initializes the panes of the QuerySidebar.
@@ -2741,7 +2740,7 @@ namespace JetBrains.Omea
                 "The Plugins options activate and deactivate plugins that support various features and types of resources." );
             Core.UIManager.RegisterOptionsPane( "Omea", "Plugins", ()=>new OmeaPluginsPage(),
                 "The Plugins options activate and deactivate plugins that support various features and types of resources." );
-            Core.UIManager.RegisterOptionsPane( "Omea", "Paths", DatabasePathOptionsPane.CreatePane, 
+            Core.UIManager.RegisterOptionsPane( "Omea", "Paths", DatabasePathOptionsPane.CreatePane,
                 "The Paths options specify the locations where the Omea database and logs are stored." );
             Core.UIManager.RegisterOptionsPane( "Omea", "General", CreateInterfaceOptionsPane,
                 "The General options control certain global behaviors." );
@@ -2749,7 +2748,7 @@ namespace JetBrains.Omea
                 "The User Information options enable you to specify your first name, last name and list of e-mail addresses." );
             Core.UIManager.RegisterOptionsPane( "Omea", "Proxy Configuration", ProxyConfigPane.ProxyConfigPaneCreator,
                 "The Proxy Configuration options enable you to configure a proxy server if one is required by your Internet service provider in order for you to access online content." );
-            Core.UIManager.RegisterOptionsPane( "Omea", "Mail Format",  MailFormatPane.MailFormatPaneCreator, 
+            Core.UIManager.RegisterOptionsPane( "Omea", "Mail Format",  MailFormatPane.MailFormatPaneCreator,
                 "The Mail Format options allow to configure the formatting of messages and replies created in Omea." );
             Core.UIManager.RegisterOptionsPane( "Omea", "Delete Confirmations", DeletersPane.DeletersPaneCreator,
                 "The Delete Confirmations options enable you to configure per resource type how confirmations appear when resources are moved to the Deleted Resources and deleted permanently." );
@@ -2823,13 +2822,13 @@ namespace JetBrains.Omea
 
         //
         // -- Tabs support ---------------------------------------------------
-        // 
+        //
 
         private void OnRightSidebarPaneAdded( object sender, EventArgs e )
         {
             if ( _rightSidebar.PanesCount == 1 )
             {
-                RightSidebarExpanded = _iniFile.ReadBool( "MainForm", "RightSidebarExpanded", true );                
+                RightSidebarExpanded = _iniFile.ReadBool( "MainForm", "RightSidebarExpanded", true );
             }
         }
 
@@ -3002,7 +3001,7 @@ namespace JetBrains.Omea
                 {
                     Visible = false;
                     _minimized = true;
-                    return;                
+                    return;
                 }
             }
 
@@ -3042,7 +3041,7 @@ namespace JetBrains.Omea
                 if ( WindowState != FormWindowState.Minimized && !_minimized && !_restoringFromTray )
                 {
                     _oldWindowState = WindowState;
-                }        
+                }
             }
         }
 
@@ -3134,7 +3133,7 @@ namespace JetBrains.Omea
 					_lastMessageIndex++;
 				}
 			}
-                
+
 			if ( m.Msg == Win32Declarations.WM_MOUSEWHEEL )
 			{
 				POINT ptapi = new POINT( m.LParam.ToInt32() );

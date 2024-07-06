@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 
@@ -120,9 +119,9 @@ namespace JetBrains.ExceptionReport
       this.label6 = new System.Windows.Forms.Label();
       this.groupBox2.SuspendLayout();
       this.SuspendLayout();
-      // 
+      //
       // checkCustom
-      // 
+      //
       this.checkCustom.FlatStyle = System.Windows.Forms.FlatStyle.System;
       this.checkCustom.Location = new System.Drawing.Point(8, 8);
       this.checkCustom.Name = "checkCustom";
@@ -130,27 +129,27 @@ namespace JetBrains.ExceptionReport
       this.checkCustom.TabIndex = 0;
       this.checkCustom.Text = "Use proxy server";
       this.checkCustom.CheckedChanged += new System.EventHandler(this.checkDefault_CheckedChanged);
-      // 
+      //
       // buttonOK
-      // 
+      //
       this.buttonOK.DialogResult = System.Windows.Forms.DialogResult.OK;
       this.buttonOK.FlatStyle = System.Windows.Forms.FlatStyle.System;
       this.buttonOK.Location = new System.Drawing.Point(104, 208);
       this.buttonOK.Name = "buttonOK";
       this.buttonOK.TabIndex = 5;
       this.buttonOK.Text = "OK";
-      // 
+      //
       // buttonCancel
-      // 
+      //
       this.buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
       this.buttonCancel.FlatStyle = System.Windows.Forms.FlatStyle.System;
       this.buttonCancel.Location = new System.Drawing.Point(184, 208);
       this.buttonCancel.Name = "buttonCancel";
       this.buttonCancel.TabIndex = 6;
       this.buttonCancel.Text = "Cancel";
-      // 
+      //
       // checkAuthentication
-      // 
+      //
       this.checkAuthentication.BackColor = System.Drawing.Color.Transparent;
       this.checkAuthentication.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(204)));
       this.checkAuthentication.Location = new System.Drawing.Point(16, 24);
@@ -159,9 +158,9 @@ namespace JetBrains.ExceptionReport
       this.checkAuthentication.TabIndex = 5;
       this.checkAuthentication.Text = "Proxy server requires authentication";
       this.checkAuthentication.CheckedChanged += new System.EventHandler(this.checkAuthentication_CheckedChanged);
-      // 
+      //
       // groupBox2
-      // 
+      //
       this.groupBox2.Controls.Add(this.textLogin);
       this.groupBox2.Controls.Add(this.label4);
       this.groupBox2.Controls.Add(this.textPassword);
@@ -174,42 +173,42 @@ namespace JetBrains.ExceptionReport
       this.groupBox2.TabIndex = 6;
       this.groupBox2.TabStop = false;
       this.groupBox2.Text = "Authentication";
-      // 
+      //
       // textLogin
-      // 
+      //
       this.textLogin.Location = new System.Drawing.Point(104, 48);
       this.textLogin.Name = "textLogin";
       this.textLogin.Size = new System.Drawing.Size(120, 21);
       this.textLogin.TabIndex = 1;
       this.textLogin.Text = "textBox1";
-      // 
+      //
       // label4
-      // 
+      //
       this.label4.Location = new System.Drawing.Point(32, 72);
       this.label4.Name = "label4";
       this.label4.Size = new System.Drawing.Size(64, 23);
       this.label4.TabIndex = 2;
       this.label4.Text = "Password:";
-      // 
+      //
       // textPassword
-      // 
+      //
       this.textPassword.Location = new System.Drawing.Point(104, 72);
       this.textPassword.Name = "textPassword";
       this.textPassword.PasswordChar = '*';
       this.textPassword.Size = new System.Drawing.Size(120, 21);
       this.textPassword.TabIndex = 3;
       this.textPassword.Text = "textBox1";
-      // 
+      //
       // label3
-      // 
+      //
       this.label3.Location = new System.Drawing.Point(32, 48);
       this.label3.Name = "label3";
       this.label3.Size = new System.Drawing.Size(48, 23);
       this.label3.TabIndex = 0;
       this.label3.Text = "Login:";
-      // 
+      //
       // label1
-      // 
+      //
       this.label1.FlatStyle = System.Windows.Forms.FlatStyle.System;
       this.label1.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(204)));
       this.label1.Location = new System.Drawing.Point(24, 32);
@@ -218,18 +217,18 @@ namespace JetBrains.ExceptionReport
       this.label1.TabIndex = 1;
       this.label1.Text = "Host:";
       this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-      // 
+      //
       // textHost
-      // 
+      //
       this.textHost.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(204)));
       this.textHost.Location = new System.Drawing.Point(80, 32);
       this.textHost.Name = "textHost";
       this.textHost.Size = new System.Drawing.Size(184, 21);
       this.textHost.TabIndex = 2;
       this.textHost.Text = "textBox1";
-      // 
+      //
       // label2
-      // 
+      //
       this.label2.FlatStyle = System.Windows.Forms.FlatStyle.System;
       this.label2.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(204)));
       this.label2.Location = new System.Drawing.Point(24, 56);
@@ -237,18 +236,18 @@ namespace JetBrains.ExceptionReport
       this.label2.Size = new System.Drawing.Size(48, 16);
       this.label2.TabIndex = 3;
       this.label2.Text = "Port:";
-      // 
+      //
       // textPort
-      // 
+      //
       this.textPort.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(204)));
       this.textPort.Location = new System.Drawing.Point(80, 56);
       this.textPort.Name = "textPort";
       this.textPort.Size = new System.Drawing.Size(80, 21);
       this.textPort.TabIndex = 4;
       this.textPort.Text = "textBox1";
-      // 
+      //
       // label5
-      // 
+      //
       this.label5.FlatStyle = System.Windows.Forms.FlatStyle.System;
       this.label5.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(204)));
       this.label5.Location = new System.Drawing.Point(24, 32);
@@ -257,9 +256,9 @@ namespace JetBrains.ExceptionReport
       this.label5.TabIndex = 1;
       this.label5.Text = "Host:";
       this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-      // 
+      //
       // label6
-      // 
+      //
       this.label6.FlatStyle = System.Windows.Forms.FlatStyle.System;
       this.label6.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(204)));
       this.label6.Location = new System.Drawing.Point(24, 56);
@@ -267,9 +266,9 @@ namespace JetBrains.ExceptionReport
       this.label6.Size = new System.Drawing.Size(48, 16);
       this.label6.TabIndex = 3;
       this.label6.Text = "Port:";
-      // 
+      //
       // ExceptionProxySetup
-      // 
+      //
       this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
       this.ClientSize = new System.Drawing.Size(274, 245);
       this.ControlBox = false;

@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System.Windows.Forms;
 
@@ -46,7 +45,7 @@ namespace JetBrains.Omea.OutlookPlugin
 					Folder.SetIgnoreImportAsync( resource, _folderType, ignore );
 				}
 				Save( node.Nodes );
-			}        
+			}
 		}
 
 		private HashMap _checkStates = new HashMap();
@@ -100,8 +99,8 @@ namespace JetBrains.Omea.OutlookPlugin
 			foreach ( HashMap.Entry entry in hashNode.HashNodes )
 			{
 				IResource resource = ((HashNode)entry.Value).Resource;
-                
-				if ( resource.Id == -1 || ( resource.Type == STR.MAPIFolder ) ) 
+
+				if ( resource.Id == -1 || ( resource.Type == STR.MAPIFolder ) )
 				{
 					IResource store = Folder.GetMAPIStorage( resource );
 					if ( store.HasProp( PROP.IgnoredFolder ) )
@@ -109,7 +108,7 @@ namespace JetBrains.Omea.OutlookPlugin
 						continue;
 					}
 				}
-                
+
 				int iconIndex = 0;
 				IResource resourceTag = null;
 				if ( Folder.IsFolderOfType( resource, _folderType ) )
@@ -192,7 +191,7 @@ namespace JetBrains.Omea.OutlookPlugin
 			}
 			else
 			{
-				HashNode hasNode = 
+				HashNode hasNode =
 					AddLocalAddressBook( parentFolder );
 				if ( hasNode == null )
 				{

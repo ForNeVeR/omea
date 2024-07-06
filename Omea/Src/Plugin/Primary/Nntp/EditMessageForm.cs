@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -524,10 +523,10 @@ namespace JetBrains.Omea.Nntp
 			_headerPanel.SuspendLayout();
 			_bodyPanel.SuspendLayout();
 			this.SuspendLayout();
-			// 
+			//
 			// _subjectBox
-            // 
-            this._subjectBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._subjectBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._subjectBox.ContextProvider = null;
             this._subjectBox.EmptyText = null;
@@ -537,10 +536,10 @@ namespace JetBrains.Omea.Nntp
             this._subjectBox.TabIndex = 4;
             this._subjectBox.Text = "";
             this._subjectBox.TextChanged += new System.EventHandler(this._subjectBox_TextChanged);
-            // 
+            //
             // _groupsLabel
-            // 
-            this._groupsLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._groupsLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._groupsLabel.AutoScroll = true;
             this._groupsLabel.Location = new System.Drawing.Point(100, 66);
@@ -548,9 +547,9 @@ namespace JetBrains.Omea.Nntp
             this._groupsLabel.ResourceList = null;
             this._groupsLabel.Size = new System.Drawing.Size(684, 20);
             this._groupsLabel.TabIndex = 3;
-            // 
+            //
             // _fromlabel
-            // 
+            //
             this._fromlabel.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._fromlabel.Location = new System.Drawing.Point(8, 10);
             this._fromlabel.Name = "_fromlabel";
@@ -558,9 +557,9 @@ namespace JetBrains.Omea.Nntp
             this._fromlabel.TabIndex = 6;
             this._fromlabel.Text = "From:";
             this._fromlabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
+            //
             // _subjectLabel
-            // 
+            //
             this._subjectLabel.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._subjectLabel.Location = new System.Drawing.Point(8, 94);
             this._subjectLabel.Name = "_subjectLabel";
@@ -568,9 +567,9 @@ namespace JetBrains.Omea.Nntp
             this._subjectLabel.TabIndex = 10;
             this._subjectLabel.Text = "Subject:";
             this._subjectLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
+            //
             // _statusBar
-            // 
+            //
             this._statusBar.AllowDrop = true;
             this._statusBar.Location = new System.Drawing.Point(0, 544);
             this._statusBar.Name = "_statusBar";
@@ -578,13 +577,13 @@ namespace JetBrains.Omea.Nntp
             this._statusBar.TabIndex = 11;
             this._statusBar.DragDrop += new System.Windows.Forms.DragEventHandler(this.EditMessageForm_DragDrop);
             this._statusBar.DragOver += new System.Windows.Forms.DragEventHandler(this.EditMessageForm_DragOver);
-            // 
+            //
             // _openAttachDialog
-            // 
+            //
             this._openAttachDialog.Multiselect = true;
-            // 
+            //
             // _attachList
-            // 
+            //
             this._attachList.AllowDrop = true;
             this._attachList.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this._attachList.ContextMenu = this._attachListMenu;
@@ -601,20 +600,20 @@ namespace JetBrains.Omea.Nntp
             this._attachList.DragOver += new System.Windows.Forms.DragEventHandler(this.EditMessageForm_DragOver);
             this._attachList.DragDrop += new System.Windows.Forms.DragEventHandler(this.EditMessageForm_DragDrop);
             this._attachList.KeyDown += new System.Windows.Forms.KeyEventHandler(this._attachListView_KeyDown);
-            // 
+            //
             // _attachListMenu
-            // 
+            //
             this._attachListMenu.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
                                                                                             this._removeAttachMenuItem});
-            // 
+            //
             // _removeAttachMenuItem
-            // 
+            //
             this._removeAttachMenuItem.Index = 0;
             this._removeAttachMenuItem.Text = "Remove";
             this._removeAttachMenuItem.Click += new System.EventHandler(this._removeAttachMenuItem_Click);
-            // 
+            //
             // _headerPanel
-            // 
+            //
             this._headerPanel.AllowDrop = true;
             this._headerPanel.Controls.Add(this._newsgroupsLabel);
             this._headerPanel.Controls.Add(this._serverComboBox);
@@ -633,9 +632,9 @@ namespace JetBrains.Omea.Nntp
             this._headerPanel.TabIndex = 0;
             this._headerPanel.DragDrop += new System.Windows.Forms.DragEventHandler(this.EditMessageForm_DragDrop);
             this._headerPanel.DragOver += new System.Windows.Forms.DragEventHandler(this.EditMessageForm_DragOver);
-            // 
+            //
             // _newsgroupsLabel
-            // 
+            //
             this._newsgroupsLabel.AutoSize = false;
             this._newsgroupsLabel.Cursor = System.Windows.Forms.Cursors.Hand;
             this._newsgroupsLabel.ForeColor = System.Drawing.Color.FromArgb(((System.Byte)(70)), ((System.Byte)(70)), ((System.Byte)(211)));
@@ -646,10 +645,10 @@ namespace JetBrains.Omea.Nntp
             this._newsgroupsLabel.TabStop = false;
             this._newsgroupsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this._newsgroupsLabel.Click += new System.EventHandler(this._newsgroupsLabel_Click);
-            // 
+            //
             // _serverComboBox
-            // 
-            this._serverComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._serverComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._serverComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this._serverComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -658,9 +657,9 @@ namespace JetBrains.Omea.Nntp
             this._serverComboBox.Size = new System.Drawing.Size(688, 22);
             this._serverComboBox.TabIndex = 2;
             this._serverComboBox.SelectedIndexChanged += new System.EventHandler(this._serverComboBox_SelectedIndexChanged);
-            // 
+            //
             // _serverLabel
-            // 
+            //
             this._serverLabel.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._serverLabel.Location = new System.Drawing.Point(8, 38);
             this._serverLabel.Name = "_serverLabel";
@@ -668,20 +667,20 @@ namespace JetBrains.Omea.Nntp
             this._serverLabel.TabIndex = 13;
             this._serverLabel.Text = "News Server:";
             this._serverLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
+            //
             // _toolbarSeparator
-            // 
-            this._toolbarSeparator.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._toolbarSeparator.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._toolbarSeparator.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this._toolbarSeparator.Location = new System.Drawing.Point(0, 0);
             this._toolbarSeparator.Name = "_toolbarSeparator";
             this._toolbarSeparator.Size = new System.Drawing.Size(792, 2);
             this._toolbarSeparator.TabIndex = 12;
-            // 
+            //
             // _fromTextLabel
-            // 
-            this._fromTextLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._fromTextLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._fromTextLabel.Location = new System.Drawing.Point(100, 8);
             this._fromTextLabel.Name = "_fromTextLabel";
@@ -690,10 +689,10 @@ namespace JetBrains.Omea.Nntp
             this._fromTextLabel.TabIndex = 0;
             this._fromTextLabel.Text = "";
             this._fromTextLabel.Enter += new System.EventHandler(this._fromTextLabel_Enter);
-            // 
+            //
             // _fromComboBox
-            // 
-            this._fromComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._fromComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._fromComboBox.Location = new System.Drawing.Point(100, 8);
             this._fromComboBox.Name = "_fromComboBox";
@@ -703,18 +702,18 @@ namespace JetBrains.Omea.Nntp
             this._fromComboBox.DropDown += new System.EventHandler(this._fromBox_DropDown);
             this._fromComboBox.Leave += new System.EventHandler(this._fromBox_Leave);
             this._fromComboBox.Enter += new System.EventHandler(this._fromBox_DropDown);
-            // 
+            //
             // _bodyListSplitter
-            // 
+            //
             this._bodyListSplitter.Dock = System.Windows.Forms.DockStyle.Right;
             this._bodyListSplitter.Location = new System.Drawing.Point(624, 0);
             this._bodyListSplitter.Name = "_bodyListSplitter";
             this._bodyListSplitter.Size = new System.Drawing.Size(4, 394);
             this._bodyListSplitter.TabIndex = 13;
             this._bodyListSplitter.TabStop = false;
-            // 
+            //
             // _bodyPanel
-            // 
+            //
             this._bodyPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this._bodyPanel.Controls.Add(this._bodyListSplitter);
             this._bodyPanel.Controls.Add(this._attachList);
@@ -725,9 +724,9 @@ namespace JetBrains.Omea.Nntp
             this._bodyPanel.TabIndex = 1;
             this._bodyPanel.DragDrop += new System.Windows.Forms.DragEventHandler(this.EditMessageForm_DragDrop);
             this._bodyPanel.DragOver += new System.Windows.Forms.DragEventHandler(this.EditMessageForm_DragOver);
-            // 
+            //
             // _toolbar
-            // 
+            //
             this._toolbar.AllowDrop = true;
             this._toolbar.Location = new System.Drawing.Point(0, 0);
             this._toolbar.Name = "_toolbar";
@@ -736,85 +735,85 @@ namespace JetBrains.Omea.Nntp
             this._toolbar.TabIndex = 11;
             this._toolbar.DragDrop += new System.Windows.Forms.DragEventHandler(this.EditMessageForm_DragDrop);
             this._toolbar.DragOver += new System.Windows.Forms.DragEventHandler(this.EditMessageForm_DragOver);
-            // 
+            //
             // mainMenu1
-            // 
+            //
             mainMenu1.Items.AddRange( new ToolStripItem[]{ _fileMenuItem, _editMenuItem, _menuActions, _formatMenuItem});
-            // 
+            //
             // _fileMenuItem
-            // 
+            //
             _fileMenuItem.DropDownItems.AddRange( new ToolStripItem[] { _newMenuItem, _postMenuItem, _menuSeparator1,
                                                                         _saveMenuItem, _saveAndCloseMenuItem,
                                                                         _menuSeparator4, _closeMenuItem});
             this._fileMenuItem.Text = "&File";
-            // 
+            //
             // _newMenuItem
-            // 
+            //
             this._newMenuItem.ShortcutKeys = Keys.Control | Keys.N;
             this._newMenuItem.Text = "&New";
             this._newMenuItem.Click += new System.EventHandler(this._newMenuItem_Click);
-            // 
+            //
             // _postMenuItem
-            // 
+            //
             this._postMenuItem.Text = "&Send Article";
             this._postMenuItem.ShortcutKeys = Keys.Control | Keys.Enter;
-            // 
+            //
             // _saveMenuItem
-            // 
+            //
             this._saveMenuItem.ShortcutKeys = Keys.Control | Keys.S;
             this._saveMenuItem.Text = "Sa&ve";
-            // 
+            //
             // _saveAndCloseMenuItem
-            // 
+            //
             this._saveAndCloseMenuItem.ShortcutKeys = Keys.Control | Keys.Shift | Keys.S;
             this._saveAndCloseMenuItem.Text = "Save and C&lose";
-            // 
+            //
             // _closeMenuItem
-            // 
+            //
             this._closeMenuItem.Text = "&Close";
             this._closeMenuItem.Click += new System.EventHandler(this._closeMenuItem_Click);
-            // 
+            //
             // _editMenuItem
-            // 
+            //
             this._editMenuItem.DropDownItems.AddRange(new ToolStripItem[] { _undoMenuItem, _redoMenuItem,
 																			_menuSeparator5,
                                                                             _cutMenuItem, _copyMenuItem, _pasteMenuItem,
                                                                             _menuitemAttachFile, _menuitemNewsgroups});
             this._editMenuItem.Text = "&Edit";
             this._editMenuItem.DropDownItemClicked += new ToolStripItemClickedEventHandler(_editMenuItem_DropDownItemClicked);
-			// 
+			//
 			// _undoMenuItem
-			// 
+			//
 			this._undoMenuItem.ShortcutKeys = Keys.Control | Keys.Z;
 			this._undoMenuItem.Text = "&Undo";
-			// 
+			//
 			// _redoMenuItem
-			// 
+			//
 			this._redoMenuItem.ShortcutKeys = Keys.Control | Keys.Y;
 			this._redoMenuItem.Text = "&Redo";
-            // 
+            //
             // _cutMenuItem
-            // 
+            //
             this._cutMenuItem.ShortcutKeys = Keys.Control | Keys.X;
             this._cutMenuItem.Text = "Cu&t";
-            // 
+            //
             // _copyMenuItem
-            // 
+            //
             this._copyMenuItem.ShortcutKeys = Keys.Control | Keys.C;
             this._copyMenuItem.Text = "&Copy";
-            // 
+            //
             // _pasteMenuItem
-            // 
+            //
             this._pasteMenuItem.ShortcutKeys = Keys.Control | Keys.V;
             this._pasteMenuItem.Text = "&Paste";
-            // 
+            //
             // _formatMenuItem
-            // 
+            //
             this._formatMenuItem.DropDownItems.AddRange( new ToolStripItem[] { _encodingMenuItem } );
             this._formatMenuItem.Text = "F&ormat";
-            // 
+            //
             // _encodingMenuItem
-            // 
+            //
             this._encodingMenuItem.Text = "&Encoding";
 
             _menuitemReply2Sender.Text = "Reply to &Sender";
@@ -829,9 +828,9 @@ namespace JetBrains.Omea.Nntp
 			_menuActions.Text = "&Actions";
             _menuActions.DropDownItems.AddRange( new ToolStripItem[]{ _menuitemReply2Herd, _menuitemReply2Sender, _menuitemForward,
                                                                       _menuitemDeleteArticle, _menuitemNext, _menuitemPrevious} );
-			// 
+			//
             // EditMessageForm
-            // 
+            //
             this.AllowDrop = true;
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
             this.ClientSize = new System.Drawing.Size(792, 566);
@@ -1239,7 +1238,7 @@ namespace JetBrains.Omea.Nntp
         {
             if( ArticleChanged )
             {
-                DialogResult result = MessageBox.Show( this, 
+                DialogResult result = MessageBox.Show( this,
                     "Article has been modified. Save it in Drafts folder?",
                     "Save Article", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question );
                 if ( result == DialogResult.Cancel )
@@ -1371,7 +1370,7 @@ namespace JetBrains.Omea.Nntp
                 SelectNewsgroups(GetContext( ActionContextKind.Toolbar ));
             }
         }
-        
+
         private void _newMenuItem_Click(object sender, EventArgs e)
         {
             EditAndPostMessage( _groups, string.Empty, string.Empty, string.Empty, true );
@@ -1576,7 +1575,7 @@ namespace JetBrains.Omea.Nntp
                         null,
                         this,
                         InputStringFlags.AllowEmpty );
-                
+
                     if ( newSubject == null )
                     {
                         SetArticleReadonly( false );
@@ -1809,7 +1808,7 @@ namespace JetBrains.Omea.Nntp
             CheckUnfitEncoding();
 
             StringBuilder articleBuilder = StringBuilderPool.Alloc();
-            try 
+            try
             {
                 string from = _fromTextLabel.Text;
                 string subject = _subjectBox.Text;

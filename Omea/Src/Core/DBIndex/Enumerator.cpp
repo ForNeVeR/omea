@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 #include "Enumerator.h"
 
@@ -47,7 +46,7 @@ namespace DBIndex
 			}
 			case int_int_datetime_Key:
 			{
-				const BTreeKey< CompoundKeyWithValue<int,int,long> >* cKey = 
+				const BTreeKey< CompoundKeyWithValue<int,int,long> >* cKey =
 					static_cast< const BTreeKey< CompoundKeyWithValue<int,int,long> >* >( nativeKey );
 				CompoundAndValue* theKey = dynamic_cast< CompoundAndValue* >( managedKey->_key->Key );
 				theKey->_key1 = dynamic_cast<IComparable*>( IntInternalizer::Intern( cKey->GetKey()._first ) );
@@ -57,7 +56,7 @@ namespace DBIndex
 			}
 			case int_datetime_int_Key:
 			{
-				const BTreeKey< CompoundKeyWithValue<int,long,int> >* cKey = 
+				const BTreeKey< CompoundKeyWithValue<int,long,int> >* cKey =
 					static_cast< const BTreeKey< CompoundKeyWithValue<int,long,int> >* >( nativeKey );
 				CompoundAndValue* theKey = dynamic_cast< CompoundAndValue* >( managedKey->_key->Key );
 				theKey->_key1 = dynamic_cast<IComparable*>( IntInternalizer::Intern( cKey->GetKey()._first ) );
@@ -94,7 +93,7 @@ namespace DBIndex
 		TranslateNativeKey2ManagedKey( _bTree->_keyType, _currentPageKeys[ _currentPageIndex ] , _current );
 		return _current;
 	}
-	
+
 	bool GetAllKeysEnumerator::MoveNext()
 	{
 		while( ++_currentPageIndex >= _currentPageCount )
@@ -135,7 +134,7 @@ namespace DBIndex
 		}
 	}
 
-	
+
 	///////////////////////////////////////////////////////////////////////////
 	// SearchForRangeEnumerator implementation
 	///////////////////////////////////////////////////////////////////////////
@@ -162,7 +161,7 @@ namespace DBIndex
 		TranslateNativeKey2ManagedKey( _bTree->_keyType, _currentPageKeys[ _currentPageIndex ] , _current );
 		return _current;
 	}
-	
+
 	bool SearchForRangeEnumerator::MoveNext()
 	{
 		while( ++_currentPageIndex >= _currentPageCount )

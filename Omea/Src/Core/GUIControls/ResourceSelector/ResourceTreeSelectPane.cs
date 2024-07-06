@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using JetBrains.DataStructures;
 using JetBrains.JetListViewLibrary;
@@ -16,7 +15,7 @@ namespace JetBrains.Omea.GUIControls
     public class ResourceTreeSelectPane: AbstractResourceSelectPane
     {
         protected ResourceTreeView2 _resourceTree;
-        /// <summary> 
+        /// <summary>
         /// Required designer variable.
         /// </summary>
         private System.ComponentModel.Container components = null;
@@ -34,7 +33,7 @@ namespace JetBrains.Omea.GUIControls
 
         }
 
-        /// <summary> 
+        /// <summary>
         /// Clean up any resources being used.
         /// </summary>
         protected override void Dispose( bool disposing )
@@ -50,17 +49,17 @@ namespace JetBrains.Omea.GUIControls
         }
 
         #region Component Designer generated code
-        /// <summary> 
-        /// Required method for Designer support - do not modify 
+        /// <summary>
+        /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
         {
             this._resourceTree = new ResourceTreeView2();
             this.SuspendLayout();
-            // 
+            //
             // _resourceTree
-            // 
+            //
             this._resourceTree.Dock = System.Windows.Forms.DockStyle.Fill;
             this._resourceTree.ExecuteDoubleClickAction = false;
             this._resourceTree.Location = new System.Drawing.Point(0, 0);
@@ -71,9 +70,9 @@ namespace JetBrains.Omea.GUIControls
             this._resourceTree.DoubleClick += new HandledEventHandler(this._resourceTree_DoubleClick);
             this._resourceTree.AfterCheck += new ResourceCheckEventHandler(this._resourceTree_AfterThreeStateCheck);
             this._resourceTree.ResourceAdded += new ResourceEventHandler(this._resourceTree_ResourceAdded);
-            // 
+            //
             // ResourceTreeSelectPane
-            // 
+            //
             this.Controls.Add(this._resourceTree);
             this.Name = "ResourceTreeSelectPane";
             this.ResumeLayout(false);
@@ -142,14 +141,14 @@ namespace JetBrains.Omea.GUIControls
 
         public virtual IResource GetSelectorRoot( string resType )
         {
-            return Core.ResourceTreeManager.GetRootForType( resType );        	
+            return Core.ResourceTreeManager.GetRootForType( resType );
         }
 
         /**
          * When a resource of a matching type is added to the tree, sets its
          * checkbox state to unchecked.
          */
-        
+
         private void _resourceTree_ResourceAdded( object sender, ResourceEventArgs e )
         {
             if ( _resourceTree.CheckBoxes )
@@ -194,7 +193,7 @@ namespace JetBrains.Omea.GUIControls
 
         private void _resourceTree_DoubleClick( object sender, HandledEventArgs e )
         {
-            OnAccept();  
+            OnAccept();
             e.Handled = true;
         }
     }

@@ -1,9 +1,8 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
-// eHelp® Corporation Dynamic HTML JavaScript 
+// eHelp® Corporation Dynamic HTML JavaScript
 // Copyright© 1998-2003 eHelp® Corporation.All rights reserved.
 // Version=4.82
 
@@ -88,7 +87,7 @@ if (gbBsNS6)
 			if (nVersion>=20020823)
 				gbBsNS7=true;
 		}
-	}	
+	}
 }
 if (gbBsOpera)
 {
@@ -100,7 +99,7 @@ if (gbBsOpera)
 		{
 			gbBsOpera6=true;
 			if (nVersion >=7)
-				gbBsOpera7=true;	
+				gbBsOpera7=true;
 		}
 	}
 }
@@ -128,7 +127,7 @@ function insertAdjacentHTML(obj, where, htmlStr)
 		var r = obj.ownerDocument.createRange();
 		r.setStartBefore(obj);
 		var	parsedHTML = r.createContextualFragment(htmlStr);
-		
+
 		switch (where){
 		case 'beforeBegin':
 			obj.parentNode.insertBefore(parsedHTML,obj);
@@ -232,7 +231,7 @@ function BSSCOnLoad()
 function BSSCOnClick()
 {
 	if (!BsscHasExtJs()) return;
-		
+
 	for (var nElement = gBsOnClicks.length - 1; nElement >= 0; nElement--)
 		gBsOnClicks[nElement]();
 }
@@ -289,9 +288,9 @@ function BsHHActivateComponents()
 }
 
 function BsHHActivXOnLoad()
-{	
+{
 	if( gbBsIE4 )
-		BsHHActivateComponents(); 
+		BsHHActivateComponents();
 }
 
 if( typeof(BsscRegisterOnLoad) != "undefined" )
@@ -339,7 +338,7 @@ function _WritePopupMenuLayer()
 	}
 }
 
-//Seek for the bsscright frame 
+//Seek for the bsscright frame
 function _SeekFrameByName( cRoot, strName )
 {
 	if( cRoot == null )	return null;
@@ -348,7 +347,7 @@ function _SeekFrameByName( cRoot, strName )
 	for (var i=0; i<cRoot.frames.length; i++)
 	{
 		var cObj = null;
-		if (!gbBsNS6) 
+		if (!gbBsNS6)
 			cObj = _SeekFrameByName( cRoot.frames(i).document, strName );
 		else
 			cObj = _SeekFrameByName( cRoot.frames[i], strName );
@@ -387,7 +386,7 @@ function _PopupMenu_Invoke_2()
 {
 	var fn_arguments = gfn_arguments;
 	gfn_arguments = null;
-	
+
 	// Make sure we have reasonable arguments
 	var argLen = fn_arguments.length;
 	if (argLen < 3) {
@@ -411,7 +410,7 @@ function _PopupMenu_Invoke_2()
 	}
 
 	if ((!gbBsIE4 && !gbBsNS4 && !gbBsOpera7 && !gbBsKonqueror3 &&!gbBsSafari) || ((gbBsMac) && (gbBsIE4) && (window.event.srcElement.tagName == "AREA"))) {
-	
+
 		var argLen 	= fn_arguments.length;
 
 		// Create the window that the hyperlinks will go into
@@ -490,11 +489,11 @@ function _PopupMenu_Invoke_2()
 				window.open(strURL, fn_arguments[1]);
 			else
 				window.open(strURL);
-		}		
+		}
 		window.gbInPopupMenu = true;
 		return false;
 	}
-	
+
 	var strMenu = "";
 	if (gbBsNS4&&!gbBsNS6) {
 		strMenu = '<TABLE BORDER="1" CELLSPACING=0 CELLPADDING=3 BGCOLOR="#c0c0c0">';
@@ -504,7 +503,7 @@ function _PopupMenu_Invoke_2()
 			strMenu += ' CELLPADDING=4';
 		} else {
 			strMenu += ' CELLPADDING=2';
-		}	
+		}
 		strMenu += ' BGCOLOR=#c0c0c0>';
 	}
 	// Add each of the items
@@ -564,7 +563,7 @@ function _PopupMenu_Invoke_2()
 			nEventY = (document.body.scrollTop + gBsClientHeight) - layerPopup.scrollHeight - 20;
 		}
 		stylePopup.top = nEventY;
-		
+
 		var nPopupWidth = layerPopup.scrollWidth;
 		if (gbBsMac) {
 			nPopupWidth = 80; // we have no idea how to get the dynamic width of the popup.
@@ -587,7 +586,7 @@ function _PopupMenu_Invoke_2()
 	} else if (gbBsNS6 || gbBsKonqueror3||gbBsSafari) {
 		layerPopup = getElement("PopupMenu");
 		layerPopup.style.visibility = "hidden";
-	
+
 		if (gbBsNS6)
 		{
 			var e = fn_arguments[0];
@@ -709,7 +708,7 @@ function PopupMenu_HandleClick(e)
 			layerPopup = getElement("PopupMenu");
 			layerPopup.style.visibility = "hidden";
 		}
-	
+
 		if (gOlddocumentClick)
 		{
 			if (gbBsNS4 && !gbBsNS6)
@@ -724,7 +723,7 @@ function PopupMenu_HandleClick(e)
 function BSSCPopup_ClickMac()
 {
 	if ((!DHTMLPopupSupport()) && (gbBsIE4 || gbBsOpera7))
-	{	
+	{
 		var bClickOnAnchor = false;
 		var el;
 		if ((window.event != null) &&
@@ -780,7 +779,7 @@ function BsPopupOnClick()
 
 function _BSSCOnError(message)
 {
-	if(-1 != message.indexOf("denied") 
+	if(-1 != message.indexOf("denied")
 		|| -1 != message.indexOf("Object required"))
 	 return true;
 }
@@ -800,7 +799,7 @@ var gBsClientHeight = 480;
 
 // here is the varible for judge popup windows size. these parameter is for IE5.0, it may need adjust for others.
 var gBRateH_W		= 0.618; // 1.618 Golden cut.
-var gBMaxXOfParent	= 0.8; 
+var gBMaxXOfParent	= 0.8;
 var gBMaxYOfParent	= 0.8;
 var gBscrollHeight   = 16;
 var gBscrollWidth   =  16;
@@ -821,14 +820,14 @@ function setAbsPopupURL(nIndex, strURL)
 function getAbsPopupURL(nIndex)
 {
 	if (nIndex == -1 || arrayAbsPopupURL.length <= nIndex) return null;
-	else 
+	else
 		return arrayAbsPopupURL[nIndex];
 }
 
 function getPopupURL(nIndex)
 {
 	if (nIndex == -1 || arrayPopupURL.length <= nIndex) return null;
-	else 
+	else
 		return arrayPopupURL[nIndex];
 }
 
@@ -917,7 +916,7 @@ function addDiv(strURL)
 			arrayPopupURL[i] = strURL;
 			return i;
 		}
-	}	
+	}
 	arrayPopupURL[i] = strURL;
 	arrayDirty[i] = true;
 	return i;
@@ -933,8 +932,8 @@ function IsDirty(nIndex)
 {
 	if (nIndex == -1)
 		return true;
-	else 
-		if (arrayDirty.length > nIndex) 
+	else
+		if (arrayDirty.length > nIndex)
 			return arrayDirty[nIndex];
 		else
 			return true;
@@ -979,7 +978,7 @@ function _BSSCCreatePopupDiv(strURL)
 	return nIndex;
 }
 
-//Here is the browser type 
+//Here is the browser type
 function _BSPSGetBrowserInfo()
 {
 	if (gbBsNS4&&!gbBsNS6)
@@ -1116,7 +1115,7 @@ function BSSCPopup_Timeout(nIndex, nToken)
 	}
 }
 
-// VH 08/10/00 
+// VH 08/10/00
 // do not change target to parent if the href is using javascript
 function BSSCPopup_ChangeTargettoParent(tagsObject)
 {
@@ -1158,7 +1157,7 @@ function _BSSCPopup(strURL, width, height)
 		cuswidth = width;
 		cusheight= height;
 	}
-	
+
 	if (DHTMLPopupSupport()) {
 		var nToken = takeToken(); // take  token first.
 		var nIndex = _BSSCCreatePopupDiv(strURL);
@@ -1192,7 +1191,7 @@ if (gbBsIE55)
 	var gnBsUnload=0;
 	window.onbeforeunload = window_BUnload;
 }
-	
+
 function window_BUnload()
 {
 	gnBsUnload++;
@@ -1200,7 +1199,7 @@ function window_BUnload()
 		return;
 	for (var i = 0; i < arrayPopupURL.length; i ++)
 		removeThis(document.all(getPopupID(i)));
-	arrayPopupURL.length = 0;	
+	arrayPopupURL.length = 0;
 	if (ehlpdhtm_fOldBefureUnload)
 		ehlpdhtm_fOldBefureUnload();
 }
@@ -1216,7 +1215,7 @@ function _BSSCPopup2(strURL, width, height)
 	else
 		_BSSCPopup3(strURL, width, height);
 }
-		
+
 function _BSSCPopup3(strURL, width, height)
 {
 	if (window.name == gstrPopupSecondWindowName) {
@@ -1266,12 +1265,12 @@ function _BSSCPopup3(strURL, width, height)
 		if (gbBsSafari)
 		{
 			if (window.gPopupWindow)
-				window.gPopupWindow.close();		
+				window.gPopupWindow.close();
 			window.gPopupWindow = window.open(strURL, "", strParam);
 			window.gPopupWindow.name = gstrPopupSecondWindowName;
 			window.gPopupWindow.moveTo(nX, nY);
 			widnow.gPopupWindow.document.location.reload();
-		}	
+		}
 		else
 		{
 			var wmTemp=null;
@@ -1287,7 +1286,7 @@ function _BSSCPopup3(strURL, width, height)
 			window.gPopupWindow = window.open(strURL, gstrPopupSecondWindowName, strParam);
 			if (!gbBsIE)
 				window.gPopupWindow.focus();
-				
+
 			if (wmTemp)
 				wmTemp.close();
 		}
@@ -1333,7 +1332,7 @@ function NonIEPopup_HandleClick(e)
 	// Close the popup window
 	if(e.target.href)
 	{
-		if(e.target.href.indexOf("javascript:")==-1) 
+		if(e.target.href.indexOf("javascript:")==-1)
 		{
 			if (e.target.target=="")
 				window.location.href = e.target.href;
@@ -1341,19 +1340,19 @@ function NonIEPopup_HandleClick(e)
 				window.open(e.target.href, e.target.target);
 			this.close();
 		}
-	} 
+	}
 	else
 		this.close();
 	return false;
 }
 
 function BSSCPopup_AfterLoad(nIndex, nToken, cuswidth, cusheight)
-{	
+{
 	if (!window.getPopupIFrame(nIndex).document) {
 		_BSSCPopup2(getPopupURL(nIndex), cuswidth, cusheight);
 		return;
 	}
-	
+
     if (!IsValidToken(nToken)) return;
 
 	if (gbBsNS6)
@@ -1362,7 +1361,7 @@ function BSSCPopup_AfterLoad(nIndex, nToken, cuswidth, cusheight)
 		BSSCPopup_ResizeAfterLoad(nIndex, nToken, cuswidth, cusheight);
 		return;
 	}
-	
+
 	if ((window.getPopupIFrame(nIndex).document.readyState == "complete") &&
 		(window.getPopupIFrame(nIndex).document.body != null)) {
 			if (window.getPopupIFrame(nIndex).document.location.href.indexOf("about:blank") != -1) { // add this check. IE will use about:blank" as the default vaule for Iframe.
@@ -1406,7 +1405,7 @@ function BSSCPopup_ResizeAfterLoad(nIndex, nToken, cuswidth, cusheight)
 
 	// for small popup size, we should allow any size.
 	// The popup size should be ok if bigger than 0
-	if (nWidth < 0 || nHeight < 0) return; 	// there must be something terribly wrong.		
+	if (nWidth < 0 || nHeight < 0) return; 	// there must be something terribly wrong.
 
 	getPopupDivStyle(nIndex).width = nWidth;
 	getPopupDivStyle(nIndex).height = nHeight;
@@ -1430,13 +1429,13 @@ function BSSCPopup_ResizeAfterLoad(nIndex, nToken, cuswidth, cusheight)
 		getPopupIFrameStyle(nIndex).top = 0;
 		getPopupIFrameStyle(nIndex).left = 0;
 	}
-	
+
 	var strURL = getPopupURL(nIndex);
 	if (strURL.indexOf("#") != -1&&gbBsNS6)
 		getPopupIFrame(nIndex).location.reload();
 	else if (strURL.indexOf("#") != -1||gbBsNS6)
 		getPopupIFrame(nIndex).location.href = strURL;  // reload again, this will fix the bookmark misunderstand in IE5.
-		
+
 	MoveDivAndShow(nIndex, nToken, cuswidth, cusheight);
 }
 
@@ -1543,7 +1542,7 @@ function BSSCGetContentSize(thisWindow, size)
 
 	var ClientRate = gBsClientHeight / gBsClientWidth;
 
-	
+
 	var GoldenSize = new BSSCSize(0,0);
 	GoldenSize.x = gBsClientWidth * gBMaxXOfParent;
 	GoldenSize.y = gBsClientHeight *gBMaxYOfParent ;
@@ -1559,26 +1558,26 @@ function BSSCGetContentSize(thisWindow, size)
 	var x = 0;
 	var maxgoldx = GoldenSize.x;
 	var maxx = gBsClientWidth * gBMaxXOfParent;
-	
+
 	// This double resize causes the document to re-render (and we need it to)
 	if (!gbBsIE5)
 		thisWindow.moveTo(10000,10000); // this is used to fix the flash on IE4.
-		
+
 	thisWindow.resizeTo(1, 1);
 	thisWindow.resizeTo(1, 1);
 	thisWindow.resizeTo(maxgoldx, thisWindow.document.body.scrollHeight + gBscrollHeight);
 	thisWindow.resizeTo(maxgoldx, thisWindow.document.body.scrollHeight + gBscrollHeight);
-		
+
 	var miny = thisWindow.document.body.scrollHeight + gBscrollHeight;
-	
+
 	if (miny > GoldenSize.y) // the popup does not fix in the parent wanted golden area. so try to expand itself as large as it can
 	{
 		thisWindow.resizeTo(maxx , thisWindow.document.body.scrollHeight + gBscrollHeight);
 		thisWindow.resizeTo(maxx , thisWindow.document.body.scrollHeight + gBscrollHeight);
-		
+
 		miny = 	thisWindow.document.body.scrollHeight + gBscrollHeight;
 		maxy = gBsClientHeight * gBMaxYOfParent;
-		
+
 		if (miny > maxy) { // the popup must have a scroll, OK let it be.
 			miny = maxy;
 			size.x = maxx;
@@ -1587,7 +1586,7 @@ function BSSCGetContentSize(thisWindow, size)
 		}
 		else { // popup still can fit in the parent area by someway. now we choose the same h/w rate as parent.
 			size.y = miny;
-			
+
 			//  downsize from maxx , now I try to using binary divide.
 			x = maxx;
 			deltax = -maxx/2;
@@ -1601,21 +1600,21 @@ function BSSCGetContentSize(thisWindow, size)
 					deltax = Math.abs(deltax) /2;
 				else if (diffy <  -gBpermitYDelta) // it is shorter than wanted, so x need to be narrow a little bitter
 					deltax = -Math.abs(deltax) /2;
-				else 
+				else
 					// the y is close enough to wanted.
 					break;
 				if (Math.abs(deltax) < gBpermitXDelta) // the next change is too slight and it can be ignore.
 					break;
 			}
 			size.x = thisWindow.document.body.scrollWidth; //+ gBscrollWidth;
-			size.y = thisWindow.document.body.scrollHeight;// + gBscrollHeight;	
+			size.y = thisWindow.document.body.scrollHeight;// + gBscrollHeight;
 			thisWindow.document.body.scroll = 'no';
 		}
 	}
 	else {
 		if (thisWindow.document.body.scrollWidth > maxgoldx) {
-			size.x = maxx; 
-			size.y = miny;	
+			size.x = maxx;
+			size.y = miny;
 			thisWindow.document.body.scroll = 'yes';
 		}
 		else {
@@ -1631,7 +1630,7 @@ function BSSCGetContentSize(thisWindow, size)
 					deltax = Math.abs(deltax) /2;
 				else if (diffy <  -gBpermitYDelta) // it is shorter than wanted, so x need to be narrow a little bitter
 					deltax = -Math.abs(deltax) /2;
-				else 
+				else
 					// the y is close enough to wanted.
 					break;
 				if (Math.abs(deltax) < gBpermitXDelta) // the next change is too slight and it can be ignore.
@@ -1661,7 +1660,7 @@ function BSSCPopupParentClicked()
 	if (!window.gbPopupTimeoutExpired) {
 		return false;
 	}
-	
+
 	document.onmousedown = gbOrignalOnMouseDown;
 
 	// Simply hide the popup
@@ -1700,7 +1699,7 @@ function BSSCPopupClicked(e)
 		(popupIFrame.window.event.srcElement != null) &&
 		isInsideHyperLink(popupIFrame.window.event.srcElement)))) {
 		document.onmousedown = gbOrignalOnMouseDown;
-		
+
 		// Simply hide the popup
 		hideAll();
 		window.gbPopupTimeoutExpired = false;
@@ -1713,7 +1712,7 @@ function BSSCPopupClicked(e)
 		// Simply hide the popup
 		hideAll();
 		window.gbPopupTimeoutExpired = false;
-		return true;		
+		return true;
 	}
 }
 
@@ -1777,7 +1776,7 @@ function BSSCPopup(strURL, width, height)
 	var re = new RegExp("'", 'g');
 	strURL = strURL.replace(re, "%27");
 
-	if (BsscHasExtJs())	{ 
+	if (BsscHasExtJs())	{
 		_BSSCPopup(strURL, width, height);
 	}else{
 		//Create a temporary window first to ensure the real popup comes up on top
@@ -1847,12 +1846,12 @@ function PopupMenu_Invoke()
 		var nWidth = 400;
 		var strParam = "titlebar=no,toolbar=no,status=no,location=no,menubar=no,resizable=yes,scrollbars=auto";
 		strParam += ",height=" + nHeight + ",width=200,resizable";
-		
+
 		//Create a temporary window first to ensure the real popup comes up on top
 		//var wndTemp = null;
 		if (!gbBsNS3) {
 			gbWndTemp = window.open("", "temp", "titlebar=no,toolbar=no,status=no,location=no,menubar=no,resizable=yes,scrollbars=yes,height=3,width=4");
-		} 
+		}
 		gbWndPopupLinks = window.open("", "popuplinks", strParam);
 
 		setTimeout("Wait_PopupMenuReady()", 100);
@@ -1860,12 +1859,12 @@ function PopupMenu_Invoke()
 	return true;
 }
 
-function Wait_PopupMenuReady() 
+function Wait_PopupMenuReady()
 {
 	if (gbWndPopupLinks != null && "object" == typeof(gbWndPopupLinks.document)) {
 		PopupMenu_InvokeReady();
 	}
-	else 
+	else
 		setTimeout("Wait_PopupMenuReady()", 100);
 }
 
@@ -1915,7 +1914,7 @@ function kadovIsParagraph(el)
 }
 
 function kadovInitEachChild(el)
-{	
+{
 	for(var i=0; i<getChildNodes(el).length; i++)
 	{
 		var child = getChildNodes(el)[i];
@@ -1931,11 +1930,11 @@ function kadovInitEachChild(el)
 				if( (onLoadEffect != null) && (onLoadEffect > "") )
 					child.style.setAttribute( "x-on-pageload", "" );
 			}
-			
+
 			var href = child.getAttribute("href")
 			if( href != null && href > "" && href.indexOf( "BSSCPopup" ) >= 0 )
 				kadovFilePopupInit(child.id); // Init for Popup
-			else if( child.className == "dropspot" || child.className == "expandspot" || 
+			else if( child.className == "dropspot" || child.className == "expandspot" ||
 					 child.className == "glossterm" )
 				kadovTextPopupInit(child.id);// Init for Expanding/Glossary or DropDown text
 			else if( child.className == "trigger")
@@ -1946,7 +1945,7 @@ function kadovInitEachChild(el)
 				CEngine.SetOneTargetInitialState( child.id );
 			}
 		}
-		
+
 		if( (child.tagName == "IMG") && (child.getAttribute("dynsrc") > "") )
 			child.start = "mouseover";// to start a AVI file. fileopen doesn't work
 
@@ -1955,7 +1954,7 @@ function kadovInitEachChild(el)
 }
 
 function kadovRetrieveTextInner(el)
-{	
+{
 	var x = "";
 	if( (!el) || (el.tagName == "!") || (el.tagName == "SCRIPT" ))
 		return x;
@@ -1976,7 +1975,7 @@ function kadovRetrieveTextInner(el)
 }
 
 function kadovRetrieveCleanHTML( strRawHTML, strTagOpen, strTagClose, nDistance )
-{	
+{
 	var nTagOpen = strRawHTML.indexOf( strTagOpen, 0 );
 	if( nTagOpen < 0 )
 		return strRawHTML;
@@ -1984,18 +1983,18 @@ function kadovRetrieveCleanHTML( strRawHTML, strTagOpen, strTagClose, nDistance 
 	var nTagClose = strRawHTML.indexOf( strTagClose, nTagOpen);
 	if( nTagClose < nTagOpen )
 		return strRawHTML;
-		
+
 	if( typeof(nDistance) == "number" && nDistance > 0 )
 		if( (nTagClose - nTagOpen) != nDistance )
 			return strRawHTML;
-		
+
 	var strCleanOnce = strRawHTML.substring(0, nTagOpen) + strRawHTML.substr(nTagClose + strTagClose.length) ;
 	return 	kadovRetrieveCleanHTML( strCleanOnce, strTagOpen, strTagClose );
 }
 
 function kadovAdjustObjectTag(strRawHTML, nStartPos)
 {// adjust object tag for related topics HTML control, because innerHTML misses out the item settings
-	
+
 	//Is there any DTC?
 	var strDTCTagOpen = '<!--Metadata type="DesignerControl" startspan';
 	var strDTCTagClose = '<!--Metadata type="DesignerControl" endspan-->';
@@ -2005,7 +2004,7 @@ function kadovAdjustObjectTag(strRawHTML, nStartPos)
 	var nDTCTagClose = strRawHTML.indexOf( strDTCTagClose, nDTCTagOpen );
 	if( nDTCTagClose < nDTCTagOpen)
 		return strRawHTML; // no Design Time Controls;
-		
+
 	//Is the DTC HTML Help Control?
 	var strRTObjTagOpen = 'classid=clsid:ADB880A6-D8FF-11CF-9377-00AA003B7A11';
 	var strRTObjTagClose = '</OBJECT>';
@@ -2015,13 +2014,13 @@ function kadovAdjustObjectTag(strRawHTML, nStartPos)
 	var nRTObjTagClose = strRawHTML.indexOf( strRTObjTagClose, nRTObjTagOpen );
 	if( nRTObjTagClose < nRTObjTagOpen )
 		return strRawHTML; // is not a HTML help control
-		
+
 	// Is it a related Topics html help control?
 	var strRTObjLabel = '<PARAM NAME=\"Command\" VALUE=\"Related Topics';
 	if( strRawHTML.indexOf(strRTObjLabel, nRTObjTagOpen) < 0 )
 		return strRawHTML;
-	
-	// does the commented object tag contain a items parameters		
+
+	// does the commented object tag contain a items parameters
 	var strRTItemsOpen = '<param name="Items" value="';
 	var strRTItemsClose = '$$**$$" >';
 	var strRTItemsClose2 = '$$**$$">';
@@ -2034,12 +2033,12 @@ function kadovAdjustObjectTag(strRawHTML, nStartPos)
 		nRTItemsClose = strRawHTML.indexOf(strRTItemsClose2, nRTItemsOpen);
 	if( nRTItemsClose < nRTItemsOpen )
 		return strRawHTML;
-		
+
 	// found a items string
 	var strItems = strRawHTML.substring( nRTItemsOpen + strRTItemsOpen.length, nRTItemsClose);
 	if( strItems.length < 1 )
 		return strRawHTML;
-	
+
 	// to reconstruct the item(s) param tag(s)
 	var strItemsArray = strItems.split('$$**$$');
 	if( strItemsArray.length < 1 )
@@ -2052,7 +2051,7 @@ function kadovAdjustObjectTag(strRawHTML, nStartPos)
 		strRunTimeItemParam += strItemsArray[i];
 		strRunTimeItemParam += '">';
 	}
-	
+
 	// to insert the reconstructed item params into runtime object tag
 	var strAdjustedHTML = strRawHTML.substring(0,nRTObjTagClose) + strRunTimeItemParam + strRawHTML.substring(nRTObjTagClose, strRawHTML.length);
 	return kadovAdjustObjectTag(strAdjustedHTML, nDTCTagClose + strDTCTagClose.length);
@@ -2076,12 +2075,12 @@ function kadovTextPopupOnLoad( el )
 			}
 	}
 	if(!src)
-		src = el.style.getAttribute( "x-use-popup" );	
-	if (!src)	
+		src = el.style.getAttribute( "x-use-popup" );
+	if (!src)
 		return 0;
 
 	var name = src;
-	if( src.substr(0,1) == "#" ) 
+	if( src.substr(0,1) == "#" )
 		name = src.substr(1, src.length-1);
 	var srcDiv = getElement(name);
 	if( !srcDiv )
@@ -2092,8 +2091,8 @@ function kadovTextPopupOnLoad( el )
 		var type = el.getAttribute( "x-popup-type" );
 		if (!type)
 			type = el.style.getAttribute("x-popup-type");
-		if (!type)		
-			return 1;		
+		if (!type)
+			return 1;
 		var setup = el.getAttribute( "x-tmp-setup" );
 		var newId = name;
 		if( newId.indexOf( "_tmp") <= 0 )
@@ -2108,11 +2107,11 @@ function kadovTextPopupOnLoad( el )
 				var strAdjust = kadovAdjustObjectTag(srcDiv.innerHTML,0);
 				var strCleanHTML = kadovRetrieveCleanHTML(strAdjust, "<!--", "-->");
 				strCleanHTML = kadovRetrieveCleanHTML(strCleanHTML, "<SCRIPT", "/SCRIPT>");
-				
+
 				//work around the bug in HH.exe that highlight the phrases when use Search tab
 				//this approach is just removing the <FONT...> tag inserted by Microsoft in the runtime
 				strCleanHTML = kadovRetrieveCleanHTML(strCleanHTML, "<FONT color=#", "\">", 52);
-				
+
 				var strStyle = " style='display:none; position:relative;";
 				var newDiv = "<div class=droptext id=" + newId + strStyle + "'>" + strCleanHTML + "</div>";
 
@@ -2184,7 +2183,7 @@ function getChildNodes(obj)
 	}
 	else if(obj.children)
 		return obj.children;
-	return null;	
+	return null;
 }
 
 function removeThis(obj)
@@ -2201,7 +2200,7 @@ function kadovTextPopup( el )
 		return;
 
 	var bNeedMove=true;
-	
+
 	if (window.event)
 		window.event.cancelBubble = true;
 
@@ -2210,7 +2209,7 @@ function kadovTextPopup( el )
 
 	if (!el||el==window)
 		return;
-	
+
 	var src = el.getAttribute( "x-use-popup" );
 	if(!src&&el.id)
 	{
@@ -2223,12 +2222,12 @@ function kadovTextPopup( el )
 			}
 	}
 	if(!src)
-		src = el.style.getAttribute( "x-use-popup" );	
+		src = el.style.getAttribute( "x-use-popup" );
 	if(!src)
 		return;
-		
+
 	var name = src;
-	if( src.substr(0,1) == "#" ) 
+	if( src.substr(0,1) == "#" )
 	if (bNeedMove)
 		name = src.substr(1, src.length-1) + "_tmp";
 	else
@@ -2290,7 +2289,7 @@ function kadovTextPopupInit( el, popupId)
 {
 	if (!gbBsIE4 && !gbBsOpera7 && !gbBsSafari && !gbBsNS6 && !gbBsKonqueror3)
 		return;
-		
+
 	if( typeof(el) == "string" )
 	{
 		if (popupId)
@@ -2299,7 +2298,7 @@ function kadovTextPopupInit( el, popupId)
 		}
 		el = getElement(el);
 	}
-		
+
 	if( el != null )
 	{
 		CCSSP.RegisterEventHandler( el, "onclick", "kadovTextPopup(\"" + el.id +"\");" );
@@ -2342,7 +2341,7 @@ function kadovInitTrigger( element )
 		if(srcElement == null)
 			return;
 	}
-	
+
 	if( !kadovIsParentVisible(srcElement) )
 		return;
 
@@ -2350,7 +2349,7 @@ function kadovInitTrigger( element )
 	if (!targets)
 		targets = srcElement.style.getAttribute("x-targets");
 	if (!targets)
-		return;	
+		return;
 	var arrOneTarget = targets.split( "," );
 	for( var i = 0; i < arrOneTarget.length; i ++ )
 		bsscFXInit( element, arrOneTarget[i], null, null, null, null );
@@ -2362,7 +2361,7 @@ function kadovIsParentVisible( el )
 		el = getElement(el);
 	if( (!el) || el.tagName == "BODY" )
 		return true;
-	if( el.style.display == 'none' ) //el.visibility == 'hidden' || 
+	if( el.style.display == 'none' ) //el.visibility == 'hidden' ||
 		return false;
 	else
 		return kadovIsParentVisible( getParentNode(el) );
@@ -2379,10 +2378,10 @@ function kadovInitEffects( element )
 		if(srcElement == null)
 			return;
 	}
-	
+
 	if( !kadovIsParentVisible(srcElement) )
 		return;
-	
+
 	kadovInitEffect( srcElement, "x-on-hover" );
 	kadovInitEffect( srcElement, "x-on-pageclick" );
 	kadovInitEffect( srcElement, "x-on-pageload" );
@@ -2411,7 +2410,7 @@ function kadovInitEffect( element, prop )
 		nIdx++;
 		nNext = values.indexOf( "\)", nStart);
 	}
-		
+
 	for( var i=0; i<functions.length; i++)
 	{
 		var id = element.getAttribute( "id" );
@@ -2420,7 +2419,7 @@ function kadovInitEffect( element, prop )
 		var lp = functions[i].indexOf( "(" );
 		var fnname = functions[i].substring(0, lp);
 		var srcargs = functions[i].substring(lp+1, functions[i].length-1);
-		
+
 		var nClickTimes = 1;
 		var arrForClickCount = srcargs.split( "," );
 		for( var j = 0; j < arrForClickCount.length; j++ )
@@ -2469,19 +2468,19 @@ function kadovTranslateProp( prop )
 //End to convert iWrite format to RoboEditor Format for DHTML effects
 
 //Begin the definition of one entry to DHTML effects
-function bsscFXInit( trigger_ID, target_ID, event_type, 
+function bsscFXInit( trigger_ID, target_ID, event_type,
 	action_type, action_setting, event_addional )
 {
 	if( (!gbBsWindows && !gbBsSunOS  && !(gbBsMac&&gbBsIE5)) || typeof(target_ID) != "string" )//MUST have a target_ID
 		return; // we don't support Navigator yet
-	
+
 	if( typeof(event_type) == "string" )
 		event_type = event_type.toLowerCase();
 	if( typeof(action_type) == "string" )
 		action_type = action_type.toLowerCase();
 	if( typeof(action_setting) == "string" )
 		 action_setting = action_setting.toLowerCase();
-	
+
 	// to get the target element then add it to the target list
 	var eleTarget = CCSSP.GetObject( target_ID );
 	if( (eleTarget != null) && (event_type != null) && (action_type != null) )
@@ -2489,11 +2488,11 @@ function bsscFXInit( trigger_ID, target_ID, event_type,
 		CEngine.AddOneTarget( target_ID, eleTarget );
 		CEngine.BuildTargetObject(target_ID, event_type, action_type, action_setting, event_addional);
 	}
-	
+
 	// to validate the trigger_ID parameter
 	if( typeof(trigger_ID) == "string" && trigger_ID != "" )
 		CEngine.BuildTriggerObject( trigger_ID, target_ID );
-}	
+}
 //End the definition of one entry to DHTML effects
 
 /// Section End  - kadov DHTM (JavaScript 1.2)
@@ -2644,14 +2643,14 @@ CCSSP.RegisterEventHandler = function( srcObj, rawEventName, funcHandler )
 { // to add the "funcHandler" as the "rawEventName" 's handler to the "srcObj" object,the original event handler will be combined
 	if (gbBsNS4 && !gbBsNS6)
 		return ;
-		
+
 	var oldHandler = "";
 
 	if (gbBsMac &&gbBsIE4&&!gbBsIE5)
 	{
 		if (typeof(srcObj[rawEventName.toLowerCase()])=="unknown")
 		{ //search for <SCRIPT> tag which define the event handler
-			for( var i = 0; i < document.scripts.length; i++ ) 
+			for( var i = 0; i < document.scripts.length; i++ )
 			{
 				var script = document.scripts[i];
 				if( (script.htmlFor == srcObj.id || script.htmlFor == srcObj ) && script.event == rawEventName )
@@ -2675,7 +2674,7 @@ CCSSP.RegisterEventHandler = function( srcObj, rawEventName, funcHandler )
 		}
 		else if( gbBsIE4 )
 		{ //search for <SCRIPT> tag which define the event handler
-			for( var i = 0; i < document.scripts.length; i++ ) 
+			for( var i = 0; i < document.scripts.length; i++ )
 			{
 				var script = document.scripts[i];
 				if( (script.htmlFor == srcObj.id || script.htmlFor == srcObj ) && script.event == rawEventName )
@@ -2697,13 +2696,13 @@ CCSSP.RegisterEventHandler = function( srcObj, rawEventName, funcHandler )
 				srcObj.captureEvents( Event[noOn.toUpperCase()] );
 		}
 	}
-	
+
 	var newHandler = oldHandler;
 	if( newHandler.length == 0 )
 		newHandler = funcHandler;
 	else
 		newHandler += "; " + funcHandler;
-	
+
 	srcObj[rawEventName.toLowerCase()] = new Function( newHandler );
 }
 
@@ -2747,7 +2746,7 @@ CCSSP.TrimString = function( objString, subtrim )
 	var strRear = objString.substring(objString.length-1, objString.length);
 	if( strHead != subtrim && strRear != subtrim )
 		return objString;
-	
+
 	var spacePos = objString.indexOf(subtrim);
 	if( spacePos < 0 )
 		return objString;
@@ -2768,7 +2767,7 @@ CCSSP.TrimSpace = function( objString )
 
 CCSSP.GetEventElement = function( navEventObject )
 {// to get the element who fired the current event
-	if(gbBsNS4) 
+	if(gbBsNS4)
 		if (gbBsNS6)
 			return null;
 		else
@@ -2790,9 +2789,9 @@ CCSSP.IsDescendant = function( progenitor, progeny )
 	if( typeof(progeny) == "undefined" || progeny == null )
 		return false;
 	else if( progeny == progenitor )
-		return true; 
-	else if( progeny.id == progenitor.id ) 
-		return true; 
+		return true;
+	else if( progeny.id == progenitor.id )
+		return true;
 	else if( getParentNode(progeny) == getParentNode(progenitor))
 		return false;
 	else
@@ -2803,7 +2802,7 @@ CCSSP.IsTextTag = function( Obj )
 {
 	if( typeof( Obj.tagName ) == "undefined" )
 		return false;
-	return( Obj.tagName.indexOf("H") == 0 || Obj.tagName == "P" || 
+	return( Obj.tagName.indexOf("H") == 0 || Obj.tagName == "P" ||
 			Obj.tagName == "FONT" || Obj.tagName == "SPAN" );
 }
 
@@ -2816,14 +2815,14 @@ CCSSP.IsTextTag = function( Obj )
 //Begin the definition of class CTrigger
 function CTrigger( TriggerElement )
 {
-	// object : the trigger element. Never be null. 
+	// object : the trigger element. Never be null.
 	this.eleTrigger = TriggerElement;
-	
+
 	// number : the click counter number: only 3 values: 0,1,2;
-	this.nCounter = 0; 
-	
+	this.nCounter = 0;
+
 	//object as associative array of string:
-	// the associate target ID strings; one element at least.			
+	// the associate target ID strings; one element at least.
 	this.objStrTarget = new Object();
 	this.eleTrigger.style.cursor = "hand";
 	if( this.eleTrigger.tagName == "AREA" && this.eleTrigger.getAttribute("href") == "" )
@@ -2840,11 +2839,11 @@ CTrigger.prototype.AddTargetID = function( strTargetID )
 
 CTrigger.prototype.OnTriggerClick = function()
 {// to activate all asociated target
-	var strEventType = ( (this.nCounter++)% 2 == 0 ) ? 
+	var strEventType = ( (this.nCounter++)% 2 == 0 ) ?
 		"bssctrigger1" : "bssctrigger2";
-		
+
 	// to enumerate associative target element's ID string
-	for( var strTargetID in this.objStrTarget ) 
+	for( var strTargetID in this.objStrTarget )
 		CEngine.SendEventToOneTarget( strTargetID, strEventType );
 }
 //End the definition of class CTrigger
@@ -2855,40 +2854,40 @@ function CTarget( TargetElement )
 	// object : the target element. Never be null.
 	this.eleTarget = TargetElement;
 	this.objManager = new Object(); // object: the event manager
-} 
+}
 
 CTarget.nPageClickCounter = 0;// static class property.
 
 CTarget.prototype.GetAgencyObject = function(str_action_type,action_setting )
-{// return the action agency ( effect )object's refernece 
+{// return the action agency ( effect )object's refernece
 	switch( str_action_type )
 	{
 	case "show":return new CAgencyShow( this.eleTarget, true ) ;
 	case "hide":return new CAgencyShow( this.eleTarget, false ) ;
 
-    case "flyin" : 
+    case "flyin" :
     	return new CAgencyFly(this.eleTarget, action_setting, true);
-    case "flyout" : 
+    case "flyout" :
     	return new CAgencyFly(this.eleTarget, action_setting, false);
-    case "spiralin" : 
+    case "spiralin" :
     	return new CAgencySpiral(this.eleTarget, action_setting, true);
-    case "spiralout" : 
+    case "spiralout" :
     	return new CAgencySpiral(this.eleTarget, action_setting, false);
     case "zoomin" :
     	return new CAgencyZoom(this.eleTarget, action_setting, true);
-    case "zoomout" : 
+    case "zoomout" :
     	return new CAgencyZoom(this.eleTarget, action_setting, false);
-    case "elastic" : 
+    case "elastic" :
 		return new CAgencyElastic(this.eleTarget, action_setting);
-		
-    case "fadein" : 
+
+    case "fadein" :
     	return (gbBsIE4)? new CAgencyAlpha(this.eleTarget, action_setting, true) : null;
     case "fadeout" :
     	return (gbBsIE4)? new CAgencyAlpha(this.eleTarget, action_setting, false) : null;
     case "rockrollstatic" :
     case "rockroll" :
     	return (gbBsIE4)? new CAgencyWave(this.eleTarget, action_setting, false) : null;
- 
+
     case "glow":
     	return (gbBsIE4)? new CAgencyGlow(this.eleTarget,action_setting) : null;
     case "dropshadow":
@@ -2903,10 +2902,10 @@ CTarget.prototype.GetAgencyObject = function(str_action_type,action_setting )
     case "invert":
     case "gray" :
     	return (gbBsIE4)? new CAgencyChangeFilter(this.eleTarget, str_action_type) : null;
-    
+
     case "fontchange": // the effects below change the style on the fly, so won't work in Navigator
     	return (gbBsIE4)? new CAgencyFontChange(this.eleTarget,action_setting) : null;
-    case "boderchange": 
+    case "boderchange":
     case "stylechange":
     	return (gbBsIE4)? new CAgencyChangeStyle(this.eleTarget,action_setting) : null;
 
@@ -2914,10 +2913,10 @@ CTarget.prototype.GetAgencyObject = function(str_action_type,action_setting )
 	}
 }
 
-CTarget.prototype.SetEventManager = function( 
+CTarget.prototype.SetEventManager = function(
 	one_event_type,str_action_type,action_setting,event_additional)
-{// to set the event manager with specified action 
-	if( typeof( one_event_type ) != "string" ||	
+{// to set the event manager with specified action
+	if( typeof( one_event_type ) != "string" ||
 		typeof( str_action_type ) != "string"||
 		typeof( action_setting ) != "string" )
 		return false;
@@ -2926,37 +2925,37 @@ CTarget.prototype.SetEventManager = function(
 		this.objManager[one_event_type] = new Object();
 		this.objManager[one_event_type].length = 0;
 	}
-	
+
 	var eventAgency = this.GetAgencyObject(str_action_type,action_setting);
 	if( eventAgency != null )
 	{
 		var ct = this.objManager[one_event_type].length ++;
 		this.objManager[one_event_type][ct] = eventAgency;
-		
+
 		if( one_event_type == "bsscpageclick" )
 		{// to deal with the "number of pageclick" stuff
 			if( typeof(event_additional) == "number" )
 				this.objManager[one_event_type][ct].nPageClick = event_additional;
-			else // set the default number 
+			else // set the default number
 				this.objManager[one_event_type][ct].nPageClick = 1;
-			
+
 			if( (typeof(this.objManager.nMinPageClickIndex) == "undefined") ||
-			    (this.objManager[one_event_type][ct].nPageClick < 
+			    (this.objManager[one_event_type][ct].nPageClick <
 					this.objManager[one_event_type][this.objManager.nMinPageClickIndex].nPageClick) )
 				this.objManager.nMinPageClickIndex = ct;
 		}
-		
+
 		//hide the object blindly,SetState function will take care of the final correct state
-		if( ((one_event_type == "bsscpageclick") && 
+		if( ((one_event_type == "bsscpageclick") &&
 			 (this.objManager[one_event_type][ct].nPageClick == 1)) ||
 			one_event_type == "bsscpageload" ||
 			one_event_type == "bssctrigger1" )
 			CCSSP.ShowObject( this.eleTarget, false );
-		
+
 		if( one_event_type == "bssctrigger1" || one_event_type == "bssctrigger2" )
 			if( typeof( this.strTriggerEvent ) == "undefined" )
 				this.strTriggerEvent = ( one_event_type == "bssctrigger1" ) ? "bssctrigger2" : "bssctrigger1";
-			
+
 		return true;
 	}
 	return false;
@@ -2969,13 +2968,13 @@ CTarget.prototype.OnEvent = function( strBsscEvent )
 		var eventAgency = this.objManager[strBsscEvent];
 		for( var i = 0; i < eventAgency.length; i++ )
 		{
-			if( strBsscEvent == "bsscpageclick" && 
+			if( strBsscEvent == "bsscpageclick" &&
 			 	eventAgency[i].nPageClick != CTarget.nPageClickCounter )
 				 continue;
 			else if( strBsscEvent == "bsschover" && event.type == "mouseout" )
 				eventAgency[i].EndEffect();
-			else // to invoke the unified function in effect object	
-				eventAgency[i].UpdateEffect(); 
+			else // to invoke the unified function in effect object
+				eventAgency[i].UpdateEffect();
 		}
 	}
 }
@@ -2987,16 +2986,16 @@ CTarget.prototype.SetState = function( strBsscEvent )
 
 	// to get the event agency from the event manager
 	var eventAgency = this.objManager[strBsscEvent];
-	
+
 	if( strBsscEvent == "bsscpageclick" )
-	{// we only set the initial state for the minium number of pageclick 
+	{// we only set the initial state for the minium number of pageclick
 		eventAgency[this.objManager.nMinPageClickIndex].PrepareEffect();
 		return true;
 	}
 	else
 	{
 		for( var i = 0; i < eventAgency.length; i++ )
-			eventAgency[i].PrepareEffect(); // to invoke the unified function in effect object	 
+			eventAgency[i].PrepareEffect(); // to invoke the unified function in effect object
 		if( i > 0 )
 			return true;
 		else
@@ -3010,8 +3009,8 @@ function CEngine(){}// all properities are going be "class" properities
 
 // object : as associative array of trigger objects
 CEngine.objTrigger = new Object();
-// object : as associative array of target objects 
-CEngine.objTarget = new Object(); 
+// object : as associative array of target objects
+CEngine.objTarget = new Object();
 
 // Array : each element is a CAgencyXXX animation object
 CEngine.arrAnimation = new Array();
@@ -3028,7 +3027,7 @@ CEngine.AddOneTrigger = function(TriggerID,TriggerElement)
 	if( typeof(CEngine.objTrigger[TriggerID] ) != "object" )
 		CEngine.objTrigger[TriggerID] = new CTrigger(TriggerElement);
 }
-	
+
 CEngine.AddOneTarget = function(TargetID, TargetElement)
 {// add one Target object into the target array
 	if( typeof(TargetID) != "string" || TargetElement == null ||
@@ -3040,7 +3039,7 @@ CEngine.AddOneTarget = function(TargetID, TargetElement)
 
 CEngine.SendEventToOneTarget = function(strTargetID, strBsscEvent )
 {// to activate one target object
-	if( typeof(CEngine.objTarget[strTargetID]) == "object" ) 
+	if( typeof(CEngine.objTarget[strTargetID]) == "object" )
 	{
 		if( strBsscEvent == "bssctrigger1" || strBsscEvent == "bssctrigger2" )
 		{//now, the "bssctrigger1" and "bssctrigger2" work like a toggle
@@ -3060,7 +3059,7 @@ CEngine.SendEventToAllTarget = function( strBsscEvent )
 
 CEngine.SetOneTargetInitialState = function( strTargetID )
 {// only invoked after ALL effects for the target have been set
-	if( typeof(CEngine.objTarget[strTargetID]) == "object" ) 
+	if( typeof(CEngine.objTarget[strTargetID]) == "object" )
 	{// to get target object
 		var objTarget = CEngine.objTarget[strTargetID];
 		if( objTarget.SetState( "bsscpageload" ) == false )
@@ -3102,11 +3101,11 @@ CEngine.AdjustPageClickCounter = function()
 }
 
 CEngine.OnPageLoad = function()
-{ 	
+{
 	// first, to set all target's initial state
 	for( var strTargetID in CEngine.objTarget )
 		CEngine.SetOneTargetInitialState( strTargetID );
-	
+
 	// to invoke all target's onpageload handler
 	CEngine.SendEventToAllTarget( "bsscpageload" );
 }
@@ -3116,7 +3115,7 @@ CEngine.OnPageClick = function()
 	var src = CCSSP.GetEventElement( arguments[0] );
 	if( src == null )
 		return;
-		
+
 	var objClickedTrigger = null;
 	for( var strTriggerID in CEngine.objTrigger )
 	{ // to detect which trigger is clicked
@@ -3126,7 +3125,7 @@ CEngine.OnPageClick = function()
 			break;
 		}
 	}
-	
+
 	if( objClickedTrigger != null) // the clicked trigger found
 		objClickedTrigger.OnTriggerClick();
 	else // no trigger is clicked
@@ -3135,14 +3134,14 @@ CEngine.OnPageClick = function()
 		CEngine.AdjustPageClickCounter();
 		CEngine.SendEventToAllTarget( "bsscpageclick" );
 	}
-}	
+}
 
 CEngine.OnMouseOver = function()
 { // to invoke all target's onpageload handler
 	var src = CCSSP.GetEventElement( arguments[0] );
 	if( src == null )
 		return;
-		
+
 	var strHoveredTargetID = null;
 	for( var strTargetID in CEngine.objTarget )
 	{ // to detect which Target is hovering on
@@ -3152,29 +3151,29 @@ CEngine.OnMouseOver = function()
 			break;
 	    }
 	}
-	
+
 	if( strHoveredTargetID != null ) // the hovered target found
 		CEngine.SendEventToOneTarget( strHoveredTargetID, "bsschover" );
 }
 
 CEngine.BuildTargetObject = function(target_ID,event_type,action_type,
 			action_setting, event_additional)
-{// to build target object 
+{// to build target object
 	// to get the target object
 	if( typeof( CEngine.objTarget[target_ID] ) != "object" )
 		return false;// the engine's AddOneTarget function might have failed.
 	var TargetObject = CEngine.objTarget[target_ID];
-	
+
 	// to prepare the parameters for the event manager
 	var arrEvent = event_type.split("|"); // to split the combined event_type string
 	var arrAction = action_type.split("|");//to split the combined action_type string
 	for( var trim = 0; trim < arrEvent.length; trim++ )
 		arrEvent[trim] = CCSSP.TrimSpace(arrEvent[trim]);
-	
+
 	for( trim = 0; trim < arrAction.length; trim++ )
 		arrAction[trim] = CCSSP.TrimSpace(arrAction[trim]);
-	
-	var arrSetting = new Array(); 
+
+	var arrSetting = new Array();
 	if( typeof(action_setting) == "string" )
 		arrSetting = action_setting.split("|");// to split the combined action_setting string
 	// to calibrate the arrays
@@ -3182,7 +3181,7 @@ CEngine.BuildTargetObject = function(target_ID,event_type,action_type,
 	{
 		if( typeof(arrSetting[i]) != "string" )
 			 arrSetting[i] = "";
-	}				 
+	}
 
 	// to prepare for dealing with the absolute posioning element
 	TargetObject.eleTarget.ABSX = CCSSP.GetObjectLeft( TargetObject.eleTarget );
@@ -3194,7 +3193,7 @@ CEngine.BuildTargetObject = function(target_ID,event_type,action_type,
 			return false; // if event is combined, there must be 2 actions
 		for( i = 0 ; i < 2; i++ )
 		{
-			if( TargetObject.SetEventManager(arrEvent[i], arrAction[i], 
+			if( TargetObject.SetEventManager(arrEvent[i], arrAction[i],
 				arrSetting[i], event_additional) == false )
 				return false; // the event manager has not been set up
 		}
@@ -3282,7 +3281,7 @@ function CAgencyFly( element, settings, bIsIn )
 		case "direction" : this.direction = arrOneSet[1]; break;
 		}
 	}
-		
+
 	if( gbBsIE5 && this.ele.style.position != "absolute" )
 		this.ele.style.position = "relative";
 	this.timer = null;
@@ -3333,8 +3332,8 @@ CAgencyFly.prototype.ResetParameters = function()
 	this.startX = 0;
 	this.startY = 0;
 	this.finalX = 0;
-	this.finalY = 0; 
-	
+	this.finalY = 0;
+
 	var offsetLeft = CCSSP.GetObjectWindowLeft(this.ele) + this.ele.offsetWidth;
 	var offsetTop = CCSSP.GetObjectWindowTop(this.ele) + this.ele.offsetHeight;
 	var offsetRight = CCSSP.GetWindowRight();
@@ -3437,10 +3436,10 @@ CAgencySpiral.prototype.UpdateEffect = function()
 		this.EndEffect();
 	else
 	{
-		var rf = (this.bIsIn)? (1.0 - percent) : percent; 
+		var rf = (this.bIsIn)? (1.0 - percent) : percent;
 		var t = (1.0-rf) * 4.0 * Math.PI
-		var rxP = (this.bIsIn)? this.startX : this.finalX; 
-		var ryP = (this.bIsIn)? this.startY : this.finalY; 
+		var rxP = (this.bIsIn)? this.startX : this.finalX;
+		var ryP = (this.bIsIn)? this.startY : this.finalY;
 		var rx = (Math.abs(rxP) < 200) ? Math.abs(rxP) : 200;
 		var ry = (Math.abs(ryP) < 200) ? Math.abs(ryP) : 200;
 
@@ -3456,7 +3455,7 @@ CAgencySpiral.prototype.EndEffect = function()
 {
 	clearInterval( this.timer );
 	this.timer = null;
-	
+
 	if( this.bIsIn ) // In
 		CCSSP.MoveObjectTo(this.ele, this.finalX, this.finalY);
 	else // Out
@@ -3471,8 +3470,8 @@ CAgencySpiral.prototype.ResetParameters = function()
 	this.startX = (this.bIsIn)? CCSSP.GetWindowRight() : this.ele.ABSX;
 	this.startY = (this.bIsIn)? CCSSP.GetWindowBottom() : this.ele.ABSY;
 	this.finalX = (this.bIsIn)? this.ele.ABSX : CCSSP.GetWindowRight();
-	this.finalY = (this.bIsIn)? this.ele.ABSY : CCSSP.GetWindowBottom(); 
-	
+	this.finalY = (this.bIsIn)? this.ele.ABSY : CCSSP.GetWindowBottom();
+
 	CCSSP.MoveObjectTo(this.ele, this.startX, this.startY);
 	this.startTime = (new Date()).getTime();
 }
@@ -3498,7 +3497,7 @@ function CAgencyElastic( element, settings)
 		case "direction" : this.direction = arrOneSet[1]; break;
 		}
 	}
-		
+
 	if( gbBsIE5 && this.ele.style.position != "absolute" )
 		this.ele.style.position = "relative";
 	this.timer = null;
@@ -3528,9 +3527,9 @@ CAgencyElastic.prototype.UpdateEffect = function()
 		var rx = (Math.abs(this.startX) > Math.abs(this.startY)) ? this.startX : this.startY;
 		switch (this.direction )
 		{
-		case "left":   
+		case "left":
 		case "right" : newX = rf*Math.cos(t)*rx + this.ele.ABSX; break;
-		case "up":	   
+		case "up":
 		case "down" :  newY = rf*Math.cos(t)*rx + this.ele.ABSX; break;
 		}
 		CCSSP.MoveObjectTo(this.ele, newX, newY);
@@ -3553,9 +3552,9 @@ CAgencyElastic.prototype.ResetParameters = function()
 	this.finalX = this.ele.ABSX;
 	this.startY = this.ele.ABSY;
 	this.finalY = this.ele.ABSY;
-	
+
 	switch (this.direction)
-	{ 
+	{
 	case "left":  this.startX = -this.ele.offsetWidth; break;
 	case "right": this.startX = this.ele.offsetWidth;  break;
 	case "up":    this.startY = -this.ele.offsetHeight;break;
@@ -3571,7 +3570,7 @@ function CAgencyZoom( element, settings, bIsIn)
 {
 	this.ele = element;
 	this.duration = 1000; // default
-	
+
 	var arrAllSet = settings.split(",");
 	for( var i = 0; i < arrAllSet.length; i ++ )
 	{// to retrieve the setting
@@ -3610,11 +3609,11 @@ CAgencyZoom.prototype.UpdateEffect = function()
 		var nFactorOut = Math.ceil(100+200*(1-percent));
 		var AlterFontsize = ((this.bIsIn)? nFactorIn : nFactorOut) + "%";
 		var AlterFactor = ((this.bIsIn)? nFactorIn : nFactorOut) / 100;
-		
+
 		this.UpdateEffectAllChildren(this.ele, AlterFontsize, AlterFactor);
 		for(var index = 0; index < this.ele.all.length; index++)
 			this.UpdateEffectAllChildren(this.ele.all[index], AlterFontsize, AlterFactor);
-			
+
 		if( this.timer == null )
 			this.timer = setInterval("CEngine.PerformAnimation(" + this.aniIndex + ")", 20 );
 	}
@@ -3638,13 +3637,13 @@ CAgencyZoom.prototype.EndEffect = function()
 	this.EndEffectAllChildren(this.ele);
 	for(var index = 0; index < this.ele.all.length; index++)
 		this.EndEffectAllChildren(this.ele.all[index]);
-	
+
 	clearInterval( this.timer );
 	this.timer = null;
 }
 
 CAgencyZoom.prototype.EndEffectAllChildren = function( child )
-{	
+{
 	if( CCSSP.IsTextTag(child) )
 		child.style.fontSize = child.orgFontSize;
 	else
@@ -3668,7 +3667,7 @@ CAgencyZoom.prototype.ResetParameters = function()
 	this.ResetParametersAllChildren( this.ele );
 	for(var index = 0; index < this.ele.all.length; index++)
 		this.ResetParametersAllChildren(this.ele.all[index]);
-		
+
 	this.startTime = (new Date()).getTime();
 }
 
@@ -3677,7 +3676,7 @@ CAgencyZoom.prototype.ResetParametersAllChildren = function( child )
 	CCSSP.ShowObject(child, true );
 	if( (child.tagName == "DIV") && (getParentNode(child).tagName == "TD") )
 		child.width = "100%";// if the div is inside a cell of table, we need the this hack
-	
+
 	if( CCSSP.IsTextTag(child) )
 		child.orgFontSize = child.style.fontSize;
 	else
@@ -3706,9 +3705,9 @@ function CAgencyAlpha( element, settings, bIsIn )
 	// to set the default value
 	this.startOpacity = (this.bIsIn) ? 0 : 100;
 	this.endOpacity = (this.bIsIn) ? 100 : 0;
-	
+
 	this.duration = 1000; // default
-	
+
 	var arrAllSet = settings.split(",");
 	for( var i = 0; i < arrAllSet.length; i ++ )
 	{// to retrieve the setting
@@ -3721,7 +3720,7 @@ function CAgencyAlpha( element, settings, bIsIn )
 		case "speed" : this.duration = 100000/arrOneSet[1]; break;
 		}
 	}
-	
+
 	this.timer = null;
 	this.aniIndex = CEngine.arrAnimation.length;
 	CEngine.arrAnimation[this.aniIndex] = this;
@@ -3783,7 +3782,7 @@ function CAgencyWave( element, settings )
 	this.strength = 10;
 	this.freq = 1;
 	this.lightstrength = 1;
-	
+
 	var arrAllSet = settings.split(",");
 	for( var i = 0; i < arrAllSet.length; i ++ )
 	{// to retrieve the setting
@@ -3831,7 +3830,7 @@ CAgencyWave.prototype.UpdateEffect = function()
 			return;
 		}
 	}
-	
+
 	this.ele.filters.wave.phase += 5;
 	this.ele.filters.wave.phase %= 100;
 	if( this.timer == null )
@@ -3848,7 +3847,7 @@ CAgencyWave.prototype.EndEffect = function()
 CAgencyWave.prototype.ResetParameters = function()
 {
 	this.PrepareEffect();
-	this.ele.style.filter = "wave(strength=" + this.strength + ",freq=" + 
+	this.ele.style.filter = "wave(strength=" + this.strength + ",freq=" +
 	 this.freq +", lightstrength=" + this.lightstrength +",phase=0);";
 	this.startTime = (new Date()).getTime();
 }
@@ -3862,7 +3861,7 @@ function CAgencyGlow( element, settings )
 	// to set the default value
 	this.glowColor = "green";
 	this.glowStrength = "3";
-	
+
 	var arrAllSet = settings.split(",");
 	for( var i = 0; i < arrAllSet.length; i ++ )
 	{
@@ -3892,7 +3891,7 @@ CAgencyGlow.prototype.PrepareEffect = function()
 CAgencyGlow.prototype.UpdateEffect = function()
 {// to set the visual filter function
 	this.PrepareEffect();
-	this.ele.style.filter = "glow(Color=" + this.glowColor + ", Strength=" + 
+	this.ele.style.filter = "glow(Color=" + this.glowColor + ", Strength=" +
 		this.glowStrength + ", enabled=true" +")";
 }
 
@@ -3910,10 +3909,10 @@ function CAgencyDropShadow( element, settings )
 	this.ele = element;
 
 	// to set the default value
-	this.shadowColor = "black"; 
+	this.shadowColor = "black";
 	this.shadowOffx = "1";
 	this.shadowOffy = "1";
-	
+
 	var arrAllSet = settings.split(",");
 	for( var i = 0; i < arrAllSet.length; i ++ )
 	{
@@ -3934,7 +3933,7 @@ CAgencyDropShadow.prototype.PrepareEffect = function()
 {
 	CCSSP.PrepareFilter(this.ele);
 	CCSSP.ShowObject(this.ele, true );
-	
+
 	if( this.ele.style.backgroundColor != "" )
 	{//style.backgroundColor somehow stop the visual filter
 		this.ele.intactBackgroundColor = this.ele.style.backgroundColor;
@@ -3945,7 +3944,7 @@ CAgencyDropShadow.prototype.PrepareEffect = function()
 CAgencyDropShadow.prototype.UpdateEffect = function()
 {// to set the visual filter function
 	this.PrepareEffect();
-	this.ele.style.filter = "dropshadow(color=" + this.shadowColor + ", offx=" + 
+	this.ele.style.filter = "dropshadow(color=" + this.shadowColor + ", offx=" +
 		this.shadowOffx + ", offy=" + this.shadowOffy + ")";
 }
 
@@ -3965,7 +3964,7 @@ function CAgencyRevealTrans( element, settings )
 	// to set the default value
 	this.duration = 1.0; //The value is specified in seconds.milliseconds format (0.0000).
 	this.transition = 0;
-	
+
 	var arrAllSet = settings.split(",");
 	for( var i = 0; i < arrAllSet.length; i ++ )
 	{
@@ -3992,19 +3991,19 @@ CAgencyRevealTrans.prototype.UpdateEffect = function()
 	if( typeof( this.ele.filters.RevealTrans ) == "object" )
 	{
 		if( this.ele.filters.RevealTrans.status == 2 )
-			this.ele.filters.RevealTrans.stop();  
+			this.ele.filters.RevealTrans.stop();
 	}
 
 	this.PrepareEffect();
-	
-	this.ele.style.filter = "RevealTrans(duration=" + this.duration + 
+
+	this.ele.style.filter = "RevealTrans(duration=" + this.duration +
 		", transition=" + this.transition + ")";
-	
+
     if( typeof( this.ele.filters.RevealTrans ) == "object" )
     {
 		this.ele.filters.RevealTrans.apply();
 		CCSSP.ShowObject( this.ele, true);
-		this.ele.filters.RevealTrans.play();  
+		this.ele.filters.RevealTrans.play();
 	}
 	else
 		CCSSP.ShowObject( this.ele, true);
@@ -4013,7 +4012,7 @@ CAgencyRevealTrans.prototype.UpdateEffect = function()
 CAgencyRevealTrans.prototype.EndEffect = function()
 {
     if( typeof( this.ele.filters.RevealTrans ) == "object" )
-		this.ele.filters.RevealTrans.stop();  
+		this.ele.filters.RevealTrans.stop();
 	this.ele.style.filter = "";
 }
 // End of the CAgencyRevealTrans definition
@@ -4026,7 +4025,7 @@ function CAgencyBlur( element, settings )
 	// to set the default value
 	this.strength = "5";
 	this.direction = "90";
-	
+
 	var arrAllSet = settings.split(",");
 	for( var i = 0; i < arrAllSet.length; i ++ )
 	{
@@ -4051,7 +4050,7 @@ CAgencyBlur.prototype.PrepareEffect = function()
 CAgencyBlur.prototype.UpdateEffect = function()
 {// to set the visual filter function
 	CCSSP.PrepareFilter(this.ele);
-	this.ele.style.filter = "blur(strength=" + this.strength + 
+	this.ele.style.filter = "blur(strength=" + this.strength +
 		", direction=" + this.direction + ")";
 }
 
@@ -4090,14 +4089,14 @@ CAgencyChangeFilter.prototype.EndEffect = function()
 
 // The effects below change the style on the fly, so they won't work in Navigator
 
-// Begin of CAgencyFontChange definition, 
+// Begin of CAgencyFontChange definition,
 function CAgencyFontChange( element, settings )
 {//this class can be replace by CAgencyChangeStyle,provided the "settings" is standard CSS string.
 	this.ele = element;
-	
+
 	// to retrieve the original font style
 	this.RetrieveOldFont( this.ele );
-	
+
 	// to set the default font to change
 	this.newfontFamily = this.ele.oldFontFamily;
 	this.newfColor = this.ele.oldColor;
@@ -4106,7 +4105,7 @@ function CAgencyFontChange( element, settings )
 	this.newfontStyle = this.ele.oldFontStyle;
 	this.newfontSize = this.ele.oldFontSize;
 	this.newBackgroundColor = this.ele.oldBackgroundColor;
-	
+
 	var arrAllSet = settings.split(",");
 	for( var i = 0; i < arrAllSet.length; i ++ )
 	{// to retrieve the setting
@@ -4202,13 +4201,13 @@ CAgencyFontChange.prototype.EndEffectAllChildren = function( objChild )
 function CAgencyChangeStyle( element, settings )
 {//this class can be replace by CAgencyChangeStyle,provided the "settings" is standard CSS string.
 	this.ele = element;
-	
+
 	// to retrieve the original style
 	this.oldstyle = this.ele.style.cssText;
-	
+
 	// to set the default style
 	this.newStyle = this.oldstyle;
-	
+
 	if( typeof(settings) == "string" && settings.length > 1 )
 		this.newStyle = this.oldstyle + " " + settings;
 }
@@ -4231,7 +4230,7 @@ CAgencyChangeStyle.prototype.EndEffect = function()
 
 //End the definition of CAgencyXXXX classes
 
-//Begin to collaborate with other event handler settings 
+//Begin to collaborate with other event handler settings
 CCSSP.RegisterEventHandler( window, "onload", "CEngine.OnPageLoad();BSSCOnLoad();kadovInitTriggersInHead();");
 CCSSP.RegisterEventHandler( document, "onclick", "CEngine.OnPageClick();BSSCOnClick();");
 CCSSP.RegisterEventHandler( document, "onmouseover", "CEngine.OnMouseOver();BSSCOnMouseOver();" );

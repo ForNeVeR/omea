@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using JetBrains.DataStructures;
 using JetBrains.Omea.OpenAPI;
@@ -64,7 +63,7 @@ namespace JetBrains.Omea.OutlookPlugin
         public const string BodyFormat = "BodyFormat";
         public const string Imported = "Imported";
         public const string InitialEmailEnum = "InitialEmailEnum";
-        public const string LastReceiveDate = "LastReceiveDate";    
+        public const string LastReceiveDate = "LastReceiveDate";
         public const string OUTLOOK_GENERAL = "Outlook General";
         public const string OUTLOOK_FOLDERS = "Outlook Folders";
         public const string OUTLOOK_ADDRESS_BOOKS = "Outlook Address Books";
@@ -151,7 +150,7 @@ namespace JetBrains.Omea.OutlookPlugin
         public static int PR_CONTENT_COUNT;
         public static int PR_ICON_INDEX;
         public static int PR_ATTACH_NUM;
-        
+
         public static int ShowPictures;
         public static int OMTaskId;
         public static int DeletedInIMAP;
@@ -197,15 +196,15 @@ namespace JetBrains.Omea.OutlookPlugin
                 }
             }
             RegisterResources( ownerPlugin );
-            PROP.SyncVersion  = 
+            PROP.SyncVersion  =
                 RS.PropTypes.Register( STR.SyncVersion, PropDataType.Int, PropTypeFlags.Internal | PropTypeFlags.NoSerialize );
 
-            PROP.EntryID = ResourceTypeHelper.UpdatePropTypeRegistration( STR.EntryID, PropDataType.String, 
+            PROP.EntryID = ResourceTypeHelper.UpdatePropTypeRegistration( STR.EntryID, PropDataType.String,
                                                                           PropTypeFlags.Internal | PropTypeFlags.NoSerialize );
             PROP.StoreID   = RS.PropTypes.Register( STR.StoreID, PropDataType.String, PropTypeFlags.Internal | PropTypeFlags.NoSerialize );
-            PROP.RecordKey = ResourceTypeHelper.UpdatePropTypeRegistration( STR.RecordKey, PropDataType.String, 
+            PROP.RecordKey = ResourceTypeHelper.UpdatePropTypeRegistration( STR.RecordKey, PropDataType.String,
                                                                             PropTypeFlags.Internal | PropTypeFlags.NoSerialize );
-            PROP.InternetMsgID = ResourceTypeHelper.UpdatePropTypeRegistration( STR.InternetMsgID, 
+            PROP.InternetMsgID = ResourceTypeHelper.UpdatePropTypeRegistration( STR.InternetMsgID,
                                                                                 PropDataType.String, PropTypeFlags.Internal );
             PROP.ReplyTo   = ResourceTypeHelper.UpdatePropTypeRegistration( STR.ReplyTo, PropDataType.String, PropTypeFlags.Internal );
             PROP.ConversationIndex = RS.PropTypes.Register( "ConversationIndex", PropDataType.String, PropTypeFlags.Internal );
@@ -218,7 +217,7 @@ namespace JetBrains.Omea.OutlookPlugin
             PROP.ResType   = RS.PropTypes.Register( "ResType", PropDataType.String, PropTypeFlags.Internal );
             PROP.AttachmentIndex = RS.PropTypes.Register( STR.AttachmentIndex, PropDataType.Int, PropTypeFlags.Internal );
             PROP.AttachMethod = RS.PropTypes.Register( STR.AttachMethod, PropDataType.Int, PropTypeFlags.Internal );
-            
+
             PROP.ResourceTransfer = RS.PropTypes.Register( "ResorceTransfer", PropDataType.Bool, PropTypeFlags.Internal );
 
             CorrectDeletedItemsProperty();
@@ -231,7 +230,7 @@ namespace JetBrains.Omea.OutlookPlugin
             PROP.OpenIgnoreFolder = RS.PropTypes.Register( "OpenIgnoreFolder", PropDataType.Int, PropTypeFlags.Internal );
             PROP.OpenSelectFolder = RS.PropTypes.Register( "OpenSelectFolder", PropDataType.Int, PropTypeFlags.Internal );
             PROP.MessageFlag = RS.PropTypes.Register( STR.MessageFlag, PropDataType.String, PropTypeFlags.Internal );
-            PROP.LastModifiedTime = ResourceTypeHelper.UpdatePropTypeRegistration( "LastModifiedTime", 
+            PROP.LastModifiedTime = ResourceTypeHelper.UpdatePropTypeRegistration( "LastModifiedTime",
                 PropDataType.Date, PropTypeFlags.Internal );
             PROP.Priority = RS.PropTypes.Register( STR.Priority, PropDataType.Int );
             PROP.EmbeddedMessage = RS.PropTypes.Register( STR.EmbeddedMessage, PropDataType.Bool, PropTypeFlags.Internal );
@@ -287,7 +286,7 @@ namespace JetBrains.Omea.OutlookPlugin
 
             PROP.SelectedInFolder = RS.PropTypes.Register( "SelectedInFolder", PropDataType.Link , PropTypeFlags.Internal );
 
-            PROP.Attachment = Core.ResourceStore.PropTypes.Register( STR.Attachment, PropDataType.Link, 
+            PROP.Attachment = Core.ResourceStore.PropTypes.Register( STR.Attachment, PropDataType.Link,
                                                                      PropTypeFlags.SourceLink | PropTypeFlags.DirectedLink, ownerPlugin );
             RS.PropTypes.RegisterDisplayName(PROP.Attachment, "Outlook Message", "Attachment");
 
@@ -388,7 +387,7 @@ namespace JetBrains.Omea.OutlookPlugin
         {
             if ( OutlookProcessor.SyncVersion < 5 )
             {
-                IResourceList mailWithAttachments = 
+                IResourceList mailWithAttachments =
                     RS.FindResourcesWithProp( STR.Email, PROP.Attachment );
                 foreach( IResource mail in mailWithAttachments )
                 {
@@ -405,7 +404,7 @@ namespace JetBrains.Omea.OutlookPlugin
             }
             if ( OutlookProcessor.SyncVersion < 8 )
             {
-                IResourceList mailWithAttachments = 
+                IResourceList mailWithAttachments =
                     RS.FindResourcesWithProp( STR.Email, PROP.Attachment );
                 foreach( IResource mail in mailWithAttachments )
                 {
@@ -534,7 +533,7 @@ namespace JetBrains.Omea.OutlookPlugin
             IResourceList tasks = RS.GetAllResources( STR.Task );
             foreach ( IResource task in tasks )
             {
-                task.DeleteProp( PROP.OMTaskId );                
+                task.DeleteProp( PROP.OMTaskId );
             }
         }
 
@@ -574,7 +573,7 @@ namespace JetBrains.Omea.OutlookPlugin
             OwnerEmailDetector.Initialize();
             AddressBook.Initialize();
             RS.ResourceTypes.Register( STR.Email, STR.Email, STR.Subject, ResourceTypeFlags.CanBeUnread, ownerPlugin );
-            RS.ResourceTypes.Register( STR.AttachmentType, STR.AttachmentType, 
+            RS.ResourceTypes.Register( STR.AttachmentType, STR.AttachmentType,
                 STR.Name, ResourceTypeFlags.Internal | ResourceTypeFlags.NoIndex, ownerPlugin );
             RS.ResourceTypes.Register( STR.MAPIStore, string.Empty, ResourceTypeFlags.Internal | ResourceTypeFlags.NoIndex );
             RS.ResourceTypes.Register( STR.MAPIInfoStore, STR.Name, ResourceTypeFlags.Internal | ResourceTypeFlags.NoIndex );
@@ -590,5 +589,5 @@ namespace JetBrains.Omea.OutlookPlugin
             //  "Sent to Mailing list" out of Omea Reader version.
             RS.ResourceTypes.Register( "MailingList", "Mailing List", "EmailAcct", ResourceTypeFlags.Internal | ResourceTypeFlags.NoIndex, ownerPlugin );
         }
-    }        
+    }
 }

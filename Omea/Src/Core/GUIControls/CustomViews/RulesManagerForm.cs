@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -192,9 +191,9 @@ namespace JetBrains.Omea.GUIControls.CustomViews
             this.cancelButton = new System.Windows.Forms.Button();
             this.helpButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
+            //
             // newButton
-            // 
+            //
             this.newButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.newButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.newButton.Location = new System.Drawing.Point(302, 48);
@@ -202,18 +201,18 @@ namespace JetBrains.Omea.GUIControls.CustomViews
             this.newButton.TabIndex = 3;
             this.newButton.Text = "&New...";
             this.newButton.Click += new System.EventHandler(this.newButton_Click);
-            // 
+            //
             // topLabel
-            // 
+            //
             this.topLabel.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.topLabel.Location = new System.Drawing.Point(8, 8);
             this.topLabel.Name = "topLabel";
             this.topLabel.Size = new System.Drawing.Size(76, 16);
             this.topLabel.TabIndex = 1;
             this.topLabel.Text = "&Available rules:";
-            // 
+            //
             // editButton
-            // 
+            //
             this.editButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.editButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.editButton.Location = new System.Drawing.Point(302, 80);
@@ -221,9 +220,9 @@ namespace JetBrains.Omea.GUIControls.CustomViews
             this.editButton.TabIndex = 4;
             this.editButton.Text = "&Edit...";
             this.editButton.Click += new System.EventHandler(this.editButton_Click);
-            // 
+            //
             // buttonCopyRule
-            // 
+            //
             this.buttonCopyRule.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonCopyRule.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.buttonCopyRule.Location = new System.Drawing.Point(302, 112);
@@ -231,9 +230,9 @@ namespace JetBrains.Omea.GUIControls.CustomViews
             this.buttonCopyRule.TabIndex = 5;
             this.buttonCopyRule.Text = "&Copy Rule";
             this.buttonCopyRule.Click += new System.EventHandler(this.buttonCopyRule_Click);
-            // 
+            //
             // removeButton
-            // 
+            //
             this.removeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.removeButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.removeButton.Location = new System.Drawing.Point(302, 144);
@@ -242,9 +241,9 @@ namespace JetBrains.Omea.GUIControls.CustomViews
             this.removeButton.TabIndex = 7;
             this.removeButton.Text = "&Delete...";
             this.removeButton.Click += new System.EventHandler(this.removeButton_Click);
-            // 
+            //
             // buttonMoveUp
-            // 
+            //
             this.buttonMoveUp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonMoveUp.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.buttonMoveUp.Location = new System.Drawing.Point(302, 184);
@@ -252,9 +251,9 @@ namespace JetBrains.Omea.GUIControls.CustomViews
             this.buttonMoveUp.TabIndex = 8;
             this.buttonMoveUp.Text = "Move &Up";
             this.buttonMoveUp.Click += new System.EventHandler(this.buttonMoveUp_Click);
-            // 
+            //
             // buttonMoveDown
-            // 
+            //
             this.buttonMoveDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonMoveDown.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.buttonMoveDown.Location = new System.Drawing.Point(302, 216);
@@ -262,9 +261,9 @@ namespace JetBrains.Omea.GUIControls.CustomViews
             this.buttonMoveDown.TabIndex = 9;
             this.buttonMoveDown.Text = "Move &Down";
             this.buttonMoveDown.Click += new System.EventHandler(this.buttonMoveDown_Click);
-            // 
+            //
             // tabRulesTypes
-            // 
+            //
             this.tabRulesTypes.Anchor = (AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right);
             this.tabRulesTypes.Location = new System.Drawing.Point(4, 28);
             this.tabRulesTypes.Name = "tabRulesTypes";
@@ -282,9 +281,9 @@ namespace JetBrains.Omea.GUIControls.CustomViews
             this.tabRulesTypes.Controls.Add(this.tabPageFormatting);
             this.tabRulesTypes.Controls.Add(this.tabPageTrayIcon);
             this.tabRulesTypes.Controls.Add(this.tabPageExpiration);
-            // 
+            //
             // okButton
-            // 
+            //
             this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.okButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.okButton.Location = new System.Drawing.Point(138, 312);
@@ -292,9 +291,9 @@ namespace JetBrains.Omea.GUIControls.CustomViews
             this.okButton.TabIndex = 20;
             this.okButton.Text = "OK";
             this.okButton.Click += new System.EventHandler(this.okButton_Click);
-            // 
+            //
             // cancelButton
-            // 
+            //
             this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.cancelButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -303,9 +302,9 @@ namespace JetBrains.Omea.GUIControls.CustomViews
             this.cancelButton.TabIndex = 21;
             this.cancelButton.Text = "Cancel";
             this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
-            // 
+            //
             // helpButton
-            // 
+            //
             this.helpButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.helpButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.helpButton.Location = new System.Drawing.Point(298, 312);
@@ -313,9 +312,9 @@ namespace JetBrains.Omea.GUIControls.CustomViews
             this.helpButton.TabIndex = 22;
             this.helpButton.Text = "Help";
             this.helpButton.Click += new EventHandler(helpButton_Click);
-            // 
+            //
             // RulesManagerForm
-            // 
+            //
             this.AcceptButton = this.okButton;
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
             this.CancelButton = this.cancelButton;
@@ -614,7 +613,7 @@ namespace JetBrains.Omea.GUIControls.CustomViews
         {
             if( _listRules.SelectedIndex != -1 )
             {
-                if( e.KeyCode == Keys.Delete && !e.Shift && 
+                if( e.KeyCode == Keys.Delete && !e.Shift &&
                     e.Modifiers != Keys.Alt && e.Modifiers != Keys.ControlKey )
                 {
                     removeButton_Click( null, null );

@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using Microsoft.Office.Core;
 using System;
@@ -139,7 +138,7 @@ namespace OmniaMea.MSWordPlugin
             if ( _strFileName != null )
             {
                 _savedEditFlags = FileTypesMap.GetEditFlags( "Word.Document" );
-                FileTypesMap.SetEditFlags( "Word.Document", _savedEditFlags | 0x10000 );   // FTA_OpenIsSafe 
+                FileTypesMap.SetEditFlags( "Word.Document", _savedEditFlags | 0x10000 );   // FTA_OpenIsSafe
                 _refreshTimer.Start();
 
                 AxIEBrowser.AxCIEBrowserCtl preview = ( AxIEBrowser.AxCIEBrowserCtl ) displayPane;
@@ -184,7 +183,7 @@ namespace OmniaMea.MSWordPlugin
                 find.ClearFormatting();
                 object wordWrap = Word.WdFindWrap.wdFindContinue;
                 bool found = find.Execute( ref findText, ref FALSE, ref TRUE, ref MissingValue, ref MissingValue, ref MissingValue,
-                    ref MissingValue, ref MissingValue, ref MissingValue, ref MissingValue, ref MissingValue, ref MissingValue, 
+                    ref MissingValue, ref MissingValue, ref MissingValue, ref MissingValue, ref MissingValue, ref MissingValue,
                     ref MissingValue, ref MissingValue, ref MissingValue );
                 if ( found )
                 {
@@ -372,7 +371,7 @@ namespace OmniaMea.MSWordPlugin
             Word.Documents documents = null;
             try
             {
-                if ( _MSWord == null ) 
+                if ( _MSWord == null )
                 {
                     if ( !LoadWordInstance() ) return string.Empty;
                 }
@@ -404,10 +403,10 @@ namespace OmniaMea.MSWordPlugin
             try
             {
                 DisableAutomationSecurity();
-                doc = documents.Open( ref path, ref FALSE, ref TRUE, ref FALSE, 
+                doc = documents.Open( ref path, ref FALSE, ref TRUE, ref FALSE,
                     ref pass,
-                    ref MissingValue, ref MissingValue, ref MissingValue, ref MissingValue, 
-                    ref MissingValue, 
+                    ref MissingValue, ref MissingValue, ref MissingValue, ref MissingValue,
+                    ref MissingValue,
                     ref MissingValue, ref MissingValue );
 
                 Word.Range range = doc.Content;
@@ -469,7 +468,7 @@ namespace OmniaMea.MSWordPlugin
         private bool IsReloadingPossible( COMException exception )
         {
             _tracer.TraceException( exception );
-            return ( COM_Error.IsRPC_ServerIsUnavailable( exception ) || 
+            return ( COM_Error.IsRPC_ServerIsUnavailable( exception ) ||
                 COM_Error.RemoteProcCallFailed( exception ) );
         }
 

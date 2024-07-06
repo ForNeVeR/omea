@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Windows.Forms;
@@ -68,9 +67,9 @@ namespace JetBrains.Omea.DebugPlugin
             this.columnTermID = new System.Windows.Forms.ColumnHeader();
             this.columnMetric = new System.Windows.Forms.ColumnHeader();
             this.SuspendLayout();
-            // 
+            //
             // labelDocID
-            // 
+            //
             this.labelDocID.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.labelDocID.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(204)));
             this.labelDocID.Location = new System.Drawing.Point(12, 8);
@@ -78,18 +77,18 @@ namespace JetBrains.Omea.DebugPlugin
             this.labelDocID.Size = new System.Drawing.Size(40, 16);
             this.labelDocID.TabIndex = 0;
             this.labelDocID.Text = "&Doc ID:";
-            // 
+            //
             // textDocID
-            // 
+            //
             this.textDocID.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(204)));
             this.textDocID.Location = new System.Drawing.Point(56, 4);
             this.textDocID.Name = "textDocID";
             this.textDocID.Size = new System.Drawing.Size(60, 21);
             this.textDocID.TabIndex = 1;
             this.textDocID.Text = "";
-            // 
+            //
             // buttonOK
-            // 
+            //
             this.buttonOK.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.buttonOK.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.buttonOK.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -98,20 +97,20 @@ namespace JetBrains.Omea.DebugPlugin
             this.buttonOK.Name = "buttonOK";
             this.buttonOK.TabIndex = 4;
             this.buttonOK.Text = "OK";
-            // 
+            //
             // buttonShowContent
-            // 
+            //
             this.buttonShowContent.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.buttonShowContent.Location = new System.Drawing.Point(128, 4);
             this.buttonShowContent.Name = "buttonShowContent";
             this.buttonShowContent.TabIndex = 2;
             this.buttonShowContent.Text = "Show";
             this.buttonShowContent.Click += new System.EventHandler(this.buttonShowContent_Click);
-            // 
+            //
             // listDocContent
-            // 
-            this.listDocContent.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-                | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this.listDocContent.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this.listDocContent.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {   this.columnTermID,
                                                                                              this.columnMetric});
@@ -123,20 +122,20 @@ namespace JetBrains.Omea.DebugPlugin
             this.listDocContent.TabIndex = 3;
             this.listDocContent.View = System.Windows.Forms.View.Details;
             this.listDocContent.DoubleClick += new System.EventHandler(this.ItemDoubleClicked);
-            // 
+            //
             // columnTermID
-            // 
+            //
             this.columnTermID.Text = "Term ID";
             this.columnTermID.Width = 136;
-            // 
+            //
             // columnMetric
-            // 
+            //
             this.columnMetric.Text = "Tf * Idf";
             this.columnMetric.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.columnMetric.Width = 91;
-            // 
+            //
             // ViewDocIndexContentForm
-            // 
+            //
             this.AcceptButton = this.buttonShowContent;
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
             this.CancelButton = this.buttonOK;

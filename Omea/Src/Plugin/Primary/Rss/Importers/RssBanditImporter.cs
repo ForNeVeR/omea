@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -112,7 +111,7 @@ namespace JetBrains.Omea.RSSPlugin
         public void DoImport( IResource importRoot, bool addToWorkspace )
         {
             IResource feedRes = null;
-            
+
             importRoot = _plugin.FindOrCreateGroup( "RssBandit subscriptions", importRoot );
 
             // We will add info about imported feeds here
@@ -145,7 +144,7 @@ namespace JetBrains.Omea.RSSPlugin
             }
 
             XmlNodeList feeds = feedlist.GetElementsByTagName( "feed" );
-            
+
             int totalFeeds = Math.Max( feeds.Count, 1 );
             int processedFeeds = 0;
             ImportUtils.UpdateProgress( processedFeeds / totalFeeds, _progressMessage );
@@ -176,7 +175,7 @@ namespace JetBrains.Omea.RSSPlugin
                 ImportUtils.Child2Prop( feed, "title", feedRes, Core.Props.Name, Props.OriginalName );
 
                 ImportUtils.Child2Prop( feed, "etag", feedRes, Props.ETag );
-    
+
                 s = ImportUtils.GetUniqueChildText( feed, "last-retrieved" );
                 if( s != null )
                 {
@@ -269,7 +268,7 @@ namespace JetBrains.Omea.RSSPlugin
             ImportUtils.UpdateProgress( 0, _progressMessageCache );
             int totalFeeds = Math.Max( _importedFeeds.Count, 1 );
             int processedFeeds = 0;
-            
+
             // Ok, all feeds are created. Try to import all caches and mark read items
             _parseCache = true;
             foreach( FeedInfo fi in _importedFeeds )
@@ -294,7 +293,7 @@ namespace JetBrains.Omea.RSSPlugin
                 {
                     // Load feed!
                     parser = new RSSParser( fi.feed );
-                    using( stream = new FileStream( path, FileMode.Open, FileAccess.Read ) ) 
+                    using( stream = new FileStream( path, FileMode.Open, FileAccess.Read ) )
                     {
                         parser.Parse( stream, Encoding.UTF8, true );
                     }
@@ -336,7 +335,7 @@ namespace JetBrains.Omea.RSSPlugin
             {
                 parser = new RSSParser( pseudoFeed );
                 parser.ItemParsed += this.FlaggedItemParsed;
-                using( stream = new FileStream( _flaggedPath, FileMode.Open, FileAccess.Read ) ) 
+                using( stream = new FileStream( _flaggedPath, FileMode.Open, FileAccess.Read ) )
                 {
                     parser.Parse( stream, Encoding.UTF8, true );
                 }
@@ -440,19 +439,19 @@ namespace JetBrains.Omea.RSSPlugin
             e.Resource.Delete();
         }
 
-        private static byte[] CalcPasswordKey() 
+        private static byte[] CalcPasswordKey()
         {
             string salt = "NewsComponents.4711";
             byte[] b = Encoding.Unicode.GetBytes(salt);
             int bLen = b.GetLength(0);
-            Random r = new Random(1500450271);	
+            Random r = new Random(1500450271);
             byte[] res = new Byte[500];
             int i = 0;
             for( i = 0; i < bLen && i < 500; ++i )
             {
                 res[i] = (byte)( b[i] ^ r.Next( 30, 127 ) );
             }
-            while( i < 500 ) 
+            while( i < 500 )
             {
                 res[ i++ ] = (byte)r.Next( 30, 127 );
             }
@@ -467,7 +466,7 @@ namespace JetBrains.Omea.RSSPlugin
             TripleDESCryptoServiceProvider des = new TripleDESCryptoServiceProvider();
             des.Key = CalcPasswordKey();
             des.Mode = CipherMode.ECB;
-            try 
+            try
             {
                 base64 = Convert.FromBase64String( password );
                 bytes = des.CreateDecryptor().TransformFinalBlock(base64, 0, base64.GetLength(0));

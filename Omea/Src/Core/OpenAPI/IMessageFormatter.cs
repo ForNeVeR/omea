@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 
 namespace JetBrains.Omea.OpenAPI
@@ -60,7 +59,7 @@ namespace JetBrains.Omea.OpenAPI
         /// is a reply, or null if the specified resource is not a reply.</param>
         /// <returns>The string containing the HTML-formatted message.</returns>
         string GetFormattedBody( IResource resource, string body, string replyToBody );
-        
+
         /// <summary>
         /// Pretty-prints the specified string which is the body of the specified
         /// resource using given font and attributes.
@@ -83,13 +82,13 @@ namespace JetBrains.Omea.OpenAPI
         /// <param name="resource">The resource for which the body is pretty-printed.</param>
         /// <param name="bodyProp">The ID of the property holding the resource body.</param>
         /// <param name="replyLink">The ID of the property linking the resource to its replies.</param>
-        /// <param name="maintainedOffsets">An array of offsets in the text that should be updated accordingly 
-        /// to the formatting applied to the content so that if the offset points to a specific word 
+        /// <param name="maintainedOffsets">An array of offsets in the text that should be updated accordingly
+        /// to the formatting applied to the content so that if the offset points to a specific word
         /// before formatting, it would point to the same word after formatting as well. May be <c>null</c>.</param>
         /// <returns>The string containing the HTML-formatted message.</returns>
         /// <since>2.0</since>
         string GetFormattedBody( IResource resource, int bodyProp, int replyLink, ref WordPtr[] maintainedOffsets );
-        
+
         /// <summary>
         /// Retrieves and pretty-prints the body of the specified resource,
         /// using given font and attributes and maintaining a list of offsets in the text.
@@ -97,8 +96,8 @@ namespace JetBrains.Omea.OpenAPI
         /// <param name="resource">The resource for which the body is pretty-printed.</param>
         /// <param name="bodyProp">The ID of the property holding the resource body.</param>
         /// <param name="replyLink">The ID of the property linking the resource to its replies.</param>
-        /// <param name="maintainedOffsets">An array of offsets in the text that should be updated accordingly 
-        /// to the formatting applied to the content so that if the offset points to a specific word 
+        /// <param name="maintainedOffsets">An array of offsets in the text that should be updated accordingly
+        /// to the formatting applied to the content so that if the offset points to a specific word
         /// before formatting, it would point to the same word after formatting as well. May be <c>null</c>.</param>
         /// <param name="fontFace">Name of a font face (family).</param>
         /// <param name="fontSize">Size of a font.</param>
@@ -115,13 +114,13 @@ namespace JetBrains.Omea.OpenAPI
         /// <param name="body">The text of the resource body.</param>
         /// <param name="replyToBody">The body of the resource to which the specified resource
         /// is a reply, or null if the specified resource is not a reply.</param>
-        /// <param name="maintainedOffsets">An array of offsets in the text that should be updated accordingly 
-        /// to the formatting applied to the content so that if the offset points to a specific word 
+        /// <param name="maintainedOffsets">An array of offsets in the text that should be updated accordingly
+        /// to the formatting applied to the content so that if the offset points to a specific word
         /// before formatting, it would point to the same word after formatting as well. May be <c>null</c>.</param>
         /// <returns>The string containing the HTML-formatted message.</returns>
         /// <since>2.0</since>
         string GetFormattedBody( IResource resource, string body, string replyToBody, ref WordPtr[] maintainedOffsets );
-        
+
         /// <summary>
         /// Pretty-prints the specified string which is the body of the specified resource,
         /// using given font and attributes and maintaining a list of offsets in the text.
@@ -130,8 +129,8 @@ namespace JetBrains.Omea.OpenAPI
         /// <param name="body">The text of the resource body.</param>
         /// <param name="replyToBody">The body of the resource to which the specified resource
         /// is a reply, or null if the specified resource is not a reply.</param>
-        /// <param name="offsets">An array of offsets in the text that should be updated accordingly 
-        /// to the formatting applied to the content so that if the offset points to a specific word 
+        /// <param name="offsets">An array of offsets in the text that should be updated accordingly
+        /// to the formatting applied to the content so that if the offset points to a specific word
         /// before formatting, it would point to the same word after formatting as well. May be <c>null</c>.</param>
         /// <param name="fontFace">Name of a font face (family).</param>
         /// <param name="fontSize">Size of a font.</param>
@@ -315,13 +314,13 @@ namespace JetBrains.Omea.OpenAPI
         /// <summary>
         /// The signature is not inserted.
         /// </summary>
-        None, 
-        
+        None,
+
         /// <summary>
         /// The signature is inserted before the quoted section.
         /// </summary>
-        BeforeQuote, 
-        
+        BeforeQuote,
+
         /// <summary>
         /// The signature is inserted after the quoted section.
         /// </summary>

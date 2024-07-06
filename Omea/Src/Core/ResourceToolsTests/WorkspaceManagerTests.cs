@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using JetBrains.Omea.OpenAPI;
@@ -15,7 +14,7 @@ namespace ResourceToolsTests
     /**
      * Unit tests for the WorkspaceManager class.
      */
-    
+
     [TestFixture]
     public class WorkspaceManagerTests
     {
@@ -44,11 +43,11 @@ namespace ResourceToolsTests
 
             _workspaceManager = _core.WorkspaceManager as WorkspaceManager;
 
-            _workspaceManager.RegisterWorkspaceType( "Person", 
+            _workspaceManager.RegisterWorkspaceType( "Person",
                                                      new int[] { _propAuthor }, WorkspaceResourceType.Container );
-            _workspaceManager.RegisterWorkspaceType( "Category", 
+            _workspaceManager.RegisterWorkspaceType( "Category",
                                                      new int[] { _categoryManager.PropCategory }, WorkspaceResourceType.Filter );
-            _workspaceManager.RegisterWorkspaceType( "Folder", 
+            _workspaceManager.RegisterWorkspaceType( "Folder",
                                                      new int[] { _propAuthor }, WorkspaceResourceType.Container );
         }
 
@@ -127,12 +126,12 @@ namespace ResourceToolsTests
         }
 
         [Test] public void NonWorkspaceTypesInResourcesOutsideContainers()
-        {                                                   
+        {
             _workspaceManager.RegisterWorkspaceType( "Email", new int[] {}, WorkspaceResourceType.None );
             IResource email = _storage.NewResource( "Email" );
             IResource workspace = _workspaceManager.CreateWorkspace( "Test ");
             _workspaceManager.AddResourceToWorkspace( workspace, email );
-            
+
             IResourceList outsideList = _workspaceManager.GetResourcesOutsideContainers( workspace );
             Assert.AreEqual( 1, outsideList.Count );
             Assert.AreEqual( email, outsideList [0] );
@@ -192,9 +191,9 @@ namespace ResourceToolsTests
 
             Assert.AreEqual( 1, _workspaceManager.GetFilterList( workspace ).Count );
 
-            _workspaceManager.RemoveResourceFromWorkspace( workspace, folder );  
+            _workspaceManager.RemoveResourceFromWorkspace( workspace, folder );
               // this should forget about the fact that the child was removed from workspace (#3808)
-            
+
             _workspaceManager.AddResourceToWorkspaceRecursive( workspace, folder );
             Assert.AreEqual( 2, _workspaceManager.GetFilterList( workspace ).Count );
         }
@@ -204,7 +203,7 @@ namespace ResourceToolsTests
             IResource folder = _storage.NewResource( "Folder" );
             IResource childFolder = _storage.NewResource( "Folder" );
             childFolder.AddLink( "Parent", folder );
-            
+
             IResource workspace = _workspaceManager.CreateWorkspace( "Test" );
             _workspaceManager.AddResourceToWorkspace( workspace, childFolder );
             _workspaceManager.AddResourceToWorkspaceRecursive( workspace, folder );
@@ -212,7 +211,7 @@ namespace ResourceToolsTests
 
             Assert.AreEqual( 2, _workspaceManager.GetFilterList( workspace ).Count );
 
-            _workspaceManager.RemoveResourceFromWorkspace( workspace, childFolder );  
+            _workspaceManager.RemoveResourceFromWorkspace( workspace, childFolder );
             Assert.AreEqual( 1, _workspaceManager.GetFilterList( workspace ).Count );
         }
 
@@ -297,8 +296,8 @@ namespace ResourceToolsTests
 
             _storage.Close();
             _storage = new TestResourceStore( true );
-            
-            _workspaceManager = new WorkspaceManager( _storage, new ResourceTreeManager( _storage ), 
+
+            _workspaceManager = new WorkspaceManager( _storage, new ResourceTreeManager( _storage ),
                 _core.PluginLoader );
 
             IResourceList workspaces = _workspaceManager.GetResourceWorkspaces( person );

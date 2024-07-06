@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 // Band.h : Declaration of the CBand
 // CBand is a generic implementation of an Internet Explorer Rebar Band.
@@ -63,12 +62,12 @@ __interface IBand : IDispatch
 	helpstring("Internet Explorer Beelaxy Add-on Rebar Band")
 ]
 #endif
-class ATL_NO_VTABLE CBand : 
+class ATL_NO_VTABLE CBand :
 	public IObjectWithSiteImpl<CBand>,
 	public CWindowImpl<CBand>,
 	public IBand,
-	public IDeskBand, 
-	public IInputObject, 
+	public IDeskBand,
+	public IInputObject,
 	public IPersistStream
 {
 public:
@@ -82,8 +81,8 @@ public:
 	{
 		return S_OK;
 	}
-	
-	void FinalRelease() 
+
+	void FinalRelease()
 	{
 	}
 
@@ -241,7 +240,7 @@ protected:
 
 	/// Gets whether the chevron is currently visible on the toolbar.
 	__declspec(property(get=GetChevronVisible))	bool ChevronVisible;
-	bool GetChevronVisible();	
+	bool GetChevronVisible();
 
 	/// Gets the chevron bounding rectange. Its width is equal to the width of chevron, and height is the full toolbar height.
 	__declspec(property(get=GetChevronBounds)) CRect ChevronBounds;
@@ -282,8 +281,8 @@ public:
 	STDMETHOD(UIActivateIO)(BOOL fActivate, LPMSG lpMsg);
 
 	// IPersistStream
-	// This is only supported to allow the desk band to be dropped on the 
-	// desktop and to prevent multiple instances of the desk band from showing 
+	// This is only supported to allow the desk band to be dropped on the
+	// desktop and to prevent multiple instances of the desk band from showing
 	// up in the context menu. This desk band doesn't actually persist any data.
 	STDMETHOD(GetClassID)(CLSID *pClassID);
 	STDMETHOD(IsDirty)(void);

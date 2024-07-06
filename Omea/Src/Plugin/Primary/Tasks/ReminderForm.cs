@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.IO;
@@ -20,11 +19,11 @@ namespace JetBrains.Omea.Tasks
             //  5, 10, 15, 30 minutes
             new TimeSpan( 0, 0, 5, 0 ), new TimeSpan( 0, 0, 10, 0 ),new TimeSpan( 0, 0, 15, 0 ),new TimeSpan( 0, 0, 30, 0 ),
             //  1, 2, 4, 8, 12 hours
-            new TimeSpan( 0, 1, 0, 0 ), new TimeSpan( 0, 2, 0, 0 ), new TimeSpan( 0, 4, 0, 0 ), new TimeSpan( 0, 8, 0, 0 ), new TimeSpan( 0, 12, 0, 0 ), 
+            new TimeSpan( 0, 1, 0, 0 ), new TimeSpan( 0, 2, 0, 0 ), new TimeSpan( 0, 4, 0, 0 ), new TimeSpan( 0, 8, 0, 0 ), new TimeSpan( 0, 12, 0, 0 ),
             //  1, 2, 3, 4 days
             new TimeSpan( 1, 0, 0, 0 ), new TimeSpan( 2, 0, 0, 0 ), new TimeSpan( 3, 0, 0, 0 ), new TimeSpan( 4, 0, 0, 0 ),
             //  1 or 2 weeks
-            new TimeSpan( 7, 0, 0, 0 ), new TimeSpan( 14, 0, 0, 0 ), 
+            new TimeSpan( 7, 0, 0, 0 ), new TimeSpan( 14, 0, 0, 0 ),
         };
 
         private System.Windows.Forms.Button _dismissButton, _dismissAllButton;
@@ -216,12 +215,12 @@ namespace JetBrains.Omea.Tasks
             toolTipReason = new ToolTip();
 			toolTipReason.ShowAlways = true;
             this.SuspendLayout();
-            // 
+            //
             // _targetList
-            // 
+            //
             this._targetList.AllowDrop = true;
-            this._targetList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-                | System.Windows.Forms.AnchorStyles.Left) 
+            this._targetList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._targetList.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this._targetList.HideSelection = false;
@@ -230,10 +229,10 @@ namespace JetBrains.Omea.Tasks
             this._targetList.ShowContextMenu = false;
             this._targetList.Size = new System.Drawing.Size(348, 72);
             this._targetList.TabIndex = 2;
-            // 
+            //
             // _controlPanel
-            // 
-            this._controlPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._controlPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._controlPanel.Controls.Add(this._snoozeLabel);
             this._controlPanel.Controls.Add(this._snoozePeriodList);
@@ -246,20 +245,20 @@ namespace JetBrains.Omea.Tasks
             this._controlPanel.Name = "_controlPanel";
             this._controlPanel.Size = new System.Drawing.Size(348, 84);
             this._controlPanel.TabIndex = 3;
-            // 
+            //
             // _snoozeLabel
-            // 
-            this._snoozeLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._snoozeLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._snoozeLabel.Location = new System.Drawing.Point(8, 36);
             this._snoozeLabel.Name = "_snoozeLabel";
             this._snoozeLabel.Size = new System.Drawing.Size(248, 17);
             this._snoozeLabel.TabIndex = 9;
             this._snoozeLabel.Text = "Click Snooze to be reminded in:";
-            // 
+            //
             // _snoozePeriodList
-            // 
-            this._snoozePeriodList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._snoozePeriodList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._snoozePeriodList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this._snoozePeriodList.Items.AddRange(new object[] {
@@ -282,9 +281,9 @@ namespace JetBrains.Omea.Tasks
             this._snoozePeriodList.Name = "_snoozePeriodList";
             this._snoozePeriodList.Size = new System.Drawing.Size(252, 21);
             this._snoozePeriodList.TabIndex = 5;
-            // 
+            //
             // _snoozeButton
-            // 
+            //
             this._snoozeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this._snoozeButton.DialogResult = System.Windows.Forms.DialogResult.OK;
             this._snoozeButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -294,9 +293,9 @@ namespace JetBrains.Omea.Tasks
             this._snoozeButton.TabIndex = 6;
             this._snoozeButton.Text = "Snooze";
             this._snoozeButton.Click += new System.EventHandler(this._snoozeButton_Click);
-            // 
+            //
             // _editButton
-            // 
+            //
             this._editButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this._editButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._editButton.Location = new System.Drawing.Point(272, 0);
@@ -305,9 +304,9 @@ namespace JetBrains.Omea.Tasks
             this._editButton.TabIndex = 3;
             this._editButton.Text = "Edit Task...";
             this._editButton.Click += new System.EventHandler(this._openButton_Click);
-            // 
+            //
             // _dismissButton
-            // 
+            //
             this._dismissButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this._dismissButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this._dismissButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -317,9 +316,9 @@ namespace JetBrains.Omea.Tasks
             this._dismissButton.TabIndex = 4;
             this._dismissButton.Text = "Dismiss";
             this._dismissButton.Click += new System.EventHandler(this._dismissButton_Click);
-            // 
+            //
             // _dismissAllButton
-            // 
+            //
             this._dismissAllButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)));
             this._dismissAllButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this._dismissAllButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -330,9 +329,9 @@ namespace JetBrains.Omea.Tasks
             this._dismissAllButton.Text = "Dismiss All";
             this._dismissAllButton.Visible = false;
             this._dismissAllButton.Click += new System.EventHandler(this._dismissAllButton_Click);
-            // 
+            //
             // _snoozeAllButton
-            // 
+            //
             this._snoozeAllButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)));
             this._snoozeAllButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this._snoozeAllButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -343,10 +342,10 @@ namespace JetBrains.Omea.Tasks
             this._snoozeAllButton.Text = "Snooze All";
             this._snoozeAllButton.Visible = false;
             this._snoozeAllButton.Click += new System.EventHandler(this._snoozeAllButton_Click);
-            // 
+            //
             // _descriptionTextBox
-            // 
-            this._descriptionTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._descriptionTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._descriptionTextBox.Location = new System.Drawing.Point(8, 32);
             this._descriptionTextBox.Multiline = true;
@@ -356,10 +355,10 @@ namespace JetBrains.Omea.Tasks
             this._descriptionTextBox.Size = new System.Drawing.Size(348, 72);
             this._descriptionTextBox.TabIndex = 1;
             this._descriptionTextBox.Text = "";
-            // 
+            //
             // _targetsLabel
-            // 
-            this._targetsLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._targetsLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._targetsLabel.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._targetsLabel.Location = new System.Drawing.Point(8, 110);
@@ -368,10 +367,10 @@ namespace JetBrains.Omea.Tasks
             this._targetsLabel.TabIndex = 6;
             this._targetsLabel.Text = "Attached resources:";
             this._targetsLabel.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
-            // 
+            //
             // _taskSubject
-            // 
-            this._taskSubject.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._taskSubject.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._taskSubject.LinkOwnerResource = null;
             this._taskSubject.LinkType = 0;
@@ -382,9 +381,9 @@ namespace JetBrains.Omea.Tasks
             this._taskSubject.ShowIcon = true;
             this._taskSubject.Size = new System.Drawing.Size(348, 20);
             this._taskSubject.TabIndex = 0;
-            // 
+            //
             // ReminderForm
-            // 
+            //
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
             this.ClientSize = new System.Drawing.Size(364, 294);
             this.Controls.Add(this._taskSubject);

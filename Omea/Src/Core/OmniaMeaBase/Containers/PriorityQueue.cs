@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -9,7 +8,7 @@ using JetBrains.Omea.Base;
 
 namespace JetBrains.Omea.Containers
 {
-    /** 
+    /**
      * default priority queue works with int priority values
      * the more priority, the faster an object is popped
      * NOTE: specific feature of the PriorityQueue is that objects pushed with
@@ -161,7 +160,7 @@ namespace JetBrains.Omea.Containers
             {
                 result = new QueueEntry();
             }
-            else 
+            else
             {
                 _freeNode = null;
             }
@@ -172,7 +171,7 @@ namespace JetBrains.Omea.Containers
         protected QueueEntry    _freeNode;
     }
 
-    /** 
+    /**
      * priority queue with DateTime priority values
      * the less priority (date & time), the faster an object is popped
      * uses partially ordered tree instead of red-black tree (less memory),
@@ -269,12 +268,12 @@ namespace JetBrains.Omea.Containers
                 _priority = priority;
                 _object = obj;
             }
-            
+
             public DateTime Priority { get { return _priority; } }
             public object   Value    { get { return _object; } }
         }
 
-        /** 
+        /**
          * plain table representation of partially ordered tree
          */
         protected internal ArrayList _poTree;

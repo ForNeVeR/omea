@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Drawing;
@@ -47,7 +46,7 @@ namespace JetBrains.Omea
         /// </summary>
         public event EventHandler RestoreClick;
 
-        /// <summary> 
+        /// <summary>
 		/// Clean up any resources being used.
 		/// </summary>
 		protected override void Dispose( bool disposing )
@@ -63,8 +62,8 @@ namespace JetBrains.Omea
 		}
 
 		#region Component Designer generated code
-		/// <summary> 
-		/// Required method for Designer support - do not modify 
+		/// <summary>
+		/// Required method for Designer support - do not modify
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent()
@@ -79,10 +78,10 @@ namespace JetBrains.Omea
             this._dragOverTimer = new System.Windows.Forms.Timer(this.components);
             this._toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
-            // 
+            //
             // _captionLabel
-            // 
-            this._captionLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._captionLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._captionLabel.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this._captionLabel.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -95,15 +94,15 @@ namespace JetBrains.Omea
             this._captionLabel.Text = "label1";
             this._captionLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this._captionLabel.DoubleClick += new System.EventHandler(this._captionLabel_DoubleClick);
-            // 
+            //
             // _iconList
-            // 
+            //
             this._iconList.ImageSize = new System.Drawing.Size(16, 16);
             this._iconList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("_iconList.ImageStream")));
             this._iconList.TransparentColor = System.Drawing.Color.Transparent;
-            // 
+            //
             // _minimizeBtn
-            // 
+            //
             this._minimizeBtn.Dock = System.Windows.Forms.DockStyle.Right;
             this._minimizeBtn.ImageIndex = 1;
             this._minimizeBtn.ImageList = this._iconList;
@@ -114,9 +113,9 @@ namespace JetBrains.Omea
             this._minimizeBtn.Text = "imageListPictureBox1";
             this._toolTip.SetToolTip(this._minimizeBtn, "Minimize Pane");
             this._minimizeBtn.Click += new System.EventHandler(this._minimizeBtn_Click);
-            // 
+            //
             // _restoreBtn
-            // 
+            //
             this._restoreBtn.Dock = System.Windows.Forms.DockStyle.Right;
             this._restoreBtn.ImageIndex = 2;
             this._restoreBtn.ImageList = this._iconList;
@@ -127,19 +126,19 @@ namespace JetBrains.Omea
             this._restoreBtn.Text = "imageListPictureBox1";
             this._toolTip.SetToolTip(this._restoreBtn, "Restore Pane");
             this._restoreBtn.Click += new System.EventHandler(this._restoreBtn_Click);
-            // 
+            //
             // _restoreTimer
-            // 
+            //
             this._restoreTimer.Interval = 200;
             this._restoreTimer.Tick += new System.EventHandler(this._restoreTimer_Tick);
-            // 
+            //
             // _dragOverTimer
-            // 
+            //
             this._dragOverTimer.Interval = 500;
             this._dragOverTimer.Tick += new System.EventHandler(this._dragOverTimer_Tick);
-            // 
+            //
             // PaneCaption
-            // 
+            //
             Height = 18;
             Visible = false;
             Active = false;
@@ -186,9 +185,9 @@ namespace JetBrains.Omea
 	    public ColorScheme ColorScheme
 	    {
 	        get { return _colorScheme; }
-	        set 
-            { 
-                _colorScheme = value; 
+	        set
+            {
+                _colorScheme = value;
                 UpdateColors();
             }
 	    }
@@ -209,11 +208,11 @@ namespace JetBrains.Omea
 
 	    private void UpdateColors()
 	    {
-	        BackColor = _active 
+	        BackColor = _active
 	            ? ColorScheme.GetColor( _colorScheme, "PaneCaption.Active", SystemColors.ActiveCaption )
 	            : ColorScheme.GetColor( _colorScheme, "PaneCaption.Inactive", SystemColors.InactiveCaption );
 	        _captionLabel.BackColor = BackColor;
-	        _captionLabel.ForeColor = _active 
+	        _captionLabel.ForeColor = _active
 	            ? ColorScheme.GetColor( _colorScheme, "PaneCaption.ActiveText", SystemColors.ActiveCaptionText )
 	            : ColorScheme.GetColor( _colorScheme, "PaneCaption.InactiveText", SystemColors.InactiveCaptionText );
 	    }
@@ -238,7 +237,7 @@ namespace JetBrains.Omea
          * A double-click on the header of a pane maximizes it if the Maximize button
          * is visible, and restores it otherwise.
          */
-        
+
         private void _captionLabel_DoubleClick( object sender, EventArgs e )
         {
             _restoreTimer.Stop();
@@ -290,7 +289,7 @@ namespace JetBrains.Omea
         /**
          * When the drag has been hovering over the caption for 500 ms, restores the pane.
          */
-        
+
         private void _dragOverTimer_Tick( object sender, EventArgs e )
         {
             _dragOverTimer.Stop();

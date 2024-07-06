@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.ComponentModel;
@@ -41,7 +40,7 @@ namespace JetBrains.Omea
         private const int     CollapsedPanelHeight = 30;
         private const int     MinimalPanelHeight = 100;
 
-		/// <summary> 
+		/// <summary>
 		/// Required designer variable.
 		/// </summary>
 		private Container components = null;
@@ -75,7 +74,7 @@ namespace JetBrains.Omea
 			InitializeBrowserComponent();
 		}
 
-		/// <summary> 
+		/// <summary>
 		/// Clean up any resources being used.
 		/// </summary>
 		protected override void Dispose( bool disposing )
@@ -91,8 +90,8 @@ namespace JetBrains.Omea
 		}
 
 		#region Component Designer generated code
-		/// <summary> 
-		/// Required method for Designer support - do not modify 
+		/// <summary>
+		/// Required method for Designer support - do not modify
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent()
@@ -117,9 +116,9 @@ namespace JetBrains.Omea
             this._panelContent.SuspendLayout();
             this._panelAnnotation.SuspendLayout();
             this.SuspendLayout();
-            // 
+            //
             // _panelTop
-            // 
+            //
             this._panelTop.Controls.Add(this._lblName);
             this._panelTop.Controls.Add(this._edtName);
             this._panelTop.Dock = System.Windows.Forms.DockStyle.Top;
@@ -127,18 +126,18 @@ namespace JetBrains.Omea
             this._panelTop.Name = "_panelTop";
             this._panelTop.Size = new System.Drawing.Size(700, 28);
             this._panelTop.TabIndex = 0;
-            // 
+            //
             // lblName
-            // 
+            //
             this._lblName.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._lblName.Location = new System.Drawing.Point(4, 8);
             this._lblName.Name = "_lblName";
             this._lblName.Size = new System.Drawing.Size(36, 16);
             this._lblName.TabIndex = 0;
             this._lblName.Text = "&Name:";
-            // 
+            //
             // _edtName
-            // 
+            //
             this._edtName.Anchor = (AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right);
             this._edtName.Location = new System.Drawing.Point(44, 4);
             this._edtName.Name = "_edtName";
@@ -146,9 +145,9 @@ namespace JetBrains.Omea
             this._edtName.TabIndex = 1;
             this._edtName.Text = "";
 
-            // 
+            //
             // _panelContent
-            // 
+            //
             this._panelContent.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this._panelContent.Controls.Add(this._richTextBox);
             this._panelContent.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -156,9 +155,9 @@ namespace JetBrains.Omea
             this._panelContent.Name = "_panelContent";
             this._panelContent.Size = new System.Drawing.Size(700, 70);
             this._panelContent.TabIndex = 1;
-            // 
+            //
             // _richTextBox
-            // 
+            //
             this._richTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this._richTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this._richTextBox.Location = new System.Drawing.Point(4, 0);
@@ -167,9 +166,9 @@ namespace JetBrains.Omea
             this._richTextBox.Size = new System.Drawing.Size(692, 60);
             this._richTextBox.TabIndex = 0;
             this._richTextBox.Text = "";
-            // 
+            //
             // _panelAnnotation
-            // 
+            //
             this._panelAnnotation.Dock = System.Windows.Forms.DockStyle.Bottom;
             this._panelAnnotation.Size = new System.Drawing.Size(340, 176);
             this._panelAnnotation.Location = new System.Drawing.Point(0, 168);
@@ -178,9 +177,9 @@ namespace JetBrains.Omea
 
             this._panelAnnotation.Controls.Add(_boxAnnotation);
             this._panelAnnotation.Controls.Add(_selector);
-            // 
+            //
             // _boxAnnotation
-            // 
+            //
 		    _boxAnnotation.Location = new System.Drawing.Point(8, 4);
 		    _boxAnnotation.Anchor = (AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right);
 		    _boxAnnotation.Name = "_boxAnnotation";
@@ -192,9 +191,9 @@ namespace JetBrains.Omea
 		    _boxAnnotation.Controls.Add( _btnHideShowAnnotation );
 		    _boxAnnotation.Controls.Add( _lblHideShowAnnotationText );
 		    _boxAnnotation.Controls.Add( _edtAnnotation );
-            // 
+            //
             // _edtAnnotation
-            // 
+            //
             this._edtAnnotation.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             this._edtAnnotation.Location = new System.Drawing.Point(8, 28);
             this._edtAnnotation.Multiline = true;
@@ -203,9 +202,9 @@ namespace JetBrains.Omea
             this._edtAnnotation.Size = new System.Drawing.Size(308, 95);
             this._edtAnnotation.TabIndex = 1;
             this._edtAnnotation.Text = "";
-            // 
+            //
             // labelAnnotation
-            // 
+            //
 		    _lblAnnotation.FlatStyle = System.Windows.Forms.FlatStyle.System;
 		    _lblAnnotation.Location = new System.Drawing.Point(10, 10);
 		    _lblAnnotation.Name = "labelExceptions";
@@ -213,9 +212,9 @@ namespace JetBrains.Omea
 		    _lblAnnotation.TabStop = false;
 		    _lblAnnotation.TextAlign = ContentAlignment.MiddleLeft;
 		    _lblAnnotation.Text = "Annotation";
-            // 
+            //
             // labelHideShowAnnotationText
-            // 
+            //
 		    _lblHideShowAnnotationText.Anchor = (AnchorStyles.Top | AnchorStyles.Right);
 		    _lblHideShowAnnotationText.Location = new System.Drawing.Point(270, 10);
 		    _lblHideShowAnnotationText.Name = "labelHideShowExceptionsText";
@@ -225,9 +224,9 @@ namespace JetBrains.Omea
 		    _lblHideShowAnnotationText.Text = "Hide";
 		    _lblHideShowAnnotationText.Tag = _btnHideShowAnnotation;
 		    _lblHideShowAnnotationText.Click += new EventHandler(labelHideShowPanel_Click);
-            // 
+            //
             // buttonHideShowAnnotation
-            // 
+            //
 		    _btnHideShowAnnotation.Location = new System.Drawing.Point(300, 9);
 		    _btnHideShowAnnotation.Anchor = (AnchorStyles.Top | AnchorStyles.Right);
 		    _btnHideShowAnnotation.Name = "_btnHideShowAnnotation";
@@ -262,9 +261,9 @@ namespace JetBrains.Omea
             this._chkOpenAfterSave.Location = new Point( 10, 4 ) ;
             this._chkOpenAfterSave.Size = new Size( 150, 20 );
             this._chkOpenAfterSave.Text = "Open clipping after save";
-            // 
+            //
             // FragmentEditPane
-            // 
+            //
             this.Controls.Add(this._panelContent);
             this.Controls.Add(this._panelAnnotation);
             this.Controls.Add(this._panelTop);
@@ -285,9 +284,9 @@ namespace JetBrains.Omea
 			this._browser = Core.WebBrowser.NewInstance();
 			this.SuspendLayout();
 			_panelContent.SuspendLayout();
-			// 
+			//
 			// _browser
-			// 
+			//
 			this._browser.Name = "_browser";
 			this._browser.Dock = DockStyle.Fill;
 			this._browser.TabIndex = 12;
@@ -317,7 +316,7 @@ namespace JetBrains.Omea
 
 			if( !_isLoaded )  // The Web browser has not been created yet, wait for the OnLoad event
 				return;
-            
+
             _edtName.Text = fragment.GetStringProp( Core.Props.Subject );
             _edtAnnotation.Text = fragment.GetPropText( Core.Props.Annotation );
             if ( fragment.HasProp( Core.Props.LongBodyIsRTF ) )

@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -78,14 +77,14 @@ namespace JetBrains.Omea.OpenAPI
 		protected SortSettings(IResourceStore resourceStore, string sortProp)
 		{
 			ArrayList propNameArray = new ArrayList( sortProp.Split( ' ' ) );
-    
+
 			// remove multiple spaces
 			for( int i=propNameArray.Count-1; i >= 0; i-- )
 			{
 				if ( ((string) propNameArray [i]).Trim() == "" )
 					propNameArray.RemoveAt( i );
 			}
-    
+
 			_sortProps = new int [propNameArray.Count];
 			_sortDirections = new bool [propNameArray.Count];
 			for( int i=0; i<propNameArray.Count; i++ )
@@ -109,7 +108,7 @@ namespace JetBrains.Omea.OpenAPI
 				else if ( propName.Equals( "DisplayName" ) )
 				{
 					_sortProps [i] = ResourceProps.DisplayName;
-				}   
+				}
 				else if ( propName.Equals( "ID" ) )
 				{
 					_sortProps [i] = ResourceProps.Id;

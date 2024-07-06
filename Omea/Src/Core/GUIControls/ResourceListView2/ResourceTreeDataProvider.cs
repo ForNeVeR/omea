@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -42,7 +41,7 @@ namespace JetBrains.Omea.GUIControls
 			/// <param name="parentProp">The ID of the link property between the node and its children,
 			/// or 0 if a custom list of children is used.</param>
 			/// <param name="childResources">The list of child resources.</param>
-			public ResourceTreeDataNode( ResourceTreeDataProvider owner, JetListView listView, 
+			public ResourceTreeDataNode( ResourceTreeDataProvider owner, JetListView listView,
 			                             IResource parentResource, int parentProp, IResourceList childResources )
 			{
 				_listView = listView;
@@ -189,7 +188,7 @@ namespace JetBrains.Omea.GUIControls
 
 			_listRoot = value.ToResourceListLive();
 			_listRoot.ResourceChanged += new ResourcePropIndexEventHandler(OnRootResourceChanged);
-			
+
 		}
 
 		private void OnRootResourceChanged( object sender, ResourcePropIndexEventArgs e )
@@ -220,7 +219,7 @@ namespace JetBrains.Omea.GUIControls
 
             ExpandResource( _listView.Root, _rootResource );
 	    }
-        
+
 		/// <summary>
 		/// For an existing tree node (incl. the originaly-present root), sets up the sorting for that node,
 		/// and expands it by adding all the "child" resources as child nodes.
@@ -441,7 +440,7 @@ namespace JetBrains.Omea.GUIControls
                 if ( parent == null )
                     return false;
             } while( parent != _rootResource );
-    
+
             JetListViewNode node = null;
             foreach( IResource parentRes in parentStack )
             {
@@ -453,7 +452,7 @@ namespace JetBrains.Omea.GUIControls
                 {
                     return true;
                 }
-                    
+
                 node.Expanded = true;
             }
             return false;

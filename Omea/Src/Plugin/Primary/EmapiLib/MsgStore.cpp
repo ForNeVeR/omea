@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 #pragma unmanaged
 
@@ -58,7 +57,7 @@ AddrBookSPtr MsgStore::OpenAddressBook() const
     return AddrBook::OpenAddressBook( _pSession );
 }
 
-void MsgStore::AddRecipient( const EMessageSPtr& eMessage, LPWSTR displayName, LPWSTR email, 
+void MsgStore::AddRecipient( const EMessageSPtr& eMessage, LPWSTR displayName, LPWSTR email,
                             LPSTR displayNameA, LPSTR emailA, int recType ) const
 {
     HRESULT hr = eMessage->AddRecipient( _pSession, displayName, email, displayNameA, emailA, true, recType );
@@ -95,7 +94,7 @@ EMAPIFolderSPtr MsgStore::OpenDefaultFolder( int tag ) const
 void MsgStore::DeleteMessage( const EntryIDSPtr& entryID, bool DeletedItems ) const
 {
     EMessageSPtr message = OpenMessage( entryID );
-    if ( message.IsNull() ) 
+    if ( message.IsNull() )
     {
         return;
     }
@@ -115,7 +114,7 @@ void MsgStore::DeleteMessage( const EntryIDSPtr& entryID, bool DeletedItems ) co
 void MsgStore::DeleteFolder( const EntryIDSPtr& folderID, bool DeletedItems ) const
 {
     EMAPIFolderSPtr eFolder = OpenFolder( folderID );
-    if ( eFolder.IsNull() ) 
+    if ( eFolder.IsNull() )
     {
         return;
     }
@@ -157,7 +156,7 @@ EMAPIFolderSPtr MsgStore::GetReceiveFolder( LPSTR messageClass ) const
     {
         LPMAPIFOLDER lpFolder = NULL;
         unsigned long ulObjectType = 0;
-        hRes = _pMDB->OpenEntry( cbInboxEID, (LPENTRYID)lpInboxEID, NULL, 0, &ulObjectType, 
+        hRes = _pMDB->OpenEntry( cbInboxEID, (LPENTRYID)lpInboxEID, NULL, 0, &ulObjectType,
             (LPUNKNOWN*)&lpFolder );
         if ( hRes == S_OK )
         {
@@ -197,7 +196,7 @@ LPMDB MsgStore::GetRaw() const
 void MsgStore::Advise( MsgStoreAdviseSink* sink )
 {
     Unadvise();
-    int flags = (int)fnevNewMail | (int)fnevObjectCreated | (int)fnevObjectMoved | (int)fnevObjectDeleted | 
+    int flags = (int)fnevNewMail | (int)fnevObjectCreated | (int)fnevObjectMoved | (int)fnevObjectDeleted |
         (int)fnevObjectModified | (int)fnevObjectCopied;
     HRESULT hr = Guard::HrThisThreadAdviseSink( sink, &_sink );
     Guard::CheckHR( hr );
@@ -236,7 +235,7 @@ EMAPIFolderSPtr MsgStore::GetRootFolder() const
     {
         LPMAPIFOLDER  pFolder   = 0;
         unsigned long ulObjType = 0;
-        hr = _pMDB->OpenEntry( pVal[1].Value.bin.cb, (LPENTRYID)pVal[1].Value.bin.lpb, 0, (int)TEST_MAPI_MODIFY, &ulObjType, 
+        hr = _pMDB->OpenEntry( pVal[1].Value.bin.cb, (LPENTRYID)pVal[1].Value.bin.lpb, 0, (int)TEST_MAPI_MODIFY, &ulObjType,
             (LPUNKNOWN*)&pFolder);
         if ( SUCCEEDED( hr ) )
         {
@@ -250,7 +249,7 @@ LPUNKNOWN MsgStore::OpenEntry( const EntryIDSPtr& entryID ) const
 {
     LPUNKNOWN pMAPIObject = NULL;
     unsigned long ulObjectType = 0;
-    HRESULT hr = _pMDB->OpenEntry( entryID->GetLength(), entryID->getLPENTRYID(), NULL, (int)MAPI_MODIFY, 
+    HRESULT hr = _pMDB->OpenEntry( entryID->GetLength(), entryID->getLPENTRYID(), NULL, (int)MAPI_MODIFY,
         &ulObjectType, &pMAPIObject );
     if ( hr == S_OK && pMAPIObject != NULL )
     {
@@ -285,7 +284,7 @@ EMAPIFolderSPtr MsgStore::OpenOutbox() const
     {
         LPMAPIFOLDER pOutbox = NULL;
         unsigned long ulObjectType = 0;
-        HRESULT hr = _pMDB->OpenEntry( entryID->GetBinCB(), (LPENTRYID)entryID->GetBinLPBYTE(), 
+        HRESULT hr = _pMDB->OpenEntry( entryID->GetBinCB(), (LPENTRYID)entryID->GetBinLPBYTE(),
             0, (int)TEST_MAPI_MODIFY, &ulObjectType, (LPUNKNOWN*)&pOutbox );
 
         if ( SUCCEEDED( hr ) )
@@ -304,7 +303,7 @@ void MsgStore::OpenForm( const EMessageSPtr& message, int verbID )
     EMAPIFolderSPtr outbox = OpenOutbox();
 
     MsgStoreSPtr msgStore( this );
-    FormViewer* lpMAPIFormViewer = 
+    FormViewer* lpMAPIFormViewer =
         new FormViewer( msgStore, _pSession, outbox, message, verbID );
 
     LPMAPIMESSAGESITE lpMAPIMessageSite = 0;
@@ -314,7 +313,7 @@ void MsgStore::OpenForm( const EMessageSPtr& message, int verbID )
     hr = lpMAPIFormViewer->QueryInterface( IID_IMAPIViewContext, (LPVOID*)&lpMAPIViewContext );
 
     FormManagerSPtr frmManager = FormManager::GetFormManager( _pSession );
-    MAPIFormSPtr form = 
+    MAPIFormSPtr form =
         frmManager->LoadForm( propStatus, lpMAPIMessageSite, lpMAPIViewContext, message );
     PersistMessageSPtr persistMessage = form->GetPersistMessage();
     persistMessage->Save( message );
@@ -361,7 +360,7 @@ bool MsgStore::ActionMessage( const EntryIDSPtr& entryID, int verbID, EMessageSP
 	hr = lpMAPIFormViewer->QueryInterface(IID_IMAPIViewContext,(LPVOID*)&lpMAPIViewContext);
 
     FormManagerSPtr frmManager = FormManager::GetFormManager( _pSession );
-    MAPIFormSPtr form = 
+    MAPIFormSPtr form =
         frmManager->LoadForm( propStatus, lpMAPIMessageSite, lpMAPIViewContext, message );
     hr = lpMAPIFormViewer->SetForm( form );
     form->DoVerb( verbID, lpMAPIViewContext );

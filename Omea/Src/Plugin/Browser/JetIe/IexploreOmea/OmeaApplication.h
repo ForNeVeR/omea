@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 // OmeaApplication.h : Declaration of the COmeaApplication
 // A CJetRpcClient-derived class that implements requests to Omea,
@@ -63,7 +62,7 @@ __interface _IApplicationEvents
 	uuid("D0BE79E9-DDCA-4CA8-AFE2-CC856B6A3D0D"),
 	helpstring("Omea Application Class")
 ]
-class ATL_NO_VTABLE COmeaApplication : 
+class ATL_NO_VTABLE COmeaApplication :
 	public IApplication
 {
 public:
@@ -84,8 +83,8 @@ END_CATEGORY_MAP()
 		TRACE(L"Application FinalConstruct");
 		return S_OK;
 	}
-	
-	void FinalRelease() 
+
+	void FinalRelease()
 	{
 		TRACE(L"Application FinalRelease");
 	}

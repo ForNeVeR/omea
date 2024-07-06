@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -78,11 +77,11 @@ namespace JetBrains.Omea.InstantMessaging.ICQ
 
             loader.RegisterResourceDisplayer( _icqConversationResName, this );
             actionManager.RegisterLinkClickAction( new ConversationLinkClickAction(),_icqConversationResName, null );
-            _conversationManager = new IMConversationsManager( _icqConversationResName, "ICQ Conversation", "Subject", 
+            _conversationManager = new IMConversationsManager( _icqConversationResName, "ICQ Conversation", "Subject",
                                                                GetConversationTimeSpan(), _propICQAcct, _propFromICQ, _propToICQ, this );
             _conversationManager.ReverseMode = GetReverseMode();
             SaveConversationAction saveConvAction = new SaveConversationAction( _conversationManager, _propNickName );
-            actionManager.RegisterContextMenuAction( saveConvAction, ActionGroups.ITEM_OPEN_ACTIONS, ListAnchor.Last, 
+            actionManager.RegisterContextMenuAction( saveConvAction, ActionGroups.ITEM_OPEN_ACTIONS, ListAnchor.Last,
                                                      "Save to File...", null, _icqConversationResName, null );
             actionManager.RegisterActionComponent( saveConvAction, "SaveAs", _icqConversationResName, null );
             EmailConversationAction mailConvAction = new EmailConversationAction( _conversationManager, _propNickName );
@@ -328,7 +327,7 @@ namespace JetBrains.Omea.InstantMessaging.ICQ
             {
                 contactRes.SetProp( "DisplayNameMask", contactDisplayNameMask + " | ICQAcct" );
             }
-            store.ResourceTypes.Register( _icqAccountResName, "ICQ Account", "NickName UIN", 
+            store.ResourceTypes.Register( _icqAccountResName, "ICQ Account", "NickName UIN",
                 ResourceTypeFlags.Internal | ResourceTypeFlags.NoIndex, this );
             store.ResourceTypes.Register( _icqConversationResName, "ICQ Conversation", "Subject",
                 ResourceTypeFlags.Normal, this );
@@ -346,7 +345,7 @@ namespace JetBrains.Omea.InstantMessaging.ICQ
             Core.PluginLoader.RegisterResourceDeleter( _icqConversationResName, new ICQConversationDeleter() );
         }
 
-        /** 
+        /**
          * ICQ messages comparer
          */
         private class ICQMessageComparer : IComparer
@@ -376,7 +375,7 @@ namespace JetBrains.Omea.InstantMessaging.ICQ
 
             Importer theImporter = Importer.GetInstance();
             theImporter.Reset();
-            
+
             Core.UIManager.GetStatusWriter( this, StatusPane.UI ).ShowStatus( "Importing ICQ database" );
             if( Core.ProgressWindow != null )
             {
@@ -384,7 +383,7 @@ namespace JetBrains.Omea.InstantMessaging.ICQ
             }
 
             AsyncProcessor resourceAP = (AsyncProcessor)Core.ResourceAP;
-            
+
             bool needIdle = ObjectStore.ReadBool( "ICQ", "NeedIdle", true );
 
             foreach( IICQDatabase D in theImporter )
@@ -589,7 +588,7 @@ namespace JetBrains.Omea.InstantMessaging.ICQ
             return( dt == DateTime.MinValue || ( dt.Year == 1970 && dt.Month == 1 && dt.Day == 1 ) );
         }
 
-        /** 
+        /**
          * event handler on changes in icq databases
          * starts async update of icq history
          */
@@ -631,9 +630,9 @@ namespace JetBrains.Omea.InstantMessaging.ICQ
             {
                 Trace.WriteLine( "No ICQconversation resources found", "ICQ.Plugin" );
             }
-        }   
+        }
 
-        /** 
+        /**
          * displays conversation as auto-generated html text
          */
         private void DisplayConversation( IResource resource, AbstractWebBrowser browser, WordPtr[] wordsToHighlight )
@@ -660,7 +659,7 @@ namespace JetBrains.Omea.InstantMessaging.ICQ
             }
         }
 
-        /** 
+        /**
          * getting/setting maximum time span between msgs in a conversation
          */
         internal static TimeSpan GetConversationTimeSpan()
@@ -695,7 +694,7 @@ namespace JetBrains.Omea.InstantMessaging.ICQ
             Core.SettingStore.WriteBool( "ICQ", "ReverseMode", reverse );
         }
 
-        /** 
+        /**
          * getting/setting update bound dates of ICQ conversations
          */
         internal static DateTime GetMinUpdateDate()
@@ -714,7 +713,7 @@ namespace JetBrains.Omea.InstantMessaging.ICQ
             ObjectStore.WriteDate( "ICQ", "MaxDate", maxDate );
         }
 
-        /** 
+        /**
          * checks whether specified UIN is to indexed
          */
         internal static bool IndexedUIN( int UIN )
@@ -730,7 +729,7 @@ namespace JetBrains.Omea.InstantMessaging.ICQ
             return false;
         }
 
-        /** 
+        /**
          * save list of UINs to be indexed
          */
         internal static void SaveUINs2BeIndexed( IntArrayList uins )

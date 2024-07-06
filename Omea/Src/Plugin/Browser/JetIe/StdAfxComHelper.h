@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 ///////////////////////////////
 // COM Error Handling Helpers
@@ -34,7 +33,7 @@ inline HRESULT ComCheckError(IUnknown *pInterface, const IID &iid, HRESULT hr)
 
 /// Checks for the error return value, a non-zero means an error, while zero indicates success.
 #define CHECK_ERROR(x)	if(!(x)) CHECK(AtlHresultFromLastError())
-	
+
 /// Outputs the com error represented by e variable to the standard debug.
 #define COM_TRACE()		TRACE(L"COM Error %#010X in %s: %s (%s:%s:%d)\r", (DWORD)e.Error(), (LPCWSTR)e.Source(), COM_REASON(e), ((LPCWSTR)CA2W((LPCSTR)(__FILE__))), ((LPCWSTR)CA2W((LPCSTR)(__FUNCTION__))), __LINE__)
 

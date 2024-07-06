@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Threading;
@@ -127,7 +126,7 @@ namespace JetBrains.Omea.OpenAPI
         /// <param name="job">The job to be executed.</param>
         /// <returns>True if the job was really queued, false if it was merged with an equal one.</returns>
         bool QueueJob([NotNull] AbstractJob job );
-        
+
         /// <summary>
         /// Queues a delegate for asynchronous execution with normal priority.
         /// </summary>
@@ -136,7 +135,7 @@ namespace JetBrains.Omea.OpenAPI
         /// <returns>True if the delegate was really queued, false if it was merged with an equal one.</returns>
         [Obsolete("An overload that takes the job name should be used.")]
         bool QueueJob([NotNull] Delegate method, params object[] args );
-        
+
         /// <summary>
         /// Queues a named delegate for asynchronous execution with normal priority.
         /// </summary>
@@ -173,7 +172,7 @@ namespace JetBrains.Omea.OpenAPI
         /// <param name="job">The job to be executed.</param>
         /// <returns>True if the job was really queued, false if it was merged with an equal one.</returns>
         bool QueueJob( JobPriority priority, [NotNull] AbstractJob job );
-        
+
         /// <summary>
         /// Queues a delegate for asynchronous execution with specified priority.
         /// </summary>
@@ -183,7 +182,7 @@ namespace JetBrains.Omea.OpenAPI
         /// <returns>True if the delegate was really queued, false if it was merged with an equal one.</returns>
         [Obsolete("An overload that takes the job name should be used.")]
         bool QueueJob( JobPriority priority, [NotNull] Delegate method, params object[] args );
-        
+
         /// <summary>
         /// Queues a named delegate for asynchronous execution with specified priority.
         /// </summary>
@@ -223,7 +222,7 @@ namespace JetBrains.Omea.OpenAPI
         /// <param name="job">The job to be executed.</param>
         /// <remarks>If time has passed, job is executed immediately.</remarks>
         void QueueJobAt( DateTime dateTime, [NotNull] AbstractJob job );
-        
+
         /// <summary>
         /// Queues a delegate for execution at specified time.
         /// </summary>
@@ -233,7 +232,7 @@ namespace JetBrains.Omea.OpenAPI
         /// <remarks>If time has passed, job is executed immediately.</remarks>
         [Obsolete("An overload that takes the job name should be used.")]
         void QueueJobAt( DateTime dateTime, [NotNull] Delegate method, params object[] args );
-        
+
         /// <summary>
         /// Queues a named delegate for execution at specified time.
         /// </summary>
@@ -275,7 +274,7 @@ namespace JetBrains.Omea.OpenAPI
         /// <remarks>Jobs to be run are queued with the immediate priority.
         /// On attempt to run two or more equal jobs simultaneously the AsyncProcessorException is thrown.</remarks>
         void RunJob([NotNull] AbstractJob job );
-        
+
         /// <summary>
         /// Queues a delegate for synchronous execution and waits until it is finished.
         /// </summary>
@@ -286,7 +285,7 @@ namespace JetBrains.Omea.OpenAPI
         /// <returns>Actual value returned by the method.</returns>
         [Obsolete("An overload that takes the job name should be used.")]
         object RunJob([NotNull] Delegate method, params object[] args );
-        
+
         /// <summary>
         /// Queues a named delegate for synchronous execution and waits until it is finished.
         /// </summary>
@@ -318,7 +317,7 @@ namespace JetBrains.Omea.OpenAPI
         /// Unlike IAsyncProcessor.RunJob, attempt to run a job equal to another one already queued
         /// is silently skipped.</remarks>
         void RunUniqueJob([NotNull] AbstractJob job );
-        
+
         /// <summary>
         /// Queues a delegate for synchronous execution and waits until it is finished.
         /// </summary>
@@ -330,7 +329,7 @@ namespace JetBrains.Omea.OpenAPI
         /// <returns>Actual value returned by the method or null, if the delegate was skipped.</returns>
         [Obsolete("An overload that takes the job name should be used.")]
         object RunUniqueJob([NotNull] Delegate method, params object[] args );
-        
+
         /// <summary>
         /// Queues a named delegate for synchronous execution and waits until it is finished.
         /// </summary>

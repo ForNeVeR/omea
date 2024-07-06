@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -78,10 +77,10 @@ namespace JetBrains.Omea.Database
                 {
                     IRecord record = (IRecord) _enumerator.Current;
                     string strValue = record.GetStringValue( _indexStringColumn );
-                    if( _comparer.Compare( strValue, _value, 
+                    if( _comparer.Compare( strValue, _value,
                         CompareOptions.StringSort | CompareOptions.IgnoreCase ) == 0 )
                     {
-                        return true;                        
+                        return true;
                     }
                 }
                 return false;
@@ -130,7 +129,7 @@ namespace JetBrains.Omea.Database
             _indexValue = indexValue;
         }
 
-        public int Count 
+        public int Count
         {
             get
             {
@@ -226,7 +225,7 @@ namespace JetBrains.Omea.Database
                 }
                 if ( index == _indexField2 )
                 {
-                    return compoundAndValue._key2; 
+                    return compoundAndValue._key2;
                 }
                 if ( index == _indexValue )
                 {
@@ -261,7 +260,7 @@ namespace JetBrains.Omea.Database
 
             #endregion
         }
-        
+
         #region IDisposable Members
 
         public void Dispose()

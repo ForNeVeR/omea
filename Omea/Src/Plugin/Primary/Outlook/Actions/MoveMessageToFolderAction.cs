@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System.Windows.Forms;
 using EMAPILib;
@@ -54,7 +53,7 @@ namespace JetBrains.Omea.OutlookPlugin
         {
             Tracer._Trace( "Execute action: SyncMail" );
             PairIDs selectedFolderIDs = PairIDs.Get( _selectedFolder );
-            if ( !OutlookSession.FolderExists( selectedFolderIDs ) ) 
+            if ( !OutlookSession.FolderExists( selectedFolderIDs ) )
             {
                 return;
             }
@@ -63,10 +62,10 @@ namespace JetBrains.Omea.OutlookPlugin
                 PairIDs messageIDs = PairIDs.Get( resMail );
                 if ( messageIDs == null ) continue;
 
-                IEMessage message = 
+                IEMessage message =
                     OutlookSession.OpenMessage( messageIDs.EntryId, messageIDs.StoreId );
                 if ( message == null ) continue;
-                
+
                 if ( selectedFolderIDs.StoreId.Equals( messageIDs.StoreId ) )
                 {
                     DoMoveImpl(message, messageIDs, selectedFolderIDs);
@@ -81,7 +80,7 @@ namespace JetBrains.Omea.OutlookPlugin
         {
             using ( message )
             {
-                IEFolder folder = 
+                IEFolder folder =
                     OutlookSession.OpenFolder( selectedFolderIDs.EntryId, selectedFolderIDs.StoreId );
                 if ( folder == null ) return;
                 using ( folder )
@@ -114,13 +113,13 @@ namespace JetBrains.Omea.OutlookPlugin
             {
                 parentID = message.GetBinProp( MAPIConst.PR_PARENT_ENTRYID );
             }
-            IEFolder parentFolder = 
+            IEFolder parentFolder =
                 OutlookSession.OpenFolder( parentID, messageIDs.StoreId );
             if ( parentFolder == null ) return;
-    
+
             using ( parentFolder )
             {
-                IEFolder folder = 
+                IEFolder folder =
                     OutlookSession.OpenFolder( selectedFolderIDs.EntryId, selectedFolderIDs.StoreId );
                 if ( folder == null ) return;
                 using ( folder )
@@ -143,7 +142,7 @@ namespace JetBrains.Omea.OutlookPlugin
         public MoveFolderToFolderWithDialogAction( bool copy ) : base( copy ){}
         protected override void ExecuteAction( IResourceList selectedResources )
         {
-            OutlookSession.OutlookProcessor.QueueJob( JobPriority.Immediate, "Move subfolder to another parent folder", 
+            OutlookSession.OutlookProcessor.QueueJob( JobPriority.Immediate, "Move subfolder to another parent folder",
                 new ResourceListDelegate( ExecuteActionImpl ), selectedResources );
         }
 
@@ -153,7 +152,7 @@ namespace JetBrains.Omea.OutlookPlugin
             {
                 if ( folder.Id == _lastFolder.Id || Folder.IsDefault( folder ) || Folder.IsAncestor( _lastFolder, folder ) )
                 {
-                    StandartJobs.MessageBox( "Cannot move folder '" + folder.DisplayName + 
+                    StandartJobs.MessageBox( "Cannot move folder '" + folder.DisplayName +
                         "' to folder '" + _lastFolder.DisplayName + "'", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error );
                     return;
                 }
@@ -201,6 +200,6 @@ namespace JetBrains.Omea.OutlookPlugin
         {
             DoMove( _lastFolder, selectedResources );
         }
-    }    
-    
+    }
+
 }

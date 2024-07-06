@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 // ActionManager.h : Declaration of the CActionManager
 //
@@ -154,7 +153,7 @@ __interface _IActionManagerEvents
 	helpstring("Internet Explorer Beelaxy Add-on Action Manager")
 ]
 #endif
-class ATL_NO_VTABLE CActionManager : 
+class ATL_NO_VTABLE CActionManager :
 #ifndef USE_OLE_DISPATCH
 	public IActionManager,
 #else
@@ -174,8 +173,8 @@ public:
 	{
 		return S_OK;
 	}
-	
-	void FinalRelease() 
+
+	void FinalRelease()
 	{
 	}
 

@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -21,7 +20,7 @@ namespace JetBrains.Omea
 	/// </summary>
 	public class SimpleMapiEmailService: IEmailService
 	{
-        public void CreateEmail( string subject, string body, EmailBodyFormat bodyFormat, 
+        public void CreateEmail( string subject, string body, EmailBodyFormat bodyFormat,
             IResourceList recipients, string[] attachments, bool addSignature )
         {
             EmailRecipient[] emailRecipients = null;
@@ -51,7 +50,7 @@ namespace JetBrains.Omea
             CreateEmail( subject, body, bodyFormat, emailRecipients, attachments, addSignature );
         }
 
-        public void CreateEmail( string subject, string body, EmailBodyFormat bodyFormat, 
+        public void CreateEmail( string subject, string body, EmailBodyFormat bodyFormat,
             EmailRecipient[] recipients, string[] attachments, bool addSignature )
 	    {
             MapiMessage msg = new MapiMessage();
@@ -74,7 +73,7 @@ namespace JetBrains.Omea
             }
 
             msg.noteText = body;
-            
+
 	        if ( recipients != null && recipients.Length > 0 )
 	        {
                 ArrayList recipArray = new ArrayList();
@@ -153,7 +152,7 @@ namespace JetBrains.Omea
             {
                 Trace.WriteLine( "Exception when determining default e-mail client in Simple MAPI: " + ex.ToString() );
             }
-            return email;            
+            return email;
 	    }
 
 	    private IntPtr AllocRecips( ArrayList recpts )
@@ -236,7 +235,7 @@ namespace JetBrains.Omea
                 case MAPI_E_AMBIGUOUS_RECIPIENT:
                     msg = "A recipient matched more than one of the recipient descriptor structures.";
                     break;
-            
+
                 case MAPI_E_ATTACHMENT_NOT_FOUND:
                     msg = "The specified attachment was not found.";
                     break;

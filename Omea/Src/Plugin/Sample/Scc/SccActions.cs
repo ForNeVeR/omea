@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Windows.Forms;
@@ -19,7 +18,7 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
             SccPlugin.SynchronizeRepositories();
         }
     }
-    
+
     /// <summary>
     /// Action to start the synchronization process for a single repository
     /// </summary>
@@ -37,7 +36,7 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
             }
         }
     }
-    
+
     /// <summary>
     /// Action to edit the properties of the selected repository.
     /// </summary>
@@ -50,7 +49,7 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
             repType.EditRepository( Core.MainWindow, repository );
         }
     }
-    
+
     /// <summary>
     /// Action to delete the specified repository
     /// </summary>
@@ -60,7 +59,7 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
         {
             DeleteRepository( Core.MainWindow, context.SelectedResources[0], true );
         }
-        
+
         public static bool DeleteRepository( IWin32Window ownerWindow, IResource repository, bool async )
         {
             DialogResult dr =
@@ -86,7 +85,7 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
 
         private static void RunDeleteRepository( IResource res )
         {
-            Core.ResourceAP.RunJob("Deleting SCC repository", () => DoDeleteRepository(res)); 
+            Core.ResourceAP.RunJob("Deleting SCC repository", () => DoDeleteRepository(res));
         }
 
         private static void DoDeleteRepository( IResource res )
@@ -134,7 +133,7 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
             changeset.Delete();
         }
     }
-    
+
     public class ToggleShowSubfolderContentsAction: ActionOnResource
     {
         public override void Execute( IActionContext context )

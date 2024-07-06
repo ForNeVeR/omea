@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -337,14 +336,14 @@ namespace JetBrains.Omea.FiltersManagement
             }
             else
             {
-                name = name + folders[ 0 ].DisplayName + ", " + folders[ 1 ].DisplayName + 
+                name = name + folders[ 0 ].DisplayName + ", " + folders[ 1 ].DisplayName +
                     " and " + (folders.Count - 2) + " more folders";
                 foreach( IResource res in folders )
                     fullName = fullName + res.DisplayName + ", ";
                 fullName = fullName.Substring( 0, fullName.Length - 2 );
             }
         }
-        private static void  ConstructName( IResource baseResType, bool forDeletedItems, 
+        private static void  ConstructName( IResource baseResType, bool forDeletedItems,
                                             ref string name, ref string fullName )
         {
             if( !forDeletedItems )

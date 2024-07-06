@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Windows.Forms;
@@ -58,9 +57,9 @@ namespace JetBrains.Omea.OutlookPlugin
             System.Resources.ResourceManager resources = new System.Resources.ResourceManager(typeof(SynchronizeFoldersProgressForm));
             this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
-            // 
+            //
             // label1
-            // 
+            //
             this.label1.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label1.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(204)));
             this.label1.Location = new System.Drawing.Point(66, 12);
@@ -68,9 +67,9 @@ namespace JetBrains.Omea.OutlookPlugin
             this.label1.Size = new System.Drawing.Size(160, 16);
             this.label1.TabIndex = 0;
             this.label1.Text = "Synchronizing folder structure...";
-            // 
+            //
             // SynchronizeFoldersProgressForm
-            // 
+            //
             this.AutoScale = false;
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
             this.ClientSize = new System.Drawing.Size(292, 41);

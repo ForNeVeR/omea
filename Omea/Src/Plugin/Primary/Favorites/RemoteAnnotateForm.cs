@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System.Diagnostics;
 using System.Drawing;
@@ -100,18 +99,18 @@ namespace JetBrains.Omea.Favorites
             this._cancelButton = new System.Windows.Forms.Button();
             this._okButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
+            //
             // lblName
-            // 
+            //
             this.lblName.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.lblName.Location = new System.Drawing.Point(8, 10);
             this.lblName.Name = "lblName";
             this.lblName.Size = new System.Drawing.Size(48, 23);
             this.lblName.Text = "Name:";
-            // 
+            //
             // _nameBox
-            // 
-            this._nameBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._nameBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._nameBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this._nameBox.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(204)));
@@ -121,17 +120,17 @@ namespace JetBrains.Omea.Favorites
             this._nameBox.Size = new System.Drawing.Size(428, 14);
             this._nameBox.TabIndex = 0;
             this._nameBox.Text = "Bookmark name";
-            // 
+            //
             // lblURL
-            // 
+            //
             this.lblURL.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.lblURL.Location = new System.Drawing.Point(8, 35);
             this.lblURL.Name = "lblURL";
             this.lblURL.Size = new System.Drawing.Size(48, 23);
             this.lblURL.Text = "URL:";
-            // 
+            //
             // _urlLink
-            // 
+            //
             this._urlLink.Cursor = System.Windows.Forms.Cursors.Hand;
             this._urlLink.ForeColor = System.Drawing.Color.FromArgb(((System.Byte)(70)), ((System.Byte)(70)), ((System.Byte)(211)));
             this._urlLink.Location = new System.Drawing.Point(60, 35);
@@ -150,9 +149,9 @@ namespace JetBrains.Omea.Favorites
             this._boxAnnotation.Size = new System.Drawing.Size(480, 124);
             this._boxAnnotation.TabIndex = 2;
             this._boxAnnotation.Text = "&Annotation";
-            // 
+            //
             // _edtAnnotation
-            // 
+            //
             this._edtAnnotation.AcceptsReturn = true;
             this._edtAnnotation.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             this._edtAnnotation.Location = new System.Drawing.Point(8, 16);
@@ -169,9 +168,9 @@ namespace JetBrains.Omea.Favorites
             this._panelCategories.Name = "_subjectDescriptionPanel";
             this._panelCategories.Size = new System.Drawing.Size(480, 40);
             this._panelCategories.TabIndex = 3;
-            // 
+            //
             // _okButton
-            // 
+            //
             this._okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this._okButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._okButton.Location = new System.Drawing.Point(328, 236);
@@ -179,9 +178,9 @@ namespace JetBrains.Omea.Favorites
             this._okButton.TabIndex = 5;
             this._okButton.Text = "OK";
             this._okButton.Click += new System.EventHandler(this._okButton_Click);
-            // 
+            //
             // _cancelButton
-            // 
+            //
             this._cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this._cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this._cancelButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -190,9 +189,9 @@ namespace JetBrains.Omea.Favorites
             this._cancelButton.TabIndex = 6;
             this._cancelButton.Text = "Cancel";
             this._cancelButton.Click += new System.EventHandler(this._cancelButton_Click);
-            // 
+            //
             // RemoteAnnotateForm
-            // 
+            //
             this.AcceptButton = this._okButton;
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
             this.CancelButton = this._cancelButton;

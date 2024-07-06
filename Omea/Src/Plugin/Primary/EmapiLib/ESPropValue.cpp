@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 #pragma unmanaged
 
@@ -45,12 +44,12 @@ ESPropValueSPtr ESPropValue::GetSimpleProp( LPMAPIPROP lpProp, int tag )
     const SizedSPropTagArray( 1, atProps ) = { 1, tag };
     unsigned long ulTmp = 0;
     LPSPropValue pVal = 0;
-    
+
     Guard::BeginReadProp( tag );
     HRESULT hr = lpProp->GetProps( (LPSPropTagArray)&atProps, 0, &ulTmp, &pVal );
     Guard::EndReadProp();
     //TODO: it is necessary to process MAPI_E_NOT_ENOUGH_MEMORY through OpenProperty
-    if ( hr == S_OK && pVal->Value.err != (int)MAPI_E_NOT_FOUND && 
+    if ( hr == S_OK && pVal->Value.err != (int)MAPI_E_NOT_FOUND &&
         pVal->Value.err != (int)MAPI_E_NOT_ENOUGH_MEMORY && pVal->Value.err != (int)MAPI_E_BAD_CHARWIDTH && pVal != NULL )
     {
         return TypeFactory::CreateESPropValue( pVal );

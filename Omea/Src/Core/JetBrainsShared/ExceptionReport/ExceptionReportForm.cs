@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -115,10 +114,10 @@ namespace JetBrains.ExceptionReport
             this._chkAttachLog = new System.Windows.Forms.CheckBox();
             this._grpITNLogin.SuspendLayout();
             this.SuspendLayout();
-            // 
+            //
             // label1
-            // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label1.Location = new System.Drawing.Point(8, 8);
@@ -127,11 +126,11 @@ namespace JetBrains.ExceptionReport
             this.label1.TabIndex = 0;
             this.label1.Text = "An internal error has occured. To help us fix the problem, please submit the erro" +
                 "r information to the ITN tracker.";
-            // 
+            //
             // _errorText
-            // 
-            this._errorText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-                | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._errorText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._errorText.Location = new System.Drawing.Point(8, 172);
             this._errorText.Multiline = true;
@@ -141,10 +140,10 @@ namespace JetBrains.ExceptionReport
             this._errorText.Size = new System.Drawing.Size(424, 92);
             this._errorText.TabIndex = 4;
             this._errorText.Text = "";
-            // 
+            //
             // _grpITNLogin
-            // 
-            this._grpITNLogin.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._grpITNLogin.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._grpITNLogin.Controls.Add(this._linkITNRegister);
             this._grpITNLogin.Controls.Add(this._edtPassword);
@@ -159,9 +158,9 @@ namespace JetBrains.ExceptionReport
             this._grpITNLogin.TabIndex = 5;
             this._grpITNLogin.TabStop = false;
             this._grpITNLogin.Text = "JIRA Login (optional)";
-            // 
+            //
             // _linkITNRegister
-            // 
+            //
             this._linkITNRegister.Location = new System.Drawing.Point(84, 68);
             this._linkITNRegister.Name = "_linkITNRegister";
             this._linkITNRegister.Size = new System.Drawing.Size(100, 16);
@@ -169,10 +168,10 @@ namespace JetBrains.ExceptionReport
             this._linkITNRegister.TabStop = true;
             this._linkITNRegister.Text = "&Register at JIRA";
             this._linkITNRegister.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this._linkITNRegister_LinkClicked);
-            // 
+            //
             // _edtPassword
-            // 
-            this._edtPassword.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._edtPassword.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._edtPassword.Location = new System.Drawing.Point(84, 44);
             this._edtPassword.Name = "_edtPassword";
@@ -180,37 +179,37 @@ namespace JetBrains.ExceptionReport
             this._edtPassword.Size = new System.Drawing.Size(332, 21);
             this._edtPassword.TabIndex = 3;
             this._edtPassword.Text = "";
-            // 
+            //
             // label3
-            // 
+            //
             this.label3.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label3.Location = new System.Drawing.Point(8, 48);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(64, 16);
             this.label3.TabIndex = 2;
             this.label3.Text = "&Password:";
-            // 
+            //
             // _edtUserName
-            // 
-            this._edtUserName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._edtUserName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._edtUserName.Location = new System.Drawing.Point(84, 19);
             this._edtUserName.Name = "_edtUserName";
             this._edtUserName.Size = new System.Drawing.Size(332, 21);
             this._edtUserName.TabIndex = 1;
             this._edtUserName.Text = "";
-            // 
+            //
             // label2
-            // 
+            //
             this.label2.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label2.Location = new System.Drawing.Point(8, 24);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(64, 20);
             this.label2.TabIndex = 0;
             this.label2.Text = "&User name:";
-            // 
+            //
             // _btnProxy
-            // 
+            //
             this._btnProxy.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this._btnProxy.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._btnProxy.Location = new System.Drawing.Point(304, 68);
@@ -219,9 +218,9 @@ namespace JetBrains.ExceptionReport
             this._btnProxy.TabIndex = 5;
             this._btnProxy.Text = "Pro&xy Settings";
             this._btnProxy.Click += new System.EventHandler(this._btnProxy_Click);
-            // 
+            //
             // _btnSubmit
-            // 
+            //
             this._btnSubmit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this._btnSubmit.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._btnSubmit.Location = new System.Drawing.Point(272, 408);
@@ -229,20 +228,20 @@ namespace JetBrains.ExceptionReport
             this._btnSubmit.TabIndex = 9;
             this._btnSubmit.Text = "&Submit";
             this._btnSubmit.Click += new System.EventHandler(this._btnSubmit_Click);
-            // 
+            //
             // _lblProgress
-            // 
-            this._lblProgress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._lblProgress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._lblProgress.Location = new System.Drawing.Point(8, 388);
             this._lblProgress.Name = "_lblProgress";
             this._lblProgress.Size = new System.Drawing.Size(424, 16);
             this._lblProgress.TabIndex = 8;
             this._lblProgress.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
+            //
             // label4
-            // 
-            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label4.Location = new System.Drawing.Point(8, 40);
@@ -250,10 +249,10 @@ namespace JetBrains.ExceptionReport
             this.label4.Size = new System.Drawing.Size(424, 16);
             this.label4.TabIndex = 1;
             this.label4.Text = "Please &tell us what you were doing when you got the problem:";
-            // 
+            //
             // _edtDescription
-            // 
-            this._edtDescription.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._edtDescription.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._edtDescription.Location = new System.Drawing.Point(8, 56);
             this._edtDescription.Multiline = true;
@@ -261,10 +260,10 @@ namespace JetBrains.ExceptionReport
             this._edtDescription.Size = new System.Drawing.Size(424, 92);
             this._edtDescription.TabIndex = 2;
             this._edtDescription.Text = "";
-            // 
+            //
             // label5
-            // 
-            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label5.Location = new System.Drawing.Point(8, 156);
@@ -272,9 +271,9 @@ namespace JetBrains.ExceptionReport
             this.label5.Size = new System.Drawing.Size(424, 16);
             this.label5.TabIndex = 3;
             this.label5.Text = "Technical &details:";
-            // 
+            //
             // _chkDontShowAgain
-            // 
+            //
             this._chkDontShowAgain.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this._chkDontShowAgain.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._chkDontShowAgain.Location = new System.Drawing.Point(8, 368);
@@ -282,9 +281,9 @@ namespace JetBrains.ExceptionReport
             this._chkDontShowAgain.Size = new System.Drawing.Size(196, 16);
             this._chkDontShowAgain.TabIndex = 6;
             this._chkDontShowAgain.Text = "Do &not show this exception again";
-            // 
+            //
             // _btnIgnore
-            // 
+            //
             this._btnIgnore.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this._btnIgnore.DialogResult = System.Windows.Forms.DialogResult.OK;
             this._btnIgnore.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -292,9 +291,9 @@ namespace JetBrains.ExceptionReport
             this._btnIgnore.Name = "_btnIgnore";
             this._btnIgnore.TabIndex = 10;
             this._btnIgnore.Text = "&Ignore";
-            // 
+            //
             // _chkAttachLog
-            // 
+            //
             this._chkAttachLog.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this._chkAttachLog.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._chkAttachLog.Location = new System.Drawing.Point(240, 368);
@@ -303,9 +302,9 @@ namespace JetBrains.ExceptionReport
             this._chkAttachLog.TabIndex = 7;
             this._chkAttachLog.Text = "Attach &log file";
             this._chkAttachLog.Visible = false;
-            // 
+            //
             // ExceptionReportForm
-            // 
+            //
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
             this.ClientSize = new System.Drawing.Size(440, 465);
             this.ControlBox = false;
@@ -437,7 +436,7 @@ namespace JetBrains.ExceptionReport
                 {
                     MessageBox.Show( this, "Thank you for your bug report!", "Report Unhandled Exception", MessageBoxButtons.OK, MessageBoxIcon.Information );
                 }
-                
+
                 DialogResult = DialogResult.OK;
             }
             catch (Exception ex)

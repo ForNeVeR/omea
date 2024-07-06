@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Text;
@@ -11,7 +10,7 @@ namespace JetBrains.Omea.ResourceStore
     /**
      * A predicate based on several source predicates.
      */
-     
+
     internal abstract class ResourceListDerivedPredicate: ResourceListPredicate
 	{
         protected ResourceListPredicate[] _sourcePredicates;
@@ -29,7 +28,7 @@ namespace JetBrains.Omea.ResourceStore
             newList [len] = pred;
             return newList;
         }
-        
+
         protected abstract string GetDerivationName();
 
         public override string ToString()
@@ -76,7 +75,7 @@ namespace JetBrains.Omea.ResourceStore
          * Checks if one of the predicates in the intersection is equal to the
          * specified predicate.
          */
-        
+
         internal bool ContainsPredicate( ResourceListPredicate pred )
         {
             for( int i=0; i<_sourcePredicates.Length; i++ )
@@ -110,7 +109,7 @@ namespace JetBrains.Omea.ResourceStore
             {
                 result = result.Optimize( isLive );
             }
-    
+
             ResourceListPredicate predicate = MyPalStorage.Storage.GetCachedPredicate( result );
             if ( predicate != null )
             {

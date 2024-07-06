@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.ComponentModel;
@@ -75,18 +74,18 @@ namespace JetBrains.Omea
             this._lblWebPage = new JetBrains.Omea.GUIControls.JetLinkLabel();
             this._lblEmail = new JetBrains.Omea.GUIControls.JetLinkLabel();
             this.SuspendLayout();
-            // 
+            //
             // _btnOK
-            // 
+            //
             this._btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this._btnOK.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._btnOK.Location = new System.Drawing.Point(232, 308);
             this._btnOK.Name = "_btnOK";
             this._btnOK.TabIndex = 0;
             this._btnOK.Text = "OK";
-            // 
+            //
             // _lblProductName
-            // 
+            //
             this._lblProductName.AutoSize = true;
             this._lblProductName.BackColor = System.Drawing.SystemColors.Control;
             this._lblProductName.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -96,9 +95,9 @@ namespace JetBrains.Omea
             this._lblProductName.Size = new System.Drawing.Size(120, 17);
             this._lblProductName.TabIndex = 1;
             this._lblProductName.Text = "JetBrains ProductName";
-            // 
+            //
             // label1
-            // 
+            //
             this.label1.BackColor = System.Drawing.SystemColors.Control;
             this.label1.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label1.ForeColor = System.Drawing.Color.Black;
@@ -107,9 +106,9 @@ namespace JetBrains.Omea
             this.label1.Size = new System.Drawing.Size(280, 16);
             this.label1.TabIndex = 4;
             this.label1.Text = "Copyright (C) 2003-06 JetBrains s.r.o. All rights reserved.";
-            // 
+            //
             // _lblBuildDate
-            // 
+            //
             this._lblBuildDate.BackColor = System.Drawing.SystemColors.Control;
             this._lblBuildDate.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._lblBuildDate.ForeColor = System.Drawing.Color.Black;
@@ -118,27 +117,27 @@ namespace JetBrains.Omea
             this._lblBuildDate.Size = new System.Drawing.Size(276, 16);
             this._lblBuildDate.TabIndex = 5;
             this._lblBuildDate.Text = "Built on Thursday after the rain";
-            // 
+            //
             // pictureBox1
-            // 
+            //
 //            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(400, 200);
             this.pictureBox1.TabIndex = 6;
             this.pictureBox1.TabStop = false;
-            // 
+            //
             // _btnCredits
-            // 
+            //
             this._btnCredits.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._btnCredits.Location = new System.Drawing.Point(316, 308);
             this._btnCredits.Name = "_btnCredits";
             this._btnCredits.TabIndex = 0;
             this._btnCredits.Text = "Credits";
             this._btnCredits.Click += new System.EventHandler(this._btnCredits_Click);
-            // 
+            //
             // _lblWebPage
-            // 
+            //
             this._lblWebPage.Cursor = System.Windows.Forms.Cursors.Hand;
             this._lblWebPage.ForeColor = System.Drawing.Color.FromArgb(((System.Byte)(70)), ((System.Byte)(70)), ((System.Byte)(211)));
             this._lblWebPage.Location = new System.Drawing.Point(8, 232);
@@ -146,9 +145,9 @@ namespace JetBrains.Omea
             this._lblWebPage.Size = new System.Drawing.Size(0, 0);
             this._lblWebPage.TabIndex = 7;
             this._lblWebPage.Click += new System.EventHandler(this.OnLinkLabelClick);
-            // 
+            //
             // _lblEmail
-            // 
+            //
             this._lblEmail.Cursor = System.Windows.Forms.Cursors.Hand;
             this._lblEmail.ForeColor = System.Drawing.Color.FromArgb(((System.Byte)(70)), ((System.Byte)(70)), ((System.Byte)(211)));
             this._lblEmail.Location = new System.Drawing.Point(8, 248);
@@ -156,9 +155,9 @@ namespace JetBrains.Omea
             this._lblEmail.Size = new System.Drawing.Size(0, 0);
             this._lblEmail.TabIndex = 8;
             this._lblEmail.Click += new System.EventHandler(this.OnLinkLabelClick);
-            // 
+            //
             // AboutBox
-            // 
+            //
             this.AcceptButton = this._btnOK;
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
             this.CancelButton = this._btnOK;
@@ -203,7 +202,7 @@ namespace JetBrains.Omea
 
             if ( Core.ProductReleaseVersion != null )
             {
-                _lblProductName.Text = "JetBrains " + productName + " " + 
+                _lblProductName.Text = "JetBrains " + productName + " " +
                     Core.ProductReleaseVersion + " (version " + version + ")";
             }
             else

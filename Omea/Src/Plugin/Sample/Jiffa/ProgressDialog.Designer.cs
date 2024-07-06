@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 namespace JetBrains.Omea.Jiffa
 {
@@ -39,9 +38,9 @@ namespace JetBrains.Omea.Jiffa
 			this._image = new System.Windows.Forms.PictureBox();
 			((System.ComponentModel.ISupportInitialize)(this._image)).BeginInit();
 			this.SuspendLayout();
-			// 
+			//
 			// _labelStatus
-			// 
+			//
 			this._labelStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
 						| System.Windows.Forms.AnchorStyles.Left)
 						| System.Windows.Forms.AnchorStyles.Right)));
@@ -51,9 +50,9 @@ namespace JetBrains.Omea.Jiffa
 			this._labelStatus.TabIndex = 0;
 			this._labelStatus.Text = "Initializing";
 			this._labelStatus.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			// 
+			//
 			// _progress
-			// 
+			//
 			this._progress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
 						| System.Windows.Forms.AnchorStyles.Right)));
 			this._progress.Location = new System.Drawing.Point(13, 101);
@@ -61,9 +60,9 @@ namespace JetBrains.Omea.Jiffa
 			this._progress.Size = new System.Drawing.Size(277, 13);
 			this._progress.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
 			this._progress.TabIndex = 1;
-			// 
+			//
 			// _btnCancel
-			// 
+			//
 			this._btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this._btnCancel.Enabled = false;
 			this._btnCancel.Location = new System.Drawing.Point(298, 99);
@@ -72,9 +71,9 @@ namespace JetBrains.Omea.Jiffa
 			this._btnCancel.TabIndex = 2;
 			this._btnCancel.Text = "Cancel";
 			this._btnCancel.UseVisualStyleBackColor = true;
-			// 
+			//
 			// pictureBox1
-			// 
+			//
 			this._image.InitialImage = null;
 			this._image.Location = new System.Drawing.Point(13, 14);
 			this._image.Name = "_image";
@@ -82,9 +81,9 @@ namespace JetBrains.Omea.Jiffa
 			this._image.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
 			this._image.TabIndex = 3;
 			this._image.TabStop = false;
-			// 
+			//
 			// ProgressDialog
-			// 
+			//
 			this.AcceptButton = this._btnCancel;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;

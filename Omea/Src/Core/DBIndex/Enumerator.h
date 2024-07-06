@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 #ifndef _DBINDEX_ENUMERATOR_H
 #define _DBINDEX_ENUMERATOR_H
@@ -31,7 +30,7 @@ namespace DBIndex
 	private public:
 
 		GetAllKeysEnumerator( OmniaMeaBTree* bTree );
-        
+
 		OmniaMeaBTree*				_bTree;
 		BTreeHeaderIteratorBase*	_btreeHeaderIterator;
 		KeyPair*					_current;
@@ -78,7 +77,7 @@ namespace DBIndex
 
 		SearchForRangeEnumerator();
 		void Init( OmniaMeaBTree* bTree, IFixedLengthKey* beginKey, IFixedLengthKey* endKey );
-        
+
 		OmniaMeaBTree*				_bTree;
 		IFixedLengthKey*			_beginKey;
 		IFixedLengthKey*			_endKey;
@@ -100,7 +99,7 @@ namespace DBIndex
 		SearchForRangeEnumerable( OmniaMeaBTree* bTree ) { _bTree = bTree; }
 		void Init( IFixedLengthKey* beginKey, IFixedLengthKey* endKey );
 		static System::Object* CreateNewEnumerator();
-		
+
 		OmniaMeaBTree*		_bTree;
 		IFixedLengthKey*	_beginKey;
 		IFixedLengthKey*	_endKey;

@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Drawing;
@@ -79,9 +78,9 @@ namespace Jetbrains.Omea.DebugPlugin
 			this.toolBarButton8 = new System.Windows.Forms.ToolBarButton();
 			((System.ComponentModel.ISupportInitialize)(this._htmled)).BeginInit();
 			this.SuspendLayout();
-			// 
+			//
 			// _toolbar
-			// 
+			//
 			this._toolbar.Appearance = System.Windows.Forms.ToolBarAppearance.Flat;
 			this._toolbar.Buttons.AddRange(new System.Windows.Forms.ToolBarButton[] {
 																						this.toolBarButton1,
@@ -102,9 +101,9 @@ namespace Jetbrains.Omea.DebugPlugin
 			this._toolbar.TabIndex = 0;
 			this._toolbar.TextAlign = System.Windows.Forms.ToolBarTextAlign.Right;
 			this._toolbar.ButtonClick += new System.Windows.Forms.ToolBarButtonClickEventHandler(this.OnToolbarClick);
-			// 
+			//
 			// _htmled
-			// 
+			//
 			this._htmled.Dock = System.Windows.Forms.DockStyle.Fill;
 			this._htmled.Enabled = true;
 			this._htmled.Html = "﻿<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0 Transitional//EN\">\r\n<HTML><HEAD>\r\n<M" +
@@ -116,48 +115,48 @@ namespace Jetbrains.Omea.DebugPlugin
 			this._htmled.Size = new System.Drawing.Size(532, 272);
 			this._htmled.TabIndex = 1;
 			this._htmled.Text = "undefined";
-			// 
+			//
 			// toolBarButton1
-			// 
+			//
 			this.toolBarButton1.Text = "Color";
-			// 
+			//
 			// toolBarButton2
-			// 
+			//
 			this.toolBarButton2.Tag = "Bold";
 			this.toolBarButton2.Text = "B";
-			// 
+			//
 			// toolBarButton3
-			// 
+			//
 			this.toolBarButton3.Tag = "Italic";
 			this.toolBarButton3.Text = "I";
-			// 
+			//
 			// toolBarButton4
-			// 
+			//
 			this.toolBarButton4.Tag = "Underline";
 			this.toolBarButton4.Text = "U";
-			// 
+			//
 			// toolBarButton5
-			// 
+			//
 			this.toolBarButton5.Tag = "JustifyLeft";
 			this.toolBarButton5.Text = "Left";
-			// 
+			//
 			// toolBarButton6
-			// 
+			//
 			this.toolBarButton6.Tag = "JustifyRight";
 			this.toolBarButton6.Text = "Right";
-			// 
+			//
 			// toolBarButton7
-			// 
+			//
 			this.toolBarButton7.Tag = "JustifyCenter";
 			this.toolBarButton7.Text = "Center";
-			// 
+			//
 			// toolBarButton8
-			// 
+			//
 			this.toolBarButton8.Tag = "JustifyFull";
 			this.toolBarButton8.Text = "Justify";
-			// 
+			//
 			// HtmlEditor
-			// 
+			//
 			this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
 			this.ClientSize = new System.Drawing.Size(532, 298);
 			this.Controls.Add(this._htmled);

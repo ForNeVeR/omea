@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Drawing;
@@ -95,9 +94,9 @@ namespace GUIControls.CustomViews
             this.buttonCancel = new System.Windows.Forms.Button();
             this.panelIcons = new System.Windows.Forms.Panel();
             this.SuspendLayout();
-            // 
+            //
             // buttonOK
-            // 
+            //
             this.buttonOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.buttonOK.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -105,9 +104,9 @@ namespace GUIControls.CustomViews
             this.buttonOK.Name = "buttonOK";
             this.buttonOK.TabIndex = 0;
             this.buttonOK.Text = "OK";
-            // 
+            //
             // buttonCancel
-            // 
+            //
             this.buttonCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.buttonCancel.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -115,11 +114,11 @@ namespace GUIControls.CustomViews
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.TabIndex = 0;
             this.buttonCancel.Text = "Cancel";
-            // 
+            //
             // panelIcons
-            // 
-            this.panelIcons.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-                | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this.panelIcons.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this.panelIcons.AutoScroll = true;
             this.panelIcons.BackColor = Color.White;
@@ -130,9 +129,9 @@ namespace GUIControls.CustomViews
             this.panelIcons.TabIndex = 1;
             this.panelIcons.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ShowIconsForm_MouseUp);
             this.panelIcons.DoubleClick += new EventHandler(panelIcons_DoubleClick);
-            // 
+            //
             // ShowIconsForm
-            // 
+            //
             this.AcceptButton = this.buttonOK;
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
             this.CancelButton = this.buttonCancel;

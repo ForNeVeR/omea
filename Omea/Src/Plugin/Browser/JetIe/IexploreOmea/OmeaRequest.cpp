@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 // OmeaRequest.cpp : Implementation of COmeaRequest
 //
@@ -273,7 +272,7 @@ STDMETHODIMP COmeaRequest::Action_Syndicate_Exec(VARIANT WebBrowser)
 		MSHTMLLite::IHTMLElementPtr	oActive;
 		COM_CHECK(oDoc, get_activeElement(&oActive));
 		CHECK(oActive != NULL ? S_OK : E_FAIL);
-		
+
 		bstr = NULL;
 		COM_CHECK(oActive, get_tagName(&bstr));
 		_bstr_t	bsTagName(bstr, false);	// Take ownership and free on falling off scope
@@ -406,7 +405,7 @@ STDMETHODIMP COmeaRequest::Action_Annotate_Exec(IDispatch* Browser)
 		SHDocVw::IWebBrowser2Ptr	oBrowser = Browser;
 		COM_CHECK((IOmeaRequest*)this, Annotate(oBrowser->LocationURL, oBrowser->LocationName));
 	}
-	COM_CATCH();	
+	COM_CATCH();
 
 	return S_OK;
 }

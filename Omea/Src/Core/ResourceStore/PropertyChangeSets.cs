@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -56,11 +55,11 @@ namespace JetBrains.Omea.ResourceStore
 
         public abstract LinkChange[] GetLinkChanges( int propID );
         public abstract LinkChangeType GetLinkChange( int propID, int targetID );
-        
+
         protected abstract void MergeWith( MultiPropChangeSet cs );
         internal abstract bool Intersects( BitArray propBits );
     }
-    
+
     /**
      * The changeset which describes the change of a single property.
      */
@@ -72,7 +71,7 @@ namespace JetBrains.Omea.ResourceStore
         private int            _linkTargetID;
         private LinkChangeType _linkChangeType;
 
-        internal SinglePropChangeSet( int propID, object oldValue, bool newResource, 
+        internal SinglePropChangeSet( int propID, object oldValue, bool newResource,
             bool displayNameAffected )
             : base( newResource )
         {
@@ -121,7 +120,7 @@ namespace JetBrains.Omea.ResourceStore
             {
                 return new LinkChange[] { new LinkChange( _linkTargetID, _linkChangeType ) };
             }
-            
+
             return new LinkChange[] {};
         }
 
@@ -182,7 +181,7 @@ namespace JetBrains.Omea.ResourceStore
      * event is fired, it can be accessed from several threads as the event is processed (OM-7003).
      * Because of this, locking is only necessary on read methods.
      */
-    
+
     internal class MultiPropChangeSet: PropertyChangeSetBase
     {
         private IntHashTable _oldValues = new IntHashTable();

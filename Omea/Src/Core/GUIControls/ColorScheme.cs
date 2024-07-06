@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -28,7 +27,7 @@ namespace JetBrains.Omea.GUIControls
             protected Pen _pen;
 
             public abstract Color GetColor();
-            
+
             public virtual Color GetStartColor()
             {
                 return GetColor();
@@ -41,7 +40,7 @@ namespace JetBrains.Omea.GUIControls
 
 		    public abstract Brush GetBrush( Rectangle rc );
             public abstract Pen GetPen();
-            
+
             public virtual void Dispose()
             {
                 if ( _brush != null )
@@ -101,7 +100,7 @@ namespace JetBrains.Omea.GUIControls
 
             private Rectangle _brushRect;
 
-            public GradientElement( Color startColor, Color endColor, LinearGradientMode mode, 
+            public GradientElement( Color startColor, Color endColor, LinearGradientMode mode,
                 float[] blendPositions, float[] blendFactors )
             {
                 _startColor = startColor;
@@ -130,7 +129,7 @@ namespace JetBrains.Omea.GUIControls
             {
                 if ( _brush != null )
                 {
-                    if ( _mode == LinearGradientMode.Vertical && 
+                    if ( _mode == LinearGradientMode.Vertical &&
                         rc.Top == _brushRect.Top && rc.Bottom == _brushRect.Bottom )
                     {
                         return _brush;
@@ -172,12 +171,12 @@ namespace JetBrains.Omea.GUIControls
                 return _pen;
             }
         }
-        
+
         private Assembly _resourceAssembly;
         private string _iconPrefix;
         private ColorDepth _colorDepth;
         private Hashtable _schemeElements = new Hashtable();   // string -> SchemeElement
-        
+
         public ColorScheme( Assembly resourceAssembly, string iconPrefix, ColorDepth colorDepth )
 		{
             _resourceAssembly = resourceAssembly;
@@ -245,7 +244,7 @@ namespace JetBrains.Omea.GUIControls
                 }
                 return LoadColorFromNode( refNode );
             }
-            
+
             Color baseColor;
             XmlAttribute attrName = node.Attributes ["name"];
             if ( attrName != null )
@@ -282,7 +281,7 @@ namespace JetBrains.Omea.GUIControls
                 default:
                     throw new Exception( "Invalid or unspecified <gradient> mode" );
             }
-            
+
             XmlNode gradStartNode = node.SelectSingleNode( "startcolor" );
             if ( gradStartNode == null )
                 throw new Exception( "Gradient <startcolor> not specified" );
@@ -295,7 +294,7 @@ namespace JetBrains.Omea.GUIControls
 
             float[] blendPositions = null;
             float[] blendFactors = null;
-            
+
             XmlNodeList blendNodes = node.SelectNodes( "blend" );
             if( blendNodes.Count > 0 )
             {
@@ -324,7 +323,7 @@ namespace JetBrains.Omea.GUIControls
                 }
             }
 
-            _schemeElements [key] = new GradientElement( startColor, endColor, mode, 
+            _schemeElements [key] = new GradientElement( startColor, endColor, mode,
                 blendPositions, blendFactors );
         }
 
@@ -441,13 +440,13 @@ namespace JetBrains.Omea.GUIControls
             return defaultPen;
         }
 
-        public static void DrawRectangle( Graphics g, ColorScheme scheme, string elementId, Rectangle rc, 
+        public static void DrawRectangle( Graphics g, ColorScheme scheme, string elementId, Rectangle rc,
             Pen defaultPen )
         {
             g.DrawRectangle( GetPen( scheme, elementId, defaultPen ), rc );
         }
 
-        public static void FillRectangle( Graphics g, ColorScheme scheme, string elementId, Rectangle rc, 
+        public static void FillRectangle( Graphics g, ColorScheme scheme, string elementId, Rectangle rc,
             Brush defaultBrush )
         {
             g.FillRectangle( GetBrush( scheme, elementId, rc, defaultBrush ), rc );

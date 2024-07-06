@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 //	WebHelp 5.10.004
 var gbXML=false;
@@ -62,7 +61,7 @@ function insertDef(sKName,sDef)
 function showDef(nDef)
 {
 	if(nDef<gaDef.length)
-	{	
+	{
 		HighLight(nDef);
 		var oParam=gaDef[nDef];
 		var oMsg=new whMessage(WH_MSG_SHOWGLODEF,this,1,oParam);
@@ -187,7 +186,7 @@ function loadGlo()
 			}
 			writeDataIFrame();
 			enEvt();
-		}		
+		}
 	}
 }
 
@@ -208,7 +207,7 @@ function GloWriteClassStyle()
 	sStyle+="A:visited {"+getFontStyle(goFont)+"}\n";
 	sStyle+="A:active {background-color:"+gsActiveBgColor+";}\n";
 	sStyle+="A:hover {"+getFontStyle(goHoverFont)+"}\n";
-	sStyle+="</STYLE>";	
+	sStyle+="</STYLE>";
 	document.write(sStyle);
 }
 

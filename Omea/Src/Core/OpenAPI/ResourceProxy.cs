@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -59,10 +58,10 @@ namespace JetBrains.Omea.OpenAPI
 	/// <para>Schedule a modification of a set of properties:</para>
 	/// <code>
 	/// ResourceProxy proxy = new ResourceProxy( resource );
-	/// 
+	///
 	/// // Enter Batch mode
 	/// proxy.BeginUpdate();
-	/// 
+	///
 	/// // Schedule property modifications
 	/// // Note that the resource does not get modified immediately when we
 	/// //    execute SetProp and notification events do not fire
@@ -71,11 +70,11 @@ namespace JetBrains.Omea.OpenAPI
 	/// proxy.SetProp( "Name", "John Doe" );
 	/// proxy.SetProp( "Age", 45 );
 	/// proxy.SetProp( "Permitted", true );
-	/// 
+	///
 	/// // Commit the changes, do not wait for completion
 	/// // After this call the notification events will fire
 	/// EndUpdateAsync();
-	/// 
+	///
 	/// // If we had used EndUpdate() here instead we would have waited for
 	/// //    the modification to complete on the resource thread
 	/// </code>
@@ -226,7 +225,7 @@ namespace JetBrains.Omea.OpenAPI
 		/// <example>
 		/// <code>
 		/// IResource   resource = …
-		/// 
+		///
 		/// ResourceProxy   proxy = new ResourceProxy( resource );
 		/// Debug.Assert( Object.ReferenceEquals( resource, proxy.Resource ) );
 		/// </code>
@@ -250,7 +249,7 @@ namespace JetBrains.Omea.OpenAPI
 		/// <example>
 		/// <code>
 		/// IResource resource = …
-		/// 
+		///
 		/// ResourceProxy proxy = new ResourceProxy( resource );
 		/// proxy.AsyncPriority = JobPriority.Immediate;
 		/// proxy.SetPropAsync( "Unread", true );
@@ -288,7 +287,7 @@ namespace JetBrains.Omea.OpenAPI
 		/// <para>This example covers the immediate synchronous use of <see cref="SetProp"/>, without a <see cref="BeginUpdate"/> call. For batch update case, see an example for <see cref="BeginUpdate"/> function.</para>
 		/// <code>
 		/// IResource resource = …
-		/// 
+		///
 		/// ResourceProxy proxy = new ResourceProxy( resource );	// Wrap the resource with a resource proxy
 		/// …
 		/// proxy.<b>SetProp</b>( "Name", "John Doe" ); // Access a property by its name
@@ -324,9 +323,9 @@ namespace JetBrains.Omea.OpenAPI
 		/// <para>This example covers the immediate synchronous use of <see cref="SetProp"/>, without a <see cref="BeginUpdate"/> call. For batch update case, see an example for <see cref="BeginUpdate"/> function.</para>
 		/// <code>
 		/// IResource resource = …
-		/// 
+		///
 		/// ResourceProxy proxy = new ResourceProxy( resource );	// Wrap the resource with a resource proxy
-		/// 
+		///
 		/// proxy.<b>SetProp</b>( 239, true );  // Access a property by its ID
 		/// </code>
 		/// </example>
@@ -351,7 +350,7 @@ namespace JetBrains.Omea.OpenAPI
 		/// <para>This example covers the immediate asynchronous use of <see cref="SetPropAsync"/>, without a <see cref="BeginUpdate"/> call. For batch update case, see an example for <see cref="BeginUpdate"/> function.</para>
 		/// <code>
 		/// IResource resource = …
-		/// 
+		///
 		/// ResourceProxy proxy = new ResourceProxy( resource );	// Wrap the resource with a resource proxy
 		/// …
 		/// proxy.<b>SetPropAsync</b>( "Name", "John Doe" ); // Access a property by its name
@@ -363,7 +362,7 @@ namespace JetBrains.Omea.OpenAPI
 		/// <para>or,</para>
 		/// <code>
 		/// IResource resource = …
-		/// 
+		///
 		/// // Wrap the resource with a resource proxy and use it in-place
 		/// new ResourceProxy( resource ).<b>SetPropAsync</b>( "Company", "JetBrains" );
 		/// </code>
@@ -389,7 +388,7 @@ namespace JetBrains.Omea.OpenAPI
 		/// <para>This example covers the immediate asynchronous use of <see cref="SetPropAsync"/>, without a <see cref="BeginUpdate"/> call. For batch update case, see an example for <see cref="BeginUpdate"/> function.</para>
 		/// <code>
 		/// IResource resource = …
-		/// 
+		///
 		/// ResourceProxy proxy = new ResourceProxy( resource );	// Wrap the resource with a resource proxy
 		/// …
 		/// proxy.<b>SetPropAsync</b>( 239, true ); // Access a property by its ID
@@ -397,7 +396,7 @@ namespace JetBrains.Omea.OpenAPI
 		/// <para>or,</para>
 		/// <code>
 		/// IResource resource = …
-		/// 
+		///
 		/// // Wrap the resource with a resource proxy and use it in-place
 		/// new ResourceProxy( resource ).<b>SetPropAsync</b>( 239, true );
 		/// </code>
@@ -417,7 +416,7 @@ namespace JetBrains.Omea.OpenAPI
 		/// </summary>
 		/// <param name="displayName">The new display name value.</param>
 		/// <remarks>By default, the display name is automatically generated from the properties of the resource,
-		/// based on the template which is specified when the resource type is registered. 
+		/// based on the template which is specified when the resource type is registered.
 		/// If a display name for a resource is assigned explicitly, it overrides the default generated
 		/// display name, but an explicitly assigned display name is not updated automatically
 		/// when the properties of a resource are changed.
@@ -478,7 +477,7 @@ namespace JetBrains.Omea.OpenAPI
 		/// <para>This example covers the immediate synchronous use of <see cref="DeleteProp"/>, without a <see cref="BeginUpdate"/> call. For batch update case, see an example for <see cref="BeginUpdate"/> function.</para>
 		/// <code>
 		/// IResource resource = …
-		/// 
+		///
 		/// ResourceProxy proxy = new ResourceProxy( resource );	// Wrap the resource with a resource proxy
 		/// proxy.<b>DeleteProp</b>( "Comment" ); // Access a property by its name
 		/// </code>
@@ -504,7 +503,7 @@ namespace JetBrains.Omea.OpenAPI
 		/// <para>This example covers the immediate synchronous use of <see cref="DeleteProp"/>, without a <see cref="BeginUpdate"/> call. For batch update case, see an example for <see cref="BeginUpdate"/> function.</para>
 		/// <code>
 		/// IResource resource = …
-		/// 
+		///
 		/// ResourceProxy proxy = new ResourceProxy( resource );	// Wrap the resource with a resource proxy
 		/// proxy.<b>DeleteProp</b>( 239 ); // Access a property by its ID
 		/// </code>
@@ -535,14 +534,14 @@ namespace JetBrains.Omea.OpenAPI
 		/// <para>This example covers the immediate asynchronous use of <see cref="DeletePropAsync"/>, without a <see cref="BeginUpdate"/> call. For batch update case, see an example for <see cref="BeginUpdate"/> function.</para>
 		/// <code>
 		/// IResource resource = …
-		/// 
+		///
 		/// // Access a property by its name
 		/// new ResourceProxy( resource ).<b>DeletePropAsync</b>( "Comment" );	// Wrap the resource with a resource proxy
 		/// </code>
 		/// <para>or,</para>
 		/// <code>
 		/// IResource resource = …
-		/// 
+		///
 		/// // Delete the property by assigning it a null value
 		/// new ResourceProxy( resource ).SetPropAsync( "Comment", null );
 		/// </code>
@@ -567,14 +566,14 @@ namespace JetBrains.Omea.OpenAPI
 		/// <para>This example covers the immediate asynchronous use of <see cref="DeletePropAsync"/>, without a <see cref="BeginUpdate"/> call. For batch update case, see an example for <see cref="BeginUpdate"/> function.</para>
 		/// <code>
 		/// IResource resource = …
-		/// 
+		///
 		/// // Access a property by its id
 		/// new ResourceProxy( resource ).<b>DeletePropAsync</b>( 239 );	// Wrap the resource with a resource proxy
 		/// </code>
 		/// <para>or,</para>
 		/// <code>
 		/// IResource resource = …
-		/// 
+		///
 		/// // Delete the property by assigning it a null value
 		/// new ResourceProxy( resource ).SetPropAsync( 239, null );
 		/// </code>
@@ -847,7 +846,7 @@ namespace JetBrains.Omea.OpenAPI
 		/// <example>
 		/// <code>
 		/// IResource resource = …
-		/// 
+		///
 		/// // Wait for the resource to be deleted
 		/// new ResourceProxy( resource ).Delete();
 		/// </code>
@@ -874,7 +873,7 @@ namespace JetBrains.Omea.OpenAPI
 		/// <example>
 		/// <code>
 		/// IResource resource = …
-		/// 
+		///
 		/// // Initiate resource deletion and continue execution
 		/// new ResourceProxy( resource ).DeleteAsync();
 		/// </code>

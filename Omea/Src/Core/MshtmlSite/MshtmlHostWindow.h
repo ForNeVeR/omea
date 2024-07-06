@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 // JetBrains Omea Mshtml Browser Component
 //
@@ -24,7 +23,7 @@ class CMshtmlBrowser;	// Class implementing the control part of this composite c
 /// Supercedes the Atl Host Window class and provides for overriding all the necessary security settings and customization parameters.
 ///
 /// Note that we do not host the MSHTML server directly as it is an ActiveDocument which involves additional troubles for us. Also, pure MSHTML does not support in-place links navigation and some other features implemented in its default wrapper called WebBrowser Control. That one is an ActiveX Control and we can host it as a usual control.
-class ATL_NO_VTABLE CMshtmlHostWindow : 
+class ATL_NO_VTABLE CMshtmlHostWindow :
 		public CComCoClass<CMshtmlHostWindow, &CLSID_NULL>,	// No coclass specified
 		public CComObjectRootEx<CComSingleThreadModel>,
 		public CWindowImpl<CMshtmlHostWindow>,
@@ -389,7 +388,7 @@ public:
 				HDC hdcCompatible = ::CreateCompatibleDC(hdc);
 				if (hdcCompatible != NULL)
 				{
-					HBITMAP hBitmapOld = (HBITMAP)SelectObject(hdcCompatible, hBitmap); 
+					HBITMAP hBitmapOld = (HBITMAP)SelectObject(hdcCompatible, hBitmap);
 					if (hBitmapOld != NULL)
 					{
 						HBRUSH hbrBack = CreateSolidBrush(m_clrBackground);
@@ -398,11 +397,11 @@ public:
 							FillRect(hdcCompatible, &rcClient, hbrBack);
 							DeleteObject(hbrBack);
 
-							m_spViewObject->Draw(DVASPECT_CONTENT, -1, NULL, NULL, NULL, hdcCompatible, (RECTL*)&m_rcPos, (RECTL*)&m_rcPos, NULL, NULL); 
+							m_spViewObject->Draw(DVASPECT_CONTENT, -1, NULL, NULL, NULL, hdcCompatible, (RECTL*)&m_rcPos, (RECTL*)&m_rcPos, NULL, NULL);
 
 							::BitBlt(hdc, 0, 0, rcClient.right, rcClient.bottom,  hdcCompatible, 0, 0, SRCCOPY);
 						}
-						::SelectObject(hdcCompatible, hBitmapOld); 
+						::SelectObject(hdcCompatible, hBitmapOld);
 					}
 					::DeleteDC(hdcCompatible);
 				}
@@ -620,20 +619,20 @@ public:
 
 	/////////////////////////////////////////////////////////////////////////////
 	// IDocHostUIHandler
-	virtual HRESULT STDMETHODCALLTYPE ShowContextMenu(/* [in] */ DWORD dwID, /* [in] */ POINT *ppt, /* [in] */ IUnknown *pcmdtReserved, /* [in] */ IDispatch *pdispReserved);        
-	virtual HRESULT STDMETHODCALLTYPE GetHostInfo(/* [out][in] */ DOCHOSTUIINFO *pInfo);        
-	virtual HRESULT STDMETHODCALLTYPE ShowUI(/* [in] */ DWORD dwID, /* [in] */ IOleInPlaceActiveObject *pActiveObject, /* [in] */ IOleCommandTarget *pCommandTarget, /* [in] */ IOleInPlaceFrame *pFrame, /* [in] */ IOleInPlaceUIWindow *pDoc);        
-	virtual HRESULT STDMETHODCALLTYPE HideUI( void);        
-	virtual HRESULT STDMETHODCALLTYPE UpdateUI( void);        
-	virtual HRESULT STDMETHODCALLTYPE EnableModeless(/* [in] */ BOOL fEnable);        
-	virtual HRESULT STDMETHODCALLTYPE OnDocWindowActivate(/* [in] */ BOOL fActivate);        
-	virtual HRESULT STDMETHODCALLTYPE OnFrameWindowActivate(/* [in] */ BOOL fActivate);        
-	virtual HRESULT STDMETHODCALLTYPE ResizeBorder(/* [in] */ LPCRECT prcBorder, /* [in] */ IOleInPlaceUIWindow *pUIWindow, /* [in] */ BOOL fRameWindow);        
-	virtual HRESULT STDMETHODCALLTYPE TranslateAccelerator(/* [in] */ LPMSG lpMsg, /* [in] */ const GUID *pguidCmdGroup, /* [in] */ DWORD nCmdID);        
-	virtual HRESULT STDMETHODCALLTYPE GetOptionKeyPath(/* [out] */ LPOLESTR *pchKey, /* [in] */ DWORD dw);        
-	virtual HRESULT STDMETHODCALLTYPE GetDropTarget(/* [in] */ IDropTarget *pDropTarget, /* [out] */ IDropTarget **ppDropTarget);        
-	virtual HRESULT STDMETHODCALLTYPE GetExternal(/* [out] */ IDispatch **ppDispatch);        
-	virtual HRESULT STDMETHODCALLTYPE TranslateUrl(/* [in] */ DWORD dwTranslate, /* [in] */ OLECHAR *pchURLIn, /* [out] */ OLECHAR **ppchURLOut);        
+	virtual HRESULT STDMETHODCALLTYPE ShowContextMenu(/* [in] */ DWORD dwID, /* [in] */ POINT *ppt, /* [in] */ IUnknown *pcmdtReserved, /* [in] */ IDispatch *pdispReserved);
+	virtual HRESULT STDMETHODCALLTYPE GetHostInfo(/* [out][in] */ DOCHOSTUIINFO *pInfo);
+	virtual HRESULT STDMETHODCALLTYPE ShowUI(/* [in] */ DWORD dwID, /* [in] */ IOleInPlaceActiveObject *pActiveObject, /* [in] */ IOleCommandTarget *pCommandTarget, /* [in] */ IOleInPlaceFrame *pFrame, /* [in] */ IOleInPlaceUIWindow *pDoc);
+	virtual HRESULT STDMETHODCALLTYPE HideUI( void);
+	virtual HRESULT STDMETHODCALLTYPE UpdateUI( void);
+	virtual HRESULT STDMETHODCALLTYPE EnableModeless(/* [in] */ BOOL fEnable);
+	virtual HRESULT STDMETHODCALLTYPE OnDocWindowActivate(/* [in] */ BOOL fActivate);
+	virtual HRESULT STDMETHODCALLTYPE OnFrameWindowActivate(/* [in] */ BOOL fActivate);
+	virtual HRESULT STDMETHODCALLTYPE ResizeBorder(/* [in] */ LPCRECT prcBorder, /* [in] */ IOleInPlaceUIWindow *pUIWindow, /* [in] */ BOOL fRameWindow);
+	virtual HRESULT STDMETHODCALLTYPE TranslateAccelerator(/* [in] */ LPMSG lpMsg, /* [in] */ const GUID *pguidCmdGroup, /* [in] */ DWORD nCmdID);
+	virtual HRESULT STDMETHODCALLTYPE GetOptionKeyPath(/* [out] */ LPOLESTR *pchKey, /* [in] */ DWORD dw);
+	virtual HRESULT STDMETHODCALLTYPE GetDropTarget(/* [in] */ IDropTarget *pDropTarget, /* [out] */ IDropTarget **ppDropTarget);
+	virtual HRESULT STDMETHODCALLTYPE GetExternal(/* [out] */ IDispatch **ppDispatch);
+	virtual HRESULT STDMETHODCALLTYPE TranslateUrl(/* [in] */ DWORD dwTranslate, /* [in] */ OLECHAR *pchURLIn, /* [out] */ OLECHAR **ppchURLOut);
 	virtual HRESULT STDMETHODCALLTYPE FilterDataObject(/* [in] */ IDataObject *pDO, /* [out] */ IDataObject **ppDORet);
 
 	/////////////////////////////////////////////////////////////////////////////
@@ -642,7 +641,7 @@ public:
 
 	/////////////////////////////////////////////////////////////////////////////
 	// IDocHostShowUI
-	virtual HRESULT STDMETHODCALLTYPE ShowMessage(/* [in] */ HWND hwnd, /* [in] */ LPOLESTR lpstrText, /* [in] */ LPOLESTR lpstrCaption, /* [in] */ DWORD dwType, /* [in] */ LPOLESTR lpstrHelpFile, /* [in] */ DWORD dwHelpContext, /* [out] */ LRESULT *plResult);        
+	virtual HRESULT STDMETHODCALLTYPE ShowMessage(/* [in] */ HWND hwnd, /* [in] */ LPOLESTR lpstrText, /* [in] */ LPOLESTR lpstrCaption, /* [in] */ DWORD dwType, /* [in] */ LPOLESTR lpstrHelpFile, /* [in] */ DWORD dwHelpContext, /* [out] */ LRESULT *plResult);
 	virtual HRESULT STDMETHODCALLTYPE ShowHelp(/* [in] */ HWND hwnd, /* [in] */ LPOLESTR pszHelpFile, /* [in] */ UINT uCommand, /* [in] */ DWORD dwData, /* [in] */ POINT ptMouse, /* [out] */ IDispatch *pDispatchObjectHit);
 
 	/////////////////////////////////////////////////////////////////////////////
@@ -997,7 +996,7 @@ public:
 		if (hdc == NULL)
 			return E_FAIL;
 		if (m_spViewObject)
-			m_spViewObject->Draw(DVASPECT_CONTENT, -1, NULL, NULL, NULL, hdc, (RECTL*)&m_rcPos, (RECTL*)&m_rcPos, NULL, NULL); 
+			m_spViewObject->Draw(DVASPECT_CONTENT, -1, NULL, NULL, NULL, hdc, (RECTL*)&m_rcPos, (RECTL*)&m_rcPos, NULL, NULL);
 		CWindowImpl<CMshtmlHostWindow>::ReleaseDC(hdc);
 		return S_OK;
 	}
@@ -1610,7 +1609,7 @@ public:
 		return ::SendMessage(hWndChild, OCM__BASE + uMsg, wParam, lParam);
 	}
 
-	STDMETHOD(QueryService)( REFGUID rsid, REFIID riid, void** ppvObj) 
+	STDMETHOD(QueryService)( REFGUID rsid, REFIID riid, void** ppvObj)
 	{
 		ATLASSERT(ppvObj != NULL);
 		if (ppvObj == NULL)

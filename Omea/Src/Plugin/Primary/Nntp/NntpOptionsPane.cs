@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Drawing;
@@ -152,11 +151,11 @@ namespace JetBrains.Omea.Nntp
 			this._formatGroupBox.SuspendLayout();
 			this.groupExpRules.SuspendLayout();
 			this.SuspendLayout();
-            
+
             #region Downloading
-            // 
+            //
 			// _downloadingLabel
-			// 
+			//
 			this._downloadingLabel.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this._downloadingLabel.Location = new System.Drawing.Point(0, 4);
 			this._downloadingLabel.Name = "_downloadingLabel";
@@ -164,19 +163,19 @@ namespace JetBrains.Omea.Nntp
 			this._downloadingLabel.TabIndex = 0;
 			this._downloadingLabel.Text = "Downloading";
 			this._downloadingLabel.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
-			// 
+			//
 			// groupBox1
-			// 
-			this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			//
+			this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
 				| System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox1.Location = new System.Drawing.Point(96, 4);
 			this.groupBox1.Name = "groupBox1";
 			this.groupBox1.Size = new System.Drawing.Size(364, 8);
 			this.groupBox1.TabIndex = 1;
 			this.groupBox1.TabStop = false;
-			// 
+			//
 			// label1
-			// 
+			//
 			this.label1.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this.label1.Location = new System.Drawing.Point(8, 24);
 			this.label1.Name = "label1";
@@ -184,9 +183,9 @@ namespace JetBrains.Omea.Nntp
 			this.label1.TabIndex = 2;
 			this.label1.Text = "&Download not more than";
 			this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			// 
+			//
 			// _articlesNumber
-			// 
+			//
 			this._articlesNumber.Changed = false;
 			this._articlesNumber.Location = new System.Drawing.Point(188, 20);
 			this._articlesNumber.Maximum = 9999;
@@ -194,9 +193,9 @@ namespace JetBrains.Omea.Nntp
 			this._articlesNumber.Name = "_articlesNumber";
 			this._articlesNumber.Size = new System.Drawing.Size(48, 20);
 			this._articlesNumber.TabIndex = 3;
-			// 
+			//
 			// label2
-			// 
+			//
 			this.label2.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this.label2.Location = new System.Drawing.Point(244, 24);
 			this.label2.Name = "label2";
@@ -204,9 +203,9 @@ namespace JetBrains.Omea.Nntp
 			this.label2.TabIndex = 4;
 			this.label2.Text = "articles from a group at a time";
 			this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			// 
+			//
 			// _deliverNewsBox
-			// 
+			//
 			this._deliverNewsBox.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this._deliverNewsBox.Location = new System.Drawing.Point(8, 64);
 			this._deliverNewsBox.Name = "_deliverNewsBox";
@@ -214,10 +213,10 @@ namespace JetBrains.Omea.Nntp
 			this._deliverNewsBox.TabIndex = 6;
 			this._deliverNewsBox.Text = "Deliver News e&very";
 			this._deliverNewsBox.CheckedChanged += new System.EventHandler(this._deliverNewsBox_CheckedChanged);
-            // 
+            //
 			// _deliverOnStartBox
-			// 
-			this._deliverOnStartBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			//
+			this._deliverOnStartBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
 				| System.Windows.Forms.AnchorStyles.Right)));
 			this._deliverOnStartBox.Changed = false;
 			this._deliverOnStartBox.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -227,10 +226,10 @@ namespace JetBrains.Omea.Nntp
 			this._deliverOnStartBox.Size = new System.Drawing.Size(452, 22);
 			this._deliverOnStartBox.TabIndex = 5;
 			this._deliverOnStartBox.Text = "Deliver News on &startup";
-			// 
+			//
 			// _downloadHeadersOnlyCheckBox
-			// 
-			this._downloadHeadersOnlyCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			//
+			this._downloadHeadersOnlyCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
 				| System.Windows.Forms.AnchorStyles.Right)));
 			this._downloadHeadersOnlyCheckBox.Changed = false;
 			this._downloadHeadersOnlyCheckBox.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -240,9 +239,9 @@ namespace JetBrains.Omea.Nntp
 			this._downloadHeadersOnlyCheckBox.Size = new System.Drawing.Size(452, 24);
 			this._downloadHeadersOnlyCheckBox.TabIndex = 10;
 			this._downloadHeadersOnlyCheckBox.Text = "On Deliver News, download only article &headers";
-			// 
+			//
 			// _deliverNewsPeriod
-			// 
+			//
 			this._deliverNewsPeriod.Changed = false;
 			this._deliverNewsPeriod.Location = new System.Drawing.Point(188, 64);
 			this._deliverNewsPeriod.Maximum = 9999;
@@ -250,9 +249,9 @@ namespace JetBrains.Omea.Nntp
 			this._deliverNewsPeriod.Name = "_deliverNewsPeriod";
 			this._deliverNewsPeriod.Size = new System.Drawing.Size(48, 20);
 			this._deliverNewsPeriod.TabIndex = 7;
-			// 
+			//
 			// label6
-			// 
+			//
 			this.label6.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this.label6.Location = new System.Drawing.Point(244, 68);
 			this.label6.Name = "label6";
@@ -260,10 +259,10 @@ namespace JetBrains.Omea.Nntp
 			this.label6.TabIndex = 8;
 			this.label6.Text = "minutes";
 			this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			// 
+			//
 			// _markFromMeAsRead
-			// 
-			this._markFromMeAsRead.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			//
+			this._markFromMeAsRead.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
 				| System.Windows.Forms.AnchorStyles.Right)));
 			this._markFromMeAsRead.Changed = false;
 			this._markFromMeAsRead.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -276,9 +275,9 @@ namespace JetBrains.Omea.Nntp
             #endregion Downloading
 
             #region Editing and Preview
-            // 
+            //
 			// _lblEditingPreview
-			// 
+			//
 			this._lblEditingPreview.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this._lblEditingPreview.Location = new System.Drawing.Point(0, 144);
 			this._lblEditingPreview.Name = "_lblEditingPreview";
@@ -286,20 +285,20 @@ namespace JetBrains.Omea.Nntp
 			this._lblEditingPreview.TabIndex = 11;
 			this._lblEditingPreview.Text = "Editing and Preview";
 			this._lblEditingPreview.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
-			// 
+			//
 			// groupBox4
-			// 
-			this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			//
+			this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
 				| System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox4.Location = new System.Drawing.Point(120, 144);
 			this.groupBox4.Name = "groupBox4";
 			this.groupBox4.Size = new System.Drawing.Size(340, 8);
 			this.groupBox4.TabIndex = 12;
 			this.groupBox4.TabStop = false;
-			// 
+			//
 			// _displayAttachmentsInline
-			// 
-			this._displayAttachmentsInline.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			//
+			this._displayAttachmentsInline.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
 				| System.Windows.Forms.AnchorStyles.Right)));
 			this._displayAttachmentsInline.Changed = false;
 			this._displayAttachmentsInline.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -309,10 +308,10 @@ namespace JetBrains.Omea.Nntp
 			this._displayAttachmentsInline.Size = new System.Drawing.Size(452, 22);
 			this._displayAttachmentsInline.TabIndex = 13;
 			this._displayAttachmentsInline.Text = "Display attachments &inline";
-			// 
+			//
 			// _closeOnReply
-			// 
-			this._closeOnReply.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			//
+			this._closeOnReply.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
 				| System.Windows.Forms.AnchorStyles.Right)));
 			this._closeOnReply.Changed = false;
 			this._closeOnReply.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -322,10 +321,10 @@ namespace JetBrains.Omea.Nntp
 			this._closeOnReply.Size = new System.Drawing.Size(452, 22);
 			this._closeOnReply.TabIndex = 14;
 			this._closeOnReply.Text = "&Close original message on Reply and Forward";
-			// 
+			//
 			// _markAsReadOnReplyAndFormard
-			// 
-			this._markAsReadOnReplyAndFormard.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			//
+			this._markAsReadOnReplyAndFormard.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
 				| System.Windows.Forms.AnchorStyles.Right)));
 			this._markAsReadOnReplyAndFormard.Changed = false;
 			this._markAsReadOnReplyAndFormard.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -336,10 +335,10 @@ namespace JetBrains.Omea.Nntp
 			this._markAsReadOnReplyAndFormard.TabIndex = 15;
 			this._markAsReadOnReplyAndFormard.Text = "Mar&k as read on Reply and Forward";
 
-			// 
+			//
 			// _markAsReadOnReplyAndFormard
-			// 
-			this._markAsReadOnThreadStop.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			//
+			this._markAsReadOnThreadStop.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
 				| System.Windows.Forms.AnchorStyles.Right)));
 			this._markAsReadOnThreadStop.Changed = false;
 			this._markAsReadOnThreadStop.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -351,10 +350,10 @@ namespace JetBrains.Omea.Nntp
 			this._markAsReadOnThreadStop.Text = "Mark as read on Stopping the &Thread";
 
             #region Group Font Attributes
-			// 
+			//
 			// _grpFontChars
-			// 
-			this._grpFontChars.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			//
+			this._grpFontChars.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
 				| System.Windows.Forms.AnchorStyles.Right)));
 			this._grpFontChars.Controls.Add(_chkOverrideFont);
 			this._grpFontChars.Controls.Add(_lblFontFamily);
@@ -368,10 +367,10 @@ namespace JetBrains.Omea.Nntp
 			this._grpFontChars.TabIndex = 0;
 			this._grpFontChars.TabStop = false;
 			this._grpFontChars.Text = "News Article Font Settings";
-			// 
+			//
 			// _chkOverride
-			// 
-			this._chkOverrideFont.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			//
+			this._chkOverrideFont.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
 				| System.Windows.Forms.AnchorStyles.Right)));
 			this._chkOverrideFont.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this._chkOverrideFont.Location = new System.Drawing.Point(8, 16);
@@ -380,9 +379,9 @@ namespace JetBrains.Omea.Nntp
 			this._chkOverrideFont.TabIndex = 1;
 			this._chkOverrideFont.Text = "Override common settings";
             this._chkOverrideFont.CheckedChanged += new EventHandler(_chkOverrideFont_CheckedChanged);
-			// 
+			//
 			// _lblFontFamily
-			// 
+			//
 			this._lblFontFamily.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this._lblFontFamily.Location = new System.Drawing.Point(16, 45);
 			this._lblFontFamily.Name = "_lblFontFamily";
@@ -390,9 +389,9 @@ namespace JetBrains.Omea.Nntp
 			this._lblFontFamily.TabIndex = 2;
 			this._lblFontFamily.Text = "F&ont:";
 			this._lblFontFamily.UseMnemonic = true;
-            // 
+            //
             // _txtFont
-            // 
+            //
             this._txtFont.Anchor = (System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left);
             this._txtFont.Location = new System.Drawing.Point(65, 41);
             this._txtFont.Name = "_txtFont";
@@ -400,9 +399,9 @@ namespace JetBrains.Omea.Nntp
             this._txtFont.TabIndex = 3;
             this._txtFont.ReadOnly = true;
             this._txtFont.Enabled = false;
-			// 
+			//
 			// _btnChangeFont
-			// 
+			//
 			this._btnChangeFont.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)));
 			this._btnChangeFont.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this._btnChangeFont.Location = new System.Drawing.Point(210, 40);
@@ -415,9 +414,9 @@ namespace JetBrains.Omea.Nntp
             #endregion Editing and Preview
 
             #region Intl Settings
-			// 
+			//
 			// label3
-			// 
+			//
 			this.label3.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this.label3.Location = new System.Drawing.Point(0, 336);
 			this.label3.Name = "label3";
@@ -425,19 +424,19 @@ namespace JetBrains.Omea.Nntp
 			this.label3.TabIndex = 17;
 			this.label3.Text = "International Settings";
 			this.label3.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
-			// 
+			//
 			// groupBox2
-			// 
-			this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			//
+			this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
 				| System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox2.Location = new System.Drawing.Point(128, 336);
 			this.groupBox2.Name = "groupBox2";
 			this.groupBox2.Size = new System.Drawing.Size(332, 8);
 			this.groupBox2.TabIndex = 18;
 			this.groupBox2.TabStop = false;
-			// 
+			//
 			// label4
-			// 
+			//
 			this.label4.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this.label4.Location = new System.Drawing.Point(8, 360);
 			this.label4.Name = "label4";
@@ -445,9 +444,9 @@ namespace JetBrains.Omea.Nntp
 			this.label4.TabIndex = 19;
 			this.label4.Text = "Default &encoding:";
 			this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			// 
+			//
 			// _encodingsBox
-			// 
+			//
 			this._encodingsBox.Changed = false;
 			this._encodingsBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this._encodingsBox.Location = new System.Drawing.Point(128, 356);
@@ -457,9 +456,9 @@ namespace JetBrains.Omea.Nntp
             #endregion Intl Settings
 
             #region Posting
-			// 
+			//
 			// _lblPosting
-			// 
+			//
 			this._lblPosting.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this._lblPosting.Location = new System.Drawing.Point(0, 392);
 			this._lblPosting.Name = "_lblPosting";
@@ -467,20 +466,20 @@ namespace JetBrains.Omea.Nntp
 			this._lblPosting.TabIndex = 21;
 			this._lblPosting.Text = "Posting";
 			this._lblPosting.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
-			// 
+			//
 			// groupBox3
-			// 
-			this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			//
+			this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
 				| System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox3.Location = new System.Drawing.Point(68, 392);
 			this.groupBox3.Name = "groupBox3";
 			this.groupBox3.Size = new System.Drawing.Size(392, 8);
 			this.groupBox3.TabIndex = 22;
 			this.groupBox3.TabStop = false;
-			// 
+			//
 			// _formatGroupBox
-			// 
-			this._formatGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			//
+			this._formatGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
 				| System.Windows.Forms.AnchorStyles.Right)));
 			this._formatGroupBox.Changed = false;
 			this._formatGroupBox.Controls.Add(this._mimeEncodingBox);
@@ -492,18 +491,18 @@ namespace JetBrains.Omea.Nntp
 			this._formatGroupBox.TabIndex = 23;
 			this._formatGroupBox.TabStop = false;
 			this._formatGroupBox.Text = "Message format";
-			// 
+			//
 			// _mimeEncodingBox
-			// 
+			//
 			this._mimeEncodingBox.Changed = false;
 			this._mimeEncodingBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this._mimeEncodingBox.Location = new System.Drawing.Point(252, 44);
 			this._mimeEncodingBox.Name = "_mimeEncodingBox";
 			this._mimeEncodingBox.Size = new System.Drawing.Size(144, 21);
 			this._mimeEncodingBox.TabIndex = 3;
-			// 
+			//
 			// label7
-			// 
+			//
 			this.label7.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this.label7.Location = new System.Drawing.Point(120, 48);
 			this.label7.Name = "label7";
@@ -514,10 +513,10 @@ namespace JetBrains.Omea.Nntp
 			#endregion Posting
 
             #region Group Exp Rules
-			// 
+			//
 			// groupExpRules
-			// 
-			this.groupExpRules.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			//
+			this.groupExpRules.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
 				| System.Windows.Forms.AnchorStyles.Right)));
 			this.groupExpRules.Controls.Add(this.labelDefaultExpRule);
 			this.groupExpRules.Controls.Add(this._buttonDefExpRule);
@@ -533,18 +532,18 @@ namespace JetBrains.Omea.Nntp
 			this.groupExpRules.TabIndex = 24;
 			this.groupExpRules.TabStop = false;
 			this.groupExpRules.Text = "Autoexpiration Rules";
-			// 
+			//
 			// labelDefaultExpRule
-			// 
+			//
 			this.labelDefaultExpRule.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this.labelDefaultExpRule.Location = new System.Drawing.Point(8, 23);
 			this.labelDefaultExpRule.Name = "labelDefaultExpRule";
 			this.labelDefaultExpRule.Size = new System.Drawing.Size(160, 16);
 			this.labelDefaultExpRule.TabIndex = 0;
 			this.labelDefaultExpRule.Text = "Default rule for all Newsgroups:";
-			// 
+			//
 			// _buttonDefExpRule
-			// 
+			//
 			this._buttonDefExpRule.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this._buttonDefExpRule.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this._buttonDefExpRule.Location = new System.Drawing.Point(300, 20);
@@ -552,9 +551,9 @@ namespace JetBrains.Omea.Nntp
 			this._buttonDefExpRule.TabIndex = 1;
 			this._buttonDefExpRule.Text = "Edit...";
 			this._buttonDefExpRule.Click += new System.EventHandler(this.button1_Click);
-			// 
+			//
 			// _buttonClearDefExpRule
-			// 
+			//
 			this._buttonClearDefExpRule.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this._buttonClearDefExpRule.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this._buttonClearDefExpRule.Location = new System.Drawing.Point(380, 20);
@@ -562,18 +561,18 @@ namespace JetBrains.Omea.Nntp
 			this._buttonClearDefExpRule.TabIndex = 2;
 			this._buttonClearDefExpRule.Text = "Clear";
 			this._buttonClearDefExpRule.Click += new System.EventHandler(this.buttonClearDefExpRule_Click);
-			// 
+			//
 			// labelExpRuleForDeleted
-			// 
+			//
 			this.labelExpRuleForDeleted.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this.labelExpRuleForDeleted.Location = new System.Drawing.Point(8, 51);
 			this.labelExpRuleForDeleted.Name = "labelExpRuleForDeleted";
 			this.labelExpRuleForDeleted.Size = new System.Drawing.Size(160, 16);
 			this.labelExpRuleForDeleted.TabIndex = 3;
 			this.labelExpRuleForDeleted.Text = "Rule for deleted News Articles:";
-			// 
+			//
 			// _buttonExpRuleForDeleted
-			// 
+			//
 			this._buttonExpRuleForDeleted.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this._buttonExpRuleForDeleted.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this._buttonExpRuleForDeleted.Location = new System.Drawing.Point(300, 48);
@@ -581,9 +580,9 @@ namespace JetBrains.Omea.Nntp
 			this._buttonExpRuleForDeleted.TabIndex = 4;
 			this._buttonExpRuleForDeleted.Text = "Edit...";
 			this._buttonExpRuleForDeleted.Click += new System.EventHandler(this._buttonExpRuleForDeleted_Click);
-			// 
+			//
 			// _buttonClearExpRuleForDeleted
-			// 
+			//
 			this._buttonClearExpRuleForDeleted.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this._buttonClearExpRuleForDeleted.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this._buttonClearExpRuleForDeleted.Location = new System.Drawing.Point(380, 48);
@@ -593,9 +592,9 @@ namespace JetBrains.Omea.Nntp
 			this._buttonClearExpRuleForDeleted.Click += new System.EventHandler(this._buttonClearExpRuleForDeleted_Click);
             #endregion Group Exp Rules
 
-			// 
+			//
 			// NntpOptionsPane
-			// 
+			//
 			this.Controls.Add(this.groupExpRules);
 			this.Controls.Add(this._downloadHeadersOnlyCheckBox);
 			this.Controls.Add(this._closeOnReply);
@@ -634,7 +633,7 @@ namespace JetBrains.Omea.Nntp
 
         public override void ShowPane()
         {
-            /** 
+            /**
              * setting "articles per group" value
              */
             _articlesNumber.SetSetting( Settings.ArticlesPerGroup );
@@ -680,7 +679,7 @@ namespace JetBrains.Omea.Nntp
             _closeOnReply.SetSetting( Settings.CloseOnReply );
             _markAsReadOnReplyAndFormard.SetSetting( Settings.MarkAsReadOnReplyAndFormard );
             _markAsReadOnThreadStop.SetSetting( Settings.MarkAsReadOnReplyThreadStop );
-            
+
             ReadFontCharacteristics();
 
             _encodingsBox.Sorted = true;

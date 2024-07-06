@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -20,45 +19,45 @@ namespace JetBrains.Omea.OpenAPI
         /// <summary>
         /// Values of the property are 32-bit integers.
         /// </summary>
-        Int, 
+        Int,
 
         /// <summary>
         /// Values of the property are Unicode strings.
         /// </summary>
-        String, 
+        String,
 
         /// <summary>
         /// Values of the property are <see cref="DateTime"/> values.
         /// </summary>
-        Date, 
-        
+        Date,
+
         /// <summary>
         /// Values of the property are links to other resources.
         /// </summary>
-        Link, 
-        
+        Link,
+
         /// <summary>
         /// Values of the property are BLOBs (binary large objects), accessible as
         /// read-write streams.
         /// </summary>
-        Blob, 
-        
+        Blob,
+
         /// <summary>
         /// Values of the property are double precision floating-point values.
         /// </summary>
-        Double, 
-        
+        Double,
+
         /// <summary>
         /// Values of the property are Unicode strings which cannot be used in
         /// searches by value (for example, text of email messages).
         /// </summary>
-        LongString, 
-        
+        LongString,
+
         /// <summary>
         /// Values of the property are boolean (true/false).
         /// </summary>
-        Bool, 
-        
+        Bool,
+
         /// <summary>
         /// Values of the property are variable-sized lists of strings which
         /// preserve the ordering.
@@ -93,7 +92,7 @@ namespace JetBrains.Omea.OpenAPI
         public static readonly PropDataTypeGeneric<bool> Bool = new PropDataTypeGeneric<bool>(PropDataType.Bool);
         public static readonly PropDataTypeGeneric<IStringList> StringList = new PropDataTypeGeneric<IStringList>(PropDataType.StringList);
     }
-    
+
 
     /// <summary>
     /// Specifies the special attributes of a property type.
@@ -104,26 +103,26 @@ namespace JetBrains.Omea.OpenAPI
         /// <summary>
         /// The property type has no special attributes.
         /// </summary>
-        Normal = 0, 
-        
+        Normal = 0,
+
         /// <summary>
         /// Properties of the type are internal to the system and are never shown to
         /// the user by the core UI components.
         /// </summary>
-        Internal = 1, 
-        
+        Internal = 1,
+
         /// <summary>
         /// Properties of the type link a contact to its accounts (email, ICQ and others).
         /// The flag can only be set on link properties.
         /// </summary>
-        ContactAccount = 2, 
-        
+        ContactAccount = 2,
+
         /// <summary>
         /// Properties of the type are directed links. The flag can only be set on link
         /// properties.
         /// </summary>
-        DirectedLink = 4, 
-        
+        DirectedLink = 4,
+
         /// <summary>
         /// Properties of the type link resources which can be unread to containers which
         /// maintain unread counts. Changing the IsUnread property of the resource on one
@@ -135,18 +134,18 @@ namespace JetBrains.Omea.OpenAPI
         /// <summary>
         /// Properties of the type are never included in the XML serialization of resources.
         /// </summary>
-        NoSerialize = 32, 
-        
+        NoSerialize = 32,
+
         /// <summary>
         /// The user is prompted whether the properties of the type should be included in the
         /// XML serialization of resources. The flag can only be set on non-link properties
         /// (the prompting behavior is the default for link properties).
         /// </summary>
-        AskSerialize = 64, 
-        
+        AskSerialize = 64,
+
         /// <summary>
         /// Properties of the type link a file format resource (TXT, HTML, PDF and so on)
-        /// to a resource which provides the stream from which the format resource is 
+        /// to a resource which provides the stream from which the format resource is
         /// loaded (file folder, email attachment, cached file from the Web and so on).
         /// The flag can only be set on link properties.
         /// </summary>
@@ -168,31 +167,31 @@ namespace JetBrains.Omea.OpenAPI
         /// <summary>
         /// The property type has no special attributes.
         /// </summary>
-        Normal = 0, 
+        Normal = 0,
 
         /// <summary>
         /// Resources of the type are internal to the system and are never shown to
         /// the user by the core UI components.
         /// </summary>
-        Internal = 1, 
+        Internal = 1,
 
         /// <summary>
         /// Resources of the type can have Parent links from other resources, and thus
         /// can be expanded in the resource tree views.
         /// </summary>
         ResourceContainer = 2,
-        
+
         /// <summary>
         /// Resources of the type never provide text which is indexed by the full-text
         /// indexer.
         /// </summary>
-        NoIndex = 4, 
-        
+        NoIndex = 4,
+
         /// <summary>
         /// Resources of the type can be unread (have the IsUnread property set).
         /// </summary>
-        CanBeUnread = 8, 
-        
+        CanBeUnread = 8,
+
         /// <summary>
         /// Resources of the type are file format resources (TXT, HTML, PDF and so on),
         /// which get their content streams from stream provider resources.
@@ -214,7 +213,7 @@ namespace JetBrains.Omea.OpenAPI
         /// Gets the internal (non-localized) name of the property type.
         /// </summary>
         string        Name               { get; }
-        
+
         /// <summary>
         /// The data type of the property type.
         /// </summary>
@@ -277,7 +276,7 @@ namespace JetBrains.Omea.OpenAPI
         /// <param name="propNames">The name or names of property types to check.</param>
         /// <returns>true if all the specified property type names are registered, false otherwise.</returns>
         bool Exist( params string[] propNames );
-        
+
         /// <summary>
         /// Registers a new property type with the default flags.
         /// </summary>
@@ -287,15 +286,15 @@ namespace JetBrains.Omea.OpenAPI
         /// <remarks><para>If a property type with the specified name already exists, the function
         /// checks if it is compatible with the existing definition. If the data type does not match,
         /// an exception is thrown.</para>
-        /// <para>To avoid conflicts with properties used by Omea core and standard plugins, 
-        /// it is recommended to prefix the names of the plugin-defined properties with the domain 
-        /// name of the plugin Web site (for example, <c>com.jetbrains.Name</c>). 
+        /// <para>To avoid conflicts with properties used by Omea core and standard plugins,
+        /// it is recommended to prefix the names of the plugin-defined properties with the domain
+        /// name of the plugin Web site (for example, <c>com.jetbrains.Name</c>).
         /// Standard properties do not have any dotted prefixes. Custom properties defined by the
         /// user have the prefix <c>Custom.</c></para></remarks>
         int Register( string name, PropDataType dataType );
 
         PropId<T> Register<T>(string name, PropDataTypeGeneric<T> dataType);
-        
+
         /// <summary>
         /// Registers a new property type with the specified flags.
         /// </summary>
@@ -307,9 +306,9 @@ namespace JetBrains.Omea.OpenAPI
         /// checks if it is compatible with the existing definition. If the data type does not match,
         /// an exception is thrown. If the flags do not match, the existing flags are ORed with
         /// the flags specified as the method parameter.</para>
-        /// <para>To avoid conflicts with properties used by Omea core and standard plugins, 
-        /// it is recommended to prefix the names of the plugin-defined properties with the domain 
-        /// name of the plugin Web site (for example, <c>com.jetbrains.Name</c>). 
+        /// <para>To avoid conflicts with properties used by Omea core and standard plugins,
+        /// it is recommended to prefix the names of the plugin-defined properties with the domain
+        /// name of the plugin Web site (for example, <c>com.jetbrains.Name</c>).
         /// Standard properties do not have any dotted prefixes. Custom properties defined by the
         /// user have the prefix <c>Custom.</c></para></remarks>
         int Register( string name, PropDataType dataType, PropTypeFlags flags );
@@ -330,9 +329,9 @@ namespace JetBrains.Omea.OpenAPI
         /// checks if it is compatible with the existing definition. If the data type does not match,
         /// an exception is thrown. If the flags do not match, the existing flags are ORed with
         /// the flags specified as the method parameter.</para>
-        /// <para>To avoid conflicts with properties used by Omea core and standard plugins, 
-        /// it is recommended to prefix the names of the plugin-defined properties with the domain 
-        /// name of the plugin Web site (for example, <c>com.jetbrains.Name</c>). 
+        /// <para>To avoid conflicts with properties used by Omea core and standard plugins,
+        /// it is recommended to prefix the names of the plugin-defined properties with the domain
+        /// name of the plugin Web site (for example, <c>com.jetbrains.Name</c>).
         /// Standard properties do not have any dotted prefixes. Custom properties defined by the
         /// user have the prefix <c>Custom.</c></para></remarks>
         int Register( string name, PropDataType dataType, PropTypeFlags flags, IPlugin ownerPlugin );
@@ -351,7 +350,7 @@ namespace JetBrains.Omea.OpenAPI
         void RegisterDisplayName( int propId, string displayName );
 
         void RegisterDisplayName<T>(PropId<T> propId, string displayName);
-        
+
         /// <summary>
         /// Registers a user-visible name for a directed link property type.
         /// </summary>
@@ -364,7 +363,7 @@ namespace JetBrains.Omea.OpenAPI
         void RegisterDisplayName( int propId, string fromDisplayName, string toDisplayName );
 
         void RegisterDisplayName(PropId<IResource> propId, string fromDisplayName, string toDisplayName);
-        
+
         /// <summary>
         /// Deletes a property type.
         /// </summary>
@@ -395,7 +394,7 @@ namespace JetBrains.Omea.OpenAPI
         /// <summary>
         /// Gets the internal (non-localized) name of the resource type.
         /// </summary>
-        /// <remarks>This is the string which is used as "resource type" parameter for all core 
+        /// <remarks>This is the string which is used as "resource type" parameter for all core
         /// methods.</remarks>
         string            Name                { get; }
 
@@ -409,7 +408,7 @@ namespace JetBrains.Omea.OpenAPI
         /// Gets or sets the resource display name template of the resource type.
         /// </summary>
         string ResourceDisplayNameTemplate    { get; set; }
-        
+
         /// <summary>
         /// Gets the flags of the resource type.
         /// </summary>
@@ -439,7 +438,7 @@ namespace JetBrains.Omea.OpenAPI
         /// Returns the resource type with the specified ID.
         /// </summary>
         IResourceType this [int id]      { get; }
-        
+
         /// <summary>
         /// Returns the resource type with the specified name.
         /// </summary>
@@ -449,7 +448,7 @@ namespace JetBrains.Omea.OpenAPI
         /// Returns the count of resource types registered in the resource store.
         /// </summary>
         int Count { get; }
-        
+
         /// <summary>
         /// Checks if all resource types in the specified list are registered.
         /// </summary>
@@ -467,11 +466,11 @@ namespace JetBrains.Omea.OpenAPI
         /// <remarks><para>If a resource type with the specified name already exists, the function
         /// checks if it is compatible with the existing definition. If the display name template
         /// does not match, an exception is thrown.</para>
-        /// <para>To avoid conflicts with resource types used by Omea core and standard plugins, 
-        /// it is recommended to prefix the names of the plugin-defined resource types with the domain 
-        /// name of the plugin Web site (for example, <c>com.jetbrains.Email</c>). 
+        /// <para>To avoid conflicts with resource types used by Omea core and standard plugins,
+        /// it is recommended to prefix the names of the plugin-defined resource types with the domain
+        /// name of the plugin Web site (for example, <c>com.jetbrains.Email</c>).
         /// Standard resource types do not have any dotted prefixes.</para>
-        /// <para>The display name template is a space-separated list of property names from which 
+        /// <para>The display name template is a space-separated list of property names from which
         /// the display names of resources are constructed. The display name template can contain
         /// several alternatives, separated with the | character. Alternatives are evaluated in sequence,
         /// until one is found which produces a non-empty result. For example, if the display name
@@ -479,8 +478,8 @@ namespace JetBrains.Omea.OpenAPI
         /// be composed of the values of <c>FirstName</c> and <c>LastName</c> properties if
         /// at least one of these properties is set, or of the value of the <c>EmailAcct</c> property
         /// if neither first name or last name are specified.</para>
-        /// <para>If a link property is used in a display name template, it is evaluated as the display 
-        /// name of the resource on the other end of the link (or the names of all resources on the other 
+        /// <para>If a link property is used in a display name template, it is evaluated as the display
+        /// name of the resource on the other end of the link (or the names of all resources on the other
         /// end of the link, separated with commas).</para>
         /// <para>All property types referenced in the display name template must be registered before
         /// the resource type is registered.</para></remarks>
@@ -496,13 +495,13 @@ namespace JetBrains.Omea.OpenAPI
         /// <returns>The ID of the registered resource type.</returns>
         /// <remarks><para>If a resource type with the specified name already exists, the function
         /// checks if it is compatible with the existing definition. If the display name template
-        /// does not match, an exception is thrown. If the flags do not match, the existing flags 
+        /// does not match, an exception is thrown. If the flags do not match, the existing flags
         /// are ORed with the flags specified as the method parameter.</para>
-        /// <para>To avoid conflicts with resource types used by Omea core and standard plugins, 
-        /// it is recommended to prefix the names of the plugin-defined resource types with the domain 
-        /// name of the plugin Web site (for example, <c>com.jetbrains.Email</c>). 
+        /// <para>To avoid conflicts with resource types used by Omea core and standard plugins,
+        /// it is recommended to prefix the names of the plugin-defined resource types with the domain
+        /// name of the plugin Web site (for example, <c>com.jetbrains.Email</c>).
         /// Standard resource types do not have any dotted prefixes.</para>
-        /// <para>The display name template is a space-separated list of property names from which 
+        /// <para>The display name template is a space-separated list of property names from which
         /// the display names of resources are constructed. The display name template can contain
         /// several alternatives, separated with the | character. Alternatives are evaluated in sequence,
         /// until one is found which produces a non-empty result. For example, if the display name
@@ -510,8 +509,8 @@ namespace JetBrains.Omea.OpenAPI
         /// be composed of the values of <c>FirstName</c> and <c>LastName</c> properties if
         /// at least one of these properties is set, or of the value of the <c>EmailAcct</c> property
         /// if neither first name or last name are specified.</para>
-        /// <para>If a link property is used in a display name template, it is evaluated as the display 
-        /// name of the resource on the other end of the link (or the names of all resources on the other 
+        /// <para>If a link property is used in a display name template, it is evaluated as the display
+        /// name of the resource on the other end of the link (or the names of all resources on the other
         /// end of the link, separated with commas).</para>
         /// <para>All property types referenced in the display name template must be registered before
         /// the resource type is registered.</para></remarks>
@@ -528,11 +527,11 @@ namespace JetBrains.Omea.OpenAPI
         /// <remarks><para>If a resource type with the specified name already exists, the function
         /// checks if it is compatible with the existing definition. If the display name template
         /// does not match, an exception is thrown.</para>
-        /// <para>To avoid conflicts with resource types used by Omea core and standard plugins, 
-        /// it is recommended to prefix the names of the plugin-defined resource types with the domain 
-        /// name of the plugin Web site (for example, <c>com.jetbrains.Email</c>). 
+        /// <para>To avoid conflicts with resource types used by Omea core and standard plugins,
+        /// it is recommended to prefix the names of the plugin-defined resource types with the domain
+        /// name of the plugin Web site (for example, <c>com.jetbrains.Email</c>).
         /// Standard resource types do not have any dotted prefixes.</para>
-        /// <para>The display name template is a space-separated list of property names from which 
+        /// <para>The display name template is a space-separated list of property names from which
         /// the display names of resources are constructed. The display name template can contain
         /// several alternatives, separated with the | character. Alternatives are evaluated in sequence,
         /// until one is found which produces a non-empty result. For example, if the display name
@@ -540,8 +539,8 @@ namespace JetBrains.Omea.OpenAPI
         /// be composed of the values of <c>FirstName</c> and <c>LastName</c> properties if
         /// at least one of these properties is set, or of the value of the <c>EmailAcct</c> property
         /// if neither first name or last name are specified.</para>
-        /// <para>If a link property is used in a display name template, it is evaluated as the display 
-        /// name of the resource on the other end of the link (or the names of all resources on the other 
+        /// <para>If a link property is used in a display name template, it is evaluated as the display
+        /// name of the resource on the other end of the link (or the names of all resources on the other
         /// end of the link, separated with commas).</para>
         /// <para>All property types referenced in the display name template must be registered before
         /// the resource type is registered.</para></remarks>
@@ -558,13 +557,13 @@ namespace JetBrains.Omea.OpenAPI
         /// <returns>The ID of the registered resource type.</returns>
         /// <remarks><para>If a resource type with the specified name already exists, the function
         /// checks if it is compatible with the existing definition. If the display name template
-        /// does not match, an exception is thrown. If the flags do not match, the existing flags 
+        /// does not match, an exception is thrown. If the flags do not match, the existing flags
         /// are ORed with the flags specified as the method parameter.</para>
-        /// <para>To avoid conflicts with resource types used by Omea core and standard plugins, 
-        /// it is recommended to prefix the names of the plugin-defined resource types with the domain 
-        /// name of the plugin Web site (for example, <c>com.jetbrains.Email</c>). 
+        /// <para>To avoid conflicts with resource types used by Omea core and standard plugins,
+        /// it is recommended to prefix the names of the plugin-defined resource types with the domain
+        /// name of the plugin Web site (for example, <c>com.jetbrains.Email</c>).
         /// Standard resource types do not have any dotted prefixes.</para>
-        /// <para>The display name template is a space-separated list of property names from which 
+        /// <para>The display name template is a space-separated list of property names from which
         /// the display names of resources are constructed. The display name template can contain
         /// several alternatives, separated with the | character. Alternatives are evaluated in sequence,
         /// until one is found which produces a non-empty result. For example, if the display name
@@ -572,12 +571,12 @@ namespace JetBrains.Omea.OpenAPI
         /// be composed of the values of <c>FirstName</c> and <c>LastName</c> properties if
         /// at least one of these properties is set, or of the value of the <c>EmailAcct</c> property
         /// if neither first name or last name are specified.</para>
-        /// <para>If a link property is used in a display name template, it is evaluated as the display 
-        /// name of the resource on the other end of the link (or the names of all resources on the other 
+        /// <para>If a link property is used in a display name template, it is evaluated as the display
+        /// name of the resource on the other end of the link (or the names of all resources on the other
         /// end of the link, separated with commas).</para>
         /// <para>All property types referenced in the display name template must be registered before
         /// the resource type is registered.</para></remarks>
-        int Register( string name, string displayName, string resourceDisplayNameTemplate, 
+        int Register( string name, string displayName, string resourceDisplayNameTemplate,
             ResourceTypeFlags flags );
 
         /// <summary>
@@ -595,13 +594,13 @@ namespace JetBrains.Omea.OpenAPI
         /// <returns>The ID of the registered resource type.</returns>
         /// <remarks><para>If a resource type with the specified name already exists, the function
         /// checks if it is compatible with the existing definition. If the display name template
-        /// does not match, an exception is thrown. If the flags do not match, the existing flags 
+        /// does not match, an exception is thrown. If the flags do not match, the existing flags
         /// are ORed with the flags specified as the method parameter.</para>
-        /// <para>To avoid conflicts with resource types used by Omea core and standard plugins, 
-        /// it is recommended to prefix the names of the plugin-defined resource types with the domain 
-        /// name of the plugin Web site (for example, <c>com.jetbrains.Email</c>). 
+        /// <para>To avoid conflicts with resource types used by Omea core and standard plugins,
+        /// it is recommended to prefix the names of the plugin-defined resource types with the domain
+        /// name of the plugin Web site (for example, <c>com.jetbrains.Email</c>).
         /// Standard resource types do not have any dotted prefixes.</para>
-        /// <para>The display name template is a space-separated list of property names from which 
+        /// <para>The display name template is a space-separated list of property names from which
         /// the display names of resources are constructed. The display name template can contain
         /// several alternatives, separated with the | character. Alternatives are evaluated in sequence,
         /// until one is found which produces a non-empty result. For example, if the display name
@@ -609,12 +608,12 @@ namespace JetBrains.Omea.OpenAPI
         /// be composed of the values of <c>FirstName</c> and <c>LastName</c> properties if
         /// at least one of these properties is set, or of the value of the <c>EmailAcct</c> property
         /// if neither first name or last name are specified.</para>
-        /// <para>If a link property is used in a display name template, it is evaluated as the display 
-        /// name of the resource on the other end of the link (or the names of all resources on the other 
+        /// <para>If a link property is used in a display name template, it is evaluated as the display
+        /// name of the resource on the other end of the link (or the names of all resources on the other
         /// end of the link, separated with commas).</para>
         /// <para>All property types referenced in the display name template must be registered before
         /// the resource type is registered.</para></remarks>
-        int Register( string name, string displayName, string resourceDisplayNameTemplate, 
+        int Register( string name, string displayName, string resourceDisplayNameTemplate,
             ResourceTypeFlags flags, IPlugin ownerPlugin );
 
         /// <summary>
@@ -634,19 +633,19 @@ namespace JetBrains.Omea.OpenAPI
         /// Indicates that no update notifications are sent for the resource list after
         /// it has been instantiated.
         /// </summary>
-        Normal, 
-        
+        Normal,
+
         /// <summary>
         /// Indicates that all changes in a resource list (new resources, deleted resources,
         /// resource changes) cause update notifications to be sent for the resource list.
         /// </summary>
-        Live, 
-        
+        Live,
+
         /// <summary>
         /// Applies only to resource lists which have been returned by one of the
-        /// <see cref="IResourceStore.FindResources(string, int, object)"/> family 
-        /// of methods. Indicates that  all changes in a resource list cause update 
-        /// notifications to be sent, with one exception: changes of the property 
+        /// <see cref="IResourceStore.FindResources(string, int, object)"/> family
+        /// of methods. Indicates that  all changes in a resource list cause update
+        /// notifications to be sent, with one exception: changes of the property
         /// by which the selection was made never cause the resources to be deleted from
         /// the list, even if the new property value no longer matches the selection
         /// condition.
@@ -673,7 +672,7 @@ namespace JetBrains.Omea.OpenAPI
         /// <remarks>If no property with that name has been registered, an exception
         /// is thrown.</remarks>
         int GetPropId( string name );
-        
+
         /// <summary>
         /// Returns the collection of all property types registered in the resource store.
         /// </summary>
@@ -712,7 +711,7 @@ namespace JetBrains.Omea.OpenAPI
         /// performed in memory and do not involve any actual resource store modifications), but
         /// the <see cref="IResource.EndUpdate"/> must be run in the resource store write thread.</remarks>
         IResource NewResourceTransient( string type );
-        
+
         /// <summary>
         /// Returns the existing resource with the specified ID.
         /// </summary>
@@ -733,10 +732,10 @@ namespace JetBrains.Omea.OpenAPI
         IResource TryLoadResource( int id );
 
         /// <summary>
-        /// Returns the non-live list of resources for which the property with the specified ID 
+        /// Returns the non-live list of resources for which the property with the specified ID
         /// has the specified value.
         /// </summary>
-        /// <param name="resType">The type of resources to return, or null if resources of 
+        /// <param name="resType">The type of resources to return, or null if resources of
         /// any type should be returned.</param>
         /// <param name="propId">The ID of the property for which the selection is done.</param>
         /// <param name="propValue">The value of the property.</param>
@@ -749,7 +748,7 @@ namespace JetBrains.Omea.OpenAPI
         /// Returns the non-live list of resources for which the property with the specified name
         /// has the specified value.
         /// </summary>
-        /// <param name="resType">The type of resources to return, or null if resources of 
+        /// <param name="resType">The type of resources to return, or null if resources of
         /// any type should be returned.</param>
         /// <param name="propName">The name of the property for which the selection is done.</param>
         /// <param name="propValue">The value of the property.</param>
@@ -761,12 +760,12 @@ namespace JetBrains.Omea.OpenAPI
         IResourceList FindResources<T>(string resType, PropId<T> propId, T propValue);
 
         BusinessObjectList<T> FindResources<T, V>(ResourceTypeId<T> resType, PropId<V> propId, V propValue) where T : BusinessObject;
-        
+
         /// <summary>
-        /// Returns the live list of resources for which the property with the specified ID 
+        /// Returns the live list of resources for which the property with the specified ID
         /// has the specified value.
         /// </summary>
-        /// <param name="resType">The type of resources to return, or null if resources of 
+        /// <param name="resType">The type of resources to return, or null if resources of
         /// any type should be returned.</param>
         /// <param name="propId">The ID of the property for which the selection is done.</param>
         /// <param name="propValue">The value of the property.</param>
@@ -779,7 +778,7 @@ namespace JetBrains.Omea.OpenAPI
         /// Returns the live list of resources for which the property with the specified name
         /// has the specified value.
         /// </summary>
-        /// <param name="resType">The type of resources to return, or null if resources of 
+        /// <param name="resType">The type of resources to return, or null if resources of
         /// any type should be returned.</param>
         /// <param name="propName">The name of the property for which the selection is done.</param>
         /// <param name="propValue">The value of the property.</param>
@@ -791,11 +790,11 @@ namespace JetBrains.Omea.OpenAPI
         IResourceList FindResourcesLive<T>(string resType, PropId<T> propName, T propValue);
 
         /// <summary>
-        /// Returns an optionally live list of resources for which the property with the specified ID 
+        /// Returns an optionally live list of resources for which the property with the specified ID
         /// has the specified value.
         /// </summary>
         /// <param name="selectionType">Type of the selection (non-live, live or live snapshot).</param>
-        /// <param name="resType">The type of resources to return, or null if resources of 
+        /// <param name="resType">The type of resources to return, or null if resources of
         /// any type should be returned.</param>
         /// <param name="propId">The ID of the property for which the selection is done.</param>
         /// <param name="propValue">The value of the property.</param>
@@ -809,7 +808,7 @@ namespace JetBrains.Omea.OpenAPI
         /// has the specified value.
         /// </summary>
         /// <param name="selectionType">Type of the selection (non-live, live or live snapshot).</param>
-        /// <param name="resType">The type of resources to return, or null if resources of 
+        /// <param name="resType">The type of resources to return, or null if resources of
         /// any type should be returned.</param>
         /// <param name="propName">The name of the property for which the selection is done.</param>
         /// <param name="propValue">The value of the property.</param>
@@ -819,10 +818,10 @@ namespace JetBrains.Omea.OpenAPI
         IResourceList FindResources( SelectionType selectionType, string resType, string propName, object propValue );
 
         /// <summary>
-        /// Returns the non-live list of resources for which the property with the specified ID 
+        /// Returns the non-live list of resources for which the property with the specified ID
         /// has a value in the specified range.
         /// </summary>
-        /// <param name="resType">The type of resources to return, or null if resources of 
+        /// <param name="resType">The type of resources to return, or null if resources of
         /// any type should be returned.</param>
         /// <param name="propId">The ID of the property for which the selection is done.</param>
         /// <param name="minValue">The minimum matching value of the property.</param>
@@ -835,7 +834,7 @@ namespace JetBrains.Omea.OpenAPI
         /// Returns the non-live list of resources for which the property with the specified name
         /// has a value in the specified range.
         /// </summary>
-        /// <param name="resType">The type of resources to return, or null if resources of 
+        /// <param name="resType">The type of resources to return, or null if resources of
         /// any type should be returned.</param>
         /// <param name="propName">The name of the property for which the selection is done.</param>
         /// <param name="minValue">The minimum matching value of the property.</param>
@@ -843,12 +842,12 @@ namespace JetBrains.Omea.OpenAPI
         /// <returns>The list of resources, or an empty resource list if no resources match the condition.</returns>
         /// <remarks>Range selection is only supported for int and date properties.</remarks>
         IResourceList FindResourcesInRange( string resType, string propName, object minValue, object maxValue );
-        
+
         /// <summary>
-        /// Returns the live list of resources for which the property with the specified ID 
+        /// Returns the live list of resources for which the property with the specified ID
         /// has a value in the specified range.
         /// </summary>
-        /// <param name="resType">The type of resources to return, or null if resources of 
+        /// <param name="resType">The type of resources to return, or null if resources of
         /// any type should be returned.</param>
         /// <param name="propId">The ID of the property for which the selection is done.</param>
         /// <param name="minValue">The minimum matching value of the property.</param>
@@ -861,7 +860,7 @@ namespace JetBrains.Omea.OpenAPI
         /// Returns the live list of resources for which the property with the specified name
         /// has a value in the specified range.
         /// </summary>
-        /// <param name="resType">The type of resources to return, or null if resources of 
+        /// <param name="resType">The type of resources to return, or null if resources of
         /// any type should be returned.</param>
         /// <param name="propName">The name of the property for which the selection is done.</param>
         /// <param name="minValue">The minimum matching value of the property.</param>
@@ -869,13 +868,13 @@ namespace JetBrains.Omea.OpenAPI
         /// <returns>The list of resources, or an empty resource list if no resources match the condition.</returns>
         /// <remarks>Range selection is only supported for int and date properties.</remarks>
         IResourceList FindResourcesInRangeLive( string resType, string propName, object minValue, object maxValue );
-        
+
         /// <summary>
-        /// Returns an optionally live list of resources for which the property with the specified ID 
+        /// Returns an optionally live list of resources for which the property with the specified ID
         /// has a value in the specified range.
         /// </summary>
         /// <param name="selectionType">Type of the selection (non-live, live or live snapshot).</param>
-        /// <param name="resType">The type of resources to return, or null if resources of 
+        /// <param name="resType">The type of resources to return, or null if resources of
         /// any type should be returned.</param>
         /// <param name="propId">The ID of the property for which the selection is done.</param>
         /// <param name="minValue">The minimum matching value of the property.</param>
@@ -889,7 +888,7 @@ namespace JetBrains.Omea.OpenAPI
         /// has a value in the specified range.
         /// </summary>
         /// <param name="selectionType">Type of the selection (non-live, live or live snapshot).</param>
-        /// <param name="resType">The type of resources to return, or null if resources of 
+        /// <param name="resType">The type of resources to return, or null if resources of
         /// any type should be returned.</param>
         /// <param name="propName">The name of the property for which the selection is done.</param>
         /// <param name="minValue">The minimum matching value of the property.</param>
@@ -901,7 +900,7 @@ namespace JetBrains.Omea.OpenAPI
         /// <summary>
         /// Returns the non-live list of resources which have the property with the specified ID.
         /// </summary>
-        /// <param name="resType">The type of resources to return, or null if resources of 
+        /// <param name="resType">The type of resources to return, or null if resources of
         /// any type should be returned.</param>
         /// <param name="propId">The ID of the property to search for.</param>
         /// <returns>The list of resources which have the property.</returns>
@@ -915,7 +914,7 @@ namespace JetBrains.Omea.OpenAPI
         /// <summary>
         /// Returns the non-live list of resources which have the property with the specified name.
         /// </summary>
-        /// <param name="resType">The type of resources to return, or null if resources of 
+        /// <param name="resType">The type of resources to return, or null if resources of
         /// any type should be returned.</param>
         /// <param name="propName">The name of the property to search for.</param>
         /// <returns>The list of resources which have the property.</returns>
@@ -927,11 +926,11 @@ namespace JetBrains.Omea.OpenAPI
         IResourceList FindResourcesWithProp( string resType, string propName );
 
         IResourceList FindResourcesWithProp<T>(string resType, PropId<T> propId);
-        
+
         /// <summary>
         /// Returns the live list of resources which have the property with the specified ID.
         /// </summary>
-        /// <param name="resType">The type of resources to return, or null if resources of 
+        /// <param name="resType">The type of resources to return, or null if resources of
         /// any type should be returned.</param>
         /// <param name="propId">The ID of the property to search for.</param>
         /// <returns>The list of resources which have the property.</returns>
@@ -945,7 +944,7 @@ namespace JetBrains.Omea.OpenAPI
         /// <summary>
         /// Returns the live list of resources which have the property with the specified name.
         /// </summary>
-        /// <param name="resType">The type of resources to return, or null if resources of 
+        /// <param name="resType">The type of resources to return, or null if resources of
         /// any type should be returned.</param>
         /// <param name="propName">The name of the property to search for.</param>
         /// <returns>The list of resources which have the property.</returns>
@@ -957,12 +956,12 @@ namespace JetBrains.Omea.OpenAPI
         IResourceList FindResourcesWithPropLive( string resType, string propName );
 
         IResourceList FindResourcesWithPropLive<T>(string resType, PropId<T> propId);
-        
+
         /// <summary>
         /// Returns an optionally live list of resources which have the property with the specified ID.
         /// </summary>
         /// <param name="selectionType">Type of the selection (non-live, live or live snapshot).</param>
-        /// <param name="resType">The type of resources to return, or null if resources of 
+        /// <param name="resType">The type of resources to return, or null if resources of
         /// any type should be returned.</param>
         /// <param name="propId">The ID of the property to search for.</param>
         /// <returns>The list of resources which have the property.</returns>
@@ -977,7 +976,7 @@ namespace JetBrains.Omea.OpenAPI
         /// Returns an optionally live list of resources which have the property with the specified name.
         /// </summary>
         /// <param name="selectionType">Type of the selection (non-live, live or live snapshot).</param>
-        /// <param name="resType">The type of resources to return, or null if resources of 
+        /// <param name="resType">The type of resources to return, or null if resources of
         /// any type should be returned.</param>
         /// <param name="propName">The name of the property to search for.</param>
         /// <returns>The list of resources which have the property.</returns>
@@ -1024,7 +1023,7 @@ namespace JetBrains.Omea.OpenAPI
         /// Returns an empty resource list instance.
         /// </summary>
         IResourceList EmptyResourceList { get; }
-        
+
         /// <summary>
         /// Returns an optionally live list containing the resources with the specified IDs.
         /// </summary>
@@ -1034,7 +1033,7 @@ namespace JetBrains.Omea.OpenAPI
         /// <remarks>Use a live list if you need to get notified when a resource with any
         /// of the specified IDs is changed or deleted.</remarks>
         IResourceList ListFromIds( int[] resourceIds, bool live );
-        
+
         /// <summary>
         /// Returns an optionally live list containing the resources with the specified IDs.
         /// </summary>
@@ -1076,7 +1075,7 @@ namespace JetBrains.Omea.OpenAPI
         /// <see cref="RegisterUniqueRestriction"/> to register a unique restriction for the
         /// resource and property types used in the call.</para></remarks>
         IResource FindUniqueResource( string resType, string propName, object propValue );
-        
+
         /// <summary>
         /// Returns true if the current thread is allowed to perform resource store write
         /// operations.
@@ -1098,7 +1097,7 @@ namespace JetBrains.Omea.OpenAPI
         /// or null if the link can point to a resource of any type.</param>
         /// <param name="minCount">The minimum count of links going from the resource, or 0 if there
         /// is no limit.</param>
-        /// <param name="maxCount">The maximum count of links going from the resource, or 
+        /// <param name="maxCount">The maximum count of links going from the resource, or
         /// <c>Int32.MaxValue</c> if there is no limit.</param>
         void RegisterLinkRestriction( string fromResourceType, int linkType,
             string toResourceType, int minCount, int maxCount );
@@ -1121,7 +1120,7 @@ namespace JetBrains.Omea.OpenAPI
         /// <param name="linkType">ID of the link property type for which the restriction is queried.</param>
         /// <returns>The maximum count of links, or <c>Int32.MaxValue</c> if there is no limit.</returns>
         int GetMaxLinkCountRestriction( string fromResourceType, int linkType );
-        
+
         /// <summary>
         /// Returns the target resource type restriction for links with specified property type going
         /// from resources of specified resource type.
@@ -1191,7 +1190,7 @@ namespace JetBrains.Omea.OpenAPI
         /// </summary>
         /// <since>2.0</since>
         void RegisterDisplayNameProvider( IDisplayNameProvider provider );
-        
+
         /// <summary>
         /// Occurs after a single property or a batch of properties of any resource
         /// is changed.
@@ -1220,8 +1219,8 @@ namespace JetBrains.Omea.OpenAPI
         /// </summary>
         /// <param name="res">The resource to check.</param>
         /// <remarks><para>The method should throw an exception (<see cref="ResourceRestrictionException"/>
-        /// or an exception derived from that class) if the resource does not match the restriction.</para> 
-        /// <para>Custom restrictions are checked on every resource change or <see cref="IResource.EndUpdate"/>, 
+        /// or an exception derived from that class) if the resource does not match the restriction.</para>
+        /// <para>Custom restrictions are checked on every resource change or <see cref="IResource.EndUpdate"/>,
         /// so the code in this method must not perform any expensive checks.</para></remarks>
         void CheckResource( IResource res );
     }
@@ -1273,13 +1272,13 @@ namespace JetBrains.Omea.OpenAPI
         /// <summary>
         /// The link to the specified resource was added.
         /// </summary>
-        Add, 
-        
+        Add,
+
         /// <summary>
         /// The link to the specified resource was deleted.
         /// </summary>
-        Delete, 
-        
+        Delete,
+
         /// <summary>
         /// The link to the specified resource was neither added nor deleted.
         /// </summary>
@@ -1326,7 +1325,7 @@ namespace JetBrains.Omea.OpenAPI
         /// Checks if the change set describes the creation of a new resource.
         /// </summary>
         bool IsNewResource         { get; }
-        
+
         /// <summary>
         /// Checks if the changes described by the change set caused the display name
         /// of the resource to change.
@@ -1348,7 +1347,7 @@ namespace JetBrains.Omea.OpenAPI
         bool IsPropertyChanged( int propId );
 
         bool IsPropertyChanged<T>(PropId<T> propId);
-        
+
         /// <summary>
         /// Returns the value of the specified property before the change.
         /// </summary>
@@ -1362,14 +1361,14 @@ namespace JetBrains.Omea.OpenAPI
 
         /// <summary>
         /// Checks if the link to the specified resource was created or deleted
-        /// in the change set. 
+        /// in the change set.
         /// </summary>
         /// <param name="propId">The ID of the link property to check.</param>
         /// <param name="targetId">The ID of the resource the link to which
         /// is checked. </param>
         /// <returns>The type of the change.</returns>
         LinkChangeType GetLinkChange( int propId, int targetId );
-        
+
         /// <summary>
         /// Returns all link changes for the specified link type.
         /// </summary>
@@ -1489,7 +1488,7 @@ namespace JetBrains.Omea.OpenAPI
         /// <summary>
         /// Gets the change set describing the specific changes to the resource.
         /// </summary>
-        public IPropertyChangeSet ChangeSet { get { return _changeSet; } } 
+        public IPropertyChangeSet ChangeSet { get { return _changeSet; } }
     }
 
     /// <summary>
@@ -1506,9 +1505,9 @@ namespace JetBrains.Omea.OpenAPI
 
         public IResourceList ResourceList { get { return _resList; } }
     }
-	
+
     public class LinkEventArgs: EventArgs
-    {                         
+    {
         private IResource _source;
         private IResource _target;
         private int       _propType;
@@ -1558,23 +1557,23 @@ namespace JetBrains.Omea.OpenAPI
             _propID     = propId;
             _oldValue   = oldValue;
         }
-        
+
         /// <summary>
         /// Gets the ID of the resource for which the property value has changed.
         /// </summary>
         public int    ResourceId { get { return _resourceID; } }
-        
+
         /// <summary>
         /// Gets the ID of the changed property.
         /// </summary>
         public int    PropId     { get { return _propID; } }
-        
+
         /// <summary>
         /// Gets the value of the property before the change.
         /// </summary>
         public object OldValue   { get { return _oldValue; } }
     }
-	
+
     public delegate void ResourceEventHandler( object sender, ResourceEventArgs e );
     public delegate void ResourcePropEventHandler( object sender, ResourcePropEventArgs e );
     public delegate void ResourceIndexEventHandler( object sender, ResourceIndexEventArgs e );
@@ -1589,9 +1588,9 @@ namespace JetBrains.Omea.OpenAPI
     [Serializable]
     public class StorageException: Exception
     {
-        public StorageException() 
+        public StorageException()
             : base() { }
-        
+
         public StorageException( string message )
             : base( message ) { }
 
@@ -1607,20 +1606,20 @@ namespace JetBrains.Omea.OpenAPI
     /// </summary>
     [Serializable]
     public class ResourceDeletedException: StorageException
-    {   
+    {
         private int _resourceId = -1;
 
         public ResourceDeletedException()
             : base( "Attempt to perform an operation on a deleted resource" ) { }
 
         public ResourceDeletedException( int resourceId, string resourceType )
-            : base( "The resource with ID=" + resourceId + " of type " + resourceType + " has been deleted" ) 
+            : base( "The resource with ID=" + resourceId + " of type " + resourceType + " has been deleted" )
         {
             _resourceId = resourceId;
         }
 
         public ResourceDeletedException( string message )
-            : base( message ) { }    
+            : base( message ) { }
 
         public ResourceDeletedException( string message, Exception innerException )
             : base( message, innerException ) { }
@@ -1668,7 +1667,7 @@ namespace JetBrains.Omea.OpenAPI
         }
 
         public InvalidResourceIdException( string message )
-            : base( message ) { }    
+            : base( message ) { }
 
         public InvalidResourceIdException( string message, Exception innerException )
             : base( message, innerException ) { }

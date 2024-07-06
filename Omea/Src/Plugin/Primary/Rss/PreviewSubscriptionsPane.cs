@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Windows.Forms;
@@ -31,13 +30,13 @@ namespace JetBrains.Omea.RSSPlugin
         private IResource _importRoot = null;
         private IResource _finalImportRoot = null;
 
-        
+
         public bool IsBacked
         {
             set { _isBacked = value; }
         }
 
-        /// <summary> 
+        /// <summary>
         /// Required designer variable.
         /// </summary>
         private System.ComponentModel.Container components = null;
@@ -45,7 +44,7 @@ namespace JetBrains.Omea.RSSPlugin
         internal PreviewSubscriptionsPane( ImportManager manager ) : this( manager, RSSPlugin.RootFeedGroup )
         {
         }
-            
+
         internal PreviewSubscriptionsPane( ImportManager manager, IResource importRoot )
         {
             // This call is required by the Windows.Forms Form Designer.
@@ -53,8 +52,8 @@ namespace JetBrains.Omea.RSSPlugin
             _manager = manager;
             _finalImportRoot = importRoot;
         }
-	    
-        /// <summary> 
+
+        /// <summary>
         /// Clean up any resources being used.
         /// </summary>
         protected override void Dispose( bool disposing )
@@ -70,8 +69,8 @@ namespace JetBrains.Omea.RSSPlugin
         }
 
         #region Component Designer generated code
-        /// <summary> 
-        /// Required method for Designer support - do not modify 
+        /// <summary>
+        /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
@@ -85,12 +84,12 @@ namespace JetBrains.Omea.RSSPlugin
             this._lblHomepage = new JetBrains.Omea.GUIControls.JetLinkLabel();
             this._gbDesc.SuspendLayout();
             this.SuspendLayout();
-            // 
+            //
             // _tvFeeds
-            // 
+            //
             this._tvFeeds.AllowColumnReorder = false;
-            this._tvFeeds.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-                | System.Windows.Forms.AnchorStyles.Left) 
+            this._tvFeeds.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._tvFeeds.CheckBoxes = true;
             this._tvFeeds.CheckedProperty = -1;
@@ -115,9 +114,9 @@ namespace JetBrains.Omea.RSSPlugin
             this._tvFeeds.TabIndex = 0;
             this._tvFeeds.ResourceAdded += new JetBrains.Omea.OpenAPI.ResourceEventHandler(this._tvFeeds_ResourceAdded);
             this._tvFeeds.ActiveResourceChanged += new System.EventHandler(this._tvFeeds_AfterSelect);
-            // 
+            //
             // _btnSelectAll
-            // 
+            //
             this._btnSelectAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this._btnSelectAll.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._btnSelectAll.Location = new System.Drawing.Point(300, 8);
@@ -126,9 +125,9 @@ namespace JetBrains.Omea.RSSPlugin
             this._btnSelectAll.Size = new System.Drawing.Size(80, 24);
             this._btnSelectAll.Text = "&Select All";
             this._btnSelectAll.Click += new System.EventHandler(this._btnSelectAll_Click);
-            // 
+            //
             // _btnUnselectAll
-            // 
+            //
             this._btnUnselectAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this._btnUnselectAll.Location = new System.Drawing.Point(300, 38);
             this._btnUnselectAll.Name = "_btnUnselectAll";
@@ -136,10 +135,10 @@ namespace JetBrains.Omea.RSSPlugin
             this._btnUnselectAll.Size = new System.Drawing.Size(80, 24);
             this._btnUnselectAll.Text = "&Unselect All";
             this._btnUnselectAll.Click += new System.EventHandler(this._btnUnselectAll_Click);
-            // 
+            //
             // _gbDesc
-            // 
-            this._gbDesc.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._gbDesc.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._gbDesc.Controls.Add(this._edtDescription);
             this._gbDesc.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -149,10 +148,10 @@ namespace JetBrains.Omea.RSSPlugin
             this._gbDesc.TabIndex = 3;
             this._gbDesc.TabStop = false;
             this._gbDesc.Text = "Description:";
-            // 
+            //
             // _edtDescription
-            // 
-            this._edtDescription.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._edtDescription.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._edtDescription.Location = new System.Drawing.Point(8, 16);
             this._edtDescription.Multiline = true;
@@ -161,18 +160,18 @@ namespace JetBrains.Omea.RSSPlugin
             this._edtDescription.Size = new System.Drawing.Size(352, 64);
             this._edtDescription.TabIndex = 4;
             this._edtDescription.Text = "";
-            // 
+            //
             // label1
-            // 
+            //
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label1.Location = new System.Drawing.Point(8, 400);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(80, 23);
             this.label1.TabIndex = 5;
             this.label1.Text = "Homepage:";
-            // 
+            //
             // _lblHomepage
-            // 
+            //
             this._lblHomepage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this._lblHomepage.Cursor = System.Windows.Forms.Cursors.Hand;
             this._lblHomepage.ForeColor = System.Drawing.Color.FromArgb(((System.Byte)(70)), ((System.Byte)(70)), ((System.Byte)(211)));
@@ -181,9 +180,9 @@ namespace JetBrains.Omea.RSSPlugin
             this._lblHomepage.Size = new System.Drawing.Size(0, 0);
             this._lblHomepage.TabIndex = 6;
             this._lblHomepage.Click += new System.EventHandler(this._lblHomepage_Click);
-            // 
+            //
             // PreviewSubscriptionsPane
-            // 
+            //
             this.Controls.Add(this._lblHomepage);
             this.Controls.Add(this.label1);
             this.Controls.Add(this._gbDesc);
@@ -226,7 +225,7 @@ namespace JetBrains.Omea.RSSPlugin
             }
             _isBacked = false;
         }
-	
+
         public override void OK()
         {
             // Really, we should fix import here!
@@ -260,7 +259,7 @@ namespace JetBrains.Omea.RSSPlugin
             p.EndUpdate();
             _importRoot = p.Resource;
             Core.UIManager.RunWithProgressWindow( ImportManager.ImportPaneName, delegate { _manager.DoImport(_importRoot, false); } );
-    
+
             Core.ResourceTreeManager.SetResourceNodeSort( _importRoot, "Type- Name" );
             _tvFeeds.RootResource = _importRoot;
             _tvFeeds.CheckedProperty = Props.Transient;
@@ -269,7 +268,7 @@ namespace JetBrains.Omea.RSSPlugin
             _tvFeeds.ParentProperty = Core.Props.Parent;
             _tvFeeds.OpenProperty = Core.Props.Open;
         }
-        
+
         public void _tvFeeds_AfterSelect( object sender, EventArgs e )
         {
             IResource feed = _tvFeeds.ActiveResource;

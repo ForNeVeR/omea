@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Drawing;
@@ -71,68 +70,68 @@ namespace JetBrains.Omea.SamplePlugins.CategoryHotkeys
             this._btnOk = new System.Windows.Forms.Button();
             this._btnCancel = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
+            //
             // _lblCategoryHotkeys
-            // 
+            //
             this._lblCategoryHotkeys.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._lblCategoryHotkeys.Location = new System.Drawing.Point(8, 8);
             this._lblCategoryHotkeys.Name = "_lblCategoryHotkeys";
             this._lblCategoryHotkeys.Size = new System.Drawing.Size(268, 20);
             this._lblCategoryHotkeys.TabIndex = 0;
             this._lblCategoryHotkeys.Text = "Hotkeys for the category";
-            // 
+            //
             // _lblAssign
-            // 
+            //
             this._lblAssign.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._lblAssign.Location = new System.Drawing.Point(8, 32);
             this._lblAssign.Name = "_lblAssign";
             this._lblAssign.Size = new System.Drawing.Size(48, 20);
             this._lblAssign.TabIndex = 1;
             this._lblAssign.Text = "Assign:";
-            // 
+            //
             // label1
-            // 
+            //
             this.label1.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label1.Location = new System.Drawing.Point(8, 52);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(46, 20);
             this.label1.TabIndex = 2;
             this.label1.Text = "Remove:";
-            // 
+            //
             // _edtHotkeyAssign
-            // 
+            //
             this._edtHotkeyAssign.Location = new System.Drawing.Point(76, 28);
             this._edtHotkeyAssign.Name = "_edtHotkeyAssign";
             this._edtHotkeyAssign.Size = new System.Drawing.Size(150, 22);
             this._edtHotkeyAssign.TabIndex = 3;
-            // 
+            //
             // _edtHotkeyRemove
-            // 
+            //
             this._edtHotkeyRemove.Location = new System.Drawing.Point(76, 52);
             this._edtHotkeyRemove.Name = "_edtHotkeyRemove";
             this._edtHotkeyRemove.Size = new System.Drawing.Size(150, 22);
             this._edtHotkeyRemove.TabIndex = 4;
-            // 
+            //
             // _btnOk
-            // 
+            //
             this._btnOk.DialogResult = System.Windows.Forms.DialogResult.OK;
             this._btnOk.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._btnOk.Location = new System.Drawing.Point(124, 88);
             this._btnOk.Name = "_btnOk";
             this._btnOk.TabIndex = 5;
             this._btnOk.Text = "OK";
-            // 
+            //
             // _btnCancel
-            // 
+            //
             this._btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this._btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._btnCancel.Location = new System.Drawing.Point(208, 88);
             this._btnCancel.Name = "_btnCancel";
             this._btnCancel.TabIndex = 6;
             this._btnCancel.Text = "Cancel";
-            // 
+            //
             // AssignHotkeysDlg
-            // 
+            //
             this.AcceptButton = this._btnOk;
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
             this.CancelButton = this._btnCancel;

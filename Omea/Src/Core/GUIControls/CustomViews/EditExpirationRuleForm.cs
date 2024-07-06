@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Diagnostics;
@@ -189,26 +188,26 @@ namespace JetBrains.Omea.GUIControls.CustomViews
             this.components = new System.ComponentModel.Container();
             this.resTypeToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
-            // 
+            //
             // boxActions
-            // 
+            //
             this.boxActions.Location = new System.Drawing.Point(7, 492);
             this.boxActions.Anchor = (AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right);
             this.boxActions.Name = "boxActions";
             this.boxActions.Size = new System.Drawing.Size(384, 160);
             this.boxActions.FlatStyle = FlatStyle.System;
             this.boxActions.TabStop = false;
-            // 
+            //
             // _lblActions
-            // 
+            //
             this._lblActions.Location = new System.Drawing.Point(10,10);
             this._lblActions.Name = "_lblActions";
             this._lblActions.Size = new System.Drawing.Size(64, 16);
             this._lblActions.TabIndex = 7;
             this._lblActions.Text = "Actions";
-            // 
+            //
             // panelActions
-            // 
+            //
             this.panelActions.AutoScroll = true;
             this.panelActions.BackColor = System.Drawing.SystemColors.Window;
             this.panelActions.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
@@ -218,9 +217,9 @@ namespace JetBrains.Omea.GUIControls.CustomViews
             this.panelActions.TabIndex = 4;
             this.panelActions.Resize += new EventHandler( panel_Resize );
             this.panelActions.Anchor = (AnchorStyles)(AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Bottom);
-            // 
+            //
             // labelAddAction
-            // 
+            //
             this.labelAddAction.Anchor = (AnchorStyles.Bottom | AnchorStyles.Right);
             this.labelAddAction.Name = "buttonAddAction";
             this.labelAddAction.Size = new System.Drawing.Size(65, 16);
@@ -231,9 +230,9 @@ namespace JetBrains.Omea.GUIControls.CustomViews
             this.labelAddAction.Click += new System.EventHandler(this.AddActionClicked);
             int position = boxActions.Width - _cAddLabelXPosDiff - (int)(labelAddAction.Size.Width * Core.ScaleFactor.Width);
             this.labelAddAction.Location = new System.Drawing.Point(position, 139);
-            // 
+            //
             // EditRuleForm
-            // 
+            //
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
             this.ClientSize = new System.Drawing.Size(398, ciFormHeight);
             this.MinimumSize = new Size( 315, 440 );
@@ -381,7 +380,7 @@ namespace JetBrains.Omea.GUIControls.CustomViews
 
             //-----------------------------------------------------------------
             choosenActions.Sort( new SortSettings( Core.Props.Name, true ) );
-            IResourceList   selected = Core.UIManager.SelectResourcesFromList( this, choosenActions, 
+            IResourceList   selected = Core.UIManager.SelectResourcesFromList( this, choosenActions,
                 "Select Rule Action(s)", "/reference/select_rule_actions.html" );
             if(( selected != null ) && ( selected.Count > 0 ))
             {

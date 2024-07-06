@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Drawing;
@@ -86,7 +85,7 @@ namespace JetBrains.UI.Interop
         public const uint MK_CONTROL  = 0x0008;
         public const uint MK_ALT      = 0x0020;
         public const uint MK_MBUTTON  = 0x0010;
-        public const int TVGN_DROPHILITE = 8;    
+        public const int TVGN_DROPHILITE = 8;
         public const int LOCALE_USER_DEFAULT    = 0x00000400;
         public const int LOCALE_IDATE           = 0x00000021;
         public const int LOCALE_ITIME           = 0x00000023;
@@ -142,7 +141,7 @@ namespace JetBrains.UI.Interop
 
         [DllImport("user32.dll", CharSet=CharSet.Auto)]
         public static extern int SendMessage(IntPtr hWnd, EditMessage msg, ref SETTEXTEX wParam, byte[] lParam );
-    
+
         [DllImport( "user32.dll", CharSet=CharSet.Auto )]
         public static extern int DrawText( IntPtr hDC, string lpString, int nCount, ref RECT lpRect, DrawTextFormatFlags flags );
 
@@ -214,7 +213,7 @@ namespace JetBrains.UI.Interop
 
         [DllImport( "user32.dll" )]
         public static extern int FrameRect( IntPtr hdc, ref RECT lprc, IntPtr hbr );
-    
+
         [DllImport( "user32.dll" )]
         public static extern int FillRect( IntPtr hdc, ref RECT lprc, IntPtr hbr );
 
@@ -302,13 +301,13 @@ namespace JetBrains.UI.Interop
             return ((int)(((byte)(color.R) | ((short)((byte)(color.G)) << 8)) | (((short)(byte)(color.B)) << 16)));
         }
 
-   
+
         public const int CP_WINANSI = 1004;
         public const int CP_WINUNICODE = 1200;
         public static readonly int CP_WINNEUTRAL = Marshal.SystemDefaultCharSize == 2 ? CP_WINUNICODE : CP_WINANSI;
 
 		/// <summary>
-		/// The CreateCompatibleDC function creates a memory device context (DC) compatible with the specified device. 
+		/// The CreateCompatibleDC function creates a memory device context (DC) compatible with the specified device.
 		/// </summary>
 		/// <param name="hdc">Handle to an existing DC. If this handle is NULL, the function creates a memory DC compatible with the application's current screen.</param>
 		/// <returns>If the function succeeds, the return value is the handle to a memory DC. If the function fails, the return value is NULL.</returns>
@@ -383,7 +382,7 @@ namespace JetBrains.UI.Interop
 		}
 
     	/// <summary>
-    	/// The CreateDC function creates a device context (DC) for a device using the specified name. 
+    	/// The CreateDC function creates a device context (DC) for a device using the specified name.
     	/// </summary>
     	/// <param name="lpszDriver">driver name</param>
     	/// <param name="lpszDevice">device name</param>
@@ -410,17 +409,17 @@ namespace JetBrains.UI.Interop
 		/// <returns>Returns the address of the converted string, or <see cref="IntPtr.Zero"/> if the conversion fails.</returns>
 		/// <remarks>
 		/// The following table illustrates how this function converts a numeric value into a text string.
-		/// 
-		/// Numeric value -> Text string 
-		/// 532 532 -> bytes 
-		/// 1340 -> 1.30KB 
-		/// 23506 -> 22.9KB 
-		/// 2400016 -> 2.29MB 
-		/// 2400000000 -> 2.23GB 
+		///
+		/// Numeric value -> Text string
+		/// 532 532 -> bytes
+		/// 1340 -> 1.30KB
+		/// 23506 -> 22.9KB
+		/// 2400016 -> 2.29MB
+		/// 2400000000 -> 2.23GB
 		/// </remarks>
 		[DllImport("shlwapi.dll", CharSet=CharSet.Ansi)]
 		public static extern IntPtr StrFormatByteSize64A(Int64 nSize, byte[] pBuffer, uint nBufSize);
-    	
+
 		/// <summary>
 		/// The GetCurrentThreadId function retrieves the thread identifier of the calling thread.
 		/// Note: same as <see cref="System.AppDomain.GetCurrentThreadId"/>, but doesn't raise the “Obsolete” warning.
@@ -429,7 +428,7 @@ namespace JetBrains.UI.Interop
 		public static extern int GetCurrentThreadId();
 		/// <summary>
 		/// Extends the window frame behind the client area.
-		/// If Desktop Window Manager (DWM) composition is toggled, this function must be called again. Handle the WM_DWMCOMPOSITIONCHANGED message for composition change notification. 
+		/// If Desktop Window Manager (DWM) composition is toggled, this function must be called again. Handle the WM_DWMCOMPOSITIONCHANGED message for composition change notification.
 		/// Negative margins are used to create the "sheet of glass" effect where the client area is rendered as a solid surface with no window border.
 		/// </summary>
 		/// <param name="hwnd">The handle to the window for which the frame is extended into the client area.</param>
@@ -610,7 +609,7 @@ namespace JetBrains.UI.Interop
         CBN_SELENDOK = 9,
         CBN_SELENDCANCEL = 10
     }
-  
+
     public enum EditMessage : int
     {
         FIRST				= 0x400,
@@ -667,7 +666,7 @@ namespace JetBrains.UI.Interop
         public uint flags;
         public int codepage;
     }
- 
+
     public enum SCF : int
     {
         SELECTION		= 0x0001,
@@ -685,7 +684,7 @@ namespace JetBrains.UI.Interop
         //  even if autokeyboard is on
         ASSOCIATEFONT2	= 0x0040,	// Associate plane-2 (surrogate) font
     }
-    
+
     /// <summary>
     /// Represents the Win32 NMTVCUSTOMDRAW structure
     /// </summary>
@@ -701,7 +700,7 @@ namespace JetBrains.UI.Interop
         public int clrTextBk;
 
         /// <summary>
-        /// Zero-based level of the item being drawn. The root item is at level zero, a child of the root item is at level one, and so on. 
+        /// Zero-based level of the item being drawn. The root item is at level zero, a child of the root item is at level one, and so on.
         /// </summary>
         public int iLevel;
     }
@@ -755,7 +754,7 @@ namespace JetBrains.UI.Interop
     public struct NMHDR
     {
         /// <summary>
-        /// Window handle to the control sending a message. 
+        /// Window handle to the control sending a message.
         /// </summary>
         public IntPtr hwndFrom;
 
@@ -1141,13 +1140,13 @@ namespace JetBrains.UI.Interop
     [StructLayout(LayoutKind.Sequential)]
     public struct LOGBRUSH
     {
-        public uint lbStyle; 
-        public uint lbColor; 
-        public uint lbHatch; 
+        public uint lbStyle;
+        public uint lbColor;
+        public uint lbHatch;
     }
 
     [Serializable, StructLayout(LayoutKind.Sequential)]
-    public struct SYSTEMTIME 
+    public struct SYSTEMTIME
     {
         [MarshalAs(UnmanagedType.U2)] public short Year;
         [MarshalAs(UnmanagedType.U2)] public short Month;
@@ -1185,28 +1184,28 @@ namespace JetBrains.UI.Interop
         // Masks and effects defined for CHARFORMAT2 -- an (*) indicates
         // that the data is stored by RichEdit 2.0/3.0, but not displayed
 
-        SMALLCAPS		= 0x0040,			// (*)	
-        ALLCAPS			= 0x0080,			// Displayed by 3.0	
+        SMALLCAPS		= 0x0040,			// (*)
+        ALLCAPS			= 0x0080,			// Displayed by 3.0
         HIDDEN			= 0x0100,			// Hidden by 3.0
-        OUTLINE			= 0x0200,			// (*)	
-        SHADOW			= 0x0400,			// (*)	
-        EMBOSS			= 0x0800,			// (*)	
-        IMPRINT			= 0x1000,			// (*)	
+        OUTLINE			= 0x0200,			// (*)
+        SHADOW			= 0x0400,			// (*)
+        EMBOSS			= 0x0800,			// (*)
+        IMPRINT			= 0x1000,			// (*)
         DISABLED		= 0x2000,
         REVISED			= 0x4000,
         //
         BACKCOLOR		= 0x04000000,
         LCID			= 0x02000000,
         UNDERLINETYPE	= 0x00800000,		// Many displayed by 3.0
-        WEIGHT			= 0x00400000,	
-        SPACING			= 0x00200000,  		// Displayed by 3.0	
-        KERNING			= 0x00100000,  		// (*)	
-        STYLE			= 0x00080000,  		// (*)	
-        ANIMATION		= 0x00040000,  		// (*)	
+        WEIGHT			= 0x00400000,
+        SPACING			= 0x00200000,  		// Displayed by 3.0
+        KERNING			= 0x00100000,  		// (*)
+        STYLE			= 0x00080000,  		// (*)
+        ANIMATION		= 0x00040000,  		// (*)
         REVAUTHOR		= 0x00008000,
 
         CFE_SUBSCRIPT		= 0x00010000,	// Superscript and subscript are
-        CFE_SUPERSCRIPT		= 0x00020000,	//  mutually exclusive			
+        CFE_SUPERSCRIPT		= 0x00020000,	//  mutually exclusive
 
         SUBSCRIPT		= CFE_SUBSCRIPT | CFE_SUPERSCRIPT,
         SUPERSCRIPT		= SUBSCRIPT,
@@ -1247,7 +1246,7 @@ namespace JetBrains.UI.Interop
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct TOOLINFO 
+    public struct TOOLINFO
     {
         public int cbSize;
         public int flags;
@@ -1271,7 +1270,7 @@ namespace JetBrains.UI.Interop
         public IntPtr uId;
         public RECT rect;
         public IntPtr hinst;
-    
+
         public int textCallback;
 
         public IntPtr lparam;

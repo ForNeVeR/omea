@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.IO;
@@ -72,7 +71,7 @@ namespace RegisterPlugin
 		/// <summary>
 		/// Whether the registrar tries all the DLLs in folder.
 		/// </summary>
-		private static bool bFullMode = false;	
+		private static bool bFullMode = false;
 
 		private static void CheckRegisterPlugin(RegistryKey key, string dllName)
 		{

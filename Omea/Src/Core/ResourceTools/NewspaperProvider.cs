@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Drawing;
@@ -176,7 +175,7 @@ namespace JetBrains.Omea.ResourceTools
 
 			// Finally, write the Origin-Date block (if available)
 			if( (sDate.Length > 0) || (sOrigin.Length > 0) || (swFlagCat.ToString().Length > 0) )
-				writer.WriteLine( "<p class=\"Origin\">{3}{4}{0}{2}{1}</p>", sOrigin, sDate, ((sOrigin.Length > 0) && (sDate.Length > 0) ? " — " : ""), swFlagCat.ToString(), (swFlagCat.ToString().Length > 0 ? " " : "") ); // Origin (feed name) & Date 
+				writer.WriteLine( "<p class=\"Origin\">{3}{4}{0}{2}{1}</p>", sOrigin, sDate, ((sOrigin.Length > 0) && (sDate.Length > 0) ? " — " : ""), swFlagCat.ToString(), (swFlagCat.ToString().Length > 0 ? " " : "") ); // Origin (feed name) & Date
 
 			writer.WriteLine( "</td>" );
 
@@ -204,7 +203,7 @@ namespace JetBrains.Omea.ResourceTools
 			{
 				// Collect the cat names
 				StringBuilder sb = StringBuilderPool.Alloc();
-                try 
+                try
                 {
                     foreach( IResource cat in cats )
                     {

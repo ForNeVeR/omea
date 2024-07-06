@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 // JetIeException.h : Declaration of the CJetIeException
 // An object that provides for throwing COM exceptions from the classes that are not COM-aware.
@@ -66,7 +65,7 @@ _COM_SMARTPTR_TYPEDEF(IJetIeException, __uuidof(IJetIeException));
 	helpstring("Internet Explorer Beelaxy Add-on Exception")
 ]
 #endif
-class ATL_NO_VTABLE CJetIeException : 
+class ATL_NO_VTABLE CJetIeException :
 	public IJetIeException
 {
 public:
@@ -81,8 +80,8 @@ public:
 	{
 		return S_OK;
 	}
-	
-	void FinalRelease() 
+
+	void FinalRelease()
 	{
 	}
 

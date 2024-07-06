@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Drawing;
@@ -55,8 +54,8 @@ namespace JetBrains.Omea.GUIControls
         private int         _currFontSize;
 
         private readonly Color  DefltBackColor = Color.FromArgb(192, 192, 255);
-            
-		/// <summary> 
+
+		/// <summary>
 		/// Required designer variable.
 		/// </summary>
 		private System.ComponentModel.Container components = null;
@@ -67,7 +66,7 @@ namespace JetBrains.Omea.GUIControls
 			InitializeComponent();
 		}
 
-		/// <summary> 
+		/// <summary>
 		/// Clean up any resources being used.
 		/// </summary>
 		protected override void Dispose( bool disposing )
@@ -83,8 +82,8 @@ namespace JetBrains.Omea.GUIControls
 		}
 
 		#region Component Designer generated code
-		/// <summary> 
-		/// Required method for Designer support - do not modify 
+		/// <summary>
+		/// Required method for Designer support - do not modify
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent()
@@ -127,9 +126,9 @@ namespace JetBrains.Omea.GUIControls
             this.SuspendLayout();
 
             #region Singular options
-            // 
+            //
             // _chkMarkAsRead
-            // 
+            //
             this._chkMarkAsRead.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._chkMarkAsRead.Location = new System.Drawing.Point(4, 0);
             this._chkMarkAsRead.Name = "_chkMarkAsRead";
@@ -137,9 +136,9 @@ namespace JetBrains.Omea.GUIControls
             this._chkMarkAsRead.TabIndex = 0;
             this._chkMarkAsRead.Text = "Mark item read after displaying for";
             this._chkMarkAsRead.Click += new System.EventHandler(this._chkMarkAsRead_Click);
-            // 
+            //
             // _udMarkAsReadSeconds
-            // 
+            //
             this._udMarkAsReadSeconds.Location = new System.Drawing.Point(244, 0);
             this._udMarkAsReadSeconds.Maximum = new System.Decimal(new int[] {
                                                                                  300,
@@ -154,54 +153,54 @@ namespace JetBrains.Omea.GUIControls
                                                                                0,
                                                                                0,
                                                                                0});
-            // 
+            //
             // label1
-            // 
+            //
             this.label1.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label1.Location = new System.Drawing.Point(288, 1);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(60, 16);
             this.label1.TabIndex = 2;
             this.label1.Text = "second(s)";
-            // 
+            //
             // _chkShowContext
-            // 
+            //
             this._chkShowContext.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._chkShowContext.Location = new System.Drawing.Point(4, 20);
             this._chkShowContext.Name = "_chkShowContext";
             this._chkShowContext.Size = new System.Drawing.Size(336, 16);
             this._chkShowContext.TabIndex = 3;
             this._chkShowContext.Text = "Show context for search results";
-            // 
+            //
             // _chkUseShortDateFormat
-            // 
+            //
             this._chkUseShortDateFormat.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._chkUseShortDateFormat.Location = new System.Drawing.Point(4, 40);
             this._chkUseShortDateFormat.Name = "_chkUseShortDateFormat";
             this._chkUseShortDateFormat.Size = new System.Drawing.Size(336, 16);
             this._chkUseShortDateFormat.TabIndex = 4;
             this._chkUseShortDateFormat.Text = "Use short date format";
-            // 
+            //
             // _chkSwitchToTab
-            // 
+            //
             this._chkSwitchToTab.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._chkSwitchToTab.Location = new System.Drawing.Point(4, 60);
             this._chkSwitchToTab.Name = "_chkSwitchToTab";
             this._chkSwitchToTab.Size = new System.Drawing.Size(350, 16);
             this._chkSwitchToTab.TabIndex = 5;
             this._chkSwitchToTab.Text = "After search switch to tab which owns the results";
-            // 
+            //
             // _chkMinimizeToTray
-            // 
+            //
             this._chkMinimizeToTray.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._chkMinimizeToTray.Location = new System.Drawing.Point(4, 80);
             this._chkMinimizeToTray.Name = "_chkMinimizeToTray";
             this._chkMinimizeToTray.Size = new System.Drawing.Size(320, 16);
             this._chkMinimizeToTray.TabIndex = 6;
             this._chkMinimizeToTray.Text = "Minimize to the system tray";
-            // 
+            //
             // checkTrayIconMode
-            // 
+            //
             this._chkTrayIconMode.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._chkTrayIconMode.Location = new System.Drawing.Point(4, 100);
             this._chkTrayIconMode.Name = "_chkTrayIconMode";
@@ -211,7 +210,7 @@ namespace JetBrains.Omea.GUIControls
             this._chkTrayIconMode.CheckedChanged += new System.EventHandler(this.checkTrayIconMode_CheckedChanged);
             //
             // _chkIdleTextIndex
-            // 
+            //
             this._chkIdleTextIndex.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._chkIdleTextIndex.Location = new System.Drawing.Point(4, 120);
             this._chkIdleTextIndex.Name = "_chkIdleTextIndex";
@@ -253,45 +252,45 @@ namespace JetBrains.Omea.GUIControls
 		    _grpBalloonUI.Location = new Point(4, 230);
 		    _grpBalloonUI.Size = new Size(348, 72);
 		    _grpBalloonUI.Text = "Notification Balloon";
-            // 
+            //
             // labelPeriodOfActivity
-            // 
+            //
             this.labelPeriodOfActivity.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.labelPeriodOfActivity.Location = new System.Drawing.Point(8, 18);
             this.labelPeriodOfActivity.Name = "labelPeriodOfActivity";
             this.labelPeriodOfActivity.Size = new System.Drawing.Size(90, 16);
             this.labelPeriodOfActivity.TabStop = false;
             this.labelPeriodOfActivity.Text = "Activity period:";
-            // 
+            //
             // _udPeriod
-            // 
+            //
             this._udPeriod.Location = new System.Drawing.Point(100, 16);
             this._udPeriod.Name = "_udPeriod";
             this._udPeriod.Size = new System.Drawing.Size(36, 21);
             this._udPeriod.TabIndex = 1;
             this._udPeriod.Maximum = new System.Decimal(new int[] { 10, 0, 0, 0});
             this._udPeriod.Minimum = new System.Decimal(new int[] { 1, 0, 0, 0});
-            // 
+            //
             // labelSeconds
-            // 
+            //
             this.labelSeconds.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.labelSeconds.Location = new System.Drawing.Point(145, 18);
             this.labelSeconds.Name = "labelSeconds";
             this.labelSeconds.Size = new System.Drawing.Size(60, 16);
             this.labelSeconds.TabStop = false;
             this.labelSeconds.Text = "second(s)";
-            // 
+            //
             // labelBackColor
-            // 
+            //
             this.labelBackColor.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.labelBackColor.Location = new System.Drawing.Point(8, 47);
             this.labelBackColor.Name = "labelBackColor";
             this.labelBackColor.Size = new System.Drawing.Size(90, 16);
             this.labelBackColor.TabStop = false;
             this.labelBackColor.Text = "Background color:";
-            // 
+            //
             // panelSample
-            // 
+            //
             this.panelSample.AutoScroll = false;
             this.panelSample.BackColor = System.Drawing.Color.White;
             this.panelSample.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
@@ -299,9 +298,9 @@ namespace JetBrains.Omea.GUIControls
             this.panelSample.Name = "panelSample";
             this.panelSample.Size = new System.Drawing.Size(40, 20);
             this.panelSample.TabStop = false;
-            // 
+            //
             // buttonChangeForeground
-            // 
+            //
             this.btnChangeBack.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.btnChangeBack.Location = new System.Drawing.Point(150, 45);
             this.btnChangeBack.Size = new System.Drawing.Size(22, 18);
@@ -319,10 +318,10 @@ namespace JetBrains.Omea.GUIControls
             #endregion Notification Balloon UI options.
 
             #region Group Font Attributes
-			// 
+			//
 			// _grpFontChars
-			// 
-			this._grpFontChars.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			//
+			this._grpFontChars.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
 				| System.Windows.Forms.AnchorStyles.Right)));
 			this._grpFontChars.Controls.Add(_lblFontFamily);
 			this._grpFontChars.Controls.Add(_txtFont);
@@ -335,9 +334,9 @@ namespace JetBrains.Omea.GUIControls
 			this._grpFontChars.TabIndex = 0;
 			this._grpFontChars.TabStop = false;
 			this._grpFontChars.Text = "Resource Content Font Settings";
-			// 
+			//
 			// _lblFontFamily
-			// 
+			//
 			this._lblFontFamily.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this._lblFontFamily.Location = new System.Drawing.Point(8, 20);
 			this._lblFontFamily.Name = "_lblFontFamily";
@@ -345,9 +344,9 @@ namespace JetBrains.Omea.GUIControls
 			this._lblFontFamily.TabIndex = 2;
 			this._lblFontFamily.Text = "F&ont:";
 			this._lblFontFamily.UseMnemonic = true;
-            // 
+            //
             // _txtFont
-            // 
+            //
             this._txtFont.Anchor = (System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left);
             this._txtFont.Location = new System.Drawing.Point(57, 16);
             this._txtFont.Name = "_txtFont";
@@ -355,9 +354,9 @@ namespace JetBrains.Omea.GUIControls
             this._txtFont.TabIndex = 3;
             this._txtFont.ReadOnly = true;
             this._txtFont.Text = Core.UIManager.DefaultFontFace + ", " + Core.UIManager.DefaultFontSize;
-			// 
+			//
 			// _btnChangeFont
-			// 
+			//
 			this._btnChangeFont.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)));
 			this._btnChangeFont.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this._btnChangeFont.Location = new System.Drawing.Point(200, 15);
@@ -368,9 +367,9 @@ namespace JetBrains.Omea.GUIControls
             #endregion Group Font Attributes
 
             #region Subject Prefixes
-            // 
+            //
             // _grpSubjectPrefixed
-            // 
+            //
             this._grpSubjectPrefixed.Anchor = ( AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right);
             this._grpSubjectPrefixed.Controls.Add( _editSubjectPrefixes );
             this._grpSubjectPrefixed.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -403,10 +402,10 @@ namespace JetBrains.Omea.GUIControls
             _grpSubjectPrefixed.Controls.Add( _labelPrefixesList );
             _grpSubjectPrefixed.Controls.Add( _editSubjectPrefixes );
             #endregion Subject Prefixes
-            
-            // 
+
+            //
             // InterfaceOptions
-            // 
+            //
             Controls.Add( _chkIdleTextIndex );
             Controls.Add( _chkTrayIconMode );
             Controls.Add( _chkShowContext );

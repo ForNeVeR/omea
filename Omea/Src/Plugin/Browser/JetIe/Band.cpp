@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 // Band.cpp : Implementation of CBand
 //
@@ -140,7 +139,7 @@ STDMETHODIMP CBand::GetBandInfo(DWORD dwBandID, DWORD dwViewMode, DESKBANDINFO* 
 		CStringW	sTitle;
 		// Get the toolbar title if it should be shown, otherwise, leave it blank
 		if((m_xmlControls != NULL) && (m_xmlControls->selectSingleNode(L"@ShowTitle") != NULL) && ((long)m_xmlControls->getAttribute(L"ShowTitle")))
-			sTitle = (LPCWSTR)(_bstr_t)m_xmlControls->getAttribute(L"Title");			
+			sTitle = (LPCWSTR)(_bstr_t)m_xmlControls->getAttribute(L"Title");
 		StringCchCopyW(pdbi->wszTitle, 0x10, (LPCWSTR)sTitle);	// Copy the title
 	}
 
@@ -300,7 +299,7 @@ BOOL CBand::CreateControls()
 	{
 		// Remove the old toolbar controls (if any)
 		for(int a = 0; (a < 0x1000) && (SendMessage(TB_DELETEBUTTON, 0, 0)); a++)
-			;	// Delete the first button while there are more buttons		
+			;	// Delete the first button while there are more buttons
 
 		TBBUTTON	btn;
 		ZeroMemory(&btn, sizeof(btn));
@@ -665,7 +664,7 @@ LRESULT CBand::OnDropDown(int idCtrl, LPNMHDR pnmh, BOOL& bHandled)
 					XmlElement	xmlControlsLive = m_oActionManager->ControlFamilyFromGuid(m_guidToolbar, L"Toolbar");
 					xmlControlsLive->xml;
 					XmlElement	xmlControlNew = m_oActionManager->ControlFromEntryID(xmlControl->getAttribute(L"EntryID"), xmlControlsLive, true);
-					xmlControlNew->setAttribute(L"Default", xmlClicked->getAttribute(L"EntryID"));                    						
+					xmlControlNew->setAttribute(L"Default", xmlClicked->getAttribute(L"EntryID"));
 
 					// Persist the changes
 					m_oActionManager->Save();
@@ -939,11 +938,11 @@ bool CBand::GetChevronVisible()
 }
 
 LRESULT CBand::OnPaint(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled)
-{	
+{
 	DefWindowProc();
 
 	//PAINTSTRUCT	ps;
-		
+
 	////////////
 	// Chevron
 	if(ChevronVisible)

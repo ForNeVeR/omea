@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.ComponentModel;
@@ -148,9 +147,9 @@ namespace RSSPlugin
 			_htmled = new MshtmlEdit();
 			Closing += new CancelEventHandler( OnBeforeCloseForm );
 			SuspendLayout();
-			// 
+			//
 			// _txtTitle
-			// 
+			//
 			_txtTitle.Location = new Point( 36, 100 );
 			_txtTitle.Name = "_txtTitle";
 			_txtTitle.TabIndex = 1;
@@ -158,16 +157,16 @@ namespace RSSPlugin
 			_txtTitle.Dock = DockStyle.Top;
 			_txtTitle.TextChanged += new EventHandler( OnTitleChanged );
 			_txtTitle.KeyDown += new KeyEventHandler( OnEditorKeyDown );
-			// 
+			//
 			// _htmled
-			// 
+			//
 			_htmled.Name = "_htmled";
 			_htmled.TabIndex = 2;
 			_htmled.Dock = DockStyle.Fill;
 			_htmled.add_KeyDown( new KeyEventHandler( OnEditorKeyDown ) );
-			// 
+			//
 			// _toolbar
-			// 
+			//
 //			_toolbar.DropDownArrows = true;
 			_toolbar.Location = new Point( 0, 0 );
 			_toolbar.Name = "_toolbar";
@@ -182,9 +181,9 @@ namespace RSSPlugin
 			_panelBody.Dock = DockStyle.Fill;
 			_panelBody.Name = "_panelBody";
 			_panelBody.TabIndex = 2;
-			// 
+			//
 			// BlogExtensionComposer
-			// 
+			//
 			AutoScaleBaseSize = new Size( 5, 13 );
 			ClientSize = new Size( 800, 600 );
 			Controls.Add( _panelBody );

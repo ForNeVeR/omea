@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.ComponentModel;
@@ -20,7 +19,7 @@ namespace JetBrains.Omea
 	/**
      * The collapsed version of the links pane.
      */
-    
+
     internal class LinksBar: LinksPaneBase
 	{
         private const int _cSpaceAfterLinkType = 6;
@@ -61,7 +60,7 @@ namespace JetBrains.Omea
             _defltVerticalViewLines = Core.SettingStore.ReadInt( "LinksBar", "VerticalViewLines", 3 );
         }
 
-        /// <summary> 
+        /// <summary>
 		/// Clean up any resources being used.
 		/// </summary>
 		protected override void Dispose( bool disposing )
@@ -79,8 +78,8 @@ namespace JetBrains.Omea
         public event EventHandler LinksPaneExpandChanged;
 
 		#region Component Designer generated code
-		/// <summary> 
-		/// Required method for Designer support - do not modify 
+		/// <summary>
+		/// Required method for Designer support - do not modify
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent()
@@ -92,9 +91,9 @@ namespace JetBrains.Omea
 		    _contactThumb = new Panel();
             this._iconImages = new System.Windows.Forms.ImageList(this.components);
             this.SuspendLayout();
-            // 
+            //
             // _btnExpand
-            // 
+            //
             this._btnExpand.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this._btnExpand.BackColor = Color.Transparent;
             this._btnExpand.ImageList = this._iconImages;
@@ -113,15 +112,15 @@ namespace JetBrains.Omea
             _contactThumb.Size = new Size(48, 48);
 		    _contactThumb.Anchor = AnchorStyles.Left | AnchorStyles.Top;
 		    _contactThumb.BackColor = Color.FromArgb( 0, DefaultBackColor );
-            // 
+            //
             // _iconImages
-            // 
+            //
             this._iconImages.ImageSize = new System.Drawing.Size(16, 16);
             this._iconImages.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("_iconImages.ImageStream")));
             this._iconImages.TransparentColor = System.Drawing.Color.Transparent;
-            // 
+            //
             // LinksBar
-            // 
+            //
             this.Controls.Add(this._btnExpand);
             this.Controls.Add(_contactThumb);
             this.Name = "LinksBar";
@@ -193,7 +192,7 @@ namespace JetBrains.Omea
             }
             else
             {
-                stateStartIndex = _expanded ? 0 : 3;                
+                stateStartIndex = _expanded ? 0 : 3;
             }
             _btnExpand.NormalImageIndex = stateStartIndex;
             _btnExpand.HotImageIndex = stateStartIndex + 1;
@@ -219,7 +218,7 @@ namespace JetBrains.Omea
          */
 
         public void DisplayLinks( IResource res, ILinksPaneFilter filter )
-        {                                                              
+        {
             _resource = res;
             SetResourceList( res == null ? null : res.ToResourceList(), filter );
             UpdateLinksPane();
@@ -235,7 +234,7 @@ namespace JetBrains.Omea
             {
                 return;
             }
-            
+
             _linkTypeLabelPool.MoveControlsToPool();
             _resourceLinkLabelPool.MoveControlsToPool();
             _actionLabelPool.MoveControlsToPool();
@@ -326,7 +325,7 @@ namespace JetBrains.Omea
                     }
                 }
             }
-                
+
             LinkSection startSection = section;
             while( section != null )
             {
@@ -394,12 +393,12 @@ namespace JetBrains.Omea
             }
 
             if ( _verticalViewExpanded )
-            {   
+            {
                 if ( customPropIds != null || actionItems.Length > 0 )
                 {
                     curY += 2;       // 2 is delta in AddLinkTypeLabel()
                 }
-                
+
                 if ( customPropIds != null )
                 {
                     curX = maxWidth + 20;
@@ -448,7 +447,7 @@ namespace JetBrains.Omea
             ResourceLinkLabel lastLabel = null;
             foreach( LinkItem linkItem in section.LinkItems )
             {
-                ResourceLinkLabel lbl = AddResourceLabel( linkItem.Resource, linkItem.PropId, 
+                ResourceLinkLabel lbl = AddResourceLabel( linkItem.Resource, linkItem.PropId,
                                                           ref curX, curY );
                 if ( curX >= Width - 20 && (!_verticalViewMode || lastLabel != null ) )
                 {
@@ -551,12 +550,12 @@ namespace JetBrains.Omea
         /**
          * Creates a link type label for the pool.
          */
-        
+
         private Control OnCreateLinkTypeLabel()
         {
             Label typeLabel = new Label();
             typeLabel.Font = _linkTypeLabelFont;
-            typeLabel.ForeColor = ColorScheme.GetColor( _colorScheme, "LinksBar.LinkTypeText", 
+            typeLabel.ForeColor = ColorScheme.GetColor( _colorScheme, "LinksBar.LinkTypeText",
                 Color.FromArgb( 96, 96, 96 ) );
             typeLabel.BackColor = Color.FromArgb( 0, DefaultBackColor );
             typeLabel.AutoSize = true;
@@ -566,7 +565,7 @@ namespace JetBrains.Omea
         /**
          * Creates a resource link label for the pool.
          */
-        
+
         private Control OnCreateResourceLinkLabel()
         {
             ResourceLinkLabel linkLabel = new ResourceLinkLabel();
@@ -598,21 +597,21 @@ namespace JetBrains.Omea
         /**
          * Fills the control with a gradient background.
          */
-        
+
         protected override void OnPaintBackground( PaintEventArgs pevent )
         {
             base.OnPaintBackground( pevent );
 
             if ( !_verticalViewMode )
             {
-                pevent.Graphics.FillRectangle( 
+                pevent.Graphics.FillRectangle(
                     ColorScheme.GetBrush( _colorScheme, "LinksBar.Background", ClientRectangle, SystemBrushes.Control ),
                     ClientRectangle );
             }
             else
             {
                 Rectangle rc = ClientRectangle;
-                pevent.Graphics.FillRectangle( 
+                pevent.Graphics.FillRectangle(
                     ColorScheme.GetBrush( _colorScheme, "LinksBar.VerticalBackground", rc, SystemBrushes.Control ),
                     rc );
             }

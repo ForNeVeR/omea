@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections.Generic;
@@ -20,7 +19,7 @@ namespace JetBrains.Omea.GUIControls
 
         public MenuHostWrapper( ToolStripDropDown menuStrip, MethodInvoker action )
         {
-            _menuParent = menuStrip; 
+            _menuParent = menuStrip;
             menuStrip.Opening += delegate { action.Invoke(); };
         }
         public MenuHostWrapper( ToolStripDropDownItem menuItem, MethodInvoker action )
@@ -31,8 +30,8 @@ namespace JetBrains.Omea.GUIControls
 
         public ToolStripItemCollection Items
         {
-            get {  return (_menuParent is ContextMenuStrip) ? 
-                            ((ContextMenuStrip)_menuParent).Items : 
+            get {  return (_menuParent is ContextMenuStrip) ?
+                            ((ContextMenuStrip)_menuParent).Items :
                             ((ToolStripMenuItem)_menuParent).DropDownItems;  }
         }
     }
@@ -297,7 +296,7 @@ namespace JetBrains.Omea.GUIControls
                 if( !IsSeparatorSuppressedBetweenGroups( lastGroup, group ) &&
                     IsParentContainerKeeped( items, lastGroup, group ) )
                     items.Add( new ToolStripSeparator() );
-                
+
                 if( !IsParentContainerKeeped( items, lastGroup, group ) )
                     items = _menu.Items;
 
@@ -316,7 +315,7 @@ namespace JetBrains.Omea.GUIControls
                 foreach( MenuAction action in group.Actions )
                 {
                     ToolStripMenuItem item = AddActionToMenu( action, items, context, usedShortcuts );
-                    if( !haveDefaultAction && selection.Count == 1 && 
+                    if( !haveDefaultAction && selection.Count == 1 &&
                         Core.ActionManager.GetDoubleClickAction( selection[ 0 ] ) == action.Action )
                     {
                         item.Font = new Font( item.Font, FontStyle.Bold );
@@ -339,7 +338,7 @@ namespace JetBrains.Omea.GUIControls
                    (group.SubmenuName.Equals( lastGroup.SubmenuName ));
         }
 
-        private ToolStripMenuItem AddActionToMenu( MenuAction menuAction, ToolStripItemCollection curMenuItems, 
+        private ToolStripMenuItem AddActionToMenu( MenuAction menuAction, ToolStripItemCollection curMenuItems,
                                                    IActionContext context, HashSet usedShortcuts )
         {
             ActionPresentation presentation = new ActionPresentation();
@@ -386,7 +385,7 @@ namespace JetBrains.Omea.GUIControls
             UpdateMenuActions( context, resTypes, _menu.Items );
         }
 
-        private bool UpdateMenuActions( IActionContext context, string[] resTypes, 
+        private bool UpdateMenuActions( IActionContext context, string[] resTypes,
                                         ToolStripItemCollection items )
         {
             bool anyVisible = false;

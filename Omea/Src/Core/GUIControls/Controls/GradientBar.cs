@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System.Drawing;
 using System.Windows.Forms;
@@ -14,7 +13,7 @@ namespace JetBrains.Omea.GUIControls
 	/// </summary>
 	public class GradientBar : UserControl
 	{
-		/// <summary> 
+		/// <summary>
 		/// Required designer variable.
 		/// </summary>
 		private System.ComponentModel.Container components;
@@ -28,12 +27,12 @@ namespace JetBrains.Omea.GUIControls
 			// This call is required by the Windows.Forms Form Designer.
 			InitializeComponent();
 
-			SetStyle( ControlStyles.UserPaint | ControlStyles.AllPaintingInWmPaint | ControlStyles.ResizeRedraw, 
+			SetStyle( ControlStyles.UserPaint | ControlStyles.AllPaintingInWmPaint | ControlStyles.ResizeRedraw,
                 true );
             SetStyle( ControlStyles.Selectable, false );
 		}
 
-		/// <summary> 
+		/// <summary>
 		/// Clean up any resources being used.
 		/// </summary>
 		protected override void Dispose( bool disposing )
@@ -49,8 +48,8 @@ namespace JetBrains.Omea.GUIControls
 		}
 
 		#region Component Designer generated code
-		/// <summary> 
-		/// Required method for Designer support - do not modify 
+		/// <summary>
+		/// Required method for Designer support - do not modify
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent()
@@ -63,12 +62,12 @@ namespace JetBrains.Omea.GUIControls
 	    public Color StartColor
 	    {
 	        get { return _startColor; }
-	        set 
-            { 
+	        set
+            {
                 if ( _startColor != value )
                 {
-                    _startColor = value; 
-                    Invalidate();                    
+                    _startColor = value;
+                    Invalidate();
                 }
             }
 	    }
@@ -77,11 +76,11 @@ namespace JetBrains.Omea.GUIControls
 	    public Color EndColor
 	    {
 	        get { return _endColor; }
-	        set 
-            { 
+	        set
+            {
                 if ( _endColor != value )
                 {
-                    _endColor = value; 
+                    _endColor = value;
                     Invalidate();
                 }
             }
@@ -90,11 +89,11 @@ namespace JetBrains.Omea.GUIControls
 	    public LinearGradientMode GradientMode
 	    {
 	        get { return _gradientMode; }
-	        set 
-            { 
+	        set
+            {
                 if ( _gradientMode != value )
                 {
-                    _gradientMode = value; 
+                    _gradientMode = value;
                     Invalidate();
                 }
             }

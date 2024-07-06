@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 namespace JetBrains.Interop.WinApi
 {
@@ -11,7 +10,7 @@ namespace JetBrains.Interop.WinApi
 	public enum WindowLongPtrIndex
 	{
 		/// <summary>
-		/// Sets a new extended window style. For more information, see CreateWindowEx. 
+		/// Sets a new extended window style. For more information, see CreateWindowEx.
 		/// </summary>
 		GWL_EXSTYLE = (-20),
 
@@ -21,7 +20,7 @@ namespace JetBrains.Interop.WinApi
 		GWL_STYLE = (-16),
 
 		/// <summary>
-		/// Sets a new address for the window procedure. 
+		/// Sets a new address for the window procedure.
 		/// Same as GWL_WNDPROC that is for non-“ptr” versions.
 		/// </summary>
 		GWLP_WNDPROC = (-4),
@@ -62,7 +61,7 @@ namespace JetBrains.Interop.WinApi
 		DWLP_MSGRESULT = 0,
 
 		/// <summary>
-		/// Sets new extra information that is private to the application, such as handles or pointers.			
+		/// Sets new extra information that is private to the application, such as handles or pointers.
 		/// Valid for dialog boxes only.
 		/// </summary>
 		DWLP_USER = DWLP_DLGPROC + 4, // Note: non-64bit-safe!!

@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -29,7 +28,7 @@ namespace JetBrains.Omea.RSSPlugin
         {
             Core.ActionManager.RegisterContextMenuActionGroup( "BlogExtensions", "Blog This", ListAnchor.Last );
             Core.ActionManager.RegisterContextMenuActionGroup( "BlogExtensionsConfigure", "Blog This", ListAnchor.Last );
-            Core.ActionManager.RegisterContextMenuAction( new ConfigureExtensionsAction(), "BlogExtensionsConfigure", 
+            Core.ActionManager.RegisterContextMenuAction( new ConfigureExtensionsAction(), "BlogExtensionsConfigure",
                                                           ListAnchor.Last, "Configure Extensions...", null, "RSSItem", null );
 
             string pluginPath = Path.Combine( Application.StartupPath, "plugins" );
@@ -84,12 +83,12 @@ namespace JetBrains.Omea.RSSPlugin
                                 ex = (ex as TargetInvocationException).InnerException;
                             }
                             DialogResult dr = MessageBox.Show( Core.MainWindow,
-                                "Exception when initializing weblog posting extension " + fileName + 
+                                "Exception when initializing weblog posting extension " + fileName +
                                     ":\r\n" + ex.Message + "\r\nWould you like to uninstall the extension?",
                                 Core.ProductFullName, MessageBoxButtons.YesNo );
                             if ( dr == DialogResult.Yes )
                             {
-                                UninstallExtensionFile( fileName );                                
+                                UninstallExtensionFile( fileName );
                             }
                             return null;
                         }
@@ -140,7 +139,7 @@ namespace JetBrains.Omea.RSSPlugin
 	    private static IAction RegisterBlogExtensionAction( IBlogExtension extension )
 	    {
             BlogExtensionAction extAction = new BlogExtensionAction( extension );
-            Core.ActionManager.RegisterContextMenuAction( extAction, "BlogExtensions", ListAnchor.Last, 
+            Core.ActionManager.RegisterContextMenuAction( extAction, "BlogExtensions", ListAnchor.Last,
                                                           extension.DisplayName, null, "RSSItem", null );
             return extAction;
 	    }

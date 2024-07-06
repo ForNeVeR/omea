@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 
 using System;
@@ -43,7 +42,7 @@ namespace JetBrains.Omea.PDFPlugin
 			else
 			{
 				_ocxDisplayer = new AcrobatOcxDisplayer();
-				Core.PluginLoader.RegisterResourceDisplayer( "PdfFile", _ocxDisplayer );                
+				Core.PluginLoader.RegisterResourceDisplayer( "PdfFile", _ocxDisplayer );
 			}
 
 			if( !File.Exists( Application.StartupPath + "\\pdftotext.exe" ) )
@@ -201,7 +200,7 @@ namespace JetBrains.Omea.PDFPlugin
 		{
 			return _axPdf;
 		}
-        
+
 		void IDisplayPane.DisplayResource( IResource resource )
 		{
 			try
@@ -215,7 +214,7 @@ namespace JetBrains.Omea.PDFPlugin
 				Core.ReportBackgroundException( exc );
 			}
 		}
-        
+
 		void IDisplayPane.EndDisplayResource( IResource resource )
 		{
 		}
@@ -274,7 +273,7 @@ namespace JetBrains.Omea.PDFPlugin
 		{
 			return _axPdf;
 		}
-        
+
 		void IDisplayPane.DisplayResource( IResource resource )
 		{
 			if( resource == null )
@@ -302,7 +301,7 @@ namespace JetBrains.Omea.PDFPlugin
 				Core.ReportBackgroundException( exc );
 			}
 		}
-        
+
 		void IDisplayPane.EndDisplayResource( IResource resource )
 		{
 		}
@@ -339,7 +338,7 @@ namespace JetBrains.Omea.PDFPlugin
     internal class AcrobatWebDisplayer: IResourceDisplayer
     {
         #region IResourceDisplayer Members
-        
+
         public IDisplayPane CreateDisplayPane( string resourceType )
         {
             return new BrowserDisplayPane( new DisplayResourceInBrowserDelegate( DisplayPdf ) );

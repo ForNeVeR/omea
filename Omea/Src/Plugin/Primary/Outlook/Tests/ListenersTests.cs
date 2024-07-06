@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Web.Mail;
@@ -39,10 +38,10 @@ namespace OutlookPlugin.Tests
         {
             OutlookSession.Uninitialize();
             OutlookKiller.KillFatAsses();
-            CloseStorage();     
+            CloseStorage();
         }
-        
-        [Test, Ignore( "Investigating problems on OMNIAMEA-UNIT")] 
+
+        [Test, Ignore( "Investigating problems on OMNIAMEA-UNIT")]
         public void TestNewMail()
         {
             TestNewMessage newMailListener = new TestNewMessage();
@@ -77,7 +76,7 @@ namespace OutlookPlugin.Tests
                 _subject = Environment.TickCount.ToString();
                 Console.WriteLine( "init subject = " + _subject );
 
-                JetBrains.Util.MailUtil.SendEMail( "zhu@intellij.com", to, "mail.intellij.net", "RuleTest", 
+                JetBrains.Util.MailUtil.SendEMail( "zhu@intellij.com", to, "mail.intellij.net", "RuleTest",
                     MailFormat.Text, _subject, false, new MailAttachment[0], false );
                 int ticks = Environment.TickCount;
                 OutlookMailDeliver.DeliverNow();
@@ -91,14 +90,14 @@ namespace OutlookPlugin.Tests
             public void CheckCompletion()
             {
                 Tracer._Trace( "CheckCompletion" );
-                
+
                 int ticks = Environment.TickCount;
                 while ( ( Environment.TickCount - ticks ) < 60000 )
                 {
                     System.Threading.Thread.Sleep( 1 );
                     Application.DoEvents();
                 }
-                
+
                 Assert.AreEqual( true, _complete );
                 _complete = false;
             }
@@ -181,7 +180,7 @@ namespace OutlookPlugin.Tests
                             return;
                         }
                         Console.WriteLine( "Subject + " +  message.GetStringProp( MAPIConst.PR_SUBJECT ) );
-                        
+
                         Assert.IsNotNull( message );
                         using( message )
                         {
@@ -265,7 +264,7 @@ namespace OutlookPlugin.Tests
 
             private void LoadMessageID()
             {
-                IEFolder folderFirst = 
+                IEFolder folderFirst =
                     OutlookSession.OpenFolder( _folderFirst.FolderIDs.EntryId, _folderFirst.FolderIDs.StoreId );
                 Assert.IsNotNull( folderFirst );
                 using ( folderFirst )
@@ -295,12 +294,12 @@ namespace OutlookPlugin.Tests
             }
             private void MoveMessage( FolderDescriptor source, FolderDescriptor  destination )
             {
-                IEFolder srcFolder = 
+                IEFolder srcFolder =
                     OutlookSession.OpenFolder( source.FolderIDs.EntryId, source.FolderIDs.StoreId );
                 Assert.IsNotNull( srcFolder );
                 using ( srcFolder )
                 {
-                    IEFolder destFolder = 
+                    IEFolder destFolder =
                         OutlookSession.OpenFolder( destination.FolderIDs.EntryId, destination.FolderIDs.StoreId );
                     Assert.IsNotNull( destFolder );
                     using ( destFolder )

@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System.Windows.Forms;
 
@@ -39,7 +38,7 @@ namespace JetBrains.Omea.Jiffa
 		///<summary>
 		///
 		///            Called always when the pane is left in the dialog.
-		///            
+		///
 		///</summary>
 		///
 		public override void LeavePane()
@@ -53,7 +52,7 @@ namespace JetBrains.Omea.Jiffa
 		///
 		///<seealso cref="T:JetBrains.Omea.OpenAPI.ISettingStore" />
 		///            Called when the Options dialog or the Startup Wizard is closed with the OK button.
-		///            
+		///
 		///</summary>
 		///
 		///<remarks>

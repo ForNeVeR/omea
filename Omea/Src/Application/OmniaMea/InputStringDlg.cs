@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Drawing;
@@ -67,9 +66,9 @@ namespace JetBrains.Omea
             this._lblValidateError = new System.Windows.Forms.Label();
             this._btnHelp = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
+            //
             // _lblPrompt
-            // 
+            //
             this._lblPrompt.AutoSize = true;
             this._lblPrompt.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._lblPrompt.Location = new System.Drawing.Point(4, 4);
@@ -77,10 +76,10 @@ namespace JetBrains.Omea
             this._lblPrompt.Size = new System.Drawing.Size(111, 17);
             this._lblPrompt.TabIndex = 0;
             this._lblPrompt.Text = "Please enter a string:";
-            // 
+            //
             // _edtString
-            // 
-            this._edtString.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._edtString.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._edtString.Location = new System.Drawing.Point(4, 24);
             this._edtString.Name = "_edtString";
@@ -88,9 +87,9 @@ namespace JetBrains.Omea
             this._edtString.TabIndex = 1;
             this._edtString.Text = "";
             this._edtString.TextChanged += new System.EventHandler(this._edtString_TextChanged);
-            // 
+            //
             // _btnOK
-            // 
+            //
             this._btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this._btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this._btnOK.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -98,9 +97,9 @@ namespace JetBrains.Omea
             this._btnOK.Name = "_btnOK";
             this._btnOK.TabIndex = 2;
             this._btnOK.Text = "OK";
-            // 
+            //
             // _btnCancel
-            // 
+            //
             this._btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this._btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this._btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -108,9 +107,9 @@ namespace JetBrains.Omea
             this._btnCancel.Name = "_btnCancel";
             this._btnCancel.TabIndex = 3;
             this._btnCancel.Text = "Cancel";
-            // 
+            //
             // _lblValidateError
-            // 
+            //
             this._lblValidateError.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._lblValidateError.ForeColor = System.Drawing.Color.Red;
             this._lblValidateError.Location = new System.Drawing.Point(4, 52);
@@ -119,9 +118,9 @@ namespace JetBrains.Omea
             this._lblValidateError.TabIndex = 4;
             this._lblValidateError.Text = "The string is not valid";
             this._lblValidateError.Visible = false;
-            // 
+            //
             // _btnHelp
-            // 
+            //
             this._btnHelp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this._btnHelp.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._btnHelp.Location = new System.Drawing.Point(304, 75);
@@ -130,9 +129,9 @@ namespace JetBrains.Omea
             this._btnHelp.Text = "Help";
             this._btnHelp.Visible = false;
             this._btnHelp.Click += new System.EventHandler(this._btnHelp_Click);
-            // 
+            //
             // InputStringDlg
-            // 
+            //
             this.AcceptButton = this._btnOK;
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
             this.CancelButton = this._btnCancel;
@@ -164,7 +163,7 @@ namespace JetBrains.Omea
                 _lblValidateError.Visible = false;
                 _btnOK.Enabled = false;
 	        }
-            else 
+            else
             {
                 if ( _validateStringDelegate != null )
 	            {
@@ -213,7 +212,7 @@ namespace JetBrains.Omea
             get { return _edtString.Text; }
             set { _edtString.Text = value; }
         }
-	    
+
         public ValidateStringDelegate ValidateStringDelegate
 	    {
 	        set

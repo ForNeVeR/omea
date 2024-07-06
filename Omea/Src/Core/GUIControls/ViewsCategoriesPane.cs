@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections.Generic;
@@ -38,8 +37,8 @@ namespace JetBrains.Omea.GUIControls
 
         public bool ShowWorkspaceOtherView
         {
-            get 
-            { 
+            get
+            {
                 return _dataProvider.ResourceChildProvider != null;
             }
             set
@@ -73,10 +72,10 @@ namespace JetBrains.Omea.GUIControls
                 _resourceTree.Filters.Remove( _workspaceCategoryFilter );
                 _workspaceCategoryFilter.Dispose();
             }
-    
+
             if ( workspace != null )
             {
-                IResourceList workspaceCategories = Core.WorkspaceManager.GetWorkspaceResourcesLive( workspace, 
+                IResourceList workspaceCategories = Core.WorkspaceManager.GetWorkspaceResourcesLive( workspace,
                     "Category" ).Union( Core.WorkspaceManager.GetWorkspaceResourcesLive( workspace, "ResourceTreeRoot" ) );
                 _workspaceCategoryFilter = new WorkspaceCategoryFilter( workspace, workspaceCategories );
                 _resourceTree.Filters.Add( _workspaceCategoryFilter );
@@ -90,7 +89,7 @@ namespace JetBrains.Omea.GUIControls
 	}
 
     /// <summary>
-    /// The filter which accepts categories only if they, or their children, are linked 
+    /// The filter which accepts categories only if they, or their children, are linked
     /// to the specified workspace.
     /// </summary>
     internal class WorkspaceCategoryFilter: IJetListViewNodeFilter, IDisposable
@@ -98,7 +97,7 @@ namespace JetBrains.Omea.GUIControls
         private readonly IResource _workspace;
         private readonly IResourceList _workspaceCategories;
         private readonly List<int> _workspaceCategoryList = new List<int>();
-        
+
         internal WorkspaceCategoryFilter( IResource workspace, IResourceList workspaceCategories )
         {
             _workspace = workspace;
@@ -116,8 +115,8 @@ namespace JetBrains.Omea.GUIControls
 
         /**
          * Builds the list of categories added to the workspace and their parents.
-         */        
-        
+         */
+
         private void UpdateFilterList( IResource removedCategory )
         {
             _workspaceCategoryList.Clear();
@@ -158,7 +157,7 @@ namespace JetBrains.Omea.GUIControls
         /**
          * Updates the filter list when categories are added or removed from the workspace.
          */
-        
+
         private void OnWorkspaceCategoryAdded( object sender, ResourceIndexEventArgs e )
         {
             UpdateFilterList( null );
@@ -178,7 +177,7 @@ namespace JetBrains.Omea.GUIControls
                 {
                     return true;
                 }
-                
+
                 IResource parent = res.GetLinkProp( "Parent" );
                 while( parent != null && IsCategoryOrRoot( parent ) )
                 {
@@ -197,7 +196,7 @@ namespace JetBrains.Omea.GUIControls
     }
 
     /// <summary>
-    /// The provider which allows showing the "Other" workspace view in the 
+    /// The provider which allows showing the "Other" workspace view in the
     /// Views and Categories pane when it is not possible to show that view
     /// in any other pane.
     /// </summary>
@@ -214,7 +213,7 @@ namespace JetBrains.Omea.GUIControls
                     IResourceList otherView = ws.GetLinksOfType( "WorkspaceOtherView", "InWorkspace" );
                     Debug.Assert( otherView.Count == 1 );
                     children = children.Union( otherView );
-            
+
                     string nodeSort = Core.ResourceTreeManager.GetResourceNodeSort( parent );
                     if ( nodeSort != null )
                     {
@@ -313,7 +312,7 @@ namespace JetBrains.Omea.GUIControls
 				}
 			}
 		}
-		#endregion		
+		#endregion
 	}
 
 	#endregion

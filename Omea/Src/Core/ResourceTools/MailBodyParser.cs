@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -26,12 +25,12 @@ namespace JetBrains.Omea.MailParser
 		/// Preformatted text, like in the &lt;pre /&gt; HTML tag.
 		/// </summary>
 		Fixed,
-		
+
 		/// <summary>
 		/// Contains signature lines.
 		/// </summary>
 		Sig,
-		
+
 		/// <summary>
 		/// Something quite special, for example, Outlook information.
 		/// </summary>
@@ -47,19 +46,19 @@ namespace JetBrains.Omea.MailParser
 		/// Normal paragraph, consists of several lines glued up into one paragraph.
 		/// </summary>
         Plain,
-		
+
 		/// <summary>
 		/// Preformatted text, like in the &lt;pre /&gt; HTML tag.
 		/// Happens when the lines are too short to be considered as wrapped.
 		/// </summary>
 		Fixed,
-		
+
 		/// <summary>
 		/// The lines are long enough to seem to be paragraphs not split into lines. Each line should be treated as a paragraph.
 		/// </summary>
 		Unwrapped
     }
-	
+
 	/// <summary>
 	/// Parses the mail body into a list of paragraphs of different types (text, quote, sig).
 	/// </summary>
@@ -110,7 +109,7 @@ namespace JetBrains.Omea.MailParser
 				get { return _outlookQuote; }
 			}
 		}
-		
+
 		private bool           _foundOutlookQuote;
 		private int            _lastQuoteLevel = 0;
 		private string         _lastQuotePrefix = "";
@@ -122,7 +121,7 @@ namespace JetBrains.Omea.MailParser
             : this( body, minWrapWidth, null )
         {
         }
-        
+
         public MailBodyParser( string body, int minWrapWidth, MailBodyParser origText )
 		{
             _minWrapWidth = minWrapWidth;
@@ -162,7 +161,7 @@ namespace JetBrains.Omea.MailParser
 		/**
 		 * Parses the body of the message and fills the paragraphs list.
 		 */
-		
+
 		private void ParseMailBody( string body )
 		{
 			body = body.Replace( "\r\n", "\n" );
@@ -170,7 +169,7 @@ namespace JetBrains.Omea.MailParser
 
 			ArrayList curParaLines = new ArrayList();
 			int prevStartSpaces = -1;
-			
+
             bool foundSig = false;
             bool textAfterSig = false;
             bool emptyLineAfterSig = false;
@@ -202,7 +201,7 @@ namespace JetBrains.Omea.MailParser
                         }
                     }
 				}
-				
+
                 if ( !foundSig )
 				{
                     if ( line.StartsWith( "-- " ) )
@@ -220,7 +219,7 @@ namespace JetBrains.Omea.MailParser
 						AddTextPara( curParaLines, true );
                         curParaLines.Clear();
 						AddPara( line, ParagraphType.Service );
-						
+
 						// the text after ----- Original message ----- is formatted as a quote
                         // only if there was some significant text before it
 						if( HaveNonquotedTextParagraphs() )
@@ -229,11 +228,11 @@ namespace JetBrains.Omea.MailParser
 						}
 						continue;
 					}
-	
+
                     int quoteLevel = GetQuoteLevel( line );
 
-					string strippedLine = ( quoteLevel > 0 ) 
-						? StripQuoting( line ) 
+					string strippedLine = ( quoteLevel > 0 )
+						? StripQuoting( line )
 						: line;
 
 					if ( strippedLine.Trim() == "" )
@@ -259,9 +258,9 @@ namespace JetBrains.Omea.MailParser
                             continue;
                         }
                     }
-                    
-                    string quotePrefix = (quoteLevel > 0) 
-						? GetQuotePrefix( line ) 
+
+                    string quotePrefix = (quoteLevel > 0)
+						? GetQuotePrefix( line )
 						: "";
 
 					if ( quoteLevel != _lastQuoteLevel || quotePrefix != _lastQuotePrefix )
@@ -276,7 +275,7 @@ namespace JetBrains.Omea.MailParser
 
 					// The condition below this line implements the following logic:
 					//  - any time the indent changes, we create a fixed paragraph,
-					//  - except for the case when the first line of a paragraph is 
+					//  - except for the case when the first line of a paragraph is
 					//    indented and the following lines are not
 
 					if ( quoteLevel == 0 && ((startSpaces > 0 && prevStartSpaces >= 0 ) || (prevStartSpaces > 0 && !prevFirstLine) ))
@@ -318,7 +317,7 @@ namespace JetBrains.Omea.MailParser
                 if ( paraType == PlainTextParaType.Plain )
                 {
                     StringBuilder bodyBuilder = StringBuilderPool.Alloc();
-                    try 
+                    try
                     {
                         for( int i=0; i<lines.Count-1; i++ )
                         {
@@ -330,8 +329,8 @@ namespace JetBrains.Omea.MailParser
                             }
                         }
                         bodyBuilder.Append( lines [lines.Count-1] );
-                    
-                        _paragraphs.Add( new Paragraph( bodyBuilder.ToString(), ParagraphType.Plain, 
+
+                        _paragraphs.Add( new Paragraph( bodyBuilder.ToString(), ParagraphType.Plain,
                             _lastQuoteLevel, _lastQuotePrefix, _foundOutlookQuote ) );
                     }
                     finally
@@ -347,7 +346,7 @@ namespace JetBrains.Omea.MailParser
                 {
                     foreach( string line in lines )
                     {
-                        _paragraphs.Add( new Paragraph( line, ParagraphType.Plain, _lastQuoteLevel, 
+                        _paragraphs.Add( new Paragraph( line, ParagraphType.Plain, _lastQuoteLevel,
                             _lastQuotePrefix, _foundOutlookQuote ) );
                     }
                 }
@@ -366,20 +365,20 @@ namespace JetBrains.Omea.MailParser
                 if ( oldPara.Type == ParagraphType.Fixed )
                 {
                     // insert a break paragraph after a sequence of fixed paragraphs
-                    _paragraphs.Add( new Paragraph( "", ParagraphType.Fixed, 
+                    _paragraphs.Add( new Paragraph( "", ParagraphType.Fixed,
                         _lastQuoteLevel, _lastQuotePrefix, _foundOutlookQuote ) );
                 }
             }
 
 			foreach( string line in lines )
 			{
-                _paragraphs.Add( new Paragraph( line, ParagraphType.Fixed, 
+                _paragraphs.Add( new Paragraph( line, ParagraphType.Fixed,
 					_lastQuoteLevel, _lastQuotePrefix, _foundOutlookQuote ) );
 			}
 		}
 
 		/**
-		 * Determines whether the specified array of lines is a block of plain text 
+		 * Determines whether the specified array of lines is a block of plain text
 		 * (which should be displayed with no line breaks) or of formatted text (which
 		 * should be displayed with line breaks.
 		 */
@@ -389,7 +388,7 @@ namespace JetBrains.Omea.MailParser
 			if ( lines.Count <= 1 )
                 return PlainTextParaType.Plain;
 
-            // If the same lines are present in a text to which we are replying, 
+            // If the same lines are present in a text to which we are replying,
             // and were plain text in the original message, they're still plain text now
             if ( _origText != null )
             {
@@ -446,7 +445,7 @@ namespace JetBrains.Omea.MailParser
             }
 
 			/*
-			 * Try to autodetect if the text was word-wrapped. If wrapping was used, 
+			 * Try to autodetect if the text was word-wrapped. If wrapping was used,
 			 * then there is a certain margin, and the words are wrapped to the next line
 			 * because they exceed that margin. Thus, we add the first word of the next line
 			 * to the current line and see if these lengths (unwrapped lengths) for all lines
@@ -477,7 +476,7 @@ namespace JetBrains.Omea.MailParser
 		private static int CountStartingSpaces( string line )
 		{
 			int cnt = 0;
-            while( cnt < line.Length && Char.IsWhiteSpace( line, cnt ) ) 
+            while( cnt < line.Length && Char.IsWhiteSpace( line, cnt ) )
             {
                 cnt++;
             }
@@ -489,9 +488,9 @@ namespace JetBrains.Omea.MailParser
             int spaces = CountStartingSpaces( line );
             quoteLevel = 0;
             StringBuilder quotePrefixBuilder = StringBuilderPool.Alloc();
-            try 
+            try
             {
-                int pos = spaces; 
+                int pos = spaces;
                 bool foundWhitespace = false;
                 while( pos < line.Length )
                 {
@@ -512,7 +511,7 @@ namespace JetBrains.Omea.MailParser
                         break;
                     else
                         foundWhitespace = true;
-                
+
                     pos++;
                 }
                 if ( quoteLevel > 0 )
@@ -566,7 +565,7 @@ namespace JetBrains.Omea.MailParser
             string quotePrefix, quotedText;
             ParseQuoting( line, out quoteLevel, out quotePrefix, out quotedText );
             return quotePrefix;
-            
+
 		}
 
 		/**
@@ -625,7 +624,7 @@ namespace JetBrains.Omea.MailParser
 		{
 			foreach( Paragraph para in _paragraphs )
 			{
-				if ( (para.Type == ParagraphType.Plain || para.Type == ParagraphType.Fixed ) 
+				if ( (para.Type == ParagraphType.Plain || para.Type == ParagraphType.Fixed )
 					&& para.QuoteLevel == 0 )
 				{
 					return true;

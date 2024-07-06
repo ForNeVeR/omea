@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System.Text;
 using JetBrains.Omea.OpenAPI;
@@ -15,7 +14,7 @@ namespace JetBrains.Omea.ContactsPlugin
 
     internal class DescriptionBlock : AbstractContactViewBlock
 	{
-		/// <summary> 
+		/// <summary>
 		/// Required designer variable.
 		/// </summary>
 		private System.ComponentModel.Container components = null;
@@ -34,7 +33,7 @@ namespace JetBrains.Omea.ContactsPlugin
             return new DescriptionBlock();
         }
 
-		/// <summary> 
+		/// <summary>
 		/// Clean up any resources being used.
 		/// </summary>
 		protected override void Dispose( bool disposing )
@@ -50,8 +49,8 @@ namespace JetBrains.Omea.ContactsPlugin
 		}
 
 		#region Component Designer generated code
-		/// <summary> 
-		/// Required method for Designer support - do not modify 
+		/// <summary>
+		/// Required method for Designer support - do not modify
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent()
@@ -59,11 +58,11 @@ namespace JetBrains.Omea.ContactsPlugin
             this.richDescription = new System.Windows.Forms.RichTextBox();
             this.labelNA = new System.Windows.Forms.Label();
             this.SuspendLayout();
-            // 
+            //
             // richDescription
-            // 
-            this.richDescription.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-                | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this.richDescription.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this.richDescription.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(204)));
             this.richDescription.Location = new System.Drawing.Point(4, 4);
@@ -73,10 +72,10 @@ namespace JetBrains.Omea.ContactsPlugin
             this.richDescription.TabIndex = 1;
             this.richDescription.TabStop = false;
             this.richDescription.Text = "";
-            // 
+            //
             // labelNA
-            // 
-            this.labelNA.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this.labelNA.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this.labelNA.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.labelNA.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(204)));
@@ -87,9 +86,9 @@ namespace JetBrains.Omea.ContactsPlugin
             this.labelNA.TabIndex = 16;
             this.labelNA.Text = "Not Specified";
             this.labelNA.Visible = false;
-            // 
+            //
             // DescriptionBlock
-            // 
+            //
             this.Controls.Add(this.labelNA);
             this.Controls.Add(this.richDescription);
             this.Name = "DescriptionBlock";

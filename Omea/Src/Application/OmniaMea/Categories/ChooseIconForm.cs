@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Drawing;
@@ -86,9 +85,9 @@ namespace OmniaMea.Categories
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnDefault = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
+            //
             // panelIcon
-            // 
+            //
             this.panelIcon.BackColor = System.Drawing.Color.White;
             this.panelIcon.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panelIcon.Location = new System.Drawing.Point(8, 12);
@@ -96,9 +95,9 @@ namespace OmniaMea.Categories
             this.panelIcon.Size = new System.Drawing.Size(72, 64);
             this.panelIcon.TabIndex = 0;
             this.panelIcon.Paint += new System.Windows.Forms.PaintEventHandler(this.panelIcon_Paint);
-            // 
+            //
             // btnBrowse
-            // 
+            //
             this.btnBrowse.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.btnBrowse.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(204)));
             this.btnBrowse.Location = new System.Drawing.Point(92, 12);
@@ -106,9 +105,9 @@ namespace OmniaMea.Categories
             this.btnBrowse.TabIndex = 1;
             this.btnBrowse.Text = "Browse...";
             this.btnBrowse.Click += new System.EventHandler(this.btnBrowse_Click);
-            // 
+            //
             // btnOK
-            // 
+            //
             this.btnOK.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.btnOK.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(204)));
             this.btnOK.Location = new System.Drawing.Point(8, 88);
@@ -116,9 +115,9 @@ namespace OmniaMea.Categories
             this.btnOK.TabIndex = 3;
             this.btnOK.Text = "OK";
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
-            // 
+            //
             // btnCancel
-            // 
+            //
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.btnCancel.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(204)));
@@ -126,18 +125,18 @@ namespace OmniaMea.Categories
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.TabIndex = 4;
             this.btnCancel.Text = "Cancel";
-            // 
+            //
             // btnDefault
-            // 
+            //
             this.btnDefault.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.btnDefault.Location = new System.Drawing.Point(92, 44);
             this.btnDefault.Name = "btnDefault";
             this.btnDefault.TabIndex = 2;
             this.btnDefault.Text = "Default";
             this.btnDefault.Click += new System.EventHandler(this.btnDefault_Click);
-            // 
+            //
             // ChooseIconForm
-            // 
+            //
             this.AcceptButton = this.btnOK;
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
             this.CancelButton = this.btnCancel;

@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -27,7 +26,7 @@ namespace JetBrains.Omea.SamplePlugins.Siam
 
 		/// <summary>
 		/// The Siam synchronization data.
-		/// Lifetime: 
+		/// Lifetime:
 		///		* Sync In: after it is first retrieved and kept until all the mentioned feeds are finally processed.
 		///		* Sync Out: while synchronizing out.
 		///	At other moments must be null.
@@ -336,7 +335,7 @@ do
 					// Save the XML sync data to a stream
 				MemoryStream	stream = new MemoryStream();
 				_xmlSiam.Save( stream );
-				
+
 				// Connect to FTP
 				string	sPathOnServer;
 				FTPClient ftp = StartFtpConnection( out sPathOnServer );
@@ -668,7 +667,7 @@ do
 
 			// Schedule the termniation
 			_swErrors.WriteLine( "Aborted by user." );
-			
+
 			// Raise the stopflag
 			lock(this)
 				_bMustStop = true;

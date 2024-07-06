@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 // JetRpcClient.cpp : Implementation of CJetRpcClient
 //
@@ -159,7 +158,7 @@ bool CJetRpcClient::SendData()
 	{
 		DWORD	dwErr = GetLastError();	// Is non-null as there was not a success
 		if(dwErr != ERROR_IO_PENDING)	// Pending-error means that the request was stared OK, otherwise, indicates a failure
-			ThrowError(CJetIe::LoadString(IDS_E_WININET_SENDREQ) + L'\n' + CJetIe::GetSystemError(dwErr));	
+			ThrowError(CJetIe::LoadString(IDS_E_WININET_SENDREQ) + L'\n' + CJetIe::GetSystemError(dwErr));
 
 		return false;	// Wait for async completion
 	}
@@ -204,7 +203,7 @@ bool CJetRpcClient::ReadData()
 		m_ibOut.lpvBuffer = m_sBufA.GetBuffer(HTTP_BUFFER_SIZE);
 		m_ibOut.dwBufferLength = HTTP_BUFFER_SIZE;
 
-		// Initiate the asynchronous read operation	
+		// Initiate the asynchronous read operation
 		// Note: here we use InternetReadFileExA instead of T because the W version always returns the "Not implemented" error, and this is the only code it contains. Such a shit :)
 		if(!InternetReadFileExA(m_hRequest, &m_ibOut, (m_bAsync ? INTERNET_FLAG_ASYNC : 0), (DWORD_PTR)&m_marshalling))	// If the method has failed to complete immediately
 		{
@@ -225,7 +224,7 @@ bool CJetRpcClient::EndRequest()
 	{
 		DWORD	dwErr = GetLastError();	// Is non-null as there was not a success
 		if(dwErr != ERROR_IO_PENDING)	// Pending-error means that the request was stared OK, otherwise, indicates a failure
-			ThrowError(CJetIe::LoadString(IDS_E_WININET_SENDREQ) + L'\n' + CJetIe::GetSystemError(dwErr));				
+			ThrowError(CJetIe::LoadString(IDS_E_WININET_SENDREQ) + L'\n' + CJetIe::GetSystemError(dwErr));
 
 		return false;	// Request pending. Wait for it asynchronously
 	}
@@ -250,7 +249,7 @@ typedef struct tagStatus
 
 CStringW	LookupInternetStatus(DWORD dwStatus)
 {
-	static InternetStatus	statuses[] = 
+	static InternetStatus	statuses[] =
 	{
 		{ INTERNET_STATUS_CLOSING_CONNECTION, L"INTERNET_STATUS_CLOSING_CONNECTION", L"Closing the connection to the server. The lpvStatusInformation parameter is NULL." },
 		{ INTERNET_STATUS_CONNECTED_TO_SERVER, L"INTERNET_STATUS_CONNECTED_TO_SERVER", L"Successfully connected to the socket address (SOCKADDR) pointed to by lpvStatusInformation." },
@@ -291,7 +290,7 @@ CStringW	LookupInternetStatus(DWORD dwStatus)
 
 CStringW	LookupInternetState(DWORD dwStatus)
 {
-	static InternetStatus	statuses[] = 
+	static InternetStatus	statuses[] =
 	{
 		{ INTERNET_STATE_CONNECTED, L"INTERNET_STATE_CONNECTED", L"Connected state (mutually exclusive with disconnected state)." },
 		{ INTERNET_STATE_DISCONNECTED, L"INTERNET_STATE_DISCONNECTED", L"Disconnected state. No network connection could be established." },
@@ -320,7 +319,7 @@ CStringW	LookupInternetState(DWORD dwStatus)
 /// Retuns the display-name of an FSM step.
 CStringW LookupFsmState(int nState)
 {
-	static LPCWSTR states[] = 
+	static LPCWSTR states[] =
 	{
 		L"stateIdle",
 		L"stateInitializing",
@@ -421,8 +420,8 @@ void CALLBACK CJetRpcClient::InternetStatusCallback(HINTERNET hInternet, DWORD_P
 			// Whoa … everything is quite bad. Fatal error again (the callee has failed to initiate the graceful shutdown)
 
 			// Deinitialize this instance
-			InternetCloseHandle(hInternet);			
-			
+			InternetCloseHandle(hInternet);
+
 			ASSERT(FALSE);
 			// TODO: write implementation similar to one at the first catch of this func
 		}
@@ -712,7 +711,7 @@ void CJetRpcClient::OnFinalMessage(HWND hWnd)
 	ASSERT(m_marshalling.dwTag == MARSHALLING_DATA_TAG);
 	m_marshalling.dwTag = 0;
 	m_marshalling.hwnd = NULL;
-	
+
 	// Unlock the object lifetime
 	OnUnlockObject();
 }

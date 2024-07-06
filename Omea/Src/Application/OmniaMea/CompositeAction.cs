@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using JetBrains.Omea.GUIControls;
 using JetBrains.Omea.OpenAPI;
@@ -14,7 +13,7 @@ namespace JetBrains.Omea
      * plugins, and invokes the registered actions in order until one of them
      * matches the current context.
      */
-	
+
     public class CompositeAction: IAction
 	{
         private class ActionComponent
@@ -56,7 +55,7 @@ namespace JetBrains.Omea
         /**
          * Polls the components of the action until the enabled one is found and executes it.
          */
-        
+
         public void Execute( IActionContext context )
         {
             if ( !ExecuteActionComponents( context ) )
@@ -138,7 +137,7 @@ namespace JetBrains.Omea
             foreach( ActionComponent component in _components )
             {
                 UpdateComponentPresentation( component, context, ref presentation, ref resTypes, ref tabMatched );
-                
+
                 if ( presentation.Visible && presentation.Enabled )
                 {
                     isVisible = true;
@@ -164,7 +163,7 @@ namespace JetBrains.Omea
                 ActionContext splitContext = new ActionContext( context, resLists [i] );
                 string[] splitResTypes = new string[] { resTypes [i] };
                 bool isVisible = false, isDisabled = false;
-                UpdateActionComponents( splitContext, ref presentation, ref splitResTypes, 
+                UpdateActionComponents( splitContext, ref presentation, ref splitResTypes,
                     ref isVisible, ref isDisabled, ref tabMatched );
                 if ( presentation.Visible && presentation.Enabled )
                 {
@@ -224,7 +223,7 @@ namespace JetBrains.Omea
             }
         }
 
-        private static void UpdateComponentFilters( ActionComponent component, IActionContext context, 
+        private static void UpdateComponentFilters( ActionComponent component, IActionContext context,
             ref ActionPresentation presentation, ref bool tabMatched )
         {
             if ( component.Filters != null )
@@ -249,9 +248,9 @@ namespace JetBrains.Omea
             {
                 if ( resTypes == null )
                 {
-                    resTypes = (selectedResources == null) 
-                        ? new string[] {} 
-                        : selectedResources.GetAllTypes();            		
+                    resTypes = (selectedResources == null)
+                        ? new string[] {}
+                        : selectedResources.GetAllTypes();
                 }
                 if ( resTypes.Length != 1 || resTypes [0] != component.ResourceType )
                 {

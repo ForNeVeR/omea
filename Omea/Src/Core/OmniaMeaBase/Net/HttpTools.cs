@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections.Specialized;
@@ -26,7 +25,7 @@ namespace JetBrains.Omea.HttpTools
          */
         public const int BufferSize = 0x4000;
 
-        /** 
+        /**
          * state of http reader
          * is set (and may asked) after execution of each async operation
          */
@@ -39,7 +38,7 @@ namespace JetBrains.Omea.HttpTools
             Error
         }
 
-        /** 
+        /**
          * type of URL
          */
         public enum URLType
@@ -78,7 +77,7 @@ namespace JetBrains.Omea.HttpTools
             get { return _cookieProvider; }
             set { _cookieProvider = value; }
         }
-        
+
         /**
          * sets proxy for all webrequests
          * opens current user's SSL certificates store
@@ -96,7 +95,7 @@ namespace JetBrains.Omea.HttpTools
             }
             GlobalProxySelection.Select = DefaultProxy;
 
-            X509CertificateStore store = 
+            X509CertificateStore store =
                 X509CertificateStore.CurrentUserStore( X509CertificateStore.MyStore );
             if( store.OpenRead() )
             {
@@ -120,7 +119,7 @@ namespace JetBrains.Omea.HttpTools
                 proxy.Credentials = CredentialCache.DefaultCredentials;
                 if ( proxy.Address != null )
                 {
-                    Trace.WriteLine( "Using proxy settings from IE: address " + proxy.Address + 
+                    Trace.WriteLine( "Using proxy settings from IE: address " + proxy.Address +
                                      ", bypass on local addresses " + proxy.BypassProxyOnLocal );
                     haveProxy = true;
                 }
@@ -174,7 +173,7 @@ namespace JetBrains.Omea.HttpTools
 
                     if ( proxy.Address != null )
                     {
-                        Trace.WriteLine( "Using proxy settings specified by user: address " + proxy.Address + 
+                        Trace.WriteLine( "Using proxy settings specified by user: address " + proxy.Address +
                             ", bypass on local addresses " + proxy.BypassProxyOnLocal );
                         haveProxy = true;
                     }
@@ -313,7 +312,7 @@ namespace JetBrains.Omea.HttpTools
                 return null;
             }
         }
-        
+
         #region implementation details
 
         protected override void Execute()
@@ -335,7 +334,7 @@ namespace JetBrains.Omea.HttpTools
                 }
             }
         }
-        
+
         private void ProcessFileURL()
         {
             try
@@ -485,12 +484,12 @@ namespace JetBrains.Omea.HttpTools
             {
                 _request.Credentials = CredentialCache.DefaultCredentials;
             }
-                
+
             if( _acceptInstanceManipulation != null )
             {
                 _request.Headers[ "A-IM" ] = _acceptInstanceManipulation;
             }
-                
+
             // to avoid problems with 'deflate' encoding support (some servers send
             // the zlib header in the deflated stream and some don't), tell that we only
             // support gzip encoding
@@ -498,7 +497,7 @@ namespace JetBrains.Omea.HttpTools
             {
                 _request.Headers ["Accept-Encoding"] = _acceptEncoding;
             }
-            
+
             _request.Pipelined = false;
         }
 
@@ -521,7 +520,7 @@ namespace JetBrains.Omea.HttpTools
             try
             {
                 _response = ( HttpWebResponse ) _request.EndGetResponse( _asyncResult );
-                
+
                 string responseUrl = _response.ResponseUri.AbsoluteUri;
                 WebHeaderCollection headers = _response.Headers;
                 TraceString( "Reading " + responseUrl + " ContentType=" + _response.ContentType );
@@ -540,7 +539,7 @@ namespace JetBrains.Omea.HttpTools
                     if( _response.StatusCode == HttpStatusCode.Moved ||
                         _response.StatusCode == HttpStatusCode.Redirect )
                     {
-                        _redirectUrl = _url;                        
+                        _redirectUrl = _url;
                     }
                     CloseAsyncWaitHandle();
                     _response.Close();
@@ -585,7 +584,7 @@ namespace JetBrains.Omea.HttpTools
                     StartProcessingWebURL();
                     return;
                 }
-                
+
                 _response = ( HttpWebResponse ) e.Response;
                 _state = ( _response == null || _response.StatusCode != HttpStatusCode.NotModified ) ?
                     State.Error : State.Done;
@@ -642,14 +641,14 @@ namespace JetBrains.Omea.HttpTools
                     InvokeAfterWait( ReadWebStream, _asyncResult.AsyncWaitHandle );
                     return;
                 }
-                
+
                 string contentEncoding = _response.ContentEncoding;
                 if ( contentEncoding != null )
                 {
                     DecodeReadStream( contentEncoding );
                 }
                 _state = State.Done;
-                _readStream.Position = 0; 
+                _readStream.Position = 0;
             }
             catch ( Exception e )
             {
@@ -686,7 +685,7 @@ namespace JetBrains.Omea.HttpTools
                 {
                     return;
                 }
- 
+
                 JetMemoryStream decodedStream = new JetMemoryStream( BufferSize );
                 while( true )
                 {
@@ -754,12 +753,12 @@ namespace JetBrains.Omea.HttpTools
         private ICookieProvider                     _cookieProvider = null;
         private string                              _acceptEncoding = "gzip";
         private readonly Tracer                     _tracer;
-        
+
         private static IWebProxy                    _defaultProxy;
 
         #endregion
     }
-    
+
     public class HttpReaderToFile : HttpReader
     {
         private readonly FileStream _file;

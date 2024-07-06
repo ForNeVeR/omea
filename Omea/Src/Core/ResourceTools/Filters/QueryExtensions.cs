@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -53,7 +52,7 @@ namespace JetBrains.Omea.TextIndex
             if( stdCondition == null )
                 throw new ArgumentNullException( "stdCondition", "SearchQueryExtensions -- Mapped condition is null.");
             #endregion Preconditions
-            
+
             HashMap.Entry e = _prep2TokenExtensions.GetEntry( prep );
             if( e == null )
             {
@@ -67,7 +66,7 @@ namespace JetBrains.Omea.TextIndex
                 ((ArrayList)e.Value).Add( new Pair( token, stdCondition ));
             }
         }
-        
+
         public void  RegisterFreestyleRestriction ( string prep, IQueryTokenMatcher matcher )
         {
             #region Preconditions
@@ -76,7 +75,7 @@ namespace JetBrains.Omea.TextIndex
             if( matcher == null )
                 throw new ArgumentNullException( "matcher", "SearchQueryExtensions -- Token stream matcher handler is NULL.");
             #endregion Preconditions
-            
+
             HashMap.Entry e = _prep2FreestyleExtensions.GetEntry( prep );
             if( e == null )
             {

@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Diagnostics;
@@ -68,45 +67,45 @@ namespace JetBrains.Omea
             this._btnNo = new System.Windows.Forms.Button();
             this._chkNoMoreUpdates = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
-            // 
+            //
             // _lblNewVersion
-            // 
+            //
             this._lblNewVersion.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._lblNewVersion.Location = new System.Drawing.Point(8, 8);
             this._lblNewVersion.Name = "_lblNewVersion";
             this._lblNewVersion.Size = new System.Drawing.Size(400, 35);
             this._lblNewVersion.TabIndex = 0;
             this._lblNewVersion.Text = "<ProductName> version <version> is available. Would you like to download it?";
-            // 
+            //
             // _btnYes
-            // 
+            //
             this._btnYes.DialogResult = System.Windows.Forms.DialogResult.Yes;
             this._btnYes.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._btnYes.Location = new System.Drawing.Point(120, 50);
             this._btnYes.Name = "_btnYes";
             this._btnYes.TabIndex = 1;
             this._btnYes.Text = "Yes";
-            // 
+            //
             // _btnNo
-            // 
+            //
             this._btnNo.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this._btnNo.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._btnNo.Location = new System.Drawing.Point(216, 50);
             this._btnNo.Name = "_btnNo";
             this._btnNo.TabIndex = 2;
             this._btnNo.Text = "No";
-            // 
+            //
             // _chkNoMoreUpdates
-            // 
+            //
             this._chkNoMoreUpdates.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._chkNoMoreUpdates.Location = new System.Drawing.Point(8, 78);
             this._chkNoMoreUpdates.Name = "_chkNoMoreUpdates";
             this._chkNoMoreUpdates.Size = new System.Drawing.Size(384, 20);
             this._chkNoMoreUpdates.TabIndex = 3;
             this._chkNoMoreUpdates.Text = "Don\'t check for updates any more";
-            // 
+            //
             // UpdateNotifyDialog
-            // 
+            //
             this.AcceptButton = this._btnYes;
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
             this.CancelButton = this._btnNo;
@@ -133,7 +132,7 @@ namespace JetBrains.Omea
             UpdateNotifyDialog dlg = new UpdateNotifyDialog();
             dlg.Text = Core.ProductFullName + " Update";
             dlg.Icon = (Core.MainWindow as Form).Icon;
-            dlg._lblNewVersion.Text = Core.ProductFullName + " version " + newVersion + 
+            dlg._lblNewVersion.Text = Core.ProductFullName + " version " + newVersion +
                 " is available. Would you like to download it?";
             DialogResult dr = dlg.ShowDialog( Core.MainWindow );
             if ( dr == DialogResult.Yes )
@@ -181,8 +180,8 @@ namespace JetBrains.Omea
             TimeSpan ts = DateTime.Now - lastUpdateCheck;
             if ( ts.TotalDays >= updateCheckDays )
             {
-                Core.NetworkAP.QueueJobAt( DateTime.Now.AddSeconds( 15 ), 
-                    new CheckForUpdatesDelegate( CheckForUpdates ), false );                
+                Core.NetworkAP.QueueJobAt( DateTime.Now.AddSeconds( 15 ),
+                    new CheckForUpdatesDelegate( CheckForUpdates ), false );
             }
             else
             {
@@ -194,7 +193,7 @@ namespace JetBrains.Omea
         internal static void CheckForUpdatesNow()
         {
             Core.NetworkAP.QueueJob( JobPriority.Immediate,
-                new CheckForUpdatesDelegate( CheckForUpdates ), true );                
+                new CheckForUpdatesDelegate( CheckForUpdates ), true );
         }
 
         private static void CheckForUpdates( bool manualCheck )
@@ -207,7 +206,7 @@ namespace JetBrains.Omea
             try
             {
                 client.Headers.Add( "User-Agent", HttpReader.UserAgent );
-                
+
                 byte[] data;
                 string url;
 
@@ -235,7 +234,7 @@ namespace JetBrains.Omea
             catch( Exception ex )
             {
                 Trace.WriteLine( "Error checking for updates: " + ex.Message );
-                Core.NetworkAP.QueueJobAt( DateTime.Now.AddHours( 1 ), 
+                Core.NetworkAP.QueueJobAt( DateTime.Now.AddHours( 1 ),
                     new CheckForUpdatesDelegate( CheckForUpdates ), false );
                 return;
             }

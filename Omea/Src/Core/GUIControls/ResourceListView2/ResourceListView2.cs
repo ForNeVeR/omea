@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -335,7 +334,7 @@ namespace JetBrains.Omea.GUIControls
 		}
 
 		/// <summary>
-		/// Gets or sets a value indicating whether the user can drag column headers 
+		/// Gets or sets a value indicating whether the user can drag column headers
 		/// to reorder columns in the control.
 		/// </summary>
 		public bool AllowColumnReorder
@@ -1049,7 +1048,7 @@ namespace JetBrains.Omea.GUIControls
 		}
 
         //---------------------------------------------------------------------
-        //  This method is just a facade for outsiders in order to hide the 
+        //  This method is just a facade for outsiders in order to hide the
         //  JetListView and SelectionModel as much as possible. By 8.02.07 there
         //  are many other methods which should be implemented to hide the JLV
         //  completely.
@@ -1058,7 +1057,7 @@ namespace JetBrains.Omea.GUIControls
         {
             _jetListView.Selection.SelectSingleItem( res );
         }
-		
+
         public void SelectAll()
 		{
 			_jetListView.Selection.SelectAll();

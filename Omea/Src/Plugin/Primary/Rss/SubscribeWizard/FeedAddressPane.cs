@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.ComponentModel;
@@ -45,7 +44,7 @@ namespace JetBrains.Omea.RSSPlugin.SubscribeWizard
                           + Core.ProductName + " will try to discover the feed automatically.";
 		}
 
-		/// <summary> 
+		/// <summary>
 		/// Clean up any resources being used.
 		/// </summary>
 		protected override void Dispose( bool disposing )
@@ -61,8 +60,8 @@ namespace JetBrains.Omea.RSSPlugin.SubscribeWizard
 		}
 
 		#region Component Designer generated code
-		/// <summary> 
-		/// Required method for Designer support - do not modify 
+		/// <summary>
+		/// Required method for Designer support - do not modify
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent()
@@ -83,10 +82,10 @@ namespace JetBrains.Omea.RSSPlugin.SubscribeWizard
 			_tipForFullFeedPath = new ToolTip( components );
             this._grpLogin.SuspendLayout();
             this.SuspendLayout();
-            // 
+            //
             // _edtURL
-            // 
-            this._edtURL.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._edtURL.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._edtURL.Location = new System.Drawing.Point(12, 48);
             this._edtURL.Name = "_edtURL";
@@ -97,27 +96,27 @@ namespace JetBrains.Omea.RSSPlugin.SubscribeWizard
             this._edtURL.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this._edtURL_KeyPress);
             this._edtURL.TextChanged +=new EventHandler(_edtURL_TextChanged);
             this._edtURL.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top;
-            // 
+            //
             // label1
-            // 
+            //
             this.label1.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label1.Location = new System.Drawing.Point(12, 28);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(372, 17);
             this.label1.TabIndex = 1;
             this.label1.Text = "Enter the address of an RSS or ATOM feed:";
-            // 
+            //
             // label2
-            // 
+            //
             this.label2.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label2.Location = new System.Drawing.Point(12, 84);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(344, 32);
             this.label2.TabIndex = 3;
             this.label2.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top;
-            // 
+            //
             // _lblError
-            // 
+            //
             this._lblError.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._lblError.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(204)));
             this._lblError.Location = new System.Drawing.Point(24, 224);
@@ -128,17 +127,17 @@ namespace JetBrains.Omea.RSSPlugin.SubscribeWizard
             this._lblError.Visible = false;
             this._lblError.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top;
             this._lblError.ForeColor = Color.Red;
-            // 
+            //
             // _lblProgress
-            // 
+            //
             this._lblProgress.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._lblProgress.Location = new System.Drawing.Point(24, 324);
             this._lblProgress.Name = "_lblProgress";
             this._lblProgress.Size = new System.Drawing.Size(336, 48);
             this._lblProgress.TabIndex = 5;
-            // 
+            //
             // _chkAuthentication
-            // 
+            //
             this._chkAuthentication.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._chkAuthentication.Location = new System.Drawing.Point(12, 120);
             this._chkAuthentication.Name = "_chkAuthentication";
@@ -146,9 +145,9 @@ namespace JetBrains.Omea.RSSPlugin.SubscribeWizard
             this._chkAuthentication.TabIndex = 6;
             this._chkAuthentication.Text = "The feed requires an HTTP login";
             this._chkAuthentication.CheckedChanged += new System.EventHandler(this._chkAuthentication_CheckedChanged);
-            // 
+            //
             // _grpLogin
-            // 
+            //
             this._grpLogin.Controls.Add(this._edtPassword);
             this._grpLogin.Controls.Add(this._lblPassword);
             this._grpLogin.Controls.Add(this._edtUserName);
@@ -161,9 +160,9 @@ namespace JetBrains.Omea.RSSPlugin.SubscribeWizard
             this._grpLogin.TabIndex = 7;
             this._grpLogin.TabStop = false;
             this._grpLogin.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top;
-            // 
+            //
             // _edtPassword
-            // 
+            //
             this._edtPassword.Location = new System.Drawing.Point(116, 44);
             this._edtPassword.Name = "_edtPassword";
             this._edtPassword.PasswordChar = '*';
@@ -171,37 +170,37 @@ namespace JetBrains.Omea.RSSPlugin.SubscribeWizard
             this._edtPassword.TabIndex = 3;
             this._edtPassword.Text = "";
             this._edtPassword.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top;
-            // 
+            //
             // label4
-            // 
+            //
             this._lblPassword.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._lblPassword.Location = new System.Drawing.Point(8, 48);
             this._lblPassword.Name = "_lblPassword";
             this._lblPassword.Size = new System.Drawing.Size(100, 16);
             this._lblPassword.TabIndex = 2;
             this._lblPassword.Text = "Password:";
-            // 
+            //
             // _edtUserName
-            // 
+            //
             this._edtUserName.Location = new System.Drawing.Point(116, 16);
             this._edtUserName.Name = "_edtUserName";
             this._edtUserName.Size = new System.Drawing.Size(200, 20);
             this._edtUserName.TabIndex = 1;
             this._edtUserName.Text = "";
             this._edtUserName.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top;
-            // 
+            //
             // label3
-            // 
+            //
             this._lblUserName.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._lblUserName.Location = new System.Drawing.Point(8, 20);
             this._lblUserName.Name = "_lblUserName";
             this._lblUserName.Size = new System.Drawing.Size(100, 16);
             this._lblUserName.TabIndex = 0;
             this._lblUserName.Text = "User name:";
-            // 
+            //
             // _lnkExistingFeed
-            // 
-            this._lnkExistingFeed.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._lnkExistingFeed.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._lnkExistingFeed.Click += new EventHandler( HandleExistingFeedClick );
             this._lnkExistingFeed.Location = new System.Drawing.Point(24, 248);
@@ -213,9 +212,9 @@ namespace JetBrains.Omea.RSSPlugin.SubscribeWizard
             //
             _tipForFullFeedPath.ShowAlways = true;
             _tipForFullFeedPath.InitialDelay = 0;
-            // 
+            //
             // FeedAddressPane
-            // 
+            //
             this.Controls.Add(this._lnkExistingFeed);
             this.Controls.Add(this._grpLogin);
             this.Controls.Add(this._chkAuthentication);
@@ -335,7 +334,7 @@ namespace JetBrains.Omea.RSSPlugin.SubscribeWizard
 
         public void UnselectFeedUrl()
         {
-            _edtURL.SelectionStart = _edtURL.Text.Length;	        
+            _edtURL.SelectionStart = _edtURL.Text.Length;
         }
 
         private void _chkAuthentication_CheckedChanged( object sender, EventArgs e )

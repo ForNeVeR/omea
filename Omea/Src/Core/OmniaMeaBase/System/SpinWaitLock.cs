@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System.ComponentModel;
 using System.Diagnostics;
@@ -30,7 +29,7 @@ namespace JetBrains.Omea.Base
         public void Enter()
         {
             int currentThreadId = Thread.CurrentThread.GetHashCode();
-            if( !TryEnter( currentThreadId ) ) 
+            if( !TryEnter( currentThreadId ) )
             {
                 if( _processorCount == 1 )
                 {
@@ -110,7 +109,7 @@ namespace JetBrains.Omea.Base
         {
             // The following code is not MT-safe, but that's actually doesn't matter, because we are just
             // trying to calc number of processors "rarely" in order to decrease its affect on performance.
-            if( ( ++_sleepCount & 0xfff ) == 0 ) 
+            if( ( ++_sleepCount & 0xfff ) == 0 )
             {
                 CalcApprovedProcessorCount();
             }

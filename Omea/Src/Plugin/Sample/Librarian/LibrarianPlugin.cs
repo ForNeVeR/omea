@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using JetBrains.Omea.OpenAPI;
@@ -17,7 +16,7 @@ namespace JetBrains.Omea.SamplePlugins.Librarian
 	    {
             PropTypes.Register();
             ResourceTypes.Register();
-            
+
             Core.ResourceStore.RegisterLinkRestriction( ResourceTypes.Book, PropTypes.BookAuthor,
                 "Contact", 0, Int32.MaxValue );
             Core.ResourceStore.RegisterUniqueRestriction( ResourceTypes.Book, PropTypes.Isbn );
@@ -27,7 +26,7 @@ namespace JetBrains.Omea.SamplePlugins.Librarian
             Core.ActionManager.RegisterContextMenuAction( new EditBookAction(),
                 ActionGroups.ITEM_OPEN_ACTIONS, ListAnchor.First, "Edit Book", ResourceTypes.Book, null );
             Core.ActionManager.RegisterDoubleClickAction( new EditBookAction(), ResourceTypes.Book, null );
-            Core.ActionManager.RegisterActionComponent( new DeleteBookAction(), "Delete", 
+            Core.ActionManager.RegisterActionComponent( new DeleteBookAction(), "Delete",
                 ResourceTypes.Book, null );
 
             Core.TabManager.RegisterResourceTypeTab( "Books", "Books", ResourceTypes.Book, 20 );
@@ -54,7 +53,7 @@ namespace JetBrains.Omea.SamplePlugins.Librarian
         {
             public void RegisterViewsFirstRun()
             {
-                IResource allBooksView = Core.FilterManager.RegisterView( "All Books", 
+                IResource allBooksView = Core.FilterManager.RegisterView( "All Books",
                     new string[] { ResourceTypes.Book }, new IResource[] {}, new IResource[] {} );
                 Core.ResourceTreeManager.LinkToResourceRoot( allBooksView, 0 );
             }
@@ -68,18 +67,18 @@ namespace JetBrains.Omea.SamplePlugins.Librarian
         {
             public bool ProcessResourceText( IResource res, IResourceTextConsumer consumer )
             {
-                consumer.AddDocumentFragment( res.Id, res.GetPropText( "Name" ), 
+                consumer.AddDocumentFragment( res.Id, res.GetPropText( "Name" ),
                     DocumentSection.SubjectSection );
-                
+
                 foreach( IResource author in res.GetLinksOfType( null, PropTypes.BookAuthor ) )
                 {
-                    consumer.AddDocumentFragment( res.Id, author.DisplayName, 
+                    consumer.AddDocumentFragment( res.Id, author.DisplayName,
                         DocumentSection.SourceSection );
                 }
 
                 consumer.AddDocumentFragment( res.Id, res.GetPropText( PropTypes.Isbn ) );
-                
-                return true;                
+
+                return true;
             }
         }
     }
@@ -125,7 +124,7 @@ namespace JetBrains.Omea.SamplePlugins.Librarian
 
         internal static void Register()
         {
-            _propPubYear = Core.ResourceStore.PropTypes.Register( "JetBrains.Librarian.PubYear", 
+            _propPubYear = Core.ResourceStore.PropTypes.Register( "JetBrains.Librarian.PubYear",
                 PropDataType.Int );
             Core.ResourceStore.PropTypes.RegisterDisplayName( PropTypes.PubYear, "Pub.Year" );
 

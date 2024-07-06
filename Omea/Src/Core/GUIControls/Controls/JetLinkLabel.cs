@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.ComponentModel;
@@ -21,7 +20,7 @@ namespace JetBrains.Omea.GUIControls
     /// </summary>
     public class JetLinkLabel : UserControl
 	{
-		/// <summary> 
+		/// <summary>
 		/// Required designer variable.
 		/// </summary>
 		private System.ComponentModel.Container components = null;
@@ -42,7 +41,7 @@ namespace JetBrains.Omea.GUIControls
 			// This call is required by the Windows.Forms Form Designer.
 			InitializeComponent();
 
-			SetStyle( ControlStyles.UserPaint | ControlStyles.AllPaintingInWmPaint | ControlStyles.SupportsTransparentBackColor | 
+			SetStyle( ControlStyles.UserPaint | ControlStyles.AllPaintingInWmPaint | ControlStyles.SupportsTransparentBackColor |
                 ControlStyles.ResizeRedraw | ControlStyles.CacheText, true );
             SetStyle( ControlStyles.StandardClick | ControlStyles.Selectable, false );
             ForeColor = _linkColor;
@@ -51,7 +50,7 @@ namespace JetBrains.Omea.GUIControls
             _autoSize = true;
         }
 
-		/// <summary> 
+		/// <summary>
 		/// Clean up any resources being used.
 		/// </summary>
 		protected override void Dispose( bool disposing )
@@ -67,8 +66,8 @@ namespace JetBrains.Omea.GUIControls
 		}
 
 		#region Component Designer generated code
-		/// <summary> 
-		/// Required method for Designer support - do not modify 
+		/// <summary>
+		/// Required method for Designer support - do not modify
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent()
@@ -101,7 +100,7 @@ namespace JetBrains.Omea.GUIControls
         [DefaultValue(false)]
         public bool WordWrap
         {
-            get { return _wordWrap; } 
+            get { return _wordWrap; }
             set
             {
                 if ( _wordWrap != value )
@@ -299,7 +298,7 @@ namespace JetBrains.Omea.GUIControls
     	/// <param name="text">Text to be rendered.</param>
     	/// <param name="font">Font in which the text will be rendered.</param>
     	/// <returns>Size of the text's bounding rectangle.</returns>
-    	/// <remarks>Uses <see cref="DrawTextFormatFlags.DT_NOPREFIX"/> and <see cref="DrawTextFormatFlags.DT_SINGLELINE"/> 
+    	/// <remarks>Uses <see cref="DrawTextFormatFlags.DT_NOPREFIX"/> and <see cref="DrawTextFormatFlags.DT_SINGLELINE"/>
     	/// as the text rendering flags for calling the main overload.</remarks>
     	public static Size GetTextSize( Control control, string text, Font font )
     	{
@@ -343,7 +342,7 @@ namespace JetBrains.Omea.GUIControls
     		finally
     		{
     			graphics.ReleaseHdc( hdc );
-    		}			
+    		}
     	}
 
     	#endregion
@@ -416,7 +415,7 @@ namespace JetBrains.Omea.GUIControls
                 IntPtr oldFont = Win32Declarations.SelectObject( hdc, hFont );
 
                 RECT rc = new RECT( 0, 0, Bounds.Width, Bounds.Height );
-                int textColor = Enabled 
+                int textColor = Enabled
                     ? Win32Declarations.ColorToRGB( ForeColor )
                     : Win32Declarations.ColorToRGB( SystemColors.GrayText );
 
@@ -426,7 +425,7 @@ namespace JetBrains.Omea.GUIControls
                 int postfixLeft = 0;
                 if ( _postfixText.Length > 0 )
                 {
-                    Win32Declarations.DrawText( hdc, Text, Text.Length, ref rc, 
+                    Win32Declarations.DrawText( hdc, Text, Text.Length, ref rc,
                         GetTextFormatFlags() | DrawTextFormatFlags.DT_CALCRECT );
                     postfixLeft = rc.right;
                 }

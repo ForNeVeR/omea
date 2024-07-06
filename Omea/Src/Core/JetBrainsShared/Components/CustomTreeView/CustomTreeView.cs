@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -13,7 +12,7 @@ using JetBrains.Interop.WinApi;
 using JetBrains.UI.Interop;
 
 namespace JetBrains.UI.Components.CustomTreeView
-{ 
+{
   public enum NodeCheckState
   {
     None = 0, Unchecked = 1, Checked = 2, Grayed = 3
@@ -33,7 +32,7 @@ namespace JetBrains.UI.Components.CustomTreeView
     /// Mouse coordinates
     /// </summary>
     private Point myMouseCoords;
-      
+
     /// <summary>
     /// ImageList with images for three-state checkboxes.
     /// </summary>
@@ -74,7 +73,7 @@ namespace JetBrains.UI.Components.CustomTreeView
       {
         if ( myDoubleBufferBitmap != null )
         {
-          myDoubleBufferBitmap.Dispose();  
+          myDoubleBufferBitmap.Dispose();
           myDoubleBufferBitmap = null;
         }
         if ( myCheckImageList != null )
@@ -146,9 +145,9 @@ namespace JetBrains.UI.Components.CustomTreeView
     {
       if ( node.TreeView != this )
       {
-        return;  
+        return;
       }
-        
+
       TVITEM item = new TVITEM();
       item.mask = TreeViewItemFlags.STATE | TreeViewItemFlags.HANDLE;
       item.stateMask = 0xF000;
@@ -174,7 +173,7 @@ namespace JetBrains.UI.Components.CustomTreeView
         case Win32Declarations.OCM_NOTIFY:
           OnWmNotify(ref m);
           break;
-        
+
         case Win32Declarations.WM_ERASEBKGND:
           if( !myDoubleBuffer )
             base.WndProc( ref m );
@@ -190,7 +189,7 @@ namespace JetBrains.UI.Components.CustomTreeView
         default:
           base.WndProc(ref m);
           break;
-      }      
+      }
     }
 
     /// <summary>
@@ -209,11 +208,11 @@ namespace JetBrains.UI.Components.CustomTreeView
         case Win32Declarations.NM_CUSTOMDRAW:
           NMTVCUSTOMDRAW customDraw = new NMTVCUSTOMDRAW();
           customDraw = (NMTVCUSTOMDRAW)Marshal.PtrToStructure(m.LParam, typeof(NMTVCUSTOMDRAW));
-          
+
           OnCustomDraw(ref customDraw, ref m);
 
           break;
-        
+
         default:
           base.WndProc( ref m );
           break;
@@ -237,7 +236,7 @@ namespace JetBrains.UI.Components.CustomTreeView
       }
       if ( ClientSize.Width <= 0 || ClientSize.Height <= 0 )
       {
-        myDoubleBufferBitmap = new Bitmap( 1, 1 );   
+        myDoubleBufferBitmap = new Bitmap( 1, 1 );
       }
       else
       {
@@ -276,12 +275,12 @@ namespace JetBrains.UI.Components.CustomTreeView
         //TreeNode node = TreeNode.FromHandle(this, (IntPtr)customDraw.nmcd.dwItemSpec);
 
         using (Graphics g = Graphics.FromHdc(customDraw.nmcd.hdc))
-        { 
+        {
           //int offset = CalculateOffset(node);
           Rectangle rect = new Rectangle(customDraw.nmcd.rc.left/* + offset*/, customDraw.nmcd.rc.top, customDraw.nmcd.rc.right - customDraw.nmcd.rc.left/* - offset*/, customDraw.nmcd.rc.bottom - customDraw.nmcd.rc.top);
 
           g.FillRectangle(new SolidBrush(BackColor), rect);
-        }      
+        }
       }
       catch (Exception ex)
       {
@@ -314,7 +313,7 @@ namespace JetBrains.UI.Components.CustomTreeView
       {
         System.Diagnostics.Trace.WriteLine("CustomTreeView.DrawNode failed : " + ex, "UI");
       }
-    }    
+    }
     #endregion
 
     internal bool NeedFocusRect()
@@ -331,7 +330,7 @@ namespace JetBrains.UI.Components.CustomTreeView
         {
             case Win32Declarations.CDDS_PREPAINT:
                 m.Result = (IntPtr)(Win32Declarations.CDRF_NOTIFYITEMDRAW | Win32Declarations.CDRF_NOTIFYPOSTPAINT);
-                break;        
+                break;
 
             case Win32Declarations.CDDS_ITEMPREPAINT:
                 TreeNode node = TreeNode.FromHandle(this, (IntPtr)customDraw.nmcd.dwItemSpec);
@@ -342,8 +341,8 @@ namespace JetBrains.UI.Components.CustomTreeView
                     m.Result = (IntPtr)(Win32Declarations.CDRF_NOTIFYITEMDRAW | Win32Declarations.CDRF_NOTIFYPOSTPAINT /*| Win32Declarations.CDRF_SKIPDEFAULT */);
                 }
                 else
-                    m.Result = (IntPtr)Win32Declarations.CDRF_NOTIFYITEMDRAW;          
-                break;          
+                    m.Result = (IntPtr)Win32Declarations.CDRF_NOTIFYITEMDRAW;
+                break;
 
             case Win32Declarations.CDDS_ITEMPOSTPAINT:
                 DrawNode(ref customDraw);
@@ -354,7 +353,7 @@ namespace JetBrains.UI.Components.CustomTreeView
             default:
                 m.Result = (IntPtr)Win32Declarations.CDRF_DODEFAULT;
                 break;
-        }      
+        }
     }
 
       protected override void OnItemDrag( ItemDragEventArgs e )
@@ -452,7 +451,7 @@ namespace JetBrains.UI.Components.CustomTreeView
         myLastMouseUpTime = DateTime.Now;
         if ( doubleClick )
         {
-          return;  
+          return;
         }
 
         TVHITTESTINFO hti = new TVHITTESTINFO();
@@ -478,7 +477,7 @@ namespace JetBrains.UI.Components.CustomTreeView
     /**
      * Changes the checked state of a node and fires the AfterThreeStateCheck event.
      */
-      
+
     private void ChangeNodeCheckState( TreeNode node, NodeCheckState state )
     {
       SetNodeCheckState( node, state );
@@ -503,8 +502,8 @@ namespace JetBrains.UI.Components.CustomTreeView
           if (pntNode != null )
           {
             if (MultiSelect)
-              SelectedNode = null;      
-            SelectedNode = pntNode;      
+              SelectedNode = null;
+            SelectedNode = pntNode;
           }
         }
       }
@@ -522,7 +521,7 @@ namespace JetBrains.UI.Components.CustomTreeView
     private void CreateCheckImageList()
     {
       myCheckImageList = new ImageList();
-      
+
       Bitmap bmp = new Bitmap( 16, 16 );
       using( Graphics g = Graphics.FromImage( bmp ) )
       {
@@ -697,7 +696,7 @@ namespace JetBrains.UI.Components.CustomTreeView
         {
           SelectedNode = value [0];
         }
-        
+
         if ( MultiSelect )
         {
           mySelectedNodes.Clear();
@@ -716,8 +715,8 @@ namespace JetBrains.UI.Components.CustomTreeView
     protected void SetNodeSelectedState( TreeNode node, bool selected )
     {
       if ( node.TreeView != this )
-        return;  
-        
+        return;
+
       TVITEM item = new TVITEM();
       item.mask = TreeViewItemFlags.STATE | TreeViewItemFlags.HANDLE;
       item.stateMask = (int) TreeViewItemState.SELECTED;
@@ -878,7 +877,7 @@ namespace JetBrains.UI.Components.CustomTreeView
 
     public void SetDropHighlightNode( TreeNode node )
     {
-      Win32Declarations.SendMessage( Handle, (int) TreeViewMessage.TVM_SELECTITEM, 
+      Win32Declarations.SendMessage( Handle, (int) TreeViewMessage.TVM_SELECTITEM,
           (IntPtr) Win32Declarations.TVGN_DROPHILITE, (node != null) ? node.Handle : IntPtr.Zero );
     }
 
@@ -927,7 +926,7 @@ namespace JetBrains.UI.Components.CustomTreeView
     {
       if ( node.TreeView == this && myNodePainter != null )
       {
-        myNodePainter.InvalidateNode( node );  
+        myNodePainter.InvalidateNode( node );
       }
     }
   }

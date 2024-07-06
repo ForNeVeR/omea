@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.IO;
@@ -97,7 +96,7 @@ namespace JetBrains.Omea.ExcelDocPlugin
 					Core.FileResourceManager.CleanupSourceFile( res , fileName );
 
 					//  If we managed to successfully retrieve the text from the
-					//  doc file (e.g. using newer version of the convertor) - 
+					//  doc file (e.g. using newer version of the convertor) -
 					//  clean the [possibly] assigned error sign.
 					new ResourceProxy( res ).DeleteProp( Core.Props.LastError );
 				}
@@ -156,7 +155,7 @@ namespace JetBrains.Omea.ExcelDocPlugin
 			}
 
 			string tmpPath = "-tmp" + Utils.QuotedString( FileResourceManager.GetTrashDirectory() );
-            
+
 			Process process = new Process();
 			process.StartInfo.FileName = _converterName;
 			process.StartInfo.Arguments = tmpPath + " -nd -te ";

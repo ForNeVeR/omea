@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Windows.Forms;
@@ -75,19 +74,19 @@ namespace JetBrains.Omea.SamplePlugins.PostToConfluence
             this._btnCancel = new System.Windows.Forms.Button();
             this._lblProgress = new System.Windows.Forms.Label();
             this.SuspendLayout();
-            // 
+            //
             // label1
-            // 
+            //
             this.label1.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label1.Location = new System.Drawing.Point(8, 8);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(172, 16);
             this.label1.TabIndex = 0;
             this.label1.Text = "Address of the Confluence site:";
-            // 
+            //
             // _edtUrl
-            // 
-            this._edtUrl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._edtUrl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._edtUrl.Location = new System.Drawing.Point(8, 28);
             this._edtUrl.Name = "_edtUrl";
@@ -95,27 +94,27 @@ namespace JetBrains.Omea.SamplePlugins.PostToConfluence
             this._edtUrl.TabIndex = 1;
             this._edtUrl.Text = "";
             this._edtUrl.TextChanged += new System.EventHandler(this._edtUserName_TextChanged);
-            // 
+            //
             // label2
-            // 
+            //
             this.label2.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label2.Location = new System.Drawing.Point(8, 60);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(100, 16);
             this.label2.TabIndex = 2;
             this.label2.Text = "User Name:";
-            // 
+            //
             // _edtUserName
-            // 
+            //
             this._edtUserName.Location = new System.Drawing.Point(116, 56);
             this._edtUserName.Name = "_edtUserName";
             this._edtUserName.Size = new System.Drawing.Size(140, 21);
             this._edtUserName.TabIndex = 3;
             this._edtUserName.Text = "";
             this._edtUserName.TextChanged += new System.EventHandler(this._edtUserName_TextChanged);
-            // 
+            //
             // _edtPassword
-            // 
+            //
             this._edtPassword.Location = new System.Drawing.Point(116, 80);
             this._edtPassword.Name = "_edtPassword";
             this._edtPassword.PasswordChar = '*';
@@ -123,18 +122,18 @@ namespace JetBrains.Omea.SamplePlugins.PostToConfluence
             this._edtPassword.TabIndex = 5;
             this._edtPassword.Text = "";
             this._edtPassword.TextChanged += new System.EventHandler(this._edtUserName_TextChanged);
-            // 
+            //
             // label3
-            // 
+            //
             this.label3.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label3.Location = new System.Drawing.Point(8, 84);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(100, 16);
             this.label3.TabIndex = 4;
             this.label3.Text = "Password:";
-            // 
+            //
             // _btnOK
-            // 
+            //
             this._btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this._btnOK.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._btnOK.Location = new System.Drawing.Point(244, 136);
@@ -142,9 +141,9 @@ namespace JetBrains.Omea.SamplePlugins.PostToConfluence
             this._btnOK.TabIndex = 6;
             this._btnOK.Text = "OK";
             this._btnOK.Click += new System.EventHandler(this._btnOK_Click);
-            // 
+            //
             // _btnCancel
-            // 
+            //
             this._btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this._btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this._btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -152,9 +151,9 @@ namespace JetBrains.Omea.SamplePlugins.PostToConfluence
             this._btnCancel.Name = "_btnCancel";
             this._btnCancel.TabIndex = 7;
             this._btnCancel.Text = "Cancel";
-            // 
+            //
             // _lblProgress
-            // 
+            //
             this._lblProgress.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._lblProgress.Location = new System.Drawing.Point(4, 112);
             this._lblProgress.Name = "_lblProgress";
@@ -162,9 +161,9 @@ namespace JetBrains.Omea.SamplePlugins.PostToConfluence
             this._lblProgress.TabIndex = 8;
             this._lblProgress.Text = "Logging in...";
             this._lblProgress.Visible = false;
-            // 
+            //
             // LoginDialog
-            // 
+            //
             this.AcceptButton = this._btnOK;
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
             this.CancelButton = this._btnCancel;
@@ -214,7 +213,7 @@ namespace JetBrains.Omea.SamplePlugins.PostToConfluence
 
         private void _edtUserName_TextChanged(object sender, System.EventArgs e)
         {
-            UpdateButtonStatus();        
+            UpdateButtonStatus();
         }
 
         private void _btnOK_Click( object sender, System.EventArgs e )
@@ -305,7 +304,7 @@ namespace JetBrains.Omea.SamplePlugins.PostToConfluence
 
         internal static string Url
         {
-            get { return Core.SettingStore.ReadString( "PostToConfluence", "URL", "" ); }            
+            get { return Core.SettingStore.ReadString( "PostToConfluence", "URL", "" ); }
             set { Core.SettingStore.WriteString( "PostToConfluence", "URL", value ); }
         }
 

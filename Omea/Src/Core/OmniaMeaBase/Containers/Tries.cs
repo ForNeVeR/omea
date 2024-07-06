@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -168,7 +167,7 @@ namespace JetBrains.Omea.Containers
                     return ( Node ) _subNodes[ index ];
                 }
             }
-            
+
 			/// <summary>
 			/// Provides access to the char value of this node. Used primarily for comparison needs.
 			/// </summary>
@@ -375,7 +374,7 @@ namespace JetBrains.Omea.Containers
             }
         }
 
-        /** 
+        /**
          * returns true if the string was actually added
          * otherwise the string is already located the external trie
          */
@@ -439,7 +438,7 @@ namespace JetBrains.Omea.Containers
             return result;
         }
 
-        /** 
+        /**
          * gets index of a string in the external trie
          * if index is more than or equal to zero, the string is located in the trie
          */
@@ -519,7 +518,7 @@ namespace JetBrains.Omea.Containers
                 for( int i = 0; i < indexes.Count; ++i )
                 {
                     string str = GetStringByIndex( indexes[ i ] );
-                    if( str != null ) 
+                    if( str != null )
                     {
                         result.Add( str );
                     }
@@ -653,7 +652,7 @@ namespace JetBrains.Omea.Containers
             _isDirty = false;
         }
 
-        /** 
+        /**
          * Loads node from current location
          */
         private bool LoadNode( TrieNode node )
@@ -672,7 +671,7 @@ namespace JetBrains.Omea.Containers
             return true;
         }
 
-        /** 
+        /**
          * Loads node by specified index
          */
         private TrieNode LoadNodeByIndex( int index )
@@ -690,7 +689,7 @@ namespace JetBrains.Omea.Containers
             return node;
         }
 
-        /** 
+        /**
          * Saves specified node to current location
          */
         private void SaveNode( TrieNode node )
@@ -702,7 +701,7 @@ namespace JetBrains.Omea.Containers
             _isDirty = true;
         }
 
-        /** 
+        /**
          * Seeks to the specified index location
          */
         private bool Seek2NodeByIndex( int index )
@@ -716,7 +715,7 @@ namespace JetBrains.Omea.Containers
             return false;
         }
 
-        /** 
+        /**
          * Saves node by its index
          */
         private void SaveNodeByIndex( TrieNode node, int index )
@@ -726,7 +725,7 @@ namespace JetBrains.Omea.Containers
             SaveNode( node );
         }
 
-        /** 
+        /**
          * saves new node to end and returns its index
          */
         private int SaveNode2End( TrieNode node )

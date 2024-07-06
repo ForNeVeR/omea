@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using   System;
 using   System.Text;
@@ -121,10 +120,10 @@ public class TextDocParser: IDocParser
     //-------------------------------------------------------------------------
 
     protected void  SkipWhitespace()
-    {   
+    {
         while(( iOffset < BufferLength ) && isDelimiterAt( iOffset ))
         {
-            //  keep trace of "sentence end" markers. We define them as the sequence - 
+            //  keep trace of "sentence end" markers. We define them as the sequence -
             //  (one of sentence end punctuation symbols - '.', '!', '?')([WhiteSpace]|EOL)
 
             char    ch = strBuffer[ iOffset ];
@@ -134,7 +133,7 @@ public class TextDocParser: IDocParser
             {
                 iSentenceNumber++;
             }
-            else 
+            else
             if( ( iOffset >= 2 ) && ( ch == '\n' ) && ( strBuffer[ iOffset - 1 ] == '\n' ) &&
                 !isSentenceEndSymbol( strBuffer[ iOffset - 2 ] ) &&  // counter has already been incremented
                 ( strBuffer[ iOffset - 2 ] != '\n' ))                 // avoid unnecessary increments
@@ -192,7 +191,7 @@ public class TextDocParser: IDocParser
             }
             hasUpperCaseChars = hasUpperCaseChars || Char.IsUpper( charCode );
         }
-        
+
         return( --iEndOffset );
     }
 
@@ -276,6 +275,6 @@ public class TextDocParser: IDocParser
         false,  false,  false,  false,  false,  false,  false,  false,  false,  false,  false,  false,  false,  false,  false,  false,
         false,  false,  false,  false,  false,  false,  false,  false,  false,  false,  false,  false,  false,  false,  false,  false,
         false,  false,  false,  false,  false,  false,  false,  false,  false,  false,  false,  false,  false,  false,  false,  false };
-    #endregion 
+    #endregion
 }
 }

@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 // MyMAPIFormViewer.cpp: implementation of the CMyMAPIFormViewer class.
 //
@@ -35,18 +34,18 @@ STDMETHODIMP ViewContext::GetLastError(HRESULT /*hResult*/, ULONG /*ulFlags*/, L
     return S_OK;
 }
 
-STDMETHODIMP_(ULONG) ViewContext::AddRef() 
+STDMETHODIMP_(ULONG) ViewContext::AddRef()
 {
     OutputDebugString("ViewContext::AddRef\n");
     InterlockedIncrement( &_cRef );
-    return _cRef; 
+    return _cRef;
 }
 
-STDMETHODIMP_(ULONG) ViewContext::Release() 
+STDMETHODIMP_(ULONG) ViewContext::Release()
 {
     OutputDebugString("ViewContext::Release\n");
-    LONG lCount = InterlockedDecrement( &_cRef );	
-    if ( !lCount )  delete this; 
+    LONG lCount = InterlockedDecrement( &_cRef );
+    if ( !lCount )  delete this;
     return lCount;
 }
 STDMETHODIMP ViewContext::QueryInterface ( REFIID riid, LPVOID * ppvObj )
@@ -95,7 +94,7 @@ STDMETHODIMP ViewContext::SetAdviseSink( LPMAPIFORMADVISESINK pmvns )
     */
 }
 
-STDMETHODIMP ViewContext::ActivateNext(ULONG /*ulDir*/,               
+STDMETHODIMP ViewContext::ActivateNext(ULONG /*ulDir*/,
                                       LPCRECT /*prcPosRect*/)
 {
     OutputDebugString("ViewContext::ActivateNext\n");
@@ -133,8 +132,8 @@ STDMETHODIMP ViewContext::GetViewStatus( LPULONG lpulStatus )
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-FormViewer::FormViewer( MsgStoreSPtr msgStore, LPMAPISESSION lpMAPISession, EMAPIFolderSPtr folder, 
-                       EMessageSPtr message, int verbID ) : 
+FormViewer::FormViewer( MsgStoreSPtr msgStore, LPMAPISESSION lpMAPISession, EMAPIFolderSPtr folder,
+                       EMessageSPtr message, int verbID ) :
         _msgStore( msgStore ), _folder( folder ), _message( message ), _persistMessage( NULL ), _form( NULL )
 {
     _viewContext = new ViewContext( this );
@@ -204,20 +203,20 @@ STDMETHODIMP FormViewer::QueryInterface ( REFIID riid, LPVOID * ppvObj )
     return E_NOINTERFACE;
 }
 
-STDMETHODIMP_(ULONG) FormViewer::AddRef() 
+STDMETHODIMP_(ULONG) FormViewer::AddRef()
 {
     OutputDebugString("CMyMAPIFormViewer::AddRef\n");
     InterlockedIncrement(&m_cRef);
-    return m_cRef; 
+    return m_cRef;
 }
 
-STDMETHODIMP_(ULONG) FormViewer::Release() 
+STDMETHODIMP_(ULONG) FormViewer::Release()
 {
     OutputDebugString("CMyMAPIFormViewer::Release\n");
-    LONG lCount = InterlockedDecrement(&m_cRef);	
-    if (!lCount)  
+    LONG lCount = InterlockedDecrement(&m_cRef);
+    if (!lCount)
     {
-        delete this; 
+        delete this;
         /*
         _msgStore.release();
         _folder.release();
@@ -409,7 +408,7 @@ STDMETHODIMP FormViewer::SubmitMessage ( ULONG /*ulFlags*/)
 STDMETHODIMP FormViewer::GetSiteStatus (LPULONG lpulStatus)
 {
     OutputDebugString("CMyMAPIFormViewer::GetSiteStatus\n");
-    *lpulStatus = (int)(VCSTATUS_NEW_MESSAGE | VCSTATUS_SAVE | VCSTATUS_SUBMIT | VCSTATUS_DELETE | 
+    *lpulStatus = (int)(VCSTATUS_NEW_MESSAGE | VCSTATUS_SAVE | VCSTATUS_SUBMIT | VCSTATUS_DELETE |
         VCSTATUS_MOVE | VCSTATUS_COPY | VCSTATUS_DELETE_IS_MOVE );
     return S_OK;
 }

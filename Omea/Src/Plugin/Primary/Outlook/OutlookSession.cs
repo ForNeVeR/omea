@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -681,7 +680,7 @@ namespace JetBrains.Omea.OutlookPlugin
             catch ( COMException exception )
             {
                 if ( exception.ErrorCode == ( unchecked( (int)0x8004060E ) ) ||
-                    exception.ErrorCode == MapiError.MAPI_E_NETWORK_ERROR || 
+                    exception.ErrorCode == MapiError.MAPI_E_NETWORK_ERROR ||
                     exception.ErrorCode == MapiError.MAPI_E_FAILONEPROVIDER )
                     //Folder is in offline mode or Network error
                 {

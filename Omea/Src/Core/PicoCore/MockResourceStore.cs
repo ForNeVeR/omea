@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -206,7 +205,7 @@ namespace JetBrains.Omea.PicoCore
 	        {
 	            if ( Object.Equals( propValue, res.GetProp( propId ) ) )
 	            {
-                    return res;	                
+                    return res;
 	            }
 	        }
             return null;
@@ -481,9 +480,9 @@ namespace JetBrains.Omea.PicoCore
     internal class MockResourceList: IResourceList
     {
         protected ArrayList _resources = new ArrayList();
-        
+
         internal MockResourceList() { }
-        
+
         internal MockResourceList( IResource res )
         {
             _resources.Add( res );
@@ -502,7 +501,7 @@ namespace JetBrains.Omea.PicoCore
                     _resources.Add( res );
                 }
             }
-        } 
+        }
 
         public void Dispose( bool disposeBaseLists )
         {
@@ -744,7 +743,7 @@ namespace JetBrains.Omea.PicoCore
         private MockResourceStore _store;
         private Hashtable _properties = new Hashtable();
         private string _type;
-        
+
         public MockResource( MockResourceStore store, string type )
         {
             _store = store;

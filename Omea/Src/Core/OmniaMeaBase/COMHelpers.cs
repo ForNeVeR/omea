@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Runtime.InteropServices;
@@ -112,13 +111,13 @@ namespace JetBrains.Omea.COM
         }
         ~Object_Ref_Counting()
         {
-            if ( _count != 0 ) 
+            if ( _count != 0 )
             {
 /*
                 Tracer._Trace( "COM_WRAPPER_____________________________________________" );
                 Tracer._Trace( "COM_WRAPPER error in releasing Count " + _count.ToString() );
                 Tracer._Trace( "COM_WRAPPER call stack : " + _strCallStack );
-                
+
                 foreach ( string callStack in  _callStacks )
                 {
                     Tracer._Trace( "COM_WRAPPER_____________________________________________" );
@@ -129,11 +128,11 @@ namespace JetBrains.Omea.COM
                     Tracer._Trace( "COM_WRAPPER_____________________________________________" );
                     Tracer._Trace( "COM_WRAPPER release call stack : " + callStack );
                 }
-                
+
                 Tracer._Trace( "COM_WRAPPER_____________________________________________" );
                 */
                 ReleaseObject();
-                
+
             }
             else
             {

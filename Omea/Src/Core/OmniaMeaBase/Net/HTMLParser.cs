@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -25,9 +24,9 @@ namespace JetBrains.Omea.HTML
 	/// <remarks>
 	/// <para>A fragment is returned by <see cref="ReadNextFragment"/> only if it is situated
 	/// in body or in title, and not in script or any other place outside the above mentioned ones.</para>
-	/// 
+	///
 	/// <para>The <see cref="InTitle"/> property allows to check which fragment is currently being processed.</para>
-	/// 
+	///
 	/// <para>Each read fragment can be a simple fragment and a heading,
 	/// it can be verified by InHeading property.</para>
 	/// </remarks>
@@ -576,7 +575,7 @@ namespace JetBrains.Omea.HTML
 			Uri currentUri;
             try
             {
-                currentUri = new Uri( URL );                
+                currentUri = new Uri( URL );
             }
             catch( UriFormatException )
             {
@@ -771,7 +770,7 @@ namespace JetBrains.Omea.HTML
         {
             return BuildHref( "http://" + m.Value,  m.Value );
         }
-    
+
         protected virtual string ReplaceMailLink( Match m )
         {
             if( !m.Value.StartsWith( "mailto:" ) && !m.Value.StartsWith( "news:" ) )
@@ -1078,7 +1077,7 @@ namespace JetBrains.Omea.HTML
 			{
 				// Walk the char trie following the path represented by the character stream
 				StringBuilder	sb = StringBuilderPool.Alloc();
-                try 
+                try
                 {
                     CharTrie.Node node = _entitiesTrie.Root;
                     for( nPos = 1; nPos < _lookaheadSize - 1; nPos++ )
@@ -1118,7 +1117,7 @@ namespace JetBrains.Omea.HTML
                                     bSubstituteEntity = false;	// Do not substitute the entity if it's on the ignore list
                             }
                         }
-					
+
                         // Substitute the entity if it has not been suppressed
                         if(bSubstituteEntity)
                         {

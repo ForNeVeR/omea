@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Drawing;
@@ -81,9 +80,9 @@ namespace JetBrains.Omea.SamplePlugins.BloglinesPlugin
 			this.buttonImport = new System.Windows.Forms.Button();
 			this.buttonCancel = new System.Windows.Forms.Button();
 			this.SuspendLayout();
-			// 
+			//
 			// label1
-			// 
+			//
 			this.label1.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this.label1.Location = new System.Drawing.Point(8, 8);
 			this.label1.Name = "label1";
@@ -91,9 +90,9 @@ namespace JetBrains.Omea.SamplePlugins.BloglinesPlugin
 			this.label1.TabIndex = 0;
 			this.label1.Text = "Bloglines &Login:";
 			this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-			// 
+			//
 			// label2
-			// 
+			//
 			this.label2.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this.label2.Location = new System.Drawing.Point(24, 32);
 			this.label2.Name = "label2";
@@ -101,35 +100,35 @@ namespace JetBrains.Omea.SamplePlugins.BloglinesPlugin
 			this.label2.TabIndex = 2;
 			this.label2.Text = "&Password:";
 			this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-			// 
+			//
 			// textBoxLogin
-			// 
+			//
 			this.textBoxLogin.Location = new System.Drawing.Point(104, 8);
 			this.textBoxLogin.Name = "textBoxLogin";
 			this.textBoxLogin.Size = new System.Drawing.Size(264, 20);
 			this.textBoxLogin.TabIndex = 1;
 			this.textBoxLogin.Text = "";
-			// 
+			//
 			// textBoxPassword
-			// 
+			//
 			this.textBoxPassword.Location = new System.Drawing.Point(104, 32);
 			this.textBoxPassword.Name = "textBoxPassword";
 			this.textBoxPassword.PasswordChar = '*';
 			this.textBoxPassword.Size = new System.Drawing.Size(264, 20);
 			this.textBoxPassword.TabIndex = 3;
 			this.textBoxPassword.Text = "";
-			// 
+			//
 			// checkBoxPreview
-			// 
+			//
 			this.checkBoxPreview.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this.checkBoxPreview.Location = new System.Drawing.Point(104, 56);
 			this.checkBoxPreview.Name = "checkBoxPreview";
 			this.checkBoxPreview.Size = new System.Drawing.Size(264, 24);
 			this.checkBoxPreview.TabIndex = 4;
 			this.checkBoxPreview.Text = "Preview &feed list before importing";
-			// 
+			//
 			// buttonImport
-			// 
+			//
 			this.buttonImport.DialogResult = System.Windows.Forms.DialogResult.OK;
 			this.buttonImport.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this.buttonImport.Location = new System.Drawing.Point(208, 88);
@@ -137,18 +136,18 @@ namespace JetBrains.Omea.SamplePlugins.BloglinesPlugin
 			this.buttonImport.TabIndex = 5;
 			this.buttonImport.Text = "&Import";
 			this.buttonImport.Click += new System.EventHandler(this.buttonImport_Click);
-			// 
+			//
 			// buttonCancel
-			// 
+			//
 			this.buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
 			this.buttonCancel.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this.buttonCancel.Location = new System.Drawing.Point(296, 88);
 			this.buttonCancel.Name = "buttonCancel";
 			this.buttonCancel.TabIndex = 6;
 			this.buttonCancel.Text = "&Cancel";
-			// 
+			//
 			// ImportBloglinesSubscription
-			// 
+			//
 			this.AcceptButton = this.buttonImport;
 			this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
 			this.CancelButton = this.buttonCancel;

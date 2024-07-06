@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Drawing;
@@ -62,7 +61,7 @@ namespace JetBrains.UI.RichText
 	  }
 
 	  public RichTextBlock( RichTextBlockParameters parameters )
-		{			
+		{
       myParameters = parameters;
       myLines = new ArrayList();
 		}
@@ -77,7 +76,7 @@ namespace JetBrains.UI.RichText
       for (int i = 0; i < myLines.Count; i++)
       {
         RichText line = (RichText) myLines[i];
-        
+
         y += (int)line.GetSize(hdc).Height;
 
         if (y > point.Y)
@@ -113,7 +112,7 @@ namespace JetBrains.UI.RichText
 
       foreach (RichText line in lines.Lines)
         result = myLines.Add(line);
-      
+
       return result;
     }
 
@@ -140,7 +139,7 @@ namespace JetBrains.UI.RichText
       {
         SizeF lineSize = line.GetSize(hdc);
 
-        width = Math.Max(width, lineSize.Width);        
+        width = Math.Max(width, lineSize.Width);
         height += lineSize.Height;
       }
 
@@ -164,9 +163,9 @@ namespace JetBrains.UI.RichText
         rect.Height = (int)size.Height;
         rect.Width = (int)size.Width;
 
-        line.Draw(hdc, rect);     
-   
-        rect.Y += (int)size.Height;        
+        line.Draw(hdc, rect);
+
+        rect.Y += (int)size.Height;
 
         if (isFirst)
           isFirst = false;

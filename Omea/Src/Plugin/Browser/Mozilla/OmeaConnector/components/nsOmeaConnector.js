@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 const cContractID  = '@jetbrains.com/omeaconnector;1';
 const cCID         = Components.ID('{50dfb942-b1e0-49f7-81e2-b2d0596e5efd}');
@@ -37,7 +36,7 @@ function OmeaConnector()
   return this;
 }
 
-OmeaConnector.prototype = 
+OmeaConnector.prototype =
 {
 ///////////////////////////////////////////////////////////////////////////////
 // nsISupports
@@ -86,7 +85,7 @@ OmeaConnector.prototype =
   get prop_queue_timer_set() { return this._prop_queue_timer_set; },
   set prop_queue_timer_set( val )
   {
-    val = val ? true : false; 
+    val = val ? true : false;
     if( this._prop_queue_timer_set != val )
     {
       this._prop_queue_timer_set = val;
@@ -98,7 +97,7 @@ OmeaConnector.prototype =
   get prop_queue_askonexit() { return this._prop_queue_askonexit; },
   set prop_queue_askonexit( val )
   {
-    val = val ? true : false; 
+    val = val ? true : false;
     if( this._prop_queue_askonexit != val )
     {
       this._prop_queue_askonexit = val;
@@ -139,7 +138,7 @@ OmeaConnector.prototype =
     }
     this._getPropStore().setBoolPref( this._PROP_FIRST_RUN, false );
     return first;
-  }, 
+  },
 
   _PROP_FIRST_RUN: 'first_run',
   _PROP_FOUND_METHODS: 'methods.lastseen',
@@ -248,7 +247,7 @@ OmeaConnector.prototype =
     {
       return;
     }
-    this._requestRemoteAPI( 
+    this._requestRemoteAPI(
       new RemoteCall( "RSSPlugin.SubscribeToFeed.1", this._marshallRequest( 'url', url ), REQ_REPEAT | REQ_REPORT )
     );
   },
@@ -269,7 +268,7 @@ OmeaConnector.prototype =
       callback = function() { self._showAlert( 'ClippingCreated' ) };
       method = "Omea.CreateClippingSilent.1";
     }
-    this._requestRemoteAPI( 
+    this._requestRemoteAPI(
       new RemoteCall( method,
         this._marshallRequest( 'subject', subject, 'text', text, 'sourceUrl', url ),
         REQ_REPEAT | REQ_REPORT, callback
@@ -359,7 +358,7 @@ OmeaConnector.prototype =
     this._supportedMethods = null;
 
     this._omeaStartInProgress = false;
-    
+
     this._queueTimer       = null;
     this._bookmarksTimer   = null;
 
@@ -370,7 +369,7 @@ OmeaConnector.prototype =
     var eventQSvc  = Components.classes["@mozilla.org/event-queue-service;1"].getService( Components.interfaces.nsIEventQueueService );
     this._UIQueue  = eventQSvc.getSpecialEventQueue( Components.interfaces.nsIEventQueueService.UI_THREAD_EVENT_QUEUE );
     this._ProxyMgr = Components.classes["@mozilla.org/xpcomproxy;1"].getService( Components.interfaces.nsIProxyObjectManager );
-   
+
     this._readReg = function( val ) { return null; };
 
     // DeepPark AKA FireFox 1.1
@@ -458,7 +457,7 @@ OmeaConnector.prototype =
   {
     // Get profile manager
     this._dirManager = Components.classes["@mozilla.org/file/directory_service;1"].getService(Components.interfaces.nsIProperties);
-    
+
     // Bookmarks service
     this._BookmarksSvc = Components.classes[ "@mozilla.org/browser/bookmarks-service;1" ].getService( Components.interfaces.nsIBookmarksService );
     // Read bookmarks :)
@@ -489,7 +488,7 @@ OmeaConnector.prototype =
     var f = this._dirManager.get( "ProfD", Components.interfaces.nsIFile );
     return f.path;
   },
- 
+
   _getString: function( name )
   {
     if( ! this._stringBundle ) {
@@ -561,7 +560,7 @@ OmeaConnector.prototype =
     {
       return;
     }
-    
+
     try
     {
       var ready = req.status == 200;
@@ -753,7 +752,7 @@ OmeaConnector.prototype =
       {
         var obj = this._marshallObjectAsForm( name + "." + prop, val[prop] );
         if( res.length && obj.length)
-        { 
+        {
           res += "&";
         }
         res += obj;
@@ -766,8 +765,8 @@ OmeaConnector.prototype =
   _scheduleStart : function()
   {
     var self = this;
-    var gam = new RemoteCall( 'System.ListAllMethods', '', REQ_SINGLE | REQ_FIRST, 
-      function( obj ) { self._getAllMethodsSuccess( obj ) }, 
+    var gam = new RemoteCall( 'System.ListAllMethods', '', REQ_SINGLE | REQ_FIRST,
+      function( obj ) { self._getAllMethodsSuccess( obj ) },
       function()      { self._getAllMethodsError() }
     );
     this._queue.addJob( gam );
@@ -966,7 +965,7 @@ OmeaConnector.prototype =
       this._queueTimer.cancel();
       this._queueTimer = null;
     }
-    else 
+    else
     {
       this._queueTimer = Components.classes[ "@mozilla.org/timer;1" ].createInstance( Components.interfaces.nsITimer );
     }
@@ -1320,7 +1319,7 @@ OmeaConnector.prototype =
         this._bookmarksTimer.cancel();
         this._bookmarksTimer = null;
       }
-      this._requestRemoteAPI( 
+      this._requestRemoteAPI(
         new RemoteCall( 'Favorites.RefreshMozillaBookmarks.1',
           this._marshallRequest( 'profilePath', this._getProfileName() ),
           REQ_ONESHOT )
@@ -1432,7 +1431,7 @@ OmeaConnector.prototype =
    observe: function( subject, topic, data )
    {
      if( topic == "quit-application-requested" )
-     { 
+     {
        var subj = null;
        if( subject )
        {
@@ -1462,7 +1461,7 @@ OmeaConnector.prototype =
                        );
          var rv = ps.confirmEx( null,
                                 this._getString( 'Exit' + type + 'Title' ),
-                                this._getString( 'Exit' + type + 'Message' ), 
+                                this._getString( 'Exit' + type + 'Message' ),
                                 buttons,
                                 null, null, null,
                                 this._getString( 'Exit' + type + 'Checkbox' ),
@@ -1517,7 +1516,7 @@ OmeaConnector.prototype =
    _log: function( str )
    {
      var file = Components.classes["@mozilla.org/file/directory_service;1"].getService(Components.interfaces.nsIProperties).get("ProfD", Components.interfaces.nsIFile);
- 
+
      //put in forecastfox subdirectory
      file.append("nsOmeaConnector.log");
      if( ! file.exists() )
@@ -1538,8 +1537,8 @@ OmeaConnector.prototype =
 
    _console: function( )
    {
-     var time = new Date();    
-     var time_string = time.getHours() + ":" + time.getMinutes() + ":" + time.getSeconds();    
+     var time = new Date();
+     var time_string = time.getHours() + ":" + time.getMinutes() + ":" + time.getSeconds();
      str = '[OmeaConnector ' + time_string + '] ';
      for( var i = 0; i < arguments.length; ++i )
      {
@@ -1834,7 +1833,7 @@ function RemoteCall( method, params, type, success, error )
   return this;
 }
 
-RemoteCall.prototype = 
+RemoteCall.prototype =
 {
   success: function( data ) {},
   error: function( stored ) {}
@@ -1845,11 +1844,11 @@ var gModule = {
    registerSelf: function( compMgr, fileSpec, location, type )
    {
      compMgr = compMgr.QueryInterface( Components.interfaces.nsIComponentRegistrar );
-     compMgr.registerFactoryLocation( cCID, 
-                                      cDescription, 
-                                      cContractID, 
+     compMgr.registerFactoryLocation( cCID,
+                                      cDescription,
+                                      cContractID,
                                       fileSpec,
-                                      location, 
+                                      location,
                                       type );
    },
 
@@ -1883,7 +1882,7 @@ var gModule = {
       if( ! this._instance )
       {
         this._instance = new OmeaConnector();
-      }     
+      }
       return this._instance;
     }
   },

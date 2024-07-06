@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.IO;
@@ -74,36 +73,36 @@ namespace JetBrains.Omea.RSSPlugin
             this._lblDownloading = new System.Windows.Forms.Label();
             this._chkPreviewImportedFeeds = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
-            // 
+            //
             // label1
-            // 
+            //
             this.label1.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label1.Location = new System.Drawing.Point(8, 8);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(420, 16);
             this.label1.TabIndex = 0;
             this.label1.Text = "Enter the file name or URL of the subscription list in OPML format:";
-            // 
+            //
             // _edtOPMLName
-            // 
+            //
             this._edtOPMLName.Location = new System.Drawing.Point(8, 28);
             this._edtOPMLName.Name = "_edtOPMLName";
             this._edtOPMLName.Size = new System.Drawing.Size(336, 21);
             this._edtOPMLName.TabIndex = 1;
             this._edtOPMLName.Text = "";
             this._edtOPMLName.TextChanged += new System.EventHandler(this._edtOPMLName_TextChanged);
-            // 
+            //
             // _btnBrowse
-            // 
+            //
             this._btnBrowse.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._btnBrowse.Location = new System.Drawing.Point(352, 28);
             this._btnBrowse.Name = "_btnBrowse";
             this._btnBrowse.TabIndex = 2;
             this._btnBrowse.Text = "Browse...";
             this._btnBrowse.Click += new System.EventHandler(this._btnBrowse_Click);
-            // 
+            //
             // _btnOK
-            // 
+            //
             this._btnOK.Enabled = false;
             this._btnOK.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._btnOK.Location = new System.Drawing.Point(268, 88);
@@ -111,23 +110,23 @@ namespace JetBrains.Omea.RSSPlugin
             this._btnOK.TabIndex = 5;
             this._btnOK.Text = "OK";
             this._btnOK.Click += new System.EventHandler(this._btnOK_Click);
-            // 
+            //
             // _btnCancel
-            // 
+            //
             this._btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this._btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._btnCancel.Location = new System.Drawing.Point(352, 88);
             this._btnCancel.Name = "_btnCancel";
             this._btnCancel.TabIndex = 6;
             this._btnCancel.Text = "Cancel";
-            // 
+            //
             // _dlgOpenFile
-            // 
+            //
             this._dlgOpenFile.Filter = "OPML files (*.opml)|*.opml|All files (*.*)|*.*";
             this._dlgOpenFile.Title = "Select Subscription List File";
-            // 
+            //
             // _lblDownloading
-            // 
+            //
             this._lblDownloading.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._lblDownloading.Location = new System.Drawing.Point(12, 88);
             this._lblDownloading.Name = "_lblDownloading";
@@ -135,18 +134,18 @@ namespace JetBrains.Omea.RSSPlugin
             this._lblDownloading.TabIndex = 4;
             this._lblDownloading.Text = "Downloading...";
             this._lblDownloading.Visible = false;
-            // 
+            //
             // _chkPreviewImportedFeeds
-            // 
+            //
             this._chkPreviewImportedFeeds.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._chkPreviewImportedFeeds.Location = new System.Drawing.Point(8, 60);
             this._chkPreviewImportedFeeds.Name = "_chkPreviewImportedFeeds";
             this._chkPreviewImportedFeeds.Size = new System.Drawing.Size(264, 20);
             this._chkPreviewImportedFeeds.TabIndex = 3;
             this._chkPreviewImportedFeeds.Text = "Preview feed list before importing";
-            // 
+            //
             // ImportSubscriptionsDlg
-            // 
+            //
             this.AcceptButton = this._btnOK;
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
             this.CancelButton = this._btnCancel;
@@ -179,7 +178,7 @@ namespace JetBrains.Omea.RSSPlugin
         {
             _edtOPMLName.Enabled = false;
             _btnOK.Enabled = false;
-            
+
             try
             {
                 if ( File.Exists( FileName ) )
@@ -210,7 +209,7 @@ namespace JetBrains.Omea.RSSPlugin
             DialogResult = DialogResult.OK;
         }
 
-        private void _edtOPMLName_TextChanged( object sender, System.EventArgs e ) 
+        private void _edtOPMLName_TextChanged( object sender, System.EventArgs e )
         {
             _btnOK.Enabled = (_edtOPMLName.Text.Length > 0);
         }

@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections.Generic;
@@ -63,8 +62,8 @@ namespace JetBrains.Omea.InstantMessaging.ICQ
 		}
 
 		#region Component Designer generated code
-		/// <summary> 
-		/// Required method for Designer support - do not modify 
+		/// <summary>
+		/// Required method for Designer support - do not modify
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent()
@@ -93,15 +92,15 @@ namespace JetBrains.Omea.InstantMessaging.ICQ
             ((System.ComponentModel.ISupportInitialize)(this._convsTimeSpan)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
-            // 
+            //
             // _optionsPaneImages
-            // 
+            //
             this._optionsPaneImages.ImageSize = new System.Drawing.Size(16, 16);
             this._optionsPaneImages.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("_optionsPaneImages.ImageStream")));
             this._optionsPaneImages.TransparentColor = System.Drawing.Color.Transparent;
-            // 
+            //
             // _conversationsPanel
-            // 
+            //
             this._conversationsPanel.Controls.Add(this._reverseModeCheckBox);
             this._conversationsPanel.Controls.Add(this._indexOnlineCheckBox);
             this._conversationsPanel.Controls.Add(this.groupBox1);
@@ -116,10 +115,10 @@ namespace JetBrains.Omea.InstantMessaging.ICQ
             this._conversationsPanel.Name = "_conversationsPanel";
             this._conversationsPanel.Size = new System.Drawing.Size(428, 112);
             this._conversationsPanel.TabIndex = 9;
-            // 
+            //
             // _reverseModeCheckBox
-            // 
-            this._reverseModeCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._reverseModeCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._reverseModeCheckBox.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._reverseModeCheckBox.Location = new System.Drawing.Point(8, 68);
@@ -127,10 +126,10 @@ namespace JetBrains.Omea.InstantMessaging.ICQ
             this._reverseModeCheckBox.Size = new System.Drawing.Size(412, 24);
             this._reverseModeCheckBox.TabIndex = 14;
             this._reverseModeCheckBox.Text = "Show latest messages in conversations on top";
-            // 
+            //
             // _indexOnlineCheckBox
-            // 
-            this._indexOnlineCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._indexOnlineCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._indexOnlineCheckBox.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._indexOnlineCheckBox.Location = new System.Drawing.Point(8, 44);
@@ -139,19 +138,19 @@ namespace JetBrains.Omea.InstantMessaging.ICQ
             this._indexOnlineCheckBox.TabIndex = 1;
             this._indexOnlineCheckBox.Text = "Synchronize database immediately";
             this._indexOnlineToolTip.SetToolTip(this._indexOnlineCheckBox, "_indexOnlineToolTip");
-            // 
+            //
             // groupBox1
-            // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Location = new System.Drawing.Point(112, 100);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(316, 8);
             this.groupBox1.TabIndex = 13;
             this.groupBox1.TabStop = false;
-            // 
+            //
             // label4
-            // 
+            //
             this.label4.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label4.Location = new System.Drawing.Point(4, 96);
             this.label4.Name = "label4";
@@ -159,19 +158,19 @@ namespace JetBrains.Omea.InstantMessaging.ICQ
             this.label4.TabIndex = 12;
             this.label4.Text = "ICQ Accounts";
             this.label4.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
-            // 
+            //
             // groupBox2
-            // 
-            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.Location = new System.Drawing.Point(144, 4);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(284, 8);
             this.groupBox2.TabIndex = 10;
             this.groupBox2.TabStop = false;
-            // 
+            //
             // label3
-            // 
+            //
             this.label3.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label3.Location = new System.Drawing.Point(0, 0);
             this.label3.Name = "label3";
@@ -179,9 +178,9 @@ namespace JetBrains.Omea.InstantMessaging.ICQ
             this.label3.TabIndex = 9;
             this.label3.Text = "Building conversations";
             this.label3.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
-            // 
+            //
             // label2
-            // 
+            //
             this.label2.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label2.Location = new System.Drawing.Point(320, 20);
             this.label2.Name = "label2";
@@ -189,9 +188,9 @@ namespace JetBrains.Omea.InstantMessaging.ICQ
             this.label2.TabIndex = 8;
             this.label2.Text = "minutes";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
+            //
             // _convsTimeSpan
-            // 
+            //
             this._convsTimeSpan.Location = new System.Drawing.Point(260, 20);
             this._convsTimeSpan.Maximum = new System.Decimal(new int[] {
                                                                            14400,
@@ -212,9 +211,9 @@ namespace JetBrains.Omea.InstantMessaging.ICQ
                                                                          0,
                                                                          0,
                                                                          0});
-            // 
+            //
             // label1
-            // 
+            //
             this.label1.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label1.Location = new System.Drawing.Point(8, 20);
             this.label1.Name = "label1";
@@ -222,9 +221,9 @@ namespace JetBrains.Omea.InstantMessaging.ICQ
             this.label1.TabIndex = 7;
             this.label1.Text = "Maximum time span between messages:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
+            //
             // panel1
-            // 
+            //
             this.panel1.Controls.Add(this._importOnly2003bCheckbox);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this._UINsList);
@@ -233,10 +232,10 @@ namespace JetBrains.Omea.InstantMessaging.ICQ
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(428, 160);
             this.panel1.TabIndex = 10;
-            // 
+            //
             // _importOnly2003bCheckbox
-            // 
-            this._importOnly2003bCheckbox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._importOnly2003bCheckbox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._importOnly2003bCheckbox.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._importOnly2003bCheckbox.Location = new System.Drawing.Point(8, 124);
@@ -244,9 +243,9 @@ namespace JetBrains.Omea.InstantMessaging.ICQ
             this._importOnly2003bCheckbox.Size = new System.Drawing.Size(412, 24);
             this._importOnly2003bCheckbox.TabIndex = 13;
             this._importOnly2003bCheckbox.Text = "Import only databases of ICQ2003b and later ICQ versions";
-            // 
+            //
             // label5
-            // 
+            //
             this.label5.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label5.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.label5.Location = new System.Drawing.Point(8, 4);
@@ -254,9 +253,9 @@ namespace JetBrains.Omea.InstantMessaging.ICQ
             this.label5.Size = new System.Drawing.Size(104, 20);
             this.label5.TabIndex = 12;
             this.label5.Text = "Index history of:";
-            // 
+            //
             // _UINsList
-            // 
+            //
             this._UINsList.CheckBoxes = true;
             this._UINsList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
                                                                                         this.columnHeader1,
@@ -271,17 +270,17 @@ namespace JetBrains.Omea.InstantMessaging.ICQ
             this._UINsList.SmallImageList = this._optionsPaneImages;
             this._UINsList.TabIndex = 3;
             this._UINsList.View = System.Windows.Forms.View.Details;
-            // 
+            //
             // columnHeader1
-            // 
+            //
             this.columnHeader1.Width = 120;
-            // 
+            //
             // columnHeader2
-            // 
+            //
             this.columnHeader2.Width = 76;
-            // 
+            //
             // ICQOptionsPane
-            // 
+            //
             this.Controls.Add(this.panel1);
             this.Controls.Add(this._conversationsPanel);
             this.Name = "ICQOptionsPane";
@@ -387,7 +386,7 @@ namespace JetBrains.Omea.InstantMessaging.ICQ
                     ICQPlugin.SaveUINs2BeIndexed( uins );
                     if( !IsStartupPane )
                     {
-                        ICQPlugin.AsyncUpdateHistory();                
+                        ICQPlugin.AsyncUpdateHistory();
                     }
                 }
             }

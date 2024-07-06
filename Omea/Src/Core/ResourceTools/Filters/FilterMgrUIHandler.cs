@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections.Generic;
@@ -159,7 +158,7 @@ namespace JetBrains.Omea.FiltersManagement
                        search results are present. Then, as soon as you try to switch to the original tab again,
                        the search view is selected again, the following code runs again, and the selection jumps back.
                        In effect, the original tab becomes unreachable.
-                       
+
 				    if( view.HasProp( "RunToTabIfSingleTyped" ) )
 					{
 						string[] types = ResourceTypeHelper.GetUnderlyingResourceTypes( result );
@@ -190,12 +189,12 @@ namespace JetBrains.Omea.FiltersManagement
             catch( InvalidResourceIdException )
             {
                 List<int> ids = new List<int>( result.Count );
-                foreach( IResource res in result.ValidResources ) 
+                foreach( IResource res in result.ValidResources )
                 {
                     ids.Add( res.Id );
                 }
                 result = Core.ResourceStore.ListFromIds( ids, false );
-                
+
             }
             return result;
         }
@@ -302,7 +301,7 @@ namespace JetBrains.Omea.FiltersManagement
 
 				// Collect all the direct and indirect parents of the droptarget; then we'll check to avoid dropping parent on its children
 				IntArrayList parentList = IntArrayListPool.Alloc();
-                try 
+                try
                 {
                     IResource parent = targetResource;
                     while( parent != null )
@@ -358,7 +357,7 @@ namespace JetBrains.Omea.FiltersManagement
 			}
 		}
 
-		#endregion		
+		#endregion
 	}
 
 	#endregion
@@ -401,7 +400,7 @@ namespace JetBrains.Omea.FiltersManagement
 
                 // Collect all the direct and indirect parents of the droptarget; then we'll check to avoid dropping parent on its children
                 IntArrayList parentList = IntArrayListPool.Alloc();
-                try 
+                try
                 {
                     IResource parent = targetResource;
                     while( parent != null )
@@ -456,7 +455,7 @@ namespace JetBrains.Omea.FiltersManagement
 			}
 		}
 
-		#endregion		
+		#endregion
 	}
 
 	#endregion

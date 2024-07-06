@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections.Generic;
@@ -53,9 +52,9 @@ namespace JetBrains.Omea.Favorites
         {
         }
 
-        public string Name 
+        public string Name
         {
-            get 
+            get
             {
                 if( _name == null )
                 {
@@ -177,7 +176,7 @@ namespace JetBrains.Omea.Favorites
                 }
             }
         }
-        
+
         public IBookmarkProfile[] Profiles
         {
             get
@@ -408,7 +407,7 @@ namespace JetBrains.Omea.Favorites
                     }
                 }
             }
-            if( postponedIds.Count > 0 ) 
+            if( postponedIds.Count > 0 )
             {
                 IResourceList postponedWeblinks = Core.ResourceStore.ListFromIds( postponedIds.ToArray(), false );
                 int downloadMethod = DownloadMethod;
@@ -493,7 +492,7 @@ namespace JetBrains.Omea.Favorites
             }
 
             IResourceStore store = Core.ResourceStore;
-            IResourceList candidates = SubNodesWithName( "Weblink", parent, name ).Intersect( 
+            IResourceList candidates = SubNodesWithName( "Weblink", parent, name ).Intersect(
                 store.FindResources( null, FavoritesPlugin._propURL, url ), true );
             if( candidates.Count > 0 )
             {

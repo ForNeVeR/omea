@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.ComponentModel;
@@ -19,7 +18,7 @@ namespace JetBrains.Omea.GUIControls
 	/// </summary>
 	public class GradientToolbar : ToolBar
 	{
-		/// <summary> 
+		/// <summary>
 		/// Required designer variable.
 		/// </summary>
 		private System.ComponentModel.Container components = null;
@@ -39,7 +38,7 @@ namespace JetBrains.Omea.GUIControls
 			InitBackBrush();
 		}
 
-	    /// <summary> 
+	    /// <summary>
 		/// Clean up any resources being used.
 		/// </summary>
 		protected override void Dispose( bool disposing )
@@ -56,8 +55,8 @@ namespace JetBrains.Omea.GUIControls
 		}
 
 		#region Component Designer generated code
-		/// <summary> 
-		/// Required method for Designer support - do not modify 
+		/// <summary>
+		/// Required method for Designer support - do not modify
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent()
@@ -69,11 +68,11 @@ namespace JetBrains.Omea.GUIControls
 	    public Color GradientStartColor
 	    {
 	        get { return _gradientStartColor; }
-	        set 
-            { 
+	        set
+            {
                 if ( _gradientStartColor != value )
                 {
-                    _gradientStartColor = value; 
+                    _gradientStartColor = value;
                     InitBackBrush();
                     Invalidate();
                 }
@@ -83,11 +82,11 @@ namespace JetBrains.Omea.GUIControls
 	    public Color GradientEndColor
 	    {
 	        get { return _gradientEndColor; }
-	        set 
-            { 
+	        set
+            {
                 if ( _gradientEndColor != value )
                 {
-                    _gradientEndColor = value; 
+                    _gradientEndColor = value;
                     InitBackBrush();
                     Invalidate();
                 }
@@ -109,7 +108,7 @@ namespace JetBrains.Omea.GUIControls
             {
                 _backBrush = new LinearGradientBrush( ClientRectangle,
                     _gradientStartColor, _gradientEndColor, LinearGradientMode.Vertical );
-        
+
                 Blend blend = new Blend();
                 blend.Positions = new float[] { 0.0f, 0.7f, 1.0f };
                 blend.Factors = new float[] { 0.0f, 0.5f, 1.0f };
@@ -121,14 +120,14 @@ namespace JetBrains.Omea.GUIControls
         public int ButtonIndent
 	    {
 	        get { return _buttonIndent; }
-	        set 
-            { 
+	        set
+            {
                 if ( _buttonIndent != value )
                 {
-                    _buttonIndent = value; 
+                    _buttonIndent = value;
                     if ( IsHandleCreated )
                     {
-                        Win32Declarations.SendMessage( Handle, Win32Declarations.TB_SETINDENT, 
+                        Win32Declarations.SendMessage( Handle, Win32Declarations.TB_SETINDENT,
                             (IntPtr) _buttonIndent, IntPtr.Zero );
                     }
                 }
@@ -138,7 +137,7 @@ namespace JetBrains.Omea.GUIControls
         protected override void OnHandleCreated(EventArgs e)
         {
             base.OnHandleCreated( e );
-            Win32Declarations.SendMessage( Handle, Win32Declarations.TB_SETINDENT, 
+            Win32Declarations.SendMessage( Handle, Win32Declarations.TB_SETINDENT,
                 (IntPtr) _buttonIndent, IntPtr.Zero );
         }
 

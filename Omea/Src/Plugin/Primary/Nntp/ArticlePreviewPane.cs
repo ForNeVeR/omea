@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Drawing;
@@ -35,7 +34,7 @@ namespace JetBrains.Omea.Nntp
 
 	    public ArticlePreviewPane()
 		{
-			InitializeComponent();            
+			InitializeComponent();
 
 			// Initialize the security context
 			_ctxRestricted = WebSecurityContext.Restricted;
@@ -83,9 +82,9 @@ namespace JetBrains.Omea.Nntp
 		private void InitializeComponent()
 		{
             this.SuspendLayout();
-            // 
+            //
             // ArticlePreviewPane
-            // 
+            //
             this.Name = "ArticlePreviewPane";
             this.Size = new System.Drawing.Size(608, 280);
             this.ResumeLayout(false);
@@ -218,7 +217,7 @@ namespace JetBrains.Omea.Nntp
                 formattedText = Core.MessageFormatter.GetFormattedBody( article, Core.Props.LongBody, NntpPlugin._propReply,
                                                                         ref toHighlight, _font, _fontSize );
             }
-            
+
             /**
              * Look for X-Newsreader header if formating is enabled
              */

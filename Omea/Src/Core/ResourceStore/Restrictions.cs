@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -17,13 +16,13 @@ namespace JetBrains.Omea.ResourceStore
         protected int _propId;
 
         protected ResourceRestriction() {}
-        
+
         protected ResourceRestriction( string resourceType, int propId )
         {
             _resourceType = resourceType;
             _propId = propId;
         }
-        
+
         public abstract void CheckResource( IResource res, IPropertyChangeSet cs );
         public abstract void DeleteFromResourceStore();
 
@@ -37,8 +36,8 @@ namespace JetBrains.Omea.ResourceStore
             get { return _propId; }
         }
     }
-    
-    /** 
+
+    /**
      * represents single link restriction
      */
     internal class LinkRestriction: ResourceRestriction
@@ -88,7 +87,7 @@ namespace JetBrains.Omea.ResourceStore
 
         public override void DeleteFromResourceStore()
         {
-            IResourceList restList = MyPalStorage.Storage.FindResources( RestrictionResourceType, 
+            IResourceList restList = MyPalStorage.Storage.FindResources( RestrictionResourceType,
                 ResourceRestrictions.propLinkType, _propId );
             foreach( IResource rest in restList )
             {
@@ -116,7 +115,7 @@ namespace JetBrains.Omea.ResourceStore
 
         #endregion
 
-        /** 
+        /**
          * main checking predicate
          * returns true if a resource corresponds to the restriction
          */
@@ -139,7 +138,7 @@ namespace JetBrains.Omea.ResourceStore
                         {
                             throw new ResourceRestrictionException( "Resource of type " + res.Type +
                                 " doesn't correspond to link resource type restriction on property "  +
-                                MyPalStorage.Storage.GetPropName( _propId ) + 
+                                MyPalStorage.Storage.GetPropName( _propId ) +
                                 ": required links to " + _toResourceType + ", found link to " + target.Type );
                         }
                     }
@@ -149,21 +148,21 @@ namespace JetBrains.Omea.ResourceStore
                     hasDeletes = true;
                 }
             }
-            
+
             int linkCount = res.GetLinkCount( _propId );
-             
-            /** 
+
+            /**
              * at first check counts
              */
             if( ( hasDeletes || changes.Length == 0 ) && linkCount < _minCount )
             {
-                throw new ResourceRestrictionException( "Resource of type " + res.Type + 
+                throw new ResourceRestrictionException( "Resource of type " + res.Type +
                     " doesn't correspond to minimum link count restriction on property "  +
                     MyPalStorage.Storage.GetPropName( _propId ) );
             }
             if( hasAdds && _maxCount >= 0 && linkCount > _maxCount )
             {
-                throw new ResourceRestrictionException( "Resource of type " + res.Type + 
+                throw new ResourceRestrictionException( "Resource of type " + res.Type +
                     " doesn't correspond to maximum link count restriction on property "  +
                     MyPalStorage.Storage.GetPropName( _propId ) );
             }
@@ -223,7 +222,7 @@ namespace JetBrains.Omea.ResourceStore
 
         public override void DeleteFromResourceStore()
         {
-            IResourceList restList = MyPalStorage.Storage.FindResources( RestrictionResourceType, 
+            IResourceList restList = MyPalStorage.Storage.FindResources( RestrictionResourceType,
                 ResourceRestrictions.propUniquePropId, _propId );
             foreach( IResource rest in restList )
             {
@@ -255,9 +254,9 @@ namespace JetBrains.Omea.ResourceStore
                     {
                         // it's an actual data consistency problem, not a problem with
                         // the indexes
-                        throw new ResourceRestrictionException( "Resource of type " + res.Type + 
+                        throw new ResourceRestrictionException( "Resource of type " + res.Type +
                             ", ID=" + res.Id + " doesn't correspond to unique restriction on property "  +
-                            MyPalStorage.Storage.GetPropName( _propId ) + 
+                            MyPalStorage.Storage.GetPropName( _propId ) +
                             ": same value <" + propValue + "> as resource ID=" + dupId );
                     }
                 }
@@ -342,7 +341,7 @@ namespace JetBrains.Omea.ResourceStore
 
         public override void DeleteFromResourceStore()
         {
-            IResourceList restList = MyPalStorage.Storage.FindResources( RestrictionResourceType, 
+            IResourceList restList = MyPalStorage.Storage.FindResources( RestrictionResourceType,
                 ResourceRestrictions.propUniquePropId, _propId );
             foreach( IResource rest in restList )
             {
@@ -354,7 +353,7 @@ namespace JetBrains.Omea.ResourceStore
         }
     }
 
-    /** 
+    /**
      * whole space of link restrictions
      */
     public sealed class ResourceRestrictions
@@ -375,12 +374,12 @@ namespace JetBrains.Omea.ResourceStore
             _propUniquePropId = _store.PropTypes.Register( "UniquePropId", PropDataType.Int, PropTypeFlags.Internal );
             _propMinCount = _store.PropTypes.Register( "MinCount", PropDataType.Int, PropTypeFlags.Internal );
             _propMaxCount = _store.PropTypes.Register( "MaxCount", PropDataType.Int, PropTypeFlags.Internal );
-            propCustomRestrictionClass = _store.PropTypes.Register( "CustomRestrictionClass", PropDataType.String, 
+            propCustomRestrictionClass = _store.PropTypes.Register( "CustomRestrictionClass", PropDataType.String,
                 PropTypeFlags.Internal );
 
             _restrictions = new HashMap();
             _customRestrictions = new HashMap();
-            
+
             foreach( IResource res in _store.GetAllResources( LinkRestriction.RestrictionResourceType ) )
             {
                 LinkRestriction lr = new LinkRestriction( res );
@@ -412,7 +411,7 @@ namespace JetBrains.Omea.ResourceStore
             _active = true;
         }
 
-        /** 
+        /**
          * empty default ctor is necessary to be sure that static ctor is executed
          */
         private ResourceRestrictions() {}
@@ -473,7 +472,7 @@ namespace JetBrains.Omea.ResourceStore
             }
         }
 
-        internal static void RegisterCustomRestriction( string resourceType, int propId, 
+        internal static void RegisterCustomRestriction( string resourceType, int propId,
             IResourceRestriction restriction )
         {
             if ( resourceType == null )
@@ -642,7 +641,7 @@ namespace JetBrains.Omea.ResourceStore
                         foreach( HashSet.Entry E in restrictionsSet )
                         {
                             ResourceRestriction restriction = (ResourceRestriction) E.Key;
-                            if ( ( restriction.PropId != ResourceProps.Id && changeSet.IsNewResource ) ||  
+                            if ( ( restriction.PropId != ResourceProps.Id && changeSet.IsNewResource ) ||
                                  changeSet.IsPropertyChanged( restriction.PropId ) )
                             {
                                 restriction.CheckResource( res, changeSet );

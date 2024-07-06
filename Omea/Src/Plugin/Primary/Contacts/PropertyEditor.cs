@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Drawing;
@@ -21,7 +20,7 @@ namespace JetBrains.Omea.ContactsPlugin
 			InitializeComponent();
         }
 
-		/// <summary> 
+		/// <summary>
 		/// Clean up any resources being used.
 		/// </summary>
 		protected override void Dispose( bool disposing )
@@ -37,8 +36,8 @@ namespace JetBrains.Omea.ContactsPlugin
 		}
 
 		#region Component Designer generated code
-		/// <summary> 
-		/// Required method for Designer support - do not modify 
+		/// <summary>
+		/// Required method for Designer support - do not modify
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent()
@@ -46,9 +45,9 @@ namespace JetBrains.Omea.ContactsPlugin
             this._textBox = new System.Windows.Forms.TextBox();
             this._textLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
-            // 
+            //
             // _textBox
-            // 
+            //
             this._textBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this._textBox.Location = new System.Drawing.Point(0, 0);
             this._textBox.Name = "_textBox";
@@ -57,9 +56,9 @@ namespace JetBrains.Omea.ContactsPlugin
             this._textBox.Text = "";
             this._textBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.OnMouseDown);
             this._textBox.TextChanged += new System.EventHandler(this._textBox_TextChanged);
-            // 
+            //
             // _textLabel
-            // 
+            //
             this._textLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this._textLabel.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._textLabel.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(204)));
@@ -69,9 +68,9 @@ namespace JetBrains.Omea.ContactsPlugin
             this._textLabel.TabIndex = 1;
             this._textLabel.Text = "label1";
             this._textLabel.Visible = false;
-            // 
+            //
             // PropertyEditor
-            // 
+            //
             this.Controls.Add(this._textLabel);
             this.Controls.Add(this._textBox);
             this.Name = "PropertyEditor";
@@ -81,12 +80,12 @@ namespace JetBrains.Omea.ContactsPlugin
         }
 		#endregion
 
-        public override string Text 
+        public override string Text
         {
             get{ return _textBox.Text; }
             set
-            { 
-                _textBox.Text = value; 
+            {
+                _textBox.Text = value;
                 if ( value == "" || value == null )
                 {
                     _textLabel.Text = "Not Specified";
@@ -96,7 +95,7 @@ namespace JetBrains.Omea.ContactsPlugin
                 else
                 {
                     _textLabel.Text = value;
-                    _textLabel.ForeColor = SystemColors.WindowText;                    
+                    _textLabel.ForeColor = SystemColors.WindowText;
                     _textLabel.Font = new Font( _textLabel.Font, FontStyle.Bold );
                 }
             }

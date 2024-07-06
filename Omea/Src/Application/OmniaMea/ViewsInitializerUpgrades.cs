@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -20,7 +19,7 @@ namespace JetBrains.Omea
             AscribeDeepNames();
             SetDefaultContactConfirmation();
             CheckMyselfLinkageWithAccounts();
-        }        
+        }
         public void  RegisterViewsEachRun()
         {
             CheckUniquenessOfFromContact();
@@ -190,7 +189,7 @@ namespace JetBrains.Omea
             FixContactLinkageWithResourceTypes();
 
             SetDefaultPinning();
-        }        
+        }
         public void  RegisterViewsEachRun()
         {
             CloneRulesToCompositeResType();
@@ -437,8 +436,8 @@ namespace JetBrains.Omea
             for( int i = 0; i < allCNames.Count; i++ )
             {
                 IResource name = allCNames[ i ];
-                int linksCount = name.GetLinksOfType( null, Core.ContactManager.Props.LinkNameTo ).Count + 
-                                 name.GetLinksOfType( null, Core.ContactManager.Props.LinkNameFrom ).Count + 
+                int linksCount = name.GetLinksOfType( null, Core.ContactManager.Props.LinkNameTo ).Count +
+                                 name.GetLinksOfType( null, Core.ContactManager.Props.LinkNameFrom ).Count +
                                  name.GetLinksOfType( null, Core.ContactManager.Props.LinkNameCC ).Count;
                 if( linksCount == 0 )
                 {

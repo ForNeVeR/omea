@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -91,7 +90,7 @@ namespace JetBrains.Omea
 
         private Panel       _toolBarPanel;
         private ToolStrip   _toolBar;
-        private ToolStrip   _urlBarToolbar;             // saved value for switching to Web mode 
+        private ToolStrip   _urlBarToolbar;             // saved value for switching to Web mode
         private Panel       _webAddressPanel;
         private JetTextBox  _edtURL;
         private Button      _btnGoURL;
@@ -147,7 +146,7 @@ namespace JetBrains.Omea
 
             _toolBarActionManager = new ToolbarActionManager( _toolBar );
             _toolBarActionManager.ContextProvider = this;
-			
+
             _listView.ActiveResourceChanged += HandleActiveResourceChanged;
             _listView.SelectionChanged += HandleResourceSelectionChanged;
             _listView.KeyNavigationCompleted += HandleKeyNavigationCompleted;
@@ -155,7 +154,7 @@ namespace JetBrains.Omea
             _listView.AllowColumnReorder = true;
             _listView.JetListView.AutoToolTips = false;
             _listView.AllowSameViewDrag = false;
-                 
+
             _listAndContentSplitter.ControlToCollapse = _listView;
 
             _browseStack = new BrowseStack( this );
@@ -188,7 +187,7 @@ namespace JetBrains.Omea
             }
         }
 
-        /// <summary> 
+        /// <summary>
         /// Clean up any resources being used.
         /// </summary>
         protected override void Dispose( bool disposing )
@@ -246,8 +245,8 @@ namespace JetBrains.Omea
         #endregion Panes Visibility
 
         #region Component Designer generated code
-        /// <summary> 
-        /// Required method for Designer support - do not modify 
+        /// <summary>
+        /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
@@ -291,9 +290,9 @@ namespace JetBrains.Omea
             this._listViewPanel.Controls.Add(this._lowerPaneBackground);
             this._listViewPanel.Controls.Add(this._listAndContentSplitter);
             this._listViewPanel.Controls.Add(this._listView);
-            // 
+            //
             // _listAndContentSplitter
-            // 
+            //
             this._listAndContentSplitter.ControlToCollapse = null;
             this._listAndContentSplitter.Dock = System.Windows.Forms.DockStyle.Top;
             this._listAndContentSplitter.FillGradient = false;
@@ -303,9 +302,9 @@ namespace JetBrains.Omea
             this._listAndContentSplitter.Size = new System.Drawing.Size(600, 5);
             this._listAndContentSplitter.TabIndex = 1;
             this._listAndContentSplitter.TabStop = false;
-            // 
+            //
             // _lowerPaneBackground
-            // 
+            //
             this._lowerPaneBackground.BackColor = SystemColors.AppWorkspace;
             this._lowerPaneBackground.BorderStyle = BorderStyle.FixedSingle;
             this._lowerPaneBackground.Controls.Add(this._lowerPane);
@@ -316,9 +315,9 @@ namespace JetBrains.Omea
             this._lowerPaneBackground.ResizeRedraw = false;
             this._lowerPaneBackground.Size = new System.Drawing.Size(600, 180);
             this._lowerPaneBackground.TabIndex = 3;
-            // 
+            //
             // _lowerPane
-            // 
+            //
             this._lowerPane.BackColor = SystemColors.Control;
             this._lowerPane.Controls.Add(this._bodyPane);
             this._lowerPane.Controls.Add(this._linksPaneSplitter);
@@ -328,9 +327,9 @@ namespace JetBrains.Omea
             this._lowerPane.Name = "_lowerPane";
             this._lowerPane.Size = new System.Drawing.Size(600, 180);
             this._lowerPane.TabIndex = 3;
-            // 
+            //
             // _bodyPane
-            // 
+            //
             this._bodyPane.BackColor = SystemColors.Window;
             this._bodyPane.Dock = System.Windows.Forms.DockStyle.Fill;
             this._bodyPane.Location = new System.Drawing.Point(0, 0);
@@ -340,9 +339,9 @@ namespace JetBrains.Omea
             this._bodyPane.Enter += new System.EventHandler(this._bodyPane_Enter);
             this._bodyPane.Paint += new System.Windows.Forms.PaintEventHandler(this._bodyPane_OnPaint);
             this._bodyPane.Leave += new System.EventHandler(this._bodyPane_Leave);
-            // 
+            //
             // _linksPaneSplitter
-            // 
+            //
             this._linksPaneSplitter.Dock = System.Windows.Forms.DockStyle.Right;
             this._linksPaneSplitter.Location = new System.Drawing.Point(445, 0);
             this._linksPaneSplitter.Name = "_linksPaneSplitter";
@@ -350,9 +349,9 @@ namespace JetBrains.Omea
             this._linksPaneSplitter.TabIndex = 1;
             this._linksPaneSplitter.TabStop = false;
             this._linksPaneSplitter.Visible = false;
-            // 
+            //
             // _linksPane
-            // 
+            //
             this._linksPane.ColorScheme = null;
             this._linksPane.Dock = System.Windows.Forms.DockStyle.Right;
             this._linksPane.Location = new System.Drawing.Point(450, 0);
@@ -360,9 +359,9 @@ namespace JetBrains.Omea
             this._linksPane.Size = new System.Drawing.Size(150, 180);
             this._linksPane.TabIndex = 2;
             this._linksPane.Visible = false;
-            // 
+            //
             // _captionPanel
-            // 
+            //
             this._captionPanel.BackColor = System.Drawing.SystemColors.ControlDark;
             this._captionPanel.Controls.Add(this._seeAlsoBar);
             this._captionPanel.Controls.Add(this._captionLabel);
@@ -374,9 +373,9 @@ namespace JetBrains.Omea
             this._captionPanel.Click += new System.EventHandler(this._captionLabel_Click);
             this._captionPanel.Paint += new PaintEventHandler( HandleCaptionPanelPaint );
 			_captionPanel.Layout += new LayoutEventHandler(OnLayoutCaptionPanel);
-            // 
+            //
             // _captionLabel
-            // 
+            //
             this._captionLabel.AutoSize = false;
             this._captionLabel.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._captionLabel.Font = _captionFont;
@@ -389,10 +388,10 @@ namespace JetBrains.Omea
             this._captionLabel.Click += new System.EventHandler(this._captionLabel_Click);
             this._captionLabel.SizeChanged += new System.EventHandler(this._captionLabel_SizeChanged);
             this._captionLabel.TextChanged += new System.EventHandler(this._captionLabel_TextChanged);
-            // 
+            //
             // _seeAlsoBar
-            // 
-            this._seeAlsoBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._seeAlsoBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._seeAlsoBar.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(204)));
             this._seeAlsoBar.Name = "_seeAlsoBar";
@@ -400,14 +399,14 @@ namespace JetBrains.Omea
             this._seeAlsoBar.Visible = false;
             this._seeAlsoBar.Click += new System.EventHandler(this._captionLabel_Click);
             this._seeAlsoBar.SeeAlsoLinkClicked += new SeeAlsoEventHandler(this._seeAlsoBar_SeeAlsoLinkClicked);
-            // 
+            //
             // _tmrMarkAsRead
-            // 
+            //
             this._tmrMarkAsRead.Interval = 2000;
             this._tmrMarkAsRead.Tick += new System.EventHandler(this._tmrMarkAsRead_Tick);
-            // 
+            //
             // _statusLineLabel
-            // 
+            //
             this._statusLineLabel.AutoSize = false;
             this._statusLineLabel.BackColor = SystemColors.Info;
             this._statusLineLabel.Dock = System.Windows.Forms.DockStyle.Top;
@@ -422,9 +421,9 @@ namespace JetBrains.Omea
             this._statusLineLabel.Visible = false;
             this._statusLineLabel.Click += new EventHandler(this._statusLineLabel_LinkClicked);
             this._statusLineLabel.Paint += new PaintEventHandler( HandleStatusLineLabelPaint );
-            // 
+            //
             // _listView
-            // 
+            //
             this._listView.AllowDrop = true;
             this._listView.BorderStyle = BorderStyle.FixedSingle;
             this._listView.HeaderStyle = ColumnHeaderStyle.Clickable;
@@ -442,28 +441,28 @@ namespace JetBrains.Omea
             this._listView.ColumnSizeChanged += new System.EventHandler(this._listView_ColumnSizeChanged);
             this._listView.ColumnOrderChanged += new System.EventHandler(this._listView_ColumnOrderChanged);
 //            this._listView.VisibleChanged += new System.EventHandler(this.OnListViewVisibleChanged);
-            // 
+            //
             // _headerContextMenu
-            // 
+            //
             this._headerContextMenu.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
                                                                                                this.miConfigureColumns,
                                                                                                this.miShowItemsInGroups});
             this._headerContextMenu.Popup += new EventHandler( HandleHeaderContextMenuPopup );
-            // 
+            //
             // miConfigureColumns
-            // 
+            //
             this.miConfigureColumns.Index = 0;
             this.miConfigureColumns.Text = "&Configure Columns...";
             this.miConfigureColumns.Click += new System.EventHandler(this.miConfigureColumns_Click);
-            // 
+            //
             // miConfigureColumns
-            // 
+            //
             this.miShowItemsInGroups.Index = 1;
             this.miShowItemsInGroups.Text = "&Show Items in Groups";
             this.miShowItemsInGroups.Click += new System.EventHandler(this.miShowItemsInGroups_Click);
-            // 
+            //
             // _webAddressPanel
-            // 
+            //
             this._webAddressPanel.Controls.Add(this._btnGoURL);
             this._webAddressPanel.Controls.Add(this._edtURL);
             this._webAddressPanel.Controls.Add(this._urlBarToolbar);
@@ -474,9 +473,9 @@ namespace JetBrains.Omea
             this._webAddressPanel.TabIndex = 5;
             this._webAddressPanel.Visible = false;
             this._webAddressPanel.Paint += new System.Windows.Forms.PaintEventHandler(this._webAddressPanel_Paint);
-            // 
+            //
             // _urlBarToolbar
-            // 
+            //
             this._urlBarToolbar.AutoSize = false;
             this._urlBarToolbar.Dock = System.Windows.Forms.DockStyle.Left;
             this._urlBarToolbar.Location = new System.Drawing.Point(0, 0);
@@ -485,10 +484,10 @@ namespace JetBrains.Omea
             this._urlBarToolbar.TabIndex = 2;
             this._urlBarToolbar.LayoutStyle = ToolStripLayoutStyle.HorizontalStackWithOverflow;
             this._urlBarToolbar.Renderer = _toolbarRenderer;
-            // 
+            //
             // _edtURL
-            // 
-            this._edtURL.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._edtURL.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._edtURL.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(204)));
             this._edtURL.Location = new System.Drawing.Point(44, 2);
@@ -498,9 +497,9 @@ namespace JetBrains.Omea
             this._edtURL.Text = "";
             this._edtURL.KeyDown += new System.Windows.Forms.KeyEventHandler(this._edtURL_KeyDown);
             this._edtURL.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this._edtURL_KeyPress);
-            // 
+            //
             // _btnGoURL
-            // 
+            //
             _btnGoURL.Anchor = (System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right) ;
             _btnGoURL.Location = new System.Drawing.Point(544, 2);
             _btnGoURL.Size = new System.Drawing.Size( 27, 21 );
@@ -508,9 +507,9 @@ namespace JetBrains.Omea
             _btnGoURL.Text = "Go";
             _btnGoURL.Click += new EventHandler(URL_ButtonPress);
             _btnGoURL.FlatStyle = FlatStyle.System;
-            // 
+            //
             // _linksBar
-            // 
+            //
             this._linksBar.ColorScheme = null;
             this._linksBar.Dock = System.Windows.Forms.DockStyle.Top;
             this._linksBar.LinksPaneExpanded = false;
@@ -519,9 +518,9 @@ namespace JetBrains.Omea
             this._linksBar.Size = new System.Drawing.Size(600, 20);
             this._linksBar.TabIndex = 7;
             this._linksBar.LinksPaneExpandChanged += new System.EventHandler(this._linksBar_LinksPaneExpandChanged);
-            // 
+            //
             // _toolBar
-            // 
+            //
             this._toolBar.AutoSize = false;
             this._toolBar.Dock = System.Windows.Forms.DockStyle.Fill;
             this._toolBar.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(204)));
@@ -532,16 +531,16 @@ namespace JetBrains.Omea
             this._toolBar.Renderer = _toolbarRenderer;
 			//
             // _toolBarPanel
-            // 
+            //
             this._toolBarPanel.Controls.Add(this._toolBar);
             this._toolBarPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this._toolBarPanel.Location = new System.Drawing.Point(0, 18);
             this._toolBarPanel.Name = "_toolBarPanel";
             this._toolBarPanel.Size = new System.Drawing.Size(600, 24);
             this._toolBarPanel.TabIndex = 8;
-            // 
+            //
             // ResourceBrowser
-            // 
+            //
             this.Controls.Add(this._listViewPanel);
             this.Controls.Add(this._webAddressPanel);
             this.Controls.Add(this._statusLineLabel);
@@ -568,7 +567,7 @@ namespace JetBrains.Omea
             RestoreLayoutSettings();
             UpdateSettings();
             Core.UIManager.AddOptionsChangesListener( "Omea", "General", OnInterfaceOptionsChanged );
-    
+
             _customProperties = Core.ResourceStore.FindResourcesLive( "PropType", "Custom", 1 );
             _customProperties.ResourceDeleting += OnCustomPropertyDeleting;
 
@@ -771,7 +770,7 @@ namespace JetBrains.Omea
             {
                 _listViewWidth = Width - 120;
             }
-            
+
             if ( _listView.MultiLineView )
             {
                 _listView.Width = _listViewWidth;
@@ -803,7 +802,7 @@ namespace JetBrains.Omea
         /**
          * Checks if the specified display pane action is currently enabled.
          */
-        
+
         public bool CanExecuteCommand( string action )
         {
             if ( ResourceListFocused && _listView.CanExecuteCommand( action ) )
@@ -859,7 +858,7 @@ namespace JetBrains.Omea
             }
             if ( _displayPane != null && _displayPane.CanExecuteCommand( DisplayPaneCommands.Back ) )
             {
-                return true;                
+                return true;
             }
             return _browseStack.CanBack();
         }
@@ -889,7 +888,7 @@ namespace JetBrains.Omea
 
             if ( _displayPane != null && _displayPane.CanExecuteCommand( DisplayPaneCommands.Forward ) )
             {
-                return true;                
+                return true;
             }
             return _browseStack.CanForward();
         }
@@ -963,7 +962,7 @@ namespace JetBrains.Omea
 
             // need to check for count - the resource in singleResourceList may have been
             // deleted, and the list is live
-            if ( backOnDelete && _singleResourceList != null && _singleResourceList.Count > 0 && 
+            if ( backOnDelete && _singleResourceList != null && _singleResourceList.Count > 0 &&
                 _singleResourceList.ResourceIds [0] == res.Id )
             {
                 _lastDisplayedResource = null;
@@ -1005,12 +1004,12 @@ namespace JetBrains.Omea
             }
             DisplayResourceData( res );
         }
-		
+
         /**
          * Displays the specified resource list in the resource browser.
          */
 
-        public void DisplayResourceList( IResource ownerResource, IResourceList resources, 
+        public void DisplayResourceList( IResource ownerResource, IResourceList resources,
                                          string caption, ColumnDescriptor[] columns )
         {
             DisplayResourceList( ownerResource, resources, caption, columns, null, null );
@@ -1021,7 +1020,7 @@ namespace JetBrains.Omea
          * selects the specified resource.
          */
 
-        public void DisplayResourceList( IResource ownerResource, IResourceList resources, string caption, 
+        public void DisplayResourceList( IResource ownerResource, IResourceList resources, string caption,
                                          ColumnDescriptor[] columns, IResource selectedResource )
         {
             DisplayResourceList( ownerResource, resources, caption, columns, selectedResource, null );
@@ -1031,7 +1030,7 @@ namespace JetBrains.Omea
          * Displays the specified resource list without applying the tab filter.
          */
 
-        public void DisplayUnfilteredResourceList( IResource ownerResource, IResourceList resources, 
+        public void DisplayUnfilteredResourceList( IResource ownerResource, IResourceList resources,
                                                    string caption, ColumnDescriptor[] columns )
         {
             ResourceListDisplayOptions options = new ResourceListDisplayOptions();
@@ -1044,8 +1043,8 @@ namespace JetBrains.Omea
         /**
          * Displays the specified resource list with the specified highlight data provider.
          */
-        
-        public void DisplayResourceList( IResource ownerResource, IResourceList resources, string caption, 
+
+        public void DisplayResourceList( IResource ownerResource, IResourceList resources, string caption,
             ColumnDescriptor[] columns, IResource selectedResource, IHighlightDataProvider highlightProvider )
         {
             ResourceListDisplayOptions options = new ResourceListDisplayOptions();
@@ -1056,7 +1055,7 @@ namespace JetBrains.Omea
             DisplayResourceList( ownerResource, resources, options );
         }
 
-        public void DisplayResourceList( IResource ownerResource, IResourceList resources, 
+        public void DisplayResourceList( IResource ownerResource, IResourceList resources,
                                          ResourceListDisplayOptions options )
         {
             #region Preconditions
@@ -1067,13 +1066,13 @@ namespace JetBrains.Omea
             bool isSameList;
             if ( options.ThreadingHandler != null )
             {
-                isSameList = (_dataProvider is ConversationDataProvider) && 
+                isSameList = (_dataProvider is ConversationDataProvider) &&
                              ((_dataProvider as ConversationDataProvider).ResourceList == resources );
             }
             else
             {
-                isSameList = ( !(_dataProvider is ConversationDataProvider) && 
-                    resources == _origResourceList && _filterResourceList == _origFilterResourceList && 
+                isSameList = ( !(_dataProvider is ConversationDataProvider) &&
+                    resources == _origResourceList && _filterResourceList == _origFilterResourceList &&
                     !_webPageMode );
             }
             bool wasNewspaper = (_newspaperViewer != null && _newspaperViewer.Visible );
@@ -1088,7 +1087,7 @@ namespace JetBrains.Omea
             DoShowResources( ownerResource, resources, options );
         }
 
-        public void DisplayConfigurableResourceList( IResource ownerResource, IResourceList resList, 
+        public void DisplayConfigurableResourceList( IResource ownerResource, IResourceList resList,
                                                      ResourceListDisplayOptions options )
         {
             options = new ResourceListDisplayOptions( options );
@@ -1096,7 +1095,7 @@ namespace JetBrains.Omea
             {
                 if ( ownerResource.HasProp( Core.Props.DisplayUnread ) )
                 {
-                    resList = resList.Intersect( Core.ResourceStore.FindResourcesWithProp( 
+                    resList = resList.Intersect( Core.ResourceStore.FindResourcesWithProp(
                         SelectionType.LiveSnapshot, null, Core.Props.IsUnread ), true );
                     options.Caption = "Unread Items in " + options.Caption;
                 }
@@ -1133,7 +1132,7 @@ namespace JetBrains.Omea
          * Displays the specified resource list in threaded mode.
          */
 
-        public void DisplayThreadedResourceList( IResource ownerResource, IResourceList resources, 
+        public void DisplayThreadedResourceList( IResource ownerResource, IResourceList resources,
                                                  string caption, string sortProp, int replyProp,
                                                  ColumnDescriptor[] columns, IResource selectedResource )
         {
@@ -1186,17 +1185,17 @@ namespace JetBrains.Omea
             SelectResource( res );
         }
 
-        private delegate void DoShowResourcesDelegate( IResource ownerResource, IResourceList resources, 
+        private delegate void DoShowResourcesDelegate( IResource ownerResource, IResourceList resources,
             ResourceListDisplayOptions options );
-        
-        internal void DoShowResources( IResource ownerResource, IResourceList resources, 
+
+        internal void DoShowResources( IResource ownerResource, IResourceList resources,
                                        ResourceListDisplayOptions options )
         {
             if ( !_displayResourceListReenterAllowed && _displayResourceListReenter > 0 )
             {
                 // the reentering can happen, for example, because of synchronous ResourceProxy.Delete()
                 // call in UnhookResourceList() (OM-11699)
-                Core.UserInterfaceAP.QueueJob( new DoShowResourcesDelegate( DoShowResources ), 
+                Core.UserInterfaceAP.QueueJob( new DoShowResourcesDelegate( DoShowResources ),
                                                ownerResource, resources, options );
                 return;
             }
@@ -1277,7 +1276,7 @@ namespace JetBrains.Omea
 
         private void CheckPanesVisibility()
         {
-            _listAndContentSplitter.Visible = !(_mode == BrowserPanesVisibilityMode.ContentOnly) && 
+            _listAndContentSplitter.Visible = !(_mode == BrowserPanesVisibilityMode.ContentOnly) &&
                                 !(_mode == BrowserPanesVisibilityMode.ListOnly);
             _listViewPanel.Visible = _listView.Visible = (_mode != BrowserPanesVisibilityMode.ContentOnly);
             _lowerPaneBackground.Visible = !(_mode == BrowserPanesVisibilityMode.ListOnly);
@@ -1308,7 +1307,7 @@ namespace JetBrains.Omea
 
             if ( options.ThreadingHandler == null )
             {
-                if ( _dataProvider != null && !(_dataProvider is ConversationDataProvider) && 
+                if ( _dataProvider != null && !(_dataProvider is ConversationDataProvider) &&
                     _dataProvider.ResourceList == resources )
                 {
                     DisplaySelectedResource();
@@ -1347,7 +1346,7 @@ namespace JetBrains.Omea
             {
                 _listView.JetListView.ItemUpdated += HandleItemUpdated;
             }
-            
+
             if ( _verticalLayout )
             {
                 _listView.ColumnSchemeProvider = new ResourceColumnSchemeProvider( _columnManager, _listView );
@@ -1367,7 +1366,7 @@ namespace JetBrains.Omea
 
             UpdateCaption();
             UpdateAutoPreviewColumn();
-            
+
             if ( _listView.ActiveResource == null )
             {
                 DisplayEmptyLowerPane();
@@ -1412,7 +1411,7 @@ namespace JetBrains.Omea
             ColumnDescriptor[] columns = CheckGetDefaultColumns( null, _resourceList );
             _listState = _columnManager.GetListViewState( _ownerResource, _resourceList, columns, true );
             _groupItems = _listState.GroupItems;
-            
+
             ColumnDescriptor[] stateColumns = _listState.Columns;
             _columnManager.RestoreCustomComparers( columns, ref stateColumns );
             ShowListViewColumns( _listState.Columns );
@@ -1457,7 +1456,7 @@ namespace JetBrains.Omea
             if ( columns == null )
                 throw new ArgumentNullException( "columns" );
             #endregion Preconditions
-            
+
             if ( _dataProvider != null )
             {
                 columns = _columnManager.CreateTypeColumn( columns );
@@ -1595,7 +1594,7 @@ namespace JetBrains.Omea
             {
                 _caption = _captionTemplate.Replace( "%OWNER%", _ownerResource.DisplayName );
             }
-            
+
             string caption = (_captionPrefix == null) ? _caption : _captionPrefix + " | " + _caption;
 
             int itemCount = -1;
@@ -1639,13 +1638,13 @@ namespace JetBrains.Omea
 
         public IResourceList SelectedResources
         {
-            get 
-            { 
+            get
+            {
                 if ( _webPageMode )
                     return Core.ResourceStore.EmptyResourceList;
-                
+
                 if ( _listView.Visible )
-                    return _listView.GetSelectedResources(); 
+                    return _listView.GetSelectedResources();
 
                 if ( NewspaperVisible )
 					return _newspaperViewer.SelectedResources;
@@ -1684,7 +1683,7 @@ namespace JetBrains.Omea
 
         public bool NewspaperVisible
         {
-            get { return _newspaperViewer != null && 
+            get { return _newspaperViewer != null &&
                       _newspaperViewer.State != NewspaperViewer.NewspaperState.Deactivated; }
         }
 
@@ -1738,7 +1737,7 @@ namespace JetBrains.Omea
             {
                 if ( NewspaperVisible )
                 {
-                    return _newspaperViewer.NewspaperResources;                    
+                    return _newspaperViewer.NewspaperResources;
                 }
                 if ( _dataProvider != null )
                 {
@@ -1759,7 +1758,7 @@ namespace JetBrains.Omea
             {
                 return _newspaperViewer.SelectResource( res );
             }
-            
+
 /*
             if ( !_listView.Visible )
                 return false;
@@ -1842,7 +1841,7 @@ namespace JetBrains.Omea
         {
             if ( _linksBar.LinksPaneExpanded )
             {
-                Core.UserInterfaceAP.QueueJobAt( DateTime.Now.AddSeconds( 0.1 ), new 
+                Core.UserInterfaceAP.QueueJobAt( DateTime.Now.AddSeconds( 0.1 ), new
                     MethodInvoker( DoUpdateLinksPane ) );
             }
         }
@@ -1861,7 +1860,7 @@ namespace JetBrains.Omea
             CancelWebMode();
             EndDisplayLastResource();
             DisposeDisplayPane();
-            
+
             // this could cause LV focusing and display of a resource => check if the pane is still actually empty
             if ( _listView.ActiveResource == null )
             {
@@ -1920,7 +1919,7 @@ namespace JetBrains.Omea
             {
                 return;
             }
-            
+
             _lastDisplayedResourceCount = 1;
             CancelWebMode();
             _tmrMarkAsRead.Stop();
@@ -1994,7 +1993,7 @@ namespace JetBrains.Omea
                     {
                         _linksPane.DisplayLinks( res.ToResourceList(), filter );
                     }
-            
+
                     if ( res.HasProp( Core.Props.IsUnread ) || displayRes.HasProp( Core.Props.IsUnread ) )
                     {
                         if ( _tmrMarkAsRead_TimeOut == 1 )
@@ -2041,7 +2040,7 @@ namespace JetBrains.Omea
 
         /**
          * Notifies the plugin that the resource which was previously displayed
-         * is no longer displayed.	
+         * is no longer displayed.
          */
 
         private void EndDisplayLastResource()
@@ -2135,7 +2134,7 @@ namespace JetBrains.Omea
          * After an unread resource is viewed for a certain interval (2 seconds),
          * marks it as read.
          */
-        
+
         private void _tmrMarkAsRead_Tick( object sender, EventArgs e )
         {
             _tmrMarkAsRead.Stop();
@@ -2201,7 +2200,7 @@ namespace JetBrains.Omea
             {
                 if ( _displayPane != null && _displayPane.CanExecuteCommand( DisplayPaneCommands.PageDown ) )
                 {
-                    _displayPane.ExecuteCommand( DisplayPaneCommands.PageDown );                    
+                    _displayPane.ExecuteCommand( DisplayPaneCommands.PageDown );
                 }
                 else if ( !_inMarkResourceRead )
                 {
@@ -2215,7 +2214,7 @@ namespace JetBrains.Omea
          * Shows the column configuration dialog for the currently displayed
          * resource list.
          */
-        
+
         public void ConfigureColumns()
         {
             if ( _dataProvider != null )
@@ -2241,7 +2240,7 @@ namespace JetBrains.Omea
 
         private void miConfigureColumns_Click( object sender, EventArgs e )
         {
-            ConfigureColumns();        
+            ConfigureColumns();
             CheckSaveListState( false );
         }
 
@@ -2272,7 +2271,7 @@ namespace JetBrains.Omea
             int treeStructureColumnIndex = -1;
             JetListViewColumn iconColumn = null;
             JetListViewColumn treeStructureColumn = null;
-    
+
             for( int i=0; i<_listView.Columns.Count; i++ )
             {
                 JetListViewColumn col = _listView.Columns [i];
@@ -2291,13 +2290,13 @@ namespace JetBrains.Omea
                     treeStructureColumn = col;
                 }
             }
-    
+
             if ( iconColumnIndex == firstNonFixedColumnIndex -1 &&
                 (treeStructureColumnIndex == -1 || treeStructureColumnIndex == firstNonFixedColumnIndex-2 ) )
             {
                 return;
             }
-            
+
             if ( iconColumnIndex < firstNonFixedColumnIndex )
             {
                 firstNonFixedColumnIndex--;
@@ -2318,7 +2317,7 @@ namespace JetBrains.Omea
         /**
          * When a custom property displayed in a column is deleted, remove the column.
          */
-        
+
         private void OnCustomPropertyDeleting( object sender, ResourceIndexEventArgs e )
         {
             int propId = e.Resource.GetIntProp( "ID" );
@@ -2337,7 +2336,7 @@ namespace JetBrains.Omea
 
         private void HandleSortChanged( object sender, EventArgs e )
         {
-            CheckSaveListState( true );        
+            CheckSaveListState( true );
         }
 
         private void CheckSaveListState( bool async )
@@ -2408,7 +2407,7 @@ namespace JetBrains.Omea
 
         private bool MoveToNextItem( GetNextResourceDelegate inListMover,
                                      ResourceListView2.LocateMatchCallback matcher,
-                                     GetNextViewDelegate viewMover, 
+                                     GetNextViewDelegate viewMover,
                                      bool selectFirstOnViewChange, bool lookBackwardAlso )
         {
             bool skipFirst = true;
@@ -2437,7 +2436,7 @@ namespace JetBrains.Omea
                     {
                         int startIndex = selectFirstOnViewChange ? 0 : _listView.JetListView.Nodes.Count - 1;
                         IResource start = (IResource) _listView.JetListView.Nodes[ startIndex ].Data;
-                        
+
                         res = inListMover( start, matcher, false, lookBackwardAlso );
                     }
                 }
@@ -2494,7 +2493,7 @@ namespace JetBrains.Omea
                 _listView.SelectSingleItem( res );
                 return true;
             }
-            
+
             return false;
         }
 
@@ -2671,7 +2670,7 @@ namespace JetBrains.Omea
          * If a resource is displayed in a full-page view, shows the URL bar and displays in
          * it the specified URL.
          */
-        
+
         public void ShowUrlBar( string url )
         {
             Core.WebBrowser.CurrentUrl = url;
@@ -2757,7 +2756,7 @@ namespace JetBrains.Omea
          * default pane, switches to the tab matching the clicked type and selects the resource
          * there. (Note: this is a bit hackish...)
          */
-        
+
         private void _seeAlsoBar_SeeAlsoLinkClicked( object sender, SeeAlsoEventArgs e )
         {
             string activePaneId = Core.LeftSidebar.ActivePaneId;
@@ -2769,7 +2768,7 @@ namespace JetBrains.Omea
             {
                 Core.WorkspaceManager.ActiveWorkspace = null;
             }
-            
+
             if ( e.TabId == "" )
             {
                 Core.TabManager.CurrentTabId = Core.TabManager.Tabs [0].Id;
@@ -2785,7 +2784,7 @@ namespace JetBrains.Omea
                 Core.LeftSidebar.ActivateViewPane( activePaneId );
             }
             Core.UIManager.EndUpdateSidebar();
-            
+
             if ( activePane != null )
             {
                 activePane.SelectResource( res, false );
@@ -2805,12 +2804,12 @@ namespace JetBrains.Omea
 
         private void SetCaptionLabelActive()
         {
-            _captionLabel.BackColor = GUIControls.ColorScheme.GetColor( _colorScheme, "PaneCaption.Active", 
+            _captionLabel.BackColor = GUIControls.ColorScheme.GetColor( _colorScheme, "PaneCaption.Active",
                                                             SystemColors.ActiveCaption );
             _captionPanel.BackColor = _captionLabel.BackColor;
-            _captionLabel.ForeColor = GUIControls.ColorScheme.GetColor( _colorScheme, "PaneCaption.ActiveText", 
+            _captionLabel.ForeColor = GUIControls.ColorScheme.GetColor( _colorScheme, "PaneCaption.ActiveText",
                                                             SystemColors.ActiveCaptionText );
-			_seeAlsoBar.Undercolor = GUIControls.ColorScheme.GetColor( _colorScheme, "PaneCaption.Active", 
+			_seeAlsoBar.Undercolor = GUIControls.ColorScheme.GetColor( _colorScheme, "PaneCaption.Active",
                                                             SystemColors.ActiveCaption );
             _seeAlsoBar.Active = true;
         }
@@ -2839,7 +2838,7 @@ namespace JetBrains.Omea
             {
                 _displayPane.GetControl().Focus();
             }
-            
+
         }
 
         private void _linksBar_LinksPaneExpandChanged( object sender, EventArgs e )
@@ -2899,7 +2898,7 @@ namespace JetBrains.Omea
             get { return _linksBar.LinksPaneExpanded; }
             set { _linksBar.LinksPaneExpanded = value; }
         }
-        
+
         public bool ResourceListExpanded
         {
             get { return !_listAndContentSplitter.Collapsed; }
@@ -2948,14 +2947,14 @@ namespace JetBrains.Omea
         {
             get{  return _viewAnnotations;   }
             set
-            {  
+            {
                 _viewAnnotations = value;
                 if( !_viewAnnotations )
                 {
                     HideAnnotationForm();
                 }
                 else
-                if( SelectedResources.Count == 1 && 
+                if( SelectedResources.Count == 1 &&
                     SelectedResources[ 0 ].HasProp( Core.Props.Annotation ))
                 {
                     GetAnnotationForm().ShowAnnotation( SelectedResources[ 0 ], true );
@@ -3197,12 +3196,12 @@ namespace JetBrains.Omea
             UpdateAutoPreviewColumn();
         }
 
-        private void DoShowNewspaper( IResource ownerResource, IResourceList resources, 
+        private void DoShowNewspaper( IResource ownerResource, IResourceList resources,
                                       ResourceListDisplayOptions options )
         {
             _lastDisplayedType = null;
             ColumnDescriptor[] columns = CheckGetDefaultColumns( options.Columns, resources );
-            ResourceListState state = _columnManager.GetListViewState( ownerResource, resources, columns, 
+            ResourceListState state = _columnManager.GetListViewState( ownerResource, resources, columns,
                 options.DefaultGroupItems );
             if ( state.SortSettings != null )
             {
@@ -3321,7 +3320,7 @@ namespace JetBrains.Omea
 		/// It's located on the caption panel, to the right of the caption label, and occupies the free space.
 		/// Gaps:
 		/// <code>
-		/// 
+		///
 		///                             1px upper border (borders handled by the underlying control)
 		///                                                          |
 		/// [caption] — 12px gap — [#######################SEE#ALSO#BAR###############################] — 1px border
@@ -3411,13 +3410,13 @@ namespace JetBrains.Omea
             {
                 using( Pen borderPen = new Pen( Color.FromArgb( 135, 131, 164 ) ) )
                 {
-                    e.Graphics.DrawRectangle( borderPen, 
+                    e.Graphics.DrawRectangle( borderPen,
                         new Rectangle( 3, 3, _bodyPane.ClientRectangle.Width - 7, _bodyPane.ClientRectangle.Height - 7 ) );
-                    e.Graphics.DrawRectangle( borderPen, 
+                    e.Graphics.DrawRectangle( borderPen,
                         new Rectangle( 2, 2, _bodyPane.ClientRectangle.Width - 5, _bodyPane.ClientRectangle.Height - 5 ) );
-                    e.Graphics.DrawRectangle( borderPen, 
+                    e.Graphics.DrawRectangle( borderPen,
                         new Rectangle( 1, 1, _bodyPane.ClientRectangle.Width - 3, _bodyPane.ClientRectangle.Height - 3 ) );
-                    e.Graphics.DrawRectangle( borderPen, 
+                    e.Graphics.DrawRectangle( borderPen,
                         new Rectangle( 0, 0, _bodyPane.ClientRectangle.Width - 1, _bodyPane.ClientRectangle.Height - 1 ) );
                     e.Graphics.DrawLine( borderPen, 4, 4, _bodyPane.ClientRectangle.Width - 4, 4 );
                 }
@@ -3427,7 +3426,7 @@ namespace JetBrains.Omea
         private void HandleCaptionPanelPaint( object sender, PaintEventArgs e )
         {
             Pen borderPen = ColorScheme.GetPen( _colorScheme, "PaneCaption.Border", SystemPens.Control );
-            e.Graphics.DrawRectangle( borderPen, 0, 0, 
+            e.Graphics.DrawRectangle( borderPen, 0, 0,
                 _captionPanel.ClientRectangle.Width - 1, _captionPanel.ClientRectangle.Height - 1 );
         }
 

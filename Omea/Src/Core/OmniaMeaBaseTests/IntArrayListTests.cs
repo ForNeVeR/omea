@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -22,7 +21,7 @@ namespace OmniaMeaBaseTests
         {
             IntArrayList list = new IntArrayList();
             AssertEquals( 0, list.Count );
-            
+
             list.Add( 1 );
             AssertEquals( 1, list.Count );
             AssertEquals( 1, list [0] );
@@ -30,7 +29,7 @@ namespace OmniaMeaBaseTests
             list [0] = 3;
             AssertEquals( 3, list [0] );
         }
-        
+
         [Test] public void MultiAdd()
         {
             IntArrayList list = new IntArrayList();

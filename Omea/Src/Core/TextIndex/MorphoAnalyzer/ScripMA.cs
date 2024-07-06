@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using   System.IO;
 using   System.Text.RegularExpressions;
@@ -98,7 +97,7 @@ public class ScriptMorphoAnalyzer
                 i_SymIndex--;
                 CurrentNode = NextNode;
             }
-            CurrentNode.InitVariants( str_Variants, 
+            CurrentNode.InitVariants( str_Variants,
                                      ( i_SymIndex < 0 )? Node.WhatToInit.WordEndList : Node.WhatToInit.WhildCardList );
         }
     }
@@ -157,10 +156,10 @@ public class ScriptMorphoAnalyzer
         while( i_LastSym >= 0 )
         {
             Node    NextNode = CurrentNode.findNodeByBranch( wordForm[ i_LastSym ] );
-            
+
             //-----------------------------------------------------------------
-            //  If there is no continuation for the word suffix - check whether 
-            //  last node (CurrentNode) has rules for suffix processing, 
+            //  If there is no continuation for the word suffix - check whether
+            //  last node (CurrentNode) has rules for suffix processing,
             //  otherwise return reference to rules which process lesser suffix
             //-----------------------------------------------------------------
 
@@ -183,7 +182,7 @@ public class ScriptMorphoAnalyzer
 
                 return( ResultList );
             }
-            
+
             //-----------------------------------------------------------------
             //  Remember rule variants for the current suffix length so that
             //  return alternatives if no more narrow rule wont be found.
@@ -216,7 +215,7 @@ public class ScriptMorphoAnalyzer
         {
             matchedSuffixLength = lastVisitedSuffixLength;
         }
- 
+
         return( ResultList );
     }
     #endregion Suffix tree traversal

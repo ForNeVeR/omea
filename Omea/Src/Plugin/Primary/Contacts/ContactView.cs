@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -33,7 +32,7 @@ namespace JetBrains.Omea.ContactsPlugin
             ContactService.GetInstance().CreateContactBlocks( this );
         }
 
-        /// <summary> 
+        /// <summary>
         /// Clean up any resources being used.
         /// </summary>
         protected override void Dispose( bool disposing )
@@ -54,8 +53,8 @@ namespace JetBrains.Omea.ContactsPlugin
         }
 
         #region Component Designer generated code
-        /// <summary> 
-        /// Required method for Designer support - do not modify 
+        /// <summary>
+        /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
@@ -67,9 +66,9 @@ namespace JetBrains.Omea.ContactsPlugin
             //
             _contentPages.Dock = DockStyle.Fill;
             _contentPages.Name = "_contentPages";
-            // 
+            //
             // ContactView
-            // 
+            //
             this.Controls.Add(this._contentPages);
             this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(204)));
             this.Name = "ContactView";
@@ -123,7 +122,7 @@ namespace JetBrains.Omea.ContactsPlugin
          * Propagates a valid state change notification from one of the contact blocks
          * to the entire pane.
          */
-        
+
         private void block_ValidStateChanged( object sender, ValidStateEventArgs e )
         {
             if ( e.IsValid )
@@ -204,7 +203,7 @@ namespace JetBrains.Omea.ContactsPlugin
                 _contact.BeginUpdate();
                 foreach( AbstractContactViewBlock block in _contactBlocks )
                 {
-                    block.Save();                
+                    block.Save();
                 }
                 _contact.EndUpdate();
 

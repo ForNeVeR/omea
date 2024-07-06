@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Drawing;
@@ -107,19 +106,19 @@ namespace JetBrains.Omea.GUIControls
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
-            // 
+            //
             // label1
-            // 
+            //
             this.label1.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label1.Location = new System.Drawing.Point(8, 12);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(80, 17);
             this.label1.TabIndex = 0;
             this.label1.Text = "Display name:";
-            // 
+            //
             // _displayName
-            // 
-            this._displayName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._displayName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._displayName.Location = new System.Drawing.Point(88, 8);
             this._displayName.Name = "_displayName";
@@ -127,10 +126,10 @@ namespace JetBrains.Omea.GUIControls
             this._displayName.Size = new System.Drawing.Size(392, 21);
             this._displayName.TabIndex = 1;
             this._displayName.Text = "";
-            // 
+            //
             // _resourceType
-            // 
-            this._resourceType.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._resourceType.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._resourceType.Location = new System.Drawing.Point(88, 36);
             this._resourceType.Name = "_resourceType";
@@ -138,18 +137,18 @@ namespace JetBrains.Omea.GUIControls
             this._resourceType.Size = new System.Drawing.Size(392, 21);
             this._resourceType.TabIndex = 3;
             this._resourceType.Text = "";
-            // 
+            //
             // label2
-            // 
+            //
             this.label2.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label2.Location = new System.Drawing.Point(8, 40);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(80, 16);
             this.label2.TabIndex = 2;
             this.label2.Text = "Resource type:";
-            // 
+            //
             // _properties
-            // 
+            //
             this._properties.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
                                                                                           this.columnHeader1,
                                                                                           this.columnHeader2,
@@ -166,47 +165,47 @@ namespace JetBrains.Omea.GUIControls
             this._properties.View = System.Windows.Forms.View.Details;
             this._properties.DoubleClick += new System.EventHandler(this.OnDoubleClick);
             this._properties.SelectedIndexChanged += new System.EventHandler(this._properties_SelectedIndexChanged);
-            // 
+            //
             // columnHeader1
-            // 
+            //
             this.columnHeader1.Text = "Name";
             this.columnHeader1.Width = 92;
-            // 
+            //
             // columnHeader2
-            // 
+            //
             this.columnHeader2.Text = "Type";
             this.columnHeader2.Width = 107;
-            // 
+            //
             // columnHeader4
-            // 
+            //
             this.columnHeader4.Text = "Dir";
             this.columnHeader4.Width = 40;
-            // 
+            //
             // columnHeader3
-            // 
+            //
             this.columnHeader3.Text = "Value";
             this.columnHeader3.Width = 242;
-            // 
+            //
             // contextMenu1
-            // 
+            //
             this.contextMenu1.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
                                                                                          this.menuItem1,
                                                                                          this.menuItem2});
-            // 
+            //
             // menuItem1
-            // 
+            //
             this.menuItem1.Index = 0;
             this.menuItem1.Text = "Show Blob As Picture";
             this.menuItem1.Click += new System.EventHandler(this.menuItem1_Click);
-            // 
+            //
             // menuItem2
-            // 
+            //
             this.menuItem2.Index = 1;
             this.menuItem2.Text = "Show BlobAs Text";
             this.menuItem2.Click += new System.EventHandler(this.menuItem2_Click);
-            // 
+            //
             // panel1
-            // 
+            //
             this.panel1.Controls.Add(this._setPropButton);
             this.panel1.Controls.Add(this._btnDeleteProperty);
             this.panel1.Controls.Add(this._refresh);
@@ -224,9 +223,9 @@ namespace JetBrains.Omea.GUIControls
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(592, 104);
             this.panel1.TabIndex = 5;
-            // 
+            //
             // _btnDeleteProperty
-            // 
+            //
             this._btnDeleteProperty.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this._btnDeleteProperty.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._btnDeleteProperty.Location = new System.Drawing.Point(368, 76);
@@ -235,9 +234,9 @@ namespace JetBrains.Omea.GUIControls
             this._btnDeleteProperty.TabIndex = 10;
             this._btnDeleteProperty.Text = "Delete Property";
             this._btnDeleteProperty.Click += new System.EventHandler(this._btnDeleteProperty_Click);
-            // 
+            //
             // _refresh
-            // 
+            //
             this._refresh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this._refresh.Enabled = false;
             this._refresh.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -246,9 +245,9 @@ namespace JetBrains.Omea.GUIControls
             this._refresh.TabIndex = 9;
             this._refresh.Text = "Refresh";
             this._refresh.Click += new System.EventHandler(this.OnRefresh);
-            // 
+            //
             // _traceProps
-            // 
+            //
             this._traceProps.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this._traceProps.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._traceProps.Location = new System.Drawing.Point(176, 76);
@@ -256,9 +255,9 @@ namespace JetBrains.Omea.GUIControls
             this._traceProps.TabIndex = 8;
             this._traceProps.Text = "Trace";
             this._traceProps.Click += new System.EventHandler(this.OnTrace);
-            // 
+            //
             // _btnDeleteResource
-            // 
+            //
             this._btnDeleteResource.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this._btnDeleteResource.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._btnDeleteResource.Location = new System.Drawing.Point(256, 76);
@@ -267,9 +266,9 @@ namespace JetBrains.Omea.GUIControls
             this._btnDeleteResource.TabIndex = 7;
             this._btnDeleteResource.Text = "Delete Resource";
             this._btnDeleteResource.Click += new System.EventHandler(this.OnDeleteResource);
-            // 
+            //
             // _btnClose
-            // 
+            //
             this._btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this._btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this._btnClose.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -279,9 +278,9 @@ namespace JetBrains.Omea.GUIControls
             this._btnClose.TabIndex = 6;
             this._btnClose.Text = "Close";
             this._btnClose.Click += new System.EventHandler(this.OnClose);
-            // 
+            //
             // _showLinks
-            // 
+            //
             this._showLinks.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._showLinks.Location = new System.Drawing.Point(8, 64);
             this._showLinks.Name = "_showLinks";
@@ -289,9 +288,9 @@ namespace JetBrains.Omea.GUIControls
             this._showLinks.TabIndex = 5;
             this._showLinks.Text = "Show links:";
             this._showLinks.CheckedChanged += new System.EventHandler(this._showLinks_CheckedChanged);
-            // 
+            //
             // _btnCopy
-            // 
+            //
             this._btnCopy.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this._btnCopy.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._btnCopy.Location = new System.Drawing.Point(500, 8);
@@ -300,9 +299,9 @@ namespace JetBrains.Omea.GUIControls
             this._btnCopy.TabIndex = 4;
             this._btnCopy.Text = "Copy";
             this._btnCopy.Click += new System.EventHandler(this._btnCopy_Click);
-            // 
+            //
             // panel2
-            // 
+            //
             this.panel2.Controls.Add(this._traceBox);
             this.panel2.Controls.Add(this.splitter1);
             this.panel2.Controls.Add(this._properties);
@@ -311,34 +310,34 @@ namespace JetBrains.Omea.GUIControls
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(592, 416);
             this.panel2.TabIndex = 6;
-            // 
+            //
             // _traceBox
-            // 
+            //
             this._traceBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this._traceBox.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(204)));
             this._traceBox.Location = new System.Drawing.Point(0, 235);
             this._traceBox.Name = "_traceBox";
             this._traceBox.Size = new System.Drawing.Size(592, 173);
             this._traceBox.TabIndex = 6;
-            // 
+            //
             // splitter1
-            // 
+            //
             this.splitter1.Dock = System.Windows.Forms.DockStyle.Top;
             this.splitter1.Location = new System.Drawing.Point(0, 232);
             this.splitter1.Name = "splitter1";
             this.splitter1.Size = new System.Drawing.Size(592, 3);
             this.splitter1.TabIndex = 5;
             this.splitter1.TabStop = false;
-            // 
+            //
             // _statusBar
-            // 
+            //
             this._statusBar.Location = new System.Drawing.Point(0, 520);
             this._statusBar.Name = "_statusBar";
             this._statusBar.Size = new System.Drawing.Size(592, 22);
             this._statusBar.TabIndex = 5;
-            // 
+            //
             // _setPropButton
-            // 
+            //
             this._setPropButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this._setPropButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._setPropButton.Location = new System.Drawing.Point(480, 76);
@@ -347,9 +346,9 @@ namespace JetBrains.Omea.GUIControls
             this._setPropButton.TabIndex = 11;
             this._setPropButton.Text = "Set Property";
             this._setPropButton.Click += new System.EventHandler(this._setPropButton_Click);
-            // 
+            //
             // ResourcePropertiesDialog
-            // 
+            //
             this.AcceptButton = this._btnClose;
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
             this.CancelButton = this._btnClose;
@@ -435,7 +434,7 @@ namespace JetBrains.Omea.GUIControls
                     {
                         foreach ( IResource linkedResource in resources )
                         {
-                            ListViewItem item = AddListViewItem( property.Name, linkType, property.DataType.ToString(), 
+                            ListViewItem item = AddListViewItem( property.Name, linkType, property.DataType.ToString(),
                                 linkedResource.Type + ":" + linkedResource );
                             item.Tag = linkedResource;
                         }
@@ -485,7 +484,7 @@ namespace JetBrains.Omea.GUIControls
             SetResource( _resource );
         }
 
-        private void _properties_SelectedIndexChanged( object sender, EventArgs e ) 
+        private void _properties_SelectedIndexChanged( object sender, EventArgs e )
         {
             if ( _properties.SelectedItems.Count == 1 )
             {
@@ -514,7 +513,7 @@ namespace JetBrains.Omea.GUIControls
             if ( _properties.SelectedItems.Count == 1 )
             {
                 string propName = _properties.SelectedItems [0].Text;
-                DialogResult result = MessageBox.Show( "Are you sure you want to delete property '" + propName + "'?", 
+                DialogResult result = MessageBox.Show( "Are you sure you want to delete property '" + propName + "'?",
                     "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question );
                 if ( result == DialogResult.Yes )
                 {
@@ -531,7 +530,7 @@ namespace JetBrains.Omea.GUIControls
 
         private void OnDeleteResource(object sender, EventArgs e)
         {
-            DialogResult result = 
+            DialogResult result =
                 MessageBox.Show( "Are you sure you want to delete resource?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question );
             if ( result == DialogResult.Yes )
             {

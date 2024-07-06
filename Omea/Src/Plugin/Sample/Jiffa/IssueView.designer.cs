@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using JetBrains.Omea.GUIControls;
 
@@ -62,9 +61,9 @@ namespace JetBrains.Omea.Jiffa
 			this._panelHeaderFlowControls.SuspendLayout();
 			this._panelHeaderControls.SuspendLayout();
 			this.SuspendLayout();
-			// 
+			//
 			// menuStrip1
-			// 
+			//
 			this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem});
 			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
@@ -73,9 +72,9 @@ namespace JetBrains.Omea.Jiffa
 			this.menuStrip1.Size = new System.Drawing.Size(1070, 24);
 			this.menuStrip1.TabIndex = 0;
 			this.menuStrip1.Text = "_menu";
-			// 
+			//
 			// fileToolStripMenuItem
-			// 
+			//
 			this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this._menuSubmit,
             this.toolStripSeparator1,
@@ -83,38 +82,38 @@ namespace JetBrains.Omea.Jiffa
 			this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
 			this.fileToolStripMenuItem.Size = new System.Drawing.Size(35, 20);
 			this.fileToolStripMenuItem.Text = "File";
-			// 
+			//
 			// _menuSubmit
-			// 
+			//
 			this._menuSubmit.Name = "_menuSubmit";
 			this._menuSubmit.ShortcutKeyDisplayString = "Ctrl+Enter";
 			this._menuSubmit.Size = new System.Drawing.Size(175, 22);
 			this._menuSubmit.Text = "&Submit";
 			this._menuSubmit.Click += new System.EventHandler(this.OnSubmit);
-			// 
+			//
 			// toolStripSeparator1
-			// 
+			//
 			this.toolStripSeparator1.Name = "toolStripSeparator1";
 			this.toolStripSeparator1.Size = new System.Drawing.Size(172, 6);
-			// 
+			//
 			// _menuClose
-			// 
+			//
 			this._menuClose.Name = "_menuClose";
 			this._menuClose.ShortcutKeyDisplayString = "Esc";
 			this._menuClose.Size = new System.Drawing.Size(175, 22);
 			this._menuClose.Text = "&Close";
-			// 
+			//
 			// statusStrip1
-			// 
+			//
 			this.statusStrip1.Location = new System.Drawing.Point(0, 414);
 			this.statusStrip1.Name = "statusStrip1";
 			this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 16, 0);
 			this.statusStrip1.Size = new System.Drawing.Size(1070, 22);
 			this.statusStrip1.TabIndex = 1;
 			this.statusStrip1.Text = "_status";
-			// 
+			//
 			// _panelHeaderFlowControls
-			// 
+			//
 			this._panelHeaderControls.SetColumnSpan(this._panelHeaderFlowControls, 2);
 			this._panelHeaderFlowControls.Controls.Add(this._labelIssueType);
 			this._panelHeaderFlowControls.Controls.Add(this._comboIssueType);
@@ -131,9 +130,9 @@ namespace JetBrains.Omea.Jiffa
 			this._panelHeaderFlowControls.Name = "_panelHeaderFlowControls";
 			this._panelHeaderFlowControls.Size = new System.Drawing.Size(1064, 27);
 			this._panelHeaderFlowControls.TabIndex = 3;
-			// 
+			//
 			// _labelIssueType
-			// 
+			//
 			this._labelIssueType.AutoSize = true;
 			this._labelIssueType.Dock = System.Windows.Forms.DockStyle.Left;
 			this._labelIssueType.Location = new System.Drawing.Point(3, 0);
@@ -142,9 +141,9 @@ namespace JetBrains.Omea.Jiffa
 			this._labelIssueType.TabIndex = 0;
 			this._labelIssueType.Text = "Type:";
 			this._labelIssueType.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			// 
+			//
 			// _comboIssueType
-			// 
+			//
 			this._comboIssueType.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
 			this._comboIssueType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this._comboIssueType.FormattingEnabled = true;
@@ -154,9 +153,9 @@ namespace JetBrains.Omea.Jiffa
 			this._comboIssueType.Size = new System.Drawing.Size(140, 22);
 			this._comboIssueType.Sorted = true;
 			this._comboIssueType.TabIndex = 1;
-			// 
+			//
 			// _labelStatus
-			// 
+			//
 			this._labelStatus.AutoSize = true;
 			this._labelStatus.Dock = System.Windows.Forms.DockStyle.Left;
 			this._labelStatus.Location = new System.Drawing.Point(195, 0);
@@ -165,9 +164,9 @@ namespace JetBrains.Omea.Jiffa
 			this._labelStatus.TabIndex = 8;
 			this._labelStatus.Text = "Status:";
 			this._labelStatus.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			// 
+			//
 			// _comboStatus
-			// 
+			//
 			this._comboStatus.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
 			this._comboStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this._comboStatus.FormattingEnabled = true;
@@ -177,9 +176,9 @@ namespace JetBrains.Omea.Jiffa
 			this._comboStatus.Size = new System.Drawing.Size(140, 22);
 			this._comboStatus.Sorted = true;
 			this._comboStatus.TabIndex = 9;
-			// 
+			//
 			// _labelPriority
-			// 
+			//
 			this._labelPriority.AutoSize = true;
 			this._labelPriority.Dock = System.Windows.Forms.DockStyle.Left;
 			this._labelPriority.Location = new System.Drawing.Point(395, 0);
@@ -188,9 +187,9 @@ namespace JetBrains.Omea.Jiffa
 			this._labelPriority.TabIndex = 2;
 			this._labelPriority.Text = "Priority:";
 			this._labelPriority.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			// 
+			//
 			// _comboPriority
-			// 
+			//
 			this._comboPriority.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
 			this._comboPriority.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this._comboPriority.FormattingEnabled = true;
@@ -199,9 +198,9 @@ namespace JetBrains.Omea.Jiffa
 			this._comboPriority.Name = "_comboPriority";
 			this._comboPriority.Size = new System.Drawing.Size(140, 22);
 			this._comboPriority.TabIndex = 3;
-			// 
+			//
 			// _labelComponent
-			// 
+			//
 			this._labelComponent.AutoSize = true;
 			this._labelComponent.Dock = System.Windows.Forms.DockStyle.Left;
 			this._labelComponent.Location = new System.Drawing.Point(600, 0);
@@ -210,9 +209,9 @@ namespace JetBrains.Omea.Jiffa
 			this._labelComponent.TabIndex = 4;
 			this._labelComponent.Text = "Component:";
 			this._labelComponent.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			// 
+			//
 			// _comboComponent
-			// 
+			//
 			this._comboComponent.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
 			this._comboComponent.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this._comboComponent.FormattingEnabled = true;
@@ -222,9 +221,9 @@ namespace JetBrains.Omea.Jiffa
 			this._comboComponent.Size = new System.Drawing.Size(140, 22);
 			this._comboComponent.Sorted = true;
 			this._comboComponent.TabIndex = 5;
-			// 
+			//
 			// _labelBuildNumber
-			// 
+			//
 			this._labelBuildNumber.AutoSize = true;
 			this._labelBuildNumber.Dock = System.Windows.Forms.DockStyle.Left;
 			this._labelBuildNumber.Location = new System.Drawing.Point(830, 0);
@@ -233,16 +232,16 @@ namespace JetBrains.Omea.Jiffa
 			this._labelBuildNumber.TabIndex = 6;
 			this._labelBuildNumber.Text = "Build:";
 			this._labelBuildNumber.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			// 
+			//
 			// _txtBuildNumber
-			// 
+			//
 			this._txtBuildNumber.Location = new System.Drawing.Point(876, 3);
 			this._txtBuildNumber.Name = "_txtBuildNumber";
 			this._txtBuildNumber.Size = new System.Drawing.Size(55, 21);
 			this._txtBuildNumber.TabIndex = 7;
-			// 
+			//
 			// _panelHeaderControls
-			// 
+			//
 			this._panelHeaderControls.AutoSize = true;
 			this._panelHeaderControls.ColumnCount = 2;
 			this._panelHeaderControls.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
@@ -261,9 +260,9 @@ namespace JetBrains.Omea.Jiffa
 			this._panelHeaderControls.RowStyles.Add(new System.Windows.Forms.RowStyle());
 			this._panelHeaderControls.Size = new System.Drawing.Size(1070, 87);
 			this._panelHeaderControls.TabIndex = 0;
-			// 
+			//
 			// _comboDeveloper
-			// 
+			//
 			this._comboDeveloper.Dock = System.Windows.Forms.DockStyle.Fill;
 			this._comboDeveloper.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this._comboDeveloper.FormattingEnabled = true;
@@ -271,9 +270,9 @@ namespace JetBrains.Omea.Jiffa
 			this._comboDeveloper.Name = "_comboDeveloper";
 			this._comboDeveloper.Size = new System.Drawing.Size(987, 21);
 			this._comboDeveloper.TabIndex = 1;
-			// 
+			//
 			// _labelDeveloper
-			// 
+			//
 			this._labelDeveloper.AutoSize = true;
 			this._labelDeveloper.Dock = System.Windows.Forms.DockStyle.Fill;
 			this._labelDeveloper.Location = new System.Drawing.Point(3, 0);
@@ -282,9 +281,9 @@ namespace JetBrains.Omea.Jiffa
 			this._labelDeveloper.TabIndex = 0;
 			this._labelDeveloper.Text = "Developer:";
 			this._labelDeveloper.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			// 
+			//
 			// _labelTitle
-			// 
+			//
 			this._labelTitle.AutoSize = true;
 			this._labelTitle.Dock = System.Windows.Forms.DockStyle.Fill;
 			this._labelTitle.Location = new System.Drawing.Point(3, 60);
@@ -293,26 +292,26 @@ namespace JetBrains.Omea.Jiffa
 			this._labelTitle.TabIndex = 4;
 			this._labelTitle.Text = "Title:";
 			this._labelTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			// 
+			//
 			// _txtTitle
-			// 
+			//
 			this._txtTitle.Dock = System.Windows.Forms.DockStyle.Fill;
 			this._txtTitle.Location = new System.Drawing.Point(80, 63);
 			this._txtTitle.Name = "_txtTitle";
 			this._txtTitle.Size = new System.Drawing.Size(987, 21);
 			this._txtTitle.TabIndex = 4;
-			// 
+			//
 			// _panelBrowser
-			// 
+			//
 			this._panelBrowser.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
 			this._panelBrowser.Dock = System.Windows.Forms.DockStyle.Fill;
 			this._panelBrowser.Location = new System.Drawing.Point(0, 111);
 			this._panelBrowser.Name = "_panelBrowser";
 			this._panelBrowser.Size = new System.Drawing.Size(1070, 303);
 			this._panelBrowser.TabIndex = 4;
-			// 
+			//
 			// IssueView
-			// 
+			//
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(1070, 436);

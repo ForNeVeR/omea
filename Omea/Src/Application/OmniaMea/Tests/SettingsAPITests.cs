@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using JetBrains.Omea.Base;
 using JetBrains.Omea.OpenAPI;
@@ -148,7 +147,7 @@ namespace OmniaMea.Tests
             IResource setting = Core.ResourceStore.BeginNewResource( "Setting" );
             setting.EndUpdate();
 
-            IntAsBoolResourceSetting intSetting = 
+            IntAsBoolResourceSetting intSetting =
                 new IntAsBoolResourceSetting( setting, _NUM, new BoolSetting( "Test", "Test", true ) );
             intSetting.Load();
             Assert.AreEqual( true, intSetting.Value );
@@ -158,7 +157,7 @@ namespace OmniaMea.Tests
             IResource setting = Core.ResourceStore.BeginNewResource( "Setting" );
             setting.EndUpdate();
 
-            IntAsBoolResourceSetting intSetting = 
+            IntAsBoolResourceSetting intSetting =
                 new IntAsBoolResourceSetting( setting, _NUM, new BoolSetting( "Test", "Test", false ) );
             intSetting.Load();
             Assert.AreEqual( false, intSetting.Value );
@@ -169,7 +168,7 @@ namespace OmniaMea.Tests
             setting.SetProp( _NUM, 1 );
             setting.EndUpdate();
 
-            IntAsBoolResourceSetting intSetting = 
+            IntAsBoolResourceSetting intSetting =
                 new IntAsBoolResourceSetting( setting, _NUM, new BoolSetting( "Test", "Test", false ) );
             intSetting.Load();
             Assert.AreEqual( true, intSetting.Value );
@@ -180,7 +179,7 @@ namespace OmniaMea.Tests
             setting.SetProp( _NUM, -1 );
             setting.EndUpdate();
 
-            IntAsBoolResourceSetting intSetting = 
+            IntAsBoolResourceSetting intSetting =
                 new IntAsBoolResourceSetting( setting, _NUM, new BoolSetting( "Test", "Test", true ) );
             intSetting.Load();
             Assert.AreEqual( false, intSetting.Value );
@@ -191,7 +190,7 @@ namespace OmniaMea.Tests
             setting.SetProp( _NUM, -1 );
             setting.EndUpdate();
 
-            IntAsBoolResourceSetting intSetting = 
+            IntAsBoolResourceSetting intSetting =
                 new IntAsBoolResourceSetting( setting, _NUM, new BoolSetting( "Test", "Test", true ) );
             intSetting.Load();
             Assert.AreEqual( false, intSetting.Value );
@@ -205,7 +204,7 @@ namespace OmniaMea.Tests
             IResource setting = Core.ResourceStore.BeginNewResource( "Setting" );
             setting.EndUpdate();
 
-            IntAsBoolResourceSetting intSetting = 
+            IntAsBoolResourceSetting intSetting =
                 new IntAsBoolResourceSetting( setting, _NUM, new BoolSetting( "Test", "Test", true ) );
             intSetting.Load();
             Assert.AreEqual( true, intSetting.Value );

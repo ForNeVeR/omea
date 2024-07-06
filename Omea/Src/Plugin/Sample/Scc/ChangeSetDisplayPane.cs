@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -27,7 +26,7 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.LinkLabel _lnkFileName;
         private System.Windows.Forms.RichTextBox _edtDiff;
-		/// <summary> 
+		/// <summary>
 		/// Required designer variable.
 		/// </summary>
 		private System.ComponentModel.Container components = null;
@@ -36,7 +35,7 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
 	    private IResourceList _selectedChangeList;
         private Dictionary<string, string> _linkTextMap;
 	    private DateTime _colorizeStartTime;
-	    
+
 		public ChangeSetDisplayPane()
 		{
 			// This call is required by the Windows.Forms Form Designer.
@@ -46,7 +45,7 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
 
 		}
 
-		/// <summary> 
+		/// <summary>
 		/// Clean up any resources being used.
 		/// </summary>
 		protected override void Dispose( bool disposing )
@@ -62,8 +61,8 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
 		}
 
 		#region Component Designer generated code
-		/// <summary> 
-		/// Required method for Designer support - do not modify 
+		/// <summary>
+		/// Required method for Designer support - do not modify
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent()
@@ -79,9 +78,9 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
-            // 
+            //
             // _edtDescription
-            // 
+            //
             this._edtDescription.BackColor = System.Drawing.SystemColors.Control;
             this._edtDescription.Dock = System.Windows.Forms.DockStyle.Top;
             this._edtDescription.Location = new System.Drawing.Point(0, 0);
@@ -91,18 +90,18 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
             this._edtDescription.TabIndex = 0;
             this._edtDescription.Text = "";
             this._edtDescription.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this._edtDescription_LinkClicked);
-            // 
+            //
             // splitter1
-            // 
+            //
             this.splitter1.Dock = System.Windows.Forms.DockStyle.Top;
             this.splitter1.Location = new System.Drawing.Point(0, 48);
             this.splitter1.Name = "splitter1";
             this.splitter1.Size = new System.Drawing.Size(676, 3);
             this.splitter1.TabIndex = 1;
             this.splitter1.TabStop = false;
-            // 
+            //
             // panel1
-            // 
+            //
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Controls.Add(this.splitter2);
             this.panel1.Controls.Add(this._changedFilesList);
@@ -111,9 +110,9 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(676, 249);
             this.panel1.TabIndex = 2;
-            // 
+            //
             // panel2
-            // 
+            //
             this.panel2.Controls.Add(this._edtDiff);
             this.panel2.Controls.Add(this._lnkFileName);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -121,11 +120,11 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(493, 249);
             this.panel2.TabIndex = 2;
-            // 
+            //
             // _edtDiff
-            // 
-            this._edtDiff.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-                | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._edtDiff.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._edtDiff.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(204)));
             this._edtDiff.Location = new System.Drawing.Point(4, 24);
@@ -136,27 +135,27 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
             this._edtDiff.TabIndex = 1;
             this._edtDiff.Text = "";
             this._edtDiff.WordWrap = false;
-            // 
+            //
             // _lnkFileName
-            // 
-            this._lnkFileName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._lnkFileName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._lnkFileName.Location = new System.Drawing.Point(4, 4);
             this._lnkFileName.Name = "_lnkFileName";
             this._lnkFileName.Size = new System.Drawing.Size(484, 16);
             this._lnkFileName.TabIndex = 0;
             this._lnkFileName.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this._lnkFileName_LinkClicked);
-            // 
+            //
             // splitter2
-            // 
+            //
             this.splitter2.Location = new System.Drawing.Point(180, 0);
             this.splitter2.Name = "splitter2";
             this.splitter2.Size = new System.Drawing.Size(3, 249);
             this.splitter2.TabIndex = 1;
             this.splitter2.TabStop = false;
-            // 
+            //
             // _changedFilesList
-            // 
+            //
             this._changedFilesList.Dock = System.Windows.Forms.DockStyle.Left;
             this._changedFilesList.IntegralHeight = false;
             this._changedFilesList.Location = new System.Drawing.Point(0, 0);
@@ -164,9 +163,9 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
             this._changedFilesList.Size = new System.Drawing.Size(180, 249);
             this._changedFilesList.TabIndex = 0;
             this._changedFilesList.SelectedIndexChanged += new System.EventHandler(this._changedFilesList_SelectedIndexChanged);
-            // 
+            //
             // ChangeSetDisplayPane
-            // 
+            //
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.splitter1);
             this.Controls.Add(this._edtDescription);
@@ -196,17 +195,17 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
             IResource repository = _changeSet.GetProp( Props.ChangeSetRepository );
             RepositoryType repType = SccPlugin.GetRepositoryType( repository );
             repType.OnChangesetSelected( repository, _changeSet );
-	        
+
             _changedFilesList.BeginUpdate();
             try
             {
                 _changedFilesList.Items.Clear();
-                foreach( FileChange fileChange in resource.GetLinksOfType( FileChange.ResourceType, 
+                foreach( FileChange fileChange in resource.GetLinksOfType( FileChange.ResourceType,
                     Props.Change ) )
                 {
                     if ( Settings.HideUnchangedFiles )
                     {
-                        if ( !fileChange.Binary && 
+                        if ( !fileChange.Binary &&
                             fileChange.ChangeType == "edit" &&
                             String.IsNullOrEmpty(fileChange.Diff) )
                         {
@@ -341,7 +340,7 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
 	            {
 	                _lnkFileName.Links [0].LinkData = fileChange;
 	            }
-                
+
 	            _edtDiff.Clear();
 	            string changeType = fileChange.ChangeType;
 	            if ( changeType == "add" )
@@ -404,7 +403,7 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
 	            {
 	                addedLines.Add( diffLines [i++] );
 	            }
-	            
+
 	            bool whitespaceOnlyDiff = false;
 	            if ( removedLines.Count == addedLines.Count )
 	            {
@@ -565,28 +564,28 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
 	        // Masks and effects defined for CHARFORMAT2 -- an (*) indicates
 	        // that the data is stored by RichEdit 2.0/3.0, but not displayed
 
-	        SMALLCAPS		= 0x0040,			// (*)	
-	        ALLCAPS			= 0x0080,			// Displayed by 3.0	
+	        SMALLCAPS		= 0x0040,			// (*)
+	        ALLCAPS			= 0x0080,			// Displayed by 3.0
 	        HIDDEN			= 0x0100,			// Hidden by 3.0
-	        OUTLINE			= 0x0200,			// (*)	
-	        SHADOW			= 0x0400,			// (*)	
-	        EMBOSS			= 0x0800,			// (*)	
-	        IMPRINT			= 0x1000,			// (*)	
+	        OUTLINE			= 0x0200,			// (*)
+	        SHADOW			= 0x0400,			// (*)
+	        EMBOSS			= 0x0800,			// (*)
+	        IMPRINT			= 0x1000,			// (*)
 	        DISABLED		= 0x2000,
 	        REVISED			= 0x4000,
 	        //
 	        BACKCOLOR		= 0x04000000,
 	        LCID			= 0x02000000,
 	        UNDERLINETYPE	= 0x00800000,		// Many displayed by 3.0
-	        WEIGHT			= 0x00400000,	
-	        SPACING			= 0x00200000,  		// Displayed by 3.0	
-	        KERNING			= 0x00100000,  		// (*)	
-	        STYLE			= 0x00080000,  		// (*)	
-	        ANIMATION		= 0x00040000,  		// (*)	
+	        WEIGHT			= 0x00400000,
+	        SPACING			= 0x00200000,  		// Displayed by 3.0
+	        KERNING			= 0x00100000,  		// (*)
+	        STYLE			= 0x00080000,  		// (*)
+	        ANIMATION		= 0x00040000,  		// (*)
 	        REVAUTHOR		= 0x00008000,
 
 	        CFE_SUBSCRIPT		= 0x00010000,	// Superscript and subscript are
-	        CFE_SUPERSCRIPT		= 0x00020000,	//  mutually exclusive			
+	        CFE_SUPERSCRIPT		= 0x00020000,	//  mutually exclusive
 
 	        SUBSCRIPT		= CFE_SUBSCRIPT | CFE_SUPERSCRIPT,
 	        SUPERSCRIPT		= SUBSCRIPT,

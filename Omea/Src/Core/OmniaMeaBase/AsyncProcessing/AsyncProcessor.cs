@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Drawing;
@@ -32,7 +31,7 @@ namespace JetBrains.Omea.AsyncProcessing
         }
     }
 
-    /** 
+    /**
      * Omea asynchronous processor
      */
     public class AsyncProcessor : IAsyncProcessor
@@ -200,7 +199,7 @@ namespace JetBrains.Omea.AsyncProcessing
         public int IdlePeriod
         {
             get { return _idlePeriod; }
-            set 
+            set
             {
                 if( _idlePeriod <= 0 )
                 {
@@ -231,7 +230,7 @@ namespace JetBrains.Omea.AsyncProcessing
         #endregion
 
         #region asyncprocessor events
-        
+
         public event EventHandler ThreadStarted;
         public event EventHandler ThreadFinished;
         public event EventHandler FillingEmptyQueue;
@@ -361,7 +360,7 @@ namespace JetBrains.Omea.AsyncProcessing
 
         public void QueueIdleJob( JobPriority priority, AbstractJob job )
         {
-            /** 
+            /**
              * idle processing can be performed only under WinNT or later
              * under other platforms, just queue an job
              */
@@ -826,13 +825,13 @@ namespace JetBrains.Omea.AsyncProcessing
             return runnable._internalJob;
         }
 
-        /** 
+        /**
          * maximum number of async operations capable to be processed simultaneously
          * restriction goes from win32
          */
         public const int _maxWaitableHandles = 64;
 
-        /** 
+        /**
          * period to wait for switching into idle mode (in milliseconds )
          */
         public const int _defaultIdlePeriod = 300000; // 5 minutes
@@ -851,7 +850,7 @@ namespace JetBrains.Omea.AsyncProcessing
              * Add current thread to processor pool
              */
             AddToProcessorPool( Thread.CurrentThread, this );
-            
+
 
             while( !_finished )
             {
@@ -862,7 +861,7 @@ namespace JetBrains.Omea.AsyncProcessing
                 }
                 catch( ThreadAbortException e )
                 {
-                    /** 
+                    /**
                      * if ThreadAbortException caught then we try to start the new
                      * processor thread instead of this one, which is finished
                      */
@@ -893,7 +892,7 @@ namespace JetBrains.Omea.AsyncProcessing
             CleanProcessorPool( Thread.CurrentThread );
 
             CallEventDelegatesSafe( ThreadFinished );
-            
+
             if( _restartThread )
             {
                 StartThread();
@@ -909,13 +908,13 @@ namespace JetBrains.Omea.AsyncProcessing
 
             ++_reenteringDoJobs;
 
-            try 
+            try
             {
                 AbstractJob     job;
                 int             i;
                 int             timeout;
 
-                timeout = ProcessTimedJobs();            
+                timeout = ProcessTimedJobs();
                 // i - ticks until idle mode
                 i = Timeout.Infinite;
                 if( _jobQueue.Count == 0 && _idleJobQueue.Count > 0 )
@@ -930,7 +929,7 @@ namespace JetBrains.Omea.AsyncProcessing
                 {
                     timeout = i;
                 }
-                    
+
                 i = WaitEvents( timeout );
                 if( _finished )
                 {
@@ -939,14 +938,14 @@ namespace JetBrains.Omea.AsyncProcessing
 
                 if( i == WaitHandle.WaitTimeout )
                 {
-                    /** 
+                    /**
                      * in idle mode execute only one job if any
                      */
                     if( _idleJobQueue.Count > 0 && GetIdleDuration() >= _idlePeriod )
                     {
                         job = (AbstractJob)_idleJobQueue.Pop();
                         _uniqueIdleJobs.Remove( job );
-                        ExecuteJob( job );       
+                        ExecuteJob( job );
                     }
                     return;
                 }
@@ -956,7 +955,7 @@ namespace JetBrains.Omea.AsyncProcessing
                  */
                 try
                 {
-                    /** 
+                    /**
                      * if we get a signal that one of the earlier started async operations should be continued
                      */
                     if( i > 0 )
@@ -966,7 +965,7 @@ namespace JetBrains.Omea.AsyncProcessing
                         _startedJobs.Remove( handle );
                         ExecuteJob( job );
                     }
-                        /** 
+                        /**
                          * else we get the awakening signal, so either queue is not empty or we are to finish thread
                          */
                     else
@@ -1047,7 +1046,7 @@ namespace JetBrains.Omea.AsyncProcessing
             }
         }
 
-        /** 
+        /**
          * function where an asyncprocessor spends all its time when it's idle
          * waiting events scheme depends on number of events and the
          * ProcessMessages property value. If ProcessMessages is set to true then
@@ -1055,7 +1054,7 @@ namespace JetBrains.Omea.AsyncProcessing
          */
         protected int WaitEvents( int timeout )
         {
-            /** 
+            /**
              * if we're to wait only for awakening event is set to signaled state
              * then use WaitOne() because its performance is much better than WaitAny()
              */
@@ -1485,7 +1484,7 @@ namespace JetBrains.Omea.AsyncProcessing
             _finished = true;
         }
 
-        /** 
+        /**
          * ProcessorThread is instance function used for thread creation in contructor
          * To change behaviour of AsyncProcessor, override ThreadFunction()
          */

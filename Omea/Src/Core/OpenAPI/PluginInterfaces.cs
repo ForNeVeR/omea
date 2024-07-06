@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -15,22 +14,22 @@ namespace JetBrains.Omea.OpenAPI
 	/// <summary>
     /// Specifies a format of a plain or rich text string.
     /// </summary>
-    public enum TextFormat 
+    public enum TextFormat
     {
         /// <summary>
         /// The string contains plain text.
         /// </summary>
-        PlainText, 
-        
+        PlainText,
+
         /// <summary>
         /// The string is a valid HTML fragment.
         /// </summary>
-        Html, 
-        
+        Html,
+
         /// <summary>
         /// The string contains rich text in the RTF format.
         /// </summary>
-        Rtf 
+        Rtf
     };
 
     // -- Interfaces that are implemented by plugins -----------------------------------
@@ -39,7 +38,7 @@ namespace JetBrains.Omea.OpenAPI
     /// The main interface that must be implemented by every Omea plugin. Manages
     /// plugin startup and shutdown.
     /// </summary>
-    /// <remarks>If there are several classes which implement IPlugin in an assembly, 
+    /// <remarks>If there are several classes which implement IPlugin in an assembly,
     /// all of them are loaded as plugins.</remarks>
     public interface IPlugin
     {
@@ -72,7 +71,7 @@ namespace JetBrains.Omea.OpenAPI
         /// Terminates the plugin.
         /// </summary>
         /// <remarks>If the plugin needs any shutdown activities (like deleting temporary
-        /// files), these should be performed in these method. All <see cref="Core"/> services 
+        /// files), these should be performed in these method. All <see cref="Core"/> services
         /// are still available when the method is called.</remarks>
         void Shutdown();
     }
@@ -81,7 +80,7 @@ namespace JetBrains.Omea.OpenAPI
     /// The interface which must be implemented by plugins which display their resources
     /// in the resource browser preview pane.
     /// </summary>
-    /// <remarks>Implementations of this interface are registered through 
+    /// <remarks>Implementations of this interface are registered through
     /// <see cref="IPluginLoader.RegisterResourceDisplayer"/>.</remarks>
     public interface IResourceDisplayer
     {
@@ -123,7 +122,7 @@ namespace JetBrains.Omea.OpenAPI
     /// <summary>
     /// The interface of the classes which manage the displaying of plugin resources.
     /// </summary>
-    /// <remarks>Implementations of this interface are returned from 
+    /// <remarks>Implementations of this interface are returned from
     /// <see cref="IResourceDisplayer.CreateDisplayPane"/>.</remarks>
     public interface IDisplayPane: ICommandProcessor
     {
@@ -139,7 +138,7 @@ namespace JetBrains.Omea.OpenAPI
         /// </summary>
         /// <param name="resource">The resource to display.</param>
         void DisplayResource( IResource resource );
-        
+
         /// <summary>
         /// Highlights the specified search result words in the resource text.
         /// </summary>
@@ -150,7 +149,7 @@ namespace JetBrains.Omea.OpenAPI
         /// </remarks>
 		[ Obsolete( "Use the IDisplayPane2.HighlightWords(IResource, WordPtr[]) overload instead.", false ) ]
         void HighlightWords( WordPtr[] words );
-        
+
         /// <summary>
         /// Ends the display of the specific resource in the display pane.
         /// </summary>
@@ -160,7 +159,7 @@ namespace JetBrains.Omea.OpenAPI
         /// same display pane instance. If the user switches to a resource of a different type,
         /// <see cref="DisposePane"/> is called to dispose of the pane.</remarks>
         void EndDisplayResource( IResource resource );
-        
+
         /// <summary>
         /// Disposes of the display pane.
         /// </summary>
@@ -268,7 +267,7 @@ namespace JetBrains.Omea.OpenAPI
     /// </summary>
     /// <remarks><para>Implementations of this interface are registered through
     /// <see cref="IResourceIconManager.RegisterOverlayIconProvider(string,IOverlayIconProvider)"/>.</para>
-    /// <para>Implementations of this interface are chained - all overlay icon providers registered for 
+    /// <para>Implementations of this interface are chained - all overlay icon providers registered for
     /// the specified resource type are queried for icons, and all icons returned by them are shown.</para></remarks>
     /// <since>2.0</since>
     public interface IOverlayIconProvider
@@ -384,7 +383,7 @@ namespace JetBrains.Omea.OpenAPI
         /// Called when the specified resource is selected in a sidebar pane.
         /// </summary>
         /// <param name="res">The resource which is selected.</param>
-        /// <remarks>The typical action for this method is to call 
+        /// <remarks>The typical action for this method is to call
         /// <see cref="IResourceBrowser.DisplayResourceList"/> with the list of resources
         /// somehow linked to the selected resource.</remarks>
         void ResourceNodeSelected( IResource res );
@@ -397,7 +396,7 @@ namespace JetBrains.Omea.OpenAPI
         /// <remarks>The in-place rename can be performed both from the resource tree view
         /// and the resource browser.</remarks>
         bool CanRenameResource( IResource res );
-        
+
         /// <summary>
         /// Processes the in-place rename for the specified resource.
         /// </summary>
@@ -417,7 +416,7 @@ namespace JetBrains.Omea.OpenAPI
         /// <param name="dragResources">The dragged resources.</param>
         /// <returns>true if the drop is allowed, false otherwise.</returns>
         bool CanDropResources( IResource targetResource, IResourceList dragResources );
-        
+
         /// <summary>
         /// Processes the drop of the specified resources on the specified target resource.
         /// </summary>
@@ -430,7 +429,7 @@ namespace JetBrains.Omea.OpenAPI
     /// <summary>
     /// Allows to perform complete handling of resource drag and drop in
     /// <see cref="IResourceTreePane"/>, resource browser and other places. This
-    /// interface takes precedence over <see cref="IResourceUIHandler"/> - if a 
+    /// interface takes precedence over <see cref="IResourceUIHandler"/> - if a
     /// drag and drop handler is registered, the UI handler is not called to
     /// process drag and drop.
     /// </summary>
@@ -452,22 +451,22 @@ namespace JetBrains.Omea.OpenAPI
         /// </summary>
         /// <param name="targetResource">The resource over which the drag happens.</param>
         /// <param name="data">The <see cref="IDataObject"/> containing the dragged data.</param>
-        /// <param name="allowedEffect">The drag-and-drop operations which are allowed by the 
+        /// <param name="allowedEffect">The drag-and-drop operations which are allowed by the
         /// originator (or source) of the drag event.</param>
-        /// <param name="keyState">The current state of the SHIFT, CTRL, and ALT keys, 
+        /// <param name="keyState">The current state of the SHIFT, CTRL, and ALT keys,
         /// as well as the state of the mouse buttons.</param>
         /// <returns>The target drop effect.</returns>
         DragDropEffects DragOver( IResource targetResource, IDataObject data, DragDropEffects allowedEffect,
             int keyState );
-        
+
         /// <summary>
         /// Called to handle the drop of the specified data object on the specified resource.
         /// </summary>
         /// <param name="targetResource">The drop target resource.</param>
         /// <param name="data">The <see cref="IDataObject"/> containing the dragged data.</param>
-        /// <param name="allowedEffect">The drag-and-drop operations which are allowed by the 
+        /// <param name="allowedEffect">The drag-and-drop operations which are allowed by the
         /// originator (or source) of the drag event.</param>
-        /// <param name="keyState">The current state of the SHIFT, CTRL, and ALT keys, 
+        /// <param name="keyState">The current state of the SHIFT, CTRL, and ALT keys,
         /// as well as the state of the mouse buttons.</param>
         void Drop( IResource targetResource, IDataObject data, DragDropEffects allowedEffect, int keyState );
     }
@@ -475,7 +474,7 @@ namespace JetBrains.Omea.OpenAPI
     /// <summary>
     /// Allows to perform complete handling of resource rename in
     /// <see cref="IResourceTreePane"/>, resource browser and other places. This
-    /// interface takes precedence over <see cref="IResourceUIHandler"/> - if a 
+    /// interface takes precedence over <see cref="IResourceUIHandler"/> - if a
     /// rename handler is registered, the UI handler is not called to
     /// process renames.
     /// </summary>
@@ -513,7 +512,7 @@ namespace JetBrains.Omea.OpenAPI
         /// next unread item, Select All, or a similar operation). No expensive operations like
         /// comment download should be performed.
         /// </summary>
-        Enumerate,        
+        Enumerate,
 
         /// <summary>
         /// The expand is requested because the user clicked on the [+] button in the thread.
@@ -571,7 +570,7 @@ namespace JetBrains.Omea.OpenAPI
         /// <param name="reason">A reason for expanding the resource defined by the <see cref="ThreadExpandReason"/>
         /// enumeration members. Possible reasons include UI expanding of the branch and enumeration of node children.
         /// If expansion is considered to be a costly operation (for example, supposes downloading of additional resources),
-        /// it should not be actually initiated by enumeration operations (eg, only if user explicitly orders to expand the node should 
+        /// it should not be actually initiated by enumeration operations (eg, only if user explicitly orders to expand the node should
         /// the download occur). This parameter provides for judging such cases.</param>
         /// <return><c>true</c> if the expand was handled, <c>false</c> if the expand with that reason
         /// was not handled and the expand can be requested again later.</return>
@@ -654,11 +653,11 @@ namespace JetBrains.Omea.OpenAPI
         /// </summary>
         Serialize
     }
-    
+
     /// <summary>
     /// Allows to perform custom serialization and deserialization of resources in the XML format.
     /// </summary>
-    /// <remarks><para>Implementations of this interface are registered through 
+    /// <remarks><para>Implementations of this interface are registered through
     /// <see cref="IPluginLoader.RegisterResourceSerializer"/>.</para>
     /// <para>The XML serialization of resources is used by the "Send Resources" feature to transmit
     /// resources between different Omea database instances.</para></remarks>
@@ -667,7 +666,7 @@ namespace JetBrains.Omea.OpenAPI
         /// <summary>
         /// Called after the properties of a resource have been serialized to the specified XML node.
         /// </summary>
-        /// <param name="parentResource">The parent in the serialization tree of the resource being 
+        /// <param name="parentResource">The parent in the serialization tree of the resource being
         /// serialized.</param>
         /// <param name="res">The resource which has been serialized.</param>
         /// <param name="node">The node to which the resource has been serialized.</param>
@@ -680,7 +679,7 @@ namespace JetBrains.Omea.OpenAPI
         /// Called to match a temporary resource received from XML to an existing resource in the
         /// Omea database, and to restore the custom data which was serialized by <see cref="AfterSerialize"/>.
         /// </summary>
-        /// <param name="parentResource">The parent in the serialization tree of the resource being 
+        /// <param name="parentResource">The parent in the serialization tree of the resource being
         /// serialized.</param>
         /// <param name="res">The temporary representation of the resource which has been restored
         /// from the XML serialization.</param>
@@ -693,7 +692,7 @@ namespace JetBrains.Omea.OpenAPI
         /// it. If the resource doesn't match any existing resources, the received instance should be
         /// returned from the method.</remarks>
         IResource AfterDeserialize( IResource parentResource, IResource res, XmlNode node );
-        
+
         /// <summary>
         /// Allows to specify the serialization mode of resource properties on per-resource basis.
         /// </summary>
@@ -723,7 +722,7 @@ namespace JetBrains.Omea.OpenAPI
         /// deletion of these resources should be skipped, DialogResult.Cancel if the entire delete
         /// operation is cancelled.</returns>
         DialogResult ConfirmDeleteResources( IResourceList resources, bool permanent, bool showCancel );
-        
+
         /// <summary>
         /// Checks if deleting of the specified resource is allowed.
         /// </summary>
@@ -731,7 +730,7 @@ namespace JetBrains.Omea.OpenAPI
         /// <param name="permanent">Mode of requested resource deletion (permanent or non-permanent).</param>
         /// <returns>true if the delete is allowed, false if the delete action should be disabled.</returns>
         bool CanDeleteResource( IResource res, bool permanent );
-        
+
         /// <summary>
         /// Answers whether non-permanent deletion can be ignored. This is the general mechanism
         /// to exclude potentially dangerous behavior if permanent deletion performs unrevertable results
@@ -749,7 +748,7 @@ namespace JetBrains.Omea.OpenAPI
         /// <remarks>If the resource is currently not in the Deleted Items view, moves it to the Deleted
         /// Items view. If the resource is already in the Deleted Items view, deletes it permanently.</remarks>
         void DeleteResource( IResource res );
-        
+
         /// <summary>
         /// Deletes the specified resource permanently.
         /// </summary>
@@ -813,7 +812,7 @@ namespace JetBrains.Omea.OpenAPI
 		/// <summary>
 		/// A status bar pane to display the network-related messages, such as download progress and status.
 		/// </summary>
-		Network, 
+		Network,
 
 		/// <summary>
 		/// A status bar pane to display the resource operations details.
@@ -856,7 +855,7 @@ namespace JetBrains.Omea.OpenAPI
         /// is registered.</param>
         /// <param name="provider">The unread count provider implementation.</param>
         void RegisterUnreadCountProvider( string resType, IUnreadCountProvider provider );
-        
+
         /// <summary>
         /// Returns the unread counter which is displayed for the specified resource
         /// in the current unread state.
@@ -874,7 +873,7 @@ namespace JetBrains.Omea.OpenAPI
     }
 
     /// <summary>
-    /// Controls the progress window which is displayed at program startup and when 
+    /// Controls the progress window which is displayed at program startup and when
     /// <see cref="IUIManager.RunWithProgressWindow"/> is used.
     /// </summary>
     public interface IProgressWindow
@@ -905,20 +904,20 @@ namespace JetBrains.Omea.OpenAPI
 	/// // Get (create) a status bar writer
 	/// // Attach to this class, display in the Network pane
 	/// IStatusWriter	sw = Core.UIManager.GetStatusWriter( this, StatusPane.Network );
-	/// 
+	///
 	/// // Submit a message to the status bar
 	/// sw.ShowStatus( "Downloading…" );
-	/// 
+	///
 	/// Trace.WriteLine( sw.LastMessage );	// Should print "Downloading…"
-	/// 
+	///
 	/// // Do some lengthy operation (possibly by running async jobs)
 	/// …
 	/// …
-	/// 
+	///
 	/// // Resign use of status bar
 	/// // Unless you do it, your message will be kept in status bar infinitely
 	/// sw.ClearStatus();
-	/// 
+	///
 	/// Trace.WriteLine( sw.LastMessage == null );	// Should be True
 	/// </code>
 	/// </example>
@@ -938,20 +937,20 @@ namespace JetBrains.Omea.OpenAPI
 		/// // Get (create) a status bar writer
 		/// // Attach to this class, display in the Network pane
 		/// IStatusWriter	sw = Core.UIManager.GetStatusWriter( this, StatusPane.Network );
-		/// 
+		///
 		/// // Submit a message to the status bar
 		/// sw.ShowStatus( "Downloading…" );
-		/// 
+		///
 		/// Trace.WriteLine( sw.LastMessage );	// Should print "Downloading…"
-		/// 
+		///
 		/// // Do some lengthy operation (possibly by running async jobs)
 		/// …
 		/// …
-		/// 
+		///
 		/// // Resign use of status bar
 		/// // Unless you do it, your message will be kept in status bar infinitely
 		/// sw.ClearStatus();
-		/// 
+		///
 		/// Trace.WriteLine( sw.LastMessage == null );	// Should be True
 		/// </code>
 		/// </example>
@@ -973,20 +972,20 @@ namespace JetBrains.Omea.OpenAPI
 		/// // Get (create) a status bar writer
 		/// // Attach to this class, display in the Network pane
 		/// IStatusWriter	sw = Core.UIManager.GetStatusWriter( this, StatusPane.Network );
-		/// 
+		///
 		/// // Submit a message to the status bar
 		/// sw.ShowStatus( "Downloading…", false );	// Do not repaint
-		/// 
+		///
 		/// Trace.WriteLine( sw.LastMessage );	// Should print "Downloading…"
-		/// 
+		///
 		/// // Do some lengthy operation (possibly by running async jobs)
 		/// …
 		/// …
-		/// 
+		///
 		/// // Resign use of status bar
 		/// // Unless you do it, your message will be kept in status bar infinitely
 		/// sw.ClearStatus();
-		/// 
+		///
 		/// Trace.WriteLine( sw.LastMessage == null );	// Should be True
 		/// </code>
 		/// </example>
@@ -1004,20 +1003,20 @@ namespace JetBrains.Omea.OpenAPI
 		/// // Get (create) a status bar writer
 		/// // Attach to this class, display in the Network pane
 		/// IStatusWriter	sw = Core.UIManager.GetStatusWriter( this, StatusPane.Network );
-		/// 
+		///
 		/// // Submit a message to the status bar
 		/// sw.ShowStatus( "Downloading…" );
-		/// 
+		///
 		/// Trace.WriteLine( sw.LastMessage );	// Should print "Downloading…"
-		/// 
+		///
 		/// // Do some lengthy operation (possibly by running async jobs)
 		/// …
 		/// …
-		/// 
+		///
 		/// // Resign use of status bar
 		/// // Unless you do it, your message will be kept in status bar infinitely
 		/// sw.ClearStatus();
-		/// 
+		///
 		/// Trace.WriteLine( sw.LastMessage == null );	// Should be True
 		/// </code>
 		/// </example>
@@ -1036,20 +1035,20 @@ namespace JetBrains.Omea.OpenAPI
 		/// // Get (create) a status bar writer
 		/// // Attach to this class, display in the Network pane
 		/// IStatusWriter	sw = Core.UIManager.GetStatusWriter( this, StatusPane.Network );
-		/// 
+		///
 		/// // Submit a message to the status bar
 		/// sw.ShowStatus( "Downloading…" );
-		/// 
+		///
 		/// Trace.WriteLine( sw.LastMessage );	// Should print "Downloading…"
-		/// 
+		///
 		/// // Do some lengthy operation (possibly by running async jobs)
 		/// …
 		/// …
-		/// 
+		///
 		/// // Resign use of status bar
 		/// // Unless you do it, your message will be kept in status bar infinitely
 		/// sw.ClearStatus();
-		/// 
+		///
 		/// Trace.WriteLine( sw.LastMessage == null );	// Should be True
 		/// </code>
 		/// </example>
@@ -1068,7 +1067,7 @@ namespace JetBrains.Omea.OpenAPI
 		/// // Get (create) a status bar writer
 		/// // Attach to this class, display in the Network pane
 		/// IStatusWriter	sw = Core.UIManager.GetStatusWriter( this, StatusPane.Network );
-		/// 
+		///
 		/// // Submit a message to the status bar
 		/// // It will be automatically revoked ten seconds later
 		/// sw.ShowStatus( "Download completed.", 10 );
@@ -1116,7 +1115,7 @@ namespace JetBrains.Omea.OpenAPI
         ///   If the filters have marked the presentation as hidden, the Update() method of the
         ///   action itself is not called.
         /// </param>
-        void RegisterToolbarAction( IAction action, Icon icon, string text, string tooltip, 
+        void RegisterToolbarAction( IAction action, Icon icon, string text, string tooltip,
             IActionStateFilter[] filters );
 
 		/// <summary>
@@ -1133,7 +1132,7 @@ namespace JetBrains.Omea.OpenAPI
         ///   If the filters have marked the presentation as hidden, the Update() method of the
         ///   action itself is not called.
         /// </param>
-        void RegisterToolbarAction( IAction action, Image icon, string text, string tooltip, 
+        void RegisterToolbarAction( IAction action, Image icon, string text, string tooltip,
             IActionStateFilter[] filters );
 
         /// <summary>
@@ -1141,7 +1140,7 @@ namespace JetBrains.Omea.OpenAPI
         /// </summary>
         /// <param name="nodeFilter">The node filter instance.</param>
         void AddNodeFilter( IResourceNodeFilter nodeFilter );
-        
+
         /// <summary>
         /// Clears and recreates the tree when the conditions of a node filter have changed.
         /// </summary>
@@ -1156,13 +1155,13 @@ namespace JetBrains.Omea.OpenAPI
         /// </summary>
         /// <param name="res">The resource to select.</param>
         void SelectResource( IResource res );
-        
+
         /// <summary>
         /// Initiates in-place editing for the specified resource node.
         /// </summary>
         /// <param name="res">The resource for which the display name should be edited.</param>
         void EditResourceLabel( IResource res );
-        
+
         /// <summary>
         /// Expands the parent nodes of the specified resource node.
         /// </summary>
@@ -1177,7 +1176,7 @@ namespace JetBrains.Omea.OpenAPI
         /// dropped over the empty space.</param>
         [Obsolete]
         void EnableDropOnEmpty( IResourceUIHandler emptyDropHandler );
-        
+
         /// <summary>
         /// Allows dropping resources on an empty space in the pane and sets the specified drag
         /// and drop handler to process such drops.
@@ -1186,18 +1185,18 @@ namespace JetBrains.Omea.OpenAPI
         /// dropped over the empty space.</param>
         /// <since>2.0</since>
         void EnableDropOnEmpty( IResourceDragDropHandler emptyDropHandler );
-        
+
         /// <summary>
         /// If true, new nodes which are added to the tree are automatically selected.
         /// </summary>
         bool SelectAddedItems { get; set; }
-        
+
         /// <summary>
         /// Gets and sets the ID of the directed link property which links a resource node
         /// to its parent.
         /// </summary>
         int ParentProperty { get; set; }
-        
+
         /// <summary>
         /// Gets and sets the resource types which are used to filter the pane content when
         /// a workspace is active.
@@ -1247,14 +1246,14 @@ namespace JetBrains.Omea.OpenAPI
         /// <param name="caption">The new caption of the pane.</param>
         /// <since>2.0</since>
         void SetPaneCaption( string paneId, string caption );
-        
+
         /// <summary>
         /// Checks if the specified pane in the right sidebar is currently expanded.
         /// </summary>
         /// <param name="paneId">The ID of the pane to check.</param>
         /// <returns>true if the pane is expanded, false otherwise.</returns>
         bool IsPaneExpanded( string paneId );
-        
+
         /// <summary>
         /// Expands or collapses the specified pane in the right sidebar.
         /// </summary>
@@ -1277,7 +1276,7 @@ namespace JetBrains.Omea.OpenAPI
     }
 
     /// <summary>
-    /// Allows to control the left sidebar switcher (which supports showing different sidebars 
+    /// Allows to control the left sidebar switcher (which supports showing different sidebars
     /// depending on the active tab).
     /// </summary>
     public interface ISidebarSwitcher
@@ -1301,9 +1300,9 @@ namespace JetBrains.Omea.OpenAPI
         /// <param name="icon">Icon to show on the button which expands/collapses the pane.</param>
         /// <param name="rootResource">The root of the resource tree displayed in the pane.</param>
         /// <returns>The instance of the tree view pane.</returns>
-        IResourceTreePane RegisterTreeViewPane( string paneId, string tabId, string caption, Image icon, 
+        IResourceTreePane RegisterTreeViewPane( string paneId, string tabId, string caption, Image icon,
                                                 IResource rootResource );
-        
+
         /// <summary>
         /// Registers a custom view pane in the left sidebar which serves as the resource
         /// structure pane.
@@ -1316,9 +1315,9 @@ namespace JetBrains.Omea.OpenAPI
         /// <remarks>The resource structure pane is the pane in which Omea tries to find the resource
         /// registered as the resource location through <see cref="IUIManager.RegisterResourceLocationLink"/>.
         /// </remarks>
-        void RegisterResourceStructurePane( string paneId, string tabId, string caption, Image icon, 
+        void RegisterResourceStructurePane( string paneId, string tabId, string caption, Image icon,
                                             AbstractViewPane viewPane );
-        
+
         /// <summary>
         /// Registers a standard pane displaying a tree of resources, which also serves as the resource
         /// structure pane, in the left sidebar.
@@ -1331,7 +1330,7 @@ namespace JetBrains.Omea.OpenAPI
         /// <returns>The instance of the tree view pane.</returns>
         /// <remarks>The resource structure pane is the pane in which Omea tries to find the resource
         /// registered as the resource location through <see cref="IUIManager.RegisterResourceLocationLink"/>.</remarks>
-        IResourceTreePane RegisterResourceStructureTreePane( string paneId, string tabId, string caption, 
+        IResourceTreePane RegisterResourceStructureTreePane( string paneId, string tabId, string caption,
                                                              Image icon, IResource rootResource );
 
         /// <summary>
@@ -1354,9 +1353,9 @@ namespace JetBrains.Omea.OpenAPI
         /// of <c>rootResType</c> type linked to the workspace. If resources of additional types
         /// should be displayed, <see cref="IResourceTreePane.WorkspaceFilterTypes"/> should be used.</para>
         /// </remarks>
-        IResourceTreePane RegisterResourceStructureTreePane( string paneId, string tabId, string caption, 
+        IResourceTreePane RegisterResourceStructureTreePane( string paneId, string tabId, string caption,
                                                              Image icon, string rootResType );
-        
+
         /// <summary>
         /// Registers a keyboard shortcut for activating the pane with the specified ID.
         /// </summary>
@@ -1384,7 +1383,7 @@ namespace JetBrains.Omea.OpenAPI
         /// <param name="paneId">The pane ID to activate.</param>
         /// <returns>The pane instance or null if the activation failed.</returns>
         AbstractViewPane ActivateViewPane( string tabId, string paneId );
-        
+
         /// <summary>
         /// Returns the ID of the pane which is currently active in the current tab.
         /// </summary>
@@ -1398,7 +1397,7 @@ namespace JetBrains.Omea.OpenAPI
         /// <param name="paneId">The ID of the pane to retrieve.</param>
         /// <returns>The pane instance, or null if there is no such pane in the current tab.</returns>
         AbstractViewPane GetPane( string paneId );
-        
+
         /// <summary>
         /// Returns the instance of the pane with the specified ID in the specified tab.
         /// </summary>
@@ -1424,7 +1423,7 @@ namespace JetBrains.Omea.OpenAPI
         /// <summary>
         /// The ID of the tab.
         /// </summary>
-        string Id { get; }        
+        string Id { get; }
 
         /// <summary>
         /// The name of the tab (the text displayed in the tab caption).
@@ -1440,7 +1439,7 @@ namespace JetBrains.Omea.OpenAPI
         /// The link property for which the resources are displayed in the tab.
         /// </summary>
         int LinkPropId { get; }
-        
+
         /// <summary>
         /// Returns the list of all resources displayed in the tab.
         /// </summary>
@@ -1449,7 +1448,7 @@ namespace JetBrains.Omea.OpenAPI
         /// list is requested for the "All Resources" tab.</returns>
         IResourceList GetFilterList( bool live );
     }
-    
+
     /// <summary>
     /// The collection of registered resource type tabs.
     /// </summary>
@@ -1472,7 +1471,7 @@ namespace JetBrains.Omea.OpenAPI
         /// </summary>
         IResourceTypeTab this [string tabId] { get; }
     }
-    
+
     /// <summary>
     /// Allows to register resource type tabs and to get information about the
     /// registered resource type tabs.
@@ -1518,7 +1517,7 @@ namespace JetBrains.Omea.OpenAPI
         /// <para>The resources displayed in the tab either have one of the specified resource
         /// types or a link of the specified type.</para>
         /// </remarks>
-        void RegisterResourceTypeTab( string tabId, string tabName, string[] resTypes, int linkPropId, 
+        void RegisterResourceTypeTab( string tabId, string tabName, string[] resTypes, int linkPropId,
             int order );
 
         /// <summary>
@@ -1569,7 +1568,7 @@ namespace JetBrains.Omea.OpenAPI
         /// Gets the ID of the currently selected tab, and allows to switch to a different tab.
         /// </summary>
         string CurrentTabId { get; set; }
-        
+
         /// <summary>
         /// Returns the information about the currently selected tab.
         /// </summary>
@@ -1607,7 +1606,7 @@ namespace JetBrains.Omea.OpenAPI
         /// ID of the "Views and Categories" pane.
         /// </summary>
         public const string ViewsCategories = "ViewsCategories";
-        
+
         /// <summary>
         /// ID of the "Correspondents" pane.
         /// </summary>
@@ -1637,8 +1636,8 @@ namespace JetBrains.Omea.OpenAPI
         /// <summary>
         /// The left edge of the column is anchored to the left side of the view area.
         /// </summary>
-        AnchorLeft = 1, 
-        
+        AnchorLeft = 1,
+
         /// <summary>
         /// The right edge of the column is anchored to the right side of the view area.
         /// </summary>
@@ -1685,7 +1684,7 @@ namespace JetBrains.Omea.OpenAPI
         /// the same index have been registered for those types, the relative position of those
         /// columns is undefined.</remarks>
         void RegisterDisplayColumn( string resourceType, int index, ColumnDescriptor column );
-        
+
         /// <summary>
         /// Makes the specified column available for selection for a specific resource type
         /// or all resource types, even if the properties shown in the column are not present
@@ -1705,7 +1704,7 @@ namespace JetBrains.Omea.OpenAPI
         /// or null if it was registered for all resource types.</param>
         /// <param name="propName">The property name of the column to be removed.</param>
         void RemoveAvailableColumn( string resourceType, string propName );
-        
+
         /// <summary>
         /// Registers a custom handler for drawing the values of a specified property and
         /// handling events in the column displaying the property.
@@ -1756,7 +1755,7 @@ namespace JetBrains.Omea.OpenAPI
         /// with no children are displayed with zero indent and not with a single indent step.</param>
         /// <since>2.0</since>
         void SetAlignTopLevelItems( string resourceType, bool align );
-        
+
         /// <summary>
         /// Registers a custom callback which will be used to convert the values of the specified
         /// property to text displayed in the resource list view.
@@ -1768,7 +1767,7 @@ namespace JetBrains.Omea.OpenAPI
 
         /// <summary>
         /// Registers a custom callback which will be used to convert the values of the specified
-        /// property to text displayed in the resource list view, depending on the space available 
+        /// property to text displayed in the resource list view, depending on the space available
         /// for displaying the property value in the list.
         /// /// </summary>
         /// <param name="propId">The ID of the property for which the callback is registered.</param>
@@ -1894,7 +1893,7 @@ namespace JetBrains.Omea.OpenAPI
     public interface IPluginLoader
     {
         /// <summary>
-        /// Registers the <see cref="IResourceUIHandler">user interface action handler</see> 
+        /// Registers the <see cref="IResourceUIHandler">user interface action handler</see>
         /// for the specific resource type.
         /// </summary>
         /// <param name="resType">The resource type for which the handler is registered.</param>
@@ -1914,19 +1913,19 @@ namespace JetBrains.Omea.OpenAPI
         /// <returns>The handler implementation, or null if there was no handler registered.</returns>
         /// <since>2.0</since>
         IResourceUIHandler GetResourceUIHandler( string resType );
-        
+
         /// <summary>
         /// Returns the user interface handler registered for the specified resource.
         /// </summary>
         /// <param name="res">The resource for which the handler is requested.</param>
         /// <returns>The handler implementation, or null if there was no handler registered.</returns>
         /// <remarks>If there is no handler registered for the type of the resource but the
-        /// resource has a <see cref="PropTypeFlags.SourceLink">source link</see>, the handler 
+        /// resource has a <see cref="PropTypeFlags.SourceLink">source link</see>, the handler
         /// for the source resource is returned.</remarks>
         IResourceUIHandler GetResourceUIHandler( IResource res );
 
         /// <summary>
-        /// Registers the <see cref="IResourceDragDropHandler">drag and drop handler</see> 
+        /// Registers the <see cref="IResourceDragDropHandler">drag and drop handler</see>
         /// for the specific resource type.
         /// </summary>
         /// <param name="resType">The resource type for which the handler is registered.</param>
@@ -1947,7 +1946,7 @@ namespace JetBrains.Omea.OpenAPI
         /// <param name="res">The resource for which the handler is requested.</param>
         /// <returns>The handler implementation, or null if there was no handler registered.</returns>
         /// <remarks>If there is no handler registered for the type of the resource but the
-        /// resource has a <see cref="PropTypeFlags.SourceLink">source link</see>, the handler 
+        /// resource has a <see cref="PropTypeFlags.SourceLink">source link</see>, the handler
         /// for the source resource is returned.</remarks>
         /// <since>2.0</since>
         IResourceDragDropHandler GetResourceDragDropHandler( IResource res );
@@ -1961,7 +1960,7 @@ namespace JetBrains.Omea.OpenAPI
         IResourceDragDropHandler GetResourceDragDropHandler( string resType );
 
         /// <summary>
-        /// Registers the <see cref="IResourceRenameHandler">rename handler</see> 
+        /// Registers the <see cref="IResourceRenameHandler">rename handler</see>
         /// for the specific resource type.
         /// </summary>
         /// <param name="resType">The resource type for which the handler is registered.</param>
@@ -1978,7 +1977,7 @@ namespace JetBrains.Omea.OpenAPI
         /// <param name="res">The resource for which the handler is requested.</param>
         /// <returns>The handler implementation, or null if there was no handler registered.</returns>
         /// <remarks>If there is no handler registered for the type of the resource but the
-        /// resource has a <see cref="PropTypeFlags.SourceLink">source link</see>, the handler 
+        /// resource has a <see cref="PropTypeFlags.SourceLink">source link</see>, the handler
         /// for the source resource is returned.</remarks>
         /// <since>2.0</since>
         IResourceRenameHandler GetResourceRenameHandler( IResource res );
@@ -2024,7 +2023,7 @@ namespace JetBrains.Omea.OpenAPI
         IResourceThreadingHandler CompositeThreadingHandler { get; }
 
         /// <summary>
-        /// Registers a <see cref="IResourceTextProvider">text provider</see> for the specified 
+        /// Registers a <see cref="IResourceTextProvider">text provider</see> for the specified
         /// resource type or for any resource type.
         /// </summary>
         /// <param name="resType">The resource type for which the provider is registered,
@@ -2034,7 +2033,7 @@ namespace JetBrains.Omea.OpenAPI
         /// registered for the type of the resource are invoked, and then all the providers
         /// registered for all resource types.</remarks>
         void RegisterResourceTextProvider( string resType, IResourceTextProvider provider );
-        
+
         /// <summary>
         /// Checks whether any <see cref="IResourceTextProvider">text provider</see> for
         /// the specified resource type is registered.
@@ -2049,9 +2048,9 @@ namespace JetBrains.Omea.OpenAPI
         /// <param name="res">The resource for which the text is requested.</param>
         /// <param name="consumer">The consumer to which the text fragments are passed.</param>
         void InvokeResourceTextProviders( IResource res, IResourceTextConsumer consumer );
-        
+
         /// <summary>
-        /// Registers a <see cref="IResourceDisplayer">resource displayer</see> for the specified 
+        /// Registers a <see cref="IResourceDisplayer">resource displayer</see> for the specified
         /// resource type.
         /// </summary>
         /// <param name="resType">The resource type for which the resource displayer is registered.</param>
@@ -2085,15 +2084,15 @@ namespace JetBrains.Omea.OpenAPI
         INewspaperProvider GetNewspaperProvider( string resType );
 
         /// <summary>
-        /// Returns the <see cref="IStreamProvider">stream provider</see> registered for the specified 
+        /// Returns the <see cref="IStreamProvider">stream provider</see> registered for the specified
         /// resource type.
         /// </summary>
         /// <param name="resType">The resource type for which the provider is registered.</param>
         /// <param name="provider">The provider implementation.</param>
-        /// <remarks>If the provider for the resource type was already registered, the new 
+        /// <remarks>If the provider for the resource type was already registered, the new
         /// provider replaces the previously registered provider.</remarks>
         void RegisterStreamProvider( string resType, IStreamProvider provider );
-        
+
         /// <summary>
         /// Returns the stream provider registered for the specified resource type.
         /// </summary>
@@ -2125,7 +2124,7 @@ namespace JetBrains.Omea.OpenAPI
         /// </summary>
         /// <param name="resType">The resource type for which the serializer is registered.</param>
         /// <param name="serializer">The serializer implementation.</param>
-        /// <remarks>If the serializer for the resource type was already registered, the new 
+        /// <remarks>If the serializer for the resource type was already registered, the new
         /// serializer replaces the previously registered serializer.</remarks>
         void RegisterResourceSerializer( string resType, IResourceSerializer serializer );
 
@@ -2145,7 +2144,7 @@ namespace JetBrains.Omea.OpenAPI
         /// <summary>
         /// Returns the list of all registered view constructors.
         /// </summary>
-        /// <returns>ArrayList containing all registered <see cref="IViewsConstructor"/> 
+        /// <returns>ArrayList containing all registered <see cref="IViewsConstructor"/>
         /// implementations.</returns>
         ArrayList GetViewsConstructors();
 
@@ -2169,7 +2168,7 @@ namespace JetBrains.Omea.OpenAPI
     /// <summary>
     /// Manages registration and retrieval of icons for resources.
     /// </summary>
-    /// <remarks>All small (16x16) resource icons are put in one global image list, 
+    /// <remarks>All small (16x16) resource icons are put in one global image list,
     /// which can be accessed through the <see cref="ImageList"/>property.</remarks>
     public interface IResourceIconManager
     {
@@ -2212,7 +2211,7 @@ namespace JetBrains.Omea.OpenAPI
         int GetIconIndex( IResource res );
 
         /// <summary>
-        /// Returns the index in the global image list of the default icon for the specified 
+        /// Returns the index in the global image list of the default icon for the specified
         /// resource type.
         /// </summary>
         /// <param name="resType">The resource type for which the icon is returned.</param>
@@ -2229,14 +2228,14 @@ namespace JetBrains.Omea.OpenAPI
         /// has no overlay icons.</returns>
         /// <since>2.0</since>
         int[] GetOverlayIconIndices( IResource res );
-        
+
         /// <summary>
         /// Registers an icon for the specified property type.
         /// </summary>
         /// <param name="propId">The ID of the property type for which the icon is registered.</param>
         /// <param name="icon">The icon which is registered.</param>
         void RegisterPropTypeIcon( int propId, Icon icon );
-        
+
         /// <summary>
         /// Returns the index of the icon for the specified property type.
         /// </summary>
@@ -2253,7 +2252,7 @@ namespace JetBrains.Omea.OpenAPI
         /// <remarks>The large icon is used as the icon of the resource edit window where
         /// the resource is edited.</remarks>
         void RegisterResourceLargeIcon( string resType, Icon icon );
-        
+
         /// <summary>
         /// Returns the large (32x32) icon for the specified resource type.
         /// </summary>
@@ -2265,7 +2264,7 @@ namespace JetBrains.Omea.OpenAPI
         /// Returns the image list containing all 16x16 resource icons.
         /// </summary>
         ImageList  ImageList      { get; }
-        
+
         /// <summary>
         /// Returns the color depth of the icon image list.
         /// </summary>
@@ -2286,21 +2285,21 @@ namespace JetBrains.Omea.OpenAPI
         /// specified at registration. Linked resources are not shown in Other view.
         /// Examples: Newsgroup, Outlook folder.
         /// </summary>
-        Container, 
-        
+        Container,
+
         /// <summary>
         /// Drag and drop adds resource non-recursively. Linked resources are shown in Other view.
         /// Examples: Category, Contact.
         /// </summary>
-        Filter, 
-        
+        Filter,
+
         /// <summary>
         /// Drag and drop adds resource recursively. If added recursively, pulls resources by
         /// Parent link. Linked resources are not shown in Other view.
         /// Examples: RSS feed group, News folder.
         /// </summary>
-        Folder, 
-        
+        Folder,
+
         /// <summary>
         /// Drag and drop adds resource non-recursively. Pulls linked resources by link types
         /// specified at registration.
@@ -2333,7 +2332,7 @@ namespace JetBrains.Omea.OpenAPI
         /// <param name="recurseLinkPropId">The ID of the link property which is followed to recurse
         /// the container hierarchy when a resource is added to the </param>
         void RegisterWorkspaceContainerType( string resType, int[] linkPropIds, int recurseLinkPropId );
-       
+
         /// <summary>
         /// Registers a resource type which can interact with workspaces as a <see cref="WorkspaceResourceType.Folder"/>.
         /// </summary>
@@ -2412,7 +2411,7 @@ namespace JetBrains.Omea.OpenAPI
         /// </summary>
         /// <param name="res">The resource to add.</param>
         void AddToActiveWorkspaceRecursive( IResource res );
-        
+
         /// <summary>
         /// Removes the specified resource from a workspace.
         /// </summary>
@@ -2433,7 +2432,7 @@ namespace JetBrains.Omea.OpenAPI
         /// <param name="workspace">The workspace for which the list is returned.</param>
         /// <returns>The list of resources visible in the workspace.</returns>
         IResourceList GetFilterList( IResource workspace );
-        
+
         /// <summary>
         /// Returns the non-live list of resources added to the workspace which have the specified type.
         /// </summary>
@@ -2467,7 +2466,7 @@ namespace JetBrains.Omea.OpenAPI
         WorkspaceResourceType GetWorkspaceResourceType( string resType );
 
         /// <summary>
-        /// Returns the link type which is used for recursively traversing the workspace 
+        /// Returns the link type which is used for recursively traversing the workspace
         /// container resources with the specified content type, or the ID of the "Parent"
         /// link if no specific link has been registered.
         /// </summary>
@@ -2510,7 +2509,7 @@ namespace JetBrains.Omea.OpenAPI
         /// <param name="tabName">The name of the tab in which it is displayed.</param>
         /// <since>2.0</since>
         void SetWorkspaceTabName( string resourceType, string tabName );
-        
+
         /// <summary>
         /// If the parent of the specified resource is recursively added to a workspace,
         /// deletes the direct links from this resource to the workspace.
@@ -2541,7 +2540,7 @@ namespace JetBrains.Omea.OpenAPI
         /// <param name="resource">The resource for which the categories are retrieved.</param>
         /// <returns>The list of resources of type "Category".</returns>
         IResourceList GetResourceCategories( IResource resource );
-        
+
         /// <summary>
         /// Adds the specified resource to the specified category.
         /// </summary>
@@ -2565,7 +2564,7 @@ namespace JetBrains.Omea.OpenAPI
         /// <param name="category">The resource of type Category specifying the category
         /// from which the resource is removed.</param>
         void RemoveResourceCategory( IResource res, IResource category );
-        
+
         /// <summary>
         /// Finds a category which has the specified parent category and name.
         /// </summary>
@@ -2584,7 +2583,7 @@ namespace JetBrains.Omea.OpenAPI
         /// <param name="name">The name of the category to find or create.</param>
         /// <returns>A resource of type Category.</returns>
         IResource FindOrCreateCategory( IResource parentCategory, string name );
-        
+
         /// <summary>
         /// Returns the resource which is used as a root of the categories for the
         /// specified resource type.
@@ -2613,7 +2612,7 @@ namespace JetBrains.Omea.OpenAPI
         {
             get;
         }
-        
+
         /// <summary>
         /// Internal method, should not be used by plugins.
         /// </summary>
@@ -2623,7 +2622,7 @@ namespace JetBrains.Omea.OpenAPI
     /// <summary>
     /// Allows to receive notifications about changes in a specified set of resources.
     /// </summary>
-    /// <remarks>Implementations of this interface can be used with 
+    /// <remarks>Implementations of this interface can be used with
     /// <see cref="IResourceTreeManager.RegisterTreeListener"/> and
     /// <see cref="IResourceTreeManager.UnregisterTreeListener"/>.</remarks>
     /// <since>2.0</since>
@@ -2679,7 +2678,7 @@ namespace JetBrains.Omea.OpenAPI
         /// <para>The special values <see cref="int.MinValue"/> and <see cref="int.MaxValue"/> insert to the beginning and the end of the list, respectively.</para>
         /// </param>
         void LinkToResourceRoot( IResource res, int index );
-        
+
         /// <summary>
         /// Specifies that the children of the specified node are sorted by values of the specified
         /// property.
@@ -2690,7 +2689,7 @@ namespace JetBrains.Omea.OpenAPI
         /// <param name="sortProps">The string containing a list of property names,
         /// in the format used by <see cref="IResourceList.Sort(string)"/>.</param>
         void SetResourceNodeSort( IResource node, string sortProps );
-        
+
         /// <summary>
         /// Returns the list of properties by which the children of the specified node are
         /// sorted in the tree.
@@ -2698,7 +2697,7 @@ namespace JetBrains.Omea.OpenAPI
         /// <param name="node">The node for which the sorting mode is retrieved.</param>
         /// <returns>The list of property names, or null if no sorting mode has been specified
         /// for the specified node or any of its parents.</returns>
-        string GetResourceNodeSort( IResource node );                      
+        string GetResourceNodeSort( IResource node );
 
         /// <summary>
         /// Specifies that the specified resource type has a separate hierarchy of views
@@ -2706,7 +2705,7 @@ namespace JetBrains.Omea.OpenAPI
         /// </summary>
         /// <param name="resType">The resource type which has a separate hierarchy.</param>
         void SetViewsExclusive( string resType );
-        
+
         /// <summary>
         /// Checks if the specified resource type has a separate hierarchy of views.
         /// </summary>
@@ -2738,7 +2737,7 @@ namespace JetBrains.Omea.OpenAPI
         /// <since>2.0</since>
         void UnregisterTreeListener( IResource parent, int parentProp, IResourceListListener listener );
     }
-    
+
     /// <summary>
     /// Manages the rules that are used for notifying the user about arriving resources.
     /// </summary>
@@ -2777,7 +2776,7 @@ namespace JetBrains.Omea.OpenAPI
         IResource[] GetNotifyMeConditions( string resType );
 
         /// <summary>
-        /// Returns the link type which links the target resource to the resource which should be used 
+        /// Returns the link type which links the target resource to the resource which should be used
         /// as the condition parameter, for the specified resource type and condition template.
         /// </summary>
         /// <param name="resType"></param>
@@ -2799,7 +2798,7 @@ namespace JetBrains.Omea.OpenAPI
     /// <see cref="IUIManager.OpenResourceEditWindow"/> is saved.
     /// </summary>
     public delegate void EditedResourceSavedDelegate( IResource res, object tag );
-    
+
     /// <summary>
     /// Represents a method which is called to validate a string entered in
     /// the dialog shown by <see cref="IUIManager.InputString"/>.
@@ -2807,7 +2806,7 @@ namespace JetBrains.Omea.OpenAPI
     public delegate void ValidateStringDelegate( string value, ref string validateErrorMessage );
 
     /// <summary>
-    /// Interface for managing calls, which could be invoked from outside of Omea 
+    /// Interface for managing calls, which could be invoked from outside of Omea
     /// process via RPC calls.
     /// </summary>
     /// <since>2.0</since>

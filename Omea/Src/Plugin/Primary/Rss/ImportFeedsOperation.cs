@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.IO;
@@ -21,7 +20,7 @@ namespace JetBrains.Omea.RSSPlugin
         private bool _importPreview;
         private IResource _previewRoot;
 
-        public ImportFeedsOperation( Stream importStream, IResource importRoot, string importFileName, 
+        public ImportFeedsOperation( Stream importStream, IResource importRoot, string importFileName,
             bool importPreview )
         {
             _importStream = importStream;
@@ -36,11 +35,11 @@ namespace JetBrains.Omea.RSSPlugin
         }
 
         internal void ExecuteOperation()
-        {   
+        {
             IResource rootGroup = _importRoot;
             if ( _importPreview )
             {
-                _previewRoot = Core.ResourceStore.NewResource( "RSSFeedGroup" );                
+                _previewRoot = Core.ResourceStore.NewResource( "RSSFeedGroup" );
                 rootGroup = _previewRoot;
             }
 
@@ -95,12 +94,12 @@ namespace JetBrains.Omea.RSSPlugin
                 dlg.ShowImportPreview( _previewRoot );
                 if ( dlg.ShowDialog( Core.MainWindow ) == DialogResult.Cancel )
                 {
-                    Core.ResourceAP.QueueJob( JobPriority.Immediate, 
+                    Core.ResourceAP.QueueJob( JobPriority.Immediate,
                         new MethodInvoker( CancelImport ) );
                 }
                 else
                 {
-                    Core.ResourceAP.QueueJob( JobPriority.Immediate, 
+                    Core.ResourceAP.QueueJob( JobPriority.Immediate,
                         new MethodInvoker( ConfirmImport ) );
                 }
             }

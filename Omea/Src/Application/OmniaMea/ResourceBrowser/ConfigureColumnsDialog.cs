@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -116,13 +115,13 @@ namespace JetBrains.Omea
             this._btnHelp = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
-            // 
+            //
             // _propListView
-            // 
+            //
             this._propListView.AllowColumnReorder = false;
             this._propListView.AllowDrop = true;
-            this._propListView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-                | System.Windows.Forms.AnchorStyles.Left) 
+            this._propListView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._propListView.BackColor = System.Drawing.SystemColors.Window;
             this._propListView.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
@@ -137,9 +136,9 @@ namespace JetBrains.Omea
             this._propListView.Name = "_propListView";
             this._propListView.Size = new System.Drawing.Size(380, 188);
             this._propListView.TabIndex = 0;
-            // 
+            //
             // _btnOK
-            // 
+            //
             this._btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this._btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this._btnOK.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -147,9 +146,9 @@ namespace JetBrains.Omea
             this._btnOK.Name = "_btnOK";
             this._btnOK.TabIndex = 1;
             this._btnOK.Text = "OK";
-            // 
+            //
             // _btnCancel
-            // 
+            //
             this._btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this._btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this._btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -157,10 +156,10 @@ namespace JetBrains.Omea
             this._btnCancel.Name = "_btnCancel";
             this._btnCancel.TabIndex = 2;
             this._btnCancel.Text = "Cancel";
-            // 
+            //
             // groupBox1
-            // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.radThisView);
             this.groupBox1.Controls.Add(this.radAllViews);
@@ -171,10 +170,10 @@ namespace JetBrains.Omea
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Apply settings to";
-            // 
+            //
             // radThisView
-            // 
-            this.radThisView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this.radThisView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this.radThisView.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.radThisView.Location = new System.Drawing.Point(8, 44);
@@ -182,10 +181,10 @@ namespace JetBrains.Omea
             this.radThisView.Size = new System.Drawing.Size(364, 20);
             this.radThisView.TabIndex = 1;
             this.radThisView.Text = "This view only";
-            // 
+            //
             // radAllViews
-            // 
-            this.radAllViews.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this.radAllViews.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this.radAllViews.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.radAllViews.Location = new System.Drawing.Point(8, 20);
@@ -193,9 +192,9 @@ namespace JetBrains.Omea
             this.radAllViews.Size = new System.Drawing.Size(364, 24);
             this.radAllViews.TabIndex = 0;
             this.radAllViews.Text = "All views with resources of types";
-            // 
+            //
             // _btnRestoreDefaults
-            // 
+            //
             this._btnRestoreDefaults.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this._btnRestoreDefaults.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._btnRestoreDefaults.Location = new System.Drawing.Point(4, 276);
@@ -204,9 +203,9 @@ namespace JetBrains.Omea
             this._btnRestoreDefaults.TabIndex = 4;
             this._btnRestoreDefaults.Text = "Restore Defaults";
             this._btnRestoreDefaults.Click += new System.EventHandler(this._btnRestoreDefaults_Click);
-            // 
+            //
             // _btnHelp
-            // 
+            //
             this._btnHelp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this._btnHelp.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._btnHelp.Location = new System.Drawing.Point(308, 276);
@@ -214,9 +213,9 @@ namespace JetBrains.Omea
             this._btnHelp.TabIndex = 5;
             this._btnHelp.Text = "Help";
             this._btnHelp.Click += new System.EventHandler(this._btnHelp_Click);
-            // 
+            //
             // ConfigureColumnsDialog
-            // 
+            //
             this.AcceptButton = this._btnOK;
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
             this.CancelButton = this._btnCancel;
@@ -236,7 +235,7 @@ namespace JetBrains.Omea
 
         #endregion
 
-        internal ResourceListState ConfigureColumns( ResourceListState state, IResourceList resList, 
+        internal ResourceListState ConfigureColumns( ResourceListState state, IResourceList resList,
             IResource ownerResource )
         {
             RestoreSettings();
@@ -404,7 +403,7 @@ namespace JetBrains.Omea
                 }
             }
             radAllViews.Text += " " + String.Join( ", ", resTypes );
-    
+
             if ( state.KeyTypes != null )
             {
                 radAllViews.Checked = true;
@@ -457,9 +456,9 @@ namespace JetBrains.Omea
          * Adds a checklistbox item for the specified property resource.
          */
 
-        private PropertyTypeTag AddItemForPropType( ColumnDescriptor colDesc, int[] propIds, bool[] reverseLinks, 
+        private PropertyTypeTag AddItemForPropType( ColumnDescriptor colDesc, int[] propIds, bool[] reverseLinks,
             bool isChecked )
-        {   
+        {
             PropertyTypeTag tag = new PropertyTypeTag( colDesc, propIds, reverseLinks, isChecked );
             AddPropTypeItem( tag, isChecked );
             return tag;
@@ -479,7 +478,7 @@ namespace JetBrains.Omea
         {
             if ( ( tag.ColDesc.Flags & ColumnDescriptorFlags.FixedSize ) != 0 )
             {
-                _autoSizeColumn.SetItemCheckState( tag, CheckBoxState.Grayed );                
+                _autoSizeColumn.SetItemCheckState( tag, CheckBoxState.Grayed );
             }
             else
             {
@@ -496,7 +495,7 @@ namespace JetBrains.Omea
             {
                 column.SetItemCheckState( tag,
                     ( ( tag.ColDesc.Flags & flag ) != 0 )
-                    ? CheckBoxState.Checked 
+                    ? CheckBoxState.Checked
                     : CheckBoxState.Unchecked );
             }
             else
@@ -516,7 +515,7 @@ namespace JetBrains.Omea
         /// resource list state.
         /// </summary>
         private bool StateHasProp( ResourceListState state, int propId )
-        {                             
+        {
             string propName = Core.ResourceStore.PropTypes [propId].Name;
             foreach( ColumnDescriptor colDesc in state.Columns )
             {
@@ -540,7 +539,7 @@ namespace JetBrains.Omea
                 return false;
             if ( !Core.ResourceStore.PropTypes[ propId ].HasFlag( PropTypeFlags.DirectedLink ) )
                 return false;
-            
+
             if ( propId < 0 )
             {
                 return true;
@@ -559,7 +558,7 @@ namespace JetBrains.Omea
                         haveToLinks = true;
                 }
             }
-            
+
             return haveToLinks && !haveFromLinks;
         }
 
@@ -644,7 +643,7 @@ namespace JetBrains.Omea
                 ArrayList propNames = new ArrayList();
                 for( int i=0; i<propIds.Length; i++ )
                 {
-                    string displayName = reverseLinks [i] 
+                    string displayName = reverseLinks [i]
                         ? Core.ResourceStore.PropTypes [propIds [i]].ReverseDisplayName
                         : Core.ResourceStore.PropTypes [propIds [i]].DisplayName;
                     if ( displayName == null )
@@ -658,7 +657,7 @@ namespace JetBrains.Omea
                 }
                 _name = String.Join( ", ", (string[]) propNames.ToArray( typeof (string) ) );
             }
-        
+
             public override string ToString()
             {
                 return _name;

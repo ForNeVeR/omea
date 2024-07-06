@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 // ActionManager.cpp : Implementation of CActionManager
 //
@@ -131,7 +130,7 @@ void CActionManager::Execute(_bstr_t bsID, _variant_t vtParam)
 				OLECHAR	FAR	*szMember = (LPWSTR)(LPCWSTR)sMember;
 				COM_CHECK(oHandler, GetIDsOfNames(IID_NULL, &szMember, 1, LOCALE_USER_DEFAULT, &dispid));
 				COM_CHECK(oHandler, Invoke(dispid, IID_NULL, LOCALE_USER_DEFAULT, DISPATCH_METHOD, &dispparams, NULL, NULL, NULL));
-				// We're not interested in the return value here			
+				// We're not interested in the return value here
 			}
 			else
 				TRACE(L"Unknown or unspecified type of handler for \"%s\" action exec.", (LPCWSTR)bsID);
@@ -584,7 +583,7 @@ void CActionManager::UnregisterControls()
 		// Toolbars
 		nCleaned += (rkUserToolbars.DeleteValue(sGuid) == ERROR_SUCCESS);
 		nCleaned += (rkMachineToolbars.DeleteValue(sGuid) == ERROR_SUCCESS);	// TODO: remove one of these
-		
+
 		// IE Toolbar Buttons, IE Tools Menu Items, etc
 		nCleaned += (rkHKCU.RecurseDeleteKey(_T("Software\\Microsoft\\Internet Explorer\\Extensions\\") + sGuid) == ERROR_SUCCESS);
 
@@ -667,7 +666,7 @@ void CActionManager::LoadData(bool bLock)
 		try
 		{
 			m_xmlActions = CJetIe::CreateXmlDocument();
-			//m_xmlActions->setProperty(L"SelectionLanguage", L"XPath"); 
+			//m_xmlActions->setProperty(L"SelectionLanguage", L"XPath");
 			m_xmlActions->load((_bstr_t)(LPCTSTR)sFileName);	// TODO: validation
 			if(m_xmlActions->parseError->errorCode == 0)
 			{
@@ -684,7 +683,7 @@ void CActionManager::LoadData(bool bLock)
 		try
 		{
 			m_xmlActions = CJetIe::CreateXmlDocument();
-			//m_xmlActions->setProperty(L"SelectionLanguage", L"XPath"); 
+			//m_xmlActions->setProperty(L"SelectionLanguage", L"XPath");
 			CJetIe::SerializeResource(RT_HTML, _T("UIActions.xml"), m_xmlActions, false);	// TODO: validation
 			if(m_xmlActions->parseError->errorCode == 0)
 			{
@@ -710,7 +709,7 @@ void CActionManager::LoadData(bool bLock)
 		try
 		{
 			m_xmlControls = CJetIe::CreateXmlDocument();
-			//m_xmlActions->setProperty(L"SelectionLanguage", L"XPath"); 
+			//m_xmlActions->setProperty(L"SelectionLanguage", L"XPath");
 			m_xmlControls->load((_bstr_t)(LPCTSTR)sFileName);	// TODO: validation
 			if(m_xmlControls->parseError->errorCode == 0)
 			{
@@ -727,7 +726,7 @@ void CActionManager::LoadData(bool bLock)
 		try
 		{
 			m_xmlControls = CJetIe::CreateXmlDocument();
-			//m_xmlActions->setProperty(L"SelectionLanguage", L"XPath"); 
+			//m_xmlActions->setProperty(L"SelectionLanguage", L"XPath");
 			CJetIe::SerializeResource(RT_HTML, _T("UIControls.xml"), m_xmlControls, false);	// TODO: validation
 			if(m_xmlControls->parseError->errorCode == 0)
 			{
@@ -754,7 +753,7 @@ void CActionManager::LoadData(bool bLock)
 void CActionManager::SaveData(bool bLock)
 {
 	CMutexLock(m_mutexDataFilesAccessLock, bLock);
-	
+
 	CString	sFileName;
 
 	///////////////////
@@ -804,7 +803,7 @@ void CActionManager::RegisterElementClassId(XmlElement xmlControl)
 {
 	CRegKey	rkClsid;
 
-	// First, try for the current user (works best for NT) 
+	// First, try for the current user (works best for NT)
 	// TODO: check the OS type!
 	if((CJetIe::IsWinNT()) && (rkClsid.Create(HKEY_CURRENT_USER, _T("Software\\Classes\\CLSID\\" + (CString)(LPCTSTR)(_bstr_t)xmlControl->getAttribute(L"RegClassID"))) != ERROR_SUCCESS))
 		ThrowError(L"Cannot write object registration into Registry, HKCU key on WinNT.");
@@ -1101,7 +1100,7 @@ XmlElement CActionManager::ShowPopupMenu(XmlNodeList xmlControls, HWND hwndParen
 	if(!nSelectedId)
 	{
 		DWORD	dwPossibleError;
-		if((dwPossibleError = GetLastError()) != ERROR_SUCCESS)	
+		if((dwPossibleError = GetLastError()) != ERROR_SUCCESS)
 			CJetIeException::ThrowSystemError();
 		return NULL;	// User-cancelled
 	}

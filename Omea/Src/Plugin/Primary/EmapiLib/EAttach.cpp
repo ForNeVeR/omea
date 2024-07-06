@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 #pragma unmanaged
 
@@ -32,7 +31,7 @@ EAttach::~EAttach()
 CharBufferSPtr EAttach::ReadToEnd() const
 {
     LPSTREAM pStream = NULL;
-    HRESULT hr = 
+    HRESULT hr =
         _lpAttach->OpenProperty( (int)PR_ATTACH_DATA_BIN, (LPIID)&IID_IStream, 0, 0, (LPUNKNOWN *)&pStream );
     if ( hr == S_OK )
     {
@@ -59,7 +58,7 @@ LPMESSAGE EAttach::OpenMessage() const
 template<typename T> class ComPtr
 {
 public:
-    ComPtr() 
+    ComPtr()
     {
         pointee = NULL;
     }
@@ -78,7 +77,7 @@ public:
     {
         return pointee;
     }
-    
+
     T* get()
     {
         return &pointee;
@@ -87,7 +86,7 @@ public:
     {
         return pointee == NULL;
     }
-    
+
 private:
     T pointee;
 };
@@ -144,7 +143,7 @@ void EAttach::InsertOLEIntoRTF( HWND hwnd, int pos ) const
 
     SIZEL sizel;
     sizel.cx = sizel.cy = 0;
-    reobject.sizel = sizel; 
+    reobject.sizel = sizel;
     hr = pRichEditOle->InsertObject( &reobject );
     Guard::CheckHR( hr );
 }

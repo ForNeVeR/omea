@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Drawing;
@@ -78,35 +77,35 @@ namespace JetBrains.Omea.DebugPlugin
 			this._panelInput.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this._htmlvw)).BeginInit();
 			this.SuspendLayout();
-			// 
+			//
 			// _menuMain
-			// 
+			//
 			this._menuMain.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
 																					  this._miBack,
 																					  this._miForward,
 																					  this._miExecute});
-			// 
+			//
 			// _miBack
-			// 
+			//
 			this._miBack.Index = 0;
 			this._miBack.ShowShortcut = false;
 			this._miBack.Text = "&Back";
 			this._miBack.Click += new System.EventHandler(this.OnBack);
-			// 
+			//
 			// _miForward
-			// 
+			//
 			this._miForward.Index = 1;
 			this._miForward.Text = "&Forward";
 			this._miForward.Click += new System.EventHandler(this.OnForward);
-			// 
+			//
 			// _miExecute
-			// 
+			//
 			this._miExecute.Index = 2;
 			this._miExecute.Text = "&Execute";
 			this._miExecute.Click += new System.EventHandler(this.OnExecute);
-			// 
+			//
 			// _htmled
-			// 
+			//
 			this._htmled.ContainingControl = this;
 			this._htmled.Dock = System.Windows.Forms.DockStyle.Fill;
 			this._htmled.Enabled = true;
@@ -120,18 +119,18 @@ namespace JetBrains.Omea.DebugPlugin
 			this._htmled.TabIndex = 0;
 			this._htmled.Text = "undefined";
 			this._htmled.BorderStyle = BorderStyle.Fixed3D;
-			// 
+			//
 			// _panelInput
-			// 
+			//
 			this._panelInput.Controls.Add(this._htmled);
 			this._panelInput.Dock = System.Windows.Forms.DockStyle.Bottom;
 			this._panelInput.Location = new System.Drawing.Point(0, 217);
 			this._panelInput.Name = "_panelInput";
 			this._panelInput.Size = new System.Drawing.Size(624, 204);
 			this._panelInput.TabIndex = 1;
-			// 
+			//
 			// _htmlvw
-			// 
+			//
 			this._htmlvw.ContextProvider = null;
 			this._htmlvw.CurrentUrl = "";
 			this._htmlvw.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -144,18 +143,18 @@ namespace JetBrains.Omea.DebugPlugin
 			this._htmlvw.Size = new System.Drawing.Size(624, 214);
 			this._htmlvw.TabIndex = 0;
 			this._htmlvw.BorderStyle = BorderStyle.Fixed3D;
-			// 
+			//
 			// _splitterInput
-			// 
+			//
 			this._splitterInput.Dock = System.Windows.Forms.DockStyle.Bottom;
 			this._splitterInput.Location = new System.Drawing.Point(0, 214);
 			this._splitterInput.Name = "_splitterInput";
 			this._splitterInput.Size = new System.Drawing.Size(624, 3);
 			this._splitterInput.TabIndex = 2;
 			this._splitterInput.TabStop = false;
-			// 
+			//
 			// Immediate
-			// 
+			//
 			this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
 			this.ClientSize = new System.Drawing.Size(624, 421);
 			this.Controls.Add(this._htmlvw);
@@ -175,12 +174,12 @@ namespace JetBrains.Omea.DebugPlugin
 
 		private void OnBack(object sender, System.EventArgs e)
 		{
-		
+
 		}
 
 		private void OnForward(object sender, System.EventArgs e)
 		{
-		
+
 		}
 
 		private void OnExecute(object sender, System.EventArgs e)

@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Drawing;
@@ -22,13 +21,13 @@ namespace JetBrains.Omea.Tasks
         private IResourceList _taskListener;
 
         private const string _StylePath = "Tasks.Styles.TaskView.css";
-        private const string _Script = "<script type=\"text/javascript\">\n" + 
-                                        "function doIt(link, el) {" + 
-                                        "  if (el)" + 
-                                        "    if (el.className == \"displayNone\") {" + 
-                                        "      el.className = \"displayBlock\";" + 
-                                        "      link.className = \"block\";" + 
-                                        "    } else { el.className = \"displayNone\";link.className = \"\"; }" + 
+        private const string _Script = "<script type=\"text/javascript\">\n" +
+                                        "function doIt(link, el) {" +
+                                        "  if (el)" +
+                                        "    if (el.className == \"displayNone\") {" +
+                                        "      el.className = \"displayBlock\";" +
+                                        "      link.className = \"block\";" +
+                                        "    } else { el.className = \"displayNone\";link.className = \"\"; }" +
                                         "}\n</script>";
         private const string _cSeparatorLine = "<tr><td colspan=\"2\"><hr/></td></tr>";
         private static string _style;
@@ -41,7 +40,7 @@ namespace JetBrains.Omea.Tasks
 
         public TaskDisplayPane()
         {
-            InitializeComponent();            
+            InitializeComponent();
 
             // Initialize the security context
             _ctxRestricted = WebSecurityContext.Trusted;
@@ -188,10 +187,10 @@ namespace JetBrains.Omea.Tasks
         private void ContsructRightColumn( StringBuilder strBuilder )
         {
             int status = _task.GetIntProp( TasksPlugin._propStatus );
-            string strStatus = ( status >= 0 && status < TasksPlugin._statuses.Length ) ? 
+            string strStatus = ( status >= 0 && status < TasksPlugin._statuses.Length ) ?
                                 TasksPlugin._statuses[ status ] : string.Empty;
             int priority = _task.GetIntProp( TasksPlugin._propPriority );
-            string strPri = ( priority >= 0 && priority < TasksPlugin._priorities.Length ) ? 
+            string strPri = ( priority >= 0 && priority < TasksPlugin._priorities.Length ) ?
                             TasksPlugin._priorities[ priority ] : string.Empty;
 
             strBuilder.Append( "<td class=\"content\">\n" );

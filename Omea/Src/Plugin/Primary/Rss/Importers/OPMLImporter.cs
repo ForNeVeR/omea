@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Diagnostics;
@@ -21,7 +20,7 @@ namespace JetBrains.Omea.RSSPlugin
     /// </summary>
     internal class OPMLImporterPane : AbstractOptionsPane
     {
-        /// <summary> 
+        /// <summary>
         /// Required designer variable.
         /// </summary>
         private System.ComponentModel.Container components = null;
@@ -76,7 +75,7 @@ namespace JetBrains.Omea.RSSPlugin
             internal FileItem( System.Windows.Forms.Control owner, string name ) : base( owner, name )
             {
             }
-                
+
             internal override string TrimName( System.Windows.Forms.Control owner, string name, int width )
             {
                 string shortName = "";
@@ -160,7 +159,7 @@ namespace JetBrains.Omea.RSSPlugin
             _lstFiles.SizeChanged +=new EventHandler(_lstFiles_SizeChanged);
         }
 
-        /// <summary> 
+        /// <summary>
         /// Clean up any resources being used.
         /// </summary>
         protected override void Dispose( bool disposing )
@@ -176,8 +175,8 @@ namespace JetBrains.Omea.RSSPlugin
         }
 
         #region Component Designer generated code
-        /// <summary> 
-        /// Required method for Designer support - do not modify 
+        /// <summary>
+        /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
@@ -190,9 +189,9 @@ namespace JetBrains.Omea.RSSPlugin
             this._btnAddURL = new System.Windows.Forms.Button();
             this._chkPreview = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
-            // 
+            //
             // _btnAdd
-            // 
+            //
             this._btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this._btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._btnAdd.Location = new System.Drawing.Point(160, 288);
@@ -201,16 +200,16 @@ namespace JetBrains.Omea.RSSPlugin
             this._btnAdd.TabIndex = 1;
             this._btnAdd.Text = "Add &File...";
             this._btnAdd.Click += new System.EventHandler(this._btnAdd_Click);
-            // 
+            //
             // _odOPML
-            // 
+            //
             this._odOPML.DefaultExt = "opml";
             this._odOPML.Filter = "OPML files|*.opml|XML files|*.xml|All files|*.*";
             this._odOPML.Multiselect = true;
             this._odOPML.Title = "Select OPML files to import";
-            // 
+            //
             // _btnDel
-            // 
+            //
             this._btnDel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this._btnDel.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._btnDel.Location = new System.Drawing.Point(319, 288);
@@ -219,11 +218,11 @@ namespace JetBrains.Omea.RSSPlugin
             this._btnDel.TabIndex = 3;
             this._btnDel.Text = "&Remove";
             this._btnDel.Click += new System.EventHandler(this._btnDel_Click);
-            // 
+            //
             // _lstFiles
-            // 
-            this._lstFiles.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-                | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._lstFiles.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._lstFiles.ItemHeight = 17;
             this._lstFiles.Location = new System.Drawing.Point(8, 32);
@@ -232,17 +231,17 @@ namespace JetBrains.Omea.RSSPlugin
             this._lstFiles.Size = new System.Drawing.Size(384, 212);
             this._lstFiles.TabIndex = 4;
             this._lstFiles.SelectedIndexChanged += new System.EventHandler(this._lstFiles_SelectedIndexChanged);
-            // 
+            //
             // label1
-            // 
+            //
             this.label1.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label1.Location = new System.Drawing.Point(8, 8);
             this.label1.Name = "label1";
             this.label1.TabIndex = 5;
             this.label1.Text = "Files to import:";
-            // 
+            //
             // _btnAddURL
-            // 
+            //
             this._btnAddURL.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this._btnAddURL.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._btnAddURL.Location = new System.Drawing.Point(238, 288);
@@ -250,9 +249,9 @@ namespace JetBrains.Omea.RSSPlugin
             this._btnAddURL.TabIndex = 6;
             this._btnAddURL.Text = "Add &URL...";
             this._btnAddURL.Click += new System.EventHandler(this._btnAddURL_Click);
-            // 
+            //
             // _chkPreview
-            // 
+            //
             this._chkPreview.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this._chkPreview.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._chkPreview.Location = new System.Drawing.Point(8, 258);
@@ -261,9 +260,9 @@ namespace JetBrains.Omea.RSSPlugin
             this._chkPreview.TabIndex = 7;
             this._chkPreview.Text = "&Preview subscription";
             this._chkPreview.CheckedChanged += new System.EventHandler(this._chkPreview_CheckedChanged);
-            // 
+            //
             // OPMLImporterPane
-            // 
+            //
             this.Controls.Add(this._chkPreview);
             this.Controls.Add(this._btnAddURL);
             this.Controls.Add(this.label1);
@@ -286,7 +285,7 @@ namespace JetBrains.Omea.RSSPlugin
             }
             _btnDel_enable();
         }
-            
+
         public override void LeavePane()
         {
             string[] names = new string[_lstFiles.Items.Count];
@@ -362,7 +361,7 @@ namespace JetBrains.Omea.RSSPlugin
 
         private void _btnAddURL_Click(object sender, System.EventArgs e)
         {
-            string url = Core.UIManager.InputString( "Import OPML File from URL", 
+            string url = Core.UIManager.InputString( "Import OPML File from URL",
                 "Enter the URL of the OPML file:", "", null, this );
             if( url == null || url.Length == 0 )
             {
@@ -382,8 +381,8 @@ namespace JetBrains.Omea.RSSPlugin
             }
             catch( UriFormatException )
             {
-                MessageBox.Show( this, "The format of the URL is not valid:\n" + url + 
-                    "\nPlease enter the URL again and verify that it is correct.", 
+                MessageBox.Show( this, "The format of the URL is not valid:\n" + url +
+                    "\nPlease enter the URL again and verify that it is correct.",
                     "Add URL", MessageBoxButtons.OK );
                 return;
             }

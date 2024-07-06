@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Diagnostics;
@@ -28,7 +27,7 @@ namespace JetBrains.Omea.FileTypes
         public FileResourceManager()
         {
             _store = Core.ResourceStore;
-            _store.ResourceTypes.Register( "FileTypeMap", "FileTypeMap", string.Empty, 
+            _store.ResourceTypes.Register( "FileTypeMap", "FileTypeMap", string.Empty,
                 ResourceTypeFlags.Internal | ResourceTypeFlags.NoIndex );
             _propExtension = _store.PropTypes.Register( "Extension", PropDataType.String, PropTypeFlags.Internal );
             _propResType = _store.PropTypes.Register( "ResType", PropDataType.String, PropTypeFlags.Internal );
@@ -42,12 +41,12 @@ namespace JetBrains.Omea.FileTypes
             _store.RegisterUniqueRestriction( "FileTypeMap", Core.Props.ContentType );
             _store.RegisterDisplayNameProvider( new SourceDisplayNameProvider() );
         }
-    
+
         public static string GetTrashDirectory()
         {
             return Path.Combine( Path.GetTempPath(), _omeaTrashDirectoryName );
         }
-        
+
         public string GetUniqueTempDirectory()
         {
             string tempDir = Path.Combine( GetTrashDirectory(), _randomizer.NextDouble().ToString().Substring( 2 ) );
@@ -175,7 +174,7 @@ namespace JetBrains.Omea.FileTypes
                                               IPlugin ownerPlugin,
                                               params string[] exts )
         {
-            _store.ResourceTypes.Register( fileResType, displayName, resourceDisplayNameTemplate, 
+            _store.ResourceTypes.Register( fileResType, displayName, resourceDisplayNameTemplate,
                                            flags | ResourceTypeFlags.FileFormat, ownerPlugin );
             RegisterFileResourceTypeImpl( fileResType, exts );
         }
@@ -239,7 +238,7 @@ namespace JetBrains.Omea.FileTypes
         }
 
         /**
-         * If the source of the specified resource is a file, returns the name 
+         * If the source of the specified resource is a file, returns the name
          * of that file. If it's a different resource, saves the stream of the
          * resource to a temporary file and returns the name of that file.
          */
@@ -298,7 +297,7 @@ namespace JetBrains.Omea.FileTypes
                     }
                     catch( Exception ex )
                     {
-                        throw new Exception( "Error copying stream for file resource of type " + fileResource.Type + 
+                        throw new Exception( "Error copying stream for file resource of type " + fileResource.Type +
                             " and source resource of type " + sourceResource.Type, ex );
                     }
                     return tempFileName;
@@ -365,7 +364,7 @@ namespace JetBrains.Omea.FileTypes
                         Stream resourceStream = provider.GetResourceStream( resource );
                         if ( !resourceStream.CanRead )
                         {
-                            throw new Exception( "Resource stream returned for resource of type " + 
+                            throw new Exception( "Resource stream returned for resource of type " +
                                 resource.Type + ", source resource type " + source.Type + " cannot be read" );
                         }
                         return resourceStream;
@@ -375,7 +374,7 @@ namespace JetBrains.Omea.FileTypes
             }
             return null;
         }
-        /** 
+        /**
          * copies one stream to another
          * opening/closing stream is user task
          */
@@ -513,7 +512,7 @@ namespace JetBrains.Omea.FileTypes
             rk.Close();
             if ( editFlagsObj == null )
                 return -1;
-            
+
             if ( editFlagsObj is Array )
             {
                 JetMemoryStream ms = new JetMemoryStream( (byte[] ) editFlagsObj, true );
@@ -583,18 +582,18 @@ namespace JetBrains.Omea.FileTypes
             dcm.RegisterDisplayColumn( fileResType, 0,
 //                new ColumnDescriptor(new string[] { "DisplayName", "Subject" }, 300, ColumnDescriptorFlags.AutoSize));
                 new ColumnDescriptor( new string[] { "Subject" },  300, ColumnDescriptorFlags.AutoSize ) );
-            dcm.RegisterDisplayColumn(fileResType, 1, 
+            dcm.RegisterDisplayColumn(fileResType, 1,
                 new ColumnDescriptor( "FileType", 120, ColumnDescriptorFlags.ShowIfNotEmpty ) );
             dcm.RegisterDisplayColumn( fileResType, 10, new ColumnDescriptor( "Size", 60 ) );
             dcm.RegisterDisplayColumn( fileResType, 12, new ColumnDescriptor( "Date", 120 ) );
-    
-            dcm.RegisterMultiLineColumn( fileResType, ResourceProps.DisplayName, 0, 0, 0, 210, 
+
+            dcm.RegisterMultiLineColumn( fileResType, ResourceProps.DisplayName, 0, 0, 0, 210,
                                          MultiLineColumnFlags.AnchorLeft | MultiLineColumnFlags.AnchorRight, SystemColors.WindowText, HorizontalAlignment.Left );
-            dcm.RegisterMultiLineColumn( fileResType, Core.Props.Date, 0, 0, 210, 90, 
+            dcm.RegisterMultiLineColumn( fileResType, Core.Props.Date, 0, 0, 210, 90,
                                          MultiLineColumnFlags.AnchorRight, SystemColors.WindowText, HorizontalAlignment.Right );
 
             // spacer column (OM-9727)
-            dcm.RegisterMultiLineColumn( fileResType, new int[] {}, 0, 0, 260, 40, 
+            dcm.RegisterMultiLineColumn( fileResType, new int[] {}, 0, 0, 260, 40,
                 MultiLineColumnFlags.AnchorRight, SystemColors.WindowText, HorizontalAlignment.Right );
 
             dcm.RegisterMultiLineColumn( fileResType, _propFileType, 1, 1, 0, 200,

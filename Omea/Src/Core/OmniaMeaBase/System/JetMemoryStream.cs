@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -17,7 +16,7 @@ namespace JetBrains.Omea.Base
         {
             Init( _defaultPageSize );
         }
-        
+
         public JetMemoryStream( int pageSize )
         {
             Init( pageSize );
@@ -65,8 +64,8 @@ namespace JetBrains.Omea.Base
 
         public override long Length { get { return _length; } }
 
-        public override long Position 
-        { 
+        public override long Position
+        {
             get { return _position; }
             set
             {
@@ -97,7 +96,7 @@ namespace JetBrains.Omea.Base
                     {
                         throw new InvalidOperationException( "Can't seek before the begin of stream." );
                     }
-                    
+
                     _position = _length - offset;
                     break;
                 }
@@ -201,7 +200,7 @@ namespace JetBrains.Omea.Base
             _length = _position = 0;
             _pages.Clear();
         }
-        
+
         #region async I/O stubs
 
         public override IAsyncResult BeginRead(byte[] buffer, int offset, int count, AsyncCallback callback, object state)
@@ -264,16 +263,16 @@ namespace JetBrains.Omea.Base
                 count -= writeBytes;
             }
         }
-        
+
         #endregion
-        
+
         private void Init( int pageSize )
         {
             _pages = new ArrayList();
             _length = _position = 0;
             _pageSize = pageSize;
         }
-        
+
         private void Init( byte[] bytes, int offset, int count )
         {
             _pages = new ArrayList( count / _pageSize + 1 );
@@ -281,7 +280,7 @@ namespace JetBrains.Omea.Base
             WriteImpl( bytes, offset, count );
             _position = 0;
         }
-        
+
         private void WriteImpl( byte[] buffer, int offset, int count )
         {
             int pageIndex = (int) ( _position / _pageSize );

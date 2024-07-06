@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -53,7 +52,7 @@ namespace JetBrains.Omea.Nntp
         private Label _countLabel;
         private Label _serversCaptionLabel;
         private GroupBox _hr;
-        
+
         private bool _wereChanges;
         private int _lastServerUpdateTick;
         private int _lastProgressUpdateTick;
@@ -271,9 +270,9 @@ namespace JetBrains.Omea.Nntp
             this._groupTabs.SuspendLayout();
             this._serversPanel.SuspendLayout();
             this.SuspendLayout();
-            // 
+            //
             // _bottomPanel
-            // 
+            //
             this._bottomPanel.Controls.Add(this._hr);
             this._bottomPanel.Controls.Add(this._btnHelp);
             this._bottomPanel.Controls.Add(this._downloadingLabel);
@@ -284,19 +283,19 @@ namespace JetBrains.Omea.Nntp
             this._bottomPanel.Name = "_bottomPanel";
             this._bottomPanel.Size = new System.Drawing.Size(592, 46);
             this._bottomPanel.TabIndex = 9;
-            // 
+            //
             // _hr
-            // 
-            this._hr.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._hr.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._hr.Location = new System.Drawing.Point(0, 0);
             this._hr.Name = "_hr";
             this._hr.Size = new System.Drawing.Size(592, 4);
             this._hr.TabIndex = 15;
             this._hr.TabStop = false;
-            // 
+            //
             // _btnHelp
-            // 
+            //
             this._btnHelp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this._btnHelp.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._btnHelp.Location = new System.Drawing.Point(509, 15);
@@ -304,10 +303,10 @@ namespace JetBrains.Omea.Nntp
             this._btnHelp.TabIndex = 11;
             this._btnHelp.Text = "&Help";
             this._btnHelp.Click += new System.EventHandler(this._btnHelp_Click);
-            // 
+            //
             // _downloadingLabel
-            // 
-            this._downloadingLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._downloadingLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._downloadingLabel.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._downloadingLabel.Location = new System.Drawing.Point(9, 15);
@@ -316,9 +315,9 @@ namespace JetBrains.Omea.Nntp
             this._downloadingLabel.TabIndex = 13;
             this._downloadingLabel.Text = "Downloading groups.....";
             this._downloadingLabel.Visible = false;
-            // 
+            //
             // _okBtn
-            // 
+            //
             this._okBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this._okBtn.DialogResult = System.Windows.Forms.DialogResult.OK;
             this._okBtn.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -327,9 +326,9 @@ namespace JetBrains.Omea.Nntp
             this._okBtn.TabIndex = 9;
             this._okBtn.Text = "OK";
             this._okBtn.Click += new System.EventHandler(this._okBtn_Click);
-            // 
+            //
             // _cancelBtn
-            // 
+            //
             this._cancelBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this._cancelBtn.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this._cancelBtn.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -338,9 +337,9 @@ namespace JetBrains.Omea.Nntp
             this._cancelBtn.TabIndex = 10;
             this._cancelBtn.Text = "Cancel";
             this._cancelBtn.Click += new System.EventHandler(this._cancelBtn_Click);
-            // 
+            //
             // _serversAndGroupsPanel
-            // 
+            //
             this._serversAndGroupsPanel.Controls.Add(this._groupsPanel);
             this._serversAndGroupsPanel.Controls.Add(this.splitter1);
             this._serversAndGroupsPanel.Controls.Add(this._serversPanel);
@@ -349,9 +348,9 @@ namespace JetBrains.Omea.Nntp
             this._serversAndGroupsPanel.Name = "_serversAndGroupsPanel";
             this._serversAndGroupsPanel.Size = new System.Drawing.Size(592, 380);
             this._serversAndGroupsPanel.TabIndex = 10;
-            // 
+            //
             // _groupsPanel
-            // 
+            //
             this._groupsPanel.Controls.Add(this.panel1);
             this._groupsPanel.Controls.Add(this._groupTabs);
             this._groupsPanel.Controls.Add(this._groupsCaptionLabel);
@@ -361,11 +360,11 @@ namespace JetBrains.Omea.Nntp
             this._groupsPanel.Size = new System.Drawing.Size(326, 380);
             this._groupsPanel.TabIndex = 16;
             this._groupsPanel.Paint += new System.Windows.Forms.PaintEventHandler(this._groupsPanel_Paint);
-            // 
+            //
             // panel1
-            // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-                | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BackColor = System.Drawing.SystemColors.Control;
             this.panel1.Controls.Add(this._countLabel);
@@ -380,19 +379,19 @@ namespace JetBrains.Omea.Nntp
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(313, 326);
             this.panel1.TabIndex = 25;
-            // 
+            //
             // _countLabel
-            // 
+            //
             this._countLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this._countLabel.Location = new System.Drawing.Point(268, 57);
             this._countLabel.Name = "_countLabel";
             this._countLabel.Size = new System.Drawing.Size(40, 16);
             this._countLabel.TabIndex = 30;
             this._countLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
+            //
             // _groupsDownloadProgress
-            // 
-            this._groupsDownloadProgress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._groupsDownloadProgress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._groupsDownloadProgress.Location = new System.Drawing.Point(3, 305);
             this._groupsDownloadProgress.Name = "_groupsDownloadProgress";
@@ -400,9 +399,9 @@ namespace JetBrains.Omea.Nntp
             this._groupsDownloadProgress.Step = 1;
             this._groupsDownloadProgress.TabIndex = 29;
             this._groupsDownloadProgress.Visible = false;
-            // 
+            //
             // _refreshButton
-            // 
+            //
             this._refreshButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this._refreshButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._refreshButton.Location = new System.Drawing.Point(238, 297);
@@ -410,11 +409,11 @@ namespace JetBrains.Omea.Nntp
             this._refreshButton.TabIndex = 8;
             this._refreshButton.Text = "Re&fresh";
             this._refreshButton.Click += new System.EventHandler(this._refreshButton_Click);
-            // 
+            //
             // _groupsListBox
-            // 
-            this._groupsListBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-                | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._groupsListBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._groupsListBox.CheckOnClick = true;
             this._groupsListBox.IntegralHeight = false;
@@ -426,10 +425,10 @@ namespace JetBrains.Omea.Nntp
             this._groupsListBox.Visible = false;
             this._groupsListBox.VisibleChanged += new System.EventHandler(this._groupsListBox_VisibleChanged);
             this._groupsListBox.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this._groupsListBox_ItemCheck);
-            // 
+            //
             // _groupName
-            // 
-            this._groupName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._groupName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._groupName.Enabled = false;
             this._groupName.Location = new System.Drawing.Point(3, 30);
@@ -438,10 +437,10 @@ namespace JetBrains.Omea.Nntp
             this._groupName.TabIndex = 5;
             this._groupName.Text = "";
             this._groupName.TextChanged += new System.EventHandler(this._groupName_TextChanged);
-            // 
+            //
             // label1
-            // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label1.Location = new System.Drawing.Point(3, 10);
@@ -450,11 +449,11 @@ namespace JetBrains.Omea.Nntp
             this.label1.TabIndex = 27;
             this.label1.Text = "Display newsgroups which contain:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
-            // 
+            //
             // _groupsTreeView
-            // 
-            this._groupsTreeView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-                | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._groupsTreeView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._groupsTreeView.DoubleBuffer = false;
             this._groupsTreeView.ImageIndex = -1;
@@ -470,9 +469,9 @@ namespace JetBrains.Omea.Nntp
             this._groupsTreeView.TabIndex = 6;
             this._groupsTreeView.ThreeStateCheckboxes = false;
             this._groupsTreeView.AfterThreeStateCheck += new JetBrains.UI.Components.CustomTreeView.ThreeStateCheckEventHandler(this._groupsTreeView_AfterThreeStateCheck);
-            // 
+            //
             // label2
-            // 
+            //
             this.label2.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label2.Location = new System.Drawing.Point(3, 57);
             this.label2.Name = "label2";
@@ -480,10 +479,10 @@ namespace JetBrains.Omea.Nntp
             this.label2.TabIndex = 26;
             this.label2.Text = "Check newsgroups to subscribe:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
-            // 
+            //
             // _groupTabs
-            // 
-            this._groupTabs.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._groupTabs.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._groupTabs.Controls.Add(this._allGroupsTabPage);
             this._groupTabs.Controls.Add(this._subcribedGroupsTabPage);
@@ -497,35 +496,35 @@ namespace JetBrains.Omea.Nntp
             this._groupTabs.SizeMode = System.Windows.Forms.TabSizeMode.FillToRight;
             this._groupTabs.TabIndex = 4;
             this._groupTabs.SelectedIndexChanged += new System.EventHandler(this._groupTabs_SelectedIndexChanged);
-            // 
+            //
             // _allGroupsTabPage
-            // 
+            //
             this._allGroupsTabPage.Location = new System.Drawing.Point(4, 22);
             this._allGroupsTabPage.Name = "_allGroupsTabPage";
             this._allGroupsTabPage.Size = new System.Drawing.Size(305, 0);
             this._allGroupsTabPage.TabIndex = 0;
             this._allGroupsTabPage.Text = "All";
-            // 
+            //
             // _subcribedGroupsTabPage
-            // 
+            //
             this._subcribedGroupsTabPage.Location = new System.Drawing.Point(4, 22);
             this._subcribedGroupsTabPage.Name = "_subcribedGroupsTabPage";
             this._subcribedGroupsTabPage.Size = new System.Drawing.Size(305, -5);
             this._subcribedGroupsTabPage.TabIndex = 1;
             this._subcribedGroupsTabPage.Text = "Subscribed";
-            // 
+            //
             // _newGroupsTabPage
-            // 
+            //
             this._newGroupsTabPage.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(204)));
             this._newGroupsTabPage.Location = new System.Drawing.Point(4, 22);
             this._newGroupsTabPage.Name = "_newGroupsTabPage";
             this._newGroupsTabPage.Size = new System.Drawing.Size(305, -5);
             this._newGroupsTabPage.TabIndex = 2;
             this._newGroupsTabPage.Text = "New";
-            // 
+            //
             // _groupsCaptionLabel
-            // 
-            this._groupsCaptionLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._groupsCaptionLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._groupsCaptionLabel.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this._groupsCaptionLabel.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
@@ -535,18 +534,18 @@ namespace JetBrains.Omea.Nntp
             this._groupsCaptionLabel.TabIndex = 22;
             this._groupsCaptionLabel.Text = "Newsgroups";
             this._groupsCaptionLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
+            //
             // splitter1
-            // 
+            //
             this.splitter1.BackColor = System.Drawing.SystemColors.ControlLight;
             this.splitter1.Location = new System.Drawing.Point(262, 0);
             this.splitter1.Name = "splitter1";
             this.splitter1.Size = new System.Drawing.Size(4, 380);
             this.splitter1.TabIndex = 15;
             this.splitter1.TabStop = false;
-            // 
+            //
             // _serversPanel
-            // 
+            //
             this._serversPanel.Controls.Add(this._serversCaptionLabel);
             this._serversPanel.Controls.Add(this._propertiesBtn);
             this._serversPanel.Controls.Add(this._removeBtn);
@@ -558,10 +557,10 @@ namespace JetBrains.Omea.Nntp
             this._serversPanel.Size = new System.Drawing.Size(262, 380);
             this._serversPanel.TabIndex = 0;
             this._serversPanel.Resize += new System.EventHandler(this._serversPanel_Resize);
-            // 
+            //
             // _serversCaptionLabel
-            // 
-            this._serversCaptionLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._serversCaptionLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._serversCaptionLabel.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this._serversCaptionLabel.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
@@ -571,9 +570,9 @@ namespace JetBrains.Omea.Nntp
             this._serversCaptionLabel.TabIndex = 4;
             this._serversCaptionLabel.Text = "News Servers";
             this._serversCaptionLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
+            //
             // _propertiesBtn
-            // 
+            //
             this._propertiesBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this._propertiesBtn.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._propertiesBtn.Location = new System.Drawing.Point(88, 352);
@@ -582,9 +581,9 @@ namespace JetBrains.Omea.Nntp
             this._propertiesBtn.TabIndex = 2;
             this._propertiesBtn.Text = "&Properties...";
             this._propertiesBtn.Click += new System.EventHandler(this._propertiesBtn_Click);
-            // 
+            //
             // _removeBtn
-            // 
+            //
             this._removeBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this._removeBtn.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._removeBtn.Location = new System.Drawing.Point(180, 352);
@@ -593,9 +592,9 @@ namespace JetBrains.Omea.Nntp
             this._removeBtn.TabIndex = 3;
             this._removeBtn.Text = "&Remove";
             this._removeBtn.Click += new System.EventHandler(this._removeBtn_Click);
-            // 
+            //
             // _addBtn
-            // 
+            //
             this._addBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this._addBtn.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._addBtn.Location = new System.Drawing.Point(8, 352);
@@ -604,12 +603,12 @@ namespace JetBrains.Omea.Nntp
             this._addBtn.TabIndex = 1;
             this._addBtn.Text = "&Add...";
             this._addBtn.Click += new System.EventHandler(this._addBtn_Click);
-            // 
+            //
             // _serversListView
-            // 
+            //
             this._serversView.AllowDrop = true;
-            this._serversView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-                | System.Windows.Forms.AnchorStyles.Left) 
+            this._serversView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._serversView.EmptyText = "You do not have any news subscriptions";
             this._serversView.ExecuteDoubleClickAction = false;
@@ -626,9 +625,9 @@ namespace JetBrains.Omea.Nntp
 //            this._serversView.Resize += new System.EventHandler(this._serversListView_Resize);
             this._serversView.DoubleClick += new JetBrains.JetListViewLibrary.HandledEventHandler( this._serversListView_DoubleClick );
             this._serversView.KeyDown += new System.Windows.Forms.KeyEventHandler(this._serversListView_KeyDown);
-            // 
+            //
             // SubscribeForm
-            // 
+            //
             this.AcceptButton = _okBtn;
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
             this.CancelButton = _cancelBtn;

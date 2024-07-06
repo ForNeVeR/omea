@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 #pragma unmanaged
 
@@ -65,7 +64,7 @@ void EMAPIFolder::SetReadFlags( const EntryIDSPtr& entry, bool unread ) const
 EMAPIFolderSPtr EMAPIFolder::CreateSubFolder( LPSTR folderName ) const
 {
     LPMAPIFOLDER lpFolder = NULL;
-    HRESULT hr = 
+    HRESULT hr =
         _lpFolder->CreateFolder( (int)FOLDER_GENERIC, folderName, "Created by Omea", NULL, (int)OPEN_IF_EXISTS, &lpFolder );
     Guard::CheckHR( hr, MapiLastError<LPMAPIPROP>(_lpFolder) );
     if ( hr == S_OK )
@@ -96,7 +95,7 @@ ETableSPtr EMAPIFolder::GetTable() const
 {
     LPMAPITABLE lpTable = NULL;
     HRESULT hr = _lpFolder->GetContentsTable( 0, &lpTable );
-    if ( hr == S_OK ) 
+    if ( hr == S_OK )
     {
         return TypeFactory::CreateETable( lpTable );
     }
@@ -144,7 +143,7 @@ void EMAPIFolder::DeleteMessage( const ESPropValueSPtr& entry ) const
 
 void EMAPIFolder::DeleteFolder( const EntryIDSPtr& entry ) const
 {
-    HRESULT hr = _lpFolder->DeleteFolder( entry->GetLength(), entry->getLPENTRYID(), 
+    HRESULT hr = _lpFolder->DeleteFolder( entry->GetLength(), entry->getLPENTRYID(),
         0, NULL, (int)( DEL_FOLDERS | DEL_MESSAGES ) );
     Guard::CheckHR( hr, MapiLastError<LPMAPIPROP>(_lpFolder) );
 }
@@ -156,8 +155,8 @@ EMessageSPtr EMAPIFolder::OpenMessage( const EntryIDSPtr& entryID ) const
     }
     LPMESSAGE lpMessage = NULL;
     ULONG objectType = 0;
-    HRESULT hr = 
-        _lpFolder->OpenEntry( entryID->GetLength(), entryID->getLPENTRYID(), 
+    HRESULT hr =
+        _lpFolder->OpenEntry( entryID->GetLength(), entryID->getLPENTRYID(),
             NULL, (int)TEST_MAPI_MODIFY, &objectType, (LPUNKNOWN*)&lpMessage );
     if ( hr == S_OK )
     {
@@ -175,7 +174,7 @@ void EMAPIFolder::CopyMessage( SBinary* pEntryId, LPVOID pFolderDestination, int
     ENTRYLIST eidMsg;
     eidMsg.cValues = 1;
     eidMsg.lpbin   = pEntryId;
-    HRESULT hr = _lpFolder->CopyMessages( &eidMsg, &IID_IMAPIFolder, pFolderDestination, NULL, NULL, 
+    HRESULT hr = _lpFolder->CopyMessages( &eidMsg, &IID_IMAPIFolder, pFolderDestination, NULL, NULL,
         flags );
     Guard::CheckHR( hr, MapiLastError<LPMAPIPROP>(_lpFolder) );
 }
@@ -217,7 +216,7 @@ EMAPIFoldersSPtr EMAPIFolder::GetFolders() const
     if ( hr == S_OK )
     {
 /*
-        //IMAP and HotMail MAPIFolders must be extra addreffed 
+        //IMAP and HotMail MAPIFolders must be extra addreffed
         //There should be investigation why
         ESPropValueSPtr prop = getSingleProp( (int)PR_CONTAINER_CLASS );
         if ( !prop.IsNull() && prop->GetLPSTR() != NULL )
@@ -241,8 +240,8 @@ EMAPIFoldersSPtr EMAPIFolder::GetFolders() const
 }
 void EMAPIFolder::CopyFolder( const EntryIDSPtr& entry, const EMAPIFolderSPtr& destFolder, int flags ) const
 {
-    HRESULT hr = 
-        _lpFolder->CopyFolder( entry->GetLength(), entry->getLPENTRYID(), 
+    HRESULT hr =
+        _lpFolder->CopyFolder( entry->GetLength(), entry->getLPENTRYID(),
             &IID_IMAPIFolder, (LPVOID)destFolder->GetRaw(), NULL, 0, NULL, flags );
     Guard::CheckHR( hr, MapiLastError<LPMAPIPROP>(_lpFolder) );
 }
@@ -309,7 +308,7 @@ EMAPIFolderSPtr EMAPIFolders::GetFolder( int rowNum ) const
     LPMAPIFOLDER lpMAPIFolder = NULL;
 
     ULONG objectType = 0;
-    HRESULT hr = _lpFolder->OpenEntry( pVal[1].Value.bin.cb, (LPENTRYID)pVal[1].Value.bin.lpb, 
+    HRESULT hr = _lpFolder->OpenEntry( pVal[1].Value.bin.cb, (LPENTRYID)pVal[1].Value.bin.lpb,
         0, 0, &objectType, (LPUNKNOWN*)&lpMAPIFolder );
     if ( SUCCEEDED( hr )&& lpMAPIFolder != NULL )
     {

@@ -1,16 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <!--
-  <copyright company="JetBrains">
-  Copyright © 2003-2008 JetBrains s.r.o.
-  You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-  </copyright>
+SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+
+SPDX-License-Identifier: GPL-2.0-only
 -->
 <feed version="0.3" xmlns="http://purl.org/atom/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xml:lang="en">
 	<title>mamamusings</title>
 	<link rel="alternate" type="text/html" href="http://mamamusings.net/&#xD;&#xA;&#x9;&#x9;" />
 	<modified>
 							2004-10-02T22:39:57Z
-			
+
 		</modified>
 	<tagline>
 			elizabeth lane lawley's thoughts on technology, academia, family, and tangential topics
@@ -23,7 +22,7 @@
 		</generator>
 	<copyright>
 							Copyright (c) 2004, liz
-			
+
 		</copyright>
 	<entry>
 		<title>terrizm!</title>

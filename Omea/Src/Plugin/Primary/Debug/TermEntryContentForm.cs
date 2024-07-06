@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System.Collections;
 using System.Windows.Forms;
@@ -59,9 +58,9 @@ namespace JetBrains.Omea.DebugPlugin
             this.columnSection = new System.Windows.Forms.ColumnHeader();
             this.buttonOK = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
+            //
             // listEntryContent
-            // 
+            //
             this.listEntryContent.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
                                                                                                this.columnOffset,
                                                                                                this.columnSentence,
@@ -73,35 +72,35 @@ namespace JetBrains.Omea.DebugPlugin
             this.listEntryContent.Size = new System.Drawing.Size(292, 472);
             this.listEntryContent.TabIndex = 0;
             this.listEntryContent.View = System.Windows.Forms.View.Details;
-            // 
+            //
             // columnOffset
-            // 
+            //
             this.columnOffset.Text = "Offset";
             this.columnOffset.Width = 68;
-            // 
+            //
             // columnSentence
-            // 
+            //
             this.columnSentence.Text = "Sentence";
             this.columnSentence.Width = 63;
-            // 
+            //
             // columnSection
-            // 
+            //
             this.columnSection.Text = "Section";
             this.columnSection.Width = 151;
-            // 
+            //
             // buttonOK
-            // 
-            this.buttonOK.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-                | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this.buttonOK.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonOK.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.buttonOK.Location = new System.Drawing.Point(114, 476);
             this.buttonOK.Name = "buttonOK";
             this.buttonOK.TabIndex = 1;
             this.buttonOK.Text = "OK";
-            // 
+            //
             // TermEntryContentForm
-            // 
+            //
             this.AcceptButton = this.buttonOK;
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
             this.CancelButton = this.buttonOK;

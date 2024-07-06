@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 
@@ -14,43 +13,43 @@ namespace JetBrains.Interop.WinApi
 	public enum WindowClassStyles : uint
 	{
 		/// <summary>
-		/// Aligns the window's client area on a byte boundary (in the x direction). This style affects the width of the window and its horizontal placement on the display. 
+		/// Aligns the window's client area on a byte boundary (in the x direction). This style affects the width of the window and its horizontal placement on the display.
 		/// </summary>
 		CS_BYTEALIGNCLIENT = 0x1000,
 		/// <summary>
-		/// Aligns the window on a byte boundary (in the x direction). This style affects the width of the window and its horizontal placement on the display. 
+		/// Aligns the window on a byte boundary (in the x direction). This style affects the width of the window and its horizontal placement on the display.
 		/// </summary>
 		CS_BYTEALIGNWINDOW = 0x2000,
 		/// <summary>
-		/// Allocates one device context to be shared by all windows in the class. Because window classes are process specific, it is possible for multiple threads of an application to create a window of the same class. It is also possible for the threads to attempt to use the device context simultaneously. When this happens, the system allows only one thread to successfully finish its drawing operation.  
+		/// Allocates one device context to be shared by all windows in the class. Because window classes are process specific, it is possible for multiple threads of an application to create a window of the same class. It is also possible for the threads to attempt to use the device context simultaneously. When this happens, the system allows only one thread to successfully finish its drawing operation.
 		/// </summary>
 		CS_CLASSDC = 0x0040,
 		/// <summary>
-		/// Sends a double-click message to the window procedure when the user double-clicks the mouse while the cursor is within a window belonging to the class.  
+		/// Sends a double-click message to the window procedure when the user double-clicks the mouse while the cursor is within a window belonging to the class.
 		/// </summary>
 		CS_DBLCLKS = 0x0008,
 		/// <summary>
-		/// Windows XP: Enables the drop shadow effect on a window. The effect is turned on and off through SPI_SETDROPSHADOW. Typically, this is enabled for small, short-lived windows such as menus to emphasize their Z order relationship to other windows. 
+		/// Windows XP: Enables the drop shadow effect on a window. The effect is turned on and off through SPI_SETDROPSHADOW. Typically, this is enabled for small, short-lived windows such as menus to emphasize their Z order relationship to other windows.
 		/// </summary>
 		CS_DROPSHADOW = 0x00020000,
 		/// <summary>
-		/// Specifies that the window class is an application global class. For more information, see Application Global Classes. 
+		/// Specifies that the window class is an application global class. For more information, see Application Global Classes.
 		/// </summary>
 		CS_GLOBALCLASS = 0x4000,
 		/// <summary>
-		/// Redraws the entire window if a movement or size adjustment changes the width of the client area. 
+		/// Redraws the entire window if a movement or size adjustment changes the width of the client area.
 		/// </summary>
 		CS_HREDRAW = 0x0002,
 		/// <summary>
-		/// Disables Close on the window menu. 
+		/// Disables Close on the window menu.
 		/// </summary>
 		CS_NOCLOSE = 0x0200,
 		/// <summary>
-		/// Allocates a unique device context for each window in the class.  
+		/// Allocates a unique device context for each window in the class.
 		/// </summary>
 		CS_OWNDC = 0x0020,
 		/// <summary>
-		/// Sets the clipping rectangle of the child window to that of the parent window so that the child can draw on the parent. A window with the CS_PARENTDC style bit receives a regular device context from the system's cache of device contexts. It does not give the child the parent's device context or device context settings. Specifying CS_PARENTDC enhances an application's performance.  
+		/// Sets the clipping rectangle of the child window to that of the parent window so that the child can draw on the parent. A window with the CS_PARENTDC style bit receives a regular device context from the system's cache of device contexts. It does not give the child the parent's device context or device context settings. Specifying CS_PARENTDC enhances an application's performance.
 		/// </summary>
 		CS_PARENTDC = 0x0080,
 		/// <summary>
@@ -58,7 +57,7 @@ namespace JetBrains.Interop.WinApi
 		/// </summary>
 		CS_SAVEBITS = 0x0800,
 		/// <summary>
-		/// Redraws the entire window if a movement or size adjustment changes the height of the client area. 
+		/// Redraws the entire window if a movement or size adjustment changes the height of the client area.
 		/// </summary>
 		CS_VREDRAW = 0x0001,
 

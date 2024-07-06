@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -47,7 +46,7 @@ namespace JetBrains.Omea.TextIndex
         }
 
         public void  SelfIdentifyType( int NumberOfSpecialSymbols )
-        {   
+        {
             int TokenLength = strToken.Length;
             if(( TokenLength > ciMaxUsableTokenLength ) ||
                 ( NumberOfSpecialSymbols > 1 ))
@@ -71,7 +70,7 @@ namespace JetBrains.Omea.TextIndex
                 //  but (!) it IS faster than checking by "Convert" or "ToInt"
                 //   parsing.
                 for ( int i = 0; i < TokenLength; i++ )
-                {   
+                {
                     char    ch = strToken[ i ];
                     if(( ch != '.' ) && !Char.IsDigit( ch ) )
                         return;
@@ -97,28 +96,28 @@ namespace JetBrains.Omea.TextIndex
         public void  MarkPlural()
         {
             Debug.Assert((iStartPos & 0x80000000) == 0, "Can not mark plural twice" );
-            Debug.Assert((iStartPos & 0x40000000) == 0, "Can not mark plural and proper past simultaneously" ); 
-            Debug.Assert((iStartPos & 0x20000000) == 0, "Can not mark plural and Continuous simultaneously" ); 
+            Debug.Assert((iStartPos & 0x40000000) == 0, "Can not mark plural and proper past simultaneously" );
+            Debug.Assert((iStartPos & 0x20000000) == 0, "Can not mark plural and Continuous simultaneously" );
             iStartPos |= 0x80000000; // 1<<32
         }
         public void  MarkProperPast()
         {
-            Debug.Assert((iStartPos & 0x40000000) == 0, "Can not mark proper past twice" ); 
+            Debug.Assert((iStartPos & 0x40000000) == 0, "Can not mark proper past twice" );
             Debug.Assert((iStartPos & 0x80000000) == 0, "Can not assign plural and proper past simultaneously" );
             iStartPos |= 0x40000000; // 1<<31
         }
         public void  MarkContinuous()
         {
-            Debug.Assert((iStartPos & 0x20000000) == 0, "Can not mark Continuous twice" ); 
-            Debug.Assert((iStartPos & 0x40000000) == 0, "Can not assign Continuous and proper past simultaneously" ); 
+            Debug.Assert((iStartPos & 0x20000000) == 0, "Can not mark Continuous twice" );
+            Debug.Assert((iStartPos & 0x40000000) == 0, "Can not assign Continuous and proper past simultaneously" );
             Debug.Assert((iStartPos & 0x80000000) == 0, "Can not assign plural and Continuous simultaneously" );
             iStartPos |= 0x20000000; // 1<<30
         }
         public void  MarkWordformVariant( int var )
         {
             Debug.Assert( var < 16, "Amount of wordform variants exceed storable amount in the index" );
-            Debug.Assert((iStartPos & 0x20000000) == 0, "Can not assign WordformVar and Continuous simultaneously" ); 
-            Debug.Assert((iStartPos & 0x40000000) == 0, "Can not assign WordformVar and proper past simultaneously" ); 
+            Debug.Assert((iStartPos & 0x20000000) == 0, "Can not assign WordformVar and Continuous simultaneously" );
+            Debug.Assert((iStartPos & 0x40000000) == 0, "Can not assign WordformVar and proper past simultaneously" );
             Debug.Assert((iStartPos & 0x80000000) == 0, "Can not assign plural and WordformVar simultaneously" );
 
             if( (var & 0x00000010) > 0 )
@@ -208,7 +207,7 @@ namespace JetBrains.Omea.TextIndex
         public  void        SetId()         { termId = GetTermId( strToken ); }
         public  int         HC              {  get{ Debug.Assert( termId != -1 ); return termId;   }     }
         public  uint        SectionId
-        {  
+        {
             get { return( (iStartPos & 0x1CFFFFFF) >> 26 );  }
 
             set

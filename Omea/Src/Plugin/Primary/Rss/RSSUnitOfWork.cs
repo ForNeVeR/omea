@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -21,8 +20,8 @@ using JetBrains.Omea.ResourceTools;
 
 namespace JetBrains.Omea.RSSPlugin
 {
-    public enum RSSWorkStatus 
-    { 
+    public enum RSSWorkStatus
+    {
         NotStarted, InProgress, Success, NotModified, HTTPError, XMLError, FoundHTML, FoundXML,
         FeedDeleted
     };
@@ -90,7 +89,7 @@ namespace JetBrains.Omea.RSSPlugin
             OnTimeout += RSSUnitOfWork_OnTimeout;
         }
 
-        public int Attempts { get { return _attempts; } set { _attempts = value; } } 
+        public int Attempts { get { return _attempts; } set { _attempts = value; } }
         public override string Name
         {
             get { return "Downloading " + _httpReader.URL; }
@@ -181,7 +180,7 @@ namespace JetBrains.Omea.RSSPlugin
                 if ( DownloadProgress != null )
                 {
                     long currentSize = _httpReader.ReadStream.Length;
-                    long totalSize   = _httpReader.WebResponse.ContentLength; 
+                    long totalSize   = _httpReader.WebResponse.ContentLength;
                     DownloadProgress( this, new DownloadProgressEventArgs( currentSize, totalSize ) );
                 }
             }
@@ -256,7 +255,7 @@ namespace JetBrains.Omea.RSSPlugin
                         encoding = null;
                     }
                 }
-                
+
                 TraceUrlsUnderSpy( _feed, feedStream, encoding );
 
                 RSSParser parser = new RSSParser( _feed );
@@ -268,7 +267,7 @@ namespace JetBrains.Omea.RSSPlugin
                 {
                     feedStream.Position = 0;
                     if ( _acceptHtmlIfXmlError &&
-                        ( ( _httpReader.WebResponse != null && _httpReader.WebResponse.ContentType.StartsWith( "text/html" ) ) 
+                        ( ( _httpReader.WebResponse != null && _httpReader.WebResponse.ContentType.StartsWith( "text/html" ) )
                         || HtmlTools.IsHTML( streamStart ) ) )
                     {
                         OnParseDone( RSSWorkStatus.FoundHTML );
@@ -280,7 +279,7 @@ namespace JetBrains.Omea.RSSPlugin
                     }
                     return;
                 }
-            
+
                 if ( parser.FoundChannel )
                 {
                     if ( _parseItems && _httpReader.ETag != null && _httpReader.ETag.Length > 0 )
@@ -339,7 +338,7 @@ namespace JetBrains.Omea.RSSPlugin
 
         private static void CleanMemory()
         {
-            if( Environment.TickCount - _lastGCTicks > 2000 ) 
+            if( Environment.TickCount - _lastGCTicks > 2000 )
             {
                 GC.Collect();
                 _lastGCTicks = Environment.TickCount;

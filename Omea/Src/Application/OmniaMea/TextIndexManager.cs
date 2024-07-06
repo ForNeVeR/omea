@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -97,7 +96,7 @@ namespace JetBrains.Omea
         #region ProcessQuery
         public IResourceList   ProcessQuery( string SearchQuery )  { return null; }
         public IResourceList   ProcessQuery( string SearchQuery, int[] RestrictByIDs,
-                                             out IHighlightDataProvider hldp, 
+                                             out IHighlightDataProvider hldp,
                                              out string[] lastStopList, out string errorMsg )
         { hldp = null; lastStopList = null; errorMsg = null; return null; }
         public IResourceList   ProcessQuery( string SearchQuery, int[] RestrictByIDs,
@@ -146,7 +145,7 @@ namespace JetBrains.Omea
         {
             _processPendingDocsDelegate = new DelegateJob( "Indexing documents", new MethodInvoker( ProcessPendingDocs ), new object[] {});
 
-            if( Core.ResourceStore.PropTypes.Exist( "QueuedForIndexing" ) ) 
+            if( Core.ResourceStore.PropTypes.Exist( "QueuedForIndexing" ) )
             {
                 Core.ResourceStore.PropTypes.Delete( Core.ResourceStore.PropTypes[ "QueuedForIndexing" ].Id );
             }
@@ -168,7 +167,7 @@ namespace JetBrains.Omea
             CurrentSearchProvider = new OmeaGlobalSearchProvider();
             RegisterSearchProvider( CurrentSearchProvider, "Omea Search", _cStandardProvidersGroupName );
             RegisterSearchProvider( new OmeaQuickSearchProvider(), "Local Search", _cStandardProvidersGroupName );
-            
+
             DefragmentIndexJob._textIndexManager = IndexingJob._textIndexManager = this;
             SetupDefragmentationQueue();
 
@@ -370,7 +369,7 @@ namespace JetBrains.Omea
 
         private void QueueGotEmptyImpl( object sender, EventArgs e )
         {
-            if( !Core.IsSystemIdle ) 
+            if( !Core.IsSystemIdle )
             {
                 QueueSwitchToIdleModeJob();
                 QueueGotEmpty -= QueueGotEmptyImpl;
@@ -468,7 +467,7 @@ namespace JetBrains.Omea
                 Core.SettingStore.WriteDate( "Defragmentation", "LastDefragmentation", DateTime.Now );
             }
             else
-            if( !_idleWaitingStarted && 
+            if( !_idleWaitingStarted &&
                 ( lastDefrag.AddDays( daysBetweenDefrags ) < DateTime.Now ) &&
                 ( Core.State == CoreState.Running ))
             {
@@ -480,7 +479,7 @@ namespace JetBrains.Omea
         #endregion Defragmentation Control
 
         #region EndBatchUpdate
-        
+
         internal void EndBatchUpdate()
         {
             _documentsIndexed = 0;
@@ -498,12 +497,12 @@ namespace JetBrains.Omea
             catch( System.IO.IOException )
             {
                 Core.UIManager.ShowSimpleMessageBox( "Text Index Operation Failed",
-                                                     "System encountered a serious I/O error while constructing text index." + 
+                                                     "System encountered a serious I/O error while constructing text index." +
                                                      " Indexing operation will be suspended until next start of the Omea.");
                 SuspendIndexingByError();
                 return;
             }
-            
+
             if( _statusWriter != null )
                 _statusWriter.ClearStatus();
             if ( IndexLoaded != null )
@@ -526,7 +525,7 @@ namespace JetBrains.Omea
         {
             //  Put new job only if the corresponding mode is appropriate:
             //  - either index in real time, or
-            //  - index in idle mode and 
+            //  - index in idle mode and
             if( !IdleIndexingMode || Core.IsSystemIdle )
             {
                 //  Do not act on a resource which was possibly deleted just
@@ -545,7 +544,7 @@ namespace JetBrains.Omea
                     }
                     #endregion Pending Data Processing
 
-                    if( invokeProcessingPendingDocs ) 
+                    if( invokeProcessingPendingDocs )
                     {
                         QueueProcessingPendingDocs();
                     }
@@ -573,7 +572,7 @@ namespace JetBrains.Omea
         private void ProcessPendingDocs()
         {
             int processed = 0;
-            while( ( !IdleIndexingMode || Core.IsSystemIdle ) && !Finished && !IsIndexingSuspended ) 
+            while( ( !IdleIndexingMode || Core.IsSystemIdle ) && !Finished && !IsIndexingSuspended )
             {
                 int docId = GetNextDocId();
                 if( docId == -1 )
@@ -627,14 +626,14 @@ namespace JetBrains.Omea
         private void IndexDocument( int docId )
         {
             string jobNameSaved = _processPendingDocsDelegate.Name;
-            try 
+            try
             {
                 IResource resource;
                 try
                 {
                     resource = Core.ResourceStore.LoadResource( docId );
                     StringBuilder builder = StringBuilderPool.Alloc();
-                    try 
+                    try
                     {
                         builder.Append( "Indexing \"" );
                         builder.Append( resource.DisplayName );
@@ -661,7 +660,7 @@ namespace JetBrains.Omea
                 catch( System.IO.IOException )
                 {
                     Core.UIManager.ShowSimpleMessageBox( "Text Index Operation Failed",
-                        "System encountered a serious I/O error while constructing text index." + 
+                        "System encountered a serious I/O error while constructing text index." +
                         " Indexing operation will be suspended until next start of the Omea.");
                     SuspendIndexingByError();
                 }
@@ -693,7 +692,7 @@ namespace JetBrains.Omea
         #region Delete Document
         public void DeleteDocumentQueued( int resID )
         {
-            if( IsIndexPresent() ) 
+            if( IsIndexPresent() )
             {
                 QueueJob( JobPriority.BelowNormal, new DeleteDocUOW( resID ) );
             }
@@ -914,14 +913,14 @@ namespace JetBrains.Omea
     /**
      * The class which implements IHighlightDataProvider on an array of search results.
      */
-    
+
     public class SearchHighlightDataProvider: IHighlightDataProvider
 	{
         private readonly IEnumerable             _entries;
         private readonly TextIndexManager        _textIndexManager;
         private readonly SimplePropertyProvider  _provider;
         private readonly string[]                _lexemes;
-        
+
         public SearchHighlightDataProvider( IEnumerable entries, SimplePropertyProvider provider, string[] lexemes )
 		{
             _entries = entries;
@@ -961,7 +960,7 @@ namespace JetBrains.Omea
                 Trace.WriteLine( "--- HighlightProvider -- Starting context extraction" );
                 foreach( Entry e in _entries )
                 {
-                    if( Array.IndexOf( resourceIDs, e.DocIndex ) != -1 ) 
+                    if( Array.IndexOf( resourceIDs, e.DocIndex ) != -1 )
                     {
                         _textIndexManager.QueueContextExtraction( _provider, e, _lexemes );
                     }

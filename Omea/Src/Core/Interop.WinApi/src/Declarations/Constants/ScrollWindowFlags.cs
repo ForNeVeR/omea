@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 
@@ -26,7 +25,7 @@ namespace JetBrains.Interop.WinApi
 		/// </summary>
 		SW_SCROLLCHILDREN,
 		/// <summary>
-		/// Windows 98/Me, Windows 2000/XP: Scrolls using smooth scrolling. Use the HIWORD portion of the flags parameter to indicate how much time the smooth-scrolling operation should take.			
+		/// Windows 98/Me, Windows 2000/XP: Scrolls using smooth scrolling. Use the HIWORD portion of the flags parameter to indicate how much time the smooth-scrolling operation should take.
 		/// </summary>
 		SW_SMOOTHSCROLL,
 	}

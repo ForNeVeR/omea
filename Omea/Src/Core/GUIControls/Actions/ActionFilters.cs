@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using JetBrains.Omea.OpenAPI;
 using JetBrains.Omea.ResourceTools;
@@ -16,7 +15,7 @@ namespace JetBrains.Omea.GUIControls
     {
         public void Update( IActionContext context, ref ActionPresentation presentation )
         {
-            if ( context.SelectedResources.Count == 0 || 
+            if ( context.SelectedResources.Count == 0 ||
                 ResourceTypeHelper.AnyResourcesInternal( context.SelectedResources ) )
             {
                 if ( context.Kind == ActionContextKind.Toolbar || context.Kind == ActionContextKind.MainMenu )
@@ -52,7 +51,7 @@ namespace JetBrains.Omea.GUIControls
         public void Update( IActionContext context, ref ActionPresentation presentation )
         {
             presentation.Visible = context.SelectedResources.Count > 0 &&
-                                   context.SelectedResources[ 0 ].GetStringProp( "DeepName" ) == 
+                                   context.SelectedResources[ 0 ].GetStringProp( "DeepName" ) ==
                                         ICore.Instance.FilterRegistry.ViewNameForSearchResults;
         }
     }

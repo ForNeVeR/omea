@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -86,7 +85,7 @@ namespace JetBrains.Omea.ResourceStore
         private IntObjectCache _loadedResourceTypes = new IntObjectCache( 256 );
         private ObjectCache _findUniqueResourceCache = new ObjectCache( 1024 );
         private SpinWaitLock _findUniqueResourceCacheLock = new SpinWaitLock();
-        
+
         public static void SetProgressWindow( IProgressWindow progressWindow )
         {
             _progressWindow = progressWindow;
@@ -173,7 +172,7 @@ namespace JetBrains.Omea.ResourceStore
             if (!Directory.Exists( DBPath ) )
                 Directory.CreateDirectory( DBPath );
 
-            DBStructure dbStructure = 
+            DBStructure dbStructure =
                 new DBStructure( DBPath, "MyPal", DatabaseMode.Create );
 
             TableStructure table = dbStructure.CreateTable( "PropTypes" );
@@ -210,14 +209,14 @@ namespace JetBrains.Omea.ResourceStore
             table.CreateColumn( "PropType", ColumnType.Integer, false );
             table.CreateColumn( "PropValue", ColumnType.String, false );
             table.SetCompoundIndex( "Id", "PropType" );
-            
+
             table = dbStructure.CreateTable( "StringListProps" );
             table.CreateColumn( "Id", ColumnType.Integer, false );
             table.CreateColumn( "PropType", ColumnType.Integer, false );
             table.CreateColumn( "PropValue", ColumnType.String, false );
             table.SetCompoundIndex( "Id", "PropType" );
             table.SetCompoundIndex( "PropType", "PropValue" );
-            
+
             table = dbStructure.CreateTable( "DateProps" );
             table.CreateColumn( "Id", ColumnType.Integer, false );
             table.CreateColumn( "PropType", ColumnType.Integer, false );
@@ -247,7 +246,7 @@ namespace JetBrains.Omea.ResourceStore
             table.CreateColumn( "PropType", ColumnType.Integer, true );
             table.SetCompoundIndexWithValue( "Id", "Id2", "PropType" );
             table.SetCompoundIndexWithValue( "Id2", "Id", "PropType" );
-    
+
             dbStructure.SaveStructure();
             dbStructure.Shutdown();
         }
@@ -332,11 +331,11 @@ namespace JetBrains.Omea.ResourceStore
             _propTypes = new PropTypeCollection( this, _propTypeTable );
             _resourceTypes = new ResourceTypeCollection( this, _resourceTypeTable );
 
-            _contentTables.AddRange( new ITable[] 
+            _contentTables.AddRange( new ITable[]
                 { _resources,
-                  _intProps, _stringProps, _longStringProps, _dateProps, _blobProps, _doubleProps, 
+                  _intProps, _stringProps, _longStringProps, _dateProps, _blobProps, _doubleProps,
                   _boolProps, _links, _stringListProps } );
-            _propTables.AddRange( new ITable[] 
+            _propTables.AddRange( new ITable[]
                 { _intProps, _stringProps, _dateProps, _blobProps, _doubleProps, _longStringProps,
                   _stringListProps } );
 
@@ -349,7 +348,7 @@ namespace JetBrains.Omea.ResourceStore
             _propTypes.CachePropTypes();
             _props = new ResourceStoreProps( _resourceTypes, _propTypes );
             _props.Initialize();
-            _propTypes.CachePropDisplayNames();  
+            _propTypes.CachePropDisplayNames();
             _resourceTypes.CacheResourceTypeFlags();
 
             _emptyResourceList = ListFromIds( new IntArrayList(), false );
@@ -367,7 +366,7 @@ namespace JetBrains.Omea.ResourceStore
         {
             foreach( ITable table in _theStorage._contentTables )
             {
-                DefragmentTableIndexesInIdleMode( table );                
+                DefragmentTableIndexesInIdleMode( table );
             }
         }
 
@@ -548,7 +547,7 @@ namespace JetBrains.Omea.ResourceStore
          * If the property tables have regular indexes, drop them and create indexes
          * with value instead.
          */
-        
+
         private bool CheckCreateIndexesWithValue()
         {
             bool changed = false;
@@ -673,7 +672,7 @@ namespace JetBrains.Omea.ResourceStore
             "MyPal.IntProps.table.dbUtil",
             "MyPal.Links.table.dbUtil",
             "MyPal.LongStringProps.table.dbUtil",
-            "MyPal.PropTypes.table.dbUtil", 
+            "MyPal.PropTypes.table.dbUtil",
             "MyPal.Resources.table.dbUtil",
             "MyPal.ResourceTypes.table.dbUtil",
             "MyPal.StringListProps.table.dbUtil",
@@ -720,11 +719,11 @@ namespace JetBrains.Omea.ResourceStore
 
         public static void BackupDatabase( bool idle )
         {
-            if( !_theStorage.IsOwnerThread() ) 
+            if( !_theStorage.IsOwnerThread() )
             {
                 Core.ResourceAP.QueueJob( new BackupDatabaseDelegate( BackupDatabase ), idle );
             }
-            else 
+            else
             {
                 bool backupEnabled = Core.SettingStore.ReadBool( "ResourceStore", "EnableBackup", false );
                 if( backupEnabled )
@@ -736,7 +735,7 @@ namespace JetBrains.Omea.ResourceStore
                         Core.ResourceAP.QueueJobAt( DateTime.Now.AddMinutes( idlePeriod ),
                                                     new BackupDatabaseDelegate( BackupDatabase ), idle );
                     }
-                    else 
+                    else
                     {
                         FlushDatabase();
                         BackupDatabase( IOTools.Combine( backupPath, _dbBackupFile ) );
@@ -780,12 +779,12 @@ namespace JetBrains.Omea.ResourceStore
                 entry.Size = fs.Length;
                 zipStream.PutNextEntry( entry );
                 int readBytes;
-                while( ( readBytes = fs.Read( buffer, 0, buffer.Length ) ) > 0 ) 
+                while( ( readBytes = fs.Read( buffer, 0, buffer.Length ) ) > 0 )
                 {
-                    if( statusWriter != null ) 
+                    if( statusWriter != null )
                     {
                         int percent = (int) ( ( count * 100 ) / totalLen );
-                        if( percent > lastPercent ) 
+                        if( percent > lastPercent )
                         {
                             lastPercent = percent;
                             statusWriter.ShowStatus( "Database backup: " + percent + "%" );
@@ -795,12 +794,12 @@ namespace JetBrains.Omea.ResourceStore
                     count += readBytes;
                 }
                 fs.Close();
-            }  
+            }
             zipStream.Finish();
             zipStream.Close();
             long ticks = DateTime.Now.Ticks - startTicks;
             Debug.WriteLine( "Database backup took " + ticks / 10000 + " ms" );
-            if( statusWriter != null ) 
+            if( statusWriter != null )
             {
                 statusWriter.ClearStatus();
             }
@@ -809,7 +808,7 @@ namespace JetBrains.Omea.ResourceStore
         public static void RestoreFromBackup( string backupFilename )
         {
             IProgressWindow pw = ( ICore.Instance == null ) ? null : Core.ProgressWindow;
-            if( pw != null ) 
+            if( pw != null )
             {
                 pw.UpdateProgress( 0, "Restoring database from backup...", null );
             }
@@ -835,9 +834,9 @@ namespace JetBrains.Omea.ResourceStore
             while ( ( theEntry = zip.GetNextEntry() ) != null )
             {
                 FileStream streamWriter = File.Create( IOTools.Combine( DBPath, theEntry.Name ) );
-                while( true ) 
+                while( true )
                 {
-                    if( pw != null ) 
+                    if( pw != null )
                     {
                         int percent = (int) ( count * 100 / totalLen );
                         if( percent > 100 )
@@ -871,7 +870,7 @@ namespace JetBrains.Omea.ResourceStore
             repair.Run();
             return repair.RepairException;
         }
-        
+
         public string BuildNumber
         {
             get { return _dbStructure.Build; }
@@ -941,7 +940,7 @@ namespace JetBrains.Omea.ResourceStore
         {
             if ( _ownerThread == null )
                 return true;
-        
+
             return Thread.CurrentThread == _ownerThread;
         }
 
@@ -974,7 +973,7 @@ namespace JetBrains.Omea.ResourceStore
             _ioErrorReported = true;
             if ( IOErrorDetected != null )
             {
-                IOErrorDetected( this, new ThreadExceptionEventArgs( exception ) );                
+                IOErrorDetected( this, new ThreadExceptionEventArgs( exception ) );
             }
         }
 
@@ -1011,7 +1010,7 @@ namespace JetBrains.Omea.ResourceStore
         /**
          * Returns the display name mask of the resource type with the specified ID.
          */
-		
+
         internal DisplayNameMask GetResourceTypeDisplayNameMask( int ID )
         {
             return (_resourceTypes [ID] as ResourceTypeItem).DisplayNameTemplate;
@@ -1076,7 +1075,7 @@ namespace JetBrains.Omea.ResourceStore
                     }
                 }
             }
-    
+
             int typeID = resourceType.Id;
             Resource res;
             lock( this )
@@ -1091,7 +1090,7 @@ namespace JetBrains.Omea.ResourceStore
                 {
                     resID = CreateResource( typeID );
                 }
-                
+
                 res = new Resource( resID, typeID, true );
                 if ( !transient )
                 {
@@ -1102,7 +1101,7 @@ namespace JetBrains.Omea.ResourceStore
                     res.SetTransient();
                     _transientResources [res.Id] = res;
                 }
-                
+
                 lock( _updatingResources )
                 {
                     _updatingResources [res.Id] = new MultiPropChangeSet( true );
@@ -1124,7 +1123,7 @@ namespace JetBrains.Omea.ResourceStore
                 res = LoadResourceFromCache( id, allowDeleted );
                 if ( res != null && knownTypeId >= 0 && res.TypeId != knownTypeId )
                 {
-                    OnIndexCorruptionDetected( "LoadResource: type of resource loaded from cache (" + res.Type + 
+                    OnIndexCorruptionDetected( "LoadResource: type of resource loaded from cache (" + res.Type +
                         ") does not match known type of resource list (" + ResourceTypes [knownTypeId].Name + ")" );
                 }
                 if ( res == null && knownTypeId >= 0 )
@@ -1185,7 +1184,7 @@ namespace JetBrains.Omea.ResourceStore
                     {
                         throw new ResourceDeletedException( ID, res.Type );
                     }
-                }    
+                }
             }
             else if ( res.Id == -1 && !allowDeleted )
             {
@@ -1193,7 +1192,7 @@ namespace JetBrains.Omea.ResourceStore
             }
             return res;
         }
-       
+
         private int LoadResourceTypeFromCachedPredicates( int id, bool throwException )
         {
             if ( !_initializationComplete )
@@ -1217,14 +1216,14 @@ namespace JetBrains.Omea.ResourceStore
             if ( throwException )
             {
                 // this will throw the InvalidResourceIdException
-                int resourceType = LoadResourceType( id, true ); 
+                int resourceType = LoadResourceType( id, true );
                 if ( resourceType >= 0 )
                 {
                     // GetItemSafe() necessary here - see OM-11741
                     IResourceType resType = _resourceTypes.GetItemSafe( resourceType );
                     if ( resType != null )
                     {
-                        throw new StorageException( "LoadResourceType mismatch: resource ID=" + id + 
+                        throw new StorageException( "LoadResourceType mismatch: resource ID=" + id +
                             " of type " + resType.Name + " was not found in cached predicates but found on disk" );
                     }
                 }
@@ -1447,7 +1446,7 @@ namespace JetBrains.Omea.ResourceStore
                             throw new InvalidResourceIdException( resId );
                         return -1;
                     }
-                
+
                     int result = enumerator.GetCurrentIntValue( 1 );
 
                     if ( enumerator.MoveNext() )
@@ -1475,7 +1474,7 @@ namespace JetBrains.Omea.ResourceStore
         }
 
         /// <summary>
-        /// Commits the specified record and reports possible IOException and BadIndexesException to the 
+        /// Commits the specified record and reports possible IOException and BadIndexesException to the
         /// ResourceStore client.
         /// </summary>
         /// <param name="rec">The record to delete.</param>
@@ -1491,12 +1490,12 @@ namespace JetBrains.Omea.ResourceStore
             }
             catch( BadIndexesException )
             {
-                OnIndexCorruptionDetected( reason );                
+                OnIndexCorruptionDetected( reason );
             }
         }
 
         /// <summary>
-        /// Deletes the specified record and reports possible IOException and BadIndexesException to the 
+        /// Deletes the specified record and reports possible IOException and BadIndexesException to the
         /// ResourceStore client.
         /// </summary>
         /// <param name="rec">The record to delete.</param>
@@ -1637,7 +1636,7 @@ namespace JetBrains.Omea.ResourceStore
                                     return;
                                 }
                             }
-                            else 
+                            else
                             {
                                 rec.SetValue( 2, propValue );
                                 SafeCommitRecord( rec, "MyPalStorage.UpdateProperty" );
@@ -1658,7 +1657,7 @@ namespace JetBrains.Omea.ResourceStore
                 }
                 if( count > 1 )
                 {
-                    OnIndexCorruptionDetected( count + " properties with the same resource ID " + 
+                    OnIndexCorruptionDetected( count + " properties with the same resource ID " +
                         res.Id + " and property type  " + GetPropName( propId ) + " found" );
                 }
             }
@@ -1680,7 +1679,7 @@ namespace JetBrains.Omea.ResourceStore
          * Checks if the type of propValue matches the type of the property,
          * and returns the table where the property is stored.
          */
-        
+
         internal ITable GetPropTable( int propID )
         {
             PropDataType propType = GetPropDataType( propID );
@@ -1800,14 +1799,14 @@ namespace JetBrains.Omea.ResourceStore
                         expectedType = typeof(Boolean);
                     }
                     break;
-                
+
                 default:
                     throw new StorageException( "Invalid property type " + propType );
             }
 
             if ( mismatch )
             {
-                throw new StorageException( "Value type mismatch for property " + GetPropName( propID ) + 
+                throw new StorageException( "Value type mismatch for property " + GetPropName( propID ) +
                     ": expected " + expectedType.ToString() + ", actual " + propValue.GetType().ToString() );
             }
         }
@@ -1874,17 +1873,17 @@ namespace JetBrains.Omea.ResourceStore
         internal void OnResourceSaved( IResource resource, IPropertyChangeSet changeSet )
         {
             Trace.WriteLineIf( _trace, "OnResourceSaved: " + resource.Id );
-            
+
             ResourceRestrictions.CheckResource( resource, changeSet );
             _updateManager.NotifyResourceSaved( resource, changeSet );
-            
+
             if ( ResourceSaved != null )
             {
                 ResourcePropEventArgs args = new ResourcePropEventArgs( resource, changeSet );
                 ResourceSaved( this, args );
             }
         }
-        
+
         internal void OnResourceSaved( Resource resource, int propID, object oldValue )
         {
             DisplayNameMask mask = GetResourceTypeDisplayNameMask( resource.TypeId );
@@ -2009,7 +2008,7 @@ namespace JetBrains.Omea.ResourceStore
                 OnResourceSaved( from, new SinglePropChangeSet( propID, target.Id, changeType, maskAffected ) );
             }
         }
-        
+
         internal void OnLinkAdded( Resource from, Resource target, int propID )
         {
             OnLinkResourceSaved( from, target, propID, LinkChangeType.Add );
@@ -2150,7 +2149,7 @@ namespace JetBrains.Omea.ResourceStore
             return _links.CreateResultSet(
                 0, IntInternalizer.Intern( resId ), 2, IntInternalizer.Intern( propType ), true );
         }
-    
+
         internal IResultSet GetLinksTo( int resId, int propType )
         {
             return _links.CreateResultSet(
@@ -2233,7 +2232,7 @@ namespace JetBrains.Omea.ResourceStore
          * Deletes all links of the specified type from the database and
          * cached resources.
          */
-        
+
         internal void DeleteLinksOfType( int propType )
         {
             using( IResultSet rs = SelectLinksOfType( propType ) )
@@ -2342,7 +2341,7 @@ namespace JetBrains.Omea.ResourceStore
             IntArrayList list = resourceIDs as IntArrayList;
             return ListFromIds( list ?? new IntArrayList( resourceIDs ), live );
 		}
-        
+
         public IResourceList FindResources( string resType, int propID, object propValue )
         {
             if ( propValue == null )
@@ -2426,7 +2425,7 @@ namespace JetBrains.Omea.ResourceStore
             return FindResourcesInRange( SelectionType.Live, resType, GetPropId( propName ), minValue, maxValue );
         }
 
-        public IResourceList FindResourcesInRange( SelectionType listType, string resType, string propName, 
+        public IResourceList FindResourcesInRange( SelectionType listType, string resType, string propName,
             object minValue, object maxValue )
         {
         	return FindResourcesInRange( listType, resType, GetPropId( propName ), minValue, maxValue );
@@ -2444,19 +2443,19 @@ namespace JetBrains.Omea.ResourceStore
         /// <remarks>
         /// <para>Range selection is only supported for int and date properties.</para>
         /// </remarks>
-        public IResourceList FindResourcesInRange( SelectionType listType, string resType, int propID, 
+        public IResourceList FindResourcesInRange( SelectionType listType, string resType, int propID,
             object minValue, object maxValue )
         {
             bool isSnapshot = (listType == SelectionType.LiveSnapshot );
-            bool isLive = (listType == SelectionType.Live || 
+            bool isLive = (listType == SelectionType.Live ||
                 listType == SelectionType.LiveSnapshot );
 
             ResourceListPredicate pred = CreateSelectionPredicate( propID, minValue, maxValue, isSnapshot );
-            
+
             return IntersectPredicateWithType( pred, resType, isLive );
         }
 
-        private ResourceListPredicate CreateSelectionPredicate( int propId, object minValue, 
+        private ResourceListPredicate CreateSelectionPredicate( int propId, object minValue,
             object maxValue, bool isSnapshot )
         {
             PropDataType propType = GetPropDataType( propId );
@@ -2472,9 +2471,9 @@ namespace JetBrains.Omea.ResourceStore
                 {
                     throw new StorageException( "Range selections by bool property are not supported" );
                 }
-                return new ResourcesWithPropPredicate( propId, isSnapshot );  
+                return new ResourcesWithPropPredicate( propId, isSnapshot );
             }
-            else if ( propType == PropDataType.Int || propType == PropDataType.String || propType == PropDataType.Date || 
+            else if ( propType == PropDataType.Int || propType == PropDataType.String || propType == PropDataType.Date ||
                 propType == PropDataType.StringList )
             {
                 CheckValueType( propId, propType, minValue );
@@ -2485,7 +2484,7 @@ namespace JetBrains.Omea.ResourceStore
 
                     CheckValueType( propId, propType, maxValue );
 
-                    if ( minValue != null && maxValue != null && 
+                    if ( minValue != null && maxValue != null &&
                         ((IComparable) minValue).CompareTo( maxValue ) > 0 )
                     {
                         return new PropValuePredicate( propId, maxValue, minValue, isSnapshot );
@@ -2493,7 +2492,7 @@ namespace JetBrains.Omea.ResourceStore
                     else
                     {
                         return new PropValuePredicate( propId, minValue, maxValue, isSnapshot );
-                    }   
+                    }
                 }
                 else
                     return new PropValuePredicate( propId, minValue, null, isSnapshot );
@@ -2538,7 +2537,7 @@ namespace JetBrains.Omea.ResourceStore
         public IResourceList FindResourcesWithProp( SelectionType selType, string resType, int propID )
         {
             bool isSnapshot = (selType == SelectionType.LiveSnapshot );
-            bool isLive = (selType == SelectionType.Live || 
+            bool isLive = (selType == SelectionType.Live ||
                 selType == SelectionType.LiveSnapshot );
 
             ResourceListPredicate pred;
@@ -2573,7 +2572,7 @@ namespace JetBrains.Omea.ResourceStore
                 // put it first)
                 pred = new IntersectionPredicate( typePred, pred );
             }
-            return new ResourceList( pred, live ); 
+            return new ResourceList( pred, live );
         }
 
         public IResource FindUniqueResource( string resType, int propID, object propValue )
@@ -2597,7 +2596,7 @@ namespace JetBrains.Omea.ResourceStore
             {
                 IResource res = TryLoadResource( (int) id );
                 if( res != null && ( resType == null || res.Type == resType ) &&
-                    res.HasProp( propID ) && propValue.Equals( res.GetProp( propID ) ) ) 
+                    res.HasProp( propID ) && propValue.Equals( res.GetProp( propID ) ) )
                 {
                     return res;
                 }
@@ -2746,7 +2745,7 @@ namespace JetBrains.Omea.ResourceStore
                     throw new ArgumentException( "Found null item at index " + i + " in resTypes array", "resTypes" );
                 }
             }
-    
+
             if ( resTypes.Length == 1 )
             {
                 return new ResourceList( new ResourceTypePredicate( resTypes [0] ), live );
@@ -2894,7 +2893,7 @@ namespace JetBrains.Omea.ResourceStore
                     string name = resTypeResource.GetStringProp( "Name" );
                     if ( name == null )  // DB corruption recovery (OM-8930)
                     {
-                        continue;                        
+                        continue;
                     }
                     if ( resType == "ResourceType" && ResourceTypes.Exist( name ) )
                     {

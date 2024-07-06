@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 //	WebHelp 5.10.005
 var gaProj=new Array();
@@ -133,7 +132,7 @@ function whCom(sName,sComFile)
 		sHTML+="</DIV>";
 		return sHTML;
 	}
-}  
+}
 
 function whComMan()
 {
@@ -186,7 +185,7 @@ function whComMan()
 		for(var i=0;i<this.maCom.length;i++)
 		{
 			this.maCom[i].unload();
-		}		
+		}
 	}
 	this.getCurrent=function()
 	{
@@ -218,7 +217,7 @@ function addPane(sName,sFileName)
 			goMan.addCom(sName,sFileName);
 	}
 	else
-		goMan.addCom(sName,sFileName);	
+		goMan.addCom(sName,sFileName);
 }
 
 function setShowPane(sName, bForce)
@@ -261,8 +260,8 @@ function window_OnLoad()
 		}
 	}
 	goMan.init();
-	if(gsProjName!="")			
-		loadData2(gsProjName);	
+	if(gsProjName!="")
+		loadData2(gsProjName);
 	if (bHidePane)
 	{
 		gsFirstPane="";
@@ -303,7 +302,7 @@ function addProject(bPreferXML,sXMLName,sHTMLName)
 	if(gbIE55||gbNav6)
 		bLoadXML=true;
 	if(gbOpera7)
-		bLoadXML=false;		
+		bLoadXML=false;
 	if(bLoadXML)
 		addProjectXML(sXMLName);
 	else
@@ -458,7 +457,7 @@ function cancelProj(i)
 	{
 		gnChecked++;
 		setTimeout("checkRemoteProject();", 1);
-	}	
+	}
 }
 
 function window_resize()

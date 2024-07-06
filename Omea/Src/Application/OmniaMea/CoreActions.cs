@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Diagnostics;
@@ -174,7 +173,7 @@ namespace JetBrains.Omea
     public class MarkAsReadAction: IAction
     {
         private readonly bool _unreadValue;
-        
+
         public MarkAsReadAction( bool unreadValue )
         {
             _unreadValue = unreadValue;
@@ -334,7 +333,7 @@ namespace JetBrains.Omea
     {
         public override void Execute( IActionContext context )
         {
-            ICore.Instance.UIManager.ShowOptionsDialog();            
+            ICore.Instance.UIManager.ShowOptionsDialog();
         }
     }
 
@@ -359,7 +358,7 @@ namespace JetBrains.Omea
             }
         }
     }
-    
+
     /**
      * Action to show the correspondence with the selected contact.
      */
@@ -580,7 +579,7 @@ namespace JetBrains.Omea
             {
                 if ( Core.PluginLoader.GetResourceSerializer( resource.Type ) != null )
                 {
-                    return; 
+                    return;
                 }
             }
             if ( context.Kind == ActionContextKind.MainMenu )
@@ -635,7 +634,7 @@ namespace JetBrains.Omea
         {
             using( CustomPropertiesDlg dlg = new CustomPropertiesDlg() )
             {
-                dlg.EditCustomProperties( context.SelectedResources );            	
+                dlg.EditCustomProperties( context.SelectedResources );
             }
         }
 
@@ -736,7 +735,7 @@ namespace JetBrains.Omea
         private bool _savedSplitterVisible = true;
         private bool _savedResourceListExpanded = true;
         private bool _savedIsResourceListFocused = true;
-        
+
         public void Execute( IActionContext context )
         {
             if ( !IsFullView() )
@@ -788,7 +787,7 @@ namespace JetBrains.Omea
         private static bool IsFullView()
         {
             return !Core.UIManager.LeftSidebarExpanded &&
-                !Core.UIManager.RightSidebarExpanded && 
+                !Core.UIManager.RightSidebarExpanded &&
                 (!(Core.ResourceBrowser as ResourceBrowser).ResourceListSplitterVisible || !Core.ResourceBrowser.ResourceListExpanded ) &&
                 !Core.ResourceBrowser.LinksPaneExpanded;
         }
@@ -919,11 +918,11 @@ namespace JetBrains.Omea
     /**
      * Selects the clicked resource in the Views and Categories pane.
      */
-    
+
     public class ShowInDefaultPaneAction: SimpleAction
     {
         public override void Execute( IActionContext context )
-        {   
+        {
             Core.LeftSidebar.ActivateViewPane( StandardViewPanes.ViewsCategories );
             Core.LeftSidebar.DefaultViewPane.SelectResource( context.SelectedResources [0] );
         }
@@ -1140,7 +1139,7 @@ namespace JetBrains.Omea
                 IResource res = Core.ResourceStore.TryLoadResource( resList.ResourceIds [i] );
                 if ( res != null )
                 {
-                    if ( !res.HasProp( Core.Props.IsDeleted ) || 
+                    if ( !res.HasProp( Core.Props.IsDeleted ) ||
                         Core.PluginLoader.GetResourceDeleter( res.Type ) == null )
                     {
                         return false;
@@ -1213,7 +1212,7 @@ namespace JetBrains.Omea
         public void Update( IActionContext context, ref ActionPresentation presentation )
         {
             ResourceBrowser browser = Core.ResourceBrowser as ResourceBrowser;
-            presentation.Checked = (browser.VerticalLayout == _value) && 
+            presentation.Checked = (browser.VerticalLayout == _value) &&
                 (Core.ResourceBrowser.BrowserPanesMode == BrowserPanesVisibilityMode.Both);
         }
 
@@ -1228,7 +1227,7 @@ namespace JetBrains.Omea
         public void Execute( IActionContext context )
         {
             BrowserPanesVisibilityMode mode = Core.ResourceBrowser.BrowserPanesMode;
-            Core.ResourceBrowser.BrowserPanesMode = (mode == BrowserPanesVisibilityMode.ContentOnly) ? 
+            Core.ResourceBrowser.BrowserPanesMode = (mode == BrowserPanesVisibilityMode.ContentOnly) ?
                                                      BrowserPanesVisibilityMode.Both : BrowserPanesVisibilityMode.ContentOnly;
         }
 
@@ -1243,7 +1242,7 @@ namespace JetBrains.Omea
         public void Execute( IActionContext context )
         {
             BrowserPanesVisibilityMode mode = Core.ResourceBrowser.BrowserPanesMode;
-            Core.ResourceBrowser.BrowserPanesMode = (mode == BrowserPanesVisibilityMode.ListOnly) ? 
+            Core.ResourceBrowser.BrowserPanesMode = (mode == BrowserPanesVisibilityMode.ListOnly) ?
                                                      BrowserPanesVisibilityMode.Both : BrowserPanesVisibilityMode.ListOnly;
         }
 

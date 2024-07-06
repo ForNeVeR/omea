@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Drawing;
@@ -26,7 +25,7 @@ namespace JetBrains.JetListViewLibrary
             return base.IsInputKey( keyData );
         }
     }
-    
+
     /// <summary>
 	/// Control for in-place editing JetListView2 item values in a text box.
 	/// </summary>
@@ -129,7 +128,7 @@ namespace JetBrains.JetListViewLibrary
         {
             using( Graphics g = _host.CreateGraphics() )
             {
-                Size desiredSize = _host.ControlPainter.MeasureText( g, _inPlaceEditBox.Text, 
+                Size desiredSize = _host.ControlPainter.MeasureText( g, _inPlaceEditBox.Text,
                     _inPlaceEditBox.Font );
                 int desiredWidth = desiredSize.Width + 20;
                 if ( desiredWidth > _inPlaceEditRect.Width )

@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.ComponentModel;
@@ -74,7 +73,7 @@ namespace JetBrains.Omea.GUIControls
                     item.Checked = isPersonal;
                     item.Text = emailText;
                     item.SubItems.Add( email.HasLink( ContactManager._propDefaultAccount, contact ) ? DefltMarker : "" );
-                        
+
                     if ( _emailsList.SmallImageList != null )
                         item.ImageIndex = Core.ResourceIconManager.GetIconIndex( email );
 
@@ -130,7 +129,7 @@ namespace JetBrains.Omea.GUIControls
                 //  the list (were removed or renamed).
                 foreach( HashSet.Entry e in _originalAccounts )
                 {
-                    IResource accnt = Core.ResourceStore.FindUniqueResource( 
+                    IResource accnt = Core.ResourceStore.FindUniqueResource(
                         "EmailAccount", Core.ContactManager.Props.EmailAddress, e.Key );
                     if( accnt != null )
                     {
@@ -143,7 +142,7 @@ namespace JetBrains.Omea.GUIControls
                 proxy.EndUpdateAsync();
             }
         }
-        
+
         private delegate void SplitDelegate( IResource contact, IResource account );
 
     	private static void HardRemoveAccountFromContact(IResource accnt, IResource contact)
@@ -152,7 +151,7 @@ namespace JetBrains.Omea.GUIControls
     	}
 
         private delegate IResource FindOrCreateEmailAccountDelegate(string email);
-        
+
         #endregion Save
 
         public override bool OwnsProperty( int propId )
@@ -161,8 +160,8 @@ namespace JetBrains.Omea.GUIControls
         }
 
         #region Component Designer generated code
-        /// <summary> 
-        /// Required method for Designer support - do not modify 
+        /// <summary>
+        /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
@@ -177,11 +176,11 @@ namespace JetBrains.Omea.GUIControls
             this._removeButton = new System.Windows.Forms.Button();
             this._setDefaultButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
+            //
             // _emailsList
-            // 
-            this._emailsList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-                | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._emailsList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._emailsList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] { this.columnHeader1,
                                                                                         this.columnHeader2});
@@ -203,31 +202,31 @@ namespace JetBrains.Omea.GUIControls
             this._emailsList.AfterLabelEdit += new System.Windows.Forms.LabelEditEventHandler(this._emailsList_AfterLabelEdit);
             this._emailsList.BeforeLabelEdit += new System.Windows.Forms.LabelEditEventHandler(this._emailsList_BeforeLabelEdit);
             this._emailsList.SelectedIndexChanged += new System.EventHandler(this._emailsList_SelectedIndexChanged);
-            // 
+            //
             // columnHeader1
-            // 
+            //
             this.columnHeader1.Text = "Address";
             this.columnHeader1.Width = 100;
-            // 
+            //
             // columnHeader1
-            // 
+            //
             this.columnHeader2.Text = "Default";
             this.columnHeader2.Width = 60;
-            // 
+            //
             // _emailListcontextMenu
-            // 
+            //
             this._emailListcontextMenu.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
                                                                                                   this._copyMenuItem});
             this._emailListcontextMenu.Popup += new System.EventHandler(this._emailListcontextMenu_Popup);
-            // 
+            //
             // _copyMenuItem
-            // 
+            //
             this._copyMenuItem.Index = 0;
             this._copyMenuItem.Text = "Copy";
             this._copyMenuItem.Click += new System.EventHandler(this._copyMenuItem_Click);
-            // 
+            //
             // _lblNoEmail
-            // 
+            //
             this._lblNoEmail.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._lblNoEmail.ForeColor = System.Drawing.SystemColors.GrayText;
             this._lblNoEmail.Location = new System.Drawing.Point(108, 4);
@@ -236,9 +235,9 @@ namespace JetBrains.Omea.GUIControls
             this._lblNoEmail.TabIndex = 2;
             this._lblNoEmail.Text = "Not specified";
             this._lblNoEmail.Visible = false;
-            // 
+            //
             // _addButton
-            // 
+            //
             this._addButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this._addButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._addButton.Location = new System.Drawing.Point(196, 0);
@@ -247,9 +246,9 @@ namespace JetBrains.Omea.GUIControls
             this._addButton.TabIndex = 3;
             this._addButton.Text = "&Add...";
             this._addButton.Click += new System.EventHandler(this._addMenuItem_Click);
-            // 
+            //
             // _removeButton
-            // 
+            //
             this._removeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this._removeButton.Enabled = false;
             this._removeButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -259,9 +258,9 @@ namespace JetBrains.Omea.GUIControls
             this._removeButton.TabIndex = 4;
             this._removeButton.Text = "&Remove";
             this._removeButton.Click += new System.EventHandler(this._removeButton_Click);
-            // 
+            //
             // _setDefaultButton
-            // 
+            //
             this._setDefaultButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this._setDefaultButton.Enabled = false;
             this._setDefaultButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -271,9 +270,9 @@ namespace JetBrains.Omea.GUIControls
             this._setDefaultButton.TabIndex = 5;
             this._setDefaultButton.Text = "Set &Default";
             this._setDefaultButton.Click += new System.EventHandler(this._defaultMenuItem_Click);
-            // 
+            //
             // EmailBlock
-            // 
+            //
             this.Controls.Add(this._setDefaultButton);
             this.Controls.Add(this._removeButton);
             this.Controls.Add(this._addButton);

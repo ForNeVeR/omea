@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 // JetBrains Omea Mshtml Browser Component
 //
@@ -156,7 +155,7 @@ STDMETHODIMP CMshtmlBrowser::get_AmbientDlControl( LONG *pVal )
 				if( (bool)vtRet )
 					*pVal |= DLCTL_FORCEOFFLINE;	// Set this flag on
 			}
-			COM_CATCH();			
+			COM_CATCH();
 		}
 		COM_CATCH();
 	}
@@ -303,7 +302,7 @@ STDMETHODIMP CMshtmlBrowser::TranslateAccelerator(MSG *pMsg)
 			return S_OK;
 
 
-		/*if( (m_oBrowser != NULL) && 
+		/*if( (m_oBrowser != NULL) &&
 			(((pMsg->message >= WM_KEYFIRST) && (pMsg->message <= WM_KEYLAST)) ||
 			((pMsg->message >= WM_MOUSEFIRST) && (pMsg->message <= WM_MOUSELAST))) )*/
 			if(((IOleInPlaceActiveObjectPtr)m_oBrowser)->TranslateAccelerator(pMsg) == S_OK)	// Check if the message has been processed by the control
@@ -318,7 +317,7 @@ STDMETHODIMP CMshtmlBrowser::TranslateAccelerator(MSG *pMsg)
 
 	// Delegate processing to the parent
 	return IOleInPlaceActiveObjectImpl<CMshtmlBrowser>::TranslateAccelerator(pMsg);
-} 
+}
 
 STDMETHODIMP CMshtmlBrowser::DoVerb( LONG iVerb, /* Value representing verb to be performed */ LPMSG lpmsg, /* Pointer to structure that describes Windows */ /* message */ IOleClientSite *pActiveSite, /* Pointer to active client site */ LONG lindex, /* Reserved */ HWND hwndParent, /* Handle of window containing the object */ LPCRECT lprcPosRect /* Pointer to object's display rectangle */ )
 {
@@ -648,7 +647,7 @@ STDMETHODIMP CMshtmlBrowser::put_ParentCallback(IDispatch* newVal)
 {
 	if(newVal == NULL)
 		return E_POINTER;
-    
+
 	// Store for calling back upon requests
 	m_oParentCallback = newVal;
 

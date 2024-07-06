@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Windows.Forms;
@@ -32,7 +31,7 @@ namespace JetBrains.Omea.GUIControls
             // Required for Windows Form Designer support
             //
             InitializeComponent();
-            
+
             _mail = mail;
             _resourceTreeView.ThreeStateCheckboxes = true;
             _resourceTreeView.AfterThreeStateCheck += new JetBrains.UI.Components.CustomTreeView.ThreeStateCheckEventHandler(AfterThreeStateCheck);
@@ -58,7 +57,7 @@ namespace JetBrains.Omea.GUIControls
             foreach ( LinkUnpack linkNode in resourceUnpack.Links )
             {
                 int iconIndex = GetDefaultIcon( "ResourceType" );
-                TreeNode treeSubNode = 
+                TreeNode treeSubNode =
                     new TreeNode( linkNode.DisplayName, iconIndex, iconIndex );
                 treeSubNode.Tag = linkNode;
                 treeNode.Nodes.Add( treeSubNode );
@@ -119,9 +118,9 @@ namespace JetBrains.Omea.GUIControls
             this._btnSend = new System.Windows.Forms.Button();
             this._resourceTreeView = new JetBrains.UI.Components.CustomTreeView.CustomTreeView();
             this.SuspendLayout();
-            // 
+            //
             // _btnCancel
-            // 
+            //
             this._btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this._btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this._btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -130,9 +129,9 @@ namespace JetBrains.Omea.GUIControls
             this._btnCancel.Size = new System.Drawing.Size(75, 27);
             this._btnCancel.TabIndex = 7;
             this._btnCancel.Text = "Cancel";
-            // 
+            //
             // _btnSend
-            // 
+            //
             this._btnSend.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this._btnSend.DialogResult = System.Windows.Forms.DialogResult.OK;
             this._btnSend.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -141,11 +140,11 @@ namespace JetBrains.Omea.GUIControls
             this._btnSend.Size = new System.Drawing.Size(75, 27);
             this._btnSend.TabIndex = 6;
             this._btnSend.Text = "Receive";
-            // 
+            //
             // _resourceTreeView
-            // 
-            this._resourceTreeView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-                | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._resourceTreeView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._resourceTreeView.ImageIndex = -1;
             this._resourceTreeView.Location = new System.Drawing.Point(8, 8);
@@ -155,9 +154,9 @@ namespace JetBrains.Omea.GUIControls
             this._resourceTreeView.Size = new System.Drawing.Size(420, 288);
             this._resourceTreeView.TabIndex = 8;
             this._resourceTreeView.ThreeStateCheckboxes = false;
-            // 
+            //
             // ReceiveResourcesDialog
-            // 
+            //
             this.AcceptButton = this._btnSend;
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
             this.CancelButton = this._btnCancel;

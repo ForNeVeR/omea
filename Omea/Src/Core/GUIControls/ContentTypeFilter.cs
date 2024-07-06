@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using JetBrains.Omea.FiltersManagement;
@@ -63,7 +62,7 @@ namespace JetBrains.Omea.GUIControls
                 if( Core.FilterRegistry.IsVisibleInAllTabs( res ))
                     return true;
             }
-                
+
             //-----------------------------------------------------------------
             //  Content type for each ViewFolder is an aggregation of content
             //  types of all of its views. For other resources (e.g. views) their
@@ -85,7 +84,7 @@ namespace JetBrains.Omea.GUIControls
                     //  Flagged, Annotated) then the folder has to be seen everywhere.
                     foreach( IResource view in views )
                     {
-                        if( IsWorkspaceFit( view ) && 
+                        if( IsWorkspaceFit( view ) &&
                             Core.FilterRegistry.IsVisibleInAllTabs( view ) )
                         {
                             containsAllTypeViews = true;
@@ -182,7 +181,7 @@ namespace JetBrains.Omea.GUIControls
             {
                 for( int j=0; j<_resTypes.Length; j++ )
                 {
-                    if ( contentTypes [i] == _resTypes [j] ) 
+                    if ( contentTypes [i] == _resTypes [j] )
                         return true;
                 }
             }
@@ -199,7 +198,7 @@ namespace JetBrains.Omea.GUIControls
                 if( Core.ResourceStore.ResourceTypes.Exist( ct ) &&
                     Core.ResourceStore.ResourceTypes [ct].OwnerPluginLoaded )
                 {
-                    anyTypeNonExclusive = anyTypeNonExclusive || 
+                    anyTypeNonExclusive = anyTypeNonExclusive ||
                                          !Core.ResourceTreeManager.AreViewsExclusive( ct );
                 }
             }

@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -32,7 +31,7 @@ namespace JetBrains.Omea.RSSPlugin.SubscribeWizard
         private JetListViewColumn _nameColumn;
         private CheckBoxColumn _checkColumn;
 
-        /// <summary> 
+        /// <summary>
         /// Required designer variable.
         /// </summary>
         private Container components = null;
@@ -88,7 +87,7 @@ namespace JetBrains.Omea.RSSPlugin.SubscribeWizard
                                           set { _edtSearchQuery.Enabled = value; } }
         public void     ClearProgress() { _lblProgress.Text = _lblEngineNameInProgress.Text = string.Empty; }
 
-        /// <summary> 
+        /// <summary>
         /// Clean up any resources being used.
         /// </summary>
         protected override void Dispose( bool disposing )
@@ -104,8 +103,8 @@ namespace JetBrains.Omea.RSSPlugin.SubscribeWizard
         }
 
         #region Component Designer generated code
-        /// <summary> 
-        /// Required method for Designer support - do not modify 
+        /// <summary>
+        /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
@@ -121,19 +120,19 @@ namespace JetBrains.Omea.RSSPlugin.SubscribeWizard
             this._searchEngines = new JetListView();
             _chkSaveSelection = new CheckBox();
             this.SuspendLayout();
-            // 
+            //
             // label1
-            // 
+            //
             this.label1.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label1.Location = new System.Drawing.Point(12, 24);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(372, 17);
             this.label1.TabIndex = 1;
             this.label1.Text = "Enter search keywords:";
-            // 
+            //
             // _edtSearchQuery
-            // 
-            this._edtSearchQuery.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._edtSearchQuery.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._edtSearchQuery.Location = new System.Drawing.Point(12, 44);
             this._edtSearchQuery.Name = "_edtSearchQuery";
@@ -144,9 +143,9 @@ namespace JetBrains.Omea.RSSPlugin.SubscribeWizard
             this._edtSearchQuery.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this._edtURL_KeyPress);
             this._edtSearchQuery.TextChanged += new EventHandler(StateChanged);
             this._edtSearchQuery.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top;
-            // 
+            //
             // _lblError
-            // 
+            //
             this._lblError.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._lblError.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(204)));
             this._lblError.Location = new System.Drawing.Point(12, 252);
@@ -155,18 +154,18 @@ namespace JetBrains.Omea.RSSPlugin.SubscribeWizard
             this._lblError.TabIndex = 5;
             this._lblError.Text = "label3";
             this._lblError.Visible = false;
-            // 
+            //
             // labelTitle
-            // 
+            //
             this._lblTitle.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._lblTitle.Location = new System.Drawing.Point(12, 76);
             this._lblTitle.Name = "_lblTitle";
             this._lblTitle.Size = new System.Drawing.Size(372, 17);
             this._lblTitle.TabIndex = 3;
             this._lblTitle.Text = "Choose Search Engine:";
-            // 
+            //
             // _searchEngines
-            // 
+            //
             this._searchEngines.Location = new System.Drawing.Point(12, 96);
             this._searchEngines.Name = "_searchEngines";
             this._searchEngines.Size = new System.Drawing.Size(260, 205);
@@ -174,9 +173,9 @@ namespace JetBrains.Omea.RSSPlugin.SubscribeWizard
             this._searchEngines.TabStop = false;
             this._searchEngines.Text = "Choose Search Engine";
             this._searchEngines.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Bottom | AnchorStyles.Top;
-            // 
+            //
             // btnSelAll
-            // 
+            //
             this.btnSelAll.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.btnSelAll.Location = new System.Drawing.Point(295, 96);
             this.btnSelAll.Text = "&Select All";
@@ -185,9 +184,9 @@ namespace JetBrains.Omea.RSSPlugin.SubscribeWizard
             this.btnSelAll.Click += new EventHandler(btnSelAll_Click);
             this.btnSelAll.TabIndex = 5;
             this.btnSelAll.Anchor = AnchorStyles.Right | AnchorStyles.Top;
-            // 
+            //
             // btnUnselAll
-            // 
+            //
             this.btnUnselAll.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.btnUnselAll.Location = new System.Drawing.Point(295, 126);
             this.btnUnselAll.Text = "&Unselect All";
@@ -196,9 +195,9 @@ namespace JetBrains.Omea.RSSPlugin.SubscribeWizard
             this.btnUnselAll.Click += new EventHandler(btnUnselAll_Click);
             this.btnUnselAll.TabIndex = 6;
             this.btnUnselAll.Anchor = AnchorStyles.Right | AnchorStyles.Top;
-            // 
+            //
             // _chkSaveSelection
-            // 
+            //
             _chkSaveSelection.FlatStyle = System.Windows.Forms.FlatStyle.System;
             _chkSaveSelection.Location = new System.Drawing.Point(12, _searchEngines.Bottom + 6);
             _chkSaveSelection.Text = "&Remember selection";
@@ -207,9 +206,9 @@ namespace JetBrains.Omea.RSSPlugin.SubscribeWizard
             _chkSaveSelection.TabIndex = 7;
             _chkSaveSelection.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Bottom;
             _chkSaveSelection.CheckedChanged += new EventHandler(_chkSaveSelection_CheckedChanged);
-            // 
+            //
             // _lblEngineNameInProgress
-            // 
+            //
             this._lblEngineNameInProgress.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._lblEngineNameInProgress.Location = new System.Drawing.Point(16, _searchEngines.Bottom + 32);
             this._lblEngineNameInProgress.Name = "_lblProgress";
@@ -217,18 +216,18 @@ namespace JetBrains.Omea.RSSPlugin.SubscribeWizard
             this._lblEngineNameInProgress.TabIndex = 8;
             this._lblEngineNameInProgress.Font = new Font( "Tahoma", 10.0f, FontStyle.Bold );
             this._lblEngineNameInProgress.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Bottom;
-            // 
+            //
             // _lblProgress
-            // 
+            //
             this._lblProgress.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._lblProgress.Location = new System.Drawing.Point(16, _searchEngines.Bottom + 52);
             this._lblProgress.Name = "_lblProgress";
             this._lblProgress.Size = new System.Drawing.Size(344, 48);
             this._lblProgress.TabIndex = 9;
             this._lblProgress.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Bottom;
-            // 
+            //
             // SearchEnginesPane
-            // 
+            //
             this.Controls.Add(this._searchEngines);
             this.Controls.Add(this._lblProgress);
             this.Controls.Add(this._lblEngineNameInProgress);

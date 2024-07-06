@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 //	WebHelp 5.10.002
 var gaChunks=new Array();
@@ -262,7 +261,7 @@ function indexHTMLPart()
 			this.sHTML+=sHTML;
 		else
 			this.sHTML=sHTML+this.sHTML;
-		this.nCurrent++;			
+		this.nCurrent++;
 		this.nConsumed+=nConsumed;
 		if(bK)
 		{
@@ -286,15 +285,15 @@ function indexHTMLPart()
 			this.sLK=oHTML.sLK;
 		else
 			this.sFK=oHTML.sFK;
-	}	
-	
+	}
+
 	this.addSubHTML=function(oHTML,bDown){
 		if(bDown)
 			this.sHTML+=oHTML.sHTML;
 		else
 			this.sHTML=oHTML.sHTML+this.sHTML;
 		this.nCurrent+=oHTML.nCurrent;
-		this.nConsumed+=oHTML.nConsumed;			
+		this.nConsumed+=oHTML.nConsumed;
 	}
 }
 
@@ -310,7 +309,7 @@ function getFakeItemsHTMLbyCount(nB,nCount)
 	var sHTML="";
 	for(var i=0;i<nNum;i++)
 		sHTML+=getFakeItemHTML(nB,nMU-1);
-		
+
 	var nRest=nCount%nMU;
 	sHTML+=getFakeItemHTML(nB,nRest-1);
 	return sHTML;
@@ -456,13 +455,13 @@ function checkReady()
 	{
 		gnNum=0;
 		gsSKA=gsSKB=gsShowK=null;
-		
+
 		var oHTML=new indexHTMLPart();
 		var aPos=new Array();
 		var aOriPos=new Array();
 		var aMaxPos=new Array();
 		var aMinPos=new Array();
-		
+
 		if(gbNeedCalc||gbFindCK) gnIns=0;
 		for(i=0;i<aDataCon.length;i++)
 		{
@@ -505,7 +504,7 @@ function checkReady()
 					nB=gnIns-oHTML.nConsumed+1;
 				else
 					nB=gnIns;
-					
+
 				var oldScrollPos=document.body.scrollTop;
 				if(insertIdxKs(nB,oHTML,gbScrl))
 				{
@@ -631,7 +630,7 @@ function getIdxPos(oIdx,bDown,sK)
 	if(aKs!=null)
 	{
 		for(var i=0;i<aKs.length;i++)
-		{	
+		{
 			if(bDown)
 			{
 				if(compare(aKs[i].sName,sK)>0)
@@ -654,7 +653,7 @@ function getIdxPos(oIdx,bDown,sK)
 	{
 		var aKsOnly=oIdx.aKsOnly;
 		for(var i=0;i<aKsOnly.length;i++)
-		{	
+		{
 			if(aKsOnly[i])
 			{
 				if(bDown)
@@ -733,7 +732,7 @@ function writeItems(oHTML,aDataCon,aPos,aMinPos,aMaxPos,bDown,nLevel)
 			}
 			mergeItems(oHTML,bDown,aDataCon,aCurIdxSet,p,aPos,nLevel);
 			adjustPosition(bDown,aDataCon,aCurIdxSet,p,aPos);
-			
+
 			if(nLevel==1&&oHTML.nNeeded<=oHTML.nCurrent){
 				return true;
 			}
@@ -766,7 +765,7 @@ function updateUsedK(aDataCon,aOriPos,aOldPos,bDown)
 			if(nBP<=nEP)
 			{
 				setContentsUsed(aDataCon[i],nBP,nEP);
-				
+
 				var oFirstPair=aDataCon[i].oUsedItems;
 				if(oFirstPair.oN==null&&oFirstPair.nB==0&&oFirstPair.nE==aDataCon[i].nNum-1)
 				{
@@ -870,7 +869,7 @@ function getH6ById(nPos)
 		return document.all("fk"+nPos);
 	else if(document.getElementsByName)
 		return document.getElementsByName("fk"+nPos);
-	return null;		
+	return null;
 }
 
 function showItemsInEvaluation(nBP)
@@ -934,7 +933,7 @@ function getKByIdx(oCData,nB)
 		var oK=null;
 		do{
 			oK=aIKs[nRelPos++];
-		}	
+		}
 		while((oK.nType==3||isUsed(oCData,nRelPos-1))&&nRelPos<aIKs.length);
 		if(oK.nType!=3)
 		{
@@ -1022,7 +1021,7 @@ function getUnitIdx(nScrl,nHeight)
 		nM=(nB+nE)>>1;
 		nBtm=gaFakes[nM].getBtm();
 		nTop=gaFakes[nM].getTop();
-			
+
 		if(nTop>=nScrl+nHeight)
 			nE=nM-1;
 		else if(nBtm<nScrl)
@@ -1117,7 +1116,7 @@ function insertIdxKs(nIns,oHTML,bScrl)
 				var obj=getH6ById(nIns);
 				insertItemIntoArray(gaFakes,nM+1,new fakeItemsArea(nIns+nCount,nTDiff,oHTML.sLK,sOldKBefore,obj));
 			}
-			oFIA.insertAdjacentHTML("afterEnd",oHTML.sHTML);	
+			oFIA.insertAdjacentHTML("afterEnd",oHTML.sHTML);
 			if(bScrl)
 			{
 				if(gbMac&&gbIE4)
@@ -1142,13 +1141,13 @@ function insertIdxKs(nIns,oHTML,bScrl)
 				else
 					window.scrollTo(0,nOffsetTop);
 			}
-					
+
 			if(nTDiff>0)
 			{
 				oFIA.nB=nIns+nCount;
 				nDelta=oFIA.setNum(nTDiff);
 				oFIA.sKA=oHTML.sLK;
-			}	
+			}
 			else{
 				gaFakes[nM].setNum(0);
 				removeItemFromArray(gaFakes,nM);
@@ -1164,7 +1163,7 @@ function insertIdxKs(nIns,oHTML,bScrl)
 function window_OnScroll()
 {
 	gnSE++;
-	setTimeout("procScroll();",50);	
+	setTimeout("procScroll();",50);
 }
 
 function procScroll()

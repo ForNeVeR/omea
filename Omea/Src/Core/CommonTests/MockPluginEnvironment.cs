@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Drawing;
@@ -37,7 +36,7 @@ namespace CommonTests
     {
         public void RegisterResourceTypeTab( string tabID, string tabName, string resType, int order ) { }
         public void RegisterResourceTypeTab( string tabID, string tabName, string[] resTypes, int order ) { }
-        public void RegisterResourceTypeTab( string tabID, string tabName, string[] resTypes, int linkPropID, 
+        public void RegisterResourceTypeTab( string tabID, string tabName, string[] resTypes, int linkPropID,
             int order ) { }
 
         public void SetDefaultSelectedResource( string tabName, IResource res ) { }
@@ -228,7 +227,7 @@ namespace CommonTests
         {
             return method.DynamicInvoke( args );
         }
-    
+
         public object RunJob( string name, Delegate method, params object[] args )
         {
             return method.DynamicInvoke( args );
@@ -253,14 +252,14 @@ namespace CommonTests
 
     	public void RunUniqueJob( AbstractJob uow )
         {
-            
+
         }
 
         public object RunUniqueJob( Delegate method, params object[] args )
         {
             return method.DynamicInvoke( args );
         }
-        
+
         public object RunUniqueJob( string name, Delegate method, params object[] args )
         {
             return method.DynamicInvoke( args );
@@ -457,8 +456,8 @@ namespace CommonTests
         {
             _resourceAP.FireJobFinished();
         }
-        public override IProtocolHandlerManager ProtocolHandlerManager 
-        { 
+        public override IProtocolHandlerManager ProtocolHandlerManager
+        {
             get { return null; }
         }
 
@@ -482,10 +481,10 @@ namespace CommonTests
         public override IExpirationRuleManager  ExpirationRuleManager{ get { return _expirationRuleManager; } }
         public override IFilteringFormsManager  FilteringFormsManager{ get { return _filteringFormsManager; } }
         public override ISearchQueryExtensions  SearchQueryExtensions{ get { return _searchQueryExtensions; } }
-        
+
         public override ISidebarSwitcher    LeftSidebar
         {
-            get 
+            get
             {
                 if ( _leftSidebar == null )
                 {
@@ -503,12 +502,12 @@ namespace CommonTests
         public override IFilterEngine       FilterEngine    { get{ return _filterEngine; } }
         public override AbstractWebBrowser   WebBrowser     { get{ return null; } }
         public override IWin32Window        MainWindow      { get{ return null; } }
-        
+
         public override IUnreadManager      UnreadManager
         {
             get{ return (IUnreadManager) _picoContainer.GetComponentInstanceOfType( typeof(IUnreadManager) ); }
-        } 
-        
+        }
+
         public override SizeF               ScaleFactor     { get { return new SizeF( 1.0f, 1.0f ); } }
         public override int                 IdlePeriod { get { return 0; } set { } }
         public override bool                IsSystemIdle { get { return false; } }
@@ -519,7 +518,7 @@ namespace CommonTests
         {
             get { return (IWorkspaceManager) _picoContainer.GetComponentInstanceOfType( typeof(IWorkspaceManager) ); }
         }
-        
+
         public override ICategoryManager    CategoryManager
         {
             get { return (ICategoryManager) _picoContainer.GetComponentInstanceOfType( typeof(ICategoryManager) ); }
@@ -580,7 +579,7 @@ namespace CommonTests
 		{
 			get { return _rcManager; }
 		}
-		
+
 		internal void SetRCManager( IRemoteControlManager rcManager )
 		{
 			_rcManager = rcManager;

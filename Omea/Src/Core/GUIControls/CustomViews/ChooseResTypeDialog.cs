@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -67,7 +66,7 @@ namespace JetBrains.Omea.GUIControls
             }
             else
             {
-                _listFileTypes.Visible = _listLinkTypes.Visible = 
+                _listFileTypes.Visible = _listLinkTypes.Visible =
                 label1.Visible = label2.Visible = false;
                 Size = new Size( Size.Width / 2 + 10, Size.Height );
                 _listResourceTypes.Size = new Size( Size.Width - 12, _listResourceTypes.Size.Height );
@@ -173,11 +172,11 @@ namespace JetBrains.Omea.GUIControls
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.buttonHelp = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
+            //
             // _listResourceTypes
-            // 
+            //
             this._listResourceTypes.AllowColumnReorder = false;
-            this._listResourceTypes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this._listResourceTypes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                 | System.Windows.Forms.AnchorStyles.Left)));
             this._listResourceTypes.BackColor = System.Drawing.SystemColors.Window;
             this._listResourceTypes.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
@@ -192,9 +191,9 @@ namespace JetBrains.Omea.GUIControls
             this._listResourceTypes.RowDelimiters = false;
             this._listResourceTypes.Size = new System.Drawing.Size(188, 276);
             this._listResourceTypes.TabIndex = 2;
-            // 
+            //
             // okButton
-            // 
+            //
             this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.okButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.okButton.Location = new System.Drawing.Point(160, 320);
@@ -203,9 +202,9 @@ namespace JetBrains.Omea.GUIControls
             this.okButton.TabIndex = 7;
             this.okButton.Text = "OK";
             this.okButton.Click += new System.EventHandler(this.okButton_Click);
-            // 
+            //
             // cancelButton
-            // 
+            //
             this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.cancelButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -214,18 +213,18 @@ namespace JetBrains.Omea.GUIControls
             this.cancelButton.Size = new System.Drawing.Size(72, 24);
             this.cancelButton.TabIndex = 8;
             this.cancelButton.Text = "Cancel";
-            // 
+            //
             // label1
-            // 
+            //
             this.label1.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label1.Location = new System.Drawing.Point(196, 168);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(100, 16);
             this.label1.TabIndex = 5;
             this.label1.Text = "Matching File Types:";
-            // 
+            //
             // _listFileTypes
-            // 
+            //
             this._listFileTypes.AllowColumnReorder = false;
             this._listFileTypes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this._listFileTypes.BackColor = System.Drawing.SystemColors.Window;
@@ -241,9 +240,9 @@ namespace JetBrains.Omea.GUIControls
             this._listFileTypes.RowDelimiters = false;
             this._listFileTypes.Size = new System.Drawing.Size(208, 124);
             this._listFileTypes.TabIndex = 6;
-            // 
+            //
             // checkAllResourceTypes
-            // 
+            //
             this.checkAllResourceTypes.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.checkAllResourceTypes.Location = new System.Drawing.Point(4, 8);
             this.checkAllResourceTypes.Name = "checkAllResourceTypes";
@@ -251,9 +250,9 @@ namespace JetBrains.Omea.GUIControls
             this.checkAllResourceTypes.TabIndex = 1;
             this.checkAllResourceTypes.Text = "All Resource Types";
             this.checkAllResourceTypes.CheckedChanged += new System.EventHandler(this.checkAllResourceTypes_CheckedChanged);
-            // 
+            //
             // _listLinkTypes
-            // 
+            //
             this._listLinkTypes.AllowColumnReorder = false;
             this._listLinkTypes.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this._listLinkTypes.BackColor = System.Drawing.SystemColors.Window;
@@ -269,19 +268,19 @@ namespace JetBrains.Omea.GUIControls
             this._listLinkTypes.RowDelimiters = false;
             this._listLinkTypes.Size = new System.Drawing.Size(208, 100);
             this._listLinkTypes.TabIndex = 4;
-            // 
+            //
             // label2
-            // 
+            //
             this.label2.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label2.Location = new System.Drawing.Point(196, 40);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(136, 16);
             this.label2.TabIndex = 3;
             this.label2.Text = "Resources Containing Files:";
-            // 
+            //
             // groupBox1
-            // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Location = new System.Drawing.Point(4, 28);
             this.groupBox1.Name = "groupBox1";
@@ -289,9 +288,9 @@ namespace JetBrains.Omea.GUIControls
             this.groupBox1.TabIndex = 9;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "groupBox1";
-            // 
+            //
             // buttonHelp
-            // 
+            //
             this.buttonHelp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonHelp.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.buttonHelp.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -301,9 +300,9 @@ namespace JetBrains.Omea.GUIControls
             this.buttonHelp.TabIndex = 8;
             this.buttonHelp.Text = "Help";
             this.buttonHelp.Click += new System.EventHandler(this.buttonHelp_Click);
-            // 
+            //
             // ChooseResTypeDialog
-            // 
+            //
             this.AcceptButton = this.okButton;
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
             this.CancelButton = this.cancelButton;
@@ -416,7 +415,7 @@ namespace JetBrains.Omea.GUIControls
         //---------------------------------------------------------------------
         private bool IsValidChecksCombination()
         {
-            return( checkAllResourceTypes.Checked || 
+            return( checkAllResourceTypes.Checked ||
                     AnyItemChecked( checkMajorTypes ) && !AnyItemChecked( checkLinkTypes ) ||
                     AnyItemChecked( checkLinkTypes ) && AnyItemChecked( checkFileTypes ) );
         }
@@ -563,7 +562,7 @@ namespace JetBrains.Omea.GUIControls
             //     with nonempty name.
             //  3. If there is restriction on the particular res types, then only
             //     those res types are allowed.
-            return  rt.OwnerPluginLoaded && 
+            return  rt.OwnerPluginLoaded &&
                    (( !rt.HasFlag( checkFlag ) && ( rt.DisplayName != null ) && (validNames.Count == 0)) ||
                    ( validNames.IndexOf( rt.Name ) != -1 ));
         }
@@ -572,7 +571,7 @@ namespace JetBrains.Omea.GUIControls
         {
             if( e.NewState == CheckBoxState.Checked )
             {
-                if( AllItemsChecked( checkMajorTypes ) && 
+                if( AllItemsChecked( checkMajorTypes ) &&
                     AllItemsChecked( checkLinkTypes ) && AllItemsChecked( checkFileTypes ) )
                 {
                     checkAllResourceTypes.Checked = true;
@@ -589,7 +588,7 @@ namespace JetBrains.Omea.GUIControls
         {
             if( e.NewState == CheckBoxState.Checked )
             {
-                if( AllItemsChecked( checkLinkTypes ) && 
+                if( AllItemsChecked( checkLinkTypes ) &&
                     AllItemsChecked( checkMajorTypes ) && AllItemsChecked( checkFileTypes ) )
                 {
                     checkAllResourceTypes.Checked = true;
@@ -605,7 +604,7 @@ namespace JetBrains.Omea.GUIControls
 
         private void listFileTypes_ItemCheck( object sender, CheckBoxEventArgs e )
         {
-            if( AllItemsChecked( checkFileTypes ) && 
+            if( AllItemsChecked( checkFileTypes ) &&
                 AllItemsChecked( checkMajorTypes ) && AllItemsChecked( checkLinkTypes ) )
             {
                 checkAllResourceTypes.Checked = true;

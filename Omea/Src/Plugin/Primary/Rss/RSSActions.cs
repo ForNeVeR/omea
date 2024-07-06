@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -43,7 +42,7 @@ namespace JetBrains.Omea.RSSPlugin
             else
             if ( context.SelectedResources.Count > 1 || !context.SelectedResources.AllResourcesOfType( Props.RSSFeedGroupResource ) )
             {
-                
+
                 presentation.Visible = false;
             }
         }
@@ -74,7 +73,7 @@ namespace JetBrains.Omea.RSSPlugin
             importers.Add( "OPML Files", importer );
             importManager.SelectImporter( "OPML Files", true );
             wizard.RegisterPane( 0, new OptionsPaneWizardAdapter( "Import OPML Files", importer.GetSettingsPaneCreator() ) );
-                
+
             // Ready!
             if( DialogResult.OK == wizard.ShowDialog( context.OwnerForm ) )
             {
@@ -309,7 +308,7 @@ namespace JetBrains.Omea.RSSPlugin
             }
 
             DialogResult dr = MessageBox.Show( Core.MainWindow, msg, title, MessageBoxButtons.YesNo, MessageBoxIcon.Question );
-                
+
             if ( dr == DialogResult.Yes )
             {
                 Core.ResourceAP.QueueJob( JobPriority.Immediate,
@@ -544,7 +543,7 @@ namespace JetBrains.Omea.RSSPlugin
             presentation.Enabled = Utils.IsNetworkConnected();
             if( !presentation.Enabled )
                 presentation.ToolTip = RSSPlugin._NetworkUnavailable;
-			return;	
+			return;
 		}
 	}
 
@@ -646,7 +645,7 @@ namespace JetBrains.Omea.RSSPlugin
 
         public override void Update( IActionContext context, ref ActionPresentation presentation )
         {
-            if( context.SelectedResources.Count != 1 || 
+            if( context.SelectedResources.Count != 1 ||
                 context.SelectedResources[ 0 ].Type != Props.RSSFeedResource )
             {
                 base.Update( context, ref presentation );
@@ -672,7 +671,7 @@ namespace JetBrains.Omea.RSSPlugin
                 }
             }
         }
-        
+
         public void Update( IActionContext context, ref ActionPresentation presentation )
         {
             presentation.Visible = (context.SelectedResources.Count > 0);
@@ -700,7 +699,7 @@ namespace JetBrains.Omea.RSSPlugin
                 IResource firstItem = context.SelectedResources[ 0 ];
                 string subject = firstItem.GetPropText( Core.Props.Subject );
                 StringBuilder html = StringBuilderPool.Alloc();
-                try 
+                try
                 {
                     foreach ( IResource selItem in context.SelectedResources )
                     {
@@ -750,7 +749,7 @@ namespace JetBrains.Omea.RSSPlugin
             bool val = Core.SettingStore.ReadBool( IniKeys.Section, IniKeys.FilterUnreadFeeds, false );
             Core.SettingStore.WriteBool( IniKeys.Section, IniKeys.FilterUnreadFeeds, !val );
             RSSPlugin.UpdateUnreadPaneFilter( !val );
-        }        
+        }
         public void Update( IActionContext context, ref ActionPresentation presentation )
         {
             presentation.Visible = (context.Kind == ActionContextKind.MainMenu);
@@ -765,7 +764,7 @@ namespace JetBrains.Omea.RSSPlugin
             bool val = Core.SettingStore.ReadBool( IniKeys.Section, IniKeys.FilterErrorFeeds, false );
             Core.SettingStore.WriteBool( IniKeys.Section, IniKeys.FilterErrorFeeds, !val );
             RSSPlugin.UpdateErrorPaneFilter( !val );
-        }        
+        }
         public void Update( IActionContext context, ref ActionPresentation presentation )
         {
             presentation.Visible = (context.Kind == ActionContextKind.MainMenu);
@@ -780,7 +779,7 @@ namespace JetBrains.Omea.RSSPlugin
             bool val = Core.SettingStore.ReadBool( IniKeys.Section, IniKeys.ShowPlaneList, false );
             Core.SettingStore.WriteBool( IniKeys.Section, IniKeys.ShowPlaneList, !val );
             RSSPlugin.UpdateSortFilter( !val );
-        } 
+        }
 
         public void Update( IActionContext context, ref ActionPresentation presentation )
         {
@@ -870,7 +869,7 @@ namespace JetBrains.Omea.RSSPlugin
                         rldo.SetTransientContainer( parentFeed, "Feeds" );
                         rldo.Caption = "Comments to '" + rssItem.DisplayName + "'";
                         rldo.ShowNewspaper = true;
-                        Core.ResourceBrowser.DisplayResourceList( null, 
+                        Core.ResourceBrowser.DisplayResourceList( null,
                                                                   commentFeed.GetLinksOfType( "RSSItem", Props.RSSItem ), rldo );
                     }
                 }
@@ -1258,7 +1257,7 @@ namespace JetBrains.Omea.RSSPlugin
     {
         public override void Execute( IActionContext context )
         {
-            IResource template = Core.ResourceStore.FindUniqueResource( FilterManagerProps.ConditionTemplateResName, 
+            IResource template = Core.ResourceStore.FindUniqueResource( FilterManagerProps.ConditionTemplateResName,
                                                                         Core.Props.Name, "Post is in %feed%" );
             IResource condition = FilterConvertors.InstantiateTemplate( template, context.SelectedResources, new string[]{ "RSSItem" } );
             Core.FilteringFormsManager.ShowAdvancedSearchForm( "", new string[]{ "RSSItem" }, new IResource[] { condition }, null );
@@ -1395,14 +1394,14 @@ namespace JetBrains.Omea.RSSPlugin
                         service.ScheduleFeedUpdate( res );
                     }
                     IResource temp = res;
-                    do 
+                    do
                     {
                         temp.DeleteProp( Props.IsPaused );
                         temp = temp.GetLinkProp( Core.Props.Parent );
                     }
                     while( temp != null );
                 }
-                else 
+                else
                 {
                     res.SetProp( Props.IsPaused, true );
                 }

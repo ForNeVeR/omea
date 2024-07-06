@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Diagnostics;
@@ -51,7 +50,7 @@ namespace JetBrains.Omea
             [DebuggerStepThrough] get { return MyPalStorage.Storage; }
         }
         public override IProtocolHandlerManager ProtocolHandlerManager
-        { 
+        {
             get { return _protocolHandlerManager; }
         }
         internal void SetProtocolHandlerManager( IProtocolHandlerManager protocolHandlerManager )
@@ -143,12 +142,12 @@ namespace JetBrains.Omea
 
         public override string ProductFullName
         {
-            get 
-            { 
-#if READER                
-                return "Omea Reader"; 
+            get
+            {
+#if READER
+                return "Omea Reader";
 #else
-                return "Omea Pro"; 
+                return "Omea Pro";
 #endif
             }
         }
@@ -157,7 +156,7 @@ namespace JetBrains.Omea
         {
             get { return _versionProduct; }
         }
-        
+
         public override string ProductReleaseVersion
         {
             get { return null; }
@@ -181,7 +180,7 @@ namespace JetBrains.Omea
 
         public override int IdlePeriod
         {
-            get 
+            get
             {
                 if( _idlePeriod <= 0 )
                 {
@@ -276,7 +275,7 @@ namespace JetBrains.Omea
                 Core.UserInterfaceAP.QueueJob(
                     JobPriority.Lowest, new MethodInvoker( RestartApplication ) );
             }
-            else 
+            else
             {
                 MainFrame._restartFlag = true;
                 _mainWindow.Close();

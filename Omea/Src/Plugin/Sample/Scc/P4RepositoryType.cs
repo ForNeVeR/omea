@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections.Generic;
@@ -18,7 +17,7 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
 	{
         private readonly Dictionary<string, string> _contactNameCache = new Dictionary<string, string>();
         private readonly Dictionary<string, string> _contactEmailCache = new Dictionary<string, string>();
-        
+
 	    public override string Id
 	    {
 	        get { return "P4"; }
@@ -105,7 +104,7 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
 
                 // Execute rules for the new changeset
                 Core.FilterEngine.ExecRules( StandardEvents.ResourceReceived, proxy.Resource );
-                
+
                 // Request text indexing of the changeset
                 Core.TextIndexManager.QueryIndexing( proxy.Resource.Id );
 
@@ -163,7 +162,7 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
                 // the changeset may have been deleted when it was detected to belong to an ignored path
                 return;
             }
-            
+
             // avoid duplicate fetching of changeset description
             if ( changeSet.HasProp( Props.Change ) )
             {
@@ -171,7 +170,7 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
             }
 
             SccPlugin.StatusWriter.ShowStatus( "Fetching details for changeset " + changeSetNumber + "..." );
-            
+
             ChangeSetDetails details;
             try
             {
@@ -193,7 +192,7 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
             }
 
             Core.ResourceAP.QueueJob( "Saving changeset", () => SaveChangeSet(repository, changeSet, details ));
-            
+
             SccPlugin.StatusWriter.ClearStatus();
         }
 
@@ -238,7 +237,7 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
 	    {
 	        if ( !changeset.HasProp( Props.Change ) )
 	        {
-	            Core.NetworkAP.QueueJob( JobPriority.Immediate, 
+	            Core.NetworkAP.QueueJob( JobPriority.Immediate,
                     "Describing Perforce changeset",
                     () => DescribeChangeSets( repository, changeset.ToResourceList(), 0 ) );
 	        }
@@ -257,7 +256,7 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
             {
                 return false;
             }
-            
+
             foreach( FileChangeData fileChange in details.FileChanges )
             {
                 string fileChangePath = fileChange.Path.ToLower();
@@ -300,7 +299,7 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
                 {
                     SetLastError( repository, ex );
                 }
-                    
+
                 _contactEmailCache [cacheKey] = email;
                 _contactNameCache [cacheKey] = fullName;
             }
@@ -321,7 +320,7 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
             {
                 url += "/";
             }
-            
+
             IResource changeSet = fileChange.Resource.GetReverseLinkProp( Props.Change );
             string fileName = "/" + BuildPath( fileChange.GetProp( Props.AffectsFolder ) ) + "/" +
                               fileChange.Name;

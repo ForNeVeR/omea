@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.ComponentModel;
@@ -101,19 +100,19 @@ namespace JetBrains.Omea.SamplePlugins.Siam
 			this._txtPassword = new System.Windows.Forms.TextBox();
 			((System.ComponentModel.ISupportInitialize)(this._spinMonitoredItems)).BeginInit();
 			this.SuspendLayout();
-			// 
+			//
 			// _label1
-			// 
+			//
 			this._label1.Location = new System.Drawing.Point(40, 216);
 			this._label1.Name = "_label1";
 			this._label1.Size = new System.Drawing.Size(160, 24);
 			this._label1.TabIndex = 0;
 			this._label1.Text = "&Items to include per feed:";
 			this._label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			// 
+			//
 			// _spinMonitoredItems
-			// 
-			this._spinMonitoredItems.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			//
+			this._spinMonitoredItems.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
 				| System.Windows.Forms.AnchorStyles.Right)));
 			this._spinMonitoredItems.Location = new System.Drawing.Point(216, 216);
 			this._spinMonitoredItems.Maximum = new System.Decimal(new int[] {
@@ -135,190 +134,190 @@ namespace JetBrains.Omea.SamplePlugins.Siam
 																			  0,
 																			  0,
 																			  0});
-			// 
+			//
 			// _txtFileName
-			// 
-			this._txtFileName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			//
+			this._txtFileName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
 				| System.Windows.Forms.AnchorStyles.Right)));
 			this._txtFileName.Location = new System.Drawing.Point(216, 72);
 			this._txtFileName.Name = "_txtFileName";
 			this._txtFileName.Size = new System.Drawing.Size(128, 20);
 			this._txtFileName.TabIndex = 3;
 			this._txtFileName.Text = "";
-			// 
+			//
 			// _txtURL
-			// 
-			this._txtURL.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			//
+			this._txtURL.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
 				| System.Windows.Forms.AnchorStyles.Right)));
 			this._txtURL.Location = new System.Drawing.Point(216, 104);
 			this._txtURL.Name = "_txtURL";
 			this._txtURL.Size = new System.Drawing.Size(128, 20);
 			this._txtURL.TabIndex = 3;
 			this._txtURL.Text = "";
-			// 
+			//
 			// _radioSyncFile
-			// 
+			//
 			this._radioSyncFile.Location = new System.Drawing.Point(40, 72);
 			this._radioSyncFile.Name = "_radioSyncFile";
 			this._radioSyncFile.Size = new System.Drawing.Size(176, 24);
 			this._radioSyncFile.TabIndex = 4;
 			this._radioSyncFile.Text = "Synchronize with &File:";
 			this._radioSyncFile.CheckedChanged += new System.EventHandler(this.OnSyncSourceChanged);
-			// 
+			//
 			// _radioSyncHttp
-			// 
+			//
 			this._radioSyncHttp.Location = new System.Drawing.Point(40, 104);
 			this._radioSyncHttp.Name = "_radioSyncHttp";
 			this._radioSyncHttp.Size = new System.Drawing.Size(176, 24);
 			this._radioSyncHttp.TabIndex = 4;
 			this._radioSyncHttp.Text = "Synchronize via &HTTP, URL:";
 			this._radioSyncHttp.CheckedChanged += new System.EventHandler(this.OnSyncSourceChanged);
-			// 
+			//
 			// _radioSyncNone
-			// 
+			//
 			this._radioSyncNone.Location = new System.Drawing.Point(40, 40);
 			this._radioSyncNone.Name = "_radioSyncNone";
 			this._radioSyncNone.Size = new System.Drawing.Size(176, 24);
 			this._radioSyncNone.TabIndex = 4;
 			this._radioSyncNone.Text = "&Do not synchronize feeds";
 			this._radioSyncNone.CheckedChanged += new System.EventHandler(this.OnSyncSourceChanged);
-			// 
+			//
 			// _checkSyncOnStartup
-			// 
-			this._checkSyncOnStartup.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			//
+			this._checkSyncOnStartup.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
 				| System.Windows.Forms.AnchorStyles.Right)));
 			this._checkSyncOnStartup.Location = new System.Drawing.Point(40, 248);
 			this._checkSyncOnStartup.Name = "_checkSyncOnStartup";
 			this._checkSyncOnStartup.Size = new System.Drawing.Size(304, 24);
 			this._checkSyncOnStartup.TabIndex = 5;
 			this._checkSyncOnStartup.Text = "Automatically &synchronize-in on startup";
-			// 
+			//
 			// _checkSyncOnShutdown
-			// 
-			this._checkSyncOnShutdown.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			//
+			this._checkSyncOnShutdown.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
 				| System.Windows.Forms.AnchorStyles.Right)));
 			this._checkSyncOnShutdown.Location = new System.Drawing.Point(40, 280);
 			this._checkSyncOnShutdown.Name = "_checkSyncOnShutdown";
 			this._checkSyncOnShutdown.Size = new System.Drawing.Size(304, 24);
 			this._checkSyncOnShutdown.TabIndex = 5;
 			this._checkSyncOnShutdown.Text = "Automatically synchronize-out on shut&down";
-			// 
+			//
 			// label2
-			// 
+			//
 			this.label2.Location = new System.Drawing.Point(8, 8);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(48, 16);
 			this.label2.TabIndex = 7;
 			this.label2.Text = "General";
 			this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			// 
+			//
 			// groupBox1
-			// 
-			this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			//
+			this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
 				| System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox1.Location = new System.Drawing.Point(64, 16);
 			this.groupBox1.Name = "groupBox1";
 			this.groupBox1.Size = new System.Drawing.Size(288, 2);
 			this.groupBox1.TabIndex = 8;
 			this.groupBox1.TabStop = false;
-			// 
+			//
 			// _radioSyncFtp
-			// 
+			//
 			this._radioSyncFtp.Location = new System.Drawing.Point(40, 136);
 			this._radioSyncFtp.Name = "_radioSyncFtp";
 			this._radioSyncFtp.Size = new System.Drawing.Size(176, 24);
 			this._radioSyncFtp.TabIndex = 4;
 			this._radioSyncFtp.Text = "Synchronize via FT&P, URL:";
 			this._radioSyncFtp.CheckedChanged += new System.EventHandler(this.OnSyncSourceChanged);
-			// 
+			//
 			// _txtFtpUri
-			// 
-			this._txtFtpUri.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			//
+			this._txtFtpUri.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
 				| System.Windows.Forms.AnchorStyles.Right)));
 			this._txtFtpUri.Location = new System.Drawing.Point(216, 136);
 			this._txtFtpUri.Name = "_txtFtpUri";
 			this._txtFtpUri.Size = new System.Drawing.Size(128, 20);
 			this._txtFtpUri.TabIndex = 3;
 			this._txtFtpUri.Text = "";
-			// 
+			//
 			// groupBox2
-			// 
-			this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			//
+			this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
 				| System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox2.Location = new System.Drawing.Point(104, 192);
 			this.groupBox2.Name = "groupBox2";
 			this.groupBox2.Size = new System.Drawing.Size(248, 3);
 			this.groupBox2.TabIndex = 8;
 			this.groupBox2.TabStop = false;
-			// 
+			//
 			// label3
-			// 
+			//
 			this.label3.Location = new System.Drawing.Point(8, 184);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(88, 16);
 			this.label3.TabIndex = 7;
 			this.label3.Text = "Synchronization";
 			this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			// 
+			//
 			// groupBox3
-			// 
-			this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			//
+			this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
 				| System.Windows.Forms.AnchorStyles.Right)));
 			this.groupBox3.Location = new System.Drawing.Point(96, 336);
 			this.groupBox3.Name = "groupBox3";
 			this.groupBox3.Size = new System.Drawing.Size(256, 3);
 			this.groupBox3.TabIndex = 8;
 			this.groupBox3.TabStop = false;
-			// 
+			//
 			// label4
-			// 
+			//
 			this.label4.Location = new System.Drawing.Point(8, 328);
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(80, 16);
 			this.label4.TabIndex = 7;
 			this.label4.Text = "Authentication";
 			this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			// 
+			//
 			// label1
-			// 
+			//
 			this.label1.Location = new System.Drawing.Point(40, 360);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(160, 24);
 			this.label1.TabIndex = 0;
 			this.label1.Text = "&User name:";
 			this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			// 
+			//
 			// label5
-			// 
+			//
 			this.label5.Location = new System.Drawing.Point(40, 392);
 			this.label5.Name = "label5";
 			this.label5.Size = new System.Drawing.Size(160, 24);
 			this.label5.TabIndex = 0;
 			this.label5.Text = "&Password:";
 			this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			// 
+			//
 			// _txtUsername
-			// 
-			this._txtUsername.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			//
+			this._txtUsername.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
 				| System.Windows.Forms.AnchorStyles.Right)));
 			this._txtUsername.Location = new System.Drawing.Point(216, 360);
 			this._txtUsername.Name = "_txtUsername";
 			this._txtUsername.Size = new System.Drawing.Size(128, 20);
 			this._txtUsername.TabIndex = 3;
 			this._txtUsername.Text = "";
-			// 
+			//
 			// _txtPassword
-			// 
-			this._txtPassword.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			//
+			this._txtPassword.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
 				| System.Windows.Forms.AnchorStyles.Right)));
 			this._txtPassword.Location = new System.Drawing.Point(216, 384);
 			this._txtPassword.Name = "_txtPassword";
 			this._txtPassword.Size = new System.Drawing.Size(128, 20);
 			this._txtPassword.TabIndex = 3;
 			this._txtPassword.Text = "";
-			// 
+			//
 			// PrimaryOptionsPage
-			// 
+			//
 			this.AutoScroll = true;
 			this.AutoScrollMinSize = new System.Drawing.Size(360, 424);
 			this.Controls.Add(this.groupBox1);
@@ -434,6 +433,6 @@ namespace JetBrains.Omea.SamplePlugins.Siam
 			_txtFtpUri.Enabled = _txtUsername.Enabled = _txtPassword.Enabled = _radioSyncFtp.Checked;
 		}
 
-		
+
 	}
 }

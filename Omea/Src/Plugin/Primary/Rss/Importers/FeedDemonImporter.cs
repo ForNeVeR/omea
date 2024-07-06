@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -34,10 +33,10 @@ namespace JetBrains.Omea.RSSPlugin
             bool FeedDemonFound = true;
             string basePath = Environment.GetFolderPath( Environment.SpecialFolder.LocalApplicationData );
             string daemonPath = Path.Combine( basePath, @"Bradsoft.com\FeedDemon\1.0" );
-            
+
 		    _channelsPath = Path.Combine( daemonPath, "Channels" );
 		    _groupsPath = Path.Combine( daemonPath, "Groups" );
-            
+
             FeedDemonFound = Directory.Exists( _channelsPath ) && Directory.Exists( _groupsPath );
 
             if( ! FeedDemonFound )
@@ -72,7 +71,7 @@ namespace JetBrains.Omea.RSSPlugin
 	    public void DoImport( IResource importRoot, bool addToWorkspace )
 	    {
             RSSPlugin plugin = RSSPlugin.GetInstance();
-            
+
             importRoot = plugin.FindOrCreateGroup( "FeedDemon subscriptions", importRoot );
 
             // Count full count of resources
@@ -92,7 +91,7 @@ namespace JetBrains.Omea.RSSPlugin
                 {
                     Hashtable ns = new Hashtable();
                     Stream stream = new FileStream( file, FileMode.Open, FileAccess.Read );
-                    
+
                     // Fix bugs in OPML
                     ns[ "fd" ] = _fdNS;
                     OPMLProcessor.Import( new StreamReader(stream), group, addToWorkspace, ns );
@@ -120,7 +119,7 @@ namespace JetBrains.Omea.RSSPlugin
                         string title = null;
                         string url = null;
                         XmlNodeList l = null;
-                        
+
                         l = channel.GetElementsByTagName( "title" );
                         if( l.Count < 1 )
                         {
@@ -158,7 +157,7 @@ namespace JetBrains.Omea.RSSPlugin
             plugin.RegisterItemElementParser( FeedType.Atom, _fdNS, "state", this );
 
 	        string[] allFiles = Directory.GetFiles( _channelsPath, "*.rss" );
-            
+
             int totalFiles = Math.Max( allFiles.Length, 1 );
             int processedFiles = 0;
 
@@ -191,7 +190,7 @@ namespace JetBrains.Omea.RSSPlugin
                     continue;
                 }
                 _readItems.Clear();
-                using( Stream rss = new FileStream( file, FileMode.Open ) ) 
+                using( Stream rss = new FileStream( file, FileMode.Open ) )
                 {
                     try
                     {

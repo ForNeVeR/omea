@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Drawing;
@@ -73,8 +72,8 @@ namespace JetBrains.Omea.OutlookPlugin
                 return _ignored;
             }
 
-            if ( resource.GetIntProp( Core.Props.Open ) == 1 || 
-                resource.GetIntProp( PROP.OpenIgnoreFolder ) == 1 || 
+            if ( resource.GetIntProp( Core.Props.Open ) == 1 ||
+                resource.GetIntProp( PROP.OpenIgnoreFolder ) == 1 ||
                 resource.GetIntProp( PROP.OpenSelectFolder ) == 1 )
             {
                 if ( _opened == null )
@@ -113,7 +112,7 @@ namespace JetBrains.Omea.OutlookPlugin
             PairIDs folderIDs = PairIDs.Get( resource );
             if ( folderIDs != null )
             {
-                if ( OutlookSession.WereProblemWithOpeningStorage( folderIDs.StoreId ) || 
+                if ( OutlookSession.WereProblemWithOpeningStorage( folderIDs.StoreId ) ||
                     OutlookSession.WereProblemWithOpeningFolder( folderIDs.EntryId ) )
                 {
                     if ( _problem == null )
@@ -140,7 +139,7 @@ namespace JetBrains.Omea.OutlookPlugin
             }
             catch ( ThreadAbortException ex )
             {
-                Tracer._TraceException( ex );                    
+                Tracer._TraceException( ex );
             }
             catch ( OutlookAttachmentException exception )
             {
@@ -236,7 +235,7 @@ namespace JetBrains.Omea.OutlookPlugin
             fMgr.AssociateConditionWithGroup( cond, "Address and Contact Conditions" );
 
             IResource myResType = Core.ResourceStore.FindUniqueResource( "ResourceType", Core.Props.Name, STR.Email );
-            cond = fMgr.CreateStandardCondition( AuthorPostedMailName, AuthorPostedMailDeep, new string[]{ "Contact" }, 
+            cond = fMgr.CreateStandardCondition( AuthorPostedMailName, AuthorPostedMailDeep, new string[]{ "Contact" },
                                                  "LinkedResourcesOfType", ConditionOp.In, myResType.ToResourceList() );
             fMgr.AssociateConditionWithGroup( cond, "Address and Contact Conditions" );
         }
@@ -260,7 +259,7 @@ namespace JetBrains.Omea.OutlookPlugin
                                                           applTypes, new EmailImportanceUIHandler(), ConditionOp.Eq );
 
             //  Conditions/Templates
-            res = fMgr.CreateConditionTemplateWithUIHandler( ImportantMailName, ImportantMailDeep, applTypes, 
+            res = fMgr.CreateConditionTemplateWithUIHandler( ImportantMailName, ImportantMailDeep, applTypes,
                                                              new EmailImportanceUIHandler(), ConditionOp.Eq, STR.Importance );
             fMgr.AssociateConditionWithGroup( res, "Email Conditions" );
 
@@ -320,7 +319,7 @@ namespace JetBrains.Omea.OutlookPlugin
                 }
                 action.Delete();
             }
-        }        
+        }
         void IViewsConstructor.RegisterViewsEachRun()
         {
             IResource r = Core.ResourceStore.FindUniqueResource( FilterManagerProps.ConditionTemplateResName,
@@ -356,7 +355,7 @@ namespace JetBrains.Omea.OutlookPlugin
             res = fMgr.CreateStandardCondition( OutlookViewsInitializer.AuthorPostedMailName, OutlookViewsInitializer.AuthorPostedMailDeep,
                                                 new string[]{ "Contact" }, "LinkedResourcesOfType", ConditionOp.In, myResType.ToResourceList() );
             fMgr.AssociateConditionWithGroup( res, "Address and Contact Conditions" );
-        }        
+        }
         void IViewsConstructor.RegisterViewsEachRun()
         {
         }

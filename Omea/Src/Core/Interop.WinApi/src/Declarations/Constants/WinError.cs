@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using JetBrains.Util;
 
@@ -88,7 +87,7 @@ namespace JetBrains.Interop.WinApi
 		FACILITY_AAF = 18,
 
 		//
-		// MessageId: ERROR_SUCCESS 
+		// MessageId: ERROR_SUCCESS
 		//
 		// MessageText:
 		//
@@ -8335,7 +8334,7 @@ namespace JetBrains.Interop.WinApi
 		// MessageText:
 		//
 		//  There is a mismatch between the tag specified in the request and the tag present in the reparse point.
-		//  
+		//
 		//
 		// //////////////////////////////////////////
 		ERROR_REPARSE_TAG_MISMATCH = 4394,
@@ -18356,7 +18355,7 @@ __inline HRESULT HRESULT_FROM_WIN32(long x) { return x <= 0 ? (HRESULT)x : (HRES
 		// MessageText:
 		//
 		//  There was an error in a Windows GDI call while converting the DIB to a bitmap.
-		//  
+		//
 		//
 		CONVERT10_E_STG_DIB_TO_BITMAP = unchecked((int)0x800401C6),
 
@@ -22511,7 +22510,7 @@ __inline HRESULT HRESULT_FROM_WIN32(long x) { return x <= 0 ? (HRESULT)x : (HRES
 		// MessageText:
 		//
 		//  The specified data could not be decrypted.
-		//  
+		//
 		//
 		SEC_E_DECRYPT_FAILURE = unchecked((int)0x80090330),
 
@@ -23328,7 +23327,7 @@ __inline HRESULT HRESULT_FROM_WIN32(long x) { return x <= 0 ? (HRESULT)x : (HRES
 		// MessageText:
 		//
 		//  OSS Certificate encode/decode error code base
-		//  
+		//
 		//  See asn1code.h for a definition of the OSS runtime errors. The OSS
 		//  error values are offset by CRYPT_E_OSS_ERROR.
 		//
@@ -23754,7 +23753,7 @@ __inline HRESULT HRESULT_FROM_WIN32(long x) { return x <= 0 ? (HRESULT)x : (HRES
 		// MessageText:
 		//
 		//  ASN1 Certificate encode/decode error code base.
-		//  
+		//
 		//  The ASN1 error values are offset by CRYPT_E_ASN1_ERROR.
 		//
 		CRYPT_E_ASN1_ERROR = unchecked((int)0x80093100),

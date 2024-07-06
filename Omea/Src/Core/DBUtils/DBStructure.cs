@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.IO;
@@ -28,14 +27,14 @@ namespace JetBrains.Omea.Database
         // Upgrades
         private bool _upgradeTo22 = false;
 
-        public DBStructure( string path, string dbName, DatabaseMode dbMode ) 
-        { 
+        public DBStructure( string path, string dbName, DatabaseMode dbMode )
+        {
             _dbMode = dbMode;
             Init( path, dbName );
         }
 
-        public DBStructure( string path, string dbName ) 
-        { 
+        public DBStructure( string path, string dbName )
+        {
             Init( path, dbName );
         }
 
@@ -71,14 +70,14 @@ namespace JetBrains.Omea.Database
         private void Init( string path, string dbName )
         {
             _path = path;
-            _dbName = dbName; 
+            _dbName = dbName;
             _tracer = new Tracer( "(DBUtils) DBStructure - " + dbName );
             _tracer.Trace( "(DBUtils) DBStructure mode = " + _dbMode.ToString() );
         }
 
         public DatabaseMode Mode
         {
-            get 
+            get
             {
                 return _dbMode;
             }
@@ -87,13 +86,13 @@ namespace JetBrains.Omea.Database
         public string Build
         {
             set
-            { 
-                _build = value; 
+            {
+                _build = value;
                 _tracer.Trace( _build );
             }
             get
-            { 
-                return _build; 
+            {
+                return _build;
             }
         }
 
@@ -139,7 +138,7 @@ namespace JetBrains.Omea.Database
             }
             finally
             {
-                if ( _stream != null ) 
+                if ( _stream != null )
                 {
                     _stream.Flush();
                 }
@@ -207,7 +206,7 @@ namespace JetBrains.Omea.Database
             if ( _database == null )
             {
                 _database = new Database( this );
-                IDatabaseDesign dbDesign = _database; 
+                IDatabaseDesign dbDesign = _database;
                 foreach ( HashMap.Entry entry in _tables )
                 {
                     try
@@ -289,7 +288,7 @@ namespace JetBrains.Omea.Database
                 _structReader = null;
             }
         }
-        
+
         public void LoadStructure( bool headerOnly )
         {
             Monitor.Enter( this );
@@ -306,7 +305,7 @@ namespace JetBrains.Omea.Database
                 }
                 if ( _version > VERSION )
                 {
-                    throw new BackwardIncompatibility( "Cannot load database ( version = " + _version + 
+                    throw new BackwardIncompatibility( "Cannot load database ( version = " + _version +
                         " ) + with engine ( version = " + VERSION + " )" );
                 }
                 if ( _version != VERSION )
@@ -350,14 +349,14 @@ namespace JetBrains.Omea.Database
         {
             return OpenDatabaseInternal( );
         }
-        
+
         private Database OpenDatabaseInternal()
         {
             _dbMode = DatabaseMode.Open;
             if ( _database == null )
             {
                 _database = new Database( this );
-                IDatabaseDesign dbDesign = _database; 
+                IDatabaseDesign dbDesign = _database;
                 foreach ( HashMap.Entry entry in _tables )
                 {
                     try

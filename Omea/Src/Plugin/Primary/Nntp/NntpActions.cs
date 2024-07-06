@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections.Generic;
@@ -19,7 +18,7 @@ using JetBrains.Omea.FileTypes;
 
 namespace JetBrains.Omea.Nntp
 {
-    /** 
+    /**
      * display subscription dialog
      */
     public class ManageNewsgroupsAction: IAction
@@ -46,7 +45,7 @@ namespace JetBrains.Omea.Nntp
 
         public void Update( IActionContext context, ref ActionPresentation presentation )
         {
-            try 
+            try
             {
                 if ( context.Kind == ActionContextKind.MainMenu || context.Kind == ActionContextKind.Toolbar )
                 {
@@ -78,14 +77,14 @@ namespace JetBrains.Omea.Nntp
                     }
                 }
             }
-            finally 
+            finally
             {
                 UpdateActionIfNetworkUnavailable.Update( ref presentation );
             }
         }
     }
 
-    /** 
+    /**
      * display server properties dialog
      */
     public class ServerPropertiesAction: SimpleAction
@@ -109,7 +108,7 @@ namespace JetBrains.Omea.Nntp
         }
     }
 
-    /** 
+    /**
      * displays posting form & posts an article to selected newsgroups
      */
     public class PostAction: SimpleAction
@@ -125,7 +124,7 @@ namespace JetBrains.Omea.Nntp
             else
             {
                 IResource owner = Core.ResourceBrowser.OwnerResource;
-                if( owner != null ) 
+                if( owner != null )
                 {
                     string type = owner.Type;
                     if( type == NntpPlugin._newsGroup )
@@ -147,7 +146,7 @@ namespace JetBrains.Omea.Nntp
         }
     }
 
-    /** 
+    /**
      * initiates delivering news
      */
     public class DeliverNewsAction: SimpleAction
@@ -211,7 +210,7 @@ namespace JetBrains.Omea.Nntp
         }
     }
 
-    /** 
+    /**
      * creates formatted reply message & displays posting form
      */
     public class ReplyAction: IAction
@@ -294,9 +293,9 @@ namespace JetBrains.Omea.Nntp
             {
                 // There's exactly one resource selected; check its type
                 // Ensure it's not a local article as we cannot reply to a local article
-                presentation.Enabled = presentation.Visible = (context.SelectedResources[0].Type == NntpPlugin._newsArticle);				
+                presentation.Enabled = presentation.Visible = (context.SelectedResources[0].Type == NntpPlugin._newsArticle);
             }
-            else 
+            else
             {
                 presentation.Visible = false;	// Can be applied when there is exactly one resource
             }
@@ -312,7 +311,7 @@ namespace JetBrains.Omea.Nntp
         }
     }
 
-    /** 
+    /**
      * creates formatted reply message & displays posting form
      */
     public class Reply2SenderWithoutQuotation : ReplyAction
@@ -322,7 +321,7 @@ namespace JetBrains.Omea.Nntp
             return Core.MessageFormatter.QuoteMessage( article, string.Empty, settings );
         }
     }
-    
+
     /**
      * opens news attachment in correspondent application
      */
@@ -347,7 +346,7 @@ namespace JetBrains.Omea.Nntp
         }
     }
 
-    /** 
+    /**
      * saves news attachment on disk
      */
     public class SaveAttachmentAction: ActionOnResource
@@ -390,7 +389,7 @@ namespace JetBrains.Omea.Nntp
                 Stream fileStream;
                 if( ( fileStream = saveDialog.OpenFile() ) != null )
                 {
-                    try 
+                    try
                     {
                         Stream blob = attachment.GetBlobProp( NntpPlugin._propContent );
                         blob.Position = 0;
@@ -523,7 +522,7 @@ namespace JetBrains.Omea.Nntp
         }
     }
 
-    /** 
+    /**
      * mark all as read
      */
     public class MarkAllAsReadAction: ActionOnResource
@@ -657,7 +656,7 @@ namespace JetBrains.Omea.Nntp
         }
     }
 
-    /** 
+    /**
      * unsubscribe action
      */
     public class UnsubscribeAction: ActionOnResource
@@ -806,7 +805,7 @@ namespace JetBrains.Omea.Nntp
                 }
             }
 
-            Core.UIManager.DisplayResourceInContext( context.SelectedResources [0], true ); 
+            Core.UIManager.DisplayResourceInContext( context.SelectedResources [0], true );
             Core.ResourceBrowser.FocusResourceList();
         }
 
@@ -872,7 +871,7 @@ namespace JetBrains.Omea.Nntp
 				presentation.Visible = isAvail;
 
 			// Additional restrictions
-            presentation.Enabled = presentation.Enabled && (GetEmailService() != null) && 
+            presentation.Enabled = presentation.Enabled && (GetEmailService() != null) &&
                                    (context.SelectedResources.Count == 1) &&
                                     context.SelectedResources[ 0 ].HasProp( Core.Props.LongBody );
         }
@@ -909,14 +908,14 @@ namespace JetBrains.Omea.Nntp
             service.CreateEmail( subject, quote, EmailBodyFormat.PlainText,
                 new[] { new EmailRecipient( name, email ) }, null, false );
         }
-		
+
 		public override void Update(IActionContext context, ref ActionPresentation presentation)
 		{
 			if(context.SelectedResources.Count == 1)
 			{
 				// There's exactly one resource selected; check its type
 				// Ensure it's not a local article as we cannot reply to an author of a local article
-				presentation.Enabled = presentation.Visible = (context.SelectedResources[0].Type == NntpPlugin._newsArticle);				
+				presentation.Enabled = presentation.Visible = (context.SelectedResources[0].Type == NntpPlugin._newsArticle);
 			}
 			else
 				presentation.Visible = false;	// Can be applied when there is exactly one resource
@@ -939,7 +938,7 @@ namespace JetBrains.Omea.Nntp
             base.Execute( context );
             IEmailService service = GetEmailService();
             StringBuilder forwardedBodyBuilder = StringBuilderPool.Alloc();
-            try 
+            try
             {
                 IResource article = context.SelectedResources[ 0 ];
                 string subject = article.GetPropText( Core.Props.Subject );
@@ -1234,7 +1233,7 @@ namespace JetBrains.Omea.Nntp
 				Utils.DisplayException( Core.MainWindow, e, "Error" );
 			}
 		}
-    	
+
     	/// <summary>
     	/// Gets an uri for the news article. May return Null in case of problems.
     	/// </summary>
@@ -1612,7 +1611,7 @@ namespace JetBrains.Omea.Nntp
                 bool isCtrlKey = (Control.ModifierKeys & Keys.Control ) > 0;
                 if( showConfirmMarkAsRead || isCtrlKey )
                 {
-                    MessageBoxWithCheckBox.Result result = 
+                    MessageBoxWithCheckBox.Result result =
                         MessageBoxWithCheckBox.ShowYesNo( Core.MainWindow, _cMessage, _cTitle, _cQuestion, !showConfirmMarkAsRead );
                     if( result.Checked )
                         Core.SettingStore.WriteBool( _cNntpIniSection, _cShowConfirmKey, false );

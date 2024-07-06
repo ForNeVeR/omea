@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 #pragma unmanaged
 
@@ -39,7 +38,7 @@ MailUserSPtr ABContainer::OpenEntry( LPBYTE entryID, int cb ) const
 {
     IMailUser* lpMailUser = NULL;
     ULONG lObjType = 0;
-    HRESULT hr = _lpABContainer->OpenEntry( cb, (LPENTRYID)entryID, 
+    HRESULT hr = _lpABContainer->OpenEntry( cb, (LPENTRYID)entryID,
         &IID_IMailUser, 0, &lObjType, (LPUNKNOWN*)&lpMailUser );
     if ( hr == S_OK )
     {
@@ -52,7 +51,7 @@ MailUserSPtr ABContainer::CreateEntry() const
 {
     SizedSPropTagArray(2, TypeColumns) = {2, {PR_ADDRTYPE, PR_ENTRYID}};
     LPMAPITABLE lpTPLTable = NULL;
-    HRESULT hr = _lpABContainer->OpenProperty( PR_CREATE_TEMPLATES, 
+    HRESULT hr = _lpABContainer->OpenProperty( PR_CREATE_TEMPLATES,
                     (LPIID) &IID_IMAPITable, 0, 0, (LPUNKNOWN *)&lpTPLTable );
 
     Guard::CheckHR( hr );
@@ -110,17 +109,17 @@ ELPSRowSetSPtr ABContainer::GetRowSet() const
 {
     LPMAPITABLE lpTable = NULL;
     HRESULT hr = _lpABContainer->GetContentsTable( 0, &lpTable );
-    if ( hr == S_OK ) 
+    if ( hr == S_OK )
     {
-        const SizedSPropTagArray( 4, atProps ) = 
-        { 4, (int)PR_ENTRYID, 
+        const SizedSPropTagArray( 4, atProps ) =
+        { 4, (int)PR_ENTRYID,
             (int)PR_DISPLAY_NAME,
             (int)0x3003001E, //email address
             (int)PR_DISPLAY_TYPE};
         LPSRowSet rowSet = NULL;
         hr = HrQueryAllRows( lpTable, (LPSPropTagArray)&atProps, NULL, NULL, 0, &rowSet );
         lpTable->Release();
-        if ( hr == S_OK ) 
+        if ( hr == S_OK )
         {
             return TypeFactory::CreateELPSRowSet( rowSet );
         }
@@ -132,7 +131,7 @@ ETableSPtr ABContainer::GetTable() const
 {
     LPMAPITABLE lpTable = NULL;
     HRESULT hr = _lpABContainer->GetContentsTable( 0, &lpTable );
-    if ( hr == S_OK ) 
+    if ( hr == S_OK )
     {
         return TypeFactory::CreateETable( lpTable );
     }
@@ -167,7 +166,7 @@ ABContainerSPtr AddrBook::OpenEntry( LPBYTE entryID, int cb ) const
 {
     IABContainer* lpABContainer = NULL;
     ULONG lObjType = 0;
-    HRESULT hr = _lpAdrBook->OpenEntry( cb, (LPENTRYID)entryID, 
+    HRESULT hr = _lpAdrBook->OpenEntry( cb, (LPENTRYID)entryID,
         &IID_IABContainer, 0, &lObjType, (LPUNKNOWN*)&lpABContainer );
     if ( hr == S_OK )
     {
@@ -180,7 +179,7 @@ MailUserSPtr AddrBook::OpenMailUser( LPBYTE entryID, int cb ) const
 {
     IMailUser* lpMailUser = NULL;
     ULONG lObjType = 0;
-    HRESULT hr = _lpAdrBook->OpenEntry( cb, (LPENTRYID)entryID, 
+    HRESULT hr = _lpAdrBook->OpenEntry( cb, (LPENTRYID)entryID,
         &IID_IMailUser, 0, &lObjType, (LPUNKNOWN*)&lpMailUser );
     if ( hr == S_OK )
     {

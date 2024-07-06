@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -91,7 +90,7 @@ namespace JetBrains.JetListViewLibrary.Tests
             JetListViewNode item = _nodeCollection.Add( "Item1" );
             JetListViewNode item2 = _nodeCollection.Add( "Item2" );
             JetListViewNode item3 = _nodeCollection.Add( "Item3" );
-            
+
             _model.HandleMouseDown( item, Keys.None );
             _model.HandleMouseDown( item3, Keys.Shift );
 
@@ -106,7 +105,7 @@ namespace JetBrains.JetListViewLibrary.Tests
             JetListViewNode item = _nodeCollection.Add( "Item1" );
             JetListViewNode item2 = _nodeCollection.Add( "Item2" );
             JetListViewNode item3 = _nodeCollection.Add( "Item3" );
-            
+
             _model.HandleMouseDown( item, Keys.None );
             _model.HandleMouseDown( item3, Keys.Shift );
             _model.HandleMouseDown( item2, Keys.Shift );
@@ -121,7 +120,7 @@ namespace JetBrains.JetListViewLibrary.Tests
             JetListViewNode item = _nodeCollection.Add( "Item1" );
             JetListViewNode item2 = _nodeCollection.Add( "Item2" );
             JetListViewNode item3 = _nodeCollection.Add( "Item3" );
-            
+
             _model.HandleMouseDown( item3, Keys.None );
             _model.HandleMouseDown( item, Keys.Shift );
 
@@ -151,9 +150,9 @@ namespace JetBrains.JetListViewLibrary.Tests
         {
             JetListViewNode item = _nodeCollection.Add( "Item1" );
             JetListViewNode item2 = _nodeCollection.Add( "Item2" );
-            
+
             _model.HandleMouseDown( item, Keys.None );
-            
+
             _model.FocusStateChanged += new ViewNodeStateChangeEventHandler( OnSelectionStateChanged );
 
             _model.HandleMouseDown( item2, Keys.Control );
@@ -185,7 +184,7 @@ namespace JetBrains.JetListViewLibrary.Tests
             Assert.IsTrue( _model.IsNodeSelected( item ) );
             Assert.IsTrue( _model.IsNodeFocused( item ) );
         }
-        
+
         [Test] public void ClickWithNoSelection()
         {
             JetListViewNode item = _nodeCollection.Add( "Item1" );
@@ -281,7 +280,7 @@ namespace JetBrains.JetListViewLibrary.Tests
             Assert.IsTrue( _model.IsNodeSelected( item2 ) );
             Assert.IsTrue( _model.IsNodeFocused( item2 ) );
         }
-        
+
         [Test] public void ProcessShiftDownKey()
         {
             JetListViewNode item1 = _nodeCollection.Add( "Item1" );
@@ -412,7 +411,7 @@ namespace JetBrains.JetListViewLibrary.Tests
         [Test] public void PublicApi()
         {
             JetListViewNode node = _nodeCollection.Add( "Item1" );
-            Assert.IsFalse( _model.Contains( "Item1" ) ); 
+            Assert.IsFalse( _model.Contains( "Item1" ) );
             _model.Add( "Item1" );
             Assert.AreEqual( 1, _model.Count );
             Assert.IsTrue( _model.Contains( "Item1" ) );
@@ -496,8 +495,8 @@ namespace JetBrains.JetListViewLibrary.Tests
             JetListViewNode node2 = _nodeCollection.Add( "!Item2" );
             JetListViewNode node3 = _nodeCollection.Add( "Item3" );
 
-            _model.HandleMouseDown( node1, Keys.None ); 
-            _model.HandleMouseDown( node2, Keys.Shift ); 
+            _model.HandleMouseDown( node1, Keys.None );
+            _model.HandleMouseDown( node2, Keys.Shift );
 
             _filters.Add( new MockFilter() );
 
@@ -522,7 +521,7 @@ namespace JetBrains.JetListViewLibrary.Tests
             JetListViewNode node = _nodeCollection.Add( "Item1" );
             JetListViewNode node2 = _nodeCollection.Add( "Item11", node );
             JetListViewNode node3 = _nodeCollection.Add( "Item111", node2 );
-            
+
             node.Expanded = true;
             node2.Expanded = true;
 
@@ -633,7 +632,7 @@ namespace JetBrains.JetListViewLibrary.Tests
             _model.HandleMouseDown( node2, Keys.Shift );
             _nodeCollection.Remove( "Item", null );
             _model.HandleMouseDown( node3, Keys.Shift );
-            Assert.IsTrue( _model.IsNodeSelected( node3 ) );           
+            Assert.IsTrue( _model.IsNodeSelected( node3 ) );
         }
 
 	    private class MockPagingProvider : IPagingProvider
@@ -653,7 +652,7 @@ namespace JetBrains.JetListViewLibrary.Tests
 
 	    private void OnSelectionStateChanged( object sender, ViewNodeStateChangeEventArgs e )
 	    {
-            _selectionStateChanges.Add( e ); 
+            _selectionStateChanges.Add( e );
 	    }
 
 	    private void HandleActiveNodeChanged( object sender, ViewNodeEventArgs e )
@@ -662,4 +661,3 @@ namespace JetBrains.JetListViewLibrary.Tests
 	    }
 	}
 }
-    

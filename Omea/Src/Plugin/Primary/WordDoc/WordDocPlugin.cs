@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.IO;
@@ -100,7 +99,7 @@ namespace JetBrains.Omea.WordDocPlugin
 				{
 					return false;
 				}
-                
+
 				try
 				{
 					if ( isRtf )
@@ -135,7 +134,7 @@ namespace JetBrains.Omea.WordDocPlugin
 						finally
 						{
 							if( reader != null )
-								reader.Close();                            
+								reader.Close();
 						}
 					}
 					else
@@ -148,7 +147,7 @@ namespace JetBrains.Omea.WordDocPlugin
 					Core.FileResourceManager.CleanupSourceFile( res, fileName );
 
 					//  If we managed to successfully retrieve the text from the
-					//  doc file (e.g. using newer version of the convertor) - 
+					//  doc file (e.g. using newer version of the convertor) -
 					//  clean the [possibly] assigned error sign.
 					new ResourceProxy( res ).DeleteProp( Core.Props.LastError );
 				}
@@ -192,7 +191,7 @@ namespace JetBrains.Omea.WordDocPlugin
 			}
 			catch
 			{
-				return "";	
+				return "";
 			}
 			process.Start();
 			string result = Utils.StreamReaderReadToEnd( process.StandardOutput );
@@ -230,13 +229,13 @@ namespace JetBrains.Omea.WordDocPlugin
 			{
 				throw new Exception( "Could not find the file to convert: " + fileName );
 			}
-            
+
 			string configPath = Path.Combine( Application.StartupPath, configFileName );
 			if ( !File.Exists( configPath ) )
 			{
 				throw new Exception( "Failed to find wvWare configuration file " + configPath );
 			}
-            
+
 			Process process = new Process();
 			process.StartInfo.FileName = "wvWare.exe";
 			process.StartInfo.Arguments = "-x " + configFileName + " -c utf-8 -d " + Utils.QuotedString( TempDir ) + " ";

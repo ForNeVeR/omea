@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Globalization;
@@ -27,7 +26,7 @@ namespace JetBrains.Omea.CustomProperties
             }
             UpdateEditText();
         }
-        
+
         public override void DownButton()
 	    {
             if ( Text == "" )
@@ -48,7 +47,7 @@ namespace JetBrains.Omea.CustomProperties
         protected override void OnTextBoxKeyPress( object source, KeyPressEventArgs e )
         {
             base.OnTextBoxKeyPress( source, e );
-            if ( Char.IsDigit( e.KeyChar ) || e.KeyChar.ToString() == CultureInfo.CurrentCulture.NumberFormat.NegativeSign 
+            if ( Char.IsDigit( e.KeyChar ) || e.KeyChar.ToString() == CultureInfo.CurrentCulture.NumberFormat.NegativeSign
                 || e.KeyChar == '\b' )
             {
                 return;

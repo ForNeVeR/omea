@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using   System;
 using   System.Diagnostics;
@@ -51,7 +50,7 @@ public  class   DocSimConstructor
 
             docIndices = null;
             distances = null;
-        }        
+        }
         return( results );
     }
 
@@ -70,7 +69,7 @@ public  class   DocSimConstructor
     //  Retrieve a list of term offsets from the record of the document.
     //-------------------------------------------------------------------------
     protected   static void     RetrieveTermOffsets( DocIndexRecord record, IntArrayList TermIndices )
-    { 
+    {
         TermIndices.Clear();
         for( int i = 0; i < record.TermsNumber; i++ )
             TermIndices.Add( record.Entries[ i ].TermID );
@@ -83,7 +82,7 @@ public  class   DocSimConstructor
     //  these terms occur.
     //-------------------------------------------------------------------------
 
-    private static void  CollectDocCandidates( int sourceDocID, 
+    private static void  CollectDocCandidates( int sourceDocID,
                                                TermIndexAccessor termIndex, TermIndexAccessor memIndex,
                                                IntArrayList termIDs, IntArrayList DocCandidates )
     {
@@ -111,7 +110,7 @@ public  class   DocSimConstructor
             DocCandidates.Add( e.Key );
     }
 
-    private static void  CollectDocCandidatesFromRecord( int sourceDocID, TermIndexRecord rec, 
+    private static void  CollectDocCandidatesFromRecord( int sourceDocID, TermIndexRecord rec,
                                                          IntHashTableOfInt docIndices )
     {
         for( int i = 0; i < rec.DocsNumber; i++ )
@@ -126,7 +125,7 @@ public  class   DocSimConstructor
     //  For every document in the array, compute its distance to the given
     //  one, and keep only the predefined number of MOST close.
     //  Keeping a set of the most close is performed by maintaining the fixed
-    //  array, which state is 
+    //  array, which state is
     //-------------------------------------------------------------------------
 
     private static void     ComputeSimilarity( DocIndexAccessor docIndex, BatchDocIndexAccessor memDocIndex,
@@ -156,7 +155,7 @@ public  class   DocSimConstructor
     }
 
     //-------------------------------------------------------------------------
-    //  We keep only "ciNearestDocsLimit" number of values, thus 
+    //  We keep only "ciNearestDocsLimit" number of values, thus
     //  "ciNearestDocsLimit + 1"-th cell is always undefined. Put new value into
     //  the "ciNearestDocsLimit + 1"-th cell (if there is a reason to) and
     //  sorting will find the proper place for it inside the array.

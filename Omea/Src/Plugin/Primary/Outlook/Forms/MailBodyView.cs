@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Drawing;
@@ -21,7 +20,7 @@ namespace JetBrains.Omea.OutlookPlugin
 {
     internal class MailBodyView : MessageDisplayPane
     {
-        private const string _WaitMessage = "<html><body style=\"font-family: Tahoma; font-size: 8pt; text-align: center;\">" + 
+        private const string _WaitMessage = "<html><body style=\"font-family: Tahoma; font-size: 8pt; text-align: center;\">" +
                                             "Loading message body...</body></html>";
         private const string _NoPreviewTemplate = "No preview text available...";
         private const string _Pattern1 = "%%1%%";
@@ -38,7 +37,7 @@ namespace JetBrains.Omea.OutlookPlugin
         private System.ComponentModel.Container _components = null;
 
         /// <summary>
-        /// A Web browser security context that is to be applied when displaying email 
+        /// A Web browser security context that is to be applied when displaying email
         /// messages with the highest security, prohibiting downloading external images.
         /// Embedded images are to be displayed by default.
         /// </summary>
@@ -90,7 +89,7 @@ namespace JetBrains.Omea.OutlookPlugin
             _ctxRestrictedWithImages = WebSecurityContext.Restricted;
             _ctxRestrictedWithImages.WorkOffline = false;
             _ctxRestrictedWithImages.ShowPictures = true;
-		
+
             ReadMailFontAttributes();
 
             Core.UIManager.AddOptionsChangesListener( "MS Outlook", "Outlook General", ReadMailFontAttributesHandler );
@@ -141,8 +140,8 @@ namespace JetBrains.Omea.OutlookPlugin
         }
 
         #region Component Designer generated code
-        /// <summary> 
-        /// Required method for Designer support - do not modify 
+        /// <summary>
+        /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
@@ -152,9 +151,9 @@ namespace JetBrains.Omea.OutlookPlugin
             this._panel1 = new Panel();
             this._panel2 = new Panel();
             this.SuspendLayout();
-            // 
+            //
             // label1
-            // 
+            //
             this._linkReceiveAttachedResources.BackColor = SystemColors.Info;
             this._linkReceiveAttachedResources.Dock = System.Windows.Forms.DockStyle.Top;
             this._linkReceiveAttachedResources.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(204)));
@@ -186,9 +185,9 @@ namespace JetBrains.Omea.OutlookPlugin
             this._panel2.Location = new System.Drawing.Point(0, 0);
             this._panel2.Name = "_panel2";
             this._panel2.Size = new System.Drawing.Size(560, 24);
-            // 
+            //
             // linkLabel1
-            // 
+            //
             this._linkShowPictures.BackColor = SystemColors.Info;
             this._linkShowPictures.Dock = System.Windows.Forms.DockStyle.Top;
             this._linkShowPictures.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(204)));
@@ -200,9 +199,9 @@ namespace JetBrains.Omea.OutlookPlugin
             this._linkShowPictures.Text = "Click to show pictures";
             this._linkShowPictures.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this._linkShowPictures.Click += new System.EventHandler(this.OnShowPictures);
-            // 
+            //
             // MailBodyView
-            // 
+            //
             this.Controls.Add(this._panel1);
             this.Controls.Add(this._panel2);
             _panel1.Controls.Add(this._linkShowPictures);
@@ -224,7 +223,7 @@ namespace JetBrains.Omea.OutlookPlugin
                 {
                     UnpackResourcesAction action = new UnpackResourcesAction();
                     action.Unpack( attachment );
-                    break;                    
+                    break;
                 }
             }
         }
@@ -316,7 +315,7 @@ namespace JetBrains.Omea.OutlookPlugin
             #endregion Preconditions
 
             int loadingResourceId = _lastResourceId;
-            
+
             // this performs an asynchronous operation for loading the body;
             // during this operation, the form may be disposed or may switch
             // to a different message (#6012)
@@ -325,10 +324,10 @@ namespace JetBrains.Omea.OutlookPlugin
             if ( _disposed || _lastResourceId != loadingResourceId )
                 return;
 
-            bool hidePictures = _panel1.Visible = !res.HasProp( PROP.ShowPictures ) && 
+            bool hidePictures = _panel1.Visible = !res.HasProp( PROP.ShowPictures ) &&
                                                   !Settings.ShowEmbedPics && messageItem.HasPictures;
             int attchmCount = res.GetLinksOfType( null, PROP.Attachment ).Count;
-            WebSecurityContext context = ( attchmCount > 0 ) ? WebSecurityContext.Trusted : 
+            WebSecurityContext context = ( attchmCount > 0 ) ? WebSecurityContext.Trusted :
                                             ( hidePictures ? _ctxRestrictedWoImages : _ctxRestrictedWithImages );
             if ( messageBodyType == BodyType.HTML )
             {
@@ -336,7 +335,7 @@ namespace JetBrains.Omea.OutlookPlugin
                 body = InlineAttachments( res, body );
                 body = ReplaceContentID( res, body );
                 ShowHtml( body, context, _wordsToHighlight );
-                
+
                 _wordsToHighlight = null;
                 // Control whether we allow downloading pictures or not
             }
@@ -468,7 +467,7 @@ namespace JetBrains.Omea.OutlookPlugin
             int  picWidth, picHeight;
             string cachedFileName = Path.Combine( Path.GetTempPath(), attach.GetStringProp( Core.Props.Name ) );
 
-            //  Browser completely dislikes ".ico" files (I can only agree with it...) - 
+            //  Browser completely dislikes ".ico" files (I can only agree with it...) -
             //  convert them to ".png" files for uniformity.
             //  TODO: correct the icons background corresponding to html div's background.
 
@@ -578,7 +577,7 @@ namespace JetBrains.Omea.OutlookPlugin
                 if ( attachment.HasProp( PROP.ResourceTransfer ) )
                 {
                     resourceTransferVisible = true;
-                    break;                    
+                    break;
                 }
             }
             _panel2.Visible = resourceTransferVisible;

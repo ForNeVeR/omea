@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using JetBrains.Omea.Containers;
@@ -27,7 +26,7 @@ namespace JetBrains.Omea.ResourceStore
         private ResourceTypeFlags _flags;
         private bool              _ownerPluginLoaded;
         private ResourceList      _resourcesOfType;
-            
+
         internal ResourceTypeItem( int ID, string name, string displayNameTemplate, ResourceTypeFlags flags )
         {
             _id = ID;
@@ -50,20 +49,20 @@ namespace JetBrains.Omea.ResourceStore
 
         public string DisplayName
         {
-            get 
-            { 
+            get
+            {
                 if ( _displayName == null || _displayName.Length == 0 )
                 {
                     return _name;
                 }
-                return _displayName; 
+                return _displayName;
             }
             set
             {
                 (MyPalStorage.Storage.ResourceTypes as ResourceTypeCollection).UpdateResourceType(
                     _name, _displayNameTemplate.ToString(), _flags, value );
 
-                IResource res = MyPalStorage.Storage.FindUniqueResource( "ResourceType", 
+                IResource res = MyPalStorage.Storage.FindUniqueResource( "ResourceType",
                     MyPalStorage.Storage.Props.Name, _name );
                 res.SetProp( "PropDisplayName", value );
             }
@@ -79,11 +78,11 @@ namespace JetBrains.Omea.ResourceStore
                     (MyPalStorage.Storage.ResourceTypes as ResourceTypeCollection).UpdateResourceType(
                         _name, value, _flags, _displayName );
 
-                    IResource res = MyPalStorage.Storage.FindUniqueResource( "ResourceType", 
+                    IResource res = MyPalStorage.Storage.FindUniqueResource( "ResourceType",
                         MyPalStorage.Storage.Props.Name, _name );
                     if ( res == null )
                     {
-                        MyPalStorage.Storage.OnIndexCorruptionDetected( "set_ResourceDisplayNameTemplate: Could not find resource for resource type " + 
+                        MyPalStorage.Storage.OnIndexCorruptionDetected( "set_ResourceDisplayNameTemplate: Could not find resource for resource type " +
                             _name );
                     }
                     else
@@ -98,7 +97,7 @@ namespace JetBrains.Omea.ResourceStore
         {
             get { return _displayNameTemplate; }
         }
-            
+
         public ResourceTypeFlags Flags
         {
             get { return _flags; }
@@ -107,9 +106,9 @@ namespace JetBrains.Omea.ResourceStore
                 ResourceTypeCollection resTypes = MyPalStorage.Storage.ResourceTypes as ResourceTypeCollection;
                 resTypes.UpdateResourceType( _name, _displayNameTemplate.ToString(), value, _displayName );
 
-                IResource res = MyPalStorage.Storage.FindUniqueResource( "ResourceType", 
+                IResource res = MyPalStorage.Storage.FindUniqueResource( "ResourceType",
                     MyPalStorage.Storage.Props.Name, _name );
-                resTypes.SetResourceTypeFlags( res, value );                
+                resTypes.SetResourceTypeFlags( res, value );
             }
         }
 
@@ -216,7 +215,7 @@ namespace JetBrains.Omea.ResourceStore
                 MyPalStorage.Storage.OnIndexCorruptionDetected( "Invalid resource type ID " + id + ": cache count " + _resourceTypeCache.Count );
                 return null;
             }
-                
+
             ResourceTypeItem item = (ResourceTypeItem) _resourceTypeCache [id];
             if (item == null)
             {
@@ -255,7 +254,7 @@ namespace JetBrains.Omea.ResourceStore
         {
             return Register( name, name, resourceDisplayNameTemplate, flags, null );
         }
-        
+
         /**
          * Registers a new resource type, or returns the ID of the existing type if
          * it has already been registered.
@@ -265,19 +264,19 @@ namespace JetBrains.Omea.ResourceStore
         {
             return Register( name, displayName, resourceDisplayNameTemplate, ResourceTypeFlags.Normal, null );
         }
-		
+
         /**
          * Registers a new resource type, or returns the ID of the existing type if
          * it has already been registered.
          */
 
-        public int Register( string name, string displayName, string resourceDisplayNameTemplate, 
+        public int Register( string name, string displayName, string resourceDisplayNameTemplate,
             ResourceTypeFlags flags )
         {
             return Register( name, displayName, resourceDisplayNameTemplate, flags, null );
         }
 
-        public int Register( string name, string displayName, string resourceDisplayNameTemplate, 
+        public int Register( string name, string displayName, string resourceDisplayNameTemplate,
             ResourceTypeFlags flags, IPlugin ownerPlugin )
         {
             if ( resourceDisplayNameTemplate == null )
@@ -295,12 +294,12 @@ namespace JetBrains.Omea.ResourceStore
             return ID;
         }
 
-        internal void CreateOrUpdateResourceTypeResource( string name, string displayName, 
-            string resourceDisplayNameTemplate, ResourceTypeFlags flags, IPlugin ownerPlugin, 
+        internal void CreateOrUpdateResourceTypeResource( string name, string displayName,
+            string resourceDisplayNameTemplate, ResourceTypeFlags flags, IPlugin ownerPlugin,
             int ID, bool newType )
         {
             ResourceTypeFlags oldFlags = ResourceTypeFlags.Normal;
-    
+
             IResource res;
             if ( newType )
             {
@@ -310,7 +309,7 @@ namespace JetBrains.Omea.ResourceStore
                 }
                 catch( ResourceRestrictionException ex )
                 {
-                    MyPalStorage.Storage.OnIndexCorruptionDetected( "ResourceRestrictionException when creating PropType resource: " + 
+                    MyPalStorage.Storage.OnIndexCorruptionDetected( "ResourceRestrictionException when creating PropType resource: " +
                         ex.Message );
                     return;
                 }
@@ -320,7 +319,7 @@ namespace JetBrains.Omea.ResourceStore
                 res = _storage.FindUniqueResource( "ResourceType", _storage.Props.Name, name );
                 oldFlags = this [name].Flags;
             }
-    
+
             if ( res == null )
             {
                 MyPalStorage.Storage.OnIndexCorruptionDetected( "Could not find ResourceType resource with name " + name );
@@ -332,9 +331,9 @@ namespace JetBrains.Omea.ResourceStore
 
                 _storage.SetOwnerPlugin( res, ownerPlugin );
             }
-    
+
             UpdateResourceTypeCache( ID, resourceDisplayNameTemplate, flags | oldFlags );
-    
+
             if ( newType )
             {
                 _storage.CacheResourceTypePredicate( (ResourceTypeItem) _resourceTypeCache [ID] );
@@ -362,7 +361,7 @@ namespace JetBrains.Omea.ResourceStore
         {
             foreach( string name in resourceTypeNames )
             {
-                if ( _resourceTypeNameCache [name] == null ) 
+                if ( _resourceTypeNameCache [name] == null )
                     return false;
             }
             return true;
@@ -397,7 +396,7 @@ namespace JetBrains.Omea.ResourceStore
         /// <summary>
         /// Adds a new ResourceTypeItem to the resource type cache.
         /// </summary>
-        private void AddResourceTypeToCache( int ID, string name, string displayNameTemplate, 
+        private void AddResourceTypeToCache( int ID, string name, string displayNameTemplate,
             ResourceTypeFlags flags )
         {
             if ( ID < 0 || ID > 65536 )
@@ -419,13 +418,13 @@ namespace JetBrains.Omea.ResourceStore
                 {
                     _resourceTypeCache [ID] = item;
                 }
-                
+
                 _resourceTypeNameCache [name] = item;
             }
         }
 
         /**
-         * Loads the flags, display name masks and display names of resource types 
+         * Loads the flags, display name masks and display names of resource types
          * to the cache hash table.
          */
 
@@ -478,7 +477,7 @@ namespace JetBrains.Omea.ResourceStore
          * Adds a record for the specified resource type to the DB.
          */
 
-        internal int RegisterResourceTypeInternal( string name, string displayNameTemplate, ResourceTypeFlags flags, 
+        internal int RegisterResourceTypeInternal( string name, string displayNameTemplate, ResourceTypeFlags flags,
             bool skipChecks, out bool newType )
         {
             _storage.CheckOwnerThread();
@@ -555,7 +554,7 @@ namespace JetBrains.Omea.ResourceStore
 
                     int resID = rec.GetIntValue( 0 );
                     UpdateResourceTypeCache( resID, displayNameTemplate, flags );
-                    
+
                     ResourceTypeItem item = (ResourceTypeItem) this [resID];
                     item.SetDisplayName( propDisplayName );
                 }

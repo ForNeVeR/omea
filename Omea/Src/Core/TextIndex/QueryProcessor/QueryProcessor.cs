@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -138,12 +137,12 @@ namespace JetBrains.Omea.TextIndex
             if ( opStack.Count < 2 )
                 throw new ApplicationException( "QueryProcessor -- Insufficient number of operands in the operating stack" );
             #endregion Preconditions
-            
+
             //  First, check One or both arguments to be stopwords.
             object o1 = opStack.Pop(), o2 = opStack.Peek();
             opStack.Push( o1 );
 
-            //  If both arguments are stopwords - push them both, leave the stopword 
+            //  If both arguments are stopwords - push them both, leave the stopword
             //  sign as the result for subsequent calculations.
             //  If only one argument is stopword - leave its counterpart as the result.
             if( o1 is StopwordTerm )
@@ -515,7 +514,7 @@ namespace JetBrains.Omea.TextIndex
             if ( opStack.Count < 2 )
                 throw new ApplicationException( "QueryProcessor -- Insufficient number of operands in the operating stack" );
             #endregion Preconditions
-            
+
             List<long> result;
             List<long> right = opStack.Pop(), left = opStack.Pop();
 
@@ -544,7 +543,7 @@ namespace JetBrains.Omea.TextIndex
 
             return (result.Count == 0) ? null : result;
         }
- 
+
         private static List<long> Join( IEnumerable<long> leftIndices, IEnumerable<long> rightIndices )
         {
             List<long> result = new List<long>();

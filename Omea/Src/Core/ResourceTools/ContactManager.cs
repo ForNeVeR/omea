@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -256,7 +255,7 @@ namespace JetBrains.Omea.Contacts
             _propTransferred = RStore.PropTypes.Register( "MailTranferred", PropDataType.Bool, PropTypeFlags.Internal );
 
             _propDefaultAccount = RStore.PropTypes.Register( "DefaultAccountLink", PropDataType.Link, PropTypeFlags.Internal );
-            
+
             RStore.ResourceTypes.Register( "MailingList", "Mailing List", "EmailAcct", ResourceTypeFlags.Internal | ResourceTypeFlags.NoIndex );
 
             _propPhoneName = RStore.PropTypes.Register( "PhoneName", PropDataType.String, PropTypeFlags.Internal );
@@ -268,7 +267,7 @@ namespace JetBrains.Omea.Contacts
             RStore.ResourceTypes.Register( "ContactSerializationBlobKeeper", "", ResourceTypeFlags.Internal | ResourceTypeFlags.NoIndex );
             _propSerializationBlob = RStore.PropTypes.Register( "SerializationBlob", PropDataType.Blob, PropTypeFlags.Internal );
             _propSerializationBlobLink = ResourceTypeHelper.UpdatePropTypeRegistration( "SerializationBlobLink", PropDataType.Link, PropTypeFlags.DirectedLink | PropTypeFlags.Internal);
-            
+
             _propResourceAttach = RStore.PropTypes.Register( "ResourceAttachment", PropDataType.Link, PropTypeFlags.DirectedLink );
             RStore.PropTypes.RegisterDisplayName( _propResourceAttach, "Resource Attachment", "Received with" );
 
@@ -308,7 +307,7 @@ namespace JetBrains.Omea.Contacts
             #endregion Preconditions
 
             string title, firstName, midName, lastName, suffix, addSpec;
-            bool result = ContactResolver.ResolveName( fullName, null, out title, 
+            bool result = ContactResolver.ResolveName( fullName, null, out title,
                                                        out firstName, out midName,
                                                        out lastName, out suffix, out addSpec );
             Debug.Assert( result );
@@ -463,7 +462,7 @@ namespace JetBrains.Omea.Contacts
                 else
                 if( oldNumber != string.Empty )
                 {
-                    if( ContactBO.NormalizedPhoneNumber( newNumber ) != 
+                    if( ContactBO.NormalizedPhoneNumber( newNumber ) !=
                         ContactBO.NormalizedPhoneNumber( oldNumber ) )
                     {
                         string  newName = ComposeSuitablePhoneName( newContact, name );
@@ -504,7 +503,7 @@ namespace JetBrains.Omea.Contacts
             //  Copy all properties from the contact since some of them may
             //  change during relinking.
             ArrayList props = ArrayListPool.Alloc();
-            try 
+            try
             {
                 foreach( IResourceProperty prop in contact.Properties )
                     props.Add( prop );
@@ -574,7 +573,7 @@ namespace JetBrains.Omea.Contacts
             //  Copy all properties from the contact since some of them may
             //  change during relinking.
             ArrayList props = ArrayListPool.Alloc();
-            try 
+            try
             {
                 foreach( IResourceProperty prop in contact.Properties )
                     props.Add( prop );
@@ -612,7 +611,7 @@ namespace JetBrains.Omea.Contacts
                         IResourceList contactAcc = source.GetLinksOfType( "EmailAccount", Props.LinkEmailAcct );
                         IResourceList emailAccnts = res.GetLinksOfType( "EmailAccount", accntLinkId );
                         contactAcc = contactAcc.Intersect( emailAccnts, true );
-                                                
+
                         CreateAndLinkContactName( target, res, (contactAcc.Count > 0)? contactAcc[ 0 ] : null, linkId, fullName );
                     }
                     res.DeleteLink( linkId, source );
@@ -766,7 +765,7 @@ namespace JetBrains.Omea.Contacts
             {
                 Stream strm = keepers[ i ].GetBlobProp( _propSerializationBlob );
                 IResource oldContact = ResourceBinarySerialization.Deserialize( strm, RemoveLink);
-                Trace.WriteLineIf( !IsTraceSuppressed, "ContactManager -- Resource [" + oldContact.DisplayName + "] has " + 
+                Trace.WriteLineIf( !IsTraceSuppressed, "ContactManager -- Resource [" + oldContact.DisplayName + "] has " +
                                    oldContact.GetLinksOfType( null, "LinkedSetValue" ).Count + " links to conditions after split" );
 
                 //  NB: Do not explicitely delete links from current contact to
@@ -880,9 +879,9 @@ namespace JetBrains.Omea.Contacts
         }
 
         //---------------------------------------------------------------------
-        //  For all primary correspondence links (currently From, To and CC), 
+        //  For all primary correspondence links (currently From, To and CC),
         //  which (potentially) have link restrictions (depending on the type of
-        //  the vis-a-vis resource) - direcly remove them from the merged contact, 
+        //  the vis-a-vis resource) - direcly remove them from the merged contact,
         //  they will be created in just deserialized subcontact). Thus this
         //  method is called JUST BEFORE the link is created in deserializator.
         //
@@ -1387,7 +1386,7 @@ namespace JetBrains.Omea.Contacts
             }
             return emailAccount;
         }
-        
+
         public IResource FindOrCreateMailingList( string email )
         {
             IResource emailAccount = FindOrCreateEmailAccount( email );
@@ -1721,7 +1720,7 @@ namespace JetBrains.Omea.Contacts
 
         #region Delete Unnecessary ContactNames
         /// <summary>
-        /// Delete all resources of type ContactName which are identical to the contact's name - 
+        /// Delete all resources of type ContactName which are identical to the contact's name -
         /// or almost identical (e.g. to the extent of apostrophes).
         /// Additionally check several violations - single contact names which are NOT named
         /// equally to the contact and those resources which linked by the "BaseContact" link
@@ -1835,7 +1834,7 @@ namespace JetBrains.Omea.Contacts
             //-----------------------------------------------------------------
             //  In the case when the contact is deleted non-permanently,
             //  two continuations are possible:
-            //  1. If a contact is marked as Ignored then all newly incoming 
+            //  1. If a contact is marked as Ignored then all newly incoming
             //     correspondence from this contact is to be moved to the
             //     RecycleBin automatically.
             //  2. If a contact is NOT marked as Ignored then it is recovered
@@ -2002,7 +2001,7 @@ namespace JetBrains.Omea.Contacts
 
             //  Collect all mails linked both to this contact and this account
             IResourceList mails = GetMailsLinkedToContactAndAccount( contact, account );
-            
+
             int count = mails.Count;
             if( count > 0 )
             {
@@ -2248,8 +2247,8 @@ namespace JetBrains.Omea.Contacts
             int maxMails = -1, maxIndex = -1;
             for( int i = 0; i < contacts.Count; i++ )
             {
-                int count = contacts[ i ].GetLinkCount( Props.LinkFrom ) + 
-                            contacts[ i ].GetLinkCount( Props.LinkTo ) + 
+                int count = contacts[ i ].GetLinkCount( Props.LinkFrom ) +
+                            contacts[ i ].GetLinkCount( Props.LinkTo ) +
                             contacts[ i ].GetLinkCount( Props.LinkCC );
                 if( count > maxMails )
                 {
@@ -2415,8 +2414,8 @@ namespace JetBrains.Omea.Contacts
         private void CreateMyselfContact()
         {
             Trace.WriteLine( "ContactManager -- Myself contact is empty" );
-            MergeSeveralMyselfIfAny();                    
-    
+            MergeSeveralMyselfIfAny();
+
             IResourceList mySelves = RStore.FindResources( "Contact", "MySelf", 1 );
             if( mySelves.Count == 0 )
             {
@@ -2438,11 +2437,11 @@ namespace JetBrains.Omea.Contacts
                 }
             }
             _mySelfContact = new ContactBO( mySelves[ index ] );
-    
+
             //  Still empty FN and LN? It means that we have to take
             //  information from the Environment and cross the fingers
             //  that it is valid.
-            if( _mySelfContact.FirstName == string.Empty && 
+            if( _mySelfContact.FirstName == string.Empty &&
                 _mySelfContact.LastName == string.Empty )
             {
                 Trace.WriteLine( "ContactManager -- FN and LN are still empty - analyzing log name" );
@@ -2460,7 +2459,7 @@ namespace JetBrains.Omea.Contacts
                     _mySelfContact.LastName = lName;
                     _mySelfContact.Suffix = suffix;
                     _mySelfContact.QueueIndexing();
-                    Trace.WriteLine( "ContactManager -- Result fields are: [" + title + "][" + fName + "][" + 
+                    Trace.WriteLine( "ContactManager -- Result fields are: [" + title + "][" + fName + "][" +
                                      midName + "][" + lName + "][" + suffix + "][" + addSpec + "]");
                 }
             }
@@ -2526,7 +2525,7 @@ namespace JetBrains.Omea.Contacts
                                                     out string lName, out string suffix, out string addSpec )
         {
             string[] dotDelimitedFields = name.Split( '.' );
-            if( dotDelimitedFields.Length == 2 && 
+            if( dotDelimitedFields.Length == 2 &&
                 !string.IsNullOrEmpty( dotDelimitedFields[ 0 ] ) && !string.IsNullOrEmpty( dotDelimitedFields[ 1 ] ))
             {
                 fName = dotDelimitedFields[ 0 ];

@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System.Drawing;
 using System.Drawing.Drawing2D;
@@ -20,7 +19,7 @@ namespace JetBrains.JetListViewLibrary
 	    private bool _showLines = true;
         private Pen _linePen;
         private int _indent;  // Width is the width of the last indent step, while Indent is the width of all steps before the last one
-        
+
         public TreeStructureColumn()
 	    {
             Width = _cColumnWidth;
@@ -81,7 +80,7 @@ namespace JetBrains.JetListViewLibrary
 	        return node.Level * _indent + Width;
 	    }
 
-	    protected internal override void DrawNode( Graphics g, Rectangle rc, JetListViewNode node, 
+	    protected internal override void DrawNode( Graphics g, Rectangle rc, JetListViewNode node,
             RowState state, string highlightText )
 	    {
             if ( Owner == null || OwnerControl == null )

@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Windows.Forms;
@@ -345,7 +344,7 @@ namespace JetBrains.Omea.OutlookPlugin
                 return;
             }
             FolderDescriptor folderDescriptor = FolderDescriptor.Get( ntf.ParentID, _storeID );
-            if ( folderDescriptor == null ) 
+            if ( folderDescriptor == null )
             {
                 Trace( "OnNewMailImpl: folderDescriptor == null" );
                 return;
@@ -368,7 +367,7 @@ namespace JetBrains.Omea.OutlookPlugin
             }
 
             IEMessage message = OutlookSession.OpenMessage( ntf.EntryID, _storeID );
-            if ( message == null ) 
+            if ( message == null )
             {
                 Trace( "OnNewMailImpl: cannot open mapi message" );
                 return;
@@ -387,7 +386,7 @@ namespace JetBrains.Omea.OutlookPlugin
                 }
                 catch ( System.Threading.ThreadAbortException ex )
                 {
-                    Tracer._TraceException( ex );                    
+                    Tracer._TraceException( ex );
                 }
                 catch ( Exception exception )
                 {
@@ -454,7 +453,7 @@ namespace JetBrains.Omea.OutlookPlugin
             }
             catch ( System.Threading.ThreadAbortException ex )
             {
-                Tracer._TraceException( ex );                    
+                Tracer._TraceException( ex );
             }
             catch ( Exception exception )
             {
@@ -500,7 +499,7 @@ namespace JetBrains.Omea.OutlookPlugin
             }
         }
         #endregion OnMailModify
-        
+
         #region OnMailMove
         public void OnMailMove(MAPIFullNtf ntf)
         {
@@ -609,7 +608,7 @@ namespace JetBrains.Omea.OutlookPlugin
             }
             catch ( System.Threading.ThreadAbortException ex )
             {
-                Tracer._TraceException( ex );                    
+                Tracer._TraceException( ex );
             }
             catch ( Exception exception )
             {

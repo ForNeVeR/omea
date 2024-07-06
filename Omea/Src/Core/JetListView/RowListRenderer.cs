@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -17,10 +16,10 @@ namespace JetBrains.JetListViewLibrary
     [Flags]
     public enum RowState
     {
-        None = 0, 
-        ActiveSelected = 1, 
-        InactiveSelected = 2, 
-        Focused = 4, 
+        None = 0,
+        ActiveSelected = 1,
+        InactiveSelected = 2,
+        Focused = 4,
         Disabled = 8,
         DropTarget = 16,
         InPlaceEdit = 32,
@@ -145,7 +144,7 @@ namespace JetBrains.JetListViewLibrary
         private bool _rowDelimiters = false;
         private bool _calculatingScrollRange = false;
         private DropTargetRenderMode _dropTargetRenderMode;
-        
+
         public RowListRenderer( JetListViewNodeCollection collection, SelectionModel selectionModel )
 		{
             _nodeCollection = collection;
@@ -239,8 +238,8 @@ namespace JetBrains.JetListViewLibrary
 	    internal SelectionModel SelectionModel
         {
             get { return _selection; }
-            set 
-            { 
+            set
+            {
                 if ( _selection != value )
                 {
                     if ( _selection != null )
@@ -249,7 +248,7 @@ namespace JetBrains.JetListViewLibrary
                         _selection.FocusStateChanged -= new ViewNodeStateChangeEventHandler( HandleFocusStateChanged );
                         _selection.PagingProvider = null;
                     }
-                    
+
                     _selection = value;
                     _selection.PagingProvider = this;
 
@@ -346,7 +345,7 @@ namespace JetBrains.JetListViewLibrary
                 }
                 try
                 {
-                    IVisibleNodeEnumerator enumerator = _visibleNodeCollection.GetDirectionalEnumerator(  topNode, 
+                    IVisibleNodeEnumerator enumerator = _visibleNodeCollection.GetDirectionalEnumerator(  topNode,
                                                                                                           (delta > 0) ? MoveDirection.Down : MoveDirection.Up );
 
                     if ( _topNodeOffset != 0 )
@@ -375,7 +374,7 @@ namespace JetBrains.JetListViewLibrary
 
                     if ( delta < 0 )
                     {
-                        enumerator.MoveNext();                
+                        enumerator.MoveNext();
                     }
 
                     int absDelta = Math.Abs( delta );
@@ -476,7 +475,7 @@ namespace JetBrains.JetListViewLibrary
             IViewNode[] nodes = _selection.SelectionToArray();
             foreach( IViewNode node in nodes )
             {
-                InvalidateRow( node );	                    
+                InvalidateRow( node );
             }
 	    }
 
@@ -540,7 +539,7 @@ namespace JetBrains.JetListViewLibrary
                 {
                     OnRequestVerticalScroll( _scrollOffset + GetRowHeight( e.Node ) );
                 }
-            }            
+            }
             InvalidateBelow( e.Node );
         }
 
@@ -633,7 +632,7 @@ namespace JetBrains.JetListViewLibrary
         {
             if ( JetListViewNodeCollection.IsNodeVisible( e.Row ) )
             {
-                SetScrollRange( _scrollRange - e.OldHeight + e.NewHeight );                
+                SetScrollRange( _scrollRange - e.OldHeight + e.NewHeight );
                 InvalidateBelow( 0 );
             }
         }
@@ -768,7 +767,7 @@ namespace JetBrains.JetListViewLibrary
                 }
 	            if ( _rowDelimiters )
 	            {
-	                g.DrawLine( SystemPens.Control, rectangle.Left, curY + itemBaseHeight, 
+	                g.DrawLine( SystemPens.Control, rectangle.Left, curY + itemBaseHeight,
 	                            rectangle.Width, curY + itemBaseHeight );
 	            }
 
@@ -1019,7 +1018,7 @@ namespace JetBrains.JetListViewLibrary
                 if ( _groupRenderer.HandleNodeKeyDown( viewNode as JetListViewNode, e ) )
                     return true;
             }
-            
+
             return _selection.HandleKeyDown( e.KeyData );
         }
 
@@ -1170,7 +1169,7 @@ namespace JetBrains.JetListViewLibrary
 
         internal void ClearDropTarget()
         {
-            SetDropTargetRow( null );            
+            SetDropTargetRow( null );
         }
 
         private void SetDropTargetRow( JetListViewNode node )

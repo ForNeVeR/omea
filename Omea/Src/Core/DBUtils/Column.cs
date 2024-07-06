@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.IO;
@@ -102,8 +101,8 @@ namespace JetBrains.Omea.Database
             return new FixedLengthKey_DateTime( DateTime.MinValue );
         }
 
-        public override Object Value 
-        { 
+        public override Object Value
+        {
             get
             {
                 object value = _fields[_fieldIndex];
@@ -112,12 +111,12 @@ namespace JetBrains.Omea.Database
                     value = DateTime.MinValue;
                 }
                 return value;
-            } 
+            }
             set
-            { 
+            {
                 if ( value == null ) value = DateTime.MinValue;
-                _fields[_fieldIndex] = (DateTime)value; 
-            } 
+                _fields[_fieldIndex] = (DateTime)value;
+            }
         }
 
         public override ColumnType Type{ get{ return ColumnType.DateTime; } }
@@ -153,8 +152,8 @@ namespace JetBrains.Omea.Database
         internal StringColumn( Table table, string name, int version ) : base( table, name, version )
         {
         }
-        public override Object Value 
-        { 
+        public override Object Value
+        {
             get
             {
                 if ( _fields[_fieldIndex] == null )
@@ -162,12 +161,12 @@ namespace JetBrains.Omea.Database
                     _fields[_fieldIndex] = string.Empty;
                 }
                 return _fields[_fieldIndex];
-            } 
+            }
             set
-            { 
+            {
                 if ( value == null ) value = string.Empty;
-                _fields[_fieldIndex] = value; 
-            } 
+                _fields[_fieldIndex] = value;
+            }
         }
 
         public override void LoadValue( SafeBinaryReader reader )
@@ -218,8 +217,8 @@ namespace JetBrains.Omea.Database
         internal DoubleColumn( Table table, string name, int version ) :
             base( table, name, version ) {}
 
-        public override Object Value 
-        { 
+        public override Object Value
+        {
             get
             {
                 if ( _fields[_fieldIndex] == null )
@@ -227,12 +226,12 @@ namespace JetBrains.Omea.Database
                     _fields[_fieldIndex] = 0.0;
                 }
                 return _fields[_fieldIndex];
-            } 
+            }
             set
-            { 
+            {
                 if ( value == null ) value = 0.0;
-                _fields[_fieldIndex] = (double)value; 
-            } 
+                _fields[_fieldIndex] = (double)value;
+            }
         }
 
         public override void LoadValue( SafeBinaryReader reader )
@@ -260,23 +259,23 @@ namespace JetBrains.Omea.Database
     internal class BLOBColumn : Column
     {
         internal BLOBColumn( Table table, string name, int version ) :
-            base( table, name, version ) 
+            base( table, name, version )
         {
         }
 
-        public override Object Value 
-        { 
+        public override Object Value
+        {
             get
-            { 
+            {
                 return _fields[_fieldIndex];
-            } 
+            }
             set
-            { 
+            {
                 if ( value != null )
                 {
                     _fields[_fieldIndex] = value;
                 }
-            } 
+            }
         }
         public void DeleteBLOB()
         {
@@ -309,8 +308,8 @@ namespace JetBrains.Omea.Database
         internal IntColumn( Table table, string name, int version ) :
             base( table, name, version ) {}
 
-        public override Object Value 
-        { 
+        public override Object Value
+        {
             get
             {
                 if ( _fields[_fieldIndex] == null )
@@ -318,12 +317,12 @@ namespace JetBrains.Omea.Database
                     _fields[_fieldIndex] = 0;
                 }
                 return _fields[_fieldIndex];
-            } 
+            }
             set
-            { 
+            {
                 if ( value == null ) value = 0;
-                _fields[_fieldIndex] = (int)value; 
-            } 
+                _fields[_fieldIndex] = (int)value;
+            }
         }
         public override void LoadValue( SafeBinaryReader reader )
         {
@@ -360,7 +359,7 @@ namespace JetBrains.Omea.Database
             _bfs = table.Database.BlobFS;
             _id = id;
         }
-        
+
         internal BLOB( Table table, Stream source )
         {
             _table = table;
@@ -403,7 +402,7 @@ namespace JetBrains.Omea.Database
         public void Set( Stream source )
         {
             _bfs.Lock();
-            try 
+            try
             {
                 int handle = Handle;
                 using( Stream target = _bfs.RewriteFile( handle ).BaseStream )
@@ -434,9 +433,9 @@ namespace JetBrains.Omea.Database
                     {
                         jmStream.WriteTo( target );
                     }
-                    else 
+                    else
                     {
-                        try 
+                        try
                         {
                             if ( source.CanSeek )
                             {
@@ -461,7 +460,7 @@ namespace JetBrains.Omea.Database
         {
             get{ return _id; }
         }
-        
+
         private string GetFileName()
         {
             return Path.Combine( _table.Database.Path, _id + ".blob" );

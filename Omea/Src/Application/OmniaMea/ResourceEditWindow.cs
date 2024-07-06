@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.ComponentModel;
@@ -65,9 +64,9 @@ namespace JetBrains.Omea
 			this._contentPane = new System.Windows.Forms.Panel();
 			this._lblErrorMessage = new System.Windows.Forms.Label();
 			this.SuspendLayout();
-			// 
+			//
 			// _btnSave
-			// 
+			//
 			this._btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this._btnSave.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this._btnSave.Location = new System.Drawing.Point(212, 207);
@@ -76,9 +75,9 @@ namespace JetBrains.Omea
 			this._btnSave.TabIndex = 1;
 			this._btnSave.Text = "Save and Close";
 			this._btnSave.Click += new System.EventHandler(this._btnSave_Click);
-			// 
+			//
 			// _btnCancel
-			// 
+			//
 			this._btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this._btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
 			this._btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -88,21 +87,21 @@ namespace JetBrains.Omea
 			this._btnCancel.TabIndex = 2;
 			this._btnCancel.Text = "Cancel";
 			this._btnCancel.Click += new System.EventHandler(this._btnCancel_Click);
-			// 
+			//
 			// _contentPane
-			// 
-			this._contentPane.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-				| System.Windows.Forms.AnchorStyles.Left) 
+			//
+			this._contentPane.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+				| System.Windows.Forms.AnchorStyles.Left)
 				| System.Windows.Forms.AnchorStyles.Right)));
 			this._contentPane.Location = new System.Drawing.Point(0, 0);
 			this._contentPane.Name = "_contentPane";
 			this._contentPane.Size = new System.Drawing.Size(420, 199);
 			this._contentPane.TabIndex = 0;
 			this._contentPane.Resize += new EventHandler(_contentPane_Resize);
-			// 
+			//
 			// _lblErrorMessage
-			// 
-			this._lblErrorMessage.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+			//
+			this._lblErrorMessage.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
 				| System.Windows.Forms.AnchorStyles.Right)));
 			this._lblErrorMessage.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this._lblErrorMessage.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(204)));
@@ -113,9 +112,9 @@ namespace JetBrains.Omea
 			this._lblErrorMessage.TabIndex = 3;
 			this._lblErrorMessage.Text = "label1";
 			this._lblErrorMessage.Visible = false;
-			// 
+			//
 			// ResourceEditWindow
-			// 
+			//
 			this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
 			this.CancelButton = this._btnCancel;
 			this.ClientSize = new System.Drawing.Size(420, 238);
@@ -154,7 +153,7 @@ namespace JetBrains.Omea
          * Sets the edit pane that should be displayed in the window.
          */
 
-        public void SetEditPane( AbstractEditPane editPane, IResource res, bool newResource, 
+        public void SetEditPane( AbstractEditPane editPane, IResource res, bool newResource,
                                  EditedResourceSavedDelegate savedHandler, object savedHandlerTag )
         {
             if ( newResource )
@@ -171,7 +170,7 @@ namespace JetBrains.Omea
             {
                 Icon = icon;
             }
-            
+
             _editPane = editPane;
             _resource = res;
             _newResource = newResource;
@@ -183,7 +182,7 @@ namespace JetBrains.Omea
 
 			// Autosize to fit the edit pane
             GrowToContent();
-            
+
 			// Apply the minimum sizes
             Size minSize = _editPane.GetMinimumSize();
             if ( !minSize.IsEmpty )
@@ -195,7 +194,7 @@ namespace JetBrains.Omea
 			// Try to load and apply the size from settings
 			Left = Core.SettingStore.ReadInt( "ResourceEditWindow", _resource.Type + ".Left", Left );
 			Top = Core.SettingStore.ReadInt( "ResourceEditWindow", _resource.Type + ".Top", Top);
-			
+
             int width = Core.SettingStore.ReadInt( "ResourceEditWindow", _resource.Type + ".Width", -1 );
             int height = Core.SettingStore.ReadInt( "ResourceEditWindow", _resource.Type + ".Height", -1 );
             if ( width > 0 && height > 0 )
@@ -221,7 +220,7 @@ namespace JetBrains.Omea
             {
                 Width = (Width - _contentPane.Width) + _editPane.Width;
             }
-            
+
             if ( _contentPane.Height < _editPane.Height )
             {
                 Height = (Height - _contentPane.Height) + _editPane.Height;
@@ -268,9 +267,9 @@ namespace JetBrains.Omea
 			}
             Core.SettingStore.WriteInt( "ResourceEditWindow", _resource.Type + ".Left", Left );
 			Core.SettingStore.WriteInt( "ResourceEditWindow", _resource.Type + ".Top", Top );
-			Core.SettingStore.WriteInt( "ResourceEditWindow", _resource.Type + ".Width", 
+			Core.SettingStore.WriteInt( "ResourceEditWindow", _resource.Type + ".Width",
                 (int) (ClientSize.Width / _scaleFactor.Width) );
-			Core.SettingStore.WriteInt( "ResourceEditWindow", _resource.Type + ".Height", 
+			Core.SettingStore.WriteInt( "ResourceEditWindow", _resource.Type + ".Height",
                 (int) (ClientSize.Height / _scaleFactor.Height) );
         }
 
@@ -319,7 +318,7 @@ namespace JetBrains.Omea
         {
             if ( e.Modifiers == Keys.Control && e.KeyCode == Keys.Enter )
             {
-                _btnSave.PerformClick();                
+                _btnSave.PerformClick();
             }
         }
 

@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -160,9 +159,9 @@ namespace JetBrains.Omea.Categories
             _chkFilterByWorkspace = new System.Windows.Forms.CheckBox();
 
             SuspendLayout();
-            // 
+            //
             // _lblCategoriesFor
-            // 
+            //
             this._lblCategoriesFor.AutoSize = true;
             this._lblCategoriesFor.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._lblCategoriesFor.Location = new System.Drawing.Point(4, 6);
@@ -170,9 +169,9 @@ namespace JetBrains.Omea.Categories
             this._lblCategoriesFor.Size = new System.Drawing.Size(74, 17);
             this._lblCategoriesFor.TabIndex = 6;
             this._lblCategoriesFor.Text = "Categories for";
-            // 
+            //
             // _lblResource
-            // 
+            //
             this._lblResource.Anchor = (AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right);
             this._lblResource.ClickableLink = false;
             this._lblResource.ExecuteDoubleClickAction = false;
@@ -185,12 +184,12 @@ namespace JetBrains.Omea.Categories
             this._lblResource.ShowIcon = true;
             this._lblResource.Size = new System.Drawing.Size(23, 20);
             this._lblResource.TabIndex = 7;
-            // 
+            //
             // _categoryTree
-            // 
+            //
             this._categoryTree.AllowDrop = true;
-            this._categoryTree.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-                | System.Windows.Forms.AnchorStyles.Left) 
+            this._categoryTree.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._categoryTree.DoubleBuffer = false;
             this._categoryTree.DropOnEmpty = true;
@@ -215,9 +214,9 @@ namespace JetBrains.Omea.Categories
             this._categoryTree.ResourceAdded += new System.Windows.Forms.TreeViewEventHandler(this._categoryTree_ResourceAdded);
             this._categoryTree.AfterLabelEdit += new System.Windows.Forms.NodeLabelEditEventHandler(this.OnCategoryLabelEdit);
             this._categoryTree.AfterThreeStateCheck += new ThreeStateCheckEventHandler(_categoryTree_AfterThreeStateCheck);
-            // 
+            //
             // _btnNewCategory
-            // 
+            //
             this._btnNewCategory.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this._btnNewCategory.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._btnNewCategory.Location = new System.Drawing.Point(172, 28);
@@ -225,9 +224,9 @@ namespace JetBrains.Omea.Categories
             this._btnNewCategory.TabIndex = 1;
             this._btnNewCategory.Text = "&New...";
             this._btnNewCategory.Click += new System.EventHandler(this.OnAddCategory);
-            // 
+            //
             // _btnDeleteCategory
-            // 
+            //
             this._btnDeleteCategory.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this._btnDeleteCategory.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._btnDeleteCategory.Location = new System.Drawing.Point(172, 57);
@@ -235,9 +234,9 @@ namespace JetBrains.Omea.Categories
             this._btnDeleteCategory.TabIndex = 2;
             this._btnDeleteCategory.Text = "&Delete";
             this._btnDeleteCategory.Click += new System.EventHandler(this.OnDeleteCategory);
-            // 
+            //
             // _btnRenameCategory
-            // 
+            //
             this._btnRenameCategory.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this._btnRenameCategory.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._btnRenameCategory.Location = new System.Drawing.Point(172, 86);
@@ -280,9 +279,9 @@ namespace JetBrains.Omea.Categories
             this._chkFilterByWorkspace.Checked = _filterCheckState;
             this._chkFilterByWorkspace.Anchor = (System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left);
             this._chkFilterByWorkspace.CheckedChanged += new EventHandler(_chkFilterByWorkspace_CheckedChanged);
-            // 
+            //
             // _btnOk
-            // 
+            //
             this._btnOk.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this._btnOk.DialogResult = System.Windows.Forms.DialogResult.OK;
             this._btnOk.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -291,9 +290,9 @@ namespace JetBrains.Omea.Categories
             this._btnOk.TabIndex = 5;
             this._btnOk.Text = "OK";
             this._btnOk.Click += new System.EventHandler(this._btnOk_Click);
-            // 
+            //
             // _btnCancel
-            // 
+            //
             this._btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this._btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this._btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -301,9 +300,9 @@ namespace JetBrains.Omea.Categories
             this._btnCancel.Name = "_btnCancel";
             this._btnCancel.TabIndex = 5;
             this._btnCancel.Text = "Cancel";
-            // 
+            //
             // CategoryEditor
-            // 
+            //
             this.AcceptButton = this._btnOk;
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
             this.CancelButton = this._btnCancel;
@@ -340,7 +339,7 @@ namespace JetBrains.Omea.Categories
         {
             CategoryManager mgr = Core.CategoryManager as CategoryManager;
             _resList = resList;
-            
+
             _propCategory = mgr.PropCategory;
 
             RestoreSettings();
@@ -367,7 +366,7 @@ namespace JetBrains.Omea.Categories
                 _lblCategoriesFor.Text = "Categories for " + resList.Count + " resources:";
                 _lblResource.Visible = false;
             }
-            
+
             if ( _categoryTree.SelectedNode == null && _categoryTree.Nodes.Count > 0 )
             {
                 _categoryTree.SelectedNode = _categoryTree.Nodes [0];
@@ -428,7 +427,7 @@ namespace JetBrains.Omea.Categories
         }
 
         /// <summary>
-        /// When the "Rename" button is clicked, initiates the in-place edit 
+        /// When the "Rename" button is clicked, initiates the in-place edit
         /// for the selected category.
         /// </summary>
         private void OnRenameCategoryClick( object sender, EventArgs e )
@@ -487,14 +486,14 @@ namespace JetBrains.Omea.Categories
         /**
          * When the Delete button is clicked, deletes the category selected in the tree.
          */
-        
+
         private void OnDeleteCategory( object sender, EventArgs e )
         {
             DeleteSelectedCategory();
         }
 
         /**
-         * When the Del key is pressed in the category tree, deletes the selected category.	
+         * When the Del key is pressed in the category tree, deletes the selected category.
          */
 
         private void DeleteSelectedCategory()
@@ -509,7 +508,7 @@ namespace JetBrains.Omea.Categories
             if ( CategoryManager.ConfirmDeleteCategories( this, category.ToResourceList() ) )
             {
                 Core.ResourceAP.RunJob( new ResourceDelegate( CategoryManager.DeleteCategory ), category );
-                
+
                 _categoryTree.ProcessPendingUpdates();
                 UpdateButtonState();
             }
@@ -522,7 +521,7 @@ namespace JetBrains.Omea.Categories
         /// </summary>
         private void UpdateButtonState()
         {
-            bool isEnabled = ( _categoryTree.SelectedNode != null ) && 
+            bool isEnabled = ( _categoryTree.SelectedNode != null ) &&
                              ( _categoryTree.SelectedResource.Type == "Category" );
             _btnDeleteCategory.Enabled = _btnRenameCategory.Enabled = isEnabled;
         }
@@ -565,7 +564,7 @@ namespace JetBrains.Omea.Categories
 
         #region D'n'D
         //HACK! almost copy-pasted from ResourceTreePane.cs
-        
+
         private void _categoryTree_ResourceDragOver( object sender, ResourceDragEventArgs e )
         {
             if ( e.DroppedResources.Count == 0 )
@@ -666,7 +665,7 @@ namespace JetBrains.Omea.Categories
          * Checks how many of the resources in the specified list have a link
          * to the specified category.
          */
-        
+
         private int GetCategoryLinkCount( IResourceList resList, IResource category )
         {
             int result = 0;
@@ -681,7 +680,7 @@ namespace JetBrains.Omea.Categories
         }
 
         /// <summary>
-        /// Creates links between the active resource and the selected categories, 
+        /// Creates links between the active resource and the selected categories,
         /// and removes links from de-selected categories.
         /// </summary>
         internal override void SaveCategories( IResourceList resList )

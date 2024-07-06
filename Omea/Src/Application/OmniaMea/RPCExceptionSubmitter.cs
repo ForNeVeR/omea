@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Diagnostics;
@@ -17,7 +16,7 @@ namespace JetBrains.Omea
 	[XmlRpcUrl("http://omea.jetbrains.net/xmlrpc/TrackerProxy.rem")]
 	public class TrackerProxy : XmlRpcClientProtocol
 	{
-		[XmlRpcMethod("tracker.PostException")] 
+		[XmlRpcMethod("tracker.PostException")]
 		public RPCSubmissionResult PostException(string excString, string excMessage, string excStackTrace,
 			string description, string itnUserName, string itnPassword, string product, int buildNumber)
 		{
@@ -92,8 +91,8 @@ namespace JetBrains.Omea
 				submitter.Proxy = proxy;
 
 				OnSubmitProgress("Submitting...");
-				XmlRpcAsyncResult ar = (XmlRpcAsyncResult)submitter.BeginPostException( e.ToString(), 
-                    e.Message, e.StackTrace, description, itnUserName, itnPassword, "mypal", buildNumber, 
+				XmlRpcAsyncResult ar = (XmlRpcAsyncResult)submitter.BeginPostException( e.ToString(),
+                    e.Message, e.StackTrace, description, itnUserName, itnPassword, "mypal", buildNumber,
                     null, null);
 				int sleepCount = 0;
 				while (!ar.IsCompleted)
@@ -113,7 +112,7 @@ namespace JetBrains.Omea
 				{
 					try
 					{
-						RPCSubmissionResult rsr = submitter.EndPostException( ar );	
+						RPCSubmissionResult rsr = submitter.EndPostException( ar );
 						OnSubmitProgress("Submitted");
                         XmlDocument doc = new XmlDocument();
                         doc.LoadXml( rsr.RequestDescription );

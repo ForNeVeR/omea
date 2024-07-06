@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.IO;
@@ -28,7 +27,7 @@ namespace RSSPlugin.Tests
             _storage = _core.ResourceStore;
 
             Props.Register( null );
-            
+
             _feed = _storage.NewResource( "RSSFeed" );
             _parser = new RSSParser( _feed );
         }
@@ -45,7 +44,7 @@ namespace RSSPlugin.Tests
             {
                 if ( resourceName.EndsWith( name ) )
                 {
-                    using( Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream( resourceName ) ) 
+                    using( Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream( resourceName ) )
                     {
                         _parser.Parse( stream, Encoding.Default, true );
                         return _feed.GetLinksOfType( "RSSItem", Props.RSSItem );
@@ -66,16 +65,16 @@ namespace RSSPlugin.Tests
         [Test] public void TestTitleXhtml()
         {
             IResourceList items = ParseFeed( "title-xhtml.xml" );
-//            Assert.AreEqual( "<p xmlns=\"http://purl.org/atom/ns#\">Google Desktop Search - Initial Reactions</p>", 
+//            Assert.AreEqual( "<p xmlns=\"http://purl.org/atom/ns#\">Google Desktop Search - Initial Reactions</p>",
             //  We do not allow html tags to appear in the subjects.
-            Assert.AreEqual( "Google Desktop Search - Initial Reactions", 
+            Assert.AreEqual( "Google Desktop Search - Initial Reactions",
                 items [0].GetStringProp( "Subject" ) );
         }
 
         [Test] public void TestTitlePlain()
         {
             IResourceList items = ParseFeed( "title-plain.xml" );
-            Assert.AreEqual( "Virtual Server 2005 and Windows XP SP2", 
+            Assert.AreEqual( "Virtual Server 2005 and Windows XP SP2",
                 items [0].GetStringProp( "Subject" ) );
         }
         [Test] public void TestImageProps()

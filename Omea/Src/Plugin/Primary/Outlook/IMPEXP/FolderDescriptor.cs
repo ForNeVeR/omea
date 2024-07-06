@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -24,8 +23,8 @@ namespace JetBrains.Omea.OutlookPlugin
 
         public FolderDescriptor( IResource folder )
         {
-            Init( PairIDs.Get( folder ), 
-                folder.GetPropText( Core.Props.Name ), 
+            Init( PairIDs.Get( folder ),
+                folder.GetPropText( Core.Props.Name ),
                 Folder.GetContainerClass( folder ), Folder.GetStoreSupportMask( folder ), Folder.GetConentCount( folder ) );
         }
         public FolderDescriptor( PairIDs IDs, IEFolder folder )
@@ -59,7 +58,7 @@ namespace JetBrains.Omea.OutlookPlugin
         public static FolderDescriptor Get( PairIDs IDs )
         {
             Guard.NullArgument( IDs, "IDs" );
-            IEFolder folder = 
+            IEFolder folder =
                 OutlookSession.OpenFolder( IDs.EntryId, IDs.StoreId );
             if ( folder != null ) using ( folder )
                                   {
@@ -100,7 +99,7 @@ namespace JetBrains.Omea.OutlookPlugin
         public int StoreSupportMask{ get { return _storeSupportMask; } }
         public int ContentCount{ get { return _contentCount; } }
     }
-    
+
     internal class MAPIInfoStoreDescriptor : AbstractNamedJob
     {
         private string _name;
@@ -160,7 +159,7 @@ namespace JetBrains.Omea.OutlookPlugin
                                     }
                                 }
                             }
-                                
+
                         }
                     }
                 }
@@ -208,7 +207,7 @@ namespace JetBrains.Omea.OutlookPlugin
 
             if ( _resource == null && _deletedItemsId != null )
             {
-                _resource = Core.ResourceStore.FindUniqueResource( STR.MAPIInfoStore, 
+                _resource = Core.ResourceStore.FindUniqueResource( STR.MAPIInfoStore,
                     PROP.DeletedItemsEntryID, _deletedItemsId );
             }
 
@@ -230,7 +229,7 @@ namespace JetBrains.Omea.OutlookPlugin
             _resource.SetProp( PROP.EntryID, _entryId );
             _resource.SetProp( PROP.DeletedItemsEntryID, _deletedItemsId );
             _resource.SetProp( PROP.JunkEmailEntryID, _junkEmailId );
-            
+
             _resource.SetProp( PROP.PR_STORE_SUPPORT_MASK, _supportMask );
             _resource.SetProp( PROP.StoreSupported, _supported );
             if ( !_supported )
@@ -356,7 +355,7 @@ namespace JetBrains.Omea.OutlookPlugin
             catch ( Exception exception )
             {
                 Core.ReportException( exception, ExceptionReportFlags.AttachLog );
-                Tracer._TraceException( exception );              
+                Tracer._TraceException( exception );
             }
         }
 

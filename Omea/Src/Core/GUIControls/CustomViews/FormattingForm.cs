@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Drawing;
@@ -185,9 +184,9 @@ namespace GUIControls.CustomViews
             this._grpScope.SuspendLayout();
             this._grpFormatting.SuspendLayout();
             this.SuspendLayout();
-            // 
+            //
             // checkBold
-            // 
+            //
             this.checkBold.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.checkBold.Location = new System.Drawing.Point(12, 20);
             this.checkBold.Name = "checkBold";
@@ -195,9 +194,9 @@ namespace GUIControls.CustomViews
             this.checkBold.TabIndex = 0;
             this.checkBold.Text = "Bold";
             this.checkBold.CheckStateChanged += new System.EventHandler(this.CheckStateChanged);
-            // 
+            //
             // checkItalic
-            // 
+            //
             this.checkItalic.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.checkItalic.Location = new System.Drawing.Point(64, 20);
             this.checkItalic.Name = "checkItalic";
@@ -205,9 +204,9 @@ namespace GUIControls.CustomViews
             this.checkItalic.TabIndex = 1;
             this.checkItalic.Text = "Italic";
             this.checkItalic.CheckStateChanged += new System.EventHandler(this.CheckStateChanged);
-            // 
+            //
             // checkUnderline
-            // 
+            //
             this.checkUnderline.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.checkUnderline.Location = new System.Drawing.Point(124, 20);
             this.checkUnderline.Name = "checkUnderline";
@@ -215,9 +214,9 @@ namespace GUIControls.CustomViews
             this.checkUnderline.TabIndex = 2;
             this.checkUnderline.Text = "Underline";
             this.checkUnderline.CheckedChanged += new System.EventHandler(this.CheckStateChanged);
-            // 
+            //
             // checkStrikeout
-            // 
+            //
             this.checkStrikeout.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.checkStrikeout.Location = new System.Drawing.Point(204, 20);
             this.checkStrikeout.Name = "checkStrikeout";
@@ -225,45 +224,45 @@ namespace GUIControls.CustomViews
             this.checkStrikeout.TabIndex = 3;
             this.checkStrikeout.Text = "Strikeout";
             this.checkStrikeout.CheckStateChanged += new System.EventHandler(this.CheckStateChanged);
-            // 
+            //
             // labelBackground
-            // 
+            //
             this.labelBackground.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.labelBackground.Location = new System.Drawing.Point(12, 44);
             this.labelBackground.Name = "labelBackground";
             this.labelBackground.Size = new System.Drawing.Size(90, 16);
             this.labelBackground.TabIndex = 4;
             this.labelBackground.Text = "Background Color:";
-            // 
+            //
             // labelForeground
-            // 
+            //
             this.labelForeground.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.labelForeground.Location = new System.Drawing.Point(12, 72);
             this.labelForeground.Name = "labelForeground";
             this.labelForeground.Size = new System.Drawing.Size(90, 16);
             this.labelForeground.TabIndex = 7;
             this.labelForeground.Text = "Foreground Color:";
-            // 
+            //
             // panelBackground
-            // 
+            //
             this.panelBackground.BackColor = System.Drawing.SystemColors.Window;
             this.panelBackground.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panelBackground.Location = new System.Drawing.Point(108, 44);
             this.panelBackground.Name = "panelBackground";
             this.panelBackground.Size = new System.Drawing.Size(70, 20);
             this.panelBackground.TabIndex = 4;
-            // 
+            //
             // panelForeground
-            // 
+            //
             this.panelForeground.BackColor = System.Drawing.Color.Black;
             this.panelForeground.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panelForeground.Location = new System.Drawing.Point(108, 72);
             this.panelForeground.Name = "panelForeground";
             this.panelForeground.Size = new System.Drawing.Size(70, 20);
             this.panelForeground.TabIndex = 7;
-            // 
+            //
             // buttonChangeBackground
-            // 
+            //
             this.buttonChangeBackground.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.buttonChangeBackground.Location = new System.Drawing.Point(184, 44);
             this.buttonChangeBackground.Name = "buttonChangeBackground";
@@ -271,9 +270,9 @@ namespace GUIControls.CustomViews
             this.buttonChangeBackground.TabIndex = 5;
             this.buttonChangeBackground.Text = "...";
             this.buttonChangeBackground.Click += new System.EventHandler(this.buttonChangeBackground_Click);
-            // 
+            //
             // buttonChangeForeground
-            // 
+            //
             this.buttonChangeForeground.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.buttonChangeForeground.Location = new System.Drawing.Point(184, 68);
             this.buttonChangeForeground.Name = "buttonChangeForeground";
@@ -281,9 +280,9 @@ namespace GUIControls.CustomViews
             this.buttonChangeForeground.TabIndex = 8;
             this.buttonChangeForeground.Text = "...";
             this.buttonChangeForeground.Click += new System.EventHandler(this.buttonChangeForeground_Click);
-            // 
+            //
             // panelSample
-            // 
+            //
             this.panelSample.BackColor = System.Drawing.Color.White;
             this.panelSample.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panelSample.Controls.Add(this.labelSample);
@@ -291,27 +290,27 @@ namespace GUIControls.CustomViews
             this.panelSample.Name = "panelSample";
             this.panelSample.Size = new System.Drawing.Size(80, 45);
             this.panelSample.TabIndex = 4;
-            // 
+            //
             // labelSample
-            // 
+            //
             this.labelSample.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.labelSample.Location = new System.Drawing.Point(9, 15);
             this.labelSample.Name = "labelSample";
             this.labelSample.Size = new System.Drawing.Size(70, 16);
             this.labelSample.TabIndex = 0;
             this.labelSample.Text = "AaBbCcDdEe";
-            // 
+            //
             // _btnClear
-            // 
+            //
             this._btnClear.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._btnClear.Location = new System.Drawing.Point(220, 100);
             this._btnClear.Name = "_btnClear";
             this._btnClear.TabIndex = 9;
             this._btnClear.Text = "Default";
             this._btnClear.Click += new System.EventHandler(this._btnClear_Click);
-            // 
+            //
             // _grpFormatting
-            // 
+            //
             this._grpFormatting.Controls.Add(this._btnClear);
             this._grpFormatting.Controls.Add(this.labelBackground);
             this._grpFormatting.Controls.Add(this.panelForeground);
@@ -330,9 +329,9 @@ namespace GUIControls.CustomViews
             this._grpFormatting.TabIndex = 26;
             this._grpFormatting.TabStop = false;
             this._grpFormatting.Text = "Formatting";
-            // 
+            //
             // _grpScope
-            // 
+            //
             this._grpScope.Controls.Add(this._radioCurrentSelection);
             this._grpScope.Controls.Add(this._radioThread);
             this._grpScope.Controls.Add(this._radioSubthread);
@@ -342,9 +341,9 @@ namespace GUIControls.CustomViews
             this._grpScope.TabIndex = 25;
             this._grpScope.TabStop = false;
             this._grpScope.Text = "Apply to";
-            // 
+            //
             // _radioSubthread
-            // 
+            //
             this._radioSubthread.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._radioSubthread.Location = new System.Drawing.Point(8, 16);
             this._radioSubthread.Name = "_radioSubthread";
@@ -353,18 +352,18 @@ namespace GUIControls.CustomViews
             this._radioSubthread.TabStop = true;
             this._radioSubthread.Text = "Selected subthread";
             this._radioSubthread.Checked = true;
-            // 
+            //
             // _radioCurrentSelection
-            // 
+            //
             this._radioCurrentSelection.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._radioCurrentSelection.Location = new System.Drawing.Point(8, 36);
             this._radioCurrentSelection.Name = "_radioCurrentSelection";
             this._radioCurrentSelection.Size = new System.Drawing.Size(144, 20);
             this._radioCurrentSelection.TabIndex = 13;
             this._radioCurrentSelection.Text = "Current selection";
-            // 
+            //
             // _radioThread
-            // 
+            //
             this._radioThread.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this._radioThread.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._radioThread.Location = new System.Drawing.Point(8, 56);
@@ -373,18 +372,18 @@ namespace GUIControls.CustomViews
             this._radioThread.TabIndex = 12;
             this._radioThread.TabStop = true;
             this._radioThread.Text = "Whole thread";
-            // 
+            //
             // checkRememberLast
-            // 
+            //
             this.checkRememberLast.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.checkRememberLast.Location = new System.Drawing.Point(8, 235);
             this.checkRememberLast.Name = "checkRememberLast";
             this.checkRememberLast.Size = new System.Drawing.Size(150, 20);
             this.checkRememberLast.TabIndex = 18;
             this.checkRememberLast.Text = "&Remember last setting";
-            // 
+            //
             // btnOK
-            // 
+            //
             this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnOK.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.btnOK.Location = new System.Drawing.Point(82, 260);
@@ -393,9 +392,9 @@ namespace GUIControls.CustomViews
             this.btnOK.TabIndex = 20;
             this.btnOK.Text = "OK";
             this.btnOK.Click += new System.EventHandler(this.okButton_Click);
-            // 
+            //
             // btnCancel
-            // 
+            //
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -404,9 +403,9 @@ namespace GUIControls.CustomViews
             this.btnCancel.Size = new System.Drawing.Size(72, 24);
             this.btnCancel.TabIndex = 22;
             this.btnCancel.Text = "Cancel";
-            // 
+            //
             // btnHelp
-            // 
+            //
             this.btnHelp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnHelp.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.btnHelp.Location = new System.Drawing.Point(242, 260);
@@ -415,9 +414,9 @@ namespace GUIControls.CustomViews
             this.btnHelp.TabIndex = 24;
             this.btnHelp.Text = "Help";
             this.btnHelp.Click += new System.EventHandler(this.helpButton_Click);
-            // 
+            //
             // FormattingForm
-            // 
+            //
             this.AcceptButton = this.btnOK;
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
             this.CancelButton = this.btnCancel;

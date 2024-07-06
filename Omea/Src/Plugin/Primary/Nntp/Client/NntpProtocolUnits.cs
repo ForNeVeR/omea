@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -420,7 +419,7 @@ namespace JetBrains.Omea.Nntp
                     _getHeadersUnit.Finished += new AsciiProtocolUnitDelegate( getHeadersUnit_Finished );
                     StartUnit( _getHeadersUnit, _connection );
                     return;
-                }   
+                }
             }
             FireFinished();
         }
@@ -486,7 +485,7 @@ namespace JetBrains.Omea.Nntp
         private JobPriority                     _priority;
         private int                             _firstArticle;
         private int                             _firstArticleCopy;
-        private int                             _lastArticle;        
+        private int                             _lastArticle;
         private bool                            _responseChecked;
         private AsciiSendLineAndApplyMethodUnit _getHeadersUnit;
         private AsciiTcpConnection              _connection;

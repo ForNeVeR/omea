@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using JetBrains.Omea.OpenAPI;
@@ -23,7 +22,7 @@ namespace JetBrains.Omea.InstantMessaging.Miranda
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.NumericUpDown _udConversationPeriod;
-		/// <summary> 
+		/// <summary>
 		/// Required designer variable.
 		/// </summary>
 		private System.ComponentModel.Container components = null;
@@ -34,7 +33,7 @@ namespace JetBrains.Omea.InstantMessaging.Miranda
 			InitializeComponent();
 		}
 
-		/// <summary> 
+		/// <summary>
 		/// Clean up any resources being used.
 		/// </summary>
 		protected override void Dispose( bool disposing )
@@ -50,8 +49,8 @@ namespace JetBrains.Omea.InstantMessaging.Miranda
 		}
 
 		#region Component Designer generated code
-		/// <summary> 
-		/// Required method for Designer support - do not modify 
+		/// <summary>
+		/// Required method for Designer support - do not modify
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent()
@@ -69,37 +68,37 @@ namespace JetBrains.Omea.InstantMessaging.Miranda
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this._udConversationPeriod)).BeginInit();
             this.SuspendLayout();
-            // 
+            //
             // label1
-            // 
+            //
             this.label1.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(212, 20);
             this.label1.TabIndex = 0;
             this.label1.Text = "Miranda &profile to index:";
-            // 
+            //
             // _lbxProfiles
-            // 
-            this._lbxProfiles.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._lbxProfiles.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._lbxProfiles.Location = new System.Drawing.Point(0, 24);
             this._lbxProfiles.Name = "_lbxProfiles";
             this._lbxProfiles.Size = new System.Drawing.Size(392, 95);
             this._lbxProfiles.TabIndex = 1;
-            // 
+            //
             // _chkCreateCategories
-            // 
+            //
             this._chkCreateCategories.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._chkCreateCategories.Location = new System.Drawing.Point(0, 212);
             this._chkCreateCategories.Name = "_chkCreateCategories";
             this._chkCreateCategories.Size = new System.Drawing.Size(320, 16);
             this._chkCreateCategories.TabIndex = 6;
             this._chkCreateCategories.Text = "Create &categories from contact groups";
-            // 
+            //
             // groupBox1
-            // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this._radSyncStartup);
             this.groupBox1.Controls.Add(this._radSyncImmediate);
@@ -110,36 +109,36 @@ namespace JetBrains.Omea.InstantMessaging.Miranda
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Synchronize database";
-            // 
+            //
             // _radSyncStartup
-            // 
+            //
             this._radSyncStartup.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._radSyncStartup.Location = new System.Drawing.Point(8, 36);
             this._radSyncStartup.Name = "_radSyncStartup";
             this._radSyncStartup.Size = new System.Drawing.Size(128, 20);
             this._radSyncStartup.TabIndex = 1;
             this._radSyncStartup.Text = "&On startup";
-            // 
+            //
             // _radSyncImmediate
-            // 
+            //
             this._radSyncImmediate.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._radSyncImmediate.Location = new System.Drawing.Point(8, 16);
             this._radSyncImmediate.Name = "_radSyncImmediate";
             this._radSyncImmediate.Size = new System.Drawing.Size(128, 20);
             this._radSyncImmediate.TabIndex = 0;
             this._radSyncImmediate.Text = "&Immediately";
-            // 
+            //
             // _chkLatestOnTop
-            // 
+            //
             this._chkLatestOnTop.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._chkLatestOnTop.Location = new System.Drawing.Point(0, 232);
             this._chkLatestOnTop.Name = "_chkLatestOnTop";
             this._chkLatestOnTop.Size = new System.Drawing.Size(320, 16);
             this._chkLatestOnTop.TabIndex = 7;
             this._chkLatestOnTop.Text = "Show &latest messages in conversations on top";
-            // 
+            //
             // label4
-            // 
+            //
             this.label4.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label4.Location = new System.Drawing.Point(324, 192);
             this.label4.Name = "label4";
@@ -147,9 +146,9 @@ namespace JetBrains.Omea.InstantMessaging.Miranda
             this.label4.TabIndex = 5;
             this.label4.Text = "minutes";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
+            //
             // _udConversationPeriod
-            // 
+            //
             this._udConversationPeriod.Location = new System.Drawing.Point(264, 188);
             this._udConversationPeriod.Maximum = new System.Decimal(new int[] {
                                                                                   14400,
@@ -170,9 +169,9 @@ namespace JetBrains.Omea.InstantMessaging.Miranda
                                                                                 0,
                                                                                 0,
                                                                                 0});
-            // 
+            //
             // label5
-            // 
+            //
             this.label5.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label5.Location = new System.Drawing.Point(4, 192);
             this.label5.Name = "label5";
@@ -180,9 +179,9 @@ namespace JetBrains.Omea.InstantMessaging.Miranda
             this.label5.TabIndex = 3;
             this.label5.Text = "&Maximum time span between messages:";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
+            //
             // MirandaOptionsPane
-            // 
+            //
             this.Controls.Add(this.label4);
             this.Controls.Add(this._udConversationPeriod);
             this.Controls.Add(this.label5);
@@ -203,7 +202,7 @@ namespace JetBrains.Omea.InstantMessaging.Miranda
         public override void ShowPane()
         {
             ISettingStore ini = Core.SettingStore;
-            
+
             string curProfile = ini.ReadString( "Miranda", "ProfileToIndex" );
             _lbxProfiles.Items.Add( "<none>" );
             foreach( string profile in ProfileManager.GetProfileList() )

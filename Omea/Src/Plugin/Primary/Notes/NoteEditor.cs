@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.ComponentModel;
@@ -127,9 +126,9 @@ namespace JetBrains.Omea.Notes
             _subject.TabStop = false;
             _subject.Text = "&Subject:";
             _subject.Size = new Size(65, 25);
-            // 
+            //
 			// _txtTitle
-			// 
+			//
             _txtTitle.Location = new Point( 80, 4 );
             _txtTitle.Size = new Size( 700, 25 );
             _txtTitle.Name = "_txtTitle";
@@ -137,18 +136,18 @@ namespace JetBrains.Omea.Notes
 			_txtTitle.Text = "";
 			_txtTitle.TextChanged += OnTitleChanged;
 			_txtTitle.KeyDown += OnEditorKeyDown;
-			// 
+			//
 			// _htmled
-			// 
+			//
 			_htmled.Name = "_htmled";
 			_htmled.TabIndex = 1;
 			_htmled.Dock = DockStyle.Fill;
 			_htmled.add_KeyDown( new KeyEventHandler( OnEditorKeyDown ) );
             _htmled.add_PropertyChanged( new EventHandler( OnPropChanged ) );
             _htmled.add_PasteHandler( new EventHandler( OnPropChanged ) );
-			// 
+			//
 			// _toolbar
-			// 
+			//
 //			_toolbar.DropDownArrows = true;
 			_toolbar.Location = new Point( 36, 0 );
 			_toolbar.Name = "_toolbar";
@@ -163,9 +162,9 @@ namespace JetBrains.Omea.Notes
             _panelBody.Dock = DockStyle.Fill;
 			_panelBody.Name = "_panelBody";
 			_panelBody.TabIndex = 1;
-            // 
+            //
             // _panelCategories
-            // 
+            //
             _panelCategories.Controls.Add( _selector );
             _panelCategories.BorderStyle = BorderStyle.Fixed3D;
             _panelCategories.Size = new Size( 800, 40 );
@@ -180,9 +179,9 @@ namespace JetBrains.Omea.Notes
             _selector.Name = "_selector";
             _selector.Size = new Size(320, 40);
             _selector.TabIndex = 3;
-            // 
+            //
 			// NoteComposer
-			// 
+			//
 			ClientSize = new Size( 800, 600 );
             Controls.Add( _panelBody );
             Controls.Add( _panelCategories );

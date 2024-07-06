@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -15,12 +14,12 @@ using JetBrains.Omea.OpenAPI;
 namespace JetBrains.Omea
 {
 	/// <summary>
-    /// Control which manages creating sidebars for each tab and showing/hiding them 
+    /// Control which manages creating sidebars for each tab and showing/hiding them
     /// when tabs are switched.
 	/// </summary>
     internal class SidebarSwitcher : UserControl, IContextProvider, ISidebarSwitcher
 	{
-		/// <summary> 
+		/// <summary>
 		/// Required designer variable.
 		/// </summary>
 		private Container components = null;
@@ -45,7 +44,7 @@ namespace JetBrains.Omea
 			SetStyle( ControlStyles.Selectable, false );
 		}
 
-		/// <summary> 
+		/// <summary>
 		/// Clean up any resources being used.
 		/// </summary>
 		protected override void Dispose( bool disposing )
@@ -61,8 +60,8 @@ namespace JetBrains.Omea
 		}
 
 		#region Component Designer generated code
-		/// <summary> 
-		/// Required method for Designer support - do not modify 
+		/// <summary>
+		/// Required method for Designer support - do not modify
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent()
@@ -76,9 +75,9 @@ namespace JetBrains.Omea
         public bool Expanded
         {
             get { return _expanded; }
-            set 
-            { 
-                _expanded = value; 
+            set
+            {
+                _expanded = value;
                 if ( ExpandedChanged != null )
                 {
                     ExpandedChanged( this, EventArgs.Empty );
@@ -95,9 +94,9 @@ namespace JetBrains.Omea
 	    public int ExpandedWidth
         {
             get { return _expandedWidth; }
-            set 
-            { 
-                _expandedWidth = value; 
+            set
+            {
+                _expandedWidth = value;
                 if ( Expanded )
                 {
                     Width = _expandedWidth;
@@ -108,9 +107,9 @@ namespace JetBrains.Omea
         public ColorScheme ColorScheme
         {
             get { return _colorScheme; }
-            set 
-            { 
-                _colorScheme = value; 
+            set
+            {
+                _colorScheme = value;
                 foreach( VerticalSidebar ctl in Controls )
                 {
                     ctl.ColorScheme = _colorScheme;
@@ -184,10 +183,10 @@ namespace JetBrains.Omea
             {
                 return;
             }
-            
+
             IAction activateAction = new ActivateViewPaneAction( tabID, paneID );
             // order of actions matches the order of tabs
-            Core.ActionManager.RegisterMainMenuAction( activateAction, ActionGroups.VIEW_VIEWPANE_ACTIONS, 
+            Core.ActionManager.RegisterMainMenuAction( activateAction, ActionGroups.VIEW_VIEWPANE_ACTIONS,
                                                        ListAnchor.Last, caption, null, null, null );
             _paneActivateActions [paneID] = activateAction;
         }
@@ -219,7 +218,7 @@ namespace JetBrains.Omea
          * be combined with the "Views and Categories" pane) on the specified resource type tab.
          */
 
-        public void RegisterResourceStructurePane( string paneId, string tabId, string caption, 
+        public void RegisterResourceStructurePane( string paneId, string tabId, string caption,
                                                    Image icon, AbstractViewPane viewPane )
         {
             RegisterActivateAction( tabId, paneId, caption );
@@ -236,7 +235,7 @@ namespace JetBrains.Omea
         /**
          * Registers a resource structure pane based on a ResourceTreeView.
          */
-        
+
         public IResourceTreePane RegisterResourceStructureTreePane( string paneId, string tabId, string caption,
                                                                     Image icon, IResource rootResource )
         {
@@ -247,7 +246,7 @@ namespace JetBrains.Omea
 
             ViewsCategoriesPane viewsCategoriesPane = (ViewsCategoriesPane) GetPane( tabId, StandardViewPanes.ViewsCategories );
             viewsCategoriesPane.ShowWorkspaceOtherView = false;
-            
+
             return pane;
         }
 
@@ -259,7 +258,7 @@ namespace JetBrains.Omea
         public IResourceTreePane RegisterResourceStructureTreePane( string paneId, string tabId, string caption,
                                                                     Image icon, string rootResType )
         {
-            JetResourceTreePane treePane = (JetResourceTreePane) RegisterResourceStructureTreePane( paneId, tabId, caption, icon, 
+            JetResourceTreePane treePane = (JetResourceTreePane) RegisterResourceStructureTreePane( paneId, tabId, caption, icon,
                                                                  Core.ResourceTreeManager.GetRootForType( rootResType ) );
             treePane.RootResourceType = rootResType;
             return treePane;
@@ -281,7 +280,7 @@ namespace JetBrains.Omea
         /**
          * Registers a pane to be shown in the sidebar for the specified tab.
          */
-        
+
         public void AddPane( string tabID, string paneID, AbstractViewPane viewPane, string caption, Image icon )
         {
             VerticalSidebar sidebar = GetSidebar( tabID );
@@ -313,12 +312,12 @@ namespace JetBrains.Omea
 
         public IResourceTreePane DefaultViewPane
         {
-            get 
-            { 
+            get
+            {
                 if ( _activeSidebar == null )
                     return null;
 
-                return (IResourceTreePane) _activeSidebar.GetPane( StandardViewPanes.ViewsCategories ); 
+                return (IResourceTreePane) _activeSidebar.GetPane( StandardViewPanes.ViewsCategories );
             }
         }
 
@@ -412,12 +411,12 @@ namespace JetBrains.Omea
             {
                 return null;
             }
-            
+
             sidebar.ActivatePane( paneId );
             if ( _activeSidebar != sidebar )
             {
                 // one more check for tab switch caused by message processing during activation
-                return null;                
+                return null;
             }
             return pane;
         }
@@ -425,7 +424,7 @@ namespace JetBrains.Omea
 	    /**
          * Returns the sidebar instance for the specified tab.
          */
-        
+
         private VerticalSidebar GetSidebar( string tabId )
         {
             VerticalSidebar sidebar = (VerticalSidebar) _tabSidebars [tabId];

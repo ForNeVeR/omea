@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -70,7 +69,7 @@ namespace JetBrains.Omea.OutlookPlugin
             }
             _finished = _aborted = true;
             this.Thread.Abort();
-            MessageBox.Show( "Outlook plugin has encountered fatal error. " + Core.ProductFullName + " will shutdown.", 
+            MessageBox.Show( "Outlook plugin has encountered fatal error. " + Core.ProductFullName + " will shutdown.",
                 "Error" , MessageBoxButtons.OK, MessageBoxIcon.Error );
             Core.UIManager.CloseMainWindow();
         }
@@ -129,7 +128,7 @@ namespace JetBrains.Omea.OutlookPlugin
             Settings.LoadSettings();
             if ( Core.State == CoreState.Running )
             {
-                QueueJob( JobPriority.AboveNormal, "Synchronization for address books", 
+                QueueJob( JobPriority.AboveNormal, "Synchronization for address books",
                     new MethodInvoker( SynchronizeOutlookAddressBooksImpl ) );
                 QueueJob( JobPriority.AboveNormal, "Synchronization for contacts", new MethodInvoker( SynchronizeContactsImpl ) );
             }
@@ -311,7 +310,7 @@ namespace JetBrains.Omea.OutlookPlugin
                 string storeID = msgStore.GetBinProp( MAPIConst.PR_ENTRYID );
                 infoStores.Remove( storeID );
                 MAPIInfoStoreDescriptor infoStoreJob = new MAPIInfoStoreDescriptor( msgStore );
-                if( isInitialStart ) 
+                if( isInitialStart )
                 {
                     Core.ResourceAP.RunJob( infoStoreJob );
                 }

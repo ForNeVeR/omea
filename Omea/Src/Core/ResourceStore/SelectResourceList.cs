@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using JetBrains.Omea.Database;
@@ -48,7 +47,7 @@ namespace JetBrains.Omea.ResourceStore
          * matches the predicate. In snapshot mode, adds the resource to the snapshot
          * list; otherwise returns the "Removed from list" result.
          */
-        
+
         protected PredicateMatch CheckSnapshotRemove( int resID )
         {
             if ( _snapshot )
@@ -77,7 +76,7 @@ namespace JetBrains.Omea.ResourceStore
             return PredicateMatch.None;
         }
     }
-    
+
     /**
      * The predicate which matches resources that have a specified property.
      */
@@ -91,7 +90,7 @@ namespace JetBrains.Omea.ResourceStore
         {
             _propId = propID;
         }
-        
+
         internal override IntArrayList GetMatchingResources( out bool sortedById )
         {
             sortedById = false;
@@ -104,7 +103,7 @@ namespace JetBrains.Omea.ResourceStore
             {
                 if ( cs != null && cs.IsPropertyChanged( _propId ) && cs.GetOldValue( _propId ) == null )
                     return CheckSnapshotAdd( res.Id );
- 
+
                 return PredicateMatch.Match;
             }
             else if ( cs != null && cs.GetOldValue( _propId ) != null )
@@ -155,11 +154,11 @@ namespace JetBrains.Omea.ResourceStore
         {
             _propId = propID;
         }
-        
+
         internal override IntArrayList GetMatchingResources( out bool sortedById )
         {
             bool reverseLink = (_propId < 0 && MyPalStorage.Storage.IsLinkDirected( -_propId ) );
-            
+
             IResultSet rs = MyPalStorage.Storage.SelectLinksOfType( reverseLink ? -_propId : _propId );
             try
             {
@@ -198,7 +197,7 @@ namespace JetBrains.Omea.ResourceStore
             {
                 if ( cs != null && GetLinkCountDelta( cs, _propId ) == linkCount )
                     return CheckSnapshotAdd( res.Id );
- 
+
                 return PredicateMatch.Match;
             }
             else if ( cs != null && GetLinkCountDelta( cs, _propId ) < 0 )
@@ -224,7 +223,7 @@ namespace JetBrains.Omea.ResourceStore
                 }
             }
             return count;
-            
+
         }
 
         internal override int GetSelectionCost()
@@ -342,7 +341,7 @@ namespace JetBrains.Omea.ResourceStore
 
         public override string ToString()
         {
-            return "PropValue(" + MyPalStorage.Storage.GetPropName( _propId ) + "," + _minValue + 
+            return "PropValue(" + MyPalStorage.Storage.GetPropName( _propId ) + "," + _minValue +
                 ( (_maxValue == null) ? "" : ( "," + _maxValue ) ) + ")";
         }
 
@@ -352,8 +351,8 @@ namespace JetBrains.Omea.ResourceStore
                 return false;
 
             PropValuePredicate rhs = (PropValuePredicate) obj;
-            return rhs._propId == _propId && rhs._minValue.Equals( _minValue ) && 
-                ( ( _maxValue == null && rhs._maxValue == null ) || 
+            return rhs._propId == _propId && rhs._minValue.Equals( _minValue ) &&
+                ( ( _maxValue == null && rhs._maxValue == null ) ||
                   ( _maxValue != null && _maxValue.Equals( rhs._maxValue ) ) ) &&
                 _snapshot == rhs._snapshot;
         }

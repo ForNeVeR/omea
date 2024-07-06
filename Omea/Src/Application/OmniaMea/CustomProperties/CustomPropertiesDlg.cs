@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Drawing;
@@ -68,9 +67,9 @@ namespace JetBrains.Omea.CustomProperties
 			this._btnCancel = new System.Windows.Forms.Button();
 			this._contentPane = new System.Windows.Forms.Panel();
 			this.SuspendLayout();
-			// 
+			//
 			// _btnOK
-			// 
+			//
 			this._btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this._btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
 			this._btnOK.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -78,9 +77,9 @@ namespace JetBrains.Omea.CustomProperties
 			this._btnOK.Name = "_btnOK";
 			this._btnOK.TabIndex = 1;
 			this._btnOK.Text = "OK";
-			// 
+			//
 			// _btnCancel
-			// 
+			//
 			this._btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this._btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
 			this._btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -88,20 +87,20 @@ namespace JetBrains.Omea.CustomProperties
 			this._btnCancel.Name = "_btnCancel";
 			this._btnCancel.TabIndex = 2;
 			this._btnCancel.Text = "Cancel";
-			// 
+			//
 			// _contentPane
-			// 
-			this._contentPane.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-				| System.Windows.Forms.AnchorStyles.Left) 
+			//
+			this._contentPane.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+				| System.Windows.Forms.AnchorStyles.Left)
 				| System.Windows.Forms.AnchorStyles.Right)));
 			this._contentPane.AutoScroll = true;
 			this._contentPane.Location = new System.Drawing.Point(0, 0);
 			this._contentPane.Name = "_contentPane";
 			this._contentPane.Size = new System.Drawing.Size(292, 232);
 			this._contentPane.TabIndex = 0;
-			// 
+			//
 			// CustomPropertiesDlg
-			// 
+			//
 			this.AcceptButton = this._btnOK;
 			this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
 			this.CancelButton = this._btnCancel;
@@ -131,7 +130,7 @@ namespace JetBrains.Omea.CustomProperties
             }
 
             int curY = 4;
-            
+
             int maxLength = 0;
             string longestName = "";
             foreach( IPropType propType in ResourceTypeHelper.GetCustomPropTypes() )
@@ -152,7 +151,7 @@ namespace JetBrains.Omea.CustomProperties
                 }
             }
 
-            int valueX; 
+            int valueX;
             using( Graphics g = CreateGraphics() )
             {
                 valueX = (int) g.MeasureString( longestName, Font ).Width + 16;
@@ -229,12 +228,12 @@ namespace JetBrains.Omea.CustomProperties
                 if ( type.Name.StartsWith( "Custom." ) )
                 {
                     lbl.Text = type.Name.Substring( 7 );
-                }                           
+                }
                 else
                 {
                     lbl.Text = type.Name;
                 }
-            
+
                 lbl.Location = new Point( 4, curY );
                 lbl.AutoSize = true;
                 lbl.FlatStyle = FlatStyle.System;
@@ -282,12 +281,12 @@ namespace JetBrains.Omea.CustomProperties
     /**
      * Property editor for string controls, based on a regular edit box.
      */
-    
+
     internal class StringPropertyEditor: ICustomPropertyEditor
     {
         private TextBox _editBox;
         private bool _valueChanged = false;
-        
+
         public Control CreateControl( Rectangle rect, IPropType type, object curValue, bool valuesDiffer )
         {
             _editBox = new TextBox();
@@ -374,7 +373,7 @@ namespace JetBrains.Omea.CustomProperties
         public void SaveValue( IResource res, int propID )
         {
             _upDown.TextChanged -= new EventHandler( OnTextChanged );
-            
+
             if ( _valueChanged )
             {
                 if ( _upDown.Text == "" )
@@ -392,8 +391,8 @@ namespace JetBrains.Omea.CustomProperties
                         }
                         catch( Exception )
                         {
-                            MessageBox.Show( Core.MainWindow, 
-                                "The value '" + _upDown.Text + "' is not a valid number value", 
+                            MessageBox.Show( Core.MainWindow,
+                                "The value '" + _upDown.Text + "' is not a valid number value",
                                 "Edit Custom Property" );
                             _valueError = true;
                         }
@@ -414,13 +413,13 @@ namespace JetBrains.Omea.CustomProperties
 
     /**
      * Property editor for Date properties, based on a DatePickerCtrl.
-     */ 
-    
+     */
+
     internal class DatePropertyEditor: ICustomPropertyEditor
     {
         private DatePickerCtrl _datePicker;
         private bool _valueChanged;
-        
+
         public Control CreateControl( Rectangle rect, IPropType type, object curValue, bool valuesDiffer )
         {
             _datePicker = new DatePickerCtrl();

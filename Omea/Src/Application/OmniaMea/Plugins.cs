@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using JetBrains.Omea.ResourceStore;
 using JetBrains.Omea.ResourceTools;
@@ -36,7 +35,7 @@ namespace JetBrains.Omea.Plugins
                 {
                     _genericResourceTextProviders.Add( provider );
                 }
-                
+
             }
             else
             {
@@ -73,7 +72,7 @@ namespace JetBrains.Omea.Plugins
             if ( consumer == null )
                 throw new ArgumentNullException( "PluginLoader -- IResourceTextConsumer is null." );
             #endregion Preconditions
-            
+
             bool      isSuccess = true;
             ArrayList providerList = (ArrayList) _resourceTextProviders [res.Type];
             if ( providerList != null )
@@ -203,7 +202,7 @@ namespace JetBrains.Omea.Plugins
         {
             if ( res == null || Core.ResourceStore == null )
                 return null;
-    
+
             object handler = handlerMap [res.Type];
             if ( handler == null )
             {

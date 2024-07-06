@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -37,7 +36,7 @@ namespace JetBrains.UI.Components.RichTextListView
     /// </summary>
     public void Remove( ListViewItem item )
     {
-      myItems.Remove(item);      
+      myItems.Remove(item);
     }
 
     /// <summary>
@@ -73,7 +72,7 @@ namespace JetBrains.UI.Components.RichTextListView
         {
             Size size = text.GetSize(hdc).ToSize();
             size.Height = item.Bounds.Height;
-            size.Width += 3 + CalculateOffset(item);      
+            size.Width += 3 + CalculateOffset(item);
 
             return size;
         }
@@ -100,8 +99,8 @@ namespace JetBrains.UI.Components.RichTextListView
       {
         int topOffset = (rect.Height - contentRect.Height) / 2;
         contentRect.Y += topOffset;
-      }          
-      
+      }
+
       g.FillRectangle(new SolidBrush(listView.BackColor), rect);
 
       if ( item.Selected )
@@ -109,7 +108,7 @@ namespace JetBrains.UI.Components.RichTextListView
         Color backgroundColor = Colors.ListSelectionBackColor(listView.Focused);
 
         text = (RichText.RichText)text.Clone();
-          
+
         g.FillRectangle(new SolidBrush(backgroundColor), rect);
         text.SetColors(SystemColors.HighlightText, backgroundColor);
       }
@@ -166,7 +165,7 @@ namespace JetBrains.UI.Components.RichTextListView
     /// Calculated content rectangle of Item
     /// </summary>
     private Rectangle CalculateContentRectangle( ListViewItem item, Graphics g, Rectangle rect )
-    { 
+    {
         RichText.RichText text = (RichText.RichText)myItems[item];
         IntPtr hdc = g.GetHdc();
         try

@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System.Windows.Forms;
 using JetBrains.Omea.GUIControls;
@@ -100,9 +99,9 @@ namespace JetBrains.Omea.Nntp
             this._cancelButton = new System.Windows.Forms.Button();
             this._groupName = new JetBrains.Omea.GUIControls.JetLinkLabel();
             this.SuspendLayout();
-            // 
+            //
             // _warningLabel
-            // 
+            //
             this._warningLabel.ClickableLink = false;
             this._warningLabel.Cursor = System.Windows.Forms.Cursors.Default;
             this._warningLabel.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -111,9 +110,9 @@ namespace JetBrains.Omea.Nntp
             this._warningLabel.Size = new System.Drawing.Size(0, 13);
             this._warningLabel.TabIndex = 3;
             this._warningLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
+            //
             // _preserveArchiveBox
-            // 
+            //
             this._preserveArchiveBox.Checked = true;
             this._preserveArchiveBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this._preserveArchiveBox.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -122,27 +121,27 @@ namespace JetBrains.Omea.Nntp
             this._preserveArchiveBox.Size = new System.Drawing.Size(128, 26);
             this._preserveArchiveBox.TabIndex = 0;
             this._preserveArchiveBox.Text = "Preserve history";
-            // 
+            //
             // _okButton
-            // 
+            //
             this._okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
             this._okButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._okButton.Location = new System.Drawing.Point(100, 72);
             this._okButton.Name = "_okButton";
             this._okButton.TabIndex = 1;
             this._okButton.Text = "OK";
-            // 
+            //
             // _cancelButton
-            // 
+            //
             this._cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this._cancelButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._cancelButton.Location = new System.Drawing.Point(184, 72);
             this._cancelButton.Name = "_cancelButton";
             this._cancelButton.TabIndex = 2;
             this._cancelButton.Text = "Cancel";
-            // 
+            //
             // _groupName
-            // 
+            //
             this._groupName.ClickableLink = false;
             this._groupName.Cursor = System.Windows.Forms.Cursors.Default;
             this._groupName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(204)));
@@ -152,9 +151,9 @@ namespace JetBrains.Omea.Nntp
             this._groupName.Size = new System.Drawing.Size(0, 13);
             this._groupName.TabIndex = 4;
             this._groupName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
+            //
             // UnsubscribeForm
-            // 
+            //
             this.AcceptButton = this._okButton;
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
             this.CancelButton = this._cancelButton;

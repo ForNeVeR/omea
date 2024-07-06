@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.ComponentModel;
@@ -90,9 +89,9 @@ namespace JetBrains.Omea.RSSPlugin.SubscribeWizard
             this._pictureBox = new System.Windows.Forms.PictureBox();
             this._bodyPanel = new System.Windows.Forms.Panel();
             this.SuspendLayout();
-            // 
+            //
             // _backButton
-            // 
+            //
             this._backButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this._backButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._backButton.Location = new System.Drawing.Point(296, 416);
@@ -100,9 +99,9 @@ namespace JetBrains.Omea.RSSPlugin.SubscribeWizard
             this._backButton.TabIndex = 1;
             this._backButton.Text = "< &Back";
             this._backButton.Click += new System.EventHandler(this._backButton_Click);
-            // 
+            //
             // _nextButton
-            // 
+            //
             this._nextButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this._nextButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._nextButton.Location = new System.Drawing.Point(376, 416);
@@ -110,9 +109,9 @@ namespace JetBrains.Omea.RSSPlugin.SubscribeWizard
             this._nextButton.TabIndex = 2;
             this._nextButton.Text = "Next >";
             this._nextButton.Click += new System.EventHandler(this._nextButton_Click);
-            // 
+            //
             // _cancelButton
-            // 
+            //
             this._cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this._cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this._cancelButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -121,10 +120,10 @@ namespace JetBrains.Omea.RSSPlugin.SubscribeWizard
             this._cancelButton.TabIndex = 3;
             this._cancelButton.Text = "Cancel";
             this._cancelButton.Click += new System.EventHandler(this.OnCancel);
-            // 
+            //
             // _pictureBox
-            // 
-            this._pictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            //
+            this._pictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                 | System.Windows.Forms.AnchorStyles.Left)));
             this._pictureBox.Image = ((System.Drawing.Image)(resources.GetObject("_pictureBox.Image")));
             this._pictureBox.Location = new System.Drawing.Point(0, 0);
@@ -133,20 +132,20 @@ namespace JetBrains.Omea.RSSPlugin.SubscribeWizard
             this._pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this._pictureBox.TabIndex = 6;
             this._pictureBox.TabStop = false;
-            // 
+            //
             // _bodyPanel
-            // 
-            this._bodyPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-                | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._bodyPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._bodyPanel.BackColor = System.Drawing.SystemColors.Window;
             this._bodyPanel.Location = new System.Drawing.Point(168, 0);
             this._bodyPanel.Name = "_bodyPanel";
             this._bodyPanel.Size = new System.Drawing.Size(384, 399);
             this._bodyPanel.TabIndex = 0;
-            // 
+            //
             // SubscribeForm
-            // 
+            //
             this.AcceptButton = this._nextButton;
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
             this.CancelButton = this._cancelButton;
@@ -733,7 +732,7 @@ namespace JetBrains.Omea.RSSPlugin.SubscribeWizard
                 Close();
                 return;
             }
-            if ( _feedsToSubscribe.Length == 1 && 
+            if ( _feedsToSubscribe.Length == 1 &&
                 RSSPlugin.GetExistingFeed( _feedsToSubscribe [0].Resource.GetStringProp( Props.URL ) ) != null )
             {
                 MessageBox.Show( this, "You have already subscribed to this feed.",

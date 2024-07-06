@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using JetBrains.Omea.OpenAPI;
@@ -75,7 +74,7 @@ namespace JetBrains.Omea.GUIControls
         public virtual void Draw( IResource res, Graphics g, Rectangle rc )
         {
             int x = rc.Left + (rc.Width - _imageList.ImageSize.Width) / 2;
-            
+
             if ( !res.HasProp( _propID ) )
             {
                 if ( _noValueIconIndex != -1 )
@@ -135,7 +134,7 @@ namespace JetBrains.Omea.GUIControls
 
         public virtual bool ShowContextMenu( IActionContext context, Control ownerControl, Point pt )
         {
-            return false;        	
+            return false;
         }
 	}
 }

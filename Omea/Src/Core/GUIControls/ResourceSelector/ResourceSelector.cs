@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Drawing;
@@ -67,9 +66,9 @@ namespace JetBrains.Omea.GUIControls
             this._resourceTypeCombo = new System.Windows.Forms.ComboBox();
             this._btnHelp = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
+            //
             // _btnOK
-            // 
+            //
             this._btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this._btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this._btnOK.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -78,9 +77,9 @@ namespace JetBrains.Omea.GUIControls
             this._btnOK.Size = new System.Drawing.Size(75, 24);
             this._btnOK.TabIndex = 3;
             this._btnOK.Text = "OK";
-            // 
+            //
             // _btnCancel
-            // 
+            //
             this._btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this._btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this._btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -100,19 +99,19 @@ namespace JetBrains.Omea.GUIControls
             this._btnNew.Size = new Size(75, 24);
             this._btnNew.TabIndex = 6;
             this._btnNew.Text = "New...";
-            // 
+            //
             // _lblType
-            // 
+            //
             this._lblType.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._lblType.Location = new System.Drawing.Point(12, 9);
             this._lblType.Name = "_lblType";
             this._lblType.Size = new System.Drawing.Size(40, 17);
             this._lblType.TabIndex = 3;
             this._lblType.Text = "Type:";
-            // 
+            //
             // _resourceTypeCombo
-            // 
-            this._resourceTypeCombo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._resourceTypeCombo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._resourceTypeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this._resourceTypeCombo.Location = new System.Drawing.Point(52, 4);
@@ -121,9 +120,9 @@ namespace JetBrains.Omea.GUIControls
             this._resourceTypeCombo.Size = new System.Drawing.Size(240, 21);
             this._resourceTypeCombo.TabIndex = 0;
             this._resourceTypeCombo.SelectedValueChanged += new System.EventHandler(this.OnSelectedResourceTypeChanged);
-            // 
+            //
             // _btnHelp
-            // 
+            //
             this._btnHelp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this._btnHelp.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._btnHelp.Location = new System.Drawing.Point(216, 286);
@@ -132,9 +131,9 @@ namespace JetBrains.Omea.GUIControls
             this._btnHelp.Text = "Help";
             this._btnHelp.Visible = false;
             this._btnHelp.Click += new System.EventHandler(this._btnHelp_Click);
-            // 
+            //
             // ResourceSelector
-            // 
+            //
             this.AcceptButton = this._btnOK;
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
             this.CancelButton = this._btnCancel;
@@ -153,7 +152,7 @@ namespace JetBrains.Omea.GUIControls
 
         #endregion
 
-        public IResource SelectResource( IWin32Window ownerWindow, string type, string dialogCaption, 
+        public IResource SelectResource( IWin32Window ownerWindow, string type, string dialogCaption,
                                          IResource initialSelection, string helpTopic )
         {
             string[] types = (type == null) ? null : new string[] { type };
@@ -177,7 +176,7 @@ namespace JetBrains.Omea.GUIControls
             return resList [0];
         }
 
-        public IResourceList SelectResources( IWin32Window ownerWindow, string[] types, string dialogCaption, 
+        public IResourceList SelectResources( IWin32Window ownerWindow, string[] types, string dialogCaption,
                                               IResourceList initialSelection, string helpTopic )
         {
             string type = InitDialog( dialogCaption, types, initialSelection, helpTopic );
@@ -192,7 +191,7 @@ namespace JetBrains.Omea.GUIControls
             return _selectPane.GetSelection();
         }
 
-        public IResourceList SelectResourcesFromList( IWin32Window ownerWindow, IResourceList fromList, 
+        public IResourceList SelectResourcesFromList( IWin32Window ownerWindow, IResourceList fromList,
                                                       string dialogCaption, string helpTopic, IResourceList initialSelection )
         {
             string selectorType = InitDialog( dialogCaption, fromList.GetAllTypes(), null, helpTopic );
@@ -326,7 +325,7 @@ namespace JetBrains.Omea.GUIControls
 
         private void _btnHelp_Click( object sender, EventArgs e )
         {
-            Help.ShowHelp( this, Core.UIManager.HelpFileName, _helpTopic );        
+            Help.ShowHelp( this, Core.UIManager.HelpFileName, _helpTopic );
         }
 
         private void HandleNewButtonClick( object sender, EventArgs e )

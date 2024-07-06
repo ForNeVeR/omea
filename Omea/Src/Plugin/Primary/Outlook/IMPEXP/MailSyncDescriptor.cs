@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using JetBrains.Omea.AsyncProcessing;
@@ -29,7 +28,7 @@ namespace JetBrains.Omea.OutlookPlugin
 
         public override string Name
         {
-            get { return "MailSyncDescriptor"; } 
+            get { return "MailSyncDescriptor"; }
         }
 
         #endregion
@@ -45,7 +44,7 @@ namespace JetBrains.Omea.OutlookPlugin
             Settings.IdleModeManager.SetIdleFlag();
             MailSync mailSync = new MailSync( _computeCount, _indexStartDate, _idle );
             mailSync.PrepareMailResources();
-            
+
             foreach ( IEMsgStore msgStore in OutlookSession.GetMsgStores() )
             {
                 if ( msgStore == null ) continue;
@@ -96,7 +95,7 @@ namespace JetBrains.Omea.OutlookPlugin
 
         public override string Name
         {
-            get { return "FreshMailEnumerator"; } 
+            get { return "FreshMailEnumerator"; }
         }
 
         #endregion
@@ -128,8 +127,8 @@ namespace JetBrains.Omea.OutlookPlugin
             {
                 minDate = minDate.AddDays( -14 );
             }
-            IResourceList folders = 
-                Core.ResourceStore.FindResourcesInRange( STR.MAPIFolder, PROP.LastMailDate, 
+            IResourceList folders =
+                Core.ResourceStore.FindResourcesInRange( STR.MAPIFolder, PROP.LastMailDate,
                     minDate, DateTime.Now );
             for ( int i = folders.Count - 1; i >= 0; --i )
             {

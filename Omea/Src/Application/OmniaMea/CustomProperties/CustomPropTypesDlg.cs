@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections.Generic;
@@ -16,7 +15,7 @@ namespace JetBrains.Omea.CustomProperties
 	/**
      * Dialog for configuring the types of custom properties.
      */
-    
+
     public class CustomPropTypesDlg : DialogBase
 	{
         private Button _btnOK;
@@ -91,9 +90,9 @@ namespace JetBrains.Omea.CustomProperties
 			this.miAddBoolProp = new System.Windows.Forms.MenuItem();
 			this._btnDelete = new System.Windows.Forms.Button();
 			this.SuspendLayout();
-			// 
+			//
 			// _btnOK
-			// 
+			//
 			this._btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this._btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
 			this._btnOK.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -101,9 +100,9 @@ namespace JetBrains.Omea.CustomProperties
 			this._btnOK.Name = "_btnOK";
 			this._btnOK.TabIndex = 0;
 			this._btnOK.Text = "OK";
-			// 
+			//
 			// _btnCancel
-			// 
+			//
 			this._btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this._btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
 			this._btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -111,11 +110,11 @@ namespace JetBrains.Omea.CustomProperties
 			this._btnCancel.Name = "_btnCancel";
 			this._btnCancel.TabIndex = 1;
 			this._btnCancel.Text = "Cancel";
-			// 
+			//
 			// _lvTypes
-			// 
-			this._lvTypes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-				| System.Windows.Forms.AnchorStyles.Left) 
+			//
+			this._lvTypes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+				| System.Windows.Forms.AnchorStyles.Left)
 				| System.Windows.Forms.AnchorStyles.Right)));
 			this._lvTypes.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
 																					   this.columnHeader1,
@@ -131,19 +130,19 @@ namespace JetBrains.Omea.CustomProperties
 			this._lvTypes.View = System.Windows.Forms.View.Details;
 			this._lvTypes.AfterLabelEdit += new System.Windows.Forms.LabelEditEventHandler(this._lvTypes_AfterLabelEdit);
 			this._lvTypes.SelectedIndexChanged += new System.EventHandler(this._lvTypes_SelectedIndexChanged);
-			// 
+			//
 			// columnHeader1
-			// 
+			//
 			this.columnHeader1.Text = "Name";
 			this.columnHeader1.Width = 92;
-			// 
+			//
 			// columnHeader2
-			// 
+			//
 			this.columnHeader2.Text = "Type";
 			this.columnHeader2.Width = 88;
-			// 
+			//
 			// _btnAdd
-			// 
+			//
 			this._btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this._btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this._btnAdd.Image = ((System.Drawing.Image)(resources.GetObject("_btnAdd.Image")));
@@ -153,41 +152,41 @@ namespace JetBrains.Omea.CustomProperties
 			this._btnAdd.TabIndex = 3;
 			this._btnAdd.Text = "Add";
 			this._btnAdd.Click += new System.EventHandler(this._btnAdd_Click);
-			// 
+			//
 			// _mnuPropType
-			// 
+			//
 			this._mnuPropType.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
 																						 this.miAddStringProp,
 																						 this.miAddNumberProp,
 																						 this.miAddDateProp,
 																						 this.miAddBoolProp});
-			// 
+			//
 			// miAddStringProp
-			// 
+			//
 			this.miAddStringProp.Index = 0;
 			this.miAddStringProp.Text = "Add Text Property";
 			this.miAddStringProp.Click += new System.EventHandler(this.miAddStringProp_Click);
-			// 
+			//
 			// miAddNumberProp
-			// 
+			//
 			this.miAddNumberProp.Index = 1;
 			this.miAddNumberProp.Text = "Add Number Property";
 			this.miAddNumberProp.Click += new System.EventHandler(this.miAddNumberProp_Click);
-			// 
+			//
 			// miAddDateProp
-			// 
+			//
 			this.miAddDateProp.Index = 2;
 			this.miAddDateProp.Text = "Add Date Property";
 			this.miAddDateProp.Click += new System.EventHandler(this.miAddDateProp_Click);
-			// 
+			//
 			// miAddBoolProp
-			// 
+			//
 			this.miAddBoolProp.Index = 3;
 			this.miAddBoolProp.Text = "Add Yes/No Property";
 			this.miAddBoolProp.Click += new System.EventHandler(this.miAddBoolProp_Click);
-			// 
+			//
 			// _btnDelete
-			// 
+			//
 			this._btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this._btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this._btnDelete.Location = new System.Drawing.Point(348, 40);
@@ -195,9 +194,9 @@ namespace JetBrains.Omea.CustomProperties
 			this._btnDelete.TabIndex = 4;
 			this._btnDelete.Text = "Delete";
 			this._btnDelete.Click += new System.EventHandler(this._btnDelete_Click);
-			// 
+			//
 			// CustomPropTypesDlg
-			// 
+			//
 			this.AcceptButton = this._btnOK;
 			this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
 			this.CancelButton = this._btnCancel;
@@ -251,7 +250,7 @@ namespace JetBrains.Omea.CustomProperties
 
         private void _lvTypes_SelectedIndexChanged( object sender, EventArgs e )
         {
-            UpdateButtonState();        
+            UpdateButtonState();
         }
 
         private void _btnAdd_Click( object sender, EventArgs e )
@@ -261,12 +260,12 @@ namespace JetBrains.Omea.CustomProperties
 
         private void miAddStringProp_Click( object sender, EventArgs e )
         {
-            AddPropertyType( PropDataType.String );        
+            AddPropertyType( PropDataType.String );
         }
 
         private void miAddNumberProp_Click( object sender, EventArgs e )
         {
-            AddPropertyType( PropDataType.Int );        
+            AddPropertyType( PropDataType.Int );
         }
 
         private void miAddDateProp_Click( object sender, EventArgs e )
@@ -276,7 +275,7 @@ namespace JetBrains.Omea.CustomProperties
 
         private void miAddBoolProp_Click( object sender, EventArgs e )
         {
-            AddPropertyType( PropDataType.Bool );        
+            AddPropertyType( PropDataType.Bool );
         }
 
         private void AddPropertyType( PropDataType dataType )
@@ -328,7 +327,7 @@ namespace JetBrains.Omea.CustomProperties
          * in the resource store (and not deleted in the dialog) or added in the dialog
          * and not yet saved.
          */
-        
+
         private bool PropTypeExists( string name, int skipItem )
         {
             IResourceStore store = Core.ResourceStore;
@@ -340,12 +339,12 @@ namespace JetBrains.Omea.CustomProperties
                     return true;
                 }
             }
-            
+
             for( int i=0; i<_lvTypes.Items.Count; i++ )
             {
                 if ( i != skipItem && _lvTypes.Items [i].Text == name )
                 {
-                    return true;                    
+                    return true;
                 }
             }
 
@@ -416,7 +415,7 @@ namespace JetBrains.Omea.CustomProperties
                     IResource res = store.FindUniqueResource( "PropType", Core.Props.Name, propName );
                     res.SetProp( "Custom", 1 );
 
-                    Core.DisplayColumnManager.RegisterAvailableColumn( null, 
+                    Core.DisplayColumnManager.RegisterAvailableColumn( null,
                         new ColumnDescriptor( propName, 100 ) );
 
                     RegisterCustomPropCondition( propID );
@@ -428,13 +427,13 @@ namespace JetBrains.Omea.CustomProperties
          * Registers a condition allowing to use the custom property with the specified
          * ID in views.
          */
-        
+
         private static void RegisterCustomPropCondition( int propID )
 	    {
 	        IPropType propType = Core.ResourceStore.PropTypes [propID];
 
             string condName = GetConditionName( propType );
-            
+
             IResource condition = null;
             if ( propType.DataType == PropDataType.String || propType.DataType == PropDataType.Date )
             {
@@ -463,7 +462,7 @@ namespace JetBrains.Omea.CustomProperties
             IPropType propType = Core.ResourceStore.PropTypes [propID];
 
             //  remove condition template which is made from this property
-            string resTypeName = (propType.DataType != PropDataType.Bool) ? FilterManagerProps.ConditionTemplateResName : 
+            string resTypeName = (propType.DataType != PropDataType.Bool) ? FilterManagerProps.ConditionTemplateResName :
                                                                             FilterManagerProps.ConditionResName;
             IResourceList conditions = Core.ResourceStore.FindResources( resTypeName, Core.Props.Name, GetConditionName( propType ) );
             if ( conditions.Count == 1 )
@@ -489,9 +488,9 @@ namespace JetBrains.Omea.CustomProperties
         {
             switch( propType.DataType )
             {
-                case PropDataType.String: 
+                case PropDataType.String:
                     return "'" + propType.DisplayName + "' is equal to %value%";
-                
+
                 case PropDataType.Int:
                     return "'" + propType.DisplayName + "' is in %range%";
 

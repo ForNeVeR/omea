@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using JetBrains.Omea.Base;
@@ -75,7 +74,7 @@ namespace JetBrains.Omea.OutlookPlugin
                     {
                         if ( !Char.IsDigit( suffixStr [i] ) )
                         {
-                            digitsOnly = false;                            
+                            digitsOnly = false;
                         }
                     }
 
@@ -149,9 +148,9 @@ namespace JetBrains.Omea.OutlookPlugin
 
     internal class OutlookABDescriptor : AbstractNamedJob
     {
-        private string _name; 
-        private string _oldName; 
-        private string _entryID; 
+        private string _name;
+        private string _oldName;
+        private string _entryID;
         public OutlookABDescriptor( string name, string entryID )
         {
             _oldName = name;
@@ -164,7 +163,7 @@ namespace JetBrains.Omea.OutlookPlugin
         }
         protected override void Execute()
         {
-            IResource resource = 
+            IResource resource =
                 Core.ResourceStore.FindUniqueResource( STR.OutlookABDescriptor, PROP.EntryID, _entryID );
             if ( resource == null )
             {

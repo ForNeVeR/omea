@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 #include "mapisession.h"
 #include "messageimpl.h"
@@ -111,7 +110,7 @@ EMAPILib::IETable* EMAPILib::MessageImpl::GetAttachments()
 }
 EMAPILib::MessagesImpl::MessagesImpl( const MessagesSPtr& eMessages )
 {
-    if ( eMessages.IsNull() ) 
+    if ( eMessages.IsNull() )
     {
         Guard::ThrowArgumentNullException( "eMessages" );
     }
@@ -129,10 +128,10 @@ void EMAPILib::MessagesImpl::Dispose()
 int EMAPILib::MessagesImpl::GetCount()
 {
     CheckDisposed();
-    return (*_eMessages)->GetCount(); 
+    return (*_eMessages)->GetCount();
 }
 EMAPILib::IEMessage* EMAPILib::MessagesImpl::OpenMessage( int index )
-{   
+{
     CheckDisposed();
     EMessageSPtr message = (*_eMessages)->GetMessage( index );
     if ( !message.IsNull() )

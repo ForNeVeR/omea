@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Diagnostics;
@@ -79,75 +78,75 @@ namespace JetBrains.Omea.MemoryWatchPlugin
             this._dbindexHeapInfo = new System.Windows.Forms.Label();
             this._mapiHeapInfo = new System.Windows.Forms.Label();
             this.SuspendLayout();
-            // 
+            //
             // _lblTotalMemory
-            // 
-            this._lblTotalMemory.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._lblTotalMemory.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._lblTotalMemory.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._lblTotalMemory.Location = new System.Drawing.Point(4, 8);
             this._lblTotalMemory.Name = "_lblTotalMemory";
             this._lblTotalMemory.Size = new System.Drawing.Size(324, 16);
             this._lblTotalMemory.TabIndex = 0;
-            // 
+            //
             // _tmrUpdate
-            // 
+            //
             this._tmrUpdate.Enabled = true;
             this._tmrUpdate.Interval = 1000;
             this._tmrUpdate.Tick += new System.EventHandler(this._tmrUpdate_Tick);
-            // 
+            //
             // _lblManagedMemory
-            // 
-            this._lblManagedMemory.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._lblManagedMemory.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._lblManagedMemory.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._lblManagedMemory.Location = new System.Drawing.Point(4, 28);
             this._lblManagedMemory.Name = "_lblManagedMemory";
             this._lblManagedMemory.Size = new System.Drawing.Size(324, 20);
             this._lblManagedMemory.TabIndex = 1;
-            // 
+            //
             // _lblHeapFreeSize
-            // 
-            this._lblHeapFreeSize.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._lblHeapFreeSize.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._lblHeapFreeSize.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._lblHeapFreeSize.Location = new System.Drawing.Point(4, 52);
             this._lblHeapFreeSize.Name = "_lblHeapFreeSize";
             this._lblHeapFreeSize.Size = new System.Drawing.Size(324, 20);
             this._lblHeapFreeSize.TabIndex = 2;
-            // 
+            //
             // _lblManagedHeapOverhead
-            // 
-            this._lblManagedHeapOverhead.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._lblManagedHeapOverhead.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._lblManagedHeapOverhead.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._lblManagedHeapOverhead.Location = new System.Drawing.Point(4, 76);
             this._lblManagedHeapOverhead.Name = "_lblManagedHeapOverhead";
             this._lblManagedHeapOverhead.Size = new System.Drawing.Size(324, 16);
             this._lblManagedHeapOverhead.TabIndex = 3;
-            // 
+            //
             // _lblWin32HeapSize
-            // 
-            this._lblWin32HeapSize.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._lblWin32HeapSize.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._lblWin32HeapSize.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._lblWin32HeapSize.Location = new System.Drawing.Point(4, 96);
             this._lblWin32HeapSize.Name = "_lblWin32HeapSize";
             this._lblWin32HeapSize.Size = new System.Drawing.Size(324, 16);
             this._lblWin32HeapSize.TabIndex = 4;
-            // 
+            //
             // _lblOtherMemorySize
-            // 
-            this._lblOtherMemorySize.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._lblOtherMemorySize.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._lblOtherMemorySize.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._lblOtherMemorySize.Location = new System.Drawing.Point(4, 116);
             this._lblOtherMemorySize.Name = "_lblOtherMemorySize";
             this._lblOtherMemorySize.Size = new System.Drawing.Size(324, 16);
             this._lblOtherMemorySize.TabIndex = 4;
-            // 
+            //
             // _btnDumpHeaps
-            // 
+            //
             this._btnDumpHeaps.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._btnDumpHeaps.Location = new System.Drawing.Point(4, 180);
             this._btnDumpHeaps.Name = "_btnDumpHeaps";
@@ -155,29 +154,29 @@ namespace JetBrains.Omea.MemoryWatchPlugin
             this._btnDumpHeaps.TabIndex = 5;
             this._btnDumpHeaps.Text = "Dump Win32 Heaps";
             this._btnDumpHeaps.Click += new System.EventHandler(this._btnDumpHeaps_Click);
-            // 
+            //
             // _dbindexHeapInfo
-            // 
-            this._dbindexHeapInfo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._dbindexHeapInfo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._dbindexHeapInfo.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._dbindexHeapInfo.Location = new System.Drawing.Point(4, 136);
             this._dbindexHeapInfo.Name = "_dbindexHeapInfo";
             this._dbindexHeapInfo.Size = new System.Drawing.Size(324, 16);
             this._dbindexHeapInfo.TabIndex = 6;
-            // 
+            //
             // _mapiHeapInfo
-            // 
-            this._mapiHeapInfo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._mapiHeapInfo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._mapiHeapInfo.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._mapiHeapInfo.Location = new System.Drawing.Point(4, 156);
             this._mapiHeapInfo.Name = "_mapiHeapInfo";
             this._mapiHeapInfo.Size = new System.Drawing.Size(324, 16);
             this._mapiHeapInfo.TabIndex = 7;
-            // 
+            //
             // MemoryWatch
-            // 
+            //
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
             this.ClientSize = new System.Drawing.Size(332, 208);
             this.Controls.Add(this._mapiHeapInfo);

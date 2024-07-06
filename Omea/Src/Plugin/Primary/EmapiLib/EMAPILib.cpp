@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 #include "EMAPILib.h"
 #include "MsgStoresImpl.h"
@@ -53,7 +52,7 @@ bool EMAPILib::EMAPISession::CanClose()
 bool EMAPILib::EMAPISession::Initialize( bool pickLogonProfile, ILibManager* libManager )
 {
     bool bRet = _pMAPISession->Initialize( pickLogonProfile );
-    if ( !bRet ) 
+    if ( !bRet )
     {
         OutputDebugString( "Initialize FAILED" );
         return false;
@@ -131,11 +130,11 @@ void EMAPILib::EMAPISession::AddRecipients( System::Object* mapiObject, ArrayLis
                 EMAPILib::RecipInfo* recipInfo = (dynamic_cast<EMAPILib::RecipInfo*>( recipients->get_Item( i ) ));
                 if ( recipInfo != NULL )
                 {
-                    _pMAPISession->AddRecipient( msg, 
+                    _pMAPISession->AddRecipient( msg,
                         Temp::GetUNIString( recipInfo->get_DisplayName() )->GetChars(),
-                        Temp::GetUNIString( recipInfo->get_Email() )->GetChars(), 
+                        Temp::GetUNIString( recipInfo->get_Email() )->GetChars(),
                         Temp::GetANSIString( recipInfo->get_DisplayName() )->GetChars(),
-                        Temp::GetANSIString( recipInfo->get_Email() )->GetChars(), 
+                        Temp::GetANSIString( recipInfo->get_Email() )->GetChars(),
                         MAPI_TO );
                 }
             }
@@ -161,7 +160,7 @@ void EMAPILib::EMAPISession::MoveMessage( const ESPropValueSPtr& entryID, const 
 {
     if ( _libManager != NULL )
     {
-        _libManager->MoveMessage( Helper::EntryIDToHex( entryID->GetBinLPBYTE(), entryID->GetBinCB() ), 
+        _libManager->MoveMessage( Helper::EntryIDToHex( entryID->GetBinLPBYTE(), entryID->GetBinCB() ),
             Helper::EntryIDToHex( folderID->GetBinLPBYTE(), folderID->GetBinCB() ));
     }
 }
@@ -169,7 +168,7 @@ void EMAPILib::EMAPISession::CopyMessage( const ESPropValueSPtr& entryID, const 
 {
     if ( _libManager != NULL )
     {
-        _libManager->CopyMessage( Helper::EntryIDToHex( entryID->GetBinLPBYTE(), entryID->GetBinCB() ), 
+        _libManager->CopyMessage( Helper::EntryIDToHex( entryID->GetBinLPBYTE(), entryID->GetBinCB() ),
             Helper::EntryIDToHex( folderID->GetBinLPBYTE(), folderID->GetBinCB() ));
     }
 }

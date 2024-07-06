@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 #include "DBIndex.h"
 #include "Enumerator.h"
@@ -209,7 +208,7 @@ namespace DBIndex
 				_numberOfPages = _btreeHeader->Size();
 			}
 		}
-        
+
 		_btreeFile->Flush();
 
 		return closed != 0;
@@ -340,7 +339,7 @@ namespace DBIndex
 		CopyKeys( oneKey, 1, _oneItemList );
 		return dynamic_cast<KeyPair*>( _oneItemList->get_Item( 0 ) );
 	}
-	
+
 	KeyPair* OmniaMeaBTree::GetMaximum()
 	{
 		_btreeHeader->GetMaximumPage( *_btreeHeaderIterator );
@@ -358,7 +357,7 @@ namespace DBIndex
 
 	void OmniaMeaBTree::SearchForRange( IFixedLengthKey* beginKey, IFixedLengthKey* endKey, IntArrayList* offsets )
 	{
-		SetFirstAndLastKeys( beginKey, endKey );		
+		SetFirstAndLastKeys( beginKey, endKey );
 
 		const BTreeKeyBase& firstKey = *_firstKey;
 		const BTreeKeyBase& lastKey = *_lastKey;
@@ -387,7 +386,7 @@ namespace DBIndex
 	void OmniaMeaBTree::SearchForRange( IFixedLengthKey* beginKey, IFixedLengthKey* endKey, ArrayList* keys_offsets )
 	{
 		SetFirstAndLastKeys( beginKey, endKey );
-		
+
 		const BTreeKeyBase& firstKey = *_firstKey;
 		const BTreeKeyBase& lastKey = *_lastKey;
 
@@ -890,7 +889,7 @@ namespace DBIndex
 			KeyPair* keyPair = new KeyPair();
 			keyPair->_offset = key->GetOffset();
 			keyPair->_key = factoryKey->FactoryMethod();
-			const BTreeKey< CompoundKeyWithValue<int,int,int> >* cKey = 
+			const BTreeKey< CompoundKeyWithValue<int,int,int> >* cKey =
 				static_cast< const BTreeKey< CompoundKeyWithValue<int,int,int> >* >( key );
 			Int32 key1( cKey->GetKey()._first );
 			Int32 key2( cKey->GetKey()._second );
@@ -912,7 +911,7 @@ namespace DBIndex
 			KeyPair* keyPair = new KeyPair();
 			keyPair->_offset = key->GetOffset();
 			keyPair->_key = factoryKey->FactoryMethod();
-			const BTreeKey< CompoundKeyWithValue<int,int,long> >* cKey = 
+			const BTreeKey< CompoundKeyWithValue<int,int,long> >* cKey =
 				static_cast< const BTreeKey< CompoundKeyWithValue<int,int,long> >* >( key );
 			Int32 key1( cKey->GetKey()._first );
 			Int32 key2( cKey->GetKey()._second );
@@ -934,7 +933,7 @@ namespace DBIndex
 			KeyPair* keyPair = new KeyPair();
 			keyPair->_offset = key->GetOffset();
 			keyPair->_key = factoryKey->FactoryMethod();
-			const BTreeKey< CompoundKeyWithValue<int,long,int> >* cKey = 
+			const BTreeKey< CompoundKeyWithValue<int,long,int> >* cKey =
 				static_cast< const BTreeKey< CompoundKeyWithValue<int,long,int> >* >( key );
 			Int32 key1( cKey->GetKey()._first );
 			DateTime key2( cKey->GetKey()._second );

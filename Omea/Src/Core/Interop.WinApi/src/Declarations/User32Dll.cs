@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.ComponentModel;
@@ -21,19 +20,19 @@ namespace JetBrains.Interop.WinApi
 	/// <remarks>
 	/// IMPORTANT! Rules for authoring the class (v1.1):
 	/// (1) All the function declarations MUST be 64-bit aware.
-	/// (2) When copypasting from older declarations, you MUST check against the MSDN help or header declaration, 
+	/// (2) When copypasting from older declarations, you MUST check against the MSDN help or header declaration,
 	///		and you MUST ensure that each parameter has a proper size.
-	/// (3) Call the Wide version of the functions (UCS-2-LE) unless there's a strong reason for calling the ANSI version 
+	/// (3) Call the Wide version of the functions (UCS-2-LE) unless there's a strong reason for calling the ANSI version
 	///		(such a reason MUST be indicated in XmlDoc). <c>CharSet = CharSet.Unicode</c>.
 	/// (4) ExactSpelling MUST be TRUE. Add the "…W" suffix wherever needed.
 	/// (5) SetLastError SHOULD be considered individually for each function. Setting it to <c>True</c> allows to report the errors,
 	///		but slows down the execution of critical members.
-	/// (6) These properties MUST be explicitly set on DllImport attributes of EACH import: 
+	/// (6) These properties MUST be explicitly set on DllImport attributes of EACH import:
 	///		CharSet, PreserveSig, SetLastError, ExactSpelling.
 	/// (7) CLR names MUST be used for types instead of C# ones, eg "Int32" not "int" and "Int64" not "long".
 	///		This greately improves the understanding of the parameter sizes.
 	/// (8) Sign of the types MUST be favored, eg "DWORD" is "UInt32" not "Int32".
-	/// (9) Unsafe pointer types should be used for explicit and implicit pointers rather than IntPtr. 
+	/// (9) Unsafe pointer types should be used for explicit and implicit pointers rather than IntPtr.
 	///		This way we outline the unsafety of the native calls, and also make it more clear for the 64bit transition.
 	///		Eg "HANDLE" is "void*". If the rule forces you to mark some assembly as unsafe, it's an indication a managed utility
 	///		incapsulating the call and the handle should be provided in one of the already-unsafe assemblies.
@@ -85,7 +84,7 @@ namespace JetBrains.Interop.WinApi
 		public static extern Int32 GetWindowRect(void* hWnd, RECT* lpRect);
 
 		/// <summary>
-		/// The InvalidateRect function adds a rectangle to the specified window's update region. The update region represents the portion of the window's client area that must be redrawn. 
+		/// The InvalidateRect function adds a rectangle to the specified window's update region. The update region represents the portion of the window's client area that must be redrawn.
 		/// </summary>
 		[DllImport("user32.dll", CharSet = CharSet.Unicode, PreserveSig = true, SetLastError = false, ExactSpelling = true)]
 		public static extern Int32 InvalidateRect(void* hWnd, RECT* lpRect, Int32 bErase);
@@ -97,7 +96,7 @@ namespace JetBrains.Interop.WinApi
 		public static extern Int32 IsWindow(void* hWnd);
 
 		/// <summary>
-		/// The LoadString function loads a string resource from the executable file associated with a specified module, copies the string into a buffer, and appends a terminating NULL character. 
+		/// The LoadString function loads a string resource from the executable file associated with a specified module, copies the string into a buffer, and appends a terminating NULL character.
 		/// </summary>
 		[DllImport("user32.dll", CharSet = CharSet.Unicode, PreserveSig = true, SetLastError = true, ExactSpelling = true)]
 		public static extern Int32 LoadStringW(void* hInstance, UInt32 uID, UInt16* lpBuffer, Int32 nBufferMax);
@@ -173,7 +172,7 @@ namespace JetBrains.Interop.WinApi
 		}
 
 		/// <summary>
-		/// The ShowWindow function sets the specified window's show state. 
+		/// The ShowWindow function sets the specified window's show state.
 		/// </summary>
 		[DllImport("user32.dll", CharSet = CharSet.Unicode, PreserveSig = true, SetLastError = true, ExactSpelling = true)]
 		public static extern UInt32 ShowWindow(void* hWnd, int nCmdShow);
@@ -263,7 +262,7 @@ namespace JetBrains.Interop.WinApi
 			}
 
 			/// <summary>
-			/// The ShowWindow function sets the specified window's show state. 
+			/// The ShowWindow function sets the specified window's show state.
 			/// </summary>
 			public static bool ShowWindow(IntPtr hWnd, ShowWindowCommands nCmdShow)
 			{

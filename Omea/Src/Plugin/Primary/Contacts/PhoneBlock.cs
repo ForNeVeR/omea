@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -31,7 +30,7 @@ namespace JetBrains.Omea.ContactsPlugin
         private ContactBO   _contact;
         private Label       _lastClickedLabel;
 
-		/// <summary> 
+		/// <summary>
 		/// Required designer variable.
 		/// </summary>
 		private System.ComponentModel.Container components = null;
@@ -52,7 +51,7 @@ namespace JetBrains.Omea.ContactsPlugin
             return new PhoneBlock();
         }
 
-		/// <summary> 
+		/// <summary>
 		/// Clean up any resources being used.
 		/// </summary>
 		protected override void Dispose( bool disposing )
@@ -68,8 +67,8 @@ namespace JetBrains.Omea.ContactsPlugin
 		}
 
 		#region Component Designer generated code
-		/// <summary> 
-		/// Required method for Designer support - do not modify 
+		/// <summary>
+		/// Required method for Designer support - do not modify
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent()
@@ -79,9 +78,9 @@ namespace JetBrains.Omea.ContactsPlugin
             this._phoneMenu = new System.Windows.Forms.ContextMenu();
             this._deleteItem = new System.Windows.Forms.MenuItem();
             this.SuspendLayout();
-            // 
+            //
             // _editPhoneName
-            // 
+            //
             this._editPhoneName.Location = new System.Drawing.Point(4, 4);
             this._editPhoneName.Name = "_editPhoneName";
             this._editPhoneName.Size = new System.Drawing.Size(72, 20);
@@ -91,10 +90,10 @@ namespace JetBrains.Omea.ContactsPlugin
             this._editPhoneName.KeyDown += new System.Windows.Forms.KeyEventHandler(this._editPhoneName_KeyDown);
             this._editPhoneName.Leave += new System.EventHandler(this._editPhoneName_Leave);
             this._editPhoneName.Enter += new System.EventHandler(this._editPhoneName_Enter);
-            // 
+            //
             // _addPhoneButton
-            // 
-            this._addPhoneButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._addPhoneButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._addPhoneButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._addPhoneButton.Location = new System.Drawing.Point(88, 4);
@@ -103,19 +102,19 @@ namespace JetBrains.Omea.ContactsPlugin
             this._addPhoneButton.TabIndex = 1;
             this._addPhoneButton.Text = "New...";
             this._addPhoneButton.Click += new System.EventHandler(this._addPhoneButton_Click);
-            // 
+            //
             // _phoneMenu
-            // 
+            //
             this._phoneMenu.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {this._deleteItem});
-            // 
+            //
             // _deleteItem
-            // 
+            //
             this._deleteItem.Index = 0;
             this._deleteItem.Text = "Delete";
             this._deleteItem.Click += new System.EventHandler(this._deleteItem_Click);
-            // 
+            //
             // PhoneBlock
-            // 
+            //
             this.Controls.Add(this._editPhoneName);
             this.Controls.Add(this._addPhoneButton);
             this.Name = "PhoneBlock";
@@ -320,7 +319,7 @@ namespace JetBrains.Omea.ContactsPlugin
             {
                 newTextBox.Focus();
             }
-            
+
             currentY += (int)(24 * Core.ScaleFactor.Height);
             _editPhoneName.Location = new Point( _editPhoneName.Left, currentY );
             _addPhoneButton.Location = new Point( _addPhoneButton.Left, currentY );

@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Text;
@@ -103,7 +102,7 @@ namespace JetBrains.Omea
             Core.FilterEngine.ExecRules( StandardEvents.ResourceReceived, res );
         }
 
-        private static void DoCreateFragment( string subject, TextFormat textFormat, string text, 
+        private static void DoCreateFragment( string subject, TextFormat textFormat, string text,
             string sourceUrl, IResource baseResource )
         {
             IResource fragment = CreateFragmentResource( subject, textFormat, text, sourceUrl, baseResource );
@@ -115,7 +114,7 @@ namespace JetBrains.Omea
         private static IResource CreateFragmentResource( string subject, TextFormat textFormat, string text, string sourceUrl, IResource baseResource )
         {
             IResource clipping = Core.ResourceStore.NewResourceTransient( "Fragment" );
-    
+
             string baseFileName = null;
             if ( baseResource != null && Core.ResourceStore.ResourceTypes [baseResource.Type].HasFlag( ResourceTypeFlags.FileFormat ))
             {
@@ -137,7 +136,7 @@ namespace JetBrains.Omea
             if ( textFormat == TextFormat.Html )
             {
                 StringBuilder htmlBuilder = new StringBuilder( "<html><body style=\"font-family: Verdana; font-size: 10pt; \">" );
-                
+
                 if ( baseFileName != null  )
                 {
                     htmlBuilder.Append( text );
@@ -170,10 +169,10 @@ namespace JetBrains.Omea
                 clipping.SetProp( Core.Props.LongBody, text );
                 clipping.SetProp( Core.Props.LongBodyIsRTF, true );
             }
-    
+
             clipping.SetProp( Core.Props.Subject, subject );
             clipping.SetProp( "IsClippingFakeProp", true );
-    
+
             clipping.SetProp( Core.Props.Date, DateTime.Now );
             if ( baseResource != null )
             {
@@ -223,7 +222,7 @@ namespace JetBrains.Omea
 
         public void Update( IActionContext context, ref ActionPresentation presentation )
         {
-            bool hasSelectedText = ( context.SelectedText != null && 
+            bool hasSelectedText = ( context.SelectedText != null &&
                 context.SelectedPlainText != null && context.SelectedPlainText.Length > 0 );
             if ( !hasSelectedText )
             {
@@ -234,7 +233,7 @@ namespace JetBrains.Omea
             }
         }
     }
-    
+
     /**
      * Action for editing the properties of a fragment.
      */
@@ -247,7 +246,7 @@ namespace JetBrains.Omea
             ICore.Instance.UIManager.OpenResourceEditWindow(
                 new FragmentEditPane(), fragment, false );
         }
-        
+
         public void Update( IActionContext context, ref ActionPresentation presentation )
         {
             if ( context.SelectedResources.Count != 1 )
@@ -265,7 +264,7 @@ namespace JetBrains.Omea
         {
             _converterTextBox = new JetRichTextBox();
         }
-        
+
         public bool ProcessResourceText( IResource res, IResourceTextConsumer consumer )
         {
             if ( res.HasProp( Core.Props.LongBodyIsRTF ) )
@@ -317,7 +316,7 @@ namespace JetBrains.Omea
         public override void Update( IActionContext context, ref ActionPresentation presentation )
         {
             base.Update( context, ref presentation );
-            if ( context.SelectedResources.Count > 0 && 
+            if ( context.SelectedResources.Count > 0 &&
                 context.SelectedResources [0].HasProp( Core.Props.LongBodyIsRTF ) )
             {
                 presentation.Enabled = false;
@@ -378,7 +377,7 @@ namespace JetBrains.Omea
                     {
                         enc = Encoding.Default;
                     }
-                
+
                     byte[] data = enc.GetBytes( fragment.GetPropText( Core.Props.LongBody ) );
                     fs.Write( data, 0, data.Length );
                 }
@@ -398,7 +397,7 @@ namespace JetBrains.Omea
 
 		internal ClippingNewspaperProvider()
 		{
-			
+
 		}
 
 		#region INewspaperProvider Members
@@ -420,7 +419,7 @@ namespace JetBrains.Omea
 				writer.WriteLine( "<div>{0}</div>", item.GetPropText( Core.Props.LongBody ) );	// TODO: ensure the html/body tags are stripped
 			else
 				writer.WriteLine( "<pre>{0}</pre>", HttpUtility.HtmlEncode( item.GetPropText( Core.Props.LongBody ) ) );
-			
+
 			if(item.HasProp( "Url" ))
 				writer.WriteLine( "<div class=\"Clipping-Url\">{0}</div>", item.GetStringProp( "Url" ) );
 		}

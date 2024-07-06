@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -83,7 +82,7 @@ namespace JetBrains.JetListViewLibrary.Tests
         {
             _nodeCollection.Add( "Test" );
             _nodeCollection.Add( "Test2" );
-            
+
             IEnumerator enumerator = _groupCollection.GetFullEnumerator();
             VerifyGroupHeader( enumerator, "Test", true );
             VerifyNode( enumerator, "Test" );
@@ -96,7 +95,7 @@ namespace JetBrains.JetListViewLibrary.Tests
         {
             _nodeCollection.Add( "Test" );
             _nodeCollection.Add( "Test2" );
-            
+
             IEnumerator enumerator = _groupCollection.GetFullEnumerator();
             enumerator.MoveNext();
             GroupHeaderNode node = enumerator.Current as GroupHeaderNode;
@@ -115,7 +114,7 @@ namespace JetBrains.JetListViewLibrary.Tests
             _nodeCollection.Add( "TestChild", testNode );
             testNode.Expanded = true;
             _nodeCollection.Add( "Test2" );
-            
+
             IEnumerator enumerator = _groupCollection.GetFullEnumerator();
             VerifyGroupHeader( enumerator, "Test", true );
             VerifyNode( enumerator, "Test" );
@@ -232,7 +231,7 @@ namespace JetBrains.JetListViewLibrary.Tests
             enumerator.MoveNext();
             GroupHeaderNode groupHeaderNode = (GroupHeaderNode) enumerator.Current;
             groupHeaderNode.Expanded = false;
-            
+
             Assert.AreEqual( 0, _lastInvalidateStartY );
         }
 
@@ -366,7 +365,7 @@ namespace JetBrains.JetListViewLibrary.Tests
             enumerator = _groupCollection.GetDirectionalEnumerator( test2Node, MoveDirection.Down );
             // this could overwrite top node of group to test2Node, and subsequent iteration would
             // return incorrect results
-            enumerator.MoveNext();  
+            enumerator.MoveNext();
 
             enumerator = _groupCollection.GetDirectionalEnumerator( groupHeaderNode, MoveDirection.Down );
             VerifyGroupHeader( enumerator, "Test", true );
@@ -380,7 +379,7 @@ namespace JetBrains.JetListViewLibrary.Tests
             EnumerateGroups();
 
             _groupCollection.GroupRemoved += new GroupEventHandler( HandleGroupEvent );
-            
+
             _nodeCollection.Remove( "Test", null );
             Assert.AreEqual( "Test", _lastEventGroup.Text );
         }
@@ -394,7 +393,7 @@ namespace JetBrains.JetListViewLibrary.Tests
             enumerator.MoveNext();
 
             _groupCollection.GroupRemoved += new GroupEventHandler( HandleGroupEvent );
-            
+
             _groupProvider.SetGroup( "Test", "Rest" );
             _nodeCollection.Update( "Test" );
             Assert.AreEqual( "Test", _lastEventGroup.Text );

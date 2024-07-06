@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Text;
@@ -19,7 +18,7 @@ namespace JetBrains.Omea.MailParser
         public string Quote( MailBodyParser parser, IResource origMail, QuoteSettings quoteSettings )
         {
             StringBuilder quoteBuilder = StringBuilderPool.Alloc();
-            try 
+            try
             {
                 string initials = "";
 
@@ -29,7 +28,7 @@ namespace JetBrains.Omea.MailParser
                     if ( senders.Count > 0 )
                     {
                         IResource sender = senders [0];
-                    
+
                         string name = sender.GetPropText( "FirstName" );
                         if ( name.Length == 0 )
                         {
@@ -88,7 +87,7 @@ namespace JetBrains.Omea.MailParser
             return result;
         }
 
-        private void QuoteParagraph( StringBuilder quoteBuilder, string initials, 
+        private void QuoteParagraph( StringBuilder quoteBuilder, string initials,
             MailBodyParser.Paragraph para, QuoteSettings settings )
         {
             if ( para.Type != ParagraphType.Sig )
@@ -138,7 +137,7 @@ namespace JetBrains.Omea.MailParser
                         newPos = pos + lineLength;
                     }
                 }
-                
+
                 quoteBuilder.Append( prefix );
                 quoteBuilder.Append( text.Substring( pos, newPos-pos ).Trim() );
                 quoteBuilder.Append( "\r\n" );

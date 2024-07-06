@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System.ComponentModel;
 using System.Windows.Forms;
@@ -45,8 +44,8 @@ namespace JetBrains.Omea
 		}
 
 		#region Component Designer generated code
-		/// <summary> 
-		/// Required method for Designer support - do not modify 
+		/// <summary>
+		/// Required method for Designer support - do not modify
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent()
@@ -60,9 +59,9 @@ namespace JetBrains.Omea
             this._emailBlock = new JetBrains.Omea.GUIControls.EmailBlock();
             this._checkShowOrigNames = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
-            // 
+            //
             // label1
-            // 
+            //
             this.label1.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label1.Location = new System.Drawing.Point(0, 8);
             this.label1.Name = "label1";
@@ -70,17 +69,17 @@ namespace JetBrains.Omea
             this.label1.TabIndex = 0;
             this.label1.Text = "&First Name:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
+            //
             // _firstName
-            // 
+            //
             this._firstName.Location = new System.Drawing.Point(112, 4);
             this._firstName.Name = "_firstName";
             this._firstName.Size = new System.Drawing.Size(152, 20);
             this._firstName.TabIndex = 1;
             this._firstName.Text = "";
-            // 
+            //
             // label2
-            // 
+            //
             this.label2.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label2.Location = new System.Drawing.Point(0, 36);
             this.label2.Name = "label2";
@@ -88,47 +87,47 @@ namespace JetBrains.Omea
             this.label2.TabIndex = 2;
             this.label2.Text = "&Last Name:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
+            //
             // _lastName
-            // 
+            //
             this._lastName.Location = new System.Drawing.Point(112, 32);
             this._lastName.Name = "_lastName";
             this._lastName.Size = new System.Drawing.Size(152, 20);
             this._lastName.TabIndex = 3;
             this._lastName.Text = "";
-            // 
+            //
             // label5
-            // 
+            //
             this.label5.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label5.Location = new System.Drawing.Point(0, 64);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(176, 16);
             this.label5.TabIndex = 13;
             this.label5.Text = "&E-mail addresses:";
-            // 
+            //
             // groupBox1
-            // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Location = new System.Drawing.Point(180, 64);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(268, 8);
             this.groupBox1.TabIndex = 15;
             this.groupBox1.TabStop = false;
-            // 
+            //
             // _emailBlock
-            // 
-            this._emailBlock.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-                | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._emailBlock.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._emailBlock.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
             this._emailBlock.Location = new System.Drawing.Point(0, 80);
             this._emailBlock.Name = "_emailBlock";
             this._emailBlock.Size = new System.Drawing.Size(448, 272);
             this._emailBlock.TabIndex = 16;
-            // 
+            //
             // _checkShowOrigNames
-            // 
+            //
             this._checkShowOrigNames.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this._checkShowOrigNames.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._checkShowOrigNames.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
@@ -137,9 +136,9 @@ namespace JetBrains.Omea
             this._checkShowOrigNames.Size = new System.Drawing.Size(450, 22);
             this._checkShowOrigNames.TabIndex = 17;
             this._checkShowOrigNames.Text = "Show name used by &sender in received messages addressed to me";
-            // 
+            //
             // MySelfPane
-            // 
+            //
             this.Controls.Add(this._checkShowOrigNames);
             this.Controls.Add(this._emailBlock);
             this.Controls.Add(this.label5);
@@ -175,7 +174,7 @@ namespace JetBrains.Omea
             }
             else
             {
-                Core.ResourceAP.RunUniqueJob( 
+                Core.ResourceAP.RunUniqueJob(
                     new GetUpdatedMyselfDelegate( GetUpdatedMyself ), _firstName.Text, _lastName.Text, _checkShowOrigNames.Checked );
                 //  Difference in two methods of Save is explaned by the fact
                 //  that Core.ContactManager.MySelf has side-effects (creation
@@ -185,7 +184,7 @@ namespace JetBrains.Omea
                 _emailBlock.Save( Core.ContactManager.MySelf.Resource );
             }
         }
-	    
+
 	    private delegate void GetUpdatedMyselfDelegate( string firstName, string lastName, bool showOrigNames );
 
 	    private void GetUpdatedMyself( string firstName, string lastName, bool showOrigNames )

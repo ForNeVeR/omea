@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System.Collections;
 using System.Windows.Forms;
@@ -17,7 +16,7 @@ namespace JetBrains.Omea
     /// </summary>
     internal abstract class LinksPaneBase : UserControl
 	{
-		/// <summary> 
+		/// <summary>
 		/// Required designer variable.
 		/// </summary>
 		private System.ComponentModel.Container components = null;
@@ -30,7 +29,7 @@ namespace JetBrains.Omea
 
         protected ColorScheme _colorScheme;
 
-        private IResourceList _customProperties;        
+        private IResourceList _customProperties;
 
 		public LinksPaneBase()
 		{
@@ -38,7 +37,7 @@ namespace JetBrains.Omea
 			InitializeComponent();
 		}
 
-		/// <summary> 
+		/// <summary>
 		/// Clean up any resources being used.
 		/// </summary>
 		protected override void Dispose( bool disposing )
@@ -60,8 +59,8 @@ namespace JetBrains.Omea
 		}
 
         #region Component Designer generated code
-		/// <summary> 
-		/// Required method for Designer support - do not modify 
+		/// <summary>
+		/// Required method for Designer support - do not modify
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent()
@@ -92,11 +91,11 @@ namespace JetBrains.Omea
         public ColorScheme ColorScheme
         {
             get { return _colorScheme; }
-            set 
-            { 
+            set
+            {
                 if ( _colorScheme != value )
                 {
-                    _colorScheme = value; 
+                    _colorScheme = value;
                     OnColorSchemeChanged();
                     Invalidate();
                 }
@@ -110,7 +109,7 @@ namespace JetBrains.Omea
         /**
          * Sets the list of resources for which the links are displayed.
          */
-        
+
         protected void SetResourceList( IResourceList resList, ILinksPaneFilter filter )
         {
             _filter = filter;
@@ -159,7 +158,7 @@ namespace JetBrains.Omea
 
             LinkSection lastSection = null;
             LinkSection groupStartSection;
-            
+
             foreach( IntArrayList propIds in _linksPaneGroups )
             {
                 groupStartSection = lastSection;
@@ -222,7 +221,7 @@ namespace JetBrains.Omea
 
         private LinkSection BuildLinkSection( LinkSection lastSection, IResource res, int linkType, int direction )
         {
-            IResourceList resList; 
+            IResourceList resList;
             switch( direction )
             {
                 case 0:  resList = res.GetLinksOfType( null, linkType );  break;
@@ -292,7 +291,7 @@ namespace JetBrains.Omea
 
 	    protected void ShowLinkContextMenu( ResourceLinkLabel linkLabel, ResourceLinkLabelEventArgs e )
         {
-            ActionContext context = new ActionContext( ActionContextKind.ContextMenu, this, 
+            ActionContext context = new ActionContext( ActionContextKind.ContextMenu, this,
                 e.Resource.ToResourceList() );
             context.SetLinkTarget( linkLabel.LinkType, _resourceList [0] );
             Core.ActionManager.ShowResourceContextMenu( context, linkLabel, e.Point.X, e.Point.Y );
@@ -345,7 +344,7 @@ namespace JetBrains.Omea
                 get { return _toolTip; }
             }
         }
-        
+
         internal class LinkSection
         {
             private readonly string _name;

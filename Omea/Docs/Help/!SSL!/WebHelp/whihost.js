@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 //	WebHelp 5.10.002
 var gsDefaultTarget="bsscright";
@@ -118,7 +117,7 @@ function mergeItems(oHTML,bDown,aDataCon,aCurIdxSet,nLength,aPos,nLevel)
 {
 	var oLocalHTML=new indexHTMLPart();
 	writeOneItem(oLocalHTML,bDown,aDataCon,aCurIdxSet,nLength,aPos,nLevel);
-	
+
 	var aLocalPos=new Array();
 	var aMaxPos=new Array();
 	for(var i=0;i<aPos.length;i++)
@@ -126,7 +125,7 @@ function mergeItems(oHTML,bDown,aDataCon,aCurIdxSet,nLength,aPos,nLevel)
 		aLocalPos[i]=aPos[i];
 		aMaxPos[i]=-1;
 	}
-	
+
 	for(i=0;i<nLength;i++)
 	{
 		var nNKOff=getNKOff(aDataCon,aCurIdxSet[i],aLocalPos[aCurIdxSet[i]]);
@@ -231,7 +230,7 @@ function loadIdx()
 			}
 			writeDataIFrame();
 			enEvt();
-		}		
+		}
 	}
 }
 
@@ -253,7 +252,7 @@ function getIdxTopics(aDataCon,nIdxSet,nIIdx)
 			}
 		}
 	}
-	return sTopics;		
+	return sTopics;
 }
 
 function findCKInDom()
@@ -272,7 +271,7 @@ function findCKInDom()
 		while(nB<nE){
 			nM=(nB+nE+1)>>1;
 			sItem=getInnerText(oP[nM]);
-			
+
 			if(compare(sItem,sK)==0)
 			{
 				bF=true;
@@ -286,19 +285,19 @@ function findCKInDom()
 		if(!bF)
 		{
 			if(nB==nE) nM=nB;
-		
+
 			if(nM+1<len)
 			{
 				sItem=getInnerText(oP[nM+1]);
 				if(compare(sItem,sK)<=0) nM++;
-			}			
+			}
 			if(nM+1<len)
 			{
 				sItem=getInnerText(oP[nM+1]);
 				if(compare(sItem.substring(0,sK.length),sK)==0) nM++;
-			}			
+			}
 		}
-	
+
 		var oMatch=oP[nM];
 		if(oMatch)
 		{
@@ -334,7 +333,7 @@ function findCKInDom()
 			findCK();
 			return false;
 		}
-		
+
 	}
 	return true;
 }
@@ -370,7 +369,7 @@ function IndexWriteClassStyle()
 	sStyle+="A:visited {"+getFontStyle(goIdxFont)+"}\n";
 	sStyle+="A:active {background-color:"+gsIdxActiveBgColor+";}\n";
 	sStyle+="A:hover {"+getFontStyle(goIdxHoverFont)+"}\n";
-	sStyle+="</STYLE>";	
+	sStyle+="</STYLE>";
 	document.write(sStyle);
 	return;
 }

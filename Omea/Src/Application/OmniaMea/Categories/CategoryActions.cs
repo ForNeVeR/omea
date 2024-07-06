@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System.Windows.Forms;
 using JetBrains.Omea.OpenAPI;
@@ -65,7 +64,7 @@ namespace JetBrains.Omea.Categories
                 if ( context.SelectedResources.Count == 1 && context.SelectedResources [0].Type == "Category" )
                     return;
 
-                if ( context.SelectedResources.Count == 1 && context.SelectedResources [0].Type == "ResourceTreeRoot" && 
+                if ( context.SelectedResources.Count == 1 && context.SelectedResources [0].Type == "ResourceTreeRoot" &&
                     context.SelectedResources [0].GetPropText( "RootResourceType" ).StartsWith( "Category" ) )
                 {
                     return;
@@ -116,7 +115,7 @@ namespace JetBrains.Omea.Categories
         {
             if ( context.LinkTargetResource != null )
             {
-				Core.CategoryManager.RemoveResourceCategory( context.LinkTargetResource, 
+				Core.CategoryManager.RemoveResourceCategory( context.LinkTargetResource,
                     context.SelectedResources [0] );
             }
         }
@@ -140,7 +139,7 @@ namespace JetBrains.Omea.Categories
         {
             foreach( IResource category in selectedResources )
             {
-                IResourceList categoryResources = category.GetLinksOfType( null, 
+                IResourceList categoryResources = category.GetLinksOfType( null,
                     (Core.CategoryManager as CategoryManager).PropCategory );
                 categoryResources = categoryResources.Intersect( Core.TabManager.CurrentTab.GetFilterList( false ), true );
                 categoryResources = categoryResources.Intersect( Core.ResourceStore.FindResourcesWithProp( null, "IsUnread" ), true );

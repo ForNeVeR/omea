@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Diagnostics;
@@ -38,7 +37,7 @@ namespace JetBrains.Omea.ExcelDocPlugin
             Core.WebBrowser.Visible = true;
         }
 
-        /// <summary> 
+        /// <summary>
         /// Clean up any resources being used.
         /// </summary>
         protected override void Dispose( bool disposing )
@@ -54,15 +53,15 @@ namespace JetBrains.Omea.ExcelDocPlugin
         }
 
         #region Component Designer generated code
-        /// <summary> 
-        /// Required method for Designer support - do not modify 
+        /// <summary>
+        /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
         {
-            // 
+            //
             // ExcelDisplayPane
-            // 
+            //
             this.Name = "ExcelDisplayPane";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ExcelDisplayPane_KeyDown);
 
@@ -88,7 +87,7 @@ namespace JetBrains.Omea.ExcelDocPlugin
                 {
                     _sourceFileName = Core.FileResourceManager.GetSourceFile( resource );
                     _resource = resource;
-                    LoadHtml( _sourceFileName );                
+                    LoadHtml( _sourceFileName );
                 }
                 catch( Exception ex )
                 {
@@ -131,7 +130,7 @@ namespace JetBrains.Omea.ExcelDocPlugin
 				return;
 			}
 
-            _converterOutputReader = new StreamReader( _converterProcess.StandardOutput.BaseStream, 
+            _converterOutputReader = new StreamReader( _converterProcess.StandardOutput.BaseStream,
                 Encoding.UTF8 );
             _converterOutputWriter = new StringWriter();
             new Thread( ProcessConverterOutput ).Start();
@@ -157,7 +156,7 @@ namespace JetBrains.Omea.ExcelDocPlugin
         {
             if ( _killedConverter || null == _converterProcess)
                 return;
-            
+
             if ( _converterProcess.ExitCode == 0 )
             {
                 Core.WebBrowser.ShowHtml( _converterOutputWriter.ToString(), WebSecurityContext.Restricted, _wordsToHighlight );

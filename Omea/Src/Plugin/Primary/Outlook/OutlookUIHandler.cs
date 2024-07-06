@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System.Diagnostics;
 using System.Text;
@@ -148,7 +147,7 @@ namespace JetBrains.Omea.OutlookPlugin
     	#region IResourceDragDropHandler Members
     	public void Drop( IResource targetResource, IDataObject data, DragDropEffects allowedEffect, int keyState )
     	{
-			if( data.GetDataPresent( typeof(IResourceList) ) ) // Dragging resources over			
+			if( data.GetDataPresent( typeof(IResourceList) ) ) // Dragging resources over
 			{
 				// The resources we're dragging
 				IResourceList dragResources = (IResourceList)data.GetData( typeof(IResourceList) );
@@ -171,7 +170,7 @@ namespace JetBrains.Omea.OutlookPlugin
 
     	public DragDropEffects DragOver( IResource targetResource, IDataObject data, DragDropEffects allowedEffect, int keyState )
     	{
-			if( data.GetDataPresent( typeof(IResourceList) ) ) // Dragging resources over			
+			if( data.GetDataPresent( typeof(IResourceList) ) ) // Dragging resources over
 			{
 				// The resources we're dragging
 				IResourceList dragResources = (IResourceList)data.GetData( typeof(IResourceList) );
@@ -278,7 +277,7 @@ namespace JetBrains.Omea.OutlookPlugin
 
 		public DragDropEffects DragOver(IResource targetResource, IDataObject data, DragDropEffects allowedEffect, int keyState)
 		{
-			if( data.GetDataPresent( typeof(IResourceList) ) ) // Dragging resources over			
+			if( data.GetDataPresent( typeof(IResourceList) ) ) // Dragging resources over
 			{
 				// The resources we're dragging
 				IResourceList dragResources = (IResourceList)data.GetData( typeof(IResourceList) );

@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -33,7 +32,7 @@ namespace JetBrains.Omea.OutlookPlugin
     internal class _com_Outlook_Application : Object_Ref_Counting
     {
         private Outlook.ApplicationClass _application;
-		
+
         public _com_Outlook_Application()
         {
             _application = new Outlook.ApplicationClass();
@@ -152,10 +151,10 @@ namespace JetBrains.Omea.OutlookPlugin
             {
                 return new _com_OutlookContactItem( (Outlook.ContactItem) obj );
             }
-            
+
             return null;
         }
-            
+
         public _com_OutlookMailItem GetItemFromID( string entryID, string storeID )
         {
             object obj = _nameSpace.GetItemFromID( entryID, storeID );
@@ -525,7 +524,7 @@ namespace JetBrains.Omea.OutlookPlugin
             return (_com_OutlookMAPIFolder) AddRef();
         }
         public _com_OutlookItems Items { get { return new _com_OutlookItems( _folder.Items ); } }
-        public _com_OutlookFolders Folders 
+        public _com_OutlookFolders Folders
         {
             get { return new _com_OutlookFolders( _folder.Folders ); }
         }

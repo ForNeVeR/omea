@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -23,7 +22,7 @@ namespace JetBrains.Omea.ResourceStore
         // some (like PropValuePredicate) will return a small result set, others
         // (like TypeResourceListPredicate) - a large one. We call the first type
         // "selective", and the second type "filtering". Thus, we intersect
-        // the result sets from all selective predicates with each other and then 
+        // the result sets from all selective predicates with each other and then
         // filter them through the filtering ones.
 
         private ResourceListPredicate[] _sourcePredicatesFiltering;
@@ -79,7 +78,7 @@ namespace JetBrains.Omea.ResourceStore
             {
                 _minSelectionCost = 0;
             }
-    
+
             if ( _minSelectionCost == maxSelectionCost && zeroCostCount == 0 )
             {
                 // we need to have at least one selective predicate
@@ -103,7 +102,7 @@ namespace JetBrains.Omea.ResourceStore
                     {
                         if ( selIndex >= _sourcePredicatesSelective.Length )
                         {
-                            throw new Exception( "Index out of bounds: selCount=" + selCount + 
+                            throw new Exception( "Index out of bounds: selCount=" + selCount +
                                 ", filtCount=" + filtCount + ", selIndex=" + selIndex + ", minSelectionCost=" + _minSelectionCost );
                         }
                         _sourcePredicatesSelective [selIndex++] = predicates [i];
@@ -112,7 +111,7 @@ namespace JetBrains.Omea.ResourceStore
                     {
                         if ( filtIndex >= _sourcePredicatesFiltering.Length )
                         {
-                            throw new Exception( "Index out of bounds: selCount=" + selCount + 
+                            throw new Exception( "Index out of bounds: selCount=" + selCount +
                                 ", filtCount=" + filtCount + ", filtIndex=" + filtIndex + ", minSelectionCost=" + _minSelectionCost );
                         }
                         _sourcePredicatesFiltering [filtIndex++] = predicates [i];
@@ -180,7 +179,7 @@ namespace JetBrains.Omea.ResourceStore
                 IntArrayList result = _sourcePredicatesSelective [0].GetSortedMatchingResourcesRef( out syncObject );
                 if( syncObject != null )
                 {
-                    if( _sourcePredicatesSelective.Length == 1 ) 
+                    if( _sourcePredicatesSelective.Length == 1 )
                     {
                         lock( syncObject )
                         {
@@ -198,7 +197,7 @@ namespace JetBrains.Omea.ResourceStore
                         }
                     }
                 }
-            
+
                 for( ; result.Count > 0 && i < _sourcePredicatesSelective.Length; i++ )
                 {
                     if ( _traceIntersections )
@@ -321,7 +320,7 @@ namespace JetBrains.Omea.ResourceStore
                 PredicateMatch match = _sourcePredicates [i].MatchResource( res, cs );
                 if ( match == PredicateMatch.Add || match == PredicateMatch.Match )
                     newMatch++;
-                
+
                 if ( match == PredicateMatch.Del || match == PredicateMatch.Match )
                     oldMatch++;
 
@@ -356,25 +355,25 @@ namespace JetBrains.Omea.ResourceStore
                 {
                     if ( newPredicateList.Count == 1 )
                     {
-                        result = (ResourceListPredicate) newPredicateList [0];                    
+                        result = (ResourceListPredicate) newPredicateList [0];
                     }
                     else
                     {
-                        _sourcePredicates = (ResourceListPredicate[]) newPredicateList.ToArray( 
+                        _sourcePredicates = (ResourceListPredicate[]) newPredicateList.ToArray(
                             typeof(ResourceListPredicate) );
                     }
                 }
                 return OptimizeSourcePredicates( result, isLive );
             }
-            finally 
+            finally
             {
                 ArrayListPool.Dispose( newPredicateList );
             }
         }
 
-        /** 
+        /**
          * Intersect(A,Intersect(B,C)) -> Intersect(A,B,C)
-         * If any of the sources of the intersection are also intersections, 
+         * If any of the sources of the intersection are also intersections,
          * collapses their sources into the current intersection.
          */
 

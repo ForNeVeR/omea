@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System.Diagnostics;
 using JetBrains.Omea.Contacts;
@@ -78,7 +77,7 @@ namespace JetBrains.Omea.ContactsPlugin
         {
             IResource res;
 
-            //  Correct view "Active". LastCorrespondDate must fall into 
+            //  Correct view "Active". LastCorrespondDate must fall into
             //  the range ["Tomorrow", -30].
             res = Core.ResourceStore.FindUniqueResource( FilterManagerProps.ViewResName, "DeepName", "Active" );
             if( res != null )
@@ -171,7 +170,7 @@ namespace JetBrains.Omea.ContactsPlugin
     {
         public bool  MatchResource( IResource res )
         {
-            //  Do not use obvious solution - 
+            //  Do not use obvious solution -
             //  IResourceList linked = ContactManager.LinkedCorrespondence( res );
             //  Instead, check linkage in a more directed manner.
 

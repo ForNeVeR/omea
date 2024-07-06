@@ -1,24 +1,23 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 namespace JetBrains.Omea.OpenAPI
 {
 	/// <summary>
 	/// Specifies possible formats for emails created through <see cref="IEmailService.CreateEmail"/>.
 	/// </summary>
-    public enum EmailBodyFormat 
-    { 
+    public enum EmailBodyFormat
+    {
         /// <summary>
         /// The body is plain text.
         /// </summary>
-        PlainText, 
-        
+        PlainText,
+
         /// <summary>
         /// The body is HTML text.
         /// </summary>
-        Html 
+        Html
     };
 
     /// <summary>
@@ -31,7 +30,7 @@ namespace JetBrains.Omea.OpenAPI
         /// The name of the recipient.
         /// </summary>
         public string Name;
-        
+
         /// <summary>
         /// The e-mail address of the recipient.
         /// </summary>
@@ -48,7 +47,7 @@ namespace JetBrains.Omea.OpenAPI
             EmailAddress = emailAddress;
         }
     }
-    
+
     /// <summary>
     /// Allows plugins to create e-mail messages in the system e-mail client.
     /// </summary>
@@ -64,7 +63,7 @@ namespace JetBrains.Omea.OpenAPI
         /// specifies the recipients of the message.</param>
         /// <param name="attachments">A list of names of files to be attached to the message.</param>
         /// <param name="addSignature">If true, the user's default signature is appended to the message text.</param>
-        void CreateEmail( string subject, string body, EmailBodyFormat bodyFormat, 
+        void CreateEmail( string subject, string body, EmailBodyFormat bodyFormat,
             IResourceList recipients, string[] attachments, bool addSignature );
 
         /// <summary>
@@ -77,7 +76,7 @@ namespace JetBrains.Omea.OpenAPI
         /// <param name="attachments">A list of names of files to be attached to the message.</param>
         /// <param name="addSignature">If true, the user's default signature is appended to the message text.</param>
         /// <since>2.0</since>
-        void CreateEmail( string subject, string body, EmailBodyFormat bodyFormat, 
+        void CreateEmail( string subject, string body, EmailBodyFormat bodyFormat,
             EmailRecipient[] recipients, string[] attachments, bool addSignature );
     }
 }

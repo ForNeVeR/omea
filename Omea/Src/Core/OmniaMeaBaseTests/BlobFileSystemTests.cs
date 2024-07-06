@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -29,7 +28,7 @@ namespace OmniaMeaBaseTests
         [TearDown]
         public void TearDown()
         {
-            if( _bfs != null ) 
+            if( _bfs != null )
             {
                 _bfs.Dispose();
                 _bfs = null;
@@ -184,7 +183,7 @@ namespace OmniaMeaBaseTests
             Assertion.AssertEquals( ints.Count, 200000 );
             for( int i = 0; i < ints.Count; ++i )
             {
-                if( ( i & 1 ) == 0 ) 
+                if( ( i & 1 ) == 0 )
                 {
                     Assertion.AssertEquals( i / 20000, ints[ i ] );
                 }
@@ -210,7 +209,7 @@ namespace OmniaMeaBaseTests
             Assertion.AssertEquals( ints.Count, 200000 );
             for( int i = 0; i < ints.Count; ++i )
             {
-                if( ( i & 1 ) == 0 ) 
+                if( ( i & 1 ) == 0 )
                 {
                     Assertion.AssertEquals( (i / 20000) + 1, ints[ i ] );
                 }
@@ -257,7 +256,7 @@ namespace OmniaMeaBaseTests
         {
             const int count = 100000;
             int handle;
-            using( BinaryWriter file = _bfs.AllocFile( out handle ) ) 
+            using( BinaryWriter file = _bfs.AllocFile( out handle ) )
             {
                 Assertion.Assert( handle > 0 );
                 for( int i = 0; i < count; ++i )
@@ -266,14 +265,14 @@ namespace OmniaMeaBaseTests
                 }
             }
             Assertion.Assert( new FileInfo( _bfsFile ).Length > count * 2 );
-            using( BinaryReader file = _bfs.GetFileReader( handle ) ) 
+            using( BinaryReader file = _bfs.GetFileReader( handle ) )
             {
                 for( int i = 0; i < count; ++i )
                 {
                     Assertion.AssertEquals( i.ToString(), file.ReadString() );
                 }
             }
-            using( BinaryReader file = _bfs.GetFileReader( handle ) ) 
+            using( BinaryReader file = _bfs.GetFileReader( handle ) )
             {
                 for( int i = 0; i < count; ++i )
                 {
@@ -286,13 +285,13 @@ namespace OmniaMeaBaseTests
         public void ReuseDeletedFileSpace()
         {
             IntArrayList handles = new IntArrayList();
-            for( int i = 0; i < 10; ++i ) 
+            for( int i = 0; i < 10; ++i )
             {
                 int handle;
                 using( BinaryWriter file = _bfs.AllocFile( out handle ) )
                 {
                     handles.Add( handle );
-                    for( int j = 0; j < 50; ++j ) 
+                    for( int j = 0; j < 50; ++j )
                     {
                         file.Write( handle.ToString() );
                     }
@@ -300,7 +299,7 @@ namespace OmniaMeaBaseTests
                 using( BinaryWriter file = _bfs.AllocFile( out handle ) )
                 {
                     handles.Add( handle );
-                    for( int j = 0; j < 200; ++j ) 
+                    for( int j = 0; j < 200; ++j )
                     {
                         file.Write( handle.ToString() );
                     }
@@ -311,9 +310,9 @@ namespace OmniaMeaBaseTests
                 _bfs.DeleteFile( handles[ ( i * 2 ) + 1 ] );
             }
             _bfs.Dispose();
-            
+
             long bsfLength = new FileInfo( _bfsFile ).Length;
-            
+
             SetUp();
 
             // file handles are reused in back order
@@ -323,7 +322,7 @@ namespace OmniaMeaBaseTests
                 using( BinaryWriter file = _bfs.AllocFile( out handle ) )
                 {
                     Assertion.AssertEquals( handles[ ( i * 2 ) - 1 ], handle );
-                    for( int j = 0; j < 200; ++j ) 
+                    for( int j = 0; j < 200; ++j )
                     {
                         file.Write( handle.ToString() );
                     }
@@ -335,4 +334,3 @@ namespace OmniaMeaBaseTests
         }
     }
 }
-            

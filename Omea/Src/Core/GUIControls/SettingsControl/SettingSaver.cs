@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System.Windows.Forms;
 using JetBrains.Omea.Base;
@@ -23,7 +22,7 @@ namespace JetBrains.Omea.GUIControls
     {
         public static void Save( Control.ControlCollection controls )
         {
-                
+
             Guard.NullArgument( controls, "controls" );
             foreach ( Control control in controls )
             {

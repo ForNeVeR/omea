@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 //	WebHelp 5.10.002
 if (! window.gbIE4 && window.gbNav6 && !document.childNodes[0].insertAdjacentHTML){
@@ -59,7 +58,7 @@ function testScroll() {
 	window.document.clientHeight = window.innerHeight;
 
 	// If cache!=current values, call the onscroll event
-	if (((window.pageXOffset!=window._pageXOffset) || (window.pageYOffset!=window._pageYOffset)) && (window.onscroll)) 
+	if (((window.pageXOffset!=window._pageXOffset) || (window.pageYOffset!=window._pageYOffset)) && (window.onscroll))
 		window.onscroll();
 	// Cache new values
 	window._pageXOffset = window.pageXOffset;

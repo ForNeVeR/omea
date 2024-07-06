@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -97,7 +96,7 @@ namespace JetBrains.Omea
         private Font            _formattingFont;
         private const string    _cDefaultFont = "Verdana";
         private const int       _cDefaultFontSize = 10;
-        
+
 		/// <summary>
 		/// The DDE client object.
 		/// </summary>
@@ -171,7 +170,7 @@ namespace JetBrains.Omea
             }
         }
 
-        /** 
+        /**
          * for specified group & header, adds listener for options changes
          */
 
@@ -450,7 +449,7 @@ namespace JetBrains.Omea
             return new ResourceSelector().SelectResource( ownerWnd, type, caption, initialSelection, null );
         }
 
-        public IResource SelectResource( IWin32Window ownerWnd, string type, string caption, 
+        public IResource SelectResource( IWin32Window ownerWnd, string type, string caption,
                                          IResource initialSelection, string helpTopic )
         {
             return new ResourceSelector().SelectResource( ownerWnd, type, caption, initialSelection, helpTopic );
@@ -459,7 +458,7 @@ namespace JetBrains.Omea
 
         #region Select Resources
         /**
-         * Shows a modal dialog allowing to select multiple resources of a specific type. 
+         * Shows a modal dialog allowing to select multiple resources of a specific type.
          * Returns null if the dialog was cancelled.
          */
 
@@ -484,13 +483,13 @@ namespace JetBrains.Omea
             return new ResourceSelector().SelectResources( Core.MainWindow, new[] { type }, caption, initialSelection, null );
         }
 
-        public IResourceList SelectResources( IWin32Window ownerWnd, string type, string caption, 
+        public IResourceList SelectResources( IWin32Window ownerWnd, string type, string caption,
                                               IResourceList initialSelection )
         {
             return new ResourceSelector().SelectResources( ownerWnd, new[] { type }, caption, initialSelection, null );
         }
 
-        public IResourceList SelectResources( IWin32Window ownerWnd, string type, string caption, 
+        public IResourceList SelectResources( IWin32Window ownerWnd, string type, string caption,
                                               IResourceList initialSelection, string helpTopic )
         {
             return new ResourceSelector().SelectResources( ownerWnd, new[] { type }, caption, initialSelection, helpTopic );
@@ -508,13 +507,13 @@ namespace JetBrains.Omea
             return new ResourceSelector().SelectResources( Core.MainWindow, types, caption, initialSelection, null );
         }
 
-        public IResourceList SelectResources( IWin32Window ownerWnd, string[] types, 
+        public IResourceList SelectResources( IWin32Window ownerWnd, string[] types,
                                               string caption, IResourceList initialSelection )
         {
             return new ResourceSelector().SelectResources( ownerWnd, types, caption, initialSelection, null );
         }
 
-        public IResourceList SelectResources( IWin32Window ownerWnd, string[] types, string caption, 
+        public IResourceList SelectResources( IWin32Window ownerWnd, string[] types, string caption,
                                               IResourceList initialSelection, string helpTopic )
         {
             return new ResourceSelector().SelectResources( ownerWnd, types, caption, initialSelection, helpTopic );
@@ -537,7 +536,7 @@ namespace JetBrains.Omea
             return new ResourceSelector().SelectResourcesFromList( ownerWnd, resList, caption, null, null );
         }
 
-        public IResourceList SelectResourcesFromList( IWin32Window ownerWnd, IResourceList resList, 
+        public IResourceList SelectResourcesFromList( IWin32Window ownerWnd, IResourceList resList,
                                                       string caption, IResourceList initialSelection )
         {
             return new ResourceSelector().SelectResourcesFromList( ownerWnd, resList, caption, null, initialSelection );
@@ -599,7 +598,7 @@ namespace JetBrains.Omea
         /**
          * Shows the dialog for creating a new category.
          */
-        
+
         public IResource ShowNewCategoryDialog( string defaultName, IResource defaultParent, string defaultContentType )
         {
             using( NewCategoryDlg dlg = new NewCategoryDlg() )
@@ -651,7 +650,7 @@ namespace JetBrains.Omea
             {
                 _resourceLocationLinks [resType] = new LocationLinkData( locationResType, propId );
             }
-            
+
             _locationResTypes.Add( locationResType );
         }
 
@@ -659,7 +658,7 @@ namespace JetBrains.Omea
         {
             _resourceDefaultLocations [resType] = location;
         }
-        
+
         /**
          * Displays the specified resource in appropriate context (switches to
          * the tab showing resources of that type, opens the resource structure
@@ -729,7 +728,7 @@ namespace JetBrains.Omea
                         }
                         AbstractViewPane viewPane = Core.LeftSidebar.ActivateViewPane( tabId, viewPaneId );
                         EndUpdateSidebar();
-                    
+
                         if ( viewPane == null )
                         {
                             // ActivateViewPane() may have caused event processing and change of active tab (OM-8213)
@@ -826,7 +825,7 @@ namespace JetBrains.Omea
                     if ( Core.ResourceStore.PropTypes [propId].HasFlag( PropTypeFlags.DirectedLink ) )
                     {
                         // reverse direction of resource to location link
-                        linkResult = propId < 0 ? location.GetLinksFrom( resType, -propId ) : 
+                        linkResult = propId < 0 ? location.GetLinksFrom( resType, -propId ) :
                                                   location.GetLinksTo( resType, propId );
                     }
                     else
@@ -870,7 +869,7 @@ namespace JetBrains.Omea
             return true;
         }
 
-        public DragDropEffects ProcessDragOver( IResource targetRes, IDataObject data, DragDropEffects effect, 
+        public DragDropEffects ProcessDragOver( IResource targetRes, IDataObject data, DragDropEffects effect,
             int state, bool sameView )
         {
             IResourceDragDropHandler ddHandler = Core.PluginLoader.GetResourceDragDropHandler( targetRes );
@@ -882,7 +881,7 @@ namespace JetBrains.Omea
             IResourceList resList = (IResourceList) data.GetData( typeof(IResourceList) );
             if ( resList != null && CanDropResource( targetRes, resList, sameView ) )
             {
-                return DragDropEffects.Link;                
+                return DragDropEffects.Link;
             }
 
             return DragDropEffects.None;
@@ -956,14 +955,14 @@ namespace JetBrains.Omea
             {
                 throw new ArgumentNullException( "res" );
             }
-            
+
             ResourceEditWindow oldWindow = (ResourceEditWindow) _editWindows [res.Id];
             if ( oldWindow != null )
             {
                 oldWindow.BringToFront();
                 return;
             }
-            
+
             ResourceEditWindow wnd = new ResourceEditWindow();
             wnd.SetEditPane( editPane, res, newResource, savedDelegate, savedDelegateTag );
             wnd.Closed += OnEditWindowClosed;
@@ -1001,8 +1000,8 @@ namespace JetBrains.Omea
                 Type paneType = (Type) _resourceSelectPanes [resType];
                 if ( paneType != null )
                 {
-                    return (IResourceSelectPane) paneType.InvokeMember(null, 
-                        BindingFlags.DeclaredOnly |  BindingFlags.Public | BindingFlags.NonPublic | 
+                    return (IResourceSelectPane) paneType.InvokeMember(null,
+                        BindingFlags.DeclaredOnly |  BindingFlags.Public | BindingFlags.NonPublic |
                         BindingFlags.Instance | BindingFlags.CreateInstance, null, null, new object[] {} );
                 }
             }
@@ -1023,7 +1022,7 @@ namespace JetBrains.Omea
         {
             return _sidebarUpdateCount > 0;
         }
-        
+
         public void CreateShortcutToResource( IResource res )
         {
             ShortcutBar.GetInstance().AddShortcutToResource( res );
@@ -1236,7 +1235,7 @@ namespace JetBrains.Omea
     	}
 
     	/// <summary>
-    	/// Attempts to connect to the Browser via DDE using the information provided in order to open the given URI./// 
+    	/// Attempts to connect to the Browser via DDE using the information provided in order to open the given URI.///
     	/// </summary>
     	/// <param name="sDdeServerName">DDE service name.</param>
     	/// <param name="sDdeTopic">DDE topic name to open the conversation on.</param>
@@ -1294,20 +1293,20 @@ namespace JetBrains.Omea
             return MainFrame.GetStatusWriter( owner, pane );
         }
 
-        public string InputString( string title, string prompt, string initialValue, 
+        public string InputString( string title, string prompt, string initialValue,
             ValidateStringDelegate validateDelegate, IWin32Window ownerWindow )
         {
             return InputString( title, prompt, initialValue, validateDelegate, ownerWindow, 0, null );
         }
 
-        public string InputString( string title, string prompt, string initialValue, 
+        public string InputString( string title, string prompt, string initialValue,
             ValidateStringDelegate validateDelegate, IWin32Window ownerWindow, InputStringFlags flags )
         {
             return InputString( title, prompt, initialValue, validateDelegate, ownerWindow, flags, null );
         }
 
-        public string InputString( string title, string prompt, string initialValue, 
-            ValidateStringDelegate validateDelegate, IWin32Window ownerWindow, InputStringFlags flags, 
+        public string InputString( string title, string prompt, string initialValue,
+            ValidateStringDelegate validateDelegate, IWin32Window ownerWindow, InputStringFlags flags,
             string helpTopic )
         {
             using( InputStringDlg dlg = new InputStringDlg() )
@@ -1373,7 +1372,7 @@ namespace JetBrains.Omea
                 MainWindowClosing( this, e );
                 return e.Cancel;
             }
-            return false;            
+            return false;
         }
 
         public void WriteToUsageLog( string text )
@@ -1391,19 +1390,19 @@ namespace JetBrains.Omea
             get { return MainFrame.LeftSidebarExpanded; }
             set { MainFrame.LeftSidebarExpanded = value; }
         }
-	    
+
         public bool RightSidebarExpanded
         {
             get { return MainFrame.RightSidebarExpanded; }
             set { MainFrame.RightSidebarExpanded = value; }
         }
-	    
+
         public bool ShortcutBarVisible
         {
             get { return MainFrame.ShortcutBarVisible; }
             set { MainFrame.ShortcutBarVisible = value; }
         }
-	    
+
         public bool WorkspaceBarVisible
         {
             get { return MainFrame.WorkspaceButtonsVisible;}
@@ -1450,7 +1449,7 @@ namespace JetBrains.Omea
             _balloonForm.ShowResource( res );
         }
 
-        public void ShowDesktopAlert( ImageList imageList, int imageIndex, string from, string subject, 
+        public void ShowDesktopAlert( ImageList imageList, int imageIndex, string from, string subject,
                                       string body, EventHandler clickHandler )
         {
             if ( !Core.UserInterfaceAP.IsOwnerThread )
@@ -1463,7 +1462,7 @@ namespace JetBrains.Omea
             _balloonForm.ShowAlert( imageList, imageIndex, from, subject, body, clickHandler );
         }
 
-        private delegate void ShowDesktopAlertDelegate( ImageList imageList, int imageIndex, string from, 
+        private delegate void ShowDesktopAlertDelegate( ImageList imageList, int imageIndex, string from,
                                                         string subject, string body, EventHandler clickHandler );
 
         private void PrepareBalloonForm()
@@ -1503,7 +1502,7 @@ namespace JetBrains.Omea
                 Core.SettingStore.WriteInt( "MainFrame", "DefaultFontSize", (int)_formattingFont.Size );
             }
         }
-    	
+
     	/// <summary>
     	/// Gets the DDE object.
     	/// Note that it's lazy-created on first call and attaches to the calling thread, preventing from use from any other thread.

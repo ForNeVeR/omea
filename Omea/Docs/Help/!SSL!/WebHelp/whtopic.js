@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 //	WebHelp 5.10.005
 var gsPPath="";
@@ -63,7 +62,7 @@ function button(sText,nWidth,nHeight)
 	this.sText=sText;
 	this.nWidth=nWidth;
 	this.nHeight=nHeight;
-	
+
 	this.aImgs=new Array();
 	var i=0;
 	while(button.arguments.length>i+3)
@@ -106,7 +105,7 @@ function addTocInfo(sTocPath)
 
 function addAvenueInfo(sName,sPrev,sNext)
 {
-	gaAvenues[gaAvenues.length]=new avenueInfo(sName,sPrev,sNext);	
+	gaAvenues[gaAvenues.length]=new avenueInfo(sName,sPrev,sNext);
 }
 
 function addButton(sType,nStyle,sText,sHref,sOnClick,sOnMouseOver,sOnLoad,nWidth,nHeight,sImg1,sImg2,sImg3)
@@ -459,7 +458,7 @@ function onSendMessage(oMsg)
 		if(isOutMostTopic())
 		{
 			oMsg.oParam.oTocInfo=createSyncInfo();
-			return false;		
+			return false;
 		}
 		else
 			return true;
@@ -518,7 +517,7 @@ function goAvenue(bNext)
 			}
 		}
 	}
-	
+
 	if(sTopic!=null&&sTopic!="")
 	{
 		if(gsPPath!=null&&gsPPath!="")

@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -156,7 +155,7 @@ namespace JetBrains.Omea.GUIControls
             ShowProviderNameTip();
         }
 
-		/// <summary> 
+		/// <summary>
 		/// Clean up any resources being used.
 		/// </summary>
 		protected override void Dispose( bool disposing )
@@ -189,9 +188,9 @@ namespace JetBrains.Omea.GUIControls
 			_tipReason = new ToolTip( components );
 			BackColor = SystemColors.Control;
 			SuspendLayout();
-            // 
+            //
             // _btnProviderChooser
-            // 
+            //
             _btnProviderChooser.Location = new Point(16, 1);
 			_btnProviderChooser.Name = "_btnProviderChooser";
 			_btnProviderChooser.PressedImageIndex = -1;
@@ -209,9 +208,9 @@ namespace JetBrains.Omea.GUIControls
 //            _panelChoosingButtons.Controls.Add(_btnProviderChooser);
             _panelChoosingButtons.Paint += _panelChoosingButtons_Paint;
             _panelChoosingButtons.EnabledChanged += _panelChoosingButtons_EnabledChanged;
-            // 
+            //
 			// _labelTitle
-			// 
+			//
 			_labelTitle.Font = new Font( "Tahoma", 8.25F, FontStyle.Bold, GraphicsUnit.Point, 204 );
 			_labelTitle.Location = new Point( 8, 3 );
 			_labelTitle.Name = "_labelTitle";
@@ -221,9 +220,9 @@ namespace JetBrains.Omea.GUIControls
 			_labelTitle.BackColor = BackColor;
 			_labelTitle.ForeColor = SystemColors.ControlText;
 			_labelTitle.ClickableLink = false;
-            // 
+            //
             // _btnProvider
-            // 
+            //
             _btnProvider.Location = new Point(0, 0);
             _btnProvider.Name = "_btnProvider";
             _btnProvider.PressedImageIndex = -1;
@@ -232,9 +231,9 @@ namespace JetBrains.Omea.GUIControls
             _btnProvider.AutoSize = false;
 		    _btnProvider.BackColor = BackColor;
             _btnProvider.Click += _btnProviderChooser_Click;
-            // 
+            //
 			// _searchQueryCombo
-			// 
+			//
 			_searchQueryCombo.DropDownWidth = 200;
 			_searchQueryCombo.Location = new Point( 62, 0 );
 			_searchQueryCombo.Name = "_searchQueryCombo";
@@ -247,9 +246,9 @@ namespace JetBrains.Omea.GUIControls
 			_searchQueryCombo.Enter += _searchQueryCombo_Enter;
 			_searchQueryCombo.GotFocus += _searchQueryCombo_GotFocus;
 			_searchQueryCombo.LostFocus += _searchQueryCombo_GotFocus;
-            // 
+            //
 			// _btnSearch
-			// 
+			//
 			_btnSearch.Location = new Point( 248, 0 );
 			_btnSearch.Name = "_btnSearch";
 			_btnSearch.PressedImageIndex = -1;
@@ -260,9 +259,9 @@ namespace JetBrains.Omea.GUIControls
 			_btnSearch.AddIcon( Utils.TryGetEmbeddedResourceIconFromAssembly( "GUIControls", "GUIControls.Icons.SearchControl.Go.Normal.ico" ), ImageListButton.ButtonState.Normal);
 			_btnSearch.AddIcon( Utils.TryGetEmbeddedResourceIconFromAssembly( "GUIControls", "GUIControls.Icons.SearchControl.Go.Hot.ico" ), ImageListButton.ButtonState.Hot);
 			_btnSearch.AddIcon( Utils.TryGetEmbeddedResourceIconFromAssembly( "GUIControls", "GUIControls.Icons.SearchControl.Go.Disabled.ico" ), ImageListButton.ButtonState.Disabled);
-			// 
+			//
 			// _lblAdvanced
-			// 
+			//
 			_labelAdvanced.Cursor = Cursors.Hand;
 			_labelAdvanced.ForeColor = Color.FromArgb( 70, 70, 211 );
 			_labelAdvanced.BackColor = BackColor;
@@ -274,13 +273,13 @@ namespace JetBrains.Omea.GUIControls
             // Grip
             //
 			_grip = new Grip( this );
-			// 
+			//
 			// _tipReason
-			// 
+			//
 			_tipReason.ShowAlways = true;
-			// 
+			//
 			// SearchCtrl
-			// 
+			//
 			Controls.Add( _labelAdvanced );
 			Controls.Add( _labelTitle );
 //            Controls.Add( _panelChoosingButtons );
@@ -346,11 +345,11 @@ namespace JetBrains.Omea.GUIControls
 			// Border
 			/*
 			Borders drawing sequence:
-			
+
 			# dark-dark
 			@ dark
 			L lightlight
-			
+
 			@ @@@@@@@@@@@@@@-1-@@@@@@@@@@@@@@@@@L
 			@                                   L
 			@  L LLLLLLLLLLL-5-LLLLLLLLLLLLLL#  L
@@ -360,9 +359,9 @@ namespace JetBrains.Omea.GUIControls
 			|  |                             |  |
 			@  L                                L
 			@  #############-7-###############  L
-			@                                    
+			@
 			LLLLLLLLLLLLLLLL-3-LLLLLLLLLLLLLLLLLL
-			
+
 			*/
 			Rectangle rc = ClientRectangle;
 
@@ -611,7 +610,7 @@ namespace JetBrains.Omea.GUIControls
 			//  forbid calling the processing during initialization
 			if( Core.State == CoreState.Running )
 			{
-			    //  Check also for mysterious case when the text value of standard 
+			    //  Check also for mysterious case when the text value of standard
 			    //  control's property is null.
 				string searchText = _searchQueryCombo.Text ?? string.Empty;
 			    searchText = searchText.Trim();
@@ -1087,7 +1086,7 @@ namespace JetBrains.Omea.GUIControls
                 ControlPaint.DrawMenuGlyph( e.Graphics, glyphRegion, MenuGlyph.Bullet );
             e.Graphics.DrawIcon( icon, iconRegion );
 
-            Brush brush = ((e.State & DrawItemState.Selected) != 0) ? 
+            Brush brush = ((e.State & DrawItemState.Selected) != 0) ?
                              SystemBrushes.FromSystemColor( SystemColors.Menu ) :
                              SystemBrushes.FromSystemColor( SystemColors.MenuText );
             e.Graphics.DrawString( text, font, brush, textRegion );
@@ -1118,7 +1117,7 @@ namespace JetBrains.Omea.GUIControls
         {
             e.DrawBackground();
 
-            Brush brush = ((e.State & DrawItemState.Selected) != 0) ? 
+            Brush brush = ((e.State & DrawItemState.Selected) != 0) ?
                             SystemBrushes.FromSystemColor( SystemColors.Menu ) :
                             SystemBrushes.FromSystemColor( SystemColors.MenuText );
 
@@ -1173,7 +1172,7 @@ namespace JetBrains.Omea.GUIControls
                 .Append( Text.Substring( selectionEnd ) );
 
             int index = FindString( sb.ToString() );
-            
+
             e.Handled = (index != -1);
             if( e.Handled )
             {
@@ -1188,7 +1187,7 @@ namespace JetBrains.Omea.GUIControls
         {
             base.OnLayout( levent );
 
-            // Don't allow the editbox text go under the button 
+            // Don't allow the editbox text go under the button
             SetNearMargin( this, cMargin );
             MoveControl();
         }
@@ -1213,7 +1212,7 @@ namespace JetBrains.Omea.GUIControls
             }
         }
 
-        /// Gets the handle of the TextBox contained within a 
+        /// Gets the handle of the TextBox contained within a
         /// ComboBox control.
         private static IntPtr ComboEdithWnd( IntPtr handle )
         {
@@ -1229,10 +1228,10 @@ namespace JetBrains.Omea.GUIControls
                 return Color.FromArgb( val );
             }
         }
-        /// 
+        ///
         /// Sets the far margin of a TextBox control or the
         /// TextBox contained within a ComboBox.
-        /// 
+        ///
         public static void SetNearMargin( Control ctl, int margin )
         {
             IntPtr handle = ctl.Handle;

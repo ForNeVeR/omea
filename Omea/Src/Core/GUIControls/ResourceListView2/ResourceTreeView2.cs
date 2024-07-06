@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using JetBrains.JetListViewLibrary;
@@ -52,18 +51,18 @@ namespace JetBrains.Omea.GUIControls
                 }
 	        }
 	    }
-           
+
         /// <summary>
         /// Gets or sets the value indicating whether checkboxes are displayed in the resource tree.
         /// </summary>
         public bool CheckBoxes
         {
             get { return _checkBoxes; }
-            set 
-            { 
+            set
+            {
                 if ( _checkBoxes != value )
                 {
-                    _checkBoxes = value; 
+                    _checkBoxes = value;
                     if ( _checkBoxes )
                     {
                         if ( _checkBoxColumn == null )
@@ -150,7 +149,7 @@ namespace JetBrains.Omea.GUIControls
                 e.NewState = args.NewState;
             }
         }
-        
+
         private void ForwardAfterCheck( object sender, CheckBoxEventArgs e )
         {
             if ( AfterCheck != null )

@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Drawing;
@@ -18,7 +17,7 @@ namespace JetBrains.Omea.Workspaces
 	/// </summary>
     internal class WorkspaceListSelector : System.Windows.Forms.UserControl, IWorkspaceSelector
     {
-        /// <summary> 
+        /// <summary>
         /// Required designer variable.
         /// </summary>
         private System.ComponentModel.Container components = null;
@@ -45,7 +44,7 @@ namespace JetBrains.Omea.Workspaces
             _resourceTypes = resTypes;
         }
 
-        /// <summary> 
+        /// <summary>
         /// Clean up any resources being used.
         /// </summary>
         protected override void Dispose( bool disposing )
@@ -61,8 +60,8 @@ namespace JetBrains.Omea.Workspaces
         }
 
         #region Component Designer generated code
-        /// <summary> 
-        /// Required method for Designer support - do not modify 
+        /// <summary>
+        /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
@@ -86,7 +85,7 @@ namespace JetBrains.Omea.Workspaces
             }
             else
             {
-                _listInWsp = Core.ResourceStore.EmptyResourceList;                            
+                _listInWsp = Core.ResourceStore.EmptyResourceList;
             }
             _lvInWorkspace.DataProvider = new ResourceListDataProvider( _listInWsp );
 
@@ -151,7 +150,7 @@ namespace JetBrains.Omea.Workspaces
             _edtFind = new JetTextBox();
             _edtFind.EmptyText = "<type a name to find>";
             _edtFind.IncrementalSearchUpdated += new EventHandler( OnListIncSearch );
-            
+
             //
             // _lvInWorkspace
             //
@@ -168,7 +167,7 @@ namespace JetBrains.Omea.Workspaces
 
             UpdateListSelection();
 
-            Controls.AddRange( new Control[] { _lblAvailable, _edtFind, _lvAvailable, 
+            Controls.AddRange( new Control[] { _lblAvailable, _edtFind, _lvAvailable,
                                                  _btnAdd, _btnRemove, _lblProcessing,
                                                  _lblInWorkspace, _lvInWorkspace } );
         }
@@ -271,7 +270,7 @@ namespace JetBrains.Omea.Workspaces
 
             _lvInWorkspace.Location = new Point( Width / 2 + middleSpaceX, 20 );
             _lvInWorkspace.Size = new Size( listWidth, Height - 20 );
- 
+
             Size btnSize = new Size( (int) (72 * Core.ScaleFactor.Width),
                 (int) (24 * Core.ScaleFactor.Height) );
             int btnX = (int) (Width / 2 - (36 * Core.ScaleFactor.Width ));

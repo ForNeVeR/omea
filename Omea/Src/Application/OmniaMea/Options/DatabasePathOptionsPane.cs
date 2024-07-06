@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.ComponentModel;
@@ -35,7 +34,7 @@ namespace JetBrains.Omea
         private JetTextBox _backupPath;
         private Button _backupBtn;
         private Button _browseBackupDir;
-		/// <summary> 
+		/// <summary>
 		/// Required designer variable.
 		/// </summary>
 		private Container components = null;
@@ -50,7 +49,7 @@ namespace JetBrains.Omea
 			InitializeComponent();
 		}
 
-		/// <summary> 
+		/// <summary>
 		/// Clean up any resources being used.
 		/// </summary>
 		protected override void Dispose( bool disposing )
@@ -66,8 +65,8 @@ namespace JetBrains.Omea
 		}
 
 		#region Component Designer generated code
-		/// <summary> 
-		/// Required method for Designer support - do not modify 
+		/// <summary>
+		/// Required method for Designer support - do not modify
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent()
@@ -95,10 +94,10 @@ namespace JetBrains.Omea
             this.SuspendLayout();
 
             #region Db Path
-            // 
+            //
             // _groupDbPath
-            // 
-            this._groupDbPath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._groupDbPath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._groupDbPath.Controls.Add(this._lblDatabaseLocation);
             this._groupDbPath.Controls.Add(this._btnBrowseDb);
@@ -111,9 +110,9 @@ namespace JetBrains.Omea
             this._groupDbPath.TabIndex = 15;
             this._groupDbPath.TabStop = false;
             this._groupDbPath.Text = "Database Path";
-            // 
+            //
             // _btnBrowseDb
-            // 
+            //
             this._btnBrowseDb.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this._btnBrowseDb.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._btnBrowseDb.Location = new System.Drawing.Point(332, 21);
@@ -121,10 +120,10 @@ namespace JetBrains.Omea
             this._btnBrowseDb.TabIndex = 12;
             this._btnBrowseDb.Text = "Browse...";
             this._btnBrowseDb.Click += new System.EventHandler(this._btnBrowseDb_Click);
-            // 
+            //
             // _edtDbPath
-            // 
-            this._edtDbPath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._edtDbPath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._edtDbPath.ContextProvider = null;
             this._edtDbPath.EmptyText = null;
@@ -134,9 +133,9 @@ namespace JetBrains.Omea
             this._edtDbPath.TabIndex = 11;
             this._edtDbPath.Text = "";
             this._edtDbPath.TextChanged += new System.EventHandler(this._edtDbPath_TextChanged);
-            // 
+            //
             // _lblDatabaseLocation
-            // 
+            //
             this._lblDatabaseLocation.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._lblDatabaseLocation.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -160,10 +159,10 @@ namespace JetBrains.Omea
             #endregion Db Path
 
             #region Log Path
-            // 
+            //
             // _groupLogPath
-            // 
-            this._groupLogPath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._groupLogPath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._groupLogPath.Controls.Add(this._lblLogLocation);
             this._groupLogPath.Controls.Add(this._btnBrowseLogs);
@@ -176,9 +175,9 @@ namespace JetBrains.Omea
             this._groupLogPath.TabIndex = 16;
             this._groupLogPath.TabStop = false;
             this._groupLogPath.Text = "Log Files Path";
-            // 
+            //
             // _btnBrowseLogs
-            // 
+            //
             this._btnBrowseLogs.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this._btnBrowseLogs.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._btnBrowseLogs.Location = new System.Drawing.Point(332, 21);
@@ -186,10 +185,10 @@ namespace JetBrains.Omea
             this._btnBrowseLogs.TabIndex = 16;
             this._btnBrowseLogs.Text = "Browse...";
             this._btnBrowseLogs.Click += new System.EventHandler(this._btnBrowseLogs_Click);
-            // 
+            //
             // _edtLogPath
-            // 
-            this._edtLogPath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._edtLogPath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._edtLogPath.ContextProvider = null;
             this._edtLogPath.EmptyText = null;
@@ -198,9 +197,9 @@ namespace JetBrains.Omea
             this._edtLogPath.Size = new System.Drawing.Size(320, 21);
             this._edtLogPath.TabIndex = 15;
             this._edtLogPath.Text = "";
-            // 
+            //
             // _lblLogLocation
-            // 
+            //
             this._lblLogLocation.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._lblLogLocation.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -222,18 +221,18 @@ namespace JetBrains.Omea
             #endregion Log Path
 
             #region Backup path
-            // 
+            //
             // _enableBackupBox
-            // 
+            //
             this._enableBackupBox.Location = new System.Drawing.Point(0, 228);
             this._enableBackupBox.Name = "_enableBackupBox";
             this._enableBackupBox.Size = new System.Drawing.Size(184, 24);
             this._enableBackupBox.TabIndex = 18;
             this._enableBackupBox.Text = "Enable database backup";
             this._enableBackupBox.CheckedChanged += new System.EventHandler(this._enableBackupBox_CheckedChanged);
-            // 
+            //
             // _backupGroup
-            // 
+            //
             this._backupGroup.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._backupGroup.Controls.Add(this._backupBtn);
@@ -247,19 +246,19 @@ namespace JetBrains.Omea
             this._backupGroup.TabIndex = 17;
             this._backupGroup.TabStop = false;
             this._backupGroup.Text = "Database Backup Path";
-            // 
+            //
             // _backupBtn
-            // 
+            //
             this._backupBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this._backupBtn.Location = new System.Drawing.Point(324, 53);
             this._backupBtn.Name = "_backupBtn";
             this._backupBtn.TabIndex = 18;
             this._backupBtn.Text = "Backup Now";
             this._backupBtn.Click += new System.EventHandler(this._backupBtn_Click);
-            // 
+            //
             // _lblBackupLocation
-            // 
-            this._lblBackupLocation.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._lblBackupLocation.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._lblBackupLocation.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._lblBackupLocation.Location = new System.Drawing.Point(8, 54);
@@ -267,9 +266,9 @@ namespace JetBrains.Omea
             this._lblBackupLocation.Size = new System.Drawing.Size(308, 32);
             this._lblBackupLocation.TabIndex = 17;
             this._lblBackupLocation.Text = "This is where Omea will automatically store daily backup of its resources database.";
-            // 
+            //
             // _browseBackupDir
-            // 
+            //
             this._browseBackupDir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this._browseBackupDir.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._browseBackupDir.Location = new System.Drawing.Point(324, 22);
@@ -277,10 +276,10 @@ namespace JetBrains.Omea
             this._browseBackupDir.TabIndex = 16;
             this._browseBackupDir.Text = "Browse...";
             this._browseBackupDir.Click += new System.EventHandler(this._browseBackupDir_Click);
-            // 
+            //
             // _backupPath
-            // 
-            this._backupPath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._backupPath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._backupPath.ContextProvider = null;
             this._backupPath.EmptyText = null;
@@ -292,9 +291,9 @@ namespace JetBrains.Omea
             this._backupPath.TextChanged += new System.EventHandler(this._backupPath_TextChanged);
             #endregion Backup path
 
-            // 
+            //
             // DatabasePathOptionsPane
-            // 
+            //
             this.Controls.Add(this._enableBackupBox);
             this.Controls.Add(this._backupGroup);
             this.Controls.Add(this._groupLogPath);
@@ -319,7 +318,7 @@ namespace JetBrains.Omea
 #endif
             LoadSettings();
 	    }
-	    
+
         public static void SetBackupDefaults()
         {
             ISettingStore ini = Core.SettingStore;
@@ -361,12 +360,12 @@ namespace JetBrains.Omea
 
 	    public override void OK()
         {
-            if( RegUtil.DatabasePath != _edtDbPath.Text ) 
+            if( RegUtil.DatabasePath != _edtDbPath.Text )
             {
                 RegUtil.DatabasePath = _edtDbPath.Text;
                 NeedRestart = true;
             }
-            if( RegUtil.LogPath != _edtLogPath.Text ) 
+            if( RegUtil.LogPath != _edtLogPath.Text )
             {
                 RegUtil.LogPath = _edtLogPath.Text;
                 NeedRestart = true;
@@ -544,7 +543,7 @@ namespace JetBrains.Omea
                 Core.ResourceAP.QueueJob( JobPriority.Lowest, new MethodInvoker( MarkFinishedBackup ) );
             }
         }
-	    
+
         private void _enableBackupBox_CheckedChanged(object sender, EventArgs e)
         {
             if( _backupGroup.Enabled = _enableBackupBox.Checked )
@@ -565,7 +564,7 @@ namespace JetBrains.Omea
             string backupPath = _backupPath.Text;
             _backupBtn.Enabled = !_isBackuping && backupPath.Length > 0 && Directory.Exists( backupPath );
         }
-	    
+
         private static string GetDefaultBackupPath( string dbPath )
         {
             string backupPath;

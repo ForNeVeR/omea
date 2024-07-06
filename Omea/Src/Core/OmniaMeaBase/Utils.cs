@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -211,7 +210,7 @@ namespace JetBrains.Omea.Base
 
             return result;
         }
-        
+
         /// <summary>
         /// Returns string read from the stream in еру UTF8 encoding.
         /// </summary>
@@ -221,7 +220,7 @@ namespace JetBrains.Omea.Base
         {
             return StreamToString( stream, Encoding.UTF8 );
         }
-        
+
         /// <summary>
         /// Returns string read from the stream in specified encoding.
         /// </summary>
@@ -232,19 +231,19 @@ namespace JetBrains.Omea.Base
         {
             Guard.NullArgument( stream, "stream" );
             Guard.NullArgument( encoding, "stream" );
-            
+
             StreamReader reader = new StreamReader( stream, encoding );
 
             return StreamReaderReadToEnd( reader );
         }
-        
+
         /// <summary>
         /// Memory saving replacement for the TextReader.ReadToEnd() method.
         /// </summary>
         public static string StreamReaderReadToEnd( TextReader reader )
         {
             Guard.NullArgument( reader, "reader" );
-            
+
             StringBuilder builder = StringBuilderPool.Alloc();
             try
             {
@@ -337,7 +336,7 @@ namespace JetBrains.Omea.Base
             {
                 _lastCheckNetworkTicks = ticks;
                 _isNetworkConnected = result = SystemInformation.Network;
-                if( _wasNetworkConnected != result ) 
+                if( _wasNetworkConnected != result )
                 {
                     _wasNetworkConnected = result;
                     MethodInvoker changed = NetworkConnectedStateChanged;
@@ -562,13 +561,13 @@ namespace JetBrains.Omea.Base
 		/// <returns>Returns the address of the converted string, or <see cref="IntPtr.Zero"/> if the conversion fails.</returns>
 		/// <remarks>
 		/// The following table illustrates how this function converts a numeric value into a text string.
-		/// 
-		/// Numeric value -> Text string 
-		/// 532 -> 532 bytes 
-		/// 1340 -> 1.30KB 
-		/// 23506 -> 22.9KB 
-		/// 2400016 -> 2.29MB 
-		/// 2400000000 -> 2.23GB 
+		///
+		/// Numeric value -> Text string
+		/// 532 -> 532 bytes
+		/// 1340 -> 1.30KB
+		/// 23506 -> 22.9KB
+		/// 2400016 -> 2.29MB
+		/// 2400000000 -> 2.23GB
 		/// </remarks>
 		[DllImport("shlwapi.dll", CharSet=CharSet.Ansi)]
 		public static extern IntPtr StrFormatByteSize64A(Int64 nSize, byte[] pBuffer, uint nBufSize);

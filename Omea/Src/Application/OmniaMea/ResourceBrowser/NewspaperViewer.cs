@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -1009,16 +1008,16 @@ namespace JetBrains.Omea
 			if( _man == null )
 				throw new InvalidOperationException( "Newspaper manager must be created before the newspaper bar." );
 			SuspendLayout();
-			// 
+			//
 			// _bar
-			// 
+			//
 			_bar = new NewspaperBar( _man );
 			_bar.Name = "_bar";
 			_bar.TabIndex = 2;
 			_bar.Dock = Core.SettingStore.ReadBool( _man.GetSettingsKey( true ), "BarAtBottom", (_bar.Dock == DockStyle.Bottom) ) ? DockStyle.Bottom : DockStyle.Top;
-			// 
+			//
 			// NewspaperViewer
-			// 
+			//
 			Controls.Add( _bar );
 			TabStop = true;
 			Name = "NewspaperViewer";
@@ -1185,7 +1184,7 @@ namespace JetBrains.Omea
 			if( item != null )
 				_man.SelectItem( item, NewspaperManager.SelectionCause.MouseHover );
 		}
-		
+
 		/// <summary>
 		/// An HTML item has just been resized.
 		/// Check if the scroll-pos should be adjusted to maintain the visibility.
@@ -1203,7 +1202,7 @@ namespace JetBrains.Omea
 
 			// Apply compensative scrolling
 			ScrollToCompensateResize(htmlResized, itemResized, htmlResized.OffsetHeight - (int)htmlResized.GetAttribute("OldHeight"));
-			
+
 			// Record the new item size to have it as the old value when it changes again
 			htmlResized.SetAttribute("OldHeight", htmlResized.OffsetHeight, false);
 		}
@@ -1427,7 +1426,7 @@ namespace JetBrains.Omea
 			IntPtr	handle = (IntPtr)0;
 			object[]	parameters = new object[]{(IntPtr)0, itemTarget.ToResourceList()};
 
-			
+
 			int	nResult = (int) data.GetType().InvokeMember( "SaveObjectToHandle", BindingFlags.InvokeMethod | BindingFlags.NonPublic, null, data, parameters);*/
 
 			args.CancelBubble = true;
@@ -1509,7 +1508,7 @@ namespace JetBrains.Omea
 			}
 			else // Place at end
 				NewspaperHtmlElement.AppendChild( htmlNewItem = CreateNewspaperItem( args.NewItem ) );
-			
+
 			// Compensative scrolling for the new item size
 			ScrollToCompensateResize(htmlNewItem, args.NewItem, htmlNewItem.OffsetHeight);
 
@@ -1766,15 +1765,15 @@ namespace JetBrains.Omea
 		/// </summary>
 		/// <param name="sID">HTML representation of the item's ID.</param>
 		/// <param name="safe">
-		/// <para>If <c>False</c>, throws an exception when trying to get an item that does not belong to this newspaper, 
+		/// <para>If <c>False</c>, throws an exception when trying to get an item that does not belong to this newspaper,
 		///		eg a random element that is not a newspaper HTML item.</para>
 		///	<para>If <c>True</c>, silently returns <c>Null</c> for invalid IDs, unless the <paramref name="sID"/> is <c>Null</c>,
 		///		in this case an <see cref="ArgumentNullException"/> is thrown.</para>
 		/// </param>
-		/// <returns>An <see cref="IResource"/> corresponding to the given item, or <c>Null</c> if none available 
+		/// <returns>An <see cref="IResource"/> corresponding to the given item, or <c>Null</c> if none available
 		///		(for example, the resource has already been deleted).</returns>
 		/// <remarks>
-		/// <para>If the ID points to a valid resource, but that resource does not belong to the current newspaper, 
+		/// <para>If the ID points to a valid resource, but that resource does not belong to the current newspaper,
 		///		an exception is thrown. Note that this does not mean that the resource must be visible or fall into the current filter.</para>
 		/// </remarks>
 		protected IResource ItemFromHtmlId( string sID, bool safe )
@@ -2434,7 +2433,7 @@ namespace JetBrains.Omea
 				throw new ArgumentNullException("itemResized");
 			if(nChangeInSize == 0)
 				return;
-			
+
 			// The selected item has resized — ensure it will be visible
 			if(itemResized == _man.SelectedItem)
 			{
@@ -2442,7 +2441,7 @@ namespace JetBrains.Omea
 				_man.SelectItem(_man.SelectedItem, NewspaperManager.SelectionCause.MouseClick);
 				return;	// Nothing more to do
 			}
-			
+
 			// If the resized item was above the selected one, adjust either the deferred or actual scrolling
 			if((_man.SelectedItem != null) && (_man.ItemsOnPage.IndexOf(itemResized) < _man.ItemsOnPage.IndexOf(_man.SelectedItem)))
 			{
@@ -2523,8 +2522,8 @@ namespace JetBrains.Omea
 			if( _state == NewspaperState.Activated )
 			{
 				// If a context provider is specified, query it for the context
-				context = /*_contextprovider != null ? 
-					(ActionContext)_contextprovider.GetContext( kind ) 
+				context = /*_contextprovider != null ?
+					(ActionContext)_contextprovider.GetContext( kind )
 					: */ new ActionContext( kind, this, null );
 				// The selected resource will be set later
 			}
@@ -2593,7 +2592,7 @@ namespace JetBrains.Omea
 			protected readonly NewspaperViewer _newspaper;
 
 			/// <summary>
-			/// 
+			///
 			/// </summary>
 			protected readonly EnsureVisibleDelegate _target;
 

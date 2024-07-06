@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 // MyMAPIFormViewer.h: interface for the CMyMAPIFormViewer class.
 //
@@ -31,7 +30,7 @@ public:
     // IMAPIViewContext Functions
     ////////////////////////////////////////////////////////////
     STDMETHODIMP SetAdviseSink( LPMAPIFORMADVISESINK pmvns);
-    STDMETHODIMP ActivateNext( ULONG ulDir, LPCRECT prcPosRect); 
+    STDMETHODIMP ActivateNext( ULONG ulDir, LPCRECT prcPosRect);
     STDMETHODIMP GetPrintSetup( ULONG ulFlags, LPFORMPRINTSETUP FAR * lppFormPrintSetup);
     STDMETHODIMP GetSaveStream( ULONG FAR * pulFlags, ULONG FAR * pulFormat, LPSTREAM FAR * ppstm);
     STDMETHODIMP GetViewStatus( LPULONG lpulStatus);
@@ -39,7 +38,7 @@ public:
 class FormViewer : public IMAPIMessageSite, public IMAPIViewAdviseSink, public MyHeapObject
 {
 public:
-    FormViewer( MsgStoreSPtr msgStore, LPMAPISESSION lpMAPISession, EMAPIFolderSPtr folder, 
+    FormViewer( MsgStoreSPtr msgStore, LPMAPISESSION lpMAPISession, EMAPIFolderSPtr folder,
         EMessageSPtr message, int verbID );
     virtual ~FormViewer();
     int _formID;
@@ -67,7 +66,7 @@ public:
     STDMETHODIMP MoveMessage ( LPMAPIFOLDER pFolderDestination, LPMAPIVIEWCONTEXT pViewContext, LPCRECT prcPosRect );
     STDMETHODIMP DeleteMessage ( LPMAPIVIEWCONTEXT pViewContext, LPCRECT prcPosRect );
     STDMETHODIMP SaveMessage ();
-    STDMETHODIMP SubmitMessage ( ULONG ulFlags ); 
+    STDMETHODIMP SubmitMessage ( ULONG ulFlags );
     STDMETHODIMP GetSiteStatus ( LPULONG lpulStatus );
     ////////////////////////////////////////////////////////////
     // IMAPIViewAdviseSink Functions
@@ -78,9 +77,9 @@ public:
     STDMETHODIMP OnSubmitted();
     STDMETHODIMP OnSaved();
 
-private :    
+private :
     STDMETHODIMP CopyMessage( LPMAPIFOLDER pFolderDestination, bool move = false );
-private :    
+private :
     MsgStoreSPtr _msgStore;
     EMAPIFolderSPtr _folder;
     EMessageSPtr _message;

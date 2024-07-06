@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.IO;
@@ -19,7 +18,7 @@ namespace DBRepair
     /**
      * OmniaMea database analysis and repair utility.
      */
-    
+
     class DBRepair
     {
         /// <summary>
@@ -54,7 +53,7 @@ namespace DBRepair
         private bool _ignoreMutex = false;
         private string _lastProgressLine = null;
         private IniFile _ini;
-        
+
         private void ShowHelp()
         {
             Console.WriteLine( "Omea database diagnostics and repair utility" );
@@ -117,7 +116,7 @@ namespace DBRepair
             _ini = new IniFile(Path.Combine( OMEnv.WorkDir, "OmniaMea.ini" ) );
 
             Console.WriteLine( "Processing database in " + dbPath );
-           
+
             bool omniaMeaIsNotRun;
             Mutex omniaMeaMux = new Mutex( true, "OmniaMeaMutex", out omniaMeaIsNotRun );
             try
@@ -139,7 +138,7 @@ namespace DBRepair
                 else if( _backup )
                 {
                     string backupPath = _ini.ReadString( "ResourceStore", "BackupPath", string.Empty );
-                    if( backupPath.Length > 0 ) 
+                    if( backupPath.Length > 0 )
                     {
                         Console.Write( "Database backup in progress..." );
                         MyPalStorage.BackupDatabase( IOTools.Combine( backupPath, MyPalStorage._dbBackupFile ) );
@@ -153,7 +152,7 @@ namespace DBRepair
                 else if( _restore )
                 {
                     string backupPath = _ini.ReadString( "ResourceStore", "BackupPath", string.Empty );
-                    if( backupPath.Length > 0 ) 
+                    if( backupPath.Length > 0 )
                     {
                         Console.Write( "Restoring database from backup..." );
                         MyPalStorage.RestoreFromBackup( IOTools.Combine( backupPath, MyPalStorage._dbBackupFile ) );
@@ -164,7 +163,7 @@ namespace DBRepair
                         Console.WriteLine( "Backup path is not set. Run Omea, in Options | Paths set the path." );
                     }
                 }
-                else 
+                else
                 {
                     if( !_textAnalyze || _lowCheck )
                     {
@@ -272,7 +271,7 @@ namespace DBRepair
             dbStructure.ProgressListenerEvent += new DBStructure.ProgressEventHandler( dbStructure_ProgressListenerEvent );
 
             Console.WriteLine( "Loading database..." );
-            
+
             bool structureCorrupted = false;
             try
             {
@@ -287,7 +286,7 @@ namespace DBRepair
             {
                 Console.WriteLine( "Rebuilding database structure..." );
                 dbStructure.Shutdown();
-                
+
                 MyPalStorage.CreateDatabase();
                 dbStructure = new DBStructure( MyPalStorage.DBPath, "MyPal" );
                 dbStructure.LoadStructure( true );
@@ -312,7 +311,7 @@ namespace DBRepair
             else if ( _lowCheck )
             {
                 dbStructure.LowLevelCheck( );
-                return;                
+                return;
             }
 
             if ( _dbdump )
@@ -336,7 +335,7 @@ namespace DBRepair
                 CalcSpace( db, "DoubleProps" );
                 CalcSpace( db, "Resources" );
                 CalcSpace( db, "Links" );
-                return;                
+                return;
             }
 
             ResourceStoreRepair rsRepair = new ResourceStoreRepair( db );
@@ -381,7 +380,7 @@ namespace DBRepair
             else
             {
                 long deletedRecordsCount = counts.TotalRecordCount - counts.NormalRecordCount;
-                Console.WriteLine( "{0}: total {1} records , wasted {2} records, percentage {3}%", 
+                Console.WriteLine( "{0}: total {1} records , wasted {2} records, percentage {3}%",
                     tableName, counts.TotalRecordCount, deletedRecordsCount,
                     (deletedRecordsCount * 100) / counts.TotalRecordCount );
             }
@@ -391,7 +390,7 @@ namespace DBRepair
         private void ProcessTextIndex( string TermIndexName )
         {
             TermIndexAccessor   termIndex = new TermIndexAccessor( TermIndexName );
-            try 
+            try
             {
 
                 Console.Write( "ok\nChecking TermIndex component..." );

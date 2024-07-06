@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -67,9 +66,9 @@ namespace JetBrains.JetListViewLibrary
             int indent = GetRowIndent( itemNode, scheme );
 
             Rectangle rcFocus = GetFocusRect( itemNode, rc );
-            
+
             bool focusRow = false, dropTargetRow = false;
-            if ( ( (state & RowState.Focused) != 0 && 
+            if ( ( (state & RowState.Focused) != 0 &&
                 _searchHighlightText != null && _searchHighlightText.Length > 0) )
             {
                 state |= RowState.IncSearchMatch;
@@ -112,7 +111,7 @@ namespace JetBrains.JetListViewLibrary
                 rcCol.Offset( _borderSize, rc.Top );
 
                 DrawColumnWithHighlight( g, rcCol, itemNode, setting.Column, state );
-                
+
                 setting.Column.ForeColorCallback = _lastItemColorCallback;
                 setting.Column.Alignment = lastAlignment;
                 setting.Column.RightMargin = oldMargin;
@@ -125,7 +124,7 @@ namespace JetBrains.JetListViewLibrary
 	    {
             MultiLineColumnScheme scheme = _columnSchemeProvider.GetColumnScheme( itemNode.Data );
             int indent = GetRowIndent( itemNode, scheme );
-            return new Rectangle( _borderSize + indent, rc.Top, _visibleWidth - _borderSize - indent, rc.Height );	    
+            return new Rectangle( _borderSize + indent, rc.Top, _visibleWidth - _borderSize - indent, rc.Height );
         }
 
 	    private Color GetColumnForeColor( object item )
@@ -142,14 +141,14 @@ namespace JetBrains.JetListViewLibrary
             return _lastTextColor;
         }
 
-        private Rectangle GetRectangleFromSetting( MultiLineColumnScheme scheme, 
+        private Rectangle GetRectangleFromSetting( MultiLineColumnScheme scheme,
             MultiLineColumnSetting setting, int indent )
 	    {
             if ( setting.Column.IsIndentColumn() )
             {
                 return new Rectangle( 0, _topMargin, indent, _rowHeight );
             }
-            
+
             int baseWidth = scheme.BaseWidth;
 	        int deltaWidth = _visibleWidth - baseWidth - indent;
 	        int startX = setting.StartX + indent;
@@ -160,9 +159,9 @@ namespace JetBrains.JetListViewLibrary
 	        }
 	        if ( (setting.Anchor & (ColumnAnchor.Left | ColumnAnchor.Right) ) == (ColumnAnchor.Left | ColumnAnchor.Right)  )
 	        {
-	            width += deltaWidth;                    
+	            width += deltaWidth;
 	        }
-	        return new Rectangle( startX, _topMargin + setting.StartRow * _rowHeight, 
+	        return new Rectangle( startX, _topMargin + setting.StartRow * _rowHeight,
 	                              width, ( setting.EndRow - setting.StartRow + 1 ) * _rowHeight);
 	    }
 
@@ -228,7 +227,7 @@ namespace JetBrains.JetListViewLibrary
                 {
                     deltaX = x - rcCol.Left;
                     deltaY = y - rcCol.Top;
-                    return setting.Column;                    
+                    return setting.Column;
                 }
             }
             deltaX = 0;
@@ -301,7 +300,7 @@ namespace JetBrains.JetListViewLibrary
                 {
                     _sortColumn = col;
                     _arrangeByHeaderSection.Text = "Arranged By: " + col.SortMenuText;
-                    _sortOrderHeaderSection.Text = (col.SortIcon == SortIcon.Ascending) 
+                    _sortOrderHeaderSection.Text = (col.SortIcon == SortIcon.Ascending)
                         ? col.SortMenuAscText
                         : col.SortMenuDescText;
                     foundSortColumn = true;
@@ -319,7 +318,7 @@ namespace JetBrains.JetListViewLibrary
 	    {
             if ( ea.Item == _arrangeByHeaderSection )
             {
-                ShowSortContextMenu();                
+                ShowSortContextMenu();
             }
             else if ( ea.Item == _sortOrderHeaderSection )
             {
@@ -334,7 +333,7 @@ namespace JetBrains.JetListViewLibrary
             {
                 if ( col.ShowHeader && col.SortMenuText != null && col.SortMenuText.Length > 0 )
                 {
-                    MenuItem item = menu.MenuItems.Add( col.SortMenuText, 
+                    MenuItem item = menu.MenuItems.Add( col.SortMenuText,
                         new EventHandler( HandleSortContextMenuClick ) );
                     if ( col == _sortColumn )
                     {

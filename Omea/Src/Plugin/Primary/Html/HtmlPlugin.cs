@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.IO;
@@ -134,7 +133,7 @@ namespace JetBrains.Omea.HTMLPlugin
                     {
                         WebSecurityContext context = WebSecurityContext.Restricted;
                         context.WorkOffline = false;
-                        browser.ShowHtml( htmlText, context, 
+                        browser.ShowHtml( htmlText, context,
                             DocumentSection.RestrictResults( wordsToHighlight, DocumentSection.BodySection ) );
                         browser.CurrentUrl = sourceUrl;
                     }
@@ -181,7 +180,7 @@ namespace JetBrains.Omea.HTMLPlugin
          */
         private IResource _currentIndexedRes;
 
-        private void ProcessResourceStream( IResource resource, IResource source, TextReader reader, 
+        private void ProcessResourceStream( IResource resource, IResource source, TextReader reader,
             IResourceTextConsumer consumer )
         {
             _currentIndexedRes = resource;
@@ -235,7 +234,7 @@ namespace JetBrains.Omea.HTMLPlugin
                                 {
                                     url = url.Replace( invalidChar, '-' );
                                 }
-                            }                
+                            }
                             if( name.Length == 0 || url.StartsWith( name ) )
                             {
                                 string title = parser.Title.Trim();

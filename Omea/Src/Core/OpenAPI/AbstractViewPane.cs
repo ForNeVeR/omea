@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System.Windows.Forms;
 
@@ -10,7 +9,7 @@ namespace JetBrains.Omea.OpenAPI
     /// <summary>
     /// Base class for view panes displayed in the sidebar.
     /// </summary>
-    /// <remarks>This can't be abstract, otherwise it won't be possible to edit derived classes 
+    /// <remarks>This can't be abstract, otherwise it won't be possible to edit derived classes
     /// in the forms designer.</remarks>
     public class AbstractViewPane: UserControl
     {
@@ -54,7 +53,7 @@ namespace JetBrains.Omea.OpenAPI
         /// <param name="resource">The resource to select.</param>
         /// <param name="highlightOnly">If true, the selection should be set to the node,
         /// but the resource list should not be updated.</param>
-        /// <returns>true if the resource was selected successfully or false if it was not 
+        /// <returns>true if the resource was selected successfully or false if it was not
         /// found in the pane</returns>
         public virtual bool SelectResource( IResource resource, bool highlightOnly )
         {

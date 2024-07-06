@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using JetBrains.Omea.GUIControls;
@@ -53,10 +52,10 @@ namespace JetBrains.Omea.RSSPlugin
             this._btnOK = new System.Windows.Forms.Button();
             this._btnCancel = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
+            //
             // _treeFeeds
-            // 
-            this._treeFeeds.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            //
+            this._treeFeeds.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                 | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
             this._treeFeeds.Location = new System.Drawing.Point(8, 8);
             this._treeFeeds.Size = new System.Drawing.Size(284, 422);
@@ -84,9 +83,9 @@ namespace JetBrains.Omea.RSSPlugin
             this._treeFeeds.AddNodeFilter( new TitleGroupPane.FeedGroupNodeFilter() );
             this._treeFeeds.TreeCreated += new EventHandler( OnTreeCreated );
             this._treeFeeds.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.OnFolderSelected);
-            // 
+            //
             // _btnOK
-            // 
+            //
             this._btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this._btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this._btnOK.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -95,9 +94,9 @@ namespace JetBrains.Omea.RSSPlugin
             this._btnOK.TabIndex = 5;
             this._btnOK.Text = "OK";
             this._btnOK.Click += new System.EventHandler(_btnOK_Click);
-            // 
+            //
             // _btnCancel
-            // 
+            //
             this._btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this._btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this._btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.System;

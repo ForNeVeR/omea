@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using JetBrains.Omea.OpenAPI;
@@ -14,7 +13,7 @@ namespace ResourceToolsTests
 	/**
 	 * Unit tests for the UnreadManager class.
 	 */
-    
+
     [TestFixture]
     public class UnreadManagerTests
 	{
@@ -35,7 +34,7 @@ namespace ResourceToolsTests
             _storage.ResourceTypes.Register( "Folder", "Name" );
             _storage.ResourceTypes.Register( "Email", "Name" );
             _storage.ResourceTypes.Register( "Person", "Name" );
-            _propFolder = _storage.PropTypes.Register( "Folder", PropDataType.Link, 
+            _propFolder = _storage.PropTypes.Register( "Folder", PropDataType.Link,
                 PropTypeFlags.CountUnread | PropTypeFlags.DirectedLink );
 
             _folder = _storage.NewResource( "Folder" );
@@ -69,7 +68,7 @@ namespace ResourceToolsTests
             email.AddLink( _propFolder, _folder );
 
             Assert.AreEqual( 0, _unreadManager.GetUnreadCount( _folder ) );
-            
+
             email.SetProp( _propUnread, true );
             Assert.AreEqual( 1, _unreadManager.GetUnreadCount( _folder ) );
 
@@ -225,7 +224,7 @@ namespace ResourceToolsTests
             email.AddLink( _propFolder, _folder );
 
             Assert.AreEqual( 0, _unreadManager.GetUnreadCount( _folder ) );
-            
+
             email.SetProp( _propUnread, true );
             Assert.AreEqual( 1, _unreadManager.GetUnreadCount( _folder ) );
 

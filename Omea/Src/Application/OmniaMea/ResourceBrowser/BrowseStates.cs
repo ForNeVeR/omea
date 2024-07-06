@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -46,8 +45,8 @@ namespace JetBrains.Omea
         public static int MaxBrowseStackSize
         {
             get { return _maxBrowseStackSize; }
-            set 
-            { 
+            set
+            {
                 _maxBrowseStackSize = value;
                 if ( _maxBrowseStackSize < 2 )
                     _maxBrowseStackSize = 2;
@@ -57,12 +56,12 @@ namespace JetBrains.Omea
         /**
          * Pushes a browse state to the browse stack.
          */
-        
+
         internal void Push( AbstractBrowseState state )
         {
             if ( _showingState )
                 return;
-            
+
             // remove entries on the top of the stack
             int removeCount = _browseStack.Count - _browseStackPos - 1;
             if ( removeCount > 0 )
@@ -125,15 +124,15 @@ namespace JetBrains.Omea
             _showingState = true;
             try
             {
-                
+
                 while ( _browseStackPos >= 0 )
                 {
                     AbstractBrowseState state = (AbstractBrowseState) _browseStack [_browseStackPos];
-                
+
                     // if the state failed to show, switch to previous state
                     if ( state.Show( _owner ) )
                         break;
-                
+
                     _browseStack.Remove( state );
                     _browseStackPos--;
                 }
@@ -227,7 +226,7 @@ namespace JetBrains.Omea
                     _activeSidebarPane = activePaneID;
                 }
             }
-            
+
             _ownerResource = ownerResource;
             _tag = null;
         }
@@ -258,7 +257,7 @@ namespace JetBrains.Omea
                 Core.UIManager.EndUpdateSidebar();
                 return false;
             }
-            
+
             if ( _ownerResource != null && _activeSidebarPane != null )
             {
                 AbstractViewPane pane = Core.LeftSidebar.ActivateViewPane( _activeTab, _activeSidebarPane );
@@ -274,7 +273,7 @@ namespace JetBrains.Omea
                 {
                     owner.SelectResource( _selectedResource );
                 }
-                
+
                 return true;
             }
             else
@@ -288,7 +287,7 @@ namespace JetBrains.Omea
 
         public void SetSelectedResource( IResource res )
         {
-            _selectedResource = res;            
+            _selectedResource = res;
         }
     }
 

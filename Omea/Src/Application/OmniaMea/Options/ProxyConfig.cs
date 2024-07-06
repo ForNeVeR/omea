@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System.IO;
 using System.Net;
@@ -55,8 +54,8 @@ namespace JetBrains.Omea
         }
 
         #region Component Designer generated code
-        /// <summary> 
-        /// Required method for Designer support - do not modify 
+        /// <summary>
+        /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
@@ -78,9 +77,9 @@ namespace JetBrains.Omea
             this._lblDefaultSetting = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this._port)).BeginInit();
             this.SuspendLayout();
-            // 
+            //
             // _defaultProxyButton
-            // 
+            //
             this._defaultProxyButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._defaultProxyButton.Location = new System.Drawing.Point(0, 0);
             this._defaultProxyButton.Name = "_defaultProxyButton";
@@ -88,9 +87,9 @@ namespace JetBrains.Omea
             this._defaultProxyButton.TabIndex = 0;
             this._defaultProxyButton.Text = "Use default proxy setting";
             this._defaultProxyButton.CheckedChanged += new System.EventHandler(this._defaultProxyButton_CheckedChanged);
-            // 
+            //
             // _configureProxyButton
-            // 
+            //
             this._configureProxyButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._configureProxyButton.Location = new System.Drawing.Point(0, 48);
             this._configureProxyButton.Name = "_configureProxyButton";
@@ -98,9 +97,9 @@ namespace JetBrains.Omea
             this._configureProxyButton.TabIndex = 1;
             this._configureProxyButton.Text = "Configure proxy server";
             this._configureProxyButton.CheckedChanged += new System.EventHandler(this._configureProxyButton_CheckedChanged);
-            // 
+            //
             // _addressLabel
-            // 
+            //
             this._addressLabel.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._addressLabel.Location = new System.Drawing.Point(8, 76);
             this._addressLabel.Name = "_addressLabel";
@@ -108,19 +107,19 @@ namespace JetBrains.Omea
             this._addressLabel.TabIndex = 2;
             this._addressLabel.Text = "Address:";
             this._addressLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
+            //
             // _address
-            // 
-            this._address.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._address.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._address.Location = new System.Drawing.Point(80, 72);
             this._address.Name = "_address";
             this._address.Size = new System.Drawing.Size(288, 21);
             this._address.TabIndex = 2;
             this._address.Text = "";
-            // 
+            //
             // _portLabel
-            // 
+            //
             this._portLabel.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._portLabel.Location = new System.Drawing.Point(8, 100);
             this._portLabel.Name = "_portLabel";
@@ -128,9 +127,9 @@ namespace JetBrains.Omea
             this._portLabel.TabIndex = 4;
             this._portLabel.Text = "Port:";
             this._portLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
+            //
             // _port
-            // 
+            //
             this._port.Location = new System.Drawing.Point(80, 96);
             this._port.Maximum = new System.Decimal(new int[] {
                                                                   65535,
@@ -150,10 +149,10 @@ namespace JetBrains.Omea
                                                                 0,
                                                                 0,
                                                                 0});
-            // 
+            //
             // _bypassLabel
-            // 
-            this._bypassLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._bypassLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._bypassLabel.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._bypassLabel.Location = new System.Drawing.Point(8, 196);
@@ -162,10 +161,10 @@ namespace JetBrains.Omea
             this._bypassLabel.TabIndex = 6;
             this._bypassLabel.Text = "Bypass proxy server for the following addresses:";
             this._bypassLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
+            //
             // _helpLabel
-            // 
-            this._helpLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._helpLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._helpLabel.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._helpLabel.Location = new System.Drawing.Point(8, 256);
@@ -174,10 +173,10 @@ namespace JetBrains.Omea
             this._helpLabel.TabIndex = 7;
             this._helpLabel.Text = "Use semicolon \';\' to separate entries.";
             this._helpLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
+            //
             // _bypassList
-            // 
-            this._bypassList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._bypassList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._bypassList.Location = new System.Drawing.Point(8, 216);
             this._bypassList.Multiline = true;
@@ -185,9 +184,9 @@ namespace JetBrains.Omea
             this._bypassList.Size = new System.Drawing.Size(360, 40);
             this._bypassList.TabIndex = 7;
             this._bypassList.Text = "";
-            // 
+            //
             // _userLabel
-            // 
+            //
             this._userLabel.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._userLabel.Location = new System.Drawing.Point(8, 124);
             this._userLabel.Name = "_userLabel";
@@ -195,9 +194,9 @@ namespace JetBrains.Omea
             this._userLabel.TabIndex = 9;
             this._userLabel.Text = "User:";
             this._userLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
+            //
             // _passwordLabel
-            // 
+            //
             this._passwordLabel.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._passwordLabel.Location = new System.Drawing.Point(8, 148);
             this._passwordLabel.Name = "_passwordLabel";
@@ -205,25 +204,25 @@ namespace JetBrains.Omea
             this._passwordLabel.TabIndex = 10;
             this._passwordLabel.Text = "Password:";
             this._passwordLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
+            //
             // _user
-            // 
+            //
             this._user.Location = new System.Drawing.Point(80, 120);
             this._user.Name = "_user";
             this._user.TabIndex = 4;
             this._user.Text = "";
-            // 
+            //
             // _password
-            // 
+            //
             this._password.Location = new System.Drawing.Point(80, 144);
             this._password.Name = "_password";
             this._password.PasswordChar = '*';
             this._password.TabIndex = 5;
             this._password.Text = "";
-            // 
+            //
             // _bypassLocal
-            // 
-            this._bypassLocal.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._bypassLocal.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._bypassLocal.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._bypassLocal.Location = new System.Drawing.Point(8, 168);
@@ -231,10 +230,10 @@ namespace JetBrains.Omea
             this._bypassLocal.Size = new System.Drawing.Size(360, 24);
             this._bypassLocal.TabIndex = 6;
             this._bypassLocal.Text = "Bypass proxy server for local addresses";
-            // 
+            //
             // _lblDefaultSetting
-            // 
-            this._lblDefaultSetting.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._lblDefaultSetting.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._lblDefaultSetting.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._lblDefaultSetting.Location = new System.Drawing.Point(28, 28);
@@ -242,9 +241,9 @@ namespace JetBrains.Omea
             this._lblDefaultSetting.Size = new System.Drawing.Size(344, 16);
             this._lblDefaultSetting.TabIndex = 11;
             this._lblDefaultSetting.Text = "Default setting: No proxy specified";
-            // 
+            //
             // ProxyConfigPane
-            // 
+            //
             this.Controls.Add(this._lblDefaultSetting);
             this.Controls.Add(this._bypassLocal);
             this.Controls.Add(this._password);

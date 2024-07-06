@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -39,7 +38,7 @@ namespace JetBrains.Omea.ContactsPlugin
         private JetLinkLabel _lblSeeAll;
         private CategoriesSelector _selector;
 
-		/// <summary> 
+		/// <summary>
 		/// Required designer variable.
 		/// </summary>
 		private Container components = null;
@@ -56,10 +55,10 @@ namespace JetBrains.Omea.ContactsPlugin
 
         public static AbstractContactViewBlock CreateBlock()
         {
-            return new NameBlock();            
+            return new NameBlock();
         }
 
-		/// <summary> 
+		/// <summary>
 		/// Clean up any resources being used.
 		/// </summary>
 		protected override void Dispose( bool disposing )
@@ -75,8 +74,8 @@ namespace JetBrains.Omea.ContactsPlugin
 		}
 
 		#region Component Designer generated code
-		/// <summary> 
-		/// Required method for Designer support - do not modify 
+		/// <summary>
+		/// Required method for Designer support - do not modify
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent()
@@ -130,9 +129,9 @@ namespace JetBrains.Omea.ContactsPlugin
             _boxFullName.ReadOnly = false;
             _boxFullName.Size = new System.Drawing.Size(114, 24);
             _boxFullName.TabIndex = 4;
-            // 
+            //
             // _btnShowAllNames
-            // 
+            //
             this._btnShowAllNames.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this._btnShowAllNames.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._btnShowAllNames.Location = new System.Drawing.Point(180, 75);
@@ -141,9 +140,9 @@ namespace JetBrains.Omea.ContactsPlugin
             this._btnShowAllNames.TabIndex = 5;
             this._btnShowAllNames.Text = "Show All Names";
             this._btnShowAllNames.Click += new System.EventHandler(this.buttonShowAllNames_Click);
-            // 
+            //
             // _lblSeeAll
-            // 
+            //
             this._lblSeeAll.ClickableLink = true;
             this._lblSeeAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this._lblSeeAll.Cursor = System.Windows.Forms.Cursors.Default;
@@ -173,9 +172,9 @@ namespace JetBrains.Omea.ContactsPlugin
             _selector.Size = new Size(214, 40);
             _selector.Location = new Point(70, 32);
 		    _selector.Anchor = (AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right);
-            // 
+            //
             // NameBlock
-            // 
+            //
             Controls.Add( _selector );
             Controls.Add( _checkShowOrigNames );
             Controls.Add( _lblSeeAll );
@@ -350,9 +349,9 @@ namespace JetBrains.Omea.ContactsPlugin
 
         #region Move/Resize
         private int CurrentBlockLowerBorder
-        {  
+        {
             get
-            {  
+            {
                 int lowerBound = 0;
                 foreach( Control ctrl in Controls )
                 {

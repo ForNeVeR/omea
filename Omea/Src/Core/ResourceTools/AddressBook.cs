@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Windows.Forms;
@@ -10,10 +9,10 @@ using JetBrains.Omea.OpenAPI;
 namespace JetBrains.Omea.ResourceTools
 {
 	/**
-     * A list of contacts or contact categories with specific synchronization 
+     * A list of contacts or contact categories with specific synchronization
      * settings.
      */
-    
+
     public class AddressBook
 	{
         private static bool _typesRegistered;
@@ -24,11 +23,11 @@ namespace JetBrains.Omea.ResourceTools
         private string      _name;
         private string      _ownerType;
         private IResource   _abResource;
-        
+
         /**
          * Creates or finds an existing address book with the specified name.
          */
-        
+
         public AddressBook( string name ) : this ( name, null ) {}
         public AddressBook( string name, string ownerType )
 		{
@@ -125,7 +124,7 @@ namespace JetBrains.Omea.ResourceTools
          * Registers the resource and property types used by address books,
          * and creates the address book root.
          */
-        
+
         private static void RegisterTypes()
         {
             IResourceStore store = Core.ResourceStore;
@@ -139,7 +138,7 @@ namespace JetBrains.Omea.ResourceTools
 
             _addressBookRoot = Core.ResourceTreeManager.GetRootForType( "AddressBook" );
             Core.ResourceTreeManager.SetResourceNodeSort( _addressBookRoot, "Name" );
-            
+
             if ( store.ResourceTypes.Exist( "AddressBookRoot" ) )
             {
                 IResourceList abRootsOld = store.GetAllResources( "AddressBookRoot" );
@@ -153,7 +152,7 @@ namespace JetBrains.Omea.ResourceTools
                     abRootOld.Delete();
                 }
             }
-            
+
             _typesRegistered = true;
         }
 
@@ -214,7 +213,7 @@ namespace JetBrains.Omea.ResourceTools
         {
             get { return _abResource; }
         }
-        
+
         public bool IsExportable
         {
             get
@@ -255,7 +254,7 @@ namespace JetBrains.Omea.ResourceTools
         internal AddressBookUIHandler()
         {
         }
-        
+
         public bool CanRenameResource(IResource res, ref string editText)
         {
             return true;
@@ -268,7 +267,7 @@ namespace JetBrains.Omea.ResourceTools
                 MessageBox.Show( Core.MainWindow, "Please specify a name for the address book" );
                 return false;
             }
-            
+
             IResource ab = Core.ResourceStore.FindUniqueResource( "AddressBook", "Name", newName );
             if ( ab != null )
             {
@@ -289,7 +288,7 @@ namespace JetBrains.Omea.ResourceTools
 
                 _lastABList.Sort( new SortSettings( ResourceProps.DisplayName, true ) );
             }
-            
+
             ResourceListDisplayOptions options = new ResourceListDisplayOptions();
             options.DefaultGroupItems = false;
             options.CaptionTemplate = "Address Book: %OWNER%";
@@ -334,13 +333,13 @@ namespace JetBrains.Omea.ResourceTools
 
         public void ResourcesDropped( IResource targetResource, IResourceList droppedResources )
         {
-            Core.ResourceAP.QueueJob( JobPriority.Immediate, 
+            Core.ResourceAP.QueueJob( JobPriority.Immediate,
                 new DropResourcesDelegate( DoDropResources ), targetResource, droppedResources );
         }
 
         private void DoDropResources( IResource targetResource, IResourceList droppedResources )
         {
-            foreach( IResource res in droppedResources ) 
+            foreach( IResource res in droppedResources )
             {
                 res.AddLink( "InAddressBook", targetResource );
             }

@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Diagnostics;
@@ -115,19 +114,19 @@ namespace JetBrains.Omea.GUIControls.CustomViews
             this.cancelButton = new System.Windows.Forms.Button();
             this.helpButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
+            //
             // topLabel
-            // 
+            //
             this.topLabel.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.topLabel.Location = new System.Drawing.Point(8, 8);
             this.topLabel.Name = "topLabel";
             this.topLabel.Size = new System.Drawing.Size(80, 16);
             this.topLabel.TabIndex = 0;
             this.topLabel.Text = "Available views";
-            // 
+            //
             // tabViews
-            // 
-            this.tabsViews.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            //
+            this.tabsViews.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                 | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
             this.tabsViews.Location = new System.Drawing.Point(4, 28);
             this.tabsViews.Name = "tabsViews";
@@ -149,7 +148,7 @@ namespace JetBrains.Omea.GUIControls.CustomViews
             {
                 string name = type.GetStringProp( Core.Props.Name );
                 if( !String.IsNullOrEmpty( name ) &&
-                    ResourceTypeHelper.IsBaseResourceTypeActive( name ) && 
+                    ResourceTypeHelper.IsBaseResourceTypeActive( name ) &&
                     Core.ResourceTreeManager.AreViewsExclusive( name ) )
                 {
                     TabPage page = CreateTab( name + "s", new TypedViewsFilter( name, RemovedViews ) );
@@ -158,9 +157,9 @@ namespace JetBrains.Omea.GUIControls.CustomViews
             }
             #endregion Tab Pages Creation
 
-            // 
+            //
             // newButton
-            // 
+            //
             this.newButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.newButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.newButton.Size = new Size(80, 24);
@@ -169,9 +168,9 @@ namespace JetBrains.Omea.GUIControls.CustomViews
             this.newButton.TabIndex = 20;
             this.newButton.Text = "&New View...";
             this.newButton.Click += new System.EventHandler(this.newButton_Click);
-            // 
+            //
             // newFolderButton
-            // 
+            //
             this.newFolderButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.newFolderButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.newFolderButton.Size = new Size(80, 24);
@@ -180,9 +179,9 @@ namespace JetBrains.Omea.GUIControls.CustomViews
             this.newFolderButton.TabIndex = 30;
             this.newFolderButton.Text = "New &Folder...";
             this.newFolderButton.Click += new EventHandler(newFolderButton_Click);
-            // 
+            //
             // editButton
-            // 
+            //
             this.editButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.editButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.editButton.Size = new Size(80, 24);
@@ -191,9 +190,9 @@ namespace JetBrains.Omea.GUIControls.CustomViews
             this.editButton.TabIndex = 40;
             this.editButton.Text = "&Edit...";
             this.editButton.Click += new System.EventHandler(this.editButton_Click);
-            // 
+            //
             // copyButton
-            // 
+            //
             this.copyButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.copyButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.copyButton.Size = new Size(80, 24);
@@ -202,9 +201,9 @@ namespace JetBrains.Omea.GUIControls.CustomViews
             this.copyButton.TabIndex = 50;
             this.copyButton.Text = "&Copy View";
             this.copyButton.Click += new EventHandler(copyButton_Click);
-            // 
+            //
             // removeButton
-            // 
+            //
             this.removeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.removeButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.removeButton.Size = new Size(80, 24);
@@ -213,9 +212,9 @@ namespace JetBrains.Omea.GUIControls.CustomViews
             this.removeButton.TabIndex = 60;
             this.removeButton.Text = "&Delete...";
             this.removeButton.Click += new System.EventHandler(this.removeButton_Click);
-            // 
+            //
             // okButton
-            // 
+            //
             this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.okButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.okButton.Location = new System.Drawing.Point(95, 322);
@@ -223,9 +222,9 @@ namespace JetBrains.Omea.GUIControls.CustomViews
             this.okButton.TabIndex = 60;
             this.okButton.Text = "OK";
             this.okButton.Click += new System.EventHandler(this.okButton_Click);
-            // 
+            //
             // cancelButton
-            // 
+            //
             this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.cancelButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -234,9 +233,9 @@ namespace JetBrains.Omea.GUIControls.CustomViews
             this.cancelButton.TabIndex = 70;
             this.cancelButton.Text = "Cancel";
             this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
-            // 
+            //
             // helpButton
-            // 
+            //
             this.helpButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.helpButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.helpButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -245,9 +244,9 @@ namespace JetBrains.Omea.GUIControls.CustomViews
             this.helpButton.TabIndex = 80;
             this.helpButton.Text = "Help";
             this.helpButton.Click += new EventHandler(helpButton_Click);
-            // 
+            //
             // ViewsManagerForm
-            // 
+            //
             this.AcceptButton = this.okButton;
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
             this.CancelButton = this.cancelButton;
@@ -442,7 +441,7 @@ namespace JetBrains.Omea.GUIControls.CustomViews
 
         private void  RemoveViewsImpl( IResourceList list )
         {
-            string msg = (list.Count > 1) ? "Delete all selected views?" : 
+            string msg = (list.Count > 1) ? "Delete all selected views?" :
                                             "Delete view \"" + list[ 0 ].DisplayName + "\"?";
             if( MessageBox.Show( msg, "Views Manager", MessageBoxButtons.YesNo, MessageBoxIcon.Question ) == DialogResult.Yes )
             {
@@ -539,7 +538,7 @@ namespace JetBrains.Omea.GUIControls.CustomViews
                 IResource res = _store.FindUniqueResource( FilterManagerProps.ViewResName, Core.Props.Name, str );
                 Debug.Assert( res != null );
             }
-            
+
             DialogResult = DialogResult.OK;
             EnableButtons( true );
         }
@@ -589,7 +588,7 @@ namespace JetBrains.Omea.GUIControls.CustomViews
                         SetLinkToParent( res, savedParent );
                 }
             }
-            
+
             foreach( string folderName in AddedFolders )
             {
                 IResource folder = Core.ResourceStore.FindUniqueResource( FilterManagerProps.ViewFolderResName, Core.Props.Name, folderName );
@@ -634,7 +633,7 @@ namespace JetBrains.Omea.GUIControls.CustomViews
         {
             if( removeButton.Enabled )
             {
-                if( e.KeyCode == Keys.Delete && !e.Shift && 
+                if( e.KeyCode == Keys.Delete && !e.Shift &&
                     e.Modifiers != Keys.Alt && e.Modifiers != Keys.ControlKey )
                 {
                     removeButton_Click( null, null );
@@ -688,7 +687,7 @@ namespace JetBrains.Omea.GUIControls.CustomViews
 
         private void  EnableButtons( bool state )
         {
-            removeButton.Enabled = newButton.Enabled = editButton.Enabled = 
+            removeButton.Enabled = newButton.Enabled = editButton.Enabled =
             okButton.Enabled = cancelButton.Enabled = state;
         }
         #endregion Misc
@@ -731,7 +730,7 @@ namespace JetBrains.Omea.GUIControls.CustomViews
                                       ResourceTypeHelper.IsBaseResourceTypeActive( type );
             }
 
-            bool accept = resTypeConforms && contentTypeConforms && 
+            bool accept = resTypeConforms && contentTypeConforms &&
                           ( deepName == null || deepName != Core.FilterRegistry.ViewNameForSearchResults );
             return accept && !_removedViews.ContainsKey( res.ToString() );
         }

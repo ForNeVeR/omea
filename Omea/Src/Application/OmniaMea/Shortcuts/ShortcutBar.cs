@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.ComponentModel;
@@ -98,7 +97,7 @@ namespace JetBrains.Omea
 			return _theInstance;
 		}
 
-		/// <summary> 
+		/// <summary>
 		/// Clean up any resources being used.
 		/// </summary>
 		protected override void Dispose( bool disposing )
@@ -117,7 +116,7 @@ namespace JetBrains.Omea
 
 		#region Visual Init
 
-		/// <summary> 
+		/// <summary>
 		/// Visual Init.
 		/// </summary>
 		private void InitializeComponentSelf()
@@ -127,9 +126,9 @@ namespace JetBrains.Omea
 			_miDeleteShortcut = new MenuItem();
 			_tooltip = new ToolTip( components );
 			SuspendLayout();
-			// 
+			//
 			// _chevronBar
-			// 
+			//
 			_chevronBar = new ChevronBar();
 			_chevronBar.SetSite( this );
 			_chevronBar.AllowDrop = true;
@@ -142,13 +141,13 @@ namespace JetBrains.Omea
 			_chevronBar.GetChevronMenuText = OnGetChevronMenuText;
 			_chevronBar.SeparateHiddenControls = true;
 			_chevronBar.AllowOversizing = true;
-			// 
+			//
 			// _shortcutContextMenu
-			// 
+			//
 			_shortcutContextMenu.MenuItems.AddRange( new MenuItem[] { _miDeleteShortcut } );
-			// 
+			//
 			// miDeleteShortcut
-			// 
+			//
 			_miDeleteShortcut.Index = 0;
 			_miDeleteShortcut.Text = "Delete Shortcut";
 			_miDeleteShortcut.Click += miDeleteShortcut_Click;
@@ -157,9 +156,9 @@ namespace JetBrains.Omea
 			_grip = new Grip( this );
 			_grip.SetSite( this );
 
-			// 
+			//
 			// ShortcutBar
-			// 
+			//
 			Controls.Add( _chevronBar );
 			AllowDrop = true;
 			Name = "ShortcutBar";
@@ -489,11 +488,11 @@ namespace JetBrains.Omea
 			// Border
 			/*
 			Borders drawing sequence:
-			
+
 			# dark-dark
 			@ dark
 			L lightlight
-			
+
 			@ @@@@@@@@@@@@@@-1-@@@@@@@@@@@@@@@@@L
 			@                                   L
 			@  L LLLLLLLLLLL-5-LLLLLLLLLLLLLL#  L
@@ -503,9 +502,9 @@ namespace JetBrains.Omea
 			|  |                             |  |
 			@  L                                L
 			@  #############-7-###############  L
-			@                                    
+			@
 			LLLLLLLLLLLLLLLL-3-LLLLLLLLLLLLLLLLLL
-			
+
 			*/
 			Rectangle rc = ClientRectangle;
 

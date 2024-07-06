@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -130,7 +129,7 @@ namespace JetBrains.Omea.Containers
                 }
             }
             if ( found != null ) return found;
-            if ( prev == _null ) 
+            if ( prev == _null )
             {
                 return null;
             }
@@ -157,7 +156,7 @@ namespace JetBrains.Omea.Containers
                     x = x._right;
                 }
             }
-            if ( prev == _null ) 
+            if ( prev == _null )
             {
                 return null;
             }
@@ -186,7 +185,7 @@ namespace JetBrains.Omea.Containers
                     x = x._left;
                 }
             }
-            if ( next == _null ) 
+            if ( next == _null )
             {
                 return null;
             }
@@ -212,7 +211,7 @@ namespace JetBrains.Omea.Containers
             {
                 x = y._left;
             }
-            else 
+            else
             {
                 x = y._right;
             }
@@ -750,7 +749,7 @@ namespace JetBrains.Omea.Containers
 
     public class RBRange
     {
-        private int _count = 0; 
+        private int _count = 0;
         internal RBRange( RedBlackTreeWithIndexAccess tree, IComparable key1, IComparable key2 )
         {
             RBNodeIndexAccess node1 = tree.Search( key1 );
@@ -810,7 +809,7 @@ namespace JetBrains.Omea.Containers
             {
                 return OS_Rank( found.Key );
             }
-            else if ( res == 1 ) 
+            else if ( res == 1 )
             {
                 return -OS_Rank( found.Key ) - 2;
             }
@@ -840,7 +839,7 @@ namespace JetBrains.Omea.Containers
                     x = x._left;
                 }
             }
-            if ( next == _null ) 
+            if ( next == _null )
             {
                 return null;
             }
@@ -913,7 +912,7 @@ namespace JetBrains.Omea.Containers
             {
                 x = y._left;
             }
-            else 
+            else
             {
                 x = y._right;
             }
@@ -1036,7 +1035,7 @@ namespace JetBrains.Omea.Containers
             }
             if ( x == _null )
             {
-                if ( prev == _null ) 
+                if ( prev == _null )
                 {
                     found = next;
                     return 1;

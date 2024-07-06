@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using JetBrains.Omea.Contacts;
@@ -129,7 +128,7 @@ namespace ContactsTests
             IResource sourceContact = contact2.Resource;
             Assert.AreEqual( "Serg", contact2.FirstName );
             Assert.AreEqual( "Zhulin", contact2.LastName );
-            
+
             IResource emailAccount1 = targetContact.GetLinkProp( "EmailAcct" );
             Assert.AreEqual( targetEmailAddress, emailAccount1.GetPropText("EmailAddress") );
             IResource targetEmail = _storage.NewResource( "email" );
@@ -156,7 +155,7 @@ namespace ContactsTests
             mails = sourceContact.GetLinksOfType( "Email", "From" );
             Assert.AreEqual( 1, mails.Count );
 
-            _contactMgr.Merge( "Serge Zhulin", 
+            _contactMgr.Merge( "Serge Zhulin",
                                  targetContact.ToResourceList().Union( sourceContact.ToResourceList() ) );
             IResourceList contacts = _storage.GetAllResources( "Contact"  );
             Assert.AreEqual( 1, contacts.Count );
@@ -178,7 +177,7 @@ namespace ContactsTests
             Assert.AreEqual( "Serg", contact2.FirstName );
             Assert.AreEqual( "Zhulin", contact2.LastName );
             contact2.Resource.SetProp( "ShowOriginalNames", true );
-            
+
             IResource emailAccount1 = targetContact.GetLinkProp( "EmailAcct" );
             Assert.AreEqual( targetEmailAddress, emailAccount1.GetPropText("EmailAddress") );
             IResource targetEmail = _storage.NewResource( "email" );
@@ -205,7 +204,7 @@ namespace ContactsTests
             mails = sourceContact.GetLinksOfType( "Email", "From" );
             Assert.AreEqual( 1, mails.Count );
 
-            _contactMgr.Merge( "Serge Zhulin", 
+            _contactMgr.Merge( "Serge Zhulin",
                                  targetContact.ToResourceList().Union( sourceContact.ToResourceList() ) );
             IResourceList contacts = _storage.GetAllResources( "Contact"  );
             Assert.AreEqual( 1, contacts.Count );
@@ -232,7 +231,7 @@ namespace ContactsTests
             IResource emailAccount2 = sourceContact.GetLinkProp( "EmailAcct" );
             Assert.AreEqual( sourceEmailAddress, emailAccount2.GetPropText("EmailAddress") );
             contact2.Resource.SetProp( "ShowOriginalNames", true );
-            
+
             IContact aux = _contactMgr.FindOrCreateContact( "aux@com", "Mediator contact" );
 
             //--  Mails  ------------------------------------------------------
@@ -343,7 +342,7 @@ namespace ContactsTests
         }
 
         //  Test the possibility to merge contacts which have "horizontal links"
-        //  between them. 
+        //  between them.
         [Test]
         public void ContactsMergeWithDirectedLinkBetweenContactsOrder1()
         {
@@ -372,7 +371,7 @@ namespace ContactsTests
         }
 
         //  Test the possibility to merge contacts which have "horizontal links"
-        //  between them. 
+        //  between them.
         [Test]
         public void ContactsMergeWithDirectedLinkBetweenContactsOrder2()
         {
@@ -401,7 +400,7 @@ namespace ContactsTests
         }
 
         //  Test the possibility to merge contacts which have "horizontal links"
-        //  between them. 
+        //  between them.
         [Test]
         public void ContactsMergeWithUndirectedLinkBetweenContacts()
         {
@@ -893,7 +892,7 @@ namespace ContactsTests
             IContact contact2 = _contactMgr.FindOrCreateContact( emailAcc2, "Serg Zhulin" );
             IResource sourceContact = contact2.Resource;
             #endregion Contacts
-            
+
             #region Emails
             IResource emailAccount1 = targetContact.GetLinkProp( "EmailAcct" );
             Assert.AreEqual( emailAcc1, emailAccount1.GetPropText("EmailAddress") );
@@ -916,13 +915,13 @@ namespace ContactsTests
             Assert.AreEqual( 1, mails.Count );
             #endregion Emails
 
-            _contactMgr.Merge( "Serge Zhulin", 
+            _contactMgr.Merge( "Serge Zhulin",
                                    targetContact.ToResourceList().Union( sourceContact.ToResourceList() ) );
             IResourceList contacts = _storage.GetAllResources( "Contact"  );
             Assert.AreEqual( 1, contacts.Count );
 
             IResource major = contacts[ 0 ];
-            IResourceList contactKeepers = major.GetLinksOfType( "ContactSerializationBlobKeeper", 
+            IResourceList contactKeepers = major.GetLinksOfType( "ContactSerializationBlobKeeper",
                                                                  ContactManager._propSerializationBlobLink );
             IResourceList splits = _contactMgr.Split( major, contactKeepers[ 0 ].ToResourceList() );
             IResourceList emailAcc = major.GetLinksOfType( null, "EmailAcct" );

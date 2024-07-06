@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 #include "msgstoresimpl.h"
 #include "folderimpl.h"
@@ -62,7 +61,7 @@ void EMAPILib::MsgStoreImpl::Unadvise()
     (*_eMsgStore)->Unadvise();
 }
 
-bool EMAPILib::MsgStoreImpl::CreateNewMessage( String* subject, String* body, MailBodyFormat bodyFormat, ArrayList* recipients, 
+bool EMAPILib::MsgStoreImpl::CreateNewMessage( String* subject, String* body, MailBodyFormat bodyFormat, ArrayList* recipients,
     ArrayList* attachments, int codePage )
 {
     Debug::WriteLine( "MsgStoreImpl::CreateNewMessage" );
@@ -93,7 +92,7 @@ bool EMAPILib::MsgStoreImpl::CreateNewMessage( String* subject, String* body, Ma
         //Debug::WriteLine( body );
         if ( EMAPILib::MailBodyFormat::PlainText == bodyFormat )
         {
-            message->writeStringStreamProp( (int)PR_BODY, 
+            message->writeStringStreamProp( (int)PR_BODY,
                 Temp::GetANSIString( body )->GetChars(), body->get_Length() );
         }
         else
@@ -108,7 +107,7 @@ bool EMAPILib::MsgStoreImpl::CreateNewMessage( String* subject, String* body, Ma
                 if ( !streamComp.IsNull() )
                 {
                     OutputDebugString( "Compressed RTF is open" );
-                    StringStreamSPtr stream = 
+                    StringStreamSPtr stream =
                         streamComp->GetWrapCompressedRTFStream( (int)MAPI_MODIFY  | ( (int)STORE_UNCOMPRESSED_RTF & mask ) );
                     if ( !stream.IsNull() )
                     {
@@ -200,7 +199,7 @@ bool EMAPILib::MsgStoreImpl::ReplyMessageImpl( String* strEntryID, int verbID, I
     EntryIDSPtr entryID = Helper::HexToEntryID( strEntryID );
     EMessageSPtr eMessage = (*_eMsgStore)->OpenMessage( entryID );
     if ( eMessage.IsNull() ) return false;
-    
+
     if ( IsStandartReply( eMessage ) )
     {
         EMessageSPtr msg;
@@ -215,11 +214,11 @@ bool EMAPILib::MsgStoreImpl::ReplyMessageImpl( String* strEntryID, int verbID, I
 
     CharBufferSPtr body = eMessage->openStringProperty( (int)PR_BODY );
     String* str = String::Empty;
-    if ( !body.IsNull() ) 
+    if ( !body.IsNull() )
     {
         str = new String( body->GetRawChars() );
     }
-    
+
     EMAPILib::IQuoting* quoter = EMAPILib::EMAPISession::GetQuoter();
     if ( quoter != NULL )
     {
@@ -239,7 +238,7 @@ bool EMAPILib::MsgStoreImpl::ReplyMessageImpl( String* strEntryID, int verbID, I
         }
         newMessage->setStringProp( (int)PR_SUBJECT, Temp::GetANSIString( subject )->GetChars() );
     }
-    
+
     newMessage->SetConversation( eMessage );
 
     ESPropValueSPtr propEmail = eMessage->getSingleProp( (int)PR_SENT_REPRESENTING_EMAIL_ADDRESS );
@@ -353,7 +352,7 @@ EMAPILib::IEFolder* EMAPILib::MsgStoreImpl::OpenDraftsFolder()
 {
     CheckDisposed();
     EMAPIFolderSPtr folder = (*_eMsgStore)->OpenDefaultFolder( PR_IPM_DRAFTS_ENTRYID );
-    if ( !folder.IsNull() ) 
+    if ( !folder.IsNull() )
     {
         return new FolderImpl( folder );
     }
@@ -364,7 +363,7 @@ EMAPILib::IEFolder* EMAPILib::MsgStoreImpl::OpenTasksFolder()
 {
     CheckDisposed();
     EMAPIFolderSPtr folder = (*_eMsgStore)->OpenDefaultFolder( PR_IPM_TASK_ENTRYID );
-    if ( !folder.IsNull() ) 
+    if ( !folder.IsNull() )
     {
         return new FolderImpl( folder );
     }

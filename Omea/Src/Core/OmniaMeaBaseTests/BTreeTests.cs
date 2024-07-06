@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -93,7 +92,7 @@ namespace OmniaMeaBaseTests
         }
 
         protected static string _indexFileName = "btree_test.btree_test";
-        
+
         private void RemoveFiles()
         {
             try
@@ -223,7 +222,7 @@ namespace OmniaMeaBaseTests
                 bTree.Close();
             }
         }
-        
+
         [Test]
         public void BatchInsertingAndReopen()
         {

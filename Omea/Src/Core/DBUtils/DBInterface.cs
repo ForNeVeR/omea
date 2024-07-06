@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -94,7 +93,7 @@ namespace JetBrains.Omea.Database
         int Version{ get; }
         DatabaseMode Mode { get; }
     }
-    
+
     public interface IResultSet : IEnumerable, IDisposable
     {
     }
@@ -235,7 +234,7 @@ namespace JetBrains.Omea.Database
     public class TableAlreadyExistsException : System.ArgumentException
     {
         public TableAlreadyExistsException(): base() { }
-        public TableAlreadyExistsException( string message, string tableName ) : 
+        public TableAlreadyExistsException( string message, string tableName ) :
             base( message, tableName )
         {
         }
@@ -244,24 +243,24 @@ namespace JetBrains.Omea.Database
         {
         }
     }
-    
+
     [Serializable]
     public class TableDoesNotExistException : System.ArgumentException
     {
         public TableDoesNotExistException() : base() { }
-        public TableDoesNotExistException( string message, string tableName ) : 
+        public TableDoesNotExistException( string message, string tableName ) :
             base( message, tableName )
         {
         }
         protected TableDoesNotExistException( SerializationInfo info, StreamingContext context )
             : base( info, context ) { }
     }
-    
+
     [Serializable]
     public class ColumnAlreadyExistsException : System.ArgumentException
     {
         public ColumnAlreadyExistsException(): base() { }
-        public ColumnAlreadyExistsException( string message, string columnName ) : 
+        public ColumnAlreadyExistsException( string message, string columnName ) :
             base( message, columnName )
         {
         }
@@ -270,12 +269,12 @@ namespace JetBrains.Omea.Database
         {
         }
     }
-    
+
     [Serializable]
     public class ColumnDoesNotExistException : System.ArgumentException
     {
         public ColumnDoesNotExistException() : base() { }
-        public ColumnDoesNotExistException( string message, string columnName ) : 
+        public ColumnDoesNotExistException( string message, string columnName ) :
             base( message, columnName )
         {
         }
@@ -284,12 +283,12 @@ namespace JetBrains.Omea.Database
         {
         }
     }
-    
+
     [Serializable]
     public class ColumnHasNoIndexException : System.Exception
     {
         public ColumnHasNoIndexException() : base() { }
-        public ColumnHasNoIndexException( string message ) : 
+        public ColumnHasNoIndexException( string message ) :
             base( message)
         {
         }
@@ -298,12 +297,12 @@ namespace JetBrains.Omea.Database
         {
         }
     }
-    
+
     [Serializable]
     public class RebuildIndexesNeededException : System.Exception
     {
         public RebuildIndexesNeededException() : base() { }
-        public RebuildIndexesNeededException( string message ) : 
+        public RebuildIndexesNeededException( string message ) :
             base( message)
         {
         }
@@ -312,12 +311,12 @@ namespace JetBrains.Omea.Database
         {
         }
     }
-    
+
     [Serializable]
     public class DefragmentationFailedException : System.Exception
     {
         public DefragmentationFailedException( System.Exception innerException ) : base( "", innerException ) { }
-        public DefragmentationFailedException( string message, System.Exception innerException ) : 
+        public DefragmentationFailedException( string message, System.Exception innerException ) :
             base( message, innerException )
         {
         }
@@ -326,7 +325,7 @@ namespace JetBrains.Omea.Database
         {
         }
     }
-    
+
     [Serializable]
     public class AttemptReadingDeletedRecordException : System.Exception
     {
@@ -375,7 +374,7 @@ namespace JetBrains.Omea.Database
         {
         }
     }
-    
+
     [Serializable]
     public class DataCorruptedException: System.Exception
     {

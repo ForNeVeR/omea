@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Windows.Forms;
@@ -27,7 +26,7 @@ namespace JetBrains.Omea
             {}
             public override bool ConfirmCancel()
             {
-                DialogResult dr = MessageBox.Show( this, 
+                DialogResult dr = MessageBox.Show( this,
                     "Do you really wish to cancel the Startup Wizard and close " + Core.ProductName + "?",
                     "Startup Wizard", MessageBoxButtons.YesNo );
                 return dr == DialogResult.Yes;
@@ -127,7 +126,7 @@ namespace JetBrains.Omea
                     }
                     finally
                     {
-                        progressWindow.Visible = true;                        
+                        progressWindow.Visible = true;
                     }
                     if( result == DialogResult.OK )
                     {

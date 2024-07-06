@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 #pragma unmanaged
 
@@ -68,7 +67,7 @@ EMessageSPtr Messages::GetMessage( int index ) const
     LPSPropValue pVal = _pRows->aRow[index].lpProps;
     LPMESSAGE lpMessage = NULL;
     unsigned long ulObjectType = 0;
-    HRESULT hr = _lpFolder->OpenEntry( pVal[0].Value.bin.cb, (LPENTRYID)pVal[0].Value.bin.lpb, 
+    HRESULT hr = _lpFolder->OpenEntry( pVal[0].Value.bin.cb, (LPENTRYID)pVal[0].Value.bin.lpb,
         0, (int)TEST_MAPI_MODIFY, &ulObjectType, (LPUNKNOWN*)&lpMessage );
     if ( hr == S_OK )
     {

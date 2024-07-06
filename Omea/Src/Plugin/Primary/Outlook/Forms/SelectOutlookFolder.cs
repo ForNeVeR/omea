@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System.Windows.Forms;
 using JetBrains.Omea.OpenAPI;
@@ -64,9 +63,9 @@ namespace JetBrains.Omea.OutlookPlugin
             this._label1 = new System.Windows.Forms.Label();
             this._treeView = new JetBrains.Omea.GUIControls.ResourceTreeView();
             this.SuspendLayout();
-            // 
+            //
             // _btnCancel
-            // 
+            //
             this._btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this._btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this._btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -75,9 +74,9 @@ namespace JetBrains.Omea.OutlookPlugin
             this._btnCancel.Size = new System.Drawing.Size(75, 25);
             this._btnCancel.TabIndex = 2;
             this._btnCancel.Text = "Cancel";
-            // 
+            //
             // _btnOK
-            // 
+            //
             this._btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this._btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this._btnOK.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -86,20 +85,20 @@ namespace JetBrains.Omea.OutlookPlugin
             this._btnOK.Size = new System.Drawing.Size(75, 25);
             this._btnOK.TabIndex = 1;
             this._btnOK.Text = "OK";
-            // 
+            //
             // _label1
-            // 
+            //
             this._label1.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._label1.Location = new System.Drawing.Point(8, 9);
             this._label1.Name = "_label1";
             this._label1.Size = new System.Drawing.Size(280, 17);
             this._label1.TabIndex = 8;
             this._label1.Text = "Move the selected items to the folder:";
-            // 
+            //
             // _treeView
-            // 
-            this._treeView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-                | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._treeView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._treeView.ImageIndex = -1;
             this._treeView.Location = new System.Drawing.Point(8, 26);
@@ -113,9 +112,9 @@ namespace JetBrains.Omea.OutlookPlugin
             this._treeView.DoubleClick += new System.EventHandler(this.OnDoubleClick);
             this._treeView.AfterExpand += new System.Windows.Forms.TreeViewEventHandler(this.OnAfterExpand);
             this._treeView.AfterCollapse += new System.Windows.Forms.TreeViewEventHandler(this.OnAfterCollapse);
-            // 
+            //
             // SelectOutlookFolder
-            // 
+            //
             this.AcceptButton = this._btnOK;
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
             this.CancelButton = this._btnCancel;

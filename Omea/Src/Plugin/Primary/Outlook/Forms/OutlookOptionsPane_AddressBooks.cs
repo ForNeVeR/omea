@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System.Windows.Forms;
 using JetBrains.Omea.GUIControls;
@@ -33,7 +32,7 @@ namespace JetBrains.Omea.OutlookPlugin
         {
             if( disposing )
             {
-                if (components != null) 
+                if (components != null)
                 {
                     components.Dispose();
                 }
@@ -53,9 +52,9 @@ namespace JetBrains.Omea.OutlookPlugin
             this._syncContactCategory = new JetBrains.Omea.GUIControls.CheckBoxSettingEditor();
             this._categoriesFromMailLists = new JetBrains.Omea.GUIControls.CheckBoxSettingEditor();
             this.SuspendLayout();
-            // 
+            //
             // label1
-            // 
+            //
             this.label1.Dock = System.Windows.Forms.DockStyle.Top;
             this.label1.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label1.Location = new System.Drawing.Point(0, 0);
@@ -64,11 +63,11 @@ namespace JetBrains.Omea.OutlookPlugin
             this.label1.TabIndex = 3;
             this.label1.Text = "Select the Outlook address books you would like to synchronize with Omea. Contact" +
                 "s from the selected address books will be imported into Omea.";
-            // 
+            //
             // _treeView
-            // 
-            this._treeView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-                | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._treeView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._treeView.DoubleBuffer = false;
             this._treeView.ImageIndex = -1;
@@ -81,10 +80,10 @@ namespace JetBrains.Omea.OutlookPlugin
             this._treeView.Size = new System.Drawing.Size(284, 92);
             this._treeView.TabIndex = 4;
             this._treeView.ThreeStateCheckboxes = false;
-            // 
+            //
             // _syncContactCategory
-            // 
-            this._syncContactCategory.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._syncContactCategory.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._syncContactCategory.Changed = false;
             this._syncContactCategory.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -95,10 +94,10 @@ namespace JetBrains.Omea.OutlookPlugin
             this._syncContactCategory.TabIndex = 18;
             this._syncContactCategory.Tag = "";
             this._syncContactCategory.Text = "&Synchronize categories for contacts";
-            // 
+            //
             // _categoriesFromMailLists
-            // 
-            this._categoriesFromMailLists.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._categoriesFromMailLists.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._categoriesFromMailLists.Changed = false;
             this._categoriesFromMailLists.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -108,9 +107,9 @@ namespace JetBrains.Omea.OutlookPlugin
             this._categoriesFromMailLists.Size = new System.Drawing.Size(272, 24);
             this._categoriesFromMailLists.TabIndex = 19;
             this._categoriesFromMailLists.Text = "&Create categories from Internet mailing lists";
-            // 
+            //
             // OutlookOptionsPane_AddressBooks
-            // 
+            //
             this.Controls.Add(this._categoriesFromMailLists);
             this.Controls.Add(this._syncContactCategory);
             this.Controls.Add(this._treeView);
@@ -130,7 +129,7 @@ namespace JetBrains.Omea.OutlookPlugin
         {
             _treeView.CollectCheckStates();
             _treeView.ClearTree();
-            IResourceList globalAddressBooks = 
+            IResourceList globalAddressBooks =
                 Core.ResourceStore.GetAllResources( STR.OutlookABDescriptor );
 
             foreach ( IResource globalAddressBook in globalAddressBooks )
@@ -140,7 +139,7 @@ namespace JetBrains.Omea.OutlookPlugin
                 treeNode.Tag = globalAddressBook;
                 _treeView.Nodes.Add( treeNode );
                 _treeView.SetNodeCheckStateFromCollection( treeNode );
-            }            
+            }
             _treeView.PopulateTree();
         }
         public override void ShowPane()

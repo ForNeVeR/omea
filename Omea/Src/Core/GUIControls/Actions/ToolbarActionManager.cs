@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Drawing;
@@ -13,7 +12,7 @@ using JetBrains.Omea.Containers;
 namespace JetBrains.Omea.GUIControls
 {
 	/// <summary>
-	/// Establishes a binding between toolbar controls and corresponding actions by 
+	/// Establishes a binding between toolbar controls and corresponding actions by
 	/// executing the action appropriate upon a button click and quering it for the
 	/// button state periodically.
 	/// </summary>
@@ -29,11 +28,11 @@ namespace JetBrains.Omea.GUIControls
 	/// <para>This sample shows how to create a toolbar and initialize it with actions which will be passed to the <see cref="ICommandProcessor">command processor</see> specified by the <see cref="IActionContext">action context</see> obtained from the <see cref="IContextProvider">context provider</see>.</para>
 	/// <para>We suppose that there is an instance variable of type <see cref="ToolbarActionManager"/> and that this class implements the <see cref="IContextProvider"/> interface. <c>LoadImage</c> is some custom function that loads an icon by its short name.</para>
 	/// <code>
-	/// 
+	///
 	/// // Create
 	/// _actionmanager = new ToolbarActionManager( this );
 	/// _actionmanager.ContextProvider = this;	// IContextProvider implemented by this class
-	/// 
+	///
 	/// // General Edit actions
 	/// sGroup = "Edit";
 	/// _actionmanager.RegisterActionGroup( sGroup, ListAnchor.Last );
@@ -53,8 +52,8 @@ namespace JetBrains.Omea.GUIControls
             internal readonly string    _resType;
             internal IActionStateFilter[] _filters;
 
-//            public ToolbarAction( IAction action, ToolBarButton toolbarButton, string defaultText, 
-            public ToolbarAction( IAction action, ToolStripItem toolbarButton, string defaultText, 
+//            public ToolbarAction( IAction action, ToolBarButton toolbarButton, string defaultText,
+            public ToolbarAction( IAction action, ToolStripItem toolbarButton, string defaultText,
                                   string defaultToolTip, string resType, IActionStateFilter[] filters )
             {
                 _action = action;
@@ -100,7 +99,7 @@ namespace JetBrains.Omea.GUIControls
                 {
                     if ( value < 0 )
                     {
-                        throw new ArgumentOutOfRangeException( "value", value, 
+                        throw new ArgumentOutOfRangeException( "value", value,
                             "Toolbar action group start index may not be negative" );
                     }
                     _startIndex = value;
@@ -186,7 +185,7 @@ namespace JetBrains.Omea.GUIControls
         {
             Core.StateChanged -= OnCoreStateChanged;
             Core.UIManager.EnterIdle -= IdleUpdateToolbarActions;
-            _toolbarImages.Dispose();          
+            _toolbarImages.Dispose();
         }
 
     	public IContextProvider ContextProvider
@@ -198,9 +197,9 @@ namespace JetBrains.Omea.GUIControls
         public bool ToolbarVisible
         {
             get { return _toolbarVisible; }
-            set 
-            { 
-                _toolbarVisible = value; 
+            set
+            {
+                _toolbarVisible = value;
                 _toolBar.Visible = _toolbarVisible && _lastVisibleActions > 0;
             }
         }
@@ -262,7 +261,7 @@ namespace JetBrains.Omea.GUIControls
         public void RegisterAction( IAction action, string groupId, ListAnchor anchor,
                                     Image icon, string text, string tooltip, string resourceType, IActionStateFilter[] filters )
         {
-            int imageIndex = -1;                                                   
+            int imageIndex = -1;
             if ( icon != null )
             {
                 _toolbarImages.Images.Add( icon );
@@ -295,7 +294,7 @@ namespace JetBrains.Omea.GUIControls
         }
 
         private void CreateToolbarButton( IAction action, string groupId, ListAnchor anchor,
-                                          int imageIndex, string text, string toolTip, string resourceType, 
+                                          int imageIndex, string text, string toolTip, string resourceType,
                                           IActionStateFilter[] filters )
         {
             if ( groupId == null )
@@ -442,7 +441,7 @@ namespace JetBrains.Omea.GUIControls
                 IAction action = tbAction._action;
                 if ( action == null )
                     continue;
-                                                                                            
+
                 if ( tbAction._filters != null )
                 {
                     foreach( IActionStateFilter filter in tbAction._filters )
@@ -454,12 +453,12 @@ namespace JetBrains.Omea.GUIControls
                         }
                     }
                 }
-                
+
                 if ( presentation.Visible )
                 {
-                    action.Update( context, ref presentation ); 
+                    action.Update( context, ref presentation );
                 }
-                
+
                 try
                 {
                     btn.Visible     = presentation.Visible;
@@ -482,7 +481,7 @@ namespace JetBrains.Omea.GUIControls
                 	visibleActionsCount++;
                 }
             }
-            
+
             try
             {
                 group.Separator.Visible = (visibleActionsCount > 0 && groupIndex < _actionGroups.Count-1);
@@ -491,7 +490,7 @@ namespace JetBrains.Omea.GUIControls
             {
                 // ignore (OM-5509)
             }
-            
+
             return visibleActionsCount;
         }
 
@@ -499,10 +498,10 @@ namespace JetBrains.Omea.GUIControls
         {
         	if ( _contextProvider == null )
         		return new ActionContext( ActionContextKind.Toolbar, null, null );
-            
+
             return _contextProvider.GetContext( ActionContextKind.Toolbar );
         }
-        
+
         public int GetPreferredWidth()
         {
             int width = 0;

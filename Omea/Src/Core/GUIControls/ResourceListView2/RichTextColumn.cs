@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -105,7 +104,7 @@ namespace JetBrains.Omea.GUIControls
             OwnerControl.UpdateItemSafe( res );
 	    }
 
-	    protected override void DrawItemText( Graphics g, Rectangle rcText, object item, 
+	    protected override void DrawItemText( Graphics g, Rectangle rcText, object item,
             Color textColor, RowState state, string highlightText )
 	    {
 	        IResource res = (IResource) item;
@@ -116,7 +115,7 @@ namespace JetBrains.Omea.GUIControls
 	        text.DrawClipped( g, rcText );
 	    }
 
-	    public static void FormatRowRichText( ref RichText text, Color textColor, RowState state, 
+	    public static void FormatRowRichText( ref RichText text, Color textColor, RowState state,
             string highlightText )
 	    {
 	        if ( textColor != SystemColors.WindowText || highlightText != null ||
@@ -160,9 +159,9 @@ namespace JetBrains.Omea.GUIControls
                 }
             }
 
-            TextStyle defaultStyle = new TextStyle( FontStyle.Regular, 
+            TextStyle defaultStyle = new TextStyle( FontStyle.Regular,
                 SystemColors.WindowText, Color.Transparent );
-            RichTextParameters defaultParams = new RichTextParameters( OwnerControl.Font, 
+            RichTextParameters defaultParams = new RichTextParameters( OwnerControl.Font,
                 defaultStyle );
 
             if ( Core.State == CoreState.ShuttingDown )
@@ -172,7 +171,7 @@ namespace JetBrains.Omea.GUIControls
 
             Thread.SetData( _itemBeingDecoratedSlot, res.Id );
             RichText newRichText = new RichText( res.DisplayName, defaultParams );
-            
+
             _decoratorLock.AcquireReaderLock( -1 );
             try
             {
@@ -196,9 +195,9 @@ namespace JetBrains.Omea.GUIControls
             }
             finally
             {
-                _decoratorLock.ReleaseReaderLock();                
+                _decoratorLock.ReleaseReaderLock();
             }
-            
+
             Thread.SetData( _itemBeingDecoratedSlot, -1 );
             lock( _richTextCache )
             {
@@ -228,7 +227,7 @@ namespace JetBrains.Omea.GUIControls
             RichText richText = null;
             if ( OwnerControl != null && OwnerControl.AutoToolTips )
             {
-                richText = GetRichText( res );                
+                richText = GetRichText( res );
             }
             if ( richText != null && richText.GetSize().Width > rc.Width )
             {

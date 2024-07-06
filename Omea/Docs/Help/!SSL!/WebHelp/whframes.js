@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 //	WebHelp 5.10.001
 // this value should be identical to the value used in whproxy.js
@@ -28,12 +27,12 @@ function getStubPage_inter(wCurrent) {
 	if (null == wCurrent.parent || wCurrent.parent == wCurrent)
 		return null;
 
-	if (wCurrent.parent.whname && "wh_stub" == wCurrent.parent.whname) 
+	if (wCurrent.parent.whname && "wh_stub" == wCurrent.parent.whname)
 		return wCurrent.parent;
 	else
 		if (wCurrent.parent.frames.length != 0 && wCurrent.parent != wCurrent)
 			return getStubPage_inter(wCurrent.parent);
-		else 
+		else
 			return null;
 }
 
@@ -44,7 +43,7 @@ function RegisterListener(framename, nMessageId)
 	if (wStartPage && wStartPage != this) {
 		return wStartPage.RegisterListener(framename, nMessageId);
 	}
-	else 
+	else
 		return false;
 }
 
@@ -54,7 +53,7 @@ function RegisterListener2(oframe, nMessageId)
 	if (wStartPage && wStartPage != this) {
 		return wStartPage.RegisterListener2(oframe, nMessageId);
 	}
-	else 
+	else
 		return false;
 }
 
@@ -64,7 +63,7 @@ function UnRegisterListener2(oframe, nMessageId)
 	if (wStartPage && wStartPage != this && wStartPage.UnRegisterListener2) {
 		return wStartPage.UnRegisterListener2(oframe, nMessageId);
 	}
-	else 
+	else
 		return false;
 }
 
@@ -74,11 +73,11 @@ function SendMessage(oMessage)
 	if (nMsgId == WH_MSG_ISINFRAMESET && oMessage.wSender != this)
 		return true;
 	var wStartPage = getStubPage();
-	if (wStartPage && wStartPage != this && wStartPage.SendMessage) 
+	if (wStartPage && wStartPage != this && wStartPage.SendMessage)
 	{
 		return wStartPage.SendMessage(oMessage);
 	}
-	else 
+	else
 		return false;
 }
 var gbWhProxy=true;

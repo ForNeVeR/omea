@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Diagnostics;
@@ -88,7 +87,7 @@ namespace JetBrains.Omea.Conversations
         }
 
         #region Update Conversation
-        /** 
+        /**
          * updates existing or creates the new conversation resource
          * texts should be updated in chronological order (ascending sorting by date)
          */
@@ -175,14 +174,14 @@ namespace JetBrains.Omea.Conversations
         #endregion Update Conversation
 
         #region Convert To HTML
-        /** 
+        /**
          * creates html representation for a given conversation resource &
          * string-type property which is used to display accounts
          */
         public string ToHtmlString( IResourceList convs, int propDisplayName )
         {
             StringBuilder htmlBuilder = StringBuilderPool.Alloc();
-            try 
+            try
             {
                 ToHtmlHead( htmlBuilder );
                 for( int i = 0; i < convs.Count; i++ )
@@ -203,7 +202,7 @@ namespace JetBrains.Omea.Conversations
         public string ToHtmlString( IResource convs, int propDisplayName )
         {
             StringBuilder htmlBuilder = StringBuilderPool.Alloc();
-            try 
+            try
             {
                 ToHtmlHead( htmlBuilder );
                 ToHtmlBody( convs, propDisplayName, htmlBuilder );
@@ -350,7 +349,7 @@ namespace JetBrains.Omea.Conversations
         public string ToString( IResource convs )
         {
             StringBuilder bodyBuilder = StringBuilderPool.Alloc();
-            try 
+            try
             {
                 bodyBuilder.Append( "<conversation>" );
                 IStringList convsList = convs.GetStringListProp( _propConversationList );
@@ -408,7 +407,7 @@ namespace JetBrains.Omea.Conversations
         private void AddFragment( IResource convs, string text, DateTime date, bool incoming )
         {
             StringBuilder bodyBuilder = StringBuilderPool.Alloc();
-            try 
+            try
             {
                 XmlTextWriter xmlWriter = new XmlTextWriter( new StringWriter( bodyBuilder ) );
                 try
@@ -448,7 +447,7 @@ namespace JetBrains.Omea.Conversations
             public string GetPreviewText( IResource res, int lines )
             {
                 StringBuilder builder = StringBuilderPool.Alloc();
-                try 
+                try
                 {
                     builder.Append( "<conversation>" );
                     IStringList convsList = res.GetStringListProp( _manager._propConversationList );

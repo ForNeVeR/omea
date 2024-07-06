@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 // JetBrains Omea Mshtml Browser Component
 //
@@ -53,7 +52,7 @@ package JetBrains.Omea.GUIControls.MshtmlBrowser
 		BrowserBar = 0x20,
 		Hyperlink = 0x40
 	}
-	
+
 	/// <summary>
 	/// The zone manager maintains policies for a set of standard actions. These actions are identified by integral values (called action indexes) specified below. URL Actions — security actions to which certain policies may be applied. Origin: <urlmon.h>.
 	/// </summary>
@@ -165,7 +164,7 @@ package JetBrains.Omea.GUIControls.MshtmlBrowser
 		MaskPermissions = 0x0f,
 		Dontcheckdlgbox = 0x100
 	}
-	
+
 	/// <summary>
 	/// Contains the flags for the OnUrlAction method. Origin: MSDN.
 	/// </summary>
@@ -181,7 +180,7 @@ package JetBrains.Omea.GUIControls.MshtmlBrowser
 		Trusted = 0x00000040,
 		AcceptWildcardScheme = 0x00000080
 	}
-	
+
 	/// <summary>
 	/// DispIds for ambient properties the container would be queried for by the WebBrowser. Origin: <urlmon.h>.
 	/// </summary>
@@ -200,7 +199,7 @@ package JetBrains.Omea.GUIControls.MshtmlBrowser
 		DebugInternalwindow = (-5517),
 		DebugEnablesecureproxyasserts = (-5518)
 	}
-	
+
 	/// <summary>
 	/// Flags to be returned by the properry with DispId equal to DISPID AMBIENT DLCONTROL. Origin: <urlmon.h>.
 	/// </summary>
@@ -228,7 +227,7 @@ package JetBrains.Omea.GUIControls.MshtmlBrowser
 		Offlineifnotconnected = 0x80000000,
 		Offline = Offlineifnotconnected
 	}
-	
+
 	/// <summary>
 	/// Error codes, as applicable to the OnNavigateError function which handles the DWebBrowserEvents*.NavigateError.
 	/// </summary>
@@ -361,29 +360,29 @@ package JetBrains.Omea.GUIControls.MshtmlBrowser
 		SetDownloadState = 29,
 		StopDownload = 30
 	}
-	
+
 	/// <summary>
 	/// OLE Command execution options. Source: MSDN on OLECMDEXECOPT.
 	/// </summary>
 	public enum OleCmdExecOpt : int
 	{
-		DoDefault = 0, 	// Prompt the user for input or not, whichever is the default behavior. 
-		PromptUser = 1,	// Execute the command after obtaining user input. 
-		DontPromptUser = 2,	// Execute the command without prompting the user. For example, clicking the Print toolbar button causes a document to be immediately printed without user input. 
-		ShowHelp = 3	//Show help for the corresponding command, but do not execute. 
+		DoDefault = 0, 	// Prompt the user for input or not, whichever is the default behavior.
+		PromptUser = 1,	// Execute the command after obtaining user input.
+		DontPromptUser = 2,	// Execute the command without prompting the user. For example, clicking the Print toolbar button causes a document to be immediately printed without user input.
+		ShowHelp = 3	//Show help for the corresponding command, but do not execute.
 	}
-	
+
 	/// <summary>
 	/// OLE Command status returned in response to the QueryStatus request. Source: MSDN on OLECMDF.
 	/// </summary>
 	public FlagsAttribute enum OleCmdStatus : int
 	{
-		Supported = 1,	// The command is supported by this object. 
-		Enabled = 2,	// The command is available and enabled. 
-		Latched = 4,	// The command is an on-off toggle and is currently on. 
-		Ninched = 8	// Reserved for future use. 	
+		Supported = 1,	// The command is supported by this object.
+		Enabled = 2,	// The command is available and enabled.
+		Latched = 4,	// The command is an on-off toggle and is currently on.
+		Ninched = 8	// Reserved for future use.
 	}
-	
+
 	/// <summary>
 	/// Commands that are natively supported by MSHTML <c>document</c> object and can be just forwarded to document for processing by either HTML editor or viewer.
 	/// </summary>
@@ -462,6 +461,6 @@ package JetBrains.Omea.GUIControls.MshtmlBrowser
 		InlineDirRTL,
 		SaveAs,
 		Open,
-		Stop		
-	}	
+		Stop
+	}
 }

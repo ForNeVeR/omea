@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Text;
@@ -17,7 +16,7 @@ namespace JetBrains.Omea.SamplePlugins.Librarian
 	{
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox _edtName;
-		/// <summary> 
+		/// <summary>
 		/// Required designer variable.
 		/// </summary>
 		private System.ComponentModel.Container components = null;
@@ -39,7 +38,7 @@ namespace JetBrains.Omea.SamplePlugins.Librarian
 
 		}
 
-		/// <summary> 
+		/// <summary>
 		/// Clean up any resources being used.
 		/// </summary>
 		protected override void Dispose( bool disposing )
@@ -55,8 +54,8 @@ namespace JetBrains.Omea.SamplePlugins.Librarian
 		}
 
 		#region Component Designer generated code
-		/// <summary> 
-		/// Required method for Designer support - do not modify 
+		/// <summary>
+		/// Required method for Designer support - do not modify
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent()
@@ -71,56 +70,56 @@ namespace JetBrains.Omea.SamplePlugins.Librarian
             this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this._udYear)).BeginInit();
             this.SuspendLayout();
-            // 
+            //
             // label1
-            // 
+            //
             this.label1.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label1.Location = new System.Drawing.Point(4, 8);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(100, 16);
             this.label1.TabIndex = 0;
             this.label1.Text = "Name:";
-            // 
+            //
             // _edtName
-            // 
-            this._edtName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._edtName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._edtName.Location = new System.Drawing.Point(108, 4);
             this._edtName.Name = "_edtName";
             this._edtName.Size = new System.Drawing.Size(328, 21);
             this._edtName.TabIndex = 1;
             this._edtName.Text = "textBox1";
-            // 
+            //
             // _edtAuthors
-            // 
-            this._edtAuthors.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._edtAuthors.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._edtAuthors.Location = new System.Drawing.Point(108, 28);
             this._edtAuthors.Name = "_edtAuthors";
             this._edtAuthors.Size = new System.Drawing.Size(328, 21);
             this._edtAuthors.TabIndex = 3;
             this._edtAuthors.Text = "textBox1";
-            // 
+            //
             // label2
-            // 
+            //
             this.label2.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label2.Location = new System.Drawing.Point(4, 32);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(100, 16);
             this.label2.TabIndex = 2;
             this.label2.Text = "Authors:";
-            // 
+            //
             // label3
-            // 
+            //
             this.label3.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label3.Location = new System.Drawing.Point(4, 56);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(100, 16);
             this.label3.TabIndex = 4;
             this.label3.Text = "Year:";
-            // 
+            //
             // _udYear
-            // 
+            //
             this._udYear.Location = new System.Drawing.Point(108, 52);
             this._udYear.Maximum = new System.Decimal(new int[] {
                                                                     2050,
@@ -135,28 +134,28 @@ namespace JetBrains.Omea.SamplePlugins.Librarian
                                                                   0,
                                                                   0,
                                                                   0});
-            // 
+            //
             // _edtISBN
-            // 
-            this._edtIsbn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._edtIsbn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._edtIsbn.Location = new System.Drawing.Point(108, 76);
             this._edtIsbn.Name = "_edtIsbn";
             this._edtIsbn.Size = new System.Drawing.Size(328, 21);
             this._edtIsbn.TabIndex = 7;
             this._edtIsbn.Text = "textBox1";
-            // 
+            //
             // label4
-            // 
+            //
             this.label4.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label4.Location = new System.Drawing.Point(4, 80);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(100, 16);
             this.label4.TabIndex = 6;
             this.label4.Text = "ISBN (optional):";
-            // 
+            //
             // BookEditPane
-            // 
+            //
             this.Controls.Add(this._edtIsbn);
             this.Controls.Add(this.label4);
             this.Controls.Add(this._udYear);
@@ -219,7 +218,7 @@ namespace JetBrains.Omea.SamplePlugins.Librarian
         {
             _book.SetProp( "Name", _edtName.Text );
             _book.DeleteLinks( PropTypes.BookAuthor );
-            
+
             // Parse the list of author names separated with
             string[] authors = _edtAuthors.Text.Split( ',', ';' );
             foreach( string author in authors )

@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System.Drawing;
 using System.Windows.Forms;
@@ -16,7 +15,7 @@ namespace JetBrains.Omea.InstantMessaging.Miranda
 
     internal class MirandaContactBlock : AbstractContactViewBlock
 	{
-		/// <summary> 
+		/// <summary>
 		/// Required designer variable.
 		/// </summary>
 		private System.ComponentModel.Container components = null;
@@ -30,7 +29,7 @@ namespace JetBrains.Omea.InstantMessaging.Miranda
 		{
 			// This call is required by the Windows.Forms Form Designer.
 			InitializeComponent();
-            
+
 		    _typeLabelPool = new ControlPool( this, new ControlPoolCreateDelegate( CreateTypeLabel ) );
             _valueLabelPool = new ControlPool( this, new ControlPoolCreateDelegate( CreateValueLabel ) );
         }
@@ -40,7 +39,7 @@ namespace JetBrains.Omea.InstantMessaging.Miranda
             return new MirandaContactBlock();
         }
 
-		/// <summary> 
+		/// <summary>
 		/// Clean up any resources being used.
 		/// </summary>
 		protected override void Dispose( bool disposing )
@@ -56,8 +55,8 @@ namespace JetBrains.Omea.InstantMessaging.Miranda
 		}
 
 		#region Component Designer generated code
-		/// <summary> 
-		/// Required method for Designer support - do not modify 
+		/// <summary>
+		/// Required method for Designer support - do not modify
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent()
@@ -77,7 +76,7 @@ namespace JetBrains.Omea.InstantMessaging.Miranda
 
             _typeLabelPool.MoveControlsToPool();
             _valueLabelPool.MoveControlsToPool();
-            
+
             foreach( IResource acct in accounts )
             {
                 string acctType;
@@ -103,13 +102,13 @@ namespace JetBrains.Omea.InstantMessaging.Miranda
                 {
                     lblValue.Text = acct.DisplayName;
                 }
-                
+
                 lblValue.Location = new Point( 88, curY );
                 lblValue.Width = Width - 96;
 
                 curY += 20;
             }
-            
+
             _typeLabelPool.RemovePooledControls();
             _valueLabelPool.RemovePooledControls();
 
@@ -146,7 +145,7 @@ namespace JetBrains.Omea.InstantMessaging.Miranda
             string  result = string.Empty;
             IResourceList accounts = contact.GetLinksOfType( null, Props.MirandaAcct );
             accounts.Sort( new SortSettings( ResourceProps.Type, true ) );
-            
+
             foreach( IResource acct in accounts )
             {
                 string acctType;

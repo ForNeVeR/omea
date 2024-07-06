@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Diagnostics;
@@ -87,7 +86,7 @@ namespace JetBrains.Omea.ResourceTools
                 _unreadCountersValid.Remove( res.Id );
             }
         }
-        
+
         public int GetUnreadCount( IResource res )
         {
             return _unreadManager.GetCountForState( this, res );
@@ -163,7 +162,7 @@ namespace JetBrains.Omea.ResourceTools
             _coreProps = coreProps;
             _defaultUnreadState = new UnreadState( this, null, null );
             _curUnreadState = _defaultUnreadState;
-            
+
             _store = Core.ResourceStore;
             _propUnreadCount = _store.PropTypes.Register( "UnreadCount", PropDataType.Int, PropTypeFlags.Internal );
             _traceUnreadCounters = settingStore.ReadBool( "UnreadCounters", "TraceUnreadCounters", false );
@@ -206,7 +205,7 @@ namespace JetBrains.Omea.ResourceTools
         }
 
         /**
-         * Switches the state of unread counters to the state associated with the 
+         * Switches the state of unread counters to the state associated with the
          * specified key and filter list, and creates a new state if necessary.
          */
 
@@ -263,7 +262,7 @@ namespace JetBrains.Omea.ResourceTools
         }
 
         /**
-         * Returns the persistent unread counter for the specified resource 
+         * Returns the persistent unread counter for the specified resource
          * (the counter which is not view-specific and which is saved in the
          * resource store).
          */
@@ -274,7 +273,7 @@ namespace JetBrains.Omea.ResourceTools
             {
                 return _defaultUnreadState.GetUnreadCount( res );
             }
-                
+
             int count = res.GetIntProp( _propUnreadCount );
             _defaultUnreadState.UpdateUnreadCounter( res, count );
             return count;
@@ -363,7 +362,7 @@ namespace JetBrains.Omea.ResourceTools
         /**
          * Sets the persistent unread counter for the specified resource.
          * (The counter will be actually flushed to the resource store
-         * when the resource operation is finished.)                
+         * when the resource operation is finished.)
          */
 
         public void SetPersistentUnreadCount( IResource res, int count )
@@ -396,13 +395,13 @@ namespace JetBrains.Omea.ResourceTools
                     (!e.ChangeSet.IsPropertyChanged( _coreProps.IsDeleted ) && e.Resource.HasProp( _coreProps.IsDeleted ) );
                 bool isUnread = e.Resource.HasProp( _coreProps.IsUnread );
                 bool isDeleted = e.Resource.HasProp( _coreProps.IsDeleted );
-                
+
                 int oldUnreadStatus = (wasUnread && !wasDeleted) ? 1 : 0;
                 int newUnreadStatus = (isUnread && !isDeleted) ? 1 : 0;
 
                 if ( oldUnreadStatus != newUnreadStatus )
                 {
-                    ProcessResourceUnreadChange( e.Resource, newUnreadStatus - oldUnreadStatus, 
+                    ProcessResourceUnreadChange( e.Resource, newUnreadStatus - oldUnreadStatus,
                         (newUnreadStatus > oldUnreadStatus) ? null : e.ChangeSet );
                 }
             }
@@ -421,7 +420,7 @@ namespace JetBrains.Omea.ResourceTools
             IResource res = (IResource) sender;
             if ( res.HasProp( _coreProps.IsUnread ) && !res.HasProp( _coreProps.IsDeleted ) )
             {
-                ProcessResourceUnreadChange( res, -1, null );                                
+                ProcessResourceUnreadChange( res, -1, null );
             }
         }
 
@@ -431,7 +430,7 @@ namespace JetBrains.Omea.ResourceTools
          * are not the currently linked ones, but rather the ones linked before the changes
          * described by cs happened.
          */
-        
+
         private void ProcessResourceUnreadChange( IResource res, int delta, IPropertyChangeSet cs )
         {
             UnreadState[] unreadStates = GetResourceUnreadStates( res );
@@ -518,7 +517,7 @@ namespace JetBrains.Omea.ResourceTools
             }
 
             LinkChange[] wsLinkChanges = cs.GetLinkChanges( _workspaceManager.Props.WorkspaceVisible );
-            
+
             int[] linkTypes = res.GetLinkTypeIds();
             for( int i=0; i<linkTypes.Length; i++ )
             {
@@ -604,7 +603,7 @@ namespace JetBrains.Omea.ResourceTools
         private UnreadState[] GetResourceUnreadStates( IResource res )
         {
             ArrayList states = ArrayListPool.Alloc();
-            try 
+            try
             {
                 IResourceList workspaces = _workspaceManager.GetResourceWorkspaces( res );
                 FillStatesForTab( states, workspaces, _tabProvider.GetDefaultTab() );
@@ -644,7 +643,7 @@ namespace JetBrains.Omea.ResourceTools
                         states.Add( state );
                     }
                 }
-                
+
                 foreach( IResource ws in workspaces )
                 {
                     UnreadState state = (UnreadState) tabHash [ws.Id];
@@ -700,10 +699,10 @@ namespace JetBrains.Omea.ResourceTools
         }
 
         /**
-         * When a resource operation is finished, flushes the persistent unread 
+         * When a resource operation is finished, flushes the persistent unread
          * counters to the resource store.
          */
-        
+
         private void environment_ResourceOperationFinished( object sender, EventArgs e )
         {
             int[] countersToFlush = null;
@@ -793,7 +792,7 @@ namespace JetBrains.Omea.ResourceTools
         }
 
         /// <summary>
-        /// Returns the count of resources in the specified list that have the 
+        /// Returns the count of resources in the specified list that have the
         /// Unread flag set.
         /// </summary>
         private int CountUnreadResources( IResourceList list )

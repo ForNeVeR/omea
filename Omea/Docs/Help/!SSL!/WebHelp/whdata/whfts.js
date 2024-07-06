@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 //	WebHelp 5.10.001
 var gaFileMapping = new Array();
@@ -26,7 +25,7 @@ function fileTopicMapping(nIdBegin, nIdEnd, sFileName)
 
 function iWM(sStartKey, sEndKey, sFileName)
 {
-	gaFileMapping[gaFileMapping.length] = new fileMapping(sStartKey, sEndKey, sFileName);	
+	gaFileMapping[gaFileMapping.length] = new fileMapping(sStartKey, sEndKey, sFileName);
 }
 
 function window_OnLoad()
@@ -34,12 +33,12 @@ function window_OnLoad()
 	if (parent && parent != this && parent.ftsReady)
 	{
 		parent.ftsReady(gaFileMapping, gaFileTopicMapping);
-	}		
+	}
 }
 
 function iTM(nIdBegin, nIdEnd, sFileName)
 {
-	gaFileTopicMapping[gaFileTopicMapping.length] = new fileTopicMapping(nIdBegin, nIdEnd, sFileName);	
+	gaFileTopicMapping[gaFileTopicMapping.length] = new fileTopicMapping(nIdBegin, nIdEnd, sFileName);
 }
 
 window.onload = window_OnLoad;

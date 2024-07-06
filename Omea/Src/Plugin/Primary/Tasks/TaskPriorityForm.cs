@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Windows.Forms;
@@ -73,27 +72,27 @@ namespace Tasks
             this.radioHigh = new System.Windows.Forms.RadioButton();
             this.groupPriorities.SuspendLayout();
             this.SuspendLayout();
-            // 
+            //
             // buttonOK
-            // 
+            //
             this.buttonOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.buttonOK.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.buttonOK.Location = new System.Drawing.Point(104, 16);
             this.buttonOK.Name = "buttonOK";
             this.buttonOK.TabIndex = 0;
             this.buttonOK.Text = "OK";
-            // 
+            //
             // buttonCancel
-            // 
+            //
             this.buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.buttonCancel.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.buttonCancel.Location = new System.Drawing.Point(104, 48);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.TabIndex = 0;
             this.buttonCancel.Text = "Cancel";
-            // 
+            //
             // groupPriorities
-            // 
+            //
             this.groupPriorities.Controls.Add(this.radioLow);
             this.groupPriorities.Controls.Add(this.radioNormal);
             this.groupPriorities.Controls.Add(this.radioHigh);
@@ -104,9 +103,9 @@ namespace Tasks
             this.groupPriorities.TabIndex = 1;
             this.groupPriorities.TabStop = false;
             this.groupPriorities.Text = "Task Priorities";
-            // 
+            //
             // radioLow
-            // 
+            //
             this.radioLow.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.radioLow.Location = new System.Drawing.Point(8, 72);
             this.radioLow.Name = "radioLow";
@@ -115,9 +114,9 @@ namespace Tasks
             this.radioLow.Text = "Low";
             this.radioLow.Tag = "2";
             this.radioLow.CheckedChanged += new System.EventHandler(radioLow_CheckedChanged);
-            // 
+            //
             // radioNormal
-            // 
+            //
             this.radioNormal.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.radioNormal.Location = new System.Drawing.Point(8, 44);
             this.radioNormal.Name = "radioNormal";
@@ -126,9 +125,9 @@ namespace Tasks
             this.radioNormal.Text = "Normal";
             this.radioNormal.Tag = "0";
             this.radioNormal.CheckedChanged += new System.EventHandler(radioLow_CheckedChanged);
-            // 
+            //
             // radioHigh
-            // 
+            //
             this.radioHigh.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.radioHigh.Location = new System.Drawing.Point(8, 16);
             this.radioHigh.Name = "radioHigh";
@@ -137,9 +136,9 @@ namespace Tasks
             this.radioHigh.Text = "High";
             this.radioHigh.Tag = "1";
             this.radioHigh.CheckedChanged += new System.EventHandler(radioLow_CheckedChanged);
-            // 
+            //
             // TaskPriorityForm
-            // 
+            //
             this.AcceptButton = this.buttonOK;
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
             this.CancelButton = this.buttonCancel;

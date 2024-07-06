@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System.Windows.Forms;
 
@@ -15,7 +14,7 @@ namespace JetBrains.Omea.GUIControls
         private StringSettingEditor _pathBox;
         private System.Windows.Forms.Button _btnBrowse;
         private System.Windows.Forms.FolderBrowserDialog _folderBrowser;
-		/// <summary> 
+		/// <summary>
 		/// Required designer variable.
 		/// </summary>
 		private System.ComponentModel.Container components = null;
@@ -26,7 +25,7 @@ namespace JetBrains.Omea.GUIControls
 			InitializeComponent();
 		}
 
-		/// <summary> 
+		/// <summary>
 		/// Clean up any resources being used.
 		/// </summary>
 		protected override void Dispose( bool disposing )
@@ -42,8 +41,8 @@ namespace JetBrains.Omea.GUIControls
 		}
 
 		#region Component Designer generated code
-		/// <summary> 
-		/// Required method for Designer support - do not modify 
+		/// <summary>
+		/// Required method for Designer support - do not modify
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent()
@@ -52,10 +51,10 @@ namespace JetBrains.Omea.GUIControls
 			this._btnBrowse = new System.Windows.Forms.Button();
 			this._folderBrowser = new System.Windows.Forms.FolderBrowserDialog();
 			this.SuspendLayout();
-			// 
+			//
 			// _pathBox
-			// 
-			this._pathBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			//
+			this._pathBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
 				| System.Windows.Forms.AnchorStyles.Right)));
 			this._pathBox.Changed = false;
 			this._pathBox.Location = new System.Drawing.Point(0, 1);
@@ -63,9 +62,9 @@ namespace JetBrains.Omea.GUIControls
 			this._pathBox.Size = new System.Drawing.Size(160, 20);
 			this._pathBox.TabIndex = 0;
 			this._pathBox.Text = "";
-			// 
+			//
 			// _btnBrowse
-			// 
+			//
 			this._btnBrowse.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this._btnBrowse.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this._btnBrowse.Location = new System.Drawing.Point(165, 0);
@@ -73,9 +72,9 @@ namespace JetBrains.Omea.GUIControls
 			this._btnBrowse.TabIndex = 1;
 			this._btnBrowse.Text = "&Browse...";
 			this._btnBrowse.Click += new System.EventHandler(this.OnBrowse);
-			// 
+			//
 			// BrowseForFolderControl
-			// 
+			//
 			this.Controls.Add(this._btnBrowse);
 			this.Controls.Add(this._pathBox);
 			this.Name = "BrowseForFolderControl";
@@ -98,7 +97,7 @@ namespace JetBrains.Omea.GUIControls
             if ( _folderBrowser.ShowDialog() == DialogResult.OK )
             {
                 _pathBox.Changed = true;
-                _pathBox.Text = _folderBrowser.SelectedPath; 
+                _pathBox.Text = _folderBrowser.SelectedPath;
             }
         }
 

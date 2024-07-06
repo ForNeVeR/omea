@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 #pragma once
 
@@ -28,7 +27,7 @@ namespace EMAPILib
         __property String* get_StoreID() { return _storeID; }
         __property String* get_EntryID() { return _entryID; }
     };
-    public __value enum MailBodyFormat 
+    public __value enum MailBodyFormat
     {
         PlainText,
         PlainTextInRTF,
@@ -139,7 +138,7 @@ namespace EMAPILib
         virtual String* FindBinProp( int index, int tag );
         virtual IEMailUser* OpenMailUser( String* entryID );
     };
-    
+
     public __gc __interface IEMessage;
     public __gc __interface IEAttach : public IEMAPIProp
     {
@@ -225,7 +224,7 @@ namespace EMAPILib
             String* _oldParentID;
             String* _oldEntryID;
         public:
-            MAPIFullNtf( String* parentID, String* entryID, String* oldParentID, String* oldEntryID ) : 
+            MAPIFullNtf( String* parentID, String* entryID, String* oldParentID, String* oldEntryID ) :
               MAPINtf( parentID, entryID )
             {
                 _oldParentID = oldParentID;
@@ -235,8 +234,8 @@ namespace EMAPILib
             __property String* get_OldParentID() { return _oldParentID; }
     };
 
-    public __gc __interface IMAPIListener 
-    { 
+    public __gc __interface IMAPIListener
+    {
         void OnNewMail( MAPINtf* ntf );
         void OnMailAdd( MAPINtf* ntf );
         void OnFolderAdd( MAPINtf* ntf );
@@ -265,7 +264,7 @@ namespace EMAPILib
         virtual void Advise( IMAPIListener* sink );
         virtual void Unadvise();
 
-        virtual bool CreateNewMessage( String* subject, String* body, MailBodyFormat bodyFormat, ArrayList* recipients,     
+        virtual bool CreateNewMessage( String* subject, String* body, MailBodyFormat bodyFormat, ArrayList* recipients,
             ArrayList* attachments, int codePage );
         virtual bool DisplayMessage( String* entryID, IEMsgStore* defaultMsgStore );
         virtual bool ForwardMessage( String* entryID, IEMsgStore* defaultMsgStore );
@@ -282,9 +281,9 @@ namespace EMAPILib
         virtual bool IsDefaultStore( int index );
     };
 
-    public __gc __interface IQuoting 
-    { 
-        String* QuoteReply( String* body ); 
+    public __gc __interface IQuoting
+    {
+        String* QuoteReply( String* body );
     };
 
     public __gc __interface ILibManager
@@ -329,7 +328,7 @@ namespace EMAPILib
     };
     public __gc class ProblemWhenOpenStorage : public Exception
     {
-        private: 
+        private:
             String* _storeId;
 
         public:

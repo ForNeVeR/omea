@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -11,7 +10,7 @@ using System.IO;
 using System.Text;
 using JetBrains.Omea.Base;
 using JetBrains.Omea.TextIndex;
-using JetBrains.Omea.OpenAPI;	
+using JetBrains.Omea.OpenAPI;
 using JetBrains.Omea.Containers;
 using JetBrains.DataStructures;
 
@@ -146,7 +145,7 @@ namespace JetBrains.Omea.TextIndex
 
             //  This property keeps the current version of the text index (do not mix it with
             //  the version of text index format. Each time the index is rebuilt, the value of this
-            //  property is increased by 1, thus invalidating all resource which reference to the 
+            //  property is increased by 1, thus invalidating all resource which reference to the
             //  older version of the index through their "InTextIndexVersion" property (see below).
             TextIndexVersionProp = props.Register( "TextIndexVersion", PropDataType.Int, PropTypeFlags.Internal );
 
@@ -225,7 +224,7 @@ namespace JetBrains.Omea.TextIndex
             if( docID < 0 )  return;   //  secure against just deleted resources
             if( text == null ) return; //  secure against null(s).
 
-            //  Ignore new versions of the same document which is under 
+            //  Ignore new versions of the same document which is under
             //  processing now, remember its Id and rerequest its indexing
             //  later when current version of the document will be already
             //  in the index. Such scheme significantly reduces the
@@ -250,7 +249,7 @@ namespace JetBrains.Omea.TextIndex
                 // finish with previous document, start new
                 if( docID != _lastDocID )
                 {
-                    DocumentDone(); 
+                    DocumentDone();
                     CheckPreviewSign( docID );
                 }
 
@@ -553,7 +552,7 @@ namespace JetBrains.Omea.TextIndex
 
         #region IFullTextIndexer
         public bool  IsIndexPresent
-        { 
+        {
             get { return _notificationAlreadyDone; }
         }
 
@@ -637,14 +636,14 @@ namespace JetBrains.Omea.TextIndex
             }
             #endregion Pending Data Update
 
-            Core.ResourceAP.QueueJob( JobPriority.Immediate, "Marking document not present in text index", 
+            Core.ResourceAP.QueueJob( JobPriority.Immediate, "Marking document not present in text index",
                                       new IntDelegate( MarkNotInIndex ), docID );
         }
 
         private void MarkNotInIndex( int id )
         {
             IResource doc = Core.ResourceStore.TryLoadResource( id );
-            if( doc != null ) 
+            if( doc != null )
             {
                 doc.SetProp( DocInVersionIndexProp, 0 );
 
@@ -817,7 +816,7 @@ namespace JetBrains.Omea.TextIndex
             get
             {
                 #region Preconditions
-                if ( _termsAccessor == null ) 
+                if ( _termsAccessor == null )
                     throw new ApplicationException( "FullTextIndexer -- TermIndex loading conditions violation - Index accessor is not initialized" );
                 #endregion Preconditions
                 return _termsAccessor;
@@ -988,7 +987,7 @@ namespace JetBrains.Omea.TextIndex
         private static FullTextIndexer  theIndexer;
         private static IResource        _indexVersionRes;
         private static int              _indexVersion;
-        
+
         #endregion Attributes
     }
 }

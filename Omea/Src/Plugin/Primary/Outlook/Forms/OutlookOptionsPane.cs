@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Drawing;
@@ -82,7 +81,7 @@ namespace JetBrains.Omea.OutlookPlugin
         {
             if( disposing )
             {
-                if (components != null) 
+                if (components != null)
                 {
                     components.Dispose();
                 }
@@ -135,9 +134,9 @@ namespace JetBrains.Omea.OutlookPlugin
             this.panel2.SuspendLayout();
             this._grpExpRules.SuspendLayout();
             this.SuspendLayout();
-            // 
+            //
             // panel1
-            // 
+            //
             this.panel1.Controls.Add(this._syncMode);
             this.panel1.Controls.Add(this._scheduleDeliver);
             this.panel1.Controls.Add(this.label3);
@@ -150,10 +149,10 @@ namespace JetBrains.Omea.OutlookPlugin
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(404, 172);
             this.panel1.TabIndex = 0;
-            // 
+            //
             // _syncMode
-            // 
-            this._syncMode.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._syncMode.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._syncMode.Changed = false;
             this._syncMode.Location = new System.Drawing.Point(0, 80);
@@ -162,9 +161,9 @@ namespace JetBrains.Omea.OutlookPlugin
             this._syncMode.TabIndex = 15;
             this._syncMode.TabStop = false;
             this._syncMode.Text = "Synchronize Outlook folders on startup";
-            // 
+            //
             // _scheduleDeliver
-            // 
+            //
             this._scheduleDeliver.Changed = false;
             this._scheduleDeliver.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._scheduleDeliver.InvertValue = false;
@@ -174,28 +173,28 @@ namespace JetBrains.Omea.OutlookPlugin
             this._scheduleDeliver.TabIndex = 13;
             this._scheduleDeliver.Text = "&Schedule a send/receive every:";
             this._scheduleDeliver.Click += new System.EventHandler(this._scheduleDeliver_Click);
-            // 
+            //
             // label3
-            // 
+            //
             this.label3.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label3.Location = new System.Drawing.Point(0, 8);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(88, 16);
             this.label3.TabIndex = 0;
             this.label3.Text = "Send/Receive";
-            // 
+            //
             // groupBox2
-            // 
-            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.Location = new System.Drawing.Point(88, 8);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(312, 8);
             this.groupBox2.TabIndex = 9;
             this.groupBox2.TabStop = false;
-            // 
+            //
             // _deliverOnStartup
-            // 
+            //
             this._deliverOnStartup.Changed = false;
             this._deliverOnStartup.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._deliverOnStartup.InvertValue = false;
@@ -204,18 +203,18 @@ namespace JetBrains.Omea.OutlookPlugin
             this._deliverOnStartup.Size = new System.Drawing.Size(396, 24);
             this._deliverOnStartup.TabIndex = 2;
             this._deliverOnStartup.Text = "Send/&receive mail on Omea startup.";
-            // 
+            //
             // label2
-            // 
+            //
             this.label2.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label2.Location = new System.Drawing.Point(284, 56);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(68, 16);
             this.label2.TabIndex = 8;
             this.label2.Text = "minute(s)";
-            // 
+            //
             // _sendReceiveTimeout
-            // 
+            //
             this._sendReceiveTimeout.Changed = false;
             this._sendReceiveTimeout.Location = new System.Drawing.Point(236, 52);
             this._sendReceiveTimeout.Maximum = 1000;
@@ -223,10 +222,10 @@ namespace JetBrains.Omea.OutlookPlugin
             this._sendReceiveTimeout.Name = "_sendReceiveTimeout";
             this._sendReceiveTimeout.Size = new System.Drawing.Size(44, 20);
             this._sendReceiveTimeout.TabIndex = 7;
-            // 
+            //
             // _showEmbedPics
-            // 
-            this._showEmbedPics.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._showEmbedPics.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._showEmbedPics.Changed = false;
             this._showEmbedPics.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -236,38 +235,38 @@ namespace JetBrains.Omea.OutlookPlugin
             this._showEmbedPics.Size = new System.Drawing.Size(400, 20);
             this._showEmbedPics.TabIndex = 12;
             this._showEmbedPics.Text = "Show &embedded pictures";
-            // 
+            //
             // groupBox4
-            // 
-            this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox4.Location = new System.Drawing.Point(60, 4);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(344, 8);
             this.groupBox4.TabIndex = 11;
             this.groupBox4.TabStop = false;
-            // 
+            //
             // label6
-            // 
+            //
             this.label6.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label6.Location = new System.Drawing.Point(0, 4);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(56, 16);
             this.label6.TabIndex = 10;
             this.label6.Text = "Security";
-            // 
+            //
             // groupBox3
-            // 
-            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox3.Location = new System.Drawing.Point(60, 48);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(344, 8);
             this.groupBox3.TabIndex = 10;
             this.groupBox3.TabStop = false;
-            // 
+            //
             // _markAsReadOnReply
-            // 
+            //
             this._markAsReadOnReply.Changed = false;
             this._markAsReadOnReply.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._markAsReadOnReply.InvertValue = false;
@@ -276,9 +275,9 @@ namespace JetBrains.Omea.OutlookPlugin
             this._markAsReadOnReply.Size = new System.Drawing.Size(300, 24);
             this._markAsReadOnReply.TabIndex = 4;
             this._markAsReadOnReply.Text = "&Mark messages as read on reply and forward";
-            // 
+            //
             // _setCategoryFromContactWhenEmailArrived
-            // 
+            //
             this._setCategoryFromContactWhenEmailArrived.Changed = false;
             this._setCategoryFromContactWhenEmailArrived.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._setCategoryFromContactWhenEmailArrived.InvertValue = false;
@@ -287,9 +286,9 @@ namespace JetBrains.Omea.OutlookPlugin
             this._setCategoryFromContactWhenEmailArrived.Size = new System.Drawing.Size(300, 24);
             this._setCategoryFromContactWhenEmailArrived.TabIndex = 4;
             this._setCategoryFromContactWhenEmailArrived.Text = "Assign sender's categories to received mail";
-            // 
+            //
             // _setCategoryFromContactWhenEmailSent
-            // 
+            //
             this._setCategoryFromContactWhenEmailSent.Changed = false;
             this._setCategoryFromContactWhenEmailSent.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._setCategoryFromContactWhenEmailSent.InvertValue = false;
@@ -298,9 +297,9 @@ namespace JetBrains.Omea.OutlookPlugin
             this._setCategoryFromContactWhenEmailSent.Size = new System.Drawing.Size(300, 24);
             this._setCategoryFromContactWhenEmailSent.TabIndex = 4;
             this._setCategoryFromContactWhenEmailSent.Text = "Assign recipients' categories to sent mail";
-            // 
+            //
             // panel2
-            // 
+            //
             this.panel2.Controls.Add(this.label4);
             this.panel2.Controls.Add(this.groupBox3);
             this.panel2.Controls.Add(this._markAsReadOnReply);
@@ -314,9 +313,9 @@ namespace JetBrains.Omea.OutlookPlugin
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(404, 140);
             this.panel2.TabIndex = 11;
-            // 
+            //
             // label4
-            // 
+            //
             this.label4.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label4.Location = new System.Drawing.Point(0, 48);
             this.label4.Name = "label4";
@@ -325,10 +324,10 @@ namespace JetBrains.Omea.OutlookPlugin
             this.label4.Text = "Other";
 
             #region Group Font Attributes
-			// 
+			//
 			// _grpFontChars
-			// 
-			this._grpFontChars.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			//
+			this._grpFontChars.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
 				| System.Windows.Forms.AnchorStyles.Right)));
 			this._grpFontChars.Controls.Add(_chkOverrideFont);
 			this._grpFontChars.Controls.Add(_lblFontFamily);
@@ -343,10 +342,10 @@ namespace JetBrains.Omea.OutlookPlugin
 			this._grpFontChars.TabIndex = 0;
 			this._grpFontChars.TabStop = false;
 			this._grpFontChars.Text = "Mail Font Settings";
-			// 
+			//
 			// _chkOverride
-			// 
-			this._chkOverrideFont.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			//
+			this._chkOverrideFont.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
 				| System.Windows.Forms.AnchorStyles.Right)));
 			this._chkOverrideFont.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this._chkOverrideFont.Location = new System.Drawing.Point(8, 16);
@@ -355,9 +354,9 @@ namespace JetBrains.Omea.OutlookPlugin
 			this._chkOverrideFont.TabIndex = 1;
 			this._chkOverrideFont.Text = "Override common settings";
             this._chkOverrideFont.CheckedChanged += new EventHandler(_chkOverrideFont_CheckedChanged);
-			// 
+			//
 			// _lblFontFamily
-			// 
+			//
 			this._lblFontFamily.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this._lblFontFamily.Location = new System.Drawing.Point(16, 45);
 			this._lblFontFamily.Name = "_lblFontFamily";
@@ -365,9 +364,9 @@ namespace JetBrains.Omea.OutlookPlugin
 			this._lblFontFamily.TabIndex = 2;
 			this._lblFontFamily.Text = "F&ont:";
 			this._lblFontFamily.UseMnemonic = true;
-            // 
+            //
             // _txtFont
-            // 
+            //
             this._txtFont.Anchor = (System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left);
             this._txtFont.Location = new System.Drawing.Point(65, 41);
             this._txtFont.Name = "_txtFont";
@@ -375,9 +374,9 @@ namespace JetBrains.Omea.OutlookPlugin
             this._txtFont.TabIndex = 3;
             this._txtFont.ReadOnly = true;
             this._txtFont.Enabled = false;
-			// 
+			//
 			// _btnChangeFont
-			// 
+			//
 			this._btnChangeFont.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)));
 			this._btnChangeFont.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this._btnChangeFont.Location = new System.Drawing.Point(210, 40);
@@ -386,9 +385,9 @@ namespace JetBrains.Omea.OutlookPlugin
 			this._btnChangeFont.Text = "&Change...";
 			this._btnChangeFont.Enabled = false;
 			this._btnChangeFont.Click += new EventHandler(_btnChangeFont_Click);
-			// 
+			//
 			// _lblNote
-			// 
+			//
 			this._lblNote.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this._lblNote.Location = new System.Drawing.Point(16, 72);
 			this._lblNote.Name = "_lblNote";
@@ -399,10 +398,10 @@ namespace JetBrains.Omea.OutlookPlugin
             #endregion Group Font Attributes
 
             #region Group Exp Rules
-            // 
+            //
             // groupExpRules
-            // 
-            this._grpExpRules.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._grpExpRules.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._grpExpRules.Controls.Add(this.labelDefaultExpRule);
             this._grpExpRules.Controls.Add(this.buttonEditExpRuleForDeleted);
@@ -418,18 +417,18 @@ namespace JetBrains.Omea.OutlookPlugin
             this._grpExpRules.TabIndex = 13;
             this._grpExpRules.TabStop = false;
             this._grpExpRules.Text = "Autoexpiration Rules";
-            // 
+            //
             // labelDefaultExpRule
-            // 
+            //
             this.labelDefaultExpRule.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.labelDefaultExpRule.Location = new System.Drawing.Point(8, 23);
             this.labelDefaultExpRule.Name = "labelDefaultExpRule";
             this.labelDefaultExpRule.Size = new System.Drawing.Size(175, 16);
             this.labelDefaultExpRule.TabIndex = 0;
             this.labelDefaultExpRule.Text = "Default rule for all Outlook folders:";
-            // 
+            //
             // buttonEditExpRuleForDeleted
-            // 
+            //
             this.buttonEditExpRuleForDeleted.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonEditExpRuleForDeleted.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.buttonEditExpRuleForDeleted.Location = new System.Drawing.Point(220, 48);
@@ -437,9 +436,9 @@ namespace JetBrains.Omea.OutlookPlugin
             this.buttonEditExpRuleForDeleted.TabIndex = 4;
             this.buttonEditExpRuleForDeleted.Text = "E&dit...";
             this.buttonEditExpRuleForDeleted.Click += new System.EventHandler(this.buttonEditExpRuleForDeleted_Click);
-            // 
+            //
             // buttonClearDefault
-            // 
+            //
             this.buttonClearDefault.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonClearDefault.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.buttonClearDefault.Location = new System.Drawing.Point(310, 20);
@@ -447,18 +446,18 @@ namespace JetBrains.Omea.OutlookPlugin
             this.buttonClearDefault.TabIndex = 2;
             this.buttonClearDefault.Text = "Clear";
             this.buttonClearDefault.Click += new System.EventHandler(this.buttonClearDefault_Click);
-            // 
+            //
             // labelExpRuleForDeleted
-            // 
+            //
             this.labelExpRuleForDeleted.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.labelExpRuleForDeleted.Location = new System.Drawing.Point(8, 51);
             this.labelExpRuleForDeleted.Name = "labelExpRuleForDeleted";
             this.labelExpRuleForDeleted.Size = new System.Drawing.Size(180, 16);
             this.labelExpRuleForDeleted.TabIndex = 3;
             this.labelExpRuleForDeleted.Text = "Rule for deleted Emails:";
-            // 
+            //
             // buttonEditDefExpRule
-            // 
+            //
             this.buttonEditDefExpRule.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonEditDefExpRule.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.buttonEditDefExpRule.Location = new System.Drawing.Point(220, 20);
@@ -466,9 +465,9 @@ namespace JetBrains.Omea.OutlookPlugin
             this.buttonEditDefExpRule.TabIndex = 1;
             this.buttonEditDefExpRule.Text = "&Edit...";
             this.buttonEditDefExpRule.Click += new System.EventHandler(this.buttonEditDefExpRule_Click);
-            // 
+            //
             // buttonClearDeleted
-            // 
+            //
             this.buttonClearDeleted.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonClearDeleted.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.buttonClearDeleted.Location = new System.Drawing.Point(310, 48);
@@ -478,9 +477,9 @@ namespace JetBrains.Omea.OutlookPlugin
             this.buttonClearDeleted.Click += new System.EventHandler(this.buttonClearDeleted_Click);
             #endregion Group Exp Rules
 
-            // 
+            //
             // OutlookOptionsPane
-            // 
+            //
             this.AutoScroll = true;
             this.AutoScrollMinSize = new System.Drawing.Size(352, 184);
             this.Controls.Add(this.panel2);
@@ -505,7 +504,7 @@ namespace JetBrains.Omea.OutlookPlugin
         {
             panel2.Visible = !IsStartupPane;
             _syncMode.Visible = !IsStartupPane;
-            _syncMode.SetData( new string[]{ MailSyncMode.All, MailSyncMode.Fresh, MailSyncMode.None }, 
+            _syncMode.SetData( new string[]{ MailSyncMode.All, MailSyncMode.Fresh, MailSyncMode.None },
                 new string[]{ "All folders", "Only folders with new e-mail", "None" } );
             _syncMode.SetSetting( Settings.SyncMode );
             _showEmbedPics.SetSetting( Settings.ShowEmbedPics );
@@ -516,7 +515,7 @@ namespace JetBrains.Omea.OutlookPlugin
             _scheduleDeliver.SetSetting( Settings.ScheduleDeliver );
             _sendReceiveTimeout.SetSetting( Settings.SendReceiveTimeout );
             _sendReceiveTimeout.Enabled = _scheduleDeliver.Checked;
-            
+
             ReadFontCharacteristics();
 
             _grpFontChars.Visible = !IsStartupPane;

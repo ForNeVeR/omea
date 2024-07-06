@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Globalization;
@@ -10,10 +9,10 @@ using JetBrains.DataStructures;
 namespace JetBrains.Omea.Base
 {
     public class RFC822DateParser
-    {   
+    {
         private static HashMap _timeZones = new HashMap();
         private static CultureInfo _cultureInfo = new CultureInfo( "en-us" );
-        
+
         static RFC822DateParser()
         {
             _timeZones ["UT"] = 0;
@@ -47,12 +46,12 @@ namespace JetBrains.Omea.Base
 
             // strip weekdat
             int weekdayIndex = dateStr.IndexOf( "," );
-            if ( weekdayIndex == 3 && Char.IsLetter( dateStr, 0 ) && 
+            if ( weekdayIndex == 3 && Char.IsLetter( dateStr, 0 ) &&
                 Char.IsLetter( dateStr, 1 ) && Char.IsLetter( dateStr, 2 ) )
             {
                 dateStr = dateStr.Substring( 4 ).Trim();
             }
-            
+
             int tzHours   = 0;
             int tzMinutes = 0;
             int pos = dateStr.LastIndexOf( ' ' );
@@ -69,7 +68,7 @@ namespace JetBrains.Omea.Base
                             tzHours = (int) entry.Value;
                         }
                     }
-                    else 
+                    else
                     {
                         int tzModifier = (tz [0] == '-') ? 1 : -1;
                         tzHours = Int32.Parse( tz.Substring( 1, 2 ) ) * tzModifier;

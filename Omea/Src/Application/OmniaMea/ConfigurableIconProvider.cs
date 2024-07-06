@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using JetBrains.Omea.OpenAPI;
@@ -18,7 +17,7 @@ namespace JetBrains.Omea
      * IResourceIconProvider implementation based on an XML configuration
      * section.
      */
-    
+
     internal class ConfigurableIconProvider: IResourceIconProvider, IOverlayIconProvider
 	{
         private class ResourceIconCondition
@@ -61,17 +60,17 @@ namespace JetBrains.Omea
             		case CondType.PropValue: return res.GetPropText( _propName ) == _propValue;
                     case CondType.HasProp:   return res.HasProp( _propName );
                     case CondType.HasInLink: return res.GetLinksTo( null, _propName ).Count > 0;
-                    default: return false;                   
+                    default: return false;
             	}
             }
         }
-        
+
         private class ResourceIconInstance
         {
             internal string _name;
             internal bool _isDefault;
             internal ArrayList _conditions = new ArrayList();
-            
+
             internal ResourceIconInstance( XmlNode node )
             {
                 _name = XmlTools.GetRequiredAttribute( node, "name" );
@@ -96,7 +95,7 @@ namespace JetBrains.Omea
                 return true;
             }
         }
-        
+
         private class ResourceTypeIconConfiguration
         {
             internal string _resType;
@@ -104,7 +103,7 @@ namespace JetBrains.Omea
             private ArrayList _overlayIconInstances = new ArrayList();
             private ResourceIconInstance _uncondIconInstance;
             private ResourceIconInstance _defaultIconInstance;
-            
+
             internal ResourceTypeIconConfiguration( XmlNode node )
             {
                 _resType = XmlTools.GetRequiredAttribute( node, "type" );
@@ -201,7 +200,7 @@ namespace JetBrains.Omea
         private string _defaultNamespace;
         private Hashtable _resourceTypeMap = new Hashtable();  // resource type (string) -> ResourceTypeIconConfiguration
         private Hashtable _iconMap = new Hashtable();          // icon name -> icon
-        
+
         public ConfigurableIconProvider( Assembly pluginAssembly, XmlNode node )
 		{
             _pluginAssembly = pluginAssembly;
@@ -255,7 +254,7 @@ namespace JetBrains.Omea
             {
                 return null;
             }
-            
+
             Icon[] overlayIcons = new Icon [overlayIconNames.Length];
             for( int i=0; i<overlayIconNames.Length; i++ )
             {

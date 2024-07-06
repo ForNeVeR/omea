@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using JetBrains.Omea.Base;
@@ -142,7 +141,7 @@ namespace JetBrains.Omea.RSSPlugin
             IFilterRegistry  fMgr = Core.FilterRegistry;
             IResource       myResType = Core.ResourceStore.FindUniqueResource( "ResourceType", "Name", "RSSItem" );
 
-            res = fMgr.CreateStandardCondition( AuthorWrotePostName, AuthorWrotePostDeep, contactType, 
+            res = fMgr.CreateStandardCondition( AuthorWrotePostName, AuthorWrotePostDeep, contactType,
                                                 "LinkedResourcesOfType", ConditionOp.In, myResType.ToResourceList() );
             fMgr.AssociateConditionWithGroup( res, "Address and Contact Conditions" );
 
@@ -287,7 +286,7 @@ namespace JetBrains.Omea.RSSPlugin
                 res.SetProp( "DeepName", RSSViewsConstructor.DownloadEnclosureDeep );
 
             //  Tray Icon Rules and Notifications
-            Core.TrayIconManager.RegisterTrayIconRule( "Unread RSS/ATOM Posts", applType, new IResource[] { fMgr.Std.ResourceIsUnread }, 
+            Core.TrayIconManager.RegisterTrayIconRule( "Unread RSS/ATOM Posts", applType, new IResource[] { fMgr.Std.ResourceIsUnread },
                                                        null, RSSPlugin.LoadIconFromAssembly( "RSSItemUnread.ico" ) );
         }
 

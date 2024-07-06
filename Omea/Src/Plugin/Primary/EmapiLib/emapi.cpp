@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 #pragma unmanaged
 
@@ -54,11 +53,11 @@ LPSTR LoadErrorText( DWORD dwLastError )
     DWORD dwFormatFlags = FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_IGNORE_INSERTS | FORMAT_MESSAGE_FROM_SYSTEM;
 
     //
-    // If dwLastError is in the network range, 
+    // If dwLastError is in the network range,
     //  load the message source.
     //
 
-    if(dwLastError >= NERR_BASE && dwLastError <= MAX_NERR) 
+    if(dwLastError >= NERR_BASE && dwLastError <= MAX_NERR)
     {
         hModule = LoadLibraryEx( TEXT("netmsg.dll"), NULL, LOAD_LIBRARY_AS_DATAFILE );
 
@@ -69,12 +68,12 @@ LPSTR LoadErrorText( DWORD dwLastError )
     }
 
     //
-    // Call FormatMessage() to allow for message 
-    //  text to be acquired from the system 
+    // Call FormatMessage() to allow for message
+    //  text to be acquired from the system
     //  or from the supplied module handle.
     //
 
-    dwBufferLength = FormatMessageA( 
+    dwBufferLength = FormatMessageA(
         dwFormatFlags,
         hModule, // module to get message from (NULL == system)
         dwLastError,

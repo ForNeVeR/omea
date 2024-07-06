@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.IO;
@@ -114,7 +113,7 @@ namespace JetBrains.Omea.Containers
         private int _keySize;
         private bool _modified;
         private int _rightBound;
-        
+
         private const int _deferredArrayStartCapacity = 4;
         private const int _deferredArrayMaximumSize = 256;
         private ArrayList _deferredDeletions = new ArrayList( _deferredArrayStartCapacity );
@@ -420,7 +419,7 @@ namespace JetBrains.Omea.Containers
             {
                 return null;
             }
-            
+
             index = l;
 
             IFixedLengthKey mKey = null;
@@ -456,7 +455,7 @@ namespace JetBrains.Omea.Containers
             {
                 return null;
             }
-            
+
             index = r;
 
             IFixedLengthKey mKey = null;

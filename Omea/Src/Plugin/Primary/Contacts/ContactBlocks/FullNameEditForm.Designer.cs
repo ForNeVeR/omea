@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 namespace ContactsPlugin.ContactBlocks
 {
@@ -46,9 +45,9 @@ namespace ContactsPlugin.ContactBlocks
             this._btnOK = new System.Windows.Forms.Button();
             this._btnCancel = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
+            //
             // _lblTitle
-            // 
+            //
             this._lblTitle.AutoSize = true;
             this._lblTitle.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._lblTitle.Location = new System.Drawing.Point(8, 8);
@@ -56,9 +55,9 @@ namespace ContactsPlugin.ContactBlocks
             this._lblTitle.Size = new System.Drawing.Size(31, 13);
             this._lblTitle.TabIndex = 0;
             this._lblTitle.Text = "&Title:";
-            // 
+            //
             // _lblFirstName
-            // 
+            //
             this._lblFirstName.AutoSize = true;
             this._lblFirstName.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._lblFirstName.Location = new System.Drawing.Point(8, 30);
@@ -66,9 +65,9 @@ namespace ContactsPlugin.ContactBlocks
             this._lblFirstName.Size = new System.Drawing.Size(62, 13);
             this._lblFirstName.TabIndex = 0;
             this._lblFirstName.Text = "&First Name:";
-            // 
+            //
             // _lblMidName
-            // 
+            //
             this._lblMidName.AutoSize = true;
             this._lblMidName.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._lblMidName.Location = new System.Drawing.Point(8, 53);
@@ -76,9 +75,9 @@ namespace ContactsPlugin.ContactBlocks
             this._lblMidName.Size = new System.Drawing.Size(71, 13);
             this._lblMidName.TabIndex = 0;
             this._lblMidName.Text = "&Middle Name:";
-            // 
+            //
             // _lblLastName
-            // 
+            //
             this._lblLastName.AutoSize = true;
             this._lblLastName.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._lblLastName.Location = new System.Drawing.Point(8, 75);
@@ -86,9 +85,9 @@ namespace ContactsPlugin.ContactBlocks
             this._lblLastName.Size = new System.Drawing.Size(61, 13);
             this._lblLastName.TabIndex = 0;
             this._lblLastName.Text = "&Last Name:";
-            // 
+            //
             // _lblSuffix
-            // 
+            //
             this._lblSuffix.AutoSize = true;
             this._lblSuffix.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._lblSuffix.Location = new System.Drawing.Point(8, 97);
@@ -96,54 +95,54 @@ namespace ContactsPlugin.ContactBlocks
             this._lblSuffix.Size = new System.Drawing.Size(39, 13);
             this._lblSuffix.TabIndex = 0;
             this._lblSuffix.Text = "&Suffix:";
-            // 
+            //
             // _boxTitle
-            // 
+            //
             this._boxTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this._boxTitle.Location = new System.Drawing.Point(82, 5);
             this._boxTitle.Name = "_boxTitle";
             this._boxTitle.Size = new System.Drawing.Size(192, 21);
             this._boxTitle.TabIndex = 1;
-            // 
+            //
             // _boxFirstName
-            // 
+            //
             this._boxFirstName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this._boxFirstName.Location = new System.Drawing.Point(82, 27);
             this._boxFirstName.Name = "_boxFirstName";
             this._boxFirstName.Size = new System.Drawing.Size(192, 21);
             this._boxFirstName.TabIndex = 1;
-            // 
+            //
             // _boxMidName
-            // 
+            //
             this._boxMidName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this._boxMidName.Location = new System.Drawing.Point(82, 49);
             this._boxMidName.Name = "_boxMidName";
             this._boxMidName.Size = new System.Drawing.Size(192, 21);
             this._boxMidName.TabIndex = 1;
-            // 
+            //
             // _boxLastName
-            // 
+            //
             this._boxLastName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this._boxLastName.Location = new System.Drawing.Point(82, 71);
             this._boxLastName.Name = "_boxLastName";
             this._boxLastName.Size = new System.Drawing.Size(192, 21);
             this._boxLastName.TabIndex = 1;
-            // 
+            //
             // _boxSuffix
-            // 
+            //
             this._boxSuffix.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this._boxSuffix.Location = new System.Drawing.Point(82, 93);
             this._boxSuffix.Name = "_boxSuffix";
             this._boxSuffix.Size = new System.Drawing.Size(192, 21);
             this._boxSuffix.TabIndex = 1;
-            // 
+            //
             // _btnOK
-            // 
+            //
             this._btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this._btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this._btnOK.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -154,9 +153,9 @@ namespace ContactsPlugin.ContactBlocks
             this._btnOK.Text = "OK";
             this._btnOK.UseVisualStyleBackColor = true;
             this._btnOK.Click += new System.EventHandler(this._btnOK_Click);
-            // 
+            //
             // _btnCancel
-            // 
+            //
             this._btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this._btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this._btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -166,9 +165,9 @@ namespace ContactsPlugin.ContactBlocks
             this._btnCancel.TabIndex = 3;
             this._btnCancel.Text = "Cancel";
             this._btnCancel.UseVisualStyleBackColor = true;
-            // 
+            //
             // FullNameEditForm
-            // 
+            //
             this.AcceptButton = this._btnOK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;

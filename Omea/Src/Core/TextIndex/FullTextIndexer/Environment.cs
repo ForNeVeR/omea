@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System.Collections;
 using System.IO;
@@ -33,7 +32,7 @@ namespace JetBrains.Omea.TextIndex
                 {
                     ISettingStore store;
                     int textIndexCacheSize = 2 * 1024 * 1024;
-                    if( ICore.Instance != null && ( store = Core.SettingStore ) != null ) 
+                    if( ICore.Instance != null && ( store = Core.SettingStore ) != null )
                     {
                         textIndexCacheSize = store.ReadInt( "Omea", "TextIndexCacheSize", textIndexCacheSize );
                         if( textIndexCacheSize == 1024 * 1024 )
@@ -75,7 +74,7 @@ namespace JetBrains.Omea.TextIndex
         {   get { return Path.Combine( WorkDir, "_term.batch" ); }     }
 
         public static bool IsDictionaryPresent( ArrayList absentFiles )
-        {   
+        {
             string[] dicts = DictionaryFileNames;
             bool present = new FileInfo( MAScriptFileName ).Exists;
             if( !present )
@@ -98,23 +97,23 @@ namespace JetBrains.Omea.TextIndex
 
         public static DictionaryServer DictionaryServer
         {
-            get 
-            { 
+            get
+            {
                 if( _dictionaryServer == null )
-                    _dictionaryServer = new DictionaryServer( WordformsFileName, UnchangeablesList, 
+                    _dictionaryServer = new DictionaryServer( WordformsFileName, UnchangeablesList,
                                                               StopWordsFileName, DictionaryFileNames );
-                return _dictionaryServer; 
+                return _dictionaryServer;
             }
         }
 
         public static ScriptMorphoAnalyzer ScriptMorphoAnalyzer
         {
-            get 
+            get
             {
                 if ( _morphAn == null )
                     _morphAn = new ScriptMorphoAnalyzer( MAScriptFileName );
 
-                return _morphAn; 
+                return _morphAn;
             }
         }
 
@@ -143,7 +142,7 @@ namespace JetBrains.Omea.TextIndex
         private static DictionaryServer     _dictionaryServer;
         private static ScriptMorphoAnalyzer _morphAn;
         private static LexemeConstructor    _lexemeConstructor;
-        
+
         private static string _strWorkDir = ".";
         private static string _strDataDir = "data";
 

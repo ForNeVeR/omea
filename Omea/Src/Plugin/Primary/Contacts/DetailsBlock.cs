@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using JetBrains.Omea.OpenAPI;
@@ -23,7 +22,7 @@ namespace JetBrains.Omea.ContactsPlugin
         private PropertyEditor _homePage;
         private DatePickerCtrl _birthday;
         private JetLinkLabel _homePageLinkLabel;
-		/// <summary> 
+		/// <summary>
 		/// Required designer variable.
 		/// </summary>
 		private System.ComponentModel.Container components = null;
@@ -40,7 +39,7 @@ namespace JetBrains.Omea.ContactsPlugin
             return new DetailsBlock();
         }
 
-		/// <summary> 
+		/// <summary>
 		/// Clean up any resources being used.
 		/// </summary>
 		protected override void Dispose( bool disposing )
@@ -56,8 +55,8 @@ namespace JetBrains.Omea.ContactsPlugin
 		}
 
 		#region Component Designer generated code
-		/// <summary> 
-		/// Required method for Designer support - do not modify 
+		/// <summary>
+		/// Required method for Designer support - do not modify
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent()
@@ -69,11 +68,11 @@ namespace JetBrains.Omea.ContactsPlugin
             this._birthday = new JetBrains.Omea.GUIControls.DatePickerCtrl();
             this.labelBirthdayDate = new System.Windows.Forms.Label();
             this.SuspendLayout();
-            // 
+            //
             // _homePageLinkLabel
-            // 
+            //
             this._homePageLinkLabel.AllowDrop = true;
-            this._homePageLinkLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this._homePageLinkLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._homePageLinkLabel.Cursor = System.Windows.Forms.Cursors.Hand;
             this._homePageLinkLabel.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(204)));
@@ -83,9 +82,9 @@ namespace JetBrains.Omea.ContactsPlugin
             this._homePageLinkLabel.Size = new System.Drawing.Size(96, 16);
             this._homePageLinkLabel.TabIndex = 24;
             this._homePageLinkLabel.Click += new System.EventHandler(this._homePageLinkLabel_Click);
-            // 
+            //
             // label10
-            // 
+            //
             this.labelBirthday.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.labelBirthday.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(204)));
             this.labelBirthday.Location = new System.Drawing.Point(4, 4);
@@ -93,9 +92,9 @@ namespace JetBrains.Omea.ContactsPlugin
             this.labelBirthday.Size = new System.Drawing.Size(64, 16);
             this.labelBirthday.TabIndex = 23;
             this.labelBirthday.Text = "Birthday:";
-            // 
+            //
             // label9
-            // 
+            //
             this.labelHomePage.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.labelHomePage.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(204)));
             this.labelHomePage.Location = new System.Drawing.Point(4, 28);
@@ -103,10 +102,10 @@ namespace JetBrains.Omea.ContactsPlugin
             this.labelHomePage.Size = new System.Drawing.Size(72, 16);
             this.labelHomePage.TabIndex = 21;
             this.labelHomePage.Text = "Home page:";
-            // 
+            //
             // _homePage
-            // 
-            this._homePage.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._homePage.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._homePage.ForeColor = System.Drawing.SystemColors.HotTrack;
             this._homePage.Location = new System.Drawing.Point(92, 28);
@@ -115,10 +114,10 @@ namespace JetBrains.Omea.ContactsPlugin
             this._homePage.ReadOnly = false;
             this._homePage.Size = new System.Drawing.Size(104, 24);
             this._homePage.TabIndex = 7;
-            // 
+            //
             // _birthday
-            // 
-            this._birthday.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._birthday.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._birthday.CurrentDate = new System.DateTime(((long)(0)));
             this._birthday.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(204)));
@@ -126,9 +125,9 @@ namespace JetBrains.Omea.ContactsPlugin
             this._birthday.Name = "_birthday";
             this._birthday.Size = new System.Drawing.Size(104, 24);
             this._birthday.TabIndex = 5;
-            // 
+            //
             // _lblBirthday
-            // 
+            //
             this.labelBirthdayDate.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.labelBirthdayDate.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(204)));
             this.labelBirthdayDate.Location = new System.Drawing.Point(92, 4);
@@ -137,9 +136,9 @@ namespace JetBrains.Omea.ContactsPlugin
             this.labelBirthdayDate.TabIndex = 25;
             this.labelBirthdayDate.Text = "label1";
             this.labelBirthdayDate.Visible = false;
-            // 
+            //
             // DetailsBlock
-            // 
+            //
             this.Controls.Add(this.labelBirthdayDate);
             this.Controls.Add(this._homePageLinkLabel);
             this.Controls.Add(this.labelBirthday);
@@ -169,7 +168,7 @@ namespace JetBrains.Omea.ContactsPlugin
                 Controls.Add( _homePage );
             }
             _homePage.Text = homepage;
-            
+
             DateTime birthDate = _contact.GetDateProp( ContactManager._propBirthday );
             _birthday.CurrentDate = birthDate;
         }

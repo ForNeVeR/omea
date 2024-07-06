@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 namespace JetBrains.Interop.WinApi
 {
@@ -11,7 +10,7 @@ namespace JetBrains.Interop.WinApi
 	public enum GetAncestorFlags : uint
 	{
 		/// <summary>
-		/// Retrieves the parent window. This does not include the owner, as it does with the GetParent function. 
+		/// Retrieves the parent window. This does not include the owner, as it does with the GetParent function.
 		/// </summary>
 		GA_PARENT = 1,
 

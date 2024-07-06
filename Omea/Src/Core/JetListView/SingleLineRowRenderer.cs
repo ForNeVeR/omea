@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -26,7 +25,7 @@ namespace JetBrains.JetListViewLibrary
         private int _minColWidth = 40;
         private HashMap _sizeToContentItemWidths = new HashMap();  // JLVColumn -> IntHashTable<object, width>
 
-	    public SingleLineRowRenderer( JetListViewColumnCollection columnCollection, 
+	    public SingleLineRowRenderer( JetListViewColumnCollection columnCollection,
             JetListViewNodeCollection nodeCollection ) : base( columnCollection )
 	    {
 	        _columnCollection = columnCollection;
@@ -232,7 +231,7 @@ namespace JetBrains.JetListViewLibrary
             RecalcColumnWidth( RecalcOnNodeAdded, node );
 	    }
 
-	    private void RecalcOnNodeAdded( JetListViewColumn col, JetListViewColumn indentCol, int fixedWidth, 
+	    private void RecalcOnNodeAdded( JetListViewColumn col, JetListViewColumn indentCol, int fixedWidth,
             JetListViewNode paramNode )
 	    {
             int desiredWidth = GetDesiredWidthIndented( col, indentCol, paramNode, fixedWidth );
@@ -297,7 +296,7 @@ namespace JetBrains.JetListViewLibrary
             {
                 return;
             }
-            if ( (addedNodes != null || removedNodes != null || changedNodes != null) && 
+            if ( (addedNodes != null || removedNodes != null || changedNodes != null) &&
                 (removedNodes == null || removedNodes.Count == 0 ) )
             {
                 if ( addedNodes != null )
@@ -355,7 +354,7 @@ namespace JetBrains.JetListViewLibrary
                 if ( col.Width == desiredWidth )
                 {
                     RecalcAll( col, indentCol, fixedWidth, null );
-                    break;                    
+                    break;
                 }
             }
         }
@@ -391,7 +390,7 @@ namespace JetBrains.JetListViewLibrary
             }
         }
 
-	    private int GetDesiredWidthIndented( JetListViewColumn col, JetListViewColumn indentCol, 
+	    private int GetDesiredWidthIndented( JetListViewColumn col, JetListViewColumn indentCol,
             JetListViewNode node, int fixedWidth )
 	    {
 	        int result = col.GetDesiredWidth( node.Data ) + fixedWidth;
@@ -433,7 +432,7 @@ namespace JetBrains.JetListViewLibrary
                 }
                 if ( !isIndent )
                 {
-                    result += col.Width;                    
+                    result += col.Width;
                 }
 	        }
 	        return result;
@@ -531,12 +530,12 @@ namespace JetBrains.JetListViewLibrary
             Rectangle rcFocus = Rectangle.Empty;
             bool focusRow = false, dropTargetRow = false;
 
-            if ( ( (state & RowState.Focused) != 0 && 
+            if ( ( (state & RowState.Focused) != 0 &&
                 _searchHighlightText != null && _searchHighlightText.Length > 0) )
             {
                 state |= RowState.IncSearchMatch;
             }
-            
+
             if ( _fullRowSelect )
             {
                 rcFocus = GetFocusRect( itemNode, rc );
@@ -554,7 +553,7 @@ namespace JetBrains.JetListViewLibrary
                 ClearRowSelectState( ref state, ref focusRow, ref dropTargetRow );
                 if ( _fullRowSelect )
                 {
-                    if ( (state & RowState.IncSearchMatch) != 0 && firstValueColumnFound && 
+                    if ( (state & RowState.IncSearchMatch) != 0 && firstValueColumnFound &&
                         ((state & RowState.ActiveSelected) != 0) )
                     {
                         state &= ~RowState.ActiveSelected;
@@ -608,7 +607,7 @@ namespace JetBrains.JetListViewLibrary
                     selWidth -= fixedColEnumerator.CurrentWidth;
                 }
 	        }
-    
+
 	        rcFocus = new Rectangle( curX, rc.Top, selWidth, rc.Height );
 	        return rcFocus;
 	    }
@@ -657,7 +656,7 @@ namespace JetBrains.JetListViewLibrary
                 {
                     return new Rectangle( curX, 0, enumerator.CurrentWidth, _rowHeight );
                 }
-                    
+
                 curX += enumerator.CurrentWidth;
             }
             throw new ArgumentException( "Column not found in list", "col" );
@@ -921,7 +920,7 @@ namespace JetBrains.JetListViewLibrary
             }
             finally
             {
-                Cursor.Current = Cursors.Default;                
+                Cursor.Current = Cursors.Default;
             }
         }
 

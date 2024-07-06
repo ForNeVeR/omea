@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System.Windows.Forms;
 using JetBrains.Omea.GUIControls;
@@ -44,7 +43,7 @@ namespace JetBrains.Omea.Favorites
         {
             FavoritesPropertiesForm theForm = new FavoritesPropertiesForm();
             selectedResources.Sort( "ID" );
-            
+
             content = Core.ResourceStore.EmptyResourceList;
             foreach( IResource res in selectedResources )
             {
@@ -125,10 +124,10 @@ namespace JetBrains.Omea.Favorites
             this._unitBox = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this._hoursBox)).BeginInit();
             this.SuspendLayout();
-            // 
+            //
             // _updateCheckBox
-            // 
-            this._updateCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._updateCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._updateCheckBox.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._updateCheckBox.Location = new System.Drawing.Point(8, 8);
@@ -137,9 +136,9 @@ namespace JetBrains.Omea.Favorites
             this._updateCheckBox.TabIndex = 0;
             this._updateCheckBox.Text = "Download pages and notify me when they are updated every";
             this._updateCheckBox.CheckedChanged += new System.EventHandler(this._updateCheckBox_CheckedChanged);
-            // 
+            //
             // _hoursBox
-            // 
+            //
             this._hoursBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this._hoursBox.Enabled = false;
             this._hoursBox.Location = new System.Drawing.Point(380, 8);
@@ -163,12 +162,12 @@ namespace JetBrains.Omea.Favorites
                                                                     0,
                                                                     0,
                                                                     0});
-            // 
+            //
             // _favoritesListView
-            // 
+            //
             this._favoritesListView.AllowDrop = true;
-            this._favoritesListView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-                | System.Windows.Forms.AnchorStyles.Left) 
+            this._favoritesListView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._favoritesListView.CausesValidation = false;
             this._favoritesListView.FullRowSelect = true;
@@ -180,9 +179,9 @@ namespace JetBrains.Omea.Favorites
             this._favoritesListView.Size = new System.Drawing.Size(496, 85);
             this._favoritesListView.TabIndex = 3;
             this._favoritesListView.HeaderStyle = ColumnHeaderStyle.None;
-            // 
+            //
             // _cancelButton
-            // 
+            //
             this._cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this._cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this._cancelButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -191,9 +190,9 @@ namespace JetBrains.Omea.Favorites
             this._cancelButton.TabIndex = 5;
             this._cancelButton.Text = "Cancel";
             this._cancelButton.Click += new System.EventHandler(this._cancelButton_Click);
-            // 
+            //
             // _okButton
-            // 
+            //
             this._okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this._okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
             this._okButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -202,9 +201,9 @@ namespace JetBrains.Omea.Favorites
             this._okButton.TabIndex = 4;
             this._okButton.Text = "OK";
             this._okButton.Click += new System.EventHandler(this._okButton_Click);
-            // 
+            //
             // _fakeTextBox
-            // 
+            //
             this._fakeTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this._fakeTextBox.Enabled = false;
             this._fakeTextBox.Location = new System.Drawing.Point(380, 8);
@@ -213,9 +212,9 @@ namespace JetBrains.Omea.Favorites
             this._fakeTextBox.TabIndex = 6;
             this._fakeTextBox.Text = "";
             this._fakeTextBox.Visible = false;
-            // 
+            //
             // _unitBox
-            // 
+            //
             this._unitBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this._unitBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this._unitBox.Items.AddRange(new object[] {
@@ -226,9 +225,9 @@ namespace JetBrains.Omea.Favorites
             this._unitBox.Name = "_unitBox";
             this._unitBox.Size = new System.Drawing.Size(72, 21);
             this._unitBox.TabIndex = 2;
-            // 
+            //
             // FavoritesPropertiesForm
-            // 
+            //
             this.AcceptButton = this._okButton;
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
             this.CancelButton = this._cancelButton;
@@ -335,7 +334,7 @@ namespace JetBrains.Omea.Favorites
                 {
                     RecursivelyUpdateResourceList( ref list, child, stopOnFirst );
                 }
-            } 
+            }
             else
             {
                 resource = resource.GetLinkProp( "Source" );

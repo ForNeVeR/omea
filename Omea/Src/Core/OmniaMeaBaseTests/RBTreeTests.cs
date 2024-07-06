@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -60,7 +59,7 @@ namespace OmniaMeaBaseTests
                 Assert.AreEqual( i, node.Key );
             }
         }*/
-        
+
         [Test]
         public void SearchTest()
         {
@@ -103,10 +102,10 @@ namespace OmniaMeaBaseTests
             {
                 tree.RB_Insert( i );
             }
-            
+
             Assert.AreEqual( NUMBER, tree.Count );
             //Trace.WriteLine( "______________________________" );
-            
+
             try
             {
                 //Trace.WriteLine( "________delete 8______________________" );
@@ -132,7 +131,7 @@ namespace OmniaMeaBaseTests
                     //Assert.AreEqual( i, found );
                 }
             }
-            catch ( InvalidCastException ex ) 
+            catch ( InvalidCastException ex )
             {
                 Trace.WriteLine( ex.Message );
                 Trace.WriteLine( "______________________________" );

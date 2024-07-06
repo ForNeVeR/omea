@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -44,7 +43,7 @@ namespace JetBrains.Omea.OutlookPlugin
                 _startDate = Task.GetStartDate( message );
                 _startDate = _startDate.ToUniversalTime();
                 _remindDate = Task.GetRemindDate( message );
-                
+
                 _OMTaskId = Task.GetOMTaskID( message );
                 _reminderActive = Task.GetReminderActive( message );
                 _status = Task.GetStatus( message, false );
@@ -54,7 +53,7 @@ namespace JetBrains.Omea.OutlookPlugin
 
         public static void Do( JobPriority jobPriority, FolderDescriptor folder, IEMessage message, string entryID )
         {
-            if ( folder == null || folder.FolderIDs == null ) 
+            if ( folder == null || folder.FolderIDs == null )
             {
                 Tracer._Trace( "Cannot locate folder" );
                 return;

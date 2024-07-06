@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using JetBrains.Omea.PicoCore;
@@ -16,7 +15,7 @@ namespace GUIControlsTests
 	/**
      * Unit tests for the ResourceTreeView class.
      */
-    
+
     [TestFixture]
     public class ResourceTreeViewTests
 	{
@@ -34,7 +33,7 @@ namespace GUIControlsTests
             _treeView = new ResourceTreeView();
 
             _resourceTreeManager = _core.ResourceTreeManager as ResourceTreeManager;
-            
+
             _root = _resourceTreeManager.GetRootForType( "Folder" );
             _treeView.CreateControl();
 
@@ -42,7 +41,7 @@ namespace GUIControlsTests
             _storage.ResourceTypes.Register( "Person", "FirstName" );
             _storage.ResourceTypes.Register( "Folder", "Name", ResourceTypeFlags.ResourceContainer );
             _propParent = _storage.PropTypes.Register( "Parent", PropDataType.Link, PropTypeFlags.DirectedLink );
-            
+
             _treeView.ParentProperty = _propParent;
         }
 
@@ -108,7 +107,7 @@ namespace GUIControlsTests
             IResource folder = CreateResource( "Folder", "Name", "B", _root );
 
             _treeView.ProcessPendingUpdates();
-            
+
             IResource folder2 = _storage.NewResource( "Folder" );
             folder2.SetProp( "Name", "A" );
             folder2.AddLink( "Parent", _root );
@@ -178,7 +177,7 @@ namespace GUIControlsTests
         [Test] public void FilterAfterChange()
         {
             _treeView.AddNodeFilter( new TreeResourceNameFilter( "A") );
-            
+
             IResource person = CreateResource( "Person", "FirstName", "B", _root );
             _treeView.RootResource = _root;
 
@@ -257,7 +256,7 @@ namespace GUIControlsTests
             _treeView.RootResource = _root;
             _treeView.Nodes [0].Expand();
             Assert.AreEqual( 1, _treeView.Nodes [0].Nodes.Count );
-            
+
             folder1.SetProp( "Parent", null );
             _treeView.ProcessPendingUpdates();
             Assert.AreEqual( 0, _treeView.Nodes.Count );
@@ -329,14 +328,14 @@ namespace GUIControlsTests
 
             _treeView.ProcessPendingUpdates();
             Assert.AreEqual( 1, _treeView.Nodes.Count );
-            Assert.AreEqual( "X", _treeView.Nodes [0].Text );                        
+            Assert.AreEqual( "X", _treeView.Nodes [0].Text );
         }
 
         [Test] public void FilterAfterExpand()
         {
             IResource folder1 = CreateResource( "Folder", "Name", "A", _root );
             IResource folder2 = CreateResource( "Folder", "Name", "B", folder1 );
-            
+
             _treeView.RootResource = _root;
 
             Assert.AreEqual( 1, _treeView.GetNodeChildCount( _treeView.Nodes [0] ) );
@@ -365,7 +364,7 @@ namespace GUIControlsTests
 
             IResource folder2 = CreateResource( "Folder", "Name", "B", folder1 );
             _treeView.ProcessPendingUpdates();
-            
+
             _treeView.Nodes [0].Expand();
             Assert.AreEqual( 1, _treeView.Nodes [0].Nodes.Count );
 

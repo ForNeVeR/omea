@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Diagnostics;
@@ -36,7 +35,7 @@ namespace JetBrains.Omea.OutlookPlugin
         internal void DisplayResourceList( IResource folder, IResourceList resourceList )
         {
             ResourceListDisplayOptions options = new ResourceListDisplayOptions();
-            
+
             _folder = folder;
             bool displayUnread = folder.HasProp( Core.Props.DisplayUnread );
 
@@ -147,7 +146,7 @@ namespace JetBrains.Omea.OutlookPlugin
                     }
                     catch ( System.Threading.ThreadAbortException ex )
                     {
-                        Tracer._TraceException( ex );                    
+                        Tracer._TraceException( ex );
                     }
                     catch ( Exception ex )
                     {
@@ -186,7 +185,7 @@ namespace JetBrains.Omea.OutlookPlugin
         }
     }
 
-    /** 
+    /**
      * mark all as read
      */
 
@@ -214,7 +213,7 @@ namespace JetBrains.Omea.OutlookPlugin
         private static void MarkFolderAsRead( IResource folder )
         {
             IResourceList mails = folder.GetLinksOfType( STR.Email, PROP.MAPIFolder );
-            mails = mails.Intersect( 
+            mails = mails.Intersect(
                 Core.ResourceStore.FindResourcesWithProp( STR.Email, Core.Props.IsUnread ), true );
             foreach ( IResource mail in mails )
             {
@@ -490,7 +489,7 @@ namespace JetBrains.Omea.OutlookPlugin
             {
                 if ( resource.Type == STR.MAPIFolder && Folder.IsDeletedItems( resource ) )
                 {
-                    OutlookSession.OutlookProcessor.QueueJob( JobPriority.AboveNormal, "Empty folder action", 
+                    OutlookSession.OutlookProcessor.QueueJob( JobPriority.AboveNormal, "Empty folder action",
                         new ResourceDelegate( EmptyFolder ), resource );
                 }
             }

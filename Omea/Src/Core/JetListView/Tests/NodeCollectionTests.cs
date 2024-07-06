@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -30,7 +29,7 @@ namespace JetBrains.JetListViewLibrary.Tests
         {
             if ( !enumerator.MoveNext() )
                 return null;
-            
+
             return (JetListViewNode) enumerator.Current;
         }
 
@@ -234,7 +233,7 @@ namespace JetBrains.JetListViewLibrary.Tests
             Assert.AreEqual( cmp2, _nodeCollection.Nodes [0].Data );
             Assert.AreEqual( cmp1, _nodeCollection.Nodes [1].Data );
         }
-        
+
         [Test] public void NodeFilter()
         {
             _filters.Add( new MockFilter() );
@@ -355,7 +354,7 @@ namespace JetBrains.JetListViewLibrary.Tests
             _nodeCollection.Add( "Item" );
             _nodeCollection.Add( "Item" );
         }
-        
+
         [Test] public void EqualNodesInComparerUpdate()
         {
             _nodeCollection.SetItemComparer( null, new Comparer( CultureInfo.CurrentCulture ) );
@@ -433,7 +432,7 @@ namespace JetBrains.JetListViewLibrary.Tests
             JetListViewNode node = _nodeCollection.Add( "Item1" );
             node.HasChildren = true;
             _nodeCollection.ChildrenRequested += new RequestChildrenEventHandler( HandleChildrenRequested );
-            
+
             IEnumerator enumerator = _nodeCollection.EnumerateNodesForward( node );
             VerifyItems( enumerator, "Item1" );
             Assert.AreEqual( 1, _eventNodes.Count );
@@ -556,7 +555,7 @@ namespace JetBrains.JetListViewLibrary.Tests
     }
 
     internal class MockFilter: IJetListViewNodeFilter
-    {   
+    {
         private string _filterString = "!";
 
         public event EventHandler FilterChanged;

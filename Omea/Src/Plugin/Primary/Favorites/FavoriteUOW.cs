@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.IO;
@@ -14,7 +13,7 @@ using JetBrains.Omea.HttpTools;
 
 namespace JetBrains.Omea.Favorites
 {
-    /** 
+    /**
      * favorite OUW is implemented as decorator over HttpReader job
      */
     internal class FavoriteJob : AbstractNamedJob
@@ -138,7 +137,7 @@ namespace JetBrains.Omea.Favorites
 
         private void ProcessFile()
         {
-            if( _webLink.IsDeleted ) // if favorite resource was deleted then do nothing 
+            if( _webLink.IsDeleted ) // if favorite resource was deleted then do nothing
             {
                 return;
             }
@@ -193,7 +192,7 @@ namespace JetBrains.Omea.Favorites
         private void ProcessWebLink()
         {
             Stream readStream = _reader.ReadStream;
-            if( readStream == null || _webLink.IsDeleted ) // if favorite resource was deleted then do nothing 
+            if( readStream == null || _webLink.IsDeleted ) // if favorite resource was deleted then do nothing
             {
                 return;
             }
@@ -274,7 +273,7 @@ namespace JetBrains.Omea.Favorites
                 if( _reader.ETag.Length > 0 )
                 {
                     _webLink.SetProp( FavoritesPlugin._propETag, _reader.ETag );
-                }                        
+                }
                 // try to get charset from content-type or from content itself
                 string charset = _reader.CharacterSet;
                 if ( charset != null )

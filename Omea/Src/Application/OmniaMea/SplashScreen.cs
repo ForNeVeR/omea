@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.ComponentModel;
@@ -68,10 +67,10 @@ namespace JetBrains.Omea
             Text = "Starting " + Core.ProductFullName;
 
 #if READER
-            _pictureBox1.Image = Image.FromStream( 
+            _pictureBox1.Image = Image.FromStream(
                 Assembly.GetExecutingAssembly().GetManifestResourceStream( "OmniaMea.Icons.SplashScreenReader.png" ) );
 #else
-            _pictureBox1.Image = Image.FromStream( 
+            _pictureBox1.Image = Image.FromStream(
                 Assembly.GetExecutingAssembly().GetManifestResourceStream( "OmniaMea.Icons.splash_pro.png" ) );
 #endif
 
@@ -146,9 +145,9 @@ namespace JetBrains.Omea
 			components = new Container();
 			components.Add(_timerRemoveUnmanagedPreSplash);
             this.SuspendLayout();
-            // 
+            //
             // _pictureBox1
-            // 
+            //
             this._pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this._pictureBox1.Location = new System.Drawing.Point(0, 0);
             this._pictureBox1.Name = "_pictureBox1";
@@ -156,16 +155,16 @@ namespace JetBrains.Omea
             this._pictureBox1.TabIndex = 0;
             this._pictureBox1.TabStop = false;
             this._pictureBox1.Paint += new PaintEventHandler(SplashScreen_Paint);
-            // 
+            //
             // _progressBar
-            // 
+            //
             this._progressBar.Location = new System.Drawing.Point(24, 240);
             this._progressBar.Name = "_progressBar";
             this._progressBar.Size = new System.Drawing.Size(348, 16);
             this._progressBar.TabIndex = 2;
-            // 
+            //
             // _messageLabel
-            // 
+            //
             this._messageLabel.AutoSize = false;
             this._messageLabel.BackColor = System.Drawing.SystemColors.Window;
             this._messageLabel.ClickableLink = false;
@@ -177,9 +176,9 @@ namespace JetBrains.Omea
             this._messageLabel.Name = "_messageLabel";
             this._messageLabel.Size = new System.Drawing.Size(344, 20);
             this._messageLabel.TabIndex = 1;
-            // 
+            //
             // _timeLabel
-            // 
+            //
             this._timeLabel.AutoSize = false;
             this._timeLabel.BackColor = System.Drawing.SystemColors.Window;
             this._timeLabel.ClickableLink = false;
@@ -195,9 +194,9 @@ namespace JetBrains.Omea
 			_timerRemoveUnmanagedPreSplash.Interval = (int)TimeSpan.FromSeconds(.3).TotalMilliseconds;
 			_timerRemoveUnmanagedPreSplash.Enabled = true;
 			_timerRemoveUnmanagedPreSplash.Tick += OnTimerRemoveUnmanagedPreSplash;
-            // 
+            //
             // SplashScreen
-            // 
+            //
             this.AutoScaleMode = AutoScaleMode.None;
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
             this.ClientSize = new System.Drawing.Size(400, 300);
@@ -269,7 +268,7 @@ namespace JetBrains.Omea
          * When the form is first shown, invokes a delegate to start the indexing
          * process after the form becomes visible.
          */
-		
+
         private void ProgressWindow_VisibleChanged(object sender, EventArgs e)
         {
             VisibleChanged -= ProgressWindow_VisibleChanged;
@@ -279,7 +278,7 @@ namespace JetBrains.Omea
         /**
          * After the form is shown, starts the index building process.
          */
-		
+
         private void FirstShow()
         {
             ResetElapsedTime();

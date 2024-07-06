@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -16,12 +15,12 @@ namespace JetBrains.Omea.InstantMessaging.Trillian
 	/**
 	 * Options pane for the Trillian plugin.
 	 */
-    
+
     public class TrillianOptionsPane: AbstractOptionsPane
 	{
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.CheckedListBox _lbxProfilesToIndex;
-		/// <summary> 
+		/// <summary>
 		/// Required designer variable.
 		/// </summary>
 		private System.ComponentModel.Container components = null;
@@ -37,7 +36,7 @@ namespace JetBrains.Omea.InstantMessaging.Trillian
 
 		}
 
-		/// <summary> 
+		/// <summary>
 		/// Clean up any resources being used.
 		/// </summary>
 		protected override void Dispose( bool disposing )
@@ -53,8 +52,8 @@ namespace JetBrains.Omea.InstantMessaging.Trillian
 		}
 
 		#region Component Designer generated code
-		/// <summary> 
-		/// Required method for Designer support - do not modify 
+		/// <summary>
+		/// Required method for Designer support - do not modify
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent()
@@ -62,25 +61,25 @@ namespace JetBrains.Omea.InstantMessaging.Trillian
             this.label1 = new System.Windows.Forms.Label();
             this._lbxProfilesToIndex = new System.Windows.Forms.CheckedListBox();
             this.SuspendLayout();
-            // 
+            //
             // label1
-            // 
+            //
             this.label1.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(124, 16);
             this.label1.TabIndex = 0;
             this.label1.Text = "Trillian profiles to index:";
-            // 
+            //
             // _lbxProfilesToIndex
-            // 
+            //
             this._lbxProfilesToIndex.Location = new System.Drawing.Point(0, 24);
             this._lbxProfilesToIndex.Name = "_lbxProfilesToIndex";
             this._lbxProfilesToIndex.Size = new System.Drawing.Size(180, 84);
             this._lbxProfilesToIndex.TabIndex = 1;
-            // 
+            //
             // TrillianOptionsPane
-            // 
+            //
             this.Controls.Add(this._lbxProfilesToIndex);
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(204)));
@@ -100,14 +99,14 @@ namespace JetBrains.Omea.InstantMessaging.Trillian
         /**
          * Called when the pane is initially shown. Fills the form controls with data.
          */
-        
+
         public override void ShowPane()
         {
             // Before the call to ShowPane, AbstractOptionsPane.PluginEnvironment
             // is set to the instance of IPluginEnvironment which can be used by
             // the pane.
 
-            string profilesToIndex = ICore.Instance.SettingStore.ReadString( "Trillian", 
+            string profilesToIndex = ICore.Instance.SettingStore.ReadString( "Trillian",
                 "ProfilesToIndex" );
             ArrayList profileList = new ArrayList( profilesToIndex.Split( ';' ) );
 
@@ -117,8 +116,8 @@ namespace JetBrains.Omea.InstantMessaging.Trillian
                 // in the Startup Wizard. In this case, mark all profiles as indexed by
                 // default. Otherwise, use the list of indexed profiles loaded from the
                 // settings store.
-                bool isChecked = IsStartupPane 
-                    ? true 
+                bool isChecked = IsStartupPane
+                    ? true
                     : profileList.IndexOf( profile.Name ) >= 0;
 
                 _lbxProfilesToIndex.Items.Add( profile.Name, isChecked );
@@ -128,7 +127,7 @@ namespace JetBrains.Omea.InstantMessaging.Trillian
         /**
          * Called when the Options dialog or the Startup Wizard is closed with the OK
          * button. Saves the settings data.
-         */ 
+         */
 
         public override void OK()
         {

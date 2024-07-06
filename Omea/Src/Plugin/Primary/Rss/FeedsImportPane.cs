@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System.Collections;
 using System.Windows.Forms;
@@ -43,12 +42,12 @@ namespace JetBrains.Omea.RSSPlugin
             _chkPreview.Checked = Core.SettingStore.ReadBool( "RSS", "PreviewImport", false );
 	    }
 
-	    /// <summary> 
+	    /// <summary>
 		/// Required designer variable.
 		/// </summary>
 		private System.ComponentModel.Container components = null;
 
-	    /// <summary> 
+	    /// <summary>
 		/// Clean up any resources being used.
 		/// </summary>
 		protected override void Dispose( bool disposing )
@@ -64,8 +63,8 @@ namespace JetBrains.Omea.RSSPlugin
 		}
 
 		#region Component Designer generated code
-		/// <summary> 
-		/// Required method for Designer support - do not modify 
+		/// <summary>
+		/// Required method for Designer support - do not modify
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent()
@@ -74,19 +73,19 @@ namespace JetBrains.Omea.RSSPlugin
             this._lstImportFrom = new System.Windows.Forms.CheckedListBox();
             this._chkPreview = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
-            // 
+            //
             // label1
-            // 
+            //
             this.label1.Location = new System.Drawing.Point(8, 8);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(376, 23);
             this.label1.TabIndex = 1;
             this.label1.Text = "Import Feeds subscriptions from:";
-            // 
+            //
             // _lstImportFrom
-            // 
-            this._lstImportFrom.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-                | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._lstImportFrom.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._lstImportFrom.CheckOnClick = true;
             this._lstImportFrom.Location = new System.Drawing.Point(8, 32);
@@ -94,9 +93,9 @@ namespace JetBrains.Omea.RSSPlugin
             this._lstImportFrom.Size = new System.Drawing.Size(376, 260);
             this._lstImportFrom.TabIndex = 2;
             this._lstImportFrom.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this._importFrom_itemChecked);
-            // 
+            //
             // _chkPreview
-            // 
+            //
             this._chkPreview.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this._chkPreview.Enabled = false;
             this._chkPreview.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -106,9 +105,9 @@ namespace JetBrains.Omea.RSSPlugin
             this._chkPreview.TabIndex = 3;
             this._chkPreview.Text = "Pre&view subscriptions before import";
             this._chkPreview.CheckedChanged += new System.EventHandler(this._chkPreview_CheckedChanged);
-            // 
+            //
             // FeedsImportPane
-            // 
+            //
             this.Controls.Add(this._chkPreview);
             this.Controls.Add(this._lstImportFrom);
             this.Controls.Add(this.label1);

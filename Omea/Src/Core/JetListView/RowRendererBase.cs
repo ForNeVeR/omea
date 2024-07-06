@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -125,7 +124,7 @@ namespace JetBrains.JetListViewLibrary
             get { return _fullRowSelect; }
             set { _fullRowSelect = value; }
         }
-	    
+
         public int ScrollRange
         {
             get { return _scrollRange; }
@@ -163,7 +162,7 @@ namespace JetBrains.JetListViewLibrary
                     result = col.HandleMouseDown( node, deltaX, deltaY );
                     if ( col == GetInPlaceEditColumn( node ) )
                     {
-                        result |= MouseHandleResult.MayInPlaceEdit; 
+                        result |= MouseHandleResult.MayInPlaceEdit;
                     }
                 }
             }
@@ -230,7 +229,7 @@ namespace JetBrains.JetListViewLibrary
                     return col;
                 }
             }
-            
+
             return GetColumnAndDelta( node, x, y, out deltaX, out deltaY );
         }
 
@@ -251,7 +250,7 @@ namespace JetBrains.JetListViewLibrary
             }
             return null;
         }
-        
+
         protected bool IsValueColumn( JetListViewColumn col )
         {
             return !col.FixedSize && !col.IsIndentColumn();
@@ -337,7 +336,7 @@ namespace JetBrains.JetListViewLibrary
 	    public abstract void ProcessNodeExpanded( JetListViewNode node );
 	    public abstract void ProcessNodeCollapsed( JetListViewNode node );
 	    public abstract Rectangle GetColumnBounds( JetListViewColumn col, JetListViewNode node );
-	    
+
         public abstract int VisibleWidth { get; set; }
 
         protected abstract JetListViewColumn GetColumnAndDelta( JetListViewNode node, int x, int y, out int deltaX, out int deltaY );
@@ -402,7 +401,7 @@ namespace JetBrains.JetListViewLibrary
             {
                 if ( dropTargetRow )
                 {
-                    JetListViewColumn.DrawDropTarget( g, rcFocus );                    
+                    JetListViewColumn.DrawDropTarget( g, rcFocus );
                 }
                 else if ( focusRow )
                 {
@@ -411,18 +410,18 @@ namespace JetBrains.JetListViewLibrary
             }
         }
 
-        protected void DrawColumnWithHighlight( Graphics g, Rectangle rcCol, JetListViewNode itemNode, 
+        protected void DrawColumnWithHighlight( Graphics g, Rectangle rcCol, JetListViewNode itemNode,
             JetListViewColumn col, RowState state )
         {
             if ( (state & RowState.InPlaceEdit ) == 0 || col != GetInPlaceEditColumn( itemNode ) )
             {
                 string highlightText = null;
-                if ( (state & RowState.IncSearchMatch) != 0 && 
+                if ( (state & RowState.IncSearchMatch) != 0 &&
                     col.MatchIncrementalSearch( itemNode, _searchHighlightText ) )
                 {
                     highlightText = _searchHighlightText;
                 }
-                
+
                 col.DrawNode( g, rcCol, itemNode, state, highlightText );
             }
         }

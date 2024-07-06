@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System.Drawing;
 using JetBrains.DataStructures;
@@ -52,7 +51,7 @@ namespace JetBrains.Omea.GUIControls
             return "Calculating context...";
 	    }
 
-        protected override void DrawItemText( Graphics g, Rectangle rcText, object item, 
+        protected override void DrawItemText( Graphics g, Rectangle rcText, object item,
                                               Color textColor, RowState state, string highlightText )
         {
             IResource res = (IResource) item;
@@ -62,10 +61,10 @@ namespace JetBrains.Omea.GUIControls
                 RichText richText = (RichText) _contextCache [res.Id];
                 if ( richText == null )
                 {
-                    richText = new RichText( context, 
-                        new RichTextParameters( OwnerControl.Font, 
+                    richText = new RichText( context,
+                        new RichTextParameters( OwnerControl.Font,
                         new TextStyle( FontStyle.Regular, Color.DarkGreen, Color.Transparent ) ) );
-                
+
                     OffsetData[] data = _highlightDataProvider.GetContextHighlightData( res );
                     if ( data != null )
                     {
@@ -76,7 +75,7 @@ namespace JetBrains.Omea.GUIControls
                     }
                     _contextCache [res.Id] = richText;
                 }
-                    
+
                 g.DrawLine( _barPen, rcText.X + 2, rcText.Y + 1, rcText.X + 2, rcText.Y + rcText.Height - 2 );
 	            ShiftRectForText( ref rcText );
                 RichTextColumn.FormatRowRichText( ref richText, textColor, state, highlightText );

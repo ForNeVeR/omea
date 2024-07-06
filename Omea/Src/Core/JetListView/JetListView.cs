@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.ComponentModel;
@@ -62,7 +61,7 @@ namespace JetBrains.JetListViewLibrary
         private JetListViewColumn _dragOverColumn;
 		private bool _allowDragInsert = false;
 		private bool _autoRestrictDropTarget = true;
-        
+
         private const int _headerHeight = 18;
 
         public const string DefaultEmptyText = "There are no items in this view.";
@@ -105,8 +104,8 @@ namespace JetBrains.JetListViewLibrary
 	        _vScrollbar.SmallChange = _baseRowRenderer.RowHeight;
 	        _vScrollbar.TabStop = false;
             Controls.Add( _vScrollbar );
-            
-            SetStyle( ControlStyles.UserPaint | ControlStyles.AllPaintingInWmPaint | 
+
+            SetStyle( ControlStyles.UserPaint | ControlStyles.AllPaintingInWmPaint |
                       ControlStyles.DoubleBuffer | ControlStyles.ResizeRedraw, true );
 
             _controlPainter = new DefaultControlPainter();
@@ -154,15 +153,15 @@ namespace JetBrains.JetListViewLibrary
             components = new Container();
             System.Resources.ResourceManager resources = new System.Resources.ResourceManager( typeof(JetListView) );
             _headerImgList = new ImageList( components );
-            // 
+            //
             // _headerImgList
-            // 
+            //
             _headerImgList.ImageSize = new Size(14, 14);
             _headerImgList.ImageStream = ((ImageListStreamer)( resources.GetObject( "_headerImgList.ImageStream" ) ) );
             _headerImgList.TransparentColor = Color.Transparent;
-            // 
+            //
             // JetListView
-            // 
+            //
             Name = "JetListView";
         }
 
@@ -201,7 +200,7 @@ namespace JetBrains.JetListViewLibrary
         /// Occurs when the UpdateItem() method is called to update an item in the control.
         /// </summary>
         public event ItemEventHandler ItemUpdated;
-        
+
         /// <summary>
         /// Occurs when the user drags the column splitter to change the size of the column.
         /// </summary>
@@ -280,7 +279,7 @@ namespace JetBrains.JetListViewLibrary
             }
             else
             {
-                AutoPreviewRowRenderer renderer = new AutoPreviewRowRenderer( _baseRowRenderer, 
+                AutoPreviewRowRenderer renderer = new AutoPreviewRowRenderer( _baseRowRenderer,
                     _autoPreviewColumn, _columns );
                 SetRowRenderer( renderer );
             }
@@ -489,7 +488,7 @@ namespace JetBrains.JetListViewLibrary
         }
 
         /// <summary>
-        /// Gets or sets a value indicating whether the user can drag column headers 
+        /// Gets or sets a value indicating whether the user can drag column headers
         /// to reorder columns in the control.
         /// </summary>
         public bool AllowColumnReorder
@@ -544,7 +543,7 @@ namespace JetBrains.JetListViewLibrary
         /// </summary>
         public bool MultiLineView
         {
-            get { return _baseRowRenderer is MultiLineRowRenderer; }                        
+            get { return _baseRowRenderer is MultiLineRowRenderer; }
             set
             {
                 if ( value != MultiLineView )
@@ -758,7 +757,7 @@ namespace JetBrains.JetListViewLibrary
             _selectionModel.FocusStateChanged += ForwardFocusStateChanged;
             _selectionModel.SelectionStateChanged += ForwardSelectionStateChanged;
             UpdateVisibleNodeCollection();
-            Invalidate();                    
+            Invalidate();
         }
 
 	    private void UpdateBorderSize()
@@ -917,7 +916,7 @@ namespace JetBrains.JetListViewLibrary
             {
                 return;
             }
-            
+
             if ( e.Button == MouseButtons.Left && e.Clicks == 1 )
             {
                 //  MouseDown: column said FocusOnMouseDown, capturing focus...
@@ -1050,7 +1049,7 @@ namespace JetBrains.JetListViewLibrary
             if ( !e.Handled )
             {
                 _lastKeyDownHandled = _rowListRenderer.HandleKeyDown( e );
-                
+
                 if ( e.KeyCode == Keys.F2 && _selectionModel.ActiveNode != null )
                 {
                     InPlaceEditNode( _selectionModel.ActiveNode );
@@ -1177,7 +1176,7 @@ namespace JetBrains.JetListViewLibrary
             {
                 _dragOverColumn = _rowRenderer.GetColumnAt( _rowListRenderer.DropTargetRow, pnt.X, args.LocalY );
             }
-            
+
             if ( oldDropTargetRow != _rowListRenderer.DropTargetRow || _dragOverColumn != oldDragOverColumn )
             {
                 _dragExpandTimer.Stop();
@@ -1238,7 +1237,7 @@ namespace JetBrains.JetListViewLibrary
 
         private void HandleDragScroll( object sender, EventArgs e )
         {
-            int newValue = _dragScrollUp 
+            int newValue = _dragScrollUp
                 ? _vScrollbar.Value - _vScrollbar.SmallChange
                 : _vScrollbar.Value + _vScrollbar.SmallChange;
             VerticalScrollClamped( newValue );
@@ -1339,7 +1338,7 @@ namespace JetBrains.JetListViewLibrary
 	                    _vScrollbar.Value = _vScrollbar.Maximum - _vScrollbar.LargeChange + 1;
 	                }
 
-	                _vScrollbar.Visible = true;                
+	                _vScrollbar.Visible = true;
 	            }
 	            else
 	            {
@@ -1379,7 +1378,7 @@ namespace JetBrains.JetListViewLibrary
 
 	            if ( _pendingScroll >= 0 && _pendingScroll <= _vScrollbar.Maximum - _vScrollbar.LargeChange + 1 )
 	            {
-	                _vScrollbar.Value = _pendingScroll;                
+	                _vScrollbar.Value = _pendingScroll;
 	            }
 	            _pendingScroll = -1;
 
@@ -1501,7 +1500,7 @@ namespace JetBrains.JetListViewLibrary
             int startY, endY;
             Rectangle rcColBounds = _rowRenderer.GetColumnBounds( col, node );
             _rowListRenderer.GetRowBounds( node, out startY, out endY );
-            
+
             int startX = rcColBounds.Left + col.LeftMargin;
             int endX = rcColBounds.Right;
 
@@ -1512,7 +1511,7 @@ namespace JetBrains.JetListViewLibrary
                 endX = rcClient.Right;
             }
 
-            return new Rectangle( rcColBounds.Left + col.LeftMargin, startY + rcColBounds.Top, 
+            return new Rectangle( rcColBounds.Left + col.LeftMargin, startY + rcColBounds.Top,
                 endX-startX, rcColBounds.Height );
         }
 
@@ -1569,7 +1568,7 @@ namespace JetBrains.JetListViewLibrary
             _itemToolTip.Hide();
             IViewNode[] savedSelection = null;
 
-            MouseButtons button = 0;            
+            MouseButtons button = 0;
             Point pnt = new Point( m.LParam.ToInt32() );
             if ( pnt.X == -1 && pnt.Y == -1 )
             {
@@ -1655,7 +1654,7 @@ namespace JetBrains.JetListViewLibrary
 	                pnt = new Point( 0, startY );
 	            }
 	        }
-    
+
 	        pnt.X += 4;
 	        pnt.Y += 4;
 	        return pnt;
@@ -1768,7 +1767,7 @@ namespace JetBrains.JetListViewLibrary
                     // skip group header nodes (OM-14696)
                     continue;
                 }
-                
+
                 bool first = true;
                 foreach( JetListViewColumn col in _columns )
                 {

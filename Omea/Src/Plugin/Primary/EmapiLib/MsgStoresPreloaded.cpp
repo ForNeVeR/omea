@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 #pragma unmanaged
 
@@ -83,7 +82,7 @@ MsgStoreSPtr MsgStores::OpenStorage( int index ) const
 {
     OutputDebugString( "MsgStoresPreloaded::OpenStorage( int index )" );
     LPMDB pMDB = NULL;
-    if ( _pRowSet.IsNull() ) 
+    if ( _pRowSet.IsNull() )
     {
         return MsgStoreSPtr( NULL );
     }
@@ -92,7 +91,7 @@ MsgStoreSPtr MsgStores::OpenStorage( int index ) const
     {
         OutputDebugString( "MsgStoresPreloaded::OpenStorage( int index ) 1" );
         HRESULT hRes = _pSession->OpenMsgStore( 0, lpProp->Value.bin.cb, (LPENTRYID)lpProp->Value.bin.lpb, NULL, (int)MDB_WRITE, &pMDB );
-        if ( hRes == (int)MAPI_E_UNKNOWN_LCID || hRes == (int)MAPI_E_FAILONEPROVIDER || 
+        if ( hRes == (int)MAPI_E_UNKNOWN_LCID || hRes == (int)MAPI_E_FAILONEPROVIDER ||
             hRes == MAPI_E_UNCONFIGURED || hRes == MAPI_E_NOT_FOUND || hRes == MAPI_E_USER_CANCEL )
         {
             if ( pMDB != NULL )
@@ -157,7 +156,7 @@ bool MsgStores::IsDefaultStore( int index ) const
 bool MsgStores::QueryAllRows()
 {
     FreeAllRows();
-    const SizedSPropTagArray( NUM_COLS, sptCols ) = 
+    const SizedSPropTagArray( NUM_COLS, sptCols ) =
     { NUM_COLS, (int)PR_ENTRYID, (int)PR_DISPLAY_NAME, (int)PR_DEFAULT_STORE };
 
     LPSRowSet lpSRowSet = NULL;

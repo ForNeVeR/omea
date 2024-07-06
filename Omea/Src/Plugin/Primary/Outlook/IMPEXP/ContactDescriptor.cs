@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -24,7 +23,7 @@ namespace JetBrains.Omea.OutlookPlugin
         private string _streetAddress = string.Empty;
         private string _businessHomePage = string.Empty;
         private string _description = string.Empty;
-        
+
         private DateTime _birthday = DateTime.MinValue;
         private OutlookAddressBook _addressBook;
         private ArrayList _phones = new ArrayList();
@@ -260,12 +259,12 @@ namespace JetBrains.Omea.OutlookPlugin
             {
                 CategorySetter.DoJob( _outlookCategories, person );
             }
-            
+
             if ( _birthday > DateTime.MinValue || contactBO.Birthday.CompareTo( _birthday ) != 0 )
             {
                 contactBO.Birthday = _birthday;
             }
-            
+
             contactBO.EndUpdate();
             ImportedContactsChangeWatcher.ProcessingImportFromOutlook = false;
             if ( Settings.TraceContactChanges )
@@ -279,12 +278,12 @@ namespace JetBrains.Omea.OutlookPlugin
             get { return "Importing contact"; }
         }
     }
-    
+
     internal class ContactDescriptorWrapper : AbstractNamedJob
     {
         private string _entryID;
         private string _searchEntryID;
-        
+
         private FolderDescriptor _folder;
 
         public static void Do( FolderDescriptor folder, string entryID, string searchEntryID )
@@ -296,7 +295,7 @@ namespace JetBrains.Omea.OutlookPlugin
             Guard.NullArgument( folder, "folder" );
             if ( IsDataCorrect( folder ) )
             {
-                OutlookSession.OutlookProcessor.QueueJob( jobPriority, 
+                OutlookSession.OutlookProcessor.QueueJob( jobPriority,
                     new ContactDescriptorWrapper( folder, entryID, searchEntryID ) );
             }
         }
@@ -309,7 +308,7 @@ namespace JetBrains.Omea.OutlookPlugin
         private static bool IsDataCorrect( FolderDescriptor folder )
         {
             IResource resource = Folder.Find( folder.FolderIDs.EntryId );
-            if ( resource == null || !Folder.IsFolderOfType( resource, FolderType.Contact ) || 
+            if ( resource == null || !Folder.IsFolderOfType( resource, FolderType.Contact ) ||
                 Folder.IsIgnoreImport( resource ) )
             {
                 return false;
@@ -330,7 +329,7 @@ namespace JetBrains.Omea.OutlookPlugin
                 using ( message )
                 {
                     OutlookAddressBook AB = new OutlookAddressBook( _folder.Name, _folder.FolderIDs, true );
-                    ContactDescriptor contactDescriptor = 
+                    ContactDescriptor contactDescriptor =
                         new ContactDescriptor( message, _entryID, _searchEntryID, AB );
                     Core.ResourceAP.QueueJob( contactDescriptor );
                 }

@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.IO;
@@ -42,13 +41,13 @@ namespace JetBrains.Omea.InstantMessaging.Trillian
 
         internal TrillianLog( string fileName )
         {
-            _fileName = fileName;    		
+            _fileName = fileName;
         }
 
         /**
          * Returns the filename-only part of the log.
          */
- 
+
         public string GetName()
         {
         	return Path.GetFileNameWithoutExtension( _fileName );
@@ -60,8 +59,8 @@ namespace JetBrains.Omea.InstantMessaging.Trillian
 
         public int Size
         {
-        	get 
-            { 
+        	get
+            {
                 return (int) new FileInfo( _fileName ).Length;
             }
         }
@@ -109,7 +108,7 @@ namespace JetBrains.Omea.InstantMessaging.Trillian
                     _curCorrespondent = m.Groups [1].Value;
                     try
                     {
-                        _curDate = DateTime.ParseExact( m.Groups [2].Value, "ddd MMM dd HH:mm:ss yyyy", 
+                        _curDate = DateTime.ParseExact( m.Groups [2].Value, "ddd MMM dd HH:mm:ss yyyy",
                             CultureInfo.InvariantCulture );
                     }
                     catch( Exception )
@@ -121,7 +120,7 @@ namespace JetBrains.Omea.InstantMessaging.Trillian
 
                 if ( line.StartsWith( "Session Close (" ) || _serviceMessageRx.IsMatch( line ) )
                 {
-                	// Marks the end of a session or a service message (contact logon/logoff). 
+                	// Marks the end of a session or a service message (contact logon/logoff).
                     // If we have a message, return it; otherwise, continue parsing
                     if ( curMessage != null )
                         break;
@@ -265,7 +264,7 @@ namespace JetBrains.Omea.InstantMessaging.Trillian
     		get { return _dateTime; }
             set { _dateTime = value; }
     	}
-        
+
     	public bool Incoming
     	{
     		get { return _incoming; }

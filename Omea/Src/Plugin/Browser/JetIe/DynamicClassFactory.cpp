@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 // © JetBrains Inc, 2005
 // Written by (H) Serge Baltic
@@ -72,7 +71,7 @@ STDMETHODIMP CDynamicClassFactory::CreateInstance( LPUNKNOWN pUnkOuter, REFIID r
 	try
 	{
 		XmlElement	xmlControlFamily = CJetIe::GetActionManager()->ControlFamilyFromGuid(m_clsid, L"Toolbar");	// Ensure that the CLSID passed into this function actually identifies a valid toolbar
-		
+
 		if((_bstr_t)xmlControlFamily->getAttribute(L"Type") == (_bstr_t)L"Toolbar")
 		{
 			/*

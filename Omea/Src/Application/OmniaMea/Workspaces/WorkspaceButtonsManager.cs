@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -148,7 +147,7 @@ namespace JetBrains.Omea.Workspaces
 
 		#region Visual Init
 
-		/// <summary> 
+		/// <summary>
 		/// Initializes the persistent controls.
 		/// </summary>
 		private void InitializeComponentSelf()
@@ -156,25 +155,25 @@ namespace JetBrains.Omea.Workspaces
 			_menuOnButton = new ContextMenu();
 			_miConfigure = new MenuItem();
 			_miHide = new MenuItem();
-			// 
+			//
 			// _btnContextMenu
-			// 
+			//
 			_menuOnButton.MenuItems.AddRange(new MenuItem[] { _miConfigure, _miHide } );
-			// 
+			//
 			// miConfigure
-			// 
+			//
 			_miConfigure.Index = 0;
 			_miConfigure.Text = "&Configure…";
 			_miConfigure.Click += this.OnConfigureButtonClick;
-			// 
+			//
 			// miHideBtn
-			// 
+			//
 			_miHide.Index = 1;
 			_miHide.Text = "&Hide";
 			_miHide.Click += this.OnHideButtonClick;
-			// 
+			//
 			// _btnChevron
-			// 
+			//
 			_btnChevron = new ImageListButton();
 			_btnChevron.Name = "_btnChevron";
 			_btnChevron.Click += OnChevronClick;
@@ -188,9 +187,9 @@ namespace JetBrains.Omea.Workspaces
 			// _menuOnChevron
 			//
 			_menuOnChevron = new ContextMenu();
-			// 
+			//
 			// _btnOrganize
-			// 
+			//
 			_btnOrganize = new ImageListButton();
 			_btnOrganize.Name = "_btnOrganize";
 			_btnOrganize.Size = new Size(16, 16);
@@ -202,9 +201,9 @@ namespace JetBrains.Omea.Workspaces
 			_btnOrganize.AddIcon(new Icon(Assembly.GetExecutingAssembly().GetManifestResourceStream("OmniaMea.Icons.Workspaces.Organize.Hot.ico")), ImageListButton.ButtonState.Hot);
 			_btnOrganize.BackColor = SystemColors.Control;
 			_btnOrganize.ToolTip = "Organize Workspaces";
-			// 
+			//
 			// WorkspaceBar
-			// 
+			//
 			_parent.Controls.Add(_btnOrganize);
 			_parent.Controls.Add(_btnChevron);
 		}
@@ -502,13 +501,13 @@ namespace JetBrains.Omea.Workspaces
 		/// </summary>
 		/// <param name="rcBounds">The bound rect of the area into which the controls should be layouted.</param>
 		/// <param name="borders">
-		/// <para>X-coordinates of the left side of the border spacing 
+		/// <para>X-coordinates of the left side of the border spacing
 		/// that should be drawn around the active workspace button.</para>
 		/// <para>There must be exactly two of them.</para>
 		/// <para>This includes the around-border horizontal padding as well.</para>
 		/// </param>
 		/// <param name="separators">
-		/// <para>Zero or more X-coordinates of the left side of the separators' spacing 
+		/// <para>Zero or more X-coordinates of the left side of the separators' spacing
 		/// that should be inserted between each pair of controls in case non of them is an
 		/// active workspace button (in which case a border is drawn, see <paramref name="borders"/>).</para>
 		/// <para>This includes the around-border horizontal padding as well.</para>
@@ -697,7 +696,7 @@ namespace JetBrains.Omea.Workspaces
 
 			// TODO: remove
 			/*
-			{ 
+			{
 
 					// Look for the closest workspace which is not hidden and can be activated
 					IResource resNewWorkspace = null;
@@ -837,7 +836,7 @@ namespace JetBrains.Omea.Workspaces
 			if( (_defaultWorkspaceAction == null) && (_workspaceManager != null) )
 			{
 				_defaultWorkspaceAction = new ActivateWorkspaceAction( null );
-				Core.ActionManager.RegisterMainMenuAction( _defaultWorkspaceAction, "WorkspaceSelectActions", ListAnchor.Last, 
+				Core.ActionManager.RegisterMainMenuAction( _defaultWorkspaceAction, "WorkspaceSelectActions", ListAnchor.Last,
 				                                           _workspaceManager.Props.DefaultWorkspaceName, null, null, null );
 			}
 
@@ -855,7 +854,7 @@ namespace JetBrains.Omea.Workspaces
 				{
 					IAction wsAction = new ActivateWorkspaceAction( workspace );
 					_workspaceActions.Add( wsAction );
-					Core.ActionManager.RegisterMainMenuAction( wsAction, "WorkspaceSelectActions", ListAnchor.Last, 
+					Core.ActionManager.RegisterMainMenuAction( wsAction, "WorkspaceSelectActions", ListAnchor.Last,
 					                                           workspace.DisplayName, null, null, null );
 				}
 			}

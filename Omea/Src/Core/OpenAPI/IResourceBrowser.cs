@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 
@@ -57,12 +56,12 @@ namespace JetBrains.Omea.OpenAPI
         /// <summary>
         /// Auto-preview is not shown.
         /// </summary>
-        Off, 
+        Off,
 
         /// <summary>
         /// Auto-preview is shown for all items.
         /// </summary>
-        AllItems, 
+        AllItems,
 
         /// <summary>
         /// Auto-preview is shown for unread items.
@@ -94,7 +93,7 @@ namespace JetBrains.Omea.OpenAPI
         /// </summary>
         /// <param name="res">The resource to display.</param>
         void DisplayResource( IResource res );
-        
+
         /// <summary>
         /// Displays the specified resource in a full-height preview pane (with the
         /// resource list hidden), and allows to control the action performed when the
@@ -116,7 +115,7 @@ namespace JetBrains.Omea.OpenAPI
         /// <param name="caption">The caption of the resource list.</param>
         /// <param name="columns">The columns to use for displaying the list, or null if
         /// a default set of columns should be used.</param>
-        void DisplayResourceList( IResource ownerResource, IResourceList resList, string caption, 
+        void DisplayResourceList( IResource ownerResource, IResourceList resList, string caption,
             ColumnDescriptor[] columns );
 
         /// <summary>
@@ -129,7 +128,7 @@ namespace JetBrains.Omea.OpenAPI
         /// <param name="columns">The columns to use for displaying the list, or null if
         /// a default set of columns should be used.</param>
         /// <param name="selectedResource">The resource which is selected in the list.</param>
-        void DisplayResourceList( IResource ownerResource, IResourceList resList, string caption, 
+        void DisplayResourceList( IResource ownerResource, IResourceList resList, string caption,
             ColumnDescriptor[] columns, IResource selectedResource );
 
         /// <summary>
@@ -144,7 +143,7 @@ namespace JetBrains.Omea.OpenAPI
         /// a default set of columns should be used.</param>
         /// <param name="selectedResource">The resource which is selected in the list.</param>
         /// <param name="highlightProvider">The provider for the search result highlighting data.</param>
-        void DisplayResourceList( IResource ownerResource, IResourceList resList, string caption, 
+        void DisplayResourceList( IResource ownerResource, IResourceList resList, string caption,
             ColumnDescriptor[] columns, IResource selectedResource, IHighlightDataProvider highlightProvider );
 
         /// <summary>
@@ -155,7 +154,7 @@ namespace JetBrains.Omea.OpenAPI
         /// <param name="resList">The resource list to display.</param>
         /// <param name="options">The parameters for displaying the resource list.</param>
         /// <since>2.0</since>
-        void DisplayResourceList( IResource ownerResource, IResourceList resList, 
+        void DisplayResourceList( IResource ownerResource, IResourceList resList,
             ResourceListDisplayOptions options );
 
         /// <summary>
@@ -184,7 +183,7 @@ namespace JetBrains.Omea.OpenAPI
         /// <param name="columns">The columns to use for displaying the list, or null if
         /// a default set of columns should be used.</param>
         /// <param name="selectedResource">The resource which is selected in the list.</param>
-        void DisplayThreadedResourceList( IResource ownerResource, IResourceList resList, string caption, 
+        void DisplayThreadedResourceList( IResource ownerResource, IResourceList resList, string caption,
             string sortProp, int replyProp, ColumnDescriptor[] columns, IResource selectedResource );
 
         /// <summary>
@@ -196,9 +195,9 @@ namespace JetBrains.Omea.OpenAPI
         /// <param name="caption">The caption of the resource list.</param>
         /// <param name="columns">The columns to use for displaying the list, or null if
         /// a default set of columns should be used.</param>
-        void DisplayUnfilteredResourceList( IResource ownerResource, IResourceList resList, string caption, 
+        void DisplayUnfilteredResourceList( IResource ownerResource, IResourceList resList, string caption,
             ColumnDescriptor[] columns );
-       
+
         /// <summary>
         /// Displays the conversation of resources linked to the specified resource.
         /// </summary>
@@ -216,7 +215,7 @@ namespace JetBrains.Omea.OpenAPI
         /// is selected in the resource browser is the Web link resource, and the resource which
         /// is actually displayed is its content resource (HtmlFile, for example).</remarks>
         void RegisterResourceDisplayForwarder( string resType, ResourceDisplayForwarderCallback forwarder );
-        
+
         /// <summary>
         /// Refreshes the resource currently displayed in the resource browser.
         /// </summary>
@@ -236,7 +235,7 @@ namespace JetBrains.Omea.OpenAPI
         /// <param name="clickHandler">The handler to execute when the text is clicked.
         /// If not null, the text is displayed as a clickable link.</param>
         void AddStatusLine( string text, EventHandler clickHandler );
-        
+
         /// <summary>
         /// Hides the information label above the resource list.
         /// </summary>
@@ -271,7 +270,7 @@ namespace JetBrains.Omea.OpenAPI
         /// Begins the in-place editing of the specified resource.
         /// </summary>
         /// <param name="res">The resource to edit.</param>
-        /// <remarks>For the in-place editing to work, a 
+        /// <remarks>For the in-place editing to work, a
         /// <see cref="IResourceUIHandler">resource UI handler</see> must be registered
         /// for the resource.</remarks>
         void EditResourceLabel( IResource res );
@@ -348,12 +347,12 @@ namespace JetBrains.Omea.OpenAPI
         /// Returns the list of resources currently displayed in the resource browser. Note that "visible" does not imply on "items currently fitting on screen" or "items in the expanded threads", nor it concerns the items' rendering aspects in any way.
         /// </summary>
         IResourceList VisibleResources { get; }
-        
+
         /// <summary>
         /// Returns the list of resources currently selected in the resource browser.
         /// </summary>
         IResourceList SelectedResources { get; }
-        
+
         /// <summary>
         /// Returns the resource on which the currently displayed resource list is based.
         /// </summary>
@@ -366,7 +365,7 @@ namespace JetBrains.Omea.OpenAPI
         /// </summary>
         /// <since>2.0</since>
         IResourceList FilterResourceList { get; }
-        
+
         /// <summary>
         /// The filter resource list which was used when the last resource list was displayed.
         /// </summary>
@@ -391,7 +390,7 @@ namespace JetBrains.Omea.OpenAPI
         /// Controls the visible state of the links pane which is located to the right of the Preview area.
         /// </summary>
         bool LinksPaneExpanded { get; set; }
-        
+
         /// <summary>
         /// Gets or sets the value indicating whether the resource list is currently collapsed.
         /// </summary>
@@ -427,7 +426,7 @@ namespace JetBrains.Omea.OpenAPI
         /// when an annotated resource is selected in the resource browser.
         /// </summary>
         bool ViewAnnotations{ get; set; }
-        
+
         /// <summary>
         /// Starts editing the annotation of the specified resource.
         /// </summary>
@@ -657,7 +656,7 @@ namespace JetBrains.Omea.OpenAPI
         {
             get { return _transientContainerParent; }
         }
-        
+
         /// <summary>
         /// Returns the pane containing the transient container which is selected when the resource
         /// list is displayed.

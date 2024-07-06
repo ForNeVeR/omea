@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -27,11 +26,11 @@ namespace JetBrains.Omea.ResourceStore
 		/// <summary>
 		/// Constructs a comparer that uses a hierarchical set of properties to compare by.
 		/// </summary>
-		/// <param name="owner">A resource list that has a property provider 
+		/// <param name="owner">A resource list that has a property provider
 		/// that will be queried to get the property values for individual resources.</param>
 		/// <param name="sortSettings">Deinfes the sorting columns and ascending/descending directions for them.</param>
-		/// <param name="propsEquivalent">Specifies whether all the properties are treated equivalent, 
-		/// which means that if two sorting properties are suggested, the first of them which is defined for that particular object 
+		/// <param name="propsEquivalent">Specifies whether all the properties are treated equivalent,
+		/// which means that if two sorting properties are suggested, the first of them which is defined for that particular object
 		/// will take part in the comparison, not necessarily the same props on both objects.</param>
         public ResourceComparer( IResourceList owner, SortSettings sortSettings, bool propsEquivalent )
         {
@@ -128,7 +127,7 @@ namespace JetBrains.Omea.ResourceStore
             {
                 r2 = (IResource) y;
             }
-            
+
             if ( x == y )
                 return 0;
 
@@ -190,7 +189,7 @@ namespace JetBrains.Omea.ResourceStore
 
 		/// <summary>
 		/// Compares resources where the values of all properties are equivalent
-		/// (when sorting by P1 and P2, if a resource doesn't have the value for P1, 
+		/// (when sorting by P1 and P2, if a resource doesn't have the value for P1,
 		/// the value of P2 is taken and compared with other resources' values of P1.
 		/// </summary>
         public int CompareResourcesEquivalent( IResource r1, IResource r2 )
@@ -254,14 +253,14 @@ namespace JetBrains.Omea.ResourceStore
         {
             if ( prop1 != null && prop2 == null )
                 return 1;
-		
+
             if ( prop1 == null && prop2 != null )
                 return -1;
 
             IComparable prop1Comparable = prop1 as IComparable;
             if ( prop1Comparable == null )
                 return 0;
-		
+
             int cmp = prop1Comparable.CompareTo( prop2 );
             if ( cmp != 0 )
                 return cmp;

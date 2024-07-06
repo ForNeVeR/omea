@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using CommonTests;
 using JetBrains.Omea;
@@ -13,7 +12,7 @@ namespace OmniaMea.Tests
 	[TestFixture]
     public class CompositeActionTests: MyPalDBTests
 	{
-        private MockPluginEnvironment _environment;        
+        private MockPluginEnvironment _environment;
         private CompositeAction _composite;
 
         [SetUp] public void SetUp()
@@ -32,15 +31,15 @@ namespace OmniaMea.Tests
         {
             CloseStorage();
         }
-        
+
         [Test] public void MultiTypeTest()
         {
             MockAction contactAction = new MockAction( "Person" );
-            _composite.AddComponent( "Person", contactAction, null ); 
+            _composite.AddComponent( "Person", contactAction, null );
             MockAction emailAction = new MockAction( "Email" );
             _composite.AddComponent( "Email", emailAction, null );
 
-            IResourceList resList = _storage.GetAllResources( "Email" ).Union( 
+            IResourceList resList = _storage.GetAllResources( "Email" ).Union(
                 _storage.GetAllResources( "Person" ) );
             ActionContext context = new ActionContext( resList );
             ActionPresentation presentation = new ActionPresentation();

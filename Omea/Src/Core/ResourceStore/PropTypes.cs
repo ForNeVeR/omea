@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections.Generic;
@@ -37,22 +36,22 @@ namespace JetBrains.Omea.ResourceStore
             _flags  = flags;
             _displayName = null;
             _reverseDisplayName = null;
-            _ownerPluginLoaded = true;        
+            _ownerPluginLoaded = true;
         }
 
-        public int Id   
-        { 
-            get { return _id; } 
+        public int Id
+        {
+            get { return _id; }
         }
 
-        public string Name 
-        { 
-            get  { return _name; } 
+        public string Name
+        {
+            get  { return _name; }
         }
 
-        public PropDataType DataType 
-        { 
-            get { return _type; } 
+        public PropDataType DataType
+        {
+            get { return _type; }
         }
 
         public string DisplayName
@@ -92,7 +91,7 @@ namespace JetBrains.Omea.ResourceStore
             _displayName = displayName;
             _reverseDisplayName = reverseDisplayName;
         }
-        
+
         internal void SetDataType( PropDataType dataType )
         {
             _type = dataType;
@@ -112,7 +111,7 @@ namespace JetBrains.Omea.ResourceStore
     /**
      * Collection of property types.
      */
-    
+
     internal class PropTypeCollection: IPropTypeCollection
     {
         private MyPalStorage   _storage;
@@ -159,7 +158,7 @@ namespace JetBrains.Omea.ResourceStore
                 {
                     return _pseudoProps [propID - ResourceProps.Id];
                 }
-                
+
                 return FindPropTypeItem( propID );
             }
         }
@@ -237,7 +236,7 @@ namespace JetBrains.Omea.ResourceStore
         internal void CreateOrUpdatePropTypeResource( string name, PropDataType dataType, PropTypeFlags flags, IPlugin ownerPlugin, int ID, bool newPropType )
         {
             if ( newPropType )
-            {    
+            {
                 IResource res;
                 try
                 {
@@ -245,7 +244,7 @@ namespace JetBrains.Omea.ResourceStore
                 }
                 catch( ResourceRestrictionException ex )  // OM-9471
                 {
-                    MyPalStorage.Storage.OnIndexCorruptionDetected( "ResourceRestrictionException when creating PropType resource: " + 
+                    MyPalStorage.Storage.OnIndexCorruptionDetected( "ResourceRestrictionException when creating PropType resource: " +
                         ex.Message );
                     return;
                 }
@@ -258,7 +257,7 @@ namespace JetBrains.Omea.ResourceStore
                 if ( res != null )
                 {
                      res.SetProp( "Flags", (int) this [name].Flags );  // ensure OR'ed flags are applied correctly
-                    _storage.SetOwnerPlugin( res, ownerPlugin );                
+                    _storage.SetOwnerPlugin( res, ownerPlugin );
                 }
                 else
                 {
@@ -322,7 +321,7 @@ namespace JetBrains.Omea.ResourceStore
         {
             if ( propID < 0 || propID >= _propTypeCache.Count )
                 throw new StorageException( "Invalid property type ID " + propID );
-                
+
             PropTypeItem item = (PropTypeItem) _propTypeCache [propID];
             if (item == null)
                 throw new StorageException( "Invalid property type ID " + propID );
@@ -337,7 +336,7 @@ namespace JetBrains.Omea.ResourceStore
         {
             IResultSet rs = _propTypeTable.CreateResultSet( 0 );
             try
-            {                                       
+            {
                 foreach( IRecord rec in rs )
                 {
                     int ID      = rec.GetIntValue( 0 );
@@ -360,7 +359,7 @@ namespace JetBrains.Omea.ResourceStore
         {
             if ( ID < 0 || ID > 65536 )
                 throw new BadIndexesException( "Invalid property type ID " + ID );
-            
+
             lock( _propTypeCache )
             {
                 PropTypeItem propTypeItem = new PropTypeItem( ID, name, propType, flags );
@@ -375,7 +374,7 @@ namespace JetBrains.Omea.ResourceStore
                 {
                     _propTypeCache [ID] = propTypeItem;
                 }
-                
+
                 _propTypeNameCache [name] = propTypeItem;
             }
         }
@@ -402,7 +401,7 @@ namespace JetBrains.Omea.ResourceStore
          * Adds a record for the specified prop type to the DB.
          */
 
-        internal int RegisterPropTypeInternal( string name, PropDataType propType, PropTypeFlags flags, 
+        internal int RegisterPropTypeInternal( string name, PropDataType propType, PropTypeFlags flags,
             bool forceType, out bool newPropType )
         {
             _storage.CheckOwnerThread();
@@ -415,7 +414,7 @@ namespace JetBrains.Omea.ResourceStore
                 }
 
                 bool recordChanged = false;
-                if ( rec.GetIntValue( 2 ) != (int) propType ) 
+                if ( rec.GetIntValue( 2 ) != (int) propType )
                 {
                     if ( forceType )
                     {
@@ -469,7 +468,7 @@ namespace JetBrains.Omea.ResourceStore
             }
 
             AddPropTypeToCache( ID, name, propType, flags );
-            
+
             newPropType = true;
             return ID;
         }
@@ -520,7 +519,7 @@ namespace JetBrains.Omea.ResourceStore
             }
 
             int propId = this [propName].Id;
-            
+
             UpdatePropTypeRecord( propName, res );
 
             PropTypeItem propTypeItem = FindPropTypeItem( propId );
@@ -543,8 +542,8 @@ namespace JetBrains.Omea.ResourceStore
                     IRecord rec = (IRecord) enumerator.Current;
                     if ( rec.GetIntValue( 2 ) != res.GetIntProp( "DataType" ) )
                     {
-                        throw new StorageException( "Invalid attempt to change data type of property " + propName + 
-                            " from " + (PropDataType) rec.GetIntValue( 2 ) + 
+                        throw new StorageException( "Invalid attempt to change data type of property " + propName +
+                            " from " + (PropDataType) rec.GetIntValue( 2 ) +
                             " to " + (PropDataType) res.GetIntProp( "DataType" ) );
                     }
 
@@ -597,7 +596,7 @@ namespace JetBrains.Omea.ResourceStore
             {
                 rs.Dispose();
             }
-            
+
             IResource propTypeRes = _storage.FindUniqueResource( "PropType", "ID", id );
             Debug.Assert( propTypeRes != null );
             propTypeRes.Delete();
@@ -606,7 +605,7 @@ namespace JetBrains.Omea.ResourceStore
         internal void RegisterPropDisplayNameInternal( int propID, string fromDisplayName, string toDisplayName )
         {
             PropTypeItem propTypeItem = (PropTypeItem) _propTypeCache [propID];
-            
+
             IResource propTypeRes = _storage.FindUniqueResource( "PropType", "ID", propID );
             if ( propTypeRes == null )
             {
@@ -622,7 +621,7 @@ namespace JetBrains.Omea.ResourceStore
             {
                 propTypeRes.SetProp( "ReverseDisplayName", toDisplayName );
             }
-            
+
             propTypeItem.SetDisplayNames( fromDisplayName, toDisplayName );
         }
 
@@ -701,7 +700,7 @@ namespace JetBrains.Omea.ResourceStore
 
         public void Reset()
         {
-            _baseEnumerator.Reset();                
+            _baseEnumerator.Reset();
         }
 
         public object Current

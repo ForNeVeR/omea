@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 //	WebHelp 5.10.001
 var gaFileMapping = new Array();
@@ -19,7 +18,7 @@ function fileMapping(sBK, sEK, sFileName, nNum)
 function iFM(sBK, sEK, sFileName, nNum)
 {
 	var i = gaFileMapping.length;
-	gaFileMapping[i] = new fileMapping(sBK, sEK, sFileName, nNum);	
+	gaFileMapping[i] = new fileMapping(sBK, sEK, sFileName, nNum);
 	if (i == 0) {
 		gaFileMapping[i].nTotal = nNum;
 	}
@@ -33,7 +32,7 @@ function window_OnLoad()
 	if (parent && parent != this && parent.projReady)
 	{
 		parent.projReady(gaFileMapping);
-	}		
+	}
 }
 
 window.onload = window_OnLoad;

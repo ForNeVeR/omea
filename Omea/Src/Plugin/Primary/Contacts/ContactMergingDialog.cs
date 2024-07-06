@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Windows.Forms;
@@ -129,9 +128,9 @@ namespace JetBrains.Omea.ContactsPlugin
             this._btnMoreContacts = new System.Windows.Forms.Button();
             this._lblError = new System.Windows.Forms.Label();
             this.SuspendLayout();
-            // 
+            //
             // _btn_Cancel
-            // 
+            //
             this._btn_Cancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this._btn_Cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this._btn_Cancel.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -140,9 +139,9 @@ namespace JetBrains.Omea.ContactsPlugin
             this._btn_Cancel.Size = new System.Drawing.Size(75, 25);
             this._btn_Cancel.TabIndex = 11;
             this._btn_Cancel.Text = "Cancel";
-            // 
+            //
             // _btn_OK
-            // 
+            //
             this._btn_OK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this._btn_OK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this._btn_OK.Enabled = false;
@@ -153,10 +152,10 @@ namespace JetBrains.Omea.ContactsPlugin
             this._btn_OK.TabIndex = 10;
             this._btn_OK.Text = "&Merge";
             this._btn_OK.Click += new System.EventHandler(this.OK_Click);
-            // 
+            //
             // textFullName
-            // 
-            this.textFullName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this.textFullName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this.textFullName.Location = new System.Drawing.Point(160, 8);
             this.textFullName.Name = "textFullName";
@@ -166,57 +165,57 @@ namespace JetBrains.Omea.ContactsPlugin
             this.textFullName.TabStop = false;
             this.textFullName.Text = "";
             this.textFullName.TextChanged += new System.EventHandler(this.NameChanged);
-            // 
+            //
             // label1
-            // 
+            //
             this.label1.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label1.Location = new System.Drawing.Point(8, 12);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(140, 16);
             this.label1.TabIndex = 0;
             this.label1.Text = "Merged Contact &Name:";
-            // 
+            //
             // buttonAddContact
-            // 
+            //
             this.buttonAddContact.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.buttonAddContact.Location = new System.Drawing.Point(168, 76);
             this.buttonAddContact.Name = "buttonAddContact";
             this.buttonAddContact.TabIndex = 5;
             this.buttonAddContact.Text = ">>";
             this.buttonAddContact.Click += new System.EventHandler(this.buttonAddContact_Click);
-            // 
+            //
             // buttonRemoveContact
-            // 
+            //
             this.buttonRemoveContact.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.buttonRemoveContact.Location = new System.Drawing.Point(168, 104);
             this.buttonRemoveContact.Name = "buttonRemoveContact";
             this.buttonRemoveContact.TabIndex = 6;
             this.buttonRemoveContact.Text = "<<";
             this.buttonRemoveContact.Click += new System.EventHandler(this.buttonRemoveContact_Click);
-            // 
+            //
             // labelOtherContacts
-            // 
+            //
             this.labelOtherContacts.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.labelOtherContacts.Location = new System.Drawing.Point(8, 56);
             this.labelOtherContacts.Name = "labelOtherContacts";
             this.labelOtherContacts.Size = new System.Drawing.Size(112, 18);
             this.labelOtherContacts.TabIndex = 3;
             this.labelOtherContacts.Text = "&Suggested Contacts:";
-            // 
+            //
             // checkShowOrigNames
-            // 
+            //
             this.checkShowOrigNames.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.checkShowOrigNames.Location = new System.Drawing.Point(8, 32);
             this.checkShowOrigNames.Name = "checkShowOrigNames";
             this.checkShowOrigNames.Size = new System.Drawing.Size(380, 18);
             this.checkShowOrigNames.TabIndex = 2;
             this.checkShowOrigNames.Text = "&Show name used in messages addressed to this contact";
-            // 
+            //
             // _suggestedContacts2
-            // 
+            //
             this._suggestedContacts.AllowColumnReorder = false;
             this._suggestedContacts.AllowDrop = true;
-            this._suggestedContacts.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this._suggestedContacts.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                 | System.Windows.Forms.AnchorStyles.Left)));
             this._suggestedContacts.ContextMenuStrip = _menu;
             this._suggestedContacts.ExecuteDoubleClickAction = false;
@@ -228,22 +227,22 @@ namespace JetBrains.Omea.ContactsPlugin
             this._suggestedContacts.ShowContextMenu = false;
             this._suggestedContacts.TabIndex = 4;
             this._suggestedContacts.DoubleClick += new JetBrains.JetListViewLibrary.HandledEventHandler( buttonAddContact_Click );
-            // 
+            //
             // _menu
-            // 
+            //
             this._menu.Items.Add( _miShowContact );
             this._menu.Opening += new System.ComponentModel.CancelEventHandler( contextMenu1_Opening );
-            // 
+            //
             // menuItem2
-            // 
+            //
             this._miShowContact.Text = "Show Contact...";
             this._miShowContact.Click += new System.EventHandler(this.itemShowContact_Click);
-            // 
+            //
             // _contactsToMerge2
-            // 
+            //
             this._contactsToMerge.AllowColumnReorder = false;
             this._contactsToMerge.AllowDrop = true;
-            this._contactsToMerge.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this._contactsToMerge.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                 | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
             this._contactsToMerge.ContextMenuStrip = _menu;
             this._contactsToMerge.ExecuteDoubleClickAction = false;
@@ -255,18 +254,18 @@ namespace JetBrains.Omea.ContactsPlugin
             this._contactsToMerge.TabIndex = 8;
             this._contactsToMerge.SelectionChanged += new EventHandler(this.OnSelectContact);
             this._contactsToMerge.DoubleClick += new JetBrains.JetListViewLibrary.HandledEventHandler(buttonRemoveContact_Click);
-            // 
+            //
             // _lblContacts2Merge
-            // 
+            //
             this._lblContacts2Merge.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._lblContacts2Merge.Location = new System.Drawing.Point(248, 56);
             this._lblContacts2Merge.Name = "_lblContacts2Merge";
             this._lblContacts2Merge.Size = new System.Drawing.Size(112, 18);
             this._lblContacts2Merge.TabIndex = 7;
             this._lblContacts2Merge.Text = "&Contacts to Merge:";
-            // 
+            //
             // _btnMoreContacts
-            // 
+            //
             this._btnMoreContacts.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this._btnMoreContacts.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._btnMoreContacts.Location = new System.Drawing.Point(248, 312);
@@ -275,9 +274,9 @@ namespace JetBrains.Omea.ContactsPlugin
             this._btnMoreContacts.TabIndex = 9;
             this._btnMoreContacts.Text = "&More Contacts...";
             this._btnMoreContacts.Click += new System.EventHandler(this._btnMoreContacts_Click);
-            // 
+            //
             // _lblError
-            // 
+            //
             this._lblError.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this._lblError.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._lblError.ForeColor = System.Drawing.Color.Red;
@@ -287,9 +286,9 @@ namespace JetBrains.Omea.ContactsPlugin
             this._lblError.TabIndex = 12;
             this._lblError.Text = "label3";
             this._lblError.Visible = false;
-            // 
+            //
             // MergeContactsForm
-            // 
+            //
             this.AcceptButton = this._btn_OK;
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
             this.CancelButton = this._btn_Cancel;
@@ -330,7 +329,7 @@ namespace JetBrains.Omea.ContactsPlugin
             }
         }
         #endregion OK/Cancel
-    
+
         #region Event Handlers
         private void OnSelectContact( object sender, EventArgs e )
         {
@@ -387,7 +386,7 @@ namespace JetBrains.Omea.ContactsPlugin
             IResourceList contactsList = Core.ResourceStore.GetAllResources( "Contact" );
             contactsList = contactsList.Minus( _contactsToMergeList );
             contactsList.Sort( new SortSettings( ResourceProps.DisplayName, true ) );
-            IResourceList contacts = Core.UIManager.SelectResourcesFromList( this, contactsList, 
+            IResourceList contacts = Core.UIManager.SelectResourcesFromList( this, contactsList,
                                      "Select Contact(s) for Merging" );
             if ( contacts != null )
             {
@@ -410,7 +409,7 @@ namespace JetBrains.Omea.ContactsPlugin
             if ( textFullName.Text.Length == 0 || _contactsToMergeList.Count < 2 )
             {
                 _lblError.Visible = false;
-                _btn_OK.Enabled = false;                
+                _btn_OK.Enabled = false;
             }
             else
             {

@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -23,7 +22,7 @@ namespace JetBrains.Omea.SamplePlugins.LiveJournalPlugin
         private const string _protocolURL = "http://www.livejournal.com/interface/flat";
         private const string _contentType = "application/x-www-form-urlencoded";
         private const string _urlTemplate = "http://www.livejournal.com/users/{0}/data/rss?auth=digest";
-        
+
         private const string _groupNameTemplate = "LiveJournal friends of {1}";
         private const string _feedNameTemplate  = "{1} ({0})";
         private const string _feedDescTemplate  = "Posts of LeveJournal user '{0}'";
@@ -103,7 +102,7 @@ namespace JetBrains.Omea.SamplePlugins.LiveJournalPlugin
                     if(!answer.ContainsKey(key))
                         throw new Exception( String.Format( "Answer format error: no friend {0} provided", i ) );
                     friend =  answer[key] as string;
-                    
+
                     key = String.Format( "friend_{0}_name", i );
                     if(!answer.ContainsKey(key))
                         throw new Exception( String.Format( "Answer format error: no name for friend {0} provided", i ) );
@@ -154,7 +153,7 @@ namespace JetBrains.Omea.SamplePlugins.LiveJournalPlugin
                 feed = Core.ResourceStore.FindUniqueResource( "RSSFeed", "URL", URL );
                 if( null != feed )
                     continue;
-                
+
                 ResourceProxy proxy = ResourceProxy.BeginNewResource( "RSSFeed" );
                 try
                 {

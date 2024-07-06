@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -78,7 +77,7 @@ namespace JetBrains.Omea.Favorites
             realPane.AddNodeFilter( new BookmarkProfileFilter() );
             _favoritesTreePane.ToolTipCallback = DisplayWeblinkError;
             Core.LeftSidebar.RegisterViewPaneShortcut( "Favorites", Keys.Control | Keys.Alt | Keys.B );
-            
+
             Core.ResourceIconManager.RegisterResourceIconProvider( "Weblink", this );
             Core.ResourceIconManager.RegisterPropTypeIcon( Core.ResourceStore.PropTypes[ "Source" ].Id, LoadIconFromAssembly( "favorites1.ico" ) );
             _emptyWeblinkIcon = LoadIconFromAssembly( "weblink_empty.ico" );
@@ -174,7 +173,7 @@ namespace JetBrains.Omea.Favorites
         }
 
         #endregion
-        
+
         #region IResourceDisplayer Members
 
         public IDisplayPane CreateDisplayPane( string resourceType )
@@ -333,7 +332,7 @@ namespace JetBrains.Omea.Favorites
                 {
                     if( url != null )
                     {
-                        try { favIconUrl = new Uri( new Uri( url ), favIconUrl ).AbsoluteUri; } 
+                        try { favIconUrl = new Uri( new Uri( url ), favIconUrl ).AbsoluteUri; }
                         catch {}
                     }
                     Icon icon = _favIconManager.GetFavIcon( favIconUrl );
@@ -343,7 +342,7 @@ namespace JetBrains.Omea.Favorites
                     }
                     _favIconManager.DownloadFavIcon( favIconUrl );
                 }
-                
+
                 IResourceIconProvider provider = Core.ResourceIconManager.GetResourceIconProvider( source.Type );
                 if ( provider != null )
                 {

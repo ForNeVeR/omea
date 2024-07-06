@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System.Drawing;
 using System.Threading;
@@ -22,7 +21,7 @@ namespace JetBrains.Omea.OutlookPlugin
         private ResourceListView2   _lvInfoStores;
         private CheckBoxColumn      _checkBoxColumn;
         private IResourceList       _allStores;
-		/// <summary> 
+		/// <summary>
 		/// Required designer variable.
 		/// </summary>
 		private System.ComponentModel.Container components = null;
@@ -49,7 +48,7 @@ namespace JetBrains.Omea.OutlookPlugin
             _checkBoxColumn.AfterCheck += HandleAfterCheck;
 		}
 
-		/// <summary> 
+		/// <summary>
 		/// Clean up any resources being used.
 		/// </summary>
 		protected override void Dispose( bool disposing )
@@ -65,8 +64,8 @@ namespace JetBrains.Omea.OutlookPlugin
 		}
 
 		#region Component Designer generated code
-		/// <summary> 
-		/// Required method for Designer support - do not modify 
+		/// <summary>
+		/// Required method for Designer support - do not modify
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent()
@@ -75,9 +74,9 @@ namespace JetBrains.Omea.OutlookPlugin
             this.labelRemote = new System.Windows.Forms.Label();
             this._lvInfoStores = new ResourceListView2(); //JetBrains.Omea.GUIControls.ResourceListView();
             this.SuspendLayout();
-            // 
+            //
             // label1
-            // 
+            //
             this.label1.Dock = System.Windows.Forms.DockStyle.Top;
             this.label1.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label1.Location = new System.Drawing.Point(0, 0);
@@ -85,9 +84,9 @@ namespace JetBrains.Omea.OutlookPlugin
             this.label1.Size = new System.Drawing.Size(276, 55);
             this.label1.TabIndex = 4;
             this.label1.Text = "Select the information stores which you would like to access from Omea.";
-            // 
+            //
             // _lvInfoStores
-            // 
+            //
             this._lvInfoStores.AllowDrop = false;
             this._lvInfoStores.Dock = System.Windows.Forms.DockStyle.Fill;
             this._lvInfoStores.Location = new System.Drawing.Point(0, 55);
@@ -97,9 +96,9 @@ namespace JetBrains.Omea.OutlookPlugin
             this._lvInfoStores.HideSelection = false;
             this._lvInfoStores.BorderStyle = BorderStyle.Fixed3D;
             this._lvInfoStores.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            // 
+            //
             // labelRemote
-            // 
+            //
             this.labelRemote.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.labelRemote.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.labelRemote.Location = new System.Drawing.Point(0, 185);
@@ -108,9 +107,9 @@ namespace JetBrains.Omea.OutlookPlugin
             this.labelRemote.Size = new System.Drawing.Size(276, 75);
             this.labelRemote.TabIndex = 6;
             this.labelRemote.Text = "IMPORTANT! Inclusion of remote information stores may significantly increase application startup time.";
-            // 
+            //
             // OutlookOptionsPane_InfoStores
-            // 
+            //
             this.Controls.Add(this._lvInfoStores);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.labelRemote);

@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Text;
@@ -100,10 +99,10 @@ namespace JetBrains.Omea.SamplePlugins.PostToConfluence
             this._lblParent = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
-            // 
+            //
             // _lblLogin
-            // 
-            this._lblLogin.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._lblLogin.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._lblLogin.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._lblLogin.Location = new System.Drawing.Point(8, 12);
@@ -112,19 +111,19 @@ namespace JetBrains.Omea.SamplePlugins.PostToConfluence
             this._lblLogin.TabIndex = 0;
             this._lblLogin.Text = "Not logged in";
             this._lblLogin.UseMnemonic = false;
-            // 
+            //
             // _lblProgress
-            // 
-            this._lblProgress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._lblProgress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._lblProgress.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._lblProgress.Location = new System.Drawing.Point(8, 379);
             this._lblProgress.Name = "_lblProgress";
             this._lblProgress.Size = new System.Drawing.Size(252, 16);
             this._lblProgress.TabIndex = 9;
-            // 
+            //
             // _btnLogin
-            // 
+            //
             this._btnLogin.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this._btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._btnLogin.Location = new System.Drawing.Point(348, 8);
@@ -132,19 +131,19 @@ namespace JetBrains.Omea.SamplePlugins.PostToConfluence
             this._btnLogin.TabIndex = 1;
             this._btnLogin.Text = "&Login...";
             this._btnLogin.Click += new System.EventHandler(this._btnLogin_Click);
-            // 
+            //
             // label1
-            // 
+            //
             this.label1.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label1.Location = new System.Drawing.Point(8, 52);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(100, 16);
             this.label1.TabIndex = 2;
             this.label1.Text = "&Space:";
-            // 
+            //
             // _cmbSpaces
-            // 
-            this._cmbSpaces.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._cmbSpaces.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._cmbSpaces.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this._cmbSpaces.Location = new System.Drawing.Point(112, 48);
@@ -152,18 +151,18 @@ namespace JetBrains.Omea.SamplePlugins.PostToConfluence
             this._cmbSpaces.Size = new System.Drawing.Size(312, 21);
             this._cmbSpaces.TabIndex = 3;
             this._cmbSpaces.SelectedIndexChanged += new System.EventHandler(this._cmbSpaces_SelectedIndexChanged);
-            // 
+            //
             // label2
-            // 
+            //
             this.label2.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label2.Location = new System.Drawing.Point(8, 172);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(100, 16);
             this.label2.TabIndex = 5;
             this.label2.Text = "&Title:";
-            // 
+            //
             // _btnPost
-            // 
+            //
             this._btnPost.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this._btnPost.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._btnPost.Location = new System.Drawing.Point(264, 379);
@@ -171,9 +170,9 @@ namespace JetBrains.Omea.SamplePlugins.PostToConfluence
             this._btnPost.TabIndex = 10;
             this._btnPost.Text = "Post";
             this._btnPost.Click += new System.EventHandler(this._btnPost_Click);
-            // 
+            //
             // _btnCancel
-            // 
+            //
             this._btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this._btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._btnCancel.Location = new System.Drawing.Point(348, 379);
@@ -181,10 +180,10 @@ namespace JetBrains.Omea.SamplePlugins.PostToConfluence
             this._btnCancel.TabIndex = 11;
             this._btnCancel.Text = "Cancel";
             this._btnCancel.Click += new System.EventHandler(this._btnCancel_Click);
-            // 
+            //
             // _edtTitle
-            // 
-            this._edtTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._edtTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._edtTitle.Location = new System.Drawing.Point(112, 168);
             this._edtTitle.Name = "_edtTitle";
@@ -192,9 +191,9 @@ namespace JetBrains.Omea.SamplePlugins.PostToConfluence
             this._edtTitle.TabIndex = 6;
             this._edtTitle.Text = "";
             this._edtTitle.TextChanged += new System.EventHandler(this.HandleControlChanged);
-            // 
+            //
             // label3
-            // 
+            //
             this.label3.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label3.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(204)));
             this.label3.Location = new System.Drawing.Point(8, 196);
@@ -202,12 +201,12 @@ namespace JetBrains.Omea.SamplePlugins.PostToConfluence
             this.label3.Size = new System.Drawing.Size(100, 16);
             this.label3.TabIndex = 7;
             this.label3.Text = "&Content:";
-            // 
+            //
             // _edtContent
-            // 
+            //
             this._edtContent.AcceptsReturn = true;
-            this._edtContent.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-                | System.Windows.Forms.AnchorStyles.Left) 
+            this._edtContent.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._edtContent.AutoSize = false;
             this._edtContent.Location = new System.Drawing.Point(8, 216);
@@ -218,9 +217,9 @@ namespace JetBrains.Omea.SamplePlugins.PostToConfluence
             this._edtContent.TabIndex = 8;
             this._edtContent.Text = "";
             this._edtContent.TextChanged += new System.EventHandler(this.HandleControlChanged);
-            // 
+            //
             // groupBox1
-            // 
+            //
             this.groupBox1.Controls.Add(this._radBlogPost);
             this.groupBox1.Controls.Add(this._radNewPage);
             this.groupBox1.Controls.Add(this._btnBrowse);
@@ -233,18 +232,18 @@ namespace JetBrains.Omea.SamplePlugins.PostToConfluence
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Post as";
-            // 
+            //
             // _radBlogPost
-            // 
+            //
             this._radBlogPost.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._radBlogPost.Location = new System.Drawing.Point(8, 16);
             this._radBlogPost.Name = "_radBlogPost";
             this._radBlogPost.Size = new System.Drawing.Size(104, 20);
             this._radBlogPost.TabIndex = 0;
             this._radBlogPost.Text = "&Blog Post";
-            // 
+            //
             // _radNewPage
-            // 
+            //
             this._radNewPage.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._radNewPage.Location = new System.Drawing.Point(8, 36);
             this._radNewPage.Name = "_radNewPage";
@@ -252,9 +251,9 @@ namespace JetBrains.Omea.SamplePlugins.PostToConfluence
             this._radNewPage.TabIndex = 1;
             this._radNewPage.Text = "&New Page";
             this._radNewPage.CheckedChanged += new System.EventHandler(this._radNewPage_CheckedChanged);
-            // 
+            //
             // _btnBrowse
-            // 
+            //
             this._btnBrowse.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this._btnBrowse.Enabled = false;
             this._btnBrowse.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -263,10 +262,10 @@ namespace JetBrains.Omea.SamplePlugins.PostToConfluence
             this._btnBrowse.TabIndex = 4;
             this._btnBrowse.Text = "B&rowse...";
             this._btnBrowse.Click += new System.EventHandler(this._btnBrowse_Click);
-            // 
+            //
             // _edtParent
-            // 
-            this._edtParent.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._edtParent.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._edtParent.Enabled = false;
             this._edtParent.Location = new System.Drawing.Point(112, 56);
@@ -275,9 +274,9 @@ namespace JetBrains.Omea.SamplePlugins.PostToConfluence
             this._edtParent.Size = new System.Drawing.Size(211, 21);
             this._edtParent.TabIndex = 3;
             this._edtParent.Text = "";
-            // 
+            //
             // _lblParent
-            // 
+            //
             this._lblParent.Enabled = false;
             this._lblParent.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._lblParent.Location = new System.Drawing.Point(32, 60);
@@ -285,9 +284,9 @@ namespace JetBrains.Omea.SamplePlugins.PostToConfluence
             this._lblParent.Size = new System.Drawing.Size(68, 16);
             this._lblParent.TabIndex = 2;
             this._lblParent.Text = "Parent Page:";
-            // 
+            //
             // PostDialog
-            // 
+            //
             this.AcceptButton = this._btnPost;
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
             this.CancelButton = this._btnCancel;
@@ -346,7 +345,7 @@ namespace JetBrains.Omea.SamplePlugins.PostToConfluence
 	    {
             _lblProgress.Text = "Logging in...";
             _lblProgress.Refresh();
-            
+
             _loginToken = LoginDialog.GetLoginToken();
             if ( _loginToken == null )
             {
@@ -372,7 +371,7 @@ namespace JetBrains.Omea.SamplePlugins.PostToConfluence
 
             _confluence = new ConfluenceSoap();
             _confluence.Url = LoginManager.ServiceUrl;
-            
+
             _asyncOperation = true;
             _confluence.BegingetSpaces( _loginToken, new AsyncCallback( GetSpacesDone ), null );
             UpdateButtonStatus();
@@ -425,7 +424,7 @@ namespace JetBrains.Omea.SamplePlugins.PostToConfluence
 
             if ( _textToPost != null && TextToPost.Length > 0 )
             {
-                _edtContent.Text = _textToPost;                
+                _edtContent.Text = _textToPost;
             }
             else
             {
@@ -490,7 +489,7 @@ namespace JetBrains.Omea.SamplePlugins.PostToConfluence
 	        string spaceKey = (_cmbSpaces.SelectedItem as SpaceSummary).Key;
 	        string title = _edtTitle.Text;
 	        RemotePage page = new RemotePage();
-    
+
 	        RemotePageSummary[] pageSummaries = confluence.getPages( loginToken, spaceKey );
 	        foreach( RemotePageSummary pageSummary in pageSummaries )
 	        {
@@ -508,12 +507,12 @@ namespace JetBrains.Omea.SamplePlugins.PostToConfluence
 	                break;
 	            }
 	        }
-    
-	        page.space    = spaceKey;             
+
+	        page.space    = spaceKey;
 	        page.title    = title;
 	        page.content  = _edtContent.Text;
 	        page.parentId = _parentId;
-    
+
 	        confluence.storePage( loginToken, page );
             return true;
 	    }
@@ -562,7 +561,7 @@ namespace JetBrains.Omea.SamplePlugins.PostToConfluence
             if ( token != null )
             {
                 _loginToken = token;
-                UpdateLogin();                
+                UpdateLogin();
             }
         }
 
@@ -612,7 +611,7 @@ namespace JetBrains.Omea.SamplePlugins.PostToConfluence
             {
                 get { return _key; }
             }
-            
+
             public override string ToString()
             {
                 return _name;
@@ -623,7 +622,7 @@ namespace JetBrains.Omea.SamplePlugins.PostToConfluence
         {
             private StringBuilder _subjectBuilder = new StringBuilder();
             private StringBuilder _bodyBuilder = new StringBuilder();
-            
+
             public void AddDocumentHeading( int resourceId, string text )
             {
                 _subjectBuilder.Append( text );

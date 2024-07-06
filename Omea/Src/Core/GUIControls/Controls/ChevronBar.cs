@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -63,7 +62,7 @@ namespace JetBrains.Omea.GUIControls
 		private ArrayList _hiddenControls = new ArrayList();
 
 		/// <summary>
-		/// A delegate that allows to assign some text to the chevron menu item that 
+		/// A delegate that allows to assign some text to the chevron menu item that
 		/// is different from its <see cref="Control"/>'s <see cref="Text"/> property, which is used by default.
 		/// </summary>
 		private GetChevronMenuTextDelegate _getChevronMenuText;
@@ -113,7 +112,7 @@ namespace JetBrains.Omea.GUIControls
 			InitializeComponentSelf();
 		}
 
-		/// <summary> 
+		/// <summary>
 		/// Clean up any resources being used.
 		/// </summary>
 		protected override void Dispose( bool disposing )
@@ -137,9 +136,9 @@ namespace JetBrains.Omea.GUIControls
 			components = new Container();
 			using( new LayoutSuspender( this ) )
 			{
-				// 
+				//
 				// _chevronToolbar
-				// 
+				//
 				_btnChevron = new ImageListButton();
 				_btnChevron.Location = new Point( 124, 2 );
 				_btnChevron.Name = "_btnChevron";
@@ -153,9 +152,9 @@ namespace JetBrains.Omea.GUIControls
 				// _menuOnChevron
 				//
 				_menuOnChevron = new ContextMenu();
-				// 
+				//
 				// ChevronBar
-				// 
+				//
 				Controls.Add( _btnChevron );
 				Name = "ChevronBar";
 				Size = OptimalSize;
@@ -180,7 +179,7 @@ namespace JetBrains.Omea.GUIControls
 		#region ChevronMenuItemClick Event
 
 		/// <summary>
-		/// Fires when the chevron 
+		/// Fires when the chevron
 		/// </summary>
 		public event ChevronMenuItemClickEventHandler ChevronMenuItemClick;
 
@@ -575,7 +574,7 @@ namespace JetBrains.Omea.GUIControls
 		}
 
 		/// <summary>
-		/// Gets or sets a delegate that allows to assign some text to the chevron menu item that 
+		/// Gets or sets a delegate that allows to assign some text to the chevron menu item that
 		/// is different from its <see cref="Control"/>'s <see cref="Control.Text"/> property, which is used by default.
 		/// <c>Null</c> is a valid value which defaults to taking the <see cref="Control.Text"/> property.
 		/// </summary>

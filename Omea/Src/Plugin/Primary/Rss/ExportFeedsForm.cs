@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System.IO;
 using System.Windows.Forms;
@@ -69,9 +68,9 @@ namespace JetBrains.Omea.RSSPlugin
             this._btnOK = new System.Windows.Forms.Button();
             this._btnCancel = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
+            //
             // label1
-            // 
+            //
             this._lblTitle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)));
             this._lblTitle.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._lblTitle.Location = new System.Drawing.Point(8, 8);
@@ -79,10 +78,10 @@ namespace JetBrains.Omea.RSSPlugin
             this._lblTitle.Size = new System.Drawing.Size(150, 16);
             this._lblTitle.TabIndex = 0;
             this._lblTitle.Text = "&Choose feeds for export:";
-            // 
+            //
             // _treeFeeds
-            // 
-            this._treeFeeds.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            //
+            this._treeFeeds.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                 | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
             this._treeFeeds.AllowColumnReorder = false;
             this._treeFeeds.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
@@ -100,9 +99,9 @@ namespace JetBrains.Omea.RSSPlugin
             this._treeFeeds.RootResource = RSSPlugin.RootFeedGroup;
             this._treeFeeds.ParentProperty = Core.Props.Parent;
             this._treeFeeds.OpenProperty = Core.Props.Open;
-            // 
+            //
             // _btnSelectAll
-            // 
+            //
             this._btnSelectAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this._btnSelectAll.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._btnSelectAll.Location = new System.Drawing.Point(295, 30);
@@ -111,9 +110,9 @@ namespace JetBrains.Omea.RSSPlugin
             this._btnSelectAll.TabIndex = 1;
             this._btnSelectAll.Text = "&Select All";
             this._btnSelectAll.Click += new System.EventHandler(this._btnSelectAll_Click);
-            // 
+            //
             // _btnUnselectAll
-            // 
+            //
             this._btnUnselectAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this._btnUnselectAll.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._btnUnselectAll.Location = new System.Drawing.Point(295, 64);
@@ -122,9 +121,9 @@ namespace JetBrains.Omea.RSSPlugin
             this._btnUnselectAll.TabIndex = 2;
             this._btnUnselectAll.Text = "&Unselect All";
             this._btnUnselectAll.Click += new System.EventHandler(this._btnUnselectAll_Click);
-            // 
+            //
             // _lblDestination
-            // 
+            //
             this._lblDestination.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this._lblDestination.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._lblDestination.Location = new System.Drawing.Point(8, 440);
@@ -132,10 +131,10 @@ namespace JetBrains.Omea.RSSPlugin
             this._lblDestination.Size = new System.Drawing.Size(80, 16);
             this._lblDestination.TabIndex = 0;
             this._lblDestination.Text = "Save to &file:";
-            // 
+            //
             // _edtFileName
-            // 
-            this._edtFileName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._edtFileName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._edtFileName.Location = new System.Drawing.Point(90, 438);
             this._edtFileName.Multiline = false;
@@ -144,9 +143,9 @@ namespace JetBrains.Omea.RSSPlugin
             this._edtFileName.TabIndex = 4;
             this._edtFileName.Text = "";
             this._edtFileName.TextChanged += new System.EventHandler(_edtFileName_TextChanged);
-            // 
+            //
             // _btnBrowse
-            // 
+            //
             this._btnBrowse.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this._btnBrowse.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._btnBrowse.Location = new System.Drawing.Point(305, 438);
@@ -154,9 +153,9 @@ namespace JetBrains.Omea.RSSPlugin
             this._btnBrowse.TabIndex = 5;
             this._btnBrowse.Text = "&Browse...";
             this._btnBrowse.Click += new System.EventHandler(_btnBrowse_Click);
-            // 
+            //
             // _btnOK
-            // 
+            //
             this._btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this._btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this._btnOK.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -165,9 +164,9 @@ namespace JetBrains.Omea.RSSPlugin
             this._btnOK.TabIndex = 5;
             this._btnOK.Text = "OK";
             this._btnOK.Click += new System.EventHandler(_btnOK_Click);
-            // 
+            //
             // _btnCancel
-            // 
+            //
             this._btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this._btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this._btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.System;

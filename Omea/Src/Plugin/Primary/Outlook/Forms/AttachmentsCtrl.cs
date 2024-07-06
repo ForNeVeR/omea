@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -68,7 +67,7 @@ namespace JetBrains.Omea.OutlookPlugin
                 }
                 return false;
             }
-			
+
             /**
              * Returns the list of mails that have attachments of one of the types
              * listed in the group.
@@ -104,7 +103,7 @@ namespace JetBrains.Omea.OutlookPlugin
         private ListView _listQueries;
         private System.Windows.Forms.ColumnHeader _columnHeader;
 
-        /// <summary> 
+        /// <summary>
         /// Required designer variable.
         /// </summary>
         private System.ComponentModel.Container components = null;
@@ -115,7 +114,7 @@ namespace JetBrains.Omea.OutlookPlugin
             InitializeComponent();
         }
 
-        /// <summary> 
+        /// <summary>
         /// Clean up any resources being used.
         /// </summary>
         protected override void Dispose( bool disposing )
@@ -131,8 +130,8 @@ namespace JetBrains.Omea.OutlookPlugin
         }
 
         #region Component Designer generated code
-        /// <summary> 
-        /// Required method for Designer support - do not modify 
+        /// <summary>
+        /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
@@ -140,9 +139,9 @@ namespace JetBrains.Omea.OutlookPlugin
             this._listQueries = new System.Windows.Forms.ListView();
             this._columnHeader = new System.Windows.Forms.ColumnHeader();
             this.SuspendLayout();
-            // 
+            //
             // _listQueries
-            // 
+            //
             this._listQueries.BorderStyle = BorderStyle.None;
             this._listQueries.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
                                                                                            this._columnHeader});
@@ -157,9 +156,9 @@ namespace JetBrains.Omea.OutlookPlugin
             this._listQueries.View = System.Windows.Forms.View.Details;
             this._listQueries.KeyDown += new System.Windows.Forms.KeyEventHandler(this._listQueries_KeyDown);
             this._listQueries.Layout += new System.Windows.Forms.LayoutEventHandler(this._listQueries_Layout);
-            // 
+            //
             // AttachmentsCtrl
-            // 
+            //
             this.Controls.Add(this._listQueries);
             this.Name = "AttachmentsCtrl";
             this.Enter += new System.EventHandler(this.AttachmentsCtrl_Enter);
@@ -205,7 +204,7 @@ namespace JetBrains.Omea.OutlookPlugin
             ListViewItem lvItem = new ListViewItem();
             lvItem.Text = itemText;
             lvItem.Tag = obj;
-            lvItem.ImageIndex = Core.ResourceIconManager.GetPropTypeIconIndex( 
+            lvItem.ImageIndex = Core.ResourceIconManager.GetPropTypeIconIndex(
                 Core.ResourceStore.GetPropId( "Attachment") );
             _listQueries.Items.Add( lvItem );
             if ( _listQueries.Items.Count == 1 )
@@ -232,7 +231,7 @@ namespace JetBrains.Omea.OutlookPlugin
             ini.WriteBool( "MailIndexing", "ProcessDeletedItems", false );
             ini.WriteBool( "MailIndexing", "SkipBodyForIndex", false );
         }
-       
+
         /**
          * Writes a single attachment type to the INI file.
          */
@@ -275,7 +274,7 @@ namespace JetBrains.Omea.OutlookPlugin
                 }
             }
         }
-	
+
         private void OnSelectedIndexChanged( object sender, EventArgs e )
         {
             if ( !_listQueries.ContainsFocus )

@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.IO;
@@ -63,14 +62,14 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
                     startRevision = lastRevision - Settings.ChangeSetsToIndex;
                 }
             }
-            
+
             ParseSvnLog( repository, startRevision, lastRevision );
         }
 
 	    private static SvnRunner GetRunner( IResource repository )
 	    {
 	        return new SvnRunner( repository.GetProp( Props.RepositoryUrl ),
-	                              repository.GetProp( Props.UserName ), 
+	                              repository.GetProp( Props.UserName ),
 	                              repository.GetProp( Props.Password ) );
 	    }
 
@@ -96,7 +95,7 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
                 {
                     continue;
                 }
-                
+
                 string author = "", description = "";
                 DateTime date = DateTime.Now;
                 XmlNode childNode = node.SelectSingleNode( "author" );
@@ -114,7 +113,7 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
                 {
                     date = DateTime.Parse( childNode.InnerText );
                 }
-                
+
                 ResourceProxy proxy = ResourceProxy.BeginNewResource( Props.ChangeSetResource );
                 proxy.SetProp( Props.ChangeSetNumber, revision );
                 proxy.SetProp( Core.Props.Date, date );
@@ -123,12 +122,12 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
                 proxy.AddLink( Props.ChangeSetRepository, repository );
                 ProcessFileChanges( repository, proxy, node, revision );
                 proxy.EndUpdate();
-                
+
                 LinkChangeSetToContact( repository, proxy.Resource, author );
 
                 // Execute rules for the new changeset
                 Core.FilterEngine.ExecRules( StandardEvents.ResourceReceived, proxy.Resource );
-                
+
                 // Request text indexing of the changeset
                 Core.TextIndexManager.QueryIndexing( proxy.Resource.Id );
 
@@ -145,7 +144,7 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
 	        {
 	            string action = pathNode.GetAttribute( "action" );
 	            string path = pathNode.InnerText;
-	            
+
                 int pos = path.LastIndexOf( '/' );
                 string folderName = path.Substring( 0, pos );
                 string fileName = path.Substring( pos+1 );
@@ -175,11 +174,11 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
                 fileChange.Save();
 
                 csProxy.AddLink( Props.Change, fileChange.Resource );
-	            
+
 	        }
 	    }
 
-	    protected override void GetUserDetails( IResource repository, string userName, 
+	    protected override void GetUserDetails( IResource repository, string userName,
 	                                            out string email, out string fullName )
 	    {
 	        email = null;
@@ -222,13 +221,13 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
 	        {
 	            return;
 	        }
-	        
+
 	        int revision = fileChange.Revision;
 	        if ( revision == 1 )
 	        {
 	            return;
             }
-	        
+
 	        string repoRoot = repository.GetProp( Props.RepositoryRoot );
 	        if ( repoRoot == null )
 	        {
@@ -244,7 +243,7 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
 	            }
 	            new ResourceProxy( repository ).SetPropAsync( Props.RepositoryRoot, repoRoot );
 	        }
-	        
+
 	        string repoPath = BuildFileName( repository, fileChange );
 	        SvnRunner svnRunner = GetRunner( repository );
 	        svnRunner.RepositoryUrl = repoRoot;
@@ -257,8 +256,8 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
 	            {
 	                CheckBinaryFile( repository, repoRoot, repoPath, fileChange );
 	            }
-	            
-	            ClearLastError( repository ); 
+
+	            ClearLastError( repository );
 	        }
 	        catch( RunnerException ex )
 	        {

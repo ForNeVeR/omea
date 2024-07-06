@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Windows.Forms;
@@ -16,7 +15,7 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
 	{
         public abstract string Id { get; }
         public abstract string Name { get; }
-        
+
 	    /// <summary>
         /// Shows the configuration dialog for the specified repository.
         /// </summary>
@@ -24,7 +23,7 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
         /// <param name="repository">The repository to configure.</param>
         /// <returns>true if the changes were saved or false if the configuration was cancelled</returns>
         public abstract bool EditRepository( IWin32Window ownerWindow, IResource repository );
-	    
+
         /// <summary>
         /// Runs the synchronization process for the specified repository.
         /// </summary>
@@ -46,7 +45,7 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
             }
             return null;
         }
-	    
+
         protected static void SetChangeSetDescription( ResourceProxy proxy, string desc )
         {
             proxy.SetProp( Core.Props.LongBody, desc );
@@ -75,12 +74,12 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
                     () => LinkChangeSetToContact (repository, resource, user));
                 return;
             }
-            
+
             BusinessObjectList<UserToRepositoryMap> userRepMapList = Core.ResourceStore.FindResources( UserToRepositoryMap.ResourceType,
                 Props.UserId, user );
             userRepMapList = userRepMapList.Intersect( repository.GetLinksOfType( UserToRepositoryMap.ResourceType,
                 Props.UserRepository ) );
-            
+
             if ( userRepMapList.Count == 0 )
             {
                 string email, fullName;
@@ -105,7 +104,7 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
                     contactRes, resource, contact.DefaultEmailAddress, contactRes.DisplayName );
             }
         }
-	    
+
 	    protected abstract void GetUserDetails( IResource repository, string user, out string email, out string fullName );
 
 	    /// <summary>
@@ -118,7 +117,7 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
 	    {
 	        return FindOrCreateFolder( repository, dir, true );
 	    }
-	    
+
 	    /// <summary>
 	    /// Returns an existing resource for the folder with the specified path.
 	    /// </summary>
@@ -188,7 +187,7 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
         public virtual void OnChangesetSelected( IResource repository, IResource changeset )
         {
         }
-	    
+
         /// <summary>
 	    /// Called when a file change is selected in the repository.
 	    /// </summary>
@@ -199,7 +198,7 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
 	    {
 	        return null;
 	    }
-	    
+
         /// <summary>
         /// Clears the last error message for the specified repository.
         /// </summary>
@@ -211,7 +210,7 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
                 new ResourceProxy( repository ).DeletePropAsync( Props.LastError );
             }
         }
-	    
+
         /// <summary>
         /// Sets the last error message for the specified repository.
         /// </summary>

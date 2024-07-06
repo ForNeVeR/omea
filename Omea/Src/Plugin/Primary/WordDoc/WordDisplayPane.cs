@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Diagnostics;
@@ -50,7 +49,7 @@ namespace JetBrains.Omea.WordDocPlugin
 			_richTextBox.ContextProvider = this;
 		}
 
-		/// <summary> 
+		/// <summary>
 		/// Clean up any resources being used.
 		/// </summary>
 		protected override void Dispose( bool disposing )
@@ -66,8 +65,8 @@ namespace JetBrains.Omea.WordDocPlugin
 		}
 
 		#region Component Designer generated code
-		/// <summary> 
-		/// Required method for Designer support - do not modify 
+		/// <summary>
+		/// Required method for Designer support - do not modify
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent()
@@ -76,9 +75,9 @@ namespace JetBrains.Omea.WordDocPlugin
             this._richTextBox = new GUIControls.JetRichTextBox();
             this._wordHighlightTimer = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
-            // 
+            //
             // _richTextBox
-            // 
+            //
             this._richTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this._richTextBox.Location = new System.Drawing.Point(0, 0);
             this._richTextBox.Name = "_richTextBox";
@@ -89,14 +88,14 @@ namespace JetBrains.Omea.WordDocPlugin
             this._richTextBox.Visible = false;
 			_richTextBox.BackColor = SystemColors.Window;
 			_richTextBox.BorderStyle = BorderStyle.None;
-			// 
+			//
             // _wordHighlightTimer
-            // 
+            //
             this._wordHighlightTimer.Interval = 250;
             this._wordHighlightTimer.Tick += new System.EventHandler(this._wordHighlightTimer_Tick);
-            // 
+            //
             // WordDisplayPane
-            // 
+            //
             this.Controls.Add(this._richTextBox);
             this.Name = "WordDisplayPane";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.WordDisplayPane_KeyDown);
@@ -132,7 +131,7 @@ namespace JetBrains.Omea.WordDocPlugin
                         Core.FileResourceManager.CleanupSourceFile( resource, _sourceFileName );
                     }
                     else
-                        LoadHtml( _sourceFileName );                
+                        LoadHtml( _sourceFileName );
                 }
                 catch( Exception ex )
                 {
@@ -161,7 +160,7 @@ namespace JetBrains.Omea.WordDocPlugin
             FileStream fs = new FileStream( fileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite );
             try
             {
-                StreamReader reader = new StreamReader( fs, Encoding.Default );                
+                StreamReader reader = new StreamReader( fs, Encoding.Default );
                 _richTextBox.Rtf = Utils.StreamReaderReadToEnd( reader );
             }
             finally
@@ -180,7 +179,7 @@ namespace JetBrains.Omea.WordDocPlugin
             _converterProcess = WordDocPlugin.CreateWvWareProcess( fileName, "wvHtml.xml", false );
             _converterProcess.EnableRaisingEvents = true;
             _converterProcess.Exited += _converterProcess_OnExited;
-			try 
+			try
 			{
 				if(!_converterProcess.Start())
 					throw new Exception();
@@ -193,9 +192,9 @@ namespace JetBrains.Omea.WordDocPlugin
 				return;
 			}
 
-            _convertedFileName = Path.Combine( WordDocPlugin.TempDir, 
+            _convertedFileName = Path.Combine( WordDocPlugin.TempDir,
                 Path.GetFileNameWithoutExtension( fileName ) + ".html" );
-            _converterOutputReader = new StreamReader( _converterProcess.StandardOutput.BaseStream, 
+            _converterOutputReader = new StreamReader( _converterProcess.StandardOutput.BaseStream,
                 Encoding.UTF8 );
             _converterOutputWriter = new StreamWriter( _convertedFileName, false, Encoding.UTF8 );
             new Thread( ProcessConverterOutput ).Start();
@@ -221,7 +220,7 @@ namespace JetBrains.Omea.WordDocPlugin
 	    {
             if ( _killedConverter )
                 return;
-            
+
             if ( _converterProcess.ExitCode == 0 )
             {
 				Core.WebBrowser.Stop();	// If we do not, hilite will be applied to the "please wait" banner
@@ -274,7 +273,7 @@ namespace JetBrains.Omea.WordDocPlugin
 /*
 	    private void HighlightRtfWords( WordPtr[] words )
 	    {
-            // we use plain text for indexing, so the offsets will not match => 
+            // we use plain text for indexing, so the offsets will not match =>
             // use token-based highlighting
 
             _wordsToHighlight = words;
@@ -300,7 +299,7 @@ namespace JetBrains.Omea.WordDocPlugin
                 return;
             }
 
-            int offset = _richTextBox.Find( _wordsToHighlight [_lastHighlightIndex].Text, 
+            int offset = _richTextBox.Find( _wordsToHighlight [_lastHighlightIndex].Text,
                 _lastHighlightOffset, RichTextBoxFinds.WholeWord );
             if ( offset >= 0 )
             {
@@ -308,7 +307,7 @@ namespace JetBrains.Omea.WordDocPlugin
                 _lastHighlightOffset = offset + highlightLength;
 
                 _richTextBox.Select( offset, highlightLength );
-                
+
                 CHARFORMAT2 fmt = new CHARFORMAT2();
                 fmt.cbSize = Marshal.SizeOf( fmt );
                 fmt.dwMask = CFM.BACKCOLOR | CFM.COLOR;

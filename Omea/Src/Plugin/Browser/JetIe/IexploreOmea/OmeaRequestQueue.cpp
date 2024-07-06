@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 // © JetBrains Inc, 2005
 // Written by (H) Serge Baltic
@@ -355,7 +354,7 @@ void COmeaRequestQueue::SubmitQueueImpl()
 								ASSERT(SetFilePointer(hFile, 0, NULL, FILE_CURRENT) == dwDonePosition);	// Check that we've come to the same position
 							}
 							catch(_com_error e)
-							{	
+							{
 								COM_TRACE();
 								// It means that we still could not submit the request due to connectivity problems. Stop processing the queue and mark the done requests, if any, as processed
 								// Mark the processing as Failed and break reading the file

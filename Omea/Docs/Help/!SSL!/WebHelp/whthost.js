@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 //	WebHelp 5.10.007
 var gaHSLoad=new Array();
@@ -125,7 +124,7 @@ function setIcon(sType,sURL)
 	else if(sType=="NewItem")
 		giNewBookItem=sURL;
 	else if(sType=="NewRemoteItem")
-		giNewURLItem=sURL;		
+		giNewURLItem=sURL;
 }
 
 function bookItem(sTarget,sURL)
@@ -139,7 +138,7 @@ function bookItem(sTarget,sURL)
 
 function addBookItem(sBookId,sTarget,sURL)
 {
-	gBookItems[sBookId]=new bookItem(sTarget,sURL);		
+	gBookItems[sBookId]=new bookItem(sTarget,sURL);
 }
 
 function tocChunk(sPPath,sDPath)
@@ -263,11 +262,11 @@ function writeBook(nIdx)
 	var sIcon=getBookImage(nIdx,true);
 	var sName=_textToHtml(getItemName(nIdx));
 	sIcon=_textToHtml_nonbsp(sIcon);
-	
+
 	var nType=getItemType(nIdx);
 	var bLocal=(nType==1);
 	var bLocalProject=(nType!=4);
-	
+
 	var sHTML="<div id=\""+getPBId(nIdx)+"\" class=";
 	if(bLocal)
 	{
@@ -450,8 +449,8 @@ function writeBookItems(nIdx,num)
 			var i=nIdx+nCIdx;
 			var nItemType=getItemType(i);
 			if(nItemType==1||nItemType==4||nItemType==8){
-				sHTML+=writeBook(i);	
-				nCIdx+=getItemContentsNum(i);		
+				sHTML+=writeBook(i);
+				nCIdx+=getItemContentsNum(i);
 			}
 			else if(nItemType==2||nItemType==16){
 				sHTML+=writeAnItem(i);
@@ -750,7 +749,7 @@ function TocExpand(nId,bChangeImg,bForceOpen)
 		if(bChangeImg){
 			var sPath=getPath(whichIm.src);
 			sPath=_getFullPath(sPath,getBookImage(nId,false));
-			whichIm.src=sPath;		
+			whichIm.src=sPath;
 		}
 	}else{
 		oDiv.style.display="none";
@@ -789,7 +788,7 @@ function getChunk(n)
 {
 	if(gnCC!=-1&&gaTocs[gnCC].nMI<=n&&(gnCC==gaTocs.length-1||
 		gaTocs[gnCC+1].nMI>n))
-	{	
+	{
 		return gaTocs[gnCC];
 	}
 	else{
@@ -856,7 +855,7 @@ function expandToc(oObj,sRest,aIdList)
 		}
 		return 0;
 	}
-		
+
 	var aChildren=getChildrenByTag(oObj,"DIV");
 	for(var i=0;i<aChildren.length;i++)
 	{
@@ -1040,8 +1039,8 @@ function syncInit()
 			{
 				var sPath=getClosestTocPath(aPaths);
 				if(sPath!=null)
-				{	
-					gsTP=sPath;		
+				{
+					gsTP=sPath;
 					setTimeout("syncInit()",1);
 				}
 			}
@@ -1098,7 +1097,7 @@ function projReady(sRoot,aProj)
 	if(gaRoot.length<=gnLT||!gaRoot[gnLT])
 		gaRoot[gnLT]=new Object();
 	gaRoot[gnLT].sToc=sRoot;
-	
+
 	if(gnLT==0)
 	{
 		gaRoot[gnLT].aRPath=new Array();
@@ -1197,7 +1196,7 @@ function putDataXML(xmlDoc,sDocPath)
 					if(sURL)
 					{
 						if(sURL.lastIndexOf("/")!=sURL.length-1)
-							sURL+="/";						
+							sURL+="/";
 					}
 					aRProj[i].sPPath=sURL;
 					aRProj[i].sRPath = "";
@@ -1254,7 +1253,7 @@ function processBook(node,aToc)
 				if(sURL==null) sURL="";
 
 				item.sItemURL=sURL;
-				
+
 				if(oChild.nodeName=="book")
 				{
 					item.nType=1;
@@ -1280,7 +1279,7 @@ function processBook(node,aToc)
 					if(sRef)
 					{
 						if(sRef.lastIndexOf("/")!=sRef.length-1)
-							sRef+="/";						
+							sRef+="/";
 					}
 					item.nType=4;
 					item.sRefURL=sRef;
@@ -1338,7 +1337,7 @@ function realPutData()
 				if(oMsg.oParam.oTocInfo)
 					syncWithPaths(oMsg.oParam.oTocInfo);
 			}
-		}	
+		}
 	}
 	gbLData=false;
 	checkFillStub();
@@ -1380,37 +1379,37 @@ function loadImages()
 	{
 		gaImgs[gnImages]=giBookClose;
 		gnImages++;
-	}		
+	}
 	if(giBookOpen)
 	{
 		gaImgs[gnImages]=giBookOpen;
 		gnImages++;
-	}		
+	}
 	if(giBookItem)
 	{
 		gaImgs[gnImages]=giBookItem;
 		gnImages++;
-	}		
+	}
 	if(giURLItem)
 	{
 		gaImgs[gnImages]=giURLItem;
 		gnImages++;
-	}		
+	}
 	if(giNewBookClose)
 	{
 		gaImgs[gnImages]=giNewBookClose;
 		gnImages++;
-	}		
+	}
 	if(giNewBookOpen)
 	{
 		gaImgs[gnImages]=giNewBookOpen;
 		gnImages++;
-	}		
+	}
 	if(giNewBookItem)
 	{
 		gaImgs[gnImages]=giNewBookItem;
 		gnImages++;
-	}		
+	}
 	if(giNewURLItem)
 	{
 		gaImgs[gnImages]=giNewURLItem;
@@ -1448,7 +1447,7 @@ function errorImageLoading()
 	if(gnImages==gnLoadedImages)
 		loadDataAfter();
 	else
-		loadImage(gaImgs[gnLoadedImages]);	
+		loadImage(gaImgs[gnLoadedImages]);
 }
 
 function checkImageLoading()
@@ -1457,7 +1456,7 @@ function checkImageLoading()
 	if(gnImages==gnLoadedImages)
 		loadDataAfter();
 	else
-		loadImage(gaImgs[gnLoadedImages]);	
+		loadImage(gaImgs[gnLoadedImages]);
 }
 
 function window_unload()

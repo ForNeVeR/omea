@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Diagnostics;
@@ -73,43 +72,43 @@ namespace JetBrains.Omea.DebugPlugin
             this._close = new System.Windows.Forms.Button();
             this._useShellExecute = new JetBrains.Omea.GUIControls.CheckBoxSettingEditor();
             this.SuspendLayout();
-            // 
+            //
             // _windowStyle
-            // 
+            //
             this._windowStyle.Changed = false;
             this._windowStyle.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this._windowStyle.Location = new System.Drawing.Point(108, 4);
             this._windowStyle.Name = "_windowStyle";
             this._windowStyle.TabIndex = 0;
-            // 
+            //
             // label1
-            // 
+            //
             this.label1.Location = new System.Drawing.Point(8, 8);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(80, 16);
             this.label1.TabIndex = 1;
             this.label1.Text = "Window Style:";
-            // 
+            //
             // _startProcess
-            // 
+            //
             this._startProcess.Location = new System.Drawing.Point(244, 4);
             this._startProcess.Name = "_startProcess";
             this._startProcess.Size = new System.Drawing.Size(88, 23);
             this._startProcess.TabIndex = 2;
             this._startProcess.Text = "Start Process";
             this._startProcess.Click += new System.EventHandler(this.OnStart);
-            // 
+            //
             // _close
-            // 
+            //
             this._close.Location = new System.Drawing.Point(244, 36);
             this._close.Name = "_close";
             this._close.Size = new System.Drawing.Size(88, 23);
             this._close.TabIndex = 3;
             this._close.Text = "Close Process";
             this._close.Click += new System.EventHandler(this.OnClose);
-            // 
+            //
             // _useShellExecute
-            // 
+            //
             this._useShellExecute.Changed = false;
             this._useShellExecute.InvertValue = false;
             this._useShellExecute.Location = new System.Drawing.Point(8, 32);
@@ -117,9 +116,9 @@ namespace JetBrains.Omea.DebugPlugin
             this._useShellExecute.Size = new System.Drawing.Size(124, 24);
             this._useShellExecute.TabIndex = 4;
             this._useShellExecute.Text = "Use Shell Execute";
-            // 
+            //
             // OutlookCotrolPanel
-            // 
+            //
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
             this.ClientSize = new System.Drawing.Size(352, 66);
             this.Controls.Add(this._useShellExecute);

@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Windows.Forms;
@@ -70,9 +69,9 @@ namespace JetBrains.Omea
             this._timeLabel = new System.Windows.Forms.Label();
             this._tmrUpdateElapsedTime = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
-            // 
+            //
             // _statusLabel
-            // 
+            //
             this._statusLabel.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._statusLabel.Location = new System.Drawing.Point(8, 8);
             this._statusLabel.Name = "_statusLabel";
@@ -81,16 +80,16 @@ namespace JetBrains.Omea
             this._statusLabel.Text = "Indexing...";
             this._statusLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this._statusLabel.UseMnemonic = false;
-            // 
+            //
             // _progressBar
-            // 
+            //
             this._progressBar.Location = new System.Drawing.Point(8, 48);
             this._progressBar.Name = "_progressBar";
             this._progressBar.Size = new System.Drawing.Size(384, 16);
             this._progressBar.TabIndex = 1;
-            // 
+            //
             // _timeLabel
-            // 
+            //
             this._timeLabel.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._timeLabel.Location = new System.Drawing.Point(8, 24);
             this._timeLabel.Name = "_timeLabel";
@@ -98,15 +97,15 @@ namespace JetBrains.Omea
             this._timeLabel.TabIndex = 2;
             this._timeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this._timeLabel.UseMnemonic = false;
-            // 
+            //
             // _tmrUpdateElapsedTime
-            // 
+            //
             this._tmrUpdateElapsedTime.Enabled = true;
             this._tmrUpdateElapsedTime.Interval = 1000;
             this._tmrUpdateElapsedTime.Tick += new System.EventHandler(this._tmrUpdateElapsedTime_Tick);
-            // 
+            //
             // ProgressWindow
-            // 
+            //
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
             this.ClientSize = new System.Drawing.Size(402, 69);
             this.ControlBox = false;
@@ -150,7 +149,7 @@ namespace JetBrains.Omea
         /**
          * After the form is shown, starts the index building process.
          */
-		
+
         private void FirstShow()
         {
             ResetElapsedTime();
@@ -197,7 +196,7 @@ namespace JetBrains.Omea
             {
                 Trace.WriteLine( "Progress message: " + message );
             }
-            
+
             _progressBar.Value = percentage;
             _statusLabel.Text = message;
             _lastProgressText = message;
@@ -238,7 +237,7 @@ namespace JetBrains.Omea
 
         private void _tmrUpdateElapsedTime_Tick( object sender, EventArgs e )
         {
-            UpdateElapsedTime();        
+            UpdateElapsedTime();
         }
     }
 

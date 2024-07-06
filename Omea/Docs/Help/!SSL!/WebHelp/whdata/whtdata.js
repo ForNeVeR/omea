@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 //	WebHelp 5.10.001
 var gTEA = new Array();
@@ -10,18 +9,18 @@ function aTE()
 	gTEA[gTEA.length] = new tocEntry(aTE.arguments);
 }
 
-function tocEntry(fn_arguments) 
+function tocEntry(fn_arguments)
 {
-	if (fn_arguments.length < 3)	
+	if (fn_arguments.length < 3)
 	{
 		alert ("data format wrong!!!");
 		return;
 	}
-	
+
 	this.nType = fn_arguments[0];
 	this.nContents = fn_arguments[1];
 	this.sItemName = fn_arguments[2];
-	
+
 	if (this.nType == 1 || this.nType == 2 || this.nType == 16)
 	{
 		if (fn_arguments.length > 3)

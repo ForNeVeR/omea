@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 //	WebHelp 5.10.001
 var gTEA = new Array();
@@ -20,7 +19,7 @@ function topicEntry(sTopicTitle, sTopicURL)
 function window_OnLoad()
 {
 	if (parent && parent != this) {
-		if (parent.putFtsTData) 
+		if (parent.putFtsTData)
 		{
 			parent.putFtsTData(gTEA);
 		}

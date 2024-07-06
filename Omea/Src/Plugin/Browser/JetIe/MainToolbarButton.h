@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 // MainToolbarButton.h : Declaration of the CMainToolbarButton
 //
@@ -37,7 +36,7 @@
 	helpstring("Supports the generic Beelaxy Internet Explorer Main Toolbar button command target object.")
 ]
 #endif
-class ATL_NO_VTABLE CMainToolbarButton : 
+class ATL_NO_VTABLE CMainToolbarButton :
 	public IObjectWithSiteImpl<CMainToolbarButton>,
 	public IOleCommandTarget
 {
@@ -53,8 +52,8 @@ public:
 	{
 		return S_OK;
 	}
-	
-	void FinalRelease() 
+
+	void FinalRelease()
 	{
 	}
 

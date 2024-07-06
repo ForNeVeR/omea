@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -16,7 +15,7 @@ namespace JetBrains.Omea.RemoteControl
 		internal class RequestException : Exception
 		{
 			private int _code;
-			
+
 			public RequestException( int code, string message )
 				: base( message ) { _code = code; }
 
@@ -52,7 +51,7 @@ namespace JetBrains.Omea.RemoteControl
 			if( null == str )
 				throw new RequestException(400, "No data");
 			str = str.Trim( _spaces );
-			
+
 			// Parse head
 
 			// Extract
@@ -121,7 +120,7 @@ namespace JetBrains.Omea.RemoteControl
 			// Ok, read body
 			if( !_headers.ContainsKey( "Content-Length" ) )
 				throw new RequestException(411, "Need Content-Length");
-			
+
 			int cl;
 			try
 			{

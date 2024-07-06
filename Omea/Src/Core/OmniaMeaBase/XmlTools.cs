@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Xml;
@@ -11,7 +10,7 @@ namespace JetBrains.Omea.Base
     /**
      * Helper functions for working with XML.
      */
-	
+
     public class XmlTools
 	{
         private XmlTools() {}
@@ -20,7 +19,7 @@ namespace JetBrains.Omea.Base
         {
             XmlAttribute attr = node.Attributes [attrName];
             if ( attr == null )
-                throw new XmlToolsException( "<" + node.Name + "> '" + attrName + "' attribute not specified" );            
+                throw new XmlToolsException( "<" + node.Name + "> '" + attrName + "' attribute not specified" );
 
             return attr.Value;
         }
@@ -44,7 +43,7 @@ namespace JetBrains.Omea.Base
         {
             XmlAttribute attr = node.Attributes [attrName];
             if ( attr == null )
-                throw new XmlToolsException( "<" + node.Name + "> '" + attrName + "' attribute not specified" );            
+                throw new XmlToolsException( "<" + node.Name + "> '" + attrName + "' attribute not specified" );
 
             return Int32.Parse( attr.Value );
         }

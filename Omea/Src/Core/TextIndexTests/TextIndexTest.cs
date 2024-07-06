@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using   System;
 using   System.IO;
@@ -180,14 +179,14 @@ namespace TextIndexTests
             indexer.DeleteDocument( newRes1.Id );
             result = indexer.ProcessQueryInternal( "fourplay" );
             AssertIfTrue( "Size of query result does not equal 1 (after removal)", result.Length == 1 );
-            
+
             //--
             IResource newRes3 = Core.ResourceStore.NewResource( "TestType" );
             indexer.AddDocumentFragment( newRes3.Id, "one fourplay" );
             indexer.EndBatchUpdate();
             result = indexer.ProcessQueryInternal( "fourplay" );
             AssertIfTrue( "Size of query result does not equal 2 (after removal and addition)", result.Length == 2 );
-            
+
             //--
             result = indexer.ProcessQueryInternal( "one" );
             AssertIfTrue( "Unexpected error - result list is empty - one elemented is expected", result != null );
@@ -380,13 +379,13 @@ namespace TextIndexTests
                         derivateBases[ prefix ] = 1;
 
                         OMEnv.DictionaryServer.FindLowerBound( prefix, out index, out length );
-                        AssertIfTrue( "Mapped lexeme [" + str + "] is not found in dic [" + dic + "]", 
+                        AssertIfTrue( "Mapped lexeme [" + str + "] is not found in dic [" + dic + "]",
                                 index < -1 || index == 0 || counter == 1 );
 
                         string  source = OMEnv.DictionaryServer.GetDicString( -index, length );
                         int     delim = source.IndexOf( '$' );
                         AssertIfTrue( "Returned result is not a map: " + source, delim != -1 );
-                        AssertIfTrue( "Mapped lexeme [" + prefix + "] is not found against " + 
+                        AssertIfTrue( "Mapped lexeme [" + prefix + "] is not found against " +
                                 source.Substring( 0, delim), prefix == source.Substring( 0, delim ));
                     }
                     counter++;

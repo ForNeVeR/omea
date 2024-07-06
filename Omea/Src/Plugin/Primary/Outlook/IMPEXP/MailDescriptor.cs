@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -61,20 +60,20 @@ namespace JetBrains.Omea.OutlookPlugin
         public static MDState UpdateState{ get { return _updateState;} }
         public static MDState MovedState{ get { return _movedState;} }
 
-        public MailDescriptor( FolderDescriptor folderDescriptor, string entryID,  
+        public MailDescriptor( FolderDescriptor folderDescriptor, string entryID,
             IEMessage message, string longBody )
         {
             _state = NormalState;
             Init( folderDescriptor, entryID, message, longBody );
         }
 
-        public MailDescriptor( FolderDescriptor folderDescriptor, string entryID, 
+        public MailDescriptor( FolderDescriptor folderDescriptor, string entryID,
             IEMessage message, MDState state, string longBody )
         {
             _state = state;
             Init( folderDescriptor, entryID, message, longBody );
         }
-        public MailDescriptor( FolderDescriptor folderDescriptor, string entryID,  
+        public MailDescriptor( FolderDescriptor folderDescriptor, string entryID,
             IEMessage message )
         {
             _state = NormalState;
@@ -82,7 +81,7 @@ namespace JetBrains.Omea.OutlookPlugin
             _longBody = message.GetPlainBody( _longBodyMaxSize );
         }
 
-        public MailDescriptor( FolderDescriptor folderDescriptor, string entryID, 
+        public MailDescriptor( FolderDescriptor folderDescriptor, string entryID,
             IEMessage message, MDState state )
         {
             _state = state;
@@ -149,12 +148,12 @@ namespace JetBrains.Omea.OutlookPlugin
 
             _messageSize = message.GetLongProp( MAPIConst.PR_MESSAGE_SIZE );
             _iconIndex = message.GetLongProp( MAPIConst.PR_ICON_INDEX );
-            
+
             _priority = message.GetLongProp( MAPIConst.PR_PRIORITY );
             int importance = message.GetLongProp( MAPIConst.PR_IMPORTANCE, true );
             if ( importance == -9999 )
             {
-                importance = 1;    
+                importance = 1;
             }
             _importance = importance - 1;
             _flagStatus = message.GetLongProp( MAPIConst.PR_FLAG_STATUS );
@@ -186,7 +185,7 @@ namespace JetBrains.Omea.OutlookPlugin
 
             _receivedTime = message.GetDateTimeProp( MAPIConst.PR_MESSAGE_DELIVERY_TIME );
             _sentOn = message.GetDateTimeProp( MAPIConst.PR_CLIENT_SUBMIT_TIME );
-            if ( _receivedTime == DateTime.MinValue ) 
+            if ( _receivedTime == DateTime.MinValue )
             {
                 _receivedTime = _sentOn;
             }
@@ -212,7 +211,7 @@ namespace JetBrains.Omea.OutlookPlugin
         /**
          * Checks if the given address is the address of the mailing list for
          * which the unsubscribe address is known.
-         */		
+         */
 
         private bool IsUnsubscribeAddress( string listAddr, string unsubscribeAddr )
         {
@@ -229,8 +228,8 @@ namespace JetBrains.Omea.OutlookPlugin
 
             // must be the same domain, and unsubscribe address should contain list addr.
             // for example: python-dev-unsubscribe@python.org, python-dev@python.org
-            return 
-                unsubPortions [1] == listPortions [1] && 
+            return
+                unsubPortions [1] == listPortions [1] &&
                 unsubPortions [0].StartsWith( listPortions [0] );
         }
         private void AddMailingListCategory( IResource mail, IResource mailingList )
@@ -242,7 +241,7 @@ namespace JetBrains.Omea.OutlookPlugin
 
             IResource listCategory = Core.CategoryManager.FindOrCreateCategory( null, listName );
             Core.CategoryManager.AddResourceCategory( mail, listCategory );
-                
+
             foreach( IResource fromRes in mail.GetLinksOfType( "Contact", PROP.From ).ValidResources )
             {
                 Core.CategoryManager.AddResourceCategory( fromRes, listCategory );
@@ -291,7 +290,7 @@ namespace JetBrains.Omea.OutlookPlugin
                 //-------------------------------------------------------------
                 //  Link e-mail with the account and the contact
                 //-------------------------------------------------------------
-                Core.ContactManager.LinkContactToResource( 
+                Core.ContactManager.LinkContactToResource(
                     recipient.IsTo ? Core.ContactManager.Props.LinkTo : Core.ContactManager.Props.LinkCC,
                     recRes, mail, recipient.EmailAddr, recipient.DisplayName );
 
@@ -320,7 +319,7 @@ namespace JetBrains.Omea.OutlookPlugin
 
                                                 int size = rowSet.FindLongProp( MAPIConst.PR_ATTACH_SIZE );
                                                 int attachMethod = rowSet.FindLongProp( MAPIConst.PR_ATTACH_METHOD );
-   
+
                                                 string strFileName = rowSet.FindStringProp( MAPIConst.PR_ATTACH_LONG_FILENAME  );
                                                 if ( strFileName == null )
                                                 {
@@ -349,7 +348,7 @@ namespace JetBrains.Omea.OutlookPlugin
                                                         }
                                                     }
 
-                                                    AttachmentHelper attach = 
+                                                    AttachmentHelper attach =
                                                         new AttachmentHelper( strFileName, strFileType, (int)i, size, attachMethod, strContentID, num );
                                                     _attachments.Add( attach );
                                                 }
@@ -363,7 +362,7 @@ namespace JetBrains.Omea.OutlookPlugin
 
         private IResource FindAttachmentType( string ext )
         {
-            IResourceList resList = 
+            IResourceList resList =
                 Core.ResourceStore.FindResources( STR.AttachmentType, Core.Props.Name, ext );
             if ( resList.Count > 1 )
                 throw new Exception( "Multiple attachment types with the same extension found" );
@@ -399,7 +398,7 @@ namespace JetBrains.Omea.OutlookPlugin
                 else
                 {
                     resourceType = Core.FileResourceManager.GetResourceTypeByExtension( attachmentHelper.FileType );
-                    if ( attachmentHelper.FileName != null && 
+                    if ( attachmentHelper.FileName != null &&
                         string.Compare( attachmentHelper.FileName, ResourceSerializer.ResourceTransferFileName, true ) == 0 )
                     {
                         resourceType = STR.ResourceAttachment;
@@ -412,16 +411,16 @@ namespace JetBrains.Omea.OutlookPlugin
 
                 IResource attachment = Core.ResourceStore.BeginNewResource( resourceType );
                 attachment.SetProp( Core.Props.Name, attachmentHelper.FileName );
-                
-                if ( attachmentHelper.FileName != null && 
+
+                if ( attachmentHelper.FileName != null &&
                     string.Compare( attachmentHelper.FileName, ResourceSerializer.ResourceTransferFileName, true ) == 0 )
                 {
                     attachment.SetProp( PROP.ResourceTransfer, true );
                 }
                 if ( resourceType == STR.Email )
                 {
-                    attachment.SetProp( Core.Props.Subject, attachmentHelper.FileName );     
-                    attachment.SetProp( PROP.EmbeddedMessage, true );     
+                    attachment.SetProp( Core.Props.Subject, attachmentHelper.FileName );
+                    attachment.SetProp( PROP.EmbeddedMessage, true );
                 }
                 attachment.SetProp( PROP.AttachmentIndex, attachmentHelper.Index );
                 attachment.SetProp( Core.Props.Size, attachmentHelper.Size );
@@ -431,7 +430,7 @@ namespace JetBrains.Omea.OutlookPlugin
                 attachment.SetProp( PROP.PR_ATTACH_NUM, attachmentHelper.Num );
                 attachment.SetProp( PROP.AttachMethod, attachmentHelper.AttachMethod );
                 attachment.SetProp( Core.Props.NeedPreview, true );
-                
+
                 mail.AddLink( PROP.AttType, attType );
                 if ( resourceType == STR.ResourceAttachment )
                 {
@@ -444,7 +443,7 @@ namespace JetBrains.Omea.OutlookPlugin
                 LinkContactsAndAttachment( mail, attachment );
 
                 Guard.QueryIndexingWithCheckId( attachment );
-                attachment.EndUpdate();                        
+                attachment.EndUpdate();
             }
         }
         private void LinkContactsAndAttachment( IResource mail, IResource attachment )
@@ -477,7 +476,7 @@ namespace JetBrains.Omea.OutlookPlugin
                                 bool isTo = ( rowSet.FindLongProp( MAPIConst.PR_RECIPIENT_TYPE ) == (int) RecipientType.To);
                                 bool mySelf = OwnerEmailDetector.IsOwnerEmail( emailAddr );
 
-                                if ( mySelf ) 
+                                if ( mySelf )
                                 {
                                     _bSentToMe = true;
                                 }
@@ -525,7 +524,7 @@ namespace JetBrains.Omea.OutlookPlugin
             if ( _replyToID != null && _replyToID.Length > 0 )
             {
                 // in-reply-to     =       "In-Reply-To:" 1*msg-id CRLF
-				
+
                 // If there is more than one parent message, then the "In-
                 // Reply-To:" field will contain the contents of all of the parents'
                 // "Message-ID:" fields.
@@ -573,8 +572,8 @@ namespace JetBrains.Omea.OutlookPlugin
             if ( _internetMessageID != null && _internetMessageID.Trim().Length > 0 )
             {
                 mail.SetProp( PROP.InternetMsgID,  _internetMessageID );
-                
-                IResourceList replies = 
+
+                IResourceList replies =
                     Core.ResourceStore.FindResources( "Email", PROP.ReplyTo, _internetMessageID );
                 foreach( IResource reply in replies.ValidResources )
                 {
@@ -591,7 +590,7 @@ namespace JetBrains.Omea.OutlookPlugin
                 string replyToID = (string) repliesTo[0];
                 mail.SetProp( PROP.ReplyTo, replyToID );
 
-                IResourceList replyToMails = 
+                IResourceList replyToMails =
                     Core.ResourceStore.FindResources( "Email", PROP.InternetMsgID, replyToID );
                 if ( replyToMails.Count > 0 )
                 {
@@ -609,11 +608,11 @@ namespace JetBrains.Omea.OutlookPlugin
             // check if the conversation index fits in with the structure documented in
             // MSDN (22 bytes for thread root, 5 bytes extra for every reply)
             // NOTE: _conversationIndex is a hex-encoded binary string, so each byte is 2 chars
-            if ( _conversationIndex != null && 
+            if ( _conversationIndex != null &&
                 _conversationIndex.Length >= 44 && (_conversationIndex.Length - 44) % 10 == 0 )
             {
                 mail.SetProp( PROP.ConversationIndex, _conversationIndex );
-                IResourceList replies = Core.ResourceStore.FindResources( "Email", 
+                IResourceList replies = Core.ResourceStore.FindResources( "Email",
                     PROP.ReplyToConversationIndex, _conversationIndex );
                 foreach( IResource reply in replies.ValidResources )
                 {
@@ -622,7 +621,7 @@ namespace JetBrains.Omea.OutlookPlugin
                         reply.AddLink( Core.Props.Reply, mail );
                     }
                 }
-                
+
                 if ( _conversationIndex.Length > 44 )
                 {
                     string replyToIndex = _conversationIndex.Substring( 0, _conversationIndex.Length - 10 );
@@ -653,7 +652,7 @@ namespace JetBrains.Omea.OutlookPlugin
         protected IResource ExecuteImpl()
         {
             IResource resMail = GetEmailResource();
-            if ( resMail == null ) 
+            if ( resMail == null )
             {
                 Trace( "GetEmailResource returned null" );
                 return null;
@@ -703,12 +702,12 @@ namespace JetBrains.Omea.OutlookPlugin
             {
                 Mail.SetIsDeleted( resMail, _deletedInIMAP );
             }
-            
+
             if ( !(resMail.GetIntProp( PROP.Importance ) == 0 && _importance == 0 ) )
             {
                 resMail.SetProp( PROP.Importance, _importance );
             }
-            
+
             if ( Settings.CreateAnnotationFromFollowup )
             {
                 if ( _flag == null || _flag.Length == 0 )
@@ -720,7 +719,7 @@ namespace JetBrains.Omea.OutlookPlugin
                     resMail.SetProp( Core.Props.Annotation, _flag );
                 }
             }
-            
+
             resMail.EndUpdate();
             if ( isChanged )
             {
@@ -779,7 +778,7 @@ namespace JetBrains.Omea.OutlookPlugin
 
         private IResource GetEmailResource()
         {
-            if ( _entryID == null ) 
+            if ( _entryID == null )
             {
                 Trace( "GetEmailResource: entryId = null" );
                 return null;
@@ -807,7 +806,7 @@ namespace JetBrains.Omea.OutlookPlugin
         private void CreateSenderContact( IResource resMail )
         {
             IContact contact = null;
-            
+
             if ( OwnerEmailDetector.IsOwnerEmail( _senderEmail ) )
             {
                 contact = Core.ContactManager.FindOrCreateMySelfContact( _senderEmail, _senderName );
@@ -856,7 +855,7 @@ namespace JetBrains.Omea.OutlookPlugin
 
         private IResourceList GetMailListByRecordKey()
         {
-            IResourceList mailsByRecordKey = 
+            IResourceList mailsByRecordKey =
                 Core.ResourceStore.FindResources( "Email", PROP.RecordKey, _recordKey );
             if ( mailsByRecordKey.Count > 0 )
             {
@@ -953,7 +952,7 @@ namespace JetBrains.Omea.OutlookPlugin
     }
     internal class NewMailDescriptor : MailDescriptor
     {
-        public NewMailDescriptor( FolderDescriptor folderDescriptor, string entryID, IEMessage message ) : 
+        public NewMailDescriptor( FolderDescriptor folderDescriptor, string entryID, IEMessage message ) :
             base( folderDescriptor, entryID, message )
         {
             if ( Settings.TraceOutlookListeners )
@@ -981,7 +980,7 @@ namespace JetBrains.Omea.OutlookPlugin
     }
     internal class SyncOnlyMailDescriptor : MailDescriptor
     {
-        public SyncOnlyMailDescriptor( FolderDescriptor folderDescriptor, string entryID, IEMessage message ) : 
+        public SyncOnlyMailDescriptor( FolderDescriptor folderDescriptor, string entryID, IEMessage message ) :
             base( folderDescriptor, entryID, message, MailDescriptor.UpdateState )
         {
         }

@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -115,7 +114,7 @@ namespace OmniaMeaBaseTests
             }
             public int counter = 0;
         }
-                                   
+
         [Test]
         public void TestMultipleStepJob()
         {
@@ -277,7 +276,7 @@ namespace OmniaMeaBaseTests
         private static void WorkUnit()
         {
             for( int i = 0; i < 10;  )
-                i = i + 1;                
+                i = i + 1;
         }
         internal class LockJob : AbstractJob
         {
@@ -327,7 +326,7 @@ namespace OmniaMeaBaseTests
             _jobCount = 0;
             using( processor )
             {
-                processor.IdlePeriod = 500; 
+                processor.IdlePeriod = 500;
                 processor.StartThread();
                 processor.QueueIdleJob( new TimedJob() );
                 processor.QueueIdleJob( new TimedJob() );
@@ -366,7 +365,7 @@ namespace OmniaMeaBaseTests
             _jobCount = 0;
             using( processor )
             {
-                processor.IdlePeriod = 500; 
+                processor.IdlePeriod = 500;
                 processor.StartThread();
                 processor.QueueIdleJob( new IdleRepeatedJob( processor) );
                 Thread.Sleep( 1500 );
@@ -713,7 +712,7 @@ namespace OmniaMeaBaseTests
             }
 
         }
-        
+
         [Test]
         public void TestNonBlockingRun()
         {

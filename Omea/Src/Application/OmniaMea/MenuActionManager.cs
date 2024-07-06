@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Diagnostics;
@@ -125,7 +124,7 @@ namespace JetBrains.Omea
         /**
          * Registers an action in an action group of the menu.
          */
-        
+
         public void RegisterAction( IAction action, string groupId, ListAnchor anchor, string text,
             string resourceType, IActionStateFilter[] filters )
         {
@@ -228,7 +227,7 @@ namespace JetBrains.Omea
          * If the specified action is present in one of the action groups of the manager,
          * removes it from there.
          */
-        
+
         public bool UnregisterAction( IAction action )
         {
             foreach( MenuActionGroup group in _actionGroups )
@@ -270,7 +269,7 @@ namespace JetBrains.Omea
 
             MenuItem curSubmenu = null;
             Menu.MenuItemCollection curMenuItems = _menuItems;
-            
+
             _menuItems.Clear();
             _itemToActionMap.Clear();
             HashSet usedShortcuts = new HashSet();
@@ -278,14 +277,14 @@ namespace JetBrains.Omea
             bool haveDefaultAction = false;
 
             string[] resTypes = context.SelectedResources.GetAllTypes();
-            
+
             foreach( MenuActionGroup group in _actionGroups )
             {
                 if ( lastGroup != null && !IsSeparatorSuppressed( group, lastGroup ) )
                 {
                     _menuItems.Add( "-" );
                 }
-                        
+
                 if ( group.SubmenuName != null )
                 {
                     if ( lastGroup == null || group.SubmenuName != lastGroup.SubmenuName )
@@ -330,12 +329,12 @@ namespace JetBrains.Omea
                                 stubItem.Enabled = false;
                                 submenuVisibleActions++;
                             }
-                            continue;                            
+                            continue;
                         }
                     }
-                    
+
                     MenuItem item = AddActionToMenu( action, curMenuItems, context, usedShortcuts );
-                    if ( !haveDefaultAction && context.SelectedResources.Count == 1 && 
+                    if ( !haveDefaultAction && context.SelectedResources.Count == 1 &&
                         Core.ActionManager.GetDoubleClickAction( context.SelectedResources [0] ) == action.Action )
                     {
                         item.DefaultItem = true;
@@ -347,7 +346,7 @@ namespace JetBrains.Omea
                     }
                     if ( item.Enabled )
                     {
-                        submenuEnabledActions++;                        
+                        submenuEnabledActions++;
                     }
                 }
             }
@@ -371,7 +370,7 @@ namespace JetBrains.Omea
          * Adds an item to the menu based on a MenuAction.
          */
 
-        private MenuItem AddActionToMenu( MenuAction menuAction, Menu.MenuItemCollection curMenuItems, 
+        private MenuItem AddActionToMenu( MenuAction menuAction, Menu.MenuItemCollection curMenuItems,
             IActionContext context, HashSet usedShortcuts )
         {
             ActionPresentation presentation = new ActionPresentation();
@@ -440,7 +439,7 @@ namespace JetBrains.Omea
             if ( menuAction != null )
             {
                 try
-                {                                                      
+                {
 					Core.UIManager.WriteToUsageLog( "[Action] *Menu* [" + menuAction.Action.ToString() + "] for [?]" );
 					menuAction.Action.Execute( _lastContext );
                 }
@@ -508,12 +507,12 @@ namespace JetBrains.Omea
          * Updates the visible and enabled state of actions in the menu without rebuilding
          * the menu entirely.
          */
-        
+
         public void UpdateMenuActions( IActionContext context )
         {
             if ( context == null )
                 throw new ArgumentNullException( "context" );
-            
+
             bool visibleChanged = false;
             ActionPresentation presentation = new ActionPresentation();
 

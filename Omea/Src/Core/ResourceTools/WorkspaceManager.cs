@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -54,7 +53,7 @@ namespace JetBrains.Omea.ResourceTools
     	public int VisibleInAllWorkspaces { get { return _propVisibleInAllWorkspaces; } }
 
     	/// <summary>
-    	/// An <see cref="int"/> property that imposes sorting order on the workspaces 
+    	/// An <see cref="int"/> property that imposes sorting order on the workspaces
     	/// in the workspace buttons row and workspaces-editing dialog.
     	/// </summary>
     	public int VisibleOrder           { get { return _propVisibleOrder; } }
@@ -108,7 +107,7 @@ namespace JetBrains.Omea.ResourceTools
 			internal int    _recurseLinkPropId;
 			internal WorkspaceResourceType _workspaceResType;
 
-			internal WorkspaceTypeRec( string resType, int[] linkPropIDs, 
+			internal WorkspaceTypeRec( string resType, int[] linkPropIDs,
 			                           int recurseLinkPropId, WorkspaceResourceType wrType )
 			{
 				_resType     = resType;
@@ -123,7 +122,7 @@ namespace JetBrains.Omea.ResourceTools
 		private Hashtable _availSelectorFilters = new Hashtable();
 		private Hashtable _inWorkspaceSelectorFilters = new Hashtable();
 		private bool _rebuildLinksNeeded;
-        
+
         /// <summary>
         /// resource type -> name of tab in Workspaces dialog
         /// </summary>
@@ -135,7 +134,7 @@ namespace JetBrains.Omea.ResourceTools
 		/// A live list of workspaces that is listened to for workspace deletions.
 		/// </summary>
 		protected IResourceList _workspaces;
-        
+
 		public WorkspaceManager( IResourceStore store, ResourceTreeManager resourceTreeManager, IPluginLoader pluginLoader )
 		{
 			_store = store;
@@ -143,7 +142,7 @@ namespace JetBrains.Omea.ResourceTools
 			_rebuildLinksNeeded = !_store.PropTypes.Exist( "WorkspaceVisible" );
 			_props = new WorkspaceManagerProps( _store );
 			UpdateOtherView();
-            
+
 			Core.ResourceStore.ResourceSaved += ResourceStore_OnResourceSaved;
 			pluginLoader.RegisterResourceUIHandler( "WorkspaceOtherView",new WorkspaceOtherViewUIHandler( this ) );
 
@@ -186,7 +185,7 @@ namespace JetBrains.Omea.ResourceTools
 
 		public void RegisterWorkspaceContainerType( string resType, int[] linkPropIds, int recurseLinkPropId )
 		{
-			WorkspaceTypeRec rec = new WorkspaceTypeRec( resType, linkPropIds, 
+			WorkspaceTypeRec rec = new WorkspaceTypeRec( resType, linkPropIds,
 			                                             recurseLinkPropId, WorkspaceResourceType.Container );
 			_workspaceTypes.Add( rec );
 			_resTypeToWorkspaceRec [resType] = rec;
@@ -194,7 +193,7 @@ namespace JetBrains.Omea.ResourceTools
 
 		public void RegisterWorkspaceFolderType( string resType, string contentType, int[] linkPropIDs )
 		{
-			WorkspaceTypeRec rec = new WorkspaceTypeRec( resType, linkPropIDs, 
+			WorkspaceTypeRec rec = new WorkspaceTypeRec( resType, linkPropIDs,
 			                                             Core.Props.Parent, WorkspaceResourceType.Folder );
 			_workspaceTypes.Add( rec );
 			_resTypeToWorkspaceRec [resType] = rec;
@@ -207,7 +206,7 @@ namespace JetBrains.Omea.ResourceTools
 
 		internal WorkspaceTypeRec GetWorkspaceTypeRec( string resType )
 		{
-			return (WorkspaceTypeRec) _resTypeToWorkspaceRec [resType];            
+			return (WorkspaceTypeRec) _resTypeToWorkspaceRec [resType];
 		}
 
 		public WorkspaceResourceType GetWorkspaceResourceType( string resType )
@@ -236,7 +235,7 @@ namespace JetBrains.Omea.ResourceTools
 			_inWorkspaceSelectorFilters [resType] = filter;
 		}
 
-		public void RegisterWorkspaceSelectorFilter( string resType, IResourceNodeFilter availTreeFilter, 
+		public void RegisterWorkspaceSelectorFilter( string resType, IResourceNodeFilter availTreeFilter,
 		                                             IResourceNodeFilter workspaceTreeFilter )
 		{
 			_availSelectorFilters [resType] = availTreeFilter;
@@ -256,11 +255,11 @@ namespace JetBrains.Omea.ResourceTools
 		public IResource ActiveWorkspace
 		{
 			get { return _activeWorkspace; }
-			set 
-			{ 
+			set
+			{
 				if ( _activeWorkspace != value )
 				{
-					_activeWorkspace = value; 
+					_activeWorkspace = value;
 					if ( WorkspaceChanged != null )
 					{
 						WorkspaceChanged( this, EventArgs.Empty );
@@ -273,7 +272,7 @@ namespace JetBrains.Omea.ResourceTools
 		{
 			return ((WorkspaceTypeRec) _workspaceTypes [index])._resType;
 		}
-        
+
 		/// <summary>
 		/// Creates a workspace with the specified name.
 		/// </summary>
@@ -302,7 +301,7 @@ namespace JetBrains.Omea.ResourceTools
 			{
 				new ResourceProxy( otherViewList [0] ).Delete();
 			}
-            
+
 			new ResourceProxy( workspace ).Delete();
 		}
 
@@ -319,7 +318,7 @@ namespace JetBrains.Omea.ResourceTools
 		{
 			if ( workspace == null )
 				throw new ArgumentNullException( "workspace" );
-            
+
 			if ( !Core.ResourceStore.IsOwnerThread() )
 			{
 				Core.ResourceAP.RunUniqueJob( new WorkspaceResourceDelegate( AddResourceToWorkspace ),
@@ -364,7 +363,7 @@ namespace JetBrains.Omea.ResourceTools
 				                              workspace, res );
 				return;
 			}
-            
+
 			RemoveLinksRecursive( workspace, res, _props.InWorkspace );
 			res.DeleteLink( _props.InWorkspace, workspace );
 			// we need to delete WorkspaceVisibleLink in order to get the recursive links
@@ -409,7 +408,7 @@ namespace JetBrains.Omea.ResourceTools
 			}
 		}
 
-		private void ProcessWorkspaceVisibleLink( IResource workspace, IResource res, LinkChangeType changeType, 
+		private void ProcessWorkspaceVisibleLink( IResource workspace, IResource res, LinkChangeType changeType,
 		                                          bool recursive, IResource[] filterResources )
 		{
 			if ( ( changeType == LinkChangeType.Add && res.HasLink( Props.WorkspaceVisible, workspace ) ||
@@ -426,7 +425,7 @@ namespace JetBrains.Omea.ResourceTools
 			{
 				if ( HaveLinksToFilterResources( res, filterResources ) )
 				{
-					return;                    
+					return;
 				}
 				res.DeleteLink( Props.WorkspaceVisible, workspace );
 			}
@@ -502,7 +501,7 @@ namespace JetBrains.Omea.ResourceTools
 			if ( Props.WorkspaceVisible != 0 && e.Resource.HasProp( Props.WorkspaceVisible ) && e.Resource.Type != _props.WorkspaceResourceType )
 			{
 				IResourceList wsList = null;
-                
+
 				int recurseLinkProp = GetRecurseLinkPropId( e.Resource.Type );
 				if ( e.ChangeSet.IsPropertyChanged( -recurseLinkProp ) )
 				{
@@ -591,7 +590,7 @@ namespace JetBrains.Omea.ResourceTools
 		}
 
 		/// <summary>
-		/// If a workspace is active and none of the parents of the specified 
+		/// If a workspace is active and none of the parents of the specified
 		/// resource belong to it, link the resource to the active workspace.
 		/// </summary>
 		private void AddToActiveWorkspace( IResource res, bool recursive )
@@ -666,9 +665,9 @@ namespace JetBrains.Omea.ResourceTools
 		private IResource[] GetFilterResources( IResource workspace )
 		{
 			ArrayList result = ArrayListPool.Alloc();
-            try 
+            try
             {
-                IResourceList resources = workspace.GetLinksTo( null, Props.InWorkspace ).Union( 
+                IResourceList resources = workspace.GetLinksTo( null, Props.InWorkspace ).Union(
                     workspace.GetLinksTo( null, Props.InWorkspaceRecursive ) );
                 foreach( IResource res in resources )
                 {
@@ -750,7 +749,7 @@ namespace JetBrains.Omea.ResourceTools
 		/// <summary>
 		/// Returns the live list of resources belonging to the workspace which have
 		/// the specified type (or all types, if resType is null).
-		/// </summary>        
+		/// </summary>
 		public IResourceList GetWorkspaceResourcesLive( IResource workspace, string resType )
 		{
 			if ( workspace == null )
@@ -766,7 +765,7 @@ namespace JetBrains.Omea.ResourceTools
 		{
 			if ( workspace == null )
 				return null;
-            
+
 			return workspace.GetLinksOfTypeLive( null, Props.WorkspaceVisible );
 		}
 
@@ -778,7 +777,7 @@ namespace JetBrains.Omea.ResourceTools
 		{
 			if ( workspace == null )
 				return false;
-            
+
 			IResourceList resList = workspace.GetLinksTo( null, _props.InWorkspace );
 			for( int i = 0; i < resList.Count; i++ )
 			{
@@ -823,7 +822,7 @@ namespace JetBrains.Omea.ResourceTools
             {
                 FillResourcesInContainers( workspace, res, ref resourcesInContainers, true );
             }
-            
+
             if ( resourcesInContainers == null )
             {
                 return GetFilterList( workspace );
@@ -831,7 +830,7 @@ namespace JetBrains.Omea.ResourceTools
             return GetFilterList( workspace ).Minus( resourcesInContainers );
 		}
 
-	    private void FillResourcesInContainers( IResource workspace, IResource res, 
+	    private void FillResourcesInContainers( IResource workspace, IResource res,
             ref IResourceList resourcesInContainers, bool recursive )
 	    {
             WorkspaceTypeRec rec = (WorkspaceTypeRec) _resTypeToWorkspaceRec [res.Type];
@@ -867,7 +866,7 @@ namespace JetBrains.Omea.ResourceTools
 		{
 			if ( workspace.Type != _props.WorkspaceResourceType )
 				throw new ArgumentException( "Resource of wrong type passed as 'workspace'", "workspace" );
-        
+
 			return res.HasLink( Props.WorkspaceVisible, workspace );
 		}
 
@@ -934,7 +933,7 @@ namespace JetBrains.Omea.ResourceTools
 		{
 			_workspaceManager = manager;
 		}
-        
+
 		public void ResourceNodeSelected( IResource res )
 		{
 			IResource workspace = res.GetLinkProp( "InWorkspace" );
@@ -949,10 +948,10 @@ namespace JetBrains.Omea.ResourceTools
 				{
 					_resList = _workspaceManager.GetResourcesOutsideContainers( workspace );
 				}
-			    
+
                 string[] resTypesArray;
 			    ArrayList nonInternalTypes = ArrayListPool.Alloc();
-                try 
+                try
                 {
                     foreach( IResourceType rt in Core.ResourceStore.ResourceTypes )
                     {
@@ -968,7 +967,7 @@ namespace JetBrains.Omea.ResourceTools
                     ArrayListPool.Dispose( nonInternalTypes );
                 }
 			    _resList = _resList.Intersect( Core.ResourceStore.GetAllResources( resTypesArray ), true );
-				Core.ResourceBrowser.DisplayResourceList( res, _resList, 
+				Core.ResourceBrowser.DisplayResourceList( res, _resList,
 				                                          "Resources in " + workspace.GetPropText( Core.Props.Name ),
 				                                          null );
 			}

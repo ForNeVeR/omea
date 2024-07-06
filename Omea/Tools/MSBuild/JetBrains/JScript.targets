@@ -1,9 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <!--
-  <copyright company="JetBrains">
-  Copyright © 2003-2008 JetBrains s.r.o.
-  You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-  </copyright>
+SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+
+SPDX-License-Identifier: GPL-2.0-only
 -->
 <!--
 ***********************************************************************************************
@@ -15,7 +14,7 @@ WARNING:  DO NOT MODIFY this file unless you are knowledgeable about MSBuild and
 
 This file defines the steps in the standard build process specific for C# .NET projects.
 For example, it contains the step that actually calls the C# compiler.  The remainder
-of the build process is defined in Microsoft.Common.targets, which is imported by 
+of the build process is defined in Microsoft.Common.targets, which is imported by
 this file.
 
 Copyright (C) Microsoft Corporation. All rights reserved.
@@ -100,9 +99,9 @@ Copyright (C) Microsoft Corporation. All rights reserved.
 	<Target Name="CoreCompile" Inputs="$(MSBuildAllProjects);&#xD;&#xA;                @(Compile);&#xD;&#xA;                @(ManifestResourceWithNoCulture);&#xD;&#xA;                $(ApplicationIcon);&#xD;&#xA;                $(AssemblyOriginatorKeyFile);&#xD;&#xA;                @(ManifestNonResxWithNoCultureOnDisk);&#xD;&#xA;                @(ReferencePath);&#xD;&#xA;                @(CompiledLicenseFile);&#xD;&#xA;                @(EmbeddedDocumentation);                &#xD;&#xA;                @(CustomAdditionalCompileInputs)" Outputs="@(DocFileItem);&#xD;&#xA;                 @(IntermediateAssembly);&#xD;&#xA;                 $(NonExistentFile);&#xD;&#xA;                 @(CustomAdditionalCompileOutputs)" DependsOnTargets="$(CoreCompileDependsOn)">
 		<!--
 		TODO: implement attributes
-		
+
 		BaseAddress="$(BaseAddress)"
-		
+
 		TODO: check if the attributes can be implemented
 		CheckForOverflowUnderflow="$(CheckForOverflowUnderflow)"
 					DisabledWarnings="$(_DisabledWarnings)"
@@ -116,7 +115,7 @@ Copyright (C) Microsoft Corporation. All rights reserved.
 					LangVersion="$(LangVersion)"
 					ModuleAssemblyName="$(ModuleAssemblyName)"
 					Optimize="$(Optimize)"
-					PdbFile="$(PdbFile)" 
+					PdbFile="$(PdbFile)"
 					UseHostCompilerIfAvailable="$(UseHostCompilerIfAvailable)"
 					WarningsAsErrors="$(WarningsAsErrors)"
 					WarningsNotAsErrors="$(WarningsNotAsErrors)"

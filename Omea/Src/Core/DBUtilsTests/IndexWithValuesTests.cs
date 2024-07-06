@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using JetBrains.Omea.Database;
@@ -108,7 +107,7 @@ namespace DBUtil
             Assert.AreEqual( 200, record.GetIntValue(2) );
         }
 
-        [Test] 
+        [Test]
         public void GetAllKeys()
         {
             _testTable = m_database.GetTable("People");
@@ -165,14 +164,14 @@ namespace DBUtil
 
             DBStructure database = new DBStructure( "", "MyPal" );
             database.LoadStructure();
-            
+
             m_database = database.Database;
             _testTable = m_database.GetTable("People");
-            
+
             record = _testTable.GetRecordByEqual( 0, 2 );
             Assert.AreEqual( 2, record.GetIntValue(1) );
             Assert.AreEqual( 200, record.GetIntValue(2) );
-            
+
             m_database.Shutdown();
             database = new DBStructure( "", "MyPal" );
             database.LoadStructure();

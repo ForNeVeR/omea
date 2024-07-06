@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.IO;
@@ -18,7 +17,7 @@ using Org.Mentalis.Security.Ssl.Shared;
 
 namespace JetBrains.Omea.Net
 {
-    /** 
+    /**
      * abstract asynchronous tcp client implemented as job
      * async processing implemented using Omea execution model (network processor used)
      * to create specific client, override virtual callback methods
@@ -74,7 +73,7 @@ namespace JetBrains.Omea.Net
             OnTimeout += new MethodInvoker( OnOperationFailed );
             _sendMethod = new MethodInvoker( BeginSend );
             _receiveMethod = new MethodInvoker( BeginReceive );
-            _endSendMethod = new MethodInvoker( EndSend ); 
+            _endSendMethod = new MethodInvoker( EndSend );
             _endReceiveMethod = new MethodInvoker( EndReceive );
         }
 
@@ -92,7 +91,7 @@ namespace JetBrains.Omea.Net
              * is really queued. If not, there could be several workarounds. We just
              * try to connect once more in the small period of time without counting
              * the number of unsuccessful attempts.
-             * 
+             *
              * !!! please do not change the priority
              */
             if( !Core.NetworkAP.QueueJob( JobPriority.BelowNormal, this ) )
@@ -236,7 +235,7 @@ namespace JetBrains.Omea.Net
 
         #region callbacks
 
-        /** 
+        /**
          * callback must return true, if result is accepted and processing can be continued
          * otherwise client forces Disconnect()
          */
@@ -312,7 +311,7 @@ namespace JetBrains.Omea.Net
                     _socket.SetSocketOption( SocketOptionLevel.Socket, SocketOptionName.SendTimeout, Timeout );
                     _socket.SetSocketOption( SocketOptionLevel.Socket, SocketOptionName.ReceiveTimeout, Timeout );
                     _endPoint = new IPEndPoint( _hostEntry.AddressList[ 0 ], _port );
-                    if( _traceProtocol ) 
+                    if( _traceProtocol )
                     {
                         Trace( "Connecting to "  + _endPoint.Address.ToString() + ':' +  _endPoint.Port.ToString() );
                     }

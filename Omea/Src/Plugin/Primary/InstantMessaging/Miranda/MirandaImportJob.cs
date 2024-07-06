@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -180,7 +179,7 @@ namespace JetBrains.Omea.InstantMessaging.Miranda
             {
                 _db.Close();
             }
-            
+
             if ( _updatedConversations != null )
             {
                 foreach( IntHashSet.Entry e in _updatedConversations )
@@ -194,7 +193,7 @@ namespace JetBrains.Omea.InstantMessaging.Miranda
                 }
                 _updatedConversations = null;
             }
-            
+
             long endTicks = DateTime.Now.Ticks;
             Trace.WriteLineIf( IniSettings.TraceImport,
                 "Miranda import took " + (endTicks - _startTicks) / 10000 + " ms" );
@@ -226,7 +225,7 @@ namespace JetBrains.Omea.InstantMessaging.Miranda
         {
             if ( contact.LastEventOffset == _lastEventOffsets [contact.Offset] )
                 return;
-            
+
             // guard for job reentering (we may have restarted the import job with a new database - OM-11022)
             if ( contact.DatabaseClosed )
                 return;
@@ -247,11 +246,11 @@ namespace JetBrains.Omea.InstantMessaging.Miranda
                     TraceImport( "Found settings for " + settings.ModuleName );
                     if ( String.Compare( settings.ModuleName, "ICQ", true ) == 0 )
                     {
-                        icqSettings = settings;                    
+                        icqSettings = settings;
                     }
                     else if ( String.Compare( settings.ModuleName, "AIM", true ) == 0 )
                     {
-                        aimSettings = settings;                    
+                        aimSettings = settings;
                     }
                     else if ( String.Compare( settings.ModuleName, "JABBER", true ) == 0 )
                     {
@@ -271,7 +270,7 @@ namespace JetBrains.Omea.InstantMessaging.Miranda
 
                 if ( aimSettings != null )
                     ImportAIMContact( contact, aimSettings, group, myself );
-            
+
                 if ( jabberSettings != null )
                     ImportJabberContact( contact, jabberSettings, group, myself );
 
@@ -308,7 +307,7 @@ namespace JetBrains.Omea.InstantMessaging.Miranda
             }
 
             IResource contactRes;
-            IResource icqAccount = Core.ResourceStore.FindUniqueResource( ResourceTypes.MirandaICQAccount, 
+            IResource icqAccount = Core.ResourceStore.FindUniqueResource( ResourceTypes.MirandaICQAccount,
                                                                           Props.UIN, UIN );
             if ( icqAccount == null || !icqAccount.HasProp( Props.MirandaAcct ) )
             {
@@ -353,7 +352,7 @@ namespace JetBrains.Omea.InstantMessaging.Miranda
             else if ( !contactRes.HasLink( Props.MirandaAcct, icqAccount ) )
             {
                 contactRes.AddLink( Props.MirandaAcct, icqAccount );
-            }                                                  
+            }
 
             if ( myself )
             {
@@ -405,10 +404,10 @@ namespace JetBrains.Omea.InstantMessaging.Miranda
                 new[] { Props.YahooId, Props.NickName }, new object[] { yahooId, nickName } );
         }
 
-        private void ImportContactGeneric( IMirandaContact contact, string group, bool myself, 
+        private void ImportContactGeneric( IMirandaContact contact, string group, bool myself,
             string moduleName, string accountResType, int[] propIds, object[] propValues )
         {
-            IResource imAccount = Core.ResourceStore.FindUniqueResource( accountResType, 
+            IResource imAccount = Core.ResourceStore.FindUniqueResource( accountResType,
                 propIds [0], propValues [0] );
             if ( imAccount == null )
             {
@@ -449,7 +448,7 @@ namespace JetBrains.Omea.InstantMessaging.Miranda
                 throw new ArgumentNullException( "contact" );
             if ( accountRes == null )
                 throw new ArgumentNullException( "accountRes" );
-            
+
             TraceImport( "Importing events for " + moduleName );
             DateTime firstImportedTime = accountRes.GetDateProp( Props.FirstMirandaImport );
             DateTime lastImportedTime = accountRes.GetDateProp( Props.LastMirandaImport );
@@ -484,7 +483,7 @@ namespace JetBrains.Omea.InstantMessaging.Miranda
                         eventsSkippedIndexStart++;
                         continue;
                     }
-                    
+
                     if ( mirandaEvent.Timestamp < firstImportedTime || mirandaEvent.Timestamp > lastImportedTime )
                     {
                         if ( mirandaEvent.Timestamp > lastMessageTime )
@@ -493,7 +492,7 @@ namespace JetBrains.Omea.InstantMessaging.Miranda
                             firstMessageTime = mirandaEvent.Timestamp;
 
                         IResource fromAccount, toAccount;
-                        
+
                         if ( (mirandaEvent.Flags & 2) != 0 )  // DBEF_SENT
                         {
                             fromAccount = selfAccount;
@@ -525,7 +524,7 @@ namespace JetBrains.Omea.InstantMessaging.Miranda
             {
                 accountRes.SetProp( Props.LastMirandaImport, lastMessageTime );
             }
-            
+
             if ( _indexStartDate != DateTime.MinValue )
             {
                 accountRes.SetProp( Props.FirstMirandaImport, _indexStartDate );
@@ -540,7 +539,7 @@ namespace JetBrains.Omea.InstantMessaging.Miranda
         {
             if ( IniSettings.CreateCategories && group != null )
             {
-                IResource groupCategory = Core.CategoryManager.FindOrCreateCategory( 
+                IResource groupCategory = Core.CategoryManager.FindOrCreateCategory(
                     Core.CategoryManager.GetRootForTypedCategory( "Contact" ), group );
 
                 Core.CategoryManager.AddResourceCategory( contactRes, groupCategory );

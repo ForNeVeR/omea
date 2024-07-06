@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -338,7 +337,7 @@ namespace JetBrains.Omea.ResourceTools
 		/// Resets the user sort order for the given resource and optionally recurses to its children,
 		/// if the <paramref name="nParentLink"/> specifies a valid child link.
 		/// </summary>
-		/// <param name="nParentLink">A link between parent and children in the hierarchy to recurse into, 
+		/// <param name="nParentLink">A link between parent and children in the hierarchy to recurse into,
 		/// or <c>0</c> to reset the order on this node only.</param>
 		public void Reset( int nParentLink )
 		{
@@ -358,7 +357,7 @@ namespace JetBrains.Omea.ResourceTools
 		#region Events
 
 		/// <summary>
-		/// An event that fires when the <see cref="PropertyId"/> of the <see cref="PropertyHolder"/> changes 
+		/// An event that fires when the <see cref="PropertyId"/> of the <see cref="PropertyHolder"/> changes
 		/// indicating that the ordering should be reapplied, or when <see cref="PropertyHolder"/> is deleted.
 		/// </summary>
 		public event EventHandler UserResourceOrderChanged;
@@ -386,7 +385,7 @@ namespace JetBrains.Omea.ResourceTools
 		#region Implementation
 
 		/// <summary>
-		/// The holder has changed, if the change affects the order-property, 
+		/// The holder has changed, if the change affects the order-property,
 		/// </summary>
 		protected void OnOrderPropertyHolderChanged( object sender, ResourcePropIndexEventArgs e )
 		{
@@ -514,7 +513,7 @@ namespace JetBrains.Omea.ResourceTools
 					// Assign
 					_userorder = value;
 
-					// Init new 
+					// Init new
 					if( _userorder != null )
 						_userorder.UserResourceOrderChanged += new EventHandler( OnUserResourceOrderChanged );
 

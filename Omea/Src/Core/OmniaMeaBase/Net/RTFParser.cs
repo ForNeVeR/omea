@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -242,10 +241,10 @@ namespace JetBrains.Omea.RTF
             if ( entry == null )
             {
                 _fonts.Add( fontNum, _defaultEncoding );
-                //throw new FontMismatching( "Cannot set current font. Such fontNum '" + fontNum + 
+                //throw new FontMismatching( "Cannot set current font. Such fontNum '" + fontNum +
                 //    "' was not included in \\fonttbl tag.", _currentPosition );
             }
-            
+
             if ( entry != null && entry.Value != null )
             {
                 _curState.encoding = (Encoding)entry.Value;
@@ -338,7 +337,7 @@ namespace JetBrains.Omea.RTF
             }
             if ( controlWord == "ansicpg" )
             {
-                SetCodePage();   
+                SetCodePage();
                 return;
             }
         }
@@ -441,12 +440,12 @@ namespace JetBrains.Omea.RTF
                 {
                     buffer[_bytesIndex] = even ? (byte)( b << 4 ) : (byte)(buffer[_bytesIndex] + b);
                 }
-                
+
                 if ( !even )
                 {
                     ++_bytesIndex;
                 }
-                
+
                 Read();
                 if ( !even )
                 {
@@ -589,7 +588,7 @@ namespace JetBrains.Omea.RTF
                     case '\\':
                         ReadControlWord();
                         break;
-                    case 0x0d: //skip 
+                    case 0x0d: //skip
                         break;
                     case 0x0a: //skip
                         break;

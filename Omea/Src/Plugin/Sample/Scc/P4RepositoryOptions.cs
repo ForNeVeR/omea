@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -92,9 +91,9 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
             this._edtPassword = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.SuspendLayout();
-            // 
+            //
             // _btnOK
-            // 
+            //
             this._btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this._btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this._btnOK.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -103,9 +102,9 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
             this._btnOK.TabIndex = 8;
             this._btnOK.Text = "OK";
             this._btnOK.Click += new System.EventHandler(this._btnOK_Click);
-            // 
+            //
             // _btnCancel
-            // 
+            //
             this._btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this._btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this._btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -113,47 +112,47 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
             this._btnCancel.Name = "_btnCancel";
             this._btnCancel.TabIndex = 9;
             this._btnCancel.Text = "Cancel";
-            // 
+            //
             // label1
-            // 
+            //
             this.label1.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label1.Location = new System.Drawing.Point(8, 8);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(100, 16);
             this.label1.TabIndex = 2;
             this.label1.Text = "Name:";
-            // 
+            //
             // _edtRepositoryName
-            // 
+            //
             this._edtRepositoryName.Location = new System.Drawing.Point(116, 4);
             this._edtRepositoryName.Name = "_edtRepositoryName";
             this._edtRepositoryName.Size = new System.Drawing.Size(168, 21);
             this._edtRepositoryName.TabIndex = 0;
             this._edtRepositoryName.Text = "";
-            // 
+            //
             // _edtIgnoreClients
-            // 
-            this._edtIgnoreClients.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._edtIgnoreClients.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._edtIgnoreClients.Location = new System.Drawing.Point(20, 168);
             this._edtIgnoreClients.Name = "_edtIgnoreClients";
             this._edtIgnoreClients.Size = new System.Drawing.Size(376, 21);
             this._edtIgnoreClients.TabIndex = 5;
             this._edtIgnoreClients.Text = "";
-            // 
+            //
             // label2
-            // 
+            //
             this.label2.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label2.Location = new System.Drawing.Point(8, 148);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(280, 16);
             this.label2.TabIndex = 4;
             this.label2.Text = "Ignore changes from clients (separate with semicolons):";
-            // 
+            //
             // _edtPathsToWatch
-            // 
+            //
             this._edtPathsToWatch.AcceptsReturn = true;
-            this._edtPathsToWatch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this._edtPathsToWatch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._edtPathsToWatch.Location = new System.Drawing.Point(20, 220);
             this._edtPathsToWatch.Multiline = true;
@@ -162,106 +161,106 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
             this._edtPathsToWatch.Size = new System.Drawing.Size(376, 60);
             this._edtPathsToWatch.TabIndex = 6;
             this._edtPathsToWatch.Text = "";
-            // 
+            //
             // label5
-            // 
+            //
             this.label5.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label5.Location = new System.Drawing.Point(8, 200);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(408, 16);
             this.label5.TabIndex = 9;
             this.label5.Text = "Depot paths to watch (one per line; if empty, entire depot is watched):";
-            // 
+            //
             // _edtP4WebPath
-            // 
-            this._edtP4WebPath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._edtP4WebPath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._edtP4WebPath.Location = new System.Drawing.Point(20, 304);
             this._edtP4WebPath.Name = "_edtP4WebPath";
             this._edtP4WebPath.Size = new System.Drawing.Size(376, 21);
             this._edtP4WebPath.TabIndex = 7;
             this._edtP4WebPath.Text = "";
-            // 
+            //
             // label3
-            // 
+            //
             this.label3.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label3.Location = new System.Drawing.Point(8, 284);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(280, 16);
             this.label3.TabIndex = 12;
             this.label3.Text = "P4Web URL:";
-            // 
+            //
             // _edtServerPort
-            // 
+            //
             this._edtServerPort.Location = new System.Drawing.Point(116, 32);
             this._edtServerPort.Name = "_edtServerPort";
             this._edtServerPort.Size = new System.Drawing.Size(168, 21);
             this._edtServerPort.TabIndex = 1;
             this._edtServerPort.Text = "";
-            // 
+            //
             // lblServerPort
-            // 
+            //
             this.lblServerPort.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.lblServerPort.Location = new System.Drawing.Point(8, 36);
             this.lblServerPort.Name = "lblServerPort";
             this.lblServerPort.Size = new System.Drawing.Size(100, 16);
             this.lblServerPort.TabIndex = 13;
             this.lblServerPort.Text = "Server/port:";
-            // 
+            //
             // _edtClient
-            // 
+            //
             this._edtClient.Location = new System.Drawing.Point(116, 60);
             this._edtClient.Name = "_edtClient";
             this._edtClient.Size = new System.Drawing.Size(168, 21);
             this._edtClient.TabIndex = 2;
             this._edtClient.Text = "";
-            // 
+            //
             // edtClient
-            // 
+            //
             this.edtClient.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.edtClient.Location = new System.Drawing.Point(8, 64);
             this.edtClient.Name = "edtClient";
             this.edtClient.Size = new System.Drawing.Size(100, 16);
             this.edtClient.TabIndex = 15;
             this.edtClient.Text = "Client:";
-            // 
+            //
             // _edtUserName
-            // 
+            //
             this._edtUserName.Location = new System.Drawing.Point(116, 88);
             this._edtUserName.Name = "_edtUserName";
             this._edtUserName.Size = new System.Drawing.Size(168, 21);
             this._edtUserName.TabIndex = 3;
             this._edtUserName.Text = "";
-            // 
+            //
             // label6
-            // 
+            //
             this.label6.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label6.Location = new System.Drawing.Point(8, 92);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(100, 16);
             this.label6.TabIndex = 17;
             this.label6.Text = "User name:";
-            // 
+            //
             // _edtPassword
-            // 
+            //
             this._edtPassword.Location = new System.Drawing.Point(116, 116);
             this._edtPassword.Name = "_edtPassword";
             this._edtPassword.PasswordChar = '*';
             this._edtPassword.Size = new System.Drawing.Size(168, 21);
             this._edtPassword.TabIndex = 4;
             this._edtPassword.Text = "";
-            // 
+            //
             // label7
-            // 
+            //
             this.label7.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label7.Location = new System.Drawing.Point(8, 120);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(100, 16);
             this.label7.TabIndex = 19;
             this.label7.Text = "Password:";
-            // 
+            //
             // P4RepositoryOptions
-            // 
+            //
             this.AcceptButton = this._btnOK;
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
             this.CancelButton = this._btnCancel;
@@ -337,7 +336,7 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
 	    private bool CheckDeleteIgnoredClients()
 	    {
 	        string oldClientsText = _repository.GetProp( Props.P4IgnoreChanges );
-	        if ( oldClientsText != null && _edtIgnoreClients.Text != oldClientsText && 
+	        if ( oldClientsText != null && _edtIgnoreClients.Text != oldClientsText &&
 	             _edtIgnoreClients.Text.Trim().Length > 0 )
 	        {
 	            ArrayList oldClients = new ArrayList( oldClientsText.Split( ';' ) );
@@ -351,7 +350,7 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
 	                    break;
 	                }
 	            }
-                
+
 	            if ( addedClients )
 	            {
 	                DialogResult dr = MessageBox.Show( this,
@@ -377,7 +376,7 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
 	        {
 	            IResourceList changeSets = Core.ResourceStore.FindResources( Props.ChangeSetResource,
 	                Props.P4Client, client );
-	            changeSets = changeSets.Intersect( repository.GetLinksOfType( Props.ChangeSetResource, 
+	            changeSets = changeSets.Intersect( repository.GetLinksOfType( Props.ChangeSetResource,
 	                Props.ChangeSetRepository ) );
 	            foreach( IResource changeSet in changeSets )
 	            {
@@ -385,7 +384,7 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
 	            }
 	        }
 	    }
-	    
+
 	    private delegate void ResourceStringsDelegate( IResource res, string[] strings );
 	}
 }

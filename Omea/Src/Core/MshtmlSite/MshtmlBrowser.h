@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 // JetBrains Omea Mshtml Browser Component
 //
@@ -91,7 +90,7 @@ class CMshtmlHostWindow;
 	support_error_info(IMshtmlBrowser),
 	registration_script("control.rgs")
 ]
-class ATL_NO_VTABLE CMshtmlBrowser : 
+class ATL_NO_VTABLE CMshtmlBrowser :
 	//public IMshtmlBrowser,	// Superceeded by CStockPropImpl
 	public IPersistStreamInitImpl<CMshtmlBrowser>,
 	public IOleControlImpl<CMshtmlBrowser>,
@@ -114,9 +113,9 @@ public:
 	virtual ~CMshtmlBrowser();
 
 DECLARE_OLEMISC_STATUS(
-	OLEMISC_RECOMPOSEONRESIZE | 
-	OLEMISC_CANTLINKINSIDE | 
-	OLEMISC_ACTIVATEWHENVISIBLE | 
+	OLEMISC_RECOMPOSEONRESIZE |
+	OLEMISC_CANTLINKINSIDE |
+	OLEMISC_ACTIVATEWHENVISIBLE |
 	OLEMISC_SETCLIENTSITEFIRST |
 	OLEMISC_ALWAYSRUN |
 	OLEMISC_SUPPORTSMULTILEVELUNDO
@@ -221,10 +220,10 @@ public:
 		Rectangle(di.hdcDraw, rc.left, rc.top, rc.right, rc.bottom);
 		SetTextAlign(di.hdcDraw, TA_CENTER|TA_BASELINE);
 		LPCTSTR pszText = _T("ATL 7.0 : MshtmlBrowser, yow!");
-		TextOut(di.hdcDraw, 
-			(rc.left + rc.right) / 2, 
-			(rc.top + rc.bottom) / 2, 
-			pszText, 
+		TextOut(di.hdcDraw,
+			(rc.left + rc.right) / 2,
+			(rc.top + rc.bottom) / 2,
+			pszText,
 			lstrlen(pszText));
 
 		if (bSelectOldRgn)
@@ -241,8 +240,8 @@ public:
 	{
 		return S_OK;
 	}
-	
-	void FinalRelease() 
+
+	void FinalRelease()
 	{
 	}
 // Overrides
@@ -258,12 +257,12 @@ public:
 	// The IOleObject interface is the principal means by which an embedded object provides basic functionality to, and communicates with, its container.
 	STDMETHOD(DoVerb)( LONG iVerb, /* Value representing verb to be performed */ LPMSG lpmsg, /* Pointer to structure that describes Windows */ /* message */ IOleClientSite *pActiveSite, /* Pointer to active client site */ LONG lindex, /* Reserved */ HWND hwndParent, /* Handle of window containing the object */ LPCRECT lprcPosRect /* Pointer to object's display rectangle */ );
 	STDMETHOD(EnumVerbs)( IEnumOLEVERB **ppEnumOleVerb /* Address of output variable that receives the IEnumOleVerb interface pointer*/ );
-	STDMETHOD(SetHostNames)( /* [in] */ LPCOLESTR szContainerApp, /* [unique][in] */ LPCOLESTR szContainerObj); 
-	STDMETHOD(InitFromData)( /* [unique][in] */ IDataObject *pDataObject, /* [in] */ BOOL fCreation, /* [in] */ DWORD dwReserved); 
+	STDMETHOD(SetHostNames)( /* [in] */ LPCOLESTR szContainerApp, /* [unique][in] */ LPCOLESTR szContainerObj);
+	STDMETHOD(InitFromData)( /* [unique][in] */ IDataObject *pDataObject, /* [in] */ BOOL fCreation, /* [in] */ DWORD dwReserved);
 	STDMETHOD(GetClipboardData)( /* [in] */ DWORD dwReserved, /* [out] */ IDataObject **ppDataObject);
-	STDMETHOD(Update)(); 
-	STDMETHOD(IsUpToDate)(); 
-	STDMETHOD(SetColorScheme)( /* [in] */ LOGPALETTE *pLogpal); 
+	STDMETHOD(Update)();
+	STDMETHOD(IsUpToDate)();
+	STDMETHOD(SetColorScheme)( /* [in] */ LOGPALETTE *pLogpal);
 
 	// IOleInPlaceObject methods
 	// The IOleInPlaceObject interface manages the activation and deactivation of in-place objects, and determines how much of the in-place object should be visible.
@@ -280,7 +279,7 @@ public:
 	// Additional constants
 
 	// (taken from MSIE2 source code)
-	//Define the command group GUID for the WebBrowser control 
+	//Define the command group GUID for the WebBrowser control
 	//It is undocumented, and supposed to be changed in the feature
 	// Needed for the MSHTML's IOleCommandTarget interface calls
 	static const GUID CGID_IWebBrowser;

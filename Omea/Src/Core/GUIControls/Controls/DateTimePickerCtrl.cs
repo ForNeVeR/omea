@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.ComponentModel;
@@ -54,8 +53,8 @@ namespace JetBrains.Omea.GUIControls
 		}
 
 		#region Component Designer generated code
-		/// <summary> 
-		/// Required method for Designer support - do not modify 
+		/// <summary>
+		/// Required method for Designer support - do not modify
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent()
@@ -69,10 +68,10 @@ namespace JetBrains.Omea.GUIControls
             this._fakeTextBox = new System.Windows.Forms.TextBox();
             this._comboTime = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
-            // 
+            //
             // _textBox
-            // 
-            this._textBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._textBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._textBox.Location = new System.Drawing.Point(2, 2);
             this._textBox.Name = "_textBox";
@@ -81,10 +80,10 @@ namespace JetBrains.Omea.GUIControls
             this._toolTip.SetToolTip(this._textBox, "Click to edit date and time");
             this._textBox.Click += new System.EventHandler(this._textBox_Click);
             this._textBox.BackColor = SystemColors.Menu;
-            // 
+            //
             // _dateTimePicker
-            // 
-            this._dateTimePicker.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._dateTimePicker.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._dateTimePicker.CustomFormat = "MMM dd, yyyy";
             this._dateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
@@ -96,9 +95,9 @@ namespace JetBrains.Omea.GUIControls
             this._dateTimePicker.KeyDown += new System.Windows.Forms.KeyEventHandler(this._dateTimePicker_KeyDown);
             this._dateTimePicker.ValueChanged += new EventHandler(_dateTimePicker_ValueChanged);
             this._toolTip.SetToolTip(this._dateTimePicker, "Click to edit date and time");
-            // 
+            //
             // _comboTime
-            // 
+            //
             this._comboTime.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown;
             this._comboTime.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(204)));
             this._comboTime.Location = new System.Drawing.Point(72, 0);
@@ -108,9 +107,9 @@ namespace JetBrains.Omea.GUIControls
             this._comboTime.Enabled = false;
             this._comboTime.MaxDropDownItems = 8;
             this._comboTime.TextChanged += new EventHandler(_comboTime_TextChanged);
-            // 
+            //
             // _btnClear
-            // 
+            //
             this._btnClear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this._btnClear.Image = ((System.Drawing.Image)(resources.GetObject("_btnClear.Image")));
             this._btnClear.Location = new System.Drawing.Point(233, 0);
@@ -120,18 +119,18 @@ namespace JetBrains.Omea.GUIControls
             this._toolTip.SetToolTip(this._btnClear, "Clear date and time");
             this._btnClear.Visible = false;
             this._btnClear.Click += new System.EventHandler(this._btnClear_Click);
-            // 
+            //
             // _fakeTextBox
-            // 
+            //
             this._fakeTextBox.Location = new System.Drawing.Point(0, 28);
             this._fakeTextBox.Name = "_fakeTextBox";
             this._fakeTextBox.ReadOnly = true;
             this._fakeTextBox.TabIndex = 4;
             this._fakeTextBox.TabStop = false;
             this._fakeTextBox.Text = "";
-            // 
+            //
             // DateTimePickerCtrl
-            // 
+            //
             this.Controls.Add(this._fakeTextBox);
             this.Controls.Add(this._textBox);
             this.Controls.Add(this._dateTimePicker);
@@ -160,7 +159,7 @@ namespace JetBrains.Omea.GUIControls
 
         public DateTime CurrentDateTime
         {
-            get 
+            get
             {
                 string timeStr = _comboTime.Text;
                 DateTime time = new DateTime();

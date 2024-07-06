@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -207,7 +206,7 @@ namespace JetBrains.Omea.RSSPlugin
             new SharpReaderImporter();
             new BloglinesImporter();
             new OPMLImporter();
-            
+
             // After service
             _importManager = new ImportManager( null, _feedImporters );
             if( Core.ProductFullName.EndsWith( "Reader" ) )
@@ -300,7 +299,7 @@ namespace JetBrains.Omea.RSSPlugin
                 FindOrCreateFeed( "Omea News", "http://jetbrains.com/omearss.xml" );
                 FindOrCreateFeed( "Omea Tips and Tricks", "http://blogs.jetbrains.com/omea/wp-rss2.php" );
                 FindOrCreateFeed( "JetBrains News", "http://jetbrains.com/rss.xml" );
-                
+
             }
 
             string newSummaryStyle = Core.SettingStore.ReadString( IniKeys.Section, "SummaryStyle", string.Empty );
@@ -321,7 +320,7 @@ namespace JetBrains.Omea.RSSPlugin
 
         private void FindOrCreateFeed(string name, string url )
         {
-            if( Core.ResourceStore.FindResources( null, Props.URL, url ).Count == 0 ) 
+            if( Core.ResourceStore.FindResources( null, Props.URL, url ).Count == 0 )
             {
                 IResource feed = CreateFeed( name, url, null );
                 if( feed != null )
@@ -353,7 +352,7 @@ namespace JetBrains.Omea.RSSPlugin
                     }
                 }
 
-                // delete leftover transient feeds 
+                // delete leftover transient feeds
                 if ( feed.GetIntProp( Props.Transient ) == 1 )
                 {
                     new ResourceProxy( feed ).DeleteAsync();
@@ -422,7 +421,7 @@ namespace JetBrains.Omea.RSSPlugin
         private void InitRootFeedGroup()
         {
             _feedRoot = Core.ResourceTreeManager.GetRootForType( "RSSFeed" );
-            Core.ResourceTreeManager.SetResourceNodeSort( _feedRoot, "Type- Name" ); // groups above feeds 
+            Core.ResourceTreeManager.SetResourceNodeSort( _feedRoot, "Type- Name" ); // groups above feeds
             _feedRoot.DisplayName = "All Feeds";
         }
 
@@ -430,13 +429,13 @@ namespace JetBrains.Omea.RSSPlugin
         {
             _feedsPaneUnreadFilter.Hide = hide;
             RSSTreePane.UpdateNodeFilter( true );
-        } 
+        }
 
         internal static void UpdateErrorPaneFilter( bool hide )
         {
             _feedsPaneErrorFilter.Hide = hide;
             RSSTreePane.UpdateNodeFilter( true );
-        } 
+        }
 
         internal static void UpdateSortFilter( bool show )
         {
@@ -1196,7 +1195,7 @@ namespace JetBrains.Omea.RSSPlugin
 
 			// TODO: should we update feeds if the “Update Every” is not checked?..
 			// res.GetIntProp( Props.UpdateFrequency ) >= 0
-    		
+
 			return true;
     	}
 
@@ -1607,4 +1606,3 @@ namespace JetBrains.Omea.RSSPlugin
         }
     }
 }
- 

@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -110,9 +109,9 @@ namespace JetBrains.Omea.GUIControls.CustomViews
 		    buttonBrowseFile = new Button();
 		    buttonBrowseInternals = new Button();
             this.SuspendLayout();
-            // 
+            //
             // boxIcon
-            // 
+            //
             this.boxIcon.Location = new System.Drawing.Point(7, 495);
             this.boxIcon.Anchor = (AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right);
             this.boxIcon.Name = "boxIcon";
@@ -120,9 +119,9 @@ namespace JetBrains.Omea.GUIControls.CustomViews
             this.boxIcon.FlatStyle = FlatStyle.System;
             this.boxIcon.TabStop = false;
             this.boxIcon.Text = "Icon";
-            // 
+            //
             // panelIcon
-            // 
+            //
             this.panelIcon.Location = new Point( 9, 15 );
             this.panelIcon.Size = new Size( 36, 36 );
             this.panelIcon.Anchor = (AnchorStyles)(AnchorStyles.Top | AnchorStyles.Left);
@@ -131,18 +130,18 @@ namespace JetBrains.Omea.GUIControls.CustomViews
             this.panelIcon.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panelIcon.TabStop = false;
             this.panelIcon.Paint += new PaintEventHandler(panelIcon_Paint);
-            // 
+            //
             // labelLoadFrom
-            // 
+            //
             this.labelLoadFrom.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.labelLoadFrom.Location = new System.Drawing.Point(60, 26);
             this.labelLoadFrom.Size = new System.Drawing.Size(58, 16);
             this.labelLoadFrom.Name = "labelLoadFrom";
             this.labelLoadFrom.TabStop = false;
             this.labelLoadFrom.Text = "Load from:";
-            // 
+            //
             // buttonBrowseInternals
-            // 
+            //
             this.buttonBrowseInternals.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.buttonBrowseInternals.Location = new System.Drawing.Point(125, 21);
             this.buttonBrowseInternals.Size = new System.Drawing.Size(72, 24);
@@ -151,9 +150,9 @@ namespace JetBrains.Omea.GUIControls.CustomViews
             this.buttonBrowseInternals.Text = "Omea...";
             this.buttonBrowseInternals.Click += new EventHandler(buttonBrowseInternals_Click);
             this.buttonBrowseInternals.Anchor = (AnchorStyles)(AnchorStyles.Top | AnchorStyles.Left);
-            // 
+            //
             // buttonBrowseFile
-            // 
+            //
             this.buttonBrowseFile.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.buttonBrowseFile.Location = new System.Drawing.Point(205, 21);
             this.buttonBrowseFile.Size = new System.Drawing.Size(72, 24);
@@ -162,9 +161,9 @@ namespace JetBrains.Omea.GUIControls.CustomViews
             this.buttonBrowseFile.Text = "File...";
             this.buttonBrowseFile.Click += new EventHandler(buttonBrowseIcon_Click);
             this.buttonBrowseFile.Anchor = (AnchorStyles)(AnchorStyles.Top | AnchorStyles.Left);
-            // 
+            //
             // EditTrayIconRuleForm
-            // 
+            //
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
             this.ClientSize = new System.Drawing.Size(398, ciFormHeight);
             this.MinimumSize = new Size( 315, 300 );
@@ -194,7 +193,7 @@ namespace JetBrains.Omea.GUIControls.CustomViews
             if( areNamesDiffer( _editHeading.Text, InitialName ) &&
                 Core.TrayIconManager.IsTrayIconRuleRegistered( _editHeading.Text ))
             {
-                DialogResult result = MessageBox.Show( this, "A tray icon rule with such name already exists. Do you want to overwrite it?", 
+                DialogResult result = MessageBox.Show( this, "A tray icon rule with such name already exists. Do you want to overwrite it?",
                                                        "Names Collision", MessageBoxButtons.YesNo );
                 if( result == DialogResult.No )
                     return;

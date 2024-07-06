@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.ComponentModel;
@@ -37,7 +36,7 @@ namespace JetBrains.Omea.OutlookPlugin
         {
             if( disposing )
             {
-                if (components != null) 
+                if (components != null)
                 {
                     components.Dispose();
                 }
@@ -59,9 +58,9 @@ namespace JetBrains.Omea.OutlookPlugin
             btnSelAll = new Button();
             btnUnselAll = new Button();
             this.SuspendLayout();
-            // 
+            //
             // label1
-            // 
+            //
             this.label1.Dock = System.Windows.Forms.DockStyle.Top;
             this.label1.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label1.Location = new System.Drawing.Point(0, 0);
@@ -70,11 +69,11 @@ namespace JetBrains.Omea.OutlookPlugin
             this.label1.TabIndex = 3;
             this.label1.Text = "Select the Outlook folders you would like to access from Omea. Mail in folders yo" +
                 "u do not select will not be indexed.";
-            // 
+            //
             // _treeView
-            // 
-            this._treeView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-                | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._treeView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._treeView.CheckBoxes = true;
             this._treeView.CheckedSetValue = 0;
@@ -95,10 +94,10 @@ namespace JetBrains.Omea.OutlookPlugin
             this._treeView.TabIndex = 4;
             this._treeView.ThreeStateCheckboxes = false;
             this._treeView.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.OnAfterCheck);
-            // 
+            //
             // _syncMailCategory
-            // 
-            this._syncMailCategory.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._syncMailCategory.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._syncMailCategory.Changed = false;
             this._syncMailCategory.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -109,9 +108,9 @@ namespace JetBrains.Omea.OutlookPlugin
             this._syncMailCategory.TabIndex = 19;
             this._syncMailCategory.Tag = "";
             this._syncMailCategory.Text = "&Synchronize categories for mail";
-            // 
+            //
             // btnSelAll
-            // 
+            //
             this.btnSelAll.Anchor = (System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right);
             this.btnSelAll.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.btnSelAll.Location = new System.Drawing.Point(210, 88);
@@ -120,9 +119,9 @@ namespace JetBrains.Omea.OutlookPlugin
             this.btnSelAll.Size = new System.Drawing.Size(75, 24);
             this.btnSelAll.Click += new EventHandler(btnSelAll_Click);
             this.btnSelAll.TabIndex = 2;
-            // 
+            //
             // btnUnselAll
-            // 
+            //
             this.btnUnselAll.Anchor = (System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right);
             this.btnUnselAll.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.btnUnselAll.Location = new System.Drawing.Point(210, 118);
@@ -131,10 +130,10 @@ namespace JetBrains.Omea.OutlookPlugin
             this.btnUnselAll.Size = new System.Drawing.Size(75, 24);
             this.btnUnselAll.Click += new EventHandler(btnUnselAll_Click);
             this.btnUnselAll.TabIndex = 3;
-            // 
+            //
             // _chkShowExcludedFolders
-            // 
-            this._chkShowExcludedFolders.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._chkShowExcludedFolders.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._chkShowExcludedFolders.Changed = false;
             this._chkShowExcludedFolders.InvertValue = false;
@@ -143,9 +142,9 @@ namespace JetBrains.Omea.OutlookPlugin
             this._chkShowExcludedFolders.Size = new System.Drawing.Size(272, 24);
             this._chkShowExcludedFolders.TabIndex = 20;
             this._chkShowExcludedFolders.Text = "Show &excluded folders";
-            // 
+            //
             // OutlookOptionsPane_IgnoredFolders
-            // 
+            //
             this.Controls.Add(this._chkShowExcludedFolders);
             this.Controls.Add(this._syncMailCategory);
             this.Controls.Add(this.btnSelAll);
@@ -175,7 +174,7 @@ namespace JetBrains.Omea.OutlookPlugin
 
                 if ( !_checkStatusUpdated )
                 {
-                    Core.ResourceAP.RunUniqueJob( 
+                    Core.ResourceAP.RunUniqueJob(
                         new MethodInvoker( Folder.IgnoreDeletedItemsIfNoIgnoredFolders ) );
                     UpdateCheckStatus( _treeView.Nodes );
                     foreach ( TreeNode node in _treeView.Nodes )

@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using JetBrains.Omea.OpenAPI;
@@ -20,7 +19,7 @@ namespace ResourceToolsTests
         private IResourceList _resList;
         private int _propSubject;
         private int _propFirstName;
-        
+
         [SetUp] public void SetUp()
         {
             _core = new TestCore();
@@ -78,14 +77,14 @@ namespace ResourceToolsTests
             res.SetProp( _propSubject, subject );
             return res;
         }
-        
+
         [Test] public void FirstTest()
         {
             IResource email = _storage.NewResource( "Email" );
             VerifyNextEvent( EventType.Add, email.Id, 0, 0 );
 
             Assert.IsTrue( _queue.IsEmpty() );
-            
+
             int emailID = email.Id;
             email.Delete();
             VerifyNextEvent( EventType.Remove, emailID, 0, 0 );
@@ -123,12 +122,12 @@ namespace ResourceToolsTests
         }
 
         [Test] public void AddAfterAdd()
-        {   
+        {
             _resList.Sort( "Subject" );
             IResource email1 = _storage.BeginNewResource( "Email" );
             email1.SetProp( _propSubject, "B");
             email1.EndUpdate();
-                                                           
+
             IResource email2 = _storage.BeginNewResource( "Email" );
             email2.SetProp( _propSubject, "A" );
             email2.EndUpdate();
@@ -166,7 +165,7 @@ namespace ResourceToolsTests
         [Test] public void MergeChanges()
         {
             IResource email = _storage.NewResource( "Email" );
-            
+
             DiscardEvents();
 
             email.SetProp( _propSubject, "Test" );
@@ -232,7 +231,7 @@ namespace ResourceToolsTests
             DiscardEvents();
 
             email1.SetProp( _propFirstName, "Dmitry" );
-            
+
             int email2ID = email2.Id;
             email2.Delete();
 
@@ -249,7 +248,7 @@ namespace ResourceToolsTests
             email1.SetProp( _propSubject, "B" );
             IResource email2 = _storage.NewResource( "Email" );
             email2.SetProp( _propSubject, "A" );
-            
+
             email2.Delete();
 
             VerifyNextEvent( EventType.Add, email1.Id, 0, 0 );
@@ -265,7 +264,7 @@ namespace ResourceToolsTests
 
             IResource email2 = _storage.NewResource( "Email" );
             email2.SetProp( _propSubject, "B" );
-            
+
             int email1ID = email1.Id;
             email1.Delete();
 

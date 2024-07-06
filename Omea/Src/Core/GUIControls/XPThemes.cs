@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Runtime.InteropServices;
@@ -45,10 +44,10 @@ namespace JetBrains.Omea.GUIControls
         private static extern bool IsAppThemed();
 
         [DllImport("uxtheme", ExactSpelling=true, CharSet=CharSet.Unicode)]
-        private extern static Int32 GetCurrentThemeName( StringBuilder stringThemeName, int lengthThemeName, 
-            StringBuilder stringColorName, int lengthColorName, 
+        private extern static Int32 GetCurrentThemeName( StringBuilder stringThemeName, int lengthThemeName,
+            StringBuilder stringColorName, int lengthColorName,
             StringBuilder stringSizeName, int lengthSizeName );
-        
+
 		[DllImport("uxtheme.dll", CharSet=CharSet.Auto)]
 		public static extern int GetThemeColor(HandleRef hTheme, int iPartId, int iStateId, int iPropId, ref int pColor);
 

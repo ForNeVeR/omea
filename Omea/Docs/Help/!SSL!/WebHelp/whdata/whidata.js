@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 //	WebHelp 5.10.001
 // const strings
@@ -18,9 +17,9 @@ function topic(sName, sURL)
 	this.sURL = sURL;
 }
 
-function indexEntry(fn_arguments) 
+function indexEntry(fn_arguments)
 {
-	if (fn_arguments.length && fn_arguments.length >= 3) 
+	if (fn_arguments.length && fn_arguments.length >= 3)
 	{
 		this.nType = fn_arguments[0];
 		this.nPKOff = 0;
@@ -41,9 +40,9 @@ function indexEntry(fn_arguments)
 			}
 
 		}
-		else 
+		else
 		{
-			if (nLen > 4) 
+			if (nLen > 4)
 			{
 				this.aTopics = new Array();
 				for (var i = 0; i < (nLen - 4)/2; i++)
@@ -60,29 +59,29 @@ function getIndexTopicMappingList(nItemIndex)
 	var sTopics = "";
 	if (gIEA.length > nItemIndex)
 	{
-		if (gIEA[nItemIndex].aTopics) 
+		if (gIEA[nItemIndex].aTopics)
 		{
 			var i = 0;
 			var nLen = gIEA[nItemIndex].aTopics.length;
-			for (i = 0; i < nLen; i ++) 
+			for (i = 0; i < nLen; i ++)
 			{
 				sTopics += "," + gIEA[nItemIndex].aTopics[i];
 			}
 		}
 	}
-	return sTopics;		
+	return sTopics;
 }
 
 function window_OnLoad()
 {
 	if (parent && parent != this) {
-		if (parent.putData) 
+		if (parent.putData)
 		{
 			for (var i = 0; i < gIEA.length; i ++ )
 			{
 				if (gIEA[i].nNKOff != 0 && i + gIEA[i].nNKOff + 1 < gIEA.length)
 				{
-				
+
 					gIEA[i + gIEA[i].nNKOff + 1].nPKOff = gIEA[i].nNKOff;
 				}
 			}

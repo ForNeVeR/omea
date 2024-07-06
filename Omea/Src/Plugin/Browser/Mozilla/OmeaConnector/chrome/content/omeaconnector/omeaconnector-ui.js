@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 function omeaconnector_initToolbar()
 {
@@ -92,7 +91,7 @@ function omeaconnector_setupContextMenu( evt )
   var disp = window.document.commandDispatcher;
   var ctrl = disp.getControllerForCommand( 'omeaconnector_subscribeRSS' );
   var haveCmd;
-  
+
   // Show/hide RSS subscription
   haveCmd = ctrl.isCommandEnabled( 'omeaconnector_subscribeRSS' );
   gContextMenu.showItem( 'omeaconnector-contextmenu-subscribeRSS',     haveCmd );

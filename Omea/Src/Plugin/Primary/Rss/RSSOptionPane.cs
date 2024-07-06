@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.IO;
@@ -52,7 +51,7 @@ namespace JetBrains.Omea.RSSPlugin
         private System.Windows.Forms.OpenFileDialog _dlgBrowseForExtension;
         private System.Windows.Forms.Button _btnUninstall;
 
-        /// <summary> 
+        /// <summary>
         /// Required designer variable.
         /// </summary>
         private System.ComponentModel.Container components = null;
@@ -113,7 +112,7 @@ namespace JetBrains.Omea.RSSPlugin
             Core.SettingStore.WriteBool( IniKeys.Section, IniKeys.ShowSummary, _checkShowSummary.Checked );
         }
 
-        /// <summary> 
+        /// <summary>
         /// Clean up any resources being used.
         /// </summary>
         protected override void Dispose( bool disposing )
@@ -129,8 +128,8 @@ namespace JetBrains.Omea.RSSPlugin
         }
 
         #region Component Designer generated code
-        /// <summary> 
-        /// Required method for Designer support - do not modify 
+        /// <summary>
+        /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
@@ -181,10 +180,10 @@ namespace JetBrains.Omea.RSSPlugin
 			this.SuspendLayout();
 
             #region UpdateSettings
-			// 
+			//
 			// _grpUpdateSettings
-			// 
-			this._grpUpdateSettings.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			//
+			this._grpUpdateSettings.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
 				| System.Windows.Forms.AnchorStyles.Right)));
 			this._grpUpdateSettings.Controls.Add(label1);
 			this._grpUpdateSettings.Controls.Add(_cmbUpdatePeriod);
@@ -202,27 +201,27 @@ namespace JetBrains.Omea.RSSPlugin
 			this._grpUpdateSettings.TabIndex = 0;
 			this._grpUpdateSettings.TabStop = false;
 			this._grpUpdateSettings.Text = "Feed Update Settings";
-			// 
+			//
 			// label1
-			// 
+			//
 			this.label1.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this.label1.Location = new System.Drawing.Point(8, 18);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(180, 16);
 			this.label1.TabIndex = 0;
 			this.label1.Text = "Default feeds &update interval:";
-			// 
+			//
 			// _cmbUpdatePeriod
-			// 
+			//
 			this._cmbUpdatePeriod.Changed = false;
 			this._cmbUpdatePeriod.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this._cmbUpdatePeriod.Location = new System.Drawing.Point(288, 14);
 			this._cmbUpdatePeriod.Name = "_cmbUpdatePeriod";
 			this._cmbUpdatePeriod.Size = new System.Drawing.Size(76, 21);
 			this._cmbUpdatePeriod.TabIndex = 2;
-			// 
+			//
 			// _udUpdateFrequency
-			// 
+			//
 			this._udUpdateFrequency.Changed = true;
 			this._udUpdateFrequency.Location = new System.Drawing.Point(244, 14);
 			this._udUpdateFrequency.Maximum = 1000;
@@ -232,27 +231,27 @@ namespace JetBrains.Omea.RSSPlugin
 			this._udUpdateFrequency.TabIndex = 1;
 			this._udUpdateFrequency.Text = "1";
 			this._udUpdateFrequency.Value = 1;
-			// 
+			//
 			// label2
-			// 
+			//
 			this.label2.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this.label2.Location = new System.Drawing.Point(8, 38);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(216, 32);
 			this.label2.TabIndex = 3;
 			this.label2.Text = "Stop updating feeds co&mments if no comments have been received for:";
-			// 
+			//
 			// _cmbStopUpdatePeriod
-			// 
+			//
 			this._cmbStopUpdatePeriod.Changed = false;
 			this._cmbStopUpdatePeriod.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this._cmbStopUpdatePeriod.Location = new System.Drawing.Point(288, 42);
 			this._cmbStopUpdatePeriod.Name = "_cmbStopUpdatePeriod";
 			this._cmbStopUpdatePeriod.Size = new System.Drawing.Size(76, 21);
 			this._cmbStopUpdatePeriod.TabIndex = 5;
-			// 
+			//
 			// _udStopUpdatePeriod
-			// 
+			//
 			this._udStopUpdatePeriod.Changed = false;
 			this._udStopUpdatePeriod.Location = new System.Drawing.Point(244, 42);
 			this._udStopUpdatePeriod.Maximum = 1000;
@@ -260,9 +259,9 @@ namespace JetBrains.Omea.RSSPlugin
 			this._udStopUpdatePeriod.Name = "_udStopUpdatePeriod";
 			this._udStopUpdatePeriod.Size = new System.Drawing.Size(40, 20);
 			this._udStopUpdatePeriod.TabIndex = 4;
-			// 
+			//
 			// _updateTimeOut
-			// 
+			//
 			this._updateTimeOut.Changed = true;
 			this._updateTimeOut.Location = new System.Drawing.Point(244, 70);
 			this._updateTimeOut.Maximum = 1000;
@@ -272,9 +271,9 @@ namespace JetBrains.Omea.RSSPlugin
 			this._updateTimeOut.TabIndex = 7;
 			this._updateTimeOut.Text = "1";
 			this._updateTimeOut.Value = 1;
-			// 
+			//
 			// label3
-			// 
+			//
 			this.label3.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this.label3.Location = new System.Drawing.Point(8, 74);
 			this.label3.Name = "label3";
@@ -284,17 +283,17 @@ namespace JetBrains.Omea.RSSPlugin
             #endregion UpdateSettings
 
             #region Single settings
-			// 
+			//
 			// _cookieProviderSelector
-			// 
+			//
 			this._cookieProviderSelector.Location = new System.Drawing.Point(0, 114);
 			this._cookieProviderSelector.Name = "_cookieProviderSelector";
 			this._cookieProviderSelector.Size = new System.Drawing.Size(324, 24);
 			this._cookieProviderSelector.TabIndex = 8;
-			// 
+			//
 			// _chkRememberSelection
-			// 
-			this._chkRememberSelection.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			//
+			this._chkRememberSelection.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
 				| System.Windows.Forms.AnchorStyles.Right)));
 			this._chkRememberSelection.Changed = false;
 			this._chkRememberSelection.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -304,10 +303,10 @@ namespace JetBrains.Omea.RSSPlugin
 			this._chkRememberSelection.Size = new System.Drawing.Size(460, 20);
 			this._chkRememberSelection.TabIndex = 9;
 			this._chkRememberSelection.Text = "&Remember selection in feeds between restarts";
-			// 
+			//
 			// _chkShowDesktopAlert
-			// 
-			this._chkShowDesktopAlert.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			//
+			this._chkShowDesktopAlert.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
 				| System.Windows.Forms.AnchorStyles.Right)));
 			this._chkShowDesktopAlert.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this._chkShowDesktopAlert.Location = new System.Drawing.Point(0, 166);
@@ -315,10 +314,10 @@ namespace JetBrains.Omea.RSSPlugin
 			this._chkShowDesktopAlert.Size = new System.Drawing.Size(460, 20);
 			this._chkShowDesktopAlert.TabIndex = 10;
 			this._chkShowDesktopAlert.Text = "&Show desktop alert when new items are received";
-			// 
+			//
 			// _checkNewspaperAllowHoverSelection
-			// 
-			this._checkNewspaperAllowHoverSelection.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			//
+			this._checkNewspaperAllowHoverSelection.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
 				| System.Windows.Forms.AnchorStyles.Right)));
 			this._checkNewspaperAllowHoverSelection.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this._checkNewspaperAllowHoverSelection.Location = new System.Drawing.Point(0, 190);
@@ -326,10 +325,10 @@ namespace JetBrains.Omea.RSSPlugin
 			this._checkNewspaperAllowHoverSelection.Size = new System.Drawing.Size(460, 20);
 			this._checkNewspaperAllowHoverSelection.TabIndex = 11;
 			this._checkNewspaperAllowHoverSelection.Text = "In Newspaper View, select items when I &point at them";
-			// 
+			//
 			// _checkPropagateFavIconToItems
-			// 
-			this._checkPropagateFavIconToItems.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			//
+			this._checkPropagateFavIconToItems.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
 				| System.Windows.Forms.AnchorStyles.Right)));
 			this._checkPropagateFavIconToItems.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this._checkPropagateFavIconToItems.Location = new System.Drawing.Point(0, 214);
@@ -337,10 +336,10 @@ namespace JetBrains.Omea.RSSPlugin
 			this._checkPropagateFavIconToItems.Size = new System.Drawing.Size(460, 20);
 			this._checkPropagateFavIconToItems.TabIndex = 12;
 			this._checkPropagateFavIconToItems.Text = "If a &feed has a custom icon, use it for feed items also";
-			// 
+			//
 			// _checkUseDetailedURLs
-			// 
-			this._checkUseDetailedURLs.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			//
+			this._checkUseDetailedURLs.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
 				| System.Windows.Forms.AnchorStyles.Right)));
 			this._checkUseDetailedURLs.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this._checkUseDetailedURLs.Location = new System.Drawing.Point(0, 238);
@@ -348,10 +347,10 @@ namespace JetBrains.Omea.RSSPlugin
 			this._checkUseDetailedURLs.Size = new System.Drawing.Size(460, 20);
 			this._checkUseDetailedURLs.TabIndex = 13;
 			this._checkUseDetailedURLs.Text = "Show detailed 'Source' URLs";
-            // 
+            //
             // _checkShowSummary
-            // 
-            this._checkShowSummary.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._checkShowSummary.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._checkShowSummary.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._checkShowSummary.Location = new System.Drawing.Point(0, 262);
@@ -362,10 +361,10 @@ namespace JetBrains.Omea.RSSPlugin
             #endregion Single settings
 
             #region Group Font Settings
-			// 
+			//
 			// _grpFontChars
-			// 
-			this._grpFontChars.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			//
+			this._grpFontChars.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
 				| System.Windows.Forms.AnchorStyles.Right)));
 			this._grpFontChars.Controls.Add(_chkOverrideFont);
 			this._grpFontChars.Controls.Add(_lblFontFamily);
@@ -379,10 +378,10 @@ namespace JetBrains.Omea.RSSPlugin
 			this._grpFontChars.TabIndex = 0;
 			this._grpFontChars.TabStop = false;
 			this._grpFontChars.Text = "RSS/Atom Post Font Settings";
-			// 
+			//
 			// _chkOverride
-			// 
-			this._chkOverrideFont.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			//
+			this._chkOverrideFont.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
 				| System.Windows.Forms.AnchorStyles.Right)));
 			this._chkOverrideFont.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this._chkOverrideFont.Location = new System.Drawing.Point(8, 16);
@@ -391,9 +390,9 @@ namespace JetBrains.Omea.RSSPlugin
 			this._chkOverrideFont.TabIndex = 1;
 			this._chkOverrideFont.Text = "Override common settings";
             this._chkOverrideFont.CheckedChanged += new EventHandler(_chkOverrideFont_CheckedChanged);
-			// 
+			//
 			// _lblFontFamily
-			// 
+			//
 			this._lblFontFamily.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this._lblFontFamily.Location = new System.Drawing.Point(16, 45);
 			this._lblFontFamily.Name = "_lblFontFamily";
@@ -401,9 +400,9 @@ namespace JetBrains.Omea.RSSPlugin
 			this._lblFontFamily.TabIndex = 2;
 			this._lblFontFamily.Text = "F&ont:";
 			this._lblFontFamily.UseMnemonic = true;
-            // 
+            //
             // _txtFont
-            // 
+            //
             this._txtFont.Anchor = (System.Windows.Forms.AnchorStyles)(System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left);
             this._txtFont.Location = new System.Drawing.Point(65, 41);
             this._txtFont.Name = "_txtFont";
@@ -411,9 +410,9 @@ namespace JetBrains.Omea.RSSPlugin
             this._txtFont.TabIndex = 3;
             this._txtFont.Text = "";
             this._txtFont.Enabled = false;
-			// 
+			//
 			// _btnChangeFont
-			// 
+			//
 			this._btnChangeFont.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)));
 			this._btnChangeFont.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this._btnChangeFont.Location = new System.Drawing.Point(210, 40);
@@ -425,10 +424,10 @@ namespace JetBrains.Omea.RSSPlugin
             #endregion Group Font Attributes
 
             #region Group Extensions
-			// 
+			//
 			// _grpExtensions
-			// 
-			this._grpExtensions.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			//
+			this._grpExtensions.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
 				| System.Windows.Forms.AnchorStyles.Right)));
 			this._grpExtensions.Controls.Add(this._btnUninstall);
 			this._grpExtensions.Controls.Add(this._btnInstall);
@@ -441,9 +440,9 @@ namespace JetBrains.Omea.RSSPlugin
 			this._grpExtensions.TabIndex = 12;
 			this._grpExtensions.TabStop = false;
 			this._grpExtensions.Text = "&Weblog Posting Extensions";
-			// 
+			//
 			// _btnUninstall
-			// 
+			//
 			this._btnUninstall.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this._btnUninstall.Enabled = false;
 			this._btnUninstall.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -452,9 +451,9 @@ namespace JetBrains.Omea.RSSPlugin
 			this._btnUninstall.TabIndex = 3;
 			this._btnUninstall.Text = "Uninstall";
 			this._btnUninstall.Click += new System.EventHandler(this._btnUninstall_Click);
-			// 
+			//
 			// _btnInstall
-			// 
+			//
 			this._btnInstall.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this._btnInstall.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this._btnInstall.Location = new System.Drawing.Point(200, 108);
@@ -462,9 +461,9 @@ namespace JetBrains.Omea.RSSPlugin
 			this._btnInstall.TabIndex = 1;
 			this._btnInstall.Text = "&Install...";
 			this._btnInstall.Click += new System.EventHandler(this._btnInstall_Click);
-			// 
+			//
 			// _btnConfigure
-			// 
+			//
 			this._btnConfigure.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this._btnConfigure.Enabled = false;
 			this._btnConfigure.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -473,10 +472,10 @@ namespace JetBrains.Omea.RSSPlugin
 			this._btnConfigure.TabIndex = 2;
 			this._btnConfigure.Text = "Configure...";
 			this._btnConfigure.Click += new System.EventHandler(this._btnConfigure_Click);
-			// 
+			//
 			// _lvExtensions
-			// 
-			this._lvExtensions.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			//
+			this._lvExtensions.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
 				| System.Windows.Forms.AnchorStyles.Right)));
 			this._lvExtensions.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
 																							this.columnHeader1,
@@ -489,28 +488,28 @@ namespace JetBrains.Omea.RSSPlugin
 			this._lvExtensions.TabIndex = 0;
 			this._lvExtensions.View = System.Windows.Forms.View.Details;
 			this._lvExtensions.SelectedIndexChanged += new System.EventHandler(this._lvExtensions_SelectedIndexChanged);
-			// 
+			//
 			// columnHeader1
-			// 
+			//
 			this.columnHeader1.Text = "Title";
 			this.columnHeader1.Width = 150;
-			// 
+			//
 			// columnHeader2
-			// 
+			//
 			this.columnHeader2.Text = "File Name";
 			this.columnHeader2.Width = 150;
-			// 
+			//
 			// _dlgBrowseForExtension
-			// 
+			//
 			this._dlgBrowseForExtension.Filter = "DLL files (*.dll)|*.dll|All files|*.*";
 			this._dlgBrowseForExtension.Title = "Select a Plugin DLL";
             #endregion Group Extensions
 
             #region GroupExpRules
-            // 
+            //
 			// groupExpRules
-			// 
-			this.groupExpRules.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+			//
+			this.groupExpRules.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
 				| System.Windows.Forms.AnchorStyles.Right)));
 			this.groupExpRules.Controls.Add(this.labelDefaultExpRule);
 			this.groupExpRules.Controls.Add(this.buttonEditExpRuleForDeleted);
@@ -526,18 +525,18 @@ namespace JetBrains.Omea.RSSPlugin
 			this.groupExpRules.TabIndex = 13;
 			this.groupExpRules.TabStop = false;
 			this.groupExpRules.Text = "Autoexpiration Rules";
-			// 
+			//
 			// labelDefaultExpRule
-			// 
+			//
 			this.labelDefaultExpRule.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this.labelDefaultExpRule.Location = new System.Drawing.Point(8, 20);
 			this.labelDefaultExpRule.Name = "labelDefaultExpRule";
 			this.labelDefaultExpRule.Size = new System.Drawing.Size(140, 16);
 			this.labelDefaultExpRule.TabIndex = 0;
 			this.labelDefaultExpRule.Text = "Default rule for all Feeds:";
-			// 
+			//
 			// buttonEditExpRuleForDeleted
-			// 
+			//
 			this.buttonEditExpRuleForDeleted.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonEditExpRuleForDeleted.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this.buttonEditExpRuleForDeleted.Location = new System.Drawing.Point(288, 45);
@@ -545,9 +544,9 @@ namespace JetBrains.Omea.RSSPlugin
 			this.buttonEditExpRuleForDeleted.TabIndex = 4;
 			this.buttonEditExpRuleForDeleted.Text = "E&dit...";
 			this.buttonEditExpRuleForDeleted.Click += new System.EventHandler(this.buttonEditExpRuleForDeleted_Click);
-			// 
+			//
 			// buttonClearDefault
-			// 
+			//
 			this.buttonClearDefault.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonClearDefault.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this.buttonClearDefault.Location = new System.Drawing.Point(376, 17);
@@ -555,18 +554,18 @@ namespace JetBrains.Omea.RSSPlugin
 			this.buttonClearDefault.TabIndex = 2;
 			this.buttonClearDefault.Text = "Clear";
 			this.buttonClearDefault.Click += new System.EventHandler(this.buttonClearDefault_Click);
-			// 
+			//
 			// labelExpRuleForDeleted
-			// 
+			//
 			this.labelExpRuleForDeleted.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this.labelExpRuleForDeleted.Location = new System.Drawing.Point(8, 48);
 			this.labelExpRuleForDeleted.Name = "labelExpRuleForDeleted";
 			this.labelExpRuleForDeleted.Size = new System.Drawing.Size(180, 16);
 			this.labelExpRuleForDeleted.TabIndex = 3;
 			this.labelExpRuleForDeleted.Text = "Rule for deleted RSS/ATOM Posts:";
-			// 
+			//
 			// buttonEditDefExpRule
-			// 
+			//
 			this.buttonEditDefExpRule.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonEditDefExpRule.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this.buttonEditDefExpRule.Location = new System.Drawing.Point(288, 17);
@@ -574,9 +573,9 @@ namespace JetBrains.Omea.RSSPlugin
 			this.buttonEditDefExpRule.TabIndex = 1;
 			this.buttonEditDefExpRule.Text = "&Edit...";
 			this.buttonEditDefExpRule.Click += new System.EventHandler(this.buttonEditDefExpRule_Click);
-			// 
+			//
 			// buttonClearDeleted
-			// 
+			//
 			this.buttonClearDeleted.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.buttonClearDeleted.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this.buttonClearDeleted.Location = new System.Drawing.Point(376, 45);
@@ -586,9 +585,9 @@ namespace JetBrains.Omea.RSSPlugin
 			this.buttonClearDeleted.Click += new System.EventHandler(this.buttonClearDeleted_Click);
             #endregion GroupExpRules
 
-            // 
+            //
 			// RSSOptionPane
-			// 
+			//
 			this.Controls.Add(this._grpUpdateSettings);
 			this.Controls.Add(this._cookieProviderSelector);
             this.Controls.Add(this._grpFontChars);
@@ -717,7 +716,7 @@ namespace JetBrains.Omea.RSSPlugin
             IResource action = Core.ResourceStore.FindUniqueResource( "RuleAction", "Name", "Show desktop alert" );
             if ( action != null )
             {
-                IResource rule = Core.FilterRegistry.RegisterRule( StandardEvents.ResourceReceived, 
+                IResource rule = Core.FilterRegistry.RegisterRule( StandardEvents.ResourceReceived,
                     "Desktop Alert: Received Feed Items", new string[] { "RSSItem" },
                     new IResource[] {}, new IResource[] {}, new IResource[] { action } );
                 rule.SetProp( Props.DefaultDesktopAlertRule, true );
@@ -737,7 +736,7 @@ namespace JetBrains.Omea.RSSPlugin
             IResourceList allFeeds = Core.ResourceStore.GetAllResources( "RSSFeed" );
             foreach( IResource feed in allFeeds )
             {
-                if ( feed.GetIntProp( Props.UpdateFrequency ) == oldFreq && 
+                if ( feed.GetIntProp( Props.UpdateFrequency ) == oldFreq &&
                     feed.GetStringProp( Props.UpdatePeriod ) == oldPeriod )
                 {
                     feed.BeginUpdate();
@@ -816,8 +815,8 @@ namespace JetBrains.Omea.RSSPlugin
         private void _btnUninstall_Click( object sender, System.EventArgs e )
         {
             BlogExtensionData extData = (BlogExtensionData) _lvExtensions.SelectedItems [0].Tag;
-            if ( MessageBox.Show( this, "Do you really want to uninstall the extension '" + 
-                extData.BlogExtension.DisplayName + "'?", 
+            if ( MessageBox.Show( this, "Do you really want to uninstall the extension '" +
+                extData.BlogExtension.DisplayName + "'?",
                 "Uninstall Extension", MessageBoxButtons.YesNo ) == DialogResult.Yes )
             {
                 RSSPlugin.ExtensionManager.UninstallExtension( extData );

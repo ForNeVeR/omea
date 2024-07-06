@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -153,7 +152,7 @@ namespace JetBrains.Omea
                 return false;
 #endif
             }
-            
+
         }
 
 		/// <summary>
@@ -204,7 +203,7 @@ namespace JetBrains.Omea
             {
                 return;
             }
-            
+
             _traceListener.Close();
             Debug.Listeners.Remove( _traceListener );
 
@@ -241,7 +240,7 @@ namespace JetBrains.Omea
                 }
                 catch( Exception ex )
                 {
-                    submitError = ex;                
+                    submitError = ex;
                 }
 	        }
 
@@ -258,9 +257,9 @@ namespace JetBrains.Omea
     internal class OmniaMeaTraceListener: TextWriterTraceListener
     {
         private bool _NewLine = true;
-        
+
         internal OmniaMeaTraceListener( string filename )
-            : base( filename ) 
+            : base( filename )
         {
         }
 
@@ -298,7 +297,7 @@ namespace JetBrains.Omea
         private void WriteDate()
         {
             base.Write( DateTime.Now.ToString( "dd.MM.yyyy HH:mm:ss.fff " ) );
-            
+
             string threadName = Thread.CurrentThread.Name;
             base.Write( "[" + ( !string.IsNullOrEmpty( threadName ) ? threadName [0] : '?' ) + "] " );
 

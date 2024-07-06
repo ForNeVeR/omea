@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System.IO;
 using JetBrains.Omea.Base;
@@ -52,18 +51,18 @@ namespace JetBrains.Omea.GUIControls
 		{
             this._richTextBox = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
-            // 
+            //
             // _richTextBox
-            // 
+            //
             this._richTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this._richTextBox.Location = new System.Drawing.Point(0, 0);
             this._richTextBox.Name = "_richTextBox";
             this._richTextBox.Size = new System.Drawing.Size(416, 338);
             this._richTextBox.TabIndex = 0;
             this._richTextBox.Text = "";
-            // 
+            //
             // ShowBlobAsText
-            // 
+            //
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
             this.ClientSize = new System.Drawing.Size(416, 338);
             this.Controls.Add(this._richTextBox);

@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Xml;
@@ -171,7 +170,7 @@ namespace JetBrains.Omea.ResourceTools
                     value = val;
                     break;
                 default:
-                    throw new ArgumentOutOfRangeException( "ResourceDeserialization -- Can not process" + 
+                    throw new ArgumentOutOfRangeException( "ResourceDeserialization -- Can not process" +
                                                            " resource type [" + strType + "]" );
             }
             if ( value != null )
@@ -224,7 +223,7 @@ namespace JetBrains.Omea.ResourceTools
         }
         public bool Valid { get { return _valid; } }
         public IResource ParentResource { get { return _parentResourceUnpack.Resource; } }
-        public ArrayList Resources { get { return _resources; } }    
+        public ArrayList Resources { get { return _resources; } }
         public string InternalName { get { return _internalName; } }
         public string DisplayName { get { return _displayName; } }
         public bool Directed { get { return _directed; } }

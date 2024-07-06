@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 #pragma unmanaged
 
@@ -64,7 +63,7 @@ void EMessage::SetConversation( const EMessageSPtr& parent ) const
         SPropValue pChildConvIndex[1];
         pChildConvIndex[0].ulPropTag = (int)PR_CONVERSATION_INDEX;
 
-        HRESULT hr = ScCreateConversationIndex( prop->GetBinCB(), prop->GetBinLPBYTE(), 
+        HRESULT hr = ScCreateConversationIndex( prop->GetBinCB(), prop->GetBinLPBYTE(),
             &pChildConvIndex[0].Value.bin.cb, &pChildConvIndex[0].Value.bin.lpb );
 
         hr = _lpMessage->SetProps( 1, pChildConvIndex, NULL);
@@ -99,7 +98,7 @@ void EMessage::AddRecipient( ELPSRowSetSPtr row, int /*recType*/ ) const
     HRESULT hr = _lpMessage->ModifyRecipients( (int)MODRECIP_ADD, (LPADRLIST)row.get()->GetRaw() );
     Guard::CheckHR( hr );
 }
-HRESULT EMessage::AddRecipient( LPMAPISESSION pSession, LPWSTR displayName, LPWSTR email, 
+HRESULT EMessage::AddRecipient( LPMAPISESSION pSession, LPWSTR displayName, LPWSTR email,
                                LPSTR displayNameA, LPSTR emailA, bool unicode, int recType ) const
 {
     HRESULT hRes   = S_OK;      // Status code of MAPI calls
@@ -200,7 +199,7 @@ HRESULT EMessage::AddRecipient( LPMAPISESSION pSession, LPWSTR displayName, LPWS
 
     pAdrList->aEntries[0].rgPropVals[DISPLAY_TYPE].ulPropTag = (int)PR_DISPLAY_TYPE;
     pAdrList->aEntries[0].rgPropVals[DISPLAY_TYPE].Value.l = 0;
-    
+
 
     hRes = pSession->OpenAddressBook(0, NULL, (int)AB_NO_DIALOG, &lpAddrBook);
     if (FAILED(hRes)) goto Quit;
@@ -252,7 +251,7 @@ Quit:
     FreePadrlist( pAdrList );
     UlRelease( lpAddrBook );
     return hRes;
-} 
+}
 void EMessage::AttachFile( LPSTR path, LPSTR fileName ) const
 {
     LPSTREAM pStrmSrc = NULL;
@@ -285,7 +284,7 @@ void EMessage::AttachFile( LPSTR path, LPSTR fileName ) const
                     spvAttach[METHOD].Value.l = (int)ATTACH_BY_VALUE;
 
                     spvAttach[RENDERING].ulPropTag = (int)PR_RENDERING_POSITION;
-                    spvAttach[RENDERING].Value.l = -1;      
+                    spvAttach[RENDERING].Value.l = -1;
 
                     hRes = pAtt->SetProps( (int)NUM_ATT_PROPS, (LPSPropValue)&spvAttach, NULL );
                     if ( !FAILED( hRes ) )
@@ -313,7 +312,7 @@ void EMessage::Submit() const
 }
 ESPropValueSPtr EMessage::GetStatus() const
 {
-    const SizedSPropTagArray( 4, atProps ) = 
+    const SizedSPropTagArray( 4, atProps ) =
     { 4, (int)PR_MSG_STATUS, (int)PR_MESSAGE_FLAGS, (int)PR_ACCESS_LEVEL, (int)PR_MESSAGE_CLASS };
     unsigned long ulTmp = 0;
     LPSPropValue pVal  = 0;
@@ -440,8 +439,8 @@ HRESULT EMessage::SaveToMSG( LPSTR szPath )
         pStorage->Release();
     }
     return hRes;
-} 
-#define STGM_DIRECT_SWMR 0x00400000L 
+}
+#define STGM_DIRECT_SWMR 0x00400000L
 
 EMessageSPtr EMessage::LoadFromMSG( LPSTR szPath )
 {
@@ -480,4 +479,4 @@ EMessageSPtr EMessage::LoadFromMSG( LPSTR szPath )
         pStorage->Release();
     }
     return EMessageSPtr( NULL );
-} 
+}

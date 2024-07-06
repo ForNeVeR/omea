@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -71,7 +70,7 @@ namespace ResourceToolsTests
 			Assert.AreEqual( _sFragments[ 1 ], "to " );
 			Assert.AreEqual( _sFragments[ 2 ], "hell" );
 			Assert.AreEqual( _sFragments[ 3 ], " " );
-			
+
 			Assert.AreEqual( _nOffsets[ 0 ], sBody.IndexOf( "Welcome" ) );
 			Assert.AreEqual( _nOffsets[ 1 ], sBody.IndexOf( "to" ) );
 			Assert.AreEqual( _nOffsets[ 2 ], sBody.IndexOf( "hell" ) );

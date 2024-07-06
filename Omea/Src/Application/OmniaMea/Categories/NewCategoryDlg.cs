@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Windows.Forms;
@@ -15,7 +14,7 @@ namespace JetBrains.Omea.Categories
      * The dialog for creating a new category. Allows to select its content type
      * and location in the resource tree.
      */
-    
+
     public class NewCategoryDlg : DialogBase
 	{
         private System.Windows.Forms.Label label1;
@@ -76,19 +75,19 @@ namespace JetBrains.Omea.Categories
             this.label3 = new System.Windows.Forms.Label();
             this._cmbResourceType = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
-            // 
+            //
             // label1
-            // 
+            //
             this.label1.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label1.Location = new System.Drawing.Point(8, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(40, 17);
             this.label1.TabIndex = 0;
             this.label1.Text = "Name:";
-            // 
+            //
             // _edtName
-            // 
-            this._edtName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._edtName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._edtName.Location = new System.Drawing.Point(8, 26);
             this._edtName.Name = "_edtName";
@@ -96,20 +95,20 @@ namespace JetBrains.Omea.Categories
             this._edtName.TabIndex = 0;
             this._edtName.Text = "";
             this._edtName.TextChanged += new System.EventHandler(this._edtName_TextChanged);
-            // 
+            //
             // label2
-            // 
+            //
             this.label2.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label2.Location = new System.Drawing.Point(12, 108);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(196, 17);
             this.label2.TabIndex = 2;
             this.label2.Text = "Select where to place this category:";
-            // 
+            //
             // _resourceTree
-            // 
-            this._resourceTree.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-                | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._resourceTree.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._resourceTree.HideSelection = false;
             this._resourceTree.Location = new System.Drawing.Point(8, 129);
@@ -119,9 +118,9 @@ namespace JetBrains.Omea.Categories
             this._resourceTree.Size = new System.Drawing.Size(276, 151);
             this._resourceTree.TabIndex = 2;
             this._resourceTree.ActiveResourceChanged += new EventHandler(this._resourceTree_AfterSelect);
-            // 
+            //
             // _btnOK
-            // 
+            //
             this._btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this._btnOK.Cursor = System.Windows.Forms.Cursors.Default;
             this._btnOK.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -131,9 +130,9 @@ namespace JetBrains.Omea.Categories
             this._btnOK.TabIndex = 3;
             this._btnOK.Text = "OK";
             this._btnOK.Click += new System.EventHandler(this._btnOK_Click);
-            // 
+            //
             // _btnCancel
-            // 
+            //
             this._btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this._btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this._btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -142,19 +141,19 @@ namespace JetBrains.Omea.Categories
             this._btnCancel.Size = new System.Drawing.Size(75, 24);
             this._btnCancel.TabIndex = 4;
             this._btnCancel.Text = "Cancel";
-            // 
+            //
             // label3
-            // 
+            //
             this.label3.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label3.Location = new System.Drawing.Point(12, 56);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(268, 17);
             this.label3.TabIndex = 7;
             this.label3.Text = "Contains resources of type:";
-            // 
+            //
             // _cmbResourceType
-            // 
-            this._cmbResourceType.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._cmbResourceType.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._cmbResourceType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this._cmbResourceType.Location = new System.Drawing.Point(8, 78);
@@ -162,9 +161,9 @@ namespace JetBrains.Omea.Categories
             this._cmbResourceType.Size = new System.Drawing.Size(276, 21);
             this._cmbResourceType.TabIndex = 1;
             this._cmbResourceType.SelectedIndexChanged += new System.EventHandler(this._cmbResourceType_SelectedIndexChanged);
-            // 
+            //
             // NewCategoryDlg
-            // 
+            //
             this.AcceptButton = this._btnOK;
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
             this.CancelButton = this._btnCancel;
@@ -184,7 +183,7 @@ namespace JetBrains.Omea.Categories
         }
 		#endregion
 
-        public IResource ShowNewCategoryDialog( IWin32Window ownerWindow, string defaultName, 
+        public IResource ShowNewCategoryDialog( IWin32Window ownerWindow, string defaultName,
             IResource defaultParent, string defaultContentType )
         {
             _edtName.Text = defaultName;
@@ -209,7 +208,7 @@ namespace JetBrains.Omea.Categories
             foreach( IResource res in ResourceTypeHelper.GetVisibleResourceTypes() )
             {
                 string resType = res.GetStringProp( "Name" );
-                if ( resType == "Fragment" || 
+                if ( resType == "Fragment" ||
                     Core.ResourceStore.ResourceTypes [resType].HasFlag( ResourceTypeFlags.FileFormat ) ||
                     !Core.ResourceStore.ResourceTypes [resType].OwnerPluginLoaded )
                 {
@@ -243,7 +242,7 @@ namespace JetBrains.Omea.Categories
 
         private void _edtName_TextChanged( object sender, System.EventArgs e )
         {
-            UpdateButtonState();        
+            UpdateButtonState();
         }
 
         private void _resourceTree_AfterSelect( object sender, EventArgs e )

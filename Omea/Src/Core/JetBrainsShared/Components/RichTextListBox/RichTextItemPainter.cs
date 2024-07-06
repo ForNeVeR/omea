@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Drawing;
@@ -70,7 +69,7 @@ namespace JetBrains.UI.Components.RichTextListBox
     /// </summary>
     public void Add( object item, RichText.RichText text, Image icon )
     {
-      myItems[item] = new ListItem(text, icon);      
+      myItems[item] = new ListItem(text, icon);
     }
 
     /// <summary>
@@ -78,7 +77,7 @@ namespace JetBrains.UI.Components.RichTextListBox
     /// </summary>
     public void Remove( object item )
     {
-      myItems.Remove(item);      
+      myItems.Remove(item);
     }
 
     public void Clear()
@@ -132,9 +131,9 @@ namespace JetBrains.UI.Components.RichTextListBox
         contentRect.Y += topOffset;
       }
 
-      //object selectedItem = myListBox.SelectedIndex < 0 || myListBox.SelectedIndex >= myListBox.Items.Count 
+      //object selectedItem = myListBox.SelectedIndex < 0 || myListBox.SelectedIndex >= myListBox.Items.Count
       //  ? null : myListBox.Items[myListBox.SelectedIndex];
-      
+
       g.FillRectangle(new SolidBrush(myListBox.BackColor), boundRect);
 
       if ( drawSelected )
@@ -142,7 +141,7 @@ namespace JetBrains.UI.Components.RichTextListBox
         Color backgroundColor = Colors.ListSelectionBackColor(myListBox.Focused);
 
         text = (RichText.RichText)text.Clone();
-          
+
         g.FillRectangle(new SolidBrush(backgroundColor), rect);
         text.SetColors(SystemColors.HighlightText, backgroundColor);
       }
@@ -161,7 +160,7 @@ namespace JetBrains.UI.Components.RichTextListBox
         g.ReleaseHdc( hdc );
       }
 
-      if ( drawSelected && myListBox.Focused ) 
+      if ( drawSelected && myListBox.Focused )
         DrawDottedRectangle(g, rect);
     }
 
@@ -199,7 +198,7 @@ namespace JetBrains.UI.Components.RichTextListBox
     /// Calculated content rectangle of Item
     /// </summary>
     private Rectangle CalculateContentRectangle( object item, Graphics g, Rectangle rect )
-    { 
+    {
       RichText.RichText text = ((ListItem)myItems[item]).RichText;
       IntPtr hdc = g.GetHdc();
       try

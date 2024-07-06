@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.IO;
@@ -36,18 +35,18 @@ namespace RSSPlugin.Tests
 
         [Test] public void SimpleDiscoverTest()
         {
-            _rssDiscover.StartDiscover( "http://www.livejournal.com/users/yole", 
+            _rssDiscover.StartDiscover( "http://www.livejournal.com/users/yole",
                 GetResourceStream( "simple-discover.html" ), "" );
             Assert.AreEqual( 2, _rssDiscover.CandidateURLs.Count );
-            Assert.AreEqual( "http://www.livejournal.com/users/yole/data/rss", 
+            Assert.AreEqual( "http://www.livejournal.com/users/yole/data/rss",
                 (string) _rssDiscover.CandidateURLs.Pop() );
-            Assert.AreEqual( "http://www.livejournal.com/users/yole/data/atom", 
+            Assert.AreEqual( "http://www.livejournal.com/users/yole/data/atom",
                 (string) _rssDiscover.CandidateURLs.Pop() );
         }
 
         [Test] public void BadUrlScheme()
         {
-            _rssDiscover.StartDiscover( "someshit://www.livejournal.com/users/yole", 
+            _rssDiscover.StartDiscover( "someshit://www.livejournal.com/users/yole",
                 GetResourceStream( "bad-url-scheme.html" ), "" );
             Assert.AreEqual( 0, _rssDiscover.CandidateURLs.Count );
         }

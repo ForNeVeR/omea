@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System.Drawing;
 using System.Text;
@@ -14,10 +13,10 @@ namespace JetBrains.Omea.ContactsPlugin
 	/**
      * Contact view block for editing work information.
      */
-    
+
     internal class CategoriesBlock: AbstractContactViewBlock
 	{
-		/// <summary> 
+		/// <summary>
 		/// Required designer variable.
 		/// </summary>
 		private System.ComponentModel.Container components = null;
@@ -39,7 +38,7 @@ namespace JetBrains.Omea.ContactsPlugin
             return new CategoriesBlock();
         }
 
-		/// <summary> 
+		/// <summary>
 		/// Clean up any resources being used.
 		/// </summary>
 		protected override void Dispose( bool disposing )
@@ -55,8 +54,8 @@ namespace JetBrains.Omea.ContactsPlugin
 		}
 
 		#region Component Designer generated code
-		/// <summary> 
-		/// Required method for Designer support - do not modify 
+		/// <summary>
+		/// Required method for Designer support - do not modify
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent()
@@ -64,20 +63,20 @@ namespace JetBrains.Omea.ContactsPlugin
             this.listCategories = new System.Windows.Forms.ListBox();
             this.buttonAssign = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
+            //
             // listCategories
-            // 
-            this.listCategories.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-                | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this.listCategories.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this.listCategories.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(204)));
             this.listCategories.Location = new System.Drawing.Point(4, 4);
             this.listCategories.Name = "listCategories";
             this.listCategories.Size = new System.Drawing.Size(120, 82);
             this.listCategories.TabIndex = 1;
-            // 
+            //
             // buttonAssign
-            // 
+            //
             this.buttonAssign.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonAssign.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.buttonAssign.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(204)));
@@ -86,9 +85,9 @@ namespace JetBrains.Omea.ContactsPlugin
             this.buttonAssign.TabIndex = 2;
             this.buttonAssign.Text = "Assign...";
             this.buttonAssign.Click += new System.EventHandler(this.buttonAssign_Click);
-            // 
+            //
             // CategoriesBlock
-            // 
+            //
             this.Controls.Add(this.buttonAssign);
             this.Controls.Add(this.listCategories);
             this.Name = "CategoriesBlock";

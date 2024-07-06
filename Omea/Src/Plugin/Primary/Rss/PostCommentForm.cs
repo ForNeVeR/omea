@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using JetBrains.Omea.GUIControls;
 using JetBrains.Omea.OpenAPI;
@@ -125,9 +124,9 @@ namespace JetBrains.Omea.RSSPlugin
             this._txtOnPost = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.SuspendLayout();
-            // 
+            //
             // _btnSend
-            // 
+            //
             this._btnSend.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this._btnSend.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._btnSend.Location = new System.Drawing.Point(312, 236);
@@ -135,9 +134,9 @@ namespace JetBrains.Omea.RSSPlugin
             this._btnSend.TabIndex = 3;
             this._btnSend.Text = "Send";
             this._btnSend.Click += new System.EventHandler(this.OnClick);
-            // 
+            //
             // _btnClose
-            // 
+            //
             this._btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this._btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this._btnClose.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -146,12 +145,12 @@ namespace JetBrains.Omea.RSSPlugin
             this._btnClose.TabIndex = 4;
             this._btnClose.Text = "Close";
             this._btnClose.Click += new System.EventHandler(this.OnClose);
-            // 
+            //
             // _body
-            // 
+            //
             this._body.AcceptsReturn = true;
-            this._body.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-                | System.Windows.Forms.AnchorStyles.Left) 
+            this._body.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._body.Location = new System.Drawing.Point(8, 120);
             this._body.Multiline = true;
@@ -160,37 +159,37 @@ namespace JetBrains.Omea.RSSPlugin
             this._body.Size = new System.Drawing.Size(468, 80);
             this._body.TabIndex = 0;
             this._body.Text = "";
-            // 
+            //
             // _cmbFrom
-            // 
-            this._cmbFrom.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._cmbFrom.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._cmbFrom.Location = new System.Drawing.Point(272, 8);
             this._cmbFrom.Name = "_cmbFrom";
             this._cmbFrom.Size = new System.Drawing.Size(204, 21);
             this._cmbFrom.TabIndex = 7;
-            // 
+            //
             // label1
-            // 
+            //
             this.label1.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label1.Location = new System.Drawing.Point(8, 12);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(36, 16);
             this.label1.TabIndex = 5;
             this.label1.Text = "&From:";
-            // 
+            //
             // label2
-            // 
+            //
             this.label2.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label2.Location = new System.Drawing.Point(8, 96);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(48, 16);
             this.label2.TabIndex = 12;
             this.label2.Text = "&Subject:";
-            // 
+            //
             // _txtSubject
-            // 
-            this._txtSubject.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._txtSubject.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._txtSubject.Location = new System.Drawing.Point(80, 92);
             this._txtSubject.Name = "_txtSubject";
@@ -198,19 +197,19 @@ namespace JetBrains.Omea.RSSPlugin
             this._txtSubject.TabIndex = 13;
             this._txtSubject.Text = "";
             this._txtSubject.TextChanged += new System.EventHandler(this.OnTextChanged);
-            // 
+            //
             // label3
-            // 
+            //
             this.label3.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label3.Location = new System.Drawing.Point(8, 40);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(48, 16);
             this.label3.TabIndex = 8;
             this.label3.Text = "&To feed:";
-            // 
+            //
             // _txtRssFeed
-            // 
-            this._txtRssFeed.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._txtRssFeed.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._txtRssFeed.Location = new System.Drawing.Point(80, 36);
             this._txtRssFeed.Name = "_txtRssFeed";
@@ -218,17 +217,17 @@ namespace JetBrains.Omea.RSSPlugin
             this._txtRssFeed.Size = new System.Drawing.Size(396, 21);
             this._txtRssFeed.TabIndex = 9;
             this._txtRssFeed.Text = "";
-            // 
+            //
             // _txtName
-            // 
+            //
             this._txtName.Location = new System.Drawing.Point(80, 8);
             this._txtName.Name = "_txtName";
             this._txtName.Size = new System.Drawing.Size(188, 21);
             this._txtName.TabIndex = 6;
             this._txtName.Text = "";
-            // 
+            //
             // label4
-            // 
+            //
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label4.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label4.Location = new System.Drawing.Point(12, 212);
@@ -236,20 +235,20 @@ namespace JetBrains.Omea.RSSPlugin
             this.label4.Size = new System.Drawing.Size(68, 16);
             this.label4.TabIndex = 1;
             this.label4.Text = "&My web page:";
-            // 
+            //
             // _txtLink
-            // 
-            this._txtLink.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._txtLink.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._txtLink.Location = new System.Drawing.Point(80, 208);
             this._txtLink.Name = "_txtLink";
             this._txtLink.Size = new System.Drawing.Size(396, 21);
             this._txtLink.TabIndex = 2;
             this._txtLink.Text = "";
-            // 
+            //
             // _txtOnPost
-            // 
-            this._txtOnPost.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._txtOnPost.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._txtOnPost.Location = new System.Drawing.Point(80, 64);
             this._txtOnPost.Name = "_txtOnPost";
@@ -257,18 +256,18 @@ namespace JetBrains.Omea.RSSPlugin
             this._txtOnPost.Size = new System.Drawing.Size(396, 21);
             this._txtOnPost.TabIndex = 11;
             this._txtOnPost.Text = "";
-            // 
+            //
             // label5
-            // 
+            //
             this.label5.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label5.Location = new System.Drawing.Point(8, 68);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(48, 16);
             this.label5.TabIndex = 10;
             this.label5.Text = "&On post:";
-            // 
+            //
             // PostCommentForm
-            // 
+            //
             this.AcceptButton = this._btnSend;
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
             this.CancelButton = this._btnClose;
@@ -303,7 +302,7 @@ namespace JetBrains.Omea.RSSPlugin
             Settings.SendHomePage.Save( _txtLink.Text );
             Settings.SendEmail.Save( _cmbFrom.Text );
             Settings.SendFrom.Save( _txtName.Text );
-            
+
             WebPost.PostNewComment( _url, _txtSubject.Text, author, _txtLink.Text, _body.Text );
             Close();
         }

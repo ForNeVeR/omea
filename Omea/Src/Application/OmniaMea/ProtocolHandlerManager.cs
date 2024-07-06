@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -20,7 +19,7 @@ namespace JetBrains.Omea
 	{
         private readonly HashMap _handlers = new HashMap();
         private readonly HashMap _makeDefaultHandler = new HashMap();
-        
+
         private string _openurl = null;
         private readonly OnRemoteInvokeDelegate _onRemoteInvokeDelegate = null;
         private delegate int OnRemoteInvokeDelegate( string url );
@@ -79,10 +78,10 @@ namespace JetBrains.Omea
         private static void CheckProtocols( IWin32Window parent, ArrayList list )
         {
             string friendlyName = ((IResource)list[0]).GetPropText( _propFriendlyName );
-            string message = Core.ProductFullName + " is not your default " + friendlyName + 
+            string message = Core.ProductFullName + " is not your default " + friendlyName +
                 ". Would you like to make it your default " + friendlyName + "?";
             string checkBoxText = "&Check if " + Core.ProductFullName + " is the default " + friendlyName + " on startup";
-            MessageBoxWithCheckBox.Result result = 
+            MessageBoxWithCheckBox.Result result =
                 MessageBoxWithCheckBox.ShowYesNo( parent, message, Core.ProductFullName, checkBoxText, true );
             foreach ( IResource protocol in list )
             {
@@ -288,12 +287,12 @@ namespace JetBrains.Omea
             RegUtil.SetValue( Registry.CurrentUser, protocolKey, URLProtocol, "" );
             if ( RegUtil.CreateSubKey( Registry.CurrentUser, protocolKey + SHELL_COMMAND ) )
             {
-                RegUtil.SetValue( Registry.CurrentUser, protocolKey + SHELL_COMMAND, "", 
+                RegUtil.SetValue( Registry.CurrentUser, protocolKey + SHELL_COMMAND, "",
                     "\"" + Application.ExecutablePath + "\"" + " -openurl %1" );
             }
             if ( RegUtil.CreateSubKey( Registry.CurrentUser, protocolKey + "\\DefaultIcon" ) )
             {
-                RegUtil.SetValue( Registry.CurrentUser, protocolKey + "\\DefaultIcon", "", 
+                RegUtil.SetValue( Registry.CurrentUser, protocolKey + "\\DefaultIcon", "",
                     "\"" + Application.ExecutablePath + "\"" );
             }
         }

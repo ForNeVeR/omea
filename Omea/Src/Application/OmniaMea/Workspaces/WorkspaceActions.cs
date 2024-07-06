@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -26,7 +25,7 @@ namespace JetBrains.Omea.Workspaces
     public class AddToWorkspaceAction: IAction
     {
         private IResourceList _allWorkspaces;
-        
+
         public void Execute( IActionContext context )
         {
             IResourceList selection = context.SelectedResources;
@@ -63,14 +62,14 @@ namespace JetBrains.Omea.Workspaces
                 }
                 if ( Core.WorkspaceManager.GetWorkspaceResourceType( res.Type ) == WorkspaceResourceType.Folder )
                 {
-                    Core.WorkspaceManager.AddResourceToWorkspaceRecursive( workspace, res );                    
+                    Core.WorkspaceManager.AddResourceToWorkspaceRecursive( workspace, res );
                 }
                 else
                 {
                     Core.WorkspaceManager.AddResourceToWorkspace( workspace, res );
                 }
             }
-            
+
             ReportSkippedResources( Core.MainWindow, skippedResources );
         }
 
@@ -79,14 +78,14 @@ namespace JetBrains.Omea.Workspaces
             if ( skippedResources.Count == 1 )
             {
                 MessageBox.Show( ownerWindow,
-                                 "The resource '" + (IResource) skippedResources [0] + 
+                                 "The resource '" + (IResource) skippedResources [0] +
                                      "' was not added to the workspace because it belongs to a tree of resources recursively added to the workspace.",
                                  "Add to Workspace", MessageBoxButtons.OK, MessageBoxIcon.Information );
             }
             else if ( skippedResources.Count > 1 )
             {
                 MessageBox.Show( ownerWindow,
-                                 skippedResources.Count + 
+                                 skippedResources.Count +
                                      " resources were not added to the workspace because they belong to a tree of resources recursively added to the workspace.",
                                  "Add to Workspace", MessageBoxButtons.OK, MessageBoxIcon.Information );
             }

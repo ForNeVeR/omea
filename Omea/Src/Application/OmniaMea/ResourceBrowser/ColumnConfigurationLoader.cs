@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -42,7 +41,7 @@ namespace JetBrains.Omea
 	    {
             int width = XmlTools.GetRequiredIntAttribute( node, "width" );
             XmlNodeList propNameNodes = node.SelectNodes( "prop" );
-            
+
             ArrayList propNameList = new ArrayList();
             for( int i=0; i<propNameNodes.Count; i++ )
             {
@@ -120,7 +119,7 @@ namespace JetBrains.Omea
             }
             int startX = XmlTools.GetRequiredIntAttribute( node, "startX" );
             int width = XmlTools.GetRequiredIntAttribute( node, "width" );
-            
+
             MultiLineColumnFlags flags = 0;
 
             string anchor = XmlTools.GetRequiredAttribute( node, "anchor" );
@@ -159,7 +158,7 @@ namespace JetBrains.Omea
                         throw new Exception( "Invalid column alignment '" + anchor + "'" );
                 }
             }
-            
+
             DisplayColumnManager colManager = Core.DisplayColumnManager as DisplayColumnManager;
             Core.DisplayColumnManager.RegisterMultiLineColumn( resourceType,
                 colManager.PropNamesToIDs( propNames, true ), row, endRow, startX, width, flags, color, textAlign );

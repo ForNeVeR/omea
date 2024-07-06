@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Drawing;
@@ -12,7 +11,7 @@ using JetBrains.Omea.OpenAPI;
 namespace JetBrains.Omea.GUIControls
 {
 	/// <summary>
-	/// The column which draws the preview text of a resource in the auto-preview area. 
+	/// The column which draws the preview text of a resource in the auto-preview area.
 	/// </summary>
 	public class DefaultAutoPreviewColumn: JetListViewPreviewColumn
 	{
@@ -96,7 +95,7 @@ namespace JetBrains.Omea.GUIControls
             return previewText;
 	    }
 
-	    protected override void DrawItemText( Graphics g, Rectangle rcText, object item, Color textColor, 
+	    protected override void DrawItemText( Graphics g, Rectangle rcText, object item, Color textColor,
                                               RowState state, string highlightText )
 	    {
             IResource res = (IResource) item;
@@ -174,7 +173,7 @@ namespace JetBrains.Omea.GUIControls
                     }
                     if ( !isUnread && cachedHeight != 0 )
                     {
-                        int oldHeight = (cachedHeight == _previewHeights.MissingKeyValue) 
+                        int oldHeight = (cachedHeight == _previewHeights.MissingKeyValue)
                             ? _defaultPreviewHeight : cachedHeight;
                         ChangeItemHeight( res, oldHeight, 0 );
                     }

@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Diagnostics;
@@ -101,11 +100,11 @@ namespace JetBrains.Omea
 
             this._contentPane.SuspendLayout();
             this.SuspendLayout();
-            // 
+            //
             // _contentPane
-            // 
-            this._contentPane.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-                | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._contentPane.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._contentPane.BackColor = System.Drawing.Color.FromArgb(((System.Byte)(192)), ((System.Byte)(192)), ((System.Byte)(255)));
             this._contentPane.Controls.Add(_btnClose);
@@ -118,11 +117,11 @@ namespace JetBrains.Omea
             this._contentPane.Name = "_contentPane";
             this._contentPane.Size = new System.Drawing.Size(296, 68);
             this._contentPane.TabIndex = 0;
-            // 
+            //
             // _lblBody
-            // 
-            this._lblBody.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-                | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._lblBody.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._lblBody.AutoSize = false;
             this._lblBody.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -136,9 +135,9 @@ namespace JetBrains.Omea
             this._lblBody.Click += new System.EventHandler(this._lblBody_Click);
             this._lblBody.MouseEnter += new System.EventHandler(this.OnBalloonMouseEnter);
             this._lblBody.MouseLeave += new System.EventHandler(this.OnBalloonMouseLeave);
-            // 
+            //
             // _resourceIconBox
-            // 
+            //
             this._resourceIconBox.ImageIndex = 0;
             this._resourceIconBox.ImageLeftTopPoint = new System.Drawing.Point(0, 0);
             this._resourceIconBox.Location = new System.Drawing.Point(8, 2);
@@ -177,10 +176,10 @@ namespace JetBrains.Omea
             this._btnClose.MouseEnter += new System.EventHandler(this.OnBalloonMouseEnter);
             this._btnClose.MouseLeave += new System.EventHandler(this.OnBalloonMouseLeave);
             this._btnClose.Click += new EventHandler(_btnClose_Click);
-            // 
+            //
             // _lblSubject
-            // 
-            this._lblSubject.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._lblSubject.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._lblSubject.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._lblSubject.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(204)));
@@ -192,10 +191,10 @@ namespace JetBrains.Omea
             this._lblSubject.UseMnemonic = false;
             this._lblSubject.MouseEnter += new System.EventHandler(this.OnBalloonMouseEnter);
             this._lblSubject.MouseLeave += new System.EventHandler(this.OnBalloonMouseLeave);
-            // 
+            //
             // _lblFrom
-            // 
-            this._lblFrom.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._lblFrom.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._lblFrom.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._lblFrom.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(204)));
@@ -207,29 +206,29 @@ namespace JetBrains.Omea
             this._lblFrom.UseMnemonic = false;
             this._lblFrom.MouseEnter += new System.EventHandler(this.OnBalloonMouseEnter);
             this._lblFrom.MouseLeave += new System.EventHandler(this.OnBalloonMouseLeave);
-            // 
+            //
             // _fadeInTimer
-            // 
+            //
             this._fadeInTimer.Interval = 100;
             this._fadeInTimer.Tick += new System.EventHandler(this._fadeInTimer_Tick);
-            // 
+            //
             // _visibleTimer
-            // 
+            //
             this._visibleTimer.Interval = _visibilityInterval;
             this._visibleTimer.Tick += new System.EventHandler(this._visibleTimer_Tick);
-            // 
+            //
             // _fadeOutTimer
-            // 
+            //
             this._fadeOutTimer.Interval = 100;
             this._fadeOutTimer.Tick += new System.EventHandler(this._fadeOutTimer_Tick);
-            // 
+            //
             // _balloonLeaveTimer
-            // 
+            //
             this._balloonLeaveTimer.Interval = 150;
             this._balloonLeaveTimer.Tick += new System.EventHandler(this._balloonLeaveTimer_Tick);
-            // 
+            //
             // BalloonForm
-            // 
+            //
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.ClientSize = new System.Drawing.Size(300, 72);
@@ -271,7 +270,7 @@ namespace JetBrains.Omea
             StartVisibilityTimer();
         }
 
-        internal void ShowAlert( ImageList imageList, int imageIndex, string from, string subject, 
+        internal void ShowAlert( ImageList imageList, int imageIndex, string from, string subject,
                                  string body, EventHandler clickHandler )
         {
             SetLastResource( null );
@@ -296,13 +295,13 @@ namespace JetBrains.Omea
                 }
                 subject = "<no subject>";
             }
-            
-            DisplayAlertData( Core.ResourceIconManager.ImageList, 
+
+            DisplayAlertData( Core.ResourceIconManager.ImageList,
                               Core.ResourceIconManager.GetIconIndex( res ), from, subject,
                               Core.MessageFormatter.GetPreviewText( res, 2 ), HandleResourceClick );
         }
 
-        private void DisplayAlertData( ImageList imageList, int imageIndex, string from, string subject, 
+        private void DisplayAlertData( ImageList imageList, int imageIndex, string from, string subject,
                                        string body, EventHandler clickHandler )
         {
             _resourceIconBox.ImageList = imageList;
@@ -371,7 +370,7 @@ namespace JetBrains.Omea
             ReadVisibilityTimer();
             if ( SafeOpacity < 0.1 )
             {
-                _fadeInTimer.Start();            	
+                _fadeInTimer.Start();
             }
             else if ( _visibleTimer.Enabled )
             {

@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.ComponentModel;
@@ -36,7 +35,7 @@ namespace JetBrains.Omea
         private Button _btnAddLinkType;
         private Button _btnDeleteLinkType;
         private int _propCustom;
-        
+
         public AddLinkDlg()
         {
 			//
@@ -79,19 +78,19 @@ namespace JetBrains.Omea
             this._linkTypeList = new System.Windows.Forms.ListBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
-            // 
+            //
             // label1
-            // 
+            //
             this.label1.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label1.Location = new System.Drawing.Point(8, 13);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(32, 17);
             this.label1.TabIndex = 0;
             this.label1.Text = "Link";
-            // 
+            //
             // _fromResourceSelBox
-            // 
-            this._fromResourceSelBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._fromResourceSelBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._fromResourceSelBox.Location = new System.Drawing.Point(48, 4);
             this._fromResourceSelBox.Name = "_fromResourceSelBox";
@@ -101,19 +100,19 @@ namespace JetBrains.Omea
             this._fromResourceSelBox.Size = new System.Drawing.Size(216, 26);
             this._fromResourceSelBox.TabIndex = 1;
             this._fromResourceSelBox.ResourceChanged += new System.EventHandler(this.OnLinkResourceChanged);
-            // 
+            //
             // label2
-            // 
+            //
             this.label2.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label2.Location = new System.Drawing.Point(8, 43);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(28, 17);
             this.label2.TabIndex = 2;
             this.label2.Text = "to";
-            // 
+            //
             // _toResourceSelBox
-            // 
-            this._toResourceSelBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._toResourceSelBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._toResourceSelBox.Location = new System.Drawing.Point(48, 34);
             this._toResourceSelBox.Name = "_toResourceSelBox";
@@ -123,9 +122,9 @@ namespace JetBrains.Omea
             this._toResourceSelBox.Size = new System.Drawing.Size(216, 26);
             this._toResourceSelBox.TabIndex = 3;
             this._toResourceSelBox.ResourceChanged += new System.EventHandler(this.OnLinkResourceChanged);
-            // 
+            //
             // _btnOK
-            // 
+            //
             this._btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this._btnOK.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._btnOK.Location = new System.Drawing.Point(104, 254);
@@ -134,9 +133,9 @@ namespace JetBrains.Omea
             this._btnOK.TabIndex = 4;
             this._btnOK.Text = "OK";
             this._btnOK.Click += new System.EventHandler(this._btnOK_Click);
-            // 
+            //
             // _btnCancel
-            // 
+            //
             this._btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this._btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this._btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -145,11 +144,11 @@ namespace JetBrains.Omea
             this._btnCancel.Size = new System.Drawing.Size(75, 25);
             this._btnCancel.TabIndex = 5;
             this._btnCancel.Text = "Cancel";
-            // 
+            //
             // groupBox1
-            // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-                | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this._btnDeleteLinkType);
             this.groupBox1.Controls.Add(this._btnAddLinkType);
@@ -161,9 +160,9 @@ namespace JetBrains.Omea
             this.groupBox1.TabIndex = 10;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Link Type";
-            // 
+            //
             // _btnDeleteLinkType
-            // 
+            //
             this._btnDeleteLinkType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this._btnDeleteLinkType.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._btnDeleteLinkType.Location = new System.Drawing.Point(168, 55);
@@ -172,9 +171,9 @@ namespace JetBrains.Omea
             this._btnDeleteLinkType.TabIndex = 10;
             this._btnDeleteLinkType.Text = "Delete";
             this._btnDeleteLinkType.Click += new System.EventHandler(this._btnDeleteLinkType_Click);
-            // 
+            //
             // _btnAddLinkType
-            // 
+            //
             this._btnAddLinkType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this._btnAddLinkType.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._btnAddLinkType.Location = new System.Drawing.Point(168, 20);
@@ -183,11 +182,11 @@ namespace JetBrains.Omea
             this._btnAddLinkType.TabIndex = 9;
             this._btnAddLinkType.Text = "New";
             this._btnAddLinkType.Click += new System.EventHandler(this.OnAddLinkType);
-            // 
+            //
             // _linkTypeList
-            // 
-            this._linkTypeList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-                | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._linkTypeList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._linkTypeList.IntegralHeight = false;
             this._linkTypeList.Location = new System.Drawing.Point(8, 20);
@@ -196,9 +195,9 @@ namespace JetBrains.Omea
             this._linkTypeList.TabIndex = 7;
             this._linkTypeList.DoubleClick += new System.EventHandler(this.OnLinkTypeDoubleClick);
             this._linkTypeList.SelectedIndexChanged += new System.EventHandler(this.OnLinkResourceChanged);
-            // 
+            //
             // AddLinkDlg
-            // 
+            //
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
             this.CancelButton = this._btnCancel;
             this.ClientSize = new System.Drawing.Size(272, 287);
@@ -313,7 +312,7 @@ namespace JetBrains.Omea
          * Enables the OK button only when both resource select boxes are filled
          * and a link type is selected in the list.
          */
-        
+
         private void OnLinkResourceChanged( object sender, EventArgs e )
         {
             UpdateButtonState();
@@ -323,7 +322,7 @@ namespace JetBrains.Omea
          * When the link type list is double-clicked, if the OK buttom is
          * enabled, completes the link creation.
          */
-        
+
         private void OnLinkTypeDoubleClick( object sender, EventArgs e )
         {
             if ( _btnOK.Enabled )
@@ -337,7 +336,7 @@ namespace JetBrains.Omea
 
         private void CheckCreateLink()
         {
-            if ( _fromResourceSelBox.Resource != null && 
+            if ( _fromResourceSelBox.Resource != null &&
                 _fromResourceSelBox.Resource.Id == _toResourceSelBox.Resource.Id )
             {
                 MessageBox.Show( this,

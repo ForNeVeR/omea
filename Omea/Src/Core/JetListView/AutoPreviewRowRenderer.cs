@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Drawing;
@@ -34,7 +33,7 @@ namespace JetBrains.JetListViewLibrary
 
 	    public int GetRowHeight( JetListViewNode node )
 	    {
-	        return _baseRowRenderer.GetRowHeight( node ) + 
+	        return _baseRowRenderer.GetRowHeight( node ) +
                 _previewColumn.GetAutoPreviewHeight( node );
 	    }
 
@@ -47,10 +46,10 @@ namespace JetBrains.JetListViewLibrary
 	    {
             bool focusRow = false;
             bool dropTargetRow = false;
-            if ( ( rowState & RowState.Focused) != 0 && _baseRowRenderer.SearchHighlightText != null && 
+            if ( ( rowState & RowState.Focused) != 0 && _baseRowRenderer.SearchHighlightText != null &&
                 _baseRowRenderer.SearchHighlightText.Length > 0 )
             {
-                rowState |= RowState.IncSearchMatch;                
+                rowState |= RowState.IncSearchMatch;
             }
 
             if ( _baseRowRenderer.FullRowSelect )
@@ -69,8 +68,8 @@ namespace JetBrains.JetListViewLibrary
             {
                 previewWidth = _baseRowRenderer.VisibleWidth;
             }
-            
-            Rectangle rcPreview = new Rectangle( indent, rc.Top + baseHeight, 
+
+            Rectangle rcPreview = new Rectangle( indent, rc.Top + baseHeight,
                 previewWidth + _baseRowRenderer.BorderSize - indent, rc.Height - baseHeight );
             Rectangle rcFocus = _baseRowRenderer.GetFocusRect( itemNode, rc );
 
@@ -78,7 +77,7 @@ namespace JetBrains.JetListViewLibrary
             {
                 if ( _baseRowRenderer.FullRowSelect )
                 {
-                    if ( (rowState & RowState.IncSearchMatch) != 0 && 
+                    if ( (rowState & RowState.IncSearchMatch) != 0 &&
                         ((rowState & RowState.ActiveSelected) != 0) )
                     {
                         rowState &= ~RowState.ActiveSelected;
@@ -96,7 +95,7 @@ namespace JetBrains.JetListViewLibrary
             {
                 if ( dropTargetRow )
                 {
-                    JetListViewColumn.DrawDropTarget( g, rcFocus );                
+                    JetListViewColumn.DrawDropTarget( g, rcFocus );
                 }
                 else if ( focusRow )
                 {
@@ -238,7 +237,7 @@ namespace JetBrains.JetListViewLibrary
 	        get { return _baseRowRenderer.OwnerControl; }
 	        set { _baseRowRenderer.OwnerControl = value; }
 	    }
-	    
+
         public IControlMethodInvoker MethodInvoker
 	    {
 	        get { return _baseRowRenderer.MethodInvoker; }
@@ -250,7 +249,7 @@ namespace JetBrains.JetListViewLibrary
 	        get { return _baseRowRenderer.ControlPainter; }
 	        set { _baseRowRenderer.ControlPainter = value; }
 	    }
-        
+
 	    public bool FullRowSelect
 	    {
 	        get { return _baseRowRenderer.FullRowSelect; }

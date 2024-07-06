@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using JetBrains.Omea.GUIControls;
 using Microsoft.Win32;
@@ -82,11 +81,11 @@ namespace JetBrains.Omea.Plugins
             _descriptionInfo = new TextBox();
 
             this.SuspendLayout();
-            // 
+            //
             // _pluginsList
-            // 
-            this._pluginsList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-                | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._pluginsList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._pluginsList.CheckBoxes = true;
             this._pluginsList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] { this.columnHeader1, this.columnHeader2, this.columnHeader3});
@@ -100,29 +99,29 @@ namespace JetBrains.Omea.Plugins
             this._pluginsList.View = System.Windows.Forms.View.Details;
             this._pluginsList.Resize += new System.EventHandler(this._pluginsList_Resize);
             this._pluginsList.SelectedIndexChanged += new EventHandler(_pluginsList_SelectedIndexChanged);
-            // 
+            //
             // columnHeader1
-            // 
+            //
             this.columnHeader1.Text = "Enabled";
             this.columnHeader1.Width = 55;
-            // 
+            //
             // columnHeader2
-            // 
+            //
             this.columnHeader2.Text = "Plugin";
             this.columnHeader2.Width = 88;
-            // 
+            //
             // columnHeader3
-            // 
+            //
             this.columnHeader3.Text = "Location";
             this.columnHeader3.Width = 229;
-            // 
+            //
             // LocationDialog
-            // 
+            //
             this.LocationDialog.DefaultExt = "dll";
             this.LocationDialog.Filter = "Omnia Mea plugins|*.dll";
-            // 
+            //
             // _enableAllBtn
-            // 
+            //
             this._enableAllBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this._enableAllBtn.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._enableAllBtn.Location = new System.Drawing.Point(384, 56);
@@ -130,10 +129,10 @@ namespace JetBrains.Omea.Plugins
             this._enableAllBtn.TabIndex = 3;
             this._enableAllBtn.Text = "Enable All";
             this._enableAllBtn.Click += new System.EventHandler(this._enableAllBtn_Click);
-            // 
+            //
             // _promptLabel
-            // 
-            this._promptLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._promptLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._promptLabel.AutoSize = false;
             this._promptLabel.ClickableLink = false;
@@ -155,9 +154,9 @@ namespace JetBrains.Omea.Plugins
             this._downloadLabel.TabIndex = 3;
             this._downloadLabel.Text = "Download More Plugins";
             this._downloadLabel.Click += new EventHandler( HandleDownloadLabelClick );
-            // 
+            //
             // _newBtn
-            // 
+            //
             this._newBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this._newBtn.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._newBtn.Location = new System.Drawing.Point(384, 24);
@@ -203,9 +202,9 @@ namespace JetBrains.Omea.Plugins
             this._descriptionInfo.Text = "";
             this._descriptionInfo.Multiline = true;
             this._descriptionInfo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left))));
-            // 
+            //
             // PluginsConfigPane
-            // 
+            //
             this.Controls.Add(this._author);
             this.Controls.Add(this._authorInfo);
             this.Controls.Add(this._description);
@@ -230,12 +229,12 @@ namespace JetBrains.Omea.Plugins
 
             _promptLabel.Text = "Changes will take effect after the restart of " + Core.ProductName;
             _pluginsHKCUKey = _pluginsHKLMKey = _pluginsConfigKey = null;
-        	try 
+        	try
             {
                 _pluginsHKCUKey = Registry.CurrentUser.OpenSubKey( _pluginsRegistryKeyPath, true );
             }
             catch {}
-            try 
+            try
             {
                 _pluginsConfigKey = _pluginsHKCUKey.OpenSubKey( _configKey, true );
             }
@@ -256,7 +255,7 @@ namespace JetBrains.Omea.Plugins
 
             _activePlugins.Clear();
 
-            string[] disabledPlugins = 
+            string[] disabledPlugins =
                 ( (string) _pluginsConfigKey.GetValue( _disabledValue, string.Empty ) ).Split( ';' );
             Array.Sort( disabledPlugins );
 
@@ -329,14 +328,14 @@ namespace JetBrains.Omea.Plugins
                     }
                     if( isAdded )
                     {
-                        MessageBox.Show( this, "Plugin '" + filename + "' is already added.", 
+                        MessageBox.Show( this, "Plugin '" + filename + "' is already added.",
                             "Plugin error", MessageBoxButtons.OK, MessageBoxIcon.Error );
                         continue;
                     }
                     AddPlugin( filename );
                     break;
                 }
-                MessageBox.Show( this, "'" + filename + "' is not a plugin for " + 
+                MessageBox.Show( this, "'" + filename + "' is not a plugin for " +
                     Core.ProductName + ".", "Plugin error", MessageBoxButtons.OK, MessageBoxIcon.Error );
             }
             _pluginsList.Focus();

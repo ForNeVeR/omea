@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Drawing;
@@ -111,19 +110,19 @@ namespace JetBrains.Omea.GUIControls
             this._checkBox = new System.Windows.Forms.CheckBox();
             this._icon = new System.Windows.Forms.PictureBox();
             this.SuspendLayout();
-            // 
+            //
             // _text
-            // 
+            //
             this._text.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._text.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(204)));
             this._text.Location = new System.Drawing.Point(256, 16);
             this._text.Name = "_text";
             this._text.Size = new System.Drawing.Size(168, 20);
             this._text.TabIndex = 0;
-            // 
+            //
             // _checkBox
-            // 
-            this._checkBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._checkBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._checkBox.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._checkBox.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(204)));
@@ -131,18 +130,18 @@ namespace JetBrains.Omea.GUIControls
             this._checkBox.Name = "_checkBox";
             this._checkBox.Size = new System.Drawing.Size(444, 22);
             this._checkBox.TabIndex = 1;
-            // 
+            //
             // _icon
-            // 
+            //
             this._icon.Location = new System.Drawing.Point(12, 8);
             this._icon.Name = "_icon";
             this._icon.Size = new System.Drawing.Size(52, 50);
             this._icon.TabIndex = 2;
             this._icon.TabStop = false;
             this._icon.Visible = false;
-            // 
+            //
             // MessageBoxWithCheckBox
-            // 
+            //
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
             this.ClientSize = new System.Drawing.Size(438, 128);
             this.Controls.Add(this._icon);
@@ -240,7 +239,7 @@ namespace JetBrains.Omea.GUIControls
         }
         public static Result ShowYesNo( IWin32Window parent, string text, string caption, string checkBoxText, bool isChecked )
         {
-            using( MessageBoxWithCheckBox messageBox = new MessageBoxWithCheckBox( text, caption, checkBoxText, isChecked, 
+            using( MessageBoxWithCheckBox messageBox = new MessageBoxWithCheckBox( text, caption, checkBoxText, isChecked,
                        new string[]{ BUTTON_YES, BUTTON_NO }, new int[]{ (int)DialogResult.Yes, (int)DialogResult.No }, BUTTON_NO, BUTTON_YES ) )
             {
                 if ( parent == null )

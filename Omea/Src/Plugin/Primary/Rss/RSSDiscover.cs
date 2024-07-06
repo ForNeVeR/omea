@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -30,7 +29,7 @@ namespace JetBrains.Omea.RSSPlugin
         private HashMap            _candidateHintTexts;
         private string             _lastCandidateURL;
         private bool               _downloadResults = true;
-        
+
         public event DownloadProgressEventHandler DiscoverProgress;
         public event EventHandler DiscoverDone;
 
@@ -42,7 +41,7 @@ namespace JetBrains.Omea.RSSPlugin
         public void StartDiscover( string url, Stream readStream, string charset )
         {
             OnDiscoverProgress( "Discovering..." );
-            
+
             _baseUri = new Uri( url );
             _results = new RSSDiscoverResults();
             _candidateURLs      = new PriorityQueue();
@@ -86,7 +85,7 @@ namespace JetBrains.Omea.RSSPlugin
         private void OnLinkTag( HTMLParser instance, string tag )
         {
             HashMap attrMap = instance.ParseAttributes( tag );
-            if ( (string) attrMap ["rel"] == "alternate" && 
+            if ( (string) attrMap ["rel"] == "alternate" &&
                 ((string) attrMap ["type"] == "application/rss+xml" || (string) attrMap ["type"] == "application/atom+xml" ) )
             {
                 string href = (string) attrMap ["href"];
@@ -134,7 +133,7 @@ namespace JetBrains.Omea.RSSPlugin
             }
             catch( Exception )
             {
-                // sometimes generic exceptions are thrown from Uri constructor (see OM-9323) 
+                // sometimes generic exceptions are thrown from Uri constructor (see OM-9323)
                 return;
             }
 
@@ -143,11 +142,12 @@ namespace JetBrains.Omea.RSSPlugin
             {
 /*
                 OM-12523.
-                System.UriFormatException: Invalid URI: The hostname could not be parsed.                at System.Uri.CreateHostStringHelper(String str, UInt16 idx, UInt16 end, Flags& flags, String& scopeId)
+                System.UriFormatException: Invalid URI: The hostname could not be parsed.
+                at System.Uri.CreateHostStringHelper(String str, UInt16 idx, UInt16 end, Flags& flags, String& scopeId)
                 at System.Uri.CreateHostString()
                 at System.Uri.EnsureHostString(Boolean allowDnsOptimization)
                 at System.Uri.GetComponentsHelper(UriComponents uriComponents, UriFormat uriFormat)
-                at System.Uri.ToString()            
+                at System.Uri.ToString()
 */
                 hrefUriString = hrefUri.ToString();
             }
@@ -238,7 +238,7 @@ namespace JetBrains.Omea.RSSPlugin
             newFeedProxy.SetProp( "URL", (string) qEntry.Value );
             newFeedProxy.EndUpdate();
             _lastFeed = newFeedProxy.Resource;
-            
+
             _lastUnitOfWork = new RSSUnitOfWork( _lastFeed, false, true );
             _lastUnitOfWork.DownloadProgress += new DownloadProgressEventHandler( RSSDownloadProgress );
             _lastUnitOfWork.ParseDone += new EventHandler( RSSParseDone );
@@ -309,7 +309,7 @@ namespace JetBrains.Omea.RSSPlugin
                 // ignore Syndic8.com XML-RPC call errors
                 feedIDs = new int [0];
             }
-            
+
             if ( feedIDs.Length == 0 )
             {
                 OnDiscoverDone();
@@ -337,7 +337,7 @@ namespace JetBrains.Omea.RSSPlugin
                 OnDiscoverDone();
                 return;
             }
-            
+
             foreach( XmlRpcStruct feedInfo in feedInfos )
             {
                 string status = (string) feedInfo ["status"];
@@ -349,7 +349,7 @@ namespace JetBrains.Omea.RSSPlugin
                     // results like "abcnews.com"
                     // check that the symbol before the found string is not an
                     // alphanumeric character
-                    
+
                     int pos = url.ToLower().IndexOf( _syndic8QueryString.ToLower() );
                     if ( pos > 0 && Char.IsLetterOrDigit( url, pos-1 ) )
                     {

@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Diagnostics;
@@ -78,9 +77,9 @@ namespace JetBrains.Omea.GUIControls
             this.counterValues = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.counterValues)).BeginInit();
             this.SuspendLayout();
-            // 
+            //
             // checkForAnchor
-            // 
+            //
             this.checkForAnchor.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.checkForAnchor.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(204)));
             this.checkForAnchor.Location = new System.Drawing.Point(4, 8);
@@ -89,9 +88,9 @@ namespace JetBrains.Omea.GUIControls
             this.checkForAnchor.TabIndex = 0;
             this.checkForAnchor.Text = "&For";
             this.checkForAnchor.CheckedChanged += new System.EventHandler(this.checkForAnchor_CheckedChanged);
-            // 
+            //
             // checkForLast
-            // 
+            //
             this.checkForLast.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.checkForLast.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(204)));
             this.checkForLast.Location = new System.Drawing.Point(4, 36);
@@ -100,9 +99,9 @@ namespace JetBrains.Omea.GUIControls
             this.checkForLast.TabIndex = 2;
             this.checkForLast.Text = "For &last";
             this.checkForLast.CheckedChanged += new System.EventHandler(this.checkForLast_CheckedChanged);
-            // 
+            //
             // checkBefore
-            // 
+            //
             this.checkBefore.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.checkBefore.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(204)));
             this.checkBefore.Location = new System.Drawing.Point(4, 92);
@@ -111,9 +110,9 @@ namespace JetBrains.Omea.GUIControls
             this.checkBefore.TabIndex = 5;
             this.checkBefore.Text = "&Before";
             this.checkBefore.CheckedChanged += new System.EventHandler(this.checkBefore_CheckedChanged);
-            // 
+            //
             // checkAfter
-            // 
+            //
             this.checkAfter.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.checkAfter.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(204)));
             this.checkAfter.Location = new System.Drawing.Point(4, 64);
@@ -122,9 +121,9 @@ namespace JetBrains.Omea.GUIControls
             this.checkAfter.TabIndex = 7;
             this.checkAfter.Text = "&After";
             this.checkAfter.CheckedChanged += new System.EventHandler(this.checkAfter_CheckedChanged);
-            // 
+            //
             // comboAnchors
-            // 
+            //
             this.comboAnchors.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboAnchors.Enabled = false;
             this.comboAnchors.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(204)));
@@ -141,9 +140,9 @@ namespace JetBrains.Omea.GUIControls
             this.comboAnchors.Name = "comboAnchors";
             this.comboAnchors.Size = new System.Drawing.Size(128, 21);
             this.comboAnchors.TabIndex = 1;
-            // 
+            //
             // comboUnits
-            // 
+            //
             this.comboUnits.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboUnits.Enabled = false;
             this.comboUnits.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(204)));
@@ -157,9 +156,9 @@ namespace JetBrains.Omea.GUIControls
             this.comboUnits.Name = "comboUnits";
             this.comboUnits.Size = new System.Drawing.Size(64, 21);
             this.comboUnits.TabIndex = 4;
-            // 
+            //
             // buttonOK
-            // 
+            //
             this.buttonOK.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.buttonOK.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(204)));
             this.buttonOK.Location = new System.Drawing.Point(40, 116);
@@ -167,9 +166,9 @@ namespace JetBrains.Omea.GUIControls
             this.buttonOK.TabIndex = 3;
             this.buttonOK.Text = "OK";
             this.buttonOK.Click += new System.EventHandler(this.buttonOkClick);
-            // 
+            //
             // buttonCancel
-            // 
+            //
             this.buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.buttonCancel.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.buttonCancel.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(204)));
@@ -177,9 +176,9 @@ namespace JetBrains.Omea.GUIControls
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.TabIndex = 3;
             this.buttonCancel.Text = "Cancel";
-            // 
+            //
             // pickerBefore
-            // 
+            //
             this.pickerBefore.Enabled = false;
             this.pickerBefore.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(204)));
             this.pickerBefore.Format = System.Windows.Forms.DateTimePickerFormat.Short;
@@ -188,9 +187,9 @@ namespace JetBrains.Omea.GUIControls
             this.pickerBefore.Size = new System.Drawing.Size(128, 21);
             this.pickerBefore.TabIndex = 6;
             this.pickerBefore.ValueChanged += new System.EventHandler(this.pickerBefore_ValueChanged);
-            // 
+            //
             // pickerAfter
-            // 
+            //
             this.pickerAfter.Enabled = false;
             this.pickerAfter.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(204)));
             this.pickerAfter.Format = System.Windows.Forms.DateTimePickerFormat.Short;
@@ -199,9 +198,9 @@ namespace JetBrains.Omea.GUIControls
             this.pickerAfter.Size = new System.Drawing.Size(128, 21);
             this.pickerAfter.TabIndex = 8;
             this.pickerAfter.ValueChanged += new System.EventHandler(this.pickerAfter_ValueChanged);
-            // 
+            //
             // counterValues
-            // 
+            //
             this.counterValues.Enabled = false;
             this.counterValues.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(204)));
             this.counterValues.Location = new System.Drawing.Point(72, 34);
@@ -225,9 +224,9 @@ namespace JetBrains.Omea.GUIControls
                                                                         0,
                                                                         0,
                                                                         0});
-            // 
+            //
             // EditTimeSpanConditionForm
-            // 
+            //
             this.AcceptButton = this.buttonOK;
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
             this.CancelButton = this.buttonCancel;
@@ -410,7 +409,7 @@ namespace JetBrains.Omea.GUIControls
 
         public static string Condition2Text( IResource condition )
         {
-            Debug.Assert( ResourceTypeHelper.IsDateProperty( condition.GetStringProp( "ApplicableToProp" )), 
+            Debug.Assert( ResourceTypeHelper.IsDateProperty( condition.GetStringProp( "ApplicableToProp" )),
                           "Can not apply IResource->string transformation to inappropriate condition" );
 
             string      description;
@@ -445,7 +444,7 @@ namespace JetBrains.Omea.GUIControls
                 if(( lower == "nextweekstart" ) && ( upper == "+7" ))
                     description = "Next week";
                 else
-                if(( lower == "monthstart" ) && 
+                if(( lower == "monthstart" ) &&
                    ( upper == "30" || upper == "31" || upper == "+30" || upper == "+31" ))
                     description = "This month";
                 else

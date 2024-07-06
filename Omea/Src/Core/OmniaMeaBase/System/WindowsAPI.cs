@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Text;
@@ -28,7 +27,7 @@ namespace JetBrains.Omea.Base
 
 	public class WindowsAPI
 	{
-		
+
 		[DllImport("user32", CharSet=CharSet.Auto)]
 		public static extern IntPtr FindWindow( string strClassName, string strWindowName );
 
@@ -53,14 +52,14 @@ namespace JetBrains.Omea.Base
         [DllImport("kernel32.dll", SetLastError=true, CharSet=CharSet.Auto)]
         public static extern IntPtr GetCurrentThread();
 
-        
+
 
 		[DllImport("kernel32.dll", SetLastError=true, CharSet=CharSet.Auto)]
         public static extern bool GetThreadTimes(
             IntPtr handle, ref FILETIME creationTime, ref FILETIME exitTime, ref FILETIME kernelTime, ref FILETIME userTime );
 
 
-		/** 
+		/**
          * shell api
          */
         [StructLayoutAttribute(LayoutKind.Sequential)]
@@ -101,7 +100,7 @@ namespace JetBrains.Omea.Base
         [DllImport("shell32.dll")]
         public static extern IntPtr SHGetFileInfo( string path, uint dwFileAttributes, ref SHFILEINFO psfi, uint cbFileInfo, uint uFlags );
 
-        
+
 	}
 
     public class Shell32

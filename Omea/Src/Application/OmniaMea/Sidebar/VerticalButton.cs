@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.ComponentModel;
@@ -38,8 +37,8 @@ namespace JetBrains.Omea
 			// This call is required by the Windows.Forms Form Designer.
 			InitializeComponent();
 
-            SetStyle( ControlStyles.UserPaint | ControlStyles.AllPaintingInWmPaint | 
-                ControlStyles.SupportsTransparentBackColor | ControlStyles.DoubleBuffer | 
+            SetStyle( ControlStyles.UserPaint | ControlStyles.AllPaintingInWmPaint |
+                ControlStyles.SupportsTransparentBackColor | ControlStyles.DoubleBuffer |
                 ControlStyles.ResizeRedraw, true );
             SetStyle( ControlStyles.Selectable, false );
 
@@ -47,7 +46,7 @@ namespace JetBrains.Omea
             CreateBorderPath();
 		}
 
-	    /// <summary> 
+	    /// <summary>
 		/// Clean up any resources being used.
 		/// </summary>
 		protected override void Dispose( bool disposing )
@@ -72,22 +71,22 @@ namespace JetBrains.Omea
 		}
 
 		#region Component Designer generated code
-		/// <summary> 
-		/// Required method for Designer support - do not modify 
+		/// <summary>
+		/// Required method for Designer support - do not modify
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent()
 		{
             this.components = new Container();
             this._dragOverTimer = new Timer(this.components);
-            // 
+            //
             // _dragOverTimer
-            // 
+            //
             this._dragOverTimer.Interval = 500;
             this._dragOverTimer.Tick += new EventHandler(this._dragOverTimer_Tick);
-            // 
+            //
             // VerticalButton
-            // 
+            //
             this.AllowDrop = true;
             this.Name = "VerticalButton";
 
@@ -97,9 +96,9 @@ namespace JetBrains.Omea
         public int Angle
         {
             get { return _angle; }
-            set 
-            { 
-                _angle = value; 
+            set
+            {
+                _angle = value;
                 CreateVerticalFont();
             }
         }
@@ -126,11 +125,11 @@ namespace JetBrains.Omea
         public bool Pressed
         {
             get { return _pressed; }
-            set 
-            { 
+            set
+            {
                 if ( _pressed != value )
                 {
-                    _pressed = value; 
+                    _pressed = value;
                     Invalidate();
                     if ( PressedChanged != null )
                     {
@@ -150,10 +149,10 @@ namespace JetBrains.Omea
                     SIZE sz = new SIZE();
                     Win32Declarations.GetTextExtentPoint32( hdc, Text, Text.Length, ref sz );
                     g.ReleaseHdc( hdc );
-                    
+
                     return sz.cx + 26;  // 10 px - top space, 10 px - bottom space, 16 px - icon
                 }
-                
+
             }
         }
 
@@ -180,7 +179,7 @@ namespace JetBrains.Omea
                 logPixY = Win32Declarations.GetDeviceCaps( hdc, Win32Declarations.LOGPIXELSY );
                 g.ReleaseHdc( hdc );
             }
-            
+
             _fontHandle = Win32Declarations.CreateFont( (int) (-Font.SizeInPoints * logPixY / 72),
                 0, _angle * 10, 0, Win32Declarations.FW_NORMAL, 0, 0, 0, 0, 0, 0, 0, 0, Font.Name );
         }
@@ -189,7 +188,7 @@ namespace JetBrains.Omea
         {
             if ( _borderPath != null )
             {
-                _borderPath.Dispose();                
+                _borderPath.Dispose();
             }
             _borderPath = GdiPlusTools.BuildRoundRectPath( ClientRectangle );
         }
@@ -224,18 +223,18 @@ namespace JetBrains.Omea
                 string backBrushId = drawPressed
                     ? "Sidebar.Button.BackgroundPressed"
                     : "Sidebar.Button.Background";
-                
+
                 Brush backBrush = GUIControls.ColorScheme.GetBrush( _colorScheme, backBrushId, ClientRectangle,
                     SystemBrushes.Control );
                 e.Graphics.FillPath( backBrush, _borderPath );
 
-                Pen borderPen = GUIControls.ColorScheme.GetPen( _colorScheme, "Sidebar.Button.Border", 
+                Pen borderPen = GUIControls.ColorScheme.GetPen( _colorScheme, "Sidebar.Button.Border",
                     SystemPens.ControlDark );
                 e.Graphics.DrawPath( borderPen, _borderPath );
 
                 if ( _hot )
                 {
-                    Pen hotPen = GUIControls.ColorScheme.GetPen( _colorScheme, "Sidebar.Button.BorderHot", 
+                    Pen hotPen = GUIControls.ColorScheme.GetPen( _colorScheme, "Sidebar.Button.BorderHot",
                         Pens.Blue );
                     e.Graphics.DrawLine( hotPen, left+1, top+2, left+1, bottom-3 );
                     e.Graphics.DrawLine( hotPen, left+2, top+1, right-3, top+1 );
@@ -247,7 +246,7 @@ namespace JetBrains.Omea
                 {
                     string leftPenId = drawPressed ? "Sidebar.Button.BorderDarkPressed" : "Sidebar.Button.BorderLight";
                     string rightPenId = drawPressed ? "Sidebar.Button.BorderLight" : "Sidebar.Button.BorderDark";
-                    
+
                     Pen leftPen = GUIControls.ColorScheme.GetPen( _colorScheme, leftPenId, Pens.White );
                     e.Graphics.DrawLine( leftPen, left+1, top+2, left+1, bottom-3 );
                     e.Graphics.DrawLine( leftPen, left+2, top+1, right-3, top+1 );
@@ -288,15 +287,15 @@ namespace JetBrains.Omea
 
                     Win32Declarations.GetTextExtentPoint32( hdc, textToDraw, textToDraw.Length, ref sz );
                 }
-                                
+
                 if ( _angle == 270 )
                 {
-                    Win32Declarations.TextOut( hdc, ClientRectangle.Right - 2 + delta, ClientRectangle.Top + topSpace + delta, 
+                    Win32Declarations.TextOut( hdc, ClientRectangle.Right - 2 + delta, ClientRectangle.Top + topSpace + delta,
                         textToDraw, textToDraw.Length );
                 }
                 else if ( _angle == 90 )
                 {
-                    Win32Declarations.TextOut( hdc, ClientRectangle.Left + 2 + delta, ClientRectangle.Top + topSpace + sz.cx + delta, 
+                    Win32Declarations.TextOut( hdc, ClientRectangle.Left + 2 + delta, ClientRectangle.Top + topSpace + sz.cx + delta,
                         textToDraw, textToDraw.Length );
                 }
 
@@ -380,7 +379,7 @@ namespace JetBrains.Omea
             base.OnDragEnter( drgevent );
             _dragOverTimer.Start();
         }
-        
+
         protected override void OnDragLeave(EventArgs e)
         {
             base.OnDragLeave( e );

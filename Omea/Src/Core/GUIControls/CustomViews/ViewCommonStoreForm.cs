@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Diagnostics;
@@ -175,7 +174,7 @@ namespace JetBrains.Omea.GUIControls.CustomViews
             InitializePanelsAndButtons( conditions, parameters, exceptions, negParameters );
         }
 
-        protected void  InitializePanelsAndButtons( ArrayList conditions, ArrayList parameters, 
+        protected void  InitializePanelsAndButtons( ArrayList conditions, ArrayList parameters,
                                                     ArrayList exceptions, ArrayList negParameters )
         {
             ArrayList pinList = new ArrayList(), pinParams = new ArrayList();
@@ -226,18 +225,18 @@ namespace JetBrains.Omea.GUIControls.CustomViews
             delimiterLine = new GroupBox();
             _lblErrorText = new Label();
             _errorProvider = new ErrorProvider( this );
-            // 
+            //
             // _lblHeading
-            // 
+            //
             _lblHeading.FlatStyle = FlatStyle.System;
             _lblHeading.Location = new Point(8, 8);
             _lblHeading.Name = "viewNameLabel";
             _lblHeading.Size = new Size(64, 16);
             _lblHeading.TabIndex = 0;
             _lblHeading.Text = "&View name:";
-            // 
+            //
             // _editHeading
-            // 
+            //
             _editHeading.Anchor = (AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right);
             _editHeading.Location = new Point(72, 4);
             _editHeading.Name = "viewNameText";
@@ -245,18 +244,18 @@ namespace JetBrains.Omea.GUIControls.CustomViews
             _editHeading.TabIndex = 1;
             _editHeading.Text = "";
             _editHeading.TextChanged += this.viewNameText_TextChanged;
-            // 
+            //
             // forResourcesLabel
-            // 
+            //
             forResourcesLabel.FlatStyle = FlatStyle.System;
             forResourcesLabel.Location = new Point(9, 32);
             forResourcesLabel.Name = "forResourcesLabel";
             forResourcesLabel.Size = new Size(56, 16);
             forResourcesLabel.TabIndex = 2;
             forResourcesLabel.Text = "Active &for:";
-            // 
+            //
             // resourceTypesLink
-            // 
+            //
             resourceTypesLink.Anchor = (AnchorStyles.Top | AnchorStyles.Left );
             resourceTypesLink.CausesValidation = false;
             resourceTypesLink.Location = new Point(72, 32);
@@ -268,18 +267,18 @@ namespace JetBrains.Omea.GUIControls.CustomViews
             resourceTypesLink.Click += resourceTypesLink_LinkClicked;
 
             #region Conditions
-            // 
+            //
             // _boxConditions
-            // 
+            //
             _boxConditions.Location = new Point(7, 52);
             _boxConditions.Anchor = (AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right);
             _boxConditions.Name = "_boxConditions";
             _boxConditions.Size = new Size(384, 215);
             _boxConditions.FlatStyle = FlatStyle.System;
             _boxConditions.TabStop = false;
-            // 
+            //
             // _lblConditionsTitle
-            // 
+            //
             _lblConditionsTitle.FlatStyle = FlatStyle.System;
             _lblConditionsTitle.Location = new Point(10, 10);
             _lblConditionsTitle.Name = "_lblConditionsTitle";
@@ -287,9 +286,9 @@ namespace JetBrains.Omea.GUIControls.CustomViews
             _lblConditionsTitle.TabStop = false;
             _lblConditionsTitle.TextAlign = ContentAlignment.MiddleLeft;
             _lblConditionsTitle.Text = "Conditions";
-            // 
+            //
             // labelHideShowConditionsText
-            // 
+            //
             labelHideShowConditionsText.Anchor = (AnchorStyles.Top | AnchorStyles.Right);
             labelHideShowConditionsText.Location = new Point(330, 10);
             labelHideShowConditionsText.Name = "labelHideShowConditionsText";
@@ -299,9 +298,9 @@ namespace JetBrains.Omea.GUIControls.CustomViews
             labelHideShowConditionsText.Text = "Hide";
             labelHideShowConditionsText.Tag = buttonHideShowConditions;
             labelHideShowConditionsText.Click += labelHideShowPanel_Click;
-            // 
+            //
             // buttonHideShowConditions
-            // 
+            //
             buttonHideShowConditions.Anchor = (AnchorStyles.Top | AnchorStyles.Right);
             buttonHideShowConditions.Name = "buttonHideShowConditions";
             buttonHideShowConditions.Size = new Size(16, 16);
@@ -314,9 +313,9 @@ namespace JetBrains.Omea.GUIControls.CustomViews
             buttonHideShowConditions.HotImageIndex = 3;
             buttonHideShowConditions.ImageList = _showHideImageList;
             buttonHideShowConditions.Cursor = Cursors.Hand;
-            // 
+            //
             // panelConditions
-            // 
+            //
             panelConditions.AutoScroll = true;
             panelConditions.BackColor = SystemColors.Window;
             panelConditions.BorderStyle = BorderStyle.Fixed3D;
@@ -326,9 +325,9 @@ namespace JetBrains.Omea.GUIControls.CustomViews
             panelConditions.TabIndex = 8;
             panelConditions.Resize += panel_Resize;
             panelConditions.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            // 
+            //
             // labelAddConditionByOr
-            // 
+            //
             labelAddConditionByOr.Anchor = (AnchorStyles.Bottom | AnchorStyles.Right);
             labelAddConditionByOr.Name = "labelAddConditionByOr";
             labelAddConditionByOr.Size = new Size(28, 16);
@@ -339,9 +338,9 @@ namespace JetBrains.Omea.GUIControls.CustomViews
             labelAddConditionByOr.Click += AddConditionsByOr_Click;
             int position = _boxConditions.Width - _cAddLabelXPosDiff - (int)(labelAddConditionByOr.Size.Width * Core.ScaleFactor.Width);
             labelAddConditionByOr.Location = new Point(position, 194);
-            // 
+            //
             // labelAddConditionByAnd
-            // 
+            //
             labelAddConditionByAnd.Anchor = (AnchorStyles.Bottom | AnchorStyles.Right);
             labelAddConditionByAnd.Name = "labelAddConditionByAnd";
             labelAddConditionByAnd.Size = new Size(28, 16);
@@ -352,9 +351,9 @@ namespace JetBrains.Omea.GUIControls.CustomViews
             labelAddConditionByAnd.Click += AddConditionsByAnd_Click;
             position = position - (int)((labelAddConditionByAnd.Size.Width + 10) * Core.ScaleFactor.Width);
             labelAddConditionByAnd.Location = new Point(position, 194);
-            // 
+            //
             // labelAdd
-            //            
+            //
             labelAdd.Anchor = (AnchorStyles.Bottom | AnchorStyles.Right);
             labelAdd.Name = "labelAdd";
             labelAdd.Size = new Size(90, 16);
@@ -363,9 +362,9 @@ namespace JetBrains.Omea.GUIControls.CustomViews
             labelAdd.Text = "Add condition by:";
             position = position - (int)((labelAdd.Size.Width + 15) * Core.ScaleFactor.Width);
             labelAdd.Location = new Point( position, 194);
-            // 
+            //
             // labelAddCondition
-            // 
+            //
             labelAddCondition.Anchor = (AnchorStyles.Bottom | AnchorStyles.Right);
             labelAddCondition.Name = "labelAddConditionByOr";
             labelAddCondition.Size = new Size(90, 16);
@@ -379,18 +378,18 @@ namespace JetBrains.Omea.GUIControls.CustomViews
             #endregion Conditions
 
             #region Exceptions
-            // 
+            //
             // _boxExceptions
-            // 
+            //
             _boxExceptions.Location = new Point(7, 270);
             _boxExceptions.Anchor = (AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right);
             _boxExceptions.Name = "_boxExceptions";
             _boxExceptions.Size = new Size(384, 215);
             _boxExceptions.FlatStyle = FlatStyle.System;
             _boxExceptions.TabStop = false;
-            // 
+            //
             // _lblExceptionsTitle
-            // 
+            //
             _lblExceptionsTitle.FlatStyle = FlatStyle.System;
             _lblExceptionsTitle.Location = new Point(10, 10);
             _lblExceptionsTitle.Name = "_lblExceptionsTitle";
@@ -398,9 +397,9 @@ namespace JetBrains.Omea.GUIControls.CustomViews
             _lblExceptionsTitle.TabStop = false;
             _lblExceptionsTitle.TextAlign = ContentAlignment.MiddleLeft;
             _lblExceptionsTitle.Text = "Exceptions";
-            // 
+            //
             // labelHideShowExceptionsText
-            // 
+            //
             labelHideShowExceptionsText.Anchor = (AnchorStyles.Top | AnchorStyles.Right);
             labelHideShowExceptionsText.Location = new Point(330, 10);
             labelHideShowExceptionsText.Name = "labelHideShowExceptionsText";
@@ -410,9 +409,9 @@ namespace JetBrains.Omea.GUIControls.CustomViews
             labelHideShowExceptionsText.Text = "Hide";
             labelHideShowExceptionsText.Tag = buttonHideShowExceptions;
             labelHideShowExceptionsText.Click += labelHideShowPanel_Click;
-            // 
+            //
             // buttonHideShowExceptions
-            // 
+            //
             buttonHideShowExceptions.Location = new Point(360, 9);
             buttonHideShowExceptions.Anchor = (AnchorStyles.Top | AnchorStyles.Right);
             buttonHideShowExceptions.Name = "buttonHideShowExceptions";
@@ -426,9 +425,9 @@ namespace JetBrains.Omea.GUIControls.CustomViews
             buttonHideShowExceptions.ImageList = _showHideImageList;
             buttonHideShowExceptions.Cursor = Cursors.Hand;
             //
-            // 
+            //
             // panelExceptions
-            // 
+            //
             panelExceptions.AutoScroll = true;
             panelExceptions.BackColor = SystemColors.Window;
             panelExceptions.BorderStyle = BorderStyle.Fixed3D;
@@ -438,9 +437,9 @@ namespace JetBrains.Omea.GUIControls.CustomViews
             panelExceptions.Size = new Size(370, 158);
             panelExceptions.TabIndex = 12;
             panelExceptions.Resize += panel_Resize;
-            // 
+            //
             // labelAddExceptionByAnd
-            // 
+            //
             labelAddException.Anchor = (AnchorStyles.Bottom | AnchorStyles.Right);
             labelAddException.Name = "labelAddConditionByAnd";
             labelAddException.Size = new Size(90, 16);
@@ -455,7 +454,7 @@ namespace JetBrains.Omea.GUIControls.CustomViews
 
             //
             // okButton
-            // 
+            //
             okButton.Anchor = (AnchorStyles.Bottom | AnchorStyles.Right);
             okButton.FlatStyle = FlatStyle.System;
             okButton.Location = new Point(158, 270);
@@ -463,9 +462,9 @@ namespace JetBrains.Omea.GUIControls.CustomViews
             okButton.Size = new Size(72, 24);
             okButton.TabIndex = 20;
             okButton.Text = "OK";
-            // 
+            //
             // cancelButton
-            // 
+            //
             cancelButton.Anchor = (AnchorStyles.Bottom | AnchorStyles.Right);
             cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             cancelButton.FlatStyle = FlatStyle.System;
@@ -474,9 +473,9 @@ namespace JetBrains.Omea.GUIControls.CustomViews
             cancelButton.Size = new Size(72, 24);
             cancelButton.TabIndex = 22;
             cancelButton.Text = "Cancel";
-            // 
+            //
             // helpButton
-            // 
+            //
             helpButton.Anchor = (AnchorStyles.Bottom | AnchorStyles.Right);
             helpButton.FlatStyle = FlatStyle.System;
             helpButton.Location = new Point(318, 270);
@@ -485,9 +484,9 @@ namespace JetBrains.Omea.GUIControls.CustomViews
             helpButton.TabIndex = 24;
             helpButton.Text = "Help";
             helpButton.Click += helpButton_Click;
-            // 
+            //
             // delimiterLine
-            // 
+            //
             delimiterLine.Location = new Point(4, 300);
             delimiterLine.Anchor = (AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right);
             delimiterLine.Name = "delimiterLine";
@@ -495,9 +494,9 @@ namespace JetBrains.Omea.GUIControls.CustomViews
             delimiterLine.FlatStyle = FlatStyle.System;
             delimiterLine.TabStop = false;
             delimiterLine.ForeColor = Color.AliceBlue;
-            // 
+            //
             // _lblErrorText
-            // 
+            //
             _lblErrorText.FlatStyle = FlatStyle.System;
             _lblErrorText.Anchor = (AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right);
             _lblErrorText.Location = new Point(8, 313);
@@ -795,7 +794,7 @@ namespace JetBrains.Omea.GUIControls.CustomViews
                     //  values.
                     if( linkedParams.Count == 0 )
                     {
-                        MessageBox.Show( "Parameter of \"" + template.DisplayName + 
+                        MessageBox.Show( "Parameter of \"" + template.DisplayName +
                                          "\" refers to the resource which no longer exists in Omea. The value of this parameter is changed to the default.",
                                          "Invalid argument", MessageBoxButtons.OK, MessageBoxIcon.Warning );
                         linkedParams = null;
@@ -992,7 +991,7 @@ namespace JetBrains.Omea.GUIControls.CustomViews
                 ((LinkLabel)control).LinkClicked += LinkLabelClicked;
                 ((LinkLabel)control).DoubleClick += LinkLabelDoubleClick;
             }
-            control.Size = new Size( panel.Size.Width - 70, _cBaseHeight ); 
+            control.Size = new Size( panel.Size.Width - 70, _cBaseHeight );
             control.Location = new Point( 5, baseYCoordinate );
             control.Text = labelText;
             control.FlatStyle = FlatStyle.System;
@@ -1010,7 +1009,7 @@ namespace JetBrains.Omea.GUIControls.CustomViews
             orLabel.FlatStyle = FlatStyle.System;
             orLabel.Click += OnClickedInsideConditionControl;
             orLabel.TextAlign = ContentAlignment.MiddleCenter;
-            orLabel.Size = new Size( panel.Size.Width - 70, _cBaseHeight ); 
+            orLabel.Size = new Size( panel.Size.Width - 70, _cBaseHeight );
             orLabel.Location = new Point( 5, baseYCoordinate );
 
             //  "OR"-labels have their own LabelInfo, which must not be
@@ -1064,7 +1063,7 @@ namespace JetBrains.Omea.GUIControls.CustomViews
         {
             ArrayList     usedResources = CollectResourcesInControls( controls );
             IResourceList selectedConditions = RStore.EmptyResourceList;
-            ChooseConditionForm form = new ChooseConditionForm( usedResources, CurrentResTypeDeep, 
+            ChooseConditionForm form = new ChooseConditionForm( usedResources, CurrentResTypeDeep,
                                                                 !MustHaveHeading || !CanAllRTWithNoConditions,
                                                                 IsQueryConditionsAllowed );
             if( form.ShowDialog( this ) == DialogResult.OK )
@@ -1375,7 +1374,7 @@ namespace JetBrains.Omea.GUIControls.CustomViews
 
                     IResourceList objects = null;
                     IResource     selection;
-                    
+
                     string caption = "Select " + Core.ResourceStore.ResourceTypes [valueObjName].DisplayName;
                     if( template.HasProp( "IsSingleSelection" ))
                     {
@@ -1694,7 +1693,7 @@ namespace JetBrains.Omea.GUIControls.CustomViews
         protected static bool isTemplate( IResource res )
         {
             //  NB: "OR"-labels are not associated with any resource.
-            return( res != null && (res.Type == FilterManagerProps.ConditionTemplateResName || 
+            return( res != null && (res.Type == FilterManagerProps.ConditionTemplateResName ||
                                     res.Type == FilterManagerProps.RuleActionTemplateResName ));
         }
 
@@ -1915,7 +1914,7 @@ namespace JetBrains.Omea.GUIControls.CustomViews
          * on the first tab page after the form has been initially loaded, and
          * explicitly set size of all controls.
          */
-    
+
         private void OnFormVisibleChanged( object sender, EventArgs e )
         {
             if( Visible )

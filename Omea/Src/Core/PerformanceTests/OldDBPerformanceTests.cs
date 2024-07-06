@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using JetBrains.Omea.Database;
@@ -18,12 +17,12 @@ namespace PerformanceTests
         protected ITable _stringPropsTable;
         protected ITable _datePropsTable;
         private DBStructure _dbStructure;
-        
+
         public override void SetUp()
         {
             IBTree._bUseOldKeys = true;
 
-            DBStructure dbStructure = 
+            DBStructure dbStructure =
                 new DBStructure( "", "OmniaMeaPerformanceTest", DatabaseMode.Create );
 
             TableStructure table = dbStructure.CreateTable( "IntProps" );
@@ -126,12 +125,12 @@ namespace PerformanceTests
         protected ITable _stringPropsTable;
         protected ITable _datePropsTable;
         private DBStructure _dbStructure;
-        
+
         public override void SetUp()
         {
             IBTree._bUseOldKeys = true;
 
-            DBStructure dbStructure = 
+            DBStructure dbStructure =
                 new DBStructure( "", "OmniaMeaPerformanceTest", DatabaseMode.Create );
 
             TableStructure table = dbStructure.CreateTable( "IntProps" );
@@ -249,12 +248,12 @@ namespace PerformanceTests
         protected ITable _stringPropsTable;
         protected ITable _datePropsTable;
         private DBStructure _dbStructure;
-        
+
         public override void SetUp()
         {
             IBTree._bUseOldKeys = true;
 
-            DBStructure dbStructure = 
+            DBStructure dbStructure =
                 new DBStructure( "", "OmniaMeaPerformanceTest", DatabaseMode.Create );
 
             TableStructure table = dbStructure.CreateTable( "IntProps" );
@@ -324,7 +323,7 @@ namespace PerformanceTests
             }
         }
     }
-#if false 
+#if false
     public class OldDeleteIntsPerfTest: OldDBDeletePerformanceTestBase
     {
         public override void DoTest()

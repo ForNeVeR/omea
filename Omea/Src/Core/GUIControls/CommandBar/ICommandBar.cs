@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System.Drawing;
 
@@ -85,8 +84,8 @@ namespace JetBrains.Omea.GUIControls.CommandBar
 		bool RequestSize( ICommandBar sender, Size difference );
 
 		/// <summary>
-		/// Requests the layout to be performed on the command bar site when either 
-		/// <see cref="ICommandBar.MinSize"/>, <see cref="ICommandBar.MaxSize"/>, or <see cref="ICommandBar.OptimalSize"/> 
+		/// Requests the layout to be performed on the command bar site when either
+		/// <see cref="ICommandBar.MinSize"/>, <see cref="ICommandBar.MaxSize"/>, or <see cref="ICommandBar.OptimalSize"/>
 		/// changes and the control should be resized or repositioned accordingly.
 		/// </summary>
 		/// <param name="sender">A <see cref="ICommandBar">command bar</see> that requests the layouting.</param>

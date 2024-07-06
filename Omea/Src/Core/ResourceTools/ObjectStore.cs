@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using JetBrains.Omea.OpenAPI;
@@ -16,7 +15,7 @@ namespace JetBrains.Omea.ResourceTools
             _resourceAP = Core.ResourceAP;
             _store.ResourceTypes.Register( _sectionRes,
                 string.Empty, ResourceTypeFlags.NoIndex | ResourceTypeFlags.Internal );
-            _store.ResourceTypes.Register( _valueRes, 
+            _store.ResourceTypes.Register( _valueRes,
                 string.Empty, ResourceTypeFlags.NoIndex | ResourceTypeFlags.Internal );
             _propIntValue = _store.PropTypes.Register( "IntValue", PropDataType.Int, PropTypeFlags.Internal );
             _propBoolValue = _store.PropTypes.Register( "BoolValue", PropDataType.Bool, PropTypeFlags.Internal );
@@ -210,7 +209,7 @@ namespace JetBrains.Omea.ResourceTools
                 }
             }
         }
-        
+
         private static IResource GetValueResource( string section, string key, bool createIfNotFound )
         {
             IResourceList sections = _store.FindResources( _sectionRes, Core.Props.Name, section );
@@ -223,7 +222,7 @@ namespace JetBrains.Omea.ResourceTools
                 }
                 else
                 {
-                    if( createIfNotFound || Core.ResourceStore.IsOwnerThread() ) 
+                    if( createIfNotFound || Core.ResourceStore.IsOwnerThread() )
                     {
                         UpdateObsoleteSection( sectionRes, result );
                     }

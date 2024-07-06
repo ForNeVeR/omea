@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -30,11 +29,11 @@ namespace JetBrains.Omea.GUIControls.CustomViews
 		/// </summary>
 		private System.ComponentModel.Container components = null;
 
-		public ChooseConditionForm( ArrayList usedConditions, string resTypes, 
+		public ChooseConditionForm( ArrayList usedConditions, string resTypes,
                                     bool viewConditionsOnly, bool enableQueryCondition )
 		{
 			InitializeComponent();
-            IResourceList  list = GatherSuitableConditons( usedConditions, resTypes, 
+            IResourceList  list = GatherSuitableConditons( usedConditions, resTypes,
                                                            viewConditionsOnly, enableQueryCondition );
             InitializeTree( list, resTypes );
             RestoreSettings();
@@ -86,20 +85,20 @@ namespace JetBrains.Omea.GUIControls.CustomViews
             this.buttonCancel = new System.Windows.Forms.Button();
             this.buttonHelp = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
+            //
             // labelChooseConditions
-            // 
+            //
             this.labelChooseConditions.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.labelChooseConditions.Location = new System.Drawing.Point(4, 4);
             this.labelChooseConditions.Name = "labelChooseConditions";
             this.labelChooseConditions.Size = new System.Drawing.Size(112, 16);
             this.labelChooseConditions.TabIndex = 0;
             this.labelChooseConditions.Text = "Available Conditions:";
-            // 
+            //
             // treeConditions
-            // 
-            this.treeConditions.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-                | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this.treeConditions.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this.treeConditions.Location = new System.Drawing.Point(0, 24);
             this.treeConditions.Name = "treeConditions";
@@ -115,9 +114,9 @@ namespace JetBrains.Omea.GUIControls.CustomViews
 		    ResourceListView2Column column = this.treeConditions.AddColumn( ResourceProps.DisplayName );
             column.SizeToContent = true;
             column.Text = "Conditions";
-		    // 
+		    //
             // buttonOK
-            // 
+            //
             this.buttonOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonOK.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.buttonOK.Location = new System.Drawing.Point(32, 392);
@@ -125,9 +124,9 @@ namespace JetBrains.Omea.GUIControls.CustomViews
             this.buttonOK.TabIndex = 2;
             this.buttonOK.Text = "OK";
             this.buttonOK.Click += new System.EventHandler(this.buttonOK_Click);
-            // 
+            //
             // buttonCancel
-            // 
+            //
             this.buttonCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.buttonCancel.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -135,9 +134,9 @@ namespace JetBrains.Omea.GUIControls.CustomViews
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.TabIndex = 3;
             this.buttonCancel.Text = "Cancel";
-            // 
+            //
             // buttonHelp
-            // 
+            //
             this.buttonHelp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonHelp.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.buttonHelp.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -146,9 +145,9 @@ namespace JetBrains.Omea.GUIControls.CustomViews
             this.buttonHelp.TabIndex = 4;
             this.buttonHelp.Text = "Help";
             this.buttonHelp.Click += new System.EventHandler(this.HelpButton_Click);
-            // 
+            //
             // ChooseConditionForm
-            // 
+            //
             this.AcceptButton = this.buttonOK;
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
             this.CancelButton = this.buttonCancel;

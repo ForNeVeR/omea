@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using JetBrains.Omea.OpenAPI;
 
@@ -42,8 +41,8 @@ namespace JetBrains.Omea.FilePlugin
 		}
 
 		#region Component Designer generated code
-		/// <summary> 
-		/// Required method for Designer support - do not modify 
+		/// <summary>
+		/// Required method for Designer support - do not modify
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent()
@@ -55,10 +54,10 @@ namespace JetBrains.Omea.FilePlugin
             this._indexHiddenCheckBox = new System.Windows.Forms.CheckBox();
             this._viewHiddenCheckBox = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
-            // 
+            //
             // _textExtsList
-            // 
-            this._textExtsList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._textExtsList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._textExtsList.Location = new System.Drawing.Point(0, 24);
             this._textExtsList.Multiline = true;
@@ -67,10 +66,10 @@ namespace JetBrains.Omea.FilePlugin
             this._textExtsList.TabIndex = 8;
             this._textExtsList.Text = "";
             this._textExtsList.TextChanged += new System.EventHandler(this._textExtsList_TextChanged);
-            // 
+            //
             // _textExtsLabel
-            // 
-            this._textExtsLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._textExtsLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._textExtsLabel.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._textExtsLabel.Location = new System.Drawing.Point(0, 4);
@@ -79,20 +78,20 @@ namespace JetBrains.Omea.FilePlugin
             this._textExtsLabel.TabIndex = 9;
             this._textExtsLabel.Text = "List file extensions recognized as plain text:";
             this._textExtsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
+            //
             // groupBox1
-            // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Location = new System.Drawing.Point(0, 96);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(376, 4);
             this.groupBox1.TabIndex = 10;
             this.groupBox1.TabStop = false;
-            // 
+            //
             // label1
-            // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label1.Location = new System.Drawing.Point(0, 68);
@@ -101,10 +100,10 @@ namespace JetBrains.Omea.FilePlugin
             this.label1.TabIndex = 11;
             this.label1.Text = "Use comma \',\' to separate entries";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
+            //
             // _indexHiddenCheckBox
-            // 
-            this._indexHiddenCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._indexHiddenCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._indexHiddenCheckBox.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._indexHiddenCheckBox.Location = new System.Drawing.Point(0, 112);
@@ -113,10 +112,10 @@ namespace JetBrains.Omea.FilePlugin
             this._indexHiddenCheckBox.TabIndex = 12;
             this._indexHiddenCheckBox.Text = "Index hidden files";
             this._indexHiddenCheckBox.CheckedChanged += new System.EventHandler(this._textExtsList_TextChanged);
-            // 
+            //
             // _viewHiddenCheckBox
-            // 
-            this._viewHiddenCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._viewHiddenCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._viewHiddenCheckBox.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._viewHiddenCheckBox.Location = new System.Drawing.Point(0, 136);
@@ -125,9 +124,9 @@ namespace JetBrains.Omea.FilePlugin
             this._viewHiddenCheckBox.TabIndex = 13;
             this._viewHiddenCheckBox.Text = "View hidden files in File Browser";
             this._viewHiddenCheckBox.CheckedChanged += new System.EventHandler(this._textExtsList_TextChanged);
-            // 
+            //
             // FileOptionsPane
-            // 
+            //
             this.Controls.Add(this._viewHiddenCheckBox);
             this.Controls.Add(this._indexHiddenCheckBox);
             this.Controls.Add(this.label1);

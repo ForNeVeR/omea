@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -258,9 +257,9 @@ namespace JetBrains.Omea.Workspaces
 			this._workspaceRightPane.SuspendLayout();
 			this._buttonPane.SuspendLayout();
 			this.SuspendLayout();
-			// 
+			//
 			// _workspaceListPane
-			// 
+			//
 			this._workspaceListPane.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
 			this._workspaceListPane.Controls.Add( this._btnMoveUp );
 			this._workspaceListPane.Controls.Add( this._btnMoveDown );
@@ -274,9 +273,9 @@ namespace JetBrains.Omea.Workspaces
 			this._workspaceListPane.Name = "_workspaceListPane";
 			this._workspaceListPane.Size = new System.Drawing.Size( 208, 327 );
 			this._workspaceListPane.TabIndex = 0;
-			// 
-			// _btnMoveUp 
-			// 
+			//
+			// _btnMoveUp
+			//
 			this._btnMoveUp.Anchor = ((System.Windows.Forms.AnchorStyles) ((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this._btnMoveUp.Location = new System.Drawing.Point( 185, 28 );
 			this._btnMoveUp.Name = "_btnMoveUp";
@@ -291,9 +290,9 @@ namespace JetBrains.Omea.Workspaces
             this._btnMoveUp.AddIcon( new Icon( stream ), ImageListButton.ButtonState.Disabled );
 		    stream = thisOne.GetManifestResourceStream( "OmniaMea.Icons.MoveUpHot.ico" );
             this._btnMoveUp.AddIcon( new Icon( stream ), ImageListButton.ButtonState.Hot );
-			// 
+			//
 			// _btnMoveDown
-			// 
+			//
 			this._btnMoveDown.Anchor = ((System.Windows.Forms.AnchorStyles) ((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this._btnMoveDown.Location = new System.Drawing.Point( 185, 50 );
 			this._btnMoveDown.Name = "_btnNewWorkspace";
@@ -307,9 +306,9 @@ namespace JetBrains.Omea.Workspaces
             this._btnMoveDown.AddIcon( new Icon( stream ), ImageListButton.ButtonState.Disabled );
 		    stream = thisOne.GetManifestResourceStream( "OmniaMea.Icons.MoveDownHot.ico" );
             this._btnMoveDown.AddIcon( new Icon( stream ), ImageListButton.ButtonState.Hot );
-			// 
+			//
 			// _btnNewWorkspace
-			// 
+			//
 			this._btnNewWorkspace.Anchor = ((System.Windows.Forms.AnchorStyles) ((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this._btnNewWorkspace.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this._btnNewWorkspace.Location = new System.Drawing.Point( 4, 292 );
@@ -318,9 +317,9 @@ namespace JetBrains.Omea.Workspaces
 			this._btnNewWorkspace.TabIndex = 4;
 			this._btnNewWorkspace.Text = "&New...";
 			this._btnNewWorkspace.Click += new System.EventHandler( this._btnNewWorkspace_Click );
-			// 
+			//
 			// _btnRename
-			// 
+			//
 			this._btnRename.Anchor = ((System.Windows.Forms.AnchorStyles) ((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this._btnRename.Enabled = false;
 			this._btnRename.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -330,9 +329,9 @@ namespace JetBrains.Omea.Workspaces
 			this._btnRename.TabIndex = 5;
 			this._btnRename.Text = "&Rename";
 			this._btnRename.Click += new System.EventHandler( this._btnRename_Click );
-			// 
+			//
 			// _btnDeleteWorkspace
-			// 
+			//
 			this._btnDeleteWorkspace.Anchor = ((System.Windows.Forms.AnchorStyles) ((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this._btnDeleteWorkspace.Enabled = false;
 			this._btnDeleteWorkspace.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -342,9 +341,9 @@ namespace JetBrains.Omea.Workspaces
 			this._btnDeleteWorkspace.TabIndex = 6;
 			this._btnDeleteWorkspace.Text = "&Delete";
 			this._btnDeleteWorkspace.Click += new System.EventHandler( this._btnDeleteWorkspace_Click );
-			// 
+			//
 			// _workspaceListView
-			// 
+			//
 			this._workspaceListView.AllowColumnReorder = false;
 			this._workspaceListView.Anchor = ((System.Windows.Forms.AnchorStyles) ((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
 				| System.Windows.Forms.AnchorStyles.Left)
@@ -369,30 +368,30 @@ namespace JetBrains.Omea.Workspaces
 			this._workspaceListView.KeyDown += new System.Windows.Forms.KeyEventHandler( this._workspaceListView_KeyDown );
 			this._workspaceListView.ActiveResourceChanged += new System.EventHandler( this.HandleSelectedWorkspaceChanged );
 			this._workspaceListView.AfterItemEdit += new ResourceItemEditEventHandler( _workspaceListView_AfterLabelEdit );
-			// 
+			//
 			// _workspaceListContextMenu
-			// 
+			//
 			this._workspaceListContextMenu.MenuItems.AddRange( new System.Windows.Forms.MenuItem[]
 				{
 					this.miRenameWorkspace,
 					this.miDeleteWorkspace
 				} );
 			this._workspaceListContextMenu.Popup += new System.EventHandler( this._workspaceListContextMenu_Popup );
-			// 
+			//
 			// miRenameWorkspace
-			// 
+			//
 			this.miRenameWorkspace.Index = 0;
 			this.miRenameWorkspace.Text = "&Rename";
 			this.miRenameWorkspace.Click += new System.EventHandler( this.miRenameWorkspace_Click );
-			// 
+			//
 			// miDeleteWorkspace
-			// 
+			//
 			this.miDeleteWorkspace.Index = 1;
 			this.miDeleteWorkspace.Text = "&Delete";
 			this.miDeleteWorkspace.Click += new System.EventHandler( this.miDeleteWorkspace_Click );
-			// 
+			//
 			// label1
-			// 
+			//
 			this.label1.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this.label1.Font = new System.Drawing.Font( "Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte) (204)) );
 			this.label1.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -401,17 +400,17 @@ namespace JetBrains.Omea.Workspaces
 			this.label1.Size = new System.Drawing.Size( 164, 16 );
 			this.label1.TabIndex = 0;
 			this.label1.Text = "Workspaces";
-			// 
+			//
 			// splitter1
-			// 
+			//
 			this.splitter1.Location = new System.Drawing.Point( 208, 0 );
 			this.splitter1.Name = "splitter1";
 			this.splitter1.Size = new System.Drawing.Size( 3, 327 );
 			this.splitter1.TabIndex = 1;
 			this.splitter1.TabStop = false;
-			// 
+			//
 			// _workspaceRightPane
-			// 
+			//
 			this._workspaceRightPane.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
 			this._workspaceRightPane.Controls.Add( this._panelColorPreview );
 			this._workspaceRightPane.Controls.Add( this._panelColorPickerBar );
@@ -424,17 +423,17 @@ namespace JetBrains.Omea.Workspaces
 			this._workspaceRightPane.Name = "_workspaceRightPane";
 			this._workspaceRightPane.Size = new System.Drawing.Size( 389, 327 );
 			this._workspaceRightPane.TabIndex = 1;
-			// 
+			//
 			// _panelColorPreview
-			// 
+			//
 			this._panelColorPreview.Anchor = ((System.Windows.Forms.AnchorStyles) ((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this._panelColorPreview.Location = new System.Drawing.Point( 68, 292 );
 			this._panelColorPreview.Name = "_panelColorPreview";
 			this._panelColorPreview.TabIndex = 4;
 			this._panelColorPreview.Enabled = false;
-			// 
+			//
 			// _panelColorPickerBar
-			// 
+			//
 			this._panelColorPickerBar.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
 			this._panelColorPickerBar.Location = new System.Drawing.Point( 100, 292 );
 			this._panelColorPickerBar.Name = "_panelColorPickerBar";
@@ -453,9 +452,9 @@ namespace JetBrains.Omea.Workspaces
 			_btnMoreColors.Location = new Point( 310, 292 );
 			_btnMoreColors.FlatStyle = FlatStyle.System;
 			_btnMoreColors.Enabled = false;
-			// 
+			//
 			// _colorLabel
-			// 
+			//
 			this._colorLabel.Anchor = ((System.Windows.Forms.AnchorStyles) ((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this._colorLabel.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this._colorLabel.Location = new System.Drawing.Point( 8, 296 );
@@ -464,18 +463,18 @@ namespace JetBrains.Omea.Workspaces
 			this._colorLabel.TabIndex = 2;
 			this._colorLabel.Text = "Color:";
 			this._colorLabel.Visible = false;
-			// 
+			//
 			// _lblResourcesInWorkspace
-			// 
+			//
 			this._lblResourcesInWorkspace.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this._lblResourcesInWorkspace.Font = new System.Drawing.Font( "Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte) (204)) );
 			this._lblResourcesInWorkspace.Location = new System.Drawing.Point( 4, 4 );
 			this._lblResourcesInWorkspace.Name = "_lblResourcesInWorkspace";
 			this._lblResourcesInWorkspace.Size = new System.Drawing.Size( 404, 16 );
 			this._lblResourcesInWorkspace.TabIndex = 1;
-			// 
+			//
 			// _workspaceTabControl
-			// 
+			//
 			this._workspaceTabControl.Anchor = ((System.Windows.Forms.AnchorStyles) ((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
 				| System.Windows.Forms.AnchorStyles.Left)
 				| System.Windows.Forms.AnchorStyles.Right)));
@@ -487,9 +486,9 @@ namespace JetBrains.Omea.Workspaces
 			this._workspaceTabControl.Visible = false;
 			this._workspaceTabControl.SizeChanged += new System.EventHandler( this._workspaceTabControl_SizeChanged );
 			this._workspaceTabControl.SelectedIndexChanged += new System.EventHandler( this._workspaceTabControl_SelectedIndexChanged );
-			// 
+			//
 			// _buttonPane
-			// 
+			//
 			this._buttonPane.Controls.Add( this._btnClose );
 			this._buttonPane.Controls.Add( this._btnHelp );
 			this._buttonPane.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -497,9 +496,9 @@ namespace JetBrains.Omea.Workspaces
 			this._buttonPane.Name = "_buttonPane";
 			this._buttonPane.Size = new System.Drawing.Size( 600, 36 );
 			this._buttonPane.TabIndex = 1;
-			// 
+			//
 			// _btnClose
-			// 
+			//
 			this._btnClose.Anchor = ((System.Windows.Forms.AnchorStyles) ((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this._btnClose.DialogResult = System.Windows.Forms.DialogResult.OK;
 			this._btnClose.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -508,9 +507,9 @@ namespace JetBrains.Omea.Workspaces
 			this._btnClose.TabIndex = 2;
 			this._btnClose.Text = "Close";
             this._btnClose.Click += new EventHandler(_btnClose_Click);
-			// 
+			//
 			// _btnHelp
-			// 
+			//
 			this._btnHelp.Anchor = ((System.Windows.Forms.AnchorStyles) ((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this._btnHelp.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this._btnHelp.Location = new System.Drawing.Point( 520, 8 );
@@ -518,9 +517,9 @@ namespace JetBrains.Omea.Workspaces
 			this._btnHelp.TabIndex = 3;
 			this._btnHelp.Text = "Help";
 			this._btnHelp.Click += new System.EventHandler( this._btnHelp_Click );
-			// 
+			//
 			// WorkspacesDlg
-			// 
+			//
 			this.AutoScaleBaseSize = new System.Drawing.Size( 5, 14 );
 			this.CancelButton = this._btnClose;
 			this.ClientSize = new System.Drawing.Size( 600, 363 );

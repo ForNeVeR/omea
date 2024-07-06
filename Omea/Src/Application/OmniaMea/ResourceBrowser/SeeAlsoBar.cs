@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.ComponentModel;
@@ -22,7 +21,7 @@ namespace JetBrains.Omea
 	/// </summary>
 	internal class SeeAlsoBar : UserControl
 	{
-		/// <summary> 
+		/// <summary>
 		/// Required designer variable.
 		/// </summary>
 		private Container components = null;
@@ -68,7 +67,7 @@ namespace JetBrains.Omea
 			_linkFont = new Font( "Tahoma", 8 );
 		}
 
-		/// <summary> 
+		/// <summary>
 		/// Clean up any resources being used.
 		/// </summary>
 		protected override void Dispose( bool disposing )
@@ -86,17 +85,17 @@ namespace JetBrains.Omea
 
 		#region Component Designer generated code
 
-		/// <summary> 
-		/// Required method for Designer support - do not modify 
+		/// <summary>
+		/// Required method for Designer support - do not modify
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent()
 		{
 			this._title = new JetLinkLabel();
 			this.SuspendLayout();
-			// 
+			//
 			// _captionLabel
-			// 
+			//
 			this._title.Font = new System.Drawing.Font( "Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte) (204)) );
 			_title.ClickableLink = false;
 			this._title.Location = new System.Drawing.Point( 10, 2 );
@@ -105,9 +104,9 @@ namespace JetBrains.Omea
 			this._title.Text = "See Also:";
 			this._title.Click += new System.EventHandler( this._captionLabel_Click );
 			_title.BackColor = Color.Blue;
-			// 
+			//
 			// SeeAlsoBar
-			// 
+			//
 			this.Controls.Add( this._title );
 			this.Font = new System.Drawing.Font( "Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte) (204)) );
 			this.Name = "SeeAlsoBar";
@@ -341,7 +340,7 @@ namespace JetBrains.Omea
 		}
 
 		/// <summary>
-		/// Checks if the type is present in the specified array. 
+		/// Checks if the type is present in the specified array.
 		/// </summary>
 		private bool IsTabType( string resType, string[] tabTypes )
 		{

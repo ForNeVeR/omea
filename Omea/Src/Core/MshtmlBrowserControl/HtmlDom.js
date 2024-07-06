@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 // JetBrains Omea Mshtml Browser Component
 //
@@ -34,29 +33,29 @@ package JetBrains.Omea.GUIControls.MshtmlBrowser
 			super(instance);
 			_instance = instance;
 		}
-		
+
 		// Creates a new wrapper for the object, or returns null if it is null.
 		public static function Attach(instance) : IHtmlDomDocument
 		{
 			return (instance != null) && (instance != System.DBNull) ? (new JetBrains.Omea.GUIControls.MshtmlBrowser.MshtmlDocument(instance)) : null;
 		}
-		
+
 		public function GetElementById(id : System.String) : IHtmlDomElement
 		{
 			return MshtmlElement.Attach(_instance.getElementById(id));
 		}
-		
+
 		public function get Body() : IHtmlDomElement
 		{
 			return MshtmlElement.Attach(_instance.body);
 		}
-		
+
 		public function CreateElement(tagName : System.String) : IHtmlDomElement
 		{
 			return MshtmlElement.Attach(_instance.createElement(tagName));
 		}
 	}
-	
+
 	/// Class that represents a managed interface for any HTML element.
 	public class MshtmlElement extends HtmlDomObject implements IHtmlDomElement
 	{
@@ -65,14 +64,14 @@ package JetBrains.Omea.GUIControls.MshtmlBrowser
 		{
 			super(instance);
 			_instance = instance;
-		}		
-		
+		}
+
 		// Creates a new wrapper for the object, or returns null if it is null.
 		public static function Attach(instance) : IHtmlDomElement
 		{
 			return (instance != null) && (instance != System.DBNull) ? (new JetBrains.Omea.GUIControls.MshtmlBrowser.MshtmlElement(instance)) : null;
 		}
-		
+
 		public function get Id() : System.String
 		{
 			var sRet : System.String = _instance.id != null ? _instance.id : null;	// Don't return the "undefined" string for null
@@ -81,8 +80,8 @@ package JetBrains.Omea.GUIControls.MshtmlBrowser
 		public function set Id(value : System.String)
 		{
 			_instance.id = value;
-		}		
-		
+		}
+
 		public function get Name() : System.String
 		{
 			var text = _instance.name;
@@ -97,53 +96,53 @@ package JetBrains.Omea.GUIControls.MshtmlBrowser
 		{
 			var text = _instance.innerHTML;
 			return text != null ? text : "";
-		}		
+		}
 		public function set InnerHtml(value : System.String)
 		{
 			_instance.innerHTML = value;
 		}
-		
+
 		public function get OuterHtml() : System.String
 		{
 			var text = _instance.outerHTML;
 			return text != null ? text : "";
 		}
-		
+
 		public function get InnerText() : System.String
 		{
 			var text = _instance.innerText;
 			return text != null ? text : "";
-		}		
+		}
 		public function set InnerText(value : System.String)
 		{
 			_instance.innerText = value;
 		}
-		
+
 		public function get ClassName() : System.String
 		{
 			var text = _instance.className;
-			return text != null ? text : "";			
+			return text != null ? text : "";
 		}
 		public function set ClassName(value : System.String)
 		{
 			_instance.className = value;
 		}
-		
+
 		public function get TagName() : System.String
 		{
 			var text = _instance.tagName;
-			return text != null ? text : "";			
+			return text != null ? text : "";
 		}
 		public function set TagName(value : System.String)
 		{
 			_instance.tagName = value;
 		}
-		
+
 		public function ScrollIntoView(bAlignToTop : boolean)
 		{
 			_instance.scrollIntoView(bAlignToTop);
 		}
-		
+
 		public function get OffsetTop() : int
 		{
 			return _instance.offsetTop;
@@ -191,7 +190,7 @@ package JetBrains.Omea.GUIControls.MshtmlBrowser
 		{
 			return _instance.scrollHeight;
 		}
-		
+
 		public function get ClientLeft() : int
 		{
 			return _instance.clientLeft;
@@ -211,7 +210,7 @@ package JetBrains.Omea.GUIControls.MshtmlBrowser
 		{
 			return _instance.clientHeight;
 		}
-		
+
 		public function DoScroll(action : ScrollAction) : void
 		{
 			// Convert to string
@@ -245,28 +244,28 @@ package JetBrains.Omea.GUIControls.MshtmlBrowser
 			default:
 				throw new NotImplementedException(String.Format("Unknown scrolling action {0}.", action));
 			}
-			
+
 			// Apply
 			_instance.doScroll(sAction);
 		}
-		
+
 		public function get OffsetParent() : IHtmlDomElement
 		{
 			var ret : System.Object = _instance.offsetParent;
-			return ret != null ? new MshtmlElement(ret) : null;			
+			return ret != null ? new MshtmlElement(ret) : null;
 		}
 
 		public function get ParentElement() : IHtmlDomElement
 		{
 			var ret : System.Object = _instance.parentElement;
-			return ret != null ? new MshtmlElement(ret) : null;			
+			return ret != null ? new MshtmlElement(ret) : null;
 		}
-		
+
 		public function RemoveNode(deep : boolean) : void
 		{
 			_instance.removeNode(deep);
 		}
-		
+
 		public function GetAttribute(name : System.String, flags : GetAttributeFlags) : System.Object
 		{
 			var value : System.Object = _instance.getAttribute(name, flags);
@@ -294,28 +293,28 @@ package JetBrains.Omea.GUIControls.MshtmlBrowser
 		public function SetAttribute(name : System.String, value : System.Object, caseSensitive : boolean) : void
 		{
 			_instance.setAttribute(name, value, caseSensitive ? 1 : 0);
-		}		
-		
+		}
+
 		public function remove_Click( handler : HtmlEventHandler ) : void
 		{	throw new NotImplementedException("Cannot unsubscribe from HTML events.");	}	// Cannot unsubscribe currently
 		public function add_Click( handler : HtmlEventHandler ) : void
 		{	new HtmlEventHandlerProxy(_instance, "onclick", handler);	}
-		
+
 		public function remove_DoubleClick( handler : HtmlEventHandler ) : void
 		{	throw new NotImplementedException("Cannot unsubscribe from HTML events.");	}	// Cannot unsubscribe currently
 		public function add_DoubleClick( handler : HtmlEventHandler ) : void
 		{	new HtmlEventHandlerProxy(_instance, "ondblclick", handler);	}
-		
+
 		public function remove_MouseEnter( handler : HtmlEventHandler ) : void
 		{	throw new NotImplementedException("Cannot unsubscribe from HTML events.");	}	// Cannot unsubscribe currently
 		public function add_MouseEnter( handler : HtmlEventHandler ) : void
 		{	new HtmlEventHandlerProxy(_instance, "onmouseenter", handler);	}
-		
+
 		public function remove_MouseLeave( handler : HtmlEventHandler ) : void
 		{	throw new NotImplementedException("Cannot unsubscribe from HTML events.");	}	// Cannot unsubscribe currently
 		public function add_MouseLeave( handler : HtmlEventHandler ) : void
 		{	new HtmlEventHandlerProxy(_instance, "onmouseleave", handler);	}
-		
+
 		public function remove_MouseDown( handler : HtmlEventHandler ) : void
 		{	throw new NotImplementedException("Cannot unsubscribe from HTML events.");	}	// Cannot unsubscribe currently
 		public function add_MouseDown( handler : HtmlEventHandler ) : void
@@ -350,7 +349,7 @@ package JetBrains.Omea.GUIControls.MshtmlBrowser
 		{	throw new NotImplementedException("Cannot unsubscribe from HTML events.");	}	// Cannot unsubscribe currently
 		public function add_ContextMenu( handler : HtmlEventHandler ) : void
 		{	new HtmlEventHandlerProxy(_instance, "oncontextmenu", handler);	}
-		
+
 		public function remove_Drag( handler : HtmlEventHandler ) : void
 		{	throw new NotImplementedException("Cannot unsubscribe from HTML events.");	}	// Cannot unsubscribe currently
 		public function add_Drag( handler : HtmlEventHandler ) : void
@@ -425,12 +424,12 @@ package JetBrains.Omea.GUIControls.MshtmlBrowser
 		{	throw new NotImplementedException("Cannot unsubscribe from HTML events.");	}	// Cannot unsubscribe currently
 		public function add_Resize( handler : HtmlEventHandler ) : void
 		{	new HtmlEventHandlerProxy(_instance, "onresize", handler);	}
-		
+
 		public function get ChildNodes() : IEnumerable/*<IHtmlDomElement>*/
 		{
 			return new MshtmlElementsEnumerable(_instance.childNodes);
 		}
-		
+
 		public function InsertBefore(newChild : IHtmlDomElement, refChild : IHtmlDomElement) : IHtmlDomElement
 		{
 			if(refChild != null)
@@ -443,42 +442,42 @@ package JetBrains.Omea.GUIControls.MshtmlBrowser
 		{
 			return Attach(_instance.appendChild(newChild.Instance));
 		}
-		
+
 		public function GetProperty2(name : System.String) : Object
 		{
 			var instance = _instance;
 			return eval("instance." + name, "unsafe");
 		}
-		
+
 		public function SetProperty2(name : System.String, value : Object) : void
 		{
 			var instance = _instance;
 			var	val = value;
 			eval("instance." + name + " = val;", "unsafe");
 		}
-		
+
 		public function InvokeMethod2(name : System.String) : Object
 		{
 			var instance = _instance;
 			return eval("instance." + name + "()");
 		}
-		
+
 		public function GetElementsByTagName(tagname : System.String) : IEnumerable/*<IHtmlDomElement>*/
 		{
 			return new MshtmlElementsEnumerable(_instance.getElementsByTagName(tagname));
-		}		
+		}
 	}
-	
+
 	/// Helps with handling the events: listens for the events and relays them to the delegate specified.
 	/// Makes it unnecessary to hold the whole element object in memory.
 	public class HtmlEventHandlerProxy
 	{
 		/// Instance to which we attach the event handler (it also keeps the proxy object alive).
 		var	_instance;
-		
+
 		/// A delegate that should be called when shit happens.
 		var _handler : HtmlEventHandler;
-		
+
 		/// Attaches to the events.
 		/// instance — HTML object to attach to.
 		/// name — name of the event, including the "on-" prefix.
@@ -503,7 +502,7 @@ package JetBrains.Omea.GUIControls.MshtmlBrowser
 			}
 		}
 	}
-	
+
 	/// The event arguments class that implements the missing properties of the base class.
 	public class MshtmlEventArgs extends HtmlEventArgs
 	{
@@ -511,79 +510,79 @@ package JetBrains.Omea.GUIControls.MshtmlBrowser
 		{
 			super(instance);
 		}
-		
+
 		public function get FromElement() : IHtmlDomElement
 		{
 			var ret = Instance.fromElement;
 			return ret != null ? new MshtmlElement(ret) : null;
 		}
-		
+
 		public function get SrcElement() : IHtmlDomElement
-		{			
+		{
 			var ret = Instance.srcElement;
 			return ret != null ? new MshtmlElement(ret) : null;
 		}
-		
+
 		public function get ToElement() : IHtmlDomElement
 		{
 			var ret = Instance.toElement;
 			return ret != null ? new MshtmlElement(ret) : null;
 		}
 	}
-	
+
 	/// An IEnumerator-based class that provides for enumerating the collections of HTML elements.
 	public class MshtmlElementsEnumerator implements IEnumerator/*<IHtmlDomElement>*/
 	{
 		/// The collection being enumerated.
 		var _collection : System.Object;
-		
+
 		/// Current position in the collection.
-		var _position : int = -1;	// Not started		
-		
+		var _position : int = -1;	// Not started
+
 		internal function MshtmlElementsEnumerator(collection)
 		{
-			_collection = collection;			
+			_collection = collection;
 		}
-		
+
 		public function MoveNext() : boolean
 		{
 			if(_collection == null)
 				return false;	// No collection — no elements
-			
+
 			// Advance
 			_position++;
-			
+
 			// True means "there is a valid current element"
 			return _position < _collection.length;
 		}
-		
+
 		public function get Current() : System.Object
 		{
 			// Validate
 			if((_collection == null) || (_position < 0) || (_position >= _collection.length))
 				throw new Exception("The enumerator is not positioned over a valid collection item.");
-				
+
 			// Return the current element
 			return MshtmlElement.Attach(_collection.item(_position));
 		}
-		
+
 		public function Reset() : void
 		{
 			_position = -1;
 		}
 	}
-	
+
 	/// Implements an IEnumerable interface for the collection of HTML elements, provides an instance of MshtmlElementsEnumerator, as needed.
 	public class MshtmlElementsEnumerable implements IEnumerable/*<IHtmlDomElement>*/
 	{
 		// The collection to be enumerated.
 		var _collection : System.Object;
-		
+
 		internal function MshtmlElementsEnumerable(collection)
 		{
 			_collection = collection;
 		}
-		
+
 		public function GetEnumerator() : IEnumerator/*<IHtmlDomElement>*/
 		{
 			return new MshtmlElementsEnumerator(_collection);
@@ -601,7 +600,7 @@ package JetBrains.Omea.GUIControls.MshtmlBrowser
 				_instance.attachEvent(name, OnClick);
 			map.Add(handler);
 		}
-		
+
 		/// Unwires the event and stops listening to it if the last listener is being removed.
 		public function UnwireEvent(name : System.String, map : HashSet, handler : HtmlEventHandler)
 		{
@@ -611,20 +610,20 @@ package JetBrains.Omea.GUIControls.MshtmlBrowser
 			if(map.Count == 0)	// The last handler has gone, detach from the event
 				_instance.detachEvent(name, OnClick);
 		}
-		
+
 		/// Fires the specified event.
 		public function FireEvent(map : HashSet)
 		{
 			if(map.Count == 0)
-				throw new InvalidOperationException("An event has been unsubscribed from, but we're still listening to it.");				
-				
+				throw new InvalidOperationException("An event has been unsubscribed from, but we're still listening to it.");
+
 			var	args : HtmlEventArgs = new MshtmlEventArgs(_instance.document.parentWindow.event);
 			for(var handler : HtmlEventHandler in map.GetEnumerator())
-				handler(this, args);		
+				handler(this, args);
 		}
-			
-		
-		/// Click event		
+
+
+		/// Click event
 		protected var _evtClick : JetBrains.DataStructures.HashSet = new HashSet();
 		public function remove_Click( handler : HtmlEventHandler ) : void
 		{	UnwireEvent("onclick", _evtClick, handler);	}

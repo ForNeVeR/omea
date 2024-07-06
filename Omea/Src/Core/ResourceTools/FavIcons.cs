@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Drawing;
@@ -120,7 +119,7 @@ namespace JetBrains.Omea.ResourceTools
             Guard.EmptyStringArgument( favIconURL, "favIconURL" );
             return Core.ResourceStore.FindUniqueResource( FavIconResource, _propFavIconURL, favIconURL );
         }
-                                  
+
         public int PropFavIcon      { get { return _propFavIcon; } }
         public int PropFavIconUrl   { get { return _propFavIconURL; } }
         public int PropFavIconError { get { return _propFavIconError; } }
@@ -180,7 +179,7 @@ namespace JetBrains.Omea.ResourceTools
         private IResource _resFavIcon;
         private readonly string         _url;
         private readonly FavIconManager _favIconManager;
-        
+
         public FavIconDownloadJob( FavIconManager favIconManager, string url )
         {
             Guard.EmptyStringArgument( url, "url" );
@@ -200,7 +199,7 @@ namespace JetBrains.Omea.ResourceTools
             }
             if ( !_resFavIcon.HasProp( _favIconManager.PropFavIcon ) )
             {
-                DownloadResourceBlobJob job = 
+                DownloadResourceBlobJob job =
                     new DownloadResourceBlobJob( _resFavIcon, _favIconManager.PropFavIcon, _url, new ReadyDelegate( DownloadFavicon ) );
                 Core.NetworkAP.QueueJob( JobPriority.AboveNormal, job );
             }

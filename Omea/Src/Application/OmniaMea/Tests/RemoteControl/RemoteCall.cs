@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System.IO;
 using System.Net;
@@ -36,7 +35,7 @@ namespace RemoteControl.Tests.RemoteCalls
 			}
 		}
 
-		
+
 		protected HttpWebResponse GetPOSTRepsonse(string method, string content)
         {
             return GetPOSTRepsonse(method, content, _contentType);
@@ -46,7 +45,7 @@ namespace RemoteControl.Tests.RemoteCalls
         {
             HttpWebRequest  req = null;
             HttpWebResponse rsp = null;
-            
+
             byte[] reqb = Encoding.UTF8.GetBytes( content );
             req = WebRequest.Create(RootURL + RemoteControlServer.protectionKey + "/xml/" + method) as HttpWebRequest;
             req.Method = "POST";

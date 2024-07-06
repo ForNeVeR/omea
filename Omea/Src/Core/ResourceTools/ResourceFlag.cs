@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using JetBrains.Omea.OpenAPI;
@@ -12,7 +11,7 @@ namespace JetBrains.Omea.ResourceTools
 	/**
      * Resource for managing a flag.
      */
-    
+
     public class ResourceFlag
 	{
         private static bool _typesRegistered = false;
@@ -22,7 +21,7 @@ namespace JetBrains.Omea.ResourceTools
         public static int PropFlag;
         public static int PropNextStateFlag;
         private static ResourceFlag _defaultFlag;
-        
+
         public static void RegisterTypes()
         {
             IResourceStore store = ICore.Instance.ResourceStore;
@@ -31,10 +30,10 @@ namespace JetBrains.Omea.ResourceTools
             store.RegisterUniqueRestriction( "Flag", _propFlagId );
             _propIconAssembly = store.PropTypes.Register( "IconAssembly", PropDataType.String, PropTypeFlags.Internal );
             _propIconName = store.PropTypes.Register( "IconName", PropDataType.String, PropTypeFlags.Internal );
-            PropFlag = ResourceTypeHelper.UpdatePropTypeRegistration( "Flag", PropDataType.Link, 
+            PropFlag = ResourceTypeHelper.UpdatePropTypeRegistration( "Flag", PropDataType.Link,
                 PropTypeFlags.DirectedLink );
             store.PropTypes.RegisterDisplayName( PropFlag, "Flag", "Flagged" );
-            PropNextStateFlag = store.PropTypes.Register( "NextStateFlag", PropDataType.Link, 
+            PropNextStateFlag = store.PropTypes.Register( "NextStateFlag", PropDataType.Link,
                 PropTypeFlags.Internal | PropTypeFlags.DirectedLink );
             _typesRegistered = true;
         }
@@ -102,10 +101,10 @@ namespace JetBrains.Omea.ResourceTools
 
         public ResourceFlag NextStateFlag
         {
-            get 
+            get
             {
                 IResource flag = _resource.GetLinkProp( PropNextStateFlag );
-                if ( flag == null ) 
+                if ( flag == null )
                     return null;
                 return new ResourceFlag( flag );
             }

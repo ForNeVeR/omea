@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -79,9 +78,9 @@ namespace JetBrains.Omea
 			this._btnRename = new System.Windows.Forms.Button();
 			this._btnHelp = new System.Windows.Forms.Button();
 			this.SuspendLayout();
-			// 
+			//
 			// _btnOK
-			// 
+			//
 			this._btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this._btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
 			this._btnOK.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -89,9 +88,9 @@ namespace JetBrains.Omea
 			this._btnOK.Name = "_btnOK";
 			this._btnOK.TabIndex = 5;
 			this._btnOK.Text = "OK";
-			// 
+			//
 			// _btnCancel
-			// 
+			//
 			this._btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this._btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
 			this._btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -99,11 +98,11 @@ namespace JetBrains.Omea
 			this._btnCancel.Name = "_btnCancel";
 			this._btnCancel.TabIndex = 6;
 			this._btnCancel.Text = "Cancel";
-			// 
+			//
 			// _lvShortcuts
-			// 
-			this._lvShortcuts.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-				| System.Windows.Forms.AnchorStyles.Left) 
+			//
+			this._lvShortcuts.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+				| System.Windows.Forms.AnchorStyles.Left)
 				| System.Windows.Forms.AnchorStyles.Right)));
 			this._lvShortcuts.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
 																						   this.columnHeader1,
@@ -119,19 +118,19 @@ namespace JetBrains.Omea
 			this._lvShortcuts.View = System.Windows.Forms.View.Details;
 			this._lvShortcuts.Layout += new System.Windows.Forms.LayoutEventHandler(this._lvShortcuts_Layout);
 			this._lvShortcuts.SelectedIndexChanged += new System.EventHandler(this._lvShortcuts_SelectedIndexChanged);
-			// 
+			//
 			// columnHeader1
-			// 
+			//
 			this.columnHeader1.Text = "Name";
 			this.columnHeader1.Width = 150;
-			// 
+			//
 			// columnHeader2
-			// 
+			//
 			this.columnHeader2.Text = "Resource";
 			this.columnHeader2.Width = 220;
-			// 
+			//
 			// _btnMoveUp
-			// 
+			//
 			this._btnMoveUp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this._btnMoveUp.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this._btnMoveUp.Location = new System.Drawing.Point(424, 8);
@@ -139,9 +138,9 @@ namespace JetBrains.Omea
 			this._btnMoveUp.TabIndex = 1;
 			this._btnMoveUp.Text = "Move Up";
 			this._btnMoveUp.Click += new System.EventHandler(this._btnMoveUp_Click);
-			// 
+			//
 			// _btnMoveDown
-			// 
+			//
 			this._btnMoveDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this._btnMoveDown.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this._btnMoveDown.Location = new System.Drawing.Point(424, 40);
@@ -149,9 +148,9 @@ namespace JetBrains.Omea
 			this._btnMoveDown.TabIndex = 2;
 			this._btnMoveDown.Text = "Move Down";
 			this._btnMoveDown.Click += new System.EventHandler(this._btnMoveDown_Click);
-			// 
+			//
 			// _btnDelete
-			// 
+			//
 			this._btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this._btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this._btnDelete.Location = new System.Drawing.Point(424, 72);
@@ -159,9 +158,9 @@ namespace JetBrains.Omea
 			this._btnDelete.TabIndex = 3;
 			this._btnDelete.Text = "Delete";
 			this._btnDelete.Click += new System.EventHandler(this._btnDelete_Click);
-			// 
+			//
 			// _btnRename
-			// 
+			//
 			this._btnRename.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this._btnRename.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this._btnRename.Location = new System.Drawing.Point(424, 104);
@@ -169,9 +168,9 @@ namespace JetBrains.Omea
 			this._btnRename.TabIndex = 4;
 			this._btnRename.Text = "Rename";
 			this._btnRename.Click += new System.EventHandler(this._btnRename_Click);
-			// 
+			//
 			// _btnHelp
-			// 
+			//
 			this._btnHelp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this._btnHelp.FlatStyle = System.Windows.Forms.FlatStyle.System;
 			this._btnHelp.Location = new System.Drawing.Point(424, 271);
@@ -179,9 +178,9 @@ namespace JetBrains.Omea
 			this._btnHelp.TabIndex = 7;
 			this._btnHelp.Text = "Help";
 			this._btnHelp.Click += new System.EventHandler(this._btnHelp_Click);
-			// 
+			//
 			// OrganizeShortcutsDlg
-			// 
+			//
 			this.AcceptButton = this._btnOK;
 			this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
 			this.CancelButton = this._btnCancel;
@@ -244,7 +243,7 @@ namespace JetBrains.Omea
          * Saves the order of the shortcuts and deletes the shortcuts deleted by
          * the user.
          */
-        
+
         private void SaveShortcutList()
         {
             IResourceStore store = Core.ResourceStore;
@@ -276,7 +275,7 @@ namespace JetBrains.Omea
                         {
                             shortcut.SetProp( ShortcutProps.Renamed, true );
                         }
-                        shortcut.SetProp( "Name", lvItem.Text ); 
+                        shortcut.SetProp( "Name", lvItem.Text );
                     }
                     else
                     {
@@ -293,7 +292,7 @@ namespace JetBrains.Omea
         private void _lvShortcuts_Layout( object sender, LayoutEventArgs e )
         {
             _lvShortcuts.Columns [1].Width = _lvShortcuts.ClientSize.Width -
-                                             _lvShortcuts.Columns [0].Width - 
+                                             _lvShortcuts.Columns [0].Width -
                                              SystemInformation.VerticalScrollBarWidth;
         }
 

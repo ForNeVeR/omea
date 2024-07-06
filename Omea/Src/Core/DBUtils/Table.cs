@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -45,7 +44,7 @@ namespace JetBrains.Omea.Database
         private SafeBinaryWriter _writer = null;
 
         private int _lastCommited = -1;
-     
+
         private TableStructure _tblStructure = null;
         private Tracer _tracer;
         private Column _idColumn = null;
@@ -63,7 +62,7 @@ namespace JetBrains.Omea.Database
         private int _totalCount = -1;
         private int _sortedColumn = -1;
         private static ICountedResultSet _emptyResultSet =  new EmptyResultSet();
-        
+
         private int _loadedRecords = 0, _savedRecords = 0;
         private long _loadedRecordSize = 0, _savedRecordSize = 0;
         private bool _autoFlush = true;
@@ -146,7 +145,7 @@ namespace JetBrains.Omea.Database
         private long TraceIndexPerformanceCounters( IDBIndex dbIndex )
         {
             long loadedBytes = dbIndex.LoadedPages * dbIndex.PageSize;
-            Trace.WriteLine( "    " + dbIndex.Name + ": loaded " + dbIndex.LoadedPages + " pages (" + 
+            Trace.WriteLine( "    " + dbIndex.Name + ": loaded " + dbIndex.LoadedPages + " pages (" +
                 Utils.SizeToString( loadedBytes ) + ")" );
             return loadedBytes;
         }
@@ -344,7 +343,7 @@ namespace JetBrains.Omea.Database
             {
                 _fields[i] = newFields[i];
             }
-            
+
             int newOffset;
 
             if ( _canUpdate )
@@ -408,7 +407,7 @@ namespace JetBrains.Omea.Database
         /*
          * Method for regular reading of records. If there is data corruption then BadIndexesException is thrown.
          * */
-        private void LoadRecordToColumns( ) 
+        private void LoadRecordToColumns( )
         {
             for ( int i = 0; i < _columns.Length; ++i )
             {
@@ -482,7 +481,7 @@ namespace JetBrains.Omea.Database
                         if ( _file.Position >= 4 )
                         {
                             _file.Position -= 4;
-                                    
+
                             if ( _reader.ReadUInt32() == StringColumn.END_MARKER )
                             {
                                 long endOffset = _file.Position;
@@ -550,7 +549,7 @@ namespace JetBrains.Omea.Database
                 {
                     if ( !fix )
                     {
-                        throw new BadIndexesException( "Table or indexes are corrupted: String corrupted no end marker in column = " + 
+                        throw new BadIndexesException( "Table or indexes are corrupted: String corrupted no end marker in column = " +
                             _columns[i].Name + " fix = " + fix, noEndMarker );
                     }
                     long currentOffset = _file.Position;
@@ -771,7 +770,7 @@ namespace JetBrains.Omea.Database
                             oldValue2 = DBHelper.GetHashCodeInLowerCase( strValue2 );
                         }
                     }
-                    
+
                     if ( bRemoveFromIndex )
                     {
                         SetCompoundKey( _compound, oldValue1, oldValue2 );
@@ -831,11 +830,11 @@ namespace JetBrains.Omea.Database
 
         private void OpenStreams()
         {
-            _fileName = 
+            _fileName =
                 DBHelper.GetFullNameForTable( _database.Path, _database.Name, Name );
 
             _file = DBHelper.PrepareIOFile( this, _fileName, FileMode.OpenOrCreate );
-            
+
             // BinaryWriter has UTF-8 as the default encoding, but it sets
             // throwOnInvalidBytes to true, which we don't want (we can receive incorrect
             // surrogate pairs from high upstream, and there is nothing we can do about that
@@ -961,7 +960,7 @@ namespace JetBrains.Omea.Database
                 int firstIndex = GetColumnIndexByName( names[0] );
                 int secondIndex = GetColumnIndexByName( names[1] );
                 _indexesCompoundMap[(firstIndex<< 6)+secondIndex] = dbIndex;
-                _compoundIndexes.Insert( GetColumnIndexByName( dbIndex.FirstCompoundName ), 
+                _compoundIndexes.Insert( GetColumnIndexByName( dbIndex.FirstCompoundName ),
                     new CompoundIndex( dbIndex, GetColumnByName(names[0]), firstIndex, GetColumnByName(names[1]), secondIndex ) );
             }
 
@@ -974,14 +973,14 @@ namespace JetBrains.Omea.Database
                 int firstIndex = GetColumnIndexByName( names[0] );
                 int secondIndex = GetColumnIndexByName( names[1] );
 
-                CompoundIndexWithValue compoundIndexWithValue = 
-                    new CompoundIndexWithValue( dbIndex, GetColumnByName(names[0]), firstIndex, GetColumnByName(names[1]), 
+                CompoundIndexWithValue compoundIndexWithValue =
+                    new CompoundIndexWithValue( dbIndex, GetColumnByName(names[0]), firstIndex, GetColumnByName(names[1]),
                     secondIndex, GetColumnByName(columnName), GetColumnIndexByName(columnName));
                 _indexesCompoundMapWithValue[(firstIndex<< 6)+secondIndex] = compoundIndexWithValue;
                 _compoundIndexesWithValue.Insert( firstIndex, compoundIndexWithValue );
             }
         }
-		
+
         public ArrayList GetColumnInfos()
         {
             int columnsCount = _columns.Length;
@@ -1318,7 +1317,7 @@ namespace JetBrains.Omea.Database
             try
             {
                 bool isCompound;
-                CompoundIndexWithValue withValue;            
+                CompoundIndexWithValue withValue;
                 IDBIndex dbIndex = GetIndex( columnIndex, out isCompound, out withValue );
                 if( dbIndex != null )
                 {
@@ -1330,7 +1329,7 @@ namespace JetBrains.Omea.Database
                         {
                             IntArrayListPool.Dispose( offsets );
                             Monitor.Exit( this );
-                            return _emptyResultSet;                        
+                            return _emptyResultSet;
                         }
                         return new ResultSet( this, offsets );
                     }
@@ -1352,7 +1351,7 @@ namespace JetBrains.Omea.Database
             throw new ColumnHasNoIndexException( "Column '" + columnIndex.ToString() + "' has not index" );//no appropriate index
         }
 
-        public ICountedResultSet CreateResultSetForRange( int firstColumnIndex, object firstKey, 
+        public ICountedResultSet CreateResultSetForRange( int firstColumnIndex, object firstKey,
             int secondColumnIndex, object beginKey, object endKey )
         {
             int stringColumnIndex = -1;
@@ -1451,7 +1450,7 @@ namespace JetBrains.Omea.Database
                 {
                     IntArrayListPool.Dispose( offsets );
                     Monitor.Exit( this );
-                    return _emptyResultSet;                        
+                    return _emptyResultSet;
                 }
                 return new ResultSet( this, offsets );
             }
@@ -1481,7 +1480,7 @@ namespace JetBrains.Omea.Database
                 return new FromIndexWithValueResultSet( this, enumerable, withValue._columnIndex1, withValue._columnIndex2, withValue._fieldIndex );
             }
         }
-        #endregion        
+        #endregion
 
         #region Working with BLOBs
         public IBLOB CreateBLOB( Stream stream )
@@ -1517,10 +1516,10 @@ namespace JetBrains.Omea.Database
 
         public int Version { get { return _database.Version; } }
 
-        public int Count 
-        { 
-            get 
-            { 
+        public int Count
+        {
+            get
+            {
                 for ( int i = 0; i < _indexes.Count; i++ )
                 {
                     IDBIndex dbIndex = _indexes[i] as IDBIndex;
@@ -2015,7 +2014,7 @@ namespace JetBrains.Omea.Database
 
             public TableDefragmentator( Table table ) : base( table )
             {
-                _strFullPath = 
+                _strFullPath =
                     DBHelper.GetFullNameForTable( _table._database.Path, _table._database.Name, _table.Name + "_defragment" );
                 _fileDefragment = DBHelper.PrepareIOFile( table, _strFullPath, FileMode.Create );
                 Encoding encoding = new UTF8Encoding();  // throwOnInvalidBytes=false: see OM-7096
@@ -2364,7 +2363,7 @@ namespace JetBrains.Omea.Database
         public int _fieldIndex;
         public Column _valueColumn;
 
-        public CompoundIndexWithValue( IDBIndex dbIndex, Column column1, int columnIndex1, Column column2, int columnIndex2, Column valueColumn, int fieldIndex ) : 
+        public CompoundIndexWithValue( IDBIndex dbIndex, Column column1, int columnIndex1, Column column2, int columnIndex2, Column valueColumn, int fieldIndex ) :
             base( dbIndex, column1, columnIndex1, column2, columnIndex2 )
         {
             _fieldIndex = fieldIndex;
@@ -2419,11 +2418,11 @@ namespace JetBrains.Omea.Database
         private byte[] _charBytes;
         private char[] _charBuffer;
         private Decoder _decoder;
-        
+
         internal SafeBinaryReader( Stream baseStream, Encoding encoding )
             : base( baseStream, encoding )
         {
-            _decoder = encoding.GetDecoder();            
+            _decoder = encoding.GetDecoder();
         }
 
         public string ReadStringSafeWithoutLength( int stringLength )
@@ -2440,7 +2439,7 @@ namespace JetBrains.Omea.Database
             {
                 _charBuffer = new char [256];
             }
-            
+
             int currPos = 0;
             StringBuilder sb = null;
             try

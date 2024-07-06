@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Drawing;
@@ -25,7 +24,7 @@ namespace JetBrains.Omea.GUIControls
             MouseDown += OnMouseClick;
         }
 
-        protected override void DrawItem( Graphics g, Rectangle rc, object item, 
+        protected override void DrawItem( Graphics g, Rectangle rc, object item,
                                           RowState state, string highlightText )
         {
             IResource res = item as IResource;
@@ -48,9 +47,9 @@ namespace JetBrains.Omea.GUIControls
             }
         }
 
-        private static void DrawSingleIcon( RowState state, Graphics g, int index, 
+        private static void DrawSingleIcon( RowState state, Graphics g, int index,
                                             Rectangle rcCol, int midPointX, int midPointY )
-        {                                                       
+        {
             if ( index >= Core.ResourceIconManager.ImageList.Images.Count )
             {
                 // possible on shutdown (OM-8972)
@@ -68,13 +67,13 @@ namespace JetBrains.Omea.GUIControls
                     Win32Declarations.DeleteObject( clipRgn );
                     clipRgn = IntPtr.Zero;
                 }
-                Win32Declarations.IntersectClipRect( hdc, (int) rcClip.Left, (int) rcClip.Top, 
+                Win32Declarations.IntersectClipRect( hdc, (int) rcClip.Left, (int) rcClip.Top,
                     (int) rcClip.Right, (int) rcClip.Bottom );
 
                 int ildState = ( ( state & RowState.ActiveSelected ) != 0 )
                     ? Win32Declarations.ILD_SELECTED
                     : Win32Declarations.ILD_NORMAL;
-                
+
                 Win32Declarations.ImageList_Draw( Core.ResourceIconManager.ImageList.Handle,
                                                     index, hdc, midPointX - 8, midPointY - 8, ildState );
 

@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Drawing;
@@ -75,9 +74,9 @@ namespace JetBrains.Omea.GUIControls
             this.buttonOK = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
+            //
             // checkLarger
-            // 
+            //
             this.checkLarger.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.checkLarger.Location = new System.Drawing.Point(4, 8);
             this.checkLarger.Name = "checkLarger";
@@ -85,9 +84,9 @@ namespace JetBrains.Omea.GUIControls
             this.checkLarger.TabIndex = 0;
             this.checkLarger.Text = "Larger than:";
             this.checkLarger.CheckedChanged += new System.EventHandler(this.checkLarger_CheckedChanged);
-            // 
+            //
             // checkSmaller
-            // 
+            //
             this.checkSmaller.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.checkSmaller.Location = new System.Drawing.Point(4, 32);
             this.checkSmaller.Name = "checkSmaller";
@@ -95,9 +94,9 @@ namespace JetBrains.Omea.GUIControls
             this.checkSmaller.TabIndex = 0;
             this.checkSmaller.Text = "Smaller than:";
             this.checkSmaller.CheckedChanged += new System.EventHandler(this.checkSmaller_CheckedChanged);
-            // 
+            //
             // textMinSize
-            // 
+            //
             this.textMinSize.Enabled = false;
             this.textMinSize.Location = new System.Drawing.Point(96, 4);
             this.textMinSize.MaxLength = 11;
@@ -105,9 +104,9 @@ namespace JetBrains.Omea.GUIControls
             this.textMinSize.TabIndex = 1;
             this.textMinSize.Text = "";
             this.textMinSize.TextChanged += new System.EventHandler(this.textMinSize_TextChanged);
-            // 
+            //
             // textMaxSize
-            // 
+            //
             this.textMaxSize.Enabled = false;
             this.textMaxSize.Location = new System.Drawing.Point(96, 28);
             this.textMaxSize.MaxLength = 11;
@@ -115,27 +114,27 @@ namespace JetBrains.Omea.GUIControls
             this.textMaxSize.TabIndex = 1;
             this.textMaxSize.Text = "";
             this.textMaxSize.TextChanged += new System.EventHandler(this.textMaxSize_TextChanged);
-            // 
+            //
             // buttonOK
-            // 
+            //
             this.buttonOK.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.buttonOK.Location = new System.Drawing.Point(38, 60);
             this.buttonOK.Name = "buttonOK";
             this.buttonOK.TabIndex = 2;
             this.buttonOK.Text = "OK";
             this.buttonOK.Click += new System.EventHandler(this.buttonOK_Click);
-            // 
+            //
             // buttonCancel
-            // 
+            //
             this.buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.buttonCancel.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.buttonCancel.Location = new System.Drawing.Point(120, 60);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.TabIndex = 2;
             this.buttonCancel.Text = "Cancel";
-            // 
+            //
             // IntIntervalForm
-            // 
+            //
             this.AcceptButton = this.buttonOK;
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
             this.CancelButton = this.buttonCancel;

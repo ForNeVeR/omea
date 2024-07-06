@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Drawing;
@@ -77,45 +76,45 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
             this._edtPassword = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.SuspendLayout();
-            // 
+            //
             // label1
-            // 
+            //
             this.label1.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label1.Location = new System.Drawing.Point(4, 8);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(100, 20);
             this.label1.TabIndex = 0;
             this.label1.Text = "Name:";
-            // 
+            //
             // _edtName
-            // 
+            //
             this._edtName.Location = new System.Drawing.Point(112, 4);
             this._edtName.Name = "_edtName";
             this._edtName.Size = new System.Drawing.Size(168, 21);
             this._edtName.TabIndex = 0;
             this._edtName.Text = "textBox1";
-            // 
+            //
             // _edtUrl
-            // 
-            this._edtUrl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._edtUrl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._edtUrl.Location = new System.Drawing.Point(112, 28);
             this._edtUrl.Name = "_edtUrl";
             this._edtUrl.Size = new System.Drawing.Size(320, 21);
             this._edtUrl.TabIndex = 1;
             this._edtUrl.Text = "textBox2";
-            // 
+            //
             // label2
-            // 
+            //
             this.label2.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label2.Location = new System.Drawing.Point(4, 32);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(100, 20);
             this.label2.TabIndex = 2;
             this.label2.Text = "Repository URL:";
-            // 
+            //
             // _btnCancel
-            // 
+            //
             this._btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this._btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this._btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -123,9 +122,9 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
             this._btnCancel.Name = "_btnCancel";
             this._btnCancel.TabIndex = 5;
             this._btnCancel.Text = "Cancel";
-            // 
+            //
             // _btnOK
-            // 
+            //
             this._btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this._btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this._btnOK.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -133,44 +132,44 @@ namespace JetBrains.Omea.SamplePlugins.SccPlugin
             this._btnOK.Name = "_btnOK";
             this._btnOK.TabIndex = 4;
             this._btnOK.Text = "OK";
-            // 
+            //
             // _edtUserName
-            // 
+            //
             this._edtUserName.Location = new System.Drawing.Point(112, 56);
             this._edtUserName.Name = "_edtUserName";
             this._edtUserName.Size = new System.Drawing.Size(168, 21);
             this._edtUserName.TabIndex = 2;
             this._edtUserName.Text = "";
-            // 
+            //
             // label3
-            // 
+            //
             this.label3.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label3.Location = new System.Drawing.Point(4, 60);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(100, 20);
             this.label3.TabIndex = 6;
             this.label3.Text = "User name:";
-            // 
+            //
             // _edtPassword
-            // 
+            //
             this._edtPassword.Location = new System.Drawing.Point(112, 84);
             this._edtPassword.Name = "_edtPassword";
             this._edtPassword.PasswordChar = '*';
             this._edtPassword.Size = new System.Drawing.Size(168, 21);
             this._edtPassword.TabIndex = 3;
             this._edtPassword.Text = "";
-            // 
+            //
             // label4
-            // 
+            //
             this.label4.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label4.Location = new System.Drawing.Point(4, 88);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(100, 20);
             this.label4.TabIndex = 8;
             this.label4.Text = "Password:";
-            // 
+            //
             // SvnRepositoryOptions
-            // 
+            //
             this.AcceptButton = this._btnOK;
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
             this.CancelButton = this._btnCancel;

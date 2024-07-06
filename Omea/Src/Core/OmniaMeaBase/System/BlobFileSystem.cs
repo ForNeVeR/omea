@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.IO;
@@ -158,7 +157,7 @@ namespace JetBrains.Omea.Base
             }
             return result;
         }
-        
+
         public byte[] GetRawBytes()
         {
             return _stream._rawBytes;
@@ -217,14 +216,14 @@ namespace JetBrains.Omea.Base
             public Cluster GetCluster( int handle )
             {
                 Cluster result = _clusterCache.TryKey( handle ) as Cluster;
-                if( result == null ) 
+                if( result == null )
                 {
                     long offset = HandleToOffset( handle );
-                    if( _freeCluster == null ) 
+                    if( _freeCluster == null )
                     {
                         result = new Cluster( this, offset );
                     }
-                    else 
+                    else
                     {
                         result = _freeCluster;
                         result.Offset = offset;
@@ -286,7 +285,7 @@ namespace JetBrains.Omea.Base
                         clusterSize = prevLength;
                     }
                     // try to extend previous cluster if it is the last one in the file
-                    if( free == prevOffset + prevLength && prevLength + clusterSize <= _maxClusterSize ) 
+                    if( free == prevOffset + prevLength && prevLength + clusterSize <= _maxClusterSize )
                     {
                         prev.IncLength( clusterSize );
                         _stream.Position = free;
@@ -309,7 +308,7 @@ namespace JetBrains.Omea.Base
                 if( _dirtyClusters.Count > 0 )
                 {
                     IntArrayList handles = IntArrayListPool.Alloc();
-                    try 
+                    try
                     {
                         foreach( IntHashSet.Entry e in _dirtyClusters )
                         {
@@ -342,7 +341,7 @@ namespace JetBrains.Omea.Base
 
             public override void Close()
             {
-                if( !_manualFlush ) 
+                if( !_manualFlush )
                 {
                     Flush();
                 }
@@ -352,10 +351,10 @@ namespace JetBrains.Omea.Base
             {
                 Close();
             }
-            
+
             public void Shutdown()
             {
-                if( _stream != null ) 
+                if( _stream != null )
                 {
                     Flush();
                     _stream.Close();
@@ -376,7 +375,7 @@ namespace JetBrains.Omea.Base
                     return 1;
                 }
                 int savedOffset = offset;
-                while( count > 0 ) 
+                while( count > 0 )
                 {
                     Cluster cluster = PrepareClusterForReading();
                     // end of stream
@@ -385,7 +384,7 @@ namespace JetBrains.Omea.Base
                         break;
                     }
                     int readBytes = cluster.Size - cluster.Position;
-                    if( readBytes > count ) 
+                    if( readBytes > count )
                     {
                         readBytes = count;
                     }
@@ -415,13 +414,13 @@ namespace JetBrains.Omea.Base
                 {
                     WriteByte( buffer[ offset ] );
                 }
-                else 
+                else
                 {
-                    while( count > 0 ) 
+                    while( count > 0 )
                     {
                         Cluster cluster = PrepareClusterForWriting();
                         int writeBytes = cluster.Length - cluster.Position;
-                        if( count < writeBytes ) 
+                        if( count < writeBytes )
                         {
                             writeBytes = count;
                         }
@@ -465,22 +464,22 @@ namespace JetBrains.Omea.Base
             {
                 get { return true; }
             }
-            
+
             public override bool CanSeek
             {
                 get { return false; }
             }
-            
+
             public override bool CanWrite
             {
                 get { return true; }
             }
-            
+
             public override long Length
             {
                 get { return _stream.Length; }
             }
-            
+
             public override long Position
             {
                 get { throw new NotImplementedException(); }
@@ -496,11 +495,11 @@ namespace JetBrains.Omea.Base
                 SaveHeader();
                 Flush();
             }
-            
+
             public void CleanFile( Cluster cluster )
             {
                 long prevOffset = NOT_SET;
-                for( ; ; ) 
+                for( ; ; )
                 {
                     cluster.Size = 0;
                     if( prevOffset != NOT_SET && cluster.PrevOffset != prevOffset )
@@ -525,7 +524,7 @@ namespace JetBrains.Omea.Base
                     }
                 }
             }
-            
+
             public bool IsValidHandle( int handle )
             {
                 return handle > 0 && _stream != null && handle < ( Length / MinClusterSize );
@@ -555,7 +554,7 @@ namespace JetBrains.Omea.Base
 
             private void Init()
             {
-                try 
+                try
                 {
                     if( _minClusterSize != 16 && _minClusterSize != 32 && _minClusterSize != 64 && _minClusterSize != 128 && _minClusterSize != 256 )
                     {
@@ -619,7 +618,7 @@ namespace JetBrains.Omea.Base
                 }
                 return _stream.Length;
             }
-            
+
             private Cluster AppendCluster( long prevOffset, int clusterSize )
             {
                 long offset = _stream.Length;
@@ -632,7 +631,7 @@ namespace JetBrains.Omea.Base
                 {
                     result.Init( this, offset, prevOffset, NOT_SET, 0, clusterSize );
                     result.SaveHeader();
-                }                    
+                }
                 AllocClusterSpace( clusterSize - CLUSTER_HEADER_SIZE );
                 CacheCluster( result );
                 return result;
@@ -651,7 +650,7 @@ namespace JetBrains.Omea.Base
 
             private void AllocClusterSpace( int clusterSize )
             {
-                if( _rawBytes.Length < clusterSize ) 
+                if( _rawBytes.Length < clusterSize )
                 {
                     _rawBytes = new byte[ clusterSize ];
                 }
@@ -666,14 +665,14 @@ namespace JetBrains.Omea.Base
             private Cluster PrepareClusterForReading()
             {
                 Cluster result = GetCluster( _currentClusterHandle );
-                while( result.Position >= result.Size ) 
+                while( result.Position >= result.Size )
                 {
                     if( result.Size == 0 )
                     {
                         return null;
                     }
                     long next = result.NextOffset;
-                    if( next == NOT_SET ) 
+                    if( next == NOT_SET )
                     {
                         return null;
                     }
@@ -685,23 +684,23 @@ namespace JetBrains.Omea.Base
             private Cluster PrepareClusterForWriting()
             {
                 Cluster result = GetCluster( _currentClusterHandle );
-                if( result.Position >= result.Length ) 
+                if( result.Position >= result.Length )
                 {
                     long next = result.NextOffset;
-                    if( next != NOT_SET ) 
+                    if( next != NOT_SET )
                     {
                         result = SetCurrentCluster( next );
                     }
-                    else 
+                    else
                     {
                         Cluster newCluster = AllocCluster( result );
                         // new cluster was atucally allocated and linked with the
                         // _currentCluster, else myCurrentCluster was just extended
-                        if( newCluster == result ) 
+                        if( newCluster == result )
                         {
                             _stream.Position =  newCluster.PositionInRawFile;
                         }
-                        else 
+                        else
                         {
                             CurrentClusterHandle = newCluster.Handle;
                             result = newCluster;
@@ -744,7 +743,7 @@ namespace JetBrains.Omea.Base
                 {
                     if( offset % stream._minClusterSize != 0 )
                     {
-                        throw new IOException( "Badly aligned cluster offset: offset=" + offset + 
+                        throw new IOException( "Badly aligned cluster offset: offset=" + offset +
                             ", min cluster size=" + stream._minClusterSize );
                     }
                     _stream = stream;
@@ -779,7 +778,7 @@ namespace JetBrains.Omea.Base
 
                 public void SaveHeader()
                 {
-                    if( _isDirty ) 
+                    if( _isDirty )
                     {
                         _stream.BaseStream.Position = _offset;
                         BinaryWriter writer = _stream.BaseWriter;
@@ -811,7 +810,7 @@ namespace JetBrains.Omea.Base
                 public int Size
                 {
                     get { return _size; }
-                    set 
+                    set
                     {
                         _size = value;
                         SetDirty( true );
@@ -865,11 +864,11 @@ namespace JetBrains.Omea.Base
 
                 public void IncPosition( int addend )
                 {
-                    if( ( _position += addend ) > _length ) 
+                    if( ( _position += addend ) > _length )
                     {
                         throw new IOException( "Position is out of cluster bounds" );
                     }
-                    if( _position > _size ) 
+                    if( _position > _size )
                     {
                         Size = _position;
                     }
@@ -877,7 +876,7 @@ namespace JetBrains.Omea.Base
 
                 private void SetDirty( bool dirty )
                 {
-                    if( _isDirty != dirty ) 
+                    if( _isDirty != dirty )
                     {
                         if( _isDirty = dirty )
                         {
@@ -912,13 +911,13 @@ namespace JetBrains.Omea.Base
             private FragmentationStrategy   _fragmentationStrategy;
             private int                     _minClusterSize;
             private int                     _maxClusterSize;
-            
+
             public byte[]                   _rawBytes;
         }
 
         private ClusteredCachedStream   _stream;
         private SpinWaitLock            _lock = new SpinWaitLock();
-        
+
         #endregion
     }
 }

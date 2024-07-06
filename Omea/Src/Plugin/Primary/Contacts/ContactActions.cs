@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
@@ -19,7 +18,7 @@ namespace JetBrains.Omea.ContactsPlugin
     /**
      * "New Contact..." action.
      */
-    
+
     public class NewContactAction: IAction
     {
         private class NewContactLocation
@@ -91,7 +90,7 @@ namespace JetBrains.Omea.ContactsPlugin
 					Core.CategoryManager.AddResourceCategory( res, location.Category );
                 }
             }
-            
+
             Core.WorkspaceManager.AddToActiveWorkspace( res );
         }
     }
@@ -187,7 +186,7 @@ namespace JetBrains.Omea.ContactsPlugin
         private static IResource DoMerge( string fullName, IResourceList contacts, bool showOrigNames )
         {
             Core.ProgressWindow.UpdateProgress( 0, "Merging...", "" );
-            IResource resultContact = (IResource) Core.ResourceAP.RunJob( new DelegateMerge( Merge ), 
+            IResource resultContact = (IResource) Core.ResourceAP.RunJob( new DelegateMerge( Merge ),
                 fullName, contacts, showOrigNames );
             return resultContact;
         }
@@ -248,12 +247,12 @@ namespace JetBrains.Omea.ContactsPlugin
 
                 if ( context.Kind == ActionContextKind.ContextMenu )
                 {
-                    presentation.Visible = presentation.Visible && 
+                    presentation.Visible = presentation.Visible &&
                         contact.HasProp( ContactManager._propSerializationBlobLink );
                 }
                 else
                 {
-                    presentation.Enabled = presentation.Visible && 
+                    presentation.Enabled = presentation.Visible &&
                         contact.HasProp( ContactManager._propSerializationBlobLink );
                 }
             }
@@ -293,7 +292,7 @@ namespace JetBrains.Omea.ContactsPlugin
             Core.TabManager.CurrentTabId = "Contacts";
             Core.LeftSidebar.ActivateViewPane( "AddressBooks" );
             Core.UIManager.EndUpdateSidebar();
-            
+
             AddressBook ab = new AddressBook( name );
             Core.WorkspaceManager.AddToActiveWorkspace( ab.Resource );
             ContactsPlugin.AddressBookPane.EditResourceLabel( ab.Resource );
@@ -311,7 +310,7 @@ namespace JetBrains.Omea.ContactsPlugin
     /**
      * Action to delete an address book.
      */
- 
+
     public class DeleteABAction: ActionOnResource
     {
         public override void Execute( IActionContext context )
@@ -326,7 +325,7 @@ namespace JetBrains.Omea.ContactsPlugin
                 prompt += context.SelectedResources.Count + " selected address books?";
             }
 
-            if ( MessageBox.Show( ICore.Instance.MainWindow, prompt, "Delete Address Book", 
+            if ( MessageBox.Show( ICore.Instance.MainWindow, prompt, "Delete Address Book",
                 MessageBoxButtons.YesNo ) == DialogResult.Yes )
             {
                 foreach( IResource res in context.SelectedResources )
@@ -475,7 +474,7 @@ namespace JetBrains.Omea.ContactsPlugin
         {
             presentation.Visible = IsContactsTab() &&
                 (context.Instance == Core.LeftSidebar.DefaultViewPane) &&
-                (context.SelectedResources.Count == 1 ) && 
+                (context.SelectedResources.Count == 1 ) &&
                 (context.SelectedResources[ 0 ].Type == FilterManagerProps.ViewResName);
         }
 

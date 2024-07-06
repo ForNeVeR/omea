@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -14,7 +13,7 @@ namespace JetBrains.Omea.OutlookPlugin
     #region Extended MAPI specific constants
     internal class MapiError
     {
-        internal const int 
+        internal const int
         MAPI_E_NOT_ENOUGH_DISK = (unchecked((int)0x8004010D)),
         MAPI_E_NETWORK_ERROR = (unchecked((int)0x80040115)),
         MAPI_E_EXTENDED_ERROR = (unchecked((int)0x80040119)),
@@ -83,7 +82,7 @@ namespace JetBrains.Omea.OutlookPlugin
         PR_FLAG_STATUS = 0x10900003,
         PR_FLAG_COLOR = 0x10950003,
         PR_IPM_WASTEBASKET_ENTRYID = 0x35E30102,
-        PR_IPM_SENTMAIL_ENTRYID = 0x35E40102, 
+        PR_IPM_SENTMAIL_ENTRYID = 0x35E40102,
 		PR_IPM_OUTBOX_ENTRYID = 0x35E20102,
 		PR_IPM_APPOINTMENT_ENTRYID = 0x36D00102,
 		PR_IPM_CONTACT_ENTRYID = 0x36D10102,
@@ -200,25 +199,25 @@ namespace JetBrains.Omea.OutlookPlugin
             _ttyttd = new Phone( "TTY/TTD", MAPIPhones.PR_TTYTDD_PHONE_NUMBER );
         }
 
-        private static Phone _assistant; 
-        private static Phone _work; 
-        private static Phone _business2; 
-        private static Phone _businessFax; 
-        private static Phone _callback; 
-        private static Phone _car; 
-        private static Phone _company; 
-        private static Phone _home; 
+        private static Phone _assistant;
+        private static Phone _work;
+        private static Phone _business2;
+        private static Phone _businessFax;
+        private static Phone _callback;
+        private static Phone _car;
+        private static Phone _company;
+        private static Phone _home;
         private static Phone _home2;
-        private static Phone _homeFax; 
-        private static Phone _isdn; 
+        private static Phone _homeFax;
+        private static Phone _isdn;
         private static Phone _mobile;
-        private static Phone _other; 
-        private static Phone _otherFax; 
-        private static Phone _pager; 
-        private static Phone _primary; 
-        private static Phone _radio; 
-        private static Phone _telex; 
-        private static Phone _ttyttd; 
+        private static Phone _other;
+        private static Phone _otherFax;
+        private static Phone _pager;
+        private static Phone _primary;
+        private static Phone _radio;
+        private static Phone _telex;
+        private static Phone _ttyttd;
         private static HashMap _nameToPhone = new HashMap();
         private static ArrayList _phones = new ArrayList();
 
@@ -291,11 +290,11 @@ namespace JetBrains.Omea.OutlookPlugin
 
         public static bool InterpretAsMail( string messageClass )
         {
-            return ( IsNoteMessage( messageClass ) || 
+            return ( IsNoteMessage( messageClass ) ||
                 ( string.Compare( messageClass, Post, true ) == 0 ) ||
                 ( string.Compare( messageClass, Note, true ) == 0 ) ||
-                IsScheduleMeeting( messageClass ) || 
-                IsReportMessage( messageClass ) || 
+                IsScheduleMeeting( messageClass ) ||
+                IsReportMessage( messageClass ) ||
                 ( string.Compare( messageClass, "ipm", true ) == 0 ) );
         }
         public static bool InterpretAsTask( string messageClass )
@@ -361,7 +360,7 @@ namespace JetBrains.Omea.OutlookPlugin
         internal const int STORE_SORT_OK            = 0x00002000;
         internal const int STORE_PUBLIC_FOLDERS     = 0x00004000;
         internal const int STORE_UNCOMPRESSED_RTF   = 0x00008000;
-        
+
     }
     internal class lID
     {
@@ -374,9 +373,9 @@ namespace JetBrains.Omea.OutlookPlugin
         public const int taskDueDate = 0x8105;
         public const int msgDeletedInIMAP = 0x8570;
         public const int msgFlagAnnotation = 0x8530;
-        
+
         public const int contactDisplayName = 0x8005;
         public const int contactEmail = 0x8084;
-        
+
     }
 }

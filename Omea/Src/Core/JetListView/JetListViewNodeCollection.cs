@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -14,23 +13,23 @@ namespace JetBrains.JetListViewLibrary
     public interface INodeCollection
     {
         void SetItemComparer( object parentItem, IComparer comparer );
-        
+
         event JetListViewNodeEventHandler NodeAdded;
         event JetListViewNodeEventHandler NodeRemoving;
         event JetListViewNodeEventHandler NodeRemoved;
         event JetListViewNodeEventHandler NodeExpandChanged;
-        
+
         /// <summary>
         /// Occurs before a node is expanded or collapsed.
         /// </summary>
         event JetListViewNodeEventHandler NodeExpandChanging;
-        
+
         /// <summary>
         /// Occurs when the children of the specified node are requested, either during
         /// enumeration or when the user actually expands the node to see them.
         /// </summary>
         event RequestChildrenEventHandler ChildrenRequested;
-        
+
         bool Contains( object item );
 
         /// <summary>
@@ -74,7 +73,7 @@ namespace JetBrains.JetListViewLibrary
         /// Returns the topmost node visible in the list.
         /// </summary>
         JetListViewNode FirstVisibleNode { get; }
-        
+
         /// <summary>
         /// Performs recursive stable sort of all nodes in the collection according to the
         /// comparer specified for each node.
@@ -94,9 +93,9 @@ namespace JetBrains.JetListViewLibrary
 
     internal interface IVisibleNodeEnumerator: IEnumerator
     {
-        IViewNode CurrentNode { get; }        
+        IViewNode CurrentNode { get; }
     }
-    
+
     internal class EmptyVisibleNodeEnumerator: IVisibleNodeEnumerator
     {
         public IViewNode CurrentNode
@@ -118,7 +117,7 @@ namespace JetBrains.JetListViewLibrary
             get { return null; }
         }
     }
-    
+
     internal interface IVisibleNodeCollection
     {
         IVisibleNodeEnumerator GetFullEnumerator();
@@ -131,7 +130,7 @@ namespace JetBrains.JetListViewLibrary
         /// Returns the total number of nodes currently visible.
         /// </summary>
         int VisibleNodeCount { get; }
-        
+
         /// <summary>
         /// Returns the first node visible in the view.
         /// </summary>
@@ -141,7 +140,7 @@ namespace JetBrains.JetListViewLibrary
         /// Returns the last node visible in the view.
         /// </summary>
         IViewNode LastVisibleViewNode { get; }
-        
+
         /// <summary>
         /// Ensures that the specified node is visible (expands its parents and the group in which
         /// it may be contained).
@@ -153,7 +152,7 @@ namespace JetBrains.JetListViewLibrary
 
         event ViewNodeEventHandler ViewNodeRemoving;
     }
-   
+
     /// <summary>
 	/// Manages the structure of items visible in a JetListView.
 	/// </summary>
@@ -169,7 +168,7 @@ namespace JetBrains.JetListViewLibrary
         private JetListViewNode _lastUpdatedNode;
         private bool _flatList = true;
         private int _version = 0;
-        
+
         private HashSet _addedNodes = null;
         private HashSet _removedNodes = null;
         private HashSet _changedNodes = null;
@@ -181,7 +180,7 @@ namespace JetBrains.JetListViewLibrary
             _rootNode = new JetListViewNode( this, null );
             _rootNode.Expanded = true;
             _visibleItemsEnumerable = new VisibleItemsEnumerable( _rootNode );
-            
+
             _filters = filters;
             if ( _filters != null )
             {
@@ -324,7 +323,7 @@ namespace JetBrains.JetListViewLibrary
             }
             else if ( MultipleNodesChanged != null )
             {
-                MultipleNodesChanged( this, 
+                MultipleNodesChanged( this,
                     new MultipleNodesChangedEventArgs( _addedNodes, _removedNodes, _changedNodes ) );
             }
         }
@@ -439,7 +438,7 @@ namespace JetBrains.JetListViewLibrary
                 {
                     OnVisibleNodeAdded( node );
                 }
-                if ( parentNode != _rootNode && IsNodeVisible( parentNode ) && 
+                if ( parentNode != _rootNode && IsNodeVisible( parentNode ) &&
                     oldCollapseState != parentNode.CollapseState )
                 {
                     OnNodeChanged( parentNode );
@@ -513,7 +512,7 @@ namespace JetBrains.JetListViewLibrary
                 }
                 if ( parentNode != _rootNode )
                 {
-                    _flatList = false;                    
+                    _flatList = false;
                 }
 
                 if ( parentNode != childNode.Parent )
@@ -531,7 +530,7 @@ namespace JetBrains.JetListViewLibrary
             {
                 if ( node == _rootNode )
                 {
-                    ClearAll();                
+                    ClearAll();
                 }
                 else
                 {
@@ -561,7 +560,7 @@ namespace JetBrains.JetListViewLibrary
             {
                 throw new ArgumentNullException( "item" );
             }
-            lock( this ) 
+            lock( this )
             {
                 if ( parent == null )
                 {
@@ -653,7 +652,7 @@ namespace JetBrains.JetListViewLibrary
             {
                 if ( _flatList && (_filters == null || _filters.Count == 0 ) )
                 {
-                    return _rootNode.ChildCount;                    
+                    return _rootNode.ChildCount;
                 }
                 return _rootNode.CountVisibleItems();
             }
@@ -696,7 +695,7 @@ namespace JetBrains.JetListViewLibrary
 
         public JetListViewNode NodeFromItem( object item )
         {
-            lock( this ) 
+            lock( this )
             {
                 return _nodeMap.NodeFromItem( item );
             }
@@ -704,7 +703,7 @@ namespace JetBrains.JetListViewLibrary
 
         public JetListViewNode[] NodesFromItem( object item )
         {
-            lock( this ) 
+            lock( this )
             {
                 return _nodeMap.NodesFromItem( item );
             }
@@ -730,7 +729,7 @@ namespace JetBrains.JetListViewLibrary
                 }
                 if ( itemComparer != null )
                 {
-                    return itemComparer;                    
+                    return itemComparer;
                 }
                 node = node.Parent;
             }
@@ -766,12 +765,12 @@ namespace JetBrains.JetListViewLibrary
                             OnNodeMoving( node );
                             parent.UpdateChildPosition( node, comparer );
                             OnNodeMoved( node );
-                            
+
                             // HACK (see OM-9953 and MultipleSortUpdate test)
                             // we receive updates after the nodes have been changed, so the IsChildInSortedPosition()
                             // check uses new state of the node and may erroneously tell us that the node is
                             // in sorted position when it actually is not
-                            if ( _lastUpdatedNode != null && _lastUpdatedNode.Parent == parent && 
+                            if ( _lastUpdatedNode != null && _lastUpdatedNode.Parent == parent &&
                                 parent.IsChildOutOfSortedPosition( _lastUpdatedNode, comparer ) )
                             {
                                 parent.SortChildren( comparer );
@@ -839,7 +838,7 @@ namespace JetBrains.JetListViewLibrary
                 throw new ArgumentNullException( "item" );
             }
 
-            lock( this ) 
+            lock( this )
             {
                 return _nodeMap.Contains( item );
             }
@@ -850,7 +849,7 @@ namespace JetBrains.JetListViewLibrary
             bool anyChanges = false;
             lock( this )
             {
-                anyChanges = UpdateFiltersRecursive( _rootNode );                
+                anyChanges = UpdateFiltersRecursive( _rootNode );
             }
             if ( anyChanges )
             {
@@ -909,7 +908,7 @@ namespace JetBrains.JetListViewLibrary
 
             public NodeComparer( IComparer comparer )
             {
-                _baseComparer = comparer;                
+                _baseComparer = comparer;
             }
 
             public int Compare( object x, object y )
@@ -928,7 +927,7 @@ namespace JetBrains.JetListViewLibrary
         internal void ExpandParents( JetListViewNode node )
         {
             ArrayList nodes = ArrayListPool.Alloc();
-            try 
+            try
             {
                 JetListViewNode theParent = node.Parent;
                 while( theParent != null && theParent != Root )

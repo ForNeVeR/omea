@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Windows.Forms;
@@ -17,7 +16,7 @@ namespace JetBrains.Omea.OutlookPlugin
     {
         private static MailMessage _mailMessageNull = null;
         private static RTFParser _rtfParser = new RTFParser();
-        private const string _errorText = 
+        private const string _errorText =
             "The mail message could not be displayed. The \"StoreID\" or \"EntryID\" properties were not set.";	// TODO: form the explicit HTML text for the error message so that it did not look like an ordinary email message (ask Serge)
         static MailMessage()
         {
@@ -192,9 +191,9 @@ namespace JetBrains.Omea.OutlookPlugin
 
             private void QueueResourceJob( IResource mail, string format )
             {
-                DelegateSetBodyFormat delegateSetBodyFormat = 
+                DelegateSetBodyFormat delegateSetBodyFormat =
                     new DelegateSetBodyFormat( SetBodyFormat );
-                Core.ResourceAP.QueueJob( JobPriority.Immediate, 
+                Core.ResourceAP.QueueJob( JobPriority.Immediate,
                     delegateSetBodyFormat, mail, format );
             }
             private delegate void DelegateSetBodyFormat( IResource mail, string format );
@@ -206,30 +205,30 @@ namespace JetBrains.Omea.OutlookPlugin
                 }
             }
 
-            public override bool HasPictures 
-            { 
-                get 
-                { 
+            public override bool HasPictures
+            {
+                get
+                {
                     LoadBody();
-                    return _hasPictures; 
-                } 
+                    return _hasPictures;
+                }
             }
 
-            public override string Body 
-            { 
+            public override string Body
+            {
                 get
-                { 
+                {
                     LoadBody();
-                    return _body; 
-                } 
+                    return _body;
+                }
             }
-            public override string Subject 
-            { 
+            public override string Subject
+            {
                 get
-                { 
+                {
                     LoadBody();
-                    return _subject; 
-                } 
+                    return _subject;
+                }
             }
             #endregion
         }

@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Drawing;
@@ -17,7 +16,7 @@ namespace JetBrains.Omea.GUIControls
 	/// </summary>
 	public class MessageDisplayPane: UserControl, IDisplayPane2
 	{
-		/// <summary> 
+		/// <summary>
 		/// Required designer variable.
 		/// </summary>
 		private System.ComponentModel.Container components = null;
@@ -39,7 +38,7 @@ namespace JetBrains.Omea.GUIControls
             _editSubject.ContextProvider = new SubjectContextProvider( _editSubject );
 		}
 
-		/// <summary> 
+		/// <summary>
 		/// Clean up any resources being used.
 		/// </summary>
 		protected override void Dispose( bool disposing )
@@ -55,23 +54,23 @@ namespace JetBrains.Omea.GUIControls
 		}
 
 		#region Component Designer generated code
-		/// <summary> 
-		/// Required method for Designer support - do not modify 
+		/// <summary>
+		/// Required method for Designer support - do not modify
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent()
 		{
 			components = new System.ComponentModel.Container();
-		
+
             this._headerPane = new System.Windows.Forms.Panel();
             this._gradientLine = new JetBrains.Omea.GUIControls.GradientBar();
             this._editSubject = new JetRichTextBox();
             this._editRtfBody = new JetRichTextBox();
             this._headerPane.SuspendLayout();
             this.SuspendLayout();
-            // 
+            //
             // _headerPane
-            // 
+            //
             this._headerPane.BackColor = System.Drawing.SystemColors.Window;
             this._headerPane.Controls.Add(this._gradientLine);
             this._headerPane.Controls.Add(this._editSubject);
@@ -80,10 +79,10 @@ namespace JetBrains.Omea.GUIControls
             this._headerPane.Name = "_headerPane";
             this._headerPane.Size = new System.Drawing.Size(360, 24);
             this._headerPane.TabIndex = 11;
-            // 
+            //
             // _gradientLine
-            // 
-            this._gradientLine.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._gradientLine.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._gradientLine.EndColor = System.Drawing.Color.White;
             this._gradientLine.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Horizontal;
@@ -92,10 +91,10 @@ namespace JetBrains.Omea.GUIControls
             this._gradientLine.Size = new System.Drawing.Size(360, 1);
             this._gradientLine.StartColor = System.Drawing.SystemColors.ControlDark;
             this._gradientLine.TabIndex = 13;
-            // 
+            //
             // _editSubject
-            // 
-            this._editSubject.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._editSubject.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._editSubject.BackColor = SystemColors.Window;
             this._editSubject.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -111,9 +110,9 @@ namespace JetBrains.Omea.GUIControls
             this._editSubject.Text = "";
             this._editSubject.ContentsResized += new ContentsResizedEventHandler( HandleSubjectContentsResized );
             this._editSubject.SizeChanged += new EventHandler( HandleSubjectSizeChanged );
-            // 
+            //
             // _mailBodyRTF
-            // 
+            //
             this._editRtfBody.BorderStyle = BorderStyle.None;
             this._editRtfBody.Dock = DockStyle.Fill;
             this._editRtfBody.Location = new System.Drawing.Point(8, 96);
@@ -123,9 +122,9 @@ namespace JetBrains.Omea.GUIControls
             this._editRtfBody.TabIndex = 2;
             this._editRtfBody.Text = "";
             this._editRtfBody.Visible = false;
-            // 
+            //
             // RSSItemView
-            // 
+            //
             this.BackColor = System.Drawing.SystemColors.Window;
             this.Controls.Add(this._editRtfBody);
             this.Controls.Add(this._headerPane);

@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 #pragma unmanaged
 
@@ -47,32 +46,32 @@ bool MAPISession::Initialize( bool pickLogonProfile )
 
     // http://support.microsoft.com/default.aspx?scid=kb;EN-US;239853
     // Please note the MAPI_NO_COINIT flag was added to MAPI in Exchange 5.5 SP1.
-    if ( hRes == (int)MAPI_E_UNKNOWN_FLAGS )  
+    if ( hRes == (int)MAPI_E_UNKNOWN_FLAGS )
     {
         MAPIInit.ulFlags = 0;
         hRes = MAPIInitialize( &MAPIInit );
     }
 
-    if ( S_OK != hRes ) 
+    if ( S_OK != hRes )
     {
         ::OutputDebugString( "MAPIInitialize failed: hResult=" );
         Guard::CheckHR( hRes );
         return false;
     }
-    hRes = MAPILogonEx( 0, NULL, NULL, 
-        ( pickLogonProfile ? (int)MAPI_LOGON_UI : (int)MAPI_USE_DEFAULT ) | (int)MAPI_FORCE_DOWNLOAD | (int)MAPI_EXTENDED | (int)MAPI_NEW_SESSION, 
+    hRes = MAPILogonEx( 0, NULL, NULL,
+        ( pickLogonProfile ? (int)MAPI_LOGON_UI : (int)MAPI_USE_DEFAULT ) | (int)MAPI_FORCE_DOWNLOAD | (int)MAPI_EXTENDED | (int)MAPI_NEW_SESSION,
         &_pSession );
 
     if ( hRes != S_OK && !pickLogonProfile )
     {
         //(int)MAPI_ALLOW_OTHERS
         ::OutputDebugString( "MAPILogon with default profile failed: hResult=" );
-        hRes = MAPILogonEx( 0, NULL, NULL, 
-            (int)( MAPI_LOGON_UI | MAPI_FORCE_DOWNLOAD | MAPI_EXTENDED | MAPI_NEW_SESSION ), 
+        hRes = MAPILogonEx( 0, NULL, NULL,
+            (int)( MAPI_LOGON_UI | MAPI_FORCE_DOWNLOAD | MAPI_EXTENDED | MAPI_NEW_SESSION ),
             &_pSession );
     }
 
-    if ( S_OK != hRes ) 
+    if ( S_OK != hRes )
     {
         ::OutputDebugString( "MAPILogon failed: hResult=" );
         Guard::CheckHR( hRes );
@@ -149,14 +148,14 @@ MsgStoreSPtr MAPISession::GetDefaultStore( )
 
         //return _msgStores [_defaultStoreIndex];
     //}
-    
+
     LPMDB pMDB = NULL;
     HRESULT hr = E_FAIL;
 	enum { EID, NAME, STORE, NUM_COLS };
 	LPMAPITABLE pStoresTbl = NULL;
 
 	HRESULT hRes = _pSession->GetMsgStoresTable( 0, &pStoresTbl );
-	if ( SUCCEEDED( hRes ) ) 
+	if ( SUCCEEDED( hRes ) )
     {
     	SPropValue spv;
 	    static SRestriction sres;
@@ -166,11 +165,11 @@ MsgStoreSPtr MAPISession::GetDefaultStore( )
 	    sres.res.resProperty.relop = (int)RELOP_EQ;//gonna test equality
 	    sres.res.resProperty.ulPropTag = (int)PR_DEFAULT_STORE;//tag to compare
 	    sres.res.resProperty.lpProp = &spv;//prop tag to compare against
-    	
+
 	    spv.ulPropTag = (int)PR_DEFAULT_STORE;//tag type
 	    spv.Value.b   = TRUE;//tag value
 
-        static SizedSPropTagArray( NUM_COLS, sptCols ) = 
+        static SizedSPropTagArray( NUM_COLS, sptCols ) =
             { NUM_COLS, (int)PR_ENTRYID, (int)PR_DISPLAY_NAME, (int)PR_DEFAULT_STORE };
 
 	    hRes = HrQueryAllRows( pStoresTbl, (LPSPropTagArray)&sptCols, &sres, NULL, 0, &pRow );
@@ -213,7 +212,7 @@ MsgStoresSPtr MAPISession::GetMsgStores()
 bool MAPISession::CompareEntryIDs( const EntryIDSPtr& entryID1, const EntryIDSPtr& entryID2 )
 {
 	ULONG result = 0;
-	HRESULT hr = _pSession->CompareEntryIDs( entryID1->GetLength(), entryID1->getLPENTRYID(), 
+	HRESULT hr = _pSession->CompareEntryIDs( entryID1->GetLength(), entryID1->getLPENTRYID(),
 		entryID2->GetLength(), entryID2->getLPENTRYID(), 0, &result );
 	if ( !SUCCEEDED( hr ) )
 	{

@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -133,9 +132,9 @@ namespace JetBrains.Omea.GUIControls
             this._panePanel.SuspendLayout();
             this._paneContentPanel.SuspendLayout();
             this.SuspendLayout();
-            // 
+            //
             // panel1
-            // 
+            //
             this.panel1.Controls.Add(this._backButton);
             this.panel1.Controls.Add(this._nextButton);
             this.panel1.Controls.Add(this._cancelButton);
@@ -146,9 +145,9 @@ namespace JetBrains.Omea.GUIControls
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(552, 48);
             this.panel1.TabIndex = 1;
-            // 
+            //
             // _backButton
-            // 
+            //
             this._backButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this._backButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._backButton.Location = new System.Drawing.Point(216, 12);
@@ -156,9 +155,9 @@ namespace JetBrains.Omea.GUIControls
             this._backButton.TabIndex = 0;
             this._backButton.Text = "< &Back";
             this._backButton.Click += new System.EventHandler(this._backButton_Click);
-            // 
+            //
             // _nextButton
-            // 
+            //
             this._nextButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this._nextButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._nextButton.Location = new System.Drawing.Point(296, 12);
@@ -166,9 +165,9 @@ namespace JetBrains.Omea.GUIControls
             this._nextButton.TabIndex = 1;
             this._nextButton.Text = "&Next >";
             this._nextButton.Click += new System.EventHandler(this._nextButton_Click);
-            // 
+            //
             // _cancelButton
-            // 
+            //
             this._cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this._cancelButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._cancelButton.Location = new System.Drawing.Point(384, 12);
@@ -176,9 +175,9 @@ namespace JetBrains.Omea.GUIControls
             this._cancelButton.TabIndex = 2;
             this._cancelButton.Text = "Cancel";
             this._cancelButton.Click += new System.EventHandler(this._cancelButton_Click);
-            // 
+            //
             // _btnHelp
-            // 
+            //
             this._btnHelp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this._btnHelp.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._btnHelp.Location = new System.Drawing.Point(468, 12);
@@ -186,18 +185,18 @@ namespace JetBrains.Omea.GUIControls
             this._btnHelp.TabIndex = 2;
             this._btnHelp.Text = "Help";
             this._btnHelp.Click += new System.EventHandler(this._btnHelp_Click);
-            // 
+            //
             // groupBox1
-            // 
+            //
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.groupBox1.Location = new System.Drawing.Point(0, 394);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(552, 4);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
-            // 
+            //
             // _pictureBox
-            // 
+            //
             this._pictureBox.BackColor = System.Drawing.SystemColors.Window;
             this._pictureBox.Dock = System.Windows.Forms.DockStyle.Left;
             this._pictureBox.Image = Image.FromStream( Assembly.GetExecutingAssembly().GetManifestResourceStream( "GUIControls.Icons.WizardReader.png" ) );
@@ -206,9 +205,9 @@ namespace JetBrains.Omea.GUIControls
             this._pictureBox.Size = new System.Drawing.Size(168, 394);
             this._pictureBox.TabIndex = 3;
             this._pictureBox.TabStop = false;
-            // 
+            //
             // _optionsPanel
-            // 
+            //
             this._optionsPanel.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this._optionsPanel.Controls.Add(this._panePanel);
             this._optionsPanel.Controls.Add(this._explanatoryLabel);
@@ -218,9 +217,9 @@ namespace JetBrains.Omea.GUIControls
             this._optionsPanel.Name = "_optionsPanel";
             this._optionsPanel.Size = new System.Drawing.Size(384, 394);
             this._optionsPanel.TabIndex = 4;
-            // 
+            //
             // _panePanel
-            // 
+            //
             this._panePanel.BackColor = System.Drawing.SystemColors.Control;
             this._panePanel.Controls.Add(this._paneContentPanel);
             this._panePanel.Controls.Add(this.splitter1);
@@ -229,9 +228,9 @@ namespace JetBrains.Omea.GUIControls
             this._panePanel.Name = "_panePanel";
             this._panePanel.Size = new System.Drawing.Size(328, 136);
             this._panePanel.TabIndex = 2;
-            // 
+            //
             // _paneContentPanel
-            // 
+            //
             this._paneContentPanel.Controls.Add(this._paneControlPanel);
             this._paneContentPanel.Controls.Add(this.groupBox2);
             this._paneContentPanel.Controls.Add(this._headerLabel);
@@ -241,31 +240,31 @@ namespace JetBrains.Omea.GUIControls
             this._paneContentPanel.Size = new System.Drawing.Size(152, 136);
             this._paneContentPanel.TabIndex = 2;
             this._paneContentPanel.Paint += new System.Windows.Forms.PaintEventHandler(this._paneContentPanel_Paint);
-            // 
+            //
             // _paneControlPanel
-            // 
-            this._paneControlPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-                | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._paneControlPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._paneControlPanel.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
             this._paneControlPanel.Location = new System.Drawing.Point(8, 60);
             this._paneControlPanel.Name = "_paneControlPanel";
             this._paneControlPanel.Size = new System.Drawing.Size(136, 68);
             this._paneControlPanel.TabIndex = 6;
-            // 
+            //
             // groupBox2
-            // 
-            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.Location = new System.Drawing.Point(2, 52);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(166, 4);
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
-            // 
+            //
             // _headerLabel
-            // 
-            this._headerLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._headerLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._headerLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(204)));
             this._headerLabel.Location = new System.Drawing.Point(2, 0);
@@ -274,18 +273,18 @@ namespace JetBrains.Omea.GUIControls
             this._headerLabel.TabIndex = 4;
             this._headerLabel.Text = "Header";
             this._headerLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
+            //
             // splitter1
-            // 
+            //
             this.splitter1.BackColor = System.Drawing.SystemColors.ControlLight;
             this.splitter1.Location = new System.Drawing.Point(172, 0);
             this.splitter1.Name = "splitter1";
             this.splitter1.Size = new System.Drawing.Size(4, 136);
             this.splitter1.TabIndex = 1;
             this.splitter1.TabStop = false;
-            // 
+            //
             // _listPanel
-            // 
+            //
             this._listPanel.Dock = System.Windows.Forms.DockStyle.Left;
             this._listPanel.Location = new System.Drawing.Point(0, 0);
             this._listPanel.Name = "_listPanel";
@@ -293,9 +292,9 @@ namespace JetBrains.Omea.GUIControls
             this._listPanel.TabIndex = 0;
             this._listPanel.Resize += new System.EventHandler(this._listPanel_Resize);
             this._listPanel.Paint += new System.Windows.Forms.PaintEventHandler(this._listPanel_Paint);
-            // 
+            //
             // _explanatoryLabel
-            // 
+            //
             this._explanatoryLabel.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._explanatoryLabel.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(204)));
             this._explanatoryLabel.Location = new System.Drawing.Point(20, 152);
@@ -303,9 +302,9 @@ namespace JetBrains.Omea.GUIControls
             this._explanatoryLabel.Size = new System.Drawing.Size(320, 72);
             this._explanatoryLabel.TabIndex = 1;
             this._explanatoryLabel.Text = "This wizard helps you to configure what you want";
-            // 
+            //
             // _welcomeLabel
-            // 
+            //
             this._welcomeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(204)));
             this._welcomeLabel.ForeColor = System.Drawing.Color.FromArgb(((System.Byte)(87)), ((System.Byte)(77)), ((System.Byte)(162)));
             this._welcomeLabel.Location = new System.Drawing.Point(20, 80);
@@ -313,9 +312,9 @@ namespace JetBrains.Omea.GUIControls
             this._welcomeLabel.Size = new System.Drawing.Size(320, 48);
             this._welcomeLabel.TabIndex = 0;
             this._welcomeLabel.Text = "Welcome to Omea Wizard";
-            // 
+            //
             // WizardForm
-            // 
+            //
             this.AcceptButton = this._nextButton;
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
             this.CancelButton = this._cancelButton;

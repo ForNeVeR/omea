@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Text;
@@ -28,7 +27,7 @@ namespace JetBrains.Omea
         private static readonly StringBuilder _timeStringBuilder = new StringBuilder(255);
         private IResourceList _customProperties;
         private static bool     _useShortDate;
-        
+
         private ColumnFormatter()
 		{
             _columnManager = Core.DisplayColumnManager;
@@ -93,9 +92,9 @@ namespace JetBrains.Omea
 
         	DateTime today = DateTime.Today;
         	TimeSpan ts = today - dt.Date;
-            
+
             string dateStr;
-            
+
             if ( ts.Days == 0 )
             {
                 dateStr = "Today";
@@ -108,10 +107,10 @@ namespace JetBrains.Omea
                     Win32Declarations.LOCALE_IDATE, out iDate, 1 );
                 Win32Declarations.GetLocaleInfo( Win32Declarations.LOCALE_USER_DEFAULT,
                     Win32Declarations.LOCALE_IDAYLZERO, out iDayLZero, 1 );
-                
+
                 string dayFormat = (iDayLZero == '1') ? "dd" : "d";
                 string monthFormat = "MMM";
-                
+
                 if ( iDate == '0' || iDate == '2' )
                 {
                     dateStr = dt.ToString( monthFormat + /*"/"*/" " + dayFormat );
@@ -138,9 +137,9 @@ namespace JetBrains.Omea
         {
             return widthInChars < ((_useShortDate) ? _ShortDateMarginForCompaction : _LongDateMarginForCompaction);
         }
-                
+
         ///<Summary>
-        /// Converts a time to a string using the Win32 API which correctly handles 
+        /// Converts a time to a string using the Win32 API which correctly handles
         /// locale customization. (The default .NET APIs take only the base user locale
         /// and ignore the customizations.)
         ///</Summary>

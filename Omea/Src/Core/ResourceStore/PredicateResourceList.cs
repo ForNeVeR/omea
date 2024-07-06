@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using JetBrains.Omea.Database;
@@ -12,7 +11,7 @@ using System.Text;
 namespace JetBrains.Omea.ResourceStore
 {
     internal enum PredicateMatch { Match, None, Add, Del };
-    
+
     /**
      * The base interface for a resource list predicate.
      */
@@ -20,7 +19,7 @@ namespace JetBrains.Omea.ResourceStore
     public abstract class ResourceListPredicate
     {
         internal abstract IntArrayList GetMatchingResources( out bool sortedById );
-        
+
         /// <summary>
         /// Returns a reference to the sorted list of the resource IDs matching the predicate.
         /// The object returned in syncObject must be locked while working with the list.
@@ -57,7 +56,7 @@ namespace JetBrains.Omea.ResourceStore
          * If all elements matching the predicate are known to be of the same type,
          * returns the ID of that type. If not, returns -1.
          */
-        
+
         internal virtual int GetKnownType()
         {
             return -1;
@@ -83,7 +82,7 @@ namespace JetBrains.Omea.ResourceStore
             PredicateMatch match = MatchResource( res, cs );
             if ( match == PredicateMatch.Add || match == PredicateMatch.Match )
                 newMatch++;
-                
+
             if ( match == PredicateMatch.Del || match == PredicateMatch.Match )
                 oldMatch++;
         }
@@ -118,7 +117,7 @@ namespace JetBrains.Omea.ResourceStore
             {
                 while( enumerator.MoveNext() )
                 {
-                    result.Add( enumerator.GetCurrentIntValue( column ) );                        
+                    result.Add( enumerator.GetCurrentIntValue( column ) );
                 }
             }
             return result;
@@ -203,7 +202,7 @@ namespace JetBrains.Omea.ResourceStore
                     return false;
             }
 
-            return true;            
+            return true;
         }
 
         public override int GetHashCode()

@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -21,7 +20,7 @@ namespace JetBrains.UI.RichText
 
       foreach (RichText line in block.Lines)
         result.AddLines(Format(line, width, hdc));
-      
+
       return result;
     }
 
@@ -50,7 +49,7 @@ namespace JetBrains.UI.RichText
 
         if (oldParts[0].Length == 0) // prevent endless loop
           break;
-        
+
         text = oldParts[1];
       }
 
@@ -67,7 +66,7 @@ namespace JetBrains.UI.RichText
       while (offset >= 0 && offset < text.Length)
       {
         int oldOffset = offset;
-        offset = text.IndexOfAny(ourSplitters, offset + 1);        
+        offset = text.IndexOfAny(ourSplitters, offset + 1);
 
         if (offset > oldOffset + 1)
           size++;
@@ -76,11 +75,11 @@ namespace JetBrains.UI.RichText
       int[] positions = new int[size];
       int i = 0;
       offset = 0;
-      
+
       while (offset >= 0 && offset < text.Length)
       {
         int oldOffset = offset;
-        offset = text.IndexOfAny(ourSplitters, offset + 1);        
+        offset = text.IndexOfAny(ourSplitters, offset + 1);
 
         if (offset > oldOffset + 1)
           positions[i++] = offset;

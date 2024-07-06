@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System.Drawing;
 using System.IO;
@@ -18,7 +17,7 @@ namespace JetBrains.Omea.GUIControls
 	/**
      * Column for displaying resource flags.
      */
-    
+
     public class FlagColumn: ICustomColumn
 	{
         private readonly ImageList _imageList;
@@ -91,10 +90,10 @@ namespace JetBrains.Omea.GUIControls
         {
             Core.ActionManager.RegisterContextMenuActionGroup( id, "Flag With", anchor );
             _flagActionManager.RegisterGroup( id, null, ListAnchor.Last );
-            
+
             if ( anchor.RefId == "ItemAnnotateActions" )  // HACK!
             {
-                Core.ActionManager.RegisterMainMenuActionGroup( id, "Actions", "Flag With", 
+                Core.ActionManager.RegisterMainMenuActionGroup( id, "Actions", "Flag With",
                     new ListAnchor( AnchorType.After, "ActionAnnotationsActions" ) );
             }
             else
@@ -199,7 +198,7 @@ namespace JetBrains.Omea.GUIControls
             try
             {
                 ShowContextMenuSt( context, ownerControl, pt );
-                return true;        	
+                return true;
             }
             catch( System.ArgumentException )
             {
@@ -211,7 +210,7 @@ namespace JetBrains.Omea.GUIControls
     /**
      * Icon provider for Flag resources.
      */
-    
+
     public class FlagIconProvider: IResourceIconProvider
     {
         private static readonly HashMap _flagHashMap = new HashMap();    // flag ID -> Icon
@@ -324,7 +323,7 @@ namespace JetBrains.Omea.GUIControls
 
         public void Update( IActionContext context, ref ActionPresentation presentation )
         {
-            if ( context.SelectedResources.Count == 0 || 
+            if ( context.SelectedResources.Count == 0 ||
                 ResourceTypeHelper.AnyResourcesInternal( context.SelectedResources ) )
             {
                 if ( context.Kind == ActionContextKind.MainMenu )
@@ -370,7 +369,7 @@ namespace JetBrains.Omea.GUIControls
 
         public void Update( IActionContext context, ref ActionPresentation presentation )
         {
-            if ( context.SelectedResources.Count == 0 || 
+            if ( context.SelectedResources.Count == 0 ||
                 ResourceTypeHelper.AnyResourcesInternal( context.SelectedResources ) )
             {
                 if ( context.Kind == ActionContextKind.MainMenu )
@@ -403,7 +402,7 @@ namespace JetBrains.Omea.GUIControls
         {
             IResource flag = context.SelectedResources [0];
             IResourceList resList = flag.GetLinksOfType( null, "Flag" );
-            
+
             Core.UIManager.BeginUpdateSidebar();
             Core.TabManager.SelectResourceTypeTab( null );
             Core.UIManager.EndUpdateSidebar();
@@ -433,7 +432,7 @@ namespace JetBrains.Omea.GUIControls
             }
             if ( flag1 == null )
             {
-                return 1;                
+                return 1;
             }
             if ( flag2 == null )
             {

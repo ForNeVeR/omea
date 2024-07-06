@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Globalization;
@@ -105,36 +104,36 @@ namespace JetBrains.Omea
             this._diskSpaceLabel = new System.Windows.Forms.Label();
             this._timer = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
-            // 
+            //
             // _alertText
-            // 
+            //
             this._alertText.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._alertText.Location = new System.Drawing.Point(8, 8);
             this._alertText.Name = "_alertText";
             this._alertText.Size = new System.Drawing.Size(308, 80);
             this._alertText.TabIndex = 0;
             this._alertText.Text = @"[product name] has encountered dangerously low free hard disk space and should be closed in order to avoid data corruption in Resource Store and Text Index. Please close all open [product name] windows, finish [product name], and clean drive, where [product name] database is placed.";
-            // 
+            //
             // _closeButton
-            // 
+            //
             this._closeButton.DialogResult = System.Windows.Forms.DialogResult.OK;
             this._closeButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._closeButton.Location = new System.Drawing.Point(126, 128);
             this._closeButton.Name = "_closeButton";
             this._closeButton.TabIndex = 1;
             this._closeButton.Text = "OK";
-            // 
+            //
             // label2
-            // 
+            //
             this.label2.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label2.Location = new System.Drawing.Point(8, 96);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(128, 20);
             this.label2.TabIndex = 2;
             this.label2.Text = "Current Free Space:";
-            // 
+            //
             // _diskSpaceLabel
-            // 
+            //
             this._diskSpaceLabel.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._diskSpaceLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(204)));
             this._diskSpaceLabel.Location = new System.Drawing.Point(136, 96);
@@ -142,15 +141,15 @@ namespace JetBrains.Omea
             this._diskSpaceLabel.Size = new System.Drawing.Size(180, 20);
             this._diskSpaceLabel.TabIndex = 3;
             this._diskSpaceLabel.Text = "100 KB";
-            // 
+            //
             // _timer
-            // 
+            //
             this._timer.Enabled = true;
             this._timer.Interval = 1000;
             this._timer.Tick += new System.EventHandler(this._timer_Tick);
-            // 
+            //
             // DiskSpaceExhaustedForm
-            // 
+            //
             this.AcceptButton = this._closeButton;
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
             this.ClientSize = new System.Drawing.Size(318, 160);

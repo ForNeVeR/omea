@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -74,7 +73,7 @@ namespace JetBrains.Omea
             get { return _ownerControl; }
             set { _ownerControl = value; }
         }
-       
+
         internal void OnThreadException( object sender, ThreadExceptionEventArgs e )
         {
             PluginEnvironment environment = (PluginEnvironment) ICore.Instance;
@@ -104,7 +103,7 @@ namespace JetBrains.Omea
                 _exceptionQueue.Enqueue( new QueuedException( ex, flags ) );
             }
 
-            if ( _ownerControl != null && _ownerControl.IsHandleCreated && !_ownerControl.IsDisposed && 
+            if ( _ownerControl != null && _ownerControl.IsHandleCreated && !_ownerControl.IsDisposed &&
                 _ownerControl.InvokeRequired )
             {
                 Core.UIManager.QueueUIJob( new MethodInvoker( ShowExceptionDialog ) );
@@ -158,7 +157,7 @@ namespace JetBrains.Omea
         			}
         			if ( qex == null )
         				break;
-            
+
         			if ( ( qex.Flags & ExceptionReportFlags.Fatal ) != 0 )
         			{
         				exceptionFatal = true;
@@ -210,11 +209,11 @@ namespace JetBrains.Omea
         				{
         					dlg.AttachLog = true;
         				}
-                    
+
         				dlg.SetBuildNumber( Assembly.GetExecutingAssembly().GetName().Version.Build );
-                
+
         				IWin32Window ownerWindow = ( _ownerControl == null || _ownerControl.IsDisposed ) ? null : _ownerControl;
-                
+
         				if ( dlg.ReportException( ownerWindow, ex, GetExceptionDescription() ) == DialogResult.OK )
         				{
         					if ( dlg.ITNUserName != "om_anonymous" )

@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 
@@ -16,8 +15,8 @@ namespace JetBrains.Omea.OpenAPI
         /// <summary>
         /// No special flags.
         /// </summary>
-        None = 0, 
-        
+        None = 0,
+
         /// <summary>
         /// The column cannot be resized by the user.
         /// </summary>
@@ -55,17 +54,17 @@ namespace JetBrains.Omea.OpenAPI
         /// The names of properties displayed in the column.
         /// </summary>
         public string[] PropNames;
-        
+
         /// <summary>
         /// The width of the column in pixels.
         /// </summary>
         public int Width;
-        
+
         /// <summary>
         /// The flags of the column.
         /// </summary>
         public ColumnDescriptorFlags Flags;
-        
+
         /// <summary>
         /// The custom comparer used for sorting by the column.
         /// </summary>

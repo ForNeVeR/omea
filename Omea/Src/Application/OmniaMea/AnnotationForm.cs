@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Drawing;
@@ -114,7 +113,7 @@ namespace JetBrains.Omea
             IsPersistentMode = isPersistentMode;
             SourceText = res.GetPropText( Core.Props.Annotation );
 
-            // [Clear and] Set a watcher on the annotation text which 
+            // [Clear and] Set a watcher on the annotation text which
             // can be changed outside the Omea.
             if( _ResourceChangeWatcher != null )
             {
@@ -124,7 +123,7 @@ namespace JetBrains.Omea
             _ResourceChangeWatcher = _resource.ToResourceListLive();
             _ResourceChangeWatcher.AddPropertyWatch( Core.Props.Annotation );
             _ResourceChangeWatcher.ResourceChanged += _ResourceChangeWatcher_ResourceChanged;
-            
+
             WriteText( SourceText );
 
             if ( _defaultPosition )
@@ -176,11 +175,11 @@ namespace JetBrains.Omea
 		{
             this.richText = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
-            // 
+            //
             // richText
-            // 
-            this.richText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-                | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this.richText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this.richText.BackColor = System.Drawing.SystemColors.Info;
             this.richText.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(204)));
@@ -191,9 +190,9 @@ namespace JetBrains.Omea
             this.richText.TabIndex = 1;
             this.richText.Text = "";
             this.richText.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this.richText_LinkClicked);
-            // 
+            //
             // AnnotationForm
-            // 
+            //
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
             this.ClientSize = new System.Drawing.Size(440, 224);
             this.Controls.Add(this.richText);
@@ -216,7 +215,7 @@ namespace JetBrains.Omea
         }
 		#endregion
 
-         
+
         private void OnKeyPressed(object sender, KeyEventArgs e)
         {
             if(( e.KeyCode == Keys.Enter && e.Control ) || ( e.KeyCode == Keys.Escape && !e.Control ))
@@ -339,7 +338,7 @@ namespace JetBrains.Omea
         }
 
         private delegate void SaveAnnotationDelegate( IResource res, string text );
-        
+
         private void SaveAnnotation( string ann, IResource res )
         {
             if( IsModified )

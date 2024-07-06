@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -240,14 +239,14 @@ namespace JetBrains.Omea.Tasks
 		/// </summary>
 		/// <param name="targetResource">The resource over which the drag happens.</param>
 		/// <param name="data">The <see cref="IDataObject"/> containing the dragged data.</param>
-		/// <param name="allowedEffect">The drag-and-drop operations which are allowed by the 
+		/// <param name="allowedEffect">The drag-and-drop operations which are allowed by the
 		/// originator (or source) of the drag event.</param>
-		/// <param name="keyState">The current state of the SHIFT, CTRL, and ALT keys, 
+		/// <param name="keyState">The current state of the SHIFT, CTRL, and ALT keys,
 		/// as well as the state of the mouse buttons.</param>
 		/// <returns>The target drop effect.</returns>
 		public DragDropEffects DragOver(IResource targetResource, IDataObject data, DragDropEffects allowedEffect, int keyState)
 		{
-			if(data.GetDataPresent(typeof(IResourceList))) // Dragging resources over			
+			if(data.GetDataPresent(typeof(IResourceList))) // Dragging resources over
 			{
 				// The resources we're dragging
 				IResourceList dragResources = (IResourceList)data.GetData(typeof(IResourceList));
@@ -291,9 +290,9 @@ namespace JetBrains.Omea.Tasks
 		/// </summary>
 		/// <param name="targetResource">The drop target resource.</param>
 		/// <param name="data">The <see cref="IDataObject"/> containing the dragged data.</param>
-		/// <param name="allowedEffect">The drag-and-drop operations which are allowed by the 
+		/// <param name="allowedEffect">The drag-and-drop operations which are allowed by the
 		/// originator (or source) of the drag event.</param>
-		/// <param name="keyState">The current state of the SHIFT, CTRL, and ALT keys, 
+		/// <param name="keyState">The current state of the SHIFT, CTRL, and ALT keys,
 		/// as well as the state of the mouse buttons.</param>
 		public void Drop(IResource targetResource, IDataObject data, DragDropEffects allowedEffect, int keyState)
 		{

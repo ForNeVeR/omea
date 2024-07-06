@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -18,7 +17,7 @@ namespace JetBrains.Omea.OpenAPI
     /// to obtain it. The result of a list combination (<see cref="Union(IResourceList)"/>,
     /// <see cref="Intersect(IResourceList)"/> or <see cref="Minus"/>) is live if
     /// at least one of the source lists is live.</para>
-    /// <para>When a resource list is created, in most cases it contains only 
+    /// <para>When a resource list is created, in most cases it contains only
     /// the query condition and not the actual list of resource IDs. Such lists
     /// can be created and combined (intersected, unioned and so on) with other
     /// resource lists very cheapy. The resource list is instantiated (the actual
@@ -38,7 +37,7 @@ namespace JetBrains.Omea.OpenAPI
         /// <para>Checks if a list is empty.</para>
         /// <code>
 		/// IResourceList	list = …
-		/// 
+		///
 		/// if( list.Count == 0 )
 		///     Trace.WriteLine( "The list is empty." );
 		/// else
@@ -47,13 +46,13 @@ namespace JetBrains.Omea.OpenAPI
 		/// <para>Enumerates resources in the list using a for loop.</para>
         /// <code>
 		/// IResourceList	list = …
-		/// 
+		///
 		/// for( int a = 0; a &lt; list.Count; a++ )
 		///     Trace.WriteLine( list[a].DisplayName );
 		/// </code>
 		/// </example>
         int Count { get; }
-        
+
         /// <summary>
         /// Returns the resource at the specified position in the list.
         /// </summary>
@@ -61,13 +60,13 @@ namespace JetBrains.Omea.OpenAPI
 		/// <para>Enumerates resources in the list using a for loop.</para>
         /// <code>
 		/// IResourceList	list = …
-		/// 
+		///
 		/// for( int a = 0; a &lt; list.Count; a++ )
 		///     Trace.WriteLine( list[a].DisplayName );
 		/// </code>
 		/// </example>
         IResource this[ int index ] { get; }
-        
+
         /// <summary>
         /// Provides direct access to the IDs of resources stored in the list.
         /// </summary>
@@ -75,9 +74,9 @@ namespace JetBrains.Omea.OpenAPI
         /// Prints out IDs of resources in the list.
         /// <code>
 		/// IResourceList	list = …
-		/// 
+		///
 		/// foreach( int id in list.ResourceIds )
-		///     Trace.WriteLine( id );				
+		///     Trace.WriteLine( id );
 		/// </code>
         /// </example>
         IResourceIdCollection ResourceIds { get; }
@@ -91,7 +90,7 @@ namespace JetBrains.Omea.OpenAPI
 		/// <example>
 		/// <code>
 		/// IResourceList list = …
-		/// 
+		///
 		/// Debug.Assert( list.IndexOf( list[0] ) == 0 );	// The first element has the 0 index
 		/// </code>
 		/// </example>
@@ -106,7 +105,7 @@ namespace JetBrains.Omea.OpenAPI
         /// <example>
         /// <code>
         /// IResourceList list = …
-        /// 
+        ///
         /// int id = list[0].Id;	// ID of the first element
         /// Debug.Assert( list.IndexOf(id) == 0 );	// The first element is returned from this ID
         /// </code>
@@ -126,7 +125,7 @@ namespace JetBrains.Omea.OpenAPI
         /// <code>
 		/// IResourceList list = …
 		/// IResource res = …
-		/// 
+		///
         /// if( list.Contains( res ) )
 		///     Trace.WriteLine( "Present." );
 		/// else
@@ -204,7 +203,7 @@ namespace JetBrains.Omea.OpenAPI
 		/// <code>
 		/// IResourceList	listMailSentToMe = …	// Acquire mail that was sent to me (personally)
 		/// IResourceList	listMailFromMe = …	// Acquire mail that was sent by me
-		/// 
+		///
 		/// // Make a list of all my mail
 		/// IResourceList	listMyMail = listMailSentToMe.Union( listMailFromMe );
 		/// </code>
@@ -217,7 +216,7 @@ namespace JetBrains.Omea.OpenAPI
         /// one of the source lists.
         /// </summary>
         /// <param name="other">The list with which the current list is unioned, or <c>null</c>.</param>
-        /// <param name="allowMerge">If <c>true</c>, and if the current list or 
+        /// <param name="allowMerge">If <c>true</c>, and if the current list or
         /// <paramref name="other"/> is already a union, does not create a new list, but
         /// instead adds the new list to the union condition of the existing union list. </param>
         /// <returns>The union of the current list and the <paramref name="other"/> list.</returns>
@@ -240,17 +239,17 @@ namespace JetBrains.Omea.OpenAPI
 		/// <code>
 		/// // Some source lists
 		/// IResourceList	list1, list2, list3, list4, list5, …
-		/// 
+		///
 		/// // Collect all their items here
 		/// IResourceList	collection;
-		/// 
+		///
 		/// // Add the first list
 		/// collection = list1;
-		/// 
+		///
 		/// // Add the second list (do not reuse now because this will affect the list1
 		/// //    which we do not want to happen)
 		/// collection = collection.Union( list2, false );
-		/// 
+		///
 		/// // Now we have a brand new resource list created for the collection object
 		/// //    and we may overwrite it freely
 		/// // Add the remaining lists
@@ -261,7 +260,7 @@ namespace JetBrains.Omea.OpenAPI
 		/// </code>
 		/// </example>
         IResourceList Union( IResourceList other, bool allowMerge );
-        
+
         /// <summary>
         /// Returns the intersection of the current list with another list.
         /// </summary>
@@ -284,7 +283,7 @@ namespace JetBrains.Omea.OpenAPI
 		/// <code>
 		/// IResourceList	annotated = …	// Acquire the annotated items
 		/// IResourceList	flagged = …	// Acquire the flagged items
-		/// 
+		///
 		/// // Make a list of items that are both flagged and annotated
 		/// IResourceList	both = annotated.Intersect( flagged );
 		/// </code>
@@ -297,7 +296,7 @@ namespace JetBrains.Omea.OpenAPI
         /// one of the source lists.
         /// </summary>
         /// <param name="other">The list with which the current list is intersected, or <c>null</c>.</param>
-        /// <param name="allowMerge">If <c>true</c>, and if the current list or 
+        /// <param name="allowMerge">If <c>true</c>, and if the current list or
         /// <paramref name="other"/> is already an intersection, does not create a new list, but
         /// instead adds the new list to the intersect condition of the existing intersection list.</param>
         /// <returns>The intersection of the current list and the <paramref name="other"/> list.</returns>
@@ -320,17 +319,17 @@ namespace JetBrains.Omea.OpenAPI
 		/// <code>
 		/// // Some source lists
 		/// IResourceList	list1, list2, list3, list4, list5, …
-		/// 
+		///
 		/// // Collect the items that are common for them, here
 		/// IResourceList	commons;
-		/// 
+		///
 		/// // Take the first list
 		/// commons = list1;
-		/// 
+		///
 		/// // Intersect with the second list (do not reuse now because this will affect the list1
 		/// //    which we do not want to happen)
 		/// commons = commons.Intersect( list2, false );
-		/// 
+		///
 		/// // Now we have a brand new resource list created for the commons object
 		/// //    and we may overwrite it freely
 		/// // Intersect with the remaining lists
@@ -341,7 +340,7 @@ namespace JetBrains.Omea.OpenAPI
 		/// </code>
 		/// </example>
 		IResourceList Intersect( IResourceList other, bool allowMerge );
-        
+
         /// <summary>
         /// Returns the difference of the current resource list and another resource list.
         /// </summary>
@@ -359,7 +358,7 @@ namespace JetBrains.Omea.OpenAPI
         /// <code>
 		/// IResourceList	annotated = …	// Acquire the annotated items
 		/// IResourceList	flagged = …	// Acquire the flagged items
-		/// 
+		///
 		/// // Produce the list of flagged-but-not-annotated items
 		/// IResourceList	diff = flagged.Minus( annotated );
 		/// </code>
@@ -391,7 +390,7 @@ namespace JetBrains.Omea.OpenAPI
         /// <param name="type">The type that is checked.</param>
         /// <returns><c>true</c> if all the resources have the type <paramref name="type"/>, <c>false</c> otherwise.</returns>
         bool AllResourcesOfType( string type );
-        
+
         /// <summary>
         /// Returns the array of all distinct resource types encountered in the resource list, arranged in lexicographical order.
         /// </summary>
@@ -548,8 +547,8 @@ namespace JetBrains.Omea.OpenAPI
         /// every resource.</param>
         /// <remarks><para>The array of property IDs may contain IDs of special properties,
         /// as defined in the <see cref="ResourceProps"/> class.</para>
-        /// <para>If <paramref name="propsEquivalent"/> is <c>false</c>, the properties are 
-        /// processed in order: if the values of the first sort property are equal, the 
+        /// <para>If <paramref name="propsEquivalent"/> is <c>false</c>, the properties are
+        /// processed in order: if the values of the first sort property are equal, the
         /// values of the second sort property are compared.</para>
         /// <para>If <paramref name="propsEquivalent"/> is <c>true</c>, the properties are
         /// considered equivalent. For every resource, the array of properties is scanned
@@ -573,7 +572,7 @@ namespace JetBrains.Omea.OpenAPI
         /// property are equal, the values of the second sort property are compared.</para>
         /// </remarks>
         void Sort( int[] propIds, bool[] sortDirections );
-        
+
         /// <summary>
         /// Sorts the list with the specified custom comparer.
         /// </summary>
@@ -588,22 +587,22 @@ namespace JetBrains.Omea.OpenAPI
         void DeleteAll();
 
         /// <summary>
-        /// Tells that the client of the resource list wants to receive notifications 
-        /// on the change of the specified property. If there are no watches set, 
+        /// Tells that the client of the resource list wants to receive notifications
+        /// on the change of the specified property. If there are no watches set,
         /// the client receives notifications about all the properties.
         /// </summary>
         /// <param name="propId">ID of the property to be monitored for changes.</param>
-        /// <remarks>By default, each property notifies the listeners on value change. 
-        /// This functionality can be limited if the list of properties of interest is 
-        /// specified by calling <see cref="AddPropertyWatch"/> sequentially for each property. 
-        /// After a first call, other properties but the <paramref name="propId"/> stop sending 
-        /// notifications. Any subsequent call to this function enables notifications for one 
+        /// <remarks>By default, each property notifies the listeners on value change.
+        /// This functionality can be limited if the list of properties of interest is
+        /// specified by calling <see cref="AddPropertyWatch"/> sequentially for each property.
+        /// After a first call, other properties but the <paramref name="propId"/> stop sending
+        /// notifications. Any subsequent call to this function enables notifications for one
         /// more property.</remarks>
         void AddPropertyWatch( int propId );
 
         /// <summary>
-        /// Tells that the client of the resource list wants to receive notifications 
-        /// on the change of the specified properties. If there are no watches set, 
+        /// Tells that the client of the resource list wants to receive notifications
+        /// on the change of the specified properties. If there are no watches set,
         /// the client receives notifications about all the properties.
         /// </summary>
         /// <param name="propIds">ID of the properies to be monitored for changes.</param>
@@ -659,7 +658,7 @@ namespace JetBrains.Omea.OpenAPI
     /// <summary>
     /// Defines the interface for the provider of "virtual" properties for a resource list.
     /// </summary>
-    /// <remarks>"Virtual" properties are properties that are not actually present on 
+    /// <remarks>"Virtual" properties are properties that are not actually present on
     /// resources in the list but can be displayed in the resource browser. Examples
     /// of such properties are search rank and similarity.</remarks>
     public interface IPropertyProvider
@@ -691,7 +690,7 @@ namespace JetBrains.Omea.OpenAPI
     /// <summary>
     /// The interface for custom comparison of resources.
     /// </summary>
-    /// <remarks>Instances of this interface can be passed to 
+    /// <remarks>Instances of this interface can be passed to
     /// <see cref="IResourceList.Sort(IResourceComparer, bool)"/>.</remarks>
     public interface IResourceComparer
     {
@@ -701,7 +700,7 @@ namespace JetBrains.Omea.OpenAPI
         /// <param name="r1">The first resource to compare.</param>
         /// <param name="r2">The second resource to compare.</param>
         /// <returns>A negative value if <paramref name="r1"/> is smaller than
-        /// <paramref name="r2"/>; zero if they are equal; a positive value if 
+        /// <paramref name="r2"/>; zero if they are equal; a positive value if
         /// <paramref name="r1"/> is greater.</returns>
         int CompareResources( IResource r1, IResource r2 );
     }

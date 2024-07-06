@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -12,7 +11,7 @@ using JetBrains.Omea.Containers;
 namespace JetBrains.Omea.Base
 {
     public class ObjectPool
-    {        
+    {
         public delegate object CreateObjectDelegate();
         public delegate void AllocObjectDelegate( object obj );
         public delegate void DisposeObjectDelegate( object obj );
@@ -93,7 +92,7 @@ namespace JetBrains.Omea.Base
     public class StringBuilderPool
     {
         private const int _maximumCapacity = 16384;
-        
+
         public static StringBuilder Alloc()
         {
             CheckPool();
@@ -130,7 +129,7 @@ namespace JetBrains.Omea.Base
             sb.Length = 0;
             if ( sb.Capacity > _maximumCapacity )
             {
-                sb.Capacity = _maximumCapacity;    
+                sb.Capacity = _maximumCapacity;
             }
         }
 
@@ -141,7 +140,7 @@ namespace JetBrains.Omea.Base
     public class ArrayListPool
     {
         private const int _maximumCapacity = 2048;
-        
+
         public static ArrayList Alloc()
         {
             CheckPool();
@@ -189,7 +188,7 @@ namespace JetBrains.Omea.Base
     public class IntArrayListPool
     {
         private const int _maximumCapacity = 2048;
-        
+
         public static IntArrayList Alloc()
         {
             CheckPool();
@@ -223,7 +222,7 @@ namespace JetBrains.Omea.Base
         private static void DisposePooledIntArrayList( object obj )
         {
             IntArrayList list = (IntArrayList) obj;
-            if( list.Capacity > _maximumCapacity ) 
+            if( list.Capacity > _maximumCapacity )
             {
                 list.Capacity = _maximumCapacity;
             }

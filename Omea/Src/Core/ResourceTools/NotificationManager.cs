@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using JetBrains.Omea.FiltersManagement;
@@ -27,7 +26,7 @@ namespace JetBrains.Omea.ResourceTools
 
         private readonly HashMap _notifyMeConditions = new HashMap();
         private readonly HashMap _ruleResourceTypes = new HashMap();
-        
+
 	    /// <summary>
 	    /// Registers a resource type for which the "Notify Me" feature can be used.
 	    /// </summary>
@@ -52,7 +51,7 @@ namespace JetBrains.Omea.ResourceTools
             if( conditionTemplate.Type != FilterManagerProps.ConditionTemplateResName )
                 throw new ArgumentException( "NotificationManager -- Condition template has inproper type [" + conditionTemplate.Type + "]" );
             #endregion Preconditions
-            
+
             ArrayList conditions = (ArrayList) _notifyMeConditions [resType];
             if ( conditions == null )
             {
@@ -93,8 +92,8 @@ namespace JetBrains.Omea.ResourceTools
                     return condition.LinkPropID;
                 }
             }
-            
-            throw new ArgumentException( "Condition " + conditionTemplate.DisplayName + 
+
+            throw new ArgumentException( "Condition " + conditionTemplate.DisplayName +
                 " is not registered for resource type " + resType, "conditionTemplate" );
         }
 
@@ -108,7 +107,7 @@ namespace JetBrains.Omea.ResourceTools
 	    {
             if ( _ruleResourceTypes.Contains( resType ) )
             {
-                return (string) _ruleResourceTypes [resType];                
+                return (string) _ruleResourceTypes [resType];
             }
             return resType;
 	    }

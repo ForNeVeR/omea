@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -74,7 +73,7 @@ namespace JetBrains.Omea.OpenAPI
 		public abstract void ShowHtml( string html, WebSecurityContext ctx, WordPtr[] wordsToHighlight );
 
 		/// <summary>
-		/// Highlights the specified words in the page text when download is complete. 
+		/// Highlights the specified words in the page text when download is complete.
 		/// Can be used, for example, for highlighting search results.
 		/// </summary>
 		/// <param name="words">A set of words to highlight. May be <c>null</c> if no highlighting is actually required.</param>
@@ -108,11 +107,11 @@ namespace JetBrains.Omea.OpenAPI
 		/// The display name of the current Web page URL.
 		/// </summary>
 		/// <remarks>
-		/// <para>Note that the property setter should not invoke navigation to the new URL. 
-		/// Instead, it should save the supplied value and use it for display whenever applicable 
-		/// instead of the original URL of the page currently displayed in the browser. 
-		/// The property getter should return the display name obtained from property setter, or, 
-		/// if it was not called, the location URL of the current Web page. Each navigation or 
+		/// <para>Note that the property setter should not invoke navigation to the new URL.
+		/// Instead, it should save the supplied value and use it for display whenever applicable
+		/// instead of the original URL of the page currently displayed in the browser.
+		/// The property getter should return the display name obtained from property setter, or,
+		/// if it was not called, the location URL of the current Web page. Each navigation or
 		/// content feeding action should reset the override established with the property setter.</para>
 		/// <para>If the current URL is undefined (ie the browser has not been given the content or navigated yet), the property getter should return either a <c>null</c> value or an empty string. If the current URL is not applicable (ie the browser has been populated with content directly), the getter should return an empty string.</para>
 		/// </remarks>
@@ -160,14 +159,14 @@ namespace JetBrains.Omea.OpenAPI
 		public abstract WebSecurityContext SecurityContext { get; set; }
 
 		/// <summary>
-		/// The context provider that supplies the action context, which the browser should use 
+		/// The context provider that supplies the action context, which the browser should use
 		/// for showing context menus and doing other UI actions.
 		/// </summary>
 		/// <remarks>
-		/// <para>This is an input property rather than an output one, which means that 
-		/// the context provider is supplied into the Web browser by its consumer. 
-		/// It should be stored by the Web browser internally and used to retrieve 
-		/// the action context through its <see cref="IContextProvider.GetContext"/> method. 
+		/// <para>This is an input property rather than an output one, which means that
+		/// the context provider is supplied into the Web browser by its consumer.
+		/// It should be stored by the Web browser internally and used to retrieve
+		/// the action context through its <see cref="IContextProvider.GetContext"/> method.
 		/// The property getter should simply return the value supplied to the Web browser before.</para>
 		/// </remarks>
 		/// <since>2.0</since>
@@ -606,8 +605,8 @@ namespace JetBrains.Omea.OpenAPI
 		}
 
 		/// <summary><seealso cref="SourceHtml"/>
-		/// Gets or sets the HTML text that will be uploaded into the browser, with all the appropriate formatting applied, 
-		/// for example, search terms highlighting tags. It is non-<c>Null</c> even if no formatting was applied, 
+		/// Gets or sets the HTML text that will be uploaded into the browser, with all the appropriate formatting applied,
+		/// for example, search terms highlighting tags. It is non-<c>Null</c> even if no formatting was applied,
 		/// use string comparison with <see cref="SourceHtml"/> if you need to check whether it was formatted or not.
 		/// </summary>
 		/// <remarks>You may apply additional formatting and submit the new HTML content into this property.</remarks>
@@ -630,10 +629,10 @@ namespace JetBrains.Omea.OpenAPI
 		/// Gets or sets the URI's display name, the same that can be furtherly accessed thru the <see cref="AbstractWebBrowser.CurrentUrl"/> property.
 		/// </summary>
 		/// <remarks>
-		/// <para>As the manually-uploaded content has no native URI, it can be assigned manually to be then queried thru the 
-		/// <see cref="AbstractWebBrowser.CurrentUrl"/> property just as an ordinary Web page URI that can be displayed in the title, 
+		/// <para>As the manually-uploaded content has no native URI, it can be assigned manually to be then queried thru the
+		/// <see cref="AbstractWebBrowser.CurrentUrl"/> property just as an ordinary Web page URI that can be displayed in the title,
 		/// header, etc.</para>
-		/// <para>Initially, this property will provide an empty string (<c>""</c>) as there's no predefined URI to be assigned 
+		/// <para>Initially, this property will provide an empty string (<c>""</c>) as there's no predefined URI to be assigned
 		/// to the manually-uploaded content.</para>
 		/// </remarks>
 		public string UriDisplayName
@@ -1010,7 +1009,7 @@ namespace JetBrains.Omea.OpenAPI
 		void ScrollIntoView( bool bAlignToTop );
 
 		/// <summary>
-		/// Gets the calculated top position of the object relative to the layout or coordinate parent, as specified by the <c>offsetParent</c> property. 
+		/// Gets the calculated top position of the object relative to the layout or coordinate parent, as specified by the <c>offsetParent</c> property.
 		/// The dimensions are measured in pixels.
 		/// </summary>
 		int OffsetTop { get; }
@@ -1028,7 +1027,7 @@ namespace JetBrains.Omea.OpenAPI
 		int OffsetHeight { get; }
 
 		/// <summary>
-		/// Gets the width of the object relative to the layout or coordinate parent, as specified by the <c>offsetParent</c> property. 
+		/// Gets the width of the object relative to the layout or coordinate parent, as specified by the <c>offsetParent</c> property.
 		/// The dimensions are measured in pixels.
 		/// </summary>
 		int OffsetWidth { get; }
@@ -1078,7 +1077,7 @@ namespace JetBrains.Omea.OpenAPI
 		int ClientWidth { get; }
 
 		/// <summary>
-		/// Gets the height of the object including padding, but not including margin, border, or scroll bar. 
+		/// Gets the height of the object including padding, but not including margin, border, or scroll bar.
 		/// </summary>
 		int ClientHeight { get; }
 
@@ -1102,7 +1101,7 @@ namespace JetBrains.Omea.OpenAPI
 		#region Hierarchy
 
 		/// <summary>
-		/// Gets the parent object in the object hierarchy. 
+		/// Gets the parent object in the object hierarchy.
 		/// </summary>
 		/// <remarks>The topmost object returns null as its parent.</remarks>
 		IHtmlDomElement ParentElement { get; }
@@ -1615,7 +1614,7 @@ namespace JetBrains.Omea.OpenAPI
 	public enum DataTransferReason
 	{
 		/// <summary>
-		/// Data transmitted successfully. 
+		/// Data transmitted successfully.
 		/// </summary>
 		Success,
 		/// <summary>
@@ -1745,7 +1744,7 @@ namespace JetBrains.Omea.OpenAPI
 	{
 		/// <summary>
 		/// The HTML content was directly uploaded into the Web browser by Omea.
-		/// This means that the <see cref="AbstractWebBrowser.ShowHtml"/> function was called, 
+		/// This means that the <see cref="AbstractWebBrowser.ShowHtml"/> function was called,
 		/// or <see cref="AbstractWebBrowser.Html"/> property was set.
 		/// </summary>
 		ShowHtml,

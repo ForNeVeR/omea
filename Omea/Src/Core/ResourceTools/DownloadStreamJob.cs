@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.IO;
@@ -104,8 +103,8 @@ namespace JetBrains.Omea.ResourceTools
             }
         }
 
-        public Exception LastException 
-        { 
+        public Exception LastException
+        {
             get
             {
                 if ( _lastException != null )
@@ -113,7 +112,7 @@ namespace JetBrains.Omea.ResourceTools
                     return _lastException;
                 }
                 return _reader.LastException;
-            } 
+            }
         }
 
         public string Url { get { return _reader.URL; } }

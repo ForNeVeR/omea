@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.ComponentModel;
@@ -18,11 +17,11 @@ namespace JetBrains.Omea.GUIControls
     {
         private GUIControls.ImageListPictureBox _iconBox;
         private JetLinkLabel _label;
-        /// <summary> 
+        /// <summary>
         /// Required designer variable.
         /// </summary>
         private System.ComponentModel.Container components = null;
-        
+
         private IResource _resource;
         private IResource _linkOwnerResource;
         private int _linkType;
@@ -31,7 +30,7 @@ namespace JetBrains.Omea.GUIControls
         private bool _executeDoubleClickAction = true;
         private bool _showIcon = true;
         private IResourceList _resourceList;
-        
+
         private static Color _linkColor = Color.FromArgb( 70, 70, 211 );
 
         public event ResourceLinkLabelEventHandler LinkContextMenu;
@@ -60,7 +59,7 @@ namespace JetBrains.Omea.GUIControls
             }
         }
 
-        /// <summary> 
+        /// <summary>
         /// Clean up any resources being used.
         /// </summary>
         protected override void Dispose( bool disposing )
@@ -82,8 +81,8 @@ namespace JetBrains.Omea.GUIControls
         }
 
         #region Component Designer generated code
-        /// <summary> 
-        /// Required method for Designer support - do not modify 
+        /// <summary>
+        /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
@@ -91,9 +90,9 @@ namespace JetBrains.Omea.GUIControls
             this._iconBox = new JetBrains.Omea.GUIControls.ImageListPictureBox();
             this._label = new JetBrains.Omea.GUIControls.JetLinkLabel();
             this.SuspendLayout();
-            // 
+            //
             // _iconBox
-            // 
+            //
             this._iconBox.ImageIndex = 0;
             this._iconBox.ImageLeftTopPoint = new System.Drawing.Point(0, 0);
             this._iconBox.Location = new System.Drawing.Point(1, 2);
@@ -105,9 +104,9 @@ namespace JetBrains.Omea.GUIControls
             this._iconBox.DoubleClick += new System.EventHandler(this.OnResourceIconDoubleClick);
             this._iconBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.OnLinkMouseMove);
             this._iconBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.OnLinkMouseDown);
-            // 
+            //
             // _label
-            // 
+            //
             this._label.AllowDrop = true;
             this._label.Cursor = System.Windows.Forms.Cursors.Hand;
             this._label.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((System.Byte)(204)));
@@ -124,9 +123,9 @@ namespace JetBrains.Omea.GUIControls
             this._label.DragDrop += new System.Windows.Forms.DragEventHandler(this.OnLinkDrop);
             this._label.MouseLeave += new System.EventHandler(this.OnLinkLeave);
             this._label.MouseDown += new System.Windows.Forms.MouseEventHandler(this.OnLinkMouseDown);
-            // 
+            //
             // ResourceLinkLabel
-            // 
+            //
             this.Controls.Add(this._label);
             this.Controls.Add(this._iconBox);
             this.Name = "ResourceLinkLabel";
@@ -143,8 +142,8 @@ namespace JetBrains.Omea.GUIControls
         public IResource Resource
         {
             get { return _resource; }
-            set 
-            { 
+            set
+            {
                 if ( _resource != value )
                 {
                     if ( _resourceList != null )
@@ -152,7 +151,7 @@ namespace JetBrains.Omea.GUIControls
                         _resourceList.ResourceChanged -= new ResourcePropIndexEventHandler( HandleResourceChanged );
                         _resourceList.Dispose();
                     }
-                    _resource = value; 
+                    _resource = value;
                     if ( _resource != null )
                     {
                         _resourceList = _resource.ToResourceListLive();
@@ -237,9 +236,9 @@ namespace JetBrains.Omea.GUIControls
         public bool ClickableLink
         {
             get { return _clickableLink; }
-            set 
-            { 
-                _clickableLink = value; 
+            set
+            {
+                _clickableLink = value;
                 _label.ClickableLink = value;
             }
         }
@@ -313,7 +312,7 @@ namespace JetBrains.Omea.GUIControls
 
         /**
          * WHen the mouse is moved over the link label or resource icon,
-         * checks if it's time to start a drag.	
+         * checks if it's time to start a drag.
          */
 
         private void OnLinkMouseMove( object sender, System.Windows.Forms.MouseEventArgs e )
@@ -336,7 +335,7 @@ namespace JetBrains.Omea.GUIControls
          * When a link label is clicked, displays the respective resource.
          * When it is right-clicked, shows the resource popup menu.
          */
-        
+
         private void OnLinkMouseUp( object sender, System.Windows.Forms.MouseEventArgs e )
         {
             _dragStartPoint = new Point( -1, -1 );
@@ -414,7 +413,7 @@ namespace JetBrains.Omea.GUIControls
         }
 
         /**
-         * When the cursor enters the link label, highlights it as a link.	
+         * When the cursor enters the link label, highlights it as a link.
          */
 
         private void OnLinkEnter( object sender, System.EventArgs e )
@@ -480,7 +479,7 @@ namespace JetBrains.Omea.GUIControls
 
                 if ( ResourceDrop != null )
                 {
-                    ResourceDrop( this, new ResourceDragEventArgs( _resource, resList ) );                    
+                    ResourceDrop( this, new ResourceDragEventArgs( _resource, resList ) );
                 }
                 else
                 {

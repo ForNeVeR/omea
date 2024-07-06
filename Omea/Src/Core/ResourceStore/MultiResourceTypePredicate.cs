@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using JetBrains.Omea.Containers;
@@ -28,13 +27,13 @@ namespace JetBrains.Omea.ResourceStore
         internal override IntArrayList GetMatchingResources( out bool sortedById )
         {
             sortedById = false;
-            
+
             IntArrayList result = null;
             for( int i=0; i<_resTypeIds.Length; i++ )
             {
                 ResourceListPredicate basePredicate = new ResourceTypePredicate( _resTypeIds [i] );
                 ResourceListPredicate cachedPredicate = MyPalStorage.Storage.GetCachedPredicate( basePredicate );
-                
+
                 bool tempSortedById = false;
                 object syncObject = null;
                 IntArrayList tempResult;
@@ -49,7 +48,7 @@ namespace JetBrains.Omea.ResourceStore
                 }
                 if( result == null )
                 {
-                    if( syncObject == null ) 
+                    if( syncObject == null )
                     {
                         result = tempResult;
                     }
@@ -63,7 +62,7 @@ namespace JetBrains.Omea.ResourceStore
                 }
                 else
                 {
-                    if( syncObject == null ) 
+                    if( syncObject == null )
                     {
                         result.AddRange( tempResult );
                     }
@@ -98,10 +97,10 @@ namespace JetBrains.Omea.ResourceStore
             if ( Array.IndexOf( _resTypeIds, res.TypeId ) >= 0 )
             {
                 return (cs != null && ( cs.IsNewResource || cs.IsPropertyChanged( ResourceProps.Type ) ) )
-                    ? PredicateMatch.Add 
+                    ? PredicateMatch.Add
                     : PredicateMatch.Match;
             }
-            else if ( cs != null && cs.IsPropertyChanged( ResourceProps.Type ) && 
+            else if ( cs != null && cs.IsPropertyChanged( ResourceProps.Type ) &&
                 Array.IndexOf( _resTypeIds, (int) cs.GetOldValue( ResourceProps.Type ) ) >= 0 )
             {
                 return PredicateMatch.Del;
@@ -151,7 +150,7 @@ namespace JetBrains.Omea.ResourceStore
             int hc = 0;
             for( int i=0; i<_resTypeIds.Length; i++ )
             {
-                hc = hc << 6 + _resTypeIds [i];                
+                hc = hc << 6 + _resTypeIds [i];
             }
             return hc;
         }

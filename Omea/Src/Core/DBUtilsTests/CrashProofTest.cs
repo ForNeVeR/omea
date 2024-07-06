@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.IO;
@@ -55,7 +54,7 @@ namespace DBUtil
         public void TestBackwardIncompatability( )
         {
             m_database.Shutdown();
-            
+
             FileStream file = File.Open( "MyPal.database.struct.dbUtil", FileMode.Open, FileAccess.Write );
             file.Seek( 3, SeekOrigin.Begin );
             byte[] bytes = new byte[1];
@@ -83,7 +82,7 @@ namespace DBUtil
             record.SetValue( 1, "zhu" );
             record.Commit();
             m_database.Shutdown();
-            
+
             FileStream file = File.Open( "MyPal.database.struct.dbUtil", FileMode.Open, FileAccess.Write );
             file.Seek( 3, SeekOrigin.Begin );
             byte[] bytes = new byte[1];
@@ -91,8 +90,8 @@ namespace DBUtil
             file.Write( bytes, 0, 1 );
             file.Flush();
             file.Close();
-            
-            
+
+
             DBStructure dbStruct = new DBStructure( "", "MyPal" );
             dbStruct.LoadStructure();
             Assert.AreEqual( false, dbStruct.IsDatabaseCorrect() );
@@ -174,7 +173,7 @@ namespace DBUtil
             fields[3] = DateTime.MinValue;
             Tests.DeleteRecord( testTable, 19, fields );
         }
-        
+
         [Test][ExpectedException(typeof(BadIndexesException))]
         public void TestDeleteRecordOutOfRange3( )
         {
@@ -205,7 +204,7 @@ namespace DBUtil
             file.Write( bytes, 0, 8 );
             file.Flush();
             file.Close();
-             
+
             DBStructure dbStruct = new DBStructure( "", "MyPal" );
             dbStruct.LoadStructure();
             m_database = dbStruct.OpenDatabase( );
@@ -216,7 +215,7 @@ namespace DBUtil
             dbStruct = new DBStructure( "", "MyPal" );
             dbStruct.LoadStructure();
             dbStruct.RebuildIndexes( true );
-           
+
             m_database = dbStruct.OpenDatabase( );
             testTable = m_database.GetTable("Date");
             Assert.AreEqual( 1, testTable.Count );
@@ -325,7 +324,7 @@ namespace DBUtil
             file.SetLength( 26 );
             file.Flush();
             file.Close();
-             
+
             DBStructure dbStruct = new DBStructure( "", "MyPal" );
             dbStruct.LoadStructure();
             m_database = dbStruct.OpenDatabase( );

@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -70,7 +69,7 @@ namespace CommonTests
         {
             _addedLinks.Add( e );
         }
-		
+
         [Test] public void TestCreateResource()
         {
             IResource res = _storage.NewResource( "Email" );
@@ -94,10 +93,10 @@ namespace CommonTests
             res.SetProp( "Subject", "Test" );
 
             ReopenStorage();
-			
+
             IResource res2 = _storage.LoadResource( res.Id );
             Assert.AreEqual( "Test", res2.GetStringProp( "Subject" ) );
-			
+
             Assert.AreEqual( "Test", res2.GetStringProp( _propSubject ) );
             res2.SetProp( _propSubject, "Test2" );
             Assert.AreEqual( "Test2", res2.GetStringProp( _propSubject ) );
@@ -177,7 +176,7 @@ namespace CommonTests
             res.Delete();
             res.GetBlobProp( _propBody );
         }
-                                                                                
+
         [Test] public void UpdateMultipleBlob()
         {
             IResource res1 = _storage.NewResource( "Email" );
@@ -208,7 +207,7 @@ namespace CommonTests
             s1.Close();
             Assert.AreEqual( (byte) 'B', s2.ReadByte() );
         }
-        
+
         [Test] public void RewriteBlobWithSmallerStream()
         {
             IResource res = _storage.NewResource( "Email" );
@@ -218,10 +217,10 @@ namespace CommonTests
             res.SetProp( _propBody, GetStreamWithString( "BLOB" ) );
             Assert.AreEqual( "BLOB", res.GetPropText( _propBody ) );
         }
-        
+
         private IResource _res;
         private const string _largeBlob = "This is enough large blob test string which is written to the Body property and read from the property simultaneously from a few threads. It's preferable to set the string enough large in order to overcome the capacity of one blob filesysrtem cluster in underlying blob stream. Seems this length should be sufficient.";
-        
+
         [Test] public void MultiThreadedBlobStreams()
         {
             _res = _storage.NewResource( "Email" );
@@ -230,10 +229,10 @@ namespace CommonTests
             currentThreadProc.ThreadStarted += new EventHandler( currentThreadProc_ThreadStarted );
             currentThreadProc.ThreadFinished += new EventHandler( currentThreadProc_ThreadFinished );
             currentThreadProc.ExceptionHandler = new AsyncExceptionHandler( ExceptionHandler );
-            currentThreadProc.EmployCurrentThread();            
+            currentThreadProc.EmployCurrentThread();
             Assert.AreEqual( "BLOB test", _res.GetPropText( _propBody ) );
         }
-        
+
         private void currentThreadProc_ThreadStarted( object sender, EventArgs e )
         {
             _res.SetProp( _propBody, _largeBlob );
@@ -247,7 +246,7 @@ namespace CommonTests
                 proc.QueueJob( new InfiniteRecurrentReadingOfBlobPropertyDelegate( InfiniteRecurrentReadingOfBlobProperty ), proc );
                 proc.StartThread();
             }
-            
+
             AsyncProcessor caller = (AsyncProcessor) sender;
             caller.QueueJobAt( DateTime.Now.AddSeconds( 10 ),
                                new FinishAsyncProcessorsDelegate( FinishAsyncProcessors ),
@@ -265,7 +264,7 @@ namespace CommonTests
         {
             _res.SetProp( _propBody, "BLOB test" );
         }
-        
+
         private delegate void InfiniteRecurrentReadingOfBlobPropertyDelegate( AsyncProcessor caller );
         private void InfiniteRecurrentReadingOfBlobProperty( AsyncProcessor caller )
         {
@@ -274,16 +273,16 @@ namespace CommonTests
             caller.QueueJob(
                 new InfiniteRecurrentReadingOfBlobPropertyDelegate( InfiniteRecurrentReadingOfBlobProperty ), caller );
         }
-        
+
         private delegate void InfiniteRecurrentWritingToBlobPropertyDelegate( AsyncProcessor caller );
         private void InfiniteRecurrentWritingToBlobProperty( AsyncProcessor caller )
         {
             _res.SetProp( _propBody, _largeBlob );
             Assert.AreEqual( _largeBlob, _res.GetPropText( _propBody ) );
-            caller.QueueJobAt( DateTime.Now.AddMilliseconds( 10 ), 
+            caller.QueueJobAt( DateTime.Now.AddMilliseconds( 10 ),
                 new InfiniteRecurrentWritingToBlobPropertyDelegate( InfiniteRecurrentWritingToBlobProperty ), caller );
         }
-        
+
         private delegate void FinishAsyncProcessorsDelegate( AsyncProcessor caller, AsyncProcessor[] procs );
         private void FinishAsyncProcessors( AsyncProcessor caller, AsyncProcessor[] procs )
         {
@@ -313,7 +312,7 @@ namespace CommonTests
         [Test] public void TestLongStringProperty()
         {
             int propLongBody = _storage.PropTypes.Register( "LongBody", PropDataType.LongString );
-            
+
             IResource res = _storage.NewResource( "Email" );
             res.SetProp( propLongBody, "Test");
             Assert.AreEqual( "Test", res.GetStringProp( propLongBody ) );
@@ -350,7 +349,7 @@ namespace CommonTests
             IResource res = _storage.NewResource( "Email" );
             res.SetProp( "Size", 654 );
             Assert.IsTrue( res.HasProp( "Size" ) );
-			
+
             res.DeleteProp( "Size" );
             Assert.IsTrue( !res.HasProp( "Size" ) );
             Assert.AreEqual( 0, GetResourcePropCount( res.Id ) );
@@ -403,7 +402,7 @@ namespace CommonTests
             IResource person2 = _storage.LoadResource( person.Id );
             IResourceList links = person2.GetLinksOfType( null, "Author" );
             Assert.AreEqual( 1, links.Count );
-			
+
             IResource email2 = links [0];
             Assert.AreEqual( email.Id, email2.Id );
             Assert.AreEqual( 1, email2.GetLinksOfType( null, "Author" ).Count );
@@ -478,7 +477,7 @@ namespace CommonTests
             IResource email = _storage.NewResource( "Email" );
             IResource person = _storage.NewResource( "Person" );
             email.AddLink( "Author", person );
-			
+
             IResourceList links = email.GetLinksOfTypeLive( null, "Author" );
             Assert.AreEqual( 1, links.Count );
 
@@ -595,7 +594,7 @@ namespace CommonTests
             IResource email2 = _storage.NewResource( "Email" );
             email.AddLink( _propReply, email2 );
             email2.Delete();
-            
+
             Assert.AreEqual( 0, email.GetLinksOfType( null, _propReply ).Count );
         }
 
@@ -634,10 +633,10 @@ namespace CommonTests
             IResource email = _storage.NewResource( "Email" );
             IResource email2 = _storage.NewResource( "Email" );
             email.AddLink( _propReply, email2 );
-            
+
             Assert.IsTrue( email.HasLink( _propReply, email2 ) );
             Assert.IsTrue( email2.HasLink( -_propReply, email ) );
-            
+
             Assert.IsTrue( !email2.HasLink( _propReply, email ) );
             Assert.IsTrue( !email.HasLink( -_propReply, email2 ) );
         }
@@ -755,7 +754,7 @@ namespace CommonTests
             IResource parentPerson2 = _storage.NewResource( "Contact" );
             parentPerson2.SetProp( "FirstName", "Michael" );
             parentPerson2.SetProp( "LastName", "Gerasimov" );
-            
+
             childPerson.AddLink( propParentContact, parentPerson2 );
             Assert.AreEqual( "Michael Gerasimov", childPerson.DisplayName );
         }
@@ -763,7 +762,7 @@ namespace CommonTests
         [Test] public void TestPropText()
         {
             DateTime dt = DateTime.Now;
-			
+
             IResource email = _storage.NewResource( "Email" );
             email.SetProp( "Subject", "Test" );
             email.SetProp( "Size", 654 );
@@ -817,7 +816,7 @@ namespace CommonTests
         [Test] public void TestProperties()
         {
             DateTime dt = DateTime.Now;
-			
+
             IResource email = _storage.NewResource( "Email" );
             email.SetProp( "Name", "001" );
             email.SetProp( "Subject", "Test" );
@@ -961,9 +960,9 @@ namespace CommonTests
             IResource person2 = _storage.NewResource( "Person" );
             email.SetProp( "Author", person2 );
             Assert.AreEqual( 1, email.GetLinksOfType( null, "Author" ).Count );
-            
+
             // verify that the person has not been deleted
-            Assert.AreEqual( MyPalStorage.Storage.ResourceTypes ["Person"].Id, 
+            Assert.AreEqual( MyPalStorage.Storage.ResourceTypes ["Person"].Id,
                 MyPalStorage.Storage.GetResourceType( person.Id ) );
 
             email.SetProp( "Author", null );
@@ -1005,7 +1004,7 @@ namespace CommonTests
             Assert.AreEqual( 1, person3.GetLinksTo( null, propParent ).Count );
         }
 
-        [Test, ExpectedException(typeof(StorageException))] 
+        [Test, ExpectedException(typeof(StorageException))]
         public void InvalidResourceType()
         {
             _storage.NewResource( "Someshit" );
@@ -1265,7 +1264,7 @@ namespace CommonTests
         [Test, Ignore("No more .blob files")] public void DeleteBlob()
         {
             Assert.AreEqual( 0, Directory.GetFiles( MyPalStorage.DBPath, "*.blob" ).Length );
-            
+
             IResource res = _storage.NewResource( "Email" );
             MemoryStream blobStream = new MemoryStream();
             blobStream.WriteByte( 1 );
@@ -1367,7 +1366,7 @@ namespace CommonTests
             Assert.AreEqual( 0, person.GetLinkCount( _propAuthor ) );
         }
 
-        [Test, Category("Transient Resources")] 
+        [Test, Category("Transient Resources")]
         public void LinkTransientToDeleted_BeforeCommit()
         {
             IResource person = _storage.NewResourceTransient( "Person" );
@@ -1390,7 +1389,7 @@ namespace CommonTests
             Assert.AreEqual( 1, liveLinks.Count );
         }
 
-        [Test, Category("Transient Resources")] 
+        [Test, Category("Transient Resources")]
         public void TransientDelete()
         {
             IResource res = _storage.NewResourceTransient( "Person" );
@@ -1509,7 +1508,7 @@ namespace CommonTests
             IResource res = _storage.NewResource( "Test" );
             res.SetProp( propLongString, "Value" );
             res.SetProp( propLongString2, "Value2" );
-            
+
             _storage.PropTypes.Delete( propLongString );
             Assert.AreEqual( 1, res.Properties.Count );
             Assert.IsTrue( res.HasProp( propLongString2 ) );
@@ -1573,7 +1572,7 @@ namespace CommonTests
             Assert.AreEqual( "Sergey", valueList3 [1] );
 
             res3.DeleteProp( _propValueList );
-            
+
             ReopenStorage();
 
             IResource res4 = _storage.LoadResource( res.Id );
@@ -1620,7 +1619,7 @@ namespace CommonTests
             IResource res = _storage.NewResource( "Person" );
             IStringList valueList = res.GetStringListProp( _propValueList );
             valueList.Add( "Dmitry" );
-            
+
             ReopenStorage();
             IResource res2 = _storage.LoadResource( res.Id );
             valueList = res2.GetStringListProp( _propValueList );
@@ -1702,7 +1701,7 @@ namespace CommonTests
             res.Delete();
             Assert.IsNull( res.GetProp( "FirstName" ) );
         }
-        
+
         [Test] public void ChangeType()
         {
             IResource res = _storage.NewResource( "Person" );

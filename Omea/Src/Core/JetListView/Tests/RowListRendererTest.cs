@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -12,7 +11,7 @@ using NUnit.Framework;
 
 namespace JetBrains.JetListViewLibrary.Tests
 {
-	[TestFixture] 
+	[TestFixture]
     public class RowListRendererTest
 	{
         private JetListViewFilterCollection _filterCollection;
@@ -24,7 +23,7 @@ namespace JetBrains.JetListViewLibrary.Tests
         private ArrayList _rowInvalidates;
         private Rectangle _clientRect;
         private int _lastRequestScroll;
-        
+
         [SetUp] public void SetUp()
         {
             _filterCollection = new JetListViewFilterCollection();
@@ -224,7 +223,7 @@ namespace JetBrains.JetListViewLibrary.Tests
             Assert.IsFalse( _rowListRenderer.GetRowBounds( item, out startY, out endY ) );
             Assert.IsTrue( _rowListRenderer.GetRowBounds( item2, out startY, out endY ) );
             Assert.AreEqual( 14, endY );
-        }   
+        }
 
         [Test] public void SelectByClick()
         {
@@ -322,7 +321,7 @@ namespace JetBrains.JetListViewLibrary.Tests
         {
             JetListViewNode item1 = _nodeCollection.Add( "Item1", null );
             _selectionModel.HandleMouseDown( item1, Keys.None );
-            
+
             _rowListRenderer.Invalidate += new InvalidateEventHandler( _rowListRenderer_Invalidate );
             _rowListRenderer.ActiveSelection = false;
             Assert.AreEqual( 1, _rowInvalidates.Count );
@@ -465,7 +464,7 @@ namespace JetBrains.JetListViewLibrary.Tests
             JetListViewNode node = _nodeCollection.Add( "Item" );
             JetListViewNode node2 = _nodeCollection.Add( "Item2" );
             _rowListRenderer.VisibleHeight = 10;
-            
+
             _selectionModel.SelectAndFocusNode( node2 );
             _rowListRenderer.ScrollOffset = 0;
 
@@ -478,7 +477,7 @@ namespace JetBrains.JetListViewLibrary.Tests
         {
             _rowListRenderer.BorderSize = 30;
             _rowListRenderer.VisibleHeight = 20;
-            
+
             JetListViewNode node = _nodeCollection.Add( "Item" );
             JetListViewNode node2 = _nodeCollection.Add( "Item2" );
 

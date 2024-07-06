@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Windows.Forms;
@@ -79,7 +78,7 @@ namespace JetBrains.Omea.GUIControls
             string linkDisplayName = _resourceStore.PropTypes.GetPropDisplayName( property.PropId );
             Tracer._Trace( "LINKNAME = " + linkDisplayName +  " LINKID = " + property.PropId.ToString() );
 
-            TreeNode treeSubNode = 
+            TreeNode treeSubNode =
                 new TreeNode( linkDisplayName, iconIndex, iconIndex );
             LinkNode linkNode = resourceNode.AddLink( linkDisplayName, property.Name, property.PropId < 0 );
 
@@ -95,7 +94,7 @@ namespace JetBrains.Omea.GUIControls
         {
             int iconIndex = Core.ResourceIconManager.GetPropTypeIconIndex( property.PropId );
             string linkDisplayName = _resourceStore.PropTypes.GetPropDisplayName( property.PropId );
-            TreeNode treeSubNode = 
+            TreeNode treeSubNode =
                 new TreeNode( linkDisplayName, iconIndex, iconIndex );
             PropertyNode propertyNode = resourceNode.AddProperty( property );
             treeSubNode.Tag = new SerializableTag( propertyNode, SerializableTag.Type.Link );
@@ -242,9 +241,9 @@ namespace JetBrains.Omea.GUIControls
             this.label1 = new System.Windows.Forms.Label();
             this._fileLength = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
-            // 
+            //
             // _btnCancel
-            // 
+            //
             this._btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this._btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this._btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -253,9 +252,9 @@ namespace JetBrains.Omea.GUIControls
             this._btnCancel.Size = new System.Drawing.Size(75, 27);
             this._btnCancel.TabIndex = 3;
             this._btnCancel.Text = "Cancel";
-            // 
+            //
             // _btnSend
-            // 
+            //
             this._btnSend.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this._btnSend.DialogResult = System.Windows.Forms.DialogResult.OK;
             this._btnSend.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -264,11 +263,11 @@ namespace JetBrains.Omea.GUIControls
             this._btnSend.Size = new System.Drawing.Size(75, 27);
             this._btnSend.TabIndex = 2;
             this._btnSend.Text = "Create Email";
-            // 
+            //
             // _resourceTreeView
-            // 
-            this._resourceTreeView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-                | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._resourceTreeView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._resourceTreeView.ImageIndex = -1;
             this._resourceTreeView.Location = new System.Drawing.Point(8, 8);
@@ -278,9 +277,9 @@ namespace JetBrains.Omea.GUIControls
             this._resourceTreeView.Size = new System.Drawing.Size(420, 288);
             this._resourceTreeView.TabIndex = 0;
             this._resourceTreeView.ThreeStateCheckboxes = false;
-            // 
+            //
             // label1
-            // 
+            //
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label1.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label1.Location = new System.Drawing.Point(12, 312);
@@ -288,17 +287,17 @@ namespace JetBrains.Omea.GUIControls
             this.label1.Size = new System.Drawing.Size(72, 16);
             this.label1.TabIndex = 8;
             this.label1.Text = "Size in bytes:";
-            // 
+            //
             // _fileLength
-            // 
+            //
             this._fileLength.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this._fileLength.Location = new System.Drawing.Point(96, 308);
             this._fileLength.Name = "_fileLength";
             this._fileLength.TabIndex = 1;
             this._fileLength.Text = "";
-            // 
+            //
             // SendResourcesDialog
-            // 
+            //
             this.AcceptButton = this._btnSend;
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
             this.CancelButton = this._btnCancel;
@@ -333,7 +332,7 @@ namespace JetBrains.Omea.GUIControls
                 {
                     SetNodeCheckState( treeNode, curState );
                 }
-            } 
+            }
             else if ( nodeTag.TreeNodeType == SerializableTag.Type.LinkedResource )
             {
                 nodeTag.AcceptSending = ( _resourceTreeView.GetNodeCheckState( e.Node ) ) == NodeCheckState.Checked;
@@ -371,7 +370,7 @@ namespace JetBrains.Omea.GUIControls
 
         private void OnSend(object sender, System.EventArgs e)
         {
-            
+
             IEmailService emailService = (IEmailService) Core.PluginLoader.GetPluginService( typeof(IEmailService) );
             if ( emailService != null )
             {
@@ -402,7 +401,7 @@ namespace JetBrains.Omea.GUIControls
             }
             public SerializableTag.Type TreeNodeType { get { return _type; } }
             public bool AcceptSending
-            { 
+            {
                 get { return _serNode.AcceptSending; }
                 set { _serNode.AcceptSending = value; }
             }

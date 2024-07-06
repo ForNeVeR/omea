@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Diagnostics;
@@ -154,19 +153,19 @@ namespace JetBrains.Omea.RSSPlugin
             this._tabSettings.SuspendLayout();
             this._tabAnnotation.SuspendLayout();
             this.SuspendLayout();
-            // 
+            //
             // label1
-            // 
+            //
             this._lblAddress.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._lblAddress.Location = new System.Drawing.Point(8, 8);
             this._lblAddress.Name = "_lblAddress";
             this._lblAddress.Size = new System.Drawing.Size(56, 17);
             this._lblAddress.TabIndex = 0;
             this._lblAddress.Text = "&Address:";
-            // 
+            //
             // _edtAddress
-            // 
-            this._edtAddress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._edtAddress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._edtAddress.Location = new System.Drawing.Point(84, 4);
             this._edtAddress.Name = "_edtAddress";
@@ -174,37 +173,37 @@ namespace JetBrains.Omea.RSSPlugin
             this._edtAddress.TabIndex = 1;
             this._edtAddress.Text = "";
             this._edtAddress.TextChanged += new System.EventHandler(this._edtAddress_TextChanged);
-            // 
+            //
             // label2
-            // 
+            //
             this._lblTitle.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._lblTitle.Location = new System.Drawing.Point(8, 32);
             this._lblTitle.Name = "_lblTitle";
             this._lblTitle.Size = new System.Drawing.Size(56, 17);
             this._lblTitle.TabIndex = 2;
             this._lblTitle.Text = "&Title:";
-            // 
+            //
             // _edtTitle
-            // 
-            this._edtTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._edtTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._edtTitle.Location = new System.Drawing.Point(84, 28);
             this._edtTitle.Name = "_edtTitle";
             this._edtTitle.Size = new System.Drawing.Size(316, 21);
             this._edtTitle.TabIndex = 3;
             this._edtTitle.Text = "";
-            // 
+            //
             // label3
-            // 
+            //
             this.label3.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label3.Location = new System.Drawing.Point(8, 56);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(68, 17);
             this.label3.TabIndex = 4;
             this.label3.Text = "Homepage:";
-            // 
+            //
             // _lblHomepage
-            // 
+            //
             this._lblHomepage.Cursor = System.Windows.Forms.Cursors.Hand;
             this._lblHomepage.ForeColor = System.Drawing.Color.FromArgb(((System.Byte)(70)), ((System.Byte)(70)), ((System.Byte)(211)));
             this._lblHomepage.Location = new System.Drawing.Point(84, 56);
@@ -212,18 +211,18 @@ namespace JetBrains.Omea.RSSPlugin
             this._lblHomepage.Size = new System.Drawing.Size(0, 0);
             this._lblHomepage.TabIndex = 5;
             this._lblHomepage.Click += new System.EventHandler(this._lblHomepage_LinkClicked);
-            // 
+            //
             // label5
-            // 
+            //
             this.label5.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label5.Location = new System.Drawing.Point(8, 80);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(68, 18);
             this.label5.TabStop = false;
             this.label5.Text = "Author:";
-            // 
+            //
             // _lblAuthor
-            // 
+            //
             this._lblAuthor.Cursor = System.Windows.Forms.Cursors.Hand;
             this._lblAuthor.ForeColor = System.Drawing.Color.FromArgb(((System.Byte)(70)), ((System.Byte)(70)), ((System.Byte)(211)));
             this._lblAuthor.Location = new System.Drawing.Point(84, 80);
@@ -231,18 +230,18 @@ namespace JetBrains.Omea.RSSPlugin
             this._lblAuthor.Size = new System.Drawing.Size(0, 0);
             this._lblAuthor.TabStop = false;
             this._lblAuthor.Click += new System.EventHandler(this._lblAuthor_LinkClicked);
-            // 
+            //
             // label6
-            // 
+            //
             this.label6.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label6.Location = new System.Drawing.Point(8, 104);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(68, 18);
             this.label6.TabIndex = 13;
             this.label6.Text = "Last updated:";
-            // 
+            //
             // _lblLastUpdated
-            // 
+            //
             this._lblLastUpdated.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._lblLastUpdated.Location = new System.Drawing.Point(84, 104);
             this._lblLastUpdated.Name = "_lblLastUpdated";
@@ -250,11 +249,11 @@ namespace JetBrains.Omea.RSSPlugin
             this._lblLastUpdated.TabIndex = 8;
             this._lblLastUpdated.Text = "label7";
             this._lblLastUpdated.UseMnemonic = false;
-            // 
+            //
             // _grpDescription
-            // 
-            this._grpDescription.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-                | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._grpDescription.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._grpDescription.Controls.Add(this._edtDescription);
             this._grpDescription.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -264,11 +263,11 @@ namespace JetBrains.Omea.RSSPlugin
             this._grpDescription.TabIndex = 6;
             this._grpDescription.TabStop = false;
             this._grpDescription.Text = "&Description";
-            // 
+            //
             // _edtDescription
-            // 
-            this._edtDescription.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-                | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._edtDescription.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._edtDescription.Location = new System.Drawing.Point(8, 24);
             this._edtDescription.Multiline = true;
@@ -277,9 +276,9 @@ namespace JetBrains.Omea.RSSPlugin
             this._edtDescription.Size = new System.Drawing.Size(380, 74);
             this._edtDescription.TabIndex = 0;
             this._edtDescription.Text = "";
-            // 
+            //
             // _chkAuthentication
-            // 
+            //
             this._chkAuthentication.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._chkAuthentication.Location = new System.Drawing.Point(8, 8);
             this._chkAuthentication.Name = "_chkAuthentication";
@@ -287,10 +286,10 @@ namespace JetBrains.Omea.RSSPlugin
             this._chkAuthentication.TabIndex = 1;
             this._chkAuthentication.Text = "The feed requires an HTTP &login";
             this._chkAuthentication.CheckedChanged += new System.EventHandler(this._chkAuthentication_CheckedChanged);
-            // 
+            //
             // _grpLogin
-            // 
-            this._grpLogin.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._grpLogin.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._grpLogin.Controls.Add(this._edtPassword);
             this._grpLogin.Controls.Add(this._lblPassword);
@@ -303,19 +302,19 @@ namespace JetBrains.Omea.RSSPlugin
             this._grpLogin.Size = new System.Drawing.Size(368, 72);
             this._grpLogin.TabIndex = 2;
             this._grpLogin.TabStop = false;
-            // 
+            //
             // label8
-            // 
+            //
             this._lblUserName.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._lblUserName.Location = new System.Drawing.Point(8, 20);
             this._lblUserName.Name = "_lblUserName";
             this._lblUserName.Size = new System.Drawing.Size(64, 16);
             this._lblUserName.TabIndex = 0;
             this._lblUserName.Text = "&User name:";
-            // 
+            //
             // _edtUserName
-            // 
-            this._edtUserName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._edtUserName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._edtUserName.Changed = false;
             this._edtUserName.Location = new System.Drawing.Point(72, 20);
@@ -323,19 +322,19 @@ namespace JetBrains.Omea.RSSPlugin
             this._edtUserName.Size = new System.Drawing.Size(288, 21);
             this._edtUserName.TabIndex = 1;
             this._edtUserName.Text = "";
-            // 
+            //
             // label7
-            // 
+            //
             this._lblPassword.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._lblPassword.Location = new System.Drawing.Point(8, 48);
             this._lblPassword.Name = "_lblPassword";
             this._lblPassword.Size = new System.Drawing.Size(60, 16);
             this._lblPassword.TabIndex = 2;
             this._lblPassword.Text = "&Password:";
-            // 
+            //
             // _edtPassword
-            // 
-            this._edtPassword.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._edtPassword.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._edtPassword.Changed = false;
             this._edtPassword.Location = new System.Drawing.Point(72, 44);
@@ -344,9 +343,9 @@ namespace JetBrains.Omea.RSSPlugin
             this._edtPassword.Size = new System.Drawing.Size(288, 21);
             this._edtPassword.TabIndex = 3;
             this._edtPassword.Text = "";
-            // 
+            //
             // _chkUpdate
-            // 
+            //
             this._chkUpdate.Checked = true;
             this._chkUpdate.CheckState = System.Windows.Forms.CheckState.Checked;
             this._chkUpdate.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -356,9 +355,9 @@ namespace JetBrains.Omea.RSSPlugin
             this._chkUpdate.TabIndex = 5;
             this._chkUpdate.Text = "Update &every";
             this._chkUpdate.CheckedChanged += new System.EventHandler(this._chkUpdate_CheckedChanged);
-            // 
+            //
             // _udUpdateFrequency
-            // 
+            //
             this._udUpdateFrequency.Changed = true;
             this._udUpdateFrequency.Location = new System.Drawing.Point(104, 108);
             this._udUpdateFrequency.Maximum = 1000;
@@ -368,27 +367,27 @@ namespace JetBrains.Omea.RSSPlugin
             this._udUpdateFrequency.TabIndex = 6;
             this._udUpdateFrequency.Text = "1";
             this._udUpdateFrequency.Value = 1;
-            // 
+            //
             // _cmbUpdatePeriod
-            // 
+            //
             this._cmbUpdatePeriod.Changed = false;
             this._cmbUpdatePeriod.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this._cmbUpdatePeriod.Location = new System.Drawing.Point(152, 108);
             this._cmbUpdatePeriod.Name = "_cmbUpdatePeriod";
             this._cmbUpdatePeriod.Size = new System.Drawing.Size(76, 21);
             this._cmbUpdatePeriod.TabIndex = 7;
-            // 
+            //
             // _image
-            // 
+            //
             this._image.Location = new System.Drawing.Point(8, 132);
             this._image.Name = "_image";
             this._image.Size = new System.Drawing.Size(144, 4);
             this._image.TabIndex = 15;
             this._image.TabStop = false;
-            // 
+            //
             // _grpEnclosure
-            // 
-            this._grpEnclosure.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._grpEnclosure.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._grpEnclosure.Controls.Add(this._browseForFolderControl);
             this._grpEnclosure.Location = new System.Drawing.Point(4, 136);
@@ -397,10 +396,10 @@ namespace JetBrains.Omea.RSSPlugin
             this._grpEnclosure.TabIndex = 16;
             this._grpEnclosure.TabStop = false;
             this._grpEnclosure.Text = "&Destination folder for downloaded feed enclosures";
-            // 
+            //
             // _browseForFolderControl
-            // 
-            this._browseForFolderControl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._browseForFolderControl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._browseForFolderControl.Changed = true;
             this._browseForFolderControl.Location = new System.Drawing.Point(4, 24);
@@ -408,7 +407,7 @@ namespace JetBrains.Omea.RSSPlugin
             this._browseForFolderControl.SelectedPath = "";
             this._browseForFolderControl.Size = new System.Drawing.Size(380, 25);
             this._browseForFolderControl.TabIndex = 0;
-            
+
             this._chkMarkReadOnLeave.Location = new Point(8, 196);
             this._chkMarkReadOnLeave.Size = new Size(392, 16);
             this._chkMarkReadOnLeave.Text = "&Mark all items read when leaving the feed";
@@ -433,11 +432,11 @@ namespace JetBrains.Omea.RSSPlugin
             this._chkAutoDownloadEncls.Size = new Size(220, 16);
             this._chkAutoDownloadEncls.Text = "Autodownload Enclosures";
             this._chkAutoDownloadEncls.TabIndex = 21;
-            // 
+            //
             // _edtAnnotation
-            // 
-            this._edtAnnotation.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-                | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._edtAnnotation.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._edtAnnotation.Location = new System.Drawing.Point(8, 8);
             this._edtAnnotation.Multiline = true;
@@ -446,9 +445,9 @@ namespace JetBrains.Omea.RSSPlugin
             this._edtAnnotation.Size = new System.Drawing.Size(386, 200);
             this._edtAnnotation.TabIndex = 0;
             this._edtAnnotation.Text = "";
-            // 
+            //
             // _panelCategories
-            // 
+            //
             _panelCategories.Controls.Add( _selector );
             _panelCategories.Size = new Size(386, 40);
             _panelCategories.Dock = DockStyle.Bottom;
@@ -460,9 +459,9 @@ namespace JetBrains.Omea.RSSPlugin
             _selector.Dock = DockStyle.Fill;
             _selector.Name = "_selector";
             _selector.TabIndex = 3;
-            // 
+            //
             // _btnSave
-            // 
+            //
             this._btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this._btnSave.DialogResult = System.Windows.Forms.DialogResult.OK;
             this._btnSave.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -472,9 +471,9 @@ namespace JetBrains.Omea.RSSPlugin
             this._btnSave.TabIndex = 10;
             this._btnSave.Text = "Save";
             this._btnSave.Click += new System.EventHandler(this.OnSaveFeed);
-            // 
+            //
             // _btnCancel
-            // 
+            //
             this._btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this._btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this._btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -483,9 +482,9 @@ namespace JetBrains.Omea.RSSPlugin
             this._btnCancel.Size = new System.Drawing.Size(75, 26);
             this._btnCancel.TabIndex = 11;
             this._btnCancel.Text = "Cancel";
-            // 
+            //
             // _btnHelp
-            // 
+            //
             this._btnHelp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this._btnHelp.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._btnHelp.Location = new System.Drawing.Point(340, 303);
@@ -495,11 +494,11 @@ namespace JetBrains.Omea.RSSPlugin
             this._btnHelp.Text = "Help";
             this._btnHelp.Click += new System.EventHandler(this._btnHelp_Click);
 
-            // 
+            //
             // _tabs
-            // 
-            this._tabs.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-                | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._tabs.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._tabs.Controls.Add(this._tabFeedInfo);
             this._tabs.Controls.Add(this._tabSettings);
@@ -509,9 +508,9 @@ namespace JetBrains.Omea.RSSPlugin
             this._tabs.SelectedIndex = 0;
             this._tabs.Size = new System.Drawing.Size(412, 288);
             this._tabs.TabIndex = 17;
-            // 
+            //
             // _tabFeedInfo
-            // 
+            //
             this._tabFeedInfo.Controls.Add(this._lblAddress);
             this._tabFeedInfo.Controls.Add(this._lblTitle);
             this._tabFeedInfo.Controls.Add(this._edtAddress);
@@ -529,9 +528,9 @@ namespace JetBrains.Omea.RSSPlugin
             this._tabFeedInfo.Size = new System.Drawing.Size(404, 262);
             this._tabFeedInfo.TabIndex = 0;
             this._tabFeedInfo.Text = "Feed Information";
-            // 
+            //
             // _tabSettings
-            // 
+            //
             this._tabSettings.Controls.Add(this._udUpdateFrequency);
             this._tabSettings.Controls.Add(this._chkUpdate);
             this._tabSettings.Controls.Add(this._cmbUpdatePeriod);
@@ -560,9 +559,9 @@ namespace JetBrains.Omea.RSSPlugin
             _tabAnnotation.Size = new System.Drawing.Size(404, 262);
             _tabAnnotation.TabIndex = 2;
             _tabAnnotation.Text = "Annotation";
-            // 
+            //
             // RSSFeedView
-            // 
+            //
             this.AcceptButton = this._btnSave;
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
             this.CancelButton = this._btnCancel;
@@ -614,7 +613,7 @@ namespace JetBrains.Omea.RSSPlugin
             _edtUserName.SetSetting( SettingArray.FromResourceList( _feeds, Props.HttpUserName, null, true ) );
             _edtPassword.SetSetting( SettingArray.FromResourceList( _feeds, Props.HttpPassword, null, true ) );
 
-            if ( _edtUserName.Setting.Different || _edtUserName.Setting.Defined || 
+            if ( _edtUserName.Setting.Different || _edtUserName.Setting.Defined ||
                 _edtPassword.Setting.Different || _edtPassword.Setting.Defined )
             {
                 _chkAuthentication.Checked = true;
@@ -648,8 +647,8 @@ namespace JetBrains.Omea.RSSPlugin
                 if ( !_feed.HasProp( Props.ImageContent ) && _feed.HasProp( Props.ImageURL ) &&
                      !string.IsNullOrEmpty( _feed.GetStringProp( Props.ImageURL )))
                 {
-                    Core.NetworkAP.QueueJob( JobPriority.AboveNormal, 
-                        new DownloadResourceBlobJob( _feed, Props.ImageContent, _feed.GetStringProp( Props.ImageURL ), 
+                    Core.NetworkAP.QueueJob( JobPriority.AboveNormal,
+                        new DownloadResourceBlobJob( _feed, Props.ImageContent, _feed.GetStringProp( Props.ImageURL ),
                         ImageContentDownloaded ) );
                 }
                 SetImage();
@@ -722,7 +721,7 @@ namespace JetBrains.Omea.RSSPlugin
             if ( feed.GetPropText( Props.Author ).Length > 0 )
             {
                 _lblAuthor.Text = feed.GetStringProp( Props.Author );
-                
+
                 IResource res = feed.GetLinkProp( Props.AuthorEmail );
                 if ( res != null )
                 {
@@ -759,7 +758,7 @@ namespace JetBrains.Omea.RSSPlugin
                     _lblAuthor.ClickableLink = false;
                     _lblAuthor.ForeColor = SystemColors.GrayText;
                 }
-            }            
+            }
             _edtDescription.Text = feed.GetStringProp( Props.Description );
 
             DateTime lastUpdateTime = _feed.GetDateProp( Props.LastUpdateTime );
@@ -770,7 +769,7 @@ namespace JetBrains.Omea.RSSPlugin
             else
             {
                 _lblLastUpdated.Text = lastUpdateTime.ToString();
-                
+
                 string lastError = _feed.GetStringProp( Core.Props.LastError );
                 if ( lastError != null )
                 {
@@ -872,7 +871,7 @@ namespace JetBrains.Omea.RSSPlugin
 
         private void _edtAddress_TextChanged( object sender, EventArgs e )
         {
-            UpdateControls();        
+            UpdateControls();
         }
 
         private void UpdateControls()

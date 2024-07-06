@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Drawing;
@@ -23,7 +22,7 @@ namespace JetBrains.Omea.RSSPlugin.SubscribeWizard
         private JetLinkLabel _lblValidate;
         private JetLinkLabel _lnkExistingFeed;
         private string _feedUrl;
-		/// <summary> 
+		/// <summary>
 		/// Required designer variable.
 		/// </summary>
 		private System.ComponentModel.Container components = null;
@@ -37,7 +36,7 @@ namespace JetBrains.Omea.RSSPlugin.SubscribeWizard
 
 		}
 
-		/// <summary> 
+		/// <summary>
 		/// Clean up any resources being used.
 		/// </summary>
 		protected override void Dispose( bool disposing )
@@ -53,8 +52,8 @@ namespace JetBrains.Omea.RSSPlugin.SubscribeWizard
 		}
 
 		#region Component Designer generated code
-		/// <summary> 
-		/// Required method for Designer support - do not modify 
+		/// <summary>
+		/// Required method for Designer support - do not modify
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent()
@@ -65,9 +64,9 @@ namespace JetBrains.Omea.RSSPlugin.SubscribeWizard
             this._lblValidate = new JetLinkLabel();
             this._lnkExistingFeed = new JetLinkLabel();
             this.SuspendLayout();
-            // 
+            //
             // label1
-            // 
+            //
             this.label1.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label1.Location = new System.Drawing.Point(8, 28);
             this.label1.Name = "label1";
@@ -75,25 +74,25 @@ namespace JetBrains.Omea.RSSPlugin.SubscribeWizard
             this.label1.TabIndex = 0;
             this.label1.Text = "Error when subscribing to feed:";
             this.label1.UseMnemonic = false;
-            // 
+            //
             // _lblErrorMessage
-            // 
+            //
             this._lblErrorMessage.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._lblErrorMessage.Location = new System.Drawing.Point(20, 64);
             this._lblErrorMessage.Name = "_lblErrorMessage";
             this._lblErrorMessage.Size = new System.Drawing.Size(352, 76);
             this._lblErrorMessage.TabIndex = 1;
-            // 
+            //
             // _lblExceptionMessage
-            // 
+            //
             this._lblExceptionMessage.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._lblExceptionMessage.Location = new System.Drawing.Point(20, 144);
             this._lblExceptionMessage.Name = "_lblExceptionMessage";
             this._lblExceptionMessage.Size = new System.Drawing.Size(352, 76);
             this._lblExceptionMessage.TabIndex = 2;
-            // 
+            //
             // _lblValidate
-            // 
+            //
             this._lblValidate.Location = new System.Drawing.Point(16, 224);
             this._lblValidate.Name = "_lblValidate";
             this._lblValidate.Size = new System.Drawing.Size(100, 16);
@@ -111,9 +110,9 @@ namespace JetBrains.Omea.RSSPlugin.SubscribeWizard
             this._lnkExistingFeed.TabIndex = 4;
             this._lnkExistingFeed.Visible = false;
             this._lnkExistingFeed.Click += new EventHandler( HandleExistingFeedClick );
-            // 
+            //
             // ErrorPane
-            // 
+            //
             this.Controls.Add(this._lblValidate);
             this.Controls.Add(this._lblExceptionMessage);
             this.Controls.Add(this._lblErrorMessage);

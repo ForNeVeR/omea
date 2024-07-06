@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System.Windows.Forms;
 using JetBrains.Omea.GUIControls;
@@ -79,8 +78,8 @@ namespace JetBrains.Omea.Favorites
 
 
 		#region Component Designer generated code
-		/// <summary> 
-		/// Required method for Designer support - do not modify 
+		/// <summary>
+		/// Required method for Designer support - do not modify
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent()
@@ -88,10 +87,10 @@ namespace JetBrains.Omea.Favorites
             this._importCheckBox = new System.Windows.Forms.CheckBox();
             this._exportCheckBox = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
-            // 
+            //
             // _importCheckBox
-            // 
-            this._importCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._importCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._importCheckBox.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._importCheckBox.Location = new System.Drawing.Point(0, 0);
@@ -100,10 +99,10 @@ namespace JetBrains.Omea.Favorites
             this._importCheckBox.TabIndex = 0;
             this._importCheckBox.Text = "&Import Favorites from Internet Explorer";
             this._importCheckBox.CheckedChanged += new System.EventHandler(this._importCheckBox_CheckedChanged);
-            // 
+            //
             // _exportCheckBox
-            // 
-            this._exportCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._exportCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._exportCheckBox.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._exportCheckBox.Location = new System.Drawing.Point(0, 20);
@@ -111,9 +110,9 @@ namespace JetBrains.Omea.Favorites
             this._exportCheckBox.Size = new System.Drawing.Size(340, 24);
             this._exportCheckBox.TabIndex = 1;
             this._exportCheckBox.Text = "&Export changes into Internet Explorer";
-            // 
+            //
             // FavoritesOptionsPane
-            // 
+            //
             this.Controls.Add(this._exportCheckBox);
             this.Controls.Add(this._importCheckBox);
             this.Name = "FavoritesOptionsPane";

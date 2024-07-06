@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.ComponentModel;
@@ -21,7 +20,7 @@ namespace JetBrains.Omea.GUIControls
 	public class ResourceTreePaneBase: AbstractViewPane, IResourceTreePane, IContextProvider, ICommandProcessor, IColorSchemeable
 	{
         private ToolStrip _toolBar;
-		/// <summary> 
+		/// <summary>
 		/// Required designer variable.
 		/// </summary>
 		private Container components = null;
@@ -81,7 +80,7 @@ namespace JetBrains.Omea.GUIControls
             }
         }
 
-	    /// <summary> 
+	    /// <summary>
 		/// Clean up any resources being used.
 		/// </summary>
 		protected override void Dispose( bool disposing )
@@ -97,25 +96,25 @@ namespace JetBrains.Omea.GUIControls
 		}
 
 		#region Component Designer generated code
-		/// <summary> 
-		/// Required method for Designer support - do not modify 
+		/// <summary>
+		/// Required method for Designer support - do not modify
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent()
 		{
             this._toolBar = new ToolStrip();
             this.SuspendLayout();
-            // 
+            //
             // _toolBar
-            // 
+            //
             this._toolBar.Location = new System.Drawing.Point(0, 0);
             this._toolBar.Name = "_toolBar";
             this._toolBar.Size = new System.Drawing.Size(150, 32);
             this._toolBar.TabIndex = 2;
             this._toolBar.Renderer = new GradientRenderer( Color.White, SystemColors.ControlDark );
-            // 
+            //
             // JetResourceTreePane
-            // 
+            //
             this.Controls.Add(this._toolBar);
             this.Name = "JetResourceTreePane";
             this.ResumeLayout(false);
@@ -148,9 +147,9 @@ namespace JetBrains.Omea.GUIControls
         public string RootResourceType
         {
             get { return _rootResourceType; }
-            set 
-            { 
-                _rootResourceType = value; 
+            set
+            {
+                _rootResourceType = value;
                 if ( _rootResourceType != null )
                 {
                     _rootResource = Core.ResourceTreeManager.GetRootForType( _rootResourceType );
@@ -173,8 +172,8 @@ namespace JetBrains.Omea.GUIControls
         public UnreadState UnreadState
         {
             get { return _unreadDecorator.UnreadState; }
-            set 
-            { 
+            set
+            {
                 if ( _unreadDecorator != null )
                 {
                     _unreadDecorator.UnreadState = value;
@@ -204,7 +203,7 @@ namespace JetBrains.Omea.GUIControls
             {
                 RootResource = Core.ResourceTreeManager.ResourceTreeRoot;
             }
-            
+
             _resourceTree.OpenProperty = Core.Props.Open;
             _dataProvider.SetRootResource( _rootResource, _parentProperty );
             _resourceTree.DataProvider = _dataProvider;
@@ -372,7 +371,7 @@ namespace JetBrains.Omea.GUIControls
                 return;
             }
             if ( Core.ResourceBrowser.OwnerResource != _resourceTree.ActiveResource ||
-                Core.ResourceBrowser.LastFilterResourceList != Core.ResourceBrowser.FilterResourceList || 
+                Core.ResourceBrowser.LastFilterResourceList != Core.ResourceBrowser.FilterResourceList ||
                 Core.ResourceBrowser.WebPageMode )
             {
                 UpdateSelection();
@@ -418,7 +417,7 @@ namespace JetBrains.Omea.GUIControls
                 // make sure synchronous selection update is performed
                 ExpandParents( res );
                 SelectResource( res, false );
-                return true;                                
+                return true;
             }
             return false;
 	    }
@@ -431,7 +430,7 @@ namespace JetBrains.Omea.GUIControls
                 // make sure synchronous selection update is performed
                 ExpandParents( res );
                 SelectResource( res, false );
-                return true;                                
+                return true;
             }
             return false;
 	    }
@@ -444,7 +443,7 @@ namespace JetBrains.Omea.GUIControls
                 // make sure synchronous selection update is performed
                 ExpandParents( res );
                 SelectResource( res, false );
-                return true;                                
+                return true;
             }
             return false;
 	    }
@@ -457,7 +456,7 @@ namespace JetBrains.Omea.GUIControls
                 // make sure synchronous selection update is performed
                 ExpandParents( res );
                 SelectResource( res, false );
-                return true;                                
+                return true;
             }
             return false;
 	    }
@@ -560,7 +559,7 @@ namespace JetBrains.Omea.GUIControls
     internal class ResourceNodeFilterAdapter: IJetListViewNodeFilter
     {
         private IResourceNodeFilter _filter;
-        
+
         public ResourceNodeFilterAdapter( IResourceNodeFilter filter )
         {
             _filter = filter;

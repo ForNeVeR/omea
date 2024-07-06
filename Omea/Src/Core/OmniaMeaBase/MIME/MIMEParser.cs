@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -10,7 +9,7 @@ using JetBrains.Omea.Base;
 
 namespace JetBrains.Omea.MIME
 {
-    /** 
+    /**
      * MIMEParser class helps to extract encoded text information from messages headers
      * Multiline and multipart encoded strings are supported
      * Each multipart encoded text is built in a single string returned
@@ -39,13 +38,13 @@ namespace JetBrains.Omea.MIME
         public static string DecodeMIMEString( string str )
         {
             StringBuilder output = StringBuilderPool.Alloc();
-            try 
+            try
             {
                 int begin = 0;
                 int end;
                 while( ( begin = str.IndexOf( _mimeBegin, begin ) ) >= 0 )
                 {
-                    /** 
+                    /**
                      * do not search mime end separator directly, enumerate mime
                      * header parts instead -- this avoids incorrect determination of
                      * header end in case of quotedprintable header
@@ -93,7 +92,7 @@ namespace JetBrains.Omea.MIME
         public static string CreateQuotedPrintableMIMEString( string charset, string text )
         {
             StringBuilder builder = StringBuilderPool.Alloc();
-            try 
+            try
             {
                 builder.Append( _mimeBegin );
                 builder.Append( charset );
@@ -111,7 +110,7 @@ namespace JetBrains.Omea.MIME
         public static string CreateBase64MIMEString( string charset, string text )
         {
             StringBuilder builder = StringBuilderPool.Alloc();
-            try 
+            try
             {
                 builder.Append( _mimeBegin );
                 builder.Append( charset );
@@ -129,7 +128,7 @@ namespace JetBrains.Omea.MIME
         public static string DecodeQuotedPrintable( string charset, string text )
         {
             StringBuilder builder = StringBuilderPool.Alloc();
-            try 
+            try
             {
                 ParseQuotedPrintable( charset, text, builder );
                 return builder.ToString();
@@ -143,7 +142,7 @@ namespace JetBrains.Omea.MIME
         public static byte[] DecodeQuotedPrintable( string text )
         {
             ArrayList bytes = ArrayListPool.Alloc();
-            try 
+            try
             {
                 string[] lines = text.Split( '\n' );
 
@@ -223,7 +222,7 @@ namespace JetBrains.Omea.MIME
         public static string EncodeQuotedPrintable( string charset, string text )
         {
             StringBuilder builder = StringBuilderPool.Alloc();
-            try 
+            try
             {
                 Encoding encoding = GetEncodingExceptionSafe( charset );
                 EncodeQuotedPrintable( encoding.GetBytes( text ), builder );
@@ -238,7 +237,7 @@ namespace JetBrains.Omea.MIME
         public static string EncodeQuotedPrintable( byte[] bytes )
         {
             StringBuilder builder = StringBuilderPool.Alloc();
-            try 
+            try
             {
                 EncodeQuotedPrintable( bytes, builder );
                 return builder.ToString();
@@ -312,7 +311,7 @@ namespace JetBrains.Omea.MIME
             bool wrap = true;
 
             ArrayList bytes = ArrayListPool.Alloc();
-            try 
+            try
             {
                 for( int i = 0; i < lines.Length; ++i )
                 {

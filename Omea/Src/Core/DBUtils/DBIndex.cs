@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -18,7 +17,7 @@ namespace JetBrains.Omea.Database
         void Shutdown();
 
         void RefreshCacheSize();
-        
+
         void SearchForRange( IntArrayList offsets, IComparable firstKey, IComparable secondKey );
         void SearchForRange( ArrayList offsets, IComparable firstKey, IComparable secondKey );
         IEnumerable SearchForRange( IComparable firstKey, IComparable secondKey );
@@ -67,8 +66,8 @@ namespace JetBrains.Omea.Database
 
         public static readonly int  _minimumCacheSize = 10;
         public static int           _cacheSizeMultiplier = 1;
-        
-        internal DBIndex( ITableDesign tableDesign, string name, FixedLengthKey fixedFactory, 
+
+        internal DBIndex( ITableDesign tableDesign, string name, FixedLengthKey fixedFactory,
             FixedLengthKey fixedFactory1, FixedLengthKey fixedFactory2, FixedLengthKey fixedFactoryValue )
         {
             Init( tableDesign, name );
@@ -80,8 +79,8 @@ namespace JetBrains.Omea.Database
             }
             _version = _tableDesign.Version;
 
-            _fullName = 
-                DBHelper.GetFullNameForIndex( tableDesign.Database.Path, tableDesign.Database.Name, 
+            _fullName =
+                DBHelper.GetFullNameForIndex( tableDesign.Database.Path, tableDesign.Database.Name,
                 tableDesign.Name, _name );
 
             _fixedFactory = fixedFactory;
@@ -282,7 +281,7 @@ namespace JetBrains.Omea.Database
             OmniaMeaBTree defragmented = new OmniaMeaBTree( _fullName + ".defrag", _fixedFactory );
             defragmented.Open();
             try
-            {  
+            {
                 defragmented.Clear();
                 foreach( KeyPair pair in keys )
                 {

@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 #pragma unmanaged
 
@@ -26,12 +25,12 @@ bool StringStream::IsHtml( const char* buf, unsigned int len )
   // If the rtf encodes text rather than html, then instead
   // it will only find "\fromtext".
   for (const char *c = buf; c < buf + len; c++ )
-  { 
-      if (strncmp(c,"\\from",5)==0) 
+  {
+      if (strncmp(c,"\\from",5)==0)
       {
           return strncmp(c,"\\fromhtml",9)==0;
       }
-  } 
+  }
   return false;
 }
 
@@ -40,18 +39,18 @@ bool StringStream::IsPlain( const char* buf, unsigned int len )
   // If the rtf encodes text rather than html, then instead
   // it will only find "\fromtext".
   for (const char *c = buf; c < buf + len; c++ )
-  { 
-      if (strncmp(c,"\\from",5)==0) 
+  {
+      if (strncmp(c,"\\from",5)==0)
       {
           return strncmp(c,"\\fromtext",9)==0;
       }
-  } 
+  }
   return false;
 }
 
 StringStream::Format StringStream::GetStreamFormat()
 {
-    
+
     const char* buf = _charsStorage->GetBuffer( 0 );
     if ( IsHtml( buf, BUFF_SIZE ) )
     {
@@ -61,7 +60,7 @@ StringStream::Format StringStream::GetStreamFormat()
     {
         return Format::PlainText;
     }
-    
+
     return Format::RTF;
 }
 
@@ -91,7 +90,7 @@ bool StringStream::Read( int sizeToRead )
 
 bool StringStream::Read()
 {
-    ULONG red; 
+    ULONG red;
     CharBufferSPtr buf = TypeFactory::CreateCharBuffer( _buff_size );
     HRESULT hr = _lpStream->Read( buf->Get(), _buff_size, &red );
     if ( hr == S_OK && red > 0 )
@@ -149,7 +148,7 @@ bool Html2Rtf1( const std::string& sHtml, int iCodePage, std::string& sRtf )
    char ch;
    const char *pCmp;
    bool bInTag=false;
-   
+
    sRtf=sHtml;
    if(iCodePage==CP_UTF8) iCodePage=0;
    for(i=(int)sRtf.length()-1; i>=0; --i)
@@ -196,7 +195,7 @@ bool Html2Rtf1( const std::string& sHtml, int iCodePage, std::string& sRtf )
        //sRtf.insert(i, sz );
      }
    }
-   
+
    for(i=(int)sRtf.length()-2; i>=0; --i)
    {
      if(sRtf[i]=='<')
@@ -224,7 +223,7 @@ bool Html2Rtf1( const std::string& sHtml, int iCodePage, std::string& sRtf )
          !strncmp(pCmp, "BR ", 3)
          )   strExtra="\\par ";
        else  strExtra="";
-       
+
        if(strTag[1]=='/') strTag="{\\*\\htmltag8 "+strExtra+strTag+"}";
        else               strTag="{\\*\\htmltag0 "+strExtra+strTag+"}";
        sRtf.erase(i, p-i+1);
@@ -249,7 +248,7 @@ bool Html2Rtf1( const std::string& sHtml, int iCodePage, std::string& sRtf )
      + "\\uc1\\pard\\plain\\deftab360 \\f0\\fs24\r\n"
      + sRtf
      + "}";
-   return true;  
+   return true;
  }
 CharBufferSPtr StringStream::Html2Rtf(  char* buffer )
 {
@@ -260,7 +259,7 @@ CharBufferSPtr StringStream::Html2Rtf(  char* buffer )
     charBuffer->strcopy( strRTF.c_str() );
     return charBuffer;
 }
- 
+
 void StringStream::DecodeRTF2HTMLInternal( char *buf, unsigned int *len )
 { // c -- pointer to where we're reading from
   // d -- pointer to where we're writing to. Invariant: d<c

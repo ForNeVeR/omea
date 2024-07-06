@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Text;
@@ -11,7 +10,7 @@ using JetBrains.Omea.Base;
 namespace JetBrains.Omea.MIME
 {
 
-    /** 
+    /**
      * MultiPartBodyBuilder class builds multi-part mime message
      * or plaintext message with uuencoded insertions
      */
@@ -24,7 +23,7 @@ namespace JetBrains.Omea.MIME
         public static string BuildPlainTextFlowedBody( string body, string charset )
         {
             StringBuilder bodyBuilder = StringBuilderPool.Alloc();
-            try 
+            try
             {
                 string[] lines = body.Split( '\n' );
 
@@ -107,7 +106,7 @@ namespace JetBrains.Omea.MIME
             string newBoundary = "----++Omea_Parts_Splitter" + new Random().NextDouble().ToString().Substring( 1 );
 
             StringBuilder bodyBuilder = StringBuilderPool.Alloc();
-            try 
+            try
             {
 
                 // add MIME help string
@@ -246,7 +245,7 @@ namespace JetBrains.Omea.MIME
                 }
             }
             StringBuilder bodyBuilder = StringBuilderPool.Alloc();
-            try 
+            try
             {
                 if( areSinglePeriods )
                 {

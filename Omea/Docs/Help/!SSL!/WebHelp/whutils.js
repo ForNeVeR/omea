@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 //	WebHelp 5.10.004
 var gsFileName="";
@@ -40,10 +39,10 @@ function _getRelativePath(strParentPath,strCurrentPath)
 		if(strParentPath.charAt(i)!=strCurrentPath.charAt(i))
 			break;
 	}
-	
+
 	strParentPath=strParentPath.substring(i);
-	strCurrentPath=strCurrentPath.substring(i);	
-	
+	strCurrentPath=strCurrentPath.substring(i);
+
 	var nPathPos=0;
 	while(nPathPos!=-1)
 	{
@@ -67,10 +66,10 @@ function _getRelativeFileName(strParentPath,strCurrentPath)
 		if(strParentPath.charAt(i)!=strCurrentPath.charAt(i))
 			break;
 	}
-	
+
 	strParentPath=strParentPath.substring(i);
-	strCurrentPath=strCurrentPath.substring(i);	
-	
+	strCurrentPath=strCurrentPath.substring(i);
+
 	var nPathPos=0;
 	while(nPathPos!=-1)
 	{
@@ -129,7 +128,7 @@ function _getFullPath(sPath,sRelPath)
 		}
 		sFullPath+=sRelPath;
 		return sFullPath;
-	}	
+	}
 }
 
 function _isAbsPath(strPath)
@@ -139,7 +138,7 @@ function _isAbsPath(strPath)
 }
 
 function _replaceSlash(strURL)
-{	
+{
 	var re=new RegExp("\\\\","g");
 	var strReplacedURL=strURL.replace(re,"/");
 	return strReplacedURL;
@@ -172,7 +171,7 @@ function insertItemIntoArray(oArray,i,obj)
 		var len=oArray.length;
 		for(var s=len;s>i;s--)
 			oArray[s]=oArray[s-1];
-		oArray[i]=obj;		
+		oArray[i]=obj;
 	}
 }
 
@@ -199,7 +198,7 @@ function loadData_2(sFileName,sDivName)
 		sHTML+="<iframe src=\""+sFileName+"\"></iframe>";
 	else
 		sHTML+="<iframe style=\"visibility:hidden;width:0;height:0\" src=\""+sFileName+"\"></iframe>";
-	
+
 	var oDivCon=getElement(sDivName);
 	if(oDivCon)
 	{
@@ -367,7 +366,7 @@ function _htmlToText(sHTML)
 	{
 		var re=new RegExp(sReplaceStringsSrc[i],"g");
 		sText=sText.replace(re,sReplaceStringsDst[i]);
-	}	
+	}
 	return sText;
 }
 
@@ -379,7 +378,7 @@ function _textToHtml_nonbsp(sText)
 	{
 		var re=new RegExp(sReplaceStringsDst[i],"g");
 		sHTML=sHTML.replace(re,sReplaceStringsSrc[i]);
-	}	
+	}
 	return sHTML;
 }
 
@@ -391,7 +390,7 @@ function _textToHtml(sText)
 	{
 		var re=new RegExp(sReplaceStringsDst[i],"g");
 		sHTML=sHTML.replace(re,sReplaceStringsSrc[i]);
-	}	
+	}
 	return sHTML;
 }
 
@@ -425,7 +424,7 @@ function getInnerText(obj)
 			return sText;
 		}
 	}
-		
+
 }
 
 function HighLightElement(obj,sHighLightColor,sNormalColor)
@@ -476,7 +475,7 @@ function getFontStyle(oFont)
 		}
 		else
 			sStyle+="font-size:"+oFont.sSize+";";
-			
+
 		sStyle+="font-style:"+oFont.sStyle+";";
 		sStyle+="font-weight:"+oFont.sWeight+";";
 		sStyle+="text-decoration:"+oFont.sDecoration+";";
@@ -498,7 +497,7 @@ function _browserStringToText(sBStr)
 		var i=0;
 		while(sBStr.charAt(i)>='0'&&sBStr.charAt(i)<='9')
 		{
-			sNum+=sBStr.charAt(i++);	
+			sNum+=sBStr.charAt(i++);
 		}
 		if(sNum!=""){
 			var nNum=parseInt(sNum,16);

@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -72,9 +71,9 @@ namespace JetBrains.Omea
             this._btnOK = new System.Windows.Forms.Button();
             this._btnReadNext = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
+            //
             // _lblMessage
-            // 
+            //
             this._lblMessage.ClickableLink = false;
             this._lblMessage.Cursor = System.Windows.Forms.Cursors.Default;
             this._lblMessage.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(204)));
@@ -83,18 +82,18 @@ namespace JetBrains.Omea
             this._lblMessage.Name = "_lblMessage";
             this._lblMessage.Size = new System.Drawing.Size(0, 0);
             this._lblMessage.TabIndex = 0;
-            // 
+            //
             // label1
-            // 
+            //
             this.label1.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label1.Location = new System.Drawing.Point(8, 32);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(100, 16);
             this.label1.TabIndex = 1;
             this.label1.Text = "Received resource:";
-            // 
+            //
             // _lblResource
-            // 
+            //
             this._lblResource.Cursor = System.Windows.Forms.Cursors.Default;
             this._lblResource.ForeColor = System.Drawing.SystemColors.ControlText;
             this._lblResource.LinkOwnerResource = null;
@@ -105,9 +104,9 @@ namespace JetBrains.Omea
             this._lblResource.ResourceLinkClicked += new CancelEventHandler(_lblResource_OnResourceLinkClicked);
             this._lblResource.Size = new System.Drawing.Size(23, 20);
             this._lblResource.TabIndex = 2;
-            // 
+            //
             // _btnOK
-            // 
+            //
             this._btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this._btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this._btnOK.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -116,9 +115,9 @@ namespace JetBrains.Omea
             this._btnOK.Size = new System.Drawing.Size(92, 23);
             this._btnOK.TabIndex = 3;
             this._btnOK.Text = "Close";
-            // 
+            //
             // _btnReadNext
-            // 
+            //
             this._btnReadNext.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this._btnReadNext.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._btnReadNext.Location = new System.Drawing.Point(80, 76);
@@ -128,9 +127,9 @@ namespace JetBrains.Omea
             this._btnReadNext.Text = "Read Next";
             this._btnReadNext.Visible = false;
             this._btnReadNext.Click += new System.EventHandler(this._btnReadNext_Click);
-            // 
+            //
             // NotificationMessageDlg
-            // 
+            //
             this.AcceptButton = this._btnOK;
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 14);
             this.CancelButton = this._btnOK;
@@ -189,11 +188,11 @@ namespace JetBrains.Omea
 
 	    private static void SkipDeletedResources()
 	    {
-	        while( _nextMessages.Count > 0 && 
+	        while( _nextMessages.Count > 0 &&
                 (_nextResources [0] == null || ((IResource) _nextResources [0]).IsDeleted ) )
 	        {
 	            _nextMessages.RemoveAt( 0 );
-	            _nextResources.RemoveAt( 0 );                    
+	            _nextResources.RemoveAt( 0 );
 	        }
 	    }
 
@@ -216,7 +215,7 @@ namespace JetBrains.Omea
             _lblMessage.Text = text;
             _lblResource.Resource = res;
             _lblResource.Width = _lblResource.PreferredWidth;
-            
+
             int maxWidth = (int) (Screen.PrimaryScreen.Bounds.Width * 0.75);
             int msgWidth = Math.Max( _lblMessage.PreferredWidth, _lblResource.Width );
             msgWidth = Math.Max( msgWidth, _btnOK.Width + _btnReadNext.Width + 32 );   // make sure the buttons fit
@@ -287,7 +286,7 @@ namespace JetBrains.Omea
             string  message = actionStore.ParameterAsString();
             DelayedExec( res, message );
         }
-        
+
         private static void DelayedExec( IResource res, string message )
         {
             if( Core.State == CoreState.Running )
@@ -296,7 +295,7 @@ namespace JetBrains.Omea
             }
             else if( Core.State != CoreState.ShuttingDown )
             {
-                Core.ResourceAP.QueueJobAt( DateTime.Now.AddSeconds( 10 ), 
+                Core.ResourceAP.QueueJobAt( DateTime.Now.AddSeconds( 10 ),
                     new ShowMessageDelegate( DelayedExec ), res, message );
             }
         }

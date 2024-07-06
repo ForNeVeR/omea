@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System.Drawing;
 using System.Windows.Forms;
@@ -64,7 +63,7 @@ namespace JetBrains.JetListViewLibrary
             _showHeader = false;
         }
 
-        protected internal override void DrawItem( Graphics g, Rectangle rc, object item, 
+        protected internal override void DrawItem( Graphics g, Rectangle rc, object item,
             RowState state, string highlightText )
         {
             int midPoint = (rc.Left + rc.Right) / 2;
@@ -128,7 +127,7 @@ namespace JetBrains.JetListViewLibrary
                 if ( oldCheckState != CheckBoxState.Hidden && oldCheckState != CheckBoxState.Grayed )
                 {
                     CheckBoxState newCheckState = ( oldCheckState == CheckBoxState.Checked )
-                        ? CheckBoxState.Unchecked 
+                        ? CheckBoxState.Unchecked
                         : CheckBoxState.Checked;
                     foreach( object selItem in OwnerControl.Selection )
                     {
@@ -148,7 +147,7 @@ namespace JetBrains.JetListViewLibrary
             if ( oldCheckState != CheckBoxState.Hidden && oldCheckState != CheckBoxState.Grayed )
             {
                 CheckBoxState newCheckState = ( oldCheckState == CheckBoxState.Checked )
-                    ? CheckBoxState.Unchecked 
+                    ? CheckBoxState.Unchecked
                     : CheckBoxState.Checked;
                 SetItemCheckState( item, newCheckState );
             }

@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collections;
@@ -21,7 +20,7 @@ namespace JetBrains.Omea.RSSPlugin.SubscribeWizard
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.CheckBox _chkSearchSyndic8;
         private System.Windows.Forms.Label _lblProgress;
-		/// <summary> 
+		/// <summary>
 		/// Required designer variable.
 		/// </summary>
 		private System.ComponentModel.Container components = null;
@@ -30,13 +29,13 @@ namespace JetBrains.Omea.RSSPlugin.SubscribeWizard
 		{
 			// This call is required by the Windows.Forms Form Designer.
 			InitializeComponent();
-            
-            this.label1.Text = Core.ProductName + " could not find a feed on the specified site. " + 
+
+            this.label1.Text = Core.ProductName + " could not find a feed on the specified site. " +
                 Core.ProductName + " can now perform a " +
                 "search on Syndic8.com to find a feed for the site that is located elsewhere.";
 		}
 
-		/// <summary> 
+		/// <summary>
 		/// Clean up any resources being used.
 		/// </summary>
 		protected override void Dispose( bool disposing )
@@ -52,8 +51,8 @@ namespace JetBrains.Omea.RSSPlugin.SubscribeWizard
 		}
 
 		#region Component Designer generated code
-		/// <summary> 
-		/// Required method for Designer support - do not modify 
+		/// <summary>
+		/// Required method for Designer support - do not modify
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent()
@@ -62,9 +61,9 @@ namespace JetBrains.Omea.RSSPlugin.SubscribeWizard
             this._chkSearchSyndic8 = new System.Windows.Forms.CheckBox();
             this._lblProgress = new System.Windows.Forms.Label();
             this.SuspendLayout();
-            // 
+            //
             // label1
-            // 
+            //
             this.label1.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label1.Location = new System.Drawing.Point(8, 28);
             this.label1.Name = "label1";
@@ -73,26 +72,26 @@ namespace JetBrains.Omea.RSSPlugin.SubscribeWizard
             this.label1.Text = "OmniaMea could not find a feed on the specified site. OmniaMea can now perform a " +
                                "search on Syndic8.com to find a feed for the site that is located elsewhere.";
             this.label1.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top;
-            // 
+            //
             // _chkSearchSyndic8
-            // 
+            //
             this._chkSearchSyndic8.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._chkSearchSyndic8.Location = new System.Drawing.Point(8, 88);
             this._chkSearchSyndic8.Name = "_chkSearchSyndic8";
             this._chkSearchSyndic8.Size = new System.Drawing.Size(268, 24);
             this._chkSearchSyndic8.TabIndex = 1;
             this._chkSearchSyndic8.Text = "Search for the feed on Syndic8.com";
-            // 
+            //
             // _lblProgress
-            // 
+            //
             this._lblProgress.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._lblProgress.Location = new System.Drawing.Point(24, 268);
             this._lblProgress.Name = "_lblProgress";
             this._lblProgress.Size = new System.Drawing.Size(336, 16);
             this._lblProgress.TabIndex = 6;
-            // 
+            //
             // SearchSyndic8Pane
-            // 
+            //
             this.Controls.Add(this._lblProgress);
             this.Controls.Add(this._chkSearchSyndic8);
             this.Controls.Add(this.label1);

@@ -1,7 +1,6 @@
-﻿/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.IO;
@@ -14,7 +13,7 @@ using JetBrains.Omea.FileTypes;
 using JetBrains.Omea.ResourceTools;
 
 namespace JetBrains.Omea
-{    
+{
     internal class UnknownFileResource : UserControl, IResourceIconProvider, IResourceDisplayer, IDisplayPane
     {
         private UnknownFileResource()
@@ -24,7 +23,7 @@ namespace JetBrains.Omea
             IResourceTypeCollection resTypes = Core.ResourceStore.ResourceTypes;
             if( !resTypes.Exist( _unknowFileResourceType ) )
             {
-                resTypes.Register( _unknowFileResourceType, "Unknown File", "Name", 
+                resTypes.Register( _unknowFileResourceType, "Unknown File", "Name",
                     ResourceTypeFlags.NoIndex | ResourceTypeFlags.FileFormat );
             }
             else
@@ -258,10 +257,10 @@ namespace JetBrains.Omea
             this._infoLabel = new System.Windows.Forms.TextBox();
             this._openButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
+            //
             // _infoLabel
-            // 
-            this._infoLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            //
+            this._infoLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
             this._infoLabel.BackColor = System.Drawing.SystemColors.Control;
             this._infoLabel.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -272,9 +271,9 @@ namespace JetBrains.Omea
             this._infoLabel.Size = new System.Drawing.Size(432, 40);
             this._infoLabel.TabIndex = 0;
             this._infoLabel.Text = "";
-            // 
+            //
             // _openButton
-            // 
+            //
             this._openButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._openButton.Location = new System.Drawing.Point(8, 56);
             this._openButton.Name = "_openButton";
@@ -282,9 +281,9 @@ namespace JetBrains.Omea
             this._openButton.TabIndex = 1;
             this._openButton.Text = "Open in associated application";
             this._openButton.Click += new System.EventHandler(this._openButton_Click);
-            // 
+            //
             // UnknownFileResource
-            // 
+            //
             this.BackColor = System.Drawing.SystemColors.Control;
             this.Controls.Add(this._openButton);
             this.Controls.Add(this._infoLabel);
