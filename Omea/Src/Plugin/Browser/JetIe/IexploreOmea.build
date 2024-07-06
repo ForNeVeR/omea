@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
+<!--
+SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+
+SPDX-License-Identifier: GPL-2.0-only
+-->
+
 <project name="IexploreOmea" default="IexploreOmea.Build" currentframework="net-1.1">
 	<description>JetBrains Omea Add-on for Internet Explorer.</description>
 	<target name="IexploreOmea.Build">

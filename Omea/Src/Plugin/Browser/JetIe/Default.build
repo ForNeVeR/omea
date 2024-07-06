@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
+<!--
+SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+
+SPDX-License-Identifier: GPL-2.0-only
+-->
+
 <project name="JetIe" default="JetIe.Build" currentframework="net-1.1">
 	<description>JetIe Family Internet Explorer Add-Ons build.</description>
 	<target name="JetIe.Build">
