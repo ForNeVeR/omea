@@ -1,4 +1,9 @@
 <?xml version="1.0"?>
+<!--
+SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+
+SPDX-License-Identifier: GPL-2.0-only
+-->
 
 <!-- Build file for the Post2OneNote plugin. Assumes to be invoked from the main
      Omea build file. Requires the build.dir property to be set to the directory

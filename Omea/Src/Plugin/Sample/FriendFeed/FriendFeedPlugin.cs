@@ -1,4 +1,8 @@
-﻿using System;
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
+
+using System;
 using System.Windows.Forms;
 using FriendFeed;
 using JetBrains.Omea.OpenAPI;
@@ -63,7 +67,7 @@ namespace JetBrains.Omea.SamplePlugins.FriendFeed
             {
                 client.PublishLink( title, link, comment );
             }
-            
+
         }
     }
 }

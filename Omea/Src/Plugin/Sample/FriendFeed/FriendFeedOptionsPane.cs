@@ -1,4 +1,8 @@
-﻿using System.Diagnostics;
+﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
+
+using System.Diagnostics;
 using JetBrains.Omea.OpenAPI;
 
 namespace JetBrains.Omea.SamplePlugins.FriendFeed
