@@ -3,5 +3,12 @@
 # SPDX-License-Identifier: MIT
 
 /.idea/
+/Omea/Bin/
+/Omea/Obj/
+/Omea/Src/Core/MshtmlSite/_MsHtmlSite*
+/Omea/Src/Core/MshtmlSite/dlldata.c
+/Omea/Src/Core/OmniaMeaBase/Install/InstallationData.cs
 
-*.DotSettings.user
+*.ncb
+*.suo
+*.user

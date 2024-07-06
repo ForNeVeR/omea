@@ -8,7 +8,8 @@ using System.IO;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using System.Diagnostics;
-using AxAcroPDFLib;
+// TODO: Migrate to another PDF library
+//using AxAcroPDFLib;
 
 using JetBrains.Build.InstallationData;
 using JetBrains.Interop.WinApi;
@@ -175,20 +176,24 @@ namespace JetBrains.Omea.PDFPlugin
 
 	internal class AcrobatOcxDisplayer : IResourceDisplayer, IDisplayPane, IDisposable
 	{
-		private readonly AxPdfLib.AxPdf _axPdf;
+        // TODO: Migrate to another PDF library
+		// private readonly AxPdfLib.AxPdf _axPdf;
+        private readonly object _axPdf;
 
 		public AcrobatOcxDisplayer()
 		{
-			_axPdf = new AxPdfLib.AxPdf();
-			((System.ComponentModel.ISupportInitialize)_axPdf).BeginInit();
-			_axPdf.Enabled = true;
-			_axPdf.Name = "_axPdf";
+            // TODO: Migrate to another PDF library
+            //_axPdf = new AxPdfLib.AxPdf();
+            //((System.ComponentModel.ISupportInitialize)_axPdf).BeginInit();
+            //_axPdf.Enabled = true;
+            //_axPdf.Name = "_axPdf";
 		}
 
 		public void Dispose()
 		{
-			if( _axPdf != null )
-				COM_Object.Release( _axPdf.GetOcx() );
+            // TODO: Migrate to another PDF library
+            //if( _axPdf != null )
+            //    COM_Object.Release( _axPdf.GetOcx() );
 		}
 
 		public IDisplayPane CreateDisplayPane( string resourceType )
@@ -198,16 +203,19 @@ namespace JetBrains.Omea.PDFPlugin
 
 		Control IDisplayPane.GetControl()
 		{
-			return _axPdf;
+            // TODO: Migrate to another PDF library
+            //return _axPdf;
+            return null;
 		}
 
 		void IDisplayPane.DisplayResource( IResource resource )
 		{
 			try
 			{
+                // TODO: Migrate to another PDF library
 				string  FileName = Core.FileResourceManager.GetSourceFile( resource );
 				Debug.Assert(!string.IsNullOrEmpty(FileName));
-				_axPdf.LoadFile( FileName );
+                //_axPdf.LoadFile( FileName );
 			}
 			catch( Exception exc )
 			{
@@ -249,19 +257,22 @@ namespace JetBrains.Omea.PDFPlugin
 
 	internal class Acrobat7Displayer: IResourceDisplayer, IDisplayPane, IDisposable
 	{
-		private readonly AxAcroPDF _axPdf;
+		// TODO: Migrate to another PDF library
+        // private readonly AxAcroPDF _axPdf;
+        private readonly object _axPdf;
 
 		public Acrobat7Displayer()
 		{
-			_axPdf = new AxAcroPDF();
-			_axPdf.Enabled = true;
-			_axPdf.Name = "_axPdf";
+            //_axPdf = new AxAcroPDF();
+            //_axPdf.Enabled = true;
+            //_axPdf.Name = "_axPdf";
 		}
 
 		public void Dispose()
 		{
-			if( _axPdf != null )
-				COM_Object.Release( _axPdf.GetOcx() );
+            // TODO: Migrate to another PDF library
+            //if( _axPdf != null )
+            //    COM_Object.Release( _axPdf.GetOcx() );
 		}
 
 		public IDisplayPane CreateDisplayPane( string resourceType )
@@ -271,7 +282,9 @@ namespace JetBrains.Omea.PDFPlugin
 
 		Control IDisplayPane.GetControl()
 		{
-			return _axPdf;
+            // TODO: Migrate to another PDF library
+            //return _axPdf;
+            return null;
 		}
 
 		void IDisplayPane.DisplayResource( IResource resource )
@@ -286,7 +299,8 @@ namespace JetBrains.Omea.PDFPlugin
 					string  fileName = Core.FileResourceManager.GetSourceFile( resource );
 					if( fileName == null )
 						throw new ApplicationException( "PDFPlugin — Can not restore PDF file from resource." );
-					_axPdf.LoadFile( fileName );
+                    // TODO: Migrate to another PDF library
+                    //_axPdf.LoadFile( fileName );
 				}
 				catch(COMException ex)
 				{

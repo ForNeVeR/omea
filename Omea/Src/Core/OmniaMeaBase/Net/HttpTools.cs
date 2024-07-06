@@ -13,8 +13,8 @@ using ICSharpCode.SharpZipLib.GZip;
 using ICSharpCode.SharpZipLib.Zip.Compression.Streams;
 using JetBrains.Omea.Base;
 using JetBrains.Omea.Diagnostics;
-using Microsoft.Web.Services.Security.X509;
 using JetBrains.Omea.OpenAPI;
+using System.Security.Cryptography.X509Certificates;
 
 namespace JetBrains.Omea.HttpTools
 {
@@ -95,12 +95,16 @@ namespace JetBrains.Omea.HttpTools
             }
             GlobalProxySelection.Select = DefaultProxy;
 
-            X509CertificateStore store =
-                X509CertificateStore.CurrentUserStore( X509CertificateStore.MyStore );
-            if( store.OpenRead() )
+            X509Store store = new X509Store(StoreLocation.CurrentUser);
+            try
             {
+                store.Open(OpenFlags.ReadOnly);
                 _certificates = store.Certificates;
-                Trace.WriteLine( "Number of current user's certificates: " + _certificates.Count, "HttpReader" );
+                Trace.WriteLine("Number of current user's certificates: " + _certificates.Count, "HttpReader");
+            }
+            catch (Exception ex)
+            {
+                Trace.WriteLine("Cannot open certificate store: " + ex);
             }
             Trace.WriteLine( "Default connection limit: " + ServicePointManager.DefaultConnectionLimit );
             Trace.WriteLine( "Max service point idle time: " + ServicePointManager.MaxServicePointIdleTime );

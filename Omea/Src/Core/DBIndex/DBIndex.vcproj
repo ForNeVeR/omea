@@ -1,7 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<!--SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+<!--
+SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
 
 SPDX-License-Identifier: GPL-2.0-only
+-->
 <VisualStudioProject ProjectType="Visual C++" Version="9.00" Name="DBIndex" ProjectGUID="{7324F8A3-E741-451A-8428-BCD71E464A89}" RootNamespace="DBIndex" Keyword="ManagedCProj" TargetFrameworkVersion="131072">
 	<Platforms>
 		<Platform Name="Win32" />
@@ -49,7 +51,7 @@ SPDX-License-Identifier: GPL-2.0-only
 	</Configurations>
 	<References>
 		<AssemblyReference RelativePath="mscorlib.dll" AssemblyName="mscorlib, Version=2.0.0.0, PublicKeyToken=b77a5c561934e089, processorArchitecture=IA64" MinFrameworkVersion="131072" />
-		<ProjectReference ReferencedProjectIdentifier="{C77A02EC-E116-44B9-8FF2-85637FA405B7}" RelativePathToProject=".\Core\OmniaMeaBase\OmniaMeaBase.csproj" />
+		<ProjectReference ReferencedProjectIdentifier="{C77A02EC-E116-44B9-8FF2-85637FA405B7}" RelativePathToProject="..\OmniaMeaBase\OmniaMeaBase.csproj" />
 		<AssemblyReference RelativePath="System.dll" AssemblyName="System, Version=2.0.0.0, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL" MinFrameworkVersion="131072" />
 	</References>
 	<Files>
