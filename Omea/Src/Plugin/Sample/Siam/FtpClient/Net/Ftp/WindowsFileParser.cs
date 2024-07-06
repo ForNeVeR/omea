@@ -1,28 +1,15 @@
 // edtFTPnet
-// 
-// Copyright (C) 2004 Enterprise Distributed Technologies Ltd
-// 
-// www.enterprisedt.com
-// 
-// This library is free software; you can redistribute it and/or
-// modify it under the terms of the GNU Lesser General Public
-// License as published by the Free Software Foundation; either
-// version 2.1 of the License, or (at your option) any later version.
-// 
-// This library is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-// Lesser General Public License for more details.
-// 
-// You should have received a copy of the GNU Lesser General Public
-// License along with this library; if not, write to the Free Software
-// Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-// 
-// Bug fixes, suggestions and comments should posted on 
+/*
+SPDX-FileCopyrightText: 2004 Enterprise Distributed Technologies Ltd
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+*/
+//
+// Bug fixes, suggestions and comments should posted on
 // http://www.enterprisedt.com/forums/index.php
-// 
+//
 // Change Log:
-// 
+//
 // $Log: WindowsFileParser.cs,v $
 // Revision 1.5  2004/11/06 11:10:02  bruceb
 // tidied namespaces, changed IOException to SystemException
@@ -41,8 +28,8 @@ using System.Globalization;
 using Logger = EnterpriseDT.Util.Debug.Logger;
 
 namespace EnterpriseDT.Net.Ftp
-{    
-	/// <summary>  
+{
+	/// <summary>
 	/// Represents a remote Windows file parser
 	/// </summary>
 	/// <author>       Bruce Blackshaw
@@ -50,51 +37,51 @@ namespace EnterpriseDT.Net.Ftp
 	/// <version>      $LastChangedRevision$
 	/// </version>
 	public class WindowsFileParser:FTPFileParser
-	{			
+	{
 		/// <summary> Logging object</summary>
 		private Logger log;
-        
+
 		/// <summary>Date format</summary>
 		private static readonly string format = "MM'-'dd'-'yy hh':'mmtt";
-		
+
 		/// <summary> Directory field</summary>
 		private const string DIR = "<DIR>";
-        
+
         /// <summary>Splitter token</summary>
         private char[] sep = {' '};
-		
+
 		/// <summary> Number of expected fields</summary>
 		private const int MIN_EXPECTED_FIELD_COUNT = 4;
-		
+
 		/// <summary> Default constructor</summary>
 		public WindowsFileParser()
 		{
             log = Logger.GetLogger(typeof(WindowsFileParser));
 		}
-		
+
 		/// <summary> Parse server supplied string. Should be in
-		/// form 
+		/// form
 		/// <![CDATA[
 		/// 05-17-03  02:47PM                70776 ftp.jar
 		/// 08-28-03  10:08PM       <DIR>          EDT SSLTest
 		/// ]]>
 		/// </summary>
-		/// <param name="raw">  
+		/// <param name="raw">
 		/// raw string to parse
 		/// </param>
 		public override FTPFile Parse(string raw)
 		{
 			string[] fields = Split(raw);
-			
+
 			if (fields.Length < MIN_EXPECTED_FIELD_COUNT)
 			{
 				throw new FormatException("Unexpected number of fields: " + fields.Length);
 			}
-			
+
 			// first two fields are date time
-			DateTime lastModified = DateTime.ParseExact(fields[0] + " " + fields[1], 
+			DateTime lastModified = DateTime.ParseExact(fields[0] + " " + fields[1],
                 format, CultureInfo.CurrentCulture.DateTimeFormat);
-			
+
 			// dir flag
 			bool isDir = false;
 			long size = 0L;
@@ -111,7 +98,7 @@ namespace EnterpriseDT.Net.Ftp
 					throw new FormatException("Failed to parse size: " + fields[2]);
 				}
 			}
-			
+
 			// we've got to find the starting point of the name. We
 			// do this by finding the pos of all the date/time fields, then
 			// the name - to ensure we don't get tricked up by a date or dir the

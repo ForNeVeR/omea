@@ -1,17 +1,9 @@
 ////////////////////////////////////////////////////////////////////////////////////
-//  File:   Header.cs
-//  Author: Sergei Pavlovsky
+// SPDX-FileCopyrightText: 2004 by Sergei Pavlovsky (sergei_vp@hotmail.com, sergei_vp@ukr.net)
 //
-//  Copyright (c) 2004 by Sergei Pavlovsky (sergei_vp@hotmail.com, sergei_vp@ukr.net)
+// SPDX-License-Identifier: LicenseRef-SP.Windows
 //
-//	This file is provided "as is" with no expressed or implied warranty.
-//	The author accepts no liability if it causes any damage whatsoever.
-// 
-//  This code is free and may be used in any way you desire. If the source code in 
-//  this file is used in any commercial application then a simple email would be 
-//	nice.
-//
-//  Revisions: 
+//  Revisions:
 //    06/24/2004 - Bugfix. Control was flickering on resizing.
 //
 ////////////////////////////////////////////////////////////////////////////////////
@@ -67,22 +59,22 @@ namespace SP.Windows
 		public static string SectionDoesNotExist(string sText)
 		{
 			return "Section \"" + sText + "\" does not exist in the collection";
-		}	
+		}
 
 		public static string FailedToInsertItem()
 		{
 			return "Failed to insert item.";
-		}	
+		}
 
 		public static string FailedToRemoveItem()
 		{
 			return "Failed to remove item.";
-		}			
+		}
 
 		public static string FailedToChangeItem()
 		{
 			return "Failed to change item.";
-		}			
+		}
 	}
 
 #endregion Common
@@ -110,7 +102,7 @@ namespace SP.Windows
 		DefaultProperty("Text"),
 		ToolboxItem(false),
 		DesignTimeVisible(false),
-		SecurityPermission(SecurityAction.LinkDemand, 
+		SecurityPermission(SecurityAction.LinkDemand,
 						   Flags=SecurityPermissionFlag.UnmanagedCode)
 	]
 	public class HeaderSection : Component, ICloneable
@@ -118,7 +110,7 @@ namespace SP.Windows
 		/// <summary>
 		/// Data fields
 		/// </summary>
-		
+
 		// Owner collection
 		private HeaderSectionCollection collection = null;
 
@@ -159,25 +151,25 @@ namespace SP.Windows
 		private int cxWidth = 100;
 
 		internal void _SetWidth(int cx)
-		{			
+		{
 			if ( cx < 0 )
 				throw new ArgumentOutOfRangeException("cx", cx, ErrMsg.NegVal());
 
 			this.cxWidth = cx;
-		}   
+		}
 
 		[
 			Category("Data"),
 			Description("Specifies section width.")
-		]                      
+		]
 		public int Width
 		{
 			get { return this.cxWidth; }
 
 			set
-			{ 
+			{
 				if ( value != this.cxWidth )
-				{ 
+				{
 					_SetWidth(value);
 
 					// Notify owner header control
@@ -206,12 +198,12 @@ namespace SP.Windows
 		]
 		internal int Format
 		{
-			get 
-			{ 
+			get
+			{
 				if ( this._GetActualRightToLeft() == RightToLeft.Yes )
 					return this.fFormat|NativeHeader.HDF_RTLREADING;
 				else
-					return this.fFormat; 
+					return this.fFormat;
 			}
 		}
 
@@ -220,8 +212,8 @@ namespace SP.Windows
 
 		internal void _SetText(string text)
 		{
-			this.text = text; 
-          
+			this.text = text;
+
 			if ( this.text != null )
 				this.fFormat |= NativeHeader.HDF_STRING;
 			else
@@ -238,9 +230,9 @@ namespace SP.Windows
 			get { return this.text; }
 
 			set
-			{ 
+			{
 				if ( value != this.text )
-				{ 
+				{
 					_SetText(value);
 
 					// Notify owner header control
@@ -251,15 +243,15 @@ namespace SP.Windows
 					}
 				}
 			}
-		} 
+		}
 
 		// ImageIndex
 		private int iImage = -1;
 
 		internal void _SetImageIndex(int index)
 		{
-			this.iImage = index; 
-          
+			this.iImage = index;
+
 			if ( this.iImage >= 0 )
 				this.fFormat |= NativeHeader.HDF_IMAGE;
 			else
@@ -284,7 +276,7 @@ namespace SP.Windows
 			get { return this.iImage; }
 
 			set
-			{ 
+			{
 				if ( value != this.iImage )
 				{
 					_SetImageIndex(value);
@@ -321,8 +313,8 @@ namespace SP.Windows
 				this.hBitmap = IntPtr.Zero;
 			}
 
-			this.bitmap = bitmap; 
-          
+			this.bitmap = bitmap;
+
 			if ( this.bitmap != null )
 				this.fFormat |= NativeHeader.HDF_BITMAP;
 			else
@@ -338,7 +330,7 @@ namespace SP.Windows
 		{
 			get { return this.bitmap; }
 			set
-			{ 
+			{
 				if ( value != this.bitmap )
 				{
 					_SetBitmap(value);
@@ -360,7 +352,7 @@ namespace SP.Windows
 		{
 			Header owner = this.Header;
 
-			return ( this.enRightToLeft == RightToLeft.Inherit && owner != null ) 
+			return ( this.enRightToLeft == RightToLeft.Inherit && owner != null )
 						? owner.RightToLeft
 						: this.enRightToLeft;
 		}
@@ -377,7 +369,7 @@ namespace SP.Windows
 		public RightToLeft RightToLeft
 		{
 			get { return enRightToLeft; }
-			set 
+			set
 			{
 				if ( this.enRightToLeft != value )
 				{
@@ -445,7 +437,7 @@ namespace SP.Windows
 		{
 			get { return _GetContentAlign(); }
 
-			set 
+			set
 			{
 				if ( value != _GetContentAlign() )
 				{
@@ -484,7 +476,7 @@ namespace SP.Windows
 			case LeftRightAlignment.Right:
 				nFlag = NativeHeader.HDF_BITMAP_ON_RIGHT;
 				break;
-    
+
 			default:
 				throw new NotSupportedException(ErrMsg.InvVal(enValue.ToString()), null);
 			}
@@ -501,7 +493,7 @@ namespace SP.Windows
 		{
 			get { return _GetImageAlign(); }
 
-			set 
+			set
 			{
 				if ( value != _GetImageAlign() )
 				{
@@ -543,7 +535,7 @@ namespace SP.Windows
 			case HeaderSectionSortMarks.Down:
 				nFlag = NativeHeader.HDF_SORTDOWN;
 				break;
-        
+
 			default:
 				throw new NotSupportedException(ErrMsg.InvVal(enValue.ToString()), null);
 			}
@@ -560,7 +552,7 @@ namespace SP.Windows
 		{
 			get { return _GetSortMark(); }
 
-			set 
+			set
 			{
 				if ( value != _GetSortMark() )
 				{
@@ -590,11 +582,11 @@ namespace SP.Windows
 		public object Tag
 		{
 			get { return this.tag; }
-			set 
-			{ 
+			set
+			{
 				if ( this.tag != value )
 				{
-					this.tag = value; 
+					this.tag = value;
 				}
 			}
 		}
@@ -649,7 +641,7 @@ namespace SP.Windows
 			_SetBitmap(bitmap);
 		}
 
-		public HeaderSection(string text, int cxWidth, int iImage, Bitmap bitmap, 
+		public HeaderSection(string text, int cxWidth, int iImage, Bitmap bitmap,
 							 HorizontalAlignment enContentAlign)
 		{
 			_SetText(text);
@@ -659,8 +651,8 @@ namespace SP.Windows
 			_SetContentAlign(enContentAlign);
 		}
 
-		public HeaderSection(string text, int cxWidth, int iImage, Bitmap bitmap, 
-							 HorizontalAlignment enContentAlign, 
+		public HeaderSection(string text, int cxWidth, int iImage, Bitmap bitmap,
+							 HorizontalAlignment enContentAlign,
 							 LeftRightAlignment enImageAlign)
 		{
 			_SetText(text);
@@ -671,8 +663,8 @@ namespace SP.Windows
 			_SetImageAlign(enImageAlign);
 		}
 
-		public HeaderSection(string text, int cxWidth, int iImage, Bitmap bitmap, 
-							 HorizontalAlignment enContentAlign, 
+		public HeaderSection(string text, int cxWidth, int iImage, Bitmap bitmap,
+							 HorizontalAlignment enContentAlign,
 							 LeftRightAlignment enImageAlign, object tag)
 		{
 			_SetText(text);
@@ -684,9 +676,9 @@ namespace SP.Windows
 			_SetTag(tag);
 		}
 
-		public HeaderSection(string text, int cxWidth, int iImage, Bitmap bitmap, 
-							 RightToLeft enRightToLeft,	HorizontalAlignment enContentAlign, 
-							 LeftRightAlignment enImageAlign, 
+		public HeaderSection(string text, int cxWidth, int iImage, Bitmap bitmap,
+							 RightToLeft enRightToLeft,	HorizontalAlignment enContentAlign,
+							 LeftRightAlignment enImageAlign,
 							 HeaderSectionSortMarks enSortMark, object tag)
 		{
 			_SetText(text);
@@ -700,7 +692,7 @@ namespace SP.Windows
 			_SetTag(tag);
 		}
 
-		protected HeaderSection(int cxWidth, string text, int iImage, Bitmap bitmap, 
+		protected HeaderSection(int cxWidth, string text, int iImage, Bitmap bitmap,
 								RightToLeft enRightToLeft, int fFormat, object tag)
 		{
 			_SetText(text);
@@ -722,7 +714,7 @@ namespace SP.Windows
 		/// </summary>
 		public override string ToString()
 		{
-			return "HeaderSection: {" + this.text + "}"; 
+			return "HeaderSection: {" + this.text + "}";
 		}
 
 		protected override void Dispose(bool bDisposing)
@@ -746,7 +738,7 @@ namespace SP.Windows
 		/// </summary>
 		public virtual object Clone()
 		{
-			return new HeaderSection(this.cxWidth, this.text, this.iImage, this.bitmap, 
+			return new HeaderSection(this.cxWidth, this.text, this.iImage, this.bitmap,
 									 this.enRightToLeft, this.fFormat, this.tag);
 		}
 
@@ -756,7 +748,7 @@ namespace SP.Windows
 		internal void ComposeNativeData(int iOrder, out NativeHeader.HDITEM item)
 		{
 			item = new NativeHeader.HDITEM();
-      
+
 			// Width
 			item.mask = NativeHeader.HDI_WIDTH;
 			item.cxy = this.cxWidth;
@@ -797,9 +789,9 @@ namespace SP.Windows
 			//      item.lParam;
 			//      item.type;
 			//      item.pvFilter;
-		}    
+		}
 
-	} 
+	}
 
 #endregion // HeaderSection
 
@@ -825,20 +817,20 @@ namespace SP.Windows
 		private ArrayList alSectionsByOrder = null;
 		private ArrayList alSectionsByRawIndex = null;
 
-		public int Count 
-		{ 
+		public int Count
+		{
 			get { return this.alSectionsByOrder.Count; }
 		}
 
-		public HeaderSection this[int index] 
+		public HeaderSection this[int index]
 		{
 			get { return (HeaderSection)this.alSectionsByOrder[index]; }
 			set
 			{
 				if ( index < 0 || index >= this.alSectionsByOrder.Count )
-					throw new ArgumentOutOfRangeException("index", index, 
+					throw new ArgumentOutOfRangeException("index", index,
 														  ErrMsg.IndexOutOfRange());
-      
+
 				_SetSection(index, (HeaderSection)value);
 			}
 		}
@@ -913,7 +905,7 @@ namespace SP.Windows
 		internal void _SetSection(int index, HeaderSection item)
 		{
 			Debug.Assert( index >= 0 || index < this.alSectionsByOrder.Count );
-			Debug.Assert( this.alSectionsByOrder.Count == this.alSectionsByRawIndex.Count );			
+			Debug.Assert( this.alSectionsByOrder.Count == this.alSectionsByRawIndex.Count );
 
 			// Bind item to the collection
 			BindSection(item);
@@ -922,14 +914,14 @@ namespace SP.Windows
 			int iSection = this.alSectionsByRawIndex.IndexOf(itemOld);
 
 			try
-			{        
+			{
 				this.alSectionsByOrder[index] = item;
 				this.alSectionsByRawIndex[iSection] = item;
 
 				UnbindSection(itemOld);
 
 				// Notify owner
-				if ( this.owner != null )  
+				if ( this.owner != null )
 					this.owner._OnSectionChanged(iSection, item);
 			}
 			catch
@@ -946,7 +938,7 @@ namespace SP.Windows
 		}
 
 		public void Insert(int index, HeaderSection item)
-		{ 
+		{
 			Debug.Assert( this.alSectionsByOrder.Count == this.alSectionsByRawIndex.Count );
 
 			if ( index < 0 || index > this.alSectionsByOrder.Count )
@@ -963,7 +955,7 @@ namespace SP.Windows
 				try
 				{
 					// Notify owner
-					if ( this.owner != null )  
+					if ( this.owner != null )
 						this.owner._OnSectionInserted(index, item);
 				}
 				catch
@@ -1008,12 +1000,12 @@ namespace SP.Windows
 			this.alSectionsByOrder.RemoveAt(index);
 			this.alSectionsByRawIndex.RemoveAt(iSectionRemoved);
 
-			if ( this.owner != null )  
+			if ( this.owner != null )
 				this.owner._OnSectionRemoved(iSectionRemoved, item);
 		}
 
 		public virtual void Remove(HeaderSection item)
-		{      
+		{
 			int index = this.alSectionsByOrder.IndexOf(item);
 
 			if ( index != -1 )
@@ -1043,7 +1035,7 @@ namespace SP.Windows
 			this.alSectionsByOrder.Clear();
 			this.alSectionsByRawIndex.Clear();
 
-			if ( this.owner != null )  
+			if ( this.owner != null )
 				this.owner._OnAllSectionsRemoved();
 		}
 
@@ -1062,7 +1054,7 @@ namespace SP.Windows
       this.alSectionsByOrder.Clear();
       this.alSectionsByRawIndex.Clear();
 
-      if ( this.owner != null )  
+      if ( this.owner != null )
         this.owner._OnAllSectionsRemoved();
     }
 
@@ -1074,7 +1066,7 @@ namespace SP.Windows
 
 		public bool Contains(HeaderSection item)
 		{
-			return this.alSectionsByOrder.IndexOf(item) != -1; 
+			return this.alSectionsByOrder.IndexOf(item) != -1;
 		}
 
 		public void CopyTo(Array aDest, int index)
@@ -1086,19 +1078,19 @@ namespace SP.Windows
 		/// Implementation: IEnumerable
 		/// </summary>
 		IEnumerator IEnumerable.GetEnumerator()
-		{ 
+		{
 			return this.alSectionsByOrder.GetEnumerator();
 		}
 
 		/// <summary>
 		/// Implementation: ICollection
 		/// </summary>
-		bool ICollection.IsSynchronized 
-		{ 
+		bool ICollection.IsSynchronized
+		{
 			get { return true; }
 		}
 
-		object ICollection.SyncRoot 
+		object ICollection.SyncRoot
 		{
 			get { return this; }
 		}
@@ -1107,23 +1099,23 @@ namespace SP.Windows
 		/// <summary>
 		/// Implementation: IList
 		/// </summary>
-		bool IList.IsFixedSize 
+		bool IList.IsFixedSize
 		{
 			get { return false; }
 		}
 
-		bool IList.IsReadOnly 
+		bool IList.IsReadOnly
 		{
 			get { return false; }
 		}
 
-		object IList.this[int index] 
+		object IList.this[int index]
 		{
-			get { return this.alSectionsByOrder[index]; } 
-			set 
-			{ 
+			get { return this.alSectionsByOrder[index]; }
+			set
+			{
 				_SetSection(index, (HeaderSection)value);
-			} 
+			}
 		}
 
 		void IList.Insert(int index, object value)
@@ -1132,7 +1124,7 @@ namespace SP.Windows
 		}
 
 		int IList.Add(object value)
-		{     
+		{
 			return Add((HeaderSection)value);
 		}
 
@@ -1143,7 +1135,7 @@ namespace SP.Windows
 
 		bool IList.Contains(object value)
 		{
-			return this.alSectionsByOrder.Contains(value); 
+			return this.alSectionsByOrder.Contains(value);
 		}
 
 		int IList.IndexOf(object value)
@@ -1192,7 +1184,7 @@ namespace SP.Windows
 		}
 
 	} // HeaderSectionEventArgs
-  
+
 	public delegate void HeaderSectionEventHandler(
 							object sender, HeaderSectionEventArgs ea);
 
@@ -1252,7 +1244,7 @@ namespace SP.Windows
 		{
 		}
 
-		public HeaderSectionWidthEventArgs(HeaderSection item, MouseButtons enButton, 
+		public HeaderSectionWidthEventArgs(HeaderSection item, MouseButtons enButton,
 										   int cxWidth)
 			: base(item, enButton)
 		{
@@ -1290,7 +1282,7 @@ namespace SP.Windows
 		{
 		}
 
-		public HeaderSectionWidthConformableEventArgs(HeaderSection item, MouseButtons enButton, 
+		public HeaderSectionWidthConformableEventArgs(HeaderSection item, MouseButtons enButton,
 													  int cxWidth)
 			: base(item, enButton, cxWidth)
 		{
@@ -1326,7 +1318,7 @@ namespace SP.Windows
 		{
 		}
 
-		public HeaderSectionOrderEventArgs(HeaderSection item, MouseButtons enButton, 
+		public HeaderSectionOrderEventArgs(HeaderSection item, MouseButtons enButton,
 										   int iOrder)
 			: base(item, enButton)
 		{
@@ -1364,7 +1356,7 @@ namespace SP.Windows
 		{
 		}
 
-		public HeaderSectionOrderConformableEventArgs(HeaderSection item, MouseButtons enButton, 
+		public HeaderSectionOrderConformableEventArgs(HeaderSection item, MouseButtons enButton,
 													  int iOrder)
 			: base(item, enButton, iOrder)
 		{
@@ -1413,7 +1405,7 @@ namespace SP.Windows
 		DefaultProperty("Sections"),
 		DefaultEvent("AfterSectionTrack"),
 		Designer(typeof(HeaderDesigner)),
-		SecurityPermission(SecurityAction.LinkDemand, 
+		SecurityPermission(SecurityAction.LinkDemand,
 						   Flags=SecurityPermissionFlag.UnmanagedCode)
 	]
 	public class Header : Control
@@ -1421,7 +1413,7 @@ namespace SP.Windows
 		/// <summary>
 		/// Types
 		/// </summary>
-		
+
 		[Flags]
 		public enum HitTestArea : int
 		{
@@ -1446,7 +1438,7 @@ namespace SP.Windows
 		/// <summary>
 		/// Data Fields
 		/// </summary>
-				
+
 		private int fStyle = NativeHeader.WS_CHILD;
 
 		// Clickable
@@ -1459,8 +1451,8 @@ namespace SP.Windows
 		public bool Clickable
 		{
 			get { return (this.fStyle & NativeHeader.HDS_BUTTONS) != 0; }
-			set 
-			{ 
+			set
+			{
 				bool bOldValue = (this.fStyle & NativeHeader.HDS_BUTTONS) != 0;
 
 				if ( value != bOldValue )
@@ -1484,11 +1476,11 @@ namespace SP.Windows
 			Description("Enables or disables hot tracking." ),
 			DefaultValue(false)
 		]
-		public bool HotTrack 
+		public bool HotTrack
 		{
 			get { return (this.fStyle & NativeHeader.HDS_HOTTRACK) != 0; }
-			set 
-			{ 
+			set
+			{
 				bool bOldValue = (this.fStyle & NativeHeader.HDS_HOTTRACK) != 0;
 
 				if ( value != bOldValue )
@@ -1509,15 +1501,15 @@ namespace SP.Windows
 		// Flat
 		[
 			Category("Appearance"),
-			Description("Causes the header control to be drawn flat when " + 
-						"Microsoft® Windows® XP is running in classic mode." ),
+			Description("Causes the header control to be drawn flat when " +
+						"Microsoftï¿½ Windowsï¿½ XP is running in classic mode." ),
 			DefaultValue(false)
 		]
-		public bool Flat 
+		public bool Flat
 		{
 			get { return (this.fStyle & NativeHeader.HDS_FLAT) != 0; }
-			set 
-			{ 
+			set
+			{
 				bool bOldValue = (this.fStyle & NativeHeader.HDS_FLAT) != 0;
 
 				if ( value != bOldValue )
@@ -1538,15 +1530,15 @@ namespace SP.Windows
 		// AllowDragSections
 		[
 			Category("Behavior"),
-			Description("Determines if user will be able to drag header column " + 
+			Description("Determines if user will be able to drag header column " +
 						"on another position." ),
 			DefaultValue(false)
 		]
 		public bool AllowDragSections
 		{
 			get { return (this.fStyle & NativeHeader.HDS_DRAGDROP) != 0; }
-			set 
-			{ 
+			set
+			{
 				bool bOldValue = (this.fStyle & NativeHeader.HDS_DRAGDROP) != 0;
 
 				if ( value != bOldValue )
@@ -1567,15 +1559,15 @@ namespace SP.Windows
 		// FullDragSections
 		[
 			Category("Behavior"),
-			Description("Causes the header control to display column contents " + 
+			Description("Causes the header control to display column contents " +
 						"even while the user resizes a column." ),
 			DefaultValue(false)
 		]
 		public bool FullDragSections
 		{
 			get { return (this.fStyle & NativeHeader.HDS_FULLDRAG) != 0; }
-			set 
-			{ 
+			set
+			{
 				bool bOldValue = (this.fStyle & NativeHeader.HDS_FULLDRAG) != 0;
 
 				if ( value != bOldValue )
@@ -1617,14 +1609,14 @@ namespace SP.Windows
 		public ImageList ImageList
 		{
 			get { return this.imageList; }
-			set 
-			{ 
+			set
+			{
 				if ( this.imageList != value )
 				{
-					EventHandler ehRecreateHandle = 
+					EventHandler ehRecreateHandle =
 						new EventHandler(this.OnImageListRecreateHandle);
 
-					EventHandler ehDetachImageList = 
+					EventHandler ehDetachImageList =
 						new EventHandler(this.OnDetachImageList);
 
 					if ( this.imageList != null )
@@ -1633,19 +1625,19 @@ namespace SP.Windows
 						this.imageList.Disposed -= ehDetachImageList;
 					}
 
-					this.imageList = value; 
+					this.imageList = value;
 
 					if ( this.imageList != null )
 					{
 						this.imageList.RecreateHandle += ehRecreateHandle;
 						this.imageList.Disposed += ehDetachImageList;
-					}         
+					}
 
 					if ( IsHandleCreated )
 					{
 						HandleRef hrThis = new HandleRef(this, this.Handle);
 
-						UpdateWndImageList(ref hrThis, this.imageList);            
+						UpdateWndImageList(ref hrThis, this.imageList);
 					}
 				}
 			}
@@ -1661,14 +1653,14 @@ namespace SP.Windows
 		public int BitmapMargin
 		{
 			get { return this.cxBitmapMargin; }
-			set 
-			{ 
+			set
+			{
 				if ( this.cxBitmapMargin != value )
 				{
 					if ( value < 0 )
 						throw new ArgumentOutOfRangeException("value", value, ErrMsg.NegVal());
 
-					this.cxBitmapMargin = value; 
+					this.cxBitmapMargin = value;
 
 					if ( IsHandleCreated )
 					{
@@ -1683,7 +1675,7 @@ namespace SP.Windows
 		/// <summary>
 		/// Construction & finalization
 		/// </summary>
-		
+
 		public Header()
 			: base()
 		{
@@ -1693,7 +1685,7 @@ namespace SP.Windows
 			this.SetStyle(ControlStyles.StandardDoubleClick, false);
 			this.SetStyle(ControlStyles.Opaque, true);
 			this.SetStyle(ControlStyles.ResizeRedraw, this.DesignMode);
-			this.SetStyle(ControlStyles.Selectable, false); 
+			this.SetStyle(ControlStyles.Selectable, false);
 			//this.SetStyle(ControlStyles.AllPaintingInWmPaint, false); // ???
 
 			this.colSections = new HeaderSectionCollection(this);
@@ -1702,17 +1694,17 @@ namespace SP.Windows
 		/// <summary>
 		/// Clean up any resources being used.
 		/// </summary>
-    
+
 		protected override void Dispose(bool disposing)
 		{
 			if ( disposing )
 			{
 				if ( this.imageList != null )
 				{
-					this.imageList.RecreateHandle -= 
+					this.imageList.RecreateHandle -=
 						new EventHandler(this.OnImageListRecreateHandle);
 
-					this.imageList.Disposed -= 
+					this.imageList.Disposed -=
 						new EventHandler(this.OnDetachImageList);
 
 					this.imageList = null;
@@ -1727,7 +1719,7 @@ namespace SP.Windows
 		/// <summary>
 		/// Helpers
 		/// </summary>
-    
+
 		private int ExtractIndexFromNMHEADER(ref NativeHeader.NMHEADER nmh)
 		{
 			return nmh.iItem;
@@ -1744,7 +1736,7 @@ namespace SP.Windows
 				return MouseButtons.Right;
 
 			case 2:
-				return MouseButtons.Middle;         
+				return MouseButtons.Middle;
 			}
 
 			return MouseButtons.None;
@@ -1766,7 +1758,7 @@ namespace SP.Windows
 
 			IntPtr hIL = (imageList != null) ? imageList.Handle : IntPtr.Zero;
 
-			NativeHeader.SetImageList(hrThis.Handle, new HandleRef(imageList, hIL).Handle);        
+			NativeHeader.SetImageList(hrThis.Handle, new HandleRef(imageList, hIL).Handle);
 		}
 
 		private static void UpdateWndBitmapMargin(ref HandleRef hrThis, int cxMargin)
@@ -1774,7 +1766,7 @@ namespace SP.Windows
 			Debug.Assert( hrThis.Handle != IntPtr.Zero );
 
 			NativeHeader.SetBitmapMargin(hrThis.Handle, cxMargin);
-		}   
+		}
 
 		private static void UpdateWndStyle(ref HandleRef hrThis, int fNewStyle)
 		{
@@ -1798,14 +1790,14 @@ namespace SP.Windows
 			NativeHeader.SetWindowLong(hrThis.Handle, NativeHeader.GWL_STYLE, fStyle);
 
 			NativeHeader.SetWindowPos(hrThis.Handle, IntPtr.Zero, 0, 0, 0, 0, fOptions);
-		}   
+		}
 
 		private void UpdateWndStyle()
 		{
 			HandleRef hrThis = new HandleRef(this, this.Handle);
 
 			UpdateWndStyle(ref hrThis, this.fStyle);
-		}   
+		}
 
 		/// <summary>
 		/// Internal notifications
@@ -1835,7 +1827,7 @@ namespace SP.Windows
 				int nResult = NativeHeader.InsertItem(this.Handle, i, ref hdi);
 				Debug.Assert( nResult >= 0 );
 				if ( nResult < 0 )
-					throw new InvalidOperationException(ErrMsg.FailedToInsertItem(), 
+					throw new InvalidOperationException(ErrMsg.FailedToInsertItem(),
 														new Win32Exception());
 			}
 
@@ -1846,7 +1838,7 @@ namespace SP.Windows
 		{
 			// Collect item parameters from native window
 
-			base.OnHandleDestroyed(ea); 
+			base.OnHandleDestroyed(ea);
 		}
 
 		protected override void OnEnabledChanged(EventArgs ea)
@@ -1866,13 +1858,13 @@ namespace SP.Windows
 				NativeHeader.HDITEM hdi;
 				hdi.lpszText = null;
 
-				item.ComposeNativeData(index, out hdi);        
+				item.ComposeNativeData(index, out hdi);
 
-				int iResult = NativeHeader.InsertItem(new HandleRef(this, this.Handle).Handle, 
+				int iResult = NativeHeader.InsertItem(new HandleRef(this, this.Handle).Handle,
 													  index, ref hdi);
 				Debug.Assert( iResult == index );
 				if ( iResult < 0 )
-					throw new InvalidOperationException(ErrMsg.FailedToInsertItem(), 
+					throw new InvalidOperationException(ErrMsg.FailedToInsertItem(),
 														new Win32Exception());
 			}
 		}
@@ -1887,7 +1879,7 @@ namespace SP.Windows
 				Debug.Assert( bResult );
 				if ( !bResult )
 				{
-					throw new InvalidOperationException(ErrMsg.FailedToRemoveItem(), 
+					throw new InvalidOperationException(ErrMsg.FailedToRemoveItem(),
 														new Win32Exception());
 				}
 			}
@@ -1909,7 +1901,7 @@ namespace SP.Windows
 						Debug.Assert( bResult );
 						if ( !bResult )
 						{
-							throw new InvalidOperationException(ErrMsg.FailedToRemoveItem(), 
+							throw new InvalidOperationException(ErrMsg.FailedToRemoveItem(),
 																new Win32Exception());
 						}
 
@@ -1935,7 +1927,7 @@ namespace SP.Windows
 				Debug.Assert( bResult );
 				if ( !bResult )
 				{
-					throw new InvalidOperationException(ErrMsg.FailedToChangeItem(), 
+					throw new InvalidOperationException(ErrMsg.FailedToChangeItem(),
 														new Win32Exception());
 				}
 			}
@@ -1958,7 +1950,7 @@ namespace SP.Windows
 				Debug.Assert( bResult );
 				if ( !bResult )
 				{
-					throw new InvalidOperationException(ErrMsg.FailedToChangeItem(), 
+					throw new InvalidOperationException(ErrMsg.FailedToChangeItem(),
 														new Win32Exception());
 				}
 			}
@@ -1982,7 +1974,7 @@ namespace SP.Windows
 				Debug.Assert( bResult );
 				if ( !bResult )
 				{
-					throw new InvalidOperationException(ErrMsg.FailedToChangeItem(), 
+					throw new InvalidOperationException(ErrMsg.FailedToChangeItem(),
 														new Win32Exception());
 				}
 			}
@@ -2006,7 +1998,7 @@ namespace SP.Windows
 				Debug.Assert( bResult );
 				if ( !bResult )
 				{
-					throw new InvalidOperationException(ErrMsg.FailedToChangeItem(), 
+					throw new InvalidOperationException(ErrMsg.FailedToChangeItem(),
 														new Win32Exception());
 				}
 			}
@@ -2030,7 +2022,7 @@ namespace SP.Windows
 				Debug.Assert( bResult );
 				if ( !bResult )
 				{
-					throw new InvalidOperationException(ErrMsg.FailedToChangeItem(), 
+					throw new InvalidOperationException(ErrMsg.FailedToChangeItem(),
 														new Win32Exception());
 				}
 			}
@@ -2053,7 +2045,7 @@ namespace SP.Windows
 				Debug.Assert( bResult );
 				if ( !bResult )
 				{
-					throw new InvalidOperationException(ErrMsg.FailedToChangeItem(), 
+					throw new InvalidOperationException(ErrMsg.FailedToChangeItem(),
 														new Win32Exception());
 				}
 			}
@@ -2076,7 +2068,7 @@ namespace SP.Windows
 				Debug.Assert( bResult );
 				if ( !bResult )
 				{
-					throw new InvalidOperationException(ErrMsg.FailedToChangeItem(), 
+					throw new InvalidOperationException(ErrMsg.FailedToChangeItem(),
 														new Win32Exception());
 				}
 			}
@@ -2099,7 +2091,7 @@ namespace SP.Windows
 				Debug.Assert( bResult );
 				if ( !bResult )
 				{
-					throw new InvalidOperationException(ErrMsg.FailedToChangeItem(), 
+					throw new InvalidOperationException(ErrMsg.FailedToChangeItem(),
 														new Win32Exception());
 				}
 			}
@@ -2122,7 +2114,7 @@ namespace SP.Windows
 				Debug.Assert( bResult );
 				if ( !bResult )
 				{
-					throw new InvalidOperationException(ErrMsg.FailedToChangeItem(), 
+					throw new InvalidOperationException(ErrMsg.FailedToChangeItem(),
 														new Win32Exception());
 				}
 			}
@@ -2196,7 +2188,7 @@ namespace SP.Windows
 			if ( this.BeforeSectionTrack != null )
 			{
 				Delegate[] aHandlers = this.BeforeSectionTrack.GetInvocationList();
-        
+
 				foreach( HeaderSectionWidthConformableEventHandler handler in aHandlers )
 				{
 					try
@@ -2207,7 +2199,7 @@ namespace SP.Windows
 					{
 						ea.Accepted = false;
 					}
-       
+
 					if ( !ea.Accepted )
 						break;
 				}
@@ -2223,7 +2215,7 @@ namespace SP.Windows
 			if ( this.SectionTracking != null )
 			{
 				Delegate[] aHandlers = this.SectionTracking.GetInvocationList();
-        
+
 				foreach( HeaderSectionWidthConformableEventHandler handler in aHandlers )
 				{
 					try
@@ -2234,7 +2226,7 @@ namespace SP.Windows
 					{
 						ea.Accepted = false;
 					}
-       
+
 					if ( !ea.Accepted )
 						break;
 				}
@@ -2252,7 +2244,7 @@ namespace SP.Windows
 		}
 
 		[
-			Description("Occurs when user is about to start dragging of the " + 
+			Description("Occurs when user is about to start dragging of the " +
 						      "section to another position.")
 		]
 		public event HeaderSectionOrderConformableEventHandler BeforeSectionDrag;
@@ -2261,7 +2253,7 @@ namespace SP.Windows
 			if ( this.BeforeSectionDrag != null )
 			{
 				Delegate[] aHandlers = this.BeforeSectionDrag.GetInvocationList();
-        
+
 				foreach( HeaderSectionOrderConformableEventHandler handler in aHandlers )
 				{
 					try
@@ -2272,7 +2264,7 @@ namespace SP.Windows
 					{
 						ea.Accepted = false;
 					}
-       
+
 					if ( !ea.Accepted )
 						break;
 				}
@@ -2288,7 +2280,7 @@ namespace SP.Windows
 			if ( this.AfterSectionDrag != null )
 			{
 				Delegate[] aHandlers = this.AfterSectionDrag.GetInvocationList();
-        
+
 				foreach( HeaderSectionOrderConformableEventHandler handler in aHandlers )
 				{
 					try
@@ -2299,7 +2291,7 @@ namespace SP.Windows
 					{
 						ea.Accepted = false;
 					}
-       
+
 					if ( !ea.Accepted )
 						break;
 				}
@@ -2347,24 +2339,24 @@ namespace SP.Windows
 										NativeHeader.HDS_FULLDRAG);
 
 				createParams.Style |= this.fStyle;
-         
+
 				return createParams;
 			}
 		}
 
 		protected override void WndProc(ref Message msg)
-		{            
+		{
 			switch ( msg.Msg )
 			{
 			// Handle notifications
 			case (NativeHeader.WM_NOTIFY + NativeHeader.OCM__BASE):
 				{
-					NativeWindowCommon.NMHDR nmhdr = 
+					NativeWindowCommon.NMHDR nmhdr =
 						(NativeWindowCommon.NMHDR)msg.GetLParam(typeof(NativeWindowCommon.NMHDR));
 
 					if ( nmhdr.code == NativeHeader.HDN_ITEMCHANGING )
 					{
-						NativeHeader.NMHEADER nmh = 
+						NativeHeader.NMHEADER nmh =
 							(NativeHeader.NMHEADER)msg.GetLParam(typeof(NativeHeader.NMHEADER));
 
 						int iSection = ExtractIndexFromNMHEADER(ref nmh);
@@ -2380,7 +2372,7 @@ namespace SP.Windows
 						{
 							cxWidth = hdi.cxy;
 
-							HeaderSectionWidthConformableEventArgs ea = 
+							HeaderSectionWidthConformableEventArgs ea =
 								new HeaderSectionWidthConformableEventArgs(item, enButton, cxWidth);
 
 							OnSectionTracking(ea);
@@ -2391,7 +2383,7 @@ namespace SP.Windows
 					}
 					else if ( nmhdr.code == NativeHeader.HDN_ITEMCHANGED )
 					{
-						NativeHeader.NMHEADER nmh = 
+						NativeHeader.NMHEADER nmh =
 							(NativeHeader.NMHEADER)msg.GetLParam(typeof(NativeHeader.NMHEADER));
 
 						int iSection = ExtractIndexFromNMHEADER(ref nmh);
@@ -2407,17 +2399,17 @@ namespace SP.Windows
 						{
 							cxWidth = hdi.cxy;
 
-							HeaderSectionWidthEventArgs ea = 
+							HeaderSectionWidthEventArgs ea =
 								new HeaderSectionWidthEventArgs(item, enButton, cxWidth);
 
 							item._SetWidth(cxWidth);
 
 							OnAfterSectionTrack(ea);
-						}				
+						}
 					}
 					else if ( nmhdr.code == NativeHeader.HDN_ITEMCLICK )
 					{
-						NativeHeader.NMHEADER nmh = 
+						NativeHeader.NMHEADER nmh =
 							(NativeHeader.NMHEADER)msg.GetLParam(typeof(NativeHeader.NMHEADER));
 
 						int iSection = ExtractIndexFromNMHEADER(ref nmh);
@@ -2430,7 +2422,7 @@ namespace SP.Windows
 					}
 					else if ( nmhdr.code == NativeHeader.HDN_ITEMDBLCLICK )
 					{
-						NativeHeader.NMHEADER nmh = 
+						NativeHeader.NMHEADER nmh =
 							(NativeHeader.NMHEADER)msg.GetLParam(typeof(NativeHeader.NMHEADER));
 
 						int iSection = ExtractIndexFromNMHEADER(ref nmh);
@@ -2443,7 +2435,7 @@ namespace SP.Windows
 					}
 					else if ( nmhdr.code == NativeHeader.HDN_DIVIDERDBLCLICK )
 					{
-						NativeHeader.NMHEADER nmh = 
+						NativeHeader.NMHEADER nmh =
 							(NativeHeader.NMHEADER)msg.GetLParam(typeof(NativeHeader.NMHEADER));
 
 						int iSection = ExtractIndexFromNMHEADER(ref nmh);
@@ -2456,7 +2448,7 @@ namespace SP.Windows
 					}
 					else if ( nmhdr.code == NativeHeader.HDN_BEGINTRACK )
 					{
-						NativeHeader.NMHEADER nmh = 
+						NativeHeader.NMHEADER nmh =
 							(NativeHeader.NMHEADER)msg.GetLParam(typeof(NativeHeader.NMHEADER));
 
 						int iSection = ExtractIndexFromNMHEADER(ref nmh);
@@ -2473,7 +2465,7 @@ namespace SP.Windows
 							cxWidth = hdi.cxy;
 						}
 
-						HeaderSectionWidthConformableEventArgs ea = 
+						HeaderSectionWidthConformableEventArgs ea =
 							new HeaderSectionWidthConformableEventArgs(item, enButton, cxWidth);
 
 						OnBeforeSectionTrack(ea);
@@ -2483,7 +2475,7 @@ namespace SP.Windows
 					}
 					else if ( nmhdr.code == NativeHeader.HDN_TRACK )
 					{
-						NativeHeader.NMHEADER nmh = 
+						NativeHeader.NMHEADER nmh =
 							(NativeHeader.NMHEADER)msg.GetLParam(typeof(NativeHeader.NMHEADER));
 
 						int iSection = ExtractIndexFromNMHEADER(ref nmh);
@@ -2500,7 +2492,7 @@ namespace SP.Windows
 							cxWidth = hdi.cxy;
 						}
 
-						HeaderSectionWidthConformableEventArgs ea = 
+						HeaderSectionWidthConformableEventArgs ea =
 							new HeaderSectionWidthConformableEventArgs(item, enButton, cxWidth);
 
 						OnSectionTracking(ea);
@@ -2510,7 +2502,7 @@ namespace SP.Windows
 					}
 					else if ( nmhdr.code == NativeHeader.HDN_ENDTRACK )
 					{
-						NativeHeader.NMHEADER nmh = 
+						NativeHeader.NMHEADER nmh =
 							(NativeHeader.NMHEADER)msg.GetLParam(typeof(NativeHeader.NMHEADER));
 
 						int iSection = ExtractIndexFromNMHEADER(ref nmh);
@@ -2527,7 +2519,7 @@ namespace SP.Windows
 							cxWidth = hdi.cxy;
 						}
 
-						HeaderSectionWidthEventArgs ea = 
+						HeaderSectionWidthEventArgs ea =
 							new HeaderSectionWidthEventArgs(item, enButton, cxWidth);
 
 						item._SetWidth(cxWidth);
@@ -2536,7 +2528,7 @@ namespace SP.Windows
 					}
 					else if ( nmhdr.code == NativeHeader.HDN_BEGINDRAG )
 					{
-						NativeHeader.NMHEADER nmh = 
+						NativeHeader.NMHEADER nmh =
 							(NativeHeader.NMHEADER)msg.GetLParam(typeof(NativeHeader.NMHEADER));
 
 						int iSection = ExtractIndexFromNMHEADER(ref nmh);
@@ -2550,7 +2542,7 @@ namespace SP.Windows
 
 						int iOrder = this.colSections.IndexOf(item);
 
-						HeaderSectionOrderConformableEventArgs ea = 
+						HeaderSectionOrderConformableEventArgs ea =
 							new HeaderSectionOrderConformableEventArgs(item, enButton, iOrder);
 
 						OnBeforeSectionDrag(ea);
@@ -2560,7 +2552,7 @@ namespace SP.Windows
 					}
 					else if ( nmhdr.code == NativeHeader.HDN_ENDDRAG )
 					{
-						NativeHeader.NMHEADER nmh = 
+						NativeHeader.NMHEADER nmh =
 							(NativeHeader.NMHEADER)msg.GetLParam(typeof(NativeHeader.NMHEADER));
 
 						int iSection = ExtractIndexFromNMHEADER(ref nmh);
@@ -2583,7 +2575,7 @@ namespace SP.Windows
                     {
                         NativeHeader.NMCUSTOMDRAW customDraw = (NativeHeader.NMCUSTOMDRAW)msg.GetLParam(typeof(NativeHeader.NMCUSTOMDRAW));
                         switch( customDraw.dwDrawStage )
-                        {   
+                        {
                             case NativeHeader.CDDS_PREPAINT:
                                 msg.Result = (IntPtr) NativeHeader.CDRF_NOTIFYITEMDRAW;
                                 return;
@@ -2594,7 +2586,7 @@ namespace SP.Windows
 
                             case NativeHeader.CDDS_ITEMPOSTPAINT:
                                 HeaderSection section = this.colSections._GetSectionByRawIndex(customDraw.dwItemSpec);
-                                Rectangle rc = Rectangle.FromLTRB( customDraw.rcLeft, customDraw.rcTop, 
+                                Rectangle rc = Rectangle.FromLTRB( customDraw.rcLeft, customDraw.rcTop,
                                     customDraw.rcRight, customDraw.rcBottom );
                                 HeaderCustomDrawEventArgs ea = new HeaderCustomDrawEventArgs( section, customDraw.hdc, rc );
                                 OnCustomDrawSection( ea );
@@ -2602,7 +2594,7 @@ namespace SP.Windows
                                 return;
                         }
                     }
-					          
+
 					//		  else if ( nmhdr.code == NativeHeader.HDN_GETDISPINFO )
 					//		  {
 					//		  }
@@ -2625,11 +2617,11 @@ namespace SP.Windows
 
 	    public bool HandleEndDrag( HeaderSection item, MouseButtons enButton, int iNewOrder )
 	    {
-	        HeaderSectionOrderConformableEventArgs ea = 
+	        HeaderSectionOrderConformableEventArgs ea =
 	            new HeaderSectionOrderConformableEventArgs(item, enButton, iNewOrder);
-    
+
 	        OnAfterSectionDrag(ea);
-    
+
 	        // Update orders
 	        if ( ea.Accepted )
 	        {
@@ -2652,7 +2644,7 @@ namespace SP.Windows
 			{
 				HandleRef hrThis = new HandleRef(this, this.Handle);
 
-				NativeWindowCommon.SendMessage(hrThis.Handle, NativeWindowCommon.WM_SETREDRAW, 
+				NativeWindowCommon.SendMessage(hrThis.Handle, NativeWindowCommon.WM_SETREDRAW,
 											   0, 0);
 			}
 		}
@@ -2663,7 +2655,7 @@ namespace SP.Windows
 			{
 				HandleRef hrThis = new HandleRef(this, this.Handle);
 
-				NativeWindowCommon.SendMessage(hrThis.Handle, NativeWindowCommon.WM_SETREDRAW, 
+				NativeWindowCommon.SendMessage(hrThis.Handle, NativeWindowCommon.WM_SETREDRAW,
 											   1, 0);
 			}
 		}
@@ -2685,7 +2677,7 @@ namespace SP.Windows
 		}
 
 		public void CalculateLayout(Rectangle rectArea, out Rectangle rectPosition)
-		{    
+		{
 			NativeHeader.HDLAYOUT hdl = new NativeHeader.HDLAYOUT();
 			hdl.prc = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(NativeHeader.RECT)));
 			hdl.pwpos = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(NativeHeader.WINDOWPOS)));
@@ -2694,11 +2686,11 @@ namespace SP.Windows
 			{
 				HandleRef hrThis = new HandleRef(this, this.Handle);
 
-				NativeHeader.RECT rc = new NativeHeader.RECT();     
+				NativeHeader.RECT rc = new NativeHeader.RECT();
 				rc.left = rectArea.Left;
 				rc.top = rectArea.Top;
 				rc.right = rectArea.Right;
-				rc.bottom = rectArea.Bottom;   
+				rc.bottom = rectArea.Bottom;
 
 				Marshal.StructureToPtr(rc, hdl.prc, false);
 
@@ -2707,8 +2699,8 @@ namespace SP.Windows
 				if ( !bResult )
 					throw new Win32Exception();
 
-				NativeHeader.WINDOWPOS wp = 
-					(NativeHeader.WINDOWPOS)Marshal.PtrToStructure(hdl.pwpos, 
+				NativeHeader.WINDOWPOS wp =
+					(NativeHeader.WINDOWPOS)Marshal.PtrToStructure(hdl.pwpos,
 														typeof(NativeHeader.WINDOWPOS));
 
 				rectPosition = new Rectangle(wp.x, wp.y, wp.cx, wp.cy);
@@ -2753,9 +2745,9 @@ namespace SP.Windows
 			htiRaw.pt.y = pointClient.Y;
 			htiRaw.iItem = -1;
 			htiRaw.flags = 0;
-    
+
 			NativeHeader.HitTest(hrThis.Handle, ref htiRaw);
-     
+
 			HitTestInfo hti = new HitTestInfo();
 			hti.fArea = (HitTestArea)htiRaw.flags;
 

@@ -1,7 +1,6 @@
-/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Windows.Media;
@@ -11,7 +10,7 @@ using JetBrains.Annotations;
 namespace JetBrains.Omea.OpenAPI
 {
 	/// <summary>
-	/// Class is used as an attribute for specifying the “Author” and “Description”
+	/// Class is used as an attribute for specifying the ï¿½Authorï¿½ and ï¿½Descriptionï¿½
 	/// information fields for both JetBrains and custom plugins. This information is
 	/// then shown in the "Tools | Options | Omea | Plugins" options pane.
 	/// </summary>

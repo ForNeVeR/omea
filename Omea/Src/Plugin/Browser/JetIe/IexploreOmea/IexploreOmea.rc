@@ -1,7 +1,7 @@
-/// <copyright company="JetBrains">
-/// Copyright Âc 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
+
 // Microsoft Visual C++ generated resource script.
 //
 #include "resource.h"

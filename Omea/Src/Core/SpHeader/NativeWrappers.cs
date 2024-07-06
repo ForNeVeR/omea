@@ -1,16 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////////
-//  File:   NativeWrappers.cs
-//  Author: Sergei Pavlovsky
+// SPDX-FileCopyrightText: 2004 by Sergei Pavlovsky (sergei_vp@hotmail.com, sergei_vp@ukr.net)
 //
-//  Copyright (c) 2004 by Sergei Pavlovsky (sergei_vp@hotmail.com, sergei_vp@ukr.net)
-//
-//	This file is provided "as is" with no expressed or implied warranty.
-//	The author accepts no liability if it causes any damage whatsoever.
-// 
-//  This code is free and may be used in any way you desire. If the source code in 
-//  this file is used in any commercial application then a simple email would be 
-//	nice.
-////////////////////////////////////////////////////////////////////////////////////
+// SPDX-License-Identifier: LicenseRef-SP.Windows
 
 using System;
 using System.Runtime.InteropServices;
@@ -79,7 +69,7 @@ namespace SP.Windows
 		/// Types: Platform
 		/// </summary>
 		[StructLayout(LayoutKind.Sequential, Pack = 1)]
-			private struct INITCOMMONCONTROLSEX 
+			private struct INITCOMMONCONTROLSEX
 		{
 			public int cbSize;
 			public int nFlags;
@@ -105,8 +95,8 @@ namespace SP.Windows
 		/// <param name="fClasses"> Bit flags defining classes to be initialized</param>
 		static public void Init(Classes fClasses)
 		{
-			INITCOMMONCONTROLSEX icc = 
-				new INITCOMMONCONTROLSEX(Marshal.SizeOf(typeof(INITCOMMONCONTROLSEX)), 
+			INITCOMMONCONTROLSEX icc =
+				new INITCOMMONCONTROLSEX(Marshal.SizeOf(typeof(INITCOMMONCONTROLSEX)),
 										 (int)fClasses);
 
 			bool bResult = InitCommonControlsEx(ref icc);
@@ -128,7 +118,7 @@ namespace SP.Windows
 		/// <summary>
 		/// Constants: Window Styles
 		/// </summary>
-		public const int WS_OVERLAPPED       = 0x00000000;    
+		public const int WS_OVERLAPPED       = 0x00000000;
 
 		public const int WS_POPUP            = unchecked((int)0x80000000);
 		public const int WS_CHILD            = 0x40000000;
@@ -323,7 +313,7 @@ namespace SP.Windows
 		}
 
 		[StructLayout(LayoutKind.Sequential)]
-		public struct WINDOWPOS 
+		public struct WINDOWPOS
 		{
 			public IntPtr hwnd;
 			public IntPtr hwndInsertAfter;
@@ -371,7 +361,7 @@ namespace SP.Windows
 		public static extern bool PostMessage(IntPtr hWnd, int msg, int wParam, int lParam);
 
 		[DllImport("user32.dll", CharSet=CharSet.Auto)]
-		public static extern bool SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter, 
+		public static extern bool SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter,
 			int X, int Y, int cx, int cy, int uFlags);
 
 		[DllImport("user32.dll", CharSet=CharSet.Auto)]
@@ -540,7 +530,7 @@ namespace SP.Windows
 			public int    iImage;
 			public int    iOrder;
 			public int    type;
-			public IntPtr pvFilter;      
+			public IntPtr pvFilter;
 		}
 
 		[StructLayout(LayoutKind.Sequential, CharSet=CharSet.Auto)]
@@ -556,7 +546,7 @@ namespace SP.Windows
 			public int    iImage;
 			public int    iOrder;
 			public int    type;
-			public IntPtr pvFilter;      
+			public IntPtr pvFilter;
 		}
 
 		[StructLayout(LayoutKind.Sequential)]
@@ -588,7 +578,7 @@ namespace SP.Windows
 		}
 
 		[StructLayout(LayoutKind.Sequential, CharSet=CharSet.Auto)]
-		public struct NMHDFILTERBTNCLICK 
+		public struct NMHDFILTERBTNCLICK
 		{
 			public NMHDR hdr;
 			public int iItem;
@@ -674,7 +664,7 @@ namespace SP.Windows
 				HDM_SETITEM         = HDM_FIRST + 12;
 
 				HDN_ITEMCHANGING    = HDN_FIRST - 20;
-				HDN_ITEMCHANGED     = HDN_FIRST - 21; 
+				HDN_ITEMCHANGED     = HDN_FIRST - 21;
 				HDN_ITEMCLICK       = HDN_FIRST - 22;
 				HDN_ITEMDBLCLICK    = HDN_FIRST - 23;
 				HDN_DIVIDERDBLCLICK = HDN_FIRST - 25;
@@ -689,32 +679,32 @@ namespace SP.Windows
 		/// Helpers
 		/// </summary>
 		[DllImport("user32.dll", CharSet=CharSet.Auto)]
-		private static extern int SendMessage(IntPtr hWnd, int msg, bool wParam, 
+		private static extern int SendMessage(IntPtr hWnd, int msg, bool wParam,
 											  int lParam);
-    
+
 		[DllImport("user32.dll", CharSet=CharSet.Auto)]
-		private static extern int SendMessage(IntPtr hWnd, int msg, int wParam, 
+		private static extern int SendMessage(IntPtr hWnd, int msg, int wParam,
 											  ref HDITEM hdi);
 
 		[DllImport("user32.dll", CharSet=CharSet.Auto)]
-		private static extern int SendMessage(IntPtr hWnd, int msg, int wParam, 
+		private static extern int SendMessage(IntPtr hWnd, int msg, int wParam,
 											  ref RECT rc);
 
 		[DllImport("user32.dll", CharSet=CharSet.Auto)]
-		private static extern IntPtr SendMessage(IntPtr hWnd, int msg, int wParam, 
-												 IntPtr lParam);   
+		private static extern IntPtr SendMessage(IntPtr hWnd, int msg, int wParam,
+												 IntPtr lParam);
 
 		[DllImport("user32.dll", CharSet=CharSet.Auto)]
-		private static extern int SendMessage(IntPtr hWnd, int msg, int wParam, 
-											  ref HDLAYOUT lParam);   
+		private static extern int SendMessage(IntPtr hWnd, int msg, int wParam,
+											  ref HDLAYOUT lParam);
 
 		[DllImport("user32.dll", CharSet=CharSet.Auto)]
-		private static extern int SendMessage(IntPtr hWnd, int msg, int wParam, 
-											  ref HDHITTESTINFO lParam);     
-  
+		private static extern int SendMessage(IntPtr hWnd, int msg, int wParam,
+											  ref HDHITTESTINFO lParam);
+
 		[DllImport("user32.dll", CharSet=CharSet.Auto)]
-		private static extern int SendMessage(IntPtr hWnd, int msg, int cItems, 
-											  int[] aOrders);   
+		private static extern int SendMessage(IntPtr hWnd, int msg, int cItems,
+											  int[] aOrders);
 
 		/// <summary>
 		/// Operations
@@ -771,14 +761,14 @@ namespace SP.Windows
 		}
 
 		public static IntPtr SetImageList(IntPtr hWnd, IntPtr himl)
-		{ 
+		{
 			Debug.Assert( hWnd != IntPtr.Zero );
 
 			return SendMessage(hWnd, HDM_SETIMAGELIST, 0, himl);
 		}
 
 		public static IntPtr CreateDragImage(IntPtr hWnd, int index)
-		{ 
+		{
 			Debug.Assert( hWnd != IntPtr.Zero );
 
 			return SendMessage(hWnd, HDM_CREATEDRAGIMAGE, index, IntPtr.Zero);
@@ -788,16 +778,16 @@ namespace SP.Windows
 		{
 			Debug.Assert( hWnd != IntPtr.Zero );
 
-			return SendMessage(hWnd, HDM_LAYOUT, 0, ref layout) != 0; 
+			return SendMessage(hWnd, HDM_LAYOUT, 0, ref layout) != 0;
 		}
 
 		public static int HitTest(IntPtr hWnd, ref HDHITTESTINFO hdhti)
 		{
 			Debug.Assert( hWnd != IntPtr.Zero );
-    
+
 			return SendMessage(hWnd, HDM_HITTEST, 0, ref hdhti);
-		}   
-  
+		}
+
 		public static int GetBitmapMargin(IntPtr hWnd)
 		{
 			Debug.Assert( hWnd != IntPtr.Zero );
@@ -822,8 +812,8 @@ namespace SP.Windows
 		public static int OrderToIndex(IntPtr hWnd, int iOrder)
 		{
 			Debug.Assert( hWnd != IntPtr.Zero );
-       
-			return SendMessage(hWnd, HDM_ORDERTOINDEX, iOrder, 0);      
+
+			return SendMessage(hWnd, HDM_ORDERTOINDEX, iOrder, 0);
 		}
 
 		public static bool GetOrderArray(IntPtr hWnd, out int[] aOrders)
@@ -832,15 +822,15 @@ namespace SP.Windows
 
 			int cItems = GetItemCount(hWnd);
 			aOrders = new int[cItems];
-      
-			return SendMessage(hWnd, HDM_GETORDERARRAY, cItems, aOrders) != 0;      
+
+			return SendMessage(hWnd, HDM_GETORDERARRAY, cItems, aOrders) != 0;
 		}
 
 		public static bool SetOrderArray(IntPtr hWnd, int[] aOrders)
 		{
 			Debug.Assert( hWnd != IntPtr.Zero );
-      
-			return SendMessage(hWnd, HDM_GETORDERARRAY, aOrders.Length, aOrders) != 0;      
+
+			return SendMessage(hWnd, HDM_GETORDERARRAY, aOrders.Length, aOrders) != 0;
 		}
 
 		public static bool GetUnicodeFormat(IntPtr hWnd)

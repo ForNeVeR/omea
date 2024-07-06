@@ -1,28 +1,15 @@
 // edtFTPnet
-// 
-// Copyright (C) 2004 Enterprise Distributed Technologies Ltd
-// 
-// www.enterprisedt.com
-// 
-// This library is free software; you can redistribute it and/or
-// modify it under the terms of the GNU Lesser General Public
-// License as published by the Free Software Foundation; either
-// version 2.1 of the License, or (at your option) any later version.
-// 
-// This library is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-// Lesser General Public License for more details.
-// 
-// You should have received a copy of the GNU Lesser General Public
-// License along with this library; if not, write to the Free Software
-// Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-// 
-// Bug fixes, suggestions and comments should posted on 
+/*
+SPDX-FileCopyrightText: 2004 Enterprise Distributed Technologies Ltd
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+*/
+//
+// Bug fixes, suggestions and comments should posted on
 // http://www.enterprisedt.com/forums/index.php
-// 
+//
 // Change Log:
-// 
+//
 // $Log: Logger.cs,v $
 // Revision 1.6  2004/11/13 18:20:52  bruceb
 // clear appenders/loggers in shutdown
@@ -42,8 +29,8 @@ using System.Collections;
 using System.Configuration;
 
 namespace EnterpriseDT.Util.Debug
-{  
-	/// <summary>  
+{
+	/// <summary>
 	/// Logger class that mimics log4net Logger class
 	/// </summary>
 	/// <author>       Bruce Blackshaw
@@ -52,7 +39,7 @@ namespace EnterpriseDT.Util.Debug
 	/// </version>
 	public class Logger
 	{
-		/// <summary> 
+		/// <summary>
 		/// Set all loggers to this level
 		/// </summary>
 		public static Level CurrentLevel
@@ -60,14 +47,14 @@ namespace EnterpriseDT.Util.Debug
 			set
 			{
 				globalLevel = value;
-			}	
+			}
             get
             {
                 return globalLevel;
             }
 		}
-        
-		/// <summary> 
+
+		/// <summary>
 		/// Is debug logging enabled?
 		/// </summary>
 		/// <returns> true if enabled
@@ -78,10 +65,10 @@ namespace EnterpriseDT.Util.Debug
 			{
 				return IsEnabledFor(Level.DEBUG);
 			}
-			
+
 		}
 		/// <summary> Is info logging enabled for the supplied level?
-		/// 
+		///
 		/// </summary>
 		/// <returns> true if enabled
 		/// </returns>
@@ -91,41 +78,41 @@ namespace EnterpriseDT.Util.Debug
 			{
 				return IsEnabledFor(Level.INFO);
 			}
-			
+
 		}
-		
+
 		/// <summary> Level of all loggers</summary>
 		private static Level globalLevel;
-		
+
 		/// <summary>Date format</summary>
 		private static readonly string format = "d MMM yyyy HH:mm:ss.fff";
-		
+
 		/// <summary> Hash of all loggers that exist</summary>
 		private static Hashtable loggers = Hashtable.Synchronized(new Hashtable(10));
-		
+
 		/// <summary> Vector of all appenders</summary>
 		private static ArrayList appenders = ArrayList.Synchronized(new ArrayList(2));
-				
+
 		/// <summary> Timestamp</summary>
 		private DateTime ts;
-		
+
 		/// <summary> Class name for this logger</summary>
 		private string clazz;
-		
-		/// <summary> 
+
+		/// <summary>
 		/// Constructor
 		/// </summary>
-		/// <param name="clazz">    
+		/// <param name="clazz">
 		/// class this logger is for
 		/// </param>
 		private Logger(string clazz)
 		{
 			this.clazz = clazz;
 		}
-		
-		
+
+
 		/// <summary> Get a logger for the supplied class
-		/// 
+		///
 		/// </summary>
 		/// <param name="clazz">   full class name
 		/// </param>
@@ -135,8 +122,8 @@ namespace EnterpriseDT.Util.Debug
 		{
 			return GetLogger(clazz.FullName);
 		}
-		
-		/// <summary> 
+
+		/// <summary>
 		/// Get a logger for the supplied class
 		/// </summary>
 		/// <param name="clazz">   full class name
@@ -153,8 +140,8 @@ namespace EnterpriseDT.Util.Debug
 			}
 			return logger;
 		}
-		
-		/// <summary> 
+
+		/// <summary>
 		/// Add an appender to our list
 		/// </summary>
 		/// <param name="newAppender">
@@ -164,7 +151,7 @@ namespace EnterpriseDT.Util.Debug
 		{
 			appenders.Add(newAppender);
 		}
-		
+
 		/// <summary> Close and remove all appenders and loggers</summary>
 		public static void Shutdown()
 		{
@@ -176,9 +163,9 @@ namespace EnterpriseDT.Util.Debug
 			loggers.Clear();
 			appenders.Clear();
 		}
-		
-		/// <summary> Log a message 
-		/// 
+
+		/// <summary> Log a message
+		///
 		/// </summary>
 		/// <param name="level">    log level
 		/// </param>
@@ -191,8 +178,8 @@ namespace EnterpriseDT.Util.Debug
 			if (globalLevel.IsGreaterOrEqual(level))
 				OurLog(level, message, t);
 		}
-		
-		/// <summary> 
+
+		/// <summary>
 		/// Log a message to our logging system
 		/// </summary>
 		/// <param name="level">    log level
@@ -229,9 +216,9 @@ namespace EnterpriseDT.Util.Debug
 				}
 			}
 		}
-		
+
 		/// <summary> Log an info level message
-		/// 
+		///
 		/// </summary>
 		/// <param name="message">  message to log
 		/// </param>
@@ -239,9 +226,9 @@ namespace EnterpriseDT.Util.Debug
 		{
 			Log(Level.INFO, message, null);
 		}
-		
+
 		/// <summary> Log an info level message
-		/// 
+		///
 		/// </summary>
 		/// <param name="message">  message to log
 		/// </param>
@@ -251,9 +238,9 @@ namespace EnterpriseDT.Util.Debug
 		{
 			Log(Level.INFO, message, t);
 		}
-		
+
 		/// <summary> Log a warning level message
-		/// 
+		///
 		/// </summary>
 		/// <param name="message">  message to log
 		/// </param>
@@ -261,9 +248,9 @@ namespace EnterpriseDT.Util.Debug
 		{
 			Log(Level.WARN, message, null);
 		}
-		
+
 		/// <summary> Log a warning level message
-		/// 
+		///
 		/// </summary>
 		/// <param name="message">  message to log
 		/// </param>
@@ -273,9 +260,9 @@ namespace EnterpriseDT.Util.Debug
 		{
 			Log(Level.WARN, message, t);
 		}
-		
+
 		/// <summary> Log an error level message
-		/// 
+		///
 		/// </summary>
 		/// <param name="message">  message to log
 		/// </param>
@@ -283,9 +270,9 @@ namespace EnterpriseDT.Util.Debug
 		{
 			Log(Level.ERROR, message, null);
 		}
-		
+
 		/// <summary> Log an error level message
-		/// 
+		///
 		/// </summary>
 		/// <param name="message">  message to log
 		/// </param>
@@ -295,9 +282,9 @@ namespace EnterpriseDT.Util.Debug
 		{
 			Log(Level.ERROR, message, t);
 		}
-		
+
 		/// <summary> Log a fatal level message
-		/// 
+		///
 		/// </summary>
 		/// <param name="message">  message to log
 		/// </param>
@@ -305,9 +292,9 @@ namespace EnterpriseDT.Util.Debug
 		{
 			Log(Level.FATAL, message, null);
 		}
-		
+
 		/// <summary> Log a fatal level message
-		/// 
+		///
 		/// </summary>
 		/// <param name="message">  message to log
 		/// </param>
@@ -317,9 +304,9 @@ namespace EnterpriseDT.Util.Debug
 		{
 			Log(Level.FATAL, message, t);
 		}
-		
+
 		/// <summary> Log a debug level message
-		/// 
+		///
 		/// </summary>
 		/// <param name="message">  message to log
 		/// </param>
@@ -327,10 +314,10 @@ namespace EnterpriseDT.Util.Debug
 		{
 			Log(Level.DEBUG, message, null);
 		}
-		
-		
+
+
 		/// <summary> Log a debug level message
-		/// 
+		///
 		/// </summary>
 		/// <param name="message">  message to log
 		/// </param>
@@ -340,9 +327,9 @@ namespace EnterpriseDT.Util.Debug
 		{
 			Log(Level.DEBUG, message, t);
 		}
-		
+
 		/// <summary> Is logging enabled for the supplied level?
-		/// 
+		///
 		/// </summary>
 		/// <param name="level">  level to test for
 		/// </param>
@@ -354,13 +341,13 @@ namespace EnterpriseDT.Util.Debug
 				return true;
 			return false;
 		}
-        
+
 		/// <summary> Determine the logging level</summary>
 		static Logger()
 		{
 			{
 				string level = ConfigurationSettings.AppSettings["edtftp.log.level"];
-                if (level != null)                   
+                if (level != null)
 				    globalLevel = Level.GetLevel(level);
                 else {
                     globalLevel = Level.OFF;

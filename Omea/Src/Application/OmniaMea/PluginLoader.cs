@@ -1,7 +1,6 @@
-/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using System;
 using System.Collection.Generic;
@@ -98,7 +97,7 @@ namespace JetBrains.Omea.Plugins
 		#region Operations
 
 		/// <summary>
-		/// Makes a user-friendly name out of the assembly name by removing the “OmeaPlugin” infix.
+		/// Makes a user-friendly name out of the assembly name by removing the ï¿½OmeaPluginï¿½ infix.
 		/// </summary>
 		[NotNull]
 		public static string AssemblyNameToPluginDisplayName([NotNull] string sAssemblyName)
@@ -121,7 +120,7 @@ namespace JetBrains.Omea.Plugins
 		}
 
 		/// <summary>
-		/// Makes a user-friendly name out of the assembly name by removing the “OmeaPlugin” infix.
+		/// Makes a user-friendly name out of the assembly name by removing the ï¿½OmeaPluginï¿½ infix.
 		/// </summary>
 		[NotNull]
 		public static string AssemblyNameToPluginDisplayName([NotNull] FileInfo pluginfile)
@@ -146,19 +145,19 @@ namespace JetBrains.Omea.Plugins
 			// Exists?
 			if(!file.Exists)
 			{
-				Trace.WriteLine(sError = string.Format("The plugin file “{0}” does not exist.", file.FullName), "Plugins.Loader");
+				Trace.WriteLine(sError = string.Format("The plugin file ï¿½{0}ï¿½ does not exist.", file.FullName), "Plugins.Loader");
 				return false;
 			}
 			if(file.Directory == null)
 			{
-				Trace.WriteLine(sError = string.Format("The plugin file “{0}” does not have a parent directory.", file.FullName), "Plugins.Loader");
+				Trace.WriteLine(sError = string.Format("The plugin file ï¿½{0}ï¿½ does not have a parent directory.", file.FullName), "Plugins.Loader");
 				return false;
 			}
 
 			// File name?
 			if(!RegexOmeaPluginFile.IsMatch(file.Name))
 			{
-				Trace.WriteLine(sError = string.Format("The file “{0}” does not match the Omea plugin name pattern, {1}.", file.FullName, RegexOmeaPluginFile), "Plugins.Loader");
+				Trace.WriteLine(sError = string.Format("The file ï¿½{0}ï¿½ does not match the Omea plugin name pattern, {1}.", file.FullName, RegexOmeaPluginFile), "Plugins.Loader");
 				return false;
 			}
 
@@ -175,7 +174,7 @@ namespace JetBrains.Omea.Plugins
 			}
 			catch(Exception ex)
 			{
-				Trace.WriteLine(string.Format("Could not load the plugin file “{1}”. {0}", ex.Message, file.FullName), "Plugins.Loader");
+				Trace.WriteLine(string.Format("Could not load the plugin file ï¿½{1}ï¿½. {0}", ex.Message, file.FullName), "Plugins.Loader");
 				sError = ex.Message;
 				return false;
 			}
@@ -195,7 +194,7 @@ namespace JetBrains.Omea.Plugins
 			}
 
 			// No IPlugin
-			Trace.WriteLine(sError = string.Format("The plugin file “{0}” does not have any plugins inside. Could not find any classes implementing “{1}”.", file.FullName, typeof(IPlugin).AssemblyQualifiedName), "Plugin.Loader");
+			Trace.WriteLine(sError = string.Format("The plugin file ï¿½{0}ï¿½ does not have any plugins inside. Could not find any classes implementing ï¿½{1}ï¿½.", file.FullName, typeof(IPlugin).AssemblyQualifiedName), "Plugin.Loader");
 			return false;
 		}
 
@@ -224,12 +223,12 @@ namespace JetBrains.Omea.Plugins
 			byte[] tokenCandidate = assnameCandidate.GetPublicKeyToken();
 			if((tokenMy != null) && (tokenCandidate == null))
 			{
-				Trace.WriteLine(sError = string.Format("The plugin file “{0}” is in the primary plugins folder, but does not have the required strong name.", sFileDisplayName), "Plugin.Loader");
+				Trace.WriteLine(sError = string.Format("The plugin file ï¿½{0}ï¿½ is in the primary plugins folder, but does not have the required strong name.", sFileDisplayName), "Plugin.Loader");
 				return false;
 			}
 			if((tokenMy == null) && (tokenCandidate != null))
 			{
-				Trace.WriteLine(sError = string.Format("The plugin file “{0}” in the primary plugins folder has a strong name, but Omea is built without strong names.", sFileDisplayName), "Plugin.Loader");
+				Trace.WriteLine(sError = string.Format("The plugin file ï¿½{0}ï¿½ in the primary plugins folder has a strong name, but Omea is built without strong names.", sFileDisplayName), "Plugin.Loader");
 				return false;
 			}
 			if(tokenMy != null) // Both not Null
@@ -243,11 +242,11 @@ namespace JetBrains.Omea.Plugins
 				}
 				if(!match)
 				{
-					Trace.WriteLine(string.Format(sError = "The plugin file “{0}” is in the primary plugins folder, but its strong name is wrong.", sFileDisplayName), "Plugin.Loader");
+					Trace.WriteLine(string.Format(sError = "The plugin file ï¿½{0}ï¿½ is in the primary plugins folder, but its strong name is wrong.", sFileDisplayName), "Plugin.Loader");
 					return false;
 				}
 			}
-			// The remaining case — neither has strong names — is OK (Debug configuration)
+			// The remaining case ï¿½ neither has strong names ï¿½ is OK (Debug configuration)
 			sError = "";
 			return true;
 		}
@@ -458,7 +457,7 @@ namespace JetBrains.Omea.Plugins
 					}
 					catch(CancelStartupException)
 					{
-						Trace.WriteLine(string.Format("Starting Plugin “{0}”: CancelStartupException.", pluginConst.GetType().AssemblyQualifiedName), "Plugin.Loader");
+						Trace.WriteLine(string.Format("Starting Plugin ï¿½{0}ï¿½: CancelStartupException.", pluginConst.GetType().AssemblyQualifiedName), "Plugin.Loader");
 						bCancelStartup = true;
 					}
 					catch(Exception ex)
@@ -472,7 +471,7 @@ namespace JetBrains.Omea.Plugins
 					throw new CancelStartupException();
 
                 if( sStartupError != null )
-					Trace.WriteLine(string.Format("Error Starting Plugin “{0}”. {1}", plugin.GetType().AssemblyQualifiedName, sStartupError));
+					Trace.WriteLine(string.Format("Error Starting Plugin ï¿½{0}ï¿½. {1}", plugin.GetType().AssemblyQualifiedName, sStartupError));
 			}
 		}
 
@@ -508,7 +507,7 @@ namespace JetBrains.Omea.Plugins
 		}
 
 		/// <summary>
-		/// Looks for “Plugin.xml” resources in the assembly, loads the XML configuration from them.
+		/// Looks for ï¿½Plugin.xmlï¿½ resources in the assembly, loads the XML configuration from them.
 		/// </summary>
 		internal void LoadXmlConfiguration(Assembly pluginAssembly)
 		{
@@ -546,7 +545,7 @@ namespace JetBrains.Omea.Plugins
 			if(!IsOmeaPluginDll(file.File, out sError))
 				return false;
 
-			Trace.WriteLine(string.Format("Loading plugin file “{0}”.", file.File.FullName), "Plugin.Loader");
+			Trace.WriteLine(string.Format("Loading plugin file ï¿½{0}ï¿½.", file.File.FullName), "Plugin.Loader");
 
 			// Get the types from the assembly, to look for plugins
 			Assembly assembly;
@@ -595,7 +594,7 @@ namespace JetBrains.Omea.Plugins
 			// Duplicate with someone?
 			if(!_hashLoadedPluginTypes.Add(type.FullName))
 			{
-				sError = string.Format("The plugin class “{0}” has already been loaded from another assembly.", type.FullName);
+				sError = string.Format("The plugin class ï¿½{0}ï¿½ has already been loaded from another assembly.", type.FullName);
 				return false;
 			}
 
@@ -837,7 +836,7 @@ namespace JetBrains.Omea.Plugins
 			public readonly bool IsPrimary;
 
 			/// <summary>
-			/// Logical machine-independent representation of the location, eg “<c>RoamingAppData</c>” instead of the exact path.
+			/// Logical machine-independent representation of the location, eg ï¿½<c>RoamingAppData</c>ï¿½ instead of the exact path.
 			/// </summary>
 			[NotNull]
 			public readonly string Location;
@@ -948,7 +947,7 @@ namespace JetBrains.Omea.Plugins
 						if((file.Attributes & FileAttributes.Hidden) != 0) // Skip hidden files
 							pluginfileinfo = PossiblyPluginFileInfo.CreateNo(this, file, "The file is hidden.");
 						else if(!RegexOmeaPluginFile.IsMatch(file.Name)) // Apply file name filter
-							pluginfileinfo = PossiblyPluginFileInfo.CreateNo(this, file, "The file name does not include “OmeaPlugin”.");
+							pluginfileinfo = PossiblyPluginFileInfo.CreateNo(this, file, "The file name does not include ï¿½OmeaPluginï¿½.");
 						else
 							pluginfileinfo = PossiblyPluginFileInfo.CreateYes(this, file);
 
@@ -1006,7 +1005,7 @@ namespace JetBrains.Omea.Plugins
 
 				var pluginfolder = new PluginFolder("Database Plugins", "<DatabaseDir>/Plugins[/*]", new DirectoryInfo(Path.Combine(Path.GetFullPath(sDbFolder), "Plugins")), false);
 
-				// “Return” the result
+				// ï¿½Returnï¿½ the result
 				funcOnSuccess(pluginfolder);
 			}
 
@@ -1020,7 +1019,7 @@ namespace JetBrains.Omea.Plugins
 			/// <param name="funcOnSuccess">Executed to acknowledge the result on success, skipped on failure.</param>
 			private static void CreateDefaultFolders_SpecialFolder(string sFriendlyName, string sSpecialFolderTitle, Environment.SpecialFolder specialfolder, Action<PluginFolder> funcOnSuccess)
 			{
-				// Folder exists on disk? 
+				// Folder exists on disk?
 				string sSpecialFolder = Environment.GetFolderPath(specialfolder);
 				if(string.IsNullOrEmpty(sSpecialFolder))
 					return; // No such folder
@@ -1028,7 +1027,7 @@ namespace JetBrains.Omea.Plugins
 				// Create entry
 				var pluginfolder = new PluginFolder(sFriendlyName, string.Format("<{0}>/JetBrains/Omea/Plugins[/*]", sSpecialFolderTitle), new DirectoryInfo(Path.Combine(Path.Combine(Path.Combine(sSpecialFolder, "JetBrains"), "Omea"), "Plugins")), false);
 
-				// “Return” the result
+				// ï¿½Returnï¿½ the result
 				funcOnSuccess(pluginfolder);
 			}
 

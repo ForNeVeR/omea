@@ -1,28 +1,15 @@
 // edtFTPnet
-// 
-// Copyright (C) 2004 Enterprise Distributed Technologies Ltd
-// 
-// www.enterprisedt.com
-// 
-// This library is free software; you can redistribute it and/or
-// modify it under the terms of the GNU Lesser General Public
-// License as published by the Free Software Foundation; either
-// version 2.1 of the License, or (at your option) any later version.
-// 
-// This library is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-// Lesser General Public License for more details.
-// 
-// You should have received a copy of the GNU Lesser General Public
-// License along with this library; if not, write to the Free Software
-// Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-// 
-// Bug fixes, suggestions and comments should posted on 
+/*
+SPDX-FileCopyrightText: 2004 Enterprise Distributed Technologies Ltd
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+*/
+//
+// Bug fixes, suggestions and comments should posted on
 // http://www.enterprisedt.com/forums/index.php
-// 
+//
 // Change Log:
-// 
+//
 // $Log: FTPClient.cs,v $
 // Revision 1.14  2004/11/20 22:34:54  bruceb
 // abort() added re resume, fixed resume append bug
@@ -72,120 +59,120 @@ using Logger = EnterpriseDT.Util.Debug.Logger;
 namespace EnterpriseDT.Net.Ftp
 {
     #region Types
-    
+
     /// <summary>
 	/// Event args for BytesTransferred event
-	/// </summary>    
-    public class BytesTransferredEventArgs : EventArgs 
-    {   
+	/// </summary>
+    public class BytesTransferredEventArgs : EventArgs
+    {
         /// <summary>
     	/// Constructor
-		/// <param name="byteCount"> 
+		/// <param name="byteCount">
         /// The current count of bytes transferred
 		/// </param>
-    	/// </summary>        
-        public BytesTransferredEventArgs(long byteCount) 
+    	/// </summary>
+        public BytesTransferredEventArgs(long byteCount)
         {
             this.byteCount = byteCount;
         }
-        
+
         /// <summary>
-    	/// Gets the byte count 
-    	/// </summary>   
+    	/// Gets the byte count
+    	/// </summary>
         public long ByteCount
         {
-            get 
+            get
             {
                 return byteCount;
             }
         }
-        
+
         private long byteCount;
     }
-    
+
     /// <summary>
 	/// Event args for ReplyReceived and CommandSent events
-	/// </summary>    
-    public class FTPMessageEventArgs : EventArgs 
+	/// </summary>
+    public class FTPMessageEventArgs : EventArgs
     {
         /// <summary>
     	/// Constructor
-		/// <param name="message"> 
+		/// <param name="message">
         /// The message sent to or from the remote host
 		/// </param>
-    	/// </summary>        
-        public FTPMessageEventArgs(string message) 
+    	/// </summary>
+        public FTPMessageEventArgs(string message)
         {
             this.message = message;
         }
-        
+
         /// <summary>
-    	/// Gets the message 
-    	/// </summary>   
+    	/// Gets the message
+    	/// </summary>
         public string Message
         {
-            get 
+            get
             {
                 return message;
             }
         }
-        
+
         private string message;
     }
-    
+
     /// <summary>
 	/// Delegate used for the BytesTransferred event
 	/// </summary>
     public delegate void BytesTransferredHandler(
-        object ftpClient, 
+        object ftpClient,
         BytesTransferredEventArgs bytesTransferred
     );
-    
+
     /// <summary>
 	/// Delegate used for ReplyReceived and CommandSent events
 	/// </summary>
     public delegate void FTPMessageHandler(
-        object ftpClient, 
+        object ftpClient,
         FTPMessageEventArgs message
     );
-        
-    	
+
+
 	/// <summary>
 	/// Enumerates the connect modes that are possible, active and passiv e
 	/// </summary>
-	public enum FTPConnectMode 
+	public enum FTPConnectMode
 	{
-		/// <member>   
+		/// <member>
 		/// Represents active - PORT - connect mode
 		/// </member>
 		ACTIVE = 1,
 
-		/// <member>   
+		/// <member>
 		/// Represents passive - PASV - connect mode
 		/// </member>
 		PASV = 2
 	}
 
-	/// <summary>  
-	/// Enumerates the transfer types possible. We support only the two common types, 
+	/// <summary>
+	/// Enumerates the transfer types possible. We support only the two common types,
 	/// ASCII and Image (often called binary).
 	/// </summary>
-	public enum FTPTransferType 
+	public enum FTPTransferType
 	{
-		/// <member>   
+		/// <member>
 		/// Represents ASCII transfer type
 		/// </member>
 		ASCII = 1,
 
-		/// <member>   
+		/// <member>
 		/// Represents Image (or binary) transfer type
 		/// </member>
 		BINARY = 2
 	}
-	
+
 	#endregion
-	
-	/// <summary>  
+
+	/// <summary>
 	/// Supports client-side FTP. Most common
 	/// FTP operations are present in this class.
 	/// </summary>
@@ -196,9 +183,9 @@ namespace EnterpriseDT.Net.Ftp
 	public class FTPClient
 	{
 		/// <summary> Get the version of edtFTPj
-		/// 
+		///
 		/// </summary>
-		/// <returns> int array of {major,middle,minor} version numbers 
+		/// <returns> int array of {major,middle,minor} version numbers
 		/// </returns>
 		public static int[] Version
 		{
@@ -206,27 +193,27 @@ namespace EnterpriseDT.Net.Ftp
 			{
 				return version;
 			}
-			
+
 		}
 		/// <summary> Get the build timestamp
-		/// 
+		///
 		/// </summary>
-		/// <returns> d-MMM-yyyy HH:mm:ss z build timestamp 
+		/// <returns> d-MMM-yyyy HH:mm:ss z build timestamp
 		/// </returns>
 		public static string BuildTimestamp
 		{
 			get
 			{
 				return buildTimestamp;
-			}			
+			}
 		}
 
         /// <summary>
 		/// Strict checking of return codes. If it is on
-		/// (the default), all return codes must exactly match the expected code.  
+		/// (the default), all return codes must exactly match the expected code.
 		/// If strict checking is off, only the first digit must match
 		/// </summary>
-		/// <returns>  
+		/// <returns>
 		/// true if strict return code checking, false if non-strict.
 		/// </returns>
 		virtual public bool StrictReturnCodes
@@ -235,16 +222,16 @@ namespace EnterpriseDT.Net.Ftp
 			{
 				return strictReturnCodes;
 			}
-			
+
 			set
 			{
 				this.strictReturnCodes = value;
 				if (control != null)
 					control.StrictReturnCodes = value;
 			}
-			
+
 		}
-		/// <summary>   
+		/// <summary>
 		/// Set the TCP timeout on the underlying socket.
 		/// </summary>
 		virtual public int Timeout
@@ -254,14 +241,14 @@ namespace EnterpriseDT.Net.Ftp
 		        return timeout;
 		    }
 			set
-			{				
+			{
 				this.timeout = value;
 				if (control != null)
 				    control.Timeout = value;
-			}		
+			}
 		}
-        
-		/// <summary>  
+
+		/// <summary>
 		/// Get/Set the connect mode
 		/// </summary>
 		virtual public FTPConnectMode ConnectMode
@@ -275,8 +262,8 @@ namespace EnterpriseDT.Net.Ftp
                 return connectMode;
             }
 		}
-        
-		/// <summary>  
+
+		/// <summary>
 		/// Get the bytes transferred between each notification of the
 		/// BytesTransferred event. Reduce this value to receive more
 		/// frequent notifications of transfer progress
@@ -293,7 +280,7 @@ namespace EnterpriseDT.Net.Ftp
 			}
 		}
 
-        /// <summary> 
+        /// <summary>
         /// Get/set the size of the buffers used in writing to and reading from
 		/// the data sockets
 		/// </summary>
@@ -303,14 +290,14 @@ namespace EnterpriseDT.Net.Ftp
 			{
 				return transferBufferSize;
 			}
-			
+
 			set
 			{
 				transferBufferSize = value;
 			}
 		}
-             
-		/// <summary>  
+
+		/// <summary>
 		/// Get/set the name of the remote host.
 		/// </summary>
 		/// <remarks>
@@ -327,9 +314,9 @@ namespace EnterpriseDT.Net.Ftp
 			    CheckConnection(false);
 			    remoteHost = value;
 			}
-		}	
-		
-		/// <summary>  
+		}
+
+		/// <summary>
 		/// Get/set the delete on failure flag
         /// </summary>
         /// <remarks>
@@ -349,9 +336,9 @@ namespace EnterpriseDT.Net.Ftp
 			{
 			    deleteOnFailure = value;
 			}
-		}	
-		
-		/// <summary>  
+		}
+
+		/// <summary>
 		/// Get/set the controlPort. Can only be set
 		/// if not currently connected
 		/// </summary>
@@ -366,9 +353,9 @@ namespace EnterpriseDT.Net.Ftp
 			    CheckConnection(false);
 			    controlPort = value;
 			}
-		}	
-        		
-		/// <summary> 
+		}
+
+		/// <summary>
 		/// Override the chosen file factory with a user created one - meaning
 		/// that a specific parser has been selected
 		/// </summary>
@@ -377,10 +364,10 @@ namespace EnterpriseDT.Net.Ftp
 			set
 			{
 				this.fileFactory = value;
-			}			
+			}
 		}
-        
-		/// <summary>  
+
+		/// <summary>
 		/// Gets the latest valid reply from the server
 		/// </summary>
 		/// <returns>  reply object encapsulating last valid server response
@@ -396,7 +383,7 @@ namespace EnterpriseDT.Net.Ftp
         /// <summary>
 		/// Get or set the current transfer type
 		/// </summary>
-		/// <returns>  
+		/// <returns>
 		/// the current type of the transfer, i.e. BINARY or ASCII
 		/// </returns>
 		public FTPTransferType TransferType
@@ -406,151 +393,151 @@ namespace EnterpriseDT.Net.Ftp
 				return transferType;
 			}
 			set
-			{				
+			{
 				CheckConnection(true);
-				
+
 				// determine the character to send
 				string typeStr = ASCII_CHAR;
 				if (value.Equals(FTPTransferType.BINARY))
 					typeStr = BINARY_CHAR;
-				
+
 				// send the command
 				FTPReply reply = control.SendCommand("TYPE " + typeStr);
 				lastValidReply = control.ValidateReply(reply, "200");
-				
+
 				// record the type
 				transferType = value;
-			}			
+			}
 		}
-		
+
         /// <summary>
     	/// Event for notifying start of a transfer
     	/// </summary>
         public event EventHandler TransferStarted;
-        
+
         /// <summary>
     	/// Event for notifying start of a transfer
-    	/// </summary> 
+    	/// </summary>
         public event EventHandler TransferComplete;
-            
+
         /// <summary>
     	/// Event for notifying start of a transfer
-    	/// </summary> 
+    	/// </summary>
         public event BytesTransferredHandler BytesTransferred;
-        
+
         /// <summary>
     	/// Event for notifying start of a transfer
-    	/// </summary> 
+    	/// </summary>
         public event FTPMessageHandler CommandSent;
-        
+
         /// <summary>
     	/// Event for notifying start of a transfer
-    	/// </summary> 
+    	/// </summary>
         public event FTPMessageHandler ReplyReceived;
-		
+
 		/// <summary> Default byte interval for transfer monitor</summary>
 		private const int DEFAULT_MONITOR_INTERVAL = 4096;
-		
+
 		/// <summary> Default transfer buffer size</summary>
 		private const int DEFAULT_BUFFER_SIZE = 4096;
-		
+
 		/// <summary> Major version (substituted by ant)</summary>
 		private static string majorVersion = "1";
-		
+
 		/// <summary> Middle version (substituted by ant)</summary>
 		//TODO: uncomment
 		private static string middleVersion = "0";
-		
+
 		/// <summary> Middle version (substituted by ant)</summary>
 		private static string minorVersion = "0";
-		
+
 		/// <summary> Full version</summary>
 		private static int[] version;
-		
+
 		/// <summary> Timestamp of build</summary>
 		private static string buildTimestamp = "1/1/2000";
-		
-		/// <summary>  
+
+		/// <summary>
 		/// The char sent to the server to set BINARY
 		/// </summary>
 		private static string BINARY_CHAR = "I";
 
-		/// <summary>  
+		/// <summary>
 		/// The char sent to the server to set ASCII
 		/// </summary>
 		private static string ASCII_CHAR = "A";
 
 		/// <summary>Date format</summary>
 		private static readonly string tsFormat = "yyyyMMddHHmmss";
-		
+
 		/// <summary> Logging object</summary>
 		private Logger log;
-		
+
 		/// <summary>  Socket responsible for controlling
 		/// the connection
 		/// </summary>
 		internal FTPControlSocket control = null;
-		
+
 		/// <summary>  Socket responsible for transferring
 		/// the data
 		/// </summary>
 		internal FTPDataSocket data = null;
-		
+
 		/// <summary>  Socket timeout for both data and control. In
 		/// milliseconds
 		/// </summary>
 		internal int timeout = 0;
-		
+
 		/// <summary> Use strict return codes if true</summary>
 		private bool strictReturnCodes = true;
-		
+
 		/// <summary>  Can be used to cancel a transfer</summary>
 		private bool cancelTransfer = false;
-		
+
 		/// <summary> If true, a file transfer is being resumed</summary>
 		private bool resume = false;
-		
+
 		/// <summary>If a download to a file fails, delete the partial file</summary>
-		private bool deleteOnFailure = true;		
-		
+		private bool deleteOnFailure = true;
+
 		/// <summary> Resume byte marker point</summary>
 		private long resumeMarker = 0;
-		
+
 		/// <summary> Bytes transferred in between monitor callbacks</summary>
 		private long monitorInterval = DEFAULT_MONITOR_INTERVAL;
-		
+
 		/// <summary> Size of transfer buffers</summary>
 		private int transferBufferSize = DEFAULT_BUFFER_SIZE;
-		
+
 		/// <summary> Parses LIST output</summary>
 		private FTPFileFactory fileFactory = null;
-						
+
 		/// <summary>  Record of the transfer type - make the default ASCII</summary>
 		private FTPTransferType transferType = FTPTransferType.ASCII;
-		
+
 		/// <summary>  Record of the connect mode - make the default PASV (as this was
 		/// the original mode supported)
 		/// </summary>
 		private FTPConnectMode connectMode = FTPConnectMode.PASV;
-		
+
 		/// <summary>
         /// Holds the last valid reply from the server on the control socket
         /// </summary>
 		internal FTPReply lastValidReply;
-		
+
 		/// <summary>
         /// Port on which we connect to the FTP server and messages are passed
         /// </summary>
-		internal int controlPort = -1;		
-		
+		internal int controlPort = -1;
+
 		/// <summary>
         /// Remote host we are connecting to
         /// </summary>
 		internal string remoteHost = null;
-		
+
 		#region Constructors
-		
-		/// <summary>  
+
+		/// <summary>
 		/// Constructor. Creates the control socket
 		/// </summary>
 		/// <param name="remoteHost"> the remote hostname
@@ -559,8 +546,8 @@ namespace EnterpriseDT.Net.Ftp
             this(remoteHost, FTPControlSocket.CONTROL_PORT, 0)
 		{
 		}
-		
-		/// <summary>  
+
+		/// <summary>
 		/// Constructor. Creates the control socket
 		/// </summary>
 		/// <param name="remoteHost"> the remote hostname
@@ -571,7 +558,7 @@ namespace EnterpriseDT.Net.Ftp
             this(remoteHost, controlPort, 0)
 		{
 		}
-				
+
 		/// <summary>
 		/// Constructor. Creates the control socket
 		/// </summary>
@@ -587,11 +574,11 @@ namespace EnterpriseDT.Net.Ftp
 		{
 		    this.remoteHost = remoteHost;
 		}
-		
-		
+
+
 		/// <summary>  Constructor. Creates the control
 		/// socket
-		/// 
+		///
 		/// </summary>
 		/// <param name="remoteAddr"> the address of the
 		/// remote host
@@ -600,13 +587,13 @@ namespace EnterpriseDT.Net.Ftp
             this(remoteAddr, FTPControlSocket.CONTROL_PORT, 0)
 		{
 		}
-		
-		
-		/// <summary>  
+
+
+		/// <summary>
 		/// Constructor. Creates the control
 		/// socket. Allows setting of control port (normally
 		/// set by default to 21).
-		/// 
+		///
 		/// </summary>
 		/// <param name="remoteAddr"> the address of the
 		/// remote host
@@ -617,8 +604,8 @@ namespace EnterpriseDT.Net.Ftp
             this(remoteAddr, controlPort, 0)
 		{
 		}
-		
-		/// <summary>  
+
+		/// <summary>
 		/// Constructor. Creates the control
 		/// socket. Allows setting of control port (normally
 		/// set by default to 21).
@@ -628,7 +615,7 @@ namespace EnterpriseDT.Net.Ftp
 		/// </param>
 		/// <param name="controlPort">  port for control stream (-1 for default port)
 		/// </param>
-		/// <param name="timeout">       the length of the timeout, in milliseconds 
+		/// <param name="timeout">       the length of the timeout, in milliseconds
 		/// (pass in 0 for no timeout)
 		/// </param>
 		public FTPClient(IPAddress remoteAddr, int controlPort, int timeout)
@@ -637,8 +624,8 @@ namespace EnterpriseDT.Net.Ftp
 			remoteHost = remoteAddr.ToString();
 			Connect(remoteAddr, controlPort, timeout);
 		}
-		
-		/// <summary>  
+
+		/// <summary>
         /// Default constructor for use by subclasses. Does not connect
         /// to the remote host
         /// </summary>
@@ -646,10 +633,10 @@ namespace EnterpriseDT.Net.Ftp
 		{
 			InitBlock();
 		}
-		
+
 		#endregion
-		
-		/// <summary>  
+
+		/// <summary>
 		/// Instance initializer. Sets formatter to GMT.
 		/// </summary>
 		private void InitBlock()
@@ -659,31 +646,31 @@ namespace EnterpriseDT.Net.Ftp
 			connectMode = FTPConnectMode.PASV;
 			controlPort = FTPControlSocket.CONTROL_PORT;
 		}
-		
-		/// <summary>  
+
+		/// <summary>
         /// Connect to the remote host. Cannot be currently connected. RemoteHost
         /// property must be set
         /// </summary>
-		public virtual void Connect() 
+		public virtual void Connect()
 		{
 	        CheckConnection(false);
-	        Connect(Dns.Resolve(remoteHost).AddressList[0], controlPort, timeout); 
+	        Connect(Dns.Resolve(remoteHost).AddressList[0], controlPort, timeout);
 		}
-		
-		internal virtual void Connect(IPAddress remoteAddr, int controlPort, int timeout) 
+
+		internal virtual void Connect(IPAddress remoteAddr, int controlPort, int timeout)
 		{
-			if (controlPort < 0) 
+			if (controlPort < 0)
             {
                 log.Warn("Invalid control port supplied: " + controlPort + " Using default: " +
                     FTPControlSocket.CONTROL_PORT);
 				controlPort = FTPControlSocket.CONTROL_PORT;
-			}	
+			}
 			this.controlPort = controlPort;
 			log.Debug("Connecting to " + remoteAddr.ToString() + ":" + controlPort);
-            Initialize(new FTPControlSocket(remoteAddr, controlPort, timeout));            
+            Initialize(new FTPControlSocket(remoteAddr, controlPort, timeout));
 		}
-		
-		/// <summary> 
+
+		/// <summary>
 		/// Set the control socket explicitly
 		/// </summary>
 		/// <param name="control">  control socket reference
@@ -691,15 +678,15 @@ namespace EnterpriseDT.Net.Ftp
 		internal void Initialize(FTPControlSocket control)
 		{
 			this.control = control;
-			
+
             // set up the event handlers so they call back to this object - and can
             // then be passed on if required
             control.CommandSent += new FTPMessageHandler(CommandSentControl);
             control.ReplyReceived += new FTPMessageHandler(ReplyReceivedControl);
 		}
 
-		
-		/// <summary> 
+
+		/// <summary>
 		/// Checks if the client has connected to the server and throws an exception if it hasn't.
 		/// This is only intended to be used by subclasses
 		/// </summary>
@@ -707,29 +694,29 @@ namespace EnterpriseDT.Net.Ftp
 		internal virtual void CheckConnection(bool shouldBeConnected)
 		{
 			if (shouldBeConnected && control == null)
-				throw new FTPException("The FTP client has not yet connected to the server.  " + 
+				throw new FTPException("The FTP client has not yet connected to the server.  " +
                 "The requested action cannot be performed until after a connection has been established.");
 			else if (!shouldBeConnected && control != null)
-				throw new FTPException("The FTP client has already been connected to the server.  " + 
+				throw new FTPException("The FTP client has already been connected to the server.  " +
                 "The requested action must be performed before a connection is established.");
 		}
-		
-		
-        internal void CommandSentControl(object client, FTPMessageEventArgs message) 
+
+
+        internal void CommandSentControl(object client, FTPMessageEventArgs message)
         {
             if (CommandSent != null)
-                CommandSent(this, message);            
+                CommandSent(this, message);
         }
-        
-        
-        internal void ReplyReceivedControl(object client, FTPMessageEventArgs message) 
+
+
+        internal void ReplyReceivedControl(object client, FTPMessageEventArgs message)
         {
             if (ReplyReceived != null)
                 ReplyReceived(this, message);
         }
-        
-		
-		/// <summary>  
+
+
+		/// <summary>
 		/// Switch Debug of responses on or off
 		/// </summary>
 		/// <param name="on"> true if you wish to have responses to
@@ -744,8 +731,8 @@ namespace EnterpriseDT.Net.Ftp
 			else
 				Logger.CurrentLevel = Level.OFF;
 		}
-		
-		
+
+
 		/// <summary>  Cancels the current transfer. Generally called from a separate
 		/// thread. Note that this may leave partially written files on the
 		/// server or on local disk, and should not be used unless absolutely
@@ -755,8 +742,8 @@ namespace EnterpriseDT.Net.Ftp
 		{
 			cancelTransfer = true;
 		}
-		
-		/// <summary>  
+
+		/// <summary>
 		/// Login into an account on the FTP server. This
 		/// call completes the entire login process
 		/// </summary>
@@ -765,11 +752,11 @@ namespace EnterpriseDT.Net.Ftp
 		/// <param name="password">  user's password
 		/// </param>
 		public virtual void Login(string user, string password)
-		{			
+		{
 			CheckConnection(true);
-			
+
 			FTPReply reply = control.SendCommand("USER " + user);
-			
+
 			// we allow for a site with no password - 230 response
 			string[] validCodes = new string[]{"230", "331"};
 			lastValidReply = control.ValidateReply(reply, validCodes);
@@ -780,27 +767,27 @@ namespace EnterpriseDT.Net.Ftp
 				Password(password);
 			}
 		}
-		
+
 		/// <summary>  Supply the user name to log into an account
 		/// on the FTP server. Must be followed by the
 		/// password() method - but we allow for
-		/// 
+		///
 		/// </summary>
 		/// <param name="user">      user name
 		/// </param>
 		public virtual void User(string user)
-		{			
+		{
 			CheckConnection(true);
-			
+
 			FTPReply reply = control.SendCommand("USER " + user);
-			
+
 			// we allow for a site with no password - 230 response
 			string[] validCodes = new string[]{"230", "331"};
 			lastValidReply = control.ValidateReply(reply, validCodes);
 		}
-		
-		
-		/// <summary>  
+
+
+		/// <summary>
 		/// Supplies the password for a previously supplied
 		/// username to log into the FTP server. Must be
 		/// preceeded by the user() method
@@ -808,33 +795,33 @@ namespace EnterpriseDT.Net.Ftp
 		/// <param name="password">      The password.
 		/// </param>
 		public virtual void Password(string password)
-		{			
+		{
 			CheckConnection(true);
-			
+
 			FTPReply reply = control.SendCommand("PASS " + password);
-			
+
 			// we allow for a site with no passwords (202)
 			string[] validCodes = new string[]{"230", "202"};
 			lastValidReply = control.ValidateReply(reply, validCodes);
 		}
-		
+
 
 		/// <summary>  Issue arbitrary ftp commands to the FTP server.
-		/// 
+		///
 		/// </summary>
 		/// <param name="command">    ftp command to be sent to server
 		/// </param>
 		/// <param name="validCodes"> valid return codes for this command
-		/// 
+		///
 		/// </param>
 		/// <returns>  the text returned by the FTP server
 		/// </returns>
 		public virtual string Quote(string command, string[] validCodes)
-		{		
+		{
 			CheckConnection(true);
-			
+
 			FTPReply reply = control.SendCommand(command);
-			
+
 			// allow for no validation to be supplied
 			if (validCodes != null && validCodes.Length > 0)
 			{
@@ -846,33 +833,33 @@ namespace EnterpriseDT.Net.Ftp
 				throw new FTPException("Valid reply code must be supplied");
 			}
 		}
-		
-		
-		/// <summary>  
+
+
+		/// <summary>
 		/// Get the size of a remote file. This is not a standard FTP command, it
-		/// is defined in "Extensions to FTP", a draft RFC 
+		/// is defined in "Extensions to FTP", a draft RFC
 		/// (draft-ietf-ftpext-mlst-16.txt)
 		/// </summary>
 		/// <param name="remoteFile"> name or path of remote file in current directory
 		/// </param>
-		/// <returns> size of file in bytes      
+		/// <returns> size of file in bytes
 		/// </returns>
 		public virtual long Size(string remoteFile)
-		{			
+		{
 			CheckConnection(true);
-			
+
 			FTPReply reply = control.SendCommand("SIZE " + remoteFile);
 			lastValidReply = control.ValidateReply(reply, "213");
-			
+
 			// parse the reply string .
 			string replyText = lastValidReply.ReplyText;
-			
+
 			// trim off any trailing characters after a space, e.g. webstar
 			// responds to SIZE with 213 55564 bytes
 			int spacePos = replyText.IndexOf((System.Char) ' ');
 			if (spacePos >= 0)
 				replyText = replyText.Substring(0, (spacePos) - (0));
-			
+
 			// parse the reply
 			try
 			{
@@ -883,15 +870,15 @@ namespace EnterpriseDT.Net.Ftp
 				throw new FTPException("Failed to parse reply: " + replyText);
 			}
 		}
-		
-		/// <summary> 
+
+		/// <summary>
 		/// Make the next file transfer (put or get) resume. For puts(), the
-		/// bytes already transferred are skipped over, while for gets(), if 
+		/// bytes already transferred are skipped over, while for gets(), if
 		/// writing to a file, it is opened in append mode, and only the bytes
 		/// required are transferred.
-		/// 
+		///
 		/// Currently resume is only supported for BINARY transfers (which is
-		/// generally what it is most useful for). 
+		/// generally what it is most useful for).
 		/// </summary>
 		/// <throws>  FTPException </throws>
 		public virtual void Resume()
@@ -900,8 +887,8 @@ namespace EnterpriseDT.Net.Ftp
 				throw new FTPException("Resume only supported for BINARY transfers");
 			resume = true;
 		}
-		
-		/// <summary> 
+
+		/// <summary>
         /// Cancel the resume. Use this method if something goes wrong
 		/// and the server is left in an inconsistent state
 		/// </summary>
@@ -912,11 +899,11 @@ namespace EnterpriseDT.Net.Ftp
 			Restart(0);
 			resume = false;
 		}
-		
-		/// <summary> 
-		/// Issue the RESTart command to the remote server 
+
+		/// <summary>
+		/// Issue the RESTart command to the remote server
 		/// </summary>
-		/// <param name="size"> the REST param, the mark at which the restart is 
+		/// <param name="size"> the REST param, the mark at which the restart is
 		/// performed on the remote file. For STOR, this is retrieved
 		/// by SIZE
 		/// </param>
@@ -927,9 +914,9 @@ namespace EnterpriseDT.Net.Ftp
 			FTPReply reply = control.SendCommand("REST " + size);
 			lastValidReply = control.ValidateReply(reply, "350");
 		}
-		
-		
-		/// <summary>  
+
+
+		/// <summary>
 		/// Put a local file onto the FTP server. It
 		/// is placed in the current directory.
 		/// </summary>
@@ -939,11 +926,11 @@ namespace EnterpriseDT.Net.Ftp
 		/// current directory
 		/// </param>
 		public virtual void Put(string localPath, string remoteFile)
-		{			
+		{
 			Put(localPath, remoteFile, false);
 		}
-		
-		/// <summary>  
+
+		/// <summary>
 		/// Put a stream of data onto the FTP server. It
 		/// is placed in the current directory.
 		/// </summary>
@@ -953,15 +940,15 @@ namespace EnterpriseDT.Net.Ftp
 		/// current directory
 		/// </param>
 		public virtual void Put(Stream srcStream, string remoteFile)
-		{			
+		{
 			Put(srcStream, remoteFile, false);
 		}
-		
-		
+
+
 		/// <summary>  Put a local file onto the FTP server. It
 		/// is placed in the current directory. Allows appending
 		/// if current file exists
-		/// 
+		///
 		/// </summary>
 		/// <param name="localPath">  path of the local file
 		/// </param>
@@ -971,7 +958,7 @@ namespace EnterpriseDT.Net.Ftp
 		/// <param name="append">     true if appending, false otherwise
 		/// </param>
 		public virtual void Put(string localPath, string remoteFile, bool append)
-		{			
+		{
 			// get according to set type
 			if (transferType == FTPTransferType.ASCII)
 			{
@@ -983,8 +970,8 @@ namespace EnterpriseDT.Net.Ftp
 			}
 			ValidateTransfer();
 		}
-		
-		/// <summary>  
+
+		/// <summary>
 		/// Put a stream of data onto the FTP server. It
 		/// is placed in the current directory. Allows appending
 		/// if current file exists
@@ -997,7 +984,7 @@ namespace EnterpriseDT.Net.Ftp
 		/// <param name="append">     true if appending, false otherwise
 		/// </param>
 		public virtual void Put(Stream srcStream, string remoteFile, bool append)
-		{			
+		{
 			// get according to set type
 			if (transferType == FTPTransferType.ASCII)
 			{
@@ -1009,32 +996,32 @@ namespace EnterpriseDT.Net.Ftp
 			}
 			ValidateTransfer();
 		}
-		
-		/// <summary> 
+
+		/// <summary>
 		/// Validate that the Put() or get() was successful.  This method is not
 		/// for general use.
 		/// </summary>
 		public virtual void ValidateTransfer()
-		{			
+		{
 			CheckConnection(true);
-			
+
 			// check the control response
 			string[] validCodes = new string[]{"225", "226", "250", "426", "450"};
 			FTPReply reply = control.ReadReply();
-			
+
 			// permit 426/450 error if we cancelled the transfer, otherwise
 			// throw an exception
 			string code = reply.ReplyCode;
 			if ((code.Equals("426") || code.Equals("450")) && !cancelTransfer)
 				throw new FTPException(reply);
-			
+
 			lastValidReply = control.ValidateReply(reply, validCodes);
 		}
-		
-		/// <summary> 
+
+		/// <summary>
 		/// Close the data socket
 		/// </summary>
-		/// <param name="stream"> 
+		/// <param name="stream">
 		/// stream to close
 		/// </param>
 		private void CloseDataSocket(Stream stream)
@@ -1048,15 +1035,15 @@ namespace EnterpriseDT.Net.Ftp
     				log.Warn("Caught exception closing data socket", ex);
     			}
             }
-            
+
 			CloseDataSocket();
 		}
-        
-		/// <summary> 
+
+		/// <summary>
 		/// Close the data socket
 		/// </summary>
 		private void CloseDataSocket()
-		{   
+		{
 			if (data != null)
 			{
 				try
@@ -1070,8 +1057,8 @@ namespace EnterpriseDT.Net.Ftp
 				}
 			}
 		}
-		
-		/// <summary>  
+
+		/// <summary>
 		/// Request the server to set up the put
 		/// </summary>
 		/// <param name="remoteFile"> name of remote file in
@@ -1080,12 +1067,12 @@ namespace EnterpriseDT.Net.Ftp
 		/// <param name="append">     true if appending, false otherwise
 		/// </param>
 		private void InitPut(string remoteFile, bool append)
-		{	
+		{
 			CheckConnection(true);
-			
+
 			// reset the cancel flag
 			cancelTransfer = false;
-			
+
 			bool close = false;
 			data = null;
 			try
@@ -1093,7 +1080,7 @@ namespace EnterpriseDT.Net.Ftp
 				// set up data channel
 				data = control.CreateDataSocket(connectMode);
 				data.Timeout = timeout;
-				
+
 				// if resume is requested, we must obtain the size of the
 				// remote file and issue REST
 				if (resume)
@@ -1103,11 +1090,11 @@ namespace EnterpriseDT.Net.Ftp
 					resumeMarker = Size(remoteFile);
 					Restart(resumeMarker);
 				}
-				
+
 				// send the command to store
 				string cmd = append?"APPE ":"STOR ";
 				FTPReply reply = control.SendCommand(cmd + remoteFile);
-				
+
 				// Can get a 125 or a 150
 				string[] validCodes = new string[]{"125", "150"};
 				lastValidReply = control.ValidateReply(reply, validCodes);
@@ -1131,9 +1118,9 @@ namespace EnterpriseDT.Net.Ftp
 				}
 			}
 		}
-		
-		
-		/// <summary>  
+
+
+		/// <summary>
 		/// Put as ASCII, i.e. read a line at a time and write
 		/// inserting the correct FTP separator
 		/// </summary>
@@ -1144,13 +1131,13 @@ namespace EnterpriseDT.Net.Ftp
 		/// <param name="append">     true if appending, false otherwise
 		/// </param>
 		private void PutASCII(string localPath, string remoteFile, bool append)
-		{			
+		{
 			// create an inputstream & pass to common method
             Stream srcStream = new FileStream(localPath, FileMode.Open, FileAccess.Read);
 			PutASCII(srcStream, remoteFile, append);
 		}
-		
-		/// <summary>  
+
+		/// <summary>
 		/// Put as ASCII, i.e. read a line at a time and write
 		/// inserting the correct FTP separator
 		/// </summary>
@@ -1170,17 +1157,17 @@ namespace EnterpriseDT.Net.Ftp
 			try
 			{
                 input = new StreamReader(srcStream);
-                                                   
+
 				InitPut(remoteFile, append);
-				
+
 				// get an character output stream to write to ... AFTER we
 				// have the ok to go ahead AND AFTER we've successfully opened a
 				// stream for the local file
 				output = new StreamWriter(data.DataStream);
-				
+
 				if (TransferStarted != null)
 				    TransferStarted(this, new EventArgs());
-				
+
 				// write \r\n as required by RFC959 after each line
 				long monitorCount = 0;
                 string line = null;
@@ -1200,7 +1187,7 @@ namespace EnterpriseDT.Net.Ftp
 			}
 			catch (SystemException ex)
 			{
-				storedEx = ex;              
+				storedEx = ex;
 			}
 			finally
 			{
@@ -1213,8 +1200,8 @@ namespace EnterpriseDT.Net.Ftp
 				{
                     log.Warn("Caught exception closing stream", ex);
 				}
-                                            
-				try 
+
+				try
 				{
 				    if (output != null)
 					   output.Close();
@@ -1223,12 +1210,12 @@ namespace EnterpriseDT.Net.Ftp
 				{
 					log.Warn("Caught exception closing data socket", ex);
 				}
-            
+
                 // if we did get an exception bail out now
-				if (storedEx != null) 
+				if (storedEx != null)
 				    throw storedEx;
 
-				
+
 				// notify the final transfer size
 				if (BytesTransferred != null)
 				    BytesTransferred(this, new BytesTransferredEventArgs(size));
@@ -1237,31 +1224,31 @@ namespace EnterpriseDT.Net.Ftp
 
 			}
 		}
-		
-		
-		/// <summary>  
+
+
+		/// <summary>
 		/// Put as binary, i.e. read and write raw bytes
 		/// </summary>
-		/// <param name="localPath">  
+		/// <param name="localPath">
 		/// full path of local file to read from
 		/// </param>
-		/// <param name="remoteFile"> 
+		/// <param name="remoteFile">
 		/// name of remote file we are writing to
 		/// </param>
-		/// <param name="append">     
+		/// <param name="append">
 		/// true if appending, false otherwise
 		/// </param>
 		private void PutBinary(string localPath, string remoteFile, bool append)
 		{
-			
+
 			// open input stream to read source file ... do this
 			// BEFORE opening output stream to server, so if file not
 			// found, an exception is thrown
 			Stream srcStream = new FileStream(localPath, FileMode.Open, FileAccess.Read);
 			PutBinary(srcStream, remoteFile, append);
 		}
-		
-		/// <summary>  
+
+		/// <summary>
 		/// Put as binary, i.e. read and write raw bytes
 		/// </summary>
 		/// <param name="srcStream">  input stream of data to put
@@ -1271,7 +1258,7 @@ namespace EnterpriseDT.Net.Ftp
 		/// <param name="append">     true if appending, false otherwise
 		/// </param>
 		private void PutBinary(Stream srcStream, string remoteFile, bool append)
-		{	
+		{
 			BufferedStream input = null;
 			BinaryWriter output = null;
 			SystemException storedEx = null;
@@ -1279,24 +1266,24 @@ namespace EnterpriseDT.Net.Ftp
 			try
 			{
 				input = new BufferedStream(srcStream);
-				
+
 				InitPut(remoteFile, append);
-				
+
 				// get an output stream
 				output = new BinaryWriter(data.DataStream);
-				
+
 				// if resuming, we skip over the unwanted bytes
 				if (resume)
 				{
                     input.Seek(resumeMarker, SeekOrigin.Current);
 				}
-				
+
 				byte[] buf = new byte[transferBufferSize];
-				
+
 				if (TransferStarted != null)
 				    TransferStarted(this, new EventArgs());
 
-				// read a chunk at a time and write to the data socket            
+				// read a chunk at a time and write to the data socket
 				long monitorCount = 0;
 				int count = 0;
 				while ((count = input.Read(buf, 0, buf.Length)) > 0 && !cancelTransfer)
@@ -1313,7 +1300,7 @@ namespace EnterpriseDT.Net.Ftp
 			}
 			catch (SystemException ex)
 			{
-				storedEx = ex;              
+				storedEx = ex;
 			}
 			finally
 			{
@@ -1327,8 +1314,8 @@ namespace EnterpriseDT.Net.Ftp
 				{
 				    log.Warn("Caught exception closing stream", ex);
 				}
-				
-				try 
+
+				try
 				{
 				    if (output != null)
 					   output.Close();
@@ -1337,14 +1324,14 @@ namespace EnterpriseDT.Net.Ftp
 				{
 					log.Warn("Caught exception closing data socket", ex);
 				}
-				
+
 				// if we did get an exception bail out now
-				if (storedEx != null) 
+				if (storedEx != null)
 				    throw storedEx;
-                				
+
 				// notify the final transfer size
-				if (BytesTransferred != null) 
-				    BytesTransferred(this, new BytesTransferredEventArgs(size));			
+				if (BytesTransferred != null)
+				    BytesTransferred(this, new BytesTransferredEventArgs(size));
 				if (TransferComplete != null)
 				    TransferComplete(this, new EventArgs());
 
@@ -1352,9 +1339,9 @@ namespace EnterpriseDT.Net.Ftp
 				log.Debug("Transferred " + size + " bytes to remote host");
 			}
 		}
-		
-		
-		/// <summary>  
+
+
+		/// <summary>
 		/// Put data onto the FTP server. It
 		/// is placed in the current directory.
 		/// </summary>
@@ -1364,11 +1351,11 @@ namespace EnterpriseDT.Net.Ftp
 		/// current directory
 		/// </param>
 		public virtual void Put(byte[] bytes, string remoteFile)
-		{			
+		{
 			Put(bytes, remoteFile, false);
 		}
-		
-		/// <summary>  
+
+		/// <summary>
 		/// Put data onto the FTP server. It
 		/// is placed in the current directory. Allows
 		/// appending if current file exists
@@ -1381,20 +1368,20 @@ namespace EnterpriseDT.Net.Ftp
 		/// <param name="append">     true if appending, false otherwise
 		/// </param>
 		public virtual void Put(byte[] bytes, string remoteFile, bool append)
-		{			
+		{
 			InitPut(remoteFile, append);
-			
+
 			// get an output stream
 			BinaryWriter output = new BinaryWriter(data.DataStream);
-			
+
 			try
 			{
 				// write array
 				output.Write(bytes, 0, bytes.Length);
 			}
 			finally
-			{	
-                try 
+			{
+                try
                 {
                     output.Close();
                 }
@@ -1403,12 +1390,12 @@ namespace EnterpriseDT.Net.Ftp
     				log.Warn("Caught exception closing data socket", ex);
     			}
 			}
-			
+
 			ValidateTransfer();
 		}
-		
-		
-		/// <summary>  
+
+
+		/// <summary>
 		/// Get data from the FTP server. Uses the currently
 		/// set transfer mode.
 		/// </summary>
@@ -1418,7 +1405,7 @@ namespace EnterpriseDT.Net.Ftp
 		/// current directory
 		/// </param>
 		public virtual void Get(string localPath, string remoteFile)
-		{			
+		{
 			// get according to set type
 			if (transferType == FTPTransferType.ASCII)
 			{
@@ -1430,8 +1417,8 @@ namespace EnterpriseDT.Net.Ftp
 			}
 			ValidateTransfer();
 		}
-		
-		/// <summary>  
+
+		/// <summary>
 		/// Get data from the FTP server, using the currently
 		/// set transfer mode.
 		/// </summary>
@@ -1441,7 +1428,7 @@ namespace EnterpriseDT.Net.Ftp
 		/// current directory
 		/// </param>
 		public virtual void Get(Stream destStream, string remoteFile)
-		{			
+		{
 			// get according to set type
 			if (transferType == FTPTransferType.ASCII)
 			{
@@ -1453,9 +1440,9 @@ namespace EnterpriseDT.Net.Ftp
 			}
 		    ValidateTransfer();
 		}
-		
-		
-		/// <summary>  
+
+
+		/// <summary>
 		/// Request to the server that the get is set up
 		/// </summary>
 		/// <param name="remoteFile"> name of remote file
@@ -1463,10 +1450,10 @@ namespace EnterpriseDT.Net.Ftp
 		private void InitGet(string remoteFile)
 		{
 			CheckConnection(true);
-			
+
 			// reset the cancel flag
 			cancelTransfer = false;
-			
+
 			bool close = false;
 			data = null;
 			try
@@ -1474,7 +1461,7 @@ namespace EnterpriseDT.Net.Ftp
 				// set up data channel
 				data = control.CreateDataSocket(connectMode);
 				data.Timeout = timeout;
-				
+
 				// if resume is requested, we must issue REST
 				if (resume)
 				{
@@ -1482,10 +1469,10 @@ namespace EnterpriseDT.Net.Ftp
 						throw new FTPException("Resume only supported for BINARY transfers");
 					Restart(resumeMarker);
 				}
-				
+
 				// send the retrieve command
 				FTPReply reply = control.SendCommand("RETR " + remoteFile);
-				
+
 				// Can get a 125 or a 150
 				string[] validCodes1 = new string[]{"125", "150"};
 				lastValidReply = control.ValidateReply(reply, validCodes1);
@@ -1509,9 +1496,9 @@ namespace EnterpriseDT.Net.Ftp
 				}
 			}
 		}
-		
-		
-		/// <summary>  
+
+
+		/// <summary>
 		/// Get as ASCII, i.e. read a line at a time and write
 		/// using the correct newline separator for the OS
 		/// </summary>
@@ -1520,39 +1507,39 @@ namespace EnterpriseDT.Net.Ftp
 		/// <param name="remoteFile"> name of remote file
 		/// </param>
 		private void GetASCII(string localPath, string remoteFile)
-		{   			
+		{
 			// Call InitGet() before creating the FileOutputStream.
 			// This will prevent being left with an empty file if a FTPException
 			// is thrown by InitGet().
 			InitGet(remoteFile);
-			
+
 			SystemException storedEx = null;
 			long size = 0;
 
 			// Need to store the local file name so the file can be
 			// deleted if necessary.
 			FileInfo localFile = new FileInfo(localPath);
-			
+
 			// create the buffered stream for writing
 			StreamWriter output = new StreamWriter(localPath);
-            
+
 			// get an character input stream to read data from ... AFTER we
 			// have the ok to go ahead AND AFTER we've successfully opened a
 			// stream for the local file
 			StreamReader input = null;
-			try 
+			try
 			{
 			    input = new StreamReader(data.DataStream);
-                
+
     			// If we are in active mode we have to set the timeout of the passive
     			// socket. We can achieve this by setting Timeout again.
     			// If we are in passive mode then we are merely setting the value twice
     			// which does no harm anyway. Doing this simplifies any logic changes.
     			data.Timeout = timeout;
-    			
+
     			if (TransferStarted != null)
     			    TransferStarted(this, new EventArgs());
-    			
+
     			// output a new line after each received newline
     			long monitorCount = 0;
                 string line = null;
@@ -1564,7 +1551,7 @@ namespace EnterpriseDT.Net.Ftp
 
 					if (BytesTransferred != null && monitorCount > monitorInterval)
 					{
-    				    BytesTransferred(this, new BytesTransferredEventArgs(size));				
+    				    BytesTransferred(this, new BytesTransferredEventArgs(size));
 						monitorCount = 0;
 					}
 				}
@@ -1574,10 +1561,10 @@ namespace EnterpriseDT.Net.Ftp
 			}
 			catch (SystemException ex)
 			{
-				storedEx = ex;              
+				storedEx = ex;
 			}
-			
-		    try 
+
+		    try
 		    {
 			    output.Close();
 			}
@@ -1585,7 +1572,7 @@ namespace EnterpriseDT.Net.Ftp
 			{
 				log.Warn("Caught exception closing output stream", ex);
 			}
-            
+
             try {
                 if (input != null)
                     input.Close();
@@ -1594,24 +1581,24 @@ namespace EnterpriseDT.Net.Ftp
 			{
 				log.Warn("Caught exception closing data socket", ex);
 			}
-			
+
 			// if we failed to write the file, rethrow the exception
-			if (storedEx != null) 
+			if (storedEx != null)
 			{
                 // delete the partial file if failure occurred
 			    if (deleteOnFailure)
 			        localFile.Delete();
 				throw storedEx;
 			}
-			
+
             if (BytesTransferred != null)
 				BytesTransferred(this, new BytesTransferredEventArgs(size));
 			if (TransferComplete != null)
 			    TransferComplete(this, new EventArgs());
 
 		}
-		
-		/// <summary>  
+
+		/// <summary>
 		/// Get as ASCII, i.e. read a line at a time and write
 		/// using the correct newline separator for the OS
 		/// </summary>
@@ -1620,31 +1607,31 @@ namespace EnterpriseDT.Net.Ftp
 		/// <param name="remoteFile"> name of remote file
 		/// </param>
 		private void GetASCII(Stream destStream, string remoteFile)
-		{			
+		{
 			InitGet(remoteFile);
-			
+
 			// create the buffered stream for writing
             StreamWriter output = new StreamWriter(destStream);
-                                                   
+
 			// get an character input stream to read data from ... AFTER we
 			// have the ok to go ahead
             StreamReader input = null;
             SystemException storedEx = null;
 			long size = 0;
-            try 
+            try
             {
                 input = new StreamReader(data.DataStream);
-                
+
     			// B. McKeown:
     			// If we are in active mode we have to set the timeout of the passive
     			// socket. We can achieve this by setting Timeout again.
     			// If we are in passive mode then we are merely setting the value twice
     			// which does no harm anyway. Doing this simplifies any logic changes.
     			data.Timeout = timeout;
-    			
+
     			if (TransferStarted != null)
     			    TransferStarted(this, new EventArgs());
-    			
+
     			// output a new line after each received newline
     			long monitorCount = 0;
                 string line = null;
@@ -1668,7 +1655,7 @@ namespace EnterpriseDT.Net.Ftp
 			{
 				storedEx = ex;
 			}
-            
+
             try {
                 output.Close();
             }
@@ -1676,7 +1663,7 @@ namespace EnterpriseDT.Net.Ftp
 			{
 				log.Warn("Caught exception closing data socket", ex);
 			}
-			
+
             try {
                 if (input != null)
                     input.Close();
@@ -1685,19 +1672,19 @@ namespace EnterpriseDT.Net.Ftp
 			{
 				log.Warn("Caught exception closing data socket", ex);
 			}
-			
+
 			// if we failed to write the file, rethrow the exception
 			if (storedEx != null)
 				throw storedEx;
-				
+
 			if (BytesTransferred != null)
 				BytesTransferred(this, new BytesTransferredEventArgs(size));
 			if (TransferComplete != null)
 			    TransferComplete(this, new EventArgs());
 		}
-		
-		
-		/// <summary>  
+
+
+		/// <summary>
 		/// Get as binary file, i.e. straight transfer of data
 		/// </summary>
 		/// <param name="localPath">  full path of local file to write to
@@ -1705,57 +1692,57 @@ namespace EnterpriseDT.Net.Ftp
 		/// <param name="remoteFile"> name of remote file
 		/// </param>
 		private void GetBinary(string localPath, string remoteFile)
-		{			
+		{
 			// B. McKeown: Need to store the local file name so the file can be
 			// deleted if necessary.
 			FileInfo localFile = new FileInfo(localPath);
-			
+
 			// if resuming, we must find the marker
             if (localFile.Exists && resume)
 				resumeMarker = localFile.Length;
-			
+
 			// B.McKeown:
 			// Call InitGet() before creating the FileOutputStream.
 			// This will prevent being left with an empty file if a FTPException
 			// is thrown by InitGet().
 			InitGet(remoteFile);
-			
+
 			// create the output stream for writing the file
             FileMode mode = resume ? FileMode.Append : FileMode.Create;
             BinaryWriter output = new BinaryWriter(new FileStream(localPath, mode));
-			
+
 			// get an input stream to read data from ... AFTER we have
 			// the ok to go ahead AND AFTER we've successfully opened a
 			// stream for the local file
             BinaryReader input = null;
             long size = 0;
             SystemException storedEx = null;
-            try 
+            try
             {
                 input = new BinaryReader(data.DataStream);
-    			
+
     			// B. McKeown:
     			// If we are in active mode we have to set the timeout of the passive
     			// socket. We can achieve this by calling setTimeout() again.
     			// If we are in passive mode then we are merely setting the value twice
     			// which does no harm anyway. Doing this simplifies any logic changes.
     			data.Timeout = timeout;
-    			
+
     			if (TransferStarted != null)
     			    TransferStarted(this, new EventArgs());
-    			
+
     			// do the retrieving
     			long monitorCount = 0;
     			byte[] chunk = new byte[transferBufferSize];
     			int count;
-    			
+
     			// read from socket & write to file in chunks
 				while ((count = ReadChunk(input, chunk, transferBufferSize)) > 0 && !cancelTransfer)
 				{
 					output.Write(chunk, 0, count);
 					size += count;
 					monitorCount += count;
-					
+
 					if (BytesTransferred != null && monitorCount > monitorInterval)
 					{
 						BytesTransferred(this, new BytesTransferredEventArgs(size));
@@ -1764,7 +1751,7 @@ namespace EnterpriseDT.Net.Ftp
 				}
                  // if asked to transfer, abort
                 if (cancelTransfer)
-                    Abort();               
+                    Abort();
 			}
 			catch (SystemException ex)
 			{
@@ -1772,15 +1759,15 @@ namespace EnterpriseDT.Net.Ftp
 			}
 
 			resume = false;
-			
+
             try {
                 output.Close();
             }
             catch (SystemException ex)
 			{
 				log.Warn("Caught exception closing stream", ex);
-			}			
-			
+			}
+
             try {
                 if (input != null)
                     input.Close();
@@ -1789,26 +1776,26 @@ namespace EnterpriseDT.Net.Ftp
 			{
 				log.Warn("Caught exception closing data socket", ex);
 			}
-			
+
 			// if we failed to write the file, rethrow the exception
-			if (storedEx != null) 
+			if (storedEx != null)
 			{
 			    // delete the partial file if failure occurred
 			    if (deleteOnFailure)
 			       localFile.Delete();
 				throw storedEx;
 			}
-			
+
             if (BytesTransferred != null)
 				BytesTransferred(this, new BytesTransferredEventArgs(size));
 			if (TransferComplete != null)
 			    TransferComplete(this, new EventArgs());
-			
+
 			// log bytes transferred
 			log.Debug("Transferred " + size + " bytes from remote host");
 		}
-		
-		/// <summary>  
+
+		/// <summary>
 		/// Get as binary file, i.e. straight transfer of data
 		/// </summary>
 		/// <param name="destStream"> stream to write to
@@ -1816,44 +1803,44 @@ namespace EnterpriseDT.Net.Ftp
 		/// <param name="remoteFile"> name of remote file
 		/// </param>
 		private void GetBinary(Stream destStream, string remoteFile)
-		{			
+		{
 			InitGet(remoteFile);
-			
+
 			// create the buffered output stream for writing the file
 			BufferedStream output = new BufferedStream(destStream);
-			
+
 			// get an input stream to read data from ... AFTER we have
 			// the ok to go ahead AND AFTER we've successfully opened a
 			// stream for the local file
 			BinaryReader input = null;
 			long size = 0;
             SystemException storedEx = null;
-            try 
+            try
             {
                 input = new BinaryReader(data.DataStream);
-    
+
     			// B. McKeown:
     			// If we are in active mode we have to set the timeout of the passive
     			// socket. We can achieve this by calling setTimeout() again.
     			// If we are in passive mode then we are merely setting the value twice
     			// which does no harm anyway. Doing this simplifies any logic changes.
     			data.Timeout = timeout;
-    			
+
     			if (TransferStarted != null)
     			    TransferStarted(this, new EventArgs());
-    			
+
     			// do the retrieving
     			long monitorCount = 0;
     			byte[] chunk = new byte[transferBufferSize];
     			int count;
-    			
+
     			// read from socket & write to file in chunks
 				while ((count = ReadChunk(input, chunk, transferBufferSize)) > 0 && !cancelTransfer)
 				{
 					output.Write(chunk, 0, count);
 					size += count;
 					monitorCount += count;
-					
+
 					if (BytesTransferred != null && monitorCount > monitorInterval)
 					{
 						BytesTransferred(this, new BytesTransferredEventArgs(size));
@@ -1868,7 +1855,7 @@ namespace EnterpriseDT.Net.Ftp
 			{
 				storedEx = ex;
 			}
-			
+
             try {
                 output.Close();
             }
@@ -1876,7 +1863,7 @@ namespace EnterpriseDT.Net.Ftp
 			{
 				log.Warn("Caught exception closing stream", ex);
 			}
-			
+
             try {
                 if (input != null)
                     input.Close();
@@ -1885,22 +1872,22 @@ namespace EnterpriseDT.Net.Ftp
 			{
 				log.Warn("Caught exception closing data socket", ex);
 			}
-			
+
 			// if we failed to write to the stream, rethrow the exception
 			if (storedEx != null)
 				throw storedEx;
-			 
+
             if (BytesTransferred != null)
 				BytesTransferred(this, new BytesTransferredEventArgs(size));
 			if (TransferComplete != null)
 			    TransferComplete(this, new EventArgs());
-			
+
 			// log bytes transferred
 			log.Debug("Transferred " + size + " bytes from remote host");
 		}
-		
-		/// <summary>  
-		/// Get data from the FTP server. 
+
+		/// <summary>
+		/// Get data from the FTP server.
         /// </summary>
         /// <remarks>
         /// Transfers in whatever mode we are in. Retrieve as a byte array. Note
@@ -1911,9 +1898,9 @@ namespace EnterpriseDT.Net.Ftp
 		/// current directory
 		/// </param>
 		public virtual byte[] Get(string remoteFile)
-		{			
+		{
 			InitGet(remoteFile);
-			
+
 			// get an input stream to read data from
 			BinaryReader input = new BinaryReader(data.DataStream);
             long size = 0;
@@ -1927,23 +1914,23 @@ namespace EnterpriseDT.Net.Ftp
     			// If we are in passive mode then we are merely setting the value twice
     			// which does no harm anyway. Doing this simplifies any logic changes.
     			data.Timeout = timeout;
-    			
+
     			// do the retrieving
     			long monitorCount = 0;
     			byte[] chunk = new byte[transferBufferSize]; // read chunks into
     			temp = new MemoryStream(transferBufferSize); // temp swap buffer
     			int count; // size of chunk read
-    			 			
+
     			if (TransferStarted != null)
-    			    TransferStarted(this, new EventArgs());			
-    			
+    			    TransferStarted(this, new EventArgs());
+
     			// read from socket & write to file
     			while ((count = ReadChunk(input, chunk, transferBufferSize)) > 0 && !cancelTransfer)
     			{
     				temp.Write(chunk, 0, count);
     				size += count;
     				monitorCount += count;
-    				
+
     				if (BytesTransferred != null && monitorCount > monitorInterval)
     				{
     					BytesTransferred(this, new BytesTransferredEventArgs(size));
@@ -1958,8 +1945,8 @@ namespace EnterpriseDT.Net.Ftp
 			{
 				storedEx = ex;
 			}
-	    
-            try 
+
+            try
             {
                 if (temp != null)
                     temp.Close();
@@ -1967,9 +1954,9 @@ namespace EnterpriseDT.Net.Ftp
             catch (SystemException ex)
 			{
 				log.Warn("Caught exception closing stream", ex);
-			}			
-			
-            try 
+			}
+
+            try
             {
                 input.Close();
             }
@@ -1977,24 +1964,24 @@ namespace EnterpriseDT.Net.Ftp
 			{
 				log.Warn("Caught exception closing data socket", ex);
 			}
-			
+
 	     	// if we failed to write to the stream, rethrow the exception
 			if (storedEx != null)
 				throw storedEx;
-			
+
 			// notify final transfer size
 			if (BytesTransferred != null)
 				BytesTransferred(this, new BytesTransferredEventArgs(size));
 			if (TransferComplete != null)
 			    TransferComplete(this, new EventArgs());
-			
+
 			ValidateTransfer();
-			
+
 			return temp.ToArray();;
 		}
-		
-		
-		/// <summary>  
+
+
+		/// <summary>
 		/// Run a site-specific command on the
 		/// server. Support for commands is dependent
 		/// on the server
@@ -2005,17 +1992,17 @@ namespace EnterpriseDT.Net.Ftp
 		/// command not implemented
 		/// </returns>
 		public virtual bool Site(string command)
-		{			
+		{
 			CheckConnection(true);
-			
+
 			// send the retrieve command
 			FTPReply reply = control.SendCommand("SITE " + command);
-			
+
 			// Can get a 200 (ok) or 202 (not impl). Some
 			// FTP servers return 502 (not impl)
 			string[] validCodes = new string[]{"200", "202", "502"};
 			lastValidReply = control.ValidateReply(reply, validCodes);
-			
+
 			// return true or false? 200 is ok, 202/502 not
 			// implemented
 			if (reply.ReplyCode.Equals("200"))
@@ -2023,9 +2010,9 @@ namespace EnterpriseDT.Net.Ftp
 			else
 				return false;
 		}
-		
-		
-		/// <summary>  
+
+
+		/// <summary>
 		/// List a directory's contents as an array of FTPFile objects.
 		/// Should work for Windows and most Unix FTP servers - let us know
 		/// about unusual formats (support@enterprisedt.com)
@@ -2039,23 +2026,23 @@ namespace EnterpriseDT.Net.Ftp
 			// create the factory
 			if (fileFactory == null)
 				fileFactory = new FTPFileFactory(GetSystem());
-			
+
 			// get the details and parse
 			return fileFactory.Parse(Dir(dirname, true));
 		}
-		
-		/// <summary>  
+
+		/// <summary>
 		/// List current directory's contents as an array of strings of
 		/// filenames.
 		/// </summary>
 		/// <returns>  an array of current directory listing strings
 		/// </returns>
 		public virtual string[] Dir()
-		{			
+		{
 			return Dir(null, false);
-		} 
-		
-		/// <summary>  
+		}
+
+		/// <summary>
 		/// List a directory's contents as an array of strings of filenames.
 		/// </summary>
 		/// <param name="dirname"> name of directory OR filemask
@@ -2063,12 +2050,12 @@ namespace EnterpriseDT.Net.Ftp
 		/// <returns>  an array of directory listing strings
 		/// </returns>
 		public virtual string[] Dir(string dirname)
-		{			
+		{
 			return Dir(dirname, false);
 		}
-		
-		
-		/// <summary>  
+
+
+		/// <summary>
 		/// List a directory's contents as an array of strings. A detailed
 		/// listing is available, otherwise just filenames are provided.
 		/// The detailed listing varies in details depending on OS and
@@ -2085,36 +2072,36 @@ namespace EnterpriseDT.Net.Ftp
 		public virtual string[] Dir(string dirname, bool full)
         {
 			CheckConnection(true);
-			
+
 			// set up data channel
 			data = control.CreateDataSocket(connectMode);
 			data.Timeout = timeout;
-			
+
 			// send the retrieve command
 			string command = full?"LIST ":"NLST ";
 			if (dirname != null)
 				command += dirname;
-			
+
 			// some FTP servers bomb out if NLST has whitespace appended
 			command = command.Trim();
 			FTPReply reply = control.SendCommand(command);
-			
+
 			// check the control response. wu-ftp returns 550 if the
 			// directory is empty, so we handle 550 appropriately. Similarly
-			// proFTPD returns 450 
+			// proFTPD returns 450
 			string[] validCodes1 = new string[]{"125", "150", "450", "550"};
 			lastValidReply = control.ValidateReply(reply, validCodes1);
-			
+
 			// an empty array of files for 450/550
 			string[] result = new string[0];
-			
+
 			// a normal reply ... extract the file list
 			string replyCode = lastValidReply.ReplyCode;
 			if (!replyCode.Equals("450") && !replyCode.Equals("550"))
 			{
 				// get a character input stream to read data from .
                 StreamReader input = new StreamReader(data.DataStream);
-                
+
 				// read a line at a time
 				ArrayList lines = new ArrayList(10);
 				string line = null;
@@ -2130,12 +2117,12 @@ namespace EnterpriseDT.Net.Ftp
     				log.Warn("Caught exception closing data socket", ex);
     			}
 				CloseDataSocket();
-				
+
 				// check the control response
 				string[] validCodes2 = new string[]{"226", "250"};
 				reply = control.ReadReply();
 				lastValidReply = control.ValidateReply(reply, validCodes2);
-				
+
 				// empty array is default
 				if (!(lines.Count == 0))
 				{
@@ -2150,12 +2137,12 @@ namespace EnterpriseDT.Net.Ftp
 			}
 			return result;
 		}
-		
-		/// <summary> 
-		/// Attempts to read a specified number of bytes from the given 
+
+		/// <summary>
+		/// Attempts to read a specified number of bytes from the given
 		/// <code>BufferedStream</code> and place it in the given byte-array.
 		/// The purpose of this method is to permit subclasses to execute
-		/// any additional code necessary when performing this operation. 
+		/// any additional code necessary when performing this operation.
 		/// </summary>
 		/// <param name="input">The <code>BinaryReader</code> to read from.
 		/// </param>
@@ -2167,14 +2154,14 @@ namespace EnterpriseDT.Net.Ftp
 		/// </returns>
 		/// <throws>  SystemException Thrown if there was an error while reading. </throws>
 		internal virtual int ReadChunk(BinaryReader input, byte[] chunk, int chunksize)
-		{			
+		{
 			return input.Read(chunk, 0, chunksize);
 		}
-		
-		/// <summary> 
-		/// Attempts to read a single character from the given <code>StreamReader</code>. 
+
+		/// <summary>
+		/// Attempts to read a single character from the given <code>StreamReader</code>.
 		/// The purpose of this method is to permit subclasses to execute
-		/// any additional code necessary when performing this operation. 
+		/// any additional code necessary when performing this operation.
 		/// </summary>
 		/// <param name="input">The <code>StreamReader</code> to read from.
 		/// </param>
@@ -2185,40 +2172,40 @@ namespace EnterpriseDT.Net.Ftp
 		{
 			return input.Read();
 		}
-		
-		/// <summary> 
-		/// Attempts to read a single line from the given <code>StreamReader</code>. 
+
+		/// <summary>
+		/// Attempts to read a single line from the given <code>StreamReader</code>.
 		/// The purpose of this method is to permit subclasses to execute
-		/// any additional code necessary when performing this operation. 
+		/// any additional code necessary when performing this operation.
 		/// </summary>
 		/// <param name="input">The <code>StreamReader</code> to read from.
 		/// </param>
 		/// <returns> The string read.
 		/// </returns>
-		/// <throws>  
-        /// SystemException Thrown if there was an error while reading. 
+		/// <throws>
+        /// SystemException Thrown if there was an error while reading.
         /// </throws>
 		internal virtual string ReadLine(StreamReader input)
 		{
 			return input.ReadLine();
 		}
-				
-		/// <summary>  
+
+		/// <summary>
 		/// Delete the specified remote file
 		/// </summary>
 		/// <param name="remoteFile"> name of remote file to
 		/// delete
 		/// </param>
 		public virtual void Delete(string remoteFile)
-		{			
+		{
 			CheckConnection(true);
 			string[] validCodes = new string[]{"200", "250"};
 			FTPReply reply = control.SendCommand("DELE " + remoteFile);
 			lastValidReply = control.ValidateReply(reply, validCodes);
 		}
-		
-		
-		/// <summary>  
+
+
+		/// <summary>
 		/// Rename a file or directory
 		/// </summary>
 		/// <param name="from"> name of file or directory to rename
@@ -2226,103 +2213,103 @@ namespace EnterpriseDT.Net.Ftp
 		/// <param name="to">   intended name
 		/// </param>
 		public virtual void Rename(string from, string to)
-		{			
+		{
 			CheckConnection(true);
-			
+
 			FTPReply reply = control.SendCommand("RNFR " + from);
 			lastValidReply = control.ValidateReply(reply, "350");
-			
+
 			reply = control.SendCommand("RNTO " + to);
 			lastValidReply = control.ValidateReply(reply, "250");
 		}
-		
-		
-		/// <summary>  
+
+
+		/// <summary>
 		/// Delete the specified remote working directory
 		/// </summary>
 		/// <param name="dir"> name of remote directory to
 		/// delete
 		/// </param>
 		public virtual void RmDir(string dir)
-		{			
+		{
 			CheckConnection(true);
-			
+
 			FTPReply reply = control.SendCommand("RMD " + dir);
-			
+
 			// some servers return 200,257, technically incorrect but
 			// we cater for it ...
 			string[] validCodes = new string[]{"200", "250", "257"};
 			lastValidReply = control.ValidateReply(reply, validCodes);
 		}
-		
-		
-		/// <summary>  
+
+
+		/// <summary>
 		/// Create the specified remote working directory
 		/// </summary>
 		/// <param name="dir"> name of remote directory to
 		/// create
 		/// </param>
 		public virtual void MkDir(string dir)
-		{			
+		{
 			CheckConnection(true);
-			
+
 			FTPReply reply = control.SendCommand("MKD " + dir);
-			
+
 			// some servers return 200,257, technically incorrect but
 			// we cater for it ...
 			string[] validCodes = new string[]{"200", "250", "257"};
 			lastValidReply = control.ValidateReply(reply, validCodes);
 		}
-		
-		
-		/// <summary>  
+
+
+		/// <summary>
 		/// Change the remote working directory to that supplied
 		/// </summary>
 		/// <param name="dir"> name of remote directory to
 		/// change to
 		/// </param>
 		public virtual void ChDir(string dir)
-		{			
+		{
 			CheckConnection(true);
-			
+
 			FTPReply reply = control.SendCommand("CWD " + dir);
 			lastValidReply = control.ValidateReply(reply, "250");
 		}
-		
-		/// <summary>  
+
+		/// <summary>
 		/// Get modification time for a remote file
 		/// </summary>
 		/// <param name="remoteFile">  name of remote file
 		/// </param>
-		/// <returns>   
+		/// <returns>
 		/// modification time of file as a date
 		/// </returns>
 		public virtual DateTime ModTime(string remoteFile)
-		{			
+		{
 			CheckConnection(true);
-			
+
 			FTPReply reply = control.SendCommand("MDTM " + remoteFile);
 			lastValidReply = control.ValidateReply(reply, "213");
-			
+
 			// parse the reply string ...
-			DateTime ts = DateTime.ParseExact(lastValidReply.ReplyText, 
-                                              tsFormat, 
+			DateTime ts = DateTime.ParseExact(lastValidReply.ReplyText,
+                                              tsFormat,
                                               CultureInfo.CurrentCulture.DateTimeFormat);
             return ts.ToUniversalTime();
 		}
-		
-		/// <summary>  
+
+		/// <summary>
 		/// Get the current remote working directory
 		/// </summary>
 		/// <returns>   the current working directory
 		/// </returns>
 		public virtual string Pwd()
-		{			
+		{
 			CheckConnection(true);
-			
+
 			FTPReply reply = control.SendCommand("PWD");
 			lastValidReply = control.ValidateReply(reply, "257");
-			
+
 			// get the reply text and extract the dir
 			// listed in quotes, if we can find it. Otherwise
 			// just return the whole reply string
@@ -2334,19 +2321,19 @@ namespace EnterpriseDT.Net.Ftp
 			else
 				return text;
 		}
-		
-		
-		/// <summary>  
+
+
+		/// <summary>
 		/// Get the server supplied features
 		/// </summary>
-		/// <returns>   
+		/// <returns>
 		/// string containing server features, or null if no features or not
 		/// supported
 		/// </returns>
 		public virtual string[] Features()
-		{			
+		{
 			CheckConnection(true);
-			
+
 			FTPReply reply = control.SendCommand("FEAT");
 			string[] validCodes = new string[]{"211", "500", "502"};
 			lastValidReply = control.ValidateReply(reply, validCodes);
@@ -2355,57 +2342,57 @@ namespace EnterpriseDT.Net.Ftp
 			else
 				throw new FTPException(reply);
 		}
-		
-		/// <summary>  
+
+		/// <summary>
 		/// Get the type of the OS at the server
 		/// </summary>
 		/// <returns>   the type of server OS
 		/// </returns>
 		public virtual string GetSystem()
-		{			
+		{
 			CheckConnection(true);
-			
+
 			FTPReply reply = control.SendCommand("SYST");
 			lastValidReply = control.ValidateReply(reply, "215");
 			return lastValidReply.ReplyText;
 		}
-		
+
 		/// <summary>  Get the help text for the specified command
-		/// 
+		///
 		/// </summary>
 		/// <param name="command"> name of the command to get help on
 		/// </param>
 		/// <returns> help text from the server for the supplied command
 		/// </returns>
 		public virtual string Help(string command)
-		{			
+		{
 			CheckConnection(true);
-			
+
 			FTPReply reply = control.SendCommand("HELP " + command);
 			string[] validCodes = new string[]{"211", "214"};
 			lastValidReply = control.ValidateReply(reply, validCodes);
 			return lastValidReply.ReplyText;
 		}
-        
-		/// <summary>  
+
+		/// <summary>
 		/// Abort the current action
 		/// </summary>
 		protected virtual void Abort()
-		{			
+		{
 			CheckConnection(true);
-			
+
 			FTPReply reply = control.SendCommand("ABOR");
 			string[] validCodes = new string[]{"426", "226"};
 			lastValidReply = control.ValidateReply(reply, validCodes);
 		}
-		
-		/// <summary>  
+
+		/// <summary>
 		/// Quit the FTP session
 		/// </summary>
 		public virtual void Quit()
-		{			
+		{
 			CheckConnection(true);
-			
+
 			fileFactory = null;
 			try
 			{
@@ -2420,23 +2407,23 @@ namespace EnterpriseDT.Net.Ftp
 				control = null;
 			}
 		}
-        
-        /// <summary>  
+
+        /// <summary>
 		/// Quit the FTP session immediately by closing the control socket
 		/// without sending the QUIT command
 		/// </summary>
-        public virtual void QuitImmediately() 
+        public virtual void QuitImmediately()
         {
             CheckConnection(true);
-			
+
 			fileFactory = null;
-            
+
             control.Logout();
 			control = null;
         }
-        
-        
-		/// <summary> 
+
+
+		/// <summary>
         /// Work out the version array
         /// </summary>
 		static FTPClient()

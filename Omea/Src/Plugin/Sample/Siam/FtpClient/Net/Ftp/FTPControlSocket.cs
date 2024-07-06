@@ -1,28 +1,15 @@
 // edtFTPnet
-// 
-// Copyright (C) 2004 Enterprise Distributed Technologies Ltd
-// 
-// www.enterprisedt.com
-// 
-// This library is free software; you can redistribute it and/or
-// modify it under the terms of the GNU Lesser General Public
-// License as published by the Free Software Foundation; either
-// version 2.1 of the License, or (at your option) any later version.
-// 
-// This library is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-// Lesser General Public License for more details.
-// 
-// You should have received a copy of the GNU Lesser General Public
-// License along with this library; if not, write to the Free Software
-// Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-// 
-// Bug fixes, suggestions and comments should posted on 
+/*
+SPDX-FileCopyrightText: 2004 Enterprise Distributed Technologies Ltd
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+*/
+//
+// Bug fixes, suggestions and comments should posted on
 // http://www.enterprisedt.com/forums/index.php
-// 
+//
 // Change Log:
-// 
+//
 // $Log: FTPControlSocket.cs,v $
 // Revision 1.11  2004/11/20 22:33:00  bruceb
 // removed full classnames
@@ -60,30 +47,30 @@ using System.Text;
 using Logger = EnterpriseDT.Util.Debug.Logger;
 
 namespace EnterpriseDT.Net.Ftp
-{	
+{
 	/// <summary>  Supports client-side FTP operations
-	/// 
+	///
 	/// </summary>
 	/// <author>              Bruce Blackshaw
 	/// </author>
 	/// <version>         $LastChangedRevision$
-	/// 
+	///
 	/// </version>
 	public class FTPControlSocket
 	{
         /// <summary>
     	/// Event for notifying start of a transfer
-    	/// </summary> 
+    	/// </summary>
         internal event FTPMessageHandler CommandSent;
-        
+
         /// <summary>
     	/// Event for notifying start of a transfer
-    	/// </summary> 
+    	/// </summary>
         internal event FTPMessageHandler ReplyReceived;
 
-		/// <summary> 
-		/// Get/Set strict checking of FTP return codes. If strict 
-		/// checking is on (the default) code must exactly match the expected 
+		/// <summary>
+		/// Get/Set strict checking of FTP return codes. If strict
+		/// checking is on (the default) code must exactly match the expected
 		/// code. If strict checking is off, only the first digit must match.
 		/// </summary>
 		virtual internal bool StrictReturnCodes
@@ -96,9 +83,9 @@ namespace EnterpriseDT.Net.Ftp
             {
                 return strictReturnCodes;
             }
-			
+
 		}
-		/// <summary>   
+		/// <summary>
 		/// Get/Set the TCP timeout on the underlying control socket.
 		/// </summary>
 		virtual internal int Timeout
@@ -115,89 +102,89 @@ namespace EnterpriseDT.Net.Ftp
                 return timeout;
             }
 		}
-        		
+
 		/// <summary>   Standard FTP end of line sequence</summary>
 		internal const string EOL = "\r\n";
-		
+
 		/// <summary>   The default and standard control port number for FTP</summary>
 		public const int CONTROL_PORT = 21;
-		
+
 		/// <summary>   Used to flag messages</summary>
 		private const string DEBUG_ARROW = "---> ";
-		
+
 		/// <summary>   Start of password message</summary>
 		private static readonly string PASSWORD_MESSAGE = DEBUG_ARROW + "PASS";
-		
+
 		/// <summary> Logging object</summary>
 		private Logger log;
-		
+
 		/// <summary> Use strict return codes if true</summary>
 		private bool strictReturnCodes = true;
-        
+
         /// <summary>Address of the remote host</summary>
         protected IPAddress remoteHost = null;
 
 		protected int controlPort = -1;
-		
+
 		/// <summary>  The underlying socket.</summary>
 		protected BaseSocket controlSock = null;
-        
-        /// <summary>  
+
+        /// <summary>
 		/// The timeout for the control socket
 		/// </summary>
 		protected int timeout = 0;
-		
+
 		/// <summary>  The write that writes to the control socket</summary>
 		protected StreamWriter writer = null;
-		
+
 		/// <summary>  The reader that reads control data from the
 		/// control socket
 		/// </summary>
 		protected StreamReader reader = null;
-		        
-		/// <summary>   
+
+		/// <summary>
         /// Constructor. Performs TCP connection and
 		/// sets up reader/writer. Allows different control
 		/// port to be used
 		/// </summary>
-		/// <param name="remoteHost">      
+		/// <param name="remoteHost">
         /// Remote inet address
 		/// </param>
-		/// <param name="controlPort">     
+		/// <param name="controlPort">
         /// port for control stream
 		/// </param>
-		/// <param name="timeout">          
+		/// <param name="timeout">
         /// the length of the timeout, in milliseconds
 		/// </param>
-		internal FTPControlSocket(IPAddress remoteHost, int controlPort, int timeout)			
+		internal FTPControlSocket(IPAddress remoteHost, int controlPort, int timeout)
 		{
 			Initialize(
                 new StandardSocket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp),
 				remoteHost, controlPort, timeout);
 		}
 
-        /// <summary>   
+        /// <summary>
         /// Default constructor
 		/// </summary>
 		internal FTPControlSocket()
 		{
 		}
-		
-		/// <summary>   
-        /// Performs TCP connection and sets up reader/writer. 
+
+		/// <summary>
+        /// Performs TCP connection and sets up reader/writer.
 		/// Allows different control port to be used
 		/// </summary>
 		/// <param name="sock">
 		///  Socket instance
 		/// </param>
-		/// <param name="remoteHost">     
+		/// <param name="remoteHost">
 		/// address of remote host
 		/// </param>
-		/// <param name="controlPort">     
+		/// <param name="controlPort">
 		/// port for control stream
 		/// </param>
-		/// <param name="timeout">    
-        /// the length of the timeout, in milliseconds      
+		/// <param name="timeout">
+        /// the length of the timeout, in milliseconds
 		/// </param>
 		internal void Initialize(BaseSocket sock, IPAddress remoteHost, int controlPort, int timeout)
 		{
@@ -206,43 +193,43 @@ namespace EnterpriseDT.Net.Ftp
 			this.timeout = timeout;
 
 			log = Logger.GetLogger(typeof(FTPControlSocket));
-            
+
 			// establish socket connection & set timeouts
 			controlSock = sock;
 			ConnectSocket(controlSock, remoteHost, controlPort);
 			Timeout = timeout;
-			
+
 			InitStreams();
 			ValidateConnection();
 		}
 
-		/// <summary>   
+		/// <summary>
         /// Establishes the socket connection
 		/// </summary>
 		/// <param name="socket">
 		///  Socket instance
 		/// </param>
-		/// <param name="address">     
+		/// <param name="address">
 		/// IP address to connect to
 		/// </param>
-		/// <param name="port">    
-        /// port to connect to     
+		/// <param name="port">
+        /// port to connect to
 		/// </param>
 		internal virtual void ConnectSocket(BaseSocket socket, IPAddress address, int port)
 		{
 			socket.Connect(new IPEndPoint(address, port));
 		}
-		
+
 		/// <summary>   Checks that the standard 220 reply is returned
 		/// following the initiated connection
 		/// </summary>
 		internal void ValidateConnection()
-		{			
+		{
 			FTPReply reply = ReadReply();
 			ValidateReply(reply, "220");
 		}
-		
-		
+
+
 		/// <summary>  Obtain the reader/writer streams for this
 		/// connection
 		/// </summary>
@@ -252,13 +239,13 @@ namespace EnterpriseDT.Net.Ftp
 			writer = new StreamWriter(stream, Encoding.GetEncoding("US-ASCII"));
 			reader = new StreamReader(stream, Encoding.GetEncoding("US-ASCII"));
 		}
-		
-		/// <summary>  
+
+		/// <summary>
         /// Quit this FTP session and clean up.
         /// </summary>
 		internal virtual void Logout()
 		{
-			
+
 			SystemException ex = null;
 			try
 			{
@@ -287,20 +274,20 @@ namespace EnterpriseDT.Net.Ftp
 			if (ex != null)
 				throw ex;
 		}
-		
-		/// <summary>  
+
+		/// <summary>
 		/// Request a data socket be created on the
 		/// server, connect to it and return our
 		/// connected socket.
 		/// </summary>
-		/// <param name="connectMode">  
+		/// <param name="connectMode">
 		/// The mode to connect in
 		/// </param>
-		/// <returns>  
+		/// <returns>
 		/// connected data socket
 		/// </returns>
 		internal virtual FTPDataSocket CreateDataSocket(FTPConnectMode connectMode)
-		{			
+		{
 			if (connectMode == FTPConnectMode.ACTIVE)
 			{
 				return CreateDataSocketActive();
@@ -311,12 +298,12 @@ namespace EnterpriseDT.Net.Ftp
 				return CreateDataSocketPASV();
 			}
 		}
-		
-		/// <summary>  
+
+		/// <summary>
 		/// Request a data socket be created on the Client
 		/// client on any free port, do not connect it to yet.
 		/// </summary>
-		/// <returns>  
+		/// <returns>
 		/// not connected data socket
 		/// </returns>
 		internal virtual FTPDataSocket CreateDataSocketActive()
@@ -324,22 +311,22 @@ namespace EnterpriseDT.Net.Ftp
 			// use any available port
 			return NewActiveDataSocket(0);
 		}
-				
-		/// <summary>  
+
+		/// <summary>
 		/// Sets the data port on the server, i.e. sends a PORT
-		/// command		
+		/// command
 		/// </summary>
 		/// <param name="ep">local endpoint
 		/// </param>
 		internal void SetDataPort(IPEndPoint ep)
-		{			
+		{
 			byte[] hostBytes = BitConverter.GetBytes(ep.Address.Address);
-			
+
 			// This is a .NET 1.1 API
 			// byte[] hostBytes = ep.Address.GetAddressBytes();
-			
+
 			byte[] portBytes = ToByteArray((ushort)ep.Port);
-			
+
 			// assemble the PORT command
 			string cmd = new StringBuilder("PORT ").
 				Append((short)hostBytes[0]).Append(",").
@@ -348,30 +335,30 @@ namespace EnterpriseDT.Net.Ftp
 				Append((short)hostBytes[3]).Append(",").
 				Append((short)portBytes[0]).Append(",").
 				Append((short)portBytes[1]).ToString();
-			
+
 			// send command and check reply
 			FTPReply reply = SendCommand(cmd);
 			ValidateReply(reply, "200");
 		}
-		
-		
-		/// <summary>  
+
+
+		/// <summary>
 		/// Convert a short into a byte array
 		/// </summary>
 		/// <param name="val">  value to convert
 		/// </param>
 		/// <returns>  a byte array
-		/// 
+		///
 		/// </returns>
 		internal byte[] ToByteArray(ushort val)
-		{			
+		{
 			byte[] bytes = new byte[2];
 			bytes[0] = (byte) (val >> 8); // bits 1- 8
 			bytes[1] = (byte) (val & 0x00FF); // bits 9-16
 			return bytes;
-		}						
-		
-		/// <summary>  
+		}
+
+		/// <summary>
 		/// Request a data socket be created on the
 		/// server, connect to it and return our
 		/// connected socket.
@@ -379,13 +366,13 @@ namespace EnterpriseDT.Net.Ftp
 		/// <returns>  connected data socket
 		/// </returns>
 		internal virtual FTPDataSocket CreateDataSocketPASV()
-		{			
+		{
 			// PASSIVE command - tells the server to listen for
 			// a connection attempt rather than initiating it
 			FTPReply replyObj = SendCommand("PASV");
 			ValidateReply(replyObj, "227");
 			string reply = replyObj.ReplyText;
-			
+
 			// The reply to PASV is in the form:
 			// 227 Entering Passive Mode (h1,h2,h3,h4,p1,p2).
 			// where h1..h4 are the IP address to connect and
@@ -393,31 +380,31 @@ namespace EnterpriseDT.Net.Ftp
 			// Example:
 			// 227 Entering Passive Mode (128,3,122,1,15,87).
 			// NOTE: PASV command in IBM/Mainframe returns the string
-			// 227 Entering Passive Mode 128,3,122,1,15,87	(missing 
+			// 227 Entering Passive Mode 128,3,122,1,15,87	(missing
 			// brackets)
-			
+
 			// extract the IP data string from between the brackets
 			int startIP = reply.IndexOf((System.Char) '(');
 			int endIP = reply.IndexOf((System.Char) ')');
-			
+
 			// allow for IBM missing brackets around IP address
 			if (startIP < 0 && endIP < 0)
 			{
 				startIP = reply.ToUpper().LastIndexOf("MODE") + 4;
 				endIP = reply.Length;
 			}
-			
+
 			string ipData = reply.Substring(startIP + 1, (endIP) - (startIP + 1));
 			int[] parts = new int[6];
-			
+
 			int len = ipData.Length;
 			int partCount = 0;
 			StringBuilder buf = new StringBuilder();
-			
+
 			// loop thru and examine each char
 			for (int i = 0; i < len && partCount <= 6; i++)
 			{
-				
+
 				char ch = ipData[i];
 				if (System.Char.IsDigit(ch))
 					buf.Append(ch);
@@ -425,7 +412,7 @@ namespace EnterpriseDT.Net.Ftp
 				{
 					throw new FTPException("Malformed PASV reply: " + reply);
 				}
-				
+
 				// get the part
 				if (ch == ',' || i + 1 == len)
 				{
@@ -441,21 +428,21 @@ namespace EnterpriseDT.Net.Ftp
 					}
 				}
 			}
-			
+
 			// assemble the IP address
 			// we try connecting, so we don't bother checking digits etc
 			string ipAddress = parts[0] + "." + parts[1] + "." + parts[2] + "." + parts[3];
-			
+
 			// assemble the port number
 			int port = (parts[4] << 8) + parts[5];
-			
+
 			// create the socket
 			return NewPassiveDataSocket(ipAddress, port);
 		}
-		
+
 		/// <summary> Constructs a new <code>FTPDataSocket</code> object (client mode) and connect
 		/// to the given remote host and port number.
-		/// 
+		///
 		/// </summary>
 		/// <param name="ipAddress">IP Address to connect to.
 		/// </param>
@@ -467,17 +454,17 @@ namespace EnterpriseDT.Net.Ftp
 		/// <throws>  SystemException Thrown if no TCP/IP connection could be made.  </throws>
 		internal virtual FTPDataSocket NewPassiveDataSocket(string ipAddress, int port)
 		{
-			IPAddress ad = IPAddress.Parse(ipAddress);  
-			IPEndPoint ipe = new IPEndPoint(ad, port); 
-			BaseSocket sock = 
+			IPAddress ad = IPAddress.Parse(ipAddress);
+			IPEndPoint ipe = new IPEndPoint(ad, port);
+			BaseSocket sock =
                 new StandardSocket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 			SetSocketTimeout(sock, timeout);
 			sock.Connect(ipe);
 
 			return new FTPPassiveDataSocket(sock);
 		}
-		
-		/// <summary> 
+
+		/// <summary>
 		/// Constructs a new <code>FTPDataSocket</code> object (server mode) which will
 		/// listen on the given port number.
 		/// </summary>
@@ -488,9 +475,9 @@ namespace EnterpriseDT.Net.Ftp
 		/// </returns>
 		/// <throws>  SystemException Thrown if an error occurred when creating the socket.  </throws>
 		internal virtual FTPDataSocket NewActiveDataSocket(int port)
-		{						
+		{
             // create listening socket at a system allocated port
-			BaseSocket sock = 
+			BaseSocket sock =
                 new StandardSocket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 
 			// choose any port
@@ -499,70 +486,70 @@ namespace EnterpriseDT.Net.Ftp
 
 			// queue up to 5 connections
 			sock.Listen(5);
-			
-			// find out ip & port we are listening on			
+
+			// find out ip & port we are listening on
 			SetDataPort((IPEndPoint)sock.LocalEndPoint);
 
 			return new FTPActiveDataSocket(sock);
 		}
-		
+
 		/// <summary>  Send a command to the FTP server and
 		/// return the server's reply as a structured
 		/// reply object
 		/// </summary>
-		/// <param name="command">  
+		/// <param name="command">
         /// command to send
 		/// </param>
 		/// <returns>  reply to the supplied command
 		/// </returns>
 		public virtual FTPReply SendCommand(string command)
-		{			
+		{
 			WriteCommand(command);
-			
+
 			// and read the result
 			return ReadReply();
 		}
-		
+
 		/// <summary>  Send a command to the FTP server. Don't
 		/// read the reply
-		/// 
+		///
 		/// </summary>
 		/// <param name="command">  command to send
 		/// </param>
 		internal virtual void WriteCommand(string command)
-		{			
+		{
 			Log(DEBUG_ARROW + command, true);
-			
+
 			// send it
 			writer.Write(command + EOL);
 			writer.Flush();
 		}
-		
+
 		/// <summary>  Read the FTP server's reply to a previously
 		/// issued command. RFC 959 states that a reply
 		/// consists of the 3 digit code followed by text.
 		/// The 3 digit code is followed by a hyphen if it
 		/// is a muliline response, and the last line starts
 		/// with the same 3 digit code.
-		/// 
+		///
 		/// </summary>
 		/// <returns>  structured reply object
 		/// </returns>
 		internal virtual FTPReply ReadReply()
-		{			
+		{
 			string line = reader.ReadLine();
 			if (line == null || line.Length == 0)
 				throw new SystemException("Unexpected null reply received");
-			
+
 			Log(line, false);
-			
+
 			string replyCode = line.Substring(0, (3) - (0));
 			StringBuilder reply = new StringBuilder("");
 			if (line.Length > 3)
 				reply.Append(line.Substring(4));
-			
+
 			ArrayList dataLines = null;
-			
+
 			// check for multiline response and build up
 			// the reply
 			if (line[3] == '-')
@@ -574,10 +561,10 @@ namespace EnterpriseDT.Net.Ftp
 					line = reader.ReadLine();
 					if (line == null)
 						throw new SystemException("Unexpected null reply received");
-					
+
 					Log(line, false);
-					
-					if (line.Length > 3 && line.Substring(0, (3) - (0)).Equals(replyCode) && 
+
+					if (line.Length > 3 && line.Substring(0, (3) - (0)).Equals(replyCode) &&
                         line[3] == ' ')
 					{
 						reply.Append(line.Substring(3));
@@ -591,7 +578,7 @@ namespace EnterpriseDT.Net.Ftp
 					}
 				} // end while
 			} // end if
-			
+
 			if (dataLines != null)
 			{
 				string[] data = new string[dataLines.Count];
@@ -603,9 +590,9 @@ namespace EnterpriseDT.Net.Ftp
 				return new FTPReply(replyCode, reply.ToString());
 			}
 		}
-		
-		
-		/// <summary>  
+
+
+		/// <summary>
 		/// Validate the response the host has supplied against the
 		/// expected reply. If we get an unexpected reply we throw an
 		/// exception, setting the message to that returned by the
@@ -614,87 +601,87 @@ namespace EnterpriseDT.Net.Ftp
 		/// <param name="reply">             the entire reply string we received
 		/// </param>
 		/// <param name="expectedReplyCode"> the reply we expected to receive
-		/// 
+		///
 		/// </param>
 		internal virtual FTPReply ValidateReply(string reply, string expectedReplyCode)
 		{
-			
+
 			FTPReply replyObj = new FTPReply(reply);
-			
+
 			if (ValidateReplyCode(replyObj, expectedReplyCode))
 				return replyObj;
-			
+
 			// if unexpected reply, throw an exception
 			throw new FTPException(replyObj);
 		}
-		
-		
+
+
 		/// <summary>  Validate the response the host has supplied against the
 		/// expected reply. If we get an unexpected reply we throw an
 		/// exception, setting the message to that returned by the
 		/// FTP server
-		/// 
+		///
 		/// </summary>
 		/// <param name="reply">              the entire reply string we received
 		/// </param>
 		/// <param name="expectedReplyCodes"> array of expected replies
 		/// </param>
 		/// <returns>  an object encapsulating the server's reply
-		/// 
+		///
 		/// </returns>
 		public virtual FTPReply ValidateReply(string reply, string[] expectedReplyCodes)
-		{			
+		{
 			FTPReply replyObj = new FTPReply(reply);
 			return ValidateReply(replyObj, expectedReplyCodes);
 		}
-		
-		
+
+
 		/// <summary>  Validate the response the host has supplied against the
 		/// expected reply. If we get an unexpected reply we throw an
 		/// exception, setting the message to that returned by the
 		/// FTP server
-		/// 
+		///
 		/// </summary>
 		/// <param name="reply">              reply object
 		/// </param>
 		/// <param name="expectedReplyCodes"> array of expected replies
 		/// </param>
 		/// <returns>  reply object
-		/// 
+		///
 		/// </returns>
 		public virtual FTPReply ValidateReply(FTPReply reply, string[] expectedReplyCodes)
-		{			
+		{
 			for (int i = 0; i < expectedReplyCodes.Length; i++)
 				if (ValidateReplyCode(reply, expectedReplyCodes[i]))
 					return reply;
-			
+
 			// got this far, not recognised
 			throw new FTPException(reply);
 		}
-		
+
 		/// <summary>  Validate the response the host has supplied against the
 		/// expected reply. If we get an unexpected reply we throw an
 		/// exception, setting the message to that returned by the
 		/// FTP server
-		/// 
+		///
 		/// </summary>
 		/// <param name="reply">              reply object
 		/// </param>
 		/// <param name="expectedReplyCode">  expected reply
 		/// </param>
 		/// <returns>  reply object
-		/// 
+		///
 		/// </returns>
 		public virtual FTPReply ValidateReply(FTPReply reply, string expectedReplyCode)
-		{			
+		{
 			if (ValidateReplyCode(reply, expectedReplyCode))
 				return reply;
-			
+
 			// got this far, not recognised
 			throw new FTPException(reply);
 		}
-		
-		/// <summary> 
+
+		/// <summary>
 		/// Validate reply object
 		/// </summary>
 		/// <param name="reply">               reference to reply object
@@ -705,7 +692,7 @@ namespace EnterpriseDT.Net.Ftp
 		/// </returns>
 		private bool ValidateReplyCode(FTPReply reply, string expectedReplyCode)
 		{
-			
+
 			string replyCode = reply.ReplyCode;
 			if (strictReturnCodes)
 			{
@@ -723,14 +710,14 @@ namespace EnterpriseDT.Net.Ftp
 					return false;
 			}
 		}
-				
-		/// <summary>  
+
+		/// <summary>
 		/// Log a message, checking for passwords
 		/// </summary>
 		/// <param name="msg">
 		/// message to log
 		/// </param>
-		/// <param name="command"> 
+		/// <param name="command">
 		/// true if a response, false otherwise
 		/// </param>
 		internal virtual void Log(string msg, bool command)
@@ -738,7 +725,7 @@ namespace EnterpriseDT.Net.Ftp
 			if (msg.StartsWith(PASSWORD_MESSAGE))
 				msg = PASSWORD_MESSAGE + " ********";
 			log.Debug(msg);
-			if (command) 
+			if (command)
 			{
 			    if (CommandSent != null)
 			        CommandSent(this, new FTPMessageEventArgs(msg));
@@ -746,11 +733,11 @@ namespace EnterpriseDT.Net.Ftp
 			else
 			{
 			    if (ReplyReceived != null)
-			        ReplyReceived(this, new FTPMessageEventArgs(msg)); 
+			        ReplyReceived(this, new FTPMessageEventArgs(msg));
 			}
 		}
-		
-		/// <summary>  
+
+		/// <summary>
 		/// Helper method to set a socket's timeout value
 		/// </summary>
 		/// <param name="sock">
@@ -761,12 +748,12 @@ namespace EnterpriseDT.Net.Ftp
 		/// </param>
 		internal void SetSocketTimeout(BaseSocket sock, int timeout)
 		{
-			if (timeout > 0) 
+			if (timeout > 0)
 			{
-				sock.SetSocketOption(SocketOptionLevel.Socket, 
+				sock.SetSocketOption(SocketOptionLevel.Socket,
 					SocketOptionName.ReceiveTimeout, timeout);
-				sock.SetSocketOption(SocketOptionLevel.Socket, 
-					SocketOptionName.SendTimeout, timeout);				
+				sock.SetSocketOption(SocketOptionLevel.Socket,
+					SocketOptionName.SendTimeout, timeout);
 			}
 		}
 	}

@@ -1,7 +1,6 @@
-/// <copyright company="JetBrains">
-/// Copyright © 2003-2008 JetBrains s.r.o.
-/// You may distribute under the terms of the GNU General Public License, as published by the Free Software Foundation, version 2 (see License.txt in the repository root folder).
-/// </copyright>
+// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
 
 using  System;
 using  System.Collections;
@@ -42,7 +41,7 @@ namespace JetBrains.Omea.TextIndex
         {   aOperands.Add( node );  }
 
         public void  SetOperands( ArrayList operands )
-        {   
+        {
             aOperands = new ArrayList();
             aOperands.AddRange( operands );
         }
@@ -83,7 +82,7 @@ namespace JetBrains.Omea.TextIndex
         }
 
         public  string  Term
-        {    
+        {
             set{ strValue = value; }
             get{ return strValue; }
         }
@@ -150,9 +149,9 @@ namespace JetBrains.Omea.TextIndex
 
             //---------------------------------------------------------------------
             //  if next token == "" => EOS, no more processing, return left operand
-            //  as result, 
+            //  as result,
             //  if next token == ")" => we reached the endo of parenthed expression,
-            //  return left operand as result, else process two operands and Op, 
+            //  return left operand as result, else process two operands and Op,
             //  return Op as root.
             //---------------------------------------------------------------------
 
@@ -178,7 +177,7 @@ namespace JetBrains.Omea.TextIndex
                 typeNode = QueryParserNode.Type.eoPhraseNear;
                 BackToken();
             }
-            
+
             OpNode nodeOp = new OpNode( typeNode );
             QueryParserNode nodeRightOperand = ParseExpression();
             nodeOp.AddOperand( nodeLeftOperand );
@@ -191,7 +190,7 @@ namespace JetBrains.Omea.TextIndex
         {
             QueryParserNode nodeTerm;
             QueryParserNode result = nodeTerm = ProcessPrimaryLevel();
-            
+
             GetNextToken();
             if( strToken == "[" )
             {
@@ -215,7 +214,7 @@ namespace JetBrains.Omea.TextIndex
         private static QueryParserNode  ProcessPrimaryLevel()
         {
             QueryParserNode    nodePrimaryToken = null;
-            
+
             GetNextToken();
             if( strToken != "" )
             {
@@ -261,11 +260,11 @@ namespace JetBrains.Omea.TextIndex
                 QueryParserNode child = ((OpNode)subtreeRoot)[ 0 ];
                 ArrayList       branches;
 
-                //  if section op is applied to the tree - perform conversion - 
+                //  if section op is applied to the tree - perform conversion -
                 //  propagate section op into every operand of the tree, and
                 //  tree root becomes new local root.
-                
-                if( child.NodeType != QueryParserNode.Type.eoTerm && 
+
+                if( child.NodeType != QueryParserNode.Type.eoTerm &&
                     child.NodeType != QueryParserNode.Type.eoSection )
                 {
                     //-------------------------------------------------------------
@@ -439,10 +438,10 @@ namespace JetBrains.Omea.TextIndex
                     else
                     {
                         int i_StartOffset = iCurrentOffset;
-                        while(( iCurrentOffset < _query.Length ) && 
+                        while(( iCurrentOffset < _query.Length ) &&
                               !isParenthesisSymbol() && _query[ iCurrentOffset ] != ' ' )
                             iCurrentOffset++;
-                        
+
                         if( iCurrentOffset == i_StartOffset ) //  End Of String
                             strToken = "";
                         else
@@ -453,13 +452,13 @@ namespace JetBrains.Omea.TextIndex
 
             return;
         }
-        
+
         private static void BackToken()
         {
             Debug.Assert( strPrevToken == "", "Attempt to overvrite non-empty BackToken" );
             strPrevToken = strToken;
         }
-        
+
         private static void SkipWhitespace()
         {
             while(( iCurrentOffset < _query.Length ) && ( _query[ iCurrentOffset ] == ' ' ))

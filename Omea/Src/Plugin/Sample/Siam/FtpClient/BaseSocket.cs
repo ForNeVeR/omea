@@ -1,27 +1,14 @@
-// 
-// Copyright (C) 2004 Enterprise Distributed Technologies Ltd
-// 
-// www.enterprisedt.com
-// 
-// This library is free software; you can redistribute it and/or
-// modify it under the terms of the GNU Lesser General Public
-// License as published by the Free Software Foundation; either
-// version 2.1 of the License, or (at your option) any later version.
-// 
-// This library is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-// Lesser General Public License for more details.
-// 
-// You should have received a copy of the GNU Lesser General Public
-// License along with this library; if not, write to the Free Software
-// Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-// 
-// Bug fixes, suggestions and comments should posted on 
+/*
+SPDX-FileCopyrightText: 2004 Enterprise Distributed Technologies Ltd
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+*/
+//
+// Bug fixes, suggestions and comments should posted on
 // http://www.enterprisedt.com/forums/index.php
-// 
+//
 // Change Log:
-// 
+//
 // $Log: BaseSocket.cs,v $
 // Revision 1.2  2004/11/13 19:03:49  bruceb
 // GetStream() changed, added comments
@@ -38,13 +25,13 @@ using System.Net.Sockets;
 
 namespace EnterpriseDT.Net
 {
-	/// <summary>  
+	/// <summary>
 	/// Socket abstraction that simplifies socket code
 	/// </summary>
-	/// <author>   
-    /// Hans Andersen    
+	/// <author>
+    /// Hans Andersen
 	/// </author>
-	/// <version>      
+	/// <version>
     /// $LastChangedRevision$
 	/// </version>
 	public abstract class BaseSocket
@@ -63,7 +50,7 @@ namespace EnterpriseDT.Net
 	    /// Closes the Socket connection and releases all associated resources.
 	    /// </summary>
 		public abstract void Close();
-        
+
 	    /// <summary>
 	    /// Establishes a connection to a remote endpoint
 	    /// </summary>
@@ -97,8 +84,8 @@ namespace EnterpriseDT.Net
 	    /// Sets a Socket option.
 	    /// </summary>
 		public abstract void SetSocketOption(
-            SocketOptionLevel optionLevel, 
-            SocketOptionName optionName, 
+            SocketOptionLevel optionLevel,
+            SocketOptionName optionName,
             int optionValue);
 
 	    /// <summary>
@@ -107,13 +94,13 @@ namespace EnterpriseDT.Net
 		public abstract EndPoint LocalEndPoint {get;}
 	}
 
-	/// <summary>  
+	/// <summary>
 	/// Standard implementation of BaseSocket
 	/// </summary>
-	/// <author>   
-    /// Hans Andersen    
+	/// <author>
+    /// Hans Andersen
 	/// </author>
-	/// <version>      
+	/// <version>
     /// $LastChangedRevision$
 	/// </version>
 	public class StandardSocket : BaseSocket
@@ -211,8 +198,8 @@ namespace EnterpriseDT.Net
 	    /// Sets a Socket option.
 	    /// </summary>
 		public override void SetSocketOption(
-            SocketOptionLevel optionLevel, 
-            SocketOptionName optionName, 
+            SocketOptionLevel optionLevel,
+            SocketOptionName optionName,
             int optionValue)
 		{
 			socket.SetSocketOption(optionLevel, optionName, optionValue);
@@ -221,7 +208,7 @@ namespace EnterpriseDT.Net
 	    /// <summary>
 	    /// Gets the local endpoint.
 	    /// </summary>
-		public override EndPoint LocalEndPoint 
+		public override EndPoint LocalEndPoint
 		{
 			get
 			{

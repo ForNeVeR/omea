@@ -1,20 +1,20 @@
 Post to Confluence Plugin, version 1.0
 ======================================
+SPDX-FileCopyrightText: 2004-05, JetBrains Inc.
 
-Copyright (C) 2004-05, JetBrains Inc.
-
+SPDX-License-Identifier: GPL-2.0-only
 
 This sample plugin for Omea Pro 1.0, Omea Reader 1.0.2 and later versions
-allows you to publish the text of Omea resources in Confluence. Confluence 
+allows you to publish the text of Omea resources in Confluence. Confluence
 is a wiki and weblog tool developed by Atlassian:
 http://www.atlassian.com/software/confluence/
 
-To install the plugin, unpack it to the Omea installation directory, go to 
-Tools | Options | Omea | Plugins, click on "Add..." and select the 
+To install the plugin, unpack it to the Omea installation directory, go to
+Tools | Options | Omea | Plugins, click on "Add..." and select the
 CategoryHotkeys.dll file. Then restart Omea.
 
-To use the plugin, select any resource in Omea and select 
-"Post to Confluence..." from the Actions menu. Specify the address of the 
+To use the plugin, select any resource in Omea and select
+"Post to Confluence..." from the Actions menu. Specify the address of the
 Confluence Web site, your login and password. After a successful login,
 you can choose the Confluence space where the page with the resource text
 is posted and the mode of posting the resource. The resource can be posted

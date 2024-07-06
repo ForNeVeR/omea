@@ -1,28 +1,15 @@
 // edtFTPnet
-// 
-// Copyright (C) 2004 Enterprise Distributed Technologies Ltd
-// 
-// www.enterprisedt.com
-// 
-// This library is free software; you can redistribute it and/or
-// modify it under the terms of the GNU Lesser General Public
-// License as published by the Free Software Foundation; either
-// version 2.1 of the License, or (at your option) any later version.
-// 
-// This library is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-// Lesser General Public License for more details.
-// 
-// You should have received a copy of the GNU Lesser General Public
-// License along with this library; if not, write to the Free Software
-// Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-// 
-// Bug fixes, suggestions and comments should posted on 
+/*
+SPDX-FileCopyrightText: 2004 Enterprise Distributed Technologies Ltd
+
+SPDX-License-Identifier: LGPL-2.1-or-later
+*/
+//
+// Bug fixes, suggestions and comments should posted on
 // http://www.enterprisedt.com/forums/index.php
-// 
+//
 // Change Log:
-// 
+//
 // $Log: FTPActiveDataSocket.cs,v $
 // Revision 1.8  2004/11/13 19:04:20  bruceb
 // GetStream removed arg
@@ -47,18 +34,18 @@ using EnterpriseDT.Net;
 
 namespace EnterpriseDT.Net.Ftp
 {
-	/// <summary>  
+	/// <summary>
 	/// Active data socket handling class
 	/// </summary>
-	/// <author>       
+	/// <author>
 	/// Bruce Blackshaw
 	/// </author>
-	/// <version>      
+	/// <version>
 	/// $LastChangedRevision$
 	/// </version>
 	public class FTPActiveDataSocket : FTPDataSocket
 	{
-		/// <summary>   
+		/// <summary>
 		/// Set the TCP timeout on the underlying data socket(s).
 		/// </summary>
 		internal override int Timeout
@@ -70,9 +57,9 @@ namespace EnterpriseDT.Net.Ftp
 				if (acceptedSock != null)
 					SetSocketTimeout(acceptedSock, value);
 			}
-		}      
+		}
 
-		/// <summary>  
+		/// <summary>
 		/// Accepts the FTP server's connection and returns the socket's stream.
 		/// </summary>
 		internal override Stream DataStream
@@ -84,13 +71,13 @@ namespace EnterpriseDT.Net.Ftp
 				return acceptedSock.GetStream();
 			}
 		}
-		
-		/// <summary>  
+
+		/// <summary>
 		/// The socket accepted from server
 		/// </summary>
 		internal BaseSocket acceptedSock = null;
-        		
-		/// <summary>  
+
+		/// <summary>
 		/// Constructor
 		/// </summary>
 		/// <param name="sock">   the server socket to use
@@ -99,8 +86,8 @@ namespace EnterpriseDT.Net.Ftp
 		{
 			this.sock = sock;
 		}
-		
-		/// <summary> 
+
+		/// <summary>
 		/// Waits for a connection from the server and then sets the timeout
 		/// when the connection is made.
 		/// </summary>
@@ -108,11 +95,11 @@ namespace EnterpriseDT.Net.Ftp
 		{
 			if (acceptedSock == null)
 			{
-				acceptedSock = sock.Accept();		
+				acceptedSock = sock.Accept();
     			SetSocketTimeout(acceptedSock, timeout);
 			}
 		}
-		
+
 		/// <summary>
 		/// Closes underlying sockets
 		/// </summary>

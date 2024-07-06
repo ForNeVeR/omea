@@ -1,16 +1,6 @@
-////////////////////////////////////////////////////////////////////////////////////
-//  File:   Designers.cs
-//  Author: Sergei Pavlovsky
+// SPDX-FileCopyrightText: 2004 by Sergei Pavlovsky (sergei_vp@hotmail.com, sergei_vp@ukr.net)
 //
-//  Copyright (c) 2004 by Sergei Pavlovsky (sergei_vp@hotmail.com, sergei_vp@ukr.net)
-//
-//	This file is provided "as is" with no expressed or implied warranty.
-//	The author accepts no liability if it causes any damage whatsoever.
-// 
-//  This code is free and may be used in any way you desire. If the source code in 
-//  this file is used in any commercial application then a simple email would be 
-//	nice.
-////////////////////////////////////////////////////////////////////////////////////
+// SPDX-License-Identifier: LicenseRef-SP.Windows
 
 using System;
 using System.Collections;
@@ -41,17 +31,17 @@ namespace SP.Windows
 		/// </summary>
 		public override ICollection AssociatedComponents
 		{
-			get 
-			{  
+			get
+			{
 				Header header = base.Control as Header;
 				if ( header != null )
-				return header.Sections; 
+				return header.Sections;
 
-				return base.AssociatedComponents; 
+				return base.AssociatedComponents;
 			}
 		}
 
-		protected override void PostFilterProperties(IDictionary Properties) 
+		protected override void PostFilterProperties(IDictionary Properties)
 		{
 			Properties.Remove("BackgroundImage");
 			Properties.Remove("BackColor");
@@ -65,15 +55,15 @@ namespace SP.Windows
 		{
 			if ( message.Msg == NativeHeader.WM_NOTIFY + NativeHeader.OCM__BASE )
 			{
-				NativeWindowCommon.NMHDR nmhdr = 
+				NativeWindowCommon.NMHDR nmhdr =
 					(NativeWindowCommon.NMHDR)message.GetLParam(typeof(NativeWindowCommon.NMHDR));
 
 				if ( nmhdr.code == NativeHeader.HDN_ENDTRACK )
 				{
-					IComponentChangeService service 
+					IComponentChangeService service
 						= (IComponentChangeService)GetService(typeof(IComponentChangeService));
 
-					service.OnComponentChanged(this.Component, null, null, null);					
+					service.OnComponentChanged(this.Component, null, null, null);
 				}
 			}
 
@@ -81,7 +71,7 @@ namespace SP.Windows
 		}
 
 		protected override bool GetHitTest(Point point)
-		{ 
+		{
 			Header.HitTestArea fDirectEdit = Header.HitTestArea.OnDivider|
 											 Header.HitTestArea.OnDividerOpen;
 
