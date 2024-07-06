@@ -1,4 +1,10 @@
 <?xml version="1.0" ?>
+<!--
+SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+
+SPDX-License-Identifier: GPL-2.0-only
+-->
+
 <project name="omeaconnector" default="build">
   <description>OmeaConnector Mozilla plugin.</description>
 
@@ -36,7 +42,7 @@
   <property name="firefox.xpcomplace" value="C:/Documents and Settings/Lev.Serebryakov/Application Data/Mozilla/Firefox/Profiles/f7xcb9nx.default/extensions/{c9d90e85-b8c0-4f29-9c37-3c5173aaf7cf}/" />
   <property name="mozilla.jarplace"   value="C:/Documents and Settings/Lev.Serebryakov/Application Data/Mozilla/Profiles/default/zqs0h4dm.slt/chrome" />
   <property name="mozilla.xpcomplace" value="C:/Program Files/mozilla.org/Mozilla/1.7.5/" />
-  
+
   <!-- For XPT Building -->
   <property name="program.xpidl"      value="C:/gecko-sdk/bin/xpidl.exe" />
   <property name="program.xpidl.args" value="-IC:/gecko-sdk/idl" />
@@ -113,7 +119,7 @@
         <include name="**/*" />
       </fileset>
     </zip>
-    
+
     <!-- Remove all temp content -->
     <delete>
       <fileset basedir="${dir.output}/chrome">
@@ -139,7 +145,7 @@
     <exec workingdir="components" program="p4submit.bat" commandline='../xptchangespec.txt' />
   </target>
 
-  <!-- Overwrite already installed plugin in FireFox. --> 
+  <!-- Overwrite already installed plugin in FireFox. -->
   <target name="ffupdate" depends="chromejar">
     <copy file="${dir.output}/chrome/${project.name}.jar" tofile="${firefox.jarplace}/${project.name}.jar" />
     <delete file="${dir.output}/chrome/${project.name}.jar" />
@@ -152,7 +158,7 @@
     </copy>
   </target>
 
-  <!-- Overwrite already installed plugin in Mozilla. --> 
+  <!-- Overwrite already installed plugin in Mozilla. -->
   <target name="msupdate" depends="chromejar">
     <copy file="${dir.output}/chrome/${project.name}.jar" tofile="${mozilla.jarplace}/${project.name}.jar" />
     <delete file="${dir.output}/chrome/${project.name}.jar" />

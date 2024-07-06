@@ -1,4 +1,10 @@
 <?xml version="1.0"?>
+<!--
+SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+
+SPDX-License-Identifier: GPL-2.0-only
+-->
+
 <?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
 <?xml-stylesheet href="chrome://omeaconnector/content/about/about.css" type="text/css"?>
 
@@ -6,7 +12,7 @@
 
 <!DOCTYPE dialog SYSTEM "chrome://omeaconnector/locale/omeaconnector.dtd">
 
-<dialog buttons="accept,cancel" 
+<dialog buttons="accept,cancel"
         onload="omeaconnector_options_load()"
         ondialogaccept="omeaconnector_options_apply()"
         id="omeaconnector-options-dialog"

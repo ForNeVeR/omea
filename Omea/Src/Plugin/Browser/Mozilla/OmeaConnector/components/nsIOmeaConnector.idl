@@ -1,3 +1,9 @@
+/*
+SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+
+SPDX-License-Identifier: GPL-2.0-only
+*/
+
 #include "nsISupports.idl"
 
 [scriptable, uuid(50dfb942-b1e0-49f7-81e2-b2d0596e5efd)]
@@ -6,7 +12,7 @@ interface nsIOmeaConnector : nsISupports
   const PRUint32     QM_STOREONLY = 0;
   const PRUint32     QM_RUNOMEA   = 1;
   attribute PRUint32 prop_queue_mode;
-  
+
   attribute boolean  prop_queue_timer_set;
   attribute boolean  prop_queue_askonexit;
 
@@ -25,7 +31,7 @@ interface nsIOmeaConnector : nsISupports
 
   void subscribeRSS( in wstring url );
   boolean isSubscribeRSSSupported();
-  
+
   void createClipping( in boolean silently, in wstring subject, in wstring text, in wstring url );
   boolean isCreateClippingSupported();
 

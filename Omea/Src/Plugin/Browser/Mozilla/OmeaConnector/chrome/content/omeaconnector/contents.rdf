@@ -1,4 +1,9 @@
 <?xml version="1.0"?>
+<!--
+SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+
+SPDX-License-Identifier: GPL-2.0-only
+-->
 
 <RDF:RDF xmlns:chrome="http://www.mozilla.org/rdf/chrome#"
          xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#">

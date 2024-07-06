@@ -1,4 +1,10 @@
 <?xml version="1.0"?>
+<!--
+SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+
+SPDX-License-Identifier: GPL-2.0-only
+-->
+
 <?xml-stylesheet href="chrome://global/skin" type="text/css"?>
 <?xml-stylesheet href="chrome://omeaconnector/skin/omeaconnector.css" type="text/css"?>
 
@@ -42,7 +48,7 @@
     </toolbar>
   </toolbox>
 
-  <!-- Include special script for toolbar text control -->  
+  <!-- Include special script for toolbar text control -->
   <script type="application/x-javascript"><![CDATA[
     var toolbarObserver = {
       _domain: "browser.chrome.toolbar_style",

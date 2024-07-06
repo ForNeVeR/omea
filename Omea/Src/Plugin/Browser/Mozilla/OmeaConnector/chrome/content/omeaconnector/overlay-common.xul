@@ -1,4 +1,10 @@
 <?xml version="1.0"?>
+<!--
+SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+
+SPDX-License-Identifier: GPL-2.0-only
+-->
+
 <?xml-stylesheet href="chrome://global/skin" type="text/css"?>
 <?xml-stylesheet href="chrome://omeaconnector/skin/omeaconnector.css" type="text/css"?>
 <!DOCTYPE overlay SYSTEM "chrome://omeaconnector/locale/omeaconnector.dtd">
@@ -27,7 +33,7 @@
                observes="omeaconnector_subscribeRSS"/>
 
      <menuitem id="omeaconnector-contextmenu-subscribeRSSLink"
-               accesskey="&omeaconnector.menu.context.subscribeRSSLink.key;" 
+               accesskey="&omeaconnector.menu.context.subscribeRSSLink.key;"
                label="&omeaconnector.menu.context.subscribeRSSLink.label;"
                oncommand="omeaconnector_subscribeRSSLink( event );"/>
 

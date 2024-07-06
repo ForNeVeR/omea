@@ -1,4 +1,10 @@
 <?xml version="1.0"?>
+<!--
+SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+
+SPDX-License-Identifier: GPL-2.0-only
+-->
+
 <?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
 <?xml-stylesheet href="chrome://omeaconnector/content/about/about.css" type="text/css"?>
 
@@ -6,7 +12,7 @@
 
 <!DOCTYPE page SYSTEM "chrome://omeaconnector/locale/omeaconnector.dtd">
 
-<page buttons="accept,cancel" 
+<page buttons="accept,cancel"
       onload="parent.initPanel( 'chrome://omeaconnector/options/options-page.xul' );"
       id="omeaconnector-options-page-fake"
       title="&jetbrains.options.label;"
