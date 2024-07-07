@@ -49,12 +49,14 @@
     <OutDir>$(ProjectDir)..\..\..\..\Bin\</OutDir>
     <IntDir>$(ProjectDir)..\..\..\..\Obj\$(ProjectName)\$(Configuration)\</IntDir>
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>$(SolutionDir)\..\third-party\MAPIStubLibrary\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(ProjectDir)..\..\..\..\BinRelease\</OutDir>
     <IntDir>$(ProjectDir)..\..\..\..\Obj\$(ProjectName)\$(Configuration)\</IntDir>
     <LinkIncremental>false</LinkIncremental>
     <LinkKeyFile>$(ProjectDir)..\..\..\..\Lib\Key.Snk</LinkKeyFile>
+    <IncludePath>$(SolutionDir)\..\third-party\MAPIStubLibrary\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
