@@ -4,88 +4,92 @@ SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
 
 SPDX-License-Identifier: GPL-2.0-only
 -->
-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
-	<PropertyGroup>
-		<ProjectType>Local</ProjectType>
-		<ProductVersion>8.0.50727</ProductVersion>
-		<SchemaVersion>2.0</SchemaVersion>
-		<ProjectGuid>{BE9013E3-687A-4685-8531-132C9D5C3BA4}</ProjectGuid>
-		<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-		<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-		<AssemblyName>TermIndexProfile</AssemblyName>
-		<DefaultClientScript>JScript</DefaultClientScript>
-		<DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
-		<DefaultTargetSchema>IE50</DefaultTargetSchema>
-		<DelaySign>false</DelaySign>
-		<OutputType>Exe</OutputType>
-		<RootNamespace>TermIndexProfile</RootNamespace>
-		<RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
-		<OldToolsVersion>2.0</OldToolsVersion>
-		<ProductHomeDir>$(MSBuildProjectDirectory)/../../..</ProductHomeDir>
-		<TargetFrameworkVersion>v3.0</TargetFrameworkVersion>
-	</PropertyGroup>
-	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-		<AllowUnsafeBlocks>false</AllowUnsafeBlocks>
-		<BaseAddress>285212672</BaseAddress>
-		<CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
-		<DefineConstants>DEBUG;TRACE</DefineConstants>
-		<DebugSymbols>true</DebugSymbols>
-		<FileAlignment>4096</FileAlignment>
-		<NoStdLib>false</NoStdLib>
-		<Optimize>false</Optimize>
-		<RegisterForComInterop>false</RegisterForComInterop>
-		<RemoveIntegerChecks>false</RemoveIntegerChecks>
-		<TreatWarningsAsErrors>false</TreatWarningsAsErrors>
-		<WarningLevel>4</WarningLevel>
-		<DebugType>full</DebugType>
-		<ErrorReport>prompt</ErrorReport>
-	</PropertyGroup>
-	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-		<AllowUnsafeBlocks>false</AllowUnsafeBlocks>
-		<BaseAddress>285212672</BaseAddress>
-		<CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
-		<DefineConstants>TRACE</DefineConstants>
-		<DebugSymbols>false</DebugSymbols>
-		<FileAlignment>4096</FileAlignment>
-		<NoStdLib>false</NoStdLib>
-		<Optimize>true</Optimize>
-		<RegisterForComInterop>false</RegisterForComInterop>
-		<RemoveIntegerChecks>false</RemoveIntegerChecks>
-		<TreatWarningsAsErrors>false</TreatWarningsAsErrors>
-		<WarningLevel>4</WarningLevel>
-		<DebugType>none</DebugType>
-		<ErrorReport>prompt</ErrorReport>
-	</PropertyGroup>
-	<ItemGroup>
-		<Reference Include="System">
-			<Name>System</Name>
-		</Reference>
-		<Reference Include="System.Data">
-			<Name>System.Data</Name>
-		</Reference>
-		<Reference Include="System.Xml">
-			<Name>System.XML</Name>
-		</Reference>
-		<ProjectReference Include="../OmniaMeaBase/OmniaMeaBase.csproj">
-			<Name>OmniaMeaBase</Name>
-			<Project>{C77A02EC-E116-44B9-8FF2-85637FA405B7}</Project>
-			<Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
-		</ProjectReference>
-		<ProjectReference Include="../TextIndex/TextIndex.csproj">
-			<Name>TextIndex</Name>
-			<Project>{971F984A-724F-4841-8AB9-6BB738C6E329}</Project>
-			<Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
-		</ProjectReference>
-	</ItemGroup>
-	<ItemGroup>
-		<Compile Include="AssemblyInfo.cs">
-			<SubType>Code</SubType>
-		</Compile>
-		<Compile Include="TermIndexProfile.cs">
-			<SubType>Code</SubType>
-		</Compile>
-	</ItemGroup>
-	<Import Project="$(ProductHomeDir)/Build/Product.BeforeMicrosoftCommon.Targets" />
-	<Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-	<Import Project="$(ProductHomeDir)/Build/Product.AfterMicrosoftCommon.Targets" />
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="Current">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{BE9013E3-687A-4685-8531-132C9D5C3BA4}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <AssemblyName>TermIndexProfile</AssemblyName>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>TermIndexProfile</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <ProductHomeDir>$(MSBuildProjectDirectory)/../../..</ProductHomeDir>
+    <TargetFrameworkVersion>v3.0</TargetFrameworkVersion>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <DefineConstants>TRACE</DefineConstants>
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+    <ProjectReference Include="../OmniaMeaBase/OmniaMeaBase.csproj">
+      <Name>OmniaMeaBase</Name>
+      <Project>{C77A02EC-E116-44B9-8FF2-85637FA405B7}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="../TextIndex/TextIndex.csproj">
+      <Name>TextIndex</Name>
+      <Project>{971F984A-724F-4841-8AB9-6BB738C6E329}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="TermIndexProfile.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <Import Project="$(ProductHomeDir)/Build/Product.BeforeMicrosoftCommon.Targets" />
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(ProductHomeDir)/Build/Product.AfterMicrosoftCommon.Targets" />
 </Project>

@@ -4,114 +4,118 @@ SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
 
 SPDX-License-Identifier: GPL-2.0-only
 -->
-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
-	<PropertyGroup>
-		<ProjectType>Local</ProjectType>
-		<ProductVersion>8.0.50727</ProductVersion>
-		<SchemaVersion>2.0</SchemaVersion>
-		<ProjectGuid>{7A408FED-BB8D-4551-8D8C-D93B752DC237}</ProjectGuid>
-		<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-		<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-		<AssemblyName>PerformanceTests</AssemblyName>
-		<DefaultClientScript>JScript</DefaultClientScript>
-		<DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
-		<DefaultTargetSchema>IE50</DefaultTargetSchema>
-		<DelaySign>false</DelaySign>
-		<OutputType>Library</OutputType>
-		<RootNamespace>PerformanceTests</RootNamespace>
-		<RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
-		<OldToolsVersion>2.0</OldToolsVersion>
-		<ProductHomeDir>$(MSBuildProjectDirectory)/../../..</ProductHomeDir>
-		<TargetFrameworkVersion>v3.0</TargetFrameworkVersion>
-	</PropertyGroup>
-	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-		<AllowUnsafeBlocks>false</AllowUnsafeBlocks>
-		<BaseAddress>285212672</BaseAddress>
-		<CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
-		<DefineConstants>DEBUG;TRACE</DefineConstants>
-		<DebugSymbols>true</DebugSymbols>
-		<FileAlignment>4096</FileAlignment>
-		<NoStdLib>false</NoStdLib>
-		<Optimize>false</Optimize>
-		<RegisterForComInterop>false</RegisterForComInterop>
-		<RemoveIntegerChecks>false</RemoveIntegerChecks>
-		<TreatWarningsAsErrors>false</TreatWarningsAsErrors>
-		<WarningLevel>4</WarningLevel>
-		<DebugType>full</DebugType>
-		<ErrorReport>prompt</ErrorReport>
-	</PropertyGroup>
-	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-		<AllowUnsafeBlocks>false</AllowUnsafeBlocks>
-		<BaseAddress>285212672</BaseAddress>
-		<CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
-		<DefineConstants>TRACE</DefineConstants>
-		<DebugSymbols>false</DebugSymbols>
-		<FileAlignment>4096</FileAlignment>
-		<NoStdLib>false</NoStdLib>
-		<Optimize>true</Optimize>
-		<RegisterForComInterop>false</RegisterForComInterop>
-		<RemoveIntegerChecks>false</RemoveIntegerChecks>
-		<TreatWarningsAsErrors>false</TreatWarningsAsErrors>
-		<WarningLevel>4</WarningLevel>
-		<DebugType>none</DebugType>
-		<ErrorReport>prompt</ErrorReport>
-	</PropertyGroup>
-	<ItemGroup>
-		<Reference Include="System">
-			<Name>System</Name>
-		</Reference>
-		<Reference Include="System.Data">
-			<Name>System.Data</Name>
-		</Reference>
-		<Reference Include="System.Xml">
-			<Name>System.XML</Name>
-		</Reference>
-		<ProjectReference Include="../DBUtils/DBUtils.csproj">
-			<Name>DBUtils</Name>
-			<Project>{14CD54EF-C6BA-4A9D-A742-2A431DC7E641}</Project>
-			<Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
-		</ProjectReference>
-		<ProjectReference Include="../JetBrainsShared/JetBrainsShared.csproj">
-			<Project>{5133BE57-1BE8-4C82-BA5E-ADA6CFA0AA8B}</Project>
-			<Name>JetBrainsShared</Name>
-		</ProjectReference>
-		<ProjectReference Include="../OmniaMeaBase/OmniaMeaBase.csproj">
-			<Name>OmniaMeaBase</Name>
-			<Project>{C77A02EC-E116-44B9-8FF2-85637FA405B7}</Project>
-			<Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
-		</ProjectReference>
-		<ProjectReference Include="../OpenAPI/OpenAPI.csproj">
-			<Name>OpenAPI</Name>
-			<Project>{BC8E1E30-A063-463A-9213-A159C7FA4AAC}</Project>
-			<Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
-		</ProjectReference>
-		<ProjectReference Include="../ResourceStore/ResourceStore.csproj">
-			<Name>ResourceStore</Name>
-			<Project>{D022CCB6-4958-44DD-8175-E9AA181E6F41}</Project>
-			<Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
-		</ProjectReference>
-	</ItemGroup>
-	<ItemGroup>
-		<Compile Include="AssemblyInfo.cs">
-			<SubType>Code</SubType>
-		</Compile>
-		<Compile Include="DBPerformanceTests.cs">
-			<SubType>Code</SubType>
-		</Compile>
-		<Compile Include="OldDBPerformanceTests.cs">
-			<SubType>Code</SubType>
-		</Compile>
-		<Compile Include="PerformanceTestRunner.cs">
-			<SubType>Code</SubType>
-		</Compile>
-		<Compile Include="ResourceStorePerfTest.cs">
-			<SubType>Code</SubType>
-		</Compile>
-		<Content Include="PerformanceTest.xml">
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</Content>
-	</ItemGroup>
-	<Import Project="$(ProductHomeDir)/Build/Product.BeforeMicrosoftCommon.Targets" />
-	<Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-	<Import Project="$(ProductHomeDir)/Build/Product.AfterMicrosoftCommon.Targets" />
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="Current">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{7A408FED-BB8D-4551-8D8C-D93B752DC237}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <AssemblyName>PerformanceTests</AssemblyName>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>Library</OutputType>
+    <RootNamespace>PerformanceTests</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <ProductHomeDir>$(MSBuildProjectDirectory)/../../..</ProductHomeDir>
+    <TargetFrameworkVersion>v3.0</TargetFrameworkVersion>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <DefineConstants>TRACE</DefineConstants>
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+    <ProjectReference Include="../DBUtils/DBUtils.csproj">
+      <Name>DBUtils</Name>
+      <Project>{14CD54EF-C6BA-4A9D-A742-2A431DC7E641}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="../JetBrainsShared/JetBrainsShared.csproj">
+      <Project>{5133BE57-1BE8-4C82-BA5E-ADA6CFA0AA8B}</Project>
+      <Name>JetBrainsShared</Name>
+    </ProjectReference>
+    <ProjectReference Include="../OmniaMeaBase/OmniaMeaBase.csproj">
+      <Name>OmniaMeaBase</Name>
+      <Project>{C77A02EC-E116-44B9-8FF2-85637FA405B7}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="../OpenAPI/OpenAPI.csproj">
+      <Name>OpenAPI</Name>
+      <Project>{BC8E1E30-A063-463A-9213-A159C7FA4AAC}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="../ResourceStore/ResourceStore.csproj">
+      <Name>ResourceStore</Name>
+      <Project>{D022CCB6-4958-44DD-8175-E9AA181E6F41}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DBPerformanceTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="OldDBPerformanceTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PerformanceTestRunner.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ResourceStorePerfTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Content Include="PerformanceTest.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(ProductHomeDir)/Build/Product.BeforeMicrosoftCommon.Targets" />
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(ProductHomeDir)/Build/Product.AfterMicrosoftCommon.Targets" />
 </Project>

@@ -1,9 +1,33 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34902.65
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{CC43F7AE-2C4B-471A-85B0-1E158AC981E9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Plugin", "Plugin", "{6F9D3DE5-7C0D-4AFD-8C50-A09EFC02299D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Primary", "Primary", "{42E30D3B-0185-4C0E-A242-29F7D7760438}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{55BEDBD7-9B04-4D90-9A80-9ACBB98D5371}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A5187FD0-D360-4BCD-B1AB-3A77C2A0E2B9}"
+	ProjectSection(SolutionItems) = preProject
+		..\Lib\AllAssemblies.Xml = ..\Lib\AllAssemblies.Xml
+		..\Tools\MSBuild\Src\JetBrains.Build.Omea\Util\AllAssemblies.xsd = ..\Tools\MSBuild\Src\JetBrains.Build.Omea\Util\AllAssemblies.xsd
+		..\Tools\MSBuild\Src\JetBrains.Build.Omea\Util\GuidCache.xsd = ..\Tools\MSBuild\Src\JetBrains.Build.Omea\Util\GuidCache.xsd
+		..\Build\Product.AfterMicrosoftCommon.Targets = ..\Build\Product.AfterMicrosoftCommon.Targets
+		..\Build\Product.BeforeMicrosoftCommon.Targets = ..\Build\Product.BeforeMicrosoftCommon.Targets
+		..\Build\Product.Common.Targets = ..\Build\Product.Common.Targets
+		..\Build\Server.BootstrapBuildNumber.Targets = ..\Build\Server.BootstrapBuildNumber.Targets
+		..\Build\Server.proj = ..\Build\Server.proj
+		..\Build\Server.Publish.Targets = ..\Build\Server.Publish.Targets
+		..\Build\ToolProject.Targets = ..\Build\ToolProject.Targets
+	EndProjectSection
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonTests", "Core\CommonTests\CommonTests.csproj", "{BF1D5FAA-EA49-4416-95CD-F5752E7DA797}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DBIndex", "Core\DBIndex\DBIndex.vcproj", "{7324F8A3-E741-451A-8428-BCD71E464A89}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DBIndex", "Core\DBIndex\DBIndex.vcxproj", "{7324F8A3-E741-451A-8428-BCD71E464A89}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBUtils", "Core\DBUtils\DBUtils.csproj", "{14CD54EF-C6BA-4A9D-A742-2A431DC7E641}"
 EndProject
@@ -13,11 +37,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GUIControls", "Core\GUICont
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GUIControlsTests", "Core\GUIControlsTests\GUIControlsTests.csproj", "{F10B898C-A1F3-40B5-A498-DDFBBEDC5280}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JetBrainsShared", "Core\JetBrainsShared\JetBrainsShared.csproj", "{5133BE57-1BE8-4C82-BA5E-ADA6CFA0AA8B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JetBrainsShared", "Core\JetBrainsShared\JetBrainsShared.csproj", "{5133BE57-1BE8-4C82-BA5E-ADA6CFA0AA8B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JetListView", "Core\JetListView\JetListView.csproj", "{F143C8CF-F540-4CEE-9D6B-48F583A3B955}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MshtmlSite", "Core\MshtmlSite\MshtmlSite.vcproj", "{CB9C489B-FDAE-49BC-B379-2DFBA6A9FB85}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MshtmlSite", "Core\MshtmlSite\MshtmlSite.vcxproj", "{CB9C489B-FDAE-49BC-B379-2DFBA6A9FB85}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OmniaMeaBase", "Core\OmniaMeaBase\OmniaMeaBase.csproj", "{C77A02EC-E116-44B9-8FF2-85637FA405B7}"
 EndProject
@@ -49,17 +73,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MshtmlBrowserControl", "Cor
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SecureLib", "Core\SecureLib\SecureLib.csproj", "{5BFA5A70-D384-4417-AFCC-5C744485A85F}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{CC43F7AE-2C4B-471A-85B0-1E158AC981E9}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Plugin", "Plugin", "{6F9D3DE5-7C0D-4AFD-8C50-A09EFC02299D}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Primary", "Primary", "{42E30D3B-0185-4C0E-A242-29F7D7760438}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contacts", "Plugin\Primary\Contacts\Contacts.csproj", "{880A3057-3DF9-49FB-950E-823CD66F8A7F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Debug", "Plugin\Primary\Debug\Debug.csproj", "{6ABD562F-44A2-420A-8C1B-BEF261A17C05}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EMAPILib", "Plugin\Primary\EmapiLib\EMAPILib.vcproj", "{DE273A0B-CAD2-4292-B7B5-14E8A0131EC1}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EMAPILib", "Plugin\Primary\EmapiLib\EMAPILib.vcxproj", "{DE273A0B-CAD2-4292-B7B5-14E8A0131EC1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelDoc", "Plugin\Primary\ExcelDoc\ExcelDoc.csproj", "{F88C047E-1476-4A19-974C-7D8B6D657851}"
 EndProject
@@ -97,33 +115,17 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebContact", "Plugin\Primar
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WordDoc", "Plugin\Primary\WordDoc\WordDoc.csproj", "{F21BD0AE-FF4B-42C3-8019-9592EF9BB5FF}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{55BEDBD7-9B04-4D90-9A80-9ACBB98D5371}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBRepair", "Application\DBRepair\DBRepair.csproj", "{FC06BCD5-15B6-453C-995A-C39EA7D9CE62}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Launcher", "Application\Launcher\Launcher.vcproj", "{CA4EAE57-1EB2-4471-A03B-9D8D8C2CE6C5}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Launcher", "Application\Launcher\Launcher.vcxproj", "{CA4EAE57-1EB2-4471-A03B-9D8D8C2CE6C5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaintenanceTool", "Application\MaintenanceTool\MaintenanceTool.csproj", "{5D201045-B431-4475-8FDF-9FDBCF4B203F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OmniaMea", "Application\OmniaMea\OmniaMea.csproj", "{45561619-1C61-4293-B8B1-88A76A8190DC}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A5187FD0-D360-4BCD-B1AB-3A77C2A0E2B9}"
-	ProjectSection(SolutionItems) = preProject
-		..\Lib\AllAssemblies.Xml = ..\Lib\AllAssemblies.Xml
-		..\Tools\MSBuild\Src\JetBrains.Build.Omea\Util\AllAssemblies.xsd = ..\Tools\MSBuild\Src\JetBrains.Build.Omea\Util\AllAssemblies.xsd
-		..\Tools\MSBuild\Src\JetBrains.Build.Omea\Util\GuidCache.xsd = ..\Tools\MSBuild\Src\JetBrains.Build.Omea\Util\GuidCache.xsd
-		..\Build\Product.AfterMicrosoftCommon.Targets = ..\Build\Product.AfterMicrosoftCommon.Targets
-		..\Build\Product.BeforeMicrosoftCommon.Targets = ..\Build\Product.BeforeMicrosoftCommon.Targets
-		..\Build\Product.Common.Targets = ..\Build\Product.Common.Targets
-		..\Build\Server.BootstrapBuildNumber.Targets = ..\Build\Server.BootstrapBuildNumber.Targets
-		..\Build\Server.proj = ..\Build\Server.proj
-		..\Build\Server.Publish.Targets = ..\Build\Server.Publish.Targets
-		..\Build\ToolProject.Targets = ..\Build\ToolProject.Targets
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Interop.WinApi", "Core\Interop.WinApi\Interop.WinApi.csproj", "{3F0FF59D-9EEB-407E-8DD5-7DE159ABBC35}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "NetfxBootstrap", "Application\NetfxBootstrap\NetfxBootstrap.vcproj", "{C9B5EED0-F276-42F6-AA99-F8907BD0F955}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "NetfxBootstrap", "Application\NetfxBootstrap\NetfxBootstrap.vcxproj", "{C9B5EED0-F276-42F6-AA99-F8907BD0F955}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -1171,6 +1173,8 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{42E30D3B-0185-4C0E-A242-29F7D7760438} = {6F9D3DE5-7C0D-4AFD-8C50-A09EFC02299D}
+		{BF1D5FAA-EA49-4416-95CD-F5752E7DA797} = {CC43F7AE-2C4B-471A-85B0-1E158AC981E9}
 		{7324F8A3-E741-451A-8428-BCD71E464A89} = {CC43F7AE-2C4B-471A-85B0-1E158AC981E9}
 		{14CD54EF-C6BA-4A9D-A742-2A431DC7E641} = {CC43F7AE-2C4B-471A-85B0-1E158AC981E9}
 		{C566FC33-8FD9-482F-9E2C-6E87DB0B5BF7} = {CC43F7AE-2C4B-471A-85B0-1E158AC981E9}
@@ -1194,9 +1198,6 @@ Global
 		{F016B78B-0BE2-45CD-9584-68FD9CAF35F9} = {CC43F7AE-2C4B-471A-85B0-1E158AC981E9}
 		{50C73F54-92BA-41F5-9D7B-1505298E34E3} = {CC43F7AE-2C4B-471A-85B0-1E158AC981E9}
 		{5BFA5A70-D384-4417-AFCC-5C744485A85F} = {CC43F7AE-2C4B-471A-85B0-1E158AC981E9}
-		{BF1D5FAA-EA49-4416-95CD-F5752E7DA797} = {CC43F7AE-2C4B-471A-85B0-1E158AC981E9}
-		{3F0FF59D-9EEB-407E-8DD5-7DE159ABBC35} = {CC43F7AE-2C4B-471A-85B0-1E158AC981E9}
-		{42E30D3B-0185-4C0E-A242-29F7D7760438} = {6F9D3DE5-7C0D-4AFD-8C50-A09EFC02299D}
 		{880A3057-3DF9-49FB-950E-823CD66F8A7F} = {42E30D3B-0185-4C0E-A242-29F7D7760438}
 		{6ABD562F-44A2-420A-8C1B-BEF261A17C05} = {42E30D3B-0185-4C0E-A242-29F7D7760438}
 		{DE273A0B-CAD2-4292-B7B5-14E8A0131EC1} = {42E30D3B-0185-4C0E-A242-29F7D7760438}
@@ -1222,6 +1223,10 @@ Global
 		{CA4EAE57-1EB2-4471-A03B-9D8D8C2CE6C5} = {55BEDBD7-9B04-4D90-9A80-9ACBB98D5371}
 		{5D201045-B431-4475-8FDF-9FDBCF4B203F} = {55BEDBD7-9B04-4D90-9A80-9ACBB98D5371}
 		{45561619-1C61-4293-B8B1-88A76A8190DC} = {55BEDBD7-9B04-4D90-9A80-9ACBB98D5371}
+		{3F0FF59D-9EEB-407E-8DD5-7DE159ABBC35} = {CC43F7AE-2C4B-471A-85B0-1E158AC981E9}
 		{C9B5EED0-F276-42F6-AA99-F8907BD0F955} = {55BEDBD7-9B04-4D90-9A80-9ACBB98D5371}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AC6B2D82-4CCE-43DA-9758-144659866E9F}
 	EndGlobalSection
 EndGlobal

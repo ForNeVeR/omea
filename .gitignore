@@ -2,12 +2,15 @@
 #
 # SPDX-License-Identifier: MIT
 
-/.idea/
 /Bin/
 /Obj/
 /Src/Core/MshtmlSite/_MsHtmlSite*
 /Src/Core/MshtmlSite/dlldata.c
 /Src/Core/OmniaMeaBase/Install/InstallationData.cs
+
+.idea/
+.vs/
+obj/
 
 *.ncb
 *.suo
