@@ -18,7 +18,6 @@ SPDX-License-Identifier: GPL-2.0-only
 	<PropertyGroup>
 		<GenerateXsdCsDependsOn>
 			$(GenerateXsdCsDependsOn);
-			GenerateXsdCs_AddToItemGroups;
 			GenerateXsdCs_Generate;
 		</GenerateXsdCsDependsOn>
 		<CleanXsdCsDependsOn>
@@ -44,15 +43,7 @@ SPDX-License-Identifier: GPL-2.0-only
 			$(PrepareResourcesDependsOn);
 		</PrepareResourcesDependsOn>
 	</PropertyGroup>
-	<!-- Produces the list of the output files for needs-rebuild check and Clean. -->
-	<Target Name="GenerateXsdCs_AddToItemGroups">
-		<CreateItem Include="@(XsdCsOutput)">
-			<!-- Use the result in the build process. -->
-			<Output ItemName="Compile" TaskParameter="Include" />
-			<!-- Support incremental clean for our files. -->
-			<Output ItemName="FileWrites" TaskParameter="Include" />
-		</CreateItem>
-	</Target>
+
 	<!-- Collects those XsdCs items that have the EmbeddedResource metadata and add them to the EmbeddedResource collection. -->
 	<Target Name="GenerateXsdCs_EmbeddedResource">
 		<!-- Collect those XSDs that require embedding as a resource. -->
@@ -66,13 +57,7 @@ SPDX-License-Identifier: GPL-2.0-only
 	</Target>
 	<!-- The generation itself. -->
 	<Target Name="GenerateXsdCs_Generate" Inputs="@(XsdCs)" Outputs="@(XsdCsOutput)">
-        <Exec Command="dotnet xscgen
-            --namespace %(Namespace)
-            --collectionSettersMode PublicWithoutConstructorInitialization
-            --collectionType System.Array
-            --pcl
-            %(XsdCs.FullPath)
-        "/>
+        <Exec Command="dotnet xscgen --namespace %(Namespace) --collectionSettersMode PublicWithoutConstructorInitialization --collectionType System.Array --pcl %(XsdCs.FullPath)"/>
 		<Message Text="%(XsdCs.FullPath) --(*)--&gt; %(RootDir)%(Directory)%(Namespace).cs" />
 	</Target>
 	<!-- Cleans the generated files. -->

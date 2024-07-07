@@ -98,6 +98,7 @@ SPDX-License-Identifier: GPL-2.0-only
     <Reference Include="System.Xml">
       <Name>System.XML</Name>
     </Reference>
+      <Reference Include="System.Xaml"/>
     <ProjectReference Include="../JetBrainsShared/JetBrainsShared.csproj">
       <Project>{5133BE57-1BE8-4C82-BA5E-ADA6CFA0AA8B}</Project>
       <Name>JetBrainsShared</Name>
@@ -192,9 +193,7 @@ SPDX-License-Identifier: GPL-2.0-only
     </Compile>
     <Compile Include="Install\FileInstaller.cs" />
     <Compile Include="Install\IInstallAttributes.cs" />
-    <Compile Include="Install\JetBrains.Build.InstallationData.cs">
-      <DependentUpon>InstallationData.xsd</DependentUpon>
-    </Compile>
+    <Compile Include="JetBrains.Build.InstallationData.cs"/>
     <Compile Include="Install\InstallationData.Helpers.cs" />
     <Compile Include="Install\InstallAttributesAttribute.cs" />
     <Compile Include="Install\Installer.cs" />

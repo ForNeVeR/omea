@@ -14,8 +14,6 @@ using System.Windows.Media;
 using System.Windows.Resources;
 using System.Xml;
 
-using System35;
-
 using JetBrains.Annotations;
 using JetBrains.Omea.Base;
 using JetBrains.Omea.OpenAPI;

@@ -7,8 +7,6 @@ using System.Drawing;
 using System.Net;
 using System.Windows.Forms;
 
-using System35;
-
 using JetBrains.Omea.OpenAPI;
 using System.IO;
 using NMock;

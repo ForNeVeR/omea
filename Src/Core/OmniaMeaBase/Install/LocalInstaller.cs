@@ -7,8 +7,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text.RegularExpressions;
 
-using System35;
-
 using JetBrains.Annotations;
 using JetBrains.Build.InstallationData;
 

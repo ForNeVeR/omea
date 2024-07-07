@@ -4,8 +4,6 @@
 
 using System;
 
-using System35;
-
 using JetBrains.Annotations;
 using JetBrains.Omea.OpenAPI;
 

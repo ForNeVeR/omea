@@ -5,8 +5,6 @@
 using System;
 using System.Reflection;
 
-using System35;
-
 using JetBrains.Annotations;
 using JetBrains.Omea.OpenAPI;
 

@@ -177,7 +177,6 @@ SPDX-License-Identifier: GPL-2.0-only
     <Compile Include="IUIManager.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Netfx35\Typedef.cs" />
     <Compile Include="PluginInterfaces\PluginDescriptionAttribute.cs" />
     <Compile Include="PluginInterfaces.cs">
       <SubType>Code</SubType>

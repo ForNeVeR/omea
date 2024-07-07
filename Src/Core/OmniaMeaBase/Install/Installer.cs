@@ -3,13 +3,10 @@
 // SPDX-License-Identifier: GPL-2.0-only
 
 using System;
-using System.Collection.Generic;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Xml.Serialization;
-
-using System35;
 
 using JetBrains.Annotations;
 using JetBrains.Build.InstallationData;
