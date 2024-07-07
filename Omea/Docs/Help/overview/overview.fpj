@@ -18,11 +18,6 @@ SPDX-License-Identifier: GPL-2.0-only
 			<frameset>0</frameset>
 		</topic>
 		<topic>
-			<name>about_pro.html</name>
-			<comments></comments>
-			<frameset>0</frameset>
-		</topic>
-		<topic>
 			<name>quick_tour.html</name>
 			<comments></comments>
 			<frameset>0</frameset>
