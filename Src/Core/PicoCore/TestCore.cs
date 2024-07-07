@@ -8,8 +8,6 @@ using System.IO;
 using System.Net;
 using System.Windows.Forms;
 
-using System35;
-
 using JetBrains.Omea.OpenAPI;
 using NMock;
 using PicoContainer.Defaults;

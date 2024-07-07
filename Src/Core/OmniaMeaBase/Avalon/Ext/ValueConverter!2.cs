@@ -6,8 +6,6 @@ using System;
 using System.Globalization;
 using System.Windows.Data;
 
-using System35;
-
 using JetBrains.Annotations;
 
 namespace JetBrains.UI.Avalon

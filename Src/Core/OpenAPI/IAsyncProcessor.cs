@@ -6,8 +6,6 @@ using System;
 using System.Threading;
 using System.Windows.Forms;
 
-using System35;
-
 using JetBrains.Annotations;
 
 namespace JetBrains.Omea.OpenAPI

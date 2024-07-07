@@ -9,8 +9,6 @@ using System.Threading;
 using System.Collections;
 using System.Windows.Forms;
 
-using System35;
-
 using JetBrains.Annotations;
 using JetBrains.Interop.WinApi;
 using JetBrains.Omea.Containers;

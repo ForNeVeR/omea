@@ -22,7 +22,7 @@ SPDX-License-Identifier: GPL-2.0-only
 	</PropertyGroup>
 	<!-- Generic settings. -->
 	<PropertyGroup>
-		<TargetFrameworkVersion>v3.0</TargetFrameworkVersion>
+		<TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
 		<DebugSymbols>True</DebugSymbols>
 		<DebugType>Full</DebugType>
 	</PropertyGroup>

@@ -5,8 +5,6 @@
 using System;
 using System.Windows;
 
-using System35;
-
 using JetBrains.Annotations;
 
 namespace JetBrains.UI.Avalon

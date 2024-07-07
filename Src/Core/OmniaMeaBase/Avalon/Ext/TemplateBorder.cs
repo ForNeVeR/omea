@@ -6,8 +6,6 @@ using System;
 using System.Windows;
 using System.Windows.Controls;
 
-using System35;
-
 using JetBrains.Omea.OpenAPI;
 
 namespace JetBrains.UI.Avalon
