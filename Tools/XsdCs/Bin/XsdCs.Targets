@@ -5,13 +5,12 @@ SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
 SPDX-License-Identifier: GPL-2.0-only
 -->
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-	<!-- Enables support for the “XsdCs” build action in the projects. -->
-	<Import Project="XsdCs.Tasks" />
+    <!-- TODO: Move this file to the project sources, simplify -->
 	<ItemGroup>
 		<!-- Add to the Visual Studio Build Action list on the files. -->
 		<AvailableItemName Include="XsdCs" />
 		<!-- Calculate output. -->
-		<XsdCsOutput Include="@(XsdCs-&gt;'%(RootDir)%(Directory)%(Filename).cs')">
+		<XsdCsOutput Include="@(XsdCs-&gt;'%(RootDir)%(Directory)%(Namespace).cs')">
 			<AutoGen>True</AutoGen>
 		</XsdCsOutput>
 	</ItemGroup>
@@ -67,8 +66,14 @@ SPDX-License-Identifier: GPL-2.0-only
 	</Target>
 	<!-- The generation itself. -->
 	<Target Name="GenerateXsdCs_Generate" Inputs="@(XsdCs)" Outputs="@(XsdCsOutput)">
-		<XsdCs InputFile="%(XsdCs.FullPath)" OutDir="%(RootDir)%(Directory)" Namespace="%(Namespace)" />
-		<Message Text="%(XsdCs.FullPath) --(*)--&gt; %(RootDir)%(Directory)%(FileName).cs" />
+        <Exec Command="dotnet xscgen
+            --namespace %(Namespace)
+            --collectionSettersMode PublicWithoutConstructorInitialization
+            --collectionType System.Array
+            --pcl
+            %(XsdCs.FullPath)
+        "/>
+		<Message Text="%(XsdCs.FullPath) --(*)--&gt; %(RootDir)%(Directory)%(Namespace).cs" />
 	</Target>
 	<!-- Cleans the generated files. -->
 	<Target Name="CleanXsdCs_Clean">
