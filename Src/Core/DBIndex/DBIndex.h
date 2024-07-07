@@ -19,40 +19,40 @@ namespace DBIndex
 	// OmniaMeaBTree is used from C# code
 	///////////////////////////////////////////////////////////////////////////
 
-	public __gc class OmniaMeaBTree : public IBTree
+	public ref class OmniaMeaBTree : public IBTree
 	{
 	public:
 
-		OmniaMeaBTree( String* filename, IFixedLengthKey* factoryKey );
+		OmniaMeaBTree( String ^filename, IFixedLengthKey ^factoryKey );
 
-		void Dispose();
-		bool Open();
-        void Close();
+		~OmniaMeaBTree();
+		bool Open() override;
+        void Close() override;
 		void CloseFile();
-        void Clear();
+        void Clear() override;
 		void Flush();
 
-		void GetAllKeys( IntArrayList* offsets );
-        void GetAllKeys( ArrayList* keys_offsets );
-		IEnumerable* GetAllKeys();
-		KeyPair* GetMinimum();
-		KeyPair* GetMaximum();
+		void GetAllKeys( IntArrayList ^offsets ) override;
+        void GetAllKeys( ArrayList ^keys_offsets ) override;
+		IEnumerable ^GetAllKeys() override;
+		KeyPair ^GetMinimum();
+		KeyPair ^GetMaximum();
 
-        void SearchForRange( IFixedLengthKey* beginKey, IFixedLengthKey* endKey, IntArrayList* offsets );
-        void SearchForRange( IFixedLengthKey* beginKey, IFixedLengthKey* endKey, ArrayList* keys_offsets );
-		IEnumerable* SearchForRange( IFixedLengthKey* beginKey, IFixedLengthKey* endKey );
+        void SearchForRange( IFixedLengthKey ^beginKey, IFixedLengthKey ^endKey, IntArrayList ^offsets ) override;
+        void SearchForRange( IFixedLengthKey ^beginKey, IFixedLengthKey ^endKey, ArrayList ^keys_offsets ) override;
+		IEnumerable ^SearchForRange( IFixedLengthKey ^beginKey, IFixedLengthKey ^endKey ) override;
 
-        void DeleteKey( IFixedLengthKey* akey, int offset );
-        void InsertKey( IFixedLengthKey* akey, int offset );
+        void DeleteKey( IFixedLengthKey ^akey, int offset ) override;
+        void InsertKey( IFixedLengthKey ^akey, int offset ) override;
 
-        __property int get_MaxCount();
-        __property int get_Count();
+        property int MaxCount { int get() override; }
+        property int Count { int get() override; }
 
-        void SetCacheSize( int numberOfPages );
-        int GetCacheSize();
+        void SetCacheSize( int numberOfPages ) override;
+        int GetCacheSize() override;
 
-        int GetLoadedPages();
-        int GetPageSize();
+        int GetLoadedPages() override;
+        int GetPageSize() override;
 
 		static int GetObjectsCount();
 		static int GetUsedMemory();
@@ -60,19 +60,19 @@ namespace DBIndex
 	private public:
 
 		void InstantiateTypes();
-		void SetFirstKey( IFixedLengthKey* akey );
-		void SetFirstAndLastKeys( IFixedLengthKey* beginKey, IFixedLengthKey* endKey );
+		void SetFirstKey( IFixedLengthKey ^akey );
+		void SetFirstAndLastKeys( IFixedLengthKey ^beginKey, IFixedLengthKey ^endKey );
 		BTreePageBase* GetPageByOffset( int offset );
 		BTreePageBase* AllocPage();
 		BTreePageBase* PrepareNewPage( int offset );
-		void CopyOffsets( const BTreeKeyBase** temp_keys, unsigned count, IntArrayList* offsets );
-		void CopyKeys( const BTreeKeyBase** temp_keys, int count, ArrayList* keys_offsets  );
+		void CopyOffsets( const BTreeKeyBase** temp_keys, unsigned count, IntArrayList ^offsets );
+		void CopyKeys( const BTreeKeyBase** temp_keys, int count, ArrayList ^keys_offsets  );
 		void LoadPage( BTreePageBase* );
 		void SavePage( BTreePageBase* );
 
-		String*						_filename;
-		IFixedLengthKey*			_factoryKey;
-		FileStream*					_btreeFile;
+		String^						_filename;
+		IFixedLengthKey^			_factoryKey;
+		FileStream^					_btreeFile;
 		BTreePageBase*				_page;
 		BTreePageBase*				_freePage;
 		BTreeKeyBase*				_firstKey;
@@ -82,9 +82,9 @@ namespace DBIndex
 		BTreePagesCache*			_pagesCache;
 		BTreeHeaderBase*			_btreeHeader;
 		BTreeHeaderIteratorBase*	_btreeHeaderIterator;
-		IEnumerable*				_searchForRangeEnumerable;
-		IntArrayList*				_freeOffsets;
-		ArrayList*					_oneItemList;
+		IEnumerable^				_searchForRangeEnumerable;
+		IntArrayList^				_freeOffsets;
+		ArrayList^					_oneItemList;
 		int							_keysInIndex;
 		int							_keyType;
 		unsigned					_numberOfPages;

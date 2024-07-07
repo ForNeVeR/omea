@@ -20,7 +20,7 @@ namespace DBIndex
 		void Dump( const char* filename ) const;
 	};
 
-	public __gc class Win32Heaps
+	public ref class Win32Heaps
 	{
 	public:
 		static unsigned HeapCount()
@@ -39,7 +39,7 @@ namespace DBIndex
 			}
 			return _walker->HeapTotalSize();
 		}
-		static void Dump( String* filename );
+		static void Dump( String ^filename );
 	private:
 		static Win32HeapWalker* _walker;
 	};
