@@ -192,7 +192,7 @@ SPDX-License-Identifier: GPL-2.0-only
     </Compile>
     <Compile Include="Install\FileInstaller.cs" />
     <Compile Include="Install\IInstallAttributes.cs" />
-    <Compile Include="Install\InstallationData.cs">
+    <Compile Include="Install\JetBrains.Build.InstallationData.cs">
       <DependentUpon>InstallationData.xsd</DependentUpon>
     </Compile>
     <Compile Include="Install\InstallationData.Helpers.cs" />

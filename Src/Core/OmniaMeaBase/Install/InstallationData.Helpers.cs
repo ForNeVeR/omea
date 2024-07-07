@@ -10,7 +10,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Xml.Schema;
-
 using JetBrains.Annotations;
 
 namespace JetBrains.Build.InstallationData
@@ -385,7 +384,7 @@ namespace JetBrains.Build.InstallationData
 
 		public override int GetHashCode()
 		{
-			return hiveField.GetHashCode() + 29 * (keyField != null ? keyField.GetHashCode() : 0);
+			return Hive.GetHashCode() + 29 * (Key != null ? Key.GetHashCode() : 0);
 		}
 
 		#endregion
@@ -396,7 +395,7 @@ namespace JetBrains.Build.InstallationData
 		{
 			if(registryBaseXml == null)
 				return false;
-			return Equals(hiveField, registryBaseXml.hiveField) && Equals(keyField, registryBaseXml.keyField);
+			return Equals(Hive, registryBaseXml.Hive) && Equals(Key, registryBaseXml.Key);
 		}
 
 		#endregion
@@ -551,9 +550,9 @@ namespace JetBrains.Build.InstallationData
 		public override int GetHashCode()
 		{
 			int result = base.GetHashCode();
-			result = 29 * result + (nameField != null ? nameField.GetHashCode() : 0);
-			result = 29 * result + (valueField != null ? valueField.GetHashCode() : 0);
-			result = 29 * result + typeField.GetHashCode();
+			result = 29 * result + (Name != null ? Name.GetHashCode() : 0);
+			result = 29 * result + (Value != null ? Value.GetHashCode() : 0);
+			result = 29 * result + Type.GetHashCode();
 			return result;
 		}
 
@@ -580,11 +579,11 @@ namespace JetBrains.Build.InstallationData
 				return false;
 			if(!base.Equals(registryValueXml))
 				return false;
-			if(!Equals(nameField, registryValueXml.nameField))
+			if(!Equals(Name, registryValueXml.Name))
 				return false;
-			if(!Equals(valueField, registryValueXml.valueField))
+			if(!Equals(Value, registryValueXml.Value))
 				return false;
-			if(!Equals(typeField, registryValueXml.typeField))
+			if(!Equals(Type, registryValueXml.Type))
 				return false;
 			return true;
 		}
