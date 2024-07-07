@@ -8,7 +8,7 @@ using System.IO;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using System.Diagnostics;
-// TODO: Migrate to another PDF library
+// TODO[#5]: Migrate to another PDF library
 //using AxAcroPDFLib;
 
 using JetBrains.Build.InstallationData;
@@ -176,13 +176,13 @@ namespace JetBrains.Omea.PDFPlugin
 
 	internal class AcrobatOcxDisplayer : IResourceDisplayer, IDisplayPane, IDisposable
 	{
-        // TODO: Migrate to another PDF library
+        // TODO[#5]: Migrate to another PDF library
 		// private readonly AxPdfLib.AxPdf _axPdf;
         private readonly object _axPdf;
 
 		public AcrobatOcxDisplayer()
 		{
-            // TODO: Migrate to another PDF library
+            // TODO[#5]: Migrate to another PDF library
             //_axPdf = new AxPdfLib.AxPdf();
             //((System.ComponentModel.ISupportInitialize)_axPdf).BeginInit();
             //_axPdf.Enabled = true;
@@ -191,7 +191,7 @@ namespace JetBrains.Omea.PDFPlugin
 
 		public void Dispose()
 		{
-            // TODO: Migrate to another PDF library
+            // TODO[#5]: Migrate to another PDF library
             //if( _axPdf != null )
             //    COM_Object.Release( _axPdf.GetOcx() );
 		}
@@ -203,7 +203,7 @@ namespace JetBrains.Omea.PDFPlugin
 
 		Control IDisplayPane.GetControl()
 		{
-            // TODO: Migrate to another PDF library
+            // TODO[#5]: Migrate to another PDF library
             //return _axPdf;
             return null;
 		}
@@ -212,7 +212,7 @@ namespace JetBrains.Omea.PDFPlugin
 		{
 			try
 			{
-                // TODO: Migrate to another PDF library
+                // TODO[#5]: Migrate to another PDF library
 				string  FileName = Core.FileResourceManager.GetSourceFile( resource );
 				Debug.Assert(!string.IsNullOrEmpty(FileName));
                 //_axPdf.LoadFile( FileName );
@@ -257,7 +257,7 @@ namespace JetBrains.Omea.PDFPlugin
 
 	internal class Acrobat7Displayer: IResourceDisplayer, IDisplayPane, IDisposable
 	{
-		// TODO: Migrate to another PDF library
+		// TODO[#5]: Migrate to another PDF library
         // private readonly AxAcroPDF _axPdf;
         private readonly object _axPdf;
 
@@ -270,7 +270,7 @@ namespace JetBrains.Omea.PDFPlugin
 
 		public void Dispose()
 		{
-            // TODO: Migrate to another PDF library
+            // TODO[#5]: Migrate to another PDF library
             //if( _axPdf != null )
             //    COM_Object.Release( _axPdf.GetOcx() );
 		}
@@ -282,7 +282,7 @@ namespace JetBrains.Omea.PDFPlugin
 
 		Control IDisplayPane.GetControl()
 		{
-            // TODO: Migrate to another PDF library
+            // TODO[#5]: Migrate to another PDF library
             //return _axPdf;
             return null;
 		}
@@ -299,7 +299,7 @@ namespace JetBrains.Omea.PDFPlugin
 					string  fileName = Core.FileResourceManager.GetSourceFile( resource );
 					if( fileName == null )
 						throw new ApplicationException( "PDFPlugin — Can not restore PDF file from resource." );
-                    // TODO: Migrate to another PDF library
+                    // TODO[#5]: Migrate to another PDF library
                     //_axPdf.LoadFile( fileName );
 				}
 				catch(COMException ex)
