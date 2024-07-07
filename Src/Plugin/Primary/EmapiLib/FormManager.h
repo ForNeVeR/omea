@@ -5,7 +5,7 @@
 #pragma once
 #include "typefactory.h"
 
-__nogc class FormManager : public RCObject
+class FormManager : public RCObject
 {
 private:
     LPMAPIFORMMGR _pFormManager;
@@ -18,7 +18,7 @@ public:
     static FormManagerSPtr GetFormManager( LPMAPISESSION pSession );
 };
 
-__nogc class MAPIForm : public RCObject
+class MAPIForm : public RCObject
 {
 private:
     LPMAPIFORM _pForm;
@@ -34,7 +34,7 @@ public:
     LPMAPIFORM GetRaw() const;
 };
 
-__nogc class PersistMessage : public RCObject
+class PersistMessage : public RCObject
 {
 private:
     LPPERSISTMESSAGE _lpPersistMessage;

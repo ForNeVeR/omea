@@ -45,11 +45,11 @@ EMAPILib::EMAPISession::~EMAPISession(  )
 bool EMAPILib::EMAPISession::CanClose()
 {
     int count = CountOutlookWindows();
-    System::Diagnostics::Debug::WriteLine( __box( count ) );
+    System::Diagnostics::Debug::WriteLine(count);
     return ( CountOutlookWindows() == 0 );
 }
 
-bool EMAPILib::EMAPISession::Initialize( bool pickLogonProfile, ILibManager* libManager )
+bool EMAPILib::EMAPISession::Initialize( bool pickLogonProfile, ILibManager^ libManager )
 {
     bool bRet = _pMAPISession->Initialize( pickLogonProfile );
     if ( !bRet )
@@ -81,25 +81,25 @@ void EMAPILib::EMAPISession::CheckDependencies()
     if ( hModule == NULL && lastError )
     {
         Int32 int32 = lastError;
-        String* strError = "Error code: ";
+        String^ strError = "Error code: ";
         strError = String::Concat( strError, int32.ToString() );
         LPSTR message = LoadErrorText( lastError );
         if ( message != NULL )
         {
             strError = String::Concat( strError, ". Message: " );
-            strError = String::Concat( strError, message );
+            strError = String::Concat( strError, gcnew String(message));
             LocalFree( message );
         }
-        throw new System::Exception( strError );
+        throw gcnew System::Exception( strError );
     }
 }
-void EMAPILib::EMAPISession::AddRecipients( System::Object* mapiObject, ArrayList* recipients )
+void EMAPILib::EMAPISession::AddRecipients( System::Object ^mapiObject, ArrayList ^recipients )
 {
-    if ( mapiObject == NULL )
+    if ( mapiObject == nullptr )
     {
         Guard::ThrowArgumentNullException( "mapiObject" );
     }
-    if ( recipients == NULL )
+    if ( recipients == nullptr )
     {
         Guard::ThrowArgumentNullException( "recipients" );
     }
@@ -127,19 +127,19 @@ void EMAPILib::EMAPISession::AddRecipients( System::Object* mapiObject, ArrayLis
             }
             for ( int i = 0; i < recipients->Count; i++ )
             {
-                EMAPILib::RecipInfo* recipInfo = (dynamic_cast<EMAPILib::RecipInfo*>( recipients->get_Item( i ) ));
-                if ( recipInfo != NULL )
+                EMAPILib::RecipInfo^ recipInfo = (dynamic_cast<EMAPILib::RecipInfo^>( recipients[i]));
+                if ( recipInfo != nullptr )
                 {
                     _pMAPISession->AddRecipient( msg,
-                        Temp::GetUNIString( recipInfo->get_DisplayName() )->GetChars(),
-                        Temp::GetUNIString( recipInfo->get_Email() )->GetChars(),
-                        Temp::GetANSIString( recipInfo->get_DisplayName() )->GetChars(),
-                        Temp::GetANSIString( recipInfo->get_Email() )->GetChars(),
+                        Temp::GetUNIString( recipInfo->DisplayName )->GetChars(),
+                        Temp::GetUNIString( recipInfo->Email )->GetChars(),
+                        Temp::GetANSIString( recipInfo->DisplayName )->GetChars(),
+                        Temp::GetANSIString( recipInfo->Email )->GetChars(),
                         MAPI_TO );
                 }
             }
         }
-        __finally
+        finally
         {
             if ( (int)ptrMapiObject != 0 )
             {
@@ -151,14 +151,14 @@ void EMAPILib::EMAPISession::AddRecipients( System::Object* mapiObject, ArrayLis
 
 void EMAPILib::EMAPISession::DeleteMessage( const ESPropValueSPtr& entryID )
 {
-    if ( _libManager != NULL )
+    if ( _libManager != nullptr )
     {
         _libManager->DeleteMessage( Helper::EntryIDToHex( entryID->GetBinLPBYTE(), entryID->GetBinCB() ) );
     }
 }
 void EMAPILib::EMAPISession::MoveMessage( const ESPropValueSPtr& entryID, const ESPropValueSPtr& folderID )
 {
-    if ( _libManager != NULL )
+    if ( _libManager != nullptr )
     {
         _libManager->MoveMessage( Helper::EntryIDToHex( entryID->GetBinLPBYTE(), entryID->GetBinCB() ),
             Helper::EntryIDToHex( folderID->GetBinLPBYTE(), folderID->GetBinCB() ));
@@ -166,7 +166,7 @@ void EMAPILib::EMAPISession::MoveMessage( const ESPropValueSPtr& entryID, const 
 }
 void EMAPILib::EMAPISession::CopyMessage( const ESPropValueSPtr& entryID, const ESPropValueSPtr& folderID )
 {
-    if ( _libManager != NULL )
+    if ( _libManager != nullptr )
     {
         _libManager->CopyMessage( Helper::EntryIDToHex( entryID->GetBinLPBYTE(), entryID->GetBinCB() ),
             Helper::EntryIDToHex( folderID->GetBinLPBYTE(), folderID->GetBinCB() ));
@@ -175,7 +175,7 @@ void EMAPILib::EMAPISession::CopyMessage( const ESPropValueSPtr& entryID, const 
 
 int EMAPILib::EMAPISession::RegisterForm()
 {
-    if ( _libManager != NULL )
+    if ( _libManager != nullptr )
     {
         return _libManager->RegisterForm();
     }
@@ -183,7 +183,7 @@ int EMAPILib::EMAPISession::RegisterForm()
 }
 void EMAPILib::EMAPISession::UnregisterForm( int formID )
 {
-    if ( _libManager != NULL )
+    if ( _libManager != nullptr )
     {
         _libManager->UnregisterForm( formID );
     }
@@ -194,38 +194,38 @@ void EMAPILib::EMAPISession::Uninitialize()
     _pMAPISession->Uninitialize();
 }
 
-EMAPILib::IEAddrBook* EMAPILib::EMAPISession::OpenAddrBook()
+EMAPILib::IEAddrBook^ EMAPILib::EMAPISession::OpenAddrBook()
 {
     AddrBookSPtr addrBook = _pMAPISession->OpenAddressBook();
-    if ( addrBook.IsNull() ) return NULL;
-    return new EMAPILib::AddrBookImpl( addrBook );
+    if ( addrBook.IsNull() ) return nullptr;
+    return gcnew EMAPILib::AddrBookImpl( addrBook );
 }
 
-void EMAPILib::EMAPISession::SetQuoter( IQuoting* quoter )
+void EMAPILib::EMAPISession::SetQuoter( IQuoting^ quoter )
 {
     _quoter = quoter;
 }
-EMAPILib::IQuoting* EMAPILib::EMAPISession::GetQuoter( )
+EMAPILib::IQuoting^ EMAPILib::EMAPISession::GetQuoter( )
 {
     return _quoter;
 }
-EMAPILib::IEMsgStores* EMAPILib::EMAPISession::GetMsgStores( )
+EMAPILib::IEMsgStores^ EMAPILib::EMAPISession::GetMsgStores( )
 {
     OutputDebugString( "GetMsgStores" );
     MsgStoresSPtr msgStores = _pMAPISession->GetMsgStores();
-    return new EMAPILib::MsgStoresImpl( msgStores );
+    return gcnew EMAPILib::MsgStoresImpl( msgStores );
 }
-EMAPILib::IEMsgStore* EMAPILib::EMAPISession::OpenMsgStore( String* entryID )
+EMAPILib::IEMsgStore^ EMAPILib::EMAPISession::OpenMsgStore( String^ entryID )
 {
     MsgStoreSPtr msgStore = _pMAPISession->OpenMsgStore( Helper::HexToEntryID( entryID ) );
     if ( !msgStore.IsNull() )
     {
-        return new EMAPILib::MsgStoreImpl( msgStore );
+        return gcnew EMAPILib::MsgStoreImpl( msgStore );
     }
-    return NULL;
+    return nullptr;
 }
 
-bool EMAPILib::EMAPISession::CompareEntryIDs( String* entryID1, String *entryID2 )
+bool EMAPILib::EMAPISession::CompareEntryIDs( String^ entryID1, String ^entryID2 )
 {
 	return _pMAPISession->CompareEntryIDs( Helper::HexToEntryID( entryID1 ), Helper::HexToEntryID( entryID2 ) );
 }
@@ -240,16 +240,16 @@ int EMAPILib::EMAPISession::HeapSize()
 	return MyHeapObject::HeapSize();
 }
 
-EMAPILib::IEMessage* EMAPILib::EMAPISession::LoadFromMSG( String* path )
+EMAPILib::IEMessage ^EMAPILib::EMAPISession::LoadFromMSG( String ^path )
 {
-    if ( path == NULL )
+    if ( path == nullptr )
     {
         Guard::ThrowArgumentNullException( "path" );
     }
     EMessageSPtr message = EMessage::LoadFromMSG( Temp::GetANSIString( path )->GetChars() );
     if ( !message.IsNull() )
     {
-        return new MessageImpl( message );
+        return gcnew MessageImpl( message );
     }
-    return NULL;
+    return nullptr;
 }

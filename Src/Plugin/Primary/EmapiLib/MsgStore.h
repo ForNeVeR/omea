@@ -9,7 +9,7 @@
 
 class MsgStoreAdviseSink;
 
-__nogc class MsgStore : public MAPIProp
+class MsgStore : public MAPIProp
 {
 private:
     LPMDB _pMDB;

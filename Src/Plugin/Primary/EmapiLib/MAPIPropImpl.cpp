@@ -21,50 +21,50 @@ EMAPILib::MAPIPropImpl::MAPIPropImpl( MAPIProp* eMAPIProp ) : _eMAPIProp( eMAPIP
 EMAPILib::MAPIPropImpl::~MAPIPropImpl()
 {
 }
-ArrayList* EMAPILib::MAPIPropImpl::GetBinArray( int tag )
+ArrayList^ EMAPILib::MAPIPropImpl::GetBinArray( int tag )
 {
     ESPropValueSPtr prop = _eMAPIProp->getSingleProp( tag );
     if ( !prop.IsNull() )
     {
         SBinaryArray binArray = prop->GetMVbin();
-        ArrayList* list = new ArrayList( (int)binArray.cValues );
+        ArrayList^ list = gcnew ArrayList( (int)binArray.cValues );
         for ( int i = 0; i < (int)binArray.cValues; ++i )
         {
             SBinary bin = binArray.lpbin[i];
-            String* str = Helper::EntryIDToHex( bin.lpb, bin.cb );
+            String ^str = Helper::EntryIDToHex( bin.lpb, bin.cb );
             list->Add( str );
         }
         return list;
     }
-    return NULL;
+    return nullptr;
 }
 
-ArrayList* EMAPILib::MAPIPropImpl::GetStringArray( int tag )
+ArrayList ^EMAPILib::MAPIPropImpl::GetStringArray( int tag )
 {
     ESPropValueSPtr prop = _eMAPIProp->getSingleProp( tag );
     if ( !prop.IsNull() )
     {
         SLPSTRArray strArray = prop->GetMVszA();
-        ArrayList* list = new ArrayList( (int)strArray.cValues );
+        ArrayList ^list = gcnew ArrayList( (int)strArray.cValues );
         for ( int i = 0; i < (int)strArray.cValues; ++i )
         {
             LPSTR str = strArray.lppszA[i];
-            list->Add( new String( str ) );
+            list->Add( gcnew String( str ) );
         }
         return list;
     }
-    return NULL;
+    return nullptr;
 }
-void EMAPILib::MAPIPropImpl::SetStringArray( int tag, ArrayList* value )
+void EMAPILib::MAPIPropImpl::SetStringArray( int tag, ArrayList ^value )
 {
     CheckDisposed();
-    if ( value != NULL && value->get_Count() > 0 )
+    if ( value != nullptr && value->Count > 0 )
     {
-        int count = value->get_Count();
+        int count = value->Count;
         ANSIStrings ansiStrings( count );
         for ( int i = 0; i < count; ++i )
         {
-            String* strValue = dynamic_cast<String*>( value->get_Item( i ) );
+            String ^strValue = dynamic_cast<String^>( value[i] );
             ansiStrings.Set( i, Temp::GetLPSTR( strValue ) );
         }
         _eMAPIProp->setStringArray( tag, ansiStrings.GetLPSTRs(), count );
@@ -75,7 +75,7 @@ void EMAPILib::MAPIPropImpl::SetStringArray( int tag, ArrayList* value )
     }
 }
 
-String* EMAPILib::MAPIPropImpl::GetBinProp( int tag )
+String ^EMAPILib::MAPIPropImpl::GetBinProp( int tag )
 {
     CheckDisposed();
     return Helper::BinPropToString( _eMAPIProp->getSingleProp( tag ) );
@@ -87,10 +87,10 @@ void EMAPILib::MAPIPropImpl::DeleteProp( int tag )
     _eMAPIProp->deleteSimpleProp( tag );
 }
 
-void EMAPILib::MAPIPropImpl::CopyTo( LPCIID lpInterface, IEMAPIProp* destMAPIObj )
+void EMAPILib::MAPIPropImpl::CopyTo( LPCIID lpInterface, IEMAPIProp ^destMAPIObj )
 {
     CheckDisposed();
-    MAPIPropImpl* destMAPIObjImpl = dynamic_cast<MAPIPropImpl*>(destMAPIObj);
+    MAPIPropImpl ^destMAPIObjImpl = dynamic_cast<MAPIPropImpl^>(destMAPIObj);
     _eMAPIProp->CopyTo( lpInterface, destMAPIObjImpl->_eMAPIProp );
 }
 
@@ -107,10 +107,10 @@ DateTime EMAPILib::MAPIPropImpl::GetDateTimeProp( int tag )
             return DateTime::FromFileTime( dt );
         }
     }
-    catch( System::Exception* exc )
+    catch( System::Exception ^exc )
     {
         System::Diagnostics::Debug::WriteLine( exc->Message );
-        System::Diagnostics::Debug::WriteLine( exc->get_StackTrace() );
+        System::Diagnostics::Debug::WriteLine( exc->StackTrace );
     }
     return DateTime::MinValue;
 }
@@ -145,15 +145,15 @@ bool EMAPILib::MAPIPropImpl::GetBoolProp( int tag )
     return false;
 }
 
-String* EMAPILib::MAPIPropImpl::GetStringProp( int tag )
+String ^EMAPILib::MAPIPropImpl::GetStringProp( int tag )
 {
     CheckDisposed();
     ESPropValueSPtr prop = _eMAPIProp->getSingleProp( tag );
     if ( !prop.IsNull() && prop->GetLPSTR() != NULL )
     {
-        return new String( prop->GetLPSTR() );
+        return gcnew String( prop->GetLPSTR() );
     }
-    return NULL;
+    return nullptr;
 }
 
 void EMAPILib::MAPIPropImpl::SetLongProp( int tag, int value )
@@ -162,10 +162,10 @@ void EMAPILib::MAPIPropImpl::SetLongProp( int tag, int value )
     _eMAPIProp->setLongProp( tag, value );
 }
 
-void EMAPILib::MAPIPropImpl::SetStringProp( int tag, String* value )
+void EMAPILib::MAPIPropImpl::SetStringProp( int tag, String ^value )
 {
     CheckDisposed();
-    if ( value != NULL )
+    if ( value != nullptr )
     {
         _eMAPIProp->setStringProp( tag, Temp::GetANSIString( value )->GetChars() );
     }
@@ -191,13 +191,13 @@ void EMAPILib::MAPIPropImpl::SetDateTimeProp( int tag, DateTime value )
     _eMAPIProp->setDateTimeProp( tag, value.ToFileTime() );
 }
 
-void EMAPILib::MAPIPropImpl::WriteStringStreamProp( int tag, String* propValue )
+void EMAPILib::MAPIPropImpl::WriteStringStreamProp( int tag, String ^propValue )
 {
     CheckDisposed();
     int count = 0;
-    if ( propValue != NULL )
+    if ( propValue != nullptr )
     {
-        count = propValue->get_Length();
+        count = propValue->Length;
     }
     _eMAPIProp->writeStringStreamProp( tag, Temp::GetANSIString( propValue )->GetChars(), count );
 }
@@ -208,7 +208,7 @@ void EMAPILib::MAPIPropImpl::SaveChanges()
     _eMAPIProp->SaveChanges( (int)KEEP_OPEN_READWRITE );
 }
 
-int EMAPILib::MAPIPropImpl::GetIDsFromNames( System::Guid* gcGUID, String* name, int propType )
+int EMAPILib::MAPIPropImpl::GetIDsFromNames( System::Guid* gcGUID, String ^name, int propType )
 {
     CheckDisposed();
     GUID guid;

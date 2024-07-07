@@ -5,14 +5,14 @@
 #include "msgstoreadvisesink.h"
 #include "guard.h"
 
-void MsgStoreAdviseSink::SetListener( EMAPILib::IMAPIListener* listener )
+void MsgStoreAdviseSink::SetListener( EMAPILib::IMAPIListener ^listener )
 {
     _listener = listener;
 }
 
 void MsgStoreAdviseSink::OnNotifyImpl( ULONG cNotif, LPNOTIFICATION pNotifications )
 {
-    if ( _listener == NULL ) return;
+    if (!_listener) return;
     for ( int i = 0; i < (int)cNotif; i++ )
     {
         _NOTIFICATION ntf = pNotifications[i];

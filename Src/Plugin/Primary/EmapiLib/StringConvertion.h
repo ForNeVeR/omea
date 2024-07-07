@@ -7,7 +7,7 @@
 #include "emapi.h"
 #include "typefactory.h"
 
-__nogc class ANSIString : public RCObject
+class ANSIString : public RCObject
 {
 private:
     LPSTR _lpStr;
@@ -23,7 +23,7 @@ private:
     void Release();
 };
 
-__nogc class ANSIStrings : public MyHeapObject
+class ANSIStrings : public MyHeapObject
 {
 private:
     ANSIString* _ansiStrings;
@@ -39,7 +39,7 @@ private:
     ANSIStrings& operator=( const ANSIStrings& );
 };
 
-__nogc class UNIString : public RCObject
+class UNIString : public RCObject
 {
 private:
     LPWSTR _lpStr;

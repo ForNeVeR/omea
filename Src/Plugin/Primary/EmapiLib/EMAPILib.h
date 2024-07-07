@@ -18,35 +18,35 @@ class MAPISession;
 
 namespace EMAPILib
 {
-	public __gc class EMAPISession
+	public ref class EMAPISession
 	{
         private:
             MAPISession* _pMAPISession; //MAPI Session Pointer
-            static IQuoting* _quoter;
-            static ILibManager* _libManager;
+            static IQuoting^ _quoter;
+            static ILibManager^ _libManager;
         public:
             bool CanClose();
             void CheckDependencies();
             static void DeleteMessage( const ESPropValueSPtr& entryID );
             static void MoveMessage( const ESPropValueSPtr& entryID, const ESPropValueSPtr& folderID );
             static void CopyMessage( const ESPropValueSPtr& entryID, const ESPropValueSPtr& folderID );
-            void AddRecipients( System::Object* mapiObject, ArrayList* recipients );
+            void AddRecipients( System::Object^ mapiObject, ArrayList^ recipients );
             static int RegisterForm();
             static void UnregisterForm( int formID );
             static void BeginReadProp( int prop_id );
             static void EndReadProp();
             EMAPISession( int fake );
-            bool Initialize( bool pickLogonProfile, ILibManager* libManager );
-            void SetQuoter( IQuoting* quoter );
-            static IQuoting* GetQuoter();
+            bool Initialize( bool pickLogonProfile, ILibManager^ libManager );
+            void SetQuoter( IQuoting^ quoter );
+            static IQuoting^ GetQuoter();
 
-            EMAPILib::IEMessage* LoadFromMSG( String* path );
+            EMAPILib::IEMessage^ LoadFromMSG( String^ path );
             void Uninitialize();
-			bool CompareEntryIDs( String* entryID1, String *entryID2 );
+			bool CompareEntryIDs( String^ entryID1, String ^entryID2 );
             ~EMAPISession();
-            EMAPILib::IEAddrBook* OpenAddrBook();
-            EMAPILib::IEMsgStores* GetMsgStores();
-            EMAPILib::IEMsgStore* OpenMsgStore( String* entryID );
+            EMAPILib::IEAddrBook^ OpenAddrBook();
+            EMAPILib::IEMsgStores^ GetMsgStores();
+            EMAPILib::IEMsgStore^ OpenMsgStore( String^ entryID );
 
 			// heap diagnostics
 			static int ObjectsCount();

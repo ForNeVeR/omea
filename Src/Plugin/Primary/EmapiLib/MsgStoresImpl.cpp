@@ -33,14 +33,11 @@ EMAPILib::MsgStoreImpl::MsgStoreImpl( const MsgStoreSPtr& eMsgStore ) : MAPIProp
 }
 EMAPILib::MsgStoreImpl::~MsgStoreImpl()
 {
-}
-void EMAPILib::MsgStoreImpl::Dispose()
-{
     MAPIPropImpl::DisposeImpl();
     TypeFactory::Delete( _eMsgStore );
     _eMsgStore = NULL;
 }
-void EMAPILib::MsgStoreImpl::Advise( IMAPIListener* sink )
+void EMAPILib::MsgStoreImpl::Advise( IMAPIListener ^sink )
 {
     CheckDisposed();
     if ( _pSink != NULL )
@@ -61,15 +58,15 @@ void EMAPILib::MsgStoreImpl::Unadvise()
     (*_eMsgStore)->Unadvise();
 }
 
-bool EMAPILib::MsgStoreImpl::CreateNewMessage( String* subject, String* body, MailBodyFormat bodyFormat, ArrayList* recipients,
-    ArrayList* attachments, int codePage )
+bool EMAPILib::MsgStoreImpl::CreateNewMessage( String ^subject, String ^body, MailBodyFormat bodyFormat, ArrayList ^recipients,
+    ArrayList ^attachments, int codePage )
 {
     Debug::WriteLine( "MsgStoreImpl::CreateNewMessage" );
 
     EMAPIFolderSPtr folder = (*_eMsgStore)->GetFolderForMessageCreation();
     if ( folder.IsNull() )
     {
-        throw new System::ApplicationException( "Cannot get folder for message creation" );
+        throw gcnew System::ApplicationException( "Cannot get folder for message creation" );
         return false;
     }
     EMessageSPtr message = folder->CreateMessage();
@@ -82,18 +79,18 @@ bool EMAPILib::MsgStoreImpl::CreateNewMessage( String* subject, String* body, Ma
 
     message->setStringProp( (int)PR_MESSAGE_CLASS, "IPM.Note" );
 
-    if ( subject != NULL )
+    if ( subject != nullptr )
     {
         //Debug::WriteLine( subject );
         message->setStringProp( (int)PR_SUBJECT, Temp::GetANSIString( subject )->GetChars() );
     }
-    if ( body != NULL )
+    if ( body != nullptr )
     {
         //Debug::WriteLine( body );
         if ( EMAPILib::MailBodyFormat::PlainText == bodyFormat )
         {
             message->writeStringStreamProp( (int)PR_BODY,
-                Temp::GetANSIString( body )->GetChars(), body->get_Length() );
+                Temp::GetANSIString( body )->GetChars(), body->Length );
         }
         else
         {
@@ -135,7 +132,7 @@ bool EMAPILib::MsgStoreImpl::CreateNewMessage( String* subject, String* body, Ma
                 if ( !streamComp.IsNull() )
                 {
                     OutputDebugString( "PR_HTML is opened" );
-                    streamComp->Write( Temp::GetANSIString( body )->GetChars(), body->get_Length() );
+                    streamComp->Write( Temp::GetANSIString( body )->GetChars(), body->Length );
                     streamComp->Commit();
                 }
                 message->setLongProp( (int)PR_MSG_EDITOR_FORMAT, (int)EDITOR_FORMAT_HTML );
@@ -144,11 +141,11 @@ bool EMAPILib::MsgStoreImpl::CreateNewMessage( String* subject, String* body, Ma
         }
     }
     Debug::WriteLine( "OpenForm" );
-    if ( recipients != NULL )
+    if ( recipients != nullptr )
     {
         Temp::AddRecipients( message, (*_eMsgStore), recipients, MAPI_TO );
     }
-    if ( attachments != NULL )
+    if ( attachments != nullptr )
     {
         Temp::AttachFiles( message, attachments );
     }
@@ -180,19 +177,19 @@ bool EMAPILib::MsgStoreImpl::IsStandartReply( const EMessageSPtr& eMessage )
     }
     return false;
 }
-bool EMAPILib::MsgStoreImpl::ReplyMessage( String* strEntryID, IEMsgStore* defaultMsgStore )
+bool EMAPILib::MsgStoreImpl::ReplyMessage( String ^strEntryID, IEMsgStore ^defaultMsgStore )
 {
     return ReplyMessageImpl( strEntryID, (int)EXCHIVERB_REPLYTOSENDER, defaultMsgStore );
 }
-bool EMAPILib::MsgStoreImpl::ReplyAllMessage( String* entryID, IEMsgStore* defaultMsgStore )
+bool EMAPILib::MsgStoreImpl::ReplyAllMessage( String ^entryID, IEMsgStore ^defaultMsgStore )
 {
     return ReplyMessageImpl( entryID, (int)EXCHIVERB_REPLYTOALL, defaultMsgStore );
 }
 
-bool EMAPILib::MsgStoreImpl::ReplyMessageImpl( String* strEntryID, int verbID, IEMsgStore* defaultMsgStore )
+bool EMAPILib::MsgStoreImpl::ReplyMessageImpl( String ^strEntryID, int verbID, IEMsgStore ^defaultMsgStore )
 {
     CheckDisposed();
-    MsgStoreImpl* defMsgStoreImpl = dynamic_cast<MsgStoreImpl*>( defaultMsgStore );
+    MsgStoreImpl ^defMsgStoreImpl = dynamic_cast<MsgStoreImpl^>( defaultMsgStore );
 
     MsgStoreSPtr defMsgStore = (*defMsgStoreImpl->_eMsgStore);
 
@@ -213,25 +210,25 @@ bool EMAPILib::MsgStoreImpl::ReplyMessageImpl( String* strEntryID, int verbID, I
     if ( newMessage.IsNull() ) return false;
 
     CharBufferSPtr body = eMessage->openStringProperty( (int)PR_BODY );
-    String* str = String::Empty;
+    String^ str = String::Empty;
     if ( !body.IsNull() )
     {
-        str = new String( body->GetRawChars() );
+        str = gcnew String( body->GetRawChars() );
     }
 
-    EMAPILib::IQuoting* quoter = EMAPILib::EMAPISession::GetQuoter();
-    if ( quoter != NULL )
+    EMAPILib::IQuoting ^quoter = EMAPILib::EMAPISession::GetQuoter();
+    if ( quoter != nullptr )
     {
-        String* body = quoter->QuoteReply( str );
-        newMessage->writeStringStreamProp( (int)PR_BODY, Temp::GetANSIString( body )->GetChars(), body->get_Length() );
+        String ^body = quoter->QuoteReply( str );
+        newMessage->writeStringStreamProp( (int)PR_BODY, Temp::GetANSIString( body )->GetChars(), body->Length );
         ESPropValueSPtr propSubj = eMessage->getSingleProp( (int)PR_NORMALIZED_SUBJECT );
 
-        String* subject = String::Empty;
+        String ^subject = String::Empty;
         if ( !propSubj.IsNull() && propSubj->GetLPSTR() != NULL )
         {
-            subject = new String( propSubj->GetLPSTR() );
+            subject = gcnew String( propSubj->GetLPSTR() );
         }
-        String* reSubject = "RE: ";
+        String ^reSubject = "RE: ";
         if ( !subject->StartsWith( reSubject ) )
         {
             subject = String::Concat( reSubject, subject );
@@ -255,8 +252,8 @@ bool EMAPILib::MsgStoreImpl::ReplyMessageImpl( String* strEntryID, int verbID, I
     }
     if ( name != NULL || email != NULL )
     {
-        ArrayList* replyToRecipients = new ArrayList();
-        replyToRecipients->Add( new EMAPILib::RecipInfo( name, email ) );
+        ArrayList ^replyToRecipients = gcnew ArrayList();
+        replyToRecipients->Add( gcnew EMAPILib::RecipInfo(gcnew String(name), gcnew String(email)));
         Temp::AddRecipients( newMessage, defMsgStore, replyToRecipients, MAPI_TO );
     }
 
@@ -282,137 +279,137 @@ bool EMAPILib::MsgStoreImpl::ReplyMessageImpl( String* strEntryID, int verbID, I
     //return (*_eMsgStore)->ActionMessage( Helper::HexToEntryID( strEntryID ), (int)EXCHIVERB_REPLYTOSENDER );
 }
 
-bool EMAPILib::MsgStoreImpl::DisplayMessage( String* entryID, IEMsgStore* defaultMsgStore )
+bool EMAPILib::MsgStoreImpl::DisplayMessage( String ^entryID, IEMsgStore ^defaultMsgStore )
 {
     CheckDisposed();
-    MsgStoreImpl* defMsgStoreImpl = dynamic_cast<MsgStoreImpl*>( defaultMsgStore );
+    MsgStoreImpl ^defMsgStoreImpl = dynamic_cast<MsgStoreImpl^>( defaultMsgStore );
     MsgStoreSPtr defMsgStore = (*defMsgStoreImpl->_eMsgStore);
 
     EMessageSPtr msg;
     return (*_eMsgStore)->ActionMessage( Helper::HexToEntryID( entryID ), (int)EXCHIVERB_OPEN, msg, defMsgStore );
 }
-bool EMAPILib::MsgStoreImpl::ForwardMessage( String* entryID, IEMsgStore* defaultMsgStore )
+bool EMAPILib::MsgStoreImpl::ForwardMessage( String ^entryID, IEMsgStore ^defaultMsgStore )
 {
     CheckDisposed();
-    MsgStoreImpl* defMsgStoreImpl = dynamic_cast<MsgStoreImpl*>( defaultMsgStore );
+    MsgStoreImpl^ defMsgStoreImpl = dynamic_cast<MsgStoreImpl^>( defaultMsgStore );
     MsgStoreSPtr defMsgStore = (*defMsgStoreImpl->_eMsgStore);
     EMessageSPtr msg;
     return (*_eMsgStore)->ActionMessage( Helper::HexToEntryID( entryID ), (int)EXCHIVERB_FORWARD, msg, defMsgStore );
 }
 
-void EMAPILib::MsgStoreImpl::DeleteMessage( String* entryID, bool DeletedItems )
+void EMAPILib::MsgStoreImpl::DeleteMessage( String ^entryID, bool DeletedItems )
 {
     CheckDisposed();
     (*_eMsgStore)->DeleteMessage( Helper::HexToEntryID( entryID ), DeletedItems );
 }
 
-void EMAPILib::MsgStoreImpl::DeleteFolder( String* entryID, bool DeletedItems )
+void EMAPILib::MsgStoreImpl::DeleteFolder( String ^entryID, bool DeletedItems )
 {
     CheckDisposed();
     (*_eMsgStore)->DeleteFolder( Helper::HexToEntryID( entryID ), DeletedItems );
 }
 
-EMAPILib::IEFolder* EMAPILib::MsgStoreImpl::GetRootFolder()
+EMAPILib::IEFolder ^EMAPILib::MsgStoreImpl::GetRootFolder()
 {
     CheckDisposed();
     EMAPIFolderSPtr folder = (*_eMsgStore)->GetRootFolder();
     if ( !folder.IsNull() )
     {
-        return new FolderImpl( folder );
+        return gcnew FolderImpl( folder );
     }
-    return NULL;
+    return nullptr;
 }
-EMAPILib::IEMessage* EMAPILib::MsgStoreImpl::OpenMessage( String* entryID )
+EMAPILib::IEMessage ^EMAPILib::MsgStoreImpl::OpenMessage( String ^entryID )
 {
     CheckDisposed();
-    if ( entryID != NULL && entryID->get_Length() > 0  )
+    if ( entryID != nullptr && entryID->Length > 0  )
     {
         EMessageSPtr message = (*_eMsgStore)->OpenMessage( Helper::HexToEntryID( entryID ) );
         if ( !message.IsNull() )
         {
-            return new MessageImpl( message );
+            return gcnew MessageImpl( message );
         }
     }
-    return NULL;
+    return nullptr;
 }
-EMAPILib::IEFolder* EMAPILib::MsgStoreImpl::OpenFolder( String* entryID )
+EMAPILib::IEFolder ^EMAPILib::MsgStoreImpl::OpenFolder( String ^entryID )
 {
     CheckDisposed();
-    if ( entryID != NULL && entryID->get_Length() > 0  )
+    if ( entryID != nullptr && entryID->Length > 0  )
     {
         EMAPIFolderSPtr folder = (*_eMsgStore)->OpenFolder( Helper::HexToEntryID( entryID ) );
         if ( !folder.IsNull() )
         {
-            return new FolderImpl( folder );
+            return gcnew FolderImpl( folder );
         }
     }
-    return NULL;
+    return nullptr;
 }
-EMAPILib::IEFolder* EMAPILib::MsgStoreImpl::OpenDraftsFolder()
+EMAPILib::IEFolder ^EMAPILib::MsgStoreImpl::OpenDraftsFolder()
 {
     CheckDisposed();
     EMAPIFolderSPtr folder = (*_eMsgStore)->OpenDefaultFolder( PR_IPM_DRAFTS_ENTRYID );
     if ( !folder.IsNull() )
     {
-        return new FolderImpl( folder );
+        return gcnew FolderImpl( folder );
     }
-    return NULL;
+    return nullptr;
 }
 
-EMAPILib::IEFolder* EMAPILib::MsgStoreImpl::OpenTasksFolder()
+EMAPILib::IEFolder ^EMAPILib::MsgStoreImpl::OpenTasksFolder()
 {
     CheckDisposed();
     EMAPIFolderSPtr folder = (*_eMsgStore)->OpenDefaultFolder( PR_IPM_TASK_ENTRYID );
     if ( !folder.IsNull() )
     {
-        return new FolderImpl( folder );
+        return gcnew FolderImpl( folder );
     }
-    return NULL;
+    return nullptr;
 }
 
-String* EMAPILib::MsgStoreImpl::GetDefaultTaskFolderID()
+String ^EMAPILib::MsgStoreImpl::GetDefaultTaskFolderID()
 {
     CheckDisposed();
     ETableSPtr table = (*_eMsgStore)->GetReceiveFolderTable();
-    if ( table.IsNull() || table->GetRowCount() == 0 ) return NULL;
+    if ( table.IsNull() || table->GetRowCount() == 0 ) return nullptr;
     ELPSRowSetSPtr row = table->GetNextRow( );
-    if ( row.IsNull() ) return NULL;
+    if ( row.IsNull() ) return nullptr;
     ESPropValueSPtr entryID = row->FindProp( (int)PR_ENTRYID );
-    if ( entryID.IsNull() ) return NULL;
+    if ( entryID.IsNull() ) return nullptr;
     EMAPIFolderSPtr folder = (*_eMsgStore)->OpenFolder( entryID );
-    if ( folder.IsNull() ) return NULL;
+    if ( folder.IsNull() ) return nullptr;
     ESPropValueSPtr taskEntryID = folder->getSingleProp( (int)0x36D40102 );//PR_IPM_TASK_ENTRYID
     if ( !taskEntryID.IsNull() && taskEntryID->GetBinCB() > 0 )
     {
         return Helper::EntryIDToHex( taskEntryID->GetBinLPBYTE(), taskEntryID->GetBinCB() );
     }
-    return NULL;
+    return nullptr;
 }
-EMAPILib::MAPIIDs* EMAPILib::MsgStoreImpl::GetInboxIDs()
+EMAPILib::MAPIIDs ^EMAPILib::MsgStoreImpl::GetInboxIDs()
 {
     CheckDisposed();
     ESPropValueSPtr prop = (*_eMsgStore)->getSingleProp( (int)PR_ENTRYID );
-    String* storeID = Helper::BinPropToString( prop );
-    if ( storeID == NULL )
+    String ^storeID = Helper::BinPropToString( prop );
+    if ( storeID == nullptr )
     {
-        return NULL;
+        return nullptr;
     }
     EMAPIFolderSPtr folder = (*_eMsgStore)->GetReceiveFolder( "IPM.Note" );
     if ( folder.IsNull() )
     {
-        return NULL;
+        return nullptr;
     }
     ESPropValueSPtr propEntryID = folder->getSingleProp( (int)PR_ENTRYID );
     if ( propEntryID.IsNull() )
     {
-        return NULL;
+        return nullptr;
     }
-    String* entryID = Helper::EntryIDToHex( propEntryID->GetBinLPBYTE(), propEntryID->GetBinCB() );
-    if ( entryID == NULL )
+    String ^entryID = Helper::EntryIDToHex( propEntryID->GetBinLPBYTE(), propEntryID->GetBinCB() );
+    if ( entryID == nullptr )
     {
-        return NULL;
+        return nullptr;
     }
-    return new EMAPILib::MAPIIDs( storeID, entryID );
+    return gcnew EMAPILib::MAPIIDs( storeID, entryID );
 }
 EMAPILib::MsgStoresImpl::MsgStoresImpl( const MsgStoresSPtr& eMsgStores )
 {
@@ -424,14 +421,11 @@ EMAPILib::MsgStoresImpl::MsgStoresImpl( const MsgStoresSPtr& eMsgStores )
 }
 EMAPILib::MsgStoresImpl::~MsgStoresImpl()
 {
-}
-void EMAPILib::MsgStoresImpl::Dispose()
-{
     Disposable::DisposeImpl();
     TypeFactory::Delete( _eMsgStores );
     _eMsgStores = NULL;
 }
-EMAPILib::IEMsgStore* EMAPILib::MsgStoresImpl::GetMsgStore( int index )
+EMAPILib::IEMsgStore ^EMAPILib::MsgStoresImpl::GetMsgStore( int index )
 {
     CheckDisposed();
     if ( index >= GetCount() )
@@ -441,9 +435,9 @@ EMAPILib::IEMsgStore* EMAPILib::MsgStoresImpl::GetMsgStore( int index )
     MsgStoreSPtr msgStore = (*_eMsgStores)->OpenStorage( index );
     if ( !msgStore.IsNull() )
     {
-        return new MsgStoreImpl( msgStore );
+        return gcnew MsgStoreImpl( msgStore );
     }
-    return NULL;
+    return nullptr;
 }
 
 int EMAPILib::MsgStoresImpl::GetCount()
@@ -451,28 +445,28 @@ int EMAPILib::MsgStoresImpl::GetCount()
     CheckDisposed();
     return (*_eMsgStores)->GetCount();
 }
-String* EMAPILib::MsgStoresImpl::GetStorageID( int index )
+String ^EMAPILib::MsgStoresImpl::GetStorageID( int index )
 {
     CheckDisposed();
     Debug::WriteLine( "EMAPILib::MsgStoresImpl::GetStorageID" );
-    Debug::WriteLine( __box( index ) );
-    Debug::WriteLine( __box( GetCount() ) );
+    Debug::WriteLine(index);
+    Debug::WriteLine(GetCount());
     if ( index >= GetCount() )
     {
         Debug::WriteLine( "ERROR: index >= GetCount" );
-        throw new System::ApplicationException( "index >= GetCount" );
+        throw gcnew System::ApplicationException( "index >= GetCount" );
     }
     LPSPropValue lpProp = (*_eMsgStores)->GetStorageID( index );
     if ( lpProp != NULL )
     {
         return Helper::EntryIDToHex( lpProp->Value.bin.lpb, lpProp->Value.bin.cb );
     }
-    return NULL;
+    return nullptr;
 }
-String* EMAPILib::MsgStoresImpl::GetDisplayName( int index )
+String ^EMAPILib::MsgStoresImpl::GetDisplayName( int index )
 {
     CheckDisposed();
-    return new String( (*_eMsgStores)->GetDisplayName( index ) );
+    return gcnew String( (*_eMsgStores)->GetDisplayName( index ) );
 }
 bool EMAPILib::MsgStoresImpl::IsDefaultStore( int index )
 {

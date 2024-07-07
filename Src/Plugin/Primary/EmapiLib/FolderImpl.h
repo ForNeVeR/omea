@@ -10,48 +10,47 @@
 
 namespace EMAPILib
 {
-    public __gc class FolderImpl : public EMAPILib::IEFolder, public MAPIPropImpl
+    public ref class FolderImpl : public EMAPILib::IEFolder, public MAPIPropImpl
     {
     private:
         EMAPIFolderSPtr* _eFolder;
-        void CopyMessage( String* entryID, IEFolder* destFolder, int flags );
-        void CopyFolder( String* entryID, IEFolder* destFolder, int flags );
+        void CopyMessage( String^ entryID, IEFolder^ destFolder, int flags );
+        void CopyFolder( String^ entryID, IEFolder^ destFolder, int flags );
     public:
         FolderImpl( const EMAPIFolderSPtr& eFolder );
+        !FolderImpl();
+        virtual IETable^ GetEnumTable( DateTime dt );
+        virtual IETable^ GetEnumTableForOwnEmail();
+        virtual IETable^ GetEnumTableForRecordKey( String^ recordKey );
+        virtual IEFolders^ GetFolders();
+        virtual IEMessages^ GetMessages();
+        virtual IEFolder^ CreateSubFolder( String^ name );
+        virtual void MoveFolder( String^ entryID, IEFolder^ destFolder );
+        virtual void CopyFolder( String^ entryID, IEFolder^ destFolder );
+        virtual void MoveMessage( String^ entryID, IEFolder^ destFolder );
+        virtual void CopyMessage( String^ entryID, IEFolder^ destFolder );
+        virtual IEMessage^ CreateMessage( String^ messageClass );
+        virtual IEMessage^ OpenMessage( String^ entryID );
+        virtual String^ GetFolderID();
         virtual ~FolderImpl();
-        virtual IETable* GetEnumTable( DateTime dt );
-        virtual IETable* GetEnumTableForOwnEmail();
-        virtual IETable* GetEnumTableForRecordKey( String* recordKey );
-        virtual IEFolders* GetFolders();
-        virtual IEMessages* GetMessages();
-        virtual IEFolder* CreateSubFolder( String* name );
-        virtual void MoveFolder( String* entryID, IEFolder* destFolder );
-        virtual void CopyFolder( String* entryID, IEFolder* destFolder );
-        virtual void MoveMessage( String* entryID, IEFolder* destFolder );
-        virtual void CopyMessage( String* entryID, IEFolder* destFolder );
-        virtual IEMessage* CreateMessage( String* messageClass );
-        virtual IEMessage* OpenMessage( String* entryID );
-        virtual String* GetFolderID();
-        virtual void Dispose();
-        virtual void SetMessageStatus( String* entryID, int newStatus, int newStatusMask );
-        virtual int GetMessageStatus( String* entryID );
-        virtual void SetReadFlags( String* entryID, bool unread );
+        virtual void SetMessageStatus( String^ entryID, int newStatus, int newStatusMask );
+        virtual int GetMessageStatus( String^ entryID );
+        virtual void SetReadFlags( String^ entryID, bool unread );
         virtual void Empty();
-        void CopyTo( IEFolder* destFolder );
+        virtual void CopyTo( IEFolder^ destFolder );
 
     private:
         virtual int GetTag( );
     };
-    public __gc class FoldersImpl : public EMAPILib::IEFolders, public Disposable
+    public ref class FoldersImpl : public EMAPILib::IEFolders, public Disposable
     {
     private:
         EMAPIFoldersSPtr* _eFolders;
     public:
         FoldersImpl( const EMAPIFoldersSPtr& eFolder );
-        virtual ~FoldersImpl();
         virtual int GetCount();
-        virtual IEFolder* OpenFolder( int rowNum );
-        virtual String* GetEntryId( int rowNum );
-        virtual void Dispose();
+        virtual IEFolder^ OpenFolder( int rowNum );
+        virtual String^ GetEntryId( int rowNum );
+        virtual ~FoldersImpl();
     };
 }

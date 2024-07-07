@@ -7,7 +7,7 @@
 #include "typefactory.h"
 #include "emapi.h"
 
-__nogc class MAPISession : public MyHeapObject
+class MAPISession : public MyHeapObject
 {
     private:
         LPMAPISESSION _pSession; //MAPI Session Pointer

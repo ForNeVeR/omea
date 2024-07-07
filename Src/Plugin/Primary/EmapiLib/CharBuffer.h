@@ -7,7 +7,7 @@
 #include "rcobject.h"
 #include "emapi.h"
 
-__nogc class CharBuffer : public RCObject
+class CharBuffer : public RCObject
 {
 private:
     char* _chars;

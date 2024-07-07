@@ -6,7 +6,7 @@
 
 #include "typefactory.h"
 
-__nogc class MsgStores : public RCObject
+class MsgStores : public RCObject
 {
 private:
     enum { EID, NAME, STORE, NUM_COLS };

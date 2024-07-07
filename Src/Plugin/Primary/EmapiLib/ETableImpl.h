@@ -8,17 +8,16 @@
 
 namespace EMAPILib
 {
-    public __gc class ETableImpl : public EMAPILib::IETable, public EMAPILib::Disposable
+    public ref class ETableImpl : public EMAPILib::IETable, public EMAPILib::Disposable
     {
     private:
         ETableSPtr* _mapiTable;
     public:
         ETableImpl( const ETableSPtr& mapiTable );
-        virtual ~ETableImpl();
         virtual void Sort( int tag, bool Asc );
         virtual int GetRowCount();
-        virtual IERowSet* GetNextRow();
-        virtual IERowSet* GetNextRows( int count );
-        virtual void Dispose();
+        virtual IERowSet^ GetNextRow();
+        virtual IERowSet^ GetNextRows( int count );
+        virtual ~ETableImpl();
     };
 }

@@ -73,7 +73,7 @@ int Guard::GetRealCodePage( const CharsStorageSPtr& buffer )
     {
         const char* buf = buffer->GetBuffer( 0 );
 
-        System::String* str = new System::String( buf );
+        System::String^ str = gcnew System::String( buf );
         int index = str->IndexOf( "\\ansicpg" );
         if ( index != -1 )
         {
@@ -81,7 +81,7 @@ int Guard::GetRealCodePage( const CharsStorageSPtr& buffer )
             if ( endIndex != -1 )
             {
                 index = index + 8;
-                System::String* substring = str->Substring( index, endIndex - index );
+                System::String ^substring = str->Substring( index, endIndex - index );
                 //System::Diagnostics::Debug::WriteLine( substring );
                 result = System::Convert::ToInt32( substring, 10 ) ;
             }
@@ -103,13 +103,13 @@ void Guard::CheckHR( HRESULT hr, const MAPILastErrorBase& mapiProp )
         MAPIBuffer mapiBuffer( hRes, pMAPIError );
         if ( hRes != S_OK )
         {
-            String* component = new String( pMAPIError->lpszComponent );
-            String* error = new String( pMAPIError->lpszError );
-            String* errorMessage = component->Concat( component, " : " );
+            String^ component = gcnew String( pMAPIError->lpszComponent );
+            String^ error = gcnew String( pMAPIError->lpszError );
+            String^ errorMessage = component->Concat( component, " : " );
             errorMessage = errorMessage->Concat( errorMessage, error );
-            throw new System::Runtime::InteropServices::COMException( errorMessage, (int)MAPI_E_EXTENDED_ERROR );
+            throw gcnew System::Runtime::InteropServices::COMException( errorMessage, (int)MAPI_E_EXTENDED_ERROR );
         }
-        throw new System::Runtime::InteropServices::COMException( "No message for exception", (int)MAPI_E_EXTENDED_ERROR );
+        throw gcnew System::Runtime::InteropServices::COMException( "No message for exception", (int)MAPI_E_EXTENDED_ERROR );
     }
     CheckHR( hr );
 }
@@ -119,23 +119,23 @@ void Guard::ThrowProblemWhenOpenStorage( HRESULT hr, LPSPropValue lpProp )
     ESPropValueSPtr prop = TypeFactory::CreateESPropValue( lpProp );
     if ( !prop.IsNull() )
     {
-        String* storeId = Helper::BinPropToString( prop );
+        String ^storeId = Helper::BinPropToString( prop );
         switch ( hr )
         {
         case MAPI_E_USER_CANCEL:
-            throw new EMAPILib::CancelledByUser( storeId );
+            throw gcnew EMAPILib::CancelledByUser( storeId );
         case MAPI_E_UNCONFIGURED:
-            throw new EMAPILib::StorageUnconfigured( storeId );
+            throw gcnew EMAPILib::StorageUnconfigured( storeId );
         }
-        throw new EMAPILib::ProblemWhenOpenStorage( storeId );
+        throw gcnew EMAPILib::ProblemWhenOpenStorage( storeId );
     }
 
-    throw new EMAPILib::ProblemWhenOpenStorage( NULL );
+    throw gcnew EMAPILib::ProblemWhenOpenStorage( nullptr );
 }
 
 void Guard::ThrowNotImplementedException( LPSTR message )
 {
-    throw new System::NotImplementedException( new String( message ) );
+    throw gcnew System::NotImplementedException( gcnew String( message ) );
 }
 void Guard::CheckHR( HRESULT hr )
 {
@@ -143,15 +143,15 @@ void Guard::CheckHR( HRESULT hr )
 }
 void Guard::ThrowArgumentNullException( LPSTR message )
 {
-    throw new System::ArgumentNullException( new String( message ) );
+    throw gcnew System::ArgumentNullException( gcnew String( message ) );
 }
 void Guard::ThrowObjectDisposedException( LPSTR message )
 {
-    throw new System::ObjectDisposedException( new String( message ) );
+    throw gcnew System::ObjectDisposedException( gcnew String( message ) );
 }
 void Guard::ThrowArgumentOutOfRangeException( LPSTR message )
 {
-    throw new System::ArgumentOutOfRangeException( new String( message ) );
+    throw gcnew System::ArgumentOutOfRangeException( gcnew String( message ) );
 }
 void Guard::SetFILETIME( _FILETIME* ft, ULONGLONG value )
 {

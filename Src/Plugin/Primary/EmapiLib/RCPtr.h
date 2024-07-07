@@ -7,7 +7,7 @@
 
 #include "emapi.h"
 
-__nogc class RCPtrBase : public MyHeapObject
+class RCPtrBase : public MyHeapObject
 {
 protected:
     RCPtrBase(){}

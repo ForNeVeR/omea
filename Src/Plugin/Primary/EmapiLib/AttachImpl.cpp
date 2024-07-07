@@ -17,29 +17,26 @@ EMAPILib::AttachImpl::AttachImpl( const EAttachSPtr& eAttach ) : MAPIPropImpl( e
 
 EMAPILib::AttachImpl::~AttachImpl()
 {
-}
-void EMAPILib::AttachImpl::Dispose()
-{
     MAPIPropImpl::DisposeImpl();
     TypeFactory::Delete( _eAttach );
     _eAttach = NULL;
 }
-System::Byte EMAPILib::AttachImpl::ReadToEnd()[]
+array<System::Byte> ^EMAPILib::AttachImpl::ReadToEnd()
 {
     CharBufferSPtr buffer = (*_eAttach)->ReadToEnd();
-    if ( buffer.IsNull() ) return new unsigned char __gc[0];
+    if ( buffer.IsNull() ) return gcnew array<unsigned char>(0);
 
     int count = buffer->Length() - 1;
-    unsigned char destination __gc[] = new unsigned char __gc[count];
+    auto destination = gcnew array<unsigned char>(count);
     Helper::MarshalCopy( (byte*)buffer->GetRawChars(), destination, 0, count );
     return destination;
 }
-EMAPILib::IEMessage* EMAPILib::AttachImpl::OpenMessage()
+EMAPILib::IEMessage^ EMAPILib::AttachImpl::OpenMessage()
 {
     LPMESSAGE lpMessage = (*_eAttach)->OpenMessage();
-    if ( lpMessage == NULL ) return NULL;
+    if ( lpMessage == NULL ) return nullptr;
     EMessageSPtr message = TypeFactory::CreateEMessage( lpMessage );
-    return new EMAPILib::MessageImpl( message );
+    return gcnew EMAPILib::MessageImpl( message );
 }
 void EMAPILib::AttachImpl::InsertOLEIntoRTF( int hwnd, int pos )
 {
