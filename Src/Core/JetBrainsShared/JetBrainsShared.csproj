@@ -1,0 +1,288 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+
+SPDX-License-Identifier: GPL-2.0-only
+-->
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{5133BE57-1BE8-4C82-BA5E-ADA6CFA0AA8B}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <AssemblyName>JetBrainsShared</AssemblyName>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>Library</OutputType>
+    <RootNamespace>JetBrains.UI</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <TargetFramework>v3.0</TargetFramework>
+    <ProductHomeDir>$(MSBuildProjectDirectory)/../../..</ProductHomeDir>
+    <TargetFrameworkVersion>v3.0</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <DefineConstants>TRACE</DefineConstants>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'CruiseControl|AnyCPU' ">
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="PresentationFramework" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="ReachFramework" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="CookComputing.XmlRpc">
+      <Name>CookComputing.XmlRpc</Name>
+      <HintPath>../../../Lib/References/CookComputing.XmlRpc.dll</HintPath>
+    </Reference>
+    <Reference Include="JetBrains.Annotations, Version=4.0.0.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Bin\JetBrains.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework">
+      <Name>nunit.framework</Name>
+      <HintPath>../../../Lib/References/nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="SourceLibrary">
+      <Name>SourceLibrary</Name>
+      <HintPath>../../../Lib/References/SourceLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Name>System.Drawing</Name>
+    </Reference>
+    <Reference Include="System.Web">
+      <Name>System.Web</Name>
+    </Reference>
+    <Reference Include="System.Web.Services">
+      <Name>System.Web.Services</Name>
+    </Reference>
+    <Reference Include="System.Windows.Forms">
+      <Name>System.Windows.Forms</Name>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <!--    <Compile Include="AssemblyKeyFile.cs">
+      <SubType>Code</SubType>
+    </Compile> -->
+    <Compile Include="Components\Colors.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Components\CustomListBox\CustomListBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Components\CustomListBox\IItemPainter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Components\CustomListView\CustomListView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Components\CustomListView\IItemPainter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Components\CustomTreeView\CustomTreeView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Components\CustomTreeView\ExpansionController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Components\CustomTreeView\INodePainter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Components\CustomTreeView\SelectionController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Components\ImageListButton\ImageListButton.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\RichTextLabel\RichTextLabel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Components\RichTextListBox\RichTextItemPainter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Components\RichTextListView\ColumnItemPainter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Components\RichTextListView\RichTextItemPainter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Components\RichTextTreeView\RichTextNodePainter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Components\Separator\Separator.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Components\TreeSearchWindow\INodeFilter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Components\TreeSearchWindow\SearchWindow.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Components\TreeSearchWindow\StartingFilter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataStructures\HashSet!1.cs" />
+    <Compile Include="DataStructures\HashTables.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ExceptionReport\ErrorReportProxy.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ExceptionReport\ExceptionProxySetup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ExceptionReport\ExceptionReportForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ExceptionReport\ExceptionSubmitter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ExceptionReport\ITNProxy.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ExceptionReport\JiraExceptionSubmitter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ExceptionReport\ProxySettings.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Interop\Declarations.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Interop\Helpers.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PerformanceTestsFramework\IPerformanceTestRunner.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="RichText\FontCache.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="RichText\RichString.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="RichText\RichText.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="RichText\RichTextBlock.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="RichText\RichTextBlockFormatter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="RichText\TextStyle.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Tests\RichText\RichTextTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Util\CollectionEx.cs" />
+    <Compile Include="Util\MailUtil.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Util\SmtpDirect.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Util\StringEx.cs" />
+    <Compile Include="Util\ThicknessEx.cs" />
+    <EmbeddedResource Include="Components\CustomListBox\CustomListBox.resx">
+      <DependentUpon>CustomListBox.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\CustomListView\CustomListView.resx">
+      <DependentUpon>CustomListView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\CustomTreeView\CustomTreeView.resx">
+      <DependentUpon>CustomTreeView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\RichTextLabel\RichTextLabel.resx">
+      <DependentUpon>RichTextLabel.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\Separator\Separator.resx">
+      <DependentUpon>Separator.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\TreeSearchWindow\SearchWindow.resx">
+      <DependentUpon>SearchWindow.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExceptionReport\ExceptionProxySetup.resx">
+      <DependentUpon>ExceptionProxySetup.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExceptionReport\ExceptionReportForm.resx">
+      <DependentUpon>ExceptionReportForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Interop.WinApi\Interop.WinApi.csproj">
+      <Project>{3F0FF59D-9EEB-407E-8DD5-7DE159ABBC35}</Project>
+      <Name>Interop.WinApi</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(ProductHomeDir)/Build/Product.BeforeMicrosoftCommon.Targets" />
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(ProductHomeDir)/Build/Product.AfterMicrosoftCommon.Targets" />
+</Project>

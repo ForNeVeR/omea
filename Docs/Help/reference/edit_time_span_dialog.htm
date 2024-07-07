@@ -1,0 +1,83 @@
+<!--
+SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+
+SPDX-License-Identifier: GPL-2.0-only
+-->
+
+<HTML>
+<HEAD>
+ <TITLE>Edit Time Span Dialog</TITLE>
+ <LINK rel="StyleSheet" href="..\help.css">
+ <META NAME="generator" CONTENT="RoboHELP by eHelp Corporation - www.ehelp.com">
+</HEAD>
+<BODY>
+<div style="x-condition: PRO;">
+  <div id=helpHeader>
+    <div id=helpHeaderImg
+	style="x-condition: PRO;
+			/*begin!kadov{{*/ x-right: 936px;
+			x-bottom: 682px; /*}}end!kadov*/ ">
+      <p>&nbsp;</p>
+    </div>
+    <p class=helpHeader>Omea Pro Help: Reference: Edit Time Span Dialog</p>
+  </div>
+</div>
+<div style="x-condition: READER;">
+  <div id=helpHeader>
+    <div id=helpHeaderImg
+	style="x-condition: READER;
+			/*begin!kadov{{*/ x-right: 936px;
+			x-bottom: 682px; /*}}end!kadov*/ ">
+      <p>&nbsp;</p>
+    </div>
+    <p class=helpHeader>Omea Reader Help: Reference: Edit Time Span Dialog</p>
+  </div>
+</div>
+<div id=mainContent>
+  <h1>Edit Time Span Dialog</h1>
+  <p class=opt>You can access this dialog when you create a new View from the main menu: <strong>Tools | Views Manager | New | All Resource Types</strong> and add Conditions or Exceptions to the View or set Conditions or Exceptions for the Advanced Search (<strong>Search  | Advanced Search</strong>) </p>
+  <p>This dialog enables you to define the temporal conditions for the new Views or Advanced Search which you want to create (run) or edit. The time span option is in other words the period of time for the resources which you have already received or dated. </p>
+  <p><img src="../images/sshots/dialogs/shared/select_conditions_temporal_.gif" width="304" height="335" alt="Select Conditions(s)dialog"></p>
+  <p class="caption">The Select Condition(s) dialog (Temporal Conditions expanded and &quot;Received within or dated by time span&quot; selected) </p>
+  <p>To proceed in defining the time span, click the <strong>OK</strong> button. Your Advanced Search dialog if you have decided to define the time span for it, looks for example like this now. Note that the &quot;<strong>time span</strong>&quot; hyperlink is now the condition of your search.</p>
+  <p><img src="../images/sshots/dialogs/shared/advanced_search.png" width="348" height="435" alt="Advanced Search dialog"></p>
+  <p class="caption">The Advanced Search dialog-box with time span condition hyperlink </p>
+  <p>Click the &quot;<strong>time span</strong>&quot; hyperlink to call the <strong>Edit Time Span</strong> dialog-box and finally choose the time span options.</p>
+  <p><img src="../images/sshots/dialogs/shared/edit_time_span_dialog.gif" width="212" height="179" alt="Edit Time Span dialog"></p>
+  <p class="caption">The Edit Time Span dialog-box </p>
+  <p>In this dialog-box, you can define (check) only one of the four available options:<strong> For, For last, After</strong> or <strong>Before</strong> and set their parameters using drop-down lists and spinners. In picture above the &#8220;<strong>For last 1 days&#8221;</strong> time span is defined. After you  set the time span and click <strong>OK</strong> button, you will return to the <strong>Advanced Search</strong> dialog-box where you can continue  defining possible search options or run search which will return the defined time span (and other search options). </p>
+  <h2>Dialog Options Description</h2>
+  <h3>For</h3>
+  <p>This option has a drop-down list which allows you to specify such time period as T<strong>oday, Tomorrow, Yesterday, This week, Last Week, This month,</strong> and <strong>Last month</strong>. This is an &quot;absolute&quot; time specification. For example, if you select <strong>This week</strong>, you will see all resources which you accessed, modified, received, and so on starting from  Monday (this week) including Monday. Selecting <strong>Last week</strong> allows to see the resources starting from Monday last week and ending on Sunday (Monday and Sunday will be included in the View). You may find <strong>Tomorrow</strong> option useful for tasks the reminders for which are set for tomorrow.</p>
+  <h3>For last</h3>
+  <p>This option has a spinner and a drop-down list which allows to specify the number of days, weeks, months or years for which you want to create a View or run search. This  is also an &quot;absolute&quot; time specification. For example, if you select <strong>For last three weeks</strong>, you will see the resources you worked with or received for last three weeks starting today. </p>
+  <h3>After </h3>
+  <p>This option provides a <strong>Calendar</strong> which you can use to define the <strong>time period after</strong> which the specified resources will be included in your new View or your Search will be run. This is a relative time specification. For example, if you select <strong>After 11/11/2004</strong>, you will see the resources you worked with or received starting from 11/11/2004, and resources accessed on 11/11/2004 will be <strong>included</strong> in the View or Search. </p>
+  <h3>Before</h3>
+  <p>This option provides a <strong>Calendar</strong> which you can use to define the <strong>time period before</strong> which the specified resources will be included in your new View or your Search will be run. This is also a relative time specification. For example, if you select <strong>Before</strong> <strong>11/11/2004</strong>, you will see the resources you accessed or received before 11/11/2004, but this date will be <strong>excluded</strong> from the View or Search. </p>
+  <p>Moreover, you can specify both <strong>After </strong>and <strong>Before</strong>  options to find or see resources you worked with during these dates  (the date <strong>Before</strong> will be excluded from the View or Search). </p>
+  <h2>Pins</h2>
+  <p>You can now use pins if you want Omea to reuse the conditions which you have once defined in any of the dialogs for defining rules. To pin the condition, just click the <strong>Pin </strong> button (<img src="../images/iconsMarks/ico_pin_condition.png" width="8" height="8" class="linkIcon" />). Once you pin some condition, it will always appear in the <strong>Rules Manager</strong> dialog if you click the <strong>New</strong> button in appropriate tab. </p>
+  <img src="../images/sshots/dialogs/shared/new_tray_icon_rule_pined_condition.png" width="413" height="189" alt="Pined Condition example" />
+  <p class="caption">Pined Condition in the New Tray Icon Rule dialog</p>
+  <div class="note">
+
+<div class="noteImg"
+	style="/*begin!kadov{{*/ x-right: 944px; x-bottom: 3017px; /*}}end!kadov*/ ">
+    <p>&nbsp;</p>
+  </div>
+
+    <p class="note">The prepined conditions are not intended for existing in Omea &#8220;forever&#8221; and you can easily delete them by pressing the <strong>Delete</strong> button in the <strong>Conditions</strong> field but you may find them rather useful when you become more familiar with the Rules. </p>
+  </div>
+  <p>If you use some condition or exception often, you can easily pin it for later use by pressing the <img src="../images/iconsMarks/ico_pinned_condition.png" width="15" height="15" class="linkIcon" /> button in order not to specify it again in the future. </p>
+  <div id="seealso">
+    <p class="seealso"><strong style="font-weight: bold;">See also:</strong></p>
+    <ol>
+      <li class="kadov-p"><a href="../organizing/organizing_your_resources.html">Organizing Your Resources</a></li>
+      <li class="kadov-p"><a title="Advanced Search" href="../search/adv_search.html">Advanced Search</a></li>
+    </ol>
+  </div>
+  <p>&nbsp;</p>
+</div>
+</BODY>
+</HTML>

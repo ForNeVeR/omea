@@ -1,0 +1,205 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+
+SPDX-License-Identifier: GPL-2.0-only
+-->
+<omniamea-plugin>
+	<actions namespace="JetBrains.Omea.Nntp">
+		<main-menu>
+			<group id="FileNewActions">
+				<action name="News Article..." class="PostAction" />
+			</group>
+			<group id="GoMessageActions">
+				<action name="Conversation" type="Article" class="GoToConversationAction" />
+			</group>
+			<group id="ToolsNewsgroups" menu="Tools" anchor="before:ToolsOptionsActions">
+				<action name="Manage Newsgroups..." class="ManageNewsgroupsAction" icon="NntpPlugin.Icons.newsgroups.ico" />
+				<action name="View Article Headers..." type="Article" class="ViewHeadersAction" />
+			</group>
+			<group id="SendReceiveActions" menu="Tools" anchor="first">
+				<action name="Deliver News" class="DeliverNewsAction" />
+			</group>
+		</main-menu>
+		<popup-menu>
+			<group id="ItemOpenActions">
+				<action name="Open" class="OpenAttachmentAction" anchor="first" />
+				<action name="Open" type="Article" class="OpenArticleInSeparateWindow" anchor="first" />
+				<action name="Open" type="LocalArticle" class="OpenArticleInSeparateWindow" anchor="first" />
+			</group>
+			<group id="ItemModifyActions">
+				<action name="Manage Newsgroups..." class="ManageNewsgroupsAction" icon="NntpPlugin.Icons.newsgroups.ico" />
+			</group>
+			<group id="ItemFindActions">
+				<action name="Show Conversation" type="Article" class="JetBrains.Omea.Conversations.ShowConversationAction" assembly="ResourceTools" />
+				<action name="Go to Conversation" type="Article" class="GoToConversationAction" />
+				<action name="Watch this Conversation..." type="Article" class="JetBrains.Omea.GUIControls.WatchThreadAction" assembly="GUIControls" />
+				<action name="Stop updating thread..." type="Article" class="StopThreadAction" />
+			</group>
+			<group id="ItemMailActions">
+				<action name="Reply to Sender" type="Article" class="Reply2Sender" anchor="after:CompositeAction/Reply" />
+			</group>
+			<group id="News Actions" anchor="after:ItemMailActions">
+				<action name="New Article..." type="Article" class="PostAction" />
+				<action name="New Article..." type="NewsGroup" class="PostAction" />
+				<action name="Deliver News" type="NewsServer" class="DeliverNewsFromServerAction" />
+				<action name="Save As..." class="SaveAttachmentAction" />
+				<action name="Download Next Headers" type="NewsGroup" class="ReadNextHeaders" />
+				<action name="Download All Headers" type="NewsGroup" class="ReadAllHeaders" />
+				<action name="Copy Article URL" type="Article" class="CopyArticleURLAction" />
+				<action name="Cancel" type="Article" class="CancelArticleAction" />
+				<action name="New Folder" class="NewFolderAction" />
+				<action name="Rename" class="JetBrains.Omea.GUIControls.RenameAction" assembly="GUIControls" />
+				<action name="Search in this Newsgroup..." type="NewsGroup" class="SearchInNewsgroup" />
+				<action name="Search in these Newsgroups..." type="NewsFolder" class="SearchInNewsgroupFolder" />
+				<action name="Subscribe" class="SubscribeAction" />
+			</group>
+			<group id="Newsgroups Actions" anchor="after:ItemModifyActions">
+				<action name="Display Threaded" type="NewsGroup" class="SwitchNewsThreadedModeAction" />
+				<action name="Display Threaded" type="NewsFolder" class="SwitchNewsThreadedModeAction" />
+				<action name="Display Threaded" type="NewsServer" class="SwitchNewsThreadedModeAction" />
+				<action name="Hide Read Messages" type="NewsGroup" class="SwitchGroupsNServersUnreadModeAction" />
+				<action name="Hide Read Messages" type="NewsFolder" class="SwitchFoldersUnreadModeAction" />
+				<action name="Hide Read Messages" type="NewsServer" class="SwitchGroupsNServersUnreadModeAction" />
+				<action name="Show Total Items Count" type="NewsGroup" assembly="GUIControls" class="JetBrains.Omea.GUIControls.ToggleShowTotalCountAction" />
+				<action name="Show Total Items Count" type="NewsFolder" assembly="GUIControls" class="JetBrains.Omea.GUIControls.ToggleShowTotalCountAction" />
+				<action name="Show Total Items Count" type="NewsServer" assembly="GUIControls" class="JetBrains.Omea.GUIControls.ToggleShowTotalCountAction" />
+				<action name="Mark All Read on Leave" type="NewsGroup" class="SwitchMarkReadAction">
+					<param type="string" value="MarkReadOnLeave" />
+				</action>
+				<action name="Mark All Read on Leave" type="NewsFolder" class="SwitchMarkReadAction">
+					<param type="string" value="MarkReadOnLeave" />
+				</action>
+				<action name="Mark All Read on Leave" type="NewsServer" class="SwitchMarkReadAction">
+					<param type="string" value="MarkReadOnLeave" />
+				</action>
+				<action name="Mark All Read on Exit" type="NewsGroup" class="SwitchMarkReadAction">
+					<param type="string" value="MarkReadOnExit" />
+				</action>
+				<action name="Mark All Read on Exit" type="NewsFolder" class="SwitchMarkReadAction">
+					<param type="string" value="MarkReadOnExit" />
+				</action>
+				<action name="Mark All Read on Exit" type="NewsServer" class="SwitchMarkReadAction">
+					<param type="string" value="MarkReadOnExit" />
+				</action>
+			</group>
+			<group id="PropertiesActions">
+				<action type="NewsGroup" name="Edit Expiration Rule..." class="JetBrains.Omea.GUIControls.EditExpirationRule" assembly="GUIControls" />
+				<action type="NewsGroup" name="Clear Expiration Rule" class="JetBrains.Omea.GUIControls.DeleteExpirationRule" assembly="GUIControls" />
+				<action name="Properties..." type="NewsServer" class="ServerPropertiesAction" />
+			</group>
+		</popup-menu>
+		<keyboard>
+			<action key="Control+Shift+R" type="Article" class="Reply2Sender" />
+			<action key="Control+Alt+R" type="Article" class="Reply2SenderWithoutQuotation" />
+			<action key="Control+Shift+G" type="Article" class="GoToConversationAction" />
+			<action key="F9" tab="News" class="DeliverNewsAction" />
+			<action key="F5" tab="News" class="DeliverNewsFromServerAction" />
+		</keyboard>
+		<double-click>
+			<action type="Article" class="OpenArticleInSeparateWindow" />
+			<action type="LocalArticle" class="OpenArticleInSeparateWindow" />
+			<action type="NewsServer" class="ServerPropertiesAction" />
+			<action class="OpenAttachmentAction" />
+		</double-click>
+		<toolbar iconprefix="NntpPlugin.Icons">
+			<group id="CommonActions">
+				<action icon="newpost.ico" tab="News" text="New" tooltip="New Article" class="PostAction" anchor="first" />
+			</group>
+			<group id="NntpActions">
+				<action icon="deliver_news.ico" tab="News" tooltip="Send/Receive News" text="Send/Receive" class="DeliverNewsAction" />
+				<action icon="newsgroups.ico" tab="News" tooltip="Manage Newsgroups" class="ManageNewsgroupsAction" />
+			</group>
+		</toolbar>
+		<links-pane>
+			<action name="Go to Conversation" type="Article" class="GoToConversationAction" />
+			<action name="Toggle Formatting" type="Article" class="ToggleFormattingAction" />
+			<action name="View Headers..." type="Article" class="ViewHeadersAction" />
+			<action name="Save As..." class="SaveAttachmentAction" />
+		</links-pane>
+		<composite>
+			<component id="ToggleFormatting" type="Article" class="ToggleFormattingAction" />
+			<component id="Reply" tab="News" type="Article" class="ReplyAction" />
+			<component id="Forward" tab="News" type="Article" class="ForwardArticle" />
+			<component id="Delete" tab="News" type="NewsGroup" class="UnsubscribeAction" />
+			<component id="Delete" tab="News" type="NewsFolder" class="DeleteFolderAction" />
+			<component id="Delete" tab="News" type="NewsServer" class="DeleteNewsServerAction" />
+			<component id="HideRead" class="SwitchGroupsNServersUnreadModeAction" />
+			<component id="DisplayThreaded" class="SwitchNewsThreadedModeAction" />
+			<component id="NewItem" tab="News" class="PostAction" />
+			<component id="Properties" type="NewsServer" class="ServerPropertiesAction" />
+			<component id="SaveAs" type="Article" class="SaveAsAction" />
+			<component id="Refresh" type="Article" class="RefreshArticleAction" />
+			<component id="MarkAllRead" type="NewsGroup" class="MarkAllAsReadAction" />
+			<component id="MarkAllRead" type="NewsFolder" class="MarkAllAsReadAction" />
+			<component id="MarkAllRead" type="NewsServer" class="MarkAllAsReadAction" />
+			<component id="NewFolder" tab="News" class="NewFolderAction" />
+		</composite>
+	</actions>
+	<resource-icons namespace="NntpPlugin.Icons">
+		<icons type="NewsServer">
+			<icon name="error_newsserver.ico">
+				<hasprop name="LastError" />
+			</icon>
+			<icon name="newsserver.ico" default="1" />
+		</icons>
+		<icons type="Article">
+			<icon name="DeletedNewsArticle.ico">
+				<hasprop name="IsDeleted" />
+			</icon>
+			<icon name="article_unread.ico">
+				<hasprop name="IsUnread" />
+				<hasprop name="BodyContent" />
+			</icon>
+			<icon name="article_unread.ico">
+				<hasprop name="IsUnread" />
+				<hasprop name="HtmlContent" />
+			</icon>
+			<icon name="article.ico">
+				<hasprop name="BodyContent" />
+			</icon>
+			<icon name="article.ico" default="1">
+				<hasprop name="HtmlContent" />
+			</icon>
+			<icon name="article_empty.ico" />
+		</icons>
+		<icons type="LocalArticle">
+			<icon name="DeletedNewsArticle.ico">
+				<hasprop name="IsDeleted" />
+			</icon>
+			<icon name="article.ico" />
+		</icons>
+		<icon type="NewsFolder" name="newsfolder.ico" />
+	</resource-icons>
+	<display-columns>
+		<columns type="Article">
+			<column width="300" autoSize="1">
+				<prop name="Subject" />
+				<!--                <prop name="DisplayName" /> -->
+				<multiline row="1" startX="0" width="240" anchor="both" />
+				<comparer assembly="ResourceTools" class="JetBrains.Omea.ResourceTools.SubjectComparer" />
+			</column>
+			<column width="120">
+				<prop name="From" />
+				<multiline row="0" startX="0" width="196" r="112" g="112" b="112" anchor="both" />
+			</column>
+			<column width="120">
+				<prop name="Date" />
+				<multiline row="0" startX="210" width="90" anchor="right" align="right" />
+			</column>
+			<column width="120">
+				<prop name="ThreadLastArticleDate" />
+			</column>
+			<column width="14" fixedSize="1">
+				<prop name="-Attachment" ifExist="1" />
+				<prop name="-NewsAttachment" />
+				<comparer assembly="Nntp.OmeaPlugin" class="JetBrains.Omea.Nntp.AttachmentComparer" />
+				<multiline row="0" startX="196" width="14" anchor="right" hideIfNoProp="1" />
+				<sortmenutext asc="None on top" desc="With on top" />
+			</column>
+			<column width="120">
+				<prop name="Newsgroups" />
+			</column>
+		</columns>
+	</display-columns>
+</omniamea-plugin>

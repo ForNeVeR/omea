@@ -1,0 +1,43 @@
+README
+===========
+
+These few files constitute an *extremely* dumbed down and limited
+version of GLib. They are based upon GLib 1.2.7, info on which can be found
+at http://www.gtk.org
+
+I removed all noticeable bells and whistles from GLib, and ported the
+*bare* minimum classes needed to get GArray and GList to work. DO NOT
+MISTAKE THIS FOR A COMPLETE GLIB.
+
+These classes and files are *NOT* MT safe, unlike GLib.
+
+This package could be made smaller by eliminating the unnecessary functions,
+macros, et.al. not used by GArray, GList, and the classes/functions that
+they depend upon. I chose not to so that if the need arises, we have access
+to the existing functions && to not break the GLib API. The only missing
+functions are g_strerror() and g_strsignal() because they are unnecessary
+for our needs and because they require all sorts of Makefile magic to work
+across platforms.
+
+Included in this package is a program called 'tester' which goes through a
+bunch of checks/tests against my compiled GLib package. It is far from
+complete, but shows that this package does indeed work, at least in most cases.
+
+This should compile across platforms and across compilers. However, it has
+only been tested on Linux 2.2.12 under gcc-2.91-66. I compiled with -Wall -ansi
+and don't get any warnings though, which is probably good for your platform...
+
+Non-Unix platforms shouldn't have to do anything to get this thing "working
+out of the box," but I wouldn't hold my breath too long... The only potential
+problem I see is around the g_return_xxx and g_xxx macros or if your platform
+uses something other than __declspec, extern __declspec, or extern to export
+functions. You may need to do some minimal hacking to get this working, but
+nothing too serious.
+
+The only real options you have are G_DISABLE_ASSERT and G_DISABLE_CHECKS, to have
+the g_return_xxx macros to just turn into nops.
+
+
+Thanks and good luck,
+
+Dom Lachowicz <dominicl@seas.upenn.edu>

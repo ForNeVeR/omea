@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--
+SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+
+SPDX-License-Identifier: GPL-2.0-only
+-->
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+    <title>Manage Newsgroups Dialog</title>
+    <meta http-equiv="content-type" content="text/html" charset="windows-1252" />
+    <meta name="copyright" content="Copyright (c)2004 JetBrains, Inc." />
+    <meta name="topic-check-list" content="Added To TOC" />
+    <link rel="StyleSheet" href="../help.css" />
+</head>
+<body>
+
+<!-- Conditional Headers -->
+<div style="x-condition: PRO;">
+	<div id="helpHeader">
+		<div id="helpHeaderImg"></div>
+		<p class="helpHeader">Omea Pro Help: Reference: Manage Newsgroups</p>
+	</div>
+</div>
+
+<div style="x-condition: READER;">
+	<div id="helpHeader">
+		<div id="helpHeaderImg"></div>
+		<p class="helpHeader">Omea Reader Help: Reference: Manage Newsgroups</p>
+	</div>
+</div>
+
+<div id="mainContent">
+   <h1>Manage Newsgroups Dialog</h1>
+   <p>This dialog enables you to subscribe to and unsubscribe from Internet newsgroups. You can access this dialog in the following ways:</p>
+   <ul>
+   <li>Main menu: <strong>Tools | Manage Newsgroups</strong></li>
+   <li>Context menu: newsgroup nodes in the <strong>Newsgroups</strong> panel when the <em>News</em> resource tab is selected.</li>
+   <li>Resource list toolbar: <strong>Manage Newsgroups</strong> button</li>
+   </ul>
+   <p><img src="../images/sshots/dialogs/pro/manage_newsgroups.png" width="600" height="354" alt="The Manage Newsgroups dialog" /></p>
+   <p class="caption">The Manage Newsgroups dialog (No news servers subscriptions added) </p>
+
+	<h2>News Servers</h2>
+	<p>The list in this group box shows the news servers you currently have set up in
+	<span style="x-condition: READER;">Omea Reader</span><span style="x-condition: PRO;">Omea Pro</span>.
+	The group also contains buttons that enable you to manage the list of news servers (more below).</p>
+
+	<a name="add"></a>
+	<h3>Add Button</h3>
+	<p>Use this button to add a news server to the list of news servers you access with
+	<span style="x-condition: READER;">Omea Reader</span><span style="x-condition: PRO;">Omea Pro</span>.
+	Clicking the button (or pressing <strong>Alt + A</strong>) pops up the <strong>Add News Server</strong> dialog where
+	you can specify the information needed to access the added news server.</p>
+
+	<a name="properties"></a>
+	<h3>Properties Button</h3>
+	<p>Use this button to view and change the access information for the news
+	server currently selected in the News Servers list. Clicking this button
+	(or pressing <strong>Alt + P</strong>) pops up the <strong>News Server Properties</strong> dialog where you
+	can view and edit the currently selected server&#039;s properties.</p>
+
+	<a name="remove"></a>
+	<h3>Remove Button</h3>
+	<p>Clicking this button (or pressing<strong> Alt + R</strong>) removes the currently selected
+	news server from the <strong>News Servers</strong> list, together with all subscriptions to
+	newsgroups on that server.</p>
+	<h3>Refresh Button</h3>
+	<p>This button refreshes the listing of newsgroups on the selected news server. If the news server works properly, the information about the changes on it (for example, appearing of new newsgroups) is reflected in the <strong>New</strong> tab, but you may use this button to make the news server retrieve information about the new and existing newsgroups on the server. </p>
+	<h2>Newsgroups</h2>
+   <p>This group box displays the list of newsgroups available on the news server currently selected
+   in <strong>News Servers</strong>. It also provides a means to search the available newsgroups, to subscribe to or
+   unsubscribe from newsgroups, and see the list of the newsgroups you are subscribed to.</p>
+   <h3>All Tab</h3>
+   <p>Displays the list of all available newsgroups available on the news server selected in <strong>News Servers</strong> part of the <strong>Manage Newsgroups</strong> dialog. </p>
+   <h4>Searching Newsgroups</h4>
+   <p>Some news
+   servers contain many newsgroups which, in turn, may contain many sub-newsgroups. By default, the
+   <em>Check newsgroups to subscribe</em> list presents newsgroups on the currently selected news
+   server in a treeview, with any sub-newsgroups listed under the main one.</p>
+   <p>In such cases, you may be able to locate the newsgroup(s) you want by a search using the <em>
+   Display newsgroups that contain</em> search box. Search is automatic as you type characters in the
+   text box. The more characters you enter, the narrower your search becomes, as shown below.
+</p>
+   <p><img src="../images/sshots/shared/progressive_newsgroups_sear.png" alt="Newsgroup progressive search" width="495" height="586" /> </p>
+
+   <p class="caption">Results of progressive newsgroup search as you type. Check box beside any newsgroup to subscribe.</p>
+
+  <h3>Subscribing and Unsubscribing</h3>
+  <p>Once you&#039;ve located a newsgroup, simply check the box beside the name to subscribe to it
+    or, if already subscribed, clear the check box to unsubscribe (see figure above) and click <strong>OK</strong> of the <strong>Manage Newsgroups</strong> dialog.</p>
+
+   <div class="note">
+
+<div class="noteImg"
+	style="/*begin!kadov{{*/ x-right: 944px; x-bottom: 3017px; /*}}end!kadov*/ ">
+    <p>&nbsp;</p>
+  </div>
+   	<p class="note">If you browsing the listing of newsgroups (i.e., not using search, note that
+      subscribing or unsubscribing to/from a newsgroup affects the selected newsgroup <em>only</em>. The
+      subscription status of any sub-newsgroups is not affected. </p>
+  </div>
+
+   <h3>Subscribed Tab</h3>
+   <p>Once you have already subscribed to some newsgroups using <strong>All</strong> tab of the <strong>Manage</strong> <strong>Newsgroups</strong> dialog, the newsgroups you are subscribed to appear in the <strong>Subscribed</strong> tab. If you are not subscribed to any of the newsgroups which exist on this server, nothing is shown in the counter of newsgroups of this tab.</p>
+   <p><img src="../images/sshots/shared/subscribed_tab_manage_newsgroups_dialog.png" width="229" height="302" alt="Subscribed Tab"  /> </p>
+   <p>You can  unsubscribe from the newsgroups in this tab by unchecking the box corresponding the newsgroup name and pressing <strong>OK</strong> button of the <strong>Manage Newsgroups</strong> dialog; the newsgroup name becomes greyed in the <strong>Newsgroups</strong> pane, and the news group will be marked as &quot;<strong>unsubscribed</strong>&quot;. </p>
+   <p><img src="../images/sshots/shared/unsubscribed_newsgroups.png" width="371" height="179" alt="Unsubscribed newsgroups in the Newsgroups pane"  /></p>
+   <a name=newtab></a>
+   <h3>New Tab</h3>
+   <p>When you subscribe to some news server for the first time, this tab shows the total number and the names of newsgroups on the server, and this number is equal to the number of newsgroups of the <strong>All</strong> tab.</p>
+   <p><img src="../images/sshots/dialogs/shared/manage_newsgroups_new_tab.png" width="600" height="419" alt="New tab" /> </p>
+   <p>If you click the <strong>New</strong> tab, you will &quot;show&quot; the application that you are informed about the newsgroups which exist on the site.</p>
+   <p>When some new newsgroups appear on the site later, the counter of the <strong>New</strong> tab changes and corresponds to the number of the newsgroups which appeared on the news server since the last time you refreshed your newsgroups subscription on the server.</p>
+   <div id="seealso">
+		<p class="seealso"><strong>See also:</strong></p>
+  	    <ol>
+		   <li ><a href="news.html">Options: Newsgroups</a></li>
+		   <li ><a href="news_server_properties.html">News Server Properties dialog</a></li>
+		    <li ><a href="news_server_properties.html">Add News Server dialog</a></li>
+       </ol>
+   </div>
+</div>
+
+</body>
+<!-- LAST SPELLCHECK: 02 Sept 2004 -->
+<!-- Conditional Text & Build Tags complete! 02 Sept 2004 -->
+</html>

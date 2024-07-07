@@ -1,0 +1,1136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:s1="http://www.atlassian.com/package/com.atlassian.confluence.rpc.soap.beans/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:s0="http://www.themindelectric.com/2001/schemaArray/" xmlns:s3="http://www.atlassian.com/package/com.atlassian.confluence.rpc/" xmlns:s2="http://www.atlassian.com/package/java.util/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://www.atlassian.com/software/confluence/$Proxy26/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" targetNamespace="http://www.atlassian.com/software/confluence/$Proxy26/" name="ConfluenceSoap" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <s:schema targetNamespace="http://www.themindelectric.com/2001/schemaArray/">
+      <s:import namespace="http://schemas.xmlsoap.org/soap/encoding/" />
+      <s:complexType name="ArrayOfstring">
+        <s:complexContent mixed="false">
+          <s:restriction base="soapenc:Array">
+            <s:attribute d7p1:arrayType="s:string[]" ref="soapenc:arrayType" xmlns:d7p1="http://schemas.xmlsoap.org/wsdl/" />
+          </s:restriction>
+        </s:complexContent>
+      </s:complexType>
+    </s:schema>
+    <s:schema targetNamespace="http://www.atlassian.com/package/com.atlassian.confluence.rpc.soap.beans/">
+      <s:import namespace="http://schemas.xmlsoap.org/soap/encoding/" />
+      <s:complexType name="RemoteSearchResult">
+        <s:all>
+          <s:element name="type" nillable="true" type="s:string" />
+          <s:element name="id" type="s:long" />
+          <s:element name="title" nillable="true" type="s:string" />
+          <s:element name="url" nillable="true" type="s:string" />
+          <s:element name="excerpt" nillable="true" type="s:string" />
+        </s:all>
+      </s:complexType>
+      <s:complexType name="ArrayOfRemoteSearchResult">
+        <s:complexContent mixed="false">
+          <s:restriction base="soapenc:Array">
+            <s:attribute d7p1:arrayType="s1:RemoteSearchResult[]" ref="soapenc:arrayType" xmlns:d7p1="http://schemas.xmlsoap.org/wsdl/" />
+          </s:restriction>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="RemoteUser">
+        <s:all>
+          <s:element name="name" nillable="true" type="s:string" />
+          <s:element name="fullname" nillable="true" type="s:string" />
+          <s:element name="email" nillable="true" type="s:string" />
+          <s:element name="url" nillable="true" type="s:string" />
+        </s:all>
+      </s:complexType>
+      <s:complexType name="RemoteServerInfo">
+        <s:all>
+          <s:element name="majorVersion" type="s:int" />
+          <s:element name="minorVersion" type="s:int" />
+          <s:element name="patchLevel" type="s:int" />
+          <s:element name="developmentBuild" type="s:boolean" />
+          <s:element name="buildId" nillable="true" type="s:string" />
+          <s:element name="baseUrl" nillable="true" type="s:string" />
+        </s:all>
+      </s:complexType>
+      <s:complexType name="RemoteSpaceSummary">
+        <s:all>
+          <s:element name="key" nillable="true" type="s:string" />
+          <s:element name="name" nillable="true" type="s:string" />
+          <s:element name="url" nillable="true" type="s:string" />
+        </s:all>
+      </s:complexType>
+      <s:complexType name="RemoteSpace">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:RemoteSpaceSummary">
+            <s:all>
+              <s:element name="description" nillable="true" type="s:string" />
+              <s:element name="homePage" type="s:long" />
+            </s:all>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfRemoteSpaceSummary">
+        <s:complexContent mixed="false">
+          <s:restriction base="soapenc:Array">
+            <s:attribute d7p1:arrayType="s1:RemoteSpaceSummary[]" ref="soapenc:arrayType" xmlns:d7p1="http://schemas.xmlsoap.org/wsdl/" />
+          </s:restriction>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="AbstractRemotePageSummary" abstract="true">
+        <s:all>
+          <s:element name="id" type="s:long" />
+          <s:element name="space" nillable="true" type="s:string" />
+          <s:element name="title" nillable="true" type="s:string" />
+          <s:element name="url" nillable="true" type="s:string" />
+          <s:element name="locks" type="s:int" />
+        </s:all>
+      </s:complexType>
+      <s:complexType name="RemotePageSummary">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:AbstractRemotePageSummary">
+            <s:all>
+              <s:element name="parentId" type="s:long" />
+            </s:all>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="RemotePage">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:RemotePageSummary">
+            <s:all>
+              <s:element name="created" type="s:dateTime" />
+              <s:element name="modified" type="s:dateTime" />
+              <s:element name="creator" nillable="true" type="s:string" />
+              <s:element name="modifier" nillable="true" type="s:string" />
+              <s:element name="content" nillable="true" type="s:string" />
+              <s:element name="version" type="s:int" />
+              <s:element name="homePage" type="s:boolean" />
+            </s:all>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="RemoteLock">
+        <s:all>
+          <s:element name="lockType" nillable="true" type="s:string" />
+          <s:element name="lockedBy" nillable="true" type="s:string" />
+        </s:all>
+      </s:complexType>
+      <s:complexType name="ArrayOfRemoteLock">
+        <s:complexContent mixed="false">
+          <s:restriction base="soapenc:Array">
+            <s:attribute d7p1:arrayType="s1:RemoteLock[]" ref="soapenc:arrayType" xmlns:d7p1="http://schemas.xmlsoap.org/wsdl/" />
+          </s:restriction>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="RemoteAttachment">
+        <s:all>
+          <s:element name="id" type="s:long" />
+          <s:element name="pageId" type="s:long" />
+          <s:element name="fileSize" type="s:long" />
+          <s:element name="title" nillable="true" type="s:string" />
+          <s:element name="fileName" nillable="true" type="s:string" />
+          <s:element name="contentType" nillable="true" type="s:string" />
+          <s:element name="creator" nillable="true" type="s:string" />
+          <s:element name="url" nillable="true" type="s:string" />
+          <s:element name="created" type="s:dateTime" />
+        </s:all>
+      </s:complexType>
+      <s:complexType name="ArrayOfRemoteAttachment">
+        <s:complexContent mixed="false">
+          <s:restriction base="soapenc:Array">
+            <s:attribute d7p1:arrayType="s1:RemoteAttachment[]" ref="soapenc:arrayType" xmlns:d7p1="http://schemas.xmlsoap.org/wsdl/" />
+          </s:restriction>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="RemoteComment">
+        <s:all>
+          <s:element name="id" type="s:long" />
+          <s:element name="pageId" type="s:long" />
+          <s:element name="created" type="s:dateTime" />
+          <s:element name="title" nillable="true" type="s:string" />
+          <s:element name="url" nillable="true" type="s:string" />
+          <s:element name="creator" nillable="true" type="s:string" />
+          <s:element name="content" nillable="true" type="s:string" />
+        </s:all>
+      </s:complexType>
+      <s:complexType name="ArrayOfRemoteComment">
+        <s:complexContent mixed="false">
+          <s:restriction base="soapenc:Array">
+            <s:attribute d7p1:arrayType="s1:RemoteComment[]" ref="soapenc:arrayType" xmlns:d7p1="http://schemas.xmlsoap.org/wsdl/" />
+          </s:restriction>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfRemotePageSummary">
+        <s:complexContent mixed="false">
+          <s:restriction base="soapenc:Array">
+            <s:attribute d7p1:arrayType="s1:RemotePageSummary[]" ref="soapenc:arrayType" xmlns:d7p1="http://schemas.xmlsoap.org/wsdl/" />
+          </s:restriction>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="RemoteBlogEntrySummary">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:AbstractRemotePageSummary">
+            <s:all>
+              <s:element name="publishDate" type="s:dateTime" />
+              <s:element name="author" nillable="true" type="s:string" />
+            </s:all>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfRemoteBlogEntrySummary">
+        <s:complexContent mixed="false">
+          <s:restriction base="soapenc:Array">
+            <s:attribute d7p1:arrayType="s1:RemoteBlogEntrySummary[]" ref="soapenc:arrayType" xmlns:d7p1="http://schemas.xmlsoap.org/wsdl/" />
+          </s:restriction>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="RemoteBlogEntry">
+        <s:complexContent mixed="false">
+          <s:extension base="s1:RemoteBlogEntrySummary">
+            <s:all>
+              <s:element name="content" nillable="true" type="s:string" />
+              <s:element name="version" type="s:int" />
+            </s:all>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="RemotePageHistory">
+        <s:all>
+          <s:element name="id" type="s:long" />
+          <s:element name="version" type="s:int" />
+          <s:element name="modifier" nillable="true" type="s:string" />
+          <s:element name="modified" type="s:dateTime" />
+        </s:all>
+      </s:complexType>
+      <s:complexType name="ArrayOfRemotePageHistory">
+        <s:complexContent mixed="false">
+          <s:restriction base="soapenc:Array">
+            <s:attribute d7p1:arrayType="s1:RemotePageHistory[]" ref="soapenc:arrayType" xmlns:d7p1="http://schemas.xmlsoap.org/wsdl/" />
+          </s:restriction>
+        </s:complexContent>
+      </s:complexType>
+    </s:schema>
+    <s:schema targetNamespace="http://www.atlassian.com/package/java.util/">
+      <s:complexType name="Map" abstract="true" />
+    </s:schema>
+    <s:schema targetNamespace="http://www.atlassian.com/package/com.atlassian.confluence.rpc/">
+      <s:complexType name="RemoteException" />
+      <s:complexType name="InvalidSessionException">
+        <s:complexContent mixed="false">
+          <s:extension base="s3:RemoteException" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="AuthenticationFailedException">
+        <s:complexContent mixed="false">
+          <s:extension base="s3:RemoteException" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="NotPermittedException">
+        <s:complexContent mixed="false">
+          <s:extension base="s3:RemoteException" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="VersionMismatchException">
+        <s:complexContent mixed="false">
+          <s:extension base="s3:RemoteException" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="AlreadyExistsException">
+        <s:complexContent mixed="false">
+          <s:extension base="s3:RemoteException" />
+        </s:complexContent>
+      </s:complexType>
+    </s:schema>
+  </types>
+  <message name="getPermissions0In">
+    <part name="arg0" type="s:string" />
+    <part name="arg1" type="s:string" />
+  </message>
+  <message name="InvalidSessionException">
+    <part name="InvalidSessionException" type="s3:InvalidSessionException" />
+  </message>
+  <message name="RemoteException">
+    <part name="RemoteException" type="s3:RemoteException" />
+  </message>
+  <message name="getPermissions0Out">
+    <part name="Result" type="s0:ArrayOfstring" />
+  </message>
+  <message name="search1In">
+    <part name="arg0" type="s:string" />
+    <part name="arg1" type="s:string" />
+    <part name="arg2" type="s:int" />
+  </message>
+  <message name="search1Out">
+    <part name="Result" type="s1:ArrayOfRemoteSearchResult" />
+  </message>
+  <message name="search2In">
+    <part name="arg0" type="s:string" />
+    <part name="arg1" type="s:string" />
+    <part name="arg2" type="s2:Map" />
+    <part name="arg3" type="s:int" />
+  </message>
+  <message name="search2Out">
+    <part name="Result" type="s1:ArrayOfRemoteSearchResult" />
+  </message>
+  <message name="getUser3In">
+    <part name="arg0" type="s:string" />
+    <part name="arg1" type="s:string" />
+  </message>
+  <message name="getUser3Out">
+    <part name="Result" type="s1:RemoteUser" />
+  </message>
+  <message name="getGroups4In">
+    <part name="arg0" type="s:string" />
+  </message>
+  <message name="getGroups4Out">
+    <part name="Result" type="s0:ArrayOfstring" />
+  </message>
+  <message name="login5In">
+    <part name="arg0" type="s:string" />
+    <part name="arg1" type="s:string" />
+  </message>
+  <message name="AuthenticationFailedException">
+    <part name="AuthenticationFailedException" type="s3:AuthenticationFailedException" />
+  </message>
+  <message name="login5Out">
+    <part name="Result" type="s:string" />
+  </message>
+  <message name="getServerInfo6In">
+    <part name="arg0" type="s:string" />
+  </message>
+  <message name="getServerInfo6Out">
+    <part name="Result" type="s1:RemoteServerInfo" />
+  </message>
+  <message name="addUser7In">
+    <part name="arg0" type="s:string" />
+    <part name="arg1" type="s1:RemoteUser" />
+    <part name="arg2" type="s:string" />
+  </message>
+  <message name="NotPermittedException">
+    <part name="NotPermittedException" type="s3:NotPermittedException" />
+  </message>
+  <message name="addUser7Out" />
+  <message name="addGroup8In">
+    <part name="arg0" type="s:string" />
+    <part name="arg1" type="s:string" />
+  </message>
+  <message name="addGroup8Out">
+    <part name="Result" type="s:boolean" />
+  </message>
+  <message name="getSpace9In">
+    <part name="arg0" type="s:string" />
+    <part name="arg1" type="s:string" />
+  </message>
+  <message name="getSpace9Out">
+    <part name="Result" type="s1:RemoteSpace" />
+  </message>
+  <message name="removeSpace10In">
+    <part name="arg0" type="s:string" />
+    <part name="arg1" type="s:string" />
+  </message>
+  <message name="removeSpace10Out">
+    <part name="Result" type="soapenc:boolean" />
+  </message>
+  <message name="getSpaces11In">
+    <part name="arg0" type="s:string" />
+  </message>
+  <message name="getSpaces11Out">
+    <part name="Result" type="s1:ArrayOfRemoteSpaceSummary" />
+  </message>
+  <message name="getPage12In">
+    <part name="arg0" type="s:string" />
+    <part name="arg1" type="s:long" />
+  </message>
+  <message name="getPage12Out">
+    <part name="Result" type="s1:RemotePage" />
+  </message>
+  <message name="getPage13In">
+    <part name="arg0" type="s:string" />
+    <part name="arg1" type="s:string" />
+    <part name="arg2" type="s:string" />
+  </message>
+  <message name="getPage13Out">
+    <part name="Result" type="s1:RemotePage" />
+  </message>
+  <message name="getLocks14In">
+    <part name="arg0" type="s:string" />
+    <part name="arg1" type="s:long" />
+  </message>
+  <message name="getLocks14Out">
+    <part name="Result" type="s1:ArrayOfRemoteLock" />
+  </message>
+  <message name="getAttachments15In">
+    <part name="arg0" type="s:string" />
+    <part name="arg1" type="s:long" />
+  </message>
+  <message name="getAttachments15Out">
+    <part name="Result" type="s1:ArrayOfRemoteAttachment" />
+  </message>
+  <message name="getComments16In">
+    <part name="arg0" type="s:string" />
+    <part name="arg1" type="s:long" />
+  </message>
+  <message name="getComments16Out">
+    <part name="Result" type="s1:ArrayOfRemoteComment" />
+  </message>
+  <message name="getPages17In">
+    <part name="arg0" type="s:string" />
+    <part name="arg1" type="s:string" />
+  </message>
+  <message name="getPages17Out">
+    <part name="Result" type="s1:ArrayOfRemotePageSummary" />
+  </message>
+  <message name="logout18In">
+    <part name="arg0" type="s:string" />
+  </message>
+  <message name="logout18Out">
+    <part name="Result" type="s:boolean" />
+  </message>
+  <message name="getBlogEntries19In">
+    <part name="arg0" type="s:string" />
+    <part name="arg1" type="s:string" />
+  </message>
+  <message name="getBlogEntries19Out">
+    <part name="Result" type="s1:ArrayOfRemoteBlogEntrySummary" />
+  </message>
+  <message name="getBlogEntry20In">
+    <part name="arg0" type="s:string" />
+    <part name="arg1" type="s:long" />
+  </message>
+  <message name="getBlogEntry20Out">
+    <part name="Result" type="s1:RemoteBlogEntry" />
+  </message>
+  <message name="getPageHistory21In">
+    <part name="arg0" type="s:string" />
+    <part name="arg1" type="s:long" />
+  </message>
+  <message name="getPageHistory21Out">
+    <part name="Result" type="s1:ArrayOfRemotePageHistory" />
+  </message>
+  <message name="renderContent22In">
+    <part name="arg0" type="s:string" />
+    <part name="arg1" type="s:string" />
+    <part name="arg2" type="s:long" />
+    <part name="arg3" type="s:string" />
+    <part name="arg4" type="s2:Map" />
+  </message>
+  <message name="renderContent22Out">
+    <part name="Result" type="s:string" />
+  </message>
+  <message name="renderContent23In">
+    <part name="arg0" type="s:string" />
+    <part name="arg1" type="s:string" />
+    <part name="arg2" type="s:long" />
+    <part name="arg3" type="s:string" />
+  </message>
+  <message name="renderContent23Out">
+    <part name="Result" type="s:string" />
+  </message>
+  <message name="deletePage24In">
+    <part name="arg0" type="s:string" />
+    <part name="arg1" type="s:long" />
+  </message>
+  <message name="deletePage24Out">
+    <part name="Result" type="soapenc:boolean" />
+  </message>
+  <message name="storeBlogEntry25In">
+    <part name="arg0" type="s:string" />
+    <part name="arg1" type="s1:RemoteBlogEntry" />
+  </message>
+  <message name="VersionMismatchException">
+    <part name="VersionMismatchException" type="s3:VersionMismatchException" />
+  </message>
+  <message name="storeBlogEntry25Out">
+    <part name="Result" type="s1:RemoteBlogEntry" />
+  </message>
+  <message name="storePage26In">
+    <part name="arg0" type="s:string" />
+    <part name="arg1" type="s1:RemotePage" />
+  </message>
+  <message name="storePage26Out">
+    <part name="Result" type="s1:RemotePage" />
+  </message>
+  <message name="getUserGroups27In">
+    <part name="arg0" type="s:string" />
+    <part name="arg1" type="s:string" />
+  </message>
+  <message name="getUserGroups27Out">
+    <part name="Result" type="s0:ArrayOfstring" />
+  </message>
+  <message name="addUserToGroup28In">
+    <part name="arg0" type="s:string" />
+    <part name="arg1" type="s:string" />
+    <part name="arg2" type="s:string" />
+  </message>
+  <message name="addUserToGroup28Out" />
+  <message name="addSpace29In">
+    <part name="arg0" type="s:string" />
+    <part name="arg1" type="s1:RemoteSpace" />
+  </message>
+  <message name="AlreadyExistsException">
+    <part name="AlreadyExistsException" type="s3:AlreadyExistsException" />
+  </message>
+  <message name="addSpace29Out">
+    <part name="Result" type="s1:RemoteSpace" />
+  </message>
+  <portType name="ConfluenceSoapService">
+    <operation name="getPermissions" parameterOrder="arg0 arg1">
+      <input name="getPermissions0In" message="tns:getPermissions0In" />
+      <output name="getPermissions0Out" message="tns:getPermissions0Out" />
+      <fault name="InvalidSessionException" message="tns:InvalidSessionException" />
+      <fault name="RemoteException" message="tns:RemoteException" />
+    </operation>
+    <operation name="search" parameterOrder="arg0 arg1 arg2">
+      <input name="search1In" message="tns:search1In" />
+      <output name="search1Out" message="tns:search1Out" />
+      <fault name="InvalidSessionException" message="tns:InvalidSessionException" />
+      <fault name="RemoteException" message="tns:RemoteException" />
+    </operation>
+    <operation name="search" parameterOrder="arg0 arg1 arg2 arg3">
+      <input name="search2In" message="tns:search2In" />
+      <output name="search2Out" message="tns:search2Out" />
+      <fault name="RemoteException" message="tns:RemoteException" />
+    </operation>
+    <operation name="getUser" parameterOrder="arg0 arg1">
+      <input name="getUser3In" message="tns:getUser3In" />
+      <output name="getUser3Out" message="tns:getUser3Out" />
+      <fault name="InvalidSessionException" message="tns:InvalidSessionException" />
+      <fault name="RemoteException" message="tns:RemoteException" />
+    </operation>
+    <operation name="getGroups" parameterOrder="arg0">
+      <input name="getGroups4In" message="tns:getGroups4In" />
+      <output name="getGroups4Out" message="tns:getGroups4Out" />
+      <fault name="RemoteException" message="tns:RemoteException" />
+    </operation>
+    <operation name="login" parameterOrder="arg0 arg1">
+      <input name="login5In" message="tns:login5In" />
+      <output name="login5Out" message="tns:login5Out" />
+      <fault name="AuthenticationFailedException" message="tns:AuthenticationFailedException" />
+      <fault name="RemoteException" message="tns:RemoteException" />
+    </operation>
+    <operation name="getServerInfo" parameterOrder="arg0">
+      <input name="getServerInfo6In" message="tns:getServerInfo6In" />
+      <output name="getServerInfo6Out" message="tns:getServerInfo6Out" />
+      <fault name="InvalidSessionException" message="tns:InvalidSessionException" />
+      <fault name="RemoteException" message="tns:RemoteException" />
+    </operation>
+    <operation name="addUser" parameterOrder="arg0 arg1 arg2">
+      <input name="addUser7In" message="tns:addUser7In" />
+      <output name="addUser7Out" message="tns:addUser7Out" />
+      <fault name="NotPermittedException" message="tns:NotPermittedException" />
+      <fault name="InvalidSessionException" message="tns:InvalidSessionException" />
+      <fault name="RemoteException" message="tns:RemoteException" />
+    </operation>
+    <operation name="addGroup" parameterOrder="arg0 arg1">
+      <input name="addGroup8In" message="tns:addGroup8In" />
+      <output name="addGroup8Out" message="tns:addGroup8Out" />
+      <fault name="NotPermittedException" message="tns:NotPermittedException" />
+      <fault name="InvalidSessionException" message="tns:InvalidSessionException" />
+      <fault name="RemoteException" message="tns:RemoteException" />
+    </operation>
+    <operation name="getSpace" parameterOrder="arg0 arg1">
+      <input name="getSpace9In" message="tns:getSpace9In" />
+      <output name="getSpace9Out" message="tns:getSpace9Out" />
+      <fault name="InvalidSessionException" message="tns:InvalidSessionException" />
+      <fault name="RemoteException" message="tns:RemoteException" />
+    </operation>
+    <operation name="removeSpace" parameterOrder="arg0 arg1">
+      <input name="removeSpace10In" message="tns:removeSpace10In" />
+      <output name="removeSpace10Out" message="tns:removeSpace10Out" />
+      <fault name="NotPermittedException" message="tns:NotPermittedException" />
+      <fault name="InvalidSessionException" message="tns:InvalidSessionException" />
+      <fault name="RemoteException" message="tns:RemoteException" />
+    </operation>
+    <operation name="getSpaces" parameterOrder="arg0">
+      <input name="getSpaces11In" message="tns:getSpaces11In" />
+      <output name="getSpaces11Out" message="tns:getSpaces11Out" />
+      <fault name="InvalidSessionException" message="tns:InvalidSessionException" />
+      <fault name="RemoteException" message="tns:RemoteException" />
+    </operation>
+    <operation name="getPage" parameterOrder="arg0 arg1">
+      <input name="getPage12In" message="tns:getPage12In" />
+      <output name="getPage12Out" message="tns:getPage12Out" />
+      <fault name="InvalidSessionException" message="tns:InvalidSessionException" />
+      <fault name="RemoteException" message="tns:RemoteException" />
+    </operation>
+    <operation name="getPage" parameterOrder="arg0 arg1 arg2">
+      <input name="getPage13In" message="tns:getPage13In" />
+      <output name="getPage13Out" message="tns:getPage13Out" />
+      <fault name="InvalidSessionException" message="tns:InvalidSessionException" />
+      <fault name="RemoteException" message="tns:RemoteException" />
+    </operation>
+    <operation name="getLocks" parameterOrder="arg0 arg1">
+      <input name="getLocks14In" message="tns:getLocks14In" />
+      <output name="getLocks14Out" message="tns:getLocks14Out" />
+      <fault name="InvalidSessionException" message="tns:InvalidSessionException" />
+      <fault name="RemoteException" message="tns:RemoteException" />
+    </operation>
+    <operation name="getAttachments" parameterOrder="arg0 arg1">
+      <input name="getAttachments15In" message="tns:getAttachments15In" />
+      <output name="getAttachments15Out" message="tns:getAttachments15Out" />
+      <fault name="InvalidSessionException" message="tns:InvalidSessionException" />
+      <fault name="RemoteException" message="tns:RemoteException" />
+    </operation>
+    <operation name="getComments" parameterOrder="arg0 arg1">
+      <input name="getComments16In" message="tns:getComments16In" />
+      <output name="getComments16Out" message="tns:getComments16Out" />
+      <fault name="InvalidSessionException" message="tns:InvalidSessionException" />
+      <fault name="RemoteException" message="tns:RemoteException" />
+    </operation>
+    <operation name="getPages" parameterOrder="arg0 arg1">
+      <input name="getPages17In" message="tns:getPages17In" />
+      <output name="getPages17Out" message="tns:getPages17Out" />
+      <fault name="InvalidSessionException" message="tns:InvalidSessionException" />
+      <fault name="RemoteException" message="tns:RemoteException" />
+    </operation>
+    <operation name="logout" parameterOrder="arg0">
+      <input name="logout18In" message="tns:logout18In" />
+      <output name="logout18Out" message="tns:logout18Out" />
+      <fault name="RemoteException" message="tns:RemoteException" />
+    </operation>
+    <operation name="getBlogEntries" parameterOrder="arg0 arg1">
+      <input name="getBlogEntries19In" message="tns:getBlogEntries19In" />
+      <output name="getBlogEntries19Out" message="tns:getBlogEntries19Out" />
+      <fault name="InvalidSessionException" message="tns:InvalidSessionException" />
+      <fault name="RemoteException" message="tns:RemoteException" />
+    </operation>
+    <operation name="getBlogEntry" parameterOrder="arg0 arg1">
+      <input name="getBlogEntry20In" message="tns:getBlogEntry20In" />
+      <output name="getBlogEntry20Out" message="tns:getBlogEntry20Out" />
+    </operation>
+    <operation name="getPageHistory" parameterOrder="arg0 arg1">
+      <input name="getPageHistory21In" message="tns:getPageHistory21In" />
+      <output name="getPageHistory21Out" message="tns:getPageHistory21Out" />
+      <fault name="InvalidSessionException" message="tns:InvalidSessionException" />
+      <fault name="RemoteException" message="tns:RemoteException" />
+    </operation>
+    <operation name="renderContent" parameterOrder="arg0 arg1 arg2 arg3 arg4">
+      <input name="renderContent22In" message="tns:renderContent22In" />
+      <output name="renderContent22Out" message="tns:renderContent22Out" />
+      <fault name="RemoteException" message="tns:RemoteException" />
+    </operation>
+    <operation name="renderContent" parameterOrder="arg0 arg1 arg2 arg3">
+      <input name="renderContent23In" message="tns:renderContent23In" />
+      <output name="renderContent23Out" message="tns:renderContent23Out" />
+      <fault name="InvalidSessionException" message="tns:InvalidSessionException" />
+      <fault name="RemoteException" message="tns:RemoteException" />
+    </operation>
+    <operation name="deletePage" parameterOrder="arg0 arg1">
+      <input name="deletePage24In" message="tns:deletePage24In" />
+      <output name="deletePage24Out" message="tns:deletePage24Out" />
+      <fault name="NotPermittedException" message="tns:NotPermittedException" />
+      <fault name="InvalidSessionException" message="tns:InvalidSessionException" />
+      <fault name="RemoteException" message="tns:RemoteException" />
+    </operation>
+    <operation name="storeBlogEntry" parameterOrder="arg0 arg1">
+      <input name="storeBlogEntry25In" message="tns:storeBlogEntry25In" />
+      <output name="storeBlogEntry25Out" message="tns:storeBlogEntry25Out" />
+      <fault name="VersionMismatchException" message="tns:VersionMismatchException" />
+      <fault name="NotPermittedException" message="tns:NotPermittedException" />
+      <fault name="InvalidSessionException" message="tns:InvalidSessionException" />
+      <fault name="RemoteException" message="tns:RemoteException" />
+    </operation>
+    <operation name="storePage" parameterOrder="arg0 arg1">
+      <input name="storePage26In" message="tns:storePage26In" />
+      <output name="storePage26Out" message="tns:storePage26Out" />
+      <fault name="VersionMismatchException" message="tns:VersionMismatchException" />
+      <fault name="NotPermittedException" message="tns:NotPermittedException" />
+      <fault name="InvalidSessionException" message="tns:InvalidSessionException" />
+      <fault name="RemoteException" message="tns:RemoteException" />
+    </operation>
+    <operation name="getUserGroups" parameterOrder="arg0 arg1">
+      <input name="getUserGroups27In" message="tns:getUserGroups27In" />
+      <output name="getUserGroups27Out" message="tns:getUserGroups27Out" />
+      <fault name="NotPermittedException" message="tns:NotPermittedException" />
+      <fault name="InvalidSessionException" message="tns:InvalidSessionException" />
+      <fault name="RemoteException" message="tns:RemoteException" />
+    </operation>
+    <operation name="addUserToGroup" parameterOrder="arg0 arg1 arg2">
+      <input name="addUserToGroup28In" message="tns:addUserToGroup28In" />
+      <output name="addUserToGroup28Out" message="tns:addUserToGroup28Out" />
+      <fault name="NotPermittedException" message="tns:NotPermittedException" />
+      <fault name="InvalidSessionException" message="tns:InvalidSessionException" />
+      <fault name="RemoteException" message="tns:RemoteException" />
+    </operation>
+    <operation name="addSpace" parameterOrder="arg0 arg1">
+      <input name="addSpace29In" message="tns:addSpace29In" />
+      <output name="addSpace29Out" message="tns:addSpace29Out" />
+      <fault name="NotPermittedException" message="tns:NotPermittedException" />
+      <fault name="InvalidSessionException" message="tns:InvalidSessionException" />
+      <fault name="AlreadyExistsException" message="tns:AlreadyExistsException" />
+      <fault name="RemoteException" message="tns:RemoteException" />
+    </operation>
+  </portType>
+  <binding name="ConfluenceSoapService" type="tns:ConfluenceSoapService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc" />
+    <operation name="getPermissions">
+      <soap:operation soapAction="getPermissions" style="rpc" />
+      <input name="getPermissions0In">
+        <soap:body use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output name="getPermissions0Out">
+        <soap:body use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+      <fault name="InvalidSessionException">
+        <soap:fault use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </fault>
+      <fault name="RemoteException">
+        <soap:fault use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </fault>
+    </operation>
+    <operation name="search">
+      <soap:operation soapAction="search" style="rpc" />
+      <input name="search1In">
+        <soap:body use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output name="search1Out">
+        <soap:body use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+      <fault name="InvalidSessionException">
+        <soap:fault use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </fault>
+      <fault name="RemoteException">
+        <soap:fault use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </fault>
+    </operation>
+    <operation name="search">
+      <soap:operation soapAction="search" style="rpc" />
+      <input name="search2In">
+        <soap:body use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output name="search2Out">
+        <soap:body use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+      <fault name="RemoteException">
+        <soap:fault use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </fault>
+    </operation>
+    <operation name="getUser">
+      <soap:operation soapAction="getUser" style="rpc" />
+      <input name="getUser3In">
+        <soap:body use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output name="getUser3Out">
+        <soap:body use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+      <fault name="InvalidSessionException">
+        <soap:fault use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </fault>
+      <fault name="RemoteException">
+        <soap:fault use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </fault>
+    </operation>
+    <operation name="getGroups">
+      <soap:operation soapAction="getGroups" style="rpc" />
+      <input name="getGroups4In">
+        <soap:body use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output name="getGroups4Out">
+        <soap:body use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+      <fault name="RemoteException">
+        <soap:fault use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </fault>
+    </operation>
+    <operation name="login">
+      <soap:operation soapAction="login" style="rpc" />
+      <input name="login5In">
+        <soap:body use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output name="login5Out">
+        <soap:body use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+      <fault name="AuthenticationFailedException">
+        <soap:fault use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </fault>
+      <fault name="RemoteException">
+        <soap:fault use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </fault>
+    </operation>
+    <operation name="getServerInfo">
+      <soap:operation soapAction="getServerInfo" style="rpc" />
+      <input name="getServerInfo6In">
+        <soap:body use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output name="getServerInfo6Out">
+        <soap:body use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+      <fault name="InvalidSessionException">
+        <soap:fault use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </fault>
+      <fault name="RemoteException">
+        <soap:fault use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </fault>
+    </operation>
+    <operation name="addUser">
+      <soap:operation soapAction="addUser" style="rpc" />
+      <input name="addUser7In">
+        <soap:body use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output name="addUser7Out">
+        <soap:body use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+      <fault name="NotPermittedException">
+        <soap:fault use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </fault>
+      <fault name="InvalidSessionException">
+        <soap:fault use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </fault>
+      <fault name="RemoteException">
+        <soap:fault use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </fault>
+    </operation>
+    <operation name="addGroup">
+      <soap:operation soapAction="addGroup" style="rpc" />
+      <input name="addGroup8In">
+        <soap:body use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output name="addGroup8Out">
+        <soap:body use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+      <fault name="NotPermittedException">
+        <soap:fault use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </fault>
+      <fault name="InvalidSessionException">
+        <soap:fault use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </fault>
+      <fault name="RemoteException">
+        <soap:fault use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </fault>
+    </operation>
+    <operation name="getSpace">
+      <soap:operation soapAction="getSpace" style="rpc" />
+      <input name="getSpace9In">
+        <soap:body use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output name="getSpace9Out">
+        <soap:body use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+      <fault name="InvalidSessionException">
+        <soap:fault use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </fault>
+      <fault name="RemoteException">
+        <soap:fault use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </fault>
+    </operation>
+    <operation name="removeSpace">
+      <soap:operation soapAction="removeSpace" style="rpc" />
+      <input name="removeSpace10In">
+        <soap:body use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output name="removeSpace10Out">
+        <soap:body use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+      <fault name="NotPermittedException">
+        <soap:fault use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </fault>
+      <fault name="InvalidSessionException">
+        <soap:fault use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </fault>
+      <fault name="RemoteException">
+        <soap:fault use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </fault>
+    </operation>
+    <operation name="getSpaces">
+      <soap:operation soapAction="getSpaces" style="rpc" />
+      <input name="getSpaces11In">
+        <soap:body use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output name="getSpaces11Out">
+        <soap:body use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+      <fault name="InvalidSessionException">
+        <soap:fault use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </fault>
+      <fault name="RemoteException">
+        <soap:fault use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </fault>
+    </operation>
+    <operation name="getPage">
+      <soap:operation soapAction="getPage" style="rpc" />
+      <input name="getPage12In">
+        <soap:body use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output name="getPage12Out">
+        <soap:body use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+      <fault name="InvalidSessionException">
+        <soap:fault use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </fault>
+      <fault name="RemoteException">
+        <soap:fault use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </fault>
+    </operation>
+    <operation name="getPage">
+      <soap:operation soapAction="getPage" style="rpc" />
+      <input name="getPage13In">
+        <soap:body use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output name="getPage13Out">
+        <soap:body use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+      <fault name="InvalidSessionException">
+        <soap:fault use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </fault>
+      <fault name="RemoteException">
+        <soap:fault use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </fault>
+    </operation>
+    <operation name="getLocks">
+      <soap:operation soapAction="getLocks" style="rpc" />
+      <input name="getLocks14In">
+        <soap:body use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output name="getLocks14Out">
+        <soap:body use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+      <fault name="InvalidSessionException">
+        <soap:fault use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </fault>
+      <fault name="RemoteException">
+        <soap:fault use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </fault>
+    </operation>
+    <operation name="getAttachments">
+      <soap:operation soapAction="getAttachments" style="rpc" />
+      <input name="getAttachments15In">
+        <soap:body use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output name="getAttachments15Out">
+        <soap:body use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+      <fault name="InvalidSessionException">
+        <soap:fault use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </fault>
+      <fault name="RemoteException">
+        <soap:fault use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </fault>
+    </operation>
+    <operation name="getComments">
+      <soap:operation soapAction="getComments" style="rpc" />
+      <input name="getComments16In">
+        <soap:body use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output name="getComments16Out">
+        <soap:body use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+      <fault name="InvalidSessionException">
+        <soap:fault use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </fault>
+      <fault name="RemoteException">
+        <soap:fault use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </fault>
+    </operation>
+    <operation name="getPages">
+      <soap:operation soapAction="getPages" style="rpc" />
+      <input name="getPages17In">
+        <soap:body use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output name="getPages17Out">
+        <soap:body use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+      <fault name="InvalidSessionException">
+        <soap:fault use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </fault>
+      <fault name="RemoteException">
+        <soap:fault use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </fault>
+    </operation>
+    <operation name="logout">
+      <soap:operation soapAction="logout" style="rpc" />
+      <input name="logout18In">
+        <soap:body use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output name="logout18Out">
+        <soap:body use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+      <fault name="RemoteException">
+        <soap:fault use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </fault>
+    </operation>
+    <operation name="getBlogEntries">
+      <soap:operation soapAction="getBlogEntries" style="rpc" />
+      <input name="getBlogEntries19In">
+        <soap:body use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output name="getBlogEntries19Out">
+        <soap:body use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+      <fault name="InvalidSessionException">
+        <soap:fault use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </fault>
+      <fault name="RemoteException">
+        <soap:fault use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </fault>
+    </operation>
+    <operation name="getBlogEntry">
+      <soap:operation soapAction="getBlogEntry" style="rpc" />
+      <input name="getBlogEntry20In">
+        <soap:body use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output name="getBlogEntry20Out">
+        <soap:body use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="getPageHistory">
+      <soap:operation soapAction="getPageHistory" style="rpc" />
+      <input name="getPageHistory21In">
+        <soap:body use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output name="getPageHistory21Out">
+        <soap:body use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+      <fault name="InvalidSessionException">
+        <soap:fault use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </fault>
+      <fault name="RemoteException">
+        <soap:fault use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </fault>
+    </operation>
+    <operation name="renderContent">
+      <soap:operation soapAction="renderContent" style="rpc" />
+      <input name="renderContent22In">
+        <soap:body use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output name="renderContent22Out">
+        <soap:body use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+      <fault name="RemoteException">
+        <soap:fault use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </fault>
+    </operation>
+    <operation name="renderContent">
+      <soap:operation soapAction="renderContent" style="rpc" />
+      <input name="renderContent23In">
+        <soap:body use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output name="renderContent23Out">
+        <soap:body use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+      <fault name="InvalidSessionException">
+        <soap:fault use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </fault>
+      <fault name="RemoteException">
+        <soap:fault use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </fault>
+    </operation>
+    <operation name="deletePage">
+      <soap:operation soapAction="deletePage" style="rpc" />
+      <input name="deletePage24In">
+        <soap:body use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output name="deletePage24Out">
+        <soap:body use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+      <fault name="NotPermittedException">
+        <soap:fault use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </fault>
+      <fault name="InvalidSessionException">
+        <soap:fault use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </fault>
+      <fault name="RemoteException">
+        <soap:fault use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </fault>
+    </operation>
+    <operation name="storeBlogEntry">
+      <soap:operation soapAction="storeBlogEntry" style="rpc" />
+      <input name="storeBlogEntry25In">
+        <soap:body use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output name="storeBlogEntry25Out">
+        <soap:body use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+      <fault name="VersionMismatchException">
+        <soap:fault use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </fault>
+      <fault name="NotPermittedException">
+        <soap:fault use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </fault>
+      <fault name="InvalidSessionException">
+        <soap:fault use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </fault>
+      <fault name="RemoteException">
+        <soap:fault use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </fault>
+    </operation>
+    <operation name="storePage">
+      <soap:operation soapAction="storePage" style="rpc" />
+      <input name="storePage26In">
+        <soap:body use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output name="storePage26Out">
+        <soap:body use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+      <fault name="VersionMismatchException">
+        <soap:fault use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </fault>
+      <fault name="NotPermittedException">
+        <soap:fault use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </fault>
+      <fault name="InvalidSessionException">
+        <soap:fault use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </fault>
+      <fault name="RemoteException">
+        <soap:fault use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </fault>
+    </operation>
+    <operation name="getUserGroups">
+      <soap:operation soapAction="getUserGroups" style="rpc" />
+      <input name="getUserGroups27In">
+        <soap:body use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output name="getUserGroups27Out">
+        <soap:body use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+      <fault name="NotPermittedException">
+        <soap:fault use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </fault>
+      <fault name="InvalidSessionException">
+        <soap:fault use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </fault>
+      <fault name="RemoteException">
+        <soap:fault use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </fault>
+    </operation>
+    <operation name="addUserToGroup">
+      <soap:operation soapAction="addUserToGroup" style="rpc" />
+      <input name="addUserToGroup28In">
+        <soap:body use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output name="addUserToGroup28Out">
+        <soap:body use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+      <fault name="NotPermittedException">
+        <soap:fault use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </fault>
+      <fault name="InvalidSessionException">
+        <soap:fault use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </fault>
+      <fault name="RemoteException">
+        <soap:fault use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </fault>
+    </operation>
+    <operation name="addSpace">
+      <soap:operation soapAction="addSpace" style="rpc" />
+      <input name="addSpace29In">
+        <soap:body use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output name="addSpace29Out">
+        <soap:body use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+      <fault name="NotPermittedException">
+        <soap:fault use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </fault>
+      <fault name="InvalidSessionException">
+        <soap:fault use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </fault>
+      <fault name="AlreadyExistsException">
+        <soap:fault use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </fault>
+      <fault name="RemoteException">
+        <soap:fault use="encoded" namespace="x" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </fault>
+    </operation>
+  </binding>
+  <service name="ConfluenceSoap">
+    <documentation>instance of class $Proxy26</documentation>
+    <port name="ConfluenceSoapService" binding="tns:ConfluenceSoapService">
+      <soap:address location="http://confluence.atlassian.com/rpc/soap/confluenceservice-v1" />
+    </port>
+  </service>
+</definitions>

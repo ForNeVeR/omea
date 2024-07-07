@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--
+SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+
+SPDX-License-Identifier: GPL-2.0-only
+-->
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>New Rule/Edit Rule dialog</title>
+    <meta http-equiv="content-type" content="text/html" charset="windows-1252" />
+    <meta name="copyright" content="Copyright (c)2004 JetBrains, Inc." />
+    <meta name="topic-check-list" content="Added To TOC" />
+    <link rel="StyleSheet" href="../help.css" />
+
+</head>
+<body>
+
+<!-- Conditional Headers -->
+<div style="x-condition: PRO;">
+	<div id="helpHeader">
+		<div id="helpHeaderImg"></div>
+		<p class="helpHeader">Omea Pro Help: Reference: New Action Rule/Edit Action Rule Dialogs</p>
+	</div>
+</div>
+
+<div style="x-condition: READER;">
+	<div id="helpHeader">
+		<div id="helpHeaderImg"></div>
+		<p class="helpHeader">Omea Reader Help: Reference: New Action Rule/Edit Action Rule Dialogs</p>
+	</div>
+</div>
+
+<div id="mainContent">
+   <h1>New Action Rule/Edit Action Rule Dialog</h1>
+   <p>You access this dialog from the <a href="manage_rules.html">Manage Rules</a> dialog, <strong>Action</strong> tab:</p>
+   <ul>
+      <li><em>New</em> button (launches <strong>New Action Rule</strong> dialog)</li>
+	  <li><em>Edit</em> button (launches <strong>Edit Action Rule</strong> dialog)</li>
+   </ul>
+
+	<p>The <strong>New Action Rule/Edit Action Rule</strong> dialog is used to create/edit resource handling rules. The same dialog is used for creating
+	a new Action Rule and editing an existing Action Rule. The only difference to the look of the dialog is the title.</p>
+	<p><img src="../images/sshots/dialogs/shared/new_edit_action_rule.png" alt="New Action Rule and Edit Action Rule dialogs" width="853" height="617" /></p>
+	<p>&nbsp;
+</p>
+           <p class="caption">New Action Rule  and Edit Action Rule dialogs</p>
+           <h2>Dialog Components</h2>
+
+<h3>Rule Name Field</h3>
+ <p>Field to specify/edit the rule name.</p>
+
+ <h3>Activate at</h3>
+ <p>Field which specifies when the rule is to be activated. </p>
+ <h4>Category is Assigned</h4>
+ <p>The rule will be applied when a <a href="../organizing/organizing_using_categories.html">Category</a> is assigned to the resource. </p>
+ <p></p>
+ <h4>Resource is received</h4>
+ <p>The rule will be applied when new items appear in Omea.</p>
+ <h3>Active for</h3>
+ <p>Field to set for which type of resources the rule is to be applied.
+ This field is, actually, a link to call another dialog - <a href="Choose_Recourse_Types_Dialog.htm"><i>Choose Resource Types</i></a>.
+
+ </p>
+
+ <h3>Conditions/Exceptions</h3>
+
+<p>The fields are used to set conditions/exceptions for the rule to be activated/skipped, respectively.
+Set conditions/exceptions are listed in the corresponding fields.
+</p>
+
+<p>The conditions are shown as short sentences. Some of the sentences have a hyperlink phrase inside. Pressing the link shows
+a dialog to enter some text/value for the condition.
+</p>
+
+<p>Press the <strong>Add</strong> button to add new condition/exception. Press <strong>Delete</strong> (<img src="../images/iconsMarks/ico_delete_condition_except.png" width="16" height="16" class="linkIcon" />)  in the conditions/exceptions field to delete the selected condition/exception in the list.
+</p>
+
+<p>Pressing <strong>Add</strong> button calls the <a href="select_conditions.html">Select Condition(s) dialog</a>. The dialog is similar
+for both Conditions and Exceptions areas and includes several groups of conditions.</p>
+<div class="note">
+
+<div class="noteImg"
+	style="/*begin!kadov{{*/ x-right: 944px; x-bottom: 3017px; /*}}end!kadov*/ ">
+    <p>&nbsp;</p>
+  </div>
+      <p class="note"> Conditions which the rule already includes are automatically removed from the list of the <a href="select_conditions.html">Select Condition(s) dialog</a>. </p>
+  </div>
+<h3>Actions</h3>
+
+<p>The field is used to set actions if the the rule condition/exception is met. Set actions are listed in the corresponding tabs.</p>
+
+<p>The actions are shown as short sentences. Some of the sentences have a hyperlink phrase inside. Pressing the link shows
+a dialog to enter some text/value for the action.</p>
+
+<p>Press the <strong>Add</strong> button to add new action. Press <strong>Remove</strong> to delete the selected action in the list.</p>
+
+<p>Pressing Add button call the <strong>Select Rule Action(s)</strong> dialog. It consists of several actions. To select an action, select
+the check box next to it. Actions which the rule already includes are not shown.
+</p>
+<h3>Show/Hide Buttons</h3>
+<p>You can use the <strong>Show</strong> (<img src="../images/iconsMarks/ico_hide.png" width="16" height="16" class="linkIcon" />) and <strong>Hide</strong> (<img src="../images/iconsMarks/ico_show.png" width="23" height="12" class="linkIcon" />) buttons to expand or collapse the <strong>Conditions</strong> or <strong>Exceptions</strong> fields.</p>
+<h2>Pins</h2>
+<p>You can now use pins if you want Omea to reuse the conditions which you have once defined in any of the dialogs for defining rules. To pin the condition, just click the <strong>Pin </strong> button (<img src="../images/iconsMarks/ico_pinned_condition.png" width="15" height="15" class="linkIcon" />). Once you pin some condition, it will always appear in the <strong>Rules Manager</strong> dialog if you click the <strong>New</strong> button in appropriate tab. </p>
+<img src="../images/sshots/dialogs/shared/new_tray_icon_rule_pined_condition.png" width="413" height="189" alt="Pined Condition example" />
+<p class="caption">Pined Condition in the New Tray Icon Rule dialog</p>
+<div class="note">
+
+<div class="noteImg"
+	style="/*begin!kadov{{*/ x-right: 944px; x-bottom: 3017px; /*}}end!kadov*/ ">
+    <p>&nbsp;</p>
+  </div>
+  <p class="note">The prepinned conditions are not intended for existing in Omea &#8220;forever&#8221; and you can easily delete them by pressing the <strong>Delete</strong> button in the <strong>Conditions</strong> field but you may find them rather useful when you become more familiar with the Rules. </p>
+</div>
+<p>If you often use some condition or exception , you can easily pin it for later use by pressing the <img src="../images/iconsMarks/ico_pinned_condition.png" width="15" height="15" class="linkIcon" /> button in order not to specify it again in the future. </p>
+<div id="seealso">
+  <p class="seealso"><strong style="font-weight: bold;">See also:</strong></p>
+  <ol>
+    <li class="kadov-p"><a href="../organizing/organizing_your_resources.html">Organizing Your Resources</a></li>
+    <li class="kadov-p"><a href="manage_rules.html">Manage Rules dialog</a></li>
+    <li class="kadov-p"><a href="select_conditions.html">Select Condition(s) Dialog</a></li>
+    <li class="kadov-p"><a href="tray_icon_rule.htm">Tray Icon Rule Dialog</a></li>
+  </ol>
+</div>
+<p>&nbsp;</p>
+</div>
+
+<!-- LAST SPELLCHECK: 31 Aug 2004 -->
+</body>
+
+</html>

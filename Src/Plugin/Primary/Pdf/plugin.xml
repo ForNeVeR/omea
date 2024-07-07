@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+
+SPDX-License-Identifier: GPL-2.0-only
+-->
+<omniamea-plugin>
+	<resource-icons namespace="PDFPlugin">
+		<icon type="PdfFile" name="pdfdoc.ico" />
+	</resource-icons>
+</omniamea-plugin>

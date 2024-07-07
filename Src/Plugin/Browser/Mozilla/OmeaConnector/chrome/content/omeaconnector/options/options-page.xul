@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!--
+SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+
+SPDX-License-Identifier: GPL-2.0-only
+-->
+
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://omeaconnector/content/about/about.css" type="text/css"?>
+
+<?xul-overlay href="options-content.xul" ?>
+
+<!DOCTYPE page SYSTEM "chrome://omeaconnector/locale/omeaconnector.dtd">
+
+<page buttons="accept,cancel"
+      onload="parent.initPanel( 'chrome://omeaconnector/options/options-page.xul' ); "
+      id="omeaconnector-options-page"
+      title="&omeaconnector.options.title-ms;"
+      headertitle="&omeaconnector.options.title-ms;"
+      xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+    <script type="application/x-javascript" src="chrome://omeaconnector/content/options/options.js"/>
+    <script type="application/x-javascript">
+    <![CDATA[
+      function Startup()
+      {
+        dump( "[OmeaConnector] Options StartUp from: '" + arguments.caller + "'\n" );
+        omeaconnector_options_load();
+        parent.hPrefWindow.registerOKCallbackFunc( omeaconnector_options_apply );
+      }
+    ]]>
+    </script>
+    <vbox id="omeaconnector-options-box" />
+</page>

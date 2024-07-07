@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+
+SPDX-License-Identifier: GPL-2.0-only
+-->
+<!-- Supports the server build tasks on the build server. -->
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+	<PropertyGroup>
+		<Publish_ProductBinaries>$(ArtifactsDir)/Product.Binaries.zip</Publish_ProductBinaries>
+		<ProductObjDir>$(ProductHomeDir)/Obj</ProductObjDir>
+	</PropertyGroup>
+	<!-- Ensures that the output and artifacts folders are clean, and that they do exist. -->
+	<Target Name="PrepareFolders">
+		<ItemGroup>
+			<PrepareFolders_FilesToDelete Include="$(ProductBinariesDir)/**/*" />
+			<PrepareFolders_FilesToDelete Include="$(ProductObjDir)/**/*" />
+			<PrepareFolders_FilesToDelete Include="$(ArtifactsDir)/**/*" />
+			<PrepareFolders_FoldersToDelete Include="$(ProductBinariesDir)" />
+			<PrepareFolders_FoldersToDelete Include="$(ProductObjDir)" />
+			<PrepareFolders_FoldersToDelete Include="$(ArtifactsDir)" />
+		</ItemGroup>
+		<Delete Files="@(PrepareFolders_FilesToDelete)" ContinueOnError="true" />
+		<RemoveDir Directories="@(PrepareFolders_FoldersToDelete)" ContinueOnError="true" />
+		<MakeDir Directories="@(PrepareFolders_FoldersToDelete)" ContinueOnError="false" />
+	</Target>
+	<!-- Packages and publishes the freshly-built binaries to Artifacts. -->
+	<Target Name="Publish_Bin">
+		<!-- Pack the bin folder. -->
+		<ItemGroup>
+			<FilesToCompress Include="$(ProductBinariesDir)/*" />
+		</ItemGroup>
+		<!--
+    <Compress InputFiles="@(FilesToCompress)" OutputFile="$(Publish_ProductBinaries)" ToolPath="$(CompressToolPath)" />
+-->
+		<!-- TODO: Implement some kind of compression. -->
+	</Target>
+	<!-- Publishes the installers to Artifacts. -->
+	<Target Name="Publish_Msi">
+		<ItemGroup>
+			<MsiFiles Include="$(ProductBinariesDir)/*.msi" />
+		</ItemGroup>
+		<Copy SourceFiles="@(MsiFiles)" DestinationFolder="$(ArtifactsDir)" />
+	</Target>
+</Project>

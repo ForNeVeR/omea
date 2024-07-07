@@ -1,0 +1,15 @@
+/*
+SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+
+SPDX-License-Identifier: GPL-2.0-only
+*/
+div.summary
+{
+    margin: 0 0 0.5em 0;
+    padding: 0.5em;
+    width: 70%;
+    float: right;
+    font: normal 11px Tahoma;
+    background-color: #f5f5f1;
+    border: solid 1px #bdbaae;
+}

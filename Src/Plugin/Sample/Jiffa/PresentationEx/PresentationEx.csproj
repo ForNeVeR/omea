@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+
+SPDX-License-Identifier: GPL-2.0-only
+-->
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+	<PropertyGroup>
+		<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+		<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+		<ProjectGuid>{08DA82F8-3B36-42FA-93A4-7BFB42E8D1E1}</ProjectGuid>
+		<ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+		<RootNamespace>JetBrains.Omea.PresentationEx</RootNamespace>
+		<AssemblyName>PresentationEx</AssemblyName>
+		<WarningLevel>4</WarningLevel>
+		<OutputType>library</OutputType>
+		<ApplicationVersion>1.0.0.*</ApplicationVersion>
+		<!-- Most people will use Publish dialog in Visual Studio to increment this -->
+		<MinFrameworkVersionRequired>3.0</MinFrameworkVersionRequired>
+		<TargetFrameworkVersion>v3.0</TargetFrameworkVersion>
+		<FileUpgradeFlags></FileUpgradeFlags>
+		<UpgradeBackupLocation></UpgradeBackupLocation>
+		<OldToolsVersion>2.0</OldToolsVersion>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+		<DebugSymbols>true</DebugSymbols>
+		<DebugType>full</DebugType>
+		<Optimize>false</Optimize>
+		<OutputPath>.\bin\Debug\</OutputPath>
+		<DefineConstants>DEBUG;TRACE</DefineConstants>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+		<DebugSymbols>false</DebugSymbols>
+		<Optimize>true</Optimize>
+		<OutputPath>.\bin\Release\</OutputPath>
+		<DefineConstants>TRACE</DefineConstants>
+	</PropertyGroup>
+	<ItemGroup>
+		<Reference Include="GUIControls, Version=1.0.2494.36884, Culture=neutral">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>C:\Program Files\Omea\GUIControls.dll</HintPath>
+		</Reference>
+		<Reference Include="JetBrainsShared, Version=1.0.2494.36850, Culture=neutral">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>C:\Program Files\Omea\JetBrainsShared.dll</HintPath>
+		</Reference>
+		<Reference Include="mscorlib" />
+		<Reference Include="OmniaMeaBase, Version=1.0.2494.36850, Culture=neutral">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>C:\Program Files\Omea\OmniaMeaBase.dll</HintPath>
+		</Reference>
+		<Reference Include="OpenAPI, Version=1.0.2494.36849, Culture=neutral">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>C:\Program Files\Omea\OpenAPI.dll</HintPath>
+		</Reference>
+		<Reference Include="System" />
+		<Reference Include="System.Data" />
+		<Reference Include="System.Xml" />
+		<Reference Include="WindowsBase" />
+		<Reference Include="PresentationCore" />
+		<Reference Include="PresentationFramework" />
+		<Reference Include="UIAutomationProvider" />
+		<Reference Include="UIAutomationTypes" />
+		<Reference Include="ReachFramework" />
+		<Reference Include="System.Printing" />
+		<Reference Include="System.ServiceModel" />
+		<Reference Include="System.Runtime.Serialization" />
+		<Reference Include="System.IdentityModel" />
+	</ItemGroup>
+	<ItemGroup>
+		<Page Include="Scheduller\TaskPicker.xaml">
+			<Generator>MSBuild:Compile</Generator>
+			<SubType>Designer</SubType>
+		</Page>
+		<Page Include="Scheduller\TaskPickerWindow.xaml">
+			<Generator>MSBuild:Compile</Generator>
+			<SubType>Designer</SubType>
+		</Page>
+		<Page Include="UserControl1.xaml">
+			<Generator>MSBuild:Compile</Generator>
+			<SubType>Designer</SubType>
+		</Page>
+		<Compile Include="UserControl1.xaml.cs">
+			<DependentUpon>UserControl1.xaml</DependentUpon>
+			<SubType>Code</SubType>
+		</Compile>
+	</ItemGroup>
+	<ItemGroup>
+		<Compile Include="Properties\AssemblyInfo.cs" />
+		<EmbeddedResource Include="Properties\Resources.resx">
+			<Generator>ResXFileCodeGenerator</Generator>
+			<SubType>Designer</SubType>
+			<LastGenOutput>Resources.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<None Include="Properties\Settings.settings">
+			<Generator>SettingsSingleFileGenerator</Generator>
+			<LastGenOutput>Settings.Designer.cs</LastGenOutput>
+		</None>
+		<Compile Include="Properties\Resources.Designer.cs">
+			<AutoGen>True</AutoGen>
+			<DesignTime>True</DesignTime>
+			<DependentUpon>Resources.resx</DependentUpon>
+		</Compile>
+		<Compile Include="Properties\Settings.Designer.cs">
+			<AutoGen>True</AutoGen>
+			<DesignTimeSharedInput>True</DesignTimeSharedInput>
+			<DependentUpon>Settings.settings</DependentUpon>
+		</Compile>
+		<Compile Include="Scheduller\TaskPicker.xaml.cs">
+			<SubType>Code</SubType>
+			<DependentUpon>TaskPicker.xaml</DependentUpon>
+		</Compile>
+		<Compile Include="Scheduller\TaskPickerWindow.xaml.cs">
+			<SubType>Code</SubType>
+			<DependentUpon>TaskPickerWindow.xaml</DependentUpon>
+		</Compile>
+		<AppDesigner Include="Properties\" />
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\CoreServicesEx\CoreServicesEx.csproj">
+			<Project>{8CF829FE-DE3F-4C32-927E-BFC0D8E6FA3B}</Project>
+			<Name>CoreServicesEx</Name>
+		</ProjectReference>
+		<ProjectReference Include="..\OpenApiEx\OpenApiEx.csproj">
+			<Project>{46273DE6-E4C5-4933-A82F-409F50AF944E}</Project>
+			<Name>OpenApiEx</Name>
+		</ProjectReference>
+	</ItemGroup>
+	<Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+</Project>

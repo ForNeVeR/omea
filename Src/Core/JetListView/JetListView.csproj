@@ -1,0 +1,234 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+
+SPDX-License-Identifier: GPL-2.0-only
+-->
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+	<PropertyGroup>
+		<ProjectType>Local</ProjectType>
+		<ProductVersion>9.0.21022</ProductVersion>
+		<SchemaVersion>2.0</SchemaVersion>
+		<ProjectGuid>{F143C8CF-F540-4CEE-9D6B-48F583A3B955}</ProjectGuid>
+		<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+		<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+		<AssemblyName>JetListView</AssemblyName>
+		<DefaultClientScript>JScript</DefaultClientScript>
+		<DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+		<DefaultTargetSchema>IE50</DefaultTargetSchema>
+		<DelaySign>false</DelaySign>
+		<OutputType>Library</OutputType>
+		<RootNamespace>JetBrains.JetListViewLibrary</RootNamespace>
+		<RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+		<OldToolsVersion>2.0</OldToolsVersion>
+		<ProductHomeDir>$(MSBuildProjectDirectory)/../../..</ProductHomeDir>
+		<TargetFrameworkVersion>v3.0</TargetFrameworkVersion>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+		<AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+		<BaseAddress>285212672</BaseAddress>
+		<CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+		<DefineConstants>DEBUG;TRACE</DefineConstants>
+		<DebugSymbols>true</DebugSymbols>
+		<FileAlignment>4096</FileAlignment>
+		<NoStdLib>false</NoStdLib>
+		<Optimize>false</Optimize>
+		<RegisterForComInterop>false</RegisterForComInterop>
+		<RemoveIntegerChecks>false</RemoveIntegerChecks>
+		<TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+		<WarningLevel>4</WarningLevel>
+		<DebugType>full</DebugType>
+		<ErrorReport>prompt</ErrorReport>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+		<AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+		<BaseAddress>285212672</BaseAddress>
+		<CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+		<DefineConstants>TRACE</DefineConstants>
+		<DebugSymbols>false</DebugSymbols>
+		<FileAlignment>4096</FileAlignment>
+		<NoStdLib>false</NoStdLib>
+		<Optimize>true</Optimize>
+		<RegisterForComInterop>false</RegisterForComInterop>
+		<RemoveIntegerChecks>false</RemoveIntegerChecks>
+		<TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+		<WarningLevel>4</WarningLevel>
+		<DebugType>none</DebugType>
+		<ErrorReport>prompt</ErrorReport>
+	</PropertyGroup>
+	<ItemGroup>
+		<Reference Include="nunit.framework">
+			<Name>nunit.framework</Name>
+			<HintPath>../../../Lib/References/nunit.framework.dll</HintPath>
+		</Reference>
+		<Reference Include="System">
+			<Name>System</Name>
+		</Reference>
+		<Reference Include="System.Data">
+			<Name>System.Data</Name>
+		</Reference>
+		<Reference Include="System.Drawing">
+			<Name>System.Drawing</Name>
+		</Reference>
+		<Reference Include="System.Windows.Forms">
+			<Name>System.Windows.Forms</Name>
+		</Reference>
+		<Reference Include="System.Xml">
+			<Name>System.XML</Name>
+		</Reference>
+		<ProjectReference Include="../JetBrainsShared/JetBrainsShared.csproj">
+			<Project>{5133BE57-1BE8-4C82-BA5E-ADA6CFA0AA8B}</Project>
+			<Name>JetBrainsShared</Name>
+		</ProjectReference>
+		<ProjectReference Include="../OmniaMeaBase/OmniaMeaBase.csproj">
+			<Name>OmniaMeaBase</Name>
+			<Project>{C77A02EC-E116-44B9-8FF2-85637FA405B7}</Project>
+			<Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+		</ProjectReference>
+		<ProjectReference Include="../SpHeader/SpHeader.csproj">
+			<Name>SpHeader</Name>
+			<Project>{095A65E9-D852-420E-A1AD-DD795916D5A6}</Project>
+			<Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+		</ProjectReference>
+		<ProjectReference Include="..\Interop.WinApi\Interop.WinApi.csproj">
+			<Project>{3F0FF59D-9EEB-407E-8DD5-7DE159ABBC35}</Project>
+			<Name>Interop.WinApi</Name>
+		</ProjectReference>
+	</ItemGroup>
+	<ItemGroup>
+		<Compile Include="AutoPreviewRowRenderer.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="CheckBoxColumn.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="ControlMethodInvoker.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="DefaultControlPainter.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="DefaultGroupRenderer.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="EventHandlers.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="GdiControlPainter.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="IncrementalSearcher.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="InPlaceTextEditor.cs">
+			<SubType>Component</SubType>
+		</Compile>
+		<Compile Include="ItemToolTip.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="JetListView.cs">
+			<SubType>Component</SubType>
+		</Compile>
+		<Compile Include="JetListViewColumn.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="JetListViewColumnCollection.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="JetListViewFilterCollection.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="JetListViewNode.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="JetListViewNodeCollection.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="JetListViewNodeMap.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="JetListViewPreviewColumn.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="MultiLineColumnScheme.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="MultiLineRowRenderer.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="MultipleSelectionModel.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="NodeEnumerators.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="NodeGroupCollection.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="RowListRenderer.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="RowRendererBase.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="SelectionModel.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="SingleLineRowRenderer.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="SingleSelectionModel.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Tests\AutoPreviewRowRendererTests.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Tests\IncrementalSearchTests.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Tests\JetListViewTests.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Tests\MockColumnSchemeProvider.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Tests\MockControlPainter.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Tests\MockJetListViewColumn.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Tests\MockRowRenderer.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Tests\MultiLineRowRendererTests.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Tests\NodeCollectionTests.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Tests\NodeGroupCollectionTests.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Tests\RowListRendererTest.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Tests\SelectionModelTests.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Tests\SingleLineRowRendererTests.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="TreeStructureColumn.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<EmbeddedResource Include="Images.resources" />
+		<EmbeddedResource Include="JetListView.resx">
+			<DependentUpon>JetListView.cs</DependentUpon>
+			<SubType>Designer</SubType>
+		</EmbeddedResource>
+	</ItemGroup>
+	<Import Project="$(ProductHomeDir)/Build/Product.BeforeMicrosoftCommon.Targets" />
+	<Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+	<Import Project="$(ProductHomeDir)/Build/Product.AfterMicrosoftCommon.Targets" />
+</Project>

@@ -1,0 +1,150 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--
+SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+
+SPDX-License-Identifier: GPL-2.0-only
+-->
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+    <title>Notify Me</title>
+    <meta http-equiv="content-type" content="text/html" charset="windows-1252" />
+    <meta name="copyright" content="Copyright (c)2004 JetBrains, Inc." />
+    <meta name="topic-check-list" content="Added To TOC" />
+    <link rel="StyleSheet" href="../help.css" />
+</head>
+
+<body>
+
+<!-- Conditional Headers -->
+<div style="x-condition: PRO;">
+	<div id="helpHeader">
+		<div id="helpHeaderImg"></div>
+		<p class="helpHeader">Omea Help: Organizing: Notify Me</p>
+	</div>
+</div>
+
+<div style="x-condition: READER;">
+	<div id="helpHeader">
+		<div id="helpHeaderImg"></div>
+		<p class="helpHeader">Omea Reader Help: Organizing: Notify Me</p>
+	</div>
+</div>
+
+
+<div id="mainContent">
+   <h1>Using &quot;Notify Me&quot; Notifications and Desktop Alerts </h1>
+	<p><em>Notify Me</em> is another useful <span style="x-condition: READER;">Omea Reader&#146;s </span>
+	<span style="x-condition: PRO;">Omea Pro&#146;s</span> organizational tools. With it, you can set up notifications
+	of various kinds for incoming resources. For example, you might set up a notification that triggers when
+	<span style="x-condition: PRO;">you receive e-mail from your boss.</span>
+	<span style="x-condition: READER;"> a particular person posts to a newsgroup.</span></p>
+
+	<p>Notify Me notifications are really just <a href="using_rules.html">Rules</a>. The Notify Me feature merely provides
+	a quick way to set up Rules that notify you when certain things happen. You can set up Notify Me notifications for:</p>
+	<ul>
+		<li style="x-condition: PRO;"><strong>E-mail:</strong> you can be notified when mail is received from a particular sender</li>
+		<li><strong>Newsgroup articles:</strong> you can be notified when a particular person posts to a newsgroup, and/or when a post occurs in a particular thread.</li>
+		<li><strong>Feeds posts:</strong> you can be notified for example when new articles appear in a particular feed.</li>
+		<li><strong>Contacts:</strong> You can be notified when anything arrives from a particular Contact.</li>
+	</ul>
+
+	<h2>Creating Notifications</h2>
+	<p>This section describes how to create a Notify Me notification for different resource types.</p>
+
+	<div style="x-condition: PRO;">
+	   <h3>E-mail Messages</h3>
+	   <div class="proc">
+	      <p class="procHead">To create a Notify Me notification for e-mails:</p>
+	      <ol>
+	         <li>Go to the Items List in the Mail tab.</li>
+	         <li>Locate a message from the correspondent you want to be notified about when mail arrives from him/her.</li>
+	         <li>Select the message and choose <strong>Tools | Notify Me</strong>  on the main menu, or <strong>Notify Me on the context menu of the message.</strong>
+			      <br />
+		       The <strong>Notify Me</strong> dialog appears.<br />
+				   <img src="../images/sshots/pro/notifyme_email.png" height="199" width="392" alt="Notify Me (e-mail)" />
+		    <p class="caption">Notify Me dialog for e-mail</p></li>
+			   <li>Check one or more of the notification options, supplying any necessary information they require.</li>
+			   <p style="margin-top: 12px;">The Notify Me rule is created and activated when you click OK to close the dialog.</p>
+	      </ol>
+	   </div>
+	</div>
+
+	<h3>Newsgroup Articles</h3>
+	<div class="proc">
+	   <p class="procHead">To create a Notify Me notification for newsgroup articles:</p>
+	   <ol>
+	      <li>Go to the Items List in the News tab.</li>
+	      <li>Locate an article posted by the correspondent you want to be notified about when mail arrives from him/her.</li>
+			<li>If you want to be notified about both correspondent and thread, select a post by the correspondent in the relevant thread.</li>
+	      <li>Choose <strong>Tools | Notify Me</strong>  on the main menu, or <strong>Notify Me on the context menu of the article.</strong>
+			   The Notify Me dialog appears.<br />
+				<img src="../images/sshots/shared/notifyme_newsgroup.png" height="227" width="392" alt="Notify Me (newsgroup)" />
+				<p class="caption">Notify Me dialog for a threaded newsgroup article</p></li>
+			<li>Check one or more of the notification options, supplying any necessary information they require.</li>
+			<p style="margin-top: 12px;">The Notify Me rule is created and activated when you click OK to close the dialog.</p>
+	   </ol>
+	</div>
+
+	<h3>RSS/Atom Feeds</h3>
+	<div class="proc">
+	   <p class="procHead">To create a Notify Me notification for RSS/Atom Feeds:</p>
+	   <ol>
+	      <li>Select the feed in the Feeds pane.</li>
+	      <li>Right-click and choose <strong>Notify Me</strong> on the context menu of the feed.</strong>
+			   The Notify Me dialog appears.<br />
+				<img src="../images/sshots/shared/notifyme_feed.png" height="199" width="392" alt="Notify Me (feeds)" />
+				<p class="caption">Notify Me dialog for an RSS or Atom feed </p></li>
+			<li>Check one or more of the notification options, supplying any necessary information they require.</li>
+			<p style="margin-top: 12px;">The Notify Me rule is created and activated when you click OK to close the dialog.</p>
+			<p style="margin-top: 12px;">Here is an example of creating a notification rule for a feed and how the notification message can look.</p>
+	        <p style="margin-top: 12px;"><img src="../images/sshots/shared/notify_me.png" alt="Notify Me rule and alert window example" width="700" height="800" /></p>
+	        <p class="caption" style="margin-top: 12px;">Notify Me rule and alert window example</p>
+	   </ol>
+	</div>
+
+	<h3>Contacts</h3>
+	<div class="proc">
+	   <p class="procHead">To create a Notify Me notification for a Contact:</p>
+	   <ol>
+	      <li>Go to the Items List in the Contacts tab.</li>
+	      <li>Locate the Contact you want to be notified about when items arrive from him/her. Select the Contact in the list.</li>
+			<li>Choose <strong>Tools | Notify Me</strong> on the main menu, or <strong>Notify Me on the context menu of the article.</strong>
+			   The Notify Me dialog appears.<br />
+				<img src="../images/sshots/shared/notifyme_contact.png" height="199" width="392" alt="Notify Me (contact)" />
+				<p class="caption">Notify Me dialog for a Contact</p></li>
+			<li>Check one or more of the notification options, supplying any necessary information they require.</li>
+			<p style="margin-top: 12px;">The Notify Me rule is created and activated when you click OK to close the dialog.</p>
+	  </ol>
+	</div>
+
+<h2>Modifying &quot;Notify Me&quot; Notifications</h2>
+  <p>As previously mentioned, Notify Me notifications are Rules. Therefore, you can use the <a href="../reference/manage_rules.html">Rules Manager</a> to deactivate,
+   modify, or delete a Notify Me notification or create a copy of the notification. </p>
+  <p>Notify Me notifications begin with <em>Notify Me:</em></p>
+  <img src="../images/sshots/shared/rules_manager_notifyme.png" width="356" height="320" alt="Notify Me rules in Rules Manager"a/>
+	<p class="caption">&quot;Notify Me&quot; Rules Manager dialog</p>
+	<p>Just select the desired Notify Me rule in the list of available rules and press the  button in the right area of the Manage Rules dialog. For more information, see <a href="using_rules.html">Organizing using Rules</a>.</p>
+	<a name="alerts"></a>
+	<h2>Customizing Desktop Alerts</h2>
+	<p>When you specify a notification rule, you can optionally check the <em>Show desktop alert</em> option. When this option is checked, and other conditions specified in the notification rule are met, an alert window displaying the heading of new message and other information appear in the lower-right corner of your screen. </p>
+	<p>You can customize the duration of displaying a desktop alert and change the background color of the desktop alert message in the <a href="../reference/general.html">General options dialog</a>. </p>
+	<div id="seealso">
+      <p class="seealso"><strong>See also:</strong></p>
+      <ul>
+        <li class="seealso"><a href="organizing_using_categories.html">Organizing with Categories</a></li>
+        <li class="seealso"><a href="organizing_using_views.html">Organizing with Views</a></li>
+        <li class="seealso"><a href="organizing_using_workspaces.html">Organizing with Workspaces</a></li>
+        <li class="seealso"><a href="organizing_using_links.html">Organizing with Links</a></li>
+        <li class="seealso" style="x-condition: PRO;"><a href="organizing_using_tasks.html">Organizing with Tasks (To Do)</a></li>
+      </ul>
+  </div>
+	<p>&nbsp;</p>
+</div>
+
+</body>
+<!-- Conditional Text & Build Tags complete! 17 Sep 2004 -->
+<!-- LAST SPELLCHECK: 27 Sep 2004 -->
+</html>

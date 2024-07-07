@@ -1,0 +1,174 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--
+SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+
+SPDX-License-Identifier: GPL-2.0-only
+-->
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>Select Rule Actions Dialog</title>
+    <meta http-equiv="content-type" content="text/html" charset="windows-1252" />
+    <meta name="copyright" content="Copyright (c)2004 JetBrains, Inc." />
+    <meta name="topic-check-list" content="Added To TOC" />
+    <link rel="StyleSheet" type="text/css" href="../help.css" />
+
+    <style>
+	    h3 {
+	    	margin-left: 24px;
+	    }
+		 table {
+		 	width: 95%;
+		 }
+		 td {
+		 	vertical-align: top;
+		 }
+		th.name, td.name {
+		 	width: 30%;
+		 }
+		 th.descr, td.descr {
+		 	width: 70%;
+		 }
+	 </style>
+
+</head>
+
+<body>
+<!-- Conditional Headers -->
+<div style="x-condition: PRO;">
+	<div id="helpHeader">
+		<div id="helpHeaderImg"></div>
+		<p class="helpHeader">Omea Pro Help: Reference: Rule Actions</p>
+	</div>
+</div>
+
+<div style="x-condition: READER;">
+	<div id="helpHeader">
+		<div id="helpHeaderImg"></div>
+		<p class="helpHeader">Omea Reader Help: Reference: Rule Actions</p>
+	</div>
+</div>
+
+
+<div id="mainContent">
+
+<h1>Select Rule Actions Dialog</h1>
+<p class="opt">You can access this dialog from the <a href="new_edit_rule.html">New/Edit Rule dialog</a>: Actions field: <strong>Add</strong> button</p>
+
+<p>The Rule Action(s) dialog enables you to select one or more actions for a Rule to implement when its Conditions and
+Exceptions are satisfied.</p>
+
+<p>Note that not all the Actions documented in this topic are present in the dialog at all times. Some are dependent
+on the product version you have, and some may not be applicable depending on the rule Conditions and Exceptions.</p>
+
+<img src="../images/sshots/dialogs/pro/select_rule_actions.png" height="462" width="301" alt="Select Rule Actions dialog (Omea Pro version)" />
+<p class="caption">The Select Rule Actions dialog (Omea Pro version shown)</p>
+
+<h2>Actions</h2>
+<p>Though majority of actions are self-explanatory, some of them may require additional comments.</p>
+<table>
+   <tr>
+      <th class="name">Action</th>
+      <th class="descr">Comments</th>
+  </tr>
+  <tr>
+    <td valign="top">Add a messages&#8217; contact to an Address Book </td>
+    <td valign="top">This action adds a contact of the contact of the message you have currently selected to the Address Book which you specify in the <strong>Select Address Book</strong> dialog</td>
+  </tr>
+  <tr>
+    <td valign="top">Assign category to an author of a message </td>
+    <td valign="top">This action calls the <strong>Select Category</strong> dialog in which you can select the desired Category when the applicable criteria are met</td>
+  </tr>
+  <tr>
+    <td valign="top">Assign specified category</td>
+    <td valign="top">When applicable criteria are met, this action files the found resource(s) in the Category(ies) you specify after selecting this action in the dialog</td>
+  </tr>
+
+  <tr style="x-condition: PRO;">
+    <td valign="top">Attach to Task(s)</td>
+    <td valign="top">When applicable criteria are met, this action attaches the found resource(s) to the Task(s) you specify after selecting this action in the dialog</td>
+  </tr>
+<tr style="x-condition: PRO;">
+    <td valign="top">Copy e-mail to Outlook folder</td>
+    <td valign="top">When applicable criteria are met, this action copies the incoming e-mails will be moved to the Outlook folder which you specify in the <strong>Select Outlook Folder</strong> dialog</td>
+  </tr>
+  <tr style="x-condition: PRO;">
+    <td valign="top">Create Task</td>
+    <td valign="top">When applicable criteria are met, this action creates a new Task with the parameters that you specify</td>
+  </tr>
+  <tr  style="x-condition: PRO;">
+    <td valign="top">Delete e-mail</td>
+    <td valign="top">When applicable criteria are met, this action deletes one or more e-mail messages.</td>
+  </tr>
+  <tr>
+    <td valign="top">Delete resource</td>
+    <td valign="top">When applicable criteria are met, the resource is deleted to the <strong>Deleted Resources</strong> folder of the <strong>View and Categories</strong> pane</td>
+  </tr>
+  <tr>
+    <td valign="top">Delete resource permanently</td>
+    <td valign="top">When applicable criteria are met, the resource is deleted from your system </td>
+  </tr>
+<tr>
+    <td valign="top">Display message box with text</td>
+    <td valign="top">When applicable criteria are met, this action pops up a message box displaying the texts you specify after selecting this action in the dialog</td>
+  </tr>
+  <tr>
+    <td valign="top">Download enclosures</td>
+    <td valign="top">When applicable criteria are met, this action initiates the download of enclosures in the specified feed</td>
+  </tr>
+  <tr>
+    <td valign="top">Mark resource as read</td>
+    <td valign="top">This action marks any message found by applicable criteria as read</td>
+  </tr>
+  <tr>
+    <td valign="top">Mark resource as unread</td>
+    <td valign="top">This action marks any message found by applicable criteria as unread</td>
+  </tr>
+  <tr>
+    <td valign="top">Mark resource with flag</td>
+    <td valign="top">When applicable criteria are met, this action marks the found message(s) with a flag which you specify after selecting this action in the dialog</td>
+  </tr>
+  <tr>
+    <td valign="top">Mark resource as important</td>
+    <td valign="top">When applicable criteria are met, this marks the received e-mail messages or other resource types as important (puts an exclamation note for the appropriate resource in the resource list) </td>
+  </tr>
+  <tr style="x-condition: PRO;">
+    <td valign="top">Move e-mail to Outlook folder</td>
+    <td valign="top">When applicable criteria are met, this action moves the found e-mail messages to the Outlook folder you specify after selecting this action in the dialog.</td>
+  </tr>
+<tr>
+    <td valign="top">Play sound from file</td>
+    <td valign="top">When applicable criteria are met, this action plays a sound file which you specify.</td>
+  </tr>
+  <tr>
+    <td valign="top">Run application file</td>
+    <td valign="top">When applicable criteria are met, this action runs the application executable file you specify after selecting this action in the dialog.</td>
+  </tr>
+  <tr>
+    <td valign="top">Show as plain text</td>
+    <td valign="top">When applicable criteria are met, this action strips any HTML or other markup from a resource as
+	 displays its content as plain text.</td>
+  </tr>
+  <tr>
+    <td valign="top">Show desktop alert</td>
+    <td valign="top">This action briefly pops up an alert box from the Windows task bar when the applicable criteria are met.</td>
+  </tr>
+
+
+</table>
+
+
+   <div id="seealso">
+		<p class="seealso"><strong>See also:</strong></p>
+		<ol>
+			<li class="kadov-p"><a href="../organizing/using_rules.html">Using Rules</a></li>
+			<li class="kadov-p"><a href="manage_rules.html">Manage Rules Dialog</a></li>
+			<li class="kadov-p"><a href="new_edit_rule.html">New Action Rule /Edit Action Rule Dialog</a></li>
+		</ol>
+  </div>
+
+</div>
+</body>
+
+</html>

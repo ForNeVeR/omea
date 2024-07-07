@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+
+SPDX-License-Identifier: GPL-2.0-only
+-->
+<xs:schema id="AllAssemblies" targetNamespace="urn:shemas-jetbrains-com:omea-all-assemblies" elementFormDefault="qualified" xmlns="urn:shemas-jetbrains-com:omea-all-assemblies" xmlns:mstns="urn:shemas-jetbrains-com:omea-all-assemblies" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="Project" type="AllAssembliesXml" />
+
+	<xs:complexType name="AllAssembliesXml">
+		<xs:sequence>
+			<xs:element name="ItemGroup" maxOccurs="unbounded" minOccurs="1" type="ItemGroupXml" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="ItemGroupXml">
+		<xs:sequence minOccurs="0" maxOccurs="unbounded">
+			<xs:element name="AllAssemblies" maxOccurs="unbounded" minOccurs="0" type="AssemblyXml">
+			</xs:element>
+			<xs:element name="References" type="ReferenceXml" maxOccurs="unbounded" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="AssemblyXml">
+		<xs:sequence>
+			<xs:element name="MsiGuid" type="xs:string" maxOccurs="1" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation>A GUID for the component that owns this assembly file in the MSI database. Must be unique. Just generate any GUID for each of the assemblies, and better not change them afterwards.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ComRegister" type="xs:boolean" default="false" maxOccurs="1" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Whether to register the assembly as a COM server. The information is harvested and added into the MSI database for a data-driven installation.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="HasAppConfig" type="xs:boolean" maxOccurs="1" minOccurs="0" default="false">
+				<xs:annotation>
+					<xs:documentation>Specifies that a .config file MUST be present for the assembly, and will be added to the MSI database.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="HasMainfest" type="xs:boolean" maxOccurs="1" minOccurs="0" default="false">
+				<xs:annotation>
+					<xs:documentation>Specifies that a .manifest file MUST be present for the assembly, and will be added to the MSI database.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="HasXmlSerializers" type="xs:boolean" maxOccurs="1" minOccurs="0" default="false">
+				<xs:annotation>
+					<xs:documentation>Specifies that a satellite assembly with XML Serializers file MUST be present for the assembly, and will be added to the MSI database.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="Include" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>The standard MSBuild ITaskItem's “Include” item spec. In our case, specifies the assembly name (normally, the file name but for the extension).</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="ReferenceXml">
+		<xs:annotation>
+			<xs:documentation>Represents an application reference from the /Lib/References folder.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="MsiGuid" type="xs:string" maxOccurs="1" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation>A GUID for the component that owns this assembly file in the MSI database. Must be unique. Just generate any GUID for each of the assemblies, and better not change them afterwards.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="Include" type="xs:string" use="required" >
+			<xs:annotation>
+				<xs:documentation>The local file name of the item, including the extension.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+</xs:schema>

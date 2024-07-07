@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+
+SPDX-License-Identifier: GPL-2.0-only
+-->
+<feed version="0.3" xmlns="http://purl.org/atom/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xml:lang="en">
+	<title>mamamusings</title>
+	<link rel="alternate" type="text/html" href="http://mamamusings.net/&#xD;&#xA;&#x9;&#x9;" />
+	<modified>
+							2004-10-02T22:39:57Z
+
+		</modified>
+	<tagline>
+			elizabeth lane lawley's thoughts on technology, academia, family, and tangential topics
+		</tagline>
+	<id>
+			tag:mamamusings.net,2004://1
+		</id>
+	<generator url="http://www.movabletype.org/" version="3.01D">
+			Movable Type
+		</generator>
+	<copyright>
+							Copyright (c) 2004, liz
+
+		</copyright>
+	<entry>
+		<title>terrizm!</title>
+		<link rel="alternate" type="text/html" href="http://mamamusings.net/archives/2004/10/02/terrizm.php&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;" />
+		<modified>
+						2004-10-02T22:39:57Z
+					</modified>
+		<issued>
+						2004-10-02T17:39:35-05:00
+					</issued>
+		<id>
+						tag:mamamusings.net,2004://1.885
+					</id>
+		<created>
+						2004-10-02T22:39:35Z
+					</created>
+		<summary type="text/plain">
+						Via Joi, this excellent remix of Republican scare tactics. How do you run a convention on a record of failure? Play this movie to find out. (Joi has a mirror if the link above doesn&amp;#8217;t work.)...
+					</summary>
+		<author>
+			<name>
+							liz
+						</name>
+			<email>
+							ell@mamamusings.net
+						</email>
+		</author>
+		<dc:subject>
+							humor
+						</dc:subject>
+		<content type="text/html" mode="escaped" xml:lang="en" xml:base="http://mamamusings.net/&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;"><![CDATA[<p><a href="http://joi.ito.com/archives/2004/10/02/terizm_terizm_terizm.html">Via Joi</a>, this excellent remix of Republican scare tactics.</p>
+
+<p>How do you run a convention on a record of failure? Play this movie to find out.</p>
+
+<p><a href="http://home.earthlink.net/~houval/gopconstrm.mov"><img src="http://mamamusings.net/images/KeepingAmericaScared.jpg" height="267" width="330" border="0" hspace="4" vspace="4" alt="KeepingAmericaScared.jpg" title="KeepingAmericaScared.jpg" /></a></p>
+
+<p>(Joi has <a href="http://joi.ito.com/movies/gopconstrm.mov">a mirror</a> if the link above doesn&#8217;t work.)</p>]]></content>
+	</entry>
+</feed>

@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+
+SPDX-License-Identifier: GPL-2.0-only
+-->
+<VisualStudioProject ProjectType="Visual C++" Version="7.10" Name="IexploreOmea" ProjectGUID="{DCB30EC4-B0AD-4FF4-9476-C2382DB025E2}" SccProjectName="Perforce Project" SccAuxPath="" SccLocalPath="." SccProvider="MSSCCI:Perforce SCM" Keyword="AtlProj">
+	<Platforms>
+		<Platform Name="Win32" />
+	</Platforms>
+	<Configurations>
+		<Configuration Name="Debug|Win32" OutputDirectory="IexploreOmea Debug" IntermediateDirectory="IexploreOmea Debug Int" ConfigurationType="2" UseOfATL="1" ATLMinimizesCRunTimeLibraryUsage="FALSE" CharacterSet="1">
+			<Tool Name="VCCLCompilerTool" Optimization="0" PreprocessorDefinitions="JETIE_OMEA;WIN32;_WINDOWS;_DEBUG;_USRDLL;_ATL_ATTRIBUTES" MinimalRebuild="TRUE" BasicRuntimeChecks="3" RuntimeLibrary="1" UsePrecompiledHeader="3" WarningLevel="3" Detect64BitPortabilityProblems="TRUE" DebugInformationFormat="4" />
+			<Tool Name="VCCustomBuildTool" />
+			<Tool Name="VCLinkerTool" IgnoreImportLibrary="TRUE" OutputFile="$(OutDir)/IexploreOmea.dll" LinkIncremental="2" MergedIDLBaseFileName="_IexploreOmea.idl" GenerateDebugInformation="TRUE" SubSystem="2" ImportLibrary="$(OutDir)/IexploreOmea.lib" TargetMachine="1" />
+			<Tool Name="VCMIDLTool" PreprocessorDefinitions="_DEBUG" MkTypLibCompatible="FALSE" TargetEnvironment="1" GenerateStublessProxies="TRUE" TypeLibraryName="$(IntDir)/IexploreOmea.tlb" HeaderFileName="IexploreOmea.h" DLLDataFileName="" InterfaceIdentifierFileName="IexploreOmea_i.c" ProxyFileName="IexploreOmea_p.c" />
+			<Tool Name="VCPostBuildEventTool" Description="Performing registration" CommandLine="$(ProjectDir)CopyRandom &quot;$(TargetPath)&quot;" />
+			<Tool Name="VCPreBuildEventTool" />
+			<Tool Name="VCPreLinkEventTool" />
+			<Tool Name="VCResourceCompilerTool" PreprocessorDefinitions="JETIE_OMEA;_DEBUG" Culture="1049" AdditionalIncludeDirectories="$(IntDir)" />
+			<Tool Name="VCWebServiceProxyGeneratorTool" />
+			<Tool Name="VCXMLDataGeneratorTool" />
+			<Tool Name="VCWebDeploymentTool" />
+			<Tool Name="VCManagedWrapperGeneratorTool" />
+			<Tool Name="VCAuxiliaryManagedWrapperGeneratorTool" />
+		</Configuration>
+		<Configuration Name="Release|Win32" OutputDirectory="IexploreOmea Release" IntermediateDirectory="IexploreOmea Release Int" ConfigurationType="2" UseOfATL="1" ATLMinimizesCRunTimeLibraryUsage="FALSE" CharacterSet="1" WholeProgramOptimization="TRUE">
+			<Tool Name="VCCLCompilerTool" Optimization="1" GlobalOptimizations="TRUE" InlineFunctionExpansion="2" FavorSizeOrSpeed="2" PreprocessorDefinitions="JETIE_OMEA;WIN32;_WINDOWS;NDEBUG;_USRDLL;_ATL_ATTRIBUTES;_TRACE" ExceptionHandling="TRUE" RuntimeLibrary="0" BufferSecurityCheck="FALSE" ForceConformanceInForLoopScope="FALSE" RuntimeTypeInfo="TRUE" UsePrecompiledHeader="3" WarningLevel="3" Detect64BitPortabilityProblems="TRUE" DebugInformationFormat="0" />
+			<Tool Name="VCCustomBuildTool" />
+			<Tool Name="VCLinkerTool" IgnoreImportLibrary="TRUE" OutputFile="$(OutDir)/IexploreOmea.dll" LinkIncremental="1" MergedIDLBaseFileName="_IexploreOmea.idl" GenerateDebugInformation="FALSE" SubSystem="2" OptimizeReferences="2" EnableCOMDATFolding="2" OptimizeForWindows98="1" SetChecksum="TRUE" ImportLibrary="$(OutDir)/IexploreOmea.lib" TargetMachine="1" />
+			<Tool Name="VCMIDLTool" PreprocessorDefinitions="NDEBUG" MkTypLibCompatible="FALSE" TargetEnvironment="1" GenerateStublessProxies="TRUE" TypeLibraryName="$(IntDir)/IexploreOmea.tlb" HeaderFileName="IexploreOmea.h" DLLDataFileName="" InterfaceIdentifierFileName="IexploreOmea_i.c" ProxyFileName="IexploreOmea_p.c" />
+			<Tool Name="VCPostBuildEventTool" Description="Performing registration" CommandLine="$(ProjectDir)CopyRandom &quot;$(TargetPath)&quot;" />
+			<Tool Name="VCPreBuildEventTool" />
+			<Tool Name="VCPreLinkEventTool" />
+			<Tool Name="VCResourceCompilerTool" PreprocessorDefinitions="JETIE_OMEA;NDEBUG" Culture="1049" AdditionalIncludeDirectories="$(IntDir)" />
+			<Tool Name="VCWebServiceProxyGeneratorTool" />
+			<Tool Name="VCXMLDataGeneratorTool" />
+			<Tool Name="VCWebDeploymentTool" />
+			<Tool Name="VCManagedWrapperGeneratorTool" />
+			<Tool Name="VCAuxiliaryManagedWrapperGeneratorTool" />
+		</Configuration>
+	</Configurations>
+	<References></References>
+	<Files>
+		<Filter Name="Source Files" Filter="cpp;c;cxx;def;odl;idl;hpj;bat;asm;asmx" UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}">
+			<File RelativePath=".\IexploreOmea\AboutDlg.cpp"></File>
+			<File RelativePath=".\IexploreOmea\OmeaApplication.cpp"></File>
+			<File RelativePath=".\IexploreOmea\OmeaHelper.cpp"></File>
+			<File RelativePath=".\IexploreOmea\OmeaOptionsDialog.cpp"></File>
+			<File RelativePath=".\IexploreOmea\OmeaRequest.cpp"></File>
+			<File RelativePath=".\IexploreOmea\OmeaRequestQueue.cpp"></File>
+			<File RelativePath=".\IexploreOmea\OmeaSettingStore.cpp"></File>
+		</Filter>
+		<Filter Name="Header Files" Filter="h;hpp;hxx;hm;inl;inc;xsd" UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}">
+			<File RelativePath=".\IexploreOmea\AboutDlg.h"></File>
+			<File RelativePath=".\IexploreOmea\OmeaApplication.h"></File>
+			<File RelativePath=".\IexploreOmea\OmeaHelper.h"></File>
+			<File RelativePath=".\IexploreOmea\OmeaOptionsDialog.h"></File>
+			<File RelativePath=".\IexploreOmea\OmeaRequest.h"></File>
+			<File RelativePath=".\IexploreOmea\OmeaRequestQueue.h"></File>
+			<File RelativePath=".\IexploreOmea\OmeaSettingStore.h"></File>
+			<File RelativePath=".\IexploreOmea\Resource.h"></File>
+		</Filter>
+		<Filter Name="Resource Files" Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx" UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}">
+			<File RelativePath="IexploreOmea\Res\Annotate.Disabled.ico"></File>
+			<File RelativePath="IexploreOmea\Res\Annotate.Hot.ico"></File>
+			<File RelativePath="IexploreOmea\Res\Annotate.Normal.ico"></File>
+			<File RelativePath=".\IexploreOmea\AssemblyVersion.rc">
+				<FileConfiguration Name="Debug|Win32" ExcludedFromBuild="TRUE">
+					<Tool Name="VCResourceCompilerTool" />
+				</FileConfiguration>
+				<FileConfiguration Name="Release|Win32" ExcludedFromBuild="TRUE">
+					<Tool Name="VCResourceCompilerTool" />
+				</FileConfiguration>
+			</File>
+			<File RelativePath="IexploreOmea\Res\Clip.Disabled.ico"></File>
+			<File RelativePath="IexploreOmea\Res\Clip.Hot.ico"></File>
+			<File RelativePath="IexploreOmea\Res\Clip.Normal.ico"></File>
+			<File RelativePath="IexploreOmea\Res\ClipSilent.Disabled.ico"></File>
+			<File RelativePath="IexploreOmea\Res\ClipSilent.Hot.ico"></File>
+			<File RelativePath="IexploreOmea\Res\ClipSilent.Normal.ico"></File>
+			<File RelativePath=".\IexploreOmea\Res\IexploreOmea.ico"></File>
+			<File RelativePath="IexploreOmea\IexploreOmea.rc"></File>
+			<File RelativePath="IexploreOmea\Res\IexploreOmea.rgs"></File>
+			<File RelativePath=".\IexploreOmea\Res\OmeaUIActions.xml"></File>
+			<File RelativePath=".\IexploreOmea\Res\OmeaUIControls.xml"></File>
+			<File RelativePath=".\IexploreOmea\Res\rt_manif.bin"></File>
+			<File RelativePath=".\IexploreOmea\Res\Syndicate.Disabled.ico"></File>
+			<File RelativePath="IexploreOmea\Res\Syndicate.Hot.ico"></File>
+			<File RelativePath="IexploreOmea\Res\Syndicate.Normal.ico"></File>
+			<Filter Name="CMAH" Filter="">
+				<File RelativePath="IexploreOmea\Res\IDR_CMAH_1000.html"></File>
+				<File RelativePath="IexploreOmea\Res\IDR_CMAH_1001.html"></File>
+				<File RelativePath="IexploreOmea\Res\IDR_CMAH_1002.html"></File>
+				<File RelativePath="IexploreOmea\Res\IDR_CMAH_1003.html"></File>
+				<File RelativePath="IexploreOmea\Res\IDR_CMAH_1004.html"></File>
+				<File RelativePath="IexploreOmea\Res\IDR_CMAH_1005.html"></File>
+				<File RelativePath="IexploreOmea\Res\IDR_CMAH_1006.html"></File>
+				<File RelativePath="IexploreOmea\Res\IDR_CMAH_1007.html"></File>
+				<File RelativePath="IexploreOmea\Res\IDR_CMAH_1008.html"></File>
+				<File RelativePath="IexploreOmea\Res\IDR_CMAH_1009.html"></File>
+				<File RelativePath="IexploreOmea\Res\IDR_CMAH_1010.html"></File>
+				<File RelativePath="IexploreOmea\Res\IDR_CMAH_1011.html"></File>
+				<File RelativePath="IexploreOmea\Res\IDR_CMAH_1012.html"></File>
+				<File RelativePath="IexploreOmea\Res\IDR_CMAH_1013.html"></File>
+				<File RelativePath="IexploreOmea\Res\IDR_CMAH_1014.html"></File>
+				<File RelativePath="IexploreOmea\Res\IDR_CMAH_1015.html"></File>
+			</Filter>
+		</Filter>
+		<Filter Name="JetIe Common" Filter="">
+			<File RelativePath=".\ActionManager.cpp"></File>
+			<File RelativePath=".\ActionManager.h"></File>
+			<File RelativePath=".\Band.cpp"></File>
+			<File RelativePath=".\Band.h"></File>
+			<File RelativePath=".\CommonResource.h"></File>
+			<File RelativePath=".\CommonResource.rc">
+				<FileConfiguration Name="Debug|Win32" ExcludedFromBuild="TRUE">
+					<Tool Name="VCResourceCompilerTool" />
+				</FileConfiguration>
+				<FileConfiguration Name="Release|Win32" ExcludedFromBuild="TRUE">
+					<Tool Name="VCResourceCompilerTool" />
+				</FileConfiguration>
+			</File>
+			<File RelativePath=".\DialogAnchor.cpp"></File>
+			<File RelativePath=".\DialogAnchor.h"></File>
+			<File RelativePath=".\DynamicClassFactory.cpp"></File>
+			<File RelativePath=".\DynamicClassFactory.h"></File>
+			<File RelativePath=".\JetIe.cpp"></File>
+			<File RelativePath=".\JetIe.h"></File>
+			<File RelativePath=".\JetIeException.cpp"></File>
+			<File RelativePath=".\JetIeException.h"></File>
+			<File RelativePath=".\JetIePlugin.cpp"></File>
+			<File RelativePath=".\JetIePlugin.h"></File>
+			<File RelativePath=".\JetRpcClient.cpp"></File>
+			<File RelativePath=".\JetRpcClient.h"></File>
+			<File RelativePath=".\MainToolbarButton.cpp"></File>
+			<File RelativePath=".\MainToolbarButton.h"></File>
+			<File RelativePath="Res\pmNotify.ico"></File>
+			<File RelativePath="Res\pmStop.ico"></File>
+			<File RelativePath="Res\pmWarn.ico"></File>
+			<File RelativePath=".\PopupNotification.cpp"></File>
+			<File RelativePath=".\PopupNotification.h"></File>
+			<File RelativePath=".\SettingStore.cpp"></File>
+			<File RelativePath=".\SettingStore.h"></File>
+			<File RelativePath=".\stdafx.cpp">
+				<FileConfiguration Name="Debug|Win32">
+					<Tool Name="VCCLCompilerTool" UsePrecompiledHeader="1" />
+				</FileConfiguration>
+				<FileConfiguration Name="Release|Win32">
+					<Tool Name="VCCLCompilerTool" UsePrecompiledHeader="1" />
+				</FileConfiguration>
+			</File>
+			<File RelativePath=".\stdafx.h"></File>
+			<File RelativePath=".\StdAfxComHelper.h"></File>
+			<File RelativePath=".\Wrappers.cpp"></File>
+			<File RelativePath=".\Wrappers.h"></File>
+		</Filter>
+		<File RelativePath=".\IexploreOmea.build" FileType="13"></File>
+		<File RelativePath=".\IexploreOmea\Res\Manifest.xml"></File>
+	</Files>
+	<Globals>
+		<Global Name="RESOURCE_FILE" Value="IexploreOmea\IexploreOmea.rc" />
+	</Globals>
+</VisualStudioProject>

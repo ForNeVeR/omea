@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!--
+SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+
+SPDX-License-Identifier: GPL-2.0-only
+-->
+<?xml-stylesheet href="http://www.blogger.com/styles/atom.css" type="text/css"?>
+<feed version="0.3" xml:lang="en-US" xmlns="http://purl.org/atom/ns#">
+	<link href="http://www.blogger.com/atom/7519125" rel="service.post" title="Eric's Blog" type="application/atom+xml" />
+	<link href="http://www.blogger.com/atom/7519125" rel="service.feed" title="Eric's Blog" type="application/atom+xml" />
+	<title mode="escaped" type="text/html">Eric's Blog</title>
+	<tagline mode="escaped" type="text/html">Eric Burke's Personal weblog, mostly focusing on science and technology topics.</tagline>
+	<link href="http://www.ericburke.com/blog/" rel="alternate" title="Eric's Blog" type="text/html" />
+	<id>tag:blogger.com,1999:blog-7519125</id>
+	<modified>2004-10-24T03:19:51Z</modified>
+	<generator url="http://www.blogger.com/" version="5.15">Blogger</generator>
+	<info mode="xml" type="text/html">
+		<div xmlns="http://www.w3.org/1999/xhtml">This is an Atom formatted XML site feed. It is intended to be viewed in a Newsreader or syndicated to another site. Please visit the <a href="http://help.blogger.com/bin/answer.py?answer=697">Blogger Help</a> for more info.</div>
+	</info>
+	<entry xmlns="http://purl.org/atom/ns#">
+		<link href="http://www.blogger.com/atom/7519125/109858798981664705" rel="service.edit" title="JetBrains Omea Reader" type="application/atom+xml" />
+		<author>
+			<name>Eric</name>
+		</author>
+		<issued>2004-10-23T22:04:49-05:00</issued>
+		<modified>2004-10-24T03:19:49Z</modified>
+		<created>2004-10-24T03:19:49Z</created>
+		<link href="http://www.ericburke.com/blog/2004/10/jetbrains-omea-reader.html" rel="alternate" title="JetBrains Omea Reader" type="text/html" />
+		<id>tag:blogger.com,1999:blog-7519125.post-109858798981664705</id>
+		<title mode="escaped" type="text/html">JetBrains Omea Reader</title>
+		<summary type="application/xhtml+xml" xml:base="http://www.ericburke.com/blog/" xml:space="preserve">
+<div xmlns="http://www.w3.org/1999/xhtml">I truly love IntelliJ IDEA from JetBrains</div>
+</summary>
+	</entry>
+</feed>

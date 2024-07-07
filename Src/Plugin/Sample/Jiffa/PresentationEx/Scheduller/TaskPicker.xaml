@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+
+SPDX-License-Identifier: GPL-2.0-only
+-->
+<UserControl x:Class="JetBrains.Omea.PresentationEx.Scheduller.TaskPicker" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+	<DockPanel>
+		<DockPanel DockPanel.Dock="Top">
+			<TextBlock DockPanel.Dock="Left">Search:</TextBlock>
+			<TextBox TextChanged="OnSearchTextChanged" Name="SearchText"></TextBox>
+		</DockPanel>
+		<ListView Name="TaskList"></ListView>
+	</DockPanel>
+</UserControl>

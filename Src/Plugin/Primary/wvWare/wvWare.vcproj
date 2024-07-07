@@ -1,0 +1,222 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+
+SPDX-License-Identifier: GPL-2.0-only
+-->
+<VisualStudioProject ProjectType="Visual C++" Version="7.10" Name="wvWare" ProjectGUID="{7D6BB999-7E70-4508-9003-CE8E26F14C7C}" SccProjectName="Perforce Project" SccAuxPath="" SccLocalPath="." SccProvider="MSSCCI:Perforce SCM" Keyword="Win32Proj">
+	<Platforms>
+		<Platform Name="Win32" />
+	</Platforms>
+	<Configurations>
+		<Configuration Name="Debug|Win32" OutputDirectory="Debug" IntermediateDirectory="Debug" ConfigurationType="1" CharacterSet="2">
+			<Tool Name="VCCLCompilerTool" Optimization="0" AdditionalIncludeDirectories="&quot;C:\Src\libiconv-1.9.1\include&quot;;&quot;C:\Src\libpng-1.2.5&quot;;libole2;&quot;glib-wv&quot;;C:\Src\zlib\include;.;./expat/xmltok;./oledecod;./expat/xmlparse" PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE;DEBUG;HAVE_MMAP" MinimalRebuild="TRUE" BasicRuntimeChecks="3" RuntimeLibrary="2" BufferSecurityCheck="TRUE" UsePrecompiledHeader="0" WarningLevel="3" Detect64BitPortabilityProblems="TRUE" DebugInformationFormat="4" />
+			<Tool Name="VCCustomBuildTool" />
+			<Tool Name="VCLinkerTool" AdditionalDependencies="C:\Src\libiconv-1.9.1\lib\iconv.lib C:\Src\libpng-1.2.5\projects\msvc\win32\libpng\dll\libpng13.lib C:\Src\zlib\lib\zdll.lib" OutputFile="$(OutDir)/wvWare.exe" LinkIncremental="2" GenerateDebugInformation="TRUE" ProgramDatabaseFile="$(OutDir)/wvWare.pdb" SubSystem="1" TargetMachine="1" />
+			<Tool Name="VCMIDLTool" />
+			<Tool Name="VCPostBuildEventTool" />
+			<Tool Name="VCPreBuildEventTool" />
+			<Tool Name="VCPreLinkEventTool" />
+			<Tool Name="VCResourceCompilerTool" />
+			<Tool Name="VCWebServiceProxyGeneratorTool" />
+			<Tool Name="VCXMLDataGeneratorTool" />
+			<Tool Name="VCWebDeploymentTool" />
+			<Tool Name="VCManagedWrapperGeneratorTool" />
+			<Tool Name="VCAuxiliaryManagedWrapperGeneratorTool" />
+		</Configuration>
+		<Configuration Name="Release|Win32" OutputDirectory="Release" IntermediateDirectory="Release" ConfigurationType="1" CharacterSet="2">
+			<Tool Name="VCCLCompilerTool" AdditionalIncludeDirectories="&quot;C:\Src\libiconv-1.9.1\include&quot;;&quot;C:\Src\libpng-1.2.5&quot;;libole2;&quot;glib-wv&quot;;C:\Src\zlib\include;.;./expat/xmltok;./oledecod;./expat/xmlparse" PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE;HAVE_MMAP" RuntimeLibrary="2" UsePrecompiledHeader="0" WarningLevel="3" Detect64BitPortabilityProblems="TRUE" DebugInformationFormat="3" />
+			<Tool Name="VCCustomBuildTool" />
+			<Tool Name="VCLinkerTool" AdditionalDependencies="C:\Src\libiconv-1.9.1\lib\iconv.lib C:\Src\libpng-1.2.5\projects\msvc\win32\libpng\dll\libpng13.lib C:\Src\zlib\lib\zdll.lib" OutputFile="$(OutDir)/wvWare.exe" LinkIncremental="1" GenerateDebugInformation="TRUE" SubSystem="1" OptimizeReferences="2" EnableCOMDATFolding="2" TargetMachine="1" />
+			<Tool Name="VCMIDLTool" />
+			<Tool Name="VCPostBuildEventTool" />
+			<Tool Name="VCPreBuildEventTool" />
+			<Tool Name="VCPreLinkEventTool" />
+			<Tool Name="VCResourceCompilerTool" />
+			<Tool Name="VCWebServiceProxyGeneratorTool" />
+			<Tool Name="VCXMLDataGeneratorTool" />
+			<Tool Name="VCWebDeploymentTool" />
+			<Tool Name="VCManagedWrapperGeneratorTool" />
+			<Tool Name="VCAuxiliaryManagedWrapperGeneratorTool" />
+		</Configuration>
+	</Configurations>
+	<References></References>
+	<Files>
+		<Filter Name="Source Files" Filter="cpp;c;cxx;def;odl;idl;hpj;bat;asm;asmx" UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}">
+			<File RelativePath=".\anld.c"></File>
+			<File RelativePath=".\anlv.c"></File>
+			<File RelativePath=".\asumy.c"></File>
+			<File RelativePath=".\asumyi.c"></File>
+			<File RelativePath=".\atrd.c"></File>
+			<File RelativePath=".\basename.c"></File>
+			<File RelativePath=".\bintree.c"></File>
+			<File RelativePath=".\bkd.c"></File>
+			<File RelativePath=".\bkf.c"></File>
+			<File RelativePath=".\bkl.c"></File>
+			<File RelativePath=".\blip.c"></File>
+			<File RelativePath=".\bmptopng.c"></File>
+			<File RelativePath=".\brc.c"></File>
+			<File RelativePath=".\bte.c"></File>
+			<File RelativePath=".\bx.c"></File>
+			<File RelativePath=".\chp.c"></File>
+			<File RelativePath=".\clx.c"></File>
+			<File RelativePath=".\crc32.c"></File>
+			<File RelativePath=".\crc32.h"></File>
+			<File RelativePath=".\dcs.c"></File>
+			<File RelativePath=".\decode_complex.c"></File>
+			<File RelativePath=".\decode_simple.c"></File>
+			<File RelativePath=".\decompresswmf.c"></File>
+			<File RelativePath=".\decrypt95.c"></File>
+			<File RelativePath=".\decrypt97.c"></File>
+			<File RelativePath=".\defcharset.c"></File>
+			<File RelativePath=".\dogrid.c"></File>
+			<File RelativePath=".\dop.c"></File>
+			<File RelativePath=".\doptypography.c"></File>
+			<File RelativePath=".\dttm.c"></File>
+			<File RelativePath=".\error.c"></File>
+			<File RelativePath=".\escher.c"></File>
+			<File RelativePath=".\fbse.c"></File>
+			<File RelativePath=".\fdoa.c"></File>
+			<File RelativePath=".\ffn.c"></File>
+			<File RelativePath=".\fib.c"></File>
+			<File RelativePath=".\field.c"></File>
+			<File RelativePath=".\filetime.c"></File>
+			<File RelativePath=".\fkp.c"></File>
+			<File RelativePath=".\fld.c"></File>
+			<File RelativePath=".\font.c"></File>
+			<File RelativePath=".\fopt.c"></File>
+			<File RelativePath=".\frd.c"></File>
+			<File RelativePath=".\fspa.c"></File>
+			<File RelativePath=".\ftxbxs.c"></File>
+			<File RelativePath=".\generic.c"></File>
+			<File RelativePath=".\getopt.c"></File>
+			<File RelativePath=".\getopt.h"></File>
+			<File RelativePath=".\getopt1.c"></File>
+			<File RelativePath=".\hdr.h"></File>
+			<File RelativePath=".\isbidi.c"></File>
+			<File RelativePath=".\laolareplace.c"></File>
+			<File RelativePath=".\lfo.c"></File>
+			<File RelativePath=".\list.c"></File>
+			<File RelativePath=".\lspd.c"></File>
+			<File RelativePath=".\lst.c"></File>
+			<File RelativePath=".\lvl.c"></File>
+			<File RelativePath=".\md5.c"></File>
+			<File RelativePath=".\md5.h"></File>
+			<File RelativePath=".\mtextra.c"></File>
+			<File RelativePath=".\numrm.c"></File>
+			<File RelativePath=".\olst.c"></File>
+			<File RelativePath=".\pap.c"></File>
+			<File RelativePath=".\pcd.c"></File>
+			<File RelativePath=".\pgd.c"></File>
+			<File RelativePath=".\phe.c"></File>
+			<File RelativePath=".\picf.c"></File>
+			<File RelativePath=".\plan9.h"></File>
+			<File RelativePath=".\plcf.c"></File>
+			<File RelativePath=".\prm.c"></File>
+			<File RelativePath=".\processpriority.c"></File>
+			<File RelativePath=".\rc4.c"></File>
+			<File RelativePath=".\rc4.h"></File>
+			<File RelativePath=".\reasons.c"></File>
+			<File RelativePath=".\roman.c"></File>
+			<File RelativePath=".\roman.h"></File>
+			<File RelativePath=".\rr.c"></File>
+			<File RelativePath=".\rs.c"></File>
+			<File RelativePath=".\sed.c"></File>
+			<File RelativePath=".\sep.c"></File>
+			<File RelativePath=".\shd.c"></File>
+			<File RelativePath=".\sprm.c"></File>
+			<File RelativePath=".\strcasecmp.c"></File>
+			<File RelativePath=".\sttbf.c"></File>
+			<File RelativePath=".\stylesheet.c"></File>
+			<File RelativePath=".\support.c"></File>
+			<File RelativePath=".\symbol.c"></File>
+			<File RelativePath=".\table.c"></File>
+			<File RelativePath=".\tap.c"></File>
+			<File RelativePath=".\tbd.c"></File>
+			<File RelativePath=".\tc.c"></File>
+			<File RelativePath=".\text.c"></File>
+			<File RelativePath=".\tlp.c"></File>
+			<File RelativePath=".\twips.c"></File>
+			<File RelativePath=".\unicode.c"></File>
+			<File RelativePath=".\utf.c"></File>
+			<File RelativePath=".\version.c"></File>
+			<File RelativePath=".\winmmap.c"></File>
+			<File RelativePath=".\wkb.c"></File>
+			<File RelativePath=".\wvConfig.c"></File>
+			<File RelativePath=".\wvHtmlEngine.c"></File>
+			<File RelativePath=".\wvparse.c"></File>
+			<File RelativePath=".\wvTextEngine.c"></File>
+			<File RelativePath=".\wvWare.c"></File>
+			<File RelativePath=".\xst.c"></File>
+			<Filter Name="magick" Filter="">
+				<File RelativePath=".\magick\blob.c"></File>
+				<File RelativePath=".\magick\bmp.c"></File>
+				<File RelativePath=".\magick\colors.c"></File>
+				<File RelativePath=".\magick\compress.c"></File>
+				<File RelativePath=".\magick\error.c">
+					<FileConfiguration Name="Debug|Win32">
+						<Tool Name="VCCLCompilerTool" ObjectFile="$(IntDir)/$(InputName)1.obj" />
+					</FileConfiguration>
+					<FileConfiguration Name="Release|Win32">
+						<Tool Name="VCCLCompilerTool" ObjectFile="$(IntDir)/$(InputName)1.obj" />
+					</FileConfiguration>
+				</File>
+				<File RelativePath=".\magick\image.c"></File>
+				<File RelativePath=".\magick\magick.c"></File>
+				<File RelativePath=".\magick\memory.c"></File>
+				<File RelativePath=".\magick\png.c"></File>
+				<File RelativePath=".\magick\signature.c"></File>
+				<File RelativePath=".\magick\transform.c"></File>
+				<File RelativePath=".\magick\utility.c"></File>
+			</Filter>
+			<Filter Name="libole2" Filter="">
+				<File RelativePath=".\libole2\ms-ole-summary.c"></File>
+				<File RelativePath=".\libole2\ms-ole.c"></File>
+			</Filter>
+			<Filter Name="oledecod" Filter="">
+				<File RelativePath=".\oledecod\oledecod.c"></File>
+			</Filter>
+			<Filter Name="expat" Filter="">
+				<Filter Name="xmlparse" Filter="">
+					<File RelativePath=".\expat\xmlparse\hashtable.c"></File>
+					<File RelativePath=".\expat\xmlparse\xmlparse.c"></File>
+				</Filter>
+				<Filter Name="xmltok" Filter="">
+					<File RelativePath=".\expat\xmltok\xmlrole.c"></File>
+					<File RelativePath=".\expat\xmltok\xmltok.c"></File>
+				</Filter>
+			</Filter>
+			<Filter Name="glib-wv" Filter="">
+				<File RelativePath=".\glib-wv\garray.c"></File>
+				<File RelativePath=".\glib-wv\glist.c"></File>
+				<File RelativePath=".\glib-wv\gmem.c"></File>
+				<File RelativePath=".\glib-wv\gmessages.c"></File>
+				<File RelativePath=".\glib-wv\gslist.c"></File>
+				<File RelativePath=".\glib-wv\gstrfuncs.c"></File>
+				<File RelativePath=".\glib-wv\gtree.c"></File>
+			</Filter>
+		</Filter>
+		<Filter Name="Header Files" Filter="h;hpp;hxx;hm;inl;inc;xsd" UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}">
+			<File RelativePath=".\bintree.h"></File>
+			<File RelativePath=".\utf.h"></File>
+			<File RelativePath=".\winmmap.h"></File>
+			<File RelativePath=".\wv.h"></File>
+			<File RelativePath=".\wvinternal.h"></File>
+			<Filter Name="libole2" Filter="">
+				<File RelativePath=".\libole2\ms-ole-gnomevfs.h"></File>
+				<File RelativePath=".\libole2\ms-ole-summary.h"></File>
+				<File RelativePath=".\libole2\ms-ole-vba.h"></File>
+				<File RelativePath=".\libole2\ms-ole.h"></File>
+			</Filter>
+			<Filter Name="glib-wv" Filter="">
+				<File RelativePath=".\glib-wv\glib.h"></File>
+			</Filter>
+			<Filter Name="oledecod" Filter="">
+				<File RelativePath=".\oledecod\oledecod.h"></File>
+			</Filter>
+			<Filter Name="expat" Filter=""></Filter>
+		</Filter>
+		<Filter Name="Resource Files" Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx" UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"></Filter>
+	</Files>
+	<Globals></Globals>
+</VisualStudioProject>

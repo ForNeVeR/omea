@@ -1,0 +1,127 @@
+// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
+
+// Microsoft Visual C++ generated resource script.
+//
+#include "CommonResource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "CommonResource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_NOTIFY              ICON                    "Res\\pmNotify.ico"
+IDI_STOP                ICON                    "Res\\pmStop.ico"
+IDI_WARN                ICON                    "Res\\pmWarn.ico"
+IDI_CHEVRON             ICON                    "Res\\Chevron.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_FAIL                "The operation could not be completed."
+    IDS_INCONSISTENCY       "The operation could not be completed. A fatal internal error has occured."
+    IDS_E_INVALID_INPUT     "The values you have entered are either invalid against their type or out of range."
+    IDS_E_DATAFOLDER        "Could not locate the %%%sAPPDATA%% (with fallback to %%APPDATA%%) folder location with SHGetSpecialFolderPath (%s version). %s"
+    IDS_E_WININET_SESSION   "Could not start session."
+    IDS_E_WININET_CONNECT   "Could not establish connection with server."
+    IDS_E_WININET_OPENREQ   "Could not open the HTTP request."
+    IDS_E_WININET_SENDREQ   "Could not send the HTTP request."
+    IDS_E_WININET_READRESP  "Could not read the HTTP response data."
+    IDS_E_XML_INVALID       "Server response is not a valid XML."
+    IDS_E_REQUEST_ALREADY_RUNNING 
+                            "Cannot initiate a request by this object: a request is already running."
+    IDS_E_COMMANDFORMAT     "The command format is not valid against the schema."
+    IDS_E_CANNOTEXECUTEACTION "Failed to execute the action."
+    IDS_E_NODATATOSEND      "The request has no data to be sent."
+    IDS_E_INVALIDVARIANTWINDOW 
+                            "Could not extract the window handle from a VARIANT parameter. It should be either an HWND value as long, or an IOleWindow object, or NULL/0/missing for no parent."
+    IDS_E_INVALIDBOOLEAN    "Could not convert or coerce the VARIANT parameter to a boolean value."
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_E_CONTROLTYPE       "The UI control type is invalid."
+    IDS_E_NOCONTROLENTRYID  "There is no control with entry id %d."
+    IDS_E_NOCONTROLGUID     "There is no control registered as %s."
+    IDS_E_INVALIDSTATE      "This call is invalid for the object's current state."
+    IDS_E_OPENBROWSERWINDOW "Could not open a document in the new browser window."
+    IDS_E_UNKNOWNCONTROLTYPE "Unkown control type ""%s""."
+    IDS_E_INVALIDCONTROLOPERATION 
+                            "This operation cannot be performed over this control."
+    IDS_E_NOSUCHACTION      "The action with ID=""%s"" could not be found."
+    IDS_E_CANNOTLOADACTIONS "Cannot load the UI Actions set."
+    IDS_E_CANNOTLOADCOMTROLS "Cannot load the UI Controls set."
+    IDS_E_GETVERSIONFAILED  "Could not read the version information."
+    IDS_SETTINGS_TYPEINVALID 
+                            "Invalid setting type, only string (VT_BSTR) and integer (VT_I4) types are currently cupported."
+    IDS_SETTINGS_UNDEFINEDSETTING 
+                            "The setting you are trying to access is not defined. Check the section and entry names."
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

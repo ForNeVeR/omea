@@ -1,0 +1,176 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+
+SPDX-License-Identifier: GPL-2.0-only
+-->
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{DA5751AA-426D-46CB-9EC5-2E59EEBA1779}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <AssemblyName>Miranda.OmeaPlugin</AssemblyName>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>Library</OutputType>
+    <RootNamespace>OmniaMea.InstantMessaging.Miranda</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <ProductHomeDir>$(MSBuildProjectDirectory)/../../../../..</ProductHomeDir>
+    <TargetFrameworkVersion>v3.0</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <DefineConstants>TRACE</DefineConstants>
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="nunit.framework">
+      <Name>nunit.framework</Name>
+      <HintPath>../../../../../Lib/References/nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Name>System.Drawing</Name>
+    </Reference>
+    <Reference Include="System.Windows.Forms">
+      <Name>System.Windows.Forms</Name>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+    <ProjectReference Include="../../../../Core/GUIControls/GUIControls.csproj">
+      <Name>GUIControls</Name>
+      <Project>{C9CBAAE5-F8D4-4BD2-BDF0-026B85122106}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="../../../../Core/JetBrainsShared/JetBrainsShared.csproj">
+      <Project>{5133BE57-1BE8-4C82-BA5E-ADA6CFA0AA8B}</Project>
+      <Name>JetBrainsShared</Name>
+    </ProjectReference>
+    <ProjectReference Include="../../../../Core/OmniaMeaBase/OmniaMeaBase.csproj">
+      <Name>OmniaMeaBase</Name>
+      <Project>{C77A02EC-E116-44B9-8FF2-85637FA405B7}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="../../../../Core/OpenAPI/OpenAPI.csproj">
+      <Name>OpenAPI</Name>
+      <Project>{BC8E1E30-A063-463A-9213-A159C7FA4AAC}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="../../../../Core/PicoCore/PicoCore.csproj">
+      <Name>PicoCore</Name>
+      <Project>{4D08EA48-F2BE-418B-AE1C-4925A7647F37}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="../../../../Core/ResourceStore/ResourceStore.csproj">
+      <Name>ResourceStore</Name>
+      <Project>{D022CCB6-4958-44DD-8175-E9AA181E6F41}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="../../../../Core/ResourceTools/ResourceTools.csproj">
+      <Project>{3866FB99-0922-4062-8880-B39DA0F1C15E}</Project>
+      <Name>ResourceTools</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Core\Interop.WinApi\Interop.WinApi.csproj">
+      <Project>{3F0FF59D-9EEB-407E-8DD5-7DE159ABBC35}</Project>
+      <Name>Interop.WinApi</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MirandaContactBlock.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MirandaConversationDisplayPane.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MirandaDB.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MirandaImportJob.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MirandaOptionsPane.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MirandaPlugin.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ProfileManager.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Tests\MirandaImportTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Tests\MockMirandaDB.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <EmbeddedResource Include="icons\aim.ico" />
+    <EmbeddedResource Include="icons\conversation.ico" />
+    <EmbeddedResource Include="icons\conversation4.ico" />
+    <EmbeddedResource Include="icons\conversation8.ico" />
+    <EmbeddedResource Include="icons\icq.ico" />
+    <EmbeddedResource Include="icons\jabber.ico" />
+    <EmbeddedResource Include="icons\message.ico" />
+    <EmbeddedResource Include="icons\online2.ico" />
+    <EmbeddedResource Include="icons\yahoo.ico" />
+    <EmbeddedResource Include="MirandaContactBlock.resx">
+      <DependentUpon>MirandaContactBlock.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MirandaOptionsPane.resx">
+      <DependentUpon>MirandaOptionsPane.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="plugin.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="icons\Correspondents24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="icons\MirandaPluginIcon.png" />
+  </ItemGroup>
+  <Import Project="$(ProductHomeDir)/Build/Product.BeforeMicrosoftCommon.Targets" />
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(ProductHomeDir)/Build/Product.AfterMicrosoftCommon.Targets" />
+</Project>

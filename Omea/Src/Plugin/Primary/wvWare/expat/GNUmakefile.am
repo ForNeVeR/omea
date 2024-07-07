@@ -1,7 +1,0 @@
-SUBDIRS = xmlparse xmltok .
-
-noinst_LTLIBRARIES = libexpat.la
-
-libexpat_la_LIBADD = xmlparse/libxmlparse.la xmltok/libxmltok.la
-
-libexpat_la_SOURCES = fake.c

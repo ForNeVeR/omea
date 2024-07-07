@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+
+SPDX-License-Identifier: GPL-2.0-only
+-->
+<!-- Allows to customize the product for the local builds. -->
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+	<PropertyGroup>
+		<!-- Pragma Once.-->
+		<PragmaOnce_Product_Settings_Targets>True</PragmaOnce_Product_Settings_Targets>
+	</PropertyGroup>
+	<!-- Own product settings. -->
+	<PropertyGroup>
+		<!---->
+		<!-- Name of the product -->
+		<ProductName Condition="'$(ProductName)'==''">Omea</ProductName>
+	</PropertyGroup>
+	<!-- Product Version. -->
+	<PropertyGroup>
+		<!---->
+		<!-- Major version of the product from both the marketing and technical versions. Eg “2” out of “ReSharper 2.5.3”. -->
+		<ProductVersionMajor Condition="'$(ProductVersionMajor)'==''">3</ProductVersionMajor>
+		<!---->
+		<!-- Minor version of the product from both the marketing and technical versions. Eg “5” out of “ReSharper 2.5.3”. -->
+		<ProductVersionMinor Condition="'$(ProductVersionMinor)'==''">0</ProductVersionMinor>
+		<!---->
+		<!-- Build version (third component) from the technical version of the product. Should be left zero for the local builds; on the server, assigned from TeamCity. This is NOT the third component from the marketing version. -->
+		<ProductVersionBuild Condition="'$(ProductVersionBuild)'==''">0</ProductVersionBuild>
+		<!---->
+		<!-- Revision version (fourth component) from the technical version of the product. Should be left zero for the local builds; on the server, assigned from TeamCity. This is NOT the third component from the marketing version. -->
+		<ProductVersionRevision Condition="'$(ProductVersionRevision)'==''">0</ProductVersionRevision>
+	</PropertyGroup>
+</Project>

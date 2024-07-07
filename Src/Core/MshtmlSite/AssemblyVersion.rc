@@ -1,0 +1,44 @@
+// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
+
+// Secondary resource script that contains version information
+// This information is updated automatically by the build script
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 2,0,1104,1
+ PRODUCTVERSION 2,0,1104,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x2L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "000004e2"
+        BEGIN
+            VALUE "CompanyName", "JetBrains Inc"
+            VALUE "FileDescription", "Customized MSHTML Browser Host"
+            VALUE "FileVersion", "2.0.1104.1"
+            VALUE "InternalName", "MshtmlSite.dll"
+            VALUE "LegalCopyright", "Copyright © JetBrains s.r.o., 2004—2005. All rights reserved."
+            VALUE "OriginalFilename", "MshtmlSite.dll"
+            VALUE "ProductName", "Omea"
+            VALUE "ProductVersion", "2.0.1104.1"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x0, 1250
+    END
+END

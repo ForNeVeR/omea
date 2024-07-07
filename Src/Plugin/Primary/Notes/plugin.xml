@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+
+SPDX-License-Identifier: GPL-2.0-only
+-->
+<omniamea-plugin>
+	<actions namespace="JetBrains.Omea.Notes">
+		<main-menu>
+			<group id="FileNewActions">
+				<action name="Note..." class="NewNoteAction" />
+			</group>
+		</main-menu>
+		<popup-menu>
+			<group id="ItemOpenActions">
+				<action name="Open" type="Note" class="OpenNoteAction" anchor="first" />
+			</group>
+			<group id="ItemMailActions">
+				<action name="Send by Mail" type="Note" class="SendNoteAction" anchor="after:CompositeAction/Reply" />
+			</group>
+			<group id="Note Actions" anchor="after:ItemMailActions">
+				<action name="Save As..." type="Note" class="SaveNoteAction" />
+			</group>
+		</popup-menu>
+		<keyboard>
+			<action key="Control+Shift+F" type="Note" class="SendNoteAction" />
+			<action key="Control+Shift+N" class="NewNoteAction" />
+		</keyboard>
+		<double-click>
+			<action type="Note" class="OpenNoteAction" />
+		</double-click>
+		<toolbar iconprefix="NotesPlugin.Icons">
+			<group id="CommonActions">
+				<action icon="NoteSmall.ico" tab="Notes" text="New" tooltip="New Note" class="NewNoteAction" anchor="first" />
+			</group>
+		</toolbar>
+		<links-pane>
+			<action name="Save As..." class="SaveNoteAction" />
+		</links-pane>
+		<composite>
+			<component id="NewItem" tab="Notes" class="NewNoteAction" />
+			<component id="SaveAs" type="Note" class="SaveNoteAction" />
+		</composite>
+	</actions>
+	<display-columns>
+		<columns type="Note">
+			<column width="300" autoSize="1">
+				<prop name="Subject" />
+				<multiline row="0" startX="0" width="210" anchor="both" />
+			</column>
+			<column width="120">
+				<prop name="Date" />
+				<multiline row="0" startX="210" width="90" anchor="right" align="right" />
+			</column>
+		</columns>
+		<columns type="Fragment">
+			<column width="300" autoSize="1">
+				<prop name="Subject" />
+				<multiline row="0" startX="0" width="210" anchor="both" />
+			</column>
+			<column width="120">
+				<prop name="Date" />
+				<multiline row="0" startX="210" width="90" anchor="right" align="right" />
+			</column>
+		</columns>
+	</display-columns>
+</omniamea-plugin>

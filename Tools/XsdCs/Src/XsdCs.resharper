@@ -1,0 +1,7 @@
+<Configuration>
+  <SolutionAnalysisSettings>
+    <SkipFilesAndFolders>
+      <Item>84A37BD9-5D82-4A16-A42A-560AABD1E31D/f:XsdCs.Targets</Item>
+    </SkipFilesAndFolders>
+  </SolutionAnalysisSettings>
+</Configuration>

@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!--
+SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+
+SPDX-License-Identifier: GPL-2.0-only
+-->
+
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://omeaconnector/content/about/about.css" type="text/css"?>
+
+<!DOCTYPE dialog SYSTEM "chrome://omeaconnector/locale/omeaconnector.dtd">
+
+<dialog buttons="accept"
+        id="omeaconnector-about-dialog"
+        title="&omeaconnector.about.title;"
+        xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+  <script type="application/x-javascript" src="chrome://omeaconnector/content/about/about.js"/>
+
+  <vbox id="omeaconnector-about-details">
+    <hbox>
+      <vbox>
+        <hbox>
+          <description value="@DISPLAYNAME@" class="name"/>
+          <description value="@VERSION@" class="name" />
+        </hbox>
+        <description value="&omeaconnector.about.author;" class="title"/>
+        <description value="@AUTHOR@"/>
+      </vbox>
+      <spacer flex="1"/>
+      <vbox>
+        <image src="chrome://omeaconnector/content/omea-logo-48.png" width="48" height="48"/>
+        <spacer flex="1"/>
+      </vbox>
+    </hbox>
+    <description value="&omeaconnector.about.home.page;" class="title"/>
+    <description onclick="omeaconnector_visitHomePage()" class="url">@URL@</description>
+  </vbox>
+  <separator class="groove" id="omeaconnector-about-separator"/>
+</dialog>

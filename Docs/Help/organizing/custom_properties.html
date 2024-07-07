@@ -1,0 +1,348 @@
+<!doctype HTML public "-//W3C//DTD HTML 4.0 Frameset//EN">
+<!--
+SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+
+SPDX-License-Identifier: GPL-2.0-only
+-->
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang=en lang=en>
+
+
+<!--(==============================================================)-->
+<!--(Document created with RoboEditor. )============================-->
+<!--(==============================================================)-->
+
+<head>
+
+<title>Custom Properties</title>
+
+<!--(Meta)==========================================================-->
+
+<meta http-equiv=content-type content="text/html; charset=windows-1252" charset=windows-1252 />
+<meta name=copyright content="Copyright (c)2004 JetBrains, Inc." />
+<meta name=topic-check-list content="Added To TOC" />
+<meta name=generator content="RoboHELP by eHelp Corporation - www.ehelp.com">
+<meta name=generator-major-version content=0.1>
+<meta name=generator-minor-version content=1>
+<meta name=filetype content=kadov>
+<meta name=filetype-version content=1>
+<meta name=page-count content=1>
+<meta name=layout-height content=3281>
+<meta name=layout-width content=1766>
+
+
+<!--(Links)=========================================================-->
+
+<link rel=StyleSheet href="../help.css" />
+
+
+
+</head>
+
+<!--(Body)==========================================================-->
+
+
+<body>
+
+<!-- Conditional Headers -->
+<div style="x-condition: PRO;">
+<div id=helpHeader>
+<div id=helpHeaderImg
+	style="/*begin!kadov{{*/ x-right: 901px; x-bottom: 786px; /*}}end!kadov*/ ">
+<p>&nbsp;</p>
+</div>
+
+<p class=helpHeader>Omea Pro Help: Organizing: Custom Properties</p>
+</div>
+</div>
+
+<div style="x-condition: READER;">
+<div id=helpHeader>
+<div id=helpHeaderImg
+	style="/*begin!kadov{{*/ x-right: 901px; x-bottom: 786px; /*}}end!kadov*/ ">
+<p>&nbsp;</p>
+</div>
+
+<p class=helpHeader>Omea Reader Help: Organizing: Custom Properties</p>
+</div>
+</div>
+
+<div id=mainContent>
+<h1>Custom Properties</h1>
+
+<p>Custom Properties are bits of data that you can define and apply to
+ resources, either singly or several at once. The data then becomes a property
+ of the resource which you can use to define Conditions and Exceptions
+ when creating <a href="organizing_using_views.html">Views</a>, and when
+ using <a href="../search/adv_search.html">Advanced Search</a>. You can
+ also use the data in Custom Properties as a basis for sorting the resources
+ in the Items List.</p>
+
+<div class=tip>
+<div class=tipImg
+	style="/*begin!kadov{{*/ x-right: 747px; x-bottom: 776px; /*}}end!kadov*/ ">
+          <p>&nbsp;</p>
+        </div>
+<p class=tip>Custom Properties are something of an advanced feature that
+ can help &quot;power users&quot; of <span style="x-condition: READER;">Omea
+ Reader</span><span style="x-condition: PRO;">Omea Pro</span> to create
+ highly customized and even more narrow searches and Views, and yet another
+ level of organization. If you are new to the product, you can safely wait
+ to tackle this feature until after you have mastered the basic techniques
+ for doing <a href="../search/index.html">searches</a> and Views.</p>
+</div>
+
+<h2>Custom Property Types</h2>
+
+<p>There are several <em>types</em> of Custom Properties defined by the
+ kind of data they store.</p>
+<table cellpadding="0" cellspacing="0">
+		<tr>
+			<th>Value</th>
+			<th class="rightCell">Meaning</th>
+		</tr>
+		<tr>
+			<td>Text</td>
+			<td class="rightCell">The data value stored in the property is text. For example: <strong><em>Book</em></strong></td>
+		</tr>
+		<tr>
+			<td>Number</td>
+			<td class="rightCell">The data value stored in the property is a number. The number must be a positive or negative whole number (i.e. no decimal). For example: <strong>42</strong> or <strong>-88</strong></td>
+		</tr>
+		<tr>
+		  <td>Date</td>
+		  <td class="rightCell">The data value stored in the property is a date. For example: <strong>10/4/2004 12:00 AM</strong></td>
+    </tr>
+		<tr>
+		  <td>Yes/No</td>
+		  <td class="rightCell">The data value stored in the property is <em>Yes</em> or <em>No</em>.</td>
+    </tr>
+  </table>
+
+<h2>Defining Custom Properties</h2>
+
+<p>The first step in using Custom Properties is to define one or more.
+ The thing to keep in mind when deciding what properties to define is that
+ <em>all</em> the properties you define get applied when you apply Custom
+ Properties to a resource.</p>
+
+<p>Each Custom Property has two attributes: <em>Name</em> and <em>Type</em>.
+ You specify both when creating a new Custom Property definition.</p>
+
+<div class=proc>
+<p class=procHead>To define a new Custom Property:</p>
+
+<ol>
+
+	<li class=kadov-p>Choose <strong>Tools | Configure Custom Property Types&#8230; </strong>
+ on the main menu. The Custom Properties dialog appears.</li>
+
+	<p><img src="../images/sshots/dialogs/shared/custom_properties_types_empty.png" width="350" height="220" alt="Custom Property Types dialog"></p>
+	<p class="caption">Custom Property Types dialog </p>
+	<li class=kadov-p>Click <strong>Add</strong> and choose the property
+ type from the pop-up list.</li>
+
+	<li class=kadov-p>Type a name for the new property in the <strong>Name</strong> field and press <strong>Enter</strong>.</li>
+
+	<li class=kadov-p>Click <strong>OK</strong> to close the dialog.<br>
+	  The dialog may look the following way.</li>
+    <p><img src="../images/sshots/dialogs/shared/custom_properties_types.png" width="288" height="219" alt="Custom Properties Types dialog view example"> </p>
+    <p class="caption">The Custom Property Types dialog (several types of properties have been added)</p>
+    </ol>
+</div>
+
+<h3>Deleting Custom Properties</h3>
+
+<div class=proc>
+<p class=procHead>To delete a Custom Property:</p>
+
+<ol>
+
+	<li class=kadov-p>Choose <strong>Tools | </strong><strong>Configure Custom Property Types&#8230;</strong>
+ on the main menu.<br>
+ The <strong>Custom Properties</strong> dialog appears.</li>
+
+	<li class=kadov-p>In the list of Custom Properties, select the one
+ you want to delete.</li>
+
+	<li class=kadov-p>
+	Click the <strong>Delete</strong> button.<br />
+
+
+	<div class=tip>
+	<div class=tipImg
+	style="/*begin!kadov{{*/ x-right: 747px; x-bottom: 776px; /*}}end!kadov*/ ">
+          <p>&nbsp;</p>
+        </div>
+	<p class=tip>When you delete a Custom Property, any resources to which
+ it has been applied will automatically have the property and its value
+ removed. Any Views that use it in a Condition or Exception will be deleted.
+ If a column has been configured for the property in the Items List, it
+ will be removed.</p>
+	</div>
+	</li>
+</ol>
+</div>
+
+<h2>Applying Custom Properties to Resources</h2>
+
+<p>Once you have defined Custom Properties, you can apply them to resources,
+ assigning values in the process. For example, supposed you defined a date
+ type property named <em>Date Read</em>, and a Yes/No property named <em>Useful</em>.
+ When you apply Custom Properties to a resource you can set an actual date
+ for <em>Date Read</em> and a &quot;Yes&quot; or &quot;No&quot; value for
+ <em>Useful</em>.</p>
+
+<!--kadov_tag{{<implicit_p>}}-->
+<div class=proc>
+<p class=procHead>To apply Custom Properties to resources:</p>
+
+<ol>
+
+	<li class=kadov-p>In the <strong>Items List</strong>, select the resource item to which
+ you want to apply Custom Properties. If more than one item will have the
+ same value for a property (<strong>Date Read</strong>, for example) you can select multiple
+ items in the list and apply the properties with the same values to all
+ items at once.</li>
+
+	<li class=kadov-p>Right-click and choose <strong>Apply Custom Properties</strong>
+ on the context menu or navigate to the <strong>Links and Actions</strong> pane and click <strong>Edit Custom Properties</strong>. <br>
+ The Apply Custom Properties dialog appears. The dialog
+ lists all the Custom Properties you have currently defined. There is an
+ edit control for each property in the dialog, appropriate for the property
+ type, which you use to set a value for the respective property.</li>
+
+	<p><img src="../images/sshots/dialogs/shared/appl_custom_properties.png"
+									alt="Apply Custom Properties dialog"
+									/
+									style="width: 226px; height: 168px;"
+									width=226
+									height=168
+									border=0> </p>
+      <p class=caption>Applying Custom Properties to a resource dialog </p>
+	<li class=kadov-p>Set values as desired for each property in the dialog.
+ It is all right to leave blank values for text, number, and date type
+ properties.</li>
+
+	<li class=kadov-p>Click <strong>Apply</strong> to apply the properties
+ and values to the selected resource item(s).</li>
+</ol>
+</div>
+
+<a name=columns></a>
+
+<h2>Showing Columns for Custom Properties in the Items List</h2>
+
+<p>When you define Custom Properties, the resource items to which you apply
+ them can display the property values in columns in the Items List in the
+ main window. For example, suppose you have defined a Custom Property <em>Date
+ Read</em>, and you applied this property to a newsgroup article with a
+ date value of <em>10/4/2002 12:00 PM</em>. You can configure a column
+ for the <em>Date Read</em> property in the Items List. The value you set
+ when you applied the property to the article will then appear in the <em>Date
+ Read</em> column for the specific news article.</p>
+
+<!--kadov_tag{{<implicit_p>}}--><img src="../images/sshots/shared/custom_properties_columns.png"
+									alt="Custom Property Columns"
+									/
+									style="width: 652px; height: 627px;"
+									width=652
+									height=627
+									border=0>
+
+<p class=caption>Showing columns for Custom Properties in the Items List</p>
+
+<div class=proc>
+<p class=procHead>To display a column for a Custom Property:</p>
+
+<ol>
+
+	<li class=kadov-p>Select the resource type tab in the main window (<em>News</em>,
+ for example).</li>
+
+	<li class=kadov-p>Right-click on the column header bar in the <strong>Items
+ List</strong> (see picture above), and choose <strong>Configure Columns&#8230;</strong><br>
+ The <a href="../reference/columns_dialog.html">Resource List Columns dialog</a>
+ appears.</li>
+
+	<li class=kadov-p>Locate the name of the Custom Property in the dialog
+ and check the box next to it.</li>
+</ol>
+
+<p>The column for the Custom Property appears in the items list after you
+ click <strong>OK</strong> to close the dialog.</p>
+</div>
+
+<h3>Using Custom Properties to Sort the Items List</h3>
+
+<p>When you have configured a column for a Custom Property, you can sort
+ the <strong>Items List</strong> based on the values of the property as applied to items
+ in the list. Click the Custom Property column header to sort the items in the <strong>Items List</strong>. </p>
+
+<h2>Using Custom Properties</h2>
+
+<p>Once defined and applied, you can use Custom Properties to help you
+ organize and find the resources to which they have been applied.</p>
+
+<p>For example, suppose you have defined a Custom Property named <em>Date
+ Read</em> and applied it to a number of articles in a newsgroup, along
+ with a date value for each of the different articles having the property.
+ When you click the column header for the <em>Date Read</em> column, the
+ list sorts itself according to the value of the <em>Date Read</em> property.
+ Any articles in the list that do not have the <em>Date Read</em> property
+ applied to them will show no value in the <em>Date Read</em> column, and
+ will appear in the list <em>after</em> the ones that do have it. The items
+ having the property, as we said, are sorted by the date value.</p>
+
+<div class=tip>
+<div class=tipImg
+	style="/*begin!kadov{{*/ x-right: 747px; x-bottom: 776px; /*}}end!kadov*/ ">
+          <p>&nbsp;</p>
+        </div>
+<p class=tip>You can toggle the order of the sorting between ascending
+ and descending by repeatedly clicking the column header. (This applies
+ to all columns, not just Custom Property columns).</p>
+</div>
+
+<h3>Using Custom Properties with Advanced Search</h3>
+
+<p>You can use Custom Properties as a Condition or Exception when using
+ Advanced Search. When Custom Properties have been defined, a folder node
+ named <em>Custom Property Conditions</em> appears in the Select Condition(s)
+ dialog. A condition for each of the Custom Properties currently defined
+ appears under this folder.</p>
+<p><img src="../images/sshots/dialogs/shared/select_conditions_custom_pr.png" alt="The Select Conditions dialog" width="294" height="328"></p>
+<p class="caption">The Select Conditions dialog with custom property conditions</p>
+<p> You can select one or more Custom Property
+     conditions as a Condition or Exception for the search.</p>
+<p>For more information, see <a href="../search/adv_search.html">Advanced
+ Search</a>.</p>
+
+<h3>Using Custom Properties in Views</h3>
+
+<p>When creating Views, you can use Custom Properties in the same was as
+ described above for Advanced Search. The same Select Condition dialog
+ is used, and the same conditions are available for Views as for Advanced
+ Search. You can select one or more Custom Property conditions as a Condition
+ or Exception for the View.</p>
+
+<p>For more information, see <a href="organizing_using_views.html">Organizing
+ Using Views</a>.</p>
+<div id="seealso">
+  <p class="seealso"><strong>See also:</strong></p>
+  <ul>
+    <li class="seealso"><a href="organizing_using_categories.html">Organizing with Categories</a></li>
+    <li class="seealso"><a href="organizing_using_views.html">Organizing with Views</a></li>
+    <li class="seealso"><a href="organizing_using_workspaces.html">Organizing with Workspaces</a></li>
+    <li class="seealso"><a href="organizing_using_links.html">Organizing with Links</a></li>
+    <li class="seealso" style="x-condition: PRO;"><a href="organizing_using_tasks.html">Organizing with Tasks (To Do)</a></li>
+  </ul>
+</div>
+<p>&nbsp;</p>
+</div>
+
+</body>
+
+<!-- LAST SPELLCHECK: 20 Oct 2004 -->
+</html>
+

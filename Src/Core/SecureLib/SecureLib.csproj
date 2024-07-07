@@ -1,0 +1,283 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+
+SPDX-License-Identifier: GPL-2.0-only
+-->
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+	<PropertyGroup>
+		<ProjectType>Local</ProjectType>
+		<ProductVersion>8.0.50727</ProductVersion>
+		<SchemaVersion>2.0</SchemaVersion>
+		<ProjectGuid>{5BFA5A70-D384-4417-AFCC-5C744485A85F}</ProjectGuid>
+		<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+		<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+		<AssemblyName>Org.Mentalis.Security</AssemblyName>
+		<DefaultClientScript>JScript</DefaultClientScript>
+		<DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+		<DefaultTargetSchema>IE50</DefaultTargetSchema>
+		<DelaySign>false</DelaySign>
+		<OutputType>Library</OutputType>
+		<RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+		<OldToolsVersion>2.0</OldToolsVersion>
+		<!-- Prevent forcing JB copyrights over mentalis'.-->
+		<NoAssemblyVersion>True</NoAssemblyVersion>
+		<ProductHomeDir>$(MSBuildProjectDirectory)/../../..</ProductHomeDir>
+		<TargetFrameworkVersion>v3.0</TargetFrameworkVersion>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+		<AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+		<BaseAddress>285212672</BaseAddress>
+		<CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+		<DefineConstants>DEBUG;TRACE</DefineConstants>
+		<DebugSymbols>true</DebugSymbols>
+		<FileAlignment>4096</FileAlignment>
+		<NoStdLib>false</NoStdLib>
+		<Optimize>false</Optimize>
+		<RegisterForComInterop>false</RegisterForComInterop>
+		<RemoveIntegerChecks>false</RemoveIntegerChecks>
+		<TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+		<WarningLevel>4</WarningLevel>
+		<DebugType>full</DebugType>
+		<ErrorReport>prompt</ErrorReport>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+		<AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+		<BaseAddress>285212672</BaseAddress>
+		<CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+		<DefineConstants>TRACE</DefineConstants>
+		<DebugSymbols>false</DebugSymbols>
+		<FileAlignment>4096</FileAlignment>
+		<NoStdLib>false</NoStdLib>
+		<Optimize>true</Optimize>
+		<RegisterForComInterop>false</RegisterForComInterop>
+		<RemoveIntegerChecks>false</RemoveIntegerChecks>
+		<TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+		<WarningLevel>4</WarningLevel>
+		<DebugType>none</DebugType>
+		<ErrorReport>prompt</ErrorReport>
+	</PropertyGroup>
+	<ItemGroup>
+		<Reference Include="System">
+			<Name>System</Name>
+		</Reference>
+		<Reference Include="System.Data">
+			<Name>System.Data</Name>
+		</Reference>
+		<Reference Include="System.Xml">
+			<Name>System.XML</Name>
+		</Reference>
+	</ItemGroup>
+	<ItemGroup>
+		<Compile Include="AssemblyInfo.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Security\Certificates\Certificate.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Security\Certificates\CertificateChain.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Security\Certificates\CertificateException.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Security\Certificates\CertificateStore.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Security\Certificates\CertificateStoreCollection.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Security\Certificates\CertificateStructures.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Security\Certificates\CertificateVerificationResult.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Security\Certificates\DistinguishedName.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Security\Certificates\DistinguishedNameCollection.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Security\Cryptography\ARCFourManaged.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Security\Cryptography\ARCFourManagedTransform.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Security\Cryptography\CryptographyStructures.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Security\Cryptography\DataProtectionCryptoServiceProvider.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Security\Cryptography\HMAC.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Security\Cryptography\MD2.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Security\Cryptography\MD2CryptoServiceProvider.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Security\Cryptography\MD4.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Security\Cryptography\MD4CryptoServiceProvider.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Security\Cryptography\RC4.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Security\Cryptography\RC4CryptoServiceProvider.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Security\Cryptography\RC4UnmanagedTransform.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Security\Cryptography\RijndaelCryptoServiceProvider.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Security\Cryptography\RijndaelUnmanagedTransform.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Security\Cryptography\RIPEMD160.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Security\Cryptography\RIPEMD160Managed.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Security\Cryptography\SymmetricKey.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Security\SecurityConstants.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Security\SecurityException.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Security\SecurityStructures.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Security\Ssl\AsyncResult.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Security\Ssl\RequestEventArgs.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Security\Ssl\SecureNetworkStream.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Security\Ssl\SecureSocket.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Security\Ssl\SecureTcpClient.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Security\Ssl\SecureTcpListener.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Security\Ssl\SecurityOptions.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Security\Ssl\Shared\CipherSuites.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Security\Ssl\Shared\ClientHandshakeLayer.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Security\Ssl\Shared\CloneableHash.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Security\Ssl\Shared\CompatibilityLayer.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Security\Ssl\Shared\CompressionAlgorithm.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Security\Ssl\Shared\HandshakeLayer.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Security\Ssl\Shared\HandshakeMessage.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Security\Ssl\Shared\MD5SHA1CryptoServiceProvider.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Security\Ssl\Shared\RecordLayer.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Security\Ssl\Shared\RecordMessage.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Security\Ssl\Shared\RSAKeyTransform.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Security\Ssl\Shared\ServerHandshakeLayer.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Security\Ssl\Shared\SocketController.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Security\Ssl\Shared\SslException.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Security\Ssl\Shared\SslTypes.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Security\Ssl\Shared\TransferItem.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Security\Ssl\Shared\XBuffer.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Security\Ssl\Ssl3\Ssl3CipherSuites.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Security\Ssl\Ssl3\Ssl3ClientHandshakeLayer.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Security\Ssl\Ssl3\Ssl3DeriveBytes.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Security\Ssl\Ssl3\Ssl3HandshakeMac.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Security\Ssl\Ssl3\Ssl3RecordMAC.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Security\Ssl\Ssl3\Ssl3ServerHandshakeLayer.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Security\Ssl\SslStructures.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Security\Ssl\Tls1\ExpansionDeriveBytes.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Security\Ssl\Tls1\PseudoRandomDeriveBytes.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Security\Ssl\Tls1\Tls1CipherSuites.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Security\Ssl\Tls1\Tls1ClientHandshakeLayer.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Security\Ssl\Tls1\Tls1ServerHandshakeLayer.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Security\Ssl\VerifyEventArgs.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Security\Ssl\VirtualSocket.cs">
+			<SubType>Code</SubType>
+		</Compile>
+		<Compile Include="Security\SspiProvider.cs">
+			<SubType>Code</SubType>
+		</Compile>
+	</ItemGroup>
+	<Import Project="$(ProductHomeDir)/Build/Product.BeforeMicrosoftCommon.Targets" />
+	<Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+	<Import Project="$(ProductHomeDir)/Build/Product.AfterMicrosoftCommon.Targets" />
+</Project>

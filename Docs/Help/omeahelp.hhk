@@ -1,0 +1,1068 @@
+<!--
+SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+
+SPDX-License-Identifier: GPL-2.0-only
+-->
+<html>
+<!-- Sitemap 1.0 -->
+<object type="text/site properties">
+  <param name="SiteType" value="index">
+</object>
+<ul>
+  <li><object type="text/sitemap">
+    <param name="Name" value="merge">
+    <param name="Name" value="Managing Contacts: Merging Contacts">
+    <param name="Local" value="using\manage_contacts.html#merging">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="address book">
+    <param name="Name" value="Managing Contacts">
+    <param name="Local" value="using\manage_contacts.html">
+    <param name="Name" value="Managing Contacts: moving between address books">
+    <param name="Local" value="using\manage_contacts.html#moving">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="sorting">
+    <param name="Name" value="Custom Properties columns">
+    <param name="Local" value="organizing\custom_properties.html#columns">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="columns">
+    <param name="Name" value="Custom Properties columns">
+    <param name="Local" value="organizing\custom_properties.html#columns">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Annotations">
+    <param name="Name" value="Annotations">
+    <param name="Local" value="organizing\using_annotations.html">
+    <param name="Name" value="Working with Internet Explorer Add-on">
+    <param name="Local" value="using\working_with_ie_add-on.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="pop-up">
+    <param name="See Also" value="notifications">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="notifications">
+    <param name="Name" value="Notify Me">
+    <param name="Local" value="organizing\notify_me.html">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="query">
+    <param name="Name" value="Search Query Syntax">
+    <param name="Local" value="reference\query_syntax.html">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="reading">
+    <param name="Name" value="RSS/Atom Feeds">
+    <param name="Local" value="using\com_feedsblogs.htm#reading">
+    <param name="Name" value="Newsgroups">
+    <param name="Local" value="using\com_news.html#reading">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="posting">
+    <param name="Name" value="Posting to Newsgroups">
+    <param name="Local" value="using\com_news.html#posting">
+    <param name="Name" value="Reading Feed/Weblog Posts">
+    <param name="Local" value="using\com_feedsblogs.htm#reading">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="printing">
+    <param name="Name" value="Newsgroup Articles">
+    <param name="Local" value="using\com_news.html#printing">
+    <param name="Name" value="Feed Postings">
+    <param name="Local" value="using\com_feedsblogs.htm#printing">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Clippings">
+    <param name="Name" value="Working with Clippings">
+    <param name="Local" value="using\clippings.html">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="user interface">
+    <param name="Name" value="Quick Tour">
+    <param name="Local" value="overview\quick_tour.html">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="overview">
+    <param name="Name" value="Introducing Omea Pro">
+    <param name="Local" value="overview\about_pro.html">
+    <param name="Name" value="Introducing Omea Reader">
+    <param name="Local" value="overview\about_reader.html">
+    <param name="Name" value="Key Concepts">
+    <param name="Local" value="overview\key_concepts.html">
+    <param name="Name" value="Quick Tour">
+    <param name="Local" value="overview\quick_tour.html">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="refreshing">
+    <param name="See Also" value="synchronizing">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="downloading">
+    <param name="Name" value="Web Pages and Bookmarks: download interval">
+    <param name="Local" value="using\web_pages.html#downloadinterval">
+    <param name="Name" value="Web Pages">
+    <param name="Local" value="reference\web_pages.html">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="synchronizing">
+    <param name="Name" value="Web Pages and Bookmarks: synchronizing">
+    <param name="Local" value="using\web_pages.html#synchronizing">
+    <param name="Name" value="Web Pages and Bookmarks: synchronizing offline pages">
+    <param name="Local" value="using\web_pages.html#synclocal">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="find, finding">
+    <param name="See Also" value="search, searching">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="blog">
+    <param name="See Also" value="weblog">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="organize, organizing">
+    <param name="Name" value="Organizing Your Resources">
+    <param name="Local" value="organizing\organizing_your_resources.html">
+    <param name="Name" value="Organizing Using Workspaces">
+    <param name="Local" value="organizing\organizing_using_workspaces.html">
+    <param name="Name" value="Organizing using Categories">
+    <param name="Local" value="organizing\organizing_using_categories.html">
+    <param name="Name" value="Key Concepts: Organizing">
+    <param name="Local" value="overview\key_concepts.html#organize">
+    <param name="Name" value="Organizing Using Views">
+    <param name="Local" value="organizing\organizing_using_views.html">
+    <param name="Name" value="Using shortcuts">
+    <param name="Local" value="organizing\using_shortcuts.html">
+    <param name="Name" value="Using Rules">
+    <param name="Local" value="organizing\using_rules.html">
+    <param name="Name" value="Formatting Rules">
+    <param name="Local" value="organizing\using_formatting_rules.html">
+    <param name="Name" value="Custom Properties">
+    <param name="Local" value="organizing\custom_properties.html">
+    <param name="Name" value="Organizing using Tasks">
+    <param name="Local" value="organizing\organizing_using_tasks.html">
+    <param name="Name" value="Organizing Using Links">
+    <param name="Local" value="organizing\organizing_using_links.html">
+    <param name="Name" value="Flags">
+    <param name="Local" value="organizing\using_flags.htm">
+    <param name="Name" value="Notify Me">
+    <param name="Local" value="organizing\notify_me.html">
+    <param name="Name" value="Resource Clipboard">
+    <param name="Local" value="organizing\resource_clipboard.html">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="resources">
+    <param name="Name" value="Organizing Your Resources">
+    <param name="Local" value="organizing\organizing_your_resources.html">
+    <param name="Name" value="Key Concepts: Resources">
+    <param name="Local" value="overview\key_concepts.html#resources">
+    <param name="Name" value="Find in Resource">
+    <param name="Local" value="search\find_in_resource.html">
+    <param name="Name" value="Resource Clipboard">
+    <param name="Local" value="organizing\resource_clipboard.html">
+    <param name="Name" value="Quick Tour: Resource Items list">
+    <param name="Local" value="overview\quick_tour.html#resourceitemlist">
+  </object>
+  <ul>
+    <li><object type="text/sitemap">
+      <param name="Name" value="linking">
+      <param name="Name" value="Organizing Using Links">
+      <param name="Local" value="organizing\organizing_using_links.html">
+    </object>
+    <li><object type="text/sitemap">
+      <param name="Name" value="searching">
+      <param name="Name" value="Search Overview">
+      <param name="Local" value="search\index.html">
+    </object>
+    <li><object type="text/sitemap">
+      <param name="Name" value="indexing">
+      <param name="Name" value="Indexing Your Computer�s Resources">
+      <param name="Local" value="getstarted\indexing_your_computers_resources.html">
+    </object>
+    <li><object type="text/sitemap">
+      <param name="Name" value="definition">
+      <param name="Name" value="Key Concepts: resources">
+      <param name="Local" value="overview\key_concepts.html#resources">
+    </object>
+    </ul>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Categories">
+    <param name="Name" value="Organizing using Categories">
+    <param name="Local" value="organizing\organizing_using_categories.html">
+    <param name="Name" value="Quick Tour: Views &amp; Categories pane">
+    <param name="Local" value="overview\quick_tour.html#viewscats">
+    <param name="Name" value="Managing Contacts">
+    <param name="Local" value="using\manage_contacts.html">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="instant messaging">
+    <param name="Name" value="ICQ">
+    <param name="Local" value="reference\icq.html">
+    <param name="Name" value="Miranda">
+    <param name="Local" value="reference\miranda.html">
+    <param name="Name" value="Instant Messaging">
+    <param name="Local" value="using\com_im.html">
+    <param name="Name" value="Indexing Your Computer's Resources: IM">
+    <param name="Local" value="getstarted\indexing_your_computers_resources.html#im">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="E-mail">
+    <param name="Name" value="Omea Mail Format">
+    <param name="Local" value="reference\mail_format.html">
+    <param name="Name" value="Outlook Address Book">
+    <param name="Local" value="reference\outlook_address_book.html">
+    <param name="Name" value="Indexing Your Computer's Resources: Outlook">
+    <param name="Local" value="getstarted\indexing_your_computers_resources.html#outlook">
+    <param name="Name" value="Outlook Information Stores">
+    <param name="Local" value="reference\outlook_infostores.html">
+    <param name="Name" value="Outlook Folders">
+    <param name="Local" value="reference\outlook_folders.html">
+    <param name="Name" value="Managing Contacts: Sharing Contacts">
+    <param name="Local" value="using\manage_contacts.html#sharing">
+    <param name="Name" value="Tasks: Sending">
+    <param name="Local" value="organizing\organizing_using_tasks.html#sending">
+    <param name="Name" value="Newsgroups: Sending articles">
+    <param name="Local" value="using\com_news.html#sending">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Outlook">
+    <param name="Name" value="Outlook Folders">
+    <param name="Local" value="reference\outlook_folders.html">
+    <param name="Name" value="Outlook General">
+    <param name="Local" value="reference\outlook_general.html">
+    <param name="Name" value="Outlook Address Book">
+    <param name="Local" value="reference\outlook_address_book.html">
+    <param name="Name" value="Outlook Information Stores">
+    <param name="Local" value="reference\outlook_infostores.html">
+    <param name="Name" value="Managing Contacts">
+    <param name="Local" value="using\manage_contacts.html">
+    <param name="Name" value="Outlook Tasks">
+    <param name="Local" value="reference\outlook_tasks.htm">
+    <param name="Name" value="Outlook Address Books">
+    <param name="Local" value="reference\outlook_address_books.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="indexing">
+    <param name="Name" value="Key Concepts: indexing">
+    <param name="Local" value="overview\key_concepts.html#index">
+    <param name="Name" value="Indexing Your Computer's Resources">
+    <param name="Local" value="getstarted\indexing_your_computers_resources.html">
+    <param name="Name" value="Indexed Folders">
+    <param name="Local" value="reference\indexed_folders.html">
+    <param name="Name" value="Outlook Folders">
+    <param name="Local" value="reference\outlook_folders.html">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="rules">
+    <param name="Name" value="Manage Rules Dialog">
+    <param name="Local" value="reference\manage_rules.html">
+    <param name="Name" value="New Rule/Edit Rule dialog">
+    <param name="Local" value="reference\new_edit_rule.html">
+    <param name="Name" value="Using Rules">
+    <param name="Local" value="organizing\using_rules.html">
+    <param name="Name" value="Formatting Rules">
+    <param name="Local" value="organizing\using_formatting_rules.html">
+    <param name="Name" value="Notify Me">
+    <param name="Local" value="organizing\notify_me.html">
+    <param name="Name" value="Select Rule Actions Dialog">
+    <param name="Local" value="reference\select_rule_actions.html">
+    <param name="Name" value="Select Conditions Dialog">
+    <param name="Local" value="reference\select_conditions.html">
+    <param name="Name" value="Apply Rules Dialog">
+    <param name="Local" value="reference\apply_rules_dialog.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Views">
+    <param name="Name" value="Manage Views Dialog">
+    <param name="Local" value="reference\manage_views_.html">
+    <param name="Name" value="Quick Tour: Views &amp; Categories pane">
+    <param name="Local" value="overview\quick_tour.html#viewscats">
+    <param name="Name" value="Organizing Using Views">
+    <param name="Local" value="organizing\organizing_using_views.html">
+    <param name="Name" value="Select Conditions Dialog">
+    <param name="Local" value="reference\select_conditions.html">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="options">
+    <param name="Name" value="Options Dialog">
+    <param name="Local" value="reference\options_dialog.html">
+    <param name="Name" value="RSS">
+    <param name="Local" value="reference\feeds.html">
+    <param name="Name" value="File Folders">
+    <param name="Local" value="reference\indexed_folders.html">
+    <param name="Name" value="File Options">
+    <param name="Local" value="reference\file_options.htm">
+    <param name="Name" value="General">
+    <param name="Local" value="reference\general.html">
+    <param name="Name" value="ICQ">
+    <param name="Local" value="reference\icq.html">
+    <param name="Name" value="Omea Mail Format">
+    <param name="Local" value="reference\mail_format.html">
+    <param name="Name" value="Miranda">
+    <param name="Local" value="reference\miranda.html">
+    <param name="Name" value="News">
+    <param name="Local" value="reference\news.html">
+    <param name="Name" value="Outlook Folders">
+    <param name="Local" value="reference\outlook_folders.html">
+    <param name="Name" value="Outlook General">
+    <param name="Local" value="reference\outlook_general.html">
+    <param name="Name" value="Plugins">
+    <param name="Local" value="reference\plugins.html">
+    <param name="Name" value="Proxy Configuration">
+    <param name="Local" value="reference\proxy_configuration.html">
+    <param name="Name" value="Configuring Options">
+    <param name="Local" value="getstarted\configuring_options.html">
+    <param name="Name" value="Outlook Address Book">
+    <param name="Local" value="reference\outlook_address_book.html">
+    <param name="Name" value="News Server Properties/Add News Server dialog">
+    <param name="Local" value="reference\news_server_properties.html">
+    <param name="Name" value="Paths">
+    <param name="Local" value="reference\paths.html">
+    <param name="Name" value="User Information">
+    <param name="Local" value="reference\user_info.html">
+    <param name="Name" value="Web Pages">
+    <param name="Local" value="reference\web_pages.html">
+    <param name="Name" value="Outlook Information Stores">
+    <param name="Local" value="reference\outlook_infostores.html">
+    <param name="Name" value="Mozilla Bookmarks">
+    <param name="Local" value="reference\mozilla_bookmarks.html">
+    <param name="Name" value="Favorites">
+    <param name="Local" value="reference\favorites.html">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="settings">
+    <param name="See Also" value="options">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="configuration">
+    <param name="See Also" value="options">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Workspaces">
+    <param name="Name" value="Manage Workspaces Dialog">
+    <param name="Local" value="reference\manage_workspaces.html">
+    <param name="Name" value="Organizing Using Workspaces">
+    <param name="Local" value="organizing\organizing_using_workspaces.html">
+    <param name="Name" value="Quick Tour: Workspaces">
+    <param name="Local" value="overview\quick_tour.html#workspaces">
+    <param name="Name" value="Feed subscriptions and Workspaces">
+    <param name="Local" value="using\com_feedsblogs.htm#feedsworkspaces">
+    <param name="Name" value="Newsgroup Subscriptions and Workspaces">
+    <param name="Local" value="using\com_news.html#newsworkspaces">
+    <param name="Name" value="Contacts and Workspaces">
+    <param name="Local" value="using\manage_contacts.html#workspaces">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="newsgroups">
+    <param name="Name" value="Manage Newsgroups Dialog">
+    <param name="Local" value="reference\manage_newsgroups.html">
+    <param name="Name" value="News options">
+    <param name="Local" value="reference\news.html">
+    <param name="Name" value="News Server Properties/Add News Server dialog">
+    <param name="Local" value="reference\news_server_properties.html">
+    <param name="Name" value="Newsgroups">
+    <param name="Local" value="using\com_news.html">
+    <param name="Name" value="Managing Contacts">
+    <param name="Local" value="using\manage_contacts.html">
+    <param name="Name" value="Communicating with People">
+    <param name="Local" value="using\index.html">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="dialogs">
+    <param name="Name" value="Options Dialog">
+    <param name="Local" value="reference\options_dialog.html">
+    <param name="Name" value="News Server Properties/Add News Server dialog">
+    <param name="Local" value="reference\news_server_properties.html">
+    <param name="Name" value="Manage Newsgroups Dialog">
+    <param name="Local" value="reference\manage_newsgroups.html">
+    <param name="Name" value="New Rule/Edit Rule dialog">
+    <param name="Local" value="reference\new_edit_rule.html">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="feeds">
+    <param name="Name" value="Feeds options">
+    <param name="Local" value="reference\feeds.html">
+    <param name="Name" value="Feeds and Weblogs">
+    <param name="Local" value="using\com_feedsblogs.htm">
+    <param name="Name" value="Communicating with People">
+    <param name="Local" value="using\index.html">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="RSS">
+    <param name="Name" value="Feeds options">
+    <param name="Local" value="reference\feeds.html">
+    <param name="Name" value="Feeds and Weblogs">
+    <param name="Local" value="using\com_feedsblogs.htm">
+    <param name="Name" value="Working with Internet Explorer Add-on">
+    <param name="Local" value="using\working_with_ie_add-on.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Atom">
+    <param name="Name" value="Feeds options">
+    <param name="Local" value="reference\feeds.html">
+    <param name="Name" value="Feeds and Weblogs">
+    <param name="Local" value="using\com_feedsblogs.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="folders">
+    <param name="Name" value="File Folders Options">
+    <param name="Local" value="reference\indexed_folders.html">
+    <param name="Name" value="Indexing Your Computer's Resources: folders">
+    <param name="Local" value="getstarted\indexing_your_computers_resources.html#folders">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Mozilla">
+    <param name="Name" value="Mozilla Bookmarks">
+    <param name="Local" value="reference\mozilla_bookmarks.html">
+    <param name="Name" value="Working with Mozilla Browser Plugin">
+    <param name="Local" value="using\working_with_mozilla_browser_plugin.htm">
+    <param name="Name" value="Web Pages and Bookmarks">
+    <param name="Local" value="using\web_pages.html">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="bookmarks">
+    <param name="Name" value="Mozilla Bookmarks">
+    <param name="Local" value="reference\mozilla_bookmarks.html">
+    <param name="Name" value="Web Pages and Bookmarks">
+    <param name="Local" value="using\web_pages.html">
+    <param name="Name" value="Internet Explorer Favorites">
+    <param name="Local" value="reference\favorites.html">
+    <param name="Name" value="Opera Bookmarks">
+    <param name="Local" value="reference\opera_bookmarks.htm">
+    <param name="Name" value="Communicating with People">
+    <param name="Local" value="using\index.html">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Web pages">
+    <param name="Name" value="Mozilla Bookmarks">
+    <param name="Local" value="reference\mozilla_bookmarks.html">
+    <param name="Name" value="Favorites">
+    <param name="Local" value="reference\favorites.html">
+    <param name="Name" value="Web Pages and Bookmarks">
+    <param name="Local" value="using\web_pages.html">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Miranda">
+    <param name="Name" value="Miranda Options">
+    <param name="Local" value="reference\miranda.html">
+    <param name="Name" value="Instant Messaging">
+    <param name="Local" value="using\com_im.html">
+    <param name="Name" value="Indexing Your Computer's Resources: IM">
+    <param name="Local" value="getstarted\indexing_your_computers_resources.html#im">
+    <param name="Name" value="Managing Contacts">
+    <param name="Local" value="using\manage_contacts.html">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="exclude, excluding">
+    <param name="Name" value="Indexed Folders">
+    <param name="Local" value="reference\indexed_folders.html">
+    <param name="Name" value="Indexing Your Computer's Resources: excluding">
+    <param name="Local" value="getstarted\indexing_your_computers_resources.html#excluding">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="files">
+    <param name="Name" value="File Options">
+    <param name="Local" value="reference\file_options.htm">
+    <param name="Name" value="Indexing Your Computer's Resources: Folders">
+    <param name="Local" value="getstarted\indexing_your_computers_resources.html#folders">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Internet Explorer">
+    <param name="Name" value="Favorites">
+    <param name="Local" value="reference\favorites.html">
+    <param name="Name" value="Web Pages and Bookmarks: Importing">
+    <param name="Local" value="using\web_pages.html#importing">
+    <param name="Name" value="Web Pages and Bookmarks: Export to IE">
+    <param name="Local" value="using\web_pages.html#exportie">
+    <param name="Name" value="Working with Internet Explorer Add-on">
+    <param name="Local" value="using\working_with_ie_add-on.htm">
+    <param name="Name" value="Web Pages and Bookmarks">
+    <param name="Local" value="using\web_pages.html">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="communicating">
+    <param name="Name" value="Instant Messaging">
+    <param name="Local" value="using\com_im.html">
+    <param name="Name" value="Newsgroups">
+    <param name="Local" value="using\com_news.html">
+    <param name="Name" value="Feeds and Weblogs">
+    <param name="Local" value="using\com_feedsblogs.htm">
+    <param name="Name" value="Managing Contacts">
+    <param name="Local" value="using\manage_contacts.html">
+    <param name="Name" value="Communicating with People">
+    <param name="Local" value="using\index.html">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="ICQ">
+    <param name="Name" value="Instant Messaging">
+    <param name="Local" value="using\com_im.html">
+    <param name="Name" value="ICQ Options">
+    <param name="Local" value="reference\icq.html">
+    <param name="Name" value="Indexing Your Computer's Resources: IM">
+    <param name="Local" value="getstarted\indexing_your_computers_resources.html#im">
+    <param name="Name" value="Managing Contacts">
+    <param name="Local" value="using\manage_contacts.html">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="weblog">
+    <param name="Name" value="Feeds and Weblogs">
+    <param name="Local" value="using\com_feedsblogs.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="shortcuts">
+    <param name="Name" value="Using shortcuts">
+    <param name="Local" value="organizing\using_shortcuts.html">
+    <param name="Name" value="Quick Tour: shortcuts bar">
+    <param name="Local" value="overview\quick_tour.html#shortcuts">
+    <param name="Name" value="Keyboard Shortcuts">
+    <param name="Local" value="reference\keyboard_shortcuts.html">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="automating">
+    <param name="Name" value="Using Rules">
+    <param name="Local" value="organizing\using_rules.html">
+    <param name="Name" value="Formatting Rules">
+    <param name="Local" value="organizing\using_formatting_rules.html">
+    <param name="Name" value="Custom Properties">
+    <param name="Local" value="organizing\custom_properties.html">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="formatting">
+    <param name="Name" value="Formatting Rules">
+    <param name="Local" value="organizing\using_formatting_rules.html">
+    <param name="Name" value="Newsgroups">
+    <param name="Local" value="using\com_news.html">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="custom properties">
+    <param name="Name" value="Custom Properties">
+    <param name="Local" value="organizing\custom_properties.html">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="tasks">
+    <param name="Name" value="Organizing using Tasks">
+    <param name="Local" value="organizing\organizing_using_tasks.html">
+    <param name="Name" value="Resource Clipboard">
+    <param name="Local" value="organizing\resource_clipboard.html">
+    <param name="Name" value="Quick Tour: To Do list">
+    <param name="Local" value="overview\quick_tour.html#todolist">
+    <param name="Name" value="Outlook Tasks">
+    <param name="Local" value="reference\outlook_tasks.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="links">
+    <param name="Name" value="Organizing Using Links">
+    <param name="Local" value="organizing\organizing_using_links.html">
+    <param name="Name" value="Resource Clipboard">
+    <param name="Local" value="organizing\resource_clipboard.html">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="flags">
+    <param name="Name" value="Flags">
+    <param name="Local" value="organizing\using_flags.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="search, searching">
+    <param name="Name" value="Search Overview">
+    <param name="Local" value="search\index.html">
+    <param name="Name" value="Advanced Search">
+    <param name="Local" value="search\adv_search.html">
+    <param name="Name" value="Basic Search">
+    <param name="Local" value="search\basic_search.html">
+    <param name="Name" value="Quick Find">
+    <param name="Local" value="search\quick_find.html">
+    <param name="Name" value="Find in Resource">
+    <param name="Local" value="search\find_in_resource.html">
+    <param name="Name" value="Quick Tour: search">
+    <param name="Local" value="overview\quick_tour.html#search">
+    <param name="Name" value="Reference: Search Query Syntax">
+    <param name="Local" value="reference\query_syntax.html">
+    <param name="Name" value="Custom Properties">
+    <param name="Local" value="organizing\custom_properties.html">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="contacts">
+    <param name="Name" value="Managing Contacts">
+    <param name="Local" value="using\manage_contacts.html">
+    <param name="Name" value="Contact Dialog">
+    <param name="Local" value="reference\contacts_dialog.html">
+    <param name="Name" value="Communicating with People">
+    <param name="Local" value="using\index.html">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="file">
+    <param name="Name" value="Files">
+    <param name="Local" value="using\files.htm">
+    <param name="Name" value="Working with Files">
+    <param name="Local" value="using\working_with_files.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="local file">
+    <param name="Name" value="Files">
+    <param name="Local" value="using\files.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="newsgroups attachment">
+    <param name="Name" value="Files">
+    <param name="Local" value="using\files.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="browser">
+    <param name="Name" value="Working with Mozilla Browser Plugin">
+    <param name="Local" value="using\working_with_mozilla_browser_plugin.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="mozilla firefox">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="clipping">
+    <param name="Name" value="Working with Mozilla Browser Plugin">
+    <param name="Local" value="using\working_with_mozilla_browser_plugin.htm">
+    <param name="Name" value="Working with Internet Explorer Add-on">
+    <param name="Local" value="using\working_with_ie_add-on.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="annotation">
+    <param name="Name" value="Working with Mozilla Browser Plugin">
+    <param name="Local" value="using\working_with_mozilla_browser_plugin.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="feed">
+    <param name="Name" value="Working with Mozilla Browser Plugin">
+    <param name="Local" value="using\working_with_mozilla_browser_plugin.htm">
+    <param name="Name" value="Working with Internet Explorer Add-on">
+    <param name="Local" value="using\working_with_ie_add-on.htm">
+    <param name="Name" value="Feed Properties Dialog">
+    <param name="Local" value="reference\feed_properties_dialog.html">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="subscribe to feed">
+    <param name="Name" value="Working with Mozilla Browser Plugin">
+    <param name="Local" value="using\working_with_mozilla_browser_plugin.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="add-on">
+    <param name="Name" value="Working with Internet Explorer Add-on">
+    <param name="Local" value="using\working_with_ie_add-on.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="IE">
+    <param name="Name" value="Working with Internet Explorer Add-on">
+    <param name="Local" value="using\working_with_ie_add-on.htm">
+    <param name="Name" value="Web Pages and Bookmarks">
+    <param name="Local" value="using\web_pages.html">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="annotate">
+    <param name="Name" value="Working with Internet Explorer Add-on">
+    <param name="Local" value="using\working_with_ie_add-on.htm">
+    <param name="Name" value="Feeds and Weblogs">
+    <param name="Local" value="using\com_feedsblogs.htm">
+    <param name="Name" value="Working with Clippings">
+    <param name="Local" value="using\clippings.html">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="clip">
+    <param name="Name" value="Working with Internet Explorer Add-on">
+    <param name="Local" value="using\working_with_ie_add-on.htm">
+    <param name="Name" value="Working with Clippings">
+    <param name="Local" value="using\clippings.html">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="clip and edit">
+    <param name="Name" value="Working with Internet Explorer Add-on">
+    <param name="Local" value="using\working_with_ie_add-on.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="clip and save">
+    <param name="Name" value="Working with Internet Explorer Add-on">
+    <param name="Local" value="using\working_with_ie_add-on.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="outlook tasks">
+    <param name="Name" value="Outlook Tasks">
+    <param name="Local" value="reference\outlook_tasks.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="tasks synchonization">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="task">
+    <param name="Name" value="Outlook Tasks">
+    <param name="Local" value="reference\outlook_tasks.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="default">
+    <param name="Name" value="Default Application">
+    <param name="Local" value="reference\default_application.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="default application">
+    <param name="Name" value="Default Application">
+    <param name="Local" value="reference\default_application.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="apply rules">
+    <param name="Name" value="Apply Rules Dialog">
+    <param name="Local" value="reference\apply_rules_dialog.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="tray">
+    <param name="Name" value="Tray Icon Rule">
+    <param name="Local" value="reference\tray_icon_rule.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="icon">
+    <param name="Name" value="Tray Icon Rule">
+    <param name="Local" value="reference\tray_icon_rule.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="tray icon">
+    <param name="Name" value="Tray Icon Rule">
+    <param name="Local" value="reference\tray_icon_rule.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="tray icon rule">
+    <param name="Name" value="Tray Icon Rule">
+    <param name="Local" value="reference\tray_icon_rule.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="auto expire">
+    <param name="Name" value="Auto Expiration Rule Dialog">
+    <param name="Local" value="reference\auto_expiration_rule_dialog.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="expire">
+    <param name="Name" value="Auto Expiration Rule Dialog">
+    <param name="Local" value="reference\auto_expiration_rule_dialog.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="expiration">
+    <param name="Name" value="Auto Expiration Rule Dialog">
+    <param name="Local" value="reference\auto_expiration_rule_dialog.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="ecnlosures">
+    <param name="Name" value="Downloading Feed Enclosures">
+    <param name="Local" value="using\downloading_feed_enclosures.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="enclosure">
+    <param name="Name" value="Downloading Feed Enclosures">
+    <param name="Local" value="using\downloading_feed_enclosures.htm">
+    <param name="Name" value="Feeds Enclosures">
+    <param name="Local" value="reference\feeds_enclosures.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="notify">
+    <param name="Name" value="Feeds Enclosures">
+    <param name="Local" value="reference\feeds_enclosures.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="download enclosures">
+    <param name="Name" value="Feeds Enclosures">
+    <param name="Local" value="reference\feeds_enclosures.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="download time">
+    <param name="Name" value="Feeds Enclosures">
+    <param name="Local" value="reference\feeds_enclosures.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="notification">
+    <param name="Name" value="Feeds Enclosures">
+    <param name="Local" value="reference\feeds_enclosures.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="download ing complete">
+    <param name="Name" value="Feeds Enclosures">
+    <param name="Local" value="reference\feeds_enclosures.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="downloading failed">
+    <param name="Name" value="Feeds Enclosures">
+    <param name="Local" value="reference\feeds_enclosures.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="associated">
+    <param name="Name" value="Working with Files">
+    <param name="Local" value="using\working_with_files.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="application">
+    <param name="Name" value="Working with Files">
+    <param name="Local" value="using\working_with_files.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="attachment">
+    <param name="Name" value="Working with Files">
+    <param name="Local" value="using\working_with_files.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="news attachment">
+    <param name="Name" value="Working with Files">
+    <param name="Local" value="using\working_with_files.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="news">
+    <param name="Name" value="Working with Files">
+    <param name="Local" value="using\working_with_files.htm">
+    <param name="Name" value="Communicating with People">
+    <param name="Local" value="using\index.html">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="incremental search">
+    <param name="Name" value="JetListView Enhancements">
+    <param name="Local" value="organizing\jetlistview_enhancements.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="search">
+    <param name="Name" value="JetListView Enhancements">
+    <param name="Local" value="organizing\jetlistview_enhancements.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="preview">
+    <param name="Name" value="JetListView Enhancements">
+    <param name="Local" value="organizing\jetlistview_enhancements.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="previewing">
+    <param name="Name" value="JetListView Enhancements">
+    <param name="Local" value="organizing\jetlistview_enhancements.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="grouping">
+    <param name="Name" value="JetListView Enhancements">
+    <param name="Local" value="organizing\jetlistview_enhancements.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="proups">
+    <param name="Name" value="JetListView Enhancements">
+    <param name="Local" value="organizing\jetlistview_enhancements.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="multiline view">
+    <param name="Name" value="JetListView Enhancements">
+    <param name="Local" value="organizing\jetlistview_enhancements.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="opera">
+    <param name="Name" value="Opera Bookmarks">
+    <param name="Local" value="reference\opera_bookmarks.htm">
+    <param name="Name" value="Web Pages and Bookmarks">
+    <param name="Local" value="using\web_pages.html">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="import bookmarks">
+    <param name="Name" value="Opera Bookmarks">
+    <param name="Local" value="reference\opera_bookmarks.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="delete">
+    <param name="Name" value="Delete Confirmations">
+    <param name="Local" value="reference\delete_confirmations.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="confirm">
+    <param name="Name" value="Delete Confirmations">
+    <param name="Local" value="reference\delete_confirmations.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="confirm deletion">
+    <param name="Name" value="Delete Confirmations">
+    <param name="Local" value="reference\delete_confirmations.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="delete confirmation">
+    <param name="Name" value="Delete Confirmations">
+    <param name="Local" value="reference\delete_confirmations.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="adress">
+    <param name="Name" value="Outlook Address Books">
+    <param name="Local" value="reference\outlook_address_books.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="books">
+    <param name="Name" value="Outlook Address Books">
+    <param name="Local" value="reference\outlook_address_books.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="address books">
+    <param name="Name" value="Outlook Address Books">
+    <param name="Local" value="reference\outlook_address_books.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="blogs">
+    <param name="Name" value="Communicating with People">
+    <param name="Local" value="using\index.html">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="favorites">
+    <param name="Name" value="Communicating with People">
+    <param name="Local" value="using\index.html">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="information store">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="information storage">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="move folders">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="comments">
+    <param name="Name" value="Feeds and Weblogs">
+    <param name="Local" value="using\com_feedsblogs.htm">
+    <param name="Name" value="Feed Properties Dialog">
+    <param name="Local" value="reference\feed_properties_dialog.html">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="post comments">
+    <param name="Name" value="Feeds and Weblogs">
+    <param name="Local" value="using\com_feedsblogs.htm">
+    <param name="Name" value="Feeds">
+    <param name="Local" value="reference\feeds.html">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="newspaper view">
+    <param name="Name" value="Feeds and Weblogs">
+    <param name="Local" value="using\com_feedsblogs.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="flag">
+    <param name="Name" value="Feeds and Weblogs">
+    <param name="Local" value="using\com_feedsblogs.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="zoom">
+    <param name="Name" value="Files">
+    <param name="Local" value="using\files.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="conversation">
+    <param name="Name" value="Instant Messaging">
+    <param name="Local" value="using\com_im.html">
+    <param name="Name" value="Newsgroups">
+    <param name="Local" value="using\com_news.html">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="read">
+    <param name="Name" value="Newsgroups">
+    <param name="Local" value="using\com_news.html">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="post articles">
+    <param name="Name" value="Newsgroups">
+    <param name="Local" value="using\com_news.html">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="thread">
+    <param name="Name" value="Newsgroups">
+    <param name="Local" value="using\com_news.html">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="manage newsgroups">
+    <param name="Name" value="Newsgroups">
+    <param name="Local" value="using\com_news.html">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Firefox">
+    <param name="Name" value="Web Pages and Bookmarks">
+    <param name="Local" value="using\web_pages.html">
+    <param name="Name" value="Working with Browser Plugins">
+    <param name="Local" value="using\working_with_mozilla_browser_plugin.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="import">
+    <param name="Name" value="Web Pages and Bookmarks">
+    <param name="Local" value="using\web_pages.html">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="synchronize">
+    <param name="Name" value="Web Pages and Bookmarks">
+    <param name="Local" value="using\web_pages.html">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="update">
+    <param name="Name" value="Web Pages and Bookmarks">
+    <param name="Local" value="using\web_pages.html">
+    <param name="Name" value="Feed Properties Dialog">
+    <param name="Local" value="reference\feed_properties_dialog.html">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="refresh">
+    <param name="Name" value="Web Pages and Bookmarks">
+    <param name="Local" value="using\web_pages.html">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="bookmark">
+    <param name="Name" value="Working with Browser Plugins">
+    <param name="Local" value="using\working_with_mozilla_browser_plugin.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="web page">
+    <param name="Name" value="Working with Browser Plugins">
+    <param name="Local" value="using\working_with_mozilla_browser_plugin.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="plain text">
+    <param name="Name" value="Newsgroups">
+    <param name="Local" value="using\com_news.html">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="categorize">
+    <param name="Name" value="Working with Clippings">
+    <param name="Local" value="using\clippings.html">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="reuse rules">
+    <param name="Name" value="Apply Rules Dialog">
+    <param name="Local" value="reference\apply_rules_dialog.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="resource type">
+    <param name="Name" value="Choose Recourse Types Dialog">
+    <param name="Local" value="reference\Choose_Recourse_Types_Dialog.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="time">
+    <param name="Name" value="Edit Time Span Dialog">
+    <param name="Local" value="reference\edit_time_span_dialog.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="time span">
+    <param name="Name" value="Edit Time Span Dialog">
+    <param name="Local" value="reference\edit_time_span_dialog.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="cookies">
+    <param name="Name" value="Feed Properties Dialog">
+    <param name="Local" value="reference\feed_properties_dialog.html">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="auto-expire">
+    <param name="Name" value="Feed Properties Dialog">
+    <param name="Local" value="reference\feed_properties_dialog.html">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="newspaper">
+    <param name="Name" value="Feed Properties Dialog">
+    <param name="Local" value="reference\feed_properties_dialog.html">
+    <param name="Name" value="Feeds">
+    <param name="Local" value="reference\feeds.html">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="read comments">
+    <param name="Name" value="Feeds">
+    <param name="Local" value="reference\feeds.html">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="general">
+    <param name="Name" value="General Options">
+    <param name="Local" value="reference\general.html">
+  </object>
+</ul>
+</html>

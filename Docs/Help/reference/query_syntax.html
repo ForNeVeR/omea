@@ -1,0 +1,202 @@
+<!doctype HTML public "-//W3C//DTD HTML 4.0 Frameset//EN">
+<!--
+SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+
+SPDX-License-Identifier: GPL-2.0-only
+-->
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang=en lang=en>
+
+
+<!--(==============================================================)-->
+<!--(Document created with RoboEditor. )============================-->
+<!--(==============================================================)-->
+
+<head>
+
+<title>Search Query Syntax</title>
+
+<!--(Meta)==========================================================-->
+
+<meta http-equiv=content-type content="text/html; charset=windows-1252" charset=windows-1252 />
+<meta name=copyright content="Copyright (c)2004 JetBrains, Inc." />
+<meta name=topic-check-list content="First Draft,Added To TOC,Links,Index keywords" />
+<meta name=generator content="RoboHELP by eHelp Corporation - www.ehelp.com">
+<meta name=generator-major-version content=0.1>
+<meta name=generator-minor-version content=1>
+<meta name=filetype content=kadov>
+<meta name=filetype-version content=1>
+<meta name=page-count content=1>
+<meta name=layout-height content=1310>
+<meta name=layout-width content=1006>
+
+
+<!--(Links)=========================================================-->
+
+<link rel=StyleSheet href="../help.css" />
+
+
+
+<!--(Style Sheet)===================================================-->
+
+<style>
+<!--
+
+.texteg {
+	margin-left: 3em;
+	margin-right: 3em;
+}
+
+/*=(Generated Code)=================================================*/
+/*=(WARNING: DO NOT EDIT OR DELETE THIS SECTION!)===================*/
+/*begin!kadov{{=====================================================*/
+LI.kadov-Ctexteg {
+}
+/*}}end!kadov=======================================================*/
+
+
+
+-->
+</style>
+
+
+</head>
+
+<!--(Body)==========================================================-->
+
+
+<body>
+
+<!-- Conditional Headers -->
+<div style="x-condition: PRO;">
+<div id=helpHeader>
+<div id=helpHeaderImg
+	style="top: 14px;
+			left: 16px;
+			/*begin!kadov{{*/ x-right: 816px;
+			x-bottom: 251px; /*}}end!kadov*/ ">
+  <p>&nbsp;</p>
+</div>
+<p class=helpHeader>Omea Pro Help: Reference: Search Query Syntax</p>
+</div>
+</div>
+
+<div style="x-condition: READER;">
+<div id=helpHeader>
+<div id=helpHeaderImg
+	style="/*begin!kadov{{*/ x-right: 972px; x-bottom: 1278px; /*}}end!kadov*/ ">
+<p>&nbsp;</p>
+</div>
+
+<p class=helpHeader>Omea Reader Help: Reference: Search Query Syntax</p>
+</div>
+</div>
+
+<div id=mainContent>
+<h1>Search Query Syntax</h1>
+
+<p> As you may have already discovered, doing a search in Omea  is easy because all you need to do is simply type one or more search terms (the words or phrase that best describe the information you want to find) into the <a href="../search/basic_search.html">Basic Search</a> field and hit <strong>Enter</strong> key or use the <a href="../search/adv_search.html">Advanced Search</a> for searching resources in Omea or run the <a href="../search/quick_find.html">Quick Find</a> in the set of resources you are currently working with.</p>
+<p>Search query syntax can help you to make the searches you run in Omea more accurate because you can combine the syntax characters with keywords you enter in <a
+ href="../search/basic_search.html">Basic</a> or <a href="../search/adv_search.html">Advanced</a>
+   searches. </p>
+<p></p>
+<div class=tip>
+  <p class=tip>Please note that search queries which you can enter in Omea are not case sensitive. So, no matter if you enter <code><strong>jetbrains</strong></code> or <code><strong>JetBrains</strong></code>, your search yields the same results.</p>
+</div>
+<h2>Use <em>AND</em> or <em>Space</em> to Create Inclusive Queries</h2>
+
+<p>If you type <strong>AND</strong> between the search keywords, the search results will
+ contain documents (resources) with <em>both</em> the words that come before and after <strong>AND</strong>. For example,
+ if you enter <code><strong>jetbrains AND omea</strong></code>, the search results
+ will contain <em>only items that contain both</em> <strong>jetbrains</strong> and <strong>omea</strong>. </p>
+
+<p>If you leave a <em>space</em> between keywords, it will mean the same for Omea as if  you write
+ <strong>AND</strong> between words. For example, <code><strong>jetbrains AND omea</strong></code>
+ and <code><strong>jetbrains omea</strong></code> are actually the <em>same
+ query</em> and will return <em>identical results</em>.</p>
+
+<h2>Use <em>OR</em> to Create  Queries</h2>
+
+<p>Use <strong>OR</strong> between keywords
+ to create queries which return one of the words which you specify in the search query or both words in the search query.</p>
+<p> For example, if you type the query <code><strong>jetbrains OR omea</strong></code>, it will  return resources that contain the word <em>jetbrains</em>, or the word <em>omea</em>,
+   or both. </p>
+<h2>Restrict Search Scope with <em>NEAR</em></h2>
+
+<p>Use <strong>NEAR</strong>  to restrict the scope of
+ the search for <em>two keywords</em> so that the search will return results where these two words both occur in the
+ same sentence.</p>
+
+<p>For example, if you type the query <code><strong>jetbrains NEAR omea</strong></code>, the search
+ will return resources in which the words <em>jetbrains</em> and <em>omea</em>
+ (in upper, lower, or mixed case) occur in the <em>same sentence</em>. Thus, Omea may find this:</p>
+
+<p class=texteg><em style="font-style: italic;">JetBrains has added some
+ super new features to Omea, a  new tool that helps you tame electronic
+ information overload.</em></p>
+
+<p>But the following text would not show up because these two words are in different sentences:</p>
+
+<p class=texteg><em style="font-style: italic;">Omea is a super new tool
+ that helps you tame electronic information overload. From JetBrains, makers
+ of the award-winning Java™ IDE </em>IntelliJ IDEA.</p>
+
+<h2>Exact Phrase Matching with <em>Parentheses</em> (&quot;&quot;)</h2>
+
+<p>If you put the quotes around the word or phrase, Omea <em>will  find only those documents  containinng that precise phrase</em>. For example, the query <code><strong>&quot;JetBrains Omea Reader&quot;</strong></code> will, for example, return the following result:</p>
+
+<p class=texteg><em> I am back reading blogs, thanks to Jetbrains Omea Reader. Omea Reader is stable, has the features I need and I got a free license for it. </em></p>
+
+<h2>Combining Syntax Elements into Sub-queries</h2>
+
+<p>You can create more refined searches by combining syntax elements to
+ form sub-queries. A sub-query is placed in parentheses, <strong>()</strong>.</p>
+
+<p>The query <code><strong>JetBrains OR (Omea AND organizer)</strong></code>
+ searches for items containing the word <em>JetBrains</em>, or both the
+ words <em>Omea</em> and <em>organizer</em>.</p>
+
+<div class=tip>
+<p class=tip>The query syntax elements <strong>AND</strong>, <strong>OR</strong>,
+ and <strong>NEAR</strong> are rendered here in uppercase letters, but
+ this is not required. You can use lowercase in your queries if you prefer.</p>
+</div>
+<a name="restrictingsections"></a>
+<h2>Restricting Search Results Using the Names of the Document Sections</h2>
+<p>You can create search queries using the following pattern: <strong>token [Section Name]</strong>. Instead of a <em>token</em> you need to type the word or phrase  to look for and  in <em>square brackets   []</em> you need to enter abbreviation which means the name of the document section. Such &#8220;structure&#8221; will help you  limit the scope of your search results because now Omea will search <em>only in the section of the documents</em> (resources available in it) which you type in square brackets. </p>
+<p>Use the following abbreviations of the document's sections in Omea:</p>
+<ol>
+  <li>[SU] or [su] to limit the search results to the <em>subject</em> (heading or title) of the document</li>
+  <li> [SRC] or [src] to limit the search results to the <em>source</em> where the item comes from; the source can be for example, person's e-mail address or name, feed or news server or the web site address. </li>
+  <li>[AN] or [an] to limit the search results to the <a href="../organizing/using_annotations.html"><em>annotation</em></a> which the resource may contain . </li>
+  </ol>
+<p>The query <strong>JetBrains [Su]</strong> will search for items which contain the word <em>JetBrains</em> <strong>only in the subject of  resources</strong> available in Omea. The query <strong>Yole [Src] </strong>will search for items which contain <em>Yole</em> <strong>only in the source or author</strong> of the resources. </p>
+<div class=tip>
+  <p class=tip>u can type the document sections names both in uppercase and lowercase letters.</p>
+  <p class=tip>To limit the types of resources which Omea will search for, run the <a href="../search/adv_search.html">Advanced Search</a> and select the desired type of resources in the <a href="Choose_Recourse_Types_Dialog.htm">Choose Resource Types dialog</a>.</p>
+</div>
+<div id=seealso>
+<p class=seealso><strong style="font-weight: bold;">See also:</strong></p>
+
+<ol>
+
+	<li class=seealso><a href="../search/index.html">Search Overview</a></li>
+
+	<li class=seealso><a href="../search/basic_search.html">Basic Search</a></li>
+
+	<li class=seealso><a href="../search/adv_search.html">Advanced Search</a></li>
+
+	<li class=seealso><a href="../search/quick_find.html">Quick Find</a></li>
+
+	<li class=seealso><a href="../search/find_in_resource.html">Find in
+ Resource</a></li>
+</ol>
+</div>
+</div>
+
+</body>
+
+<!-- Conditional Text & Build Tags complete! 20 Sep 2004 -->
+<!-- LAST SPELLCHECK: 20 Sep 2004 -->
+</html>
+

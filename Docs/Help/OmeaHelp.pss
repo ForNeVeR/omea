@@ -1,0 +1,150 @@
+[MAS SUPPORT]
+SupportMas_Prj=1
+
+[Target:WebHelp5]
+SupportMas_Prj=1
+
+[Target:WebHelp Enterprise]
+SupportMas_Prj=1
+
+[Target:RoboInfo Output]
+SupportMas_Prj=1
+
+[Target:Microsoft HTML Help]
+SupportMas_Prj=1
+ResultFileName=C:\p4_main1666_UNIT-132\mypal\OmniaMea\Doc\Help\Help1.chm
+SSLayoutType=1
+CreateProjectTime=17:18, December 18, 2006
+CreateProjectUser=Elizaveta.Revyakina
+SupportMas_MPJ=1
+ActionID For Generation=1001
+Remove Folder with prompt=1
+ViewFileName=C:\p4_main1666_UNIT-132\mypal\OmniaMea\Doc\Help\Help1.chm
+ResultStatus=0
+BuildTimeHi=29836805
+BuildTimeLow=1769969636
+Enable Result Dialog=1
+
+[Target:WebHelp Pro]
+ResultFileName=!SSL!\WebHelp_Pro\OmniaMeaHelp.htm
+SSLayoutType=32
+ServerProjectName=OmniaMeaHelp
+CreateProjectTime=
+CreateProjectUser=
+SupportMas_MPJ=1
+
+[Target:WebHelp]
+ResultFileName=!SSL!\WebHelp\OmniaMeaHelp.html
+SSLayoutType=2
+CreateProjectTime=16:27, August 06, 2004
+CreateProjectUser=robert
+SupportMas_MPJ=1
+ActionID For Generation=1001
+Remove Folder with prompt=1
+ViewFileName=!SSL!\WebHelp\OmniaMeaHelp.html
+ResultStatus=0
+BuildTimeHi=29628005
+BuildTimeLow=1865951275
+
+[Target:FlashHelp]
+ResultFileName=!SSL!\FlashHelp\OmniaMeaHelp.htm
+SSLayoutType=2
+CreateProjectTime=
+CreateProjectUser=
+SupportMas_MPJ=1
+
+[Target:Printed Documentation]
+ResultFileName=C:\Documents and Settings\Elizaveta.Revyakina\My Documents\Omea_Pro_Printed_Documentation.doc
+SSLayoutType=7
+ActionID For Generation=1013
+Remove Folder with prompt=1
+CreateProjectTime=13:19, December 06, 2005
+CreateProjectUser=Elizaveta.Revyakina
+SupportMas_MPJ=1
+ViewFileName=C:\Documents and Settings\Elizaveta.Revyakina\My Documents\Omea_Pro_Printed_Documentation.doc
+ResultStatus=3
+BuildTimeHi=29750710
+BuildTimeLow=251114817
+Enable Result Dialog=1
+
+[Target:XML Output]
+ResultFileName=!SSL!\XML_Output\OmniaMeaHelp.xml
+SSLayoutType=8192
+
+[PreSingleSource]
+Html Help Project=C:\p4_main1666_UNIT-132\mypal\Docs\Help\OmeaHelp.hhp
+Table Of Content=C:\p4_main1666_UNIT-132\mypal\Docs\Help\OmeaHelp.hhc
+Index=C:\p4_main1666_UNIT-132\mypal\Docs\Help\OmeaHelp_merged$.hhk
+See Also Index=C:\p4_main1666_UNIT-132\mypal\Docs\Help\OmeaHelp.hha
+Browse Sequence=C:\p4_main1666_UNIT-132\mypal\Docs\Help\OmeaHelp.brs
+Topic Properties=C:\p4_main1666_UNIT-132\mypal\Docs\Help\OmeaHelp.trs
+Active Folders=C:\p4_main1666_UNIT-132\mypal\Docs\Help\OmeaHelp.trf
+Baggage Files=C:\p4_main1666_UNIT-132\mypal\Docs\Help\OmeaHelp.trb
+Skin List=C:\p4_main1666_UNIT-132\mypal\Docs\Help\OmeaHelp.trk
+OriginalHhk=C:\p4_main1666_UNIT-132\mypal\Docs\Help\OmeaHelp.hhk
+Active Layout Names=C:\p4_main1666_UNIT-132\mypal\Docs\Help\OmeaHelp.trl
+Default Topic=C:\p4_main1666_UNIT-132\mypal\Docs\Help\Omea_Help.htm
+Build Tags0=9853;READER | INCOMPLETE | PRO | HIDDEN                                                                                                                            
+Build Tags=
+Build Expression=
+Language ID=1033
+Language Name=English
+Language=C:\p4_main1666_UNIT-132\mypal\Docs\Help\RoboHHRE.lng
+Stop List=C:\p4_main1666_UNIT-132\mypal\Docs\Help\OmeaHelp.stp
+
+[Target:OmeaReader HTML Help]
+SupportMas_Prj=1
+ResultFileName=C:\p4_main1666_UNIT-132\mypal\OmniaMea\Doc\Help\OmeaReaderHelp.chm
+SSLayoutType=1
+CreateProjectTime=16:30, February 01, 2007
+CreateProjectUser=Elizaveta.Revyakina
+SupportMas_MPJ=1
+ActionID For Generation=1001
+Remove Folder with prompt=1
+ViewFileName=C:\p4_main1666_UNIT-132\mypal\OmniaMea\Doc\Help\OmeaReaderHelp.chm
+ResultStatus=0
+BuildTimeHi=29836805
+BuildTimeLow=1377310873
+Enable Result Dialog=1
+
+[Layout Settings]
+MRULayoutCount=1
+MRULayout0=OmeaReader HTML Help]01/24/07]0
+MRULayout1=Microsoft HTML Help]11/30/05]4
+MRULayout2=OmeaReader HTML Help]11/12/04]4
+MRULayout3=Reader CHM on Localhost]11/12/04]4
+[Global Build Tag Expressions]
+Expr_2004:08:17:15:48:55=READER AND NOT PRO AND NOT INCOMPLETE
+Expr_2004:08:17:16:20:32=PRO AND NOT READER AND NOT INCOMPLETE
+Expr_2004:09:01:18:24:40=PRO AND NOT READER AND NOT INCOMPLETE AND NOT HIDDEN
+Expr_2004:09:01:18:25:01=READER AND NOT PRO AND NOT INCOMPLETE AND NOT HIDDEN
+
+[Target:Reader CHM on Localhost]
+SupportMas_Prj=1
+ResultFileName=C:\Omea\chm\OmeaReaderHelp.chm
+SSLayoutType=1
+CreateProjectTime=18:38, November 12, 2004
+CreateProjectUser=robert
+SupportMas_MPJ=1
+ActionID For Generation=1013
+Remove Folder with prompt=1
+ViewFileName=C:\Omea\chm\OmeaReaderHelp.chm
+ResultStatus=0
+BuildTimeHi=29673677
+BuildTimeLow=-1393647417
+Enable Result Dialog=1
+
+[Target:Pro CHM on Localhost]
+SupportMas_Prj=1
+ResultFileName=C:\Omea\chm\Help.chm
+SSLayoutType=1
+CreateProjectTime=18:38, November 12, 2004
+CreateProjectUser=robert
+SupportMas_MPJ=1
+ActionID For Generation=1003
+Remove Folder with prompt=1
+ViewFileName=C:\Omea\chm\Help.chm
+ResultStatus=0
+BuildTimeHi=29673677
+BuildTimeLow=-1469895953
+Enable Result Dialog=1

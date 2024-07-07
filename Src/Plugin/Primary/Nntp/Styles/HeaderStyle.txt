@@ -1,0 +1,19 @@
+<style type="text/css" media="screen">
+body {
+    font: normal 70% Tahoma;
+    margin: 0.6em 1em 1em 1em;
+    padding: 0;
+}
+h1 {
+    display: none;
+}
+</style>
+
+<style type="text/css" media="print">
+h1 {
+    margin: 0;
+    padding: 0;
+    font-size: 130%;
+    color: #000;
+}
+</style>

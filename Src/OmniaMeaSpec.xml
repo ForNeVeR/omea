@@ -1,0 +1,791 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!--
+SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+
+SPDX-License-Identifier: GPL-2.0-only
+-->
+<ap:Map Dirty="0000000000000001" OId="D5X+3mTDiU2Ik8BeBrq3AQ==" Gen="0000000000000000" xmlns:ap="http://schemas.mindjet.com/MindManager/Application/2003" xmlns:cor="http://schemas.mindjet.com/MindManager/Core/2003" xmlns:pri="http://schemas.mindjet.com/MindManager/Primitive/2003" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schemas.mindjet.com/MindManager/Application/2003 http://schemas.mindjet.com/MindManager/Application/2003 http://schemas.mindjet.com/MindManager/Core/2003 http://schemas.mindjet.com/MindManager/Core/2003 http://schemas.mindjet.com/MindManager/Delta/2003 http://schemas.mindjet.com/MindManager/Delta/2003 http://schemas.mindjet.com/MindManager/Primitive/2003 http://schemas.mindjet.com/MindManager/Primitive/2003">
+	<cor:Custom Index="0" Uri="http://schemas.mindjet.com/MindManager/Mm5Word/2003" Dirty="0000000000000001" cst0:GeneralSettings="&lt;StartDate&gt;false&lt;/StartDate&gt;&lt;DueDate&gt;false&lt;/DueDate&gt;&lt;PercentComplete&gt;false&lt;/PercentComplete&gt;&lt;Duration&gt;false&lt;/Duration&gt;&lt;Priority&gt;false&lt;/Priority&gt;&lt;Resources&gt;false&lt;/Resources&gt;&lt;Categories&gt;false&lt;/Categories&gt;&lt;Notes&gt;true&lt;/Notes&gt;&lt;Callouts&gt;false&lt;/Callouts&gt;&lt;ReviewComments&gt;false&lt;/ReviewComments&gt;&lt;SkipContentlessTopic&gt;false&lt;/SkipContentlessTopic&gt;&lt;OverviewGraphic&gt;false&lt;/OverviewGraphic&gt;&lt;NumberingScheme&gt;1&lt;/NumberingScheme&gt;&lt;NumberingUntil&gt;5&lt;/NumberingUntil&gt;&lt;IndentUntil&gt;0&lt;/IndentUntil&gt;" cst0:TemplateSettings="&lt;WordTemplate&gt;Normal.dot&lt;/WordTemplate&gt;&lt;CentralTopicStyle&gt;Title&lt;/CentralTopicStyle&gt;&lt;NotesStyle&gt;Normal&lt;/NotesStyle&gt;&lt;Level1Style&gt;Heading 1&lt;/Level1Style&gt;&lt;Level2Style&gt;Normal&lt;/Level2Style&gt;&lt;Level3Style&gt;Normal&lt;/Level3Style&gt;&lt;Level4Style&gt;Normal&lt;/Level4Style&gt;&lt;Level5Style&gt;Normal&lt;/Level5Style&gt;&lt;Level6Style&gt;Heading 6&lt;/Level6Style&gt;&lt;Level7Style&gt;Heading 7&lt;/Level7Style&gt;&lt;Level8Style&gt;Heading 8&lt;/Level8Style&gt;&lt;Level9Style&gt;Heading 9&lt;/Level9Style&gt;" xmlns:cst0="http://schemas.mindjet.com/MindManager/Mm5Word/2003" />
+	<ap:OneTopic>
+		<ap:Topic Dirty="0000000000000001" OId="r8nb3EE5nkCGpc2KJFT1iw==" Gen="0000000000000000">
+			<ap:SubTopics>
+				<ap:Topic Dirty="0000000000000001" OId="7+0XClHswEmx7ftAgHUHdg==" Gen="0000000000000000">
+					<ap:SubTopics>
+						<ap:Topic Dirty="0000000000000001" OId="321iXJV1k0K02D2yc3GM+g==" Gen="0000000000000000">
+							<ap:TopicViewGroup ViewIndex="0" />
+							<ap:Text Dirty="0000000000000001" PlainText="Sidebar and pane switching">
+								<ap:Font />
+							</ap:Text>
+						</ap:Topic>
+						<ap:Topic Dirty="0000000000000001" OId="IGiuUKyJrUuTnVUElMAdow==" Gen="0000000000000000">
+							<ap:TopicViewGroup ViewIndex="0" />
+							<ap:Text Dirty="0000000000000001" PlainText="Tab switching">
+								<ap:Font />
+							</ap:Text>
+						</ap:Topic>
+						<ap:Topic Dirty="0000000000000001" OId="peWsQRzTUkyoHIWBr1Gnpw==" Gen="0000000000000000">
+							<ap:TopicViewGroup ViewIndex="0" />
+							<ap:Text Dirty="0000000000000001" PlainText="Resource browser">
+								<ap:Font />
+							</ap:Text>
+						</ap:Topic>
+						<ap:Topic Dirty="0000000000000001" OId="vLqQ2C+nH0aNz8PxZUcr7Q==" Gen="0000000000000000">
+							<ap:TopicViewGroup ViewIndex="0" />
+							<ap:Text Dirty="0000000000000001" PlainText="Resource list control">
+								<ap:Font />
+							</ap:Text>
+						</ap:Topic>
+						<ap:Topic Dirty="0000000000000001" OId="yvzDJ0PMCkuaV3GXKDgV+g==" Gen="0000000000000000">
+							<ap:TopicViewGroup ViewIndex="0" />
+							<ap:Text Dirty="0000000000000001" PlainText="Resource tree control">
+								<ap:Font />
+							</ap:Text>
+						</ap:Topic>
+						<ap:Topic Dirty="0000000000000001" OId="JU7++fBZNEyVWV/ln3wqBg==" Gen="0000000000000000">
+							<ap:TopicViewGroup ViewIndex="0" />
+							<ap:Text Dirty="0000000000000001" PlainText="Links pane">
+								<ap:Font />
+							</ap:Text>
+						</ap:Topic>
+						<ap:Topic Dirty="0000000000000001" OId="sPejljExrkCWibiWHGaMUg==" Gen="0000000000000000">
+							<ap:TopicViewGroup ViewIndex="0" />
+							<ap:Text Dirty="0000000000000001" PlainText="&quot;Select Resource&quot; dialog">
+								<ap:Font />
+							</ap:Text>
+						</ap:Topic>
+						<ap:Topic Dirty="0000000000000001" OId="eyzJ98dXA0SYyjJ+e2kyXA==" Gen="0000000000000000">
+							<ap:TopicViewGroup ViewIndex="0" />
+							<ap:Text Dirty="0000000000000001" PlainText="License checking">
+								<ap:Font />
+							</ap:Text>
+						</ap:Topic>
+					</ap:SubTopics>
+					<ap:TopicViewGroup ViewIndex="0" />
+					<ap:Text Dirty="0000000000000001" PlainText="UI Framework">
+						<ap:Font />
+					</ap:Text>
+					<ap:Offset Dirty="0000000000000001" CX="8." CY="0." />
+				</ap:Topic>
+				<ap:Topic Dirty="0000000000000001" OId="VHAp6o2mDkaxZjO2ZasfiQ==" Gen="0000000000000000">
+					<ap:SubTopics>
+						<ap:Topic Dirty="0000000000000000" OId="TVBCnorn6EisNG7LgjT6pg==" Gen="0000000000000000">
+							<ap:TopicViewGroup ViewIndex="0" />
+							<ap:Text Dirty="0000000000000000" PlainText="Views Manager dialog">
+								<ap:Font />
+							</ap:Text>
+						</ap:Topic>
+						<ap:Topic Dirty="0000000000000000" OId="HAnblNAPwkyBN72uAnU+1A==" Gen="0000000000000000">
+							<ap:TopicViewGroup ViewIndex="0" />
+							<ap:Text Dirty="0000000000000000" PlainText="Edit View dialog">
+								<ap:Font />
+							</ap:Text>
+						</ap:Topic>
+						<ap:Topic Dirty="0000000000000000" OId="i61fFhLxkEyZqA/m0TPUDA==" Gen="0000000000000000">
+							<ap:TopicViewGroup ViewIndex="0" />
+							<ap:Text Dirty="0000000000000000" PlainText="Advanced Search dialog">
+								<ap:Font />
+							</ap:Text>
+						</ap:Topic>
+						<ap:Topic Dirty="0000000000000000" OId="9caMYt3ZnUmBMSJ5xexSVw==" Gen="0000000000000000">
+							<ap:TopicViewGroup ViewIndex="0" />
+							<ap:Text Dirty="0000000000000000" PlainText="Edit Time Span dialog and filters">
+								<ap:Font />
+							</ap:Text>
+						</ap:Topic>
+						<ap:Topic Dirty="0000000000000000" OId="xoYaq2bT3UWqB8ungBucaQ==" Gen="0000000000000000">
+							<ap:TopicViewGroup ViewIndex="0" />
+							<ap:Text Dirty="0000000000000000" PlainText="View criteria functionality">
+								<ap:Font />
+							</ap:Text>
+						</ap:Topic>
+						<ap:Topic Dirty="0000000000000000" OId="ShPbW459mEm7rPAuaNsbmQ==" Gen="0000000000000000">
+							<ap:TopicViewGroup ViewIndex="0" />
+							<ap:Text Dirty="0000000000000000" PlainText="Unread counters for views">
+								<ap:Font />
+							</ap:Text>
+						</ap:Topic>
+					</ap:SubTopics>
+					<ap:TopicViewGroup ViewIndex="0">
+						<ap:Collapsed Collapsed="true" Dirty="0000000000000001" />
+					</ap:TopicViewGroup>
+					<ap:Text Dirty="0000000000000001" PlainText="Advanced Search and Custom Views">
+						<ap:Font />
+					</ap:Text>
+					<ap:Offset Dirty="0000000000000001" CX="8." CY="0." />
+				</ap:Topic>
+				<ap:Topic Dirty="0000000000000001" OId="6bBIaI4sSkubJvPss+nqWA==" Gen="0000000000000000">
+					<ap:SubTopics>
+						<ap:Topic Dirty="0000000000000000" OId="QlhpYkjOqEKOmFnWZKH/GA==" Gen="0000000000000000">
+							<ap:TopicViewGroup ViewIndex="0" />
+							<ap:Text Dirty="0000000000000000" PlainText="Initial indexing">
+								<ap:Font />
+							</ap:Text>
+						</ap:Topic>
+						<ap:Topic Dirty="0000000000000000" OId="xHYjiCqyeEaUGUciQ/deVw==" Gen="0000000000000000">
+							<ap:TopicViewGroup ViewIndex="0" />
+							<ap:Text Dirty="0000000000000000" PlainText="Index updates">
+								<ap:Font />
+							</ap:Text>
+						</ap:Topic>
+						<ap:Topic Dirty="0000000000000000" OId="VAIBSl+zAUy69/+TjtVu8Q==" Gen="0000000000000000">
+							<ap:TopicViewGroup ViewIndex="0" />
+							<ap:Text Dirty="0000000000000000" PlainText="&quot;Find Similar&quot;">
+								<ap:Font />
+							</ap:Text>
+						</ap:Topic>
+						<ap:Topic Dirty="0000000000000000" OId="YEMaaUi/vE+9+Sv03rFLFA==" Gen="0000000000000000">
+							<ap:TopicViewGroup ViewIndex="0" />
+							<ap:Text Dirty="0000000000000000" PlainText="Proximity searches">
+								<ap:Font />
+							</ap:Text>
+						</ap:Topic>
+						<ap:Topic Dirty="0000000000000000" OId="rxXAKhAqVU+5qP35l8yq/g==" Gen="0000000000000000">
+							<ap:TopicViewGroup ViewIndex="0" />
+							<ap:Text Dirty="0000000000000000" PlainText="Phrase searches">
+								<ap:Font />
+							</ap:Text>
+						</ap:Topic>
+						<ap:Topic Dirty="0000000000000000" OId="6Zv/yNgdk0+HmuT6YW/v5Q==" Gen="0000000000000000">
+							<ap:TopicViewGroup ViewIndex="0" />
+							<ap:Text Dirty="0000000000000000" PlainText="Result highlighting">
+								<ap:Font />
+							</ap:Text>
+						</ap:Topic>
+					</ap:SubTopics>
+					<ap:TopicViewGroup ViewIndex="0">
+						<ap:Collapsed Collapsed="true" Dirty="0000000000000001" />
+					</ap:TopicViewGroup>
+					<ap:Text Dirty="0000000000000001" PlainText="Text Index">
+						<ap:Font />
+					</ap:Text>
+					<ap:Offset Dirty="0000000000000001" CX="8." CY="10." />
+				</ap:Topic>
+				<ap:Topic Dirty="0000000000000001" OId="UB0knlz8VkOUQoPLVwwQMg==" Gen="0000000000000000">
+					<ap:SubTopics>
+						<ap:Topic Dirty="0000000000000000" OId="JLL3bjPVjUGmZWprfq+X0w==" Gen="0000000000000000">
+							<ap:TopicViewGroup ViewIndex="0" />
+							<ap:Text Dirty="0000000000000000" PlainText="Quote formatting">
+								<ap:Font />
+							</ap:Text>
+						</ap:Topic>
+						<ap:Topic Dirty="0000000000000000" OId="lCW2KzRLT0KdWxeW5dLLJA==" Gen="0000000000000000">
+							<ap:TopicViewGroup ViewIndex="0" />
+							<ap:Text Dirty="0000000000000000" PlainText="Message replies">
+								<ap:Font />
+							</ap:Text>
+						</ap:Topic>
+					</ap:SubTopics>
+					<ap:TopicViewGroup ViewIndex="0" />
+					<ap:Text Dirty="0000000000000001" PlainText="Common Message Services">
+						<ap:Font />
+					</ap:Text>
+					<ap:Offset Dirty="0000000000000001" CX="8." CY="20." />
+				</ap:Topic>
+				<ap:Topic Dirty="0000000000000001" OId="ki1bk535+EKNmVCAhPRxbg==" Gen="0000000000000000">
+					<ap:SubTopics>
+						<ap:Topic Dirty="0000000000000001" OId="+szR+eZ6FE6U8NKh5j+Y7Q==" Gen="0000000000000000">
+							<ap:SubTopics>
+								<ap:Topic Dirty="0000000000000001" OId="nFqFVp+0T0mzZqnfDzkAJw==" Gen="0000000000000000">
+									<ap:TopicViewGroup ViewIndex="0" />
+									<ap:Text Dirty="0000000000000000" PlainText="There are two main options for indexing of files - immediate and deferred. The options are set on a per-folder basis.">
+										<ap:Font />
+									</ap:Text>
+									<ap:IconsGroup>
+										<ap:Icons Dirty="0000000000000001">
+											<ap:Icon xsi:type="ap:StockIcon" IconType="urn:mindjet:FlagGreen" />
+										</ap:Icons>
+									</ap:IconsGroup>
+								</ap:Topic>
+								<ap:Topic Dirty="0000000000000001" OId="uTWCKvwIrka2Yw8+9UKSzg==" Gen="0000000000000000">
+									<ap:TopicViewGroup ViewIndex="0" />
+									<ap:Text Dirty="0000000000000000" PlainText="If a folder is set to immediate indexing, OmniaMea updates files in that folder immediately after they are changed, after new files are created in the folder and after files are deleted from it.">
+										<ap:Font />
+									</ap:Text>
+									<ap:IconsGroup>
+										<ap:Icons Dirty="0000000000000001">
+											<ap:Icon xsi:type="ap:StockIcon" IconType="urn:mindjet:FlagGreen" />
+										</ap:Icons>
+									</ap:IconsGroup>
+								</ap:Topic>
+								<ap:Topic Dirty="0000000000000001" OId="WUzotDr7O0OXC0gHTv5yAA==" Gen="0000000000000000">
+									<ap:TopicViewGroup ViewIndex="0" />
+									<ap:Text Dirty="0000000000000000" PlainText="If a folder is set to deferred indexing, OmniaMea reindexes it only on startup.">
+										<ap:Font />
+									</ap:Text>
+									<ap:IconsGroup>
+										<ap:Icons Dirty="0000000000000001">
+											<ap:Icon xsi:type="ap:StockIcon" IconType="urn:mindjet:FlagGreen" />
+										</ap:Icons>
+									</ap:IconsGroup>
+								</ap:Topic>
+								<ap:Topic Dirty="0000000000000001" OId="iK7Qr4N0WUaJn5h0fx+2Sw==" Gen="0000000000000000">
+									<ap:TopicViewGroup ViewIndex="0" />
+									<ap:Text Dirty="0000000000000000" PlainText="If a folder is set to Excluded mode, it is not scanned. For example, if C:\yole is set to deferred indexing and C:\yole\private is set to excluded mode, OmniaMea indexes all files in C:\yole and its subfolders, except the files in C:\yole\private and its subfolders.">
+										<ap:Font />
+									</ap:Text>
+									<ap:IconsGroup>
+										<ap:Icons Dirty="0000000000000001">
+											<ap:Icon xsi:type="ap:StockIcon" IconType="urn:mindjet:FlagGreen" />
+										</ap:Icons>
+									</ap:IconsGroup>
+								</ap:Topic>
+								<ap:Topic Dirty="0000000000000001" OId="iaBRGy3h6Uak5dYUZrqYdg==" Gen="0000000000000000">
+									<ap:TopicViewGroup ViewIndex="0" />
+									<ap:Text Dirty="0000000000000000" PlainText="After a file is indexed, the Date property of the corresponding resource is set to the last modification date of the file. Thus, recently modified files appear in date-based views.">
+										<ap:Font />
+									</ap:Text>
+									<ap:IconsGroup>
+										<ap:Icons Dirty="0000000000000001">
+											<ap:Icon xsi:type="ap:StockIcon" IconType="urn:mindjet:FlagGreen" />
+										</ap:Icons>
+									</ap:IconsGroup>
+								</ap:Topic>
+								<ap:Topic Dirty="0000000000000001" OId="d691boXYmkaCVfLQZBlErA==" Gen="0000000000000000">
+									<ap:TopicViewGroup ViewIndex="0" />
+									<ap:Text Dirty="0000000000000000" PlainText="After a file is deleted from disk and OmniaMea rescans its containing folder, the file should be removed from the OmniaMea index.">
+										<ap:Font />
+									</ap:Text>
+									<ap:IconsGroup>
+										<ap:Icons Dirty="0000000000000001">
+											<ap:Icon xsi:type="ap:StockIcon" IconType="urn:mindjet:FlagGreen" />
+										</ap:Icons>
+									</ap:IconsGroup>
+								</ap:Topic>
+								<ap:Topic Dirty="0000000000000001" OId="yMiKXApT2Uu8j21MjHGttA==" Gen="0000000000000000">
+									<ap:TopicViewGroup ViewIndex="0" />
+									<ap:Text Dirty="0000000000000001" PlainText="If the option &quot;Index hidden files&quot; in the File Options pane is not set, files with the Hidden attribute set should not be indexed.">
+										<ap:Font />
+									</ap:Text>
+									<ap:IconsGroup>
+										<ap:Icons Dirty="0000000000000001">
+											<ap:Icon xsi:type="ap:StockIcon" IconType="urn:mindjet:FlagGreen" />
+										</ap:Icons>
+									</ap:IconsGroup>
+								</ap:Topic>
+								<ap:Topic Dirty="0000000000000001" OId="C0TnOsZCeECPJPKPUMl2sQ==" Gen="0000000000000000">
+									<ap:TopicViewGroup ViewIndex="0" />
+									<ap:Text Dirty="0000000000000000" PlainText="If the Access Control List permissions of the current user do not allow him to see the contents of certain folders, OmniaMea should handle this situation gracefully (with no crashing).">
+										<ap:Font />
+									</ap:Text>
+									<ap:IconsGroup>
+										<ap:Icons Dirty="0000000000000001">
+											<ap:Icon xsi:type="ap:StockIcon" IconType="urn:mindjet:FlagGreen" />
+										</ap:Icons>
+									</ap:IconsGroup>
+								</ap:Topic>
+							</ap:SubTopics>
+							<ap:TopicViewGroup ViewIndex="0">
+								<ap:Collapsed Collapsed="true" Dirty="0000000000000001" />
+							</ap:TopicViewGroup>
+							<ap:Text Dirty="0000000000000000" PlainText="File indexing">
+								<ap:Font />
+							</ap:Text>
+						</ap:Topic>
+					</ap:SubTopics>
+					<ap:TopicViewGroup ViewIndex="0" />
+					<ap:Text Dirty="0000000000000001" PlainText="Files">
+						<ap:Font />
+					</ap:Text>
+					<ap:Offset Dirty="0000000000000001" CX="8." CY="10." />
+				</ap:Topic>
+				<ap:Topic Dirty="0000000000000001" OId="ZkGy3pnvJkSipc8S4tRiWw==" Gen="0000000000000000">
+					<ap:SubTopics>
+						<ap:Topic Dirty="0000000000000001" OId="JUB+5UoZskuvyIgQg4U+Pw==" Gen="0000000000000000">
+							<ap:TopicViewGroup ViewIndex="0" />
+							<ap:Text Dirty="0000000000000001" PlainText="HTML indexing">
+								<ap:Font />
+							</ap:Text>
+							<ap:Task Dirty="0000000000000001" Resources="LVO" />
+						</ap:Topic>
+					</ap:SubTopics>
+					<ap:TopicViewGroup ViewIndex="0" />
+					<ap:Text Dirty="0000000000000001" PlainText="HTML">
+						<ap:Font />
+					</ap:Text>
+					<ap:Offset Dirty="0000000000000001" CX="8." CY="0." />
+				</ap:Topic>
+				<ap:Topic Dirty="0000000000000001" OId="qUFMUjqxTkuEXqQygk5fZg==" Gen="0000000000000000">
+					<ap:SubTopics>
+						<ap:Topic Dirty="0000000000000001" OId="rfe4YyskMUen4FE100wDaA==" Gen="0000000000000000">
+							<ap:TopicViewGroup ViewIndex="0" />
+							<ap:Text Dirty="0000000000000001" PlainText="Importing ICQ history">
+								<ap:Font />
+							</ap:Text>
+							<ap:Task Dirty="0000000000000001" Resources="LVO" />
+						</ap:Topic>
+						<ap:Topic Dirty="0000000000000001" OId="FdLLM1qQvUqhCPZ3p14GDw==" Gen="0000000000000000">
+							<ap:TopicViewGroup ViewIndex="0" />
+							<ap:Text Dirty="0000000000000001" PlainText="Importing Miranda history">
+								<ap:Font />
+							</ap:Text>
+							<ap:Task Dirty="0000000000000001" Resources="DJ" />
+						</ap:Topic>
+						<ap:Topic Dirty="0000000000000001" OId="BY26TTBxR0G5JxAy8TCmHQ==" Gen="0000000000000000">
+							<ap:TopicViewGroup ViewIndex="0" />
+							<ap:Text Dirty="0000000000000001" PlainText="Conversation building and formatting">
+								<ap:Font />
+							</ap:Text>
+							<ap:Task Dirty="0000000000000001" Resources="LVO" />
+						</ap:Topic>
+						<ap:Topic Dirty="0000000000000001" OId="BHj4EhNmUkqn1/r+D5K3UA==" Gen="0000000000000000">
+							<ap:TopicViewGroup ViewIndex="0" />
+							<ap:Text Dirty="0000000000000001" PlainText="Conversation actions">
+								<ap:Font />
+							</ap:Text>
+							<ap:Task Dirty="0000000000000001" Resources="DJ" />
+						</ap:Topic>
+					</ap:SubTopics>
+					<ap:TopicViewGroup ViewIndex="0" />
+					<ap:Text Dirty="0000000000000001" PlainText="Instant Messaging">
+						<ap:Font />
+					</ap:Text>
+					<ap:Offset Dirty="0000000000000001" CX="8." CY="0." />
+				</ap:Topic>
+				<ap:Topic Dirty="0000000000000001" OId="BUlhBWmUKEqbDTLIzzJ0xQ==" Gen="0000000000000000">
+					<ap:SubTopics>
+						<ap:Topic Dirty="0000000000000001" OId="u4dCwHCUR0SC/QTb/PoZqQ==" Gen="0000000000000000">
+							<ap:TopicViewGroup ViewIndex="0" />
+							<ap:Text Dirty="0000000000000001" PlainText="Text indexing">
+								<ap:Font />
+							</ap:Text>
+						</ap:Topic>
+						<ap:Topic Dirty="0000000000000001" OId="Hq5VVr+YV0GaUBTFmIGwAg==" Gen="0000000000000000">
+							<ap:TopicViewGroup ViewIndex="0" />
+							<ap:Text Dirty="0000000000000001" PlainText="Document display">
+								<ap:Font />
+							</ap:Text>
+						</ap:Topic>
+					</ap:SubTopics>
+					<ap:TopicViewGroup ViewIndex="0" />
+					<ap:Text Dirty="0000000000000001" PlainText="MS Word">
+						<ap:Font />
+					</ap:Text>
+					<ap:Offset Dirty="0000000000000001" CX="8." CY="0." />
+					<ap:Task Dirty="0000000000000001" Resources="Zhu" />
+				</ap:Topic>
+				<ap:Topic Dirty="0000000000000001" OId="65froBHxCE2FKd85BZxcPg==" Gen="0000000000000000">
+					<ap:SubTopics>
+						<ap:Topic Dirty="0000000000000001" OId="qpoCX2YKtUuej+7t22SxDw==" Gen="0000000000000000">
+							<ap:TopicViewGroup ViewIndex="0" />
+							<ap:Text Dirty="0000000000000001" PlainText="Text indexing">
+								<ap:Font />
+							</ap:Text>
+						</ap:Topic>
+						<ap:Topic Dirty="0000000000000001" OId="2tYP3ZmtFEK3HRZ374wS5A==" Gen="0000000000000000">
+							<ap:TopicViewGroup ViewIndex="0" />
+							<ap:Text Dirty="0000000000000001" PlainText="Document display">
+								<ap:Font />
+							</ap:Text>
+						</ap:Topic>
+					</ap:SubTopics>
+					<ap:TopicViewGroup ViewIndex="0" />
+					<ap:Text Dirty="0000000000000001" PlainText="MS PowerPoint">
+						<ap:Font />
+					</ap:Text>
+					<ap:Offset Dirty="0000000000000001" CX="8." CY="0." />
+					<ap:Task Dirty="0000000000000001" Resources="Zhu" />
+				</ap:Topic>
+				<ap:Topic Dirty="0000000000000001" OId="sBRwee6yOEy0o879uaWUOw==" Gen="0000000000000000">
+					<ap:SubTopics>
+						<ap:Topic Dirty="0000000000000001" OId="SCUA22mBsUC4PXfGJPPHrg==" Gen="0000000000000000">
+							<ap:TopicViewGroup ViewIndex="0" />
+							<ap:Text Dirty="0000000000000001" PlainText="Text indexing">
+								<ap:Font />
+							</ap:Text>
+						</ap:Topic>
+						<ap:Topic Dirty="0000000000000001" OId="JjqHdqfOakO8PO0BhjmlpA==" Gen="0000000000000000">
+							<ap:TopicViewGroup ViewIndex="0" />
+							<ap:Text Dirty="0000000000000001" PlainText="Document display">
+								<ap:Font />
+							</ap:Text>
+						</ap:Topic>
+					</ap:SubTopics>
+					<ap:TopicViewGroup ViewIndex="0" />
+					<ap:Text Dirty="0000000000000001" PlainText="PDF">
+						<ap:Font />
+					</ap:Text>
+					<ap:Offset Dirty="0000000000000001" CX="8." CY="10." />
+					<ap:Task Dirty="0000000000000001" Resources="LX" />
+				</ap:Topic>
+				<ap:Topic Dirty="0000000000000001" OId="IGE1MkJ74U6UidGLCdet1w==" Gen="0000000000000000">
+					<ap:TopicViewGroup ViewIndex="0" />
+					<ap:Text Dirty="0000000000000001" PlainText="Pictures">
+						<ap:Font />
+					</ap:Text>
+					<ap:Offset Dirty="0000000000000001" CX="8." CY="20." />
+					<ap:Task Dirty="0000000000000001" Resources="LVO" />
+				</ap:Topic>
+				<ap:Topic Dirty="0000000000000001" OId="okdbI3Dhv0yF5YTtf59Png==" Gen="0000000000000000">
+					<ap:SubTopics>
+						<ap:Topic Dirty="0000000000000001" OId="G+XmnxEFzUGUr7Xw29UAhg==" Gen="0000000000000000">
+							<ap:SubTopics>
+								<ap:Topic Dirty="0000000000000001" OId="UfniY6oQaEaTRnfkTwwKNQ==" Gen="0000000000000000">
+									<ap:TopicViewGroup ViewIndex="0" />
+									<ap:Text Dirty="0000000000000001" PlainText="Automatic updates">
+										<ap:Font />
+									</ap:Text>
+								</ap:Topic>
+								<ap:Topic Dirty="0000000000000001" OId="fetd8c+1AkmsyCaeZ+m4zA==" Gen="0000000000000000">
+									<ap:TopicViewGroup ViewIndex="0" />
+									<ap:Text Dirty="0000000000000001" PlainText="HTTP error handling">
+										<ap:Font />
+									</ap:Text>
+								</ap:Topic>
+							</ap:SubTopics>
+							<ap:TopicViewGroup ViewIndex="0" />
+							<ap:Text Dirty="0000000000000001" PlainText="Feed download">
+								<ap:Font />
+							</ap:Text>
+						</ap:Topic>
+						<ap:Topic Dirty="0000000000000001" OId="1SuPSALtBE68FzK9Ky5osA==" Gen="0000000000000000">
+							<ap:SubTopics>
+								<ap:Topic Dirty="0000000000000001" OId="oHUW2upPbEueQlByXmITyw==" Gen="0000000000000000">
+									<ap:TopicViewGroup ViewIndex="0" />
+									<ap:Text Dirty="0000000000000001" PlainText="RSS">
+										<ap:Font />
+									</ap:Text>
+								</ap:Topic>
+								<ap:Topic Dirty="0000000000000001" OId="YCiu5AMQ306dHkyj3FRTkg==" Gen="0000000000000000">
+									<ap:TopicViewGroup ViewIndex="0" />
+									<ap:Text Dirty="0000000000000001" PlainText="ATOM">
+										<ap:Font />
+									</ap:Text>
+								</ap:Topic>
+							</ap:SubTopics>
+							<ap:TopicViewGroup ViewIndex="0" />
+							<ap:Text Dirty="0000000000000001" PlainText="Feed parsing">
+								<ap:Font />
+							</ap:Text>
+						</ap:Topic>
+						<ap:Topic Dirty="0000000000000001" OId="a71wnALBCEOYIJOptwANug==" Gen="0000000000000000">
+							<ap:SubTopics>
+								<ap:Topic Dirty="0000000000000001" OId="kG8gNf+jR0+/MAh/563v+g==" Gen="0000000000000000">
+									<ap:TopicViewGroup ViewIndex="0" />
+									<ap:Text Dirty="0000000000000001" PlainText="RSS">
+										<ap:Font />
+									</ap:Text>
+								</ap:Topic>
+								<ap:Topic Dirty="0000000000000001" OId="GU7azG4ptEWKpfeMHWi10A==" Gen="0000000000000000">
+									<ap:TopicViewGroup ViewIndex="0" />
+									<ap:Text Dirty="0000000000000001" PlainText="ATOM">
+										<ap:Font />
+									</ap:Text>
+								</ap:Topic>
+							</ap:SubTopics>
+							<ap:TopicViewGroup ViewIndex="0" />
+							<ap:Text Dirty="0000000000000001" PlainText="Feed autodiscovery">
+								<ap:Font />
+							</ap:Text>
+						</ap:Topic>
+						<ap:Topic Dirty="0000000000000001" OId="XXfeo8zduEeOyYMvCNKa3Q==" Gen="0000000000000000">
+							<ap:TopicViewGroup ViewIndex="0" />
+							<ap:Text Dirty="0000000000000001" PlainText="Subscription dialog">
+								<ap:Font />
+							</ap:Text>
+						</ap:Topic>
+						<ap:Topic Dirty="0000000000000001" OId="3pWj1N/+2EiGY8g9MaQIdw==" Gen="0000000000000000">
+							<ap:TopicViewGroup ViewIndex="0" />
+							<ap:Text Dirty="0000000000000001" PlainText="OPML import/export">
+								<ap:Font />
+							</ap:Text>
+						</ap:Topic>
+						<ap:Topic Dirty="0000000000000001" OId="dhueEDq3uUOmeN8YrsXRgw==" Gen="0000000000000000">
+							<ap:TopicViewGroup ViewIndex="0" />
+							<ap:Text Dirty="0000000000000001" PlainText="Feed actions">
+								<ap:Font />
+							</ap:Text>
+						</ap:Topic>
+					</ap:SubTopics>
+					<ap:TopicViewGroup ViewIndex="0" />
+					<ap:Text Dirty="0000000000000001" PlainText="Feeds">
+						<ap:Font />
+					</ap:Text>
+					<ap:Offset Dirty="0000000000000001" CX="8." CY="30." />
+					<ap:Task Dirty="0000000000000001" Resources="DJ" />
+				</ap:Topic>
+				<ap:Topic Dirty="0000000000000001" OId="fo3CgHbAdU2bxjImCubfUA==" Gen="0000000000000000">
+					<ap:TopicViewGroup ViewIndex="0" />
+					<ap:Text Dirty="0000000000000001" PlainText="Installation">
+						<ap:Font />
+					</ap:Text>
+					<ap:Offset Dirty="0000000000000001" CX="8." CY="40." />
+					<ap:Task Dirty="0000000000000001" Resources="LVO" />
+				</ap:Topic>
+			</ap:SubTopics>
+			<ap:TopicViewGroup ViewIndex="0" />
+			<ap:Text Dirty="0000000000000001" PlainText="OmniaMea">
+				<ap:Font />
+			</ap:Text>
+			<ap:SubTopicsShape SubTopicsConnectionPoint="urn:mindjet:Center" SubTopicsConnectionStyle="urn:mindjet:Straight" Dirty="0000000000000001" DistanceBetweenSiblings="0." />
+		</ap:Topic>
+	</ap:OneTopic>
+	<ap:StyleGroup>
+		<ap:RootTopicDefaultsGroup>
+			<ap:DefaultColor Dirty="0000000000000000" FillColor="fffee49e" LineColor="ff000000" />
+			<ap:DefaultText TextAlignment="urn:mindjet:Center" TextCapitalization="urn:mindjet:None" VerticalTextAlignment="urn:mindjet:Top" Dirty="0000000000000000" PlainText="Central Topic">
+				<ap:Font Color="ff373737" Size="14." Name="Trebuchet MS" Bold="true" Italic="false" Underline="false" Strikethrough="false" />
+			</ap:DefaultText>
+			<ap:DefaultSubTopicShape SubTopicShape="urn:mindjet:RoundedRectangle" Dirty="0000000000000000" LeftMargin="2." RightMargin="2." TopMargin="2." BottomMargin="2." />
+			<ap:DefaultLabelFloatingTopicShape LabelFloatingTopicShape="urn:mindjet:None" Dirty="0000000000000000" LeftMargin="0." RightMargin="0." TopMargin="0." BottomMargin="0." />
+			<ap:DefaultCalloutFloatingTopicShape CalloutFloatingTopicShape="urn:mindjet:None" Dirty="0000000000000000" LeftMargin="0." RightMargin="0." TopMargin="0." BottomMargin="0." />
+			<ap:DefaultTopicLayout TopicLayoutHorizontalAlignment="urn:mindjet:Center" TopicLayoutVerticalAlignment="urn:mindjet:Center" TopicTextAndImagePosition="urn:mindjet:TextRightImageLeft" TopicWidthControl="urn:mindjet:AutoWidth" Dirty="0000000000000000" Width="50." MinimumHeight="5." Padding="1." />
+			<ap:DefaultSubTopicsShape SubTopicsAlignment="urn:mindjet:Center" SubTopicsConnectionPoint="urn:mindjet:Center" SubTopicsConnectionStyle="urn:mindjet:Straight" SubTopicsShape="urn:mindjet:Vertical" SubTopicsShapeWidthFactor="1." Dirty="0000000000000000" DistanceFromParent="8." DistanceBetweenSiblings="7." />
+			<ap:DefaultSubTopicsVisibility Dirty="0000000000000000" Hidden="false" />
+		</ap:RootTopicDefaultsGroup>
+		<ap:RootSubTopicDefaultsGroup Level="0">
+			<ap:DefaultColor Dirty="0000000000000000" FillColor="00ffffff" />
+			<ap:DefaultText TextAlignment="urn:mindjet:Left" TextCapitalization="urn:mindjet:None" Dirty="0000000000000000" PlainText="Main Topic">
+				<ap:Font Color="ff000000" Size="12." Name="Trebuchet MS" Bold="true" Italic="false" Underline="false" Strikethrough="false" />
+			</ap:DefaultText>
+			<ap:DefaultSubTopicShape SubTopicShape="urn:mindjet:Line" Dirty="0000000000000000" LeftMargin="0.5" RightMargin="0.5" TopMargin="0.5" BottomMargin="0.5" />
+			<ap:DefaultSubTopicsShape SubTopicsAlignment="urn:mindjet:Center" SubTopicsConnectionPoint="urn:mindjet:Outside" SubTopicsConnectionStyle="urn:mindjet:ShearedElbow" SubTopicsShape="urn:mindjet:Vertical" Dirty="0000000000000000" DistanceFromParent="2." DistanceBetweenSiblings="1." />
+			<ap:DefaultSubTopicsVisibility Dirty="0000000000000000" Hidden="false" />
+		</ap:RootSubTopicDefaultsGroup>
+		<ap:RootSubTopicDefaultsGroup Level="1">
+			<ap:DefaultColor Dirty="0000000000000000" FillColor="00ffffff" />
+			<ap:DefaultText TextAlignment="urn:mindjet:Left" TextCapitalization="urn:mindjet:None" Dirty="0000000000000000" PlainText="Subtopic">
+				<ap:Font Color="ff000000" Size="10." Name="Trebuchet MS" Bold="false" Italic="false" Underline="false" Strikethrough="false" />
+			</ap:DefaultText>
+			<ap:DefaultSubTopicShape SubTopicShape="urn:mindjet:Line" Dirty="0000000000000000" LeftMargin="0.20000000298023224" RightMargin="0.20000000298023224" TopMargin="0.20000000298023224" BottomMargin="0.20000000298023224" />
+			<ap:DefaultSubTopicsShape SubTopicsAlignment="urn:mindjet:Center" SubTopicsConnectionPoint="urn:mindjet:Outside" SubTopicsShape="urn:mindjet:Vertical" Dirty="0000000000000000" DistanceBetweenSiblings="1." />
+			<ap:DefaultSubTopicsVisibility Dirty="0000000000000000" Hidden="false" />
+		</ap:RootSubTopicDefaultsGroup>
+		<ap:RootSubTopicDefaultsGroup Level="2">
+			<ap:DefaultColor Dirty="0000000000000001" FillColor="00ffffff" />
+			<ap:DefaultText TextAlignment="urn:mindjet:Left" TextCapitalization="urn:mindjet:None" Dirty="0000000000000001" PlainText="Subtopic">
+				<ap:Font Color="ff000000" Size="10." Name="Trebuchet MS" Bold="false" Italic="false" Underline="false" Strikethrough="false" />
+			</ap:DefaultText>
+			<ap:DefaultSubTopicShape SubTopicShape="urn:mindjet:Line" Dirty="0000000000000001" LeftMargin="0.20000000298023224" RightMargin="0.20000000298023224" TopMargin="0.20000000298023224" BottomMargin="0.20000000298023224" />
+			<ap:DefaultLabelFloatingTopicShape LabelFloatingTopicShape="urn:mindjet:None" Dirty="0000000000000001" LeftMargin="0." RightMargin="0." TopMargin="0." BottomMargin="0." />
+			<ap:DefaultCalloutFloatingTopicShape CalloutFloatingTopicShape="urn:mindjet:None" Dirty="0000000000000001" LeftMargin="0." RightMargin="0." TopMargin="0." BottomMargin="0." />
+			<ap:DefaultTopicLayout TopicLayoutHorizontalAlignment="urn:mindjet:Center" TopicLayoutVerticalAlignment="urn:mindjet:Center" TopicTextAndImagePosition="urn:mindjet:TextRightImageLeft" TopicWidthControl="urn:mindjet:AutoWidth" Dirty="0000000000000001" Width="50." MinimumHeight="5." Padding="1." />
+			<ap:DefaultSubTopicsShape SubTopicsAlignment="urn:mindjet:Center" SubTopicsConnectionPoint="urn:mindjet:Outside" SubTopicsShape="urn:mindjet:Vertical" Dirty="0000000000000001" DistanceBetweenSiblings="1." />
+		</ap:RootSubTopicDefaultsGroup>
+		<ap:CalloutTopicDefaultsGroup>
+			<ap:DefaultColor Dirty="0000000000000000" FillColor="c7ffffff" LineColor="ff000000" />
+			<ap:DefaultText TextAlignment="urn:mindjet:Left" Dirty="0000000000000000" PlainText="Callout">
+				<ap:Font Color="ff000000" Size="10." Name="Trebuchet MS" />
+			</ap:DefaultText>
+			<ap:DefaultCalloutFloatingTopicShape CalloutFloatingTopicShape="urn:mindjet:OvalBalloon" Dirty="0000000000000000" LeftMargin="0.5" RightMargin="0.5" TopMargin="0.5" BottomMargin="0.5" />
+			<ap:DefaultSubTopicsShape SubTopicsAlignment="urn:mindjet:Center" SubTopicsConnectionPoint="urn:mindjet:Outside" SubTopicsConnectionStyle="urn:mindjet:ShearedElbow" SubTopicsShape="urn:mindjet:Vertical" Dirty="0000000000000000" DistanceFromParent="2." DistanceBetweenSiblings="1." />
+			<ap:DefaultSubTopicsVisibility Dirty="0000000000000000" Hidden="false" />
+		</ap:CalloutTopicDefaultsGroup>
+		<ap:CalloutSubTopicDefaultsGroup Level="0">
+			<ap:DefaultColor Dirty="0000000000000000" FillColor="00ffffff" LineColor="ff000000" />
+			<ap:DefaultText TextAlignment="urn:mindjet:Left" TextCapitalization="urn:mindjet:None" Dirty="0000000000000000" PlainText="Subtopic">
+				<ap:Font Color="ff000000" Size="10." Name="Trebuchet MS" Bold="false" />
+			</ap:DefaultText>
+			<ap:DefaultSubTopicShape SubTopicShape="urn:mindjet:Line" Dirty="0000000000000000" LeftMargin="0.20000000298023224" RightMargin="0.20000000298023224" TopMargin="0.20000000298023224" BottomMargin="0.20000000298023224" />
+			<ap:DefaultSubTopicsShape SubTopicsAlignment="urn:mindjet:Center" SubTopicsConnectionPoint="urn:mindjet:Outside" SubTopicsShape="urn:mindjet:Vertical" Dirty="0000000000000000" DistanceBetweenSiblings="1." />
+			<ap:DefaultSubTopicsVisibility Dirty="0000000000000000" Hidden="false" />
+		</ap:CalloutSubTopicDefaultsGroup>
+		<ap:LabelTopicDefaultsGroup>
+			<ap:DefaultColor Dirty="0000000000000000" FillColor="00ffffff" LineColor="ff000000" />
+			<ap:DefaultText TextAlignment="urn:mindjet:Left" TextCapitalization="urn:mindjet:None" Dirty="0000000000000000" PlainText="Floating Topic">
+				<ap:Font Color="ff000000" Size="10." Name="Trebuchet MS" Bold="false" />
+			</ap:DefaultText>
+			<ap:DefaultLabelFloatingTopicShape LabelFloatingTopicShape="urn:mindjet:None" Dirty="0000000000000000" LeftMargin="0.5" RightMargin="0.5" TopMargin="0.5" BottomMargin="0.5" />
+			<ap:DefaultSubTopicsShape SubTopicsAlignment="urn:mindjet:Center" SubTopicsConnectionPoint="urn:mindjet:Outside" SubTopicsConnectionStyle="urn:mindjet:ShearedElbow" SubTopicsShape="urn:mindjet:Vertical" Dirty="0000000000000000" DistanceFromParent="2." DistanceBetweenSiblings="1." />
+			<ap:DefaultSubTopicsVisibility Dirty="0000000000000000" Hidden="false" />
+		</ap:LabelTopicDefaultsGroup>
+		<ap:LabelSubTopicDefaultsGroup Level="0">
+			<ap:DefaultColor Dirty="0000000000000000" FillColor="00ffffff" LineColor="ff000000" />
+			<ap:DefaultText TextAlignment="urn:mindjet:Left" TextCapitalization="urn:mindjet:None" Dirty="0000000000000000" PlainText="Subtopic">
+				<ap:Font Color="ff000000" Size="10." Name="Trebuchet MS" Bold="false" />
+			</ap:DefaultText>
+			<ap:DefaultSubTopicShape SubTopicShape="urn:mindjet:Line" Dirty="0000000000000000" LeftMargin="0.20000000298023224" RightMargin="0.20000000298023224" TopMargin="0.20000000298023224" BottomMargin="0.20000000298023224" />
+			<ap:DefaultSubTopicsShape SubTopicsAlignment="urn:mindjet:Center" SubTopicsConnectionPoint="urn:mindjet:Outside" SubTopicsShape="urn:mindjet:Vertical" Dirty="0000000000000000" DistanceBetweenSiblings="1." />
+			<ap:DefaultSubTopicsVisibility Dirty="0000000000000000" Hidden="false" />
+		</ap:LabelSubTopicDefaultsGroup>
+		<ap:RelationshipDefaultsGroup>
+			<ap:DefaultColor Dirty="0000000000000000" FillColor="00000000" LineColor="ff000000" />
+			<ap:DefaultLineStyle LineDashStyle="urn:mindjet:RoundDot" Dirty="0000000000000000" LineWidth="2.25" />
+			<ap:DefaultConnectionStyle ConnectionShape="urn:mindjet:OvalArrow" Dirty="0000000000000000" />
+			<ap:DefaultConnectionStyle ConnectionShape="urn:mindjet:OpenArrow" Dirty="0000000000000000" />
+		</ap:RelationshipDefaultsGroup>
+		<ap:BoundaryDefaultsGroup>
+			<ap:DefaultLineStyle LineDashStyle="urn:mindjet:Solid" Dirty="0000000000000000" LineWidth="3." />
+			<ap:DefaultBoundaryShape BoundaryShape="urn:mindjet:CurvedLine" Dirty="0000000000000000" Margin="0." />
+		</ap:BoundaryDefaultsGroup>
+		<ap:ImageDefaultsGroup />
+		<ap:Structure StructureGrowthDirection="urn:mindjet:Right" Dirty="0000000000000001" UseAutoLayout="true" MinimumMainTopicsHeight="40." FadeNotSelectedObjects="true" UseCurveAntialiasing="true" UseTextAntialiasing="true" MainTopicLineWidth="3." UseOrganicLines="false" HideCollapseSign="false" />
+		<ap:BackgroundFill Dirty="0000000000000000" FillColor="ffffffe5" />
+		<ap:BackgroundImageData ImageType="urn:mindjet:PngImage" Transparency="45" Dirty="0000000000000000">
+			<cor:Base64 xsi:nil="false">Qk32BgAAAAAAADYAAAAoAAAAGAAAABgAAAABABgAAAAAAMAGAAATCwAAEwsAAAAAAAAAAAAA1NTE////////////////////////////////////////////////////////////////////////////////////////////1NTE////////////////////////////////////////////////////////////////////////////////////////////1NTE////////////////////////////////////////////////////////////////////////////////////////////1NTE////////////////////////////////////////////////////////////////////////////////////////////1NTE////////////////////////////////////////////////////////////////////////////////////////////1NTE////////////////////////////////////////////////////////////////////////////////////////////1NTE////////////////////////////////////////////////////////////////////////////////////////////1NTE////////////////////////////////////////////////////////////////////////////////////////////1NTE////////////////////////////////////////////////////////////////////////////////////////////1NTE////////////////////////////////////////////////////////////////////////////////////////////1NTE////////////////////////////////////////////////////////////////////////////////////////////1NTE////////////////////////////////////////////////////////////////////////////////////////////1NTE////////////////////////////////////////////////////////////////////////////////////////////1NTE////////////////////////////////////////////////////////////////////////////////////////////1NTE////////////////////////////////////////////////////////////////////////////////////////////1NTE////////////////////////////////////////////////////////////////////////////////////////////1NTE////////////////////////////////////////////////////////////////////////////////////////////1NTE////////////////////////////////////////////////////////////////////////////////////////////1NTE////////////////////////////////////////////////////////////////////////////////////////////1NTE////////////////////////////////////////////////////////////////////////////////////////////1NTE////////////////////////////////////////////////////////////////////////////////////////////1NTE////////////////////////////////////////////////////////////////////////////////////////////1NTE////////////////////////////////////////////////////////////////////////////////////////////1NTE1NTE1NTE1NTE1NTE1NTE1NTE1NTE1NTE1NTE1NTE1NTE1NTE1NTE1NTE1NTE1NTE1NTE1NTE1NTE1NTE1NTE1NTE1NTE</cor:Base64>
+		</ap:BackgroundImageData>
+		<ap:NotesDefaultFont Color="ff000000" Size="10." Dirty="0000000000000001" Name="Arial" />
+	</ap:StyleGroup>
+	<ap:MapViewGroup ViewIndex="0" RowIndex="0" ColumnIndex="0">
+		<ap:ZoomFactor ZoomFactor="1." Dirty="0000000000000000" />
+	</ap:MapViewGroup>
+	<ap:DocumentGroup>
+		<ap:Language Dirty="0000000000000000" Language="en" />
+		<ap:Creator Dirty="0000000000000000" UserName="" UserEmail="" />
+		<ap:LastModificator Dirty="0000000000000000" UserName="" UserEmail="" />
+		<ap:Author Dirty="0000000000000000" UserName="" UserEmail="" />
+		<ap:Manager Dirty="0000000000000000" UserName="" />
+		<ap:Version Dirty="0000000000000001" Major="83" />
+		<ap:Statistics Dirty="0000000000000001" NumberOfWords="353" NumberOfHyperlinks="0" NumberOfNotes="0" NumberOfTopics="68" NumberOfRelationships="0" NumberOfPictures="0" NumberOfBoundaries="0" />
+		<ap:DateTimeStamps Dirty="0000000000000001" Printed="2004-02-16T14:16:57" Created="2004-02-16T13:42:10" LastModified="2004-03-30T17:23:12" />
+		<ap:Description Comments="" Dirty="0000000000000000" Subject="" />
+		<ap:Keywords Dirty="0000000000000000" Keywords="" />
+		<ap:CreatorCompany Dirty="0000000000000000" Name="" />
+		<ap:Category Dirty="0000000000000000" Name="" />
+		<ap:PreviewImageData ImageType="urn:mindjet:PngImage" Dirty="0000000000000001">
+			<cor:Base64 xsi:nil="false">iVBORw0KGgoAAAANSUhEUgAAAHEAAADcCAMAAAEHJY5EAAADAFBMVEX///f39+//5617e3v33qUAAADOzsacnJzn59ZSSkKtraXv7+ellGu9vbWEhHu1ta3W1s7e3s57c0ohIRi1pXv/55zGxr2lpZyMjIzn5945OTFra2taWlKUlIwICAhzc2tjY1q9rYRCQkIQEAgpKSEICABKQjFCQjkQEBCUhFrWxoyUhGMpKSmcnJRKSkq9rXPe3tZSUkp7e3Nza1oxKSkxMSkYGBCtnHMpIRghISHv1pSMjIRCOTkYGBjOvYRjY2M5OTmclGvGrXvOvYwQCAj33pxSUlJra2NjWloxMTFKSkLexpScjGOUlJR7a0qEhITn1pxaWlqEe1pzc3OtnGtrY2NjY0rnzoxzY0r///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///f///edm9OSAAAACXBIWXMAAC4kAAAuJAEq4ZkJAAAUFklEQVR4nK1ca2/jOJYN7JAfyJAgFk5ookFJxgzG2XKMtStYNLwNF1wIOoGTxdQD24P5//+DwN5LvSiJejiV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</cor:Base64>
+		</ap:PreviewImageData>
+	</ap:DocumentGroup>
+	<ap:MarkersSetGroup>
+		<ap:IconMarkersSets>
+			<ap:IconMarkersSet Dirty="0000000000000001" OId="judnoSv2QUOv2iS5nNYj1w==" Gen="0000000000000000">
+				<ap:Name Dirty="0000000000000000" Name="Smileys" />
+				<ap:IconMarkers>
+					<ap:IconMarker xsi:type="ap:StockIconMarker" Dirty="0000000000000000" OId="1JyeeentG0uDBSkM9oX/lg==" Gen="0000000000000000">
+						<ap:Name Dirty="0000000000000000" Name="Upset" />
+						<ap:OneStockIcon IconType="urn:mindjet:SmileyAngry" Dirty="0000000000000000" />
+					</ap:IconMarker>
+					<ap:IconMarker xsi:type="ap:StockIconMarker" Dirty="0000000000000000" OId="++rbgQVkxESq+sUdE3Q1qg==" Gen="0000000000000000">
+						<ap:Name Dirty="0000000000000000" Name="Neutral" />
+						<ap:OneStockIcon IconType="urn:mindjet:SmileyNeutral" Dirty="0000000000000000" />
+					</ap:IconMarker>
+					<ap:IconMarker xsi:type="ap:StockIconMarker" Dirty="0000000000000000" OId="ynVlE1fED0+5sjAY3ksSAA==" Gen="0000000000000000">
+						<ap:Name Dirty="0000000000000000" Name="Sad" />
+						<ap:OneStockIcon IconType="urn:mindjet:SmileySad" Dirty="0000000000000000" />
+					</ap:IconMarker>
+					<ap:IconMarker xsi:type="ap:StockIconMarker" Dirty="0000000000000000" OId="R80Gafg9vUiH8CyXCEaidg==" Gen="0000000000000000">
+						<ap:Name Dirty="0000000000000000" Name="Happy" />
+						<ap:OneStockIcon IconType="urn:mindjet:SmileyHappy" Dirty="0000000000000000" />
+					</ap:IconMarker>
+					<ap:IconMarker xsi:type="ap:StockIconMarker" Dirty="0000000000000000" OId="hBP16i89bU61ecPUCkvbZA==" Gen="0000000000000000">
+						<ap:Name Dirty="0000000000000000" Name="Furious" />
+						<ap:OneStockIcon IconType="urn:mindjet:SmileyScreaming" Dirty="0000000000000000" />
+					</ap:IconMarker>
+				</ap:IconMarkers>
+			</ap:IconMarkersSet>
+			<ap:IconMarkersSet Dirty="0000000000000001" OId="9lXwNS5qIEWLPKt/bqp0QQ==" Gen="0000000000000000">
+				<ap:Name Dirty="0000000000000000" Name="Arrows" />
+				<ap:IconMarkers>
+					<ap:IconMarker xsi:type="ap:StockIconMarker" Dirty="0000000000000000" OId="AaUuaTzz40q4lRBJ+7S4WQ==" Gen="0000000000000000">
+						<ap:Name Dirty="0000000000000000" Name="Important" />
+						<ap:OneStockIcon IconType="urn:mindjet:ArrowRight" Dirty="0000000000000000" />
+					</ap:IconMarker>
+					<ap:IconMarker xsi:type="ap:StockIconMarker" Dirty="0000000000000000" OId="pqsuvTleSkSyg7m41F1Djg==" Gen="0000000000000000">
+						<ap:Name Dirty="0000000000000000" Name="Both ways" />
+						<ap:OneStockIcon IconType="urn:mindjet:TwoEndArrow" Dirty="0000000000000000" />
+					</ap:IconMarker>
+					<ap:IconMarker xsi:type="ap:StockIconMarker" Dirty="0000000000000000" OId="83fQbTGpS0qNhSB7LUiifw==" Gen="0000000000000000">
+						<ap:Name Dirty="0000000000000000" Name="Reference" />
+						<ap:OneStockIcon IconType="urn:mindjet:ArrowLeft" Dirty="0000000000000000" />
+					</ap:IconMarker>
+					<ap:IconMarker xsi:type="ap:StockIconMarker" Dirty="0000000000000000" OId="QbC0hAJMrkSyvwDRiCwY0Q==" Gen="0000000000000000">
+						<ap:Name Dirty="0000000000000000" Name="Postponed" />
+						<ap:OneStockIcon IconType="urn:mindjet:ArrowDown" Dirty="0000000000000000" />
+					</ap:IconMarker>
+					<ap:IconMarker xsi:type="ap:StockIconMarker" Dirty="0000000000000000" OId="ZD2ditHHT0OKqJvABhPB3w==" Gen="0000000000000000">
+						<ap:Name Dirty="0000000000000000" Name="Yes!" />
+						<ap:OneStockIcon IconType="urn:mindjet:ArrowUp" Dirty="0000000000000000" />
+					</ap:IconMarker>
+				</ap:IconMarkers>
+			</ap:IconMarkersSet>
+			<ap:IconMarkersSet Dirty="0000000000000001" OId="w5V1Dw0LyU+5/twx5+ZWwA==" Gen="0000000000000000">
+				<ap:Name Dirty="0000000000000000" Name="Flags" />
+				<ap:IconMarkers>
+					<ap:IconMarker xsi:type="ap:StockIconMarker" Dirty="0000000000000001" OId="dVlvxVl4rU2e5QroPJ5N4g==" Gen="0000000000000000">
+						<ap:Name Dirty="0000000000000001" Name="Tested" />
+						<ap:OneStockIcon IconType="urn:mindjet:FlagGreen" Dirty="0000000000000000" />
+					</ap:IconMarker>
+					<ap:IconMarker xsi:type="ap:StockIconMarker" Dirty="0000000000000000" OId="oIBj5O54QkieD3SCwNqkrw==" Gen="0000000000000000">
+						<ap:Name Dirty="0000000000000000" Name="For discussion" />
+						<ap:OneStockIcon IconType="urn:mindjet:FlagYellow" Dirty="0000000000000000" />
+					</ap:IconMarker>
+					<ap:IconMarker xsi:type="ap:StockIconMarker" Dirty="0000000000000000" OId="CDwWAzAdCEuiDz/J+a2INg==" Gen="0000000000000000">
+						<ap:Name Dirty="0000000000000000" Name="Possibility" />
+						<ap:OneStockIcon IconType="urn:mindjet:FlagPurple" Dirty="0000000000000000" />
+					</ap:IconMarker>
+					<ap:IconMarker xsi:type="ap:StockIconMarker" Dirty="0000000000000000" OId="7aN8mIii4EOKOqQ8SWRHcQ==" Gen="0000000000000000">
+						<ap:Name Dirty="0000000000000000" Name="Risk" />
+						<ap:OneStockIcon IconType="urn:mindjet:FlagBlack" Dirty="0000000000000000" />
+					</ap:IconMarker>
+					<ap:IconMarker xsi:type="ap:StockIconMarker" Dirty="0000000000000000" OId="lsLFNIXVx0Kahh5D67GfZQ==" Gen="0000000000000000">
+						<ap:Name Dirty="0000000000000000" Name="Progress" />
+						<ap:OneStockIcon IconType="urn:mindjet:FlagBlue" Dirty="0000000000000000" />
+					</ap:IconMarker>
+					<ap:IconMarker xsi:type="ap:StockIconMarker" Dirty="0000000000000000" OId="DgV6xpj/ykq8zalISNKnLQ==" Gen="0000000000000000">
+						<ap:Name Dirty="0000000000000000" Name="Careful" />
+						<ap:OneStockIcon IconType="urn:mindjet:FlagOrange" Dirty="0000000000000000" />
+					</ap:IconMarker>
+					<ap:IconMarker xsi:type="ap:StockIconMarker" Dirty="0000000000000001" OId="bxZ+u5Q0Uk6EOhf2Jdonfw==" Gen="0000000000000000">
+						<ap:Name Dirty="0000000000000001" Name="Bug found" />
+						<ap:OneStockIcon IconType="urn:mindjet:FlagRed" Dirty="0000000000000000" />
+					</ap:IconMarker>
+				</ap:IconMarkers>
+			</ap:IconMarkersSet>
+		</ap:IconMarkersSets>
+		<ap:IconMarkers>
+			<ap:IconMarker xsi:type="ap:StockIconMarker" Dirty="0000000000000000" OId="DVvbxhnuG0O4jbIVpNXyOw==" Gen="0000000000000000">
+				<ap:Name Dirty="0000000000000000" Name="Great idea" />
+				<ap:OneStockIcon IconType="urn:mindjet:ThumbsUp" Dirty="0000000000000000" />
+			</ap:IconMarker>
+			<ap:IconMarker xsi:type="ap:StockIconMarker" Dirty="0000000000000000" OId="Bbm16HConkmQXvH5pwm4nw==" Gen="0000000000000000">
+				<ap:Name Dirty="0000000000000000" Name="Decision" />
+				<ap:OneStockIcon IconType="urn:mindjet:JudgeHammer" Dirty="0000000000000000" />
+			</ap:IconMarker>
+			<ap:IconMarker xsi:type="ap:StockIconMarker" Dirty="0000000000000000" OId="A+YkNRdxT0W7KoVTI9M97A==" Gen="0000000000000000">
+				<ap:Name Dirty="0000000000000000" Name="Date" />
+				<ap:OneStockIcon IconType="urn:mindjet:Calendar" Dirty="0000000000000000" />
+			</ap:IconMarker>
+			<ap:IconMarker xsi:type="ap:StockIconMarker" Dirty="0000000000000000" OId="lTCQ4XELc0OOqJjKUUlDow==" Gen="0000000000000000">
+				<ap:Name Dirty="0000000000000000" Name="Budget" />
+				<ap:OneStockIcon IconType="urn:mindjet:Dollar" Dirty="0000000000000000" />
+			</ap:IconMarker>
+			<ap:IconMarker xsi:type="ap:StockIconMarker" Dirty="0000000000000000" OId="tcC17caMHEGKB7WjF+scjw==" Gen="0000000000000000">
+				<ap:Name Dirty="0000000000000000" Name="Emergency" />
+				<ap:OneStockIcon IconType="urn:mindjet:Emergency" Dirty="0000000000000000" />
+			</ap:IconMarker>
+		</ap:IconMarkers>
+		<ap:TaskPercentageMarkers>
+			<ap:TaskPercentageMarker Dirty="0000000000000000" OId="vCwjpbpFPUOLJ1uWKhBiDA==" Gen="0000000000000000">
+				<ap:Name Dirty="0000000000000000" Name="Task start" />
+				<ap:TaskPercentage TaskPercentage="0" Dirty="0000000000000000" />
+			</ap:TaskPercentageMarker>
+			<ap:TaskPercentageMarker Dirty="0000000000000000" OId="jQzpf9Px8EipgSz29qmPfQ==" Gen="0000000000000000">
+				<ap:Name Dirty="0000000000000000" Name="Quarter done" />
+				<ap:TaskPercentage TaskPercentage="25" Dirty="0000000000000000" />
+			</ap:TaskPercentageMarker>
+			<ap:TaskPercentageMarker Dirty="0000000000000000" OId="TAnOkImFYkyBcJlYFpJpNg==" Gen="0000000000000000">
+				<ap:Name Dirty="0000000000000000" Name="Half done" />
+				<ap:TaskPercentage TaskPercentage="50" Dirty="0000000000000000" />
+			</ap:TaskPercentageMarker>
+			<ap:TaskPercentageMarker Dirty="0000000000000000" OId="eIqAandeY02qPKdO2z350Q==" Gen="0000000000000000">
+				<ap:Name Dirty="0000000000000000" Name="Three quarters done" />
+				<ap:TaskPercentage TaskPercentage="75" Dirty="0000000000000000" />
+			</ap:TaskPercentageMarker>
+			<ap:TaskPercentageMarker Dirty="0000000000000000" OId="1YcmllBnBkaBpo7Smd3W7Q==" Gen="0000000000000000">
+				<ap:Name Dirty="0000000000000000" Name="Task done" />
+				<ap:TaskPercentage TaskPercentage="100" Dirty="0000000000000000" />
+			</ap:TaskPercentageMarker>
+		</ap:TaskPercentageMarkers>
+		<ap:TaskPriorityMarkers>
+			<ap:TaskPriorityMarker Dirty="0000000000000000" OId="6r8TcgBKhkiABI5lZUXlMg==" Gen="0000000000000000">
+				<ap:Name Dirty="0000000000000000" Name="Priority 1" />
+				<ap:TaskPriority TaskPriority="urn:mindjet:Prio1" Dirty="0000000000000000" />
+			</ap:TaskPriorityMarker>
+			<ap:TaskPriorityMarker Dirty="0000000000000000" OId="ib4ubQPSUEGEXpa5uzPqOQ==" Gen="0000000000000000">
+				<ap:Name Dirty="0000000000000000" Name="Priority 2" />
+				<ap:TaskPriority TaskPriority="urn:mindjet:Prio2" Dirty="0000000000000000" />
+			</ap:TaskPriorityMarker>
+			<ap:TaskPriorityMarker Dirty="0000000000000000" OId="bUcBgO/mi0inoQlqAO1z1g==" Gen="0000000000000000">
+				<ap:Name Dirty="0000000000000000" Name="Priority 3" />
+				<ap:TaskPriority TaskPriority="urn:mindjet:Prio3" Dirty="0000000000000000" />
+			</ap:TaskPriorityMarker>
+			<ap:TaskPriorityMarker Dirty="0000000000000000" OId="KkA67cXJ7UWpSx3dn56fcA==" Gen="0000000000000000">
+				<ap:Name Dirty="0000000000000000" Name="Priority 4" />
+				<ap:TaskPriority TaskPriority="urn:mindjet:Prio4" Dirty="0000000000000000" />
+			</ap:TaskPriorityMarker>
+			<ap:TaskPriorityMarker Dirty="0000000000000000" OId="LMjT5ACTu06Ex9cTPtei1g==" Gen="0000000000000000">
+				<ap:Name Dirty="0000000000000000" Name="Priority 5" />
+				<ap:TaskPriority TaskPriority="urn:mindjet:Prio5" Dirty="0000000000000000" />
+			</ap:TaskPriorityMarker>
+		</ap:TaskPriorityMarkers>
+	</ap:MarkersSetGroup>
+</ap:Map>

@@ -1,0 +1,253 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--
+SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+
+SPDX-License-Identifier: GPL-2.0-only
+-->
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<title>Workspaces Dialog</title>
+	<meta http-equiv="content-type" content="text/html; charset=windows-1252" />
+	<meta name="topic-check-list" content="First Draft,Added To TOC,Images" />
+	<link rel="StyleSheet" href="../help.css" />
+</head>
+
+<body>
+
+<!-- Conditional Headers -->
+<div style="x-condition: PRO;">
+	<div id="helpHeader">
+		<div id="helpHeaderImg"></div>
+		<p class="helpHeader">Omea Pro Help: Reference: Workspaces dialog</p>
+	</div>
+</div>
+
+<div style="x-condition: READER;">
+	<div id="helpHeader">
+		<div id="helpHeaderImg"></div>
+		<p class="helpHeader">Omea Reader Help: Reference: Workspaces dialog</p>
+	</div>
+</div>
+
+<div id="mainContent">
+	<h1>Workspaces Dialog</h1>
+	<p>This dialog enables you to define new Workspaces, modify the already existing Workspaces, and specify what resources appear when you
+	work in each workspace.</p>
+
+	<div style="x-condition: PRO;">
+       <p><img src="../images/sshots/dialogs/pro/workspaces_dialog.png" width="739" height="442" alt="Workspaces dialog" /></p>
+	   <p class="caption">The Workspaces dialog</p>
+	</div>
+
+	<div style="x-condition: READER;">
+	   <p><img src="../images/sshots/dialogs/reader/workspaces_dialog.png" width="739" height="442" alt="Workspaces dialog" /></p>
+       <p class="caption">The Workspaces dialog</p>
+	</div>
+
+	<h2>Workspaces Pane</h2>
+	<p>This pane at the left side of the dialog shows a list of your current Workspaces. It has controls
+	creating a new Workspace, and renaming or deleting an existing Workspace and change the order of the already existing Workspaces.</p>
+
+	 <p>The list is empty until you create a new Workspace. The name of the currently selected Workspace
+	 appears highlighted.</p>
+
+	 <p>You can resize the pane horizontally using the splitter.</p>
+	 <p>To change the order of the existing Workspaces, select the desired Workspace and click either  <img src="../images/iconsMarks/ico_wsp_up.png" width="12" height="11" class="linkIcon" /> or <img src="../images/iconsMarks/ico_wsp_down.png" width="12" height="11" class="linkIcon" />  to move the Workspace up or down (respectively) in the list of Workspaces. As you do it, the order of the Workspaces in the <strong>Workspaces bar</strong> also changes. </p>
+	 <h3>Context Menu</h3>
+	<p>The Workspaces list has a context menu when a Workspace name is selected. The menu enables you to
+	rename the selected Workspace or delete it.</p>
+	<div class="tip">
+	    <p class="tip">You can also rename a Workspace &quot;in place&quot; by clicking on then name
+		after it is selected and editing the name in the editable text box that appears.</p>
+  </div>
+
+	<h3>New Button</h3>
+	<p>Creates a new Workspace. You are prompted to enter a name for the new Workspace.</p>
+
+   <h3>Rename Button</h3>
+	<p>This button enables you to rename the Workspace currently selected in the Workspaces list. The
+	button is disabled if no Workspace is selected, or if the Workspaces list is empty. The context
+	menu on the Workspaces list provides the same functionality.</p>
+
+	<h3>Delete Button</h3>
+	<p>This button deletes the Workspace currently selected in the Workspaces list. The button is
+	disabled if no Workspace is selected, or if the Workspaces list is empty. The context menu on the
+	Workspaces list provides the same functionality.</p>
+
+<div class=tip>
+<div class=tipImg
+	style="/*begin!kadov{{*/ x-right: 747px; x-bottom: 776px; /*}}end!kadov*/ ">
+          <p>&nbsp;</p>
+        </div>
+<p class=tip>You can change the order of workspaces in the Worskpaces Bar using <strong>Up</strong>
+and <strong>Down</strong> arrows. Location changes will be immediately reflected on the Workspace Bar.</p>
+</div>
+	<h2>Workspace Resources Pane</h2>
+	<p>The right-hand pane of the dialog contains a set of tabbed pages corresponding to different
+	kinds of <a href="../overview/key_concepts.html#resources">resources</a>. In each of these tabs
+	you can specify which resources you want to see in the currently selected Workspace. You can pick
+	from among all the indexed resources currently available to <span style="x-condition: READER;">Omea Reader</span>
+	<span style="x-condition: PRO;">Omea Pro</span> by default and by your settings in the
+	<a href="options_dialog.html">Options dialog</a>.</p>
+
+	<p>Each of the tabs has the same basic contents:</p>
+	<ul>
+		<li>A list showing all available resources of the type corresponding to the selected tab</li>
+
+		<li>A list showing only the resources (of the type corresponding to the selected tab) that appear
+		in the current Workspace</li>
+
+		<li>A set of button controls for adding and removing resources from the list of resource for
+		the current Workspace.</li>
+
+		<li>A list of individual resources (e-mail messages or feed postings, for example) that have
+		been added to the Workspace.</li>
+	</ul>
+
+    <h3>Available (list)</h3>
+	<p>Shows all the resources currently available for inclusion in the currently selected Workspace.
+	The list contents varies according to the tab selected:</p>
+	<table cellpadding="0" cellspacing="0">
+		<tr>
+			<th>Selected Tab</th><th class="rightCell">List Content</th>
+		</tr>
+		<tr style="x-condition: PRO;">
+			<td>Mail</td>
+			<td class="rightCell">Outlook folders</td>
+		</tr>
+		<tr style="x-condition: PRO;">
+			<td>IM</td>
+			<td class="rightCell">Instant Message Conversations</td>
+		</tr>
+		<tr>
+			<td>News</td><td class="rightCell">News servers and newsgroups</td>
+		</tr>
+		<tr>
+			<td>Web</td><td class="rightCell">Browser bookmark folders and bookmarks</td>
+		</tr>
+		<tr>
+			<td>Feeds</td><td class="rightCell">RSS and ATOM feeds, including any feed folders </td>
+		</tr>
+		<tr style="x-condition: PRO;">
+			<td>Files</td><td class="rightCell">Windows folders</td>
+		</tr>
+		<tr>
+			<td>Contacts</td><td class="rightCell">Contacts from Outlook and instant message programs</td>
+		</tr>
+		<tr style="x-condition: PRO;">
+			<td>Tasks</td><td class="rightCell">Currently defined tasks, if any</td>
+		</tr>
+		<tr>
+			<td>Email Accounts</td>
+			<td class="rightCell">E-mail account(s) belonging to you</td>
+		</tr>
+		<tr>
+			<td class="bottomCell">Categories</td>
+			<td class="bottomRightCell">Currently defined Categories</td>
+		</tr>
+	</table>
+    <h3>In Workspace <em>[name]</em> (list)</h3>
+	<p>Shows all the resources currently included in the currently selected Workspace. The list contents
+	varies according to the tab selected:</p>
+	<table cellpadding="0" cellspacing="0">
+		<tr>
+			<th>Selected Tab</th><th class="rightCell">List Content</th>
+		</tr>
+		<tr style="x-condition: PRO;">
+			<td>Mail</td>
+			<td class="rightCell">Outlook folders</td>
+		</tr>
+		<tr style="x-condition: PRO;">
+			<td>IM</td>
+			<td class="rightCell">Instant Message Conversations</td>
+		</tr>
+		<tr>
+			<td>News</td><td class="rightCell">News servers and newsgroups</td>
+		</tr>
+		<tr>
+			<td>Web</td><td class="rightCell">Browser bookmark folders and bookmarks</td>
+		</tr>
+		<tr>
+			<td>Feeds</td><td class="rightCell">RSS and ATOM feeds, including any feed folders </td>
+		</tr>
+		<tr style="x-condition: PRO;">
+			<td>Files</td><td class="rightCell">Windows folders</td>
+		</tr>
+		<tr>
+			<td>Contacts</td><td class="rightCell">Contacts from Outlook and instant message programs</td>
+		</tr>
+		<tr style="x-condition: PRO;">
+			<td>Tasks</td><td class="rightCell">Currently defined tasks, if any</td>
+		</tr>
+		<tr>
+			<td>Email Accounts</td>
+			<td class="rightCell">E-mail account(s) belonging to you</td>
+		</tr>
+		<tr>
+			<td class="bottomCell">Categories</td>
+			<td class="bottomRightCell">Currently defined Categories</td>
+		</tr>
+  </table>
+
+	<h3>Add Button</h3>
+	<p>Available for all resource types, the button adds selected resource(s) in the <em>Available</em>
+	list to the <em>In Workspace</em> list. The button is disable if there are no available resources
+	to add to the Workspace.</p>
+
+	<p>For resources<span style="x-condition: PRO;"> such as E-mail and Files</span> that can contain sub-folders,
+	this button adds <em>only</em> the selected folder... no sub-folders are added even if they exist.</p>
+
+	<h3>Add Subtree Button</h3>
+	<p>Similar to the Add button, except that for resources<span style="x-condition: PRO;"> such as E-mail and Files</span>
+	than can contain sub-folders, this button adds <em>both</em> the selected folder <em>and</em> any sub-folders
+	it may contain, down to the lowest level.</p>
+
+	<p>Available (visible) in all resource tabs <em>except</em>:</p>
+	<ul>
+		<li>Contacts</li>
+		<li style="x-condition: PRO;">Tasks</li>
+		<li>E-mail Account</li>
+	</ul>
+
+	<h3>Remove Button</h3>
+	<p>Removes selected resource(s) from the <em>In Workspace</em> list, thus removing then from the
+	currently selected Workspace. No resources are deleted from disk, and all such removed resources
+	still exist in <span style="x-condition: READER;">Omea Reader</span><span style="x-condition: PRO;">Omea Pro</span>
+	in the default &quot;All&quot; Workspace.</p>
+    <a name=other></a>
+	<h3>Other</h3>
+	<p>This view presents a list of individual resources (<span style="x-condition: PRO;">e-mail messages or </span>
+	feed postings, for example) that have been added to the Workspace via the main window... by dragging and dropping
+	onto the Workspace&#039;s selector button, for example.</p>
+
+	<div style="x-condition: PRO;">
+	   <img src="../images/sshots/pro/workspace_dialog_other.png" width="480" height="176" alt="Other resources in Workspace" />
+		<p class="caption">Other shows items that have been added to the Workspace in the main window. Here, it shows some files that were added.</p>
+	</div>
+
+	<p>When you first create a new Workspace, it&#039;s normal for this view to be empty. Later, if you
+	make changes to a Workspace and some items are listed here, you can use the <strong>Remove</strong>
+	button to remove them from the Workspace.</p>
+	<h3>Color Area </h3>
+	<p><span class="kadov-p">Allows you to select the Workspace color and preview it.  As you click  different places of the color selector, you can preview the resulting color in a small square at the left from the color selector. <br />
+To select a different color than the one available of the color selector area, click <strong>Other</strong>&#8230;. In the <strong>Color</strong> window which opens, select the desired color in the <strong>Basic colors</strong> list or define a <em>Custom</em> color. After you have selected or defined the desired color, click <strong>OK</strong> to close the <strong>Color</strong> window and return to Workspace editing. The color you select appears in the <em>color preview square</em>. </span></p>
+	<h4>Remove button (Other)</h4>
+	<p>Removes the selected resource item(s) from the Other list and the currently selected Workspace.
+	No resources are deleted from disk, and all such removed resources still exist in
+	<span style="x-condition: READER;">Omea Reader</span><span style="x-condition: PRO;">Omea Pro</span> in the
+	default &quot;All&quot; Workspace.</p>
+
+	<div id="seealso">
+		<p class="seealso"><strong>See also:</strong></p>
+
+	   <ul>
+	 	   <li class="seealso"><a href="../organizing/organizing_using_workspaces.html">Organizing using Workspaces</a></li>
+	   </ul>
+	</div>
+</div>
+
+</body>
+<!-- LAST SPELLCHECK: 23 Aug 2004 -->
+</html>

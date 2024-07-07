@@ -1,0 +1,192 @@
+<!doctype HTML public "-//W3C//DTD HTML 4.0 Frameset//EN">
+<!--
+SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+
+SPDX-License-Identifier: GPL-2.0-only
+-->
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang=en lang=en>
+
+
+<!--(==============================================================)-->
+<!--(Document created with RoboEditor. )============================-->
+<!--(==============================================================)-->
+
+<head>
+
+<title>Feed Properties Dialog</title>
+
+<!--(Meta)==========================================================-->
+
+<meta http-equiv=content-type content="text/html; charset=windows-1252" charset=windows-1252 />
+<meta name=copyright content="Copyright (c)2004 JetBrains, Inc." />
+<meta name=topic-check-list content="Added To TOC" />
+<meta name=generator content="RoboHELP by eHelp Corporation - www.ehelp.com">
+<meta name=generator-major-version content=0.1>
+<meta name=generator-minor-version content=1>
+<meta name=filetype content=kadov>
+<meta name=filetype-version content=1>
+<meta name=page-count content=1>
+<meta name=layout-height content=1772>
+<meta name=layout-width content=894>
+
+
+<!--(Links)=========================================================-->
+
+<link rel=StyleSheet href="../help.css" />
+
+
+
+</head>
+
+<!--(Body)==========================================================-->
+
+
+<body>
+
+<!-- Conditional Headers -->
+<div style="x-condition: PRO;">
+<div id=helpHeader>
+<div id=helpHeaderImg
+	style="/*begin!kadov{{*/ x-right: 860px; x-bottom: 682px; /*}}end!kadov*/ ">
+<p>&nbsp;</p>
+</div>
+
+<p class=helpHeader>Omea Pro Help: Reference: Feed Properties Dialog</p>
+</div>
+</div>
+
+<div style="x-condition: READER;">
+<div id=helpHeader>
+<div id=helpHeaderImg
+	style="/*begin!kadov{{*/ x-right: 860px; x-bottom: 682px; /*}}end!kadov*/ ">
+<p>&nbsp;</p>
+</div>
+
+<p class=helpHeader>Omea Reader Help: Reference: Feed Properties Dialog</p>
+</div>
+</div>
+
+<div id=mainContent>
+<h1>Feed Properties Dialog</h1>
+
+<p class=opt>You can access this dialog from the context menu of a RSS/Atom
+ feed in the <strong>Feeds</strong> Pane or select a feed in the <strong>Feeds</strong> pane and from the <strong>Edit</strong> menu, select <strong>Properties</strong>.</p>
+
+<p>This dialog enables you to view all the properties of a feed to which
+ you are subscribed, and to modify some of them.</p>
+
+<!--kadov_tag{{<implicit_p>}}-->
+<img src="../images/sshots/dialogs/shared/feed_properties.png"
+		class=proc
+		alt="The Feed Properties dialog"
+		style="width: 432px;
+				height: 434px;
+				border-style: none;
+				float: none;"
+		width=432
+		height=434
+		border=0></p>
+
+<h2>Dialog Components</h2>
+
+<h3>Feed Information Tab </h3>
+<h4>Address</h4>
+<p>The web address (URL) of the feed’s XML data file. You can edit the
+ address, but the only reason to do so would be if the URL of the feed
+ changed.</p>
+
+<h4>Title</h4>
+
+<p>This is the title that appears in the <strong>Feeds</strong> Pane and links to the feed.
+ When you subscribe to the feed, the value of <em>Title</em> defaults to the value
+ contained in the feed’s XML data file. You can optionally change the title
+ to something else.</p>
+
+<h4>HomePage</h4>
+<p>This is a link to the home page of the web site that hosts the feed. The URL is taken from the data supplied by the feed publisher in the feed’s XML data file.</p>
+<h4>Author</h4>
+<p>This is link to the feed publisher’s e-mail address. The link is present only if the publisher provides one in the feed’s XML data file. (It is not a required data element for RSS feeds).</p>
+<h4>Last Updated</h4>
+<p>This read-only field shows the date/time when the selected feed was last updated (i.e., downloaded) by <span style="x-condition: READER;">Omea Reader</span><span style="x-condition: PRO;">Omea Pro</span>. </p>
+<h3>Settings Tab </h3>
+<h4>The Feed Requires an HTTP Login (checkbox)</h4>
+<p>If the feed requires you to log in, and you either you have never logged
+ in before, or you have logged in using Internet Explorer and the browser
+ is not set to remember your login information, then check this option
+ and supply the user name and password.</p>
+
+<h4>User name</h4>
+
+<p>The user name for the HTTP login. This field is disabled unless <em>This
+ feed requires an HTTP login</em> is checked.</p>
+
+<h4>Password</h4>
+
+<p>The password for the HTTP login. This field is disabled unless <em>This
+ feed requires an HTTP login</em> is checked. The password is stored in
+ an encrypted form.</p>
+
+<h4>Description</h4>
+
+<p>A short synopsis or description (read-only) of the selected feed provided by the feed publisher in the feed's XML data file.</p>
+<h4>Update Controls of Settings Tab </h4>
+
+<h5>Update every (checkbox)</h5>
+
+<p>Check this box if you want the feed to be updated automatically at some
+ interval. If not checked, you will have to refresh the feed manually.</p>
+
+<h5><em style="font-style: italic;">number box</em></h5>
+
+<p>Specifies the number of time units for feed updating. Type a number
+ or use the increment/decrement buttons. This control is disabled unless
+ <em>Update every</em> is checked.</p>
+
+<h5>time unit</h5>
+
+<p>Specifies the time unit used for auto-updating the feed. Time units
+ available in the list are: <em>minutes</em>, <em>hours</em>, <em>days</em>,
+ and <em>weeks</em>. This control is disabled unless <em>Update every</em>
+ is checked.</p>
+
+<h4>Destination Folder for Downloaded Feed Enclosures</h4>
+
+<p>This is the directory where Omea keeps the downloaded feed enclosures (feed posts &#8220;attachments&#8221;). You can change the default destination folder for each feed so that the feed enclosures will be downloaded to the specified folder. The default destination folder is set in the <a href="feeds.html">Feed Options dialog</a>. To change the destination folder for downloaded enclosures, click Browse button and navigate to the desired folder where you want Omea to keep the enclosures or create a new folder. </p>
+<a name="markingread"></a>
+<h4>Mark All Items Read When Leaving the Feed</h4>
+<p>This option will help to ease your work with feeds. Check this box if you want Omea to change the status of the feed posts to <em>Read</em> once you switch from this feed to some other feed in <strong>Feeds</strong> pane.</p>
+<a name="followlink"></a>
+<h4>Go to the Item Link When an Item is Selected</h4>
+<p>This option will allow you to open the feed posts in a Preview pane of the Feeds <strong>Items List</strong> as if you read these posts in a web browser. So you can see the complete web page representing the  feed post as if you navigate to it using your favorite web browser but you don't have to leave Omea. </p>
+<h3>Save </h3>
+<p>Applies any changes you may have made to editable controls and closes
+ the dialog.</p>
+
+<h3>Cancel</h3>
+
+<p>Abandons any changes you may have made to editable controls and closes
+ the dialog.</p>
+
+<h3>Help</h3>
+
+<p>A jumper to this dialog features description in <span style="x-condition: READER;">Omea
+ Reader</span><span style="x-condition: PRO;">Omea Pro</span> Help.</p>
+<div id=seealso>
+<p class=seealso><strong style="font-weight: bold;">See also:</strong></p>
+
+<ol>
+
+	<li class=kadov-p><a href="..\reference\feeds.html">Feeds Options</a></li>
+
+	<li class=kadov-p><a href="../reference/feed_properties_dialog.html">Communicating using Feeds</a></li>
+</ol>
+</div>
+</div>
+
+</body>
+
+<!-- LAST SPELLCHECK: 12 Nov 2004 -->
+<!-- Conditional Text & Build Tags complete! 12 Nov 2004 -->
+</html>
+

@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+
+SPDX-License-Identifier: GPL-2.0-only
+-->
+<feed version="0.3" xmlns="http://purl.org/atom/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xml:lang="en">
+	<title>public MattBerther : ISerializable</title>
+	<link rel="alternate" type="text/html" href="http://www.mattberther.com/" />
+	<modified>2004-11-10T05:10:49Z</modified>
+	<tagline>Matt Berther on C#, XML, and anything else that comes to mind...</tagline>
+	<id>tag:www.mattberther.com,2004://1</id>
+	<generator url="http://www.movabletype.org/" version="3.121">Movable Type</generator>
+	<copyright>Copyright (c) 2004, Matt</copyright>
+	<entry>
+		<title>Virtual Server 2005 and Windows XP SP2</title>
+		<link rel="alternate" type="text/html" href="http://www.mattberther.com/2004/11/000563.html" />
+		<modified>2004-11-10T05:10:49Z</modified>
+		<issued>2004-11-09T22:07:50-06:00</issued>
+		<id>tag:www.mattberther.com,2004://1.563</id>
+		<created>2004-11-10T04:07:50Z</created>
+		<summary type="text/plain">After spending the last couple hours troubleshooting why all of the sudden Virtual Server 2005 stopped working on my boss's Windows XP box, I stumbled across a Google post which mentioned the Virtual Server release notes. The relevant portion, for...</summary>
+		<author>
+			<name>Matt</name>
+			<url>http://www.mattberther.com</url>
+			<email>matt.berther@gmail.com</email>
+		</author>
+		<dc:subject>Miscellaneous</dc:subject>
+		<content type="text/html" mode="escaped" xml:lang="en" xml:base="http://www.mattberther.com/"><![CDATA[<p>After spending the last couple hours troubleshooting why all of the sudden Virtual Server 2005 stopped working on <a href='http://www.elegantcode.com' target='_blank'>my boss's</a> Windows XP box, I stumbled across a Google post which mentioned the Virtual Server release notes.</p>
+
+<p>The relevant portion, for anyone else that might be suffering from this problem:</p>
+
+<blockquote><p>If you upgrade to Windows XP Service Pack 2 after installing Virtual Server 2005, you may receive an "Access denied" error when you try to open the Administration Web site in Virtual Server. You can correct this problem by uninstalling and then reinstalling Virtual Server. </p></blockquote>]]></content>
+	</entry>
+</feed>

@@ -1,0 +1,209 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>JetBrains.Build.Ilasm</name>
+    </assembly>
+    <members>
+        <member name="T:JetBrains.Build.Ilasm">
+            <summary>
+            An MSBuild task that compiles the IL projects.
+            </summary>
+        </member>
+        <member name="M:JetBrains.Build.Ilasm.AddMoreCommandLineCommands(Microsoft.Build.Tasks.CommandLineBuilderExtension)">
+            <summary>
+            Adds Ilasm-specific command-line commands not handled by the base class.
+            </summary>
+            <param name="commandLine">The command line to popuplate.</param>
+        </member>
+        <member name="M:JetBrains.Build.Ilasm.AddMoreCommandLineCommands_TargetType(Microsoft.Build.Tasks.CommandLineBuilderExtension)">
+            <summary>
+            The target type command line commands.
+            </summary>
+            <param name="commandLine">The command line to popuplate.</param>
+        </member>
+        <member name="M:JetBrains.Build.Ilasm.CommandLineAppendWhenTrue(Microsoft.Build.Tasks.CommandLineBuilderExtension,System.String,System.String)">
+            <summary>
+            Carries out an internal <c>CommandLineBuilderExtension.AppendWhenTrue</c> method.
+            </summary>
+        </member>
+        <member name="M:JetBrains.Build.Ilasm.PreprocessBag">
+            <summary>
+            Adapts the bag property values to the Ilasm before they get into the command line.
+            </summary>
+        </member>
+        <member name="M:JetBrains.Build.Ilasm.PreprocessBag_TargetType">
+            <summary>
+            Removes the TargetType property, adds the /dll and /exe instead.
+            </summary>
+        </member>
+        <member name="M:JetBrains.Build.Ilasm.AddCommandLineCommands(Microsoft.Build.Tasks.CommandLineBuilderExtension)">
+            <summary>
+            Fills the specified <see cref="T:Microsoft.Build.Tasks.CommandLineBuilderExtension"></see> with the switches and other information that cannot go into a response file.
+            </summary>
+            
+            <param name="commandLine">The <see cref="T:Microsoft.Build.Tasks.CommandLineBuilderExtension"></see> to fill with switches and other information that cannot go into a response file.</param>
+        </member>
+        <member name="M:JetBrains.Build.Ilasm.AddResponseFileCommands(Microsoft.Build.Tasks.CommandLineBuilderExtension)">
+            <summary>
+            Fills the specified <see cref="T:Microsoft.Build.Tasks.CommandLineBuilderExtension"></see> with the switches and other information that can go into a response file.
+            </summary>
+            
+            <param name="commandLine">The <see cref="T:Microsoft.Build.Tasks.CommandLineBuilderExtension"></see> to fill with switches and other information.</param>
+        </member>
+        <member name="M:JetBrains.Build.Ilasm.GenerateFullPathToTool">
+            <summary>
+            Returns the fully qualified path to the executable file.
+            </summary>
+            
+            <returns>
+            The fully qualified path to the executable file.
+            </returns>
+            
+        </member>
+        <member name="M:JetBrains.Build.Ilasm.LogEventsFromTextOutput(System.String,Microsoft.Build.Framework.MessageImportance)">
+            <summary>
+            Parses a single line of text to identify any errors or warnings in canonical format.
+            </summary>
+            
+            <param name="messageImportance">A value of <see cref="T:Microsoft.Build.Framework.MessageImportance"></see> that indicates the importance level with which to log the message.</param>
+            <param name="text">A single line of text for the method to parse.</param>
+        </member>
+        <member name="P:JetBrains.Build.Ilasm.ToolName">
+            <summary>
+            Gets the name of the executable file to run.
+            </summary>
+            
+            <returns>
+            The name of the executable file to run.
+            </returns>
+            
+        </member>
+        <member name="M:JetBrains.Build.Peverify.GetBoolParameterWithDefault(System.String,System.Boolean)">
+            <summary>Gets the value of the specified Boolean parameter.</summary>
+            <returns>The parameter value.</returns>
+            <param name="defaultValue">The value to return if parameterName does not exist in the <see cref="P:Microsoft.Build.Tasks.ToolTaskExtension.Bag"></see>.</param>
+            <param name="parameterName">The name of the parameter to return.</param>
+        </member>
+        <member name="M:JetBrains.Build.Peverify.IsIgnoredErrorInstance(System.String)">
+            <summary>
+            Checks whether the error instance has been specifically ignored.
+            </summary>
+        </member>
+        <member name="M:JetBrains.Build.Peverify.IsIgnoredErrorInstance_Item(Microsoft.Build.Framework.ITaskItem,System.String)">
+            <summary>
+            <see cref="M:JetBrains.Build.Peverify.IsIgnoredErrorInstance(System.String)"/> for one specific item.
+            </summary>
+        </member>
+        <member name="M:JetBrains.Build.Peverify.ExecuteTool(System.String,System.String,System.String)">
+            <summary>
+            Creates a temporoary response (.rsp) file and runs the executable file.
+            </summary>
+            
+            <returns>
+            The returned exit code of the executable file. If the task logged errors, but the executable returned an exit code of 0, this method returns -1.
+            </returns>
+            
+            <param name="commandLineCommands">The command line arguments to pass directly to the executable file.</param>
+            <param name="responseFileCommands">The command line arguments to place in the .rsp file.</param>
+            <param name="pathToTool">The path to the executable file.</param>
+        </member>
+        <member name="M:JetBrains.Build.Peverify.GenerateCommandLineCommands">
+            <summary>
+            Returns a string value containing the command line arguments to pass directly to the executable file.
+            </summary>
+            
+            <returns>
+            A string value containing the command line arguments to pass directly to the executable file.
+            </returns>
+            
+        </member>
+        <member name="M:JetBrains.Build.Peverify.GenerateFullPathToTool">
+            <summary>
+            Returns the fully qualified path to the executable file.
+            </summary>
+            
+            <returns>
+            The fully qualified path to the executable file.
+            </returns>
+            
+        </member>
+        <member name="M:JetBrains.Build.Peverify.GenerateResponseFileCommands">
+            <summary>
+            Returns a string value containing the command line arguments to add to the response (.rsp) file before running the executable file.
+            </summary>
+            
+            <returns>
+            a string value containing the command line arguments to add to the response (.rsp) file before running the executable file.
+            </returns>
+            
+        </member>
+        <member name="M:JetBrains.Build.Peverify.LogEventsFromTextOutput(System.String,Microsoft.Build.Framework.MessageImportance)">
+            <summary>
+            Parses a single line of text to identify any errors or warnings in canonical format.
+            </summary>
+            
+            <param name="messageImportance">A value of <see cref="T:Microsoft.Build.Framework.MessageImportance"></see> that indicates the importance level with which to log the message.</param>
+            <param name="text">A single line of text for the method to parse.</param>
+        </member>
+        <member name="M:JetBrains.Build.Peverify.ValidateParameters">
+            <summary>
+            Indicates whether all task paratmeters are valid.
+            </summary>
+            
+            <returns>
+            true if all task parameters are valid; otherwise, false.
+            </returns>
+            
+        </member>
+        <member name="P:JetBrains.Build.Peverify.IgnoreErrorInstances">
+            <summary>
+            Ignores a specifc instance of the error, ie in the specific member of the specific type, and at the specific offset.
+            The item spec is up to you, but you must set the “Code”, “Member” and “Offset” metadata items.
+            </summary>
+        </member>
+        <member name="P:JetBrains.Build.Peverify.IgnoreErrors">
+            <summary>
+            Ignores errors by their code.
+            </summary>
+        </member>
+        <member name="P:JetBrains.Build.Peverify.Bag">
+            <summary>Gets the collection of parameters used by the derived task class.</summary>
+            <returns>The collection of parameters used by the derived task class.</returns>
+        </member>
+        <member name="P:JetBrains.Build.Peverify.ToolName">
+            <summary>
+            Gets the name of the executable file to run.
+            </summary>
+            
+            <returns>
+            The name of the executable file to run.
+            </returns>
+            
+        </member>
+        <member name="T:JetBrains.Build.Peverify.ErrorOrWarning">
+            <summary>
+            How to treat a message we're logging.
+            </summary>
+        </member>
+        <member name="F:JetBrains.Build.Peverify.ErrorOrWarning.None">
+            <summary>
+            Just text.
+            </summary>
+        </member>
+        <member name="F:JetBrains.Build.Peverify.ErrorOrWarning.Warning">
+            <summary>
+            A warning (go yellow).
+            </summary>
+        </member>
+        <member name="F:JetBrains.Build.Peverify.ErrorOrWarning.Error">
+            <summary>
+            An error (go red).
+            </summary>
+        </member>
+        <member name="F:JetBrains.Build.Peverify.ErrorOrWarning.ErrorAsWarning">
+            <summary>
+            Formally, an error, but it's in the personal ignore list and we must still go yellow.
+            </summary>
+        </member>
+    </members>
+</doc>

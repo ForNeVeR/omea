@@ -1,0 +1,1550 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SourceLibrary</name>
+    </assembly>
+    <members>
+        <member name="T:SourceLibrary.ComponentModel.Converter.CurrencyTypeConverter">
+            <summary>
+            A TypeConverter that support string conversion from and to string with the currency symbol.
+            Support Conversion for Float, Double and Decimal, Int
+            </summary>
+        </member>
+        <member name="T:SourceLibrary.ComponentModel.Converter.NumberTypeConverter">
+            <summary>
+            A TypeConverter that support string conversion from and to string with a custom format number.
+            Support Conversion for Float, Double and Decimal, Int
+            </summary>
+        </member>
+        <member name="T:SourceLibrary.ComponentModel.Converter.DateTimeTypeConverter">
+            <summary>
+            Summary description for DateTimeTypeConverter.
+            </summary>
+        </member>
+        <member name="P:SourceLibrary.ComponentModel.Converter.DateTimeTypeConverter.DateTimeStyles">
+            <summary>
+            DateTimeStyle for Parse operations. DefaultValue: AllowInnerWhite|AllowLeadingWhite|AllowTrailingWhite|AllowWhiteSpaces
+            </summary>
+        </member>
+        <member name="P:SourceLibrary.ComponentModel.Converter.DateTimeTypeConverter.Format">
+            <summary>
+            Format of the Date. Example: G, g, d, D. Default value : G
+            </summary>
+        </member>
+        <member name="P:SourceLibrary.ComponentModel.Converter.DateTimeTypeConverter.ParseFormats">
+            <summary>
+            Formats to check when parse the string. If null call with no format the parse method. Default value: null
+            </summary>
+        </member>
+        <member name="T:SourceLibrary.ComponentModel.Converter.PercentTypeConverter">
+            <summary>
+            A TypeConverter that support string conversion from and to string with the percent symbol.
+            Support Conversion for Float, Double and Decimal
+            </summary>
+        </member>
+        <member name="P:SourceLibrary.ComponentModel.Converter.PercentTypeConverter.ConsiderAllStringAsPercent">
+            <summary>
+            If true and the user insert a string with no percent symbel the value is divided by 100, otherwise not.
+            </summary>
+        </member>
+        <member name="T:SourceLibrary.ComponentModel.Validator.IValidator">
+            <summary>
+            An interface to support string conversion and validation. 
+            Object = an object not yet converted for the current validator, 
+            Value = an object already converted and valid for the current validator, 
+            String = a string that can be used for conversion to and from Value, 
+            DisplayString = a string representation of the Value
+            </summary>
+        </member>
+        <member name="M:SourceLibrary.ComponentModel.Validator.IValidator.IsNullString(System.String)">
+            <summary>
+            Returns true if the string is null or if is equals to the NullString
+            </summary>
+            <param name="p_str"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SourceLibrary.ComponentModel.Validator.IValidator.ObjectToValue(System.Object)">
+            <summary>
+            Convert an object according to the current ValueType of the validator
+            </summary>
+            <param name="p_Object"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SourceLibrary.ComponentModel.Validator.IValidator.ValueToObject(System.Object,System.Type)">
+            <summary>
+            Convert a value valid for the current validator ValueType to an object with the Type specified. Throw an exception on error.
+            </summary>
+            <param name="p_Value"></param>
+            <param name="p_ReturnObjectType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SourceLibrary.ComponentModel.Validator.IValidator.ValueToString(System.Object)">
+            <summary>
+            Convert a value valid for the current validator ValueType to a string that can be used for other conversions, for example StringToValue method.
+            </summary>
+            <param name="p_Value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SourceLibrary.ComponentModel.Validator.IValidator.StringToValue(System.String)">
+            <summary>
+            Converts a string to an object according to the type of the string editor
+            </summary>
+            <param name="p_str"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SourceLibrary.ComponentModel.Validator.IValidator.IsStringConversionSupported">
+            <summary>
+            Returns true if string conversion is suported. AllowStringConversion must be true and the current Validator must support string conversion.
+            </summary>
+        </member>
+        <member name="M:SourceLibrary.ComponentModel.Validator.IValidator.ValueToDisplayString(System.Object)">
+            <summary>
+            Converts a value valid for this validator valuetype to a string representation. The string cannot be used for conversion.
+            If the validator support string conversion this method simply call ValueToString otherwise call Value.ToString()
+            </summary>
+            <param name="p_Value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SourceLibrary.ComponentModel.Validator.IValidator.IsValidValue(System.Object)">
+            <summary>
+            Returns true if the value is valid for this type of editor without any conversion.
+            </summary>
+            <param name="p_Value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SourceLibrary.ComponentModel.Validator.IValidator.IsValidObject(System.Object)">
+            <summary>
+            Returns true if the object is valid for this type of validator, using conversion functions.
+            </summary>
+            <param name="p_Object"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SourceLibrary.ComponentModel.Validator.IValidator.IsValidObject(System.Object,System.Object@)">
+            <summary>
+            Returns true if the object is valid for this type of validator, using conversion functions. Returns as parameter the value converted.
+            </summary>
+            <param name="p_Object"></param>
+            <param name="p_ValueConverted"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SourceLibrary.ComponentModel.Validator.IValidator.IsValidString(System.String)">
+            <summary>
+            Returns true if the string is valid for this type of editor, using string conversion function.
+            </summary>
+            <param name="p_strValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SourceLibrary.ComponentModel.Validator.IValidator.IsValidString(System.String,System.Object@)">
+            <summary>
+            Returns true if the string is valid for this type of editor, using string conversion function. An returns the object converted.
+            </summary>
+            <param name="p_strValue"></param>
+            <param name="p_ValueConverted"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SourceLibrary.ComponentModel.Validator.IValidator.IsInStandardValues(System.Object)">
+            <summary>
+            Returns true if the value specified is presents in the list StandardValues.
+            </summary>
+            <param name="p_Value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SourceLibrary.ComponentModel.Validator.IValidator.StandardValueAtIndex(System.Int32)">
+            <summary>
+            Returns the standard values at the specified index. If StandardValues support IList use simple the indexer method otherwise loop troght the collection.
+            </summary>
+            <param name="p_Index"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SourceLibrary.ComponentModel.Validator.IValidator.StandardValuesIndexOf(System.Object)">
+            <summary>
+            Returns the index of the specified standard value. -1 if not found. If StandardValues support IList use simple the indexer method otherwise loop troght the collection.
+            </summary>
+            <param name="p_Index"></param>
+            <returns></returns>
+        </member>
+        <member name="P:SourceLibrary.ComponentModel.Validator.IValidator.AllowNull">
+            <summary>
+            True to allow null object value or NullString string Value
+            </summary>
+        </member>
+        <member name="P:SourceLibrary.ComponentModel.Validator.IValidator.NullString">
+            <summary>
+            Null string representation. A string is null when is null or when is equals to this string. Default is empty string.
+            Used by ValueToString and StringToValue
+            </summary>
+        </member>
+        <member name="P:SourceLibrary.ComponentModel.Validator.IValidator.NullDisplayString">
+            <summary>
+            Null string representation. A string is null when is null or when is equals to this string. Default is empty string.
+            Used by ValueToDisplayString
+            </summary>
+        </member>
+        <member name="P:SourceLibrary.ComponentModel.Validator.IValidator.AllowStringConversion">
+            <summary>
+            Gets or Sets if the string conversion is allowed.
+            </summary>
+        </member>
+        <member name="P:SourceLibrary.ComponentModel.Validator.IValidator.MinimumValue">
+            <summary>
+            Minimum value allowed. If null no check is performed. The value must derive from IComparable interface to use Minimum or Maximum feature.
+            </summary>
+        </member>
+        <member name="P:SourceLibrary.ComponentModel.Validator.IValidator.MaximumValue">
+            <summary>
+            Maximum value allowed. If null no check is performed. The value must derive from IComparable interface to use Minimum or Maximum feature.
+            </summary>
+        </member>
+        <member name="P:SourceLibrary.ComponentModel.Validator.IValidator.ValueType">
+            <summary>
+            Type allowed for the current editor. Cannot be null.
+            </summary>
+        </member>
+        <member name="P:SourceLibrary.ComponentModel.Validator.IValidator.DefaultValue">
+            <summary>
+            Default value for this editor, usually is the default value for the specified type.
+            </summary>
+        </member>
+        <member name="P:SourceLibrary.ComponentModel.Validator.IValidator.StandardValues">
+            <summary>
+            A list of values that this editor can support. If StandardValuesExclusive is true then the editor can only support one of these values.
+            </summary>
+        </member>
+        <member name="P:SourceLibrary.ComponentModel.Validator.IValidator.StandardValuesExclusive">
+            <summary>
+            If StandardValuesExclusive is true then the editor can only support the list specified in StandardValues.
+            </summary>
+        </member>
+        <member name="P:SourceLibrary.ComponentModel.Validator.IValidator.CultureInfo">
+            <summary>
+            Culture for conversion. If null the default user culture is used. Default is null.
+            </summary>
+        </member>
+        <member name="T:SourceLibrary.ComponentModel.Validator.ValidatorBase">
+            <summary>
+            A string editor for basic validator features, with no conversion
+            </summary>
+        </member>
+        <member name="M:SourceLibrary.ComponentModel.Validator.ValidatorBase.#ctor(System.Type)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="p_Type">Cannot be null.</param>
+        </member>
+        <member name="M:SourceLibrary.ComponentModel.Validator.ValidatorBase.IsNullString(System.String)">
+            <summary>
+            Returns true if the string is null or if is equals to the NullString
+            </summary>
+            <param name="p_str"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SourceLibrary.ComponentModel.Validator.ValidatorBase.ObjectToValue(System.Object)">
+            <summary>
+            Convert an object according to the current ValueType of the validator
+            </summary>
+            <param name="p_Object"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SourceLibrary.ComponentModel.Validator.ValidatorBase.ValueToObject(System.Object,System.Type)">
+            <summary>
+            Convert a value according to the current ValueType to an object with the Type specified. Throw an exception on error.
+            </summary>
+            <param name="p_Value"></param>
+            <param name="p_ReturnObjectType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SourceLibrary.ComponentModel.Validator.ValidatorBase.ValueToString(System.Object)">
+            <summary>
+            Converts a value object to a string representation
+            </summary>
+            <param name="p_Value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SourceLibrary.ComponentModel.Validator.ValidatorBase.StringToValue(System.String)">
+            <summary>
+            Converts a string to an object according to the type of the string editor
+            </summary>
+            <param name="p_str"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SourceLibrary.ComponentModel.Validator.ValidatorBase.IsStringConversionSupported">
+            <summary>
+            Returns true if string conversion is suported. AllowStringConversion must be true and the current Validator must support string conversion.
+            </summary>
+        </member>
+        <member name="M:SourceLibrary.ComponentModel.Validator.ValidatorBase.ValueToDisplayString(System.Object)">
+            <summary>
+            Converts a value valid for this validator valuetype to a string representation. The string cannot be used for conversion.
+            If the validator support string conversion this method simply call ValueToString otherwise call Value.ToString()
+            </summary>
+            <param name="p_Value"></param>
+            <returns></returns>
+        </member>
+        <member name="F:SourceLibrary.ComponentModel.Validator.ValidatorBase.m_ConvertingObjectToValue">
+            <summary>
+            Fired when converting a object to the value specified. Called from method ObjectToValue and IsValidObject
+            </summary>
+        </member>
+        <member name="F:SourceLibrary.ComponentModel.Validator.ValidatorBase.m_ConvertingValueToObject">
+            <summary>
+            Fired when converting a object to the value specified. Called from method ObjectToValue and IsValidObject
+            </summary>
+        </member>
+        <member name="F:SourceLibrary.ComponentModel.Validator.ValidatorBase.m_ConvertingValueToDisplayString">
+            <summary>
+            Fired when converting a value to a display string. Called from method ValueToDisplayString
+            </summary>
+        </member>
+        <member name="M:SourceLibrary.ComponentModel.Validator.ValidatorBase.OnConvertingObjectToValue(SourceLibrary.ComponentModel.ConvertingObjectEventArgs)">
+            <summary>
+            Fired when converting a object to the value specified. Called from method ObjectToValue and IsValidObject
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:SourceLibrary.ComponentModel.Validator.ValidatorBase.OnConvertingValueToObject(SourceLibrary.ComponentModel.ConvertingObjectEventArgs)">
+            <summary>
+            Fired when converting a object to the value specified. Called from method ObjectToValue and IsValidObject
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:SourceLibrary.ComponentModel.Validator.ValidatorBase.OnConvertingValueToDisplayString(SourceLibrary.ComponentModel.ConvertingObjectEventArgs)">
+            <summary>
+            Fired when converting a value to a display string. Called from method ValueToDisplayString
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:SourceLibrary.ComponentModel.Validator.ValidatorBase.IsValidValue(System.Object)">
+            <summary>
+            Returns true if the value is valid for this type of editor without any conversion.
+            </summary>
+            <param name="p_Value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SourceLibrary.ComponentModel.Validator.ValidatorBase.IsValidObject(System.Object)">
+            <summary>
+            Returns true if the object is valid for this type of validator, using conversion functions.
+            </summary>
+            <param name="p_Object"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SourceLibrary.ComponentModel.Validator.ValidatorBase.IsValidObject(System.Object,System.Object@)">
+            <summary>
+            Returns true if the object is valid for this type of validator, using conversion functions. Returns as parameter the value converted.
+            </summary>
+            <param name="p_Object"></param>
+            <param name="p_ValueConverted"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SourceLibrary.ComponentModel.Validator.ValidatorBase.IsValidString(System.String)">
+            <summary>
+            Returns true if the string is valid for this type of editor, using string conversion function.
+            </summary>
+            <param name="p_strValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SourceLibrary.ComponentModel.Validator.ValidatorBase.IsValidString(System.String,System.Object@)">
+            <summary>
+            Returns true if the string is valid for this type of editor, using string conversion function. Returns as out parameter the object converted.
+            </summary>
+            <param name="p_strValue"></param>
+            <param name="p_ValueConverted"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SourceLibrary.ComponentModel.Validator.ValidatorBase.IsInStandardValues(System.Object)">
+            <summary>
+            Returns true if the value specified is presents in the list StandardValues.
+            </summary>
+            <param name="p_Value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SourceLibrary.ComponentModel.Validator.ValidatorBase.StandardValueAtIndex(System.Int32)">
+            <summary>
+            Returns the standard values at the specified index. If StandardValues support IList use simple the indexer method otherwise loop troght the collection.
+            </summary>
+            <param name="p_Index"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SourceLibrary.ComponentModel.Validator.ValidatorBase.StandardValuesIndexOf(System.Object)">
+            <summary>
+            Returns the index of the specified standard value. -1 if not found. If StandardValues support IList use simple the indexer method otherwise loop troght the collection.
+            </summary>
+            <param name="p_Index"></param>
+            <returns></returns>
+        </member>
+        <member name="P:SourceLibrary.ComponentModel.Validator.ValidatorBase.AllowNull">
+            <summary>
+            True to allow null object value or NullString string Value
+            </summary>
+        </member>
+        <member name="P:SourceLibrary.ComponentModel.Validator.ValidatorBase.NullString">
+            <summary>
+            Null string representation. A string is null when is null or when is equals to this string. Default is empty string.
+            Used by ValueToString and StringToValue
+            </summary>
+        </member>
+        <member name="P:SourceLibrary.ComponentModel.Validator.ValidatorBase.NullDisplayString">
+            <summary>
+            Null string representation. A string is null when is null or when is equals to this string. Default is empty string.
+            Used by ValueToDisplayString
+            </summary>
+        </member>
+        <member name="P:SourceLibrary.ComponentModel.Validator.ValidatorBase.AllowStringConversion">
+            <summary>
+            Gets or Sets if the string conversion is allowed.
+            </summary>
+        </member>
+        <member name="E:SourceLibrary.ComponentModel.Validator.ValidatorBase.ConvertingObjectToValue">
+            <summary>
+            Fired when converting a object to the value specified. Called from method ObjectToValue and IsValidObject
+            </summary>
+        </member>
+        <member name="E:SourceLibrary.ComponentModel.Validator.ValidatorBase.ConvertingValueToObject">
+            <summary>
+            Fired when converting a object to the value specified. Called from method ObjectToValue and IsValidObject
+            </summary>
+        </member>
+        <member name="E:SourceLibrary.ComponentModel.Validator.ValidatorBase.ConvertingValueToDisplayString">
+            <summary>
+            Fired when converting a value to a display string. Called from method ValueToDisplayString
+            </summary>
+        </member>
+        <member name="P:SourceLibrary.ComponentModel.Validator.ValidatorBase.MinimumValue">
+            <summary>
+            Minimum value allowed. If null no check is performed. The value must derive from IComparable interface to use Minimum or Maximum feature.
+            </summary>
+        </member>
+        <member name="P:SourceLibrary.ComponentModel.Validator.ValidatorBase.MaximumValue">
+            <summary>
+            Maximum value allowed. If null no check is performed. The value must derive from IComparable interface to use Minimum or Maximum feature.
+            </summary>
+        </member>
+        <member name="P:SourceLibrary.ComponentModel.Validator.ValidatorBase.ValueType">
+            <summary>
+            Type allowed for the current editor. Cannot be null.
+            </summary>
+        </member>
+        <member name="P:SourceLibrary.ComponentModel.Validator.ValidatorBase.DefaultValue">
+            <summary>
+            Default value for this editor, usually is the default value for the specified type.
+            </summary>
+        </member>
+        <member name="P:SourceLibrary.ComponentModel.Validator.ValidatorBase.StandardValues">
+            <summary>
+            A list of values that this editor can support. If StandardValuesExclusive is true then the editor can only support one of these values.
+            </summary>
+        </member>
+        <member name="P:SourceLibrary.ComponentModel.Validator.ValidatorBase.StandardValuesExclusive">
+            <summary>
+            If StandardValuesExclusive is true then the editor can only support the list specified in StandardValues.
+            </summary>
+        </member>
+        <member name="P:SourceLibrary.ComponentModel.Validator.ValidatorBase.CultureInfo">
+            <summary>
+            Culture for conversion. If null the default user culture is used. Default is null.
+            </summary>
+        </member>
+        <member name="T:SourceLibrary.ComponentModel.Validator.ValidatorTypeConverter">
+            <summary>
+            A string editor that use a TypeConverter for conversion.
+            </summary>
+        </member>
+        <member name="M:SourceLibrary.ComponentModel.Validator.ValidatorTypeConverter.#ctor(System.Type)">
+            <summary>
+            Constructor. If the Type doesn't implements a TypeConverter no conversion is made.
+            </summary>
+            <param name="p_Type"></param>
+        </member>
+        <member name="M:SourceLibrary.ComponentModel.Validator.ValidatorTypeConverter.#ctor(System.Type,System.ComponentModel.TypeConverter)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="p_Type">Cannot be null.</param>
+            <param name="p_TypeConverter">Can be null to don't allow any conversion.</param>
+        </member>
+        <member name="M:SourceLibrary.ComponentModel.Validator.ValidatorTypeConverter.IsStringConversionSupported">
+            <summary>
+            Returns true if string conversion is suported. AllowStringConversion must be true and the current Validator must support string conversion.
+            </summary>
+        </member>
+        <member name="M:SourceLibrary.ComponentModel.Validator.ValidatorTypeConverter.OnConvertingObjectToValue(SourceLibrary.ComponentModel.ConvertingObjectEventArgs)">
+            <summary>
+            Fired when converting a object to the value specified. Called from method ObjectToValue and IsValidObject
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:SourceLibrary.ComponentModel.Validator.ValidatorTypeConverter.OnConvertingValueToObject(SourceLibrary.ComponentModel.ConvertingObjectEventArgs)">
+            <summary>
+            Fired when converting a object to the value specified. Called from method ObjectToValue and IsValidObject
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="P:SourceLibrary.ComponentModel.Validator.ValidatorTypeConverter.TypeConverter">
+            <summary>
+            TypeConverter used for this type editor, cannot be null.
+            </summary>
+        </member>
+        <member name="T:SourceLibrary.ComponentModel.Validator.ValueMapping">
+            <summary>
+            The ValueMapping class can be used to easily map a value to a string value or a display string for conversion
+            </summary>
+        </member>
+        <member name="M:SourceLibrary.ComponentModel.Validator.ValueMapping.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:SourceLibrary.ComponentModel.Validator.ValueMapping.#ctor(SourceLibrary.ComponentModel.Validator.ValidatorBase,System.Collections.IList,System.Collections.IList,System.Collections.IList)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="p_Validator"></param>
+            <param name="p_ValueList">A list of valid value. If null an error occurred. The index must match the index of ValueList, ObjectList and DisplayStringList</param>
+            <param name="p_ObjectList">A list of object that can be converted to value. Can be null. The index must match the index of ValueList, ObjectList and DisplayStringList</param>
+            <param name="p_DisplayStringList">A list of displayString. Can be null. The index must match the index of ValueList, ObjectList and DisplayStringList</param>
+        </member>
+        <member name="M:SourceLibrary.ComponentModel.Validator.ValueMapping.BindValidator(SourceLibrary.ComponentModel.Validator.ValidatorBase)">
+            <summary>
+            Bind the specified validator
+            </summary>
+            <param name="p_Validator"></param>
+        </member>
+        <member name="M:SourceLibrary.ComponentModel.Validator.ValueMapping.UnBindValidator(SourceLibrary.ComponentModel.Validator.ValidatorBase)">
+            <summary>
+            Unbind the specified validator
+            </summary>
+            <param name="p_Validator"></param>
+        </member>
+        <member name="P:SourceLibrary.ComponentModel.Validator.ValueMapping.ValueList">
+            <summary>
+            A list of valid value. If null an error occurred. The index must match the index of ValueList, ObjectList and DisplayStringList
+            </summary>
+        </member>
+        <member name="P:SourceLibrary.ComponentModel.Validator.ValueMapping.ObjectList">
+            <summary>
+            A list of object that can be converted to value. Can be null. The index must match the index of ValueList, ObjectList and DisplayStringList
+            </summary>
+        </member>
+        <member name="P:SourceLibrary.ComponentModel.Validator.ValueMapping.DisplayStringList">
+            <summary>
+            A list of displayString. Can be null. The index must match the index of ValueList, ObjectList and DisplayStringList
+            </summary>
+        </member>
+        <member name="P:SourceLibrary.ComponentModel.Validator.ValueMapping.ThrowErrorIfNotFound">
+            <summary>
+            If true throw an error when the value if not found in one of the dictionary
+            </summary>
+        </member>
+        <member name="T:SourceLibrary.Drawing.ControlPaint">
+            <summary>
+            Drawing utility functions
+            </summary>
+        </member>
+        <member name="M:SourceLibrary.Drawing.ControlPaint.DrawGradient3DBorder(System.Drawing.Graphics,System.Drawing.Rectangle,System.Drawing.Color,System.Drawing.Color,System.Drawing.Color,System.Int32,System.Int32,SourceLibrary.Drawing.Gradient3DBorderStyle)">
+            <summary>
+            Draw a 3D border inside the specified rectangle using a linear gradient border color.
+            </summary>
+            <param name="g"></param>
+            <param name="p_HeaderRectangle"></param>
+            <param name="p_BackColor"></param>
+            <param name="p_DarkColor"></param>
+            <param name="p_LightColor"></param>
+            <param name="p_DarkGradientNumber">The width of the dark border</param>
+            <param name="p_LightGradientNumber">The width of the light border</param>
+            <param name="p_Style"></param>
+        </member>
+        <member name="M:SourceLibrary.Drawing.ControlPaint.CalculateColorGradient(System.Drawing.Color,System.Drawing.Color,System.Int32)">
+            <summary>
+            Interpolate the specified number of times between start and end color
+            </summary>
+            <param name="p_StartColor"></param>
+            <param name="p_EndColor"></param>
+            <param name="p_NumberOfGradients"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SourceLibrary.IO.IsolatedStorage.IsolatedStorageSettingBase">
+            <summary>
+            Abstract class that help to save settings in the isolated storage
+            </summary>
+        </member>
+        <member name="T:SourceLibrary.IO.StreamPersistence">
+            <summary>
+            A class that helps save and load with stream persistence
+            </summary>
+        </member>
+        <member name="M:SourceLibrary.IO.StreamPersistence.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="T:SourceLibrary.IO.IsolatedStorage.IsolatedStorageSettingVersionBase">
+            <summary>
+            Summary description for IsolatedStorageSettingVersionBase.
+            </summary>
+        </member>
+        <member name="M:SourceLibrary.Security.Cryptography.DES.EncryptString(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="p_strInput"></param>
+            <param name="p_Key8chars">Deve essere lunga 8 caratteri</param>
+            <returns></returns>
+        </member>
+        <member name="M:SourceLibrary.Security.Cryptography.DES.DecryptString(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="p_strInput"></param>
+            <param name="p_Key8chars">Deve essere lunga 8 caratteri</param>
+            <returns></returns>
+        </member>
+        <member name="M:SourceLibrary.Security.Cryptography.DES.EncryptStream(System.IO.Stream,System.IO.Stream,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="p_StreamInput"></param>
+            <param name="p_StreamOutput"></param>
+            <param name="p_Key8chars">Deve essere lunga 8 caratteri</param>
+        </member>
+        <member name="M:SourceLibrary.Security.Cryptography.DES.DecryptStream(System.IO.Stream,System.IO.Stream,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="p_StreamInput"></param>
+            <param name="p_StreamOutput"></param>
+            <param name="p_Key8chars">Deve essere lunga 8 caratteri</param>
+        </member>
+        <member name="T:SourceLibrary.Security.Password">
+            <summary>
+            Utilities for password management.
+            </summary>
+        </member>
+        <member name="T:SourceLibrary.Security.Password.SHA1">
+            <summary>
+            Password utilities using SH1 alghoritm
+            </summary>
+        </member>
+        <member name="M:SourceLibrary.Security.Password.SHA1.HashPassword(System.String)">
+            <summary>
+            Hash the string p_Password using SH1 alghoritm (SHA1CryptoServiceProvider). 
+            </summary>
+            <param name="p_Password"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SourceLibrary.Web.Mail.MailTo.FormatMailToCommand(System.String[],System.String[],System.String[],System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="p_To">null if not used</param>
+            <param name="p_Cc">null if not used</param>
+            <param name="p_Bcc">null if not used</param>
+            <param name="p_Subject">null if not used</param>
+            <param name="p_Body">null if not used</param>
+            <returns></returns>
+        </member>
+        <member name="T:Chris.Beckett.MenuImageLib.MenuImage">
+            <summary>
+            A custom extender class that adds a <c>MenuImage</c>
+            attribute to <c>MenuItem</c> objects, and custom drawns the menu
+            with an icon stored in a referenced <c>ImageList</c> control.
+            </summary>
+            <remarks>
+            This extension was written to provide an simple way to link
+            icons in an Imagelist with a menu, and owner draw the menu. Other menu
+            icon samples sub-class a MenuItem which interferes with the Visual Studio
+            IDE for designing menus. Other examples required a lot of custom tooling
+            and hand-coding. By using an extender, no custom coding is required.
+            </remarks>
+        </member>
+        <member name="F:Chris.Beckett.MenuImageLib.MenuImage.IMAGE_BUFFER">
+            <summary>
+            Menu images should be 16 x 16
+            </summary>
+        </member>
+        <member name="F:Chris.Beckett.MenuImageLib.MenuImage._hashTable">
+            <summary>
+            Hashtable is used to relate added <c>MenuItem</c> components
+            with each custom status messsage attribute value.
+            </summary>
+        </member>
+        <member name="F:Chris.Beckett.MenuImageLib.MenuImage._imageList">
+            <summary>
+            Holds a reference to the user selected <c>StatusBar</c>
+            instance where custom statusmessage attribute values
+            are displayed.
+            </summary>
+        </member>
+        <member name="M:Chris.Beckett.MenuImageLib.MenuImage.#ctor(System.ComponentModel.IContainer)">
+            <summary>
+            Constructor for instance that supports Class Composition designer.
+            </summary>
+            <param name="container">Reference to container hosting this instance.</param>
+        </member>
+        <member name="M:Chris.Beckett.MenuImageLib.MenuImage.SetMenuImage(System.ComponentModel.Component,System.String)">
+            <summary>
+            Used to set a MenuImage property value for
+            a specific <c>MenuItem</c> component instance.
+            </summary>
+            <param name="component">the <c>MenuItem</c> object to store</param>
+            <param name="indexValue">the image index value to associate with the menu item</param>
+            <exception cref="!:System.InvalidArgument">Image index is not a valid value.</exception>
+        </member>
+        <member name="M:Chris.Beckett.MenuImageLib.MenuImage.GetMenuImage(System.ComponentModel.Component)">
+            <summary>
+            Used to retrieve the MenuImage extender property value
+            for a given <c>MenuItem</c> component instance.
+            </summary>
+            <param name="component">the menu item instance associated with the value</param>
+            <returns>Returns the MenuImage index property value for the specified <c>MenuItem</c> component instance.</returns>
+        </member>
+        <member name="M:Chris.Beckett.MenuImageLib.MenuImage.CanExtend(System.Object)">
+            <summary>
+            Used to determine if the given component is supported by
+            the extender.
+            </summary>
+            <param name="component">component to evaluate for compatability</param>
+            <returns>Returns True/False if the component supports the extender.</returns>
+        </member>
+        <member name="M:Chris.Beckett.MenuImageLib.MenuImage.GetMenuImageIndex(System.Object)">
+            <summary>
+            Performs a set of checks related to a menu image such as 
+            a ImageList has been assigned, the image index is a valid
+            number and is within the ImageList images collection boundaries, etc.
+            </summary>
+            <param name="sender">the client object to retrieve the menuindex for</param>
+        </member>
+        <member name="M:Chris.Beckett.MenuImageLib.MenuImage.OnMeasureItem(System.Object,System.Windows.Forms.MeasureItemEventArgs)">
+            <summary>
+            Event triggered to measure the size of a owner drawn <c>MenuItem</c>.
+            </summary>
+            <param name="sender">the menu item client object</param>
+            <param name="e">the event arguments</param>
+        </member>
+        <member name="M:Chris.Beckett.MenuImageLib.MenuImage.OnDrawItem(System.Object,System.Windows.Forms.DrawItemEventArgs)">
+            <summary>
+            Event triggered to owner draw the provide <c>MenuItem</c>.
+            </summary>
+            <param name="sender">the menu item client object</param>
+            <param name="e">the event arguments</param>
+        </member>
+        <member name="P:Chris.Beckett.MenuImageLib.MenuImage.ImageList">
+            <summary>
+            Gets or Sets the <c>ImageList</c> control that holds menu images.
+            </summary>
+            <value>an <c>ImageList</c> instance that holds menu icons.</value>
+        </member>
+        <member name="T:Chris.Beckett.MenuImageLib.MenuImage.MenuHelper">
+            <summary>
+            
+            </summary>
+            <remarks>
+            </remarks>
+        </member>
+        <member name="M:Chris.Beckett.MenuImageLib.MenuImage.MenuHelper.#ctor(System.Windows.Forms.MenuItem,System.Drawing.Graphics,System.Windows.Forms.ImageList)">
+            <summary>
+            MenuHelper constructor to assist in owner drawn menus.
+            </summary>
+            <param name="menuItem">a <c>MenuItem</c> object to custom draw</param>
+            <param name="graphics">a <c>Graphics</c> object provided by the <c>MeasureItem</c> and <c>DrawItem</c> events</param>
+            <param name="imageList"></param>
+        </member>
+        <member name="M:Chris.Beckett.MenuImageLib.MenuImage.MenuHelper.CalcHeight">
+            <summary>
+            Based on the menu item text, and the <c>SystemInformation.SmallIconSize,</c>
+            performs a calculation to determine the correct <c>MenuItem</c> height.
+            </summary>
+            <returns>Returns an <c>int</c> value that contains the calculated height of the menu item.</returns>
+        </member>
+        <member name="M:Chris.Beckett.MenuImageLib.MenuImage.MenuHelper.CalcWidth">
+            <summary>
+            Based on the menu item text, and the <c>SystemInformation.SmallIconSize,</c>
+            performs a calculation to determine the correct <c>MenuItem</c> width.
+            </summary>
+            <returns>Returns an <c>int</c> value that contains the calculated width of the menu item.</returns>
+        </member>
+        <member name="M:Chris.Beckett.MenuImageLib.MenuImage.MenuHelper.HasShortcut">
+            <summary>
+            A method to evaluate if the <c>MenuItem</c> has a shortcut selected, and the shortcut
+            has been selected for show.
+            </summary>
+            <returns>Returns True/False whether the menu has a shortcut to be displayed.</returns>
+        </member>
+        <member name="M:Chris.Beckett.MenuImageLib.MenuImage.MenuHelper.IsSeperator">
+            <summary>
+            Evaluates whether the <c>MenuItem</c> is a seperator by evaluating the text.
+            </summary>
+            <returns>Returns True/False whether the menu is a seperator.</returns>
+        </member>
+        <member name="M:Chris.Beckett.MenuImageLib.MenuImage.MenuHelper.IsTopLevel">
+            <summary>
+            Evaluates whether the <c>MenuItem</c> is a top-level menu that is sited directly
+            on a <c>MainMenu</c> control.
+            </summary>
+            <returns>Returns True/False if the menu item is a top-level menu.</returns>
+        </member>
+        <member name="M:Chris.Beckett.MenuImageLib.MenuImage.MenuHelper.DrawMenu(System.Drawing.Rectangle,System.Boolean,System.Int32)">
+            <summary>
+            Draws a normal menu item including any related icons, checkboxes,
+            menu text, shortcuts text, and parent/submenu arrows.
+            </summary>
+            <param name="bounds">a <c>Rectangle</c> that holds the drawing canvas boundaries</param>
+            <param name="selected">True/False if the menu item is currently selected</param>
+            <param name="indexValue">the image index of the menu icon to draw, defaults to -1</param>
+        </member>
+        <member name="M:Chris.Beckett.MenuImageLib.MenuImage.MenuHelper.DrawBackground(System.Drawing.Rectangle,System.Boolean)">
+            <summary>
+            Draws the <c>MenuItem</c> background.
+            </summary>
+            <param name="bounds">a <c>Rectangle</c> that holds the painting canvas boundaries</param>
+            <param name="selected">True/False if the menu item is currently selected</param>
+        </member>
+        <member name="M:Chris.Beckett.MenuImageLib.MenuImage.MenuHelper.DrawSeperator(System.Drawing.Rectangle)">
+            <summary>
+            Draws a menu seperator.
+            </summary>
+            <param name="bounds">a <c>Rectangle</c> that holds the drawing canvas boundaries</param>
+        </member>
+        <member name="M:Chris.Beckett.MenuImageLib.MenuImage.MenuHelper.DrawMenuText(System.Drawing.Rectangle,System.Boolean)">
+            <summary>
+            Draws the text for an ownerdrawn <c>MenuItem</c>.
+            </summary>
+            <param name="bounds">a <c>Rectangle</c> that holds the drawing area boundaries</param>
+            <param name="selected">True/False whether the menu item is currently selected</param>
+        </member>
+        <member name="M:Chris.Beckett.MenuImageLib.MenuImage.MenuHelper.DrawCheckBox(System.Drawing.Rectangle)">
+            <summary>
+            Draws a checked item next to a <c>MenuItem</c>.
+            </summary>
+            <param name="bounds">a <c>Rectangle</c> that identifies the drawing area boundaries</param>
+        </member>
+        <member name="M:Chris.Beckett.MenuImageLib.MenuImage.MenuHelper.DrawImage(System.Drawing.Image,System.Drawing.Rectangle)">
+            <summary>
+            Draws a provided image onto the <c>MenuItem</c>.
+            </summary>
+            <param name="menuImage">an <c>Image</c> to paint on the menu</param>
+            <param name="bounds">a <c>Rectangle</c> that holds the drawing space boundaries</param>
+        </member>
+        <member name="M:Chris.Beckett.MenuImageLib.MenuImage.MenuHelper.DrawArrow(System.Drawing.Image,System.Drawing.Rectangle)">
+            <summary>
+            Draws a custom arrow on the right-side edge of the menu to indicate
+            the menu has submenu items. Used to supplement a base contorl arrow
+            that is painted incorrectly (seems to be a bug), and make the arrow
+            appear correctly for longer menu items.
+            </summary>
+            <param name="menuImage"></param>
+            <param name="bounds"></param>
+        </member>
+        <member name="P:Chris.Beckett.MenuImageLib.MenuImage.MenuHelper.ShortcutText">
+            <summary>
+            Formats the <c>MenuItem</c> and returns the shortcut selection as a displayable text string.
+            </summary>
+        </member>
+        <member name="T:SourceLibrary.Windows.Forms.ButtonMultiSelection">
+            <summary>
+            Summary description for ButtonMultiSelection.
+            </summary>
+        </member>
+        <member name="F:SourceLibrary.Windows.Forms.ButtonMultiSelection.components">
+            <summary> 
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SourceLibrary.Windows.Forms.ButtonMultiSelection.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:SourceLibrary.Windows.Forms.ButtonMultiSelection.InitializeComponent">
+            <summary> 
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:SourceLibrary.Windows.Forms.SubButtonItemCollection">
+            <summary>
+            A collection of elements of type SubButtonItem
+            </summary>
+        </member>
+        <member name="M:SourceLibrary.Windows.Forms.SubButtonItemCollection.#ctor">
+            <summary>
+            Initializes a new empty instance of the SubButtonItemCollection class.
+            </summary>
+        </member>
+        <member name="M:SourceLibrary.Windows.Forms.SubButtonItemCollection.#ctor(SourceLibrary.Windows.Forms.SubButtonItem[])">
+            <summary>
+            Initializes a new instance of the SubButtonItemCollection class, containing elements
+            copied from an array.
+            </summary>
+            <param name="items">
+            The array whose elements are to be added to the new SubButtonItemCollection.
+            </param>
+        </member>
+        <member name="M:SourceLibrary.Windows.Forms.SubButtonItemCollection.#ctor(SourceLibrary.Windows.Forms.SubButtonItemCollection)">
+            <summary>
+            Initializes a new instance of the SubButtonItemCollection class, containing elements
+            copied from another instance of SubButtonItemCollection
+            </summary>
+            <param name="items">
+            The SubButtonItemCollection whose elements are to be added to the new SubButtonItemCollection.
+            </param>
+        </member>
+        <member name="M:SourceLibrary.Windows.Forms.SubButtonItemCollection.AddRange(SourceLibrary.Windows.Forms.SubButtonItem[])">
+            <summary>
+            Adds the elements of an array to the end of this SubButtonItemCollection.
+            </summary>
+            <param name="items">
+            The array whose elements are to be added to the end of this SubButtonItemCollection.
+            </param>
+        </member>
+        <member name="M:SourceLibrary.Windows.Forms.SubButtonItemCollection.AddRange(SourceLibrary.Windows.Forms.SubButtonItemCollection)">
+            <summary>
+            Adds the elements of another SubButtonItemCollection to the end of this SubButtonItemCollection.
+            </summary>
+            <param name="items">
+            The SubButtonItemCollection whose elements are to be added to the end of this SubButtonItemCollection.
+            </param>
+        </member>
+        <member name="M:SourceLibrary.Windows.Forms.SubButtonItemCollection.Add(SourceLibrary.Windows.Forms.SubButtonItem)">
+            <summary>
+            Adds an instance of type SubButtonItem to the end of this SubButtonItemCollection.
+            </summary>
+            <param name="value">
+            The SubButtonItem to be added to the end of this SubButtonItemCollection.
+            </param>
+        </member>
+        <member name="M:SourceLibrary.Windows.Forms.SubButtonItemCollection.Contains(SourceLibrary.Windows.Forms.SubButtonItem)">
+            <summary>
+            Determines whether a specfic SubButtonItem value is in this SubButtonItemCollection.
+            </summary>
+            <param name="value">
+            The SubButtonItem value to locate in this SubButtonItemCollection.
+            </param>
+            <returns>
+            true if value is found in this SubButtonItemCollection;
+            false otherwise.
+            </returns>
+        </member>
+        <member name="M:SourceLibrary.Windows.Forms.SubButtonItemCollection.IndexOf(SourceLibrary.Windows.Forms.SubButtonItem)">
+            <summary>
+            Return the zero-based index of the first occurrence of a specific value
+            in this SubButtonItemCollection
+            </summary>
+            <param name="value">
+            The SubButtonItem value to locate in the SubButtonItemCollection.
+            </param>
+            <returns>
+            The zero-based index of the first occurrence of the _ELEMENT value if found;
+            -1 otherwise.
+            </returns>
+        </member>
+        <member name="M:SourceLibrary.Windows.Forms.SubButtonItemCollection.Insert(System.Int32,SourceLibrary.Windows.Forms.SubButtonItem)">
+            <summary>
+            Inserts an element into the SubButtonItemCollection at the specified index
+            </summary>
+            <param name="index">
+            The index at which the SubButtonItem is to be inserted.
+            </param>
+            <param name="value">
+            The SubButtonItem to insert.
+            </param>
+        </member>
+        <member name="M:SourceLibrary.Windows.Forms.SubButtonItemCollection.Remove(SourceLibrary.Windows.Forms.SubButtonItem)">
+            <summary>
+            Removes the first occurrence of a specific SubButtonItem from this SubButtonItemCollection.
+            </summary>
+            <param name="value">
+            The SubButtonItem value to remove from this SubButtonItemCollection.
+            </param>
+        </member>
+        <member name="M:SourceLibrary.Windows.Forms.SubButtonItemCollection.GetEnumerator">
+            <summary>
+            Returns an enumerator that can iterate through the elements of this SubButtonItemCollection.
+            </summary>
+            <returns>
+            An object that implements System.Collections.IEnumerator.
+            </returns>        
+        </member>
+        <member name="P:SourceLibrary.Windows.Forms.SubButtonItemCollection.Item(System.Int32)">
+            <summary>
+            Gets or sets the SubButtonItem at the given index in this SubButtonItemCollection.
+            </summary>
+        </member>
+        <member name="T:SourceLibrary.Windows.Forms.SubButtonItemCollection.Enumerator">
+            <summary>
+            Type-specific enumeration class, used by SubButtonItemCollection.GetEnumerator.
+            </summary>
+        </member>
+        <member name="T:SourceLibrary.Windows.Forms.ColorPicker">
+            <summary>
+            Summary description for ColorPicker.
+            </summary>
+        </member>
+        <member name="F:SourceLibrary.Windows.Forms.ColorPicker.components">
+            <summary> 
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SourceLibrary.Windows.Forms.ColorPicker.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:SourceLibrary.Windows.Forms.ColorPicker.InitializeComponent">
+            <summary> 
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:SourceLibrary.Windows.Forms.ComboBoxTyped">
+            <summary>
+            Control to simulate a ComboBox, because the one provided with the Framework doesn't support vertical sizing different from the size of the font.
+            </summary>
+        </member>
+        <member name="F:SourceLibrary.Windows.Forms.ComboBoxTyped.components">
+            <summary> 
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SourceLibrary.Windows.Forms.ComboBoxTyped.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:SourceLibrary.Windows.Forms.ComboBoxTyped.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:SourceLibrary.Windows.Forms.ComboBoxTyped.InitializeComponent">
+            <summary> 
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:SourceLibrary.Windows.Forms.ComboBoxTyped.OnLoadingValidator">
+            <summary>
+            Reload the properties from the validator
+            </summary>
+        </member>
+        <member name="M:SourceLibrary.Windows.Forms.ComboBoxTyped.ShowListBox">
+            <summary>
+            Populate and show the listbox
+            </summary>
+        </member>
+        <member name="M:SourceLibrary.Windows.Forms.ComboBoxTyped.OnSelectedIndexChanged">
+            <summary>
+            Fired when the SelectedIndex property change
+            </summary>
+        </member>
+        <member name="M:SourceLibrary.Windows.Forms.ComboBoxTyped.GetStringValueAtIndex(System.Int32)">
+            <summary>
+            Returns the string valud at the specified index using the editor. If index is not valid return Validator.NullDisplayString.
+            </summary>
+            <param name="p_Index"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SourceLibrary.Windows.Forms.ComboBoxTyped.SelectAllTextBox">
+            <summary>
+            Select all the text of the textbox
+            </summary>
+        </member>
+        <member name="M:SourceLibrary.Windows.Forms.ComboBoxTyped.OnDropDownOpen(System.EventArgs)">
+            <summary>
+            Fired when showing the drop down
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:SourceLibrary.Windows.Forms.ComboBoxTyped.OnDropDownClosed(System.EventArgs)">
+            <summary>
+            Fired when closing the dropdown
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="P:SourceLibrary.Windows.Forms.ComboBoxTyped.Validator">
+            <summary>
+            Required
+            </summary>
+        </member>
+        <member name="E:SourceLibrary.Windows.Forms.ComboBoxTyped.LoadingValidator">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:SourceLibrary.Windows.Forms.ComboBoxTyped.ReadOnlyTextBox">
+            <summary>
+            True to set the textbox readonly otherwise false.
+            </summary>
+        </member>
+        <member name="P:SourceLibrary.Windows.Forms.ComboBoxTyped.SelectedIndex">
+            <summary>
+            Selected Index of the Items array. -1 if no value is selected or if the value is not in the Items list.
+            </summary>
+        </member>
+        <member name="P:SourceLibrary.Windows.Forms.ComboBoxTyped.Value">
+            <summary>
+            Gets or sets the current value of the editor.
+            </summary>
+        </member>
+        <member name="P:SourceLibrary.Windows.Forms.ComboBoxTyped.Button">
+            <summary>
+            The button in the right of the editor
+            </summary>
+        </member>
+        <member name="E:SourceLibrary.Windows.Forms.ComboBoxTyped.DropDownOpen">
+            <summary>
+            Fired when showing the drop down
+            </summary>
+        </member>
+        <member name="E:SourceLibrary.Windows.Forms.ComboBoxTyped.DropDownClosed">
+            <summary>
+            Fired when closing the dropdown
+            </summary>
+        </member>
+        <member name="P:SourceLibrary.Windows.Forms.ComboBoxTyped.ForceFormatText">
+            <summary>
+            Indicates if after the Validating event the Text is refreshed with the new value, forcing the correct formatting.
+            </summary>
+        </member>
+        <member name="P:SourceLibrary.Windows.Forms.ComboBoxTyped.EnableEscapeKeyUndo">
+            <summary>
+            True to enable the Escape key to undo any changes. Default is true.
+            </summary>
+        </member>
+        <member name="P:SourceLibrary.Windows.Forms.ComboBoxTyped.EnableEnterKeyValidate">
+            <summary>
+            True to enable the Enter key to validate any changes. Default is true.
+            </summary>
+        </member>
+        <member name="P:SourceLibrary.Windows.Forms.ComboBoxTyped.EnableAutoValidation">
+            <summary>
+            True to enable the validation of the textbox text when the Validating event is fired, to force always the control to be valid. Default is true.
+            </summary>
+        </member>
+        <member name="P:SourceLibrary.Windows.Forms.ComboBoxTyped.EnableLastValidValue">
+            <summary>
+            True to allow the Value property to always return a valid value when the textbox.text is not valid, false to throw an error when textbox.text is not valid.
+            </summary>
+        </member>
+        <member name="T:SourceLibrary.Windows.Forms.DropDownCustom">
+            <summary>
+            Summary description for DropDownCustom.
+            </summary>
+        </member>
+        <member name="F:SourceLibrary.Windows.Forms.DropDownCustom.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SourceLibrary.Windows.Forms.DropDownCustom.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:SourceLibrary.Windows.Forms.DropDownCustom.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:SourceLibrary.Windows.Forms.DropDownFlags.CloseOnEscape">
+            <summary>
+            Close the DropDown whe the user press the escape key, return DialogResult.Cancel
+            </summary>
+        </member>
+        <member name="F:SourceLibrary.Windows.Forms.DropDownFlags.CloseOnEnter">
+            <summary>
+            Close the DropDown whe the user press the enter key, return DialogResult.OK
+            </summary>
+        </member>
+        <member name="T:SourceLibrary.Windows.Forms.ErrorDialog">
+            <summary>
+            Summary description for ErrorDialog.
+            </summary>
+        </member>
+        <member name="F:SourceLibrary.Windows.Forms.ErrorDialog.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SourceLibrary.Windows.Forms.ErrorDialog.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:SourceLibrary.Windows.Forms.ErrorDialog.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:SourceLibrary.Windows.Forms.ErrorDialogDetails">
+            <summary>
+            Summary description for ErrorDialogDetails.
+            </summary>
+        </member>
+        <member name="F:SourceLibrary.Windows.Forms.ErrorDialogDetails.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SourceLibrary.Windows.Forms.ErrorDialogDetails.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:SourceLibrary.Windows.Forms.ErrorDialogDetails.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:SourceLibrary.Windows.Forms.FormPosition">
+            <summary>
+            Summary description for FormPosition.
+            </summary>
+        </member>
+        <member name="F:SourceLibrary.Windows.Forms.FormPosition.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SourceLibrary.Windows.Forms.FormPosition.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:SourceLibrary.Windows.Forms.FormPosition.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:SourceLibrary.Windows.Forms.HeaderGroupBox">
+            <summary>
+            Summary description for HeaderGroupBox.
+            </summary>
+        </member>
+        <member name="T:SourceLibrary.Windows.Forms.MenuItemImage">
+            <summary>
+            A menu with Image support, using Chris.Beckett.MenuImageLib
+            </summary>
+        </member>
+        <member name="M:SourceLibrary.Windows.Forms.MenuItemImage.SetImage(System.Drawing.Image)">
+            <summary>
+            Set the image associated with this menu, this method can be called only one time.
+            </summary>
+            <param name="p_Image"></param>
+        </member>
+        <member name="M:SourceLibrary.Windows.Forms.MenuItemImage.SetImage(System.Windows.Forms.ImageList,System.Int32)">
+            <summary>
+            Set the image associated with this menu, this method can be called only one time.
+            </summary>
+            <param name="p_ImageList"></param>
+            <param name="p_ImageIndex"></param>
+        </member>
+        <member name="M:SourceLibrary.Windows.Forms.NumericUpDownEx.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:SourceLibrary.Windows.Forms.NumericUpDownEx.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:SourceLibrary.Windows.Forms.SaveFlags.ActiveMDIMaximized">
+            <summary>
+            Indicates to save all the childs form of a MDI window with the state of the active child window if this window is maximized. This flag allow to reopen all the child form maximized if you close the form MDI parent with a maximized mdi child.
+            </summary>
+        </member>
+        <member name="T:SourceLibrary.Windows.Forms.TextBoxButtonUITypeEditor">
+            <summary>
+            A TextBoxTypedButton that uase the UITypeEditor associated with the type.
+            </summary>
+        </member>
+        <member name="T:SourceLibrary.Windows.Forms.TextBoxTypedButton">
+            <summary>
+            Control to simulate a ComboBox, because the one provided with the Framework doesn't support vertical sizing different from the size of the font.
+            </summary>
+        </member>
+        <member name="F:SourceLibrary.Windows.Forms.TextBoxTypedButton.components">
+            <summary> 
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SourceLibrary.Windows.Forms.TextBoxTypedButton.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:SourceLibrary.Windows.Forms.TextBoxTypedButton.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:SourceLibrary.Windows.Forms.TextBoxTypedButton.InitializeComponent">
+            <summary> 
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:SourceLibrary.Windows.Forms.TextBoxTypedButton.OnLoadingValidator">
+            <summary>
+            Reload the properties from the validator
+            </summary>
+        </member>
+        <member name="M:SourceLibrary.Windows.Forms.TextBoxTypedButton.ShowDialog">
+            <summary>
+            Show the dialog
+            </summary>
+        </member>
+        <member name="M:SourceLibrary.Windows.Forms.TextBoxTypedButton.SelectAllTextBox">
+            <summary>
+            Select all the text of the textbox
+            </summary>
+        </member>
+        <member name="M:SourceLibrary.Windows.Forms.TextBoxTypedButton.OnDialogOpen(System.EventArgs)">
+            <summary>
+            Fired when showing the drop down
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:SourceLibrary.Windows.Forms.TextBoxTypedButton.OnDialogClosed(System.EventArgs)">
+            <summary>
+            Fired when closing the dropdown
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="P:SourceLibrary.Windows.Forms.TextBoxTypedButton.Validator">
+            <summary>
+            Required
+            </summary>
+        </member>
+        <member name="E:SourceLibrary.Windows.Forms.TextBoxTypedButton.LoadingValidator">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:SourceLibrary.Windows.Forms.TextBoxTypedButton.ReadOnlyTextBox">
+            <summary>
+            True to set the textbox readonly otherwise false.
+            </summary>
+        </member>
+        <member name="P:SourceLibrary.Windows.Forms.TextBoxTypedButton.Value">
+            <summary>
+            Gets or sets the current value of the editor.
+            </summary>
+        </member>
+        <member name="P:SourceLibrary.Windows.Forms.TextBoxTypedButton.Button">
+            <summary>
+            The button in the right of the editor
+            </summary>
+        </member>
+        <member name="E:SourceLibrary.Windows.Forms.TextBoxTypedButton.DialogOpen">
+            <summary>
+            Fired when showing the drop down
+            </summary>
+        </member>
+        <member name="E:SourceLibrary.Windows.Forms.TextBoxTypedButton.DialogClosed">
+            <summary>
+            Fired when closing the dropdown
+            </summary>
+        </member>
+        <member name="P:SourceLibrary.Windows.Forms.TextBoxTypedButton.ForceFormatText">
+            <summary>
+            Indicates if after the Validating event the Text is refreshed with the new value, forcing the correct formatting.
+            </summary>
+        </member>
+        <member name="P:SourceLibrary.Windows.Forms.TextBoxTypedButton.EnableEscapeKeyUndo">
+            <summary>
+            True to enable the Escape key to undo any changes. Default is true.
+            </summary>
+        </member>
+        <member name="P:SourceLibrary.Windows.Forms.TextBoxTypedButton.EnableEnterKeyValidate">
+            <summary>
+            True to enable the Enter key to validate any changes. Default is true.
+            </summary>
+        </member>
+        <member name="P:SourceLibrary.Windows.Forms.TextBoxTypedButton.EnableAutoValidation">
+            <summary>
+            True to enable the validation of the textbox text when the Validating event is fired, to force always the control to be valid. Default is true.
+            </summary>
+        </member>
+        <member name="P:SourceLibrary.Windows.Forms.TextBoxTypedButton.EnableLastValidValue">
+            <summary>
+            True to allow the Value property to always return a valid value when the textbox.text is not valid, false to throw an error when textbox.text is not valid.
+            </summary>
+        </member>
+        <member name="M:SourceLibrary.Windows.Forms.TextBoxButtonUITypeEditor.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:SourceLibrary.Windows.Forms.TextBoxButtonUITypeEditor.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:SourceLibrary.Windows.Forms.TextBoxTyped">
+            <summary>
+            A TextBox that allows to set the type of value to edit, then you can use the Value property to read and write the specific type.
+            </summary>
+        </member>
+        <member name="F:SourceLibrary.Windows.Forms.TextBoxTyped.components">
+            <summary> 
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SourceLibrary.Windows.Forms.TextBoxTyped.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:SourceLibrary.Windows.Forms.TextBoxTyped.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:SourceLibrary.Windows.Forms.TextBoxTyped.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:SourceLibrary.Windows.Forms.TextBoxTyped.m_bIsTextChanged">
+            <summary>
+            If true the text has changed. Returns false when set the Value property.
+            </summary>
+        </member>
+        <member name="M:SourceLibrary.Windows.Forms.TextBoxTyped.ValidateTextBoxValue">
+            <summary>
+            Validate the content of the TextBox
+            </summary>
+            <returns>Returns True if the value is valid otherwise false</returns>
+        </member>
+        <member name="M:SourceLibrary.Windows.Forms.TextBoxTyped.OnLoadingValidator">
+            <summary>
+            Reload the properties from the validator
+            </summary>
+        </member>
+        <member name="F:SourceLibrary.Windows.Forms.TextBoxTyped.m_LastValidValue">
+            <summary>
+            Indica l'ultimo valore impostato valido. null se non è stato impostato nessun valore. Questo serve nel caso in cui ci sia un Validating che fallisce e viene richiesta la property Value. In questo caso si restituisce questo valore.
+            </summary>
+        </member>
+        <member name="M:SourceLibrary.Windows.Forms.TextBoxTyped.OnTextChanged(System.EventArgs)">
+            <summary>
+            Raises the System.Windows.Forms.Control.TextChanged event.  
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:SourceLibrary.Windows.Forms.TextBoxTyped.OnValidating(System.ComponentModel.CancelEventArgs)">
+            <summary>
+            Raises the System.Windows.Forms.Control.Validating event.
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:SourceLibrary.Windows.Forms.TextBoxTyped.OnKeyDown(System.Windows.Forms.KeyEventArgs)">
+            <summary>
+            Raises the System.Windows.Forms.Control.KeyDown event.
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:SourceLibrary.Windows.Forms.TextBoxTyped.OnKeyPress(System.Windows.Forms.KeyPressEventArgs)">
+            <summary>
+            Raises the System.Windows.Forms.Control.KeyPress event. 
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:SourceLibrary.Windows.Forms.TextBoxTyped.ValidateCharactersString(System.String,System.Char[],System.Char[])">
+            <summary>
+            Check in the specific string if all the characters are valid
+            </summary>
+            <param name="p_Input"></param>
+            <param name="p_ValidCharacters"></param>
+            <param name="p_InvalidCharacters"></param>
+            <returns></returns>
+        </member>
+        <member name="P:SourceLibrary.Windows.Forms.TextBoxTyped.Value">
+            <summary>
+            The value of the TextBox, returns an instrnace of the specified type
+            </summary>
+        </member>
+        <member name="P:SourceLibrary.Windows.Forms.TextBoxTyped.ErrorProvider">
+            <summary>
+            Error provider used when a text is not valid.
+            </summary>
+        </member>
+        <member name="P:SourceLibrary.Windows.Forms.TextBoxTyped.Validator">
+            <summary>
+            Type converter used for conversion
+            </summary>
+        </member>
+        <member name="E:SourceLibrary.Windows.Forms.TextBoxTyped.LoadingValidator">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:SourceLibrary.Windows.Forms.TextBoxTyped.ErrorProviderMessage">
+            <summary>
+            Message used with the ErrorProvider object
+            </summary>
+        </member>
+        <member name="P:SourceLibrary.Windows.Forms.TextBoxTyped.ForceFormatText">
+            <summary>
+            Indicates if after the Validating event the Text is refreshed with the new value, forcing the correct formatting.
+            </summary>
+        </member>
+        <member name="P:SourceLibrary.Windows.Forms.TextBoxTyped.EnableEscapeKeyUndo">
+            <summary>
+            True to enable the Escape key to undo any changes. Default is true.
+            </summary>
+        </member>
+        <member name="P:SourceLibrary.Windows.Forms.TextBoxTyped.EnableEnterKeyValidate">
+            <summary>
+            True to enable the Enter key to validate any changes. Default is true.
+            </summary>
+        </member>
+        <member name="P:SourceLibrary.Windows.Forms.TextBoxTyped.EnableAutoValidation">
+            <summary>
+            True to enable the validation of the textbox text when the Validating event is fired, to force always the control to be valid. Default is true.
+            </summary>
+        </member>
+        <member name="P:SourceLibrary.Windows.Forms.TextBoxTyped.EnableLastValidValue">
+            <summary>
+            True to allow the Value property to always return a valid value when the textbox.text is not valid, false to throw an error when textbox.text is not valid.
+            </summary>
+        </member>
+        <member name="P:SourceLibrary.Windows.Forms.TextBoxTyped.ValidCharacters">
+            <summary>
+            A list of characters allowed for the textbox. Used in the OnKeyPress event. If null no check is made.
+            If not null any others charecters is not allowed. First the function check if ValidCharacters is not null then check for InvalidCharacters.
+            </summary>
+        </member>
+        <member name="P:SourceLibrary.Windows.Forms.TextBoxTyped.InvalidCharacters">
+            <summary>
+            A list of characters not allowed for the textbox. Used in the OnKeyPress event. If null no check is made.
+            If not null any characters in the list is not allowed. First the function check if ValidCharacters is not null then check for InvalidCharacters.
+            </summary>
+        </member>
+        <member name="T:SourceLibrary.Windows.Forms.TextBoxTypedNumeric">
+            <summary>
+            Summary description for TextBoxTypedNumeric.
+            </summary>
+        </member>
+        <member name="M:SourceLibrary.Windows.Forms.TextBoxTypedNumeric.CreateNumericValidChars(System.Globalization.CultureInfo,SourceLibrary.Windows.Forms.NumericCharStyle)">
+            <summary>
+            Returns an array of valid numeric char 
+            </summary>
+            <param name="p_Culture">If null the current culture is used</param>
+            <param name="p_NumericCharStyle"></param>
+            <returns></returns>
+        </member>
+        <member name="P:SourceLibrary.Windows.Forms.TextBoxTypedNumeric.NumericCharStyle">
+            <summary>
+            Style of characters allowed.
+            </summary>
+        </member>
+    </members>
+</doc>

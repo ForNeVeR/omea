@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+
+SPDX-License-Identifier: GPL-2.0-only
+-->
+<colorscheme>
+	<DisplayPane>
+		<Background>
+			<gradient mode="forward-diagonal">
+				<startcolor r="90" g="82" b="181" />
+				<endcolor r="180" g="187" b="239" />
+			</gradient>
+		</Background>
+		<ContentBackground>
+			<color r="236" g="233" b="216" />
+		</ContentBackground>
+		<ColumnBackground>
+			<color r="246" g="244" b="236" />
+		</ColumnBackground>
+		<ColumnBorder>
+			<color r="196" g="194" b="184" />
+		</ColumnBorder>
+		<Separator>
+			<color r="143" g="141" b="220" />
+		</Separator>
+	</DisplayPane>
+</colorscheme>

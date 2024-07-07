@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+
+SPDX-License-Identifier: GPL-2.0-only
+-->
+<Window x:Class="Runner.Window1" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Title="Runner" Height="256" Width="256">
+	<DockPanel Name="Host">
+		<!--
+		<TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">Hello, World!</TextBlock>-->
+	</DockPanel>
+</Window>

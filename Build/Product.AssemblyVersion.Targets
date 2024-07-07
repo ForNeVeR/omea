@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+
+SPDX-License-Identifier: GPL-2.0-only
+-->
+<!-- Supports generating the dynamic assembly version for each msbuild-based project. -->
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+	<!-- Custom build events: Product.AssemblyVersion. -->
+	<!-- Takes the assembly-info template from the Lib, expands the templates, and injects into the compilaton. -->
+	<PropertyGroup Condition="'$(NoAssemblyVersion)'==''">
+		<SourceExtension Condition="'$(MSBuildProjectExtension)'=='.csproj'">cs</SourceExtension>
+		<SourceExtension Condition="'$(MSBuildProjectExtension)'=='.csproj' and '$(IsJscript)'=='True'">js</SourceExtension>
+		<SourceExtension Condition="'$(MSBuildProjectExtension)'=='.vbproj'">vb</SourceExtension>
+		<PrepareResourcesDependsOn>
+			$(PrepareResourcesDependsOn);
+			ProduceProductAssemblyVersion;
+		</PrepareResourcesDependsOn>
+		<ProductAssemblyVersionInput>$(ProductHomeDir)/Lib/Product.AssemblyVersion.Template.$(SourceExtension)</ProductAssemblyVersionInput>
+		<ProductAssemblyVersionOutput>$(IntermediateOutputPath)/Product.AssemblyVersion.$(ProductVersionMajor),$(ProductVersionMinor),$(ProductVersionBuild),$(ProductVersionRevision).$(SourceExtension)</ProductAssemblyVersionOutput>
+	</PropertyGroup>
+	<Target Name="ProduceProductAssemblyVersion" Inputs="$(ProductAssemblyVersionInput)" Outputs="$(ProductAssemblyVersionOutput)">
+		<Copy SourceFiles="$(ProductAssemblyVersionInput)" DestinationFiles="$(ProductAssemblyVersionOutput)" />
+		<DateTime Format="yyyy">
+			<Output TaskParameter="Value" PropertyName="Year" />
+		</DateTime>
+		<ReplaceText What="\$\(Year\)" With="$(Year)" InputFiles="$(ProductAssemblyVersionOutput)" CaseSensitive="True" />
+		<ReplaceText What="\$\(AssemblyName\)" With="$(AssemblyName)" InputFiles="$(ProductAssemblyVersionOutput)" CaseSensitive="True" />
+		<ReplaceText What="\$\(ProductName\)" With="$(ProductName)" InputFiles="$(ProductAssemblyVersionOutput)" CaseSensitive="True" />
+		<ReplaceText What="\$\(ProductVersion4\)" With="$(ProductVersionMajor).$(ProductVersionMinor).$(ProductVersionBuild).$(ProductVersionRevision)" InputFiles="$(ProductAssemblyVersionOutput)" CaseSensitive="True" />
+		<ItemGroup>
+			<Compile Include="$(ProductAssemblyVersionOutput)" />
+			<FileWrites Include="$(ProductAssemblyVersionOutput)" />
+		</ItemGroup>
+	</Target>
+</Project>

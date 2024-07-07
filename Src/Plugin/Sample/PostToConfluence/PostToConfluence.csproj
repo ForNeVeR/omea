@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+
+SPDX-License-Identifier: GPL-2.0-only
+-->
+<VisualStudioProject>
+	<CSHARP ProjectType="Local" ProductVersion="7.10.3077" SchemaVersion="2.0" ProjectGuid="{973266EB-2A0F-4A29-B153-830B1174B655}" SccProjectName="Perforce Project" SccLocalPath="." SccProvider="MSSCCI:Perforce SCM">
+		<Build>
+			<Settings ApplicationIcon="" AssemblyKeyContainerName="" AssemblyName="PostToConfluence" AssemblyOriginatorKeyFile="" DefaultClientScript="JScript" DefaultHTMLPageLayout="Grid" DefaultTargetSchema="IE50" DelaySign="false" OutputType="Library" PreBuildEvent="" PostBuildEvent="" RootNamespace="PostToConfluence" RunPostBuildEvent="OnBuildSuccess" StartupObject="">
+				<Config Name="Debug" AllowUnsafeBlocks="false" BaseAddress="285212672" CheckForOverflowUnderflow="false" ConfigurationOverrideFile="" DefineConstants="DEBUG;TRACE" DocumentationFile="" DebugSymbols="true" FileAlignment="4096" IncrementalBuild="false" NoStdLib="false" NoWarn="" Optimize="false" OutputPath="bin\Debug\" RegisterForComInterop="false" RemoveIntegerChecks="false" TreatWarningsAsErrors="false" WarningLevel="4" />
+				<Config Name="Release" AllowUnsafeBlocks="false" BaseAddress="285212672" CheckForOverflowUnderflow="false" ConfigurationOverrideFile="" DefineConstants="TRACE" DocumentationFile="" DebugSymbols="false" FileAlignment="4096" IncrementalBuild="false" NoStdLib="false" NoWarn="" Optimize="true" OutputPath="bin\Release\" RegisterForComInterop="false" RemoveIntegerChecks="false" TreatWarningsAsErrors="false" WarningLevel="4" />
+			</Settings>
+			<References>
+				<Reference Name="System" AssemblyName="System" HintPath="..\..\..\..\..\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.dll" />
+				<Reference Name="System.Data" AssemblyName="System.Data" HintPath="..\..\..\..\..\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Data.dll" />
+				<Reference Name="System.XML" AssemblyName="System.Xml" HintPath="..\..\..\..\..\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.XML.dll" />
+				<Reference Name="OpenAPI" AssemblyName="OpenAPI" HintPath="..\..\..\bin\Debug\OpenAPI.dll" />
+				<Reference Name="System.Web.Services" AssemblyName="System.Web.Services" HintPath="..\..\..\..\..\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Web.Services.dll" />
+				<Reference Name="System.Drawing" AssemblyName="System.Drawing" HintPath="..\..\..\..\..\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Drawing.dll" />
+				<Reference Name="System.Windows.Forms" AssemblyName="System.Windows.Forms" HintPath="..\..\..\..\..\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Windows.Forms.dll" />
+			</References>
+		</Build>
+		<Files>
+			<Include>
+				<File RelPath="AssemblyInfo.cs" SubType="Code" BuildAction="Compile" />
+				<File RelPath="BrowsePagesDialog.cs" SubType="Form" BuildAction="Compile" />
+				<File RelPath="BrowsePagesDialog.resx" DependentUpon="BrowsePagesDialog.cs" BuildAction="EmbeddedResource" />
+				<File RelPath="LoginDialog.cs" SubType="Form" BuildAction="Compile" />
+				<File RelPath="LoginDialog.resx" DependentUpon="LoginDialog.cs" BuildAction="EmbeddedResource" />
+				<File RelPath="PostDialog.cs" SubType="Form" BuildAction="Compile" />
+				<File RelPath="PostDialog.resx" DependentUpon="PostDialog.cs" BuildAction="EmbeddedResource" />
+				<File RelPath="PostToConfluence.cs" SubType="Code" BuildAction="Compile" />
+				<File RelPath="Web References\com.atlassian.confluence\ConfluenceSoap.wsdl" BuildAction="None" />
+				<File RelPath="Web References\com.atlassian.confluence\Reference.map" BuildAction="None" Generator="MSDiscoCodeGenerator" LastGenOutput="Reference.cs" />
+				<File RelPath="Web References\com.atlassian.confluence\Reference.cs" DependentUpon="Reference.map" SubType="code" BuildAction="Compile" DesignTime="True" AutoGen="True" />
+				<Folder RelPath="Web References\com.atlassian.confluence\" WebReferenceUrl="http://confluence.atlassian.com/rpc/soap/confluenceservice-v1.wsdl" UrlBehavior="Static" />
+				<Folder RelPath="Web References\" WebReferences="TRUE" />
+			</Include>
+		</Files>
+	</CSHARP>
+</VisualStudioProject>

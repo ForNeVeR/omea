@@ -1,0 +1,238 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+
+SPDX-License-Identifier: GPL-2.0-only
+-->
+<colorscheme>
+	<Toolbar>
+		<Background>
+			<gradient mode="vertical">
+				<startcolor r="232" g="232" b="232" />
+				<endcolor r="210" g="211" b="216" />
+			</gradient>
+		</Background>
+	</Toolbar>
+	<LinksBar>
+		<Background>
+			<gradient mode="vertical">
+				<startcolor r="243" g="243" b="243" />
+				<endcolor r="229" g="229" b="231" />
+			</gradient>
+		</Background>
+		<VerticalBackground>
+			<color r="234" g="234" b="234" />
+		</VerticalBackground>
+		<VerticalBackgroundBorder>
+			<color r="88" g="80" b="159" />
+		</VerticalBackgroundBorder>
+		<LinkTypeText>
+			<!-- <color r="96" g="96" b="96"/> -->
+			<color r="54" g="57" b="133" />
+		</LinkTypeText>
+		<ExpandCollapse>
+			<imagelist width="16" height="16">
+				<icon name="linkcollapse.ico" />
+				<icon name="linkcollapse_hot.ico" />
+				<icon name="linkcollapse_pressed.ico" />
+				<icon name="linkexpand.ico" />
+				<icon name="linkexpand_hot.ico" />
+				<icon name="linkexpand_pressed.ico" />
+			</imagelist>
+		</ExpandCollapse>
+	</LinksBar>
+	<LinksPane>
+		<Separator>
+			<Start>
+				<color name="Control" mult="1.1" />
+			</Start>
+			<End>
+				<color name="ControlDark" />
+			</End>
+		</Separator>
+		<Group>
+			<gradient mode="vertical">
+				<startcolor r="223" g="223" b="233" />
+				<endcolor r="238" g="238" b="248" />
+			</gradient>
+		</Group>
+		<LinkTypeText>
+			<color ref="//LinksBar/LinkTypeText/color" />
+		</LinkTypeText>
+	</LinksPane>
+	<PaneCaption>
+		<Active>
+			<color r="62" g="60" b="159" />
+		</Active>
+		<ActiveText>
+			<color name="White" />
+		</ActiveText>
+		<Inactive>
+			<color r="187" g="192" b="221" />
+		</Inactive>
+		<InactiveText>
+			<color r="54" g="57" b="133" />
+		</InactiveText>
+		<Border>
+			<color ref="//LinksBar/VerticalBackgroundBorder/color" />
+		</Border>
+	</PaneCaption>
+	<SeeAlso>
+		<CaptionActive>
+			<color name="Black" />
+		</CaptionActive>
+		<CaptionInactive>
+			<color name="Black" />
+		</CaptionInactive>
+		<LinkActive>
+			<color r="1" g="91" b="238" />
+		</LinkActive>
+		<LinkInactive>
+			<color r="1" g="91" b="238" />
+		</LinkInactive>
+		<BackgroundActive>
+			<color r="216" g="214" b="235" />
+		</BackgroundActive>
+		<BackgroundInactive>
+			<color r="216" g="214" b="235" />
+		</BackgroundInactive>
+	</SeeAlso>
+	<ResourceTypeTabs>
+		<Border>
+			<color r="114" g="115" b="157" />
+		</Border>
+		<ActiveBackground>
+			<gradient mode="vertical">
+				<startcolor r="103" g="94" b="188" />
+				<endcolor r="120" g="113" b="206" />
+			</gradient>
+		</ActiveBackground>
+		<ActiveText>
+			<color name="White" />
+		</ActiveText>
+		<InactiveBackground>
+			<color r="244" g="242" b="246" />
+		</InactiveBackground>
+		<InactiveBackgroundBottom>
+			<gradient mode="vertical">
+				<startcolor ref="//ResourceTypeTabs/InactiveBackground/color" />
+				<endcolor r="201" g="201" b="207" />
+			</gradient>
+		</InactiveBackgroundBottom>
+		<InactiveText>
+			<color name="Black" />
+		</InactiveText>
+	</ResourceTypeTabs>
+	<TopBar>
+		<TopBackground>
+			<color r="224" g="226" b="235" />
+		</TopBackground>
+		<Background>
+			<color r="196" g="196" b="208" />
+		</Background>
+		<Border>
+			<color r="110" g="104" b="177" />
+		</Border>
+		<BorderShade>
+			<color r="234" g="234" b="246" />
+		</BorderShade>
+	</TopBar>
+	<WorkspaceBar>
+		<Background>
+			<color ref="//TopBar/Background/color" />
+		</Background>
+		<ActiveButtonBackground>
+			<color r="227" g="229" b="238" />
+		</ActiveButtonBackground>
+		<ActiveButtonBorder>
+			<color r="125" g="118" b="191" />
+		</ActiveButtonBorder>
+		<UnreadCounters>
+			<color name="Blue" />
+		</UnreadCounters>
+		<Border>
+			<color ref="//TopBar/Border/color" />
+		</Border>
+		<BorderShade>
+			<color ref="//TopBar/BorderShade/color" />
+		</BorderShade>
+	</WorkspaceBar>
+	<ShortcutBar>
+		<Background>
+			<color r="201" g="201" b="213" />
+		</Background>
+	</ShortcutBar>
+	<Sidebar>
+		<Background>
+			<gradient mode="vertical">
+				<startcolor r="120" g="113" b="206" />
+				<endcolor name="Control" />
+			</gradient>
+		</Background>
+		<Button>
+			<Border>
+				<color r="84" g="78" b="146" />
+			</Border>
+			<BorderLight>
+				<color name="White" />
+			</BorderLight>
+			<BorderDark>
+				<color r="171" g="173" b="182" />
+			</BorderDark>
+			<BorderDarkPressed>
+				<color r="145" g="147" b="156" />
+			</BorderDarkPressed>
+			<BorderHot>
+				<color r="105" g="96" b="190" />
+			</BorderHot>
+			<Background>
+				<gradient mode="forward-diagonal">
+					<startcolor r="240" g="242" b="251" />
+					<endcolor r="218" g="220" b="229" />
+				</gradient>
+			</Background>
+			<BackgroundPressed>
+				<gradient mode="forward-diagonal">
+					<startcolor r="203" g="205" b="214" />
+					<endcolor r="186" g="188" b="197" />
+				</gradient>
+			</BackgroundPressed>
+		</Button>
+	</Sidebar>
+	<Search>
+		<Background>
+			<color ref="//TopBar/Background/color" />
+		</Background>
+		<BackgroundActive>
+			<color r="224" g="226" b="235" />
+		</BackgroundActive>
+	</Search>
+	<Splitter>
+		<Dot>
+			<color r="123" g="118" b="184" />
+		</Dot>
+		<CenterBorder>
+			<color r="127" g="123" b="175" />
+		</CenterBorder>
+		<CenterHorz>
+			<gradient mode="vertical">
+				<startcolor name="White" />
+				<endcolor r="127" g="123" b="175" />
+			</gradient>
+		</CenterHorz>
+		<CenterVert>
+			<gradient mode="horizontal">
+				<startcolor name="White" />
+				<endcolor r="127" g="123" b="175" />
+			</gradient>
+		</CenterVert>
+		<Arrow>
+			<color r="110" g="104" b="177" />
+		</Arrow>
+	</Splitter>
+	<ResourceList>
+		<GroupHeader>
+			<color r="230" g="231" b="239" />
+		</GroupHeader>
+	</ResourceList>
+</colorscheme>

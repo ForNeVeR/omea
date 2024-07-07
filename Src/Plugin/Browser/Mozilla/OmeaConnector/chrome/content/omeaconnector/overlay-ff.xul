@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<!--
+SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+
+SPDX-License-Identifier: GPL-2.0-only
+-->
+
+<?xml-stylesheet href="chrome://global/skin" type="text/css"?>
+<?xml-stylesheet href="chrome://omeaconnector/skin/omeaconnector.css" type="text/css"?>
+
+<?xul-overlay href="overlay-common.xul" ?>
+
+<!DOCTYPE overlay SYSTEM "chrome://omeaconnector/locale/omeaconnector.dtd">
+
+<overlay id="omeaconnector-ff" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+  <commandset id="mainCommandSet">
+    <!-- Get these commands from common overlay -->
+    <commandset id="omeaconnector-commandset" />
+  </commandset>
+
+  <toolbarpalette id="BrowserToolbarPalette">
+    <!-- Get these buttons from common overlay -->
+    <toolbarbutton id="omeaconnector-subscribeRSS-toolbar" />
+    <toolbarbutton id="omeaconnector-annotateURL-toolbar" />
+    <toolbarbutton id="omeaconnector-createClipping-toolbar" />
+  </toolbarpalette>
+
+  <toolbox id="navigator-toolbox">
+    <toolbar id="jetbrains-toolbar"
+             class="chromeclass-toolbar"
+             context="toolbar-context-menu"
+             customizable="true"
+             hidden="false"
+             iconsize="small"
+             inherits="collapsed,hidden,mode,iconsize"
+             persist="collapsed,hidden,mode,iconsize"
+             mode="full"
+             toolbarname="&jetbrains.toolbar.name;"
+             defaultset="omeaconnector-subscribeRSS-toolbar,omeaconnector-annotateURL-toolbar,omeaconnector-createClipping-toolbar"/>
+  </toolbox>
+  <!-- Include special script for toolbar text control -->
+  <script type="application/x-javascript"><![CDATA[
+    function omeaconnector_setToolbarModes() {
+      function inheritAttribute( from, attrib, to )
+      {
+        var fe = document.getElementById( from );
+        var te = document.getElementById( to );
+        if( ! fe || ! fe.hasAttribute( attrib ) || ! te )
+        {
+          return;
+        }
+        te.setAttribute( attrib, fe.getAttribute( attrib ) );
+      }
+
+      inheritAttribute( 'nav-bar', 'mode',     'jetbrains-toolbar' );
+      inheritAttribute( 'nav-bar', 'iconsize', 'jetbrains-toolbar' );
+    }
+    window.addEventListener( "load", function( event ) { omeaconnector_setToolbarModes(); }, false );
+  ]]></script>
+
+  <!-- Main menu -->
+  <menupopup id="menu_ToolsPopup">
+    <menu id="omeaconnector-mainmenu"
+          label="&omeaconnector.mainmenu.label;"
+          accesskey="&omeaconnector.mainmenu.key;"
+          insertbefore="prefSep">
+      <menupopup id="omeaconnector-mainmenu-popup"/>
+    </menu>
+  </menupopup>
+</overlay>

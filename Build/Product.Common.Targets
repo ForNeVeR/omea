@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+
+SPDX-License-Identifier: GPL-2.0-only
+-->
+<!-- Includes all of the commonly used extension tasks into the current project. -->
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+	<!-- $(ProductHomeDir) must be defined by the importer, as we don't know the relative path. -->
+	<PropertyGroup>
+		<!-- PragmaOnce -->
+		<PragmaOnce_Product_Common_Targets>True</PragmaOnce_Product_Common_Targets>
+	</PropertyGroup>
+	<!-- Product Properties. -->
+	<Import Project="$(ProductHomeDir)/Build/Product.Settings.Targets" Condition="'$(PragmaOnce_Product_Settings_Targets)'==''" />
+	<PropertyGroup>
+		<!-- Path to the file that lists the product assemblies. -->
+		<AllAssembliesXml>$(ProductHomeDir)/Lib/AllAssemblies.Xml</AllAssembliesXml>
+	</PropertyGroup>
+	<!-- Tigris.Org Community MSBuild Tasks. -->
+	<PropertyGroup>
+		<MSBuildCommunityTasksPath>$(ProductHomeDir)/Tools/MSBuild/Tigris</MSBuildCommunityTasksPath>
+	</PropertyGroup>
+	<Import Project="$(ProductHomeDir)/Tools/MSBuild/Tigris/MSBuild.Community.Tasks.Targets" />
+	<!-- JetBrains Generic Tasks. -->
+	<Import Project="$(ProductHomeDir)/Tools/MSBuild/JetBrains/JetBrains.Build.Common.Targets" />
+	<Import Project="$(ProductHomeDir)/Tools/MSBuild/JetBrains/JetBrains.Build.Omea.Targets" />
+	<!-- JetBrains One-Task Tools. -->
+</Project>

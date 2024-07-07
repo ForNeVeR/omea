@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+
+SPDX-License-Identifier: GPL-2.0-only
+-->
+<Project DefaultTargets="NoTarget" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+	<PropertyGroup>
+		<Help>Please specify a target to execute.</Help>
+	</PropertyGroup>
+	<PropertyGroup>
+		<!-- Home. -->
+		<ProductHomeDir Condition="'$(ProductHomeDir)'==''">$(MSBuildProjectDirectory)/..</ProductHomeDir>
+		<!-- Output directory for the product binaries. -->
+		<ProductBinariesDir Condition="'$(ProductBinariesDir)'==''">$(ProductHomeDir)/BinRelease</ProductBinariesDir>
+		<!-- Selected build products we're publishing. -->
+		<ArtifactsDir Condition="'$(ArtifactsDir)'==''">$(ProductHomeDir)/Artifacts</ArtifactsDir>
+		<!-- It's only under TeamCity when we have certain tasks. Ignore them when testing locally. -->
+		<IsTeamCity Condition="'$(IsTeamCity)'==''">false</IsTeamCity>
+		<!-- Rebuild the solution and installer, by default. -->
+		<NestedTarget Condition="'$(NestedTarget)'==''">Rebuild</NestedTarget>
+	</PropertyGroup>
+	<!-- Common Tasks. -->
+	<Import Project="$(ProductHomeDir)/Build/Product.Common.Targets" Condition="'$(PragmaOnce_Product_Common_Targets)'==''" />
+	<PropertyGroup>
+		<BuildDependsOn>
+			$(BuildDependsOn);
+			NormalizeDirectories;
+			PrepareFolders;
+			RetrieveKeyFile;
+			BuildSolution;
+			Publish_Bin;
+			BuildInstaller;
+			Publish_Msi;
+			RunUnitTests;
+		</BuildDependsOn>
+	</PropertyGroup>
+	<!---->
+	<!---->
+	<!-- Anchor targets. -->
+	<Target Name="Build" DependsOnTargets="$(BuildDependsOn)" />
+	<!-- Displays usage help and halts. -->
+	<Target Name="NoTarget">
+		<Message Text="$(Help)" />
+		<Error Text="No target specified. See above help for the choices available." />
+	</Target>
+	<!-- Builds the solution. -->
+	<PropertyGroup>
+		<BuildSolutionProperties>
+			$(BuildSolutionProperties);
+			ProductBinariesDir=$(ProductBinariesDir);
+			OutDir=$(ProductBinariesDir)\;
+			Configuration=Release;
+		</BuildSolutionProperties>
+		<SolutionFile>$(ProductHomeDir)/Src/Omea.sln</SolutionFile>
+	</PropertyGroup>
+	<Target Name="BuildSolution">
+		<MSBuild Projects="$(SolutionFile)" Targets="$(NestedTarget)" Properties="$(BuildSolutionProperties)" />
+	</Target>
+	<!-- Removes relative components from the path. -->
+	<Target Name="NormalizeDirectories">
+		<ItemGroup>
+			<ProductBinariesDir_Item Include="$(ProductBinariesDir)" />
+			<ArtifactsDir_Item Include="$(ArtifactsDir)" />
+			<ProductHomeDir_Item Include="$(ProductHomeDir)" />
+		</ItemGroup>
+		<PropertyGroup>
+			<ProductBinariesDir>%(ProductBinariesDir_Item.FullPath)</ProductBinariesDir>
+			<ArtifactsDir>%(ArtifactsDir_Item.FullPath)</ArtifactsDir>
+			<ProductHomeDir>%(ProductHomeDir_Item.FullPath)</ProductHomeDir>
+		</PropertyGroup>
+	</Target>
+	<!-- Builds the installer. -->
+	<Target Name="BuildInstaller">
+		<!-- Build the installer. -->
+		<MSBuild Projects="$(ProductHomeDir)/Setup/Build.proj" Targets="Rebuild" Properties="OutDir=$(ProductBinariesDir)\; ProductBinariesDir=$(ProductBinariesDir); Configuration=Release" />
+	</Target>
+	<!-- Runs Unit Tests. -->
+	<Target Name="RunUnitTests" Condition="$(IsTeamCity)">
+		<ItemGroup>
+			<NUnitTestAssemblies Include="$(ProductBinariesDir)/*Test*.dll" />
+		</ItemGroup>
+		<NUnit Assemblies="@(NUnitTestAssemblies)" />
+	</Target>
+	<!-- Retrieves the key file and copies to the build-expected location. -->
+	<!-- We do not publish the private strong name key with source code, so it's not coming from the source control. -->
+	<!-- The ServerTempKey property must be specified externally. -->
+	<ItemGroup>
+		<ServerTempKeyFile Include="$(ServerTempKey)" />
+		<LocalKeyFile Include="$(ProductHomeDir)/Lib/Key.Snk" />
+	</ItemGroup>
+	<Target Name="RetrieveKeyFile" Inputs="@(ServerTempKeyFile)" Outputs="@(LocalKeyFile)" Condition="$(IsTeamCity)">
+		<Copy SourceFiles="@(ServerTempKeyFile)" DestinationFiles="@(LocalKeyFile)" />
+	</Target>
+	<!-- Modules. -->
+	<Import Project="$(ProductHomeDir)/Build/Server.Publish.Targets" />
+	<Import Project="$(ProductHomeDir)/Build/Server.BootstrapBuildNumber.Targets" />
+	<!-- Allow for user customizations.-->
+	<Import Project="$(MSBuildProjectFullPath).user" Condition="Exists('$(MSBuildProjectFullPath).user')" />
+</Project>

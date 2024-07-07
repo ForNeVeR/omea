@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+
+SPDX-License-Identifier: GPL-2.0-only
+-->
+<!-- Includes all of the commonly used extension tasks into the current project. -->
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+	<!-- Include the common build tasks support. -->
+	<Import Project="$(ProductHomeDir)/Build/Product.Common.Targets" Condition="'$(PragmaOnce_Product_Common_Targets)'==''" />
+	<!-- Project Extensions. -->
+	<Import Project="$(ProductHomeDir)/Tools/XsdCs/Bin/XsdCs.Targets" />
+	<!-- Assembly Version generation. -->
+	<Import Project="$(ProductHomeDir)/Build/Product.AssemblyVersion.Targets" />
+</Project>

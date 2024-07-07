@@ -1,0 +1,128 @@
+<?xml version="1.0"?>
+<!--
+SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+
+SPDX-License-Identifier: GPL-2.0-only
+-->
+
+<?xml-stylesheet href="chrome://global/skin" type="text/css"?>
+<?xml-stylesheet href="chrome://omeaconnector/skin/omeaconnector.css" type="text/css"?>
+<!DOCTYPE overlay SYSTEM "chrome://omeaconnector/locale/omeaconnector.dtd">
+
+<overlay id="omeaconnector-common" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+  <script type="application/x-javascript" src="chrome://omeaconnector/content/omeaconnector-commands.js"/>
+  <script type="application/x-javascript" src="chrome://omeaconnector/content/omeaconnector-command-control.js"/>
+  <script type="application/x-javascript" src="chrome://omeaconnector/content/omeaconnector-ui.js"/>
+
+  <commandset id="omeaconnector-commandset"
+              commandupdater="true"
+              events="focus blur select"
+              oncommandupdate="omeaconnector_updateAll();">
+    <command id="omeaconnector_subscribeRSS"          oncommand="omeaconnector_doCommand( this.getAttribute( 'id' ) )"/>
+    <command id="omeaconnector_createAndEditClipping" oncommand="omeaconnector_doCommand( this.getAttribute( 'id' ) )"/>
+    <command id="omeaconnector_createAndSaveClipping" oncommand="omeaconnector_doCommand( this.getAttribute( 'id' ) )"/>
+    <command id="omeaconnector_annotateURL"           oncommand="omeaconnector_doCommand( this.getAttribute( 'id' ) )"/>
+  </commandset>
+
+  <menupopup id="contentAreaContextMenu">
+     <menuseparator id="omeaconnector-contextmenu-separator" />
+     <menuitem id="omeaconnector-contextmenu-subscribeRSS"
+               accesskey="&omeaconnector.menu.context.subscribeRSS.key;"
+               label="&omeaconnector.menu.context.subscribeRSS.label;"
+               command="omeaconnector_subscribeRSS"
+               observes="omeaconnector_subscribeRSS"/>
+
+     <menuitem id="omeaconnector-contextmenu-subscribeRSSLink"
+               accesskey="&omeaconnector.menu.context.subscribeRSSLink.key;"
+               label="&omeaconnector.menu.context.subscribeRSSLink.label;"
+               oncommand="omeaconnector_subscribeRSSLink( event );"/>
+
+     <menuitem id="omeaconnector-contextmenu-createAndEditClipping"
+               accesskey="&omeaconnector.menu.context.createAndEditClipping.key;"
+               label="&omeaconnector.menu.context.createAndEditClipping.label;"
+               command="omeaconnector_createAndEditClipping"
+               observes="omeaconnector_createAndEditClipping"/>
+
+     <menuitem id="omeaconnector-contextmenu-createAndSaveClipping"
+               accesskey="&omeaconnector.menu.context.createAndSaveClipping.key;"
+               label="&omeaconnector.menu.context.createAndSaveClipping.label;"
+               command="omeaconnector_createAndSaveClipping"
+               observes="omeaconnector_createAndSaveClipping"/>
+
+     <menuitem id="omeaconnector-contextmenu-annotateURL"
+               accesskey="&omeaconnector.menu.context.annotateURL.key;"
+               label="&omeaconnector.menu.context.annotateURL.label;"
+               command="omeaconnector_annotateURL"
+               observes="omeaconnector_annotateURL"/>
+  </menupopup>
+
+  <menupopup id="omeaconnector-mainmenu-popup">
+     <menuitem id="omeaconnector-mainmenu-subscribeRSS"
+               accesskey="&omeaconnector.menu.main.subscribeRSS.key;"
+               label="&omeaconnector.menu.main.subscribeRSS.label;"
+               command="omeaconnector_subscribeRSS"
+               observes="omeaconnector_subscribeRSS"/>
+     <menuitem id="omeaconnector-mainmenu-createAndEditClipping"
+               accesskey="&omeaconnector.menu.main.createAndEditClipping.key;"
+               label="&omeaconnector.menu.main.createAndEditClipping.label;"
+               command="omeaconnector_createAndEditClipping"
+               observes="omeaconnector_createAndEditClipping"/>
+     <menuitem id="omeaconnector-mainmenu-createAndSaveClipping"
+               accesskey="&omeaconnector.menu.main.createAndSaveClipping.key;"
+               label="&omeaconnector.menu.main.createAndSaveClipping.label;"
+               command="omeaconnector_createAndSaveClipping"
+               observes="omeaconnector_createAndSaveClipping"/>
+     <menuitem id="omeaconnector-mainmenu-annotateURL"
+               accesskey="&omeaconnector.menu.main.annotateURL.key;"
+               label="&omeaconnector.menu.main.annotateURL.label;"
+               command="omeaconnector_annotateURL"
+               observes="omeaconnector_annotateURL"/>
+     <menuseparator id="omeaconnector-mainmenu-optseparator" />
+     <menuitem id="omeaconnector-mainmenu-options"
+               accesskey="&omeaconnector.menu.main.options.key;"
+               label="&omeaconnector.menu.main.options.label;"
+               oncommand="window.openDialog('chrome://omeaconnector/content/options/options-dialog.xul', 'omeaconnector-options-dialog', 'centerscreen,chrome,modal');"/>
+  </menupopup>
+
+  <!-- Toolbar buttons. They are common for both browsers, buy used in different way -->
+  <toolbarbutton id="omeaconnector-subscribeRSS-toolbar"
+                 class="omeaconnector-toolbar-button chromeclass-toolbar-additional"
+                 label="&omeaconnector.toolbar.subscribeRSS.label;"
+                 tooltiptext="&omeaconnector.toolbar.subscribeRSS.tooltip;"
+                 command="omeaconnector_subscribeRSS"
+                 observes="omeaconnector_subscribeRSS" />
+
+  <toolbarbutton id="omeaconnector-annotateURL-toolbar"
+                 class="omeaconnector-toolbar-button chromeclass-toolbar-additional"
+                 label="&omeaconnector.toolbar.annotateURL.label;"
+                 tooltiptext="&omeaconnector.toolbar.annotateURL.tooltip;"
+                 command="omeaconnector_annotateURL"
+                 observes="omeaconnector_annotateURL" />
+
+  <toolbarbutton id="omeaconnector-createClipping-toolbar"
+                 type="menu-button"
+                 class="omeaconnector-toolbar-button chromeclass-toolbar-additional"
+                 omeaconnector-mode="Edit"
+                 persist="omeaconnector-mode"
+                 label="&omeaconnector.toolbar.createAndEditClipping.label;"
+                 tooltiptext="&omeaconnector.toolbar.createAndEditClipping.tooltip;"
+                 labelEdit="&omeaconnector.toolbar.createAndEditClipping.label;"
+                 tooltiptextEdit="&omeaconnector.toolbar.createAndEditClipping.tooltip;"
+                 labelSave="&omeaconnector.toolbar.createAndSaveClipping.label;"
+                 tooltiptextSave="&omeaconnector.toolbar.createAndSaveClipping.tooltip;"
+                 command="omeaconnector_createAndEditClipping"
+                 observes="omeaconnector_createAndEditClipping">
+    <menupopup id="omeaconnector-createClipping-toolbar-menu">
+       <menuitem id="omeaconnector-createAndEditCilpping-toolbar-menu"
+                 class="menuitem-iconic omeaconnector-clipping-menu"
+                 accesskey="&omeaconnector.toolbar.createAndEditClipping.key;"
+                 label="&omeaconnector.toolbar.createAndEditClipping.label;"
+                 oncommand="omeaconnector_switchCreateClipping( 'Edit', true );"/>
+       <menuitem id="omeaconnector-createAndSaveCilpping-toolbar-menu"
+                 class="menuitem-iconic omeaconnector-clipping-menu"
+                 accesskey="&omeaconnector.toolbar.createAndSaveClipping.key;"
+                 label="&omeaconnector.toolbar.createAndSaveClipping.label;"
+                 oncommand="omeaconnector_switchCreateClipping( 'Save', true );"/>
+    </menupopup>
+  </toolbarbutton>
+</overlay>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<!--
+SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+
+SPDX-License-Identifier: GPL-2.0-only
+-->
+
+<rhpml majorversion="1" minorversion="0">
+	<folders>
+		<folder>
+			<name>getstarted</name>
+		</folder>
+		<folder>
+			<name>appendix</name>
+		</folder>
+		<folder>
+			<name>reference</name>
+		</folder>
+		<folder>
+			<name>images</name>
+		</folder>
+		<folder>
+			<name>organizing</name>
+		</folder>
+		<folder>
+			<name>overview</name>
+		</folder>
+		<folder>
+			<name>search</name>
+		</folder>
+		<folder>
+			<name>using</name>
+		</folder>
+	</folders>
+	<topics>
+		<topic>
+			<name>Omea_Help.htm</name>
+			<comments></comments>
+			<frameset>0</frameset>
+		</topic>
+		<topic>
+			<name>what_s_new_in_omea_reader.htm</name>
+			<comments></comments>
+			<frameset>0</frameset>
+		</topic>
+		<topic>
+			<name>introduction.htm</name>
+			<comments></comments>
+			<frameset>0</frameset>
+		</topic>
+		<topic>
+			<name>What_s_New_in_Omea_Pro.htm</name>
+			<comments></comments>
+			<frameset>0</frameset>
+		</topic>
+	</topics>
+</rhpml>

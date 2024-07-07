@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+
+SPDX-License-Identifier: GPL-2.0-only
+-->
+<omniamea-plugin>
+	<resource-icons namespace="ICQPlugin.Icons">
+		<icon type="ICQAccount" name="contact.ico" />
+		<icon type="ICQConversation" name="conversation4.ico" />
+	</resource-icons>
+	<actions namespace="JetBrains.Omea.InstantMessaging.ICQ">
+		<main-menu>
+			<group id="IMRebuildActions" menu="File" anchor="after:FileImportActions">
+				<action name="Rebuild ICQ Conversations..." class="RebuildConversationsAction" />
+			</group>
+		</main-menu>
+		<popup-menu>
+			<group id="ItemModifyActions">
+				<action name="Rebuild ICQ Conversations..." class="RebuildConversationsAction" />
+			</group>
+		</popup-menu>
+		<link-click>
+			<action type="ICQAccount" class="ICQAccountClickAction" />
+		</link-click>
+	</actions>
+	<display-columns>
+		<columns type="Email">
+			<column width="300" autoSize="1">
+				<prop name="Subject" />
+				<multiline row="1" startX="0" width="240" anchor="both" />
+				<comparer assembly="ResourceTools" class="JetBrains.Omea.ResourceTools.SubjectComparer" />
+			</column>
+		</columns>
+	</display-columns>
+</omniamea-plugin>

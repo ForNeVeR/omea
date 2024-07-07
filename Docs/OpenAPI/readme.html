@@ -1,0 +1,76 @@
+<!--
+SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+
+SPDX-License-Identifier: GPL-2.0-only
+-->
+
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Omea Open API and Plugin Development Kit</title>
+</head>
+
+<body>
+
+<h1 align="center">Omea Open API and Plugin Development Kit</h1>
+<h2 align="center">version 2.0, 6 Sep 2005</h2>
+<h2>Archive Contents</h2>
+<p>This archive includes a set of documents, tools and sample code which will
+allow you to start developing Omea plugins. The archive includes:</p>
+<ul>
+	<li>Omea OpenAPI.chm, a generated CHM help file for the Omea Open API
+	assembly;</li>
+	<li><a href="OmeaPluginTutorial.html">OmeaPluginTutorial.html</a>, a
+	tutorial describing the development of an Omea plugin;</li>
+	<li>SamplePlugins\Dictionary, a minimal sample plugin for Omea implementing
+	a trivial action;</li>
+	<li>SamplePlugins\Librarian, a sample plugin described in the tutorial;</li>
+	<li>SamplePlugins\BloglinesPlugin, a sample plugin which allows to import
+	the list of feed subscriptions from Bloglines.com;</li>
+	<li>SamplePlugins\LiveJournalPlugin, a sample plugin which allows to import
+	the list of a user's LiveJournal friends as RSS subscriptions in Omea;</li>
+	<li>SamplePlugins\CategoryHotkeys, a sample plugin which allows to register
+	hotkeys for assigning categories to resources;</li>
+	<li>SamplePlugins\PostToConfluence, a sample plugin which allows to post the
+	text of the selected resource as a page or blog post in
+	<a href="http://www.atlassian.com/confluence/">Atlassian Confluence</a>;</li>
+	<li>DebugPlugin.dll, a plugin which provides several functions useful for
+	Omea plugin developers.</li>
+</ul>
+<p>The APIs described in the CHM file are valid for Omea Pro and Omea Reader version
+2.0. The new API elements which have been added in the version 2.0 are labeled as
+such in the CHM file. The majority of the API is compatible between versions 1.0 and 2.0,
+but a number of rarely used or improperly designed APIs were removed in the version 2.0,
+so some of the plugins developed for version 1.0 may not be compatible with the version 2.0.</p>
+<h2>Browsing the Omea Database</h2>
+<p>We do not provide complete documentation on the resource types and property
+types used by Omea and its standard plugins. Instead, we provide a tool which
+lets you browse all the resources in your Omea resource store and all their
+properties and links.</p>
+<p>A small introduction to the Omea data model can be found in
+<a href="http://blogs.jetbrains.com/yole/archives/000014.html">this blog post</a>.</p>
+<p>In order to use the resource store browser, you will first need to install
+the debug plugin. The plugin (DebugPlugin.dll) is included in the Open API
+archive. You can install it from the Tools / Options / Omea / Plugins option
+page.</p>
+<p>After you add the plugin and restart Omea, you will see a new menu &quot;Debug&quot; in
+the main menu. The first item in that menu, &quot;Browse Resources...&quot;, will open the
+resource browser. It shows the list of all resource types on the left and the
+list of resources of each type to the right. Double-clicking a resource opens
+the window for viewing its properties.</p>
+<p>You can also view the properties of a specific resource by right-clicking it
+and selecting &quot;Show Properties...&quot; from the context menu.</p>
+<p>If you check &quot;Show links&quot; in the properties dialog, you will see links from
+the resource to other resources. Double-clicking the link will open the linked
+resource.</p>
+<h2>Questions?</h2>
+<p>Feel free to ask your questions by email (<a href="mailto:feedback.omea@jetbrains.com">mailto:feedback.omea@jetbrains.com</a>),
+in the <a href="news://news.jetbrains.com/jetbrains.omea.openapi">jetbrains.omea.openapi</a> newsgroup
+at news.jetbrains.com or in the
+<a href="http://www.intellij.net/forums/forum.jsp?forum=58">Omea Plugin Development</a> forum.</p>
+
+</body>
+
+</html>

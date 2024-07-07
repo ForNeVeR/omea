@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+
+SPDX-License-Identifier: GPL-2.0-only
+-->
+<omniamea-plugin>
+	<actions namespace="JetBrains.Omea.DebugPlugin">
+		<main-menu>
+			<menu name="&amp;Debug" anchor="before:Help" />
+			<group id="DebugResources" menu="Debug">
+				<action class="BrowseResourcesAction" name="Browse Resources..." />
+				<action class="TraceOperationsAction" name="Trace ResourceStore Operations" />
+				<action class="ResourceBrowserSmokeTestAction" name="Run Resource Browser Smoke Test" />
+				<action class="RestrictResourceDeleteAction" name="Restrict resource deletion" />
+			</group>
+			<group id="DebugActions" menu="Debug">
+				<action class="ShowCacheWatchAction" name="Show CacheWatch" />
+				<action class="ThreadTimesAction" name="Browse AsyncProcessors..." />
+				<action class="ThrowExceptionAction" name="Throw Exception" />
+				<action class="SubmitBackgroundExceptionAction" name="Submit Background Exception" />
+				<action class="TraceFocusedControlAction" name="Trace Focused Control" />
+				<action class="LocateWebBrowserAction" name="Locate Core.WebBrowser" />
+				<action class="RefreshUnreadCountersAction" name="Refresh Unread Counters" />
+				<action class="RepairDatabaseAction" name="Repair Database on Next Run" />
+				<action class="ViewInResourceListView2Action" name="View in ResourceListView 2.0" />
+				<action class="ViewTreeInResourceListView2Action" name="View Tree in ResourceListView 2.0" />
+				<action class="RegisterQwertyProtocol" name="Register Qwerty Protocol" />
+				<action class="SettingOptionsForDebug" name="Open Setting Dialog for debugging..." />
+				<action class="StartOutlookAction" name="Open/Close Outlook.exe process" />
+				<action class="QueueSocketExceptionAction" name="Throw SocketException" />
+				<action class="TestDdeAction" name="Test DDE" />
+				<action class="GetNewsReadersStatAction" name="News Readers Statistics" />
+				<action class="TracePerformanceCountersAction" name="Trace Performance Counters" />
+				<action class="CleanOutlookDataAction" name="Clean Outlook store" />
+				<action class="ShowObscureColumnDescriptors" name="Count obscure column descriptors" />
+				<action class="CorrectObscureColumnDescriptors" name="Delete obscure column descriptors" />
+				<action class="ListUnlinkedConditions" name="List Unlinked Conditions" />
+      </group>
+			<group id="ContactActions" menu="Debug">
+				<action class="CalcLinksStatisticsAction" name="Calc Links Statistics" />
+				<action class="AnalyzeContactNamesAction" name="Clean repeatable contact names" />
+				<action class="RemoveHangedByBaseContactLinkContactNamesAction" name="Clean hanged (by BaseContact only) contact names" />
+				<action class="RemoveHangedContactNameswithoutEmailAction" name="Clean hanged (without EmailAccount link) contact names" />
+				<action class="CountSingleThusUnnecessaryContactNamesAction" name="Count single ContactNames" />
+				<action class="DeleteSingleThusUnnecessaryContactNamesAction" name="Delete single ContactNames" />
+			</group>
+			<group id="TextIndexActions" menu="Debug">
+				<action class="ShowDocIndexInfoAction" name="Dump doc index by ID...">
+					<filter class="TextIndexPresentFilter" />
+				</action>
+				<action class="ListUnindexedResourcesInTextIndexAction" name="Analyze unindexed resources...">
+					<filter class="TextIndexPresentFilter" />
+				</action>
+				<action class="DefragmentAction" name="Force Text Index Defragmentation...">
+					<filter class="TextIndexPresentFilter" />
+				</action>
+				<action class="DumpTermTrie" name="Dump terms trie">
+					<filter class="TextIndexPresentFilter" />
+				</action>
+			</group>
+		</main-menu>
+		<popup-menu>
+			<group id="DebugActions">
+				<action class="ShowResourcePropertiesAction" name="Show Properties..." />
+				<action class="ShowDocIndexInfoAction" name="Dump text index record">
+					<filter class="TextIndexPresentFilter" />
+				</action>
+				<action class="ViewSourceAction" name="View Source" />
+				<action class="RequestIndexingAction" name="Request Indexing" />
+				<action type="SearchView" class="InvalidateUnreadCounterAction" name="Invalidate Unread Counter" />
+				<action type="RSSFeed" class="DeleteETagAction" name="Delete ETag" />
+			</group>
+		</popup-menu>
+	</actions>
+</omniamea-plugin>

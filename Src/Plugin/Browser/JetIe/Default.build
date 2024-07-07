@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+
+SPDX-License-Identifier: GPL-2.0-only
+-->
+
+<project name="JetIe" default="JetIe.Build" currentframework="net-1.1">
+	<description>JetIe Family Internet Explorer Add-Ons build.</description>
+	<target name="JetIe.Build">
+		<echo message="Invoking IexploreOmea Build." />
+		<call target="IexploreOmea.Build" />
+		<echo message="Invoking IexploreBeelaxy Build." />
+		<call target="IexploreBeelaxy.Build" />
+	</target>
+	<include buildfile="IexploreOmea.build" />
+	<include buildfile="IexploreBeelaxy.build" />
+	<!-- Dummy targets for quick access to per-project builds -->
+	<target name="o"><call target="IexploreOmea.Build"/></target>
+	<target name="b"><call target="IexploreBeelaxy.Build"/></target>
+	<target name="d"><delete dir="NANT" failonerror="false"/></target>
+</project>

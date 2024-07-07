@@ -1,0 +1,1228 @@
+<!--
+SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+
+SPDX-License-Identifier: GPL-2.0-only
+-->
+<html>
+<!-- Sitemap 1.0 -->
+<object type="text/site properties">
+  <param name="SiteType" value="toc">
+  <param name="Image Width" value="16">
+  <param name="Window Styles" value="0x800002">
+  <param name="ExWindow Styles" value="0x100">
+</object>
+<ul>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Welcome">
+    <param name="Local" value="Omea_Help.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Introducing Omea Pro">
+    <param name="Local" value="overview\about_pro.html">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Introducing Omea Reader">
+    <param name="Local" value="overview\about_reader.html">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="What's New in Omea Reader">
+    <param name="Local" value="what_s_new_in_omea_reader.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="What's New in Omea Pro">
+    <param name="Local" value="What_s_New_in_Omea_Pro.htm">
+  </object>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Key Concepts">
+    <param name="Local" value="overview\key_concepts.html">
+  </object>
+  <ul>
+    <li><object type="text/sitemap">
+      <param name="Name" value="What are Resources?">
+      <param name="Local" value="overview\key_concepts.html#resources">
+    </object>
+    <li><object type="text/sitemap">
+      <param name="Name" value="Tracking Resources">
+      <param name="Local" value="overview\key_concepts.html#index">
+    </object>
+    <li><object type="text/sitemap">
+      <param name="Name" value="Organizing Resources">
+      <param name="Local" value="overview\key_concepts.html#organize">
+    </object>
+    <li><object type="text/sitemap">
+      <param name="Name" value="Finding Resources">
+      <param name="Local" value="overview\key_concepts.html#search">
+    </object>
+    </ul>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Quick Tour">
+    <param name="Local" value="overview\quick_tour.html">
+  </object>
+  <ul>
+    <li><object type="text/sitemap">
+      <param name="Name" value="Main Window">
+      <param name="Local" value="overview\quick_tour.html#mainwin">
+    </object>
+    <li><object type="text/sitemap">
+      <param name="Name" value="Main Menu">
+      <param name="Local" value="overview\quick_tour.html#menubar">
+    </object>
+    <li><object type="text/sitemap">
+      <param name="Name" value="Back-Forward Buttons">
+      <param name="Local" value="overview\quick_tour.html#prevnext">
+    </object>
+    <li><object type="text/sitemap">
+      <param name="Name" value="Workspace Controls">
+      <param name="Local" value="overview\quick_tour.html#workspaces">
+    </object>
+    <li><object type="text/sitemap">
+      <param name="Name" value="Shortcuts Bar">
+      <param name="Local" value="overview\quick_tour.html#shortcuts">
+    </object>
+    <li><object type="text/sitemap">
+      <param name="Name" value="Main Search">
+      <param name="Local" value="overview\quick_tour.html#search">
+    </object>
+    <li><object type="text/sitemap">
+      <param name="Name" value="Resource Tabs">
+      <param name="Local" value="overview\quick_tour.html#tabs">
+    </object>
+    <li><object type="text/sitemap">
+      <param name="Name" value="Inside Resource Tabs">
+      <param name="Local" value="overview\quick_tour.html#insidetabs">
+    </object>
+    <ul>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Left Sidebar">
+        <param name="Local" value="overview\quick_tour.html#navpanel">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Views and Categories Pane">
+        <param name="Local" value="overview\quick_tour.html#viewscats">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Resource-dependent Panes">
+        <param name="Local" value="overview\quick_tour.html#dependents">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Resource Items List">
+        <param name="Local" value="overview\quick_tour.html#resourceitemlist">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Item Viewer">
+        <param name="Local" value="overview\quick_tour.html#itemviewer">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Links &amp; Actions Panel">
+        <param name="Local" value="overview\quick_tour.html#linksactions">
+      </object>
+      </ul>
+    <li><object type="text/sitemap">
+      <param name="Name" value="To Do List">
+      <param name="Local" value="overview\redir_quicktour_todo.html">
+    </object>
+    <li><object type="text/sitemap">
+      <param name="Name" value="Status Bar">
+      <param name="Local" value="overview\quick_tour.html#statusbar">
+    </object>
+    </ul>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Getting Started">
+    <param name="Local" value="getstarted\getting_started.html">
+  </object>
+  <ul>
+    <li><object type="text/sitemap">
+      <param name="Name" value="Indexing Your Computer's Resources">
+      <param name="Local" value="getstarted\indexing_your_computers_resources.html">
+    </object>
+    <li><object type="text/sitemap">
+      <param name="Name" value="Configuring Options">
+      <param name="Local" value="getstarted\configuring_options.html">
+    </object>
+    </ul>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Organizing Your Resources">
+    <param name="Local" value="organizing\organizing_your_resources.html">
+  </object>
+  <ul>
+    <li><object type="text/sitemap">
+      <param name="Name" value="Categories">
+      <param name="Local" value="organizing\organizing_using_categories.html">
+    </object>
+    <ul>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Categories Concepts">
+        <param name="Local" value="organizing\organizing_using_categories.html#concepts">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Viewing Categories">
+        <param name="Local" value="organizing\organizing_using_categories.html#viewing">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Creating New Categories">
+        <param name="Local" value="organizing\organizing_using_categories.html#new">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Assign Hotkeys to Categories">
+        <param name="Local" value="organizing\organizing_using_categories.html#assignhotkeystocategories">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Renaming Categories">
+        <param name="Local" value="organizing\organizing_using_categories.html#renaming">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Removing Categories">
+        <param name="Local" value="organizing\organizing_using_categories.html#removing">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Filing Resources in Categories">
+        <param name="Local" value="organizing\organizing_using_categories.html#filing">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Viewing Contents of Subcategories">
+        <param name="Local" value="organizing\organizing_using_categories.html#subcategories">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Categorizing Web Pages">
+        <param name="Local" value="organizing\organizing_using_categories.html#categorizingwebpages">
+      </object>
+      </ul>
+    <li><object type="text/sitemap">
+      <param name="Name" value="Views">
+      <param name="Local" value="organizing\organizing_using_views.html">
+    </object>
+    <ul>
+      <li><object type="text/sitemap">
+        <param name="Name" value="The Default Views">
+        <param name="Local" value="organizing\organizing_using_views.html#default">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Categories as Views">
+        <param name="Local" value="organizing\organizing_using_views.html#categories">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Creating Custom Views">
+        <param name="Local" value="organizing\organizing_using_views.html#custom">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Creating New Views Manually">
+        <param name="Local" value="organizing\organizing_using_views.html#newmanual">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Creating Views from Search Results">
+        <param name="Local" value="organizing\organizing_using_views.html#newfromsearch">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Converting View to Action Rule">
+        <param name="Local" value="organizing\organizing_using_views.html#convertingtoactionrule">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Refreshing Views">
+        <param name="Local" value="organizing\organizing_using_views.html#refreshing">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Modifying Existing Views">
+        <param name="Local" value="organizing\organizing_using_views.html#modifying">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Removing Existing Views">
+        <param name="Local" value="organizing\organizing_using_views.html#removing">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Grouping Views in Folders">
+        <param name="Local" value="organizing\organizing_using_views.html#grouping">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Using the Views Manager">
+        <param name="Local" value="organizing\organizing_using_views.html#viewmanager">
+      </object>
+      </ul>
+    <li><object type="text/sitemap">
+      <param name="Name" value="Links">
+      <param name="Local" value="organizing\organizing_using_links.html">
+    </object>
+    <ul>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Creating Links">
+        <param name="Local" value="organizing\organizing_using_links.html#creating">
+        <param name="ImageNumber" value="33">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Viewing and Navigating Links">
+        <param name="Local" value="organizing\organizing_using_links.html#viewingandnavigating">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Creating Custom Links">
+        <param name="Local" value="organizing\organizing_using_links.html#customlinktypes">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Deleting Links">
+        <param name="Local" value="organizing\organizing_using_links.html#deleting">
+      </object>
+      </ul>
+    <li><object type="text/sitemap">
+      <param name="Name" value="Tasks (To Do)">
+      <param name="Local" value="organizing\organizing_using_tasks.html">
+    </object>
+    <ul>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Viewing Tasks">
+        <param name="Local" value="organizing\organizing_using_tasks.html#showhide">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Creating a New Task">
+        <param name="Local" value="organizing\organizing_using_tasks.html#new">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Editing Task Properties">
+        <param name="Local" value="organizing\organizing_using_tasks.html#editing">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Linking Resources to a Task">
+        <param name="Local" value="organizing\organizing_using_tasks.html#linking">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Removing a Task from the Tasks List">
+        <param name="Local" value="organizing\organizing_using_tasks.html#removing">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Viewing Task Status">
+        <param name="Local" value="organizing\organizing_using_tasks.html#viewingstatus">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Sending a Task to Someone Else">
+        <param name="Local" value="organizing\organizing_using_tasks.html#sending">
+      </object>
+      </ul>
+    <li><object type="text/sitemap">
+      <param name="Name" value="Workspaces">
+      <param name="Local" value="organizing\organizing_using_workspaces.html">
+    </object>
+    <ul>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Categories and Workspaces">
+        <param name="Local" value="organizing\organizing_using_workspaces.html#workspaces">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Creating a New Workspace">
+        <param name="Local" value="organizing\organizing_using_workspaces.html#new">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Switching between Workspaces">
+        <param name="Local" value="organizing\organizing_using_workspaces.html#switching">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Associating Resources with a Workspace">
+        <param name="Local" value="organizing\organizing_using_workspaces.html#resources">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Associating Categories with Workspaces">
+        <param name="Local" value="organizing\organizing_using_workspaces.html#categories">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Removing a Workspace">
+        <param name="Local" value="organizing\organizing_using_workspaces.html#removing">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Tips and Tricks">
+        <param name="Local" value="organizing\organizing_using_workspaces.html#tips">
+      </object>
+      <ul>
+        <li><object type="text/sitemap">
+          <param name="Name" value="Removing Resources from Custom Workspaces">
+          <param name="Local" value="organizing\organizing_using_workspaces.html#tips">
+        </object>
+        <li><object type="text/sitemap">
+          <param name="Name" value="Workspaces and Shortcuts">
+          <param name="Local" value="organizing\organizing_using_workspaces.html#workspacesandshortcuts">
+        </object>
+        <li><object type="text/sitemap">
+          <param name="Name" value="Other View in Workspaces">
+          <param name="Local" value="organizing\organizing_using_workspaces.html#otherviewwsp">
+        </object>
+        </ul>
+      </ul>
+    <li><object type="text/sitemap">
+      <param name="Name" value="Other Organizing Tools">
+      <param name="Local" value="organizing\index.html">
+    </object>
+    <ul>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Rules">
+        <param name="Local" value="organizing\using_rules.html">
+      </object>
+      <ul>
+        <li><object type="text/sitemap">
+          <param name="Name" value="Rules">
+          <param name="Local" value="organizing\using_rules.html">
+          <param name="ImageNumber" value="33">
+        </object>
+        <li><object type="text/sitemap">
+          <param name="Name" value="Font and Color Rules">
+          <param name="Local" value="organizing\using_formatting_rules.html">
+          <param name="ImageNumber" value="33">
+        </object>
+        </ul>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Annotations">
+        <param name="Local" value="organizing\using_annotations.html">
+      </object>
+      <ul>
+        <li><object type="text/sitemap">
+          <param name="Name" value="Annotating Resources">
+          <param name="Local" value="organizing\using_annotations.html">
+        </object>
+        <li><object type="text/sitemap">
+          <param name="Name" value="Accessing Annotated Resources">
+          <param name="Local" value="organizing\using_annotations.html#accessingannotated">
+        </object>
+        <li><object type="text/sitemap">
+          <param name="Name" value="Showing and Hiding Annotations in the Items List">
+          <param name="Local" value="organizing\using_annotations.html#annotationsonandoff">
+        </object>
+        <li><object type="text/sitemap">
+          <param name="Name" value="Annotating Web Pages using Browser Plugins">
+          <param name="Local" value="organizing\using_annotations.html#annotatingwebpages">
+        </object>
+        </ul>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Flags">
+        <param name="Local" value="organizing\using_flags.htm">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Resource Clipboard">
+        <param name="Local" value="organizing\resource_clipboard.html">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Shortcuts">
+        <param name="Local" value="organizing\using_shortcuts.html">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Notify Me">
+        <param name="Local" value="organizing\notify_me.html">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Custom Properties">
+        <param name="Local" value="organizing\custom_properties.html">
+      </object>
+      </ul>
+    </ul>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Working with Resources">
+    <param name="Local" value="organizing\jetlistview_enhancements.htm">
+  </object>
+  <ul>
+    <li><object type="text/sitemap">
+      <param name="Name" value="New Possibilities for Viewing Your Resources">
+      <param name="Local" value="organizing\jetlistview_enhancements.htm">
+    </object>
+    <li><object type="text/sitemap">
+      <param name="Name" value="E-mail ">
+      <param name="Local" value="using\email.html">
+    </object>
+    <li><object type="text/sitemap">
+      <param name="Name" value="E-mail">
+    </object>
+    <ul>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Communicating Using E-mail">
+        <param name="Local" value="using\com_email.html">
+      </object>
+      </ul>
+    <li><object type="text/sitemap">
+      <param name="Name" value="ICQ and Miranda Conversations">
+      <param name="Local" value="using\com_im.html">
+    </object>
+    <ul>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Instant Message Conversations">
+        <param name="Local" value="using\com_im.html">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Viewing Conversations">
+        <param name="Local" value="using\com_im.html#viewing">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Saving Conversations to Files">
+        <param name="Local" value="using\com_im.html#filing">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="E-mailing Conversations">
+        <param name="Local" value="using\com_im.html#mailing">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Searching Conversations">
+        <param name="Local" value="using\com_im.html#searching">
+      </object>
+      </ul>
+    <li><object type="text/sitemap">
+      <param name="Name" value="Newsgroups">
+      <param name="Local" value="using\com_news.html">
+    </object>
+    <ul>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Setting Newsgroup Options">
+        <param name="Local" value="using\com_news.html#setoptions">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Subscribing">
+        <param name="Local" value="using\com_news.html#subscribing">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Unsubscribing">
+        <param name="Local" value="using\com_news.html#unsubscribing">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Reading Articles">
+        <param name="Local" value="using\com_news.html#reading">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Viewing Threads/Conversations">
+        <param name="Local" value="using\com_news.html#conversations">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Working with News Attachments">
+        <param name="Local" value="using\com_news.html#attachments">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Marking as Read">
+        <param name="Local" value="using\com_news.html#markingread">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Hiding Read News Articles">
+        <param name="Local" value="using\com_news.html#hidingread">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Marking as Unread">
+        <param name="Local" value="using\com_news.html#markingunread">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Posting to Newsgroups">
+        <param name="Local" value="using\com_news.html#posting">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Replies">
+        <param name="Local" value="using\com_news.html#postreply">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Sending an Article to Someone Else">
+        <param name="Local" value="using\com_news.html#sending">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Printing Articles">
+        <param name="Local" value="using\com_news.html#printing">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Organizing Newsgroups">
+        <param name="Local" value="using\com_news.html#organizingnewsgroupsusingfolders">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Tips and Tricks">
+        <param name="Local" value="using\com_news.html#cancelingarticles">
+      </object>
+      <ul>
+        <li><object type="text/sitemap">
+          <param name="Name" value="Cancelling Sending News Articles">
+          <param name="Local" value="using\com_news.html#cancelingarticles">
+        </object>
+        <li><object type="text/sitemap">
+          <param name="Name" value="Copying News Article URL">
+          <param name="Local" value="using\com_news.html#copyingarticleurls">
+        </object>
+        <li><object type="text/sitemap">
+          <param name="Name" value="Saving News Articles">
+          <param name="Local" value="using\com_news.html#savingposts">
+        </object>
+        <li><object type="text/sitemap">
+          <param name="Name" value="Deleting News Articles">
+          <param name="Local" value="using\com_news.html#deletingarticles">
+        </object>
+        <li><object type="text/sitemap">
+          <param name="Name" value="Removing News Server">
+          <param name="Local" value="using\com_news.html#deletingnewsservers">
+        </object>
+        <li><object type="text/sitemap">
+          <param name="Name" value="Changing Properties of Several News Servers">
+          <param name="Local" value="using\com_news.html#customizingpropertiesofseveralnewsservers">
+        </object>
+        <li><object type="text/sitemap">
+          <param name="Name" value="Showing News Articles as Plain Text">
+          <param name="Local" value="using\com_news.html#plaintext">
+        </object>
+        </ul>
+      </ul>
+    <li><object type="text/sitemap">
+      <param name="Name" value="Feeds and Weblogs">
+      <param name="Local" value="using\com_feedsblogs.htm">
+    </object>
+    <ul>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Subscribing">
+        <param name="Local" value="using\com_feedsblogs.htm#subscribing">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Other Possibilities of Subscribing to Feeds">
+        <param name="Local" value="using\com_feedsblogs.htm#subscribingother">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Subscribing to Search Feeds">
+        <param name="Local" value="using\com_feedsblogs.htm#subcribingtosearchfeeds">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Importing Subscriptions">
+        <param name="Local" value="using\com_feedsblogs.htm#importing">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Unsubscribing">
+        <param name="Local" value="using\com_feedsblogs.htm#unsubscribing">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Feeds and Workspaces">
+        <param name="Local" value="using\com_feedsblogs.htm#feedsworkspaces">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Organizing Feeds with Feed Groups">
+        <param name="Local" value="using\com_feedsblogs.htm#feedgroups">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Reading Feed Postings">
+        <param name="Local" value="using\com_feedsblogs.htm#reading">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Viewing Comments">
+        <param name="Local" value="using\com_feedsblogs.htm#viewcomments">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Using Newspaper View">
+        <param name="Local" value="using\com_feedsblogs.htm#newspaper">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Marking Posts as Read">
+        <param name="Local" value="using\com_feedsblogs.htm#markingread">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Marking Posts as Unread">
+        <param name="Local" value="using\com_feedsblogs.htm#markingunread">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Expiring Feeds Posts">
+        <param name="Local" value="using\com_feedsblogs.htm#expiringfeeds">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Downloading Feeds Enclosures">
+        <param name="Local" value="using\com_feedsblogs.htm#downloadingenclosures">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Saving the Feed Posts">
+        <param name="Local" value="using\com_feedsblogs.htm#saving">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Customizing Properties of Several Feeds">
+        <param name="Local" value="using\com_feedsblogs.htm#customizing">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Sending Posts to Others">
+        <param name="Local" value="using\com_feedsblogs.htm#sending">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Printing Posts">
+        <param name="Local" value="using\com_feedsblogs.htm#printing">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Updating Feeds">
+        <param name="Local" value="using\com_feedsblogs.htm#updating">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Auto-updating Feeds Comments">
+        <param name="Local" value="using\com_feedsblogs.htm#autoupdatingcomments">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Renaming Feeds">
+        <param name="Local" value="using\com_feedsblogs.htm#renaming">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Tips and Tricks">
+        <param name="Local" value="using\com_feedsblogs.htm">
+      </object>
+      <ul>
+        <li><object type="text/sitemap">
+          <param name="Name" value="Posting New Comments to Feeds">
+          <param name="Local" value="using\com_feedsblogs.htm#postingnewcomments">
+        </object>
+        <li><object type="text/sitemap">
+          <param name="Name" value="Desktop Alerts for New Feed Posts and Enclosures">
+          <param name="Local" value="using\com_feedsblogs.htm#alerts">
+        </object>
+        <li><object type="text/sitemap">
+          <param name="Name" value="Remembering Selection in Feeds">
+          <param name="Local" value="using\com_feedsblogs.htm#selection">
+        </object>
+        <li><object type="text/sitemap">
+          <param name="Name" value="Importing Bloglines Subscription">
+          <param name="Local" value="using\com_feedsblogs.htm#importingsubscriptions">
+        </object>
+        <li><object type="text/sitemap">
+          <param name="Name" value="Exporting Feeds Subscriptions">
+          <param name="Local" value="using\com_feedsblogs.htm#exportingsubscriptions">
+        </object>
+        </ul>
+      </ul>
+    <li><object type="text/sitemap">
+      <param name="Name" value="Web Pages and Bookmarks">
+      <param name="Local" value="using\web_pages.html">
+    </object>
+    <ul>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Importing Existing Bookmarks from Different Browsers">
+        <param name="Local" value="using\web_pages.html#importing">
+        <param name="ImageNumber" value="11">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Synchronizing Bookmarks and Web Pages">
+        <param name="Local" value="using\web_pages.html#synchronizing">
+      </object>
+      <ul>
+        <li><object type="text/sitemap">
+          <param name="Name" value="Export to Internet Explorer">
+          <param name="Local" value="using\web_pages.html#exportie">
+        </object>
+        <li><object type="text/sitemap">
+          <param name="Name" value="Export to Mozilla Browsers">
+          <param name="Local" value="using\web_pages.html#exportieMozilla">
+        </object>
+        <li><object type="text/sitemap">
+          <param name="Name" value="Synchronizing Local and Online Pages">
+          <param name="Local" value="using\web_pages.html#synclocal">
+        </object>
+        </ul>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Setting Download Interval">
+        <param name="Local" value="using\web_pages.html#downloadinterval">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Adding New Bookmarks">
+        <param name="Local" value="using\web_pages.html#addbookmark">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Tips and Tricks">
+        <param name="Local" value="using\web_pages.html#tipsandtricks">
+      </object>
+      <ul>
+        <li><object type="text/sitemap">
+          <param name="Name" value="Creating Bookmarks from Viewed Pages">
+          <param name="Local" value="using\web_pages.html#bookmarkingviewed">
+        </object>
+        <li><object type="text/sitemap">
+          <param name="Name" value="Creating Bookmark Folders">
+          <param name="Local" value="using\web_pages.html#creating">
+        </object>
+        <li><object type="text/sitemap">
+          <param name="Name" value="Renaming Bookmarks Folder">
+          <param name="Local" value="using\web_pages.html#renamingbookmarksfolder">
+        </object>
+        <li><object type="text/sitemap">
+          <param name="Name" value="Setting Properties of Bookmarks and Folders">
+          <param name="Local" value="using\web_pages.html#customizingbookmarkfoldersproperties">
+        </object>
+        <li><object type="text/sitemap">
+          <param name="Name" value="Organizing Web Pages">
+          <param name="Local" value="using\web_pages.html#organizing">
+        </object>
+        <li><object type="text/sitemap">
+          <param name="Name" value="Annotate and Categorize Bookmarks">
+          <param name="Local" value="using\web_pages.html#notecategorize">
+        </object>
+        <li><object type="text/sitemap">
+          <param name="Name" value="Deleting Bookmarks">
+          <param name="Local" value="using\web_pages.html#deleting">
+        </object>
+        </ul>
+      </ul>
+    <li><object type="text/sitemap">
+      <param name="Name" value="Clippings">
+      <param name="Local" value="using\clippings.html">
+    </object>
+    <ul>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Creating a Clipping">
+        <param name="Local" value="using\clippings.html#creating">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Viewing Clippings">
+        <param name="Local" value="using\clippings.html#viewing">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Viewing Clippings as Newspaper">
+        <param name="Local" value="using\clippings.html#clippingsnewspaper">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Editing Clippings">
+        <param name="Local" value="using\clippings.html#openingandediting">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Creating Clippings Using Browser Plugins">
+        <param name="Local" value="using\clippings.html#otherpossibilities">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Tips and Tricks">
+        <param name="Local" value="using\clippings.html">
+      </object>
+      <ul>
+        <li><object type="text/sitemap">
+          <param name="Name" value="Clippings and Categories">
+          <param name="Local" value="using\clippings.html#clippingsandcategories">
+        </object>
+        <li><object type="text/sitemap">
+          <param name="Name" value="Annotating a Clipping">
+          <param name="Local" value="using\clippings.html#annotating">
+        </object>
+        <li><object type="text/sitemap">
+          <param name="Name" value="Marking Clippings with Flags">
+          <param name="Local" value="using\clippings.html#flagging">
+        </object>
+        <li><object type="text/sitemap">
+          <param name="Name" value="Linking Clippings with Other Resources">
+          <param name="Local" value="using\clippings.html#linking">
+        </object>
+        <li><object type="text/sitemap">
+          <param name="Name" value="Saving Clippings to File">
+          <param name="Local" value="using\clippings.html#savingtofile">
+        </object>
+        <li><object type="text/sitemap">
+          <param name="Name" value="Forwarding Clippings">
+          <param name="Local" value="using\clippings.html#forwarding">
+        </object>
+        </ul>
+      </ul>
+    <li><object type="text/sitemap">
+      <param name="Name" value="Files">
+      <param name="Local" value="using\files.htm">
+    </object>
+    <ul>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Working with Local Files">
+        <param name="Local" value="using\files.htm">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Opening and Viewing Files">
+        <param name="Local" value="using\files.htm#openingandviewing">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Locating Files on Disk">
+        <param name="Local" value="using\files.htm#locatingondisk">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Renaming Files and Folders">
+        <param name="Local" value="using\files.htm#renamingfilesandfolders">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Copying and Moving Files">
+        <param name="Local" value="using\files.htm#copyandmovefilesandfolders">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Creating New Folders">
+        <param name="Local" value="using\files.htm#newfolders">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Sending Files by E-mail">
+        <param name="Local" value="using\files.htm#sendingbymail&lt;\a">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Printing Files Contents">
+        <param name="Local" value="using\files.htm#printingfiles">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Organizing Files and Folders">
+        <param name="Local" value="using\files.htm#organizingfilesandfolders">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Opening in Associated Applications">
+        <param name="Local" value="using\files.htm#openingassociatedapplications">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Deleting Files and Folders">
+        <param name="Local" value="using\files.htm#deletingfilesandfolders">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Managing Indexing Options">
+        <param name="Local" value="using\files.htm#managingindexingoptions">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Working with News Attachments">
+        <param name="Local" value="using\working_with_files.htm">
+      </object>
+      </ul>
+    <li><object type="text/sitemap">
+      <param name="Name" value="Contacts">
+      <param name="Local" value="using\manage_contacts.html">
+    </object>
+    <ul>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Viewing Contacts">
+        <param name="Local" value="using\manage_contacts.html#viewing">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Creating and Modifying Contacts">
+        <param name="Local" value="using\manage_contacts.html#createmodify">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Merging Contacts">
+        <param name="Local" value="using\manage_contacts.html#merging">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Extracting Merged Contacts">
+        <param name="Local" value="using\manage_contacts.html#extracting">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Tips and Tricks">
+        <param name="Local" value="using\manage_contacts.html#tips">
+      </object>
+      <ul>
+        <li><object type="text/sitemap">
+          <param name="Name" value="Relevant Options Settings">
+          <param name="Local" value="using\manage_contacts.html#options">
+        </object>
+        <li><object type="text/sitemap">
+          <param name="Name" value="Significance of Contact Icons">
+          <param name="Local" value="using\manage_contacts.html#icons">
+        </object>
+        <li><object type="text/sitemap">
+          <param name="Name" value="Moving Contacts Between Address Books">
+          <param name="Local" value="using\manage_contacts.html#moving">
+        </object>
+        <li><object type="text/sitemap">
+          <param name="Name" value="Contacts and Workspaces">
+          <param name="Local" value="using\manage_contacts.html#workspaces">
+        </object>
+        <li><object type="text/sitemap">
+          <param name="Name" value="Sharing Contacts with Others">
+          <param name="Local" value="using\manage_contacts.html#sharing">
+        </object>
+        </ul>
+      </ul>
+    </ul>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Working with Browser Plugins">
+    <param name="Local" value="using\working_with_mozilla_browser_plugin.htm">
+  </object>
+  <ul>
+    <li><object type="text/sitemap">
+      <param name="Name" value="Working with Mozilla Plugin">
+      <param name="Local" value="using\working_with_mozilla_browser_plugin.htm">
+    </object>
+    <ul>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Introduction">
+        <param name="Local" value="using\working_with_mozilla_browser_plugin.htm">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Installing the Plugin">
+        <param name="Local" value="using\working_with_mozilla_browser_plugin.htm#installingomeaconnector">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Updating the Plugin">
+        <param name="Local" value="using\working_with_mozilla_browser_plugin.htm#updatingomeaconnector">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Subscribing to Feeds">
+        <param name="Local" value="using\working_with_mozilla_browser_plugin.htm#subscribingomeaconnector">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Creating Clippings">
+        <param name="Local" value="using\working_with_mozilla_browser_plugin.htm#omeaconnectorcreatingclipping">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Annotating Web Pages">
+        <param name="Local" value="using\working_with_mozilla_browser_plugin.htm#omeaconnectorannotatingwebpage">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Customizing the Plugin Options">
+        <param name="Local" value="using\working_with_mozilla_browser_plugin.htm#customizingomeaconnectoroptions">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Uninstalling the Plugin">
+        <param name="Local" value="using\working_with_mozilla_browser_plugin.htm#uninstallingomeaconnector">
+      </object>
+      </ul>
+    <li><object type="text/sitemap">
+      <param name="Name" value="Working with Internet Explorer Add-on">
+      <param name="Local" value="using\working_with_ie_add-on.htm">
+    </object>
+    <ul>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Introduction">
+        <param name="Local" value="using\working_with_ie_add-on.htm#workingwithIEplugin">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Subscribing to Feeds">
+        <param name="Local" value="using\working_with_ie_add-on.htm#subscribingtofeedIE">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Creating Clippings">
+        <param name="Local" value="using\working_with_ie_add-on.htm#creatingclippingIE">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Annotating Web Pages">
+        <param name="Local" value="using\working_with_ie_add-on.htm#annotatingwebpageIE">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Custominzing the Add-on Options">
+        <param name="Local" value="using\working_with_ie_add-on.htm#settingIEpluginoptions">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Updating the Add-on">
+        <param name="Local" value="using\working_with_ie_add-on.htm#updatingIEplugin">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Uninstalling the Add-on">
+        <param name="Local" value="using\working_with_ie_add-on.htm#uninstallingIEplugin">
+      </object>
+      </ul>
+    </ul>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Finding Resources">
+    <param name="Local" value="search\index.html">
+  </object>
+  <ul>
+    <li><object type="text/sitemap">
+      <param name="Name" value="Basic Search">
+      <param name="Local" value="search\basic_search.html">
+    </object>
+    <li><object type="text/sitemap">
+      <param name="Name" value="Advanced Search">
+      <param name="Local" value="search\adv_search.html">
+    </object>
+    <li><object type="text/sitemap">
+      <param name="Name" value="Quick Find">
+      <param name="Local" value="search\quick_find.html">
+    </object>
+    <li><object type="text/sitemap">
+      <param name="Name" value="Find in Resource">
+      <param name="Local" value="search\find_in_resource.html">
+    </object>
+    </ul>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Reference">
+    <param name="Local" value="reference\index.html">
+  </object>
+  <ul>
+    <li><object type="text/sitemap">
+      <param name="Name" value="Dialogs">
+    </object>
+    <ul>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Apply Rules Dialog">
+        <param name="Local" value="reference\apply_rules_dialog.htm">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Choose Resource Types Dialog">
+        <param name="Local" value="reference\Choose_Recourse_Types_Dialog.htm">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Contact Dialog">
+        <param name="Local" value="reference\contacts_dialog.html">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Edit Auto Expiration Rules Dialog">
+        <param name="Local" value="reference\auto_expiration_rule_dialog.htm">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Edit Time Span Dialog">
+        <param name="Local" value="reference\edit_time_span_dialog.htm">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Feed Properties Dialog">
+        <param name="Local" value="reference\feed_properties_dialog.html">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Manage Newsgroups Dialog">
+        <param name="Local" value="reference\manage_newsgroups.html">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="New Action Rule/Edit Action Rule Dialog">
+        <param name="Local" value="reference\new_edit_rule.html">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="News Server Properties/Add News Server Dialog">
+        <param name="Local" value="reference\news_server_properties.html">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Resource List Columns Dialog">
+        <param name="Local" value="reference\columns_dialog.html">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Rules Manager Dialog">
+        <param name="Local" value="reference\manage_rules.html">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Select Rule Actions Dialog">
+        <param name="Local" value="reference\select_rule_actions.html">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Select Conditions Dialog">
+        <param name="Local" value="reference\select_conditions.html">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Tray Icon Rule">
+        <param name="Local" value="reference\tray_icon_rule.htm">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Views Manager Dialog">
+        <param name="Local" value="reference\manage_views_.html">
+      </object>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Workspaces Dialog">
+        <param name="Local" value="reference\manage_workspaces.html">
+      </object>
+      </ul>
+    <li><object type="text/sitemap">
+      <param name="Name" value="Options Dialog">
+      <param name="Local" value="reference\options_dialog.html">
+    </object>
+    <ul>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Omea">
+      </object>
+      <ul>
+        <li><object type="text/sitemap">
+          <param name="Name" value="Default Application">
+          <param name="Local" value="reference\default_application.htm">
+        </object>
+        <li><object type="text/sitemap">
+          <param name="Name" value="Delete Confirmations">
+          <param name="Local" value="reference\delete_confirmations.htm">
+        </object>
+        <li><object type="text/sitemap">
+          <param name="Name" value="General">
+          <param name="Local" value="reference\general.html">
+        </object>
+        <li><object type="text/sitemap">
+          <param name="Name" value="Mail Format">
+          <param name="Local" value="reference\mail_format.html">
+        </object>
+        <li><object type="text/sitemap">
+          <param name="Name" value="Paths">
+          <param name="Local" value="reference\paths.html">
+        </object>
+        <li><object type="text/sitemap">
+          <param name="Name" value="Plugins">
+          <param name="Local" value="reference\plugins.html">
+        </object>
+        <li><object type="text/sitemap">
+          <param name="Name" value="Proxy Configuration">
+          <param name="Local" value="reference\proxy_configuration.html">
+        </object>
+        <li><object type="text/sitemap">
+          <param name="Name" value="User Information">
+          <param name="Local" value="reference\user_info.html">
+        </object>
+        </ul>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Folders &amp; Files">
+      </object>
+      <ul>
+        <li><object type="text/sitemap">
+          <param name="Name" value="File Options">
+          <param name="Local" value="reference\file_options.htm">
+        </object>
+        <li><object type="text/sitemap">
+          <param name="Name" value="Indexed Folders">
+          <param name="Local" value="reference\indexed_folders.html">
+        </object>
+        </ul>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Instant Messaging">
+      </object>
+      <ul>
+        <li><object type="text/sitemap">
+          <param name="Name" value="ICQ Options">
+          <param name="Local" value="reference\icq.html">
+        </object>
+        <li><object type="text/sitemap">
+          <param name="Name" value="Miranda Options">
+          <param name="Local" value="reference\miranda.html">
+        </object>
+        </ul>
+      <li><object type="text/sitemap">
+        <param name="Name" value="Internet">
+      </object>
+      <ul>
+        <li><object type="text/sitemap">
+          <param name="Name" value="Favorites">
+          <param name="Local" value="reference\favorites.html">
+        </object>
+        <li><object type="text/sitemap">
+          <param name="Name" value="Feeds">
+          <param name="Local" value="reference\feeds.html">
+        </object>
+        <li><object type="text/sitemap">
+          <param name="Name" value="Feeds Enclosures">
+          <param name="Local" value="reference\feeds_enclosures.htm">
+        </object>
+        <li><object type="text/sitemap">
+          <param name="Name" value="Mozilla Bookmarks">
+          <param name="Local" value="reference\mozilla_bookmarks.html">
+        </object>
+        <li><object type="text/sitemap">
+          <param name="Name" value="Newsgroups">
+          <param name="Local" value="reference\news.html">
+        </object>
+        <li><object type="text/sitemap">
+          <param name="Name" value="Opera Bookmarks">
+          <param name="Local" value="reference\opera_bookmarks.htm">
+        </object>
+        <li><object type="text/sitemap">
+          <param name="Name" value="Web Pages">
+          <param name="Local" value="reference\web_pages.html">
+        </object>
+        </ul>
+      <li><object type="text/sitemap">
+        <param name="Name" value="MS Outlook">
+      </object>
+      <ul>
+        <li><object type="text/sitemap">
+          <param name="Name" value="Outlook Folders">
+          <param name="Local" value="reference\outlook_folders.html">
+        </object>
+        <li><object type="text/sitemap">
+          <param name="Name" value="Outlook General">
+          <param name="Local" value="reference\outlook_general.html">
+        </object>
+        <li><object type="text/sitemap">
+          <param name="Name" value="Outlook Information Stores">
+          <param name="Local" value="reference\outlook_infostores.html">
+        </object>
+        <li><object type="text/sitemap">
+          <param name="Name" value="Outlook Tasks">
+          <param name="Local" value="reference\outlook_tasks.htm">
+        </object>
+        <li><object type="text/sitemap">
+          <param name="Name" value="Outlook Address Books">
+          <param name="Local" value="reference\outlook_address_books.htm">
+        </object>
+        </ul>
+      </ul>
+    <li><object type="text/sitemap">
+      <param name="Name" value="Keyboard Shortcuts">
+      <param name="Local" value="reference\keyboard_shortcuts.html">
+    </object>
+    <li><object type="text/sitemap">
+      <param name="Name" value="Search Query Syntax">
+      <param name="Local" value="reference\query_syntax.html">
+    </object>
+    </ul>
+  <li><object type="text/sitemap">
+    <param name="Name" value="Appendix">
+  </object>
+  <ul>
+    <li><object type="text/sitemap">
+      <param name="Name" value="Acknowledgements">
+      <param name="Local" value="appendix\acknowledgements.html">
+    </object>
+    <li><object type="text/sitemap">
+      <param name="Name" value="License Agreement">
+      <param name="Local" value="appendix\license_agreement.html">
+    </object>
+    </ul>
+</ul>
+</html>

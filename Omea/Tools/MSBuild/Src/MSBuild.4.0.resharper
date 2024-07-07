@@ -1,9 +1,0 @@
-<Configuration>
-  <SolutionAnalysisSettings>
-    <SkipFilesAndFolders>
-      <Item>A7BE75CF-F333-4C50-B3F8-E96A66243289/f:Ilasm.targets</Item>
-      <Item>339A1998-D194-47E6-B9AF-617E41E1F04D/f:JScript.targets</Item>
-      <Item>9365A814-45CC-4BFE-BF42-691E221524CB/d:Infra/f:SelfRegHarvester.cs</Item>
-    </SkipFilesAndFolders>
-  </SolutionAnalysisSettings>
-</Configuration>

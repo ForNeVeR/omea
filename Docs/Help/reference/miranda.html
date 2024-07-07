@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--
+SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+
+SPDX-License-Identifier: GPL-2.0-only
+-->
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>Miranda Options</title>
+    <meta http-equiv="content-type" content="text/html" charset="windows-1252" />
+    <meta name="copyright" content="Copyright (c)2004 JetBrains, Inc." />
+    <meta name="topic-check-list" content="Added To TOC" />
+    <link rel="StyleSheet" href="../help.css" />
+    <meta name="build tags" content="PRO" /> <!-- This entire topic appears only in Omea Pro -->
+</head>
+<body>
+
+<div id="helpHeader">
+   <div id="helpHeaderImg"></div>
+	<p class="helpHeader">Omea Pro Help: Reference: Options: Miranda</p>
+</div>
+<div id="mainContent">
+
+   <h1>Miranda</h1>
+   <p class="opt">You can access this option from the Main menu: <strong>Tools | Options: Instant Messaging: Miranda</strong></p>
+   <p>This page contains options that control how Omea works with the Miranda
+   instant messaging program. Note that the Miranda <a href="plugins.html">plugin</a>
+   must be installed and enabled.</p>
+   <p><img src="../images/sshots/dialogs/pro/options_miranda.png" alt="Options Dialog: ICQ options" width="678" height="571" /></p>
+   <p class="caption">Miranda options in the Options Dialog
+   </p>
+   <h2>Miranda Profile to Index</h2>
+   <p>This list shows the Miranda profiles on your computer and enables you to choose one or more (or
+      none) to include in the <a href="../getstarted/indexing_your_computers_resources.html">index</a>.</p>
+  	<ul>
+	   <li>Click on a profile to select it for inclusion in the index</li>
+	   <li>Shift + click on profile names to select more than one profile (if more than one is present)</li>
+	   <li>Click <em>&lt;none&gt;</em> to exclude all profiles from the index.</li>
+	</ul>
+
+  <h2>Synchronize Database</h2>
+  <p>This group provides options for controlling when Omea indexes incoming and outgoing Miranda messages.</p>
+
+  	<div class="indent">
+  		<h3>Immediately</h3>
+  		<p>All messages are indexed immediately when sent or received. Depending on the volume of traffic
+  		you might notice a slight, momentary performance slowdown as indexing takes place. However, the messages are immediately
+  		searchable and can be linked (to a Task, for example).</p>
+
+  		<h3>On Startup</h3>
+  		<p>Miranda messages are not indexed until the next time you start Omea. You will not be able to
+  		search or link new messages during the current session.</p>
+	</div>
+   <h2>Maximum Time Span Between Messages</h2>
+   <p>Specifies the maximum time lapse between messages in the same conversation. Messages that occur after the specified interval are treated as belonging to a different conversation. Set the maximum time interval in the Minutes box.</p>
+   <h2>Create Categories From Contact Groups</h2>
+   <p>When checked, Omea will create <a href="../overview/key_concepts.html#organize">Categories</a> from Miranda Contact Groups.</p>
+   <h2>Show Latest Messages in Conversations on Top</h2>
+   <p>When checked, the most recent messages will be displayed on the top of  the <em>Preview pane</em> when the conversation is selected in the <strong>Items List</strong>). </p>
+   <div id="seealso">
+		<p class="seealso"><strong>See also:</strong></p>
+  	    <ul>
+		   <li class="seealso"><a href="options_dialog.html">Options dialog</a></li>
+		   <li class="seealso"><a href="icq.html">ICQ Options</a></li>
+       </ul>
+  </div>
+
+</div>
+<!-- LAST SPELLCHECK: 31 Aug 2004 -->
+<!-- Conditional Text & Build Tags complete! 20 Sept 2004 -->
+</body>
+
+</html>

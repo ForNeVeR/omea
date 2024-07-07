@@ -1,0 +1,179 @@
+<?xml version="1.0" ?>
+<!--
+SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+
+SPDX-License-Identifier: GPL-2.0-only
+-->
+
+<project name="omeaconnector" default="build">
+  <description>OmeaConnector Mozilla plugin.</description>
+
+  <!-- Version -->
+
+  <property name="project.version.major" value="1.0"/>
+
+  <if propertyexists="build.number">
+    <property name="project.version"     value="${project.version.major}.${build.number}" />
+  </if>
+
+  <ifnot propertyexists="build.number">
+    <property name="project.version"     value="${project.version.major}.0" />
+  </ifnot>
+
+  <!-- Short project name, files' names will be based on this -->
+  <property name="project.name"        value="omeaconnector" />
+
+  <!-- Human-readanle plugin name -->
+  <property name="project.displayname"  value="Omea Connector" />
+  <!-- Full name of author -->
+  <property name="project.author"       value="JetBrains s.r.o." />
+  <!-- Short name of author -->
+  <property name="project.author.short" value="JetBrains" />
+  <!-- Short description of plugin -->
+  <property name="project.description"  value="Adds some useful actions to Mozilla/Firefox, allowing to integrate it with Omea Reader/Omea Pro." />
+  <!-- Plugin's homepage URL -->
+  <property name="project.url"          value="http://www.jetbrains.com/omea/" />
+
+
+  <property name="dir.output"      value="__output" />
+
+  <!-- Valid only for Lev's computer -->
+  <property name="firefox.jarplace"   value="C:/Documents and Settings/Lev.Serebryakov/Application Data/Mozilla/Firefox/Profiles/f7xcb9nx.default/extensions/{c9d90e85-b8c0-4f29-9c37-3c5173aaf7cf}/chrome" />
+  <property name="firefox.xpcomplace" value="C:/Documents and Settings/Lev.Serebryakov/Application Data/Mozilla/Firefox/Profiles/f7xcb9nx.default/extensions/{c9d90e85-b8c0-4f29-9c37-3c5173aaf7cf}/" />
+  <property name="mozilla.jarplace"   value="C:/Documents and Settings/Lev.Serebryakov/Application Data/Mozilla/Profiles/default/zqs0h4dm.slt/chrome" />
+  <property name="mozilla.xpcomplace" value="C:/Program Files/mozilla.org/Mozilla/1.7.5/" />
+
+  <!-- For XPT Building -->
+  <property name="program.xpidl"      value="C:/gecko-sdk/bin/xpidl.exe" />
+  <property name="program.xpidl.args" value="-IC:/gecko-sdk/idl" />
+  <property name="program.p4"         value="C:/Program Files/Perforce/p4.exe" />
+
+  <!-- Set of @VARIABLES@, substituted in all source files -->
+  <filterchain id="substitutions">
+    <replacetokens>
+      <token key="NAME"        value="${project.name}" />
+      <token key="VERSION"     value="${project.version}" />
+      <token key="DISPLAYNAME" value="${project.displayname}" />
+      <token key="AUTHOR"      value="${project.author}" />
+      <token key="AUTHORSHORT" value="${project.author.short}" />
+      <token key="DESCRIPTION" value="${project.description}" />
+      <token key="URL"         value="${project.url}" />
+    </replacetokens>
+  </filterchain>
+
+  <!-- XPI build target -->
+  <target name="build" depends="chromejar">
+    <!-- Copy all files for XPI but JAR file (it is ready!) -->
+    <copy todir="${dir.output}">
+      <fileset>
+        <include name="components/*" />
+        <exclude name="components/*.idl" />
+        <include name="install.js" />
+        <include name="install.rdf" />
+        <include name="license.txt" />
+      </fileset>
+      <filterchain refid="substitutions" />
+    </copy>
+
+    <!-- Reset readonly attribute -->
+    <attrib normal="true">
+      <fileset basedir="${dir.output}">
+        <include name="**/*" />
+      </fileset>
+    </attrib>
+
+    <!-- Zip XPI file -->
+    <zip zipfile="${project.name}-ff-mz-${project.version}.xpi" ziplevel="9">
+      <fileset basedir="${dir.output}">
+        <include name="**/*" />
+      </fileset>
+    </zip>
+    <copy file="${project.name}-ff-mz-${project.version}.xpi" tofile="${project.name}.xpi"/>
+    <!-- Delete temporary directory -->
+    <delete dir="${dir.output}" />
+  </target>
+
+  <!-- Build JAR file with all chrome content -->
+  <target name="chromejar" depends="clean">
+    <!-- Make temp directory to put processed files -->
+    <mkdir dir="${dir.output}/chrome"/>
+
+    <!-- Copy all chrome files, substitute all @VARIABLES@ -->
+    <copy todir="${dir.output}/chrome">
+      <fileset basedir="chrome">
+        <include name="**/*" />
+      </fileset>
+      <filterchain refid="substitutions" />
+    </copy>
+
+    <!-- Reset readonly attribute -->
+    <attrib normal="true">
+      <fileset basedir="${dir.output}/chrome">
+        <include name="**/*" />
+      </fileset>
+    </attrib>
+
+    <!-- Make JAR file -->
+    <zip zipfile="${dir.output}/chrome/${project.name}.jar" ziplevel="9">
+      <fileset basedir="${dir.output}/chrome">
+        <include name="**/*" />
+      </fileset>
+    </zip>
+
+    <!-- Remove all temp content -->
+    <delete>
+      <fileset basedir="${dir.output}/chrome">
+        <include name="**/*" />
+        <exclude name="${project.name}.jar" />
+      </fileset>
+    </delete>
+  </target>
+
+  <!-- Make XPT from IDL -->
+  <target name="xpt">
+    <exec workingdir="components" program="${program.p4}" commandline="edit *.xpt" />
+    <foreach item="File" property="idl">
+      <in>
+        <items>
+          <include name="components/*.idl"/>
+        </items>
+      </in>
+      <do>
+        <exec workingdir="components" program="${program.xpidl}" commandline="${program.xpidl.args} -m typelib ${idl}" />
+      </do>
+    </foreach>
+    <exec workingdir="components" program="p4submit.bat" commandline='../xptchangespec.txt' />
+  </target>
+
+  <!-- Overwrite already installed plugin in FireFox. -->
+  <target name="ffupdate" depends="chromejar">
+    <copy file="${dir.output}/chrome/${project.name}.jar" tofile="${firefox.jarplace}/${project.name}.jar" />
+    <delete file="${dir.output}/chrome/${project.name}.jar" />
+    <copy todir="${firefox.xpcomplace}">
+      <fileset>
+        <include name="components/*" />
+        <exclude name="components/*.idl" />
+      </fileset>
+      <filterchain refid="substitutions" />
+    </copy>
+  </target>
+
+  <!-- Overwrite already installed plugin in Mozilla. -->
+  <target name="msupdate" depends="chromejar">
+    <copy file="${dir.output}/chrome/${project.name}.jar" tofile="${mozilla.jarplace}/${project.name}.jar" />
+    <delete file="${dir.output}/chrome/${project.name}.jar" />
+    <copy todir="${mozilla.xpcomplace}">
+      <fileset>
+        <include name="components/*" />
+        <exclude name="components/*.idl" />
+      </fileset>
+      <filterchain refid="substitutions" />
+    </copy>
+  </target>
+
+  <!-- Delete all generated content -->
+  <target name="clean">
+    <delete file="${project.name}-ff-mz-${project.version}.xpi" failonerror="false" />
+    <delete dir="${dir.output}"  failonerror="false" />
+  </target>
+</project>

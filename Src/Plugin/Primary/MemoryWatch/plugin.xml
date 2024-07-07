@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+
+SPDX-License-Identifier: GPL-2.0-only
+-->
+<omniamea-plugin>
+	<actions namespace="JetBrains.Omea.MemoryWatchPlugin">
+		<main-menu>
+			<menu name="&amp;Debug" anchor="before:Help" />
+			<group id="DebugMemoryActions" menu="Debug">
+				<action class="ShowMemoryWatchAction" name="Memory Watcher..." />
+			</group>
+		</main-menu>
+	</actions>
+</omniamea-plugin>

@@ -1,0 +1,35 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Librarian", "Librarian.csproj", "{11C014B8-1EF8-4029-8B76-28BE4F2DC819}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SourceCodeControl) = preSolution
+		SccNumberOfProjects = 2
+		SccProjectName0 = Perforce\u0020Project
+		SccLocalPath0 = .
+		SccProvider0 = MSSCCI:Perforce\u0020SCM
+		CanCheckoutShared = true
+		SolutionUniqueID = {98668B30-5583-4E87-A208-7E825AFA06B9}
+		SccProjectUniqueName1 = Librarian.csproj
+		SccLocalPath1 = .
+		CanCheckoutShared = true
+	EndGlobalSection
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{11C014B8-1EF8-4029-8B76-28BE4F2DC819}.Debug.ActiveCfg = Debug|.NET
+		{11C014B8-1EF8-4029-8B76-28BE4F2DC819}.Debug.Build.0 = Debug|.NET
+		{11C014B8-1EF8-4029-8B76-28BE4F2DC819}.Release.ActiveCfg = Release|.NET
+		{11C014B8-1EF8-4029-8B76-28BE4F2DC819}.Release.Build.0 = Release|.NET
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+	GlobalSection(DPCodeReviewSolutionGUID) = preSolution
+		DPCodeReviewSolutionGUID = {00000000-0000-0000-0000-000000000000}
+	EndGlobalSection
+EndGlobal

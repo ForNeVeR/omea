@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+
+SPDX-License-Identifier: GPL-2.0-only
+-->
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<UsingTask TaskName="JetBrains.Build.Omea.Tasks.LocalInstallData" AssemblyFile="JetBrains.Build.Omea.dll" />
+	<UsingTask TaskName="JetBrains.Build.Omea.Tasks.Reg2Wxs" AssemblyFile="JetBrains.Build.Omea.dll" />
+	<UsingTask TaskName="JetBrains.Build.Omea.Tasks.WixInstallationData" AssemblyFile="JetBrains.Build.Omea.dll" />
+	<UsingTask TaskName="JetBrains.Build.Omea.Tasks.WixProductBinaries" AssemblyFile="JetBrains.Build.Omea.dll" />
+	<UsingTask TaskName="JetBrains.Build.Omea.Tasks.WixProductReferences" AssemblyFile="JetBrains.Build.Omea.dll" />
+	<UsingTask TaskName="JetBrains.Build.Omea.Tasks.ZipFolders" AssemblyFile="JetBrains.Build.Omea.dll" />
+</Project>

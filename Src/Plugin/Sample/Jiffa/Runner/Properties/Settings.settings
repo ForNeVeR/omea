@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+
+SPDX-License-Identifier: GPL-2.0-only
+-->
+<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
+	<Profiles>
+		<Profile Name="(Default)" />
+	</Profiles>
+	<Settings />
+</SettingsFile>

@@ -1,7 +1,0 @@
-[Target:WebHelp5]
-ActiveSkinName=Default
-ActiveSkinPathName=!SkinSubFolder!\Default\Default.skn
-ActionID For Generation=1001
-ResultFileName=WebHelp\OmniaMeaHelp.htm
-Remove Folder with prompt=1
-SupportMas_Prj=1

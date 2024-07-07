@@ -1,0 +1,150 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--
+SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+
+SPDX-License-Identifier: GPL-2.0-only
+-->
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>Newsgroups</title>
+    <meta http-equiv="content-type" content="text/html" charset="windows-1252" />
+    <meta name="copyright" content="Copyright (c)2004 JetBrains, Inc." />
+    <meta name="topic-check-list" content="Added To TOC" />
+    <link rel="StyleSheet" href="../help.css" />
+</head>
+<body>
+
+<!-- Conditional Headers -->
+<div style="x-condition: PRO;">
+	<div id="helpHeader">
+		<div id="helpHeaderImg"></div>
+		<p class="helpHeader">Omea Pro Help: Reference: Options: Internet: Newsgroups</p>
+	</div>
+</div>
+
+<div style="x-condition: READER;">
+	<div id="helpHeader">
+		<div id="helpHeaderImg"></div>
+		<p class="helpHeader">Omea Reader Help: Reference: Options: Internet: Newsgroups</p>
+	</div>
+</div>
+
+<div id="mainContent">
+   	<h1>Newsgroups</h1>
+   	<p class="opt">You can access this option from the Main menu: <strong>Tools | Options: Internet: Newsgroups</strong></p>
+   	<p><span style="x-condition: READER;">Omea Reader</span><span style="x-condition: PRO;">Omea Pro</span> supports
+		internet newsgroups. Working in <span style="x-condition: READER;">Omea Reader</span><span style="x-condition: PRO;">Omea Pro</span>
+		you can subscribe to, unsubscribe from, read, and post to newsgroups. This page of the <a href="options_dialog.html">
+		Options dialog</a> provides options for controlling how <span style="x-condition: READER;">Omea Reader</span><span style="x-condition: PRO;">Omea Pro</span>
+		handles newsgroups. This topic documents each of the Newsgroups options.</p>
+
+	<div style="x-condition: PRO;">
+	   <img src="../images/sshots/dialogs/pro/options_news.png" width="678" height="621" alt="Options Dialog: Newsgroup options"/>
+	<p class="caption">Newsgroup options in the Options Dialog</p>
+  </div>
+
+	<div style="x-condition: READER;">
+	   <img src="../images/sshots/dialogs/reader/options_news.png" width="678" height="621" alt="Options Dialog: Newsgroup options"/>
+		<p class="caption">Newsgroup options in the Options Dialog</p>
+  </div>
+
+   	<h2>Downloading</h2>
+   	This group provides options for controlling how <span style="x-condition: READER;">Omea Reader</span><span style="x-condition: PRO;">Omea Pro</span>
+		downloads from newsgroups.
+
+   	<div class="indent">
+	<h3>Download not More than <em>nnn</em> Articles from a Group at a Time</h3>
+   	<p>This option controls how many articles <span style="x-condition: READER;">Omea Reader</span>
+		<span style="x-condition: PRO;">Omea Pro</span> downloads from each newsgroup each time it downloads. Default setting
+		is 300, which is fairly standard for newsgroup readers.</p>
+
+   <h3>Deliver News on Startup</h3>
+	<p>When checked, <span style="x-condition: READER;">Omea Reader</span><span style="x-condition: PRO;">Omea Pro</span>
+	will download new articles from all newsgroups each time you start it. If your have many newsgroups that have a lot
+	of activity, checking this option might noticeably lengthen the amount of time needed to start
+	<span style="x-condition: READER;">Omea Reader</span><span style="x-condition: PRO;">Omea Pro</span> .</p>
+
+	<h3>Deliver News Every <em>n</em> Minutes</h3>
+   	<p>This option controls how often <span style="x-condition: READER;">Omea Reader</span>
+		<span style="x-condition: PRO;">Omea Pro</span> checks newsgroups for new articles and downloads any new ones. When
+		checked, Omea will check for and download new articles according to the number of minutes set in the number box.
+		When not checked, <span style="x-condition: READER;">Omea Reader</span><span style="x-condition: PRO;">Omea Pro</span>
+		only checks for new articles when it starts up.</p>
+
+   	<h3>Mark Articles from Me as Read</h3>
+   	<p>When this option is checked, any newsgroup articles that you posted are automatically marked as read.</p>
+   	<h3>On Deliver News, Download Only Article Headers </h3>
+   	<p>When checked, Omea will download only the news article headers; the body of the article will be downloaded when you select it in the <strong>Items List </strong>.</p>
+   	</div>
+
+	<h2>Editing and Preview</h2>
+	<p>This group provides options to control newsgroup previews in <span style="x-condition: READER;">Omea Reader</span><span style="x-condition: PRO;">Omea Pro.</span> </p>
+
+  	<div class="indent">
+	<h3>Display Attachments Inline</h3>
+	<p>When checked, attachments to newsgroup articles display inline in the article rather than as links.</p>
+	<p>This applies only to picture attachments, not, for example, to HTML documents attached to an article.</p>
+	<h3>Close Original Messages on Reply and Forward</h3>
+	<p>When you click either Reply or Forward, the article window  will close and either Reply or Forward form opens. </p>
+	<h3>Mark as Read on Reply and Forward</h3>
+	<p>When checked, when you reply or forward an unread article, the article to which you reply or which you forward is marked as read. This option is checked by default.</p>
+	</div>
+
+	<h2>International Settings</h2>
+	<p>This group provides options to control display of news articles in different languages.</p>
+  <div class="indent">
+	<h3>Default Encoding</h3>
+	<p>Enables you to select the default encoding for newsgroup articles read in
+	<span style="x-condition: READER;">Omea Reader</span><span style="x-condition: PRO;">Omea Pro</span>. Choose a value from
+	the drop down list of supported encodings. The default encoding is <strong>iso-8859-1</strong>.</p>
+  </div>
+
+	<h2>Posting</h2>
+	<p>This group provides options to control formatting of newsgroup posts that you write and upload from
+	<span style="x-condition: READER;">Omea Reader</span><span style="x-condition: PRO;">Omea Pro</span>.</p>
+  <div class="indent">
+		<h3>Message Format</h3>
+		<p>Enables you to select the default format for newsgroup posts you create in <span style="x-condition: READER;">Omea Reader</span>
+		<span style="x-condition: PRO;">Omea Pro</span>.
+		The options are:</p>
+		<ul>
+			<li>UUEncode</li>
+			<li>MIME</li>
+		</ul>
+		<h4>Encode text with</h4>
+		<p>If you select the MIME option, this drop-down list is enabled and you can choose among the following MIME text
+		encodings (or <em>None</em>):</p>
+		<ul>
+			<li>Quoted-Printable</li>
+			<li>Base64</li>
+	  </ul>
+
+	<h3>Allow 8-bit Characters in Headers</h3>
+	<p>When checked, 8-bit characters are allowed in newsgroup headers. Some non-Latin alphabets may use
+	such characters. Unless this is an issue for you, you can leave this option in the default state: unchecked.</p>
+	<h2>Autoexpiration Rules</h2>
+	<p>This group of options will allow you to control when Omea can consider the newsgroups posts &#8220;old&#8221; or outdated  and actions which you want Omea to perform with these outdated newsgroups posts. Once you customize these options, you will manage to avoid the information clutter and always have latest and the most important information in your newsgroups. You can later edit these default expiration rules and define  per server expiration rules (conditions, exceptions and actions) in the <a href="manage_rules.html">Rules Manager</a>, <strong>Auto Expire</strong> tab or when you right-click the selected newserver in the <strong>Newsroups</strong> pane and select <strong>Edit Expiration Rules</strong> on the pop-up menu.</p>
+	<h3>Default Rule for All Newsgroups </h3>
+	<p>Using this group of options you can specify the default expiration rule for all newsgroups which you are subscribed to. </p>
+	<h3> Rule for Deleted News Articles </h3>
+	<p>Using this group of options you can control what <span style="x-condition: READER;">Omea Reader</span><span style="x-condition: PRO;">Omea Pro</span> will do with the newsgroups posts which it considers&#8220;old&#8221;. By default, these posts are deleted, but you can change this action if you specify something else in the <a href="auto_expiration_rule_dialog.htm">Edit Expiration Rule dialog</a> which appears if you click the <strong>Advanced</strong> button and specify other actions in it.</p>
+  </div>
+
+
+	 <div id="seealso">
+    <p class="seealso"><strong>See also:</strong> <p/>
+  	    <ol>
+		   <li><a href="web_pages.html">Web Pages</a></li>
+		    <li><a href="feeds.html">Feeds</a></li>
+		    <li><a href="options_dialog.html">Options dialog</a></li>
+       </ol>
+</div>
+</div>
+
+</div>
+
+</body>
+
+</html>

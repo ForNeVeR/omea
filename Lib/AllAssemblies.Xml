@@ -1,0 +1,241 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+
+SPDX-License-Identifier: GPL-2.0-only
+-->
+
+<!-- Defines the list of all the assemblies that comprise the Omea installation. -->
+<!-- For ease of access, this is done in the MSBuild format. -->
+<Project xmlns="urn:shemas-jetbrains-com:omea-all-assemblies">
+	<!-- Managed Product Assemblies. -->
+	<ItemGroup>
+		<AllAssemblies Include="CommonTests">
+			<MsiGuid>{e31fb1ac-51bc-47af-a214-014ea1113804}</MsiGuid>
+		</AllAssemblies>
+		<AllAssemblies Include="Contacts.OmeaPlugin">
+			<MsiGuid>{a2a1ff44-1b5a-46ec-b5db-0ff496c2bdd7}</MsiGuid>
+		</AllAssemblies>
+		<AllAssemblies Include="DBIndex">
+			<MsiGuid>{27c9aef3-0a4e-4ad0-b42d-1affb9943bf5}</MsiGuid>
+		</AllAssemblies>
+		<AllAssemblies Include="DBRepair">
+			<MsiGuid>{aa38fc07-97cc-4f21-9d4d-ec3fa7f917de}</MsiGuid>
+		</AllAssemblies>
+		<AllAssemblies Include="DBUtil">
+			<MsiGuid>{dc77b052-efac-474f-a866-0aa3cd2b7a26}</MsiGuid>
+		</AllAssemblies>
+		<AllAssemblies Include="DBUtils">
+			<MsiGuid>{3685dc4e-1269-4197-bd18-f61ef155f265}</MsiGuid>
+		</AllAssemblies>
+		<AllAssemblies Include="Debug.OmeaPlugin">
+			<MsiGuid>{7297b0a1-cf56-4750-bd4b-1469862384af}</MsiGuid>
+		</AllAssemblies>
+		<AllAssemblies Include="EMAPILib">
+			<MsiGuid>{67e5fca5-1314-4832-9def-3bdebaf51ff1}</MsiGuid>
+		</AllAssemblies>
+		<AllAssemblies Include="ExcelDoc.OmeaPlugin">
+			<MsiGuid>{8b8d9995-d636-410b-907e-ccf3cda73459}</MsiGuid>
+		</AllAssemblies>
+		<AllAssemblies Include="Favorites.OmeaPlugin">
+			<MsiGuid>{b47dde0c-0689-4c3f-ac16-bca396bff044}</MsiGuid>
+		</AllAssemblies>
+		<AllAssemblies Include="File.OmeaPlugin">
+			<MsiGuid>{22f112ab-e505-4d41-9512-4ace2f28a7fc}</MsiGuid>
+		</AllAssemblies>
+		<AllAssemblies Include="GUIControls">
+			<MsiGuid>{9e2f9235-2215-49e0-aee2-4f1a83214fad}</MsiGuid>
+		</AllAssemblies>
+		<AllAssemblies Include="GUIControlsTests">
+			<MsiGuid>{b2bca487-708f-4fe6-9fff-8b59c3a003c3}</MsiGuid>
+		</AllAssemblies>
+		<AllAssemblies Include="HTML.OmeaPlugin">
+			<MsiGuid>{a01c7182-f8a0-465e-9213-5940f660d782}</MsiGuid>
+		</AllAssemblies>
+		<AllAssemblies Include="Interop.Winapi">
+			<MsiGuid>{6ce4261c-3fe4-4c45-a7db-c7dd4b474457}</MsiGuid>
+		</AllAssemblies>
+		<AllAssemblies Include="ICQ.OmeaPlugin">
+			<MsiGuid>{bfc6c662-d8ff-471d-9b97-60ae97f85219}</MsiGuid>
+		</AllAssemblies>
+		<AllAssemblies Include="JetBrainsShared">
+			<MsiGuid>{cc61f54f-5b7c-45df-bcf6-2919512026ab}</MsiGuid>
+		</AllAssemblies>
+		<AllAssemblies Include="JetListView">
+			<MsiGuid>{80de7018-6a35-4e14-b839-a741354fe5b0}</MsiGuid>
+		</AllAssemblies>
+		<AllAssemblies Include="MaintenanceTool">
+			<MsiGuid>{db5780a9-9ea7-449d-bc44-4b28c4ffa5de}</MsiGuid>
+		</AllAssemblies>
+		<AllAssemblies Include="MemoryWatch.OmeaPlugin">
+			<MsiGuid>{66f19ce7-57ba-4b25-967c-22eb699b0a8a}</MsiGuid>
+		</AllAssemblies>
+		<AllAssemblies Include="Miranda.OmeaPlugin">
+			<MsiGuid>{f685a564-155f-460c-b3cc-544c93d8a569}</MsiGuid>
+		</AllAssemblies>
+		<AllAssemblies Include="MshtmlBrowserControl">
+			<MsiGuid>{25C1BD2C-FDEB-4f44-89F5-298753FA6E0F}</MsiGuid>
+		</AllAssemblies>
+		<AllAssemblies Include="MshtmlSite">
+			<MsiGuid>{799F462D-1EB3-431b-B7DE-44D3A80A26CF}</MsiGuid>
+		</AllAssemblies>
+		<AllAssemblies Include="NetfxBootstrap">
+			<MsiGuid>{773e41fb-01ee-4efd-bc4c-7eac3ab2d7ad}</MsiGuid>
+		</AllAssemblies>
+		<AllAssemblies Include="Nntp.OmeaPlugin">
+			<MsiGuid>{d3d4b5b7-b8ee-4495-9c65-5deb626a82e3}</MsiGuid>
+		</AllAssemblies>
+		<AllAssemblies Include="Notes.OmeaPlugin">
+			<MsiGuid>{f7f4605f-7990-4338-b27b-80177f7b6314}</MsiGuid>
+		</AllAssemblies>
+		<AllAssemblies Include="Omea">
+			<MsiGuid>{32145fcb-04a5-438f-8944-7d3cfcc612f9}</MsiGuid>
+		</AllAssemblies>
+		<AllAssemblies Include="OmniaMea">
+			<MsiGuid>{b25cb1ab-9962-4d5c-9e63-7a33b2d6c92e}</MsiGuid>
+		</AllAssemblies>
+		<AllAssemblies Include="OmniaMeaBase">
+			<MsiGuid>{a1ab48f2-7715-4367-80a4-43b1647170fc}</MsiGuid>
+		</AllAssemblies>
+		<AllAssemblies Include="OmniaMeaBaseTests">
+			<MsiGuid>{bb0a9c6d-557d-427a-96f9-db172b4209db}</MsiGuid>
+		</AllAssemblies>
+		<AllAssemblies Include="OpenAPI">
+			<MsiGuid>{93d4ea52-A236-4739-ab31-631c61fdc2c4}</MsiGuid>
+		</AllAssemblies>
+		<AllAssemblies Include="Org.Mentalis.Security">
+			<MsiGuid>{aa24b536-808b-4219-92e4-f81445825208}</MsiGuid>
+		</AllAssemblies>
+		<AllAssemblies Include="Outlook.OmeaPlugin">
+			<MsiGuid>{26acf61e-061a-4539-84d9-1607d3fc354c}</MsiGuid>
+		</AllAssemblies>
+		<AllAssemblies Include="PDF.OmeaPlugin">
+			<MsiGuid>{a5bd4105-9a7f-4ef0-9906-348faa8fea49}</MsiGuid>
+		</AllAssemblies>
+		<AllAssemblies Include="PerformanceTests">
+			<MsiGuid>{d1eace52-0a0e-4090-b3a8-bb02d0e0bb47}</MsiGuid>
+		</AllAssemblies>
+		<AllAssemblies Include="PicoCore">
+			<MsiGuid>{5c5fd134-4317-431c-bd7f-9b96cfb9ffec}</MsiGuid>
+		</AllAssemblies>
+		<AllAssemblies Include="Pictures.OmeaPlugin">
+			<MsiGuid>{b85e125c-3173-4752-9603-f51113709c31}</MsiGuid>
+		</AllAssemblies>
+		<AllAssemblies Include="ResourceStore">
+			<MsiGuid>{ddf86d6d-686f-412c-b5b5-03e8a020f986}</MsiGuid>
+		</AllAssemblies>
+		<AllAssemblies Include="ResourceTools">
+			<MsiGuid>{e68cfdc0-d132-4c16-8ed6-6ab1dfa46a3f}</MsiGuid>
+		</AllAssemblies>
+		<AllAssemblies Include="ResourceToolsTests">
+			<MsiGuid>{6cf1c24d-8198-4ac3-a0e1-c8f9b825670d}</MsiGuid>
+		</AllAssemblies>
+		<AllAssemblies Include="RSS.OmeaPlugin">
+			<MsiGuid>{9d572bf1-4b00-4f21-9499-7badee81c964}</MsiGuid>
+		</AllAssemblies>
+		<AllAssemblies Include="SpHeader">
+			<MsiGuid>{e431295c-b84a-44b8-814c-47f686ba60d4}</MsiGuid>
+		</AllAssemblies>
+		<AllAssemblies Include="StressTests">
+			<MsiGuid>{237f1e4c-78d5-4dbf-8643-5acb19550594}</MsiGuid>
+		</AllAssemblies>
+		<AllAssemblies Include="Tasks.OmeaPlugin">
+			<MsiGuid>{ba880285-16f7-4a91-9612-fd78730add68}</MsiGuid>
+		</AllAssemblies>
+		<AllAssemblies Include="TermIndexProfile">
+			<MsiGuid>{9244f400-634b-4af9-aa86-77ed90f68f2c}</MsiGuid>
+		</AllAssemblies>
+		<AllAssemblies Include="TextIndex">
+			<MsiGuid>{2617dfeb-856a-467c-aa1f-2d6fefa499c5}</MsiGuid>
+		</AllAssemblies>
+		<AllAssemblies Include="TextIndexTests">
+			<MsiGuid>{60e3a7bc-846d-458e-ad6f-2fb0b88a1cd0}</MsiGuid>
+		</AllAssemblies>
+		<AllAssemblies Include="Trillian.OmeaPlugin">
+			<MsiGuid>{b5099c99-cb68-4556-b17d-77789ba7ddcf}</MsiGuid>
+		</AllAssemblies>
+		<AllAssemblies Include="WordDoc.OmeaPlugin">
+			<MsiGuid>{8587ffe6-be69-4779-8c7b-a96af790fd0e}</MsiGuid>
+		</AllAssemblies>
+	</ItemGroup>
+	<!-- COM Self-Reg DLLs. -->
+	<ItemGroup></ItemGroup>
+	<!-- Reference DLLs. -->
+	<ItemGroup>
+		<References Include="AcroPDFLib.dll">
+			<MsiGuid>{582DCE2A-2118-455D-A036-6659EADC30B9}</MsiGuid>
+		</References>
+		<References Include="AxAcroPDFLib.dll">
+			<MsiGuid>{428F30BD-2457-431A-8304-70DFEF2F50BF}</MsiGuid>
+		</References>
+		<References Include="AxInterop.PdfLib.dll">
+			<MsiGuid>{FBE5755E-44AE-440D-90EA-DFD0BF3C23A2}</MsiGuid>
+		</References>
+		<References Include="blogExtension.dll">
+			<MsiGuid>{9357154E-C8D9-41E0-8A9B-D392A9E86F90}</MsiGuid>
+		</References>
+		<References Include="CookComputing.XmlRpc.dll">
+			<MsiGuid>{78E16D6B-0DD9-450D-B0DD-04D349BBDBE0}</MsiGuid>
+		</References>
+		<References Include="ICSharpCode.SharpZipLib.dll">
+			<MsiGuid>{5DB4EA30-E5D3-487A-84DA-CA7F5BE92ED9}</MsiGuid>
+		</References>
+		<References Include="Interop.MAPI.dll">
+			<MsiGuid>{605908D4-2142-42CB-A7C1-E491B3F70ADD}</MsiGuid>
+		</References>
+		<References Include="Interop.Office.dll">
+			<MsiGuid>{44E9F6B1-9F55-4920-B3C7-ED0051F27441}</MsiGuid>
+		</References>
+		<References Include="Interop.Outlook.dll">
+			<MsiGuid>{3D80C240-3830-416E-9A66-25E5A05F0CA1}</MsiGuid>
+		</References>
+		<References Include="Interop.PdfLib.dll">
+			<MsiGuid>{A26717E5-E3BD-4F8A-8CAA-C749D924AF49}</MsiGuid>
+		</References>
+		<References Include="Interop.Shell32.dll">
+			<MsiGuid>{F906356B-0BA9-4FB4-BAC6-AF91EBC39B3B}</MsiGuid>
+		</References>
+		<References Include="Interop.VBIDE.dll">
+			<MsiGuid>{C3B67EBA-031B-49D1-808B-6894FFDD6B1F}</MsiGuid>
+		</References>
+		<References Include="JetBrains.Annotations.dll">
+			<MsiGuid>{E55A80E2-D3C9-49C0-91D7-9A73E53BA125}</MsiGuid>
+		</References>
+		<References Include="Microsoft.Web.Services.dll">
+			<MsiGuid>{ED28B50D-CA8D-497F-8D06-F8BF5AC42A4A}</MsiGuid>
+		</References>
+		<References Include="Microsoft.VC90.CRT.manifest">
+			<MsiGuid>{349D2262-1C2C-47f6-8592-88215F20CDB3}</MsiGuid>
+		</References>
+		<References Include="MshtmlSite.Net.dll">
+			<MsiGuid>{f564dd20-dfcf-437d-b0a9-2854b9326980}</MsiGuid>
+		</References>
+		<References Include="msvcm90.dll">
+			<MsiGuid>{E7740C1A-D93E-4855-8387-8E5738F1AED1}</MsiGuid>
+		</References>
+		<References Include="msvcp90.dll">
+			<MsiGuid>{BC1952BF-4FE1-46E6-9696-2A2C102B5A96}</MsiGuid>
+		</References>
+		<References Include="msvcr90.dll">
+			<MsiGuid>{17E5B159-B4D0-4C5f-8245-7B5A0CB4228B}</MsiGuid>
+		</References>
+		<References Include="nmock.dll">
+			<MsiGuid>{7A21FB90-9D2A-4BD6-A8D5-2CA7B233A92F}</MsiGuid>
+		</References>
+		<References Include="nunit.framework.dll">
+			<MsiGuid>{BDDF67D1-33AD-4B4B-970C-C96AD9311905}</MsiGuid>
+		</References>
+		<References Include="office.dll">
+			<MsiGuid>{E7CC89DC-2A82-47F2-AE2E-9AE173175962}</MsiGuid>
+		</References>
+		<References Include="OneNoteImporter.dll">
+			<MsiGuid>{7ADDDE7E-065B-41C8-AE0E-8B2C930CCF1D}</MsiGuid>
+		</References>
+		<References Include="PicoContainer.dll">
+			<MsiGuid>{DD833ED1-02AB-4953-A0A2-4AB840E7C170}</MsiGuid>
+		</References>
+		<References Include="SourceLibrary.dll">
+			<MsiGuid>{EEDEED00-9CAF-4DA3-90BB-06EBDB3F9C5A}</MsiGuid>
+		</References>
+	</ItemGroup>
+</Project>

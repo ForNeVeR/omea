@@ -1,0 +1,204 @@
+<!doctype HTML public "-//W3C//DTD HTML 4.0 Frameset//EN">
+<!--
+SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+
+SPDX-License-Identifier: GPL-2.0-only
+-->
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang=en lang=en>
+
+<!--(==============================================================)-->
+<!--(Document created with RoboEditor. )============================-->
+<!--(==============================================================)-->
+
+<head>
+
+<title>Proxy Configuration Options</title>
+
+<!--(Meta)==========================================================-->
+
+<meta http-equiv=content-type content="text/html; charset=windows-1252" charset=windows-1252 />
+<meta name=copyright content="Copyright (c)2004 JetBrains, Inc." />
+<meta name=topic-check-list content="Added To TOC" />
+<meta name=generator content="RoboHELP by eHelp Corporation - www.ehelp.com">
+<meta name=generator-major-version content=0.1>
+<meta name=generator-minor-version content=1>
+<meta name=filetype content=kadov>
+<meta name=filetype-version content=1>
+<meta name=page-count content=1>
+<meta name=layout-height content=2373>
+<meta name=layout-width content=973>
+
+
+<!--(Links)=========================================================-->
+
+<link rel=StyleSheet href="../help.css" />
+
+
+
+</head>
+
+<!--(Body)==========================================================-->
+
+
+<body>
+
+<!-- Conditional Headers -->
+<div style="x-condition: PRO;">
+<div id=helpHeader>
+<div id=helpHeaderImg
+	style="/*begin!kadov{{*/ x-right: 939px; x-bottom: 682px; /*}}end!kadov*/ ">
+<p>&nbsp;</p>
+</div>
+
+<p class=helpHeader>Omea Pro Help: Reference: Options: Omea: Proxy Configuration</p>
+</div>
+</div>
+
+<div style="x-condition: READER;">
+<div id=helpHeader>
+<div id=helpHeaderImg
+	style="/*begin!kadov{{*/ x-right: 939px; x-bottom: 682px; /*}}end!kadov*/ ">
+<p>&nbsp;</p>
+</div>
+
+<p class=helpHeader>Omea Reader Help: Reference: Options: Omea: Proxy Configuration</p>
+</div>
+</div>
+
+<div id=mainContent>
+<h1>Proxy Configuration</h1>
+
+<p class=opt>You can access this option from the Main menu: <strong>Tools
+ | Options: Omea: Proxy Configuration</strong></p>
+
+<p>This page provides options for configuring a proxy server. By default,
+ <span style="x-condition: READER;">Omea Reader</span> <span style="x-condition: PRO;">Omea
+ Pro</span> uses Internet Explorer’s default proxy server configuration.
+ This means that the online content features such as newsgroups, feeds,
+ and Web pages should work right from the start. You only need to change
+ the settings here if you want to use a proxy server that’s different from
+ the one configured for Internet Explorer.</p>
+
+<p>If you are not sure whether or not you need to configure a proxy server,
+ consult your system administrator, IT help desk, or Internet service provider.</p>
+
+<!--kadov_tag{{<implicit_p>}}--><img src="..\images\sshots\dialogs\pro\options_omea_proxy.png"
+									title="Options dialog showing Proxy Configuration options"
+									alt="Options dialog"
+									/
+									style="width: 678px;
+											height: 571px;
+											x-condition: PRO;
+											border-style: none;"
+									width=678
+									height=571
+									border=0> <img src="..\images\sshots\dialogs\reader\options_omea_proxy.png"
+													title="Options dialog showing Proxy Configuration options"
+													alt="Options dialog"
+													/
+													style="width: 678px;
+															height: 571px;
+															x-condition: READER;
+															border-style: none;"
+													width=678
+													height=571
+													border=0>
+
+<p class=caption>Options dialog showing Proxy Configuration options<br
+ />
+<br />
+</p>
+
+<h2>Proxy Configuration Options</h2>
+
+<p>Proxy configuration is a topic for technical users. The options here
+ are typical for configuring proxies and should be clear to anyone familiar
+ with setup of proxy servers.</p>
+
+<h3>Use Default Proxy Setting</h3>
+
+<p>This option is selected by default and should be OK for most users.
+ When selected, <span style="x-condition: READER;">Omea Reader</span><span
+ style="x-condition: PRO;">Omea Pro</span> uses the proxy configuration
+ of Internet Explorer, even if you have set a different browser as a default.
+ </p>
+
+<h3>Configure Proxy Server</h3>
+
+<p>Select this option if you know you want to use a proxy server other
+ than the one configured for Internet Explorer. Contact your network support
+ desk or Internet service provider if you are not sure what to enter in
+ any field.</p>
+
+<p>When you select this option, the controls for specifying proxy server
+ details are enabled. You must complete the required fields in order for
+ <span style="x-condition: READER;">Omea Reader</span><span style="x-condition: PRO;">Omea
+ Pro</span> to work with a proxy server. The required fields are: <em>Address,
+ Port, User,</em> and <em>Password</em> (see below).</p>
+
+<h4>Address</h4>
+
+<p>Enter the address of the proxy server you want <span style="x-condition: READER;">Omea
+ Reader</span> <span style="x-condition: PRO;">Omea Pro</span> to use to
+ access web-based content. Usually this is the address of a computer on
+ a network.</p>
+
+<h4>Port</h4>
+
+<p>Enter the port number of the proxy server specified in <em>Address</em>.
+ The default is port number 3128.</p>
+
+<h4>User</h4>
+
+<p>Enter a valid user name for the proxy server specified in <em>Address</em>.</p>
+
+<h4>Password</h4>
+
+<p>Enter the password for the user name specified in <em>User</em>.</p>
+
+<div class=note>
+<p class=note>The <em>User</em> and <em>Password</em> fields need to be
+ filled in only if the proxy server requires password authentication. Most
+ proxy servers do not require this, so consult your system administrator,
+ IT help desk, or Internet service provider if you are not sure about it.</p>
+</div>
+
+<h4>Bypass proxy server for local addresses</h4>
+
+<p>When checked, the proxy server specified in <em>Address</em> is bypassed
+ when online content is accessed at any address specified in the next field,
+ which becomes enabled for editing when you check this option.</p>
+
+<h4>Bypass proxy server for the following local addresses</h4>
+
+<p>Specify local addresses to be accessed directly rather than via the
+ configured proxy server. Separate addresses with a semi-colon (<strong>;</strong>).</p>
+
+<div id=seealso>
+<p class=seealso><strong style="font-weight: bold;">See also:</strong></p>
+
+<ol>
+
+	<li class=kadov-p><a href="general.html">General</a></li>
+
+	<li class=kadov-p><a href="mail_format.html">Mail Format</a></li>
+
+	<li class=kadov-p><a href="paths.html">Paths</a></li>
+
+	<li class=kadov-p><a href="plugins.html">Plugins</a></li>
+
+	<li class=kadov-p><a href="user_info.html">User Information</a></li>
+
+	<li class=kadov-p><a href="options_dialog.html">Options dialog</a></li>
+</ol>
+</div>
+</div>
+
+<!-- LAST SPELLCHECK: 31 Aug 2004 -->
+<!-- Conditional Text & Build Tags complete! 02 Sept 2004 -->
+
+
+</body>
+
+</html>

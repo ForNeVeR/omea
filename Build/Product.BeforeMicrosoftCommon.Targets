@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+
+SPDX-License-Identifier: GPL-2.0-only
+-->
+<!-- Includes all of the commonly used extension tasks into the current project. -->
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+	<!-- Include the product settings. -->
+	<Import Project="$(ProductHomeDir)/Build/Product.Settings.Targets" Condition="'$(PragmaOnce_Product_Settings_Targets)'==''" />
+	<!-- Strong name in Release builds. -->
+	<!-- Note: you must generate the key pair locally and place it at Lib/Key.Snk. -->
+	<PropertyGroup>
+		<SignAssembly Condition="'$(Configuration)'=='Release'">True</SignAssembly>
+		<AssemblyOriginatorKeyFile Condition="'$(Configuration)'=='Release'">$(ProductHomeDir)/Lib/Key.Snk</AssemblyOriginatorKeyFile>
+	</PropertyGroup>
+	<!-- Set the OBJ and BIN dir path. -->
+	<PropertyGroup>
+		<IntermediateOutputPath>$(ProductHomeDir)\Obj\$(MSBuildProjectName)\$(Configuration)\</IntermediateOutputPath>
+		<OutputPath>$(ProductHomeDir)\Bin\</OutputPath>
+		<OutputPath Condition="'$(Configuration)'=='Release'">$(ProductHomeDir)\BinRelease\</OutputPath>
+	</PropertyGroup>
+	<!-- Generic settings. -->
+	<PropertyGroup>
+		<TargetFrameworkVersion>v3.0</TargetFrameworkVersion>
+		<DebugSymbols>True</DebugSymbols>
+		<DebugType>Full</DebugType>
+	</PropertyGroup>
+	<!-- Suppress C# compiler warnings. -->
+	<PropertyGroup Condition="'$(MSBuildProjectExtension)'=='.csproj'">
+		<!-- Missing XmlDoc comments on public API. -->
+		<NoWarn>$(NoWarn); 1591</NoWarn>
+		<!-- False error “invalid number” on pragma-warning. -->
+		<NoWarn>$(NoWarn); 1692</NoWarn>
+	</PropertyGroup>
+	<!-- XmlDoc in release builds (dumb difference in VB and C# xmldoc handling). -->
+	<PropertyGroup Condition="'$(Configuration)'=='Release'">
+		<DocumentationFile>$(IntermediateOutputPath)$(AssemblyName).Xml</DocumentationFile>
+		<DocumentationFile Condition="'$(MSBuildProjectExtension)'=='.vbproj'">$(AssemblyName).Xml</DocumentationFile>
+	</PropertyGroup>
+	<!-- The following options prevent from in-process compilation and also kill the intellisense. -->
+	<!--
+	<PropertyGroup>
+		<GenerateFullPaths>True</GenerateFullPaths>
+		<AdditionalLibPaths>$(AdditionalLibPaths); $(ProductHomeDir)\Lib\References\</AdditionalLibPaths>
+	</PropertyGroup>
+-->
+</Project>

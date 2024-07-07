@@ -1,0 +1,64 @@
+<!--
+SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+
+SPDX-License-Identifier: GPL-2.0-only
+-->
+
+<!-- About -->
+<!ENTITY omeaconnector.name "@DISPLAYNAME@">
+<!ENTITY omeaconnector.about.author "Author">
+<!ENTITY omeaconnector.about.home.page "Home Page">
+<!ENTITY omeaconnector.about.title "About @DISPLAYNAME@">
+
+<!-- Options -->
+<!ENTITY jetbrains.options.label                    "@AUTHORSHORT@ plugins">
+<!ENTITY omeaconnector.options.title-ms             "@DISPLAYNAME@">
+<!ENTITY omeaconnector.options.title                "@DISPLAYNAME@ Options">
+<!ENTITY omeaconnector.options.pendinggroup.title   "Pending Requests">
+<!ENTITY omeaconnector.options.pendinggroup.text    "If Omea is not running when a browser sends it a request:">
+<!ENTITY omeaconnector.options.pending.radio.store  "Store the request for later processing">
+<!ENTITY omeaconnector.options.pending.radio.run    "Start Omea and retry request">
+<!ENTITY omeaconnector.options.askonexit.label      "Warn about unprocessed requests on exit">
+<!ENTITY omeaconnector.options.timerset.label       "Automatically retry the request every minute">
+
+<!-- Menu -->
+<!ENTITY omeaconnector.mainmenu.key     "R">
+<!ENTITY omeaconnector.mainmenu.label   "@DISPLAYNAME@">
+
+<!ENTITY omeaconnector.menu.context.subscribeRSS.key            "S">
+<!ENTITY omeaconnector.menu.context.subscribeRSS.label          "Subscribe to Feed for This Page in Omea">
+<!ENTITY omeaconnector.menu.context.subscribeRSSLink.key        "L">
+<!ENTITY omeaconnector.menu.context.subscribeRSSLink.label      "Create Omea Feed Subscription from Link">
+<!ENTITY omeaconnector.menu.context.createAndEditClipping.key   "E">
+<!ENTITY omeaconnector.menu.context.createAndEditClipping.label "Clip and Edit in Omea">
+<!ENTITY omeaconnector.menu.context.createAndSaveClipping.key   "S">
+<!ENTITY omeaconnector.menu.context.createAndSaveClipping.label "Clip and Save in Omea">
+<!ENTITY omeaconnector.menu.context.annotateURL.key             "A">
+<!ENTITY omeaconnector.menu.context.annotateURL.label           "Annotate This Page in Omea">
+
+<!ENTITY omeaconnector.menu.main.subscribeRSS.key            "S">
+<!ENTITY omeaconnector.menu.main.subscribeRSS.label          "Subscribe to RSS/ATOM Feed for This Page">
+<!ENTITY omeaconnector.menu.main.createAndEditClipping.key   "E">
+<!ENTITY omeaconnector.menu.main.createAndEditClipping.label "Create and Edit Clipping">
+<!ENTITY omeaconnector.menu.main.createAndSaveClipping.key   "S">
+<!ENTITY omeaconnector.menu.main.createAndSaveClipping.label "Create and Save Clipping">
+<!ENTITY omeaconnector.menu.main.annotateURL.key             "A">
+<!ENTITY omeaconnector.menu.main.annotateURL.label           "Annotate This Page">
+<!ENTITY omeaconnector.menu.main.options.key                 "O">
+<!ENTITY omeaconnector.menu.main.options.label               "Options...">
+
+<!-- Toolbar -->
+<!ENTITY jetbrains.toolbar.name "JetBrains Toolbar">
+<!ENTITY jetbrains.toolbar.key  "J">
+
+<!ENTITY omeaconnector.toolbar.subscribeRSS.label     "Subscribe to Feed">
+<!ENTITY omeaconnector.toolbar.subscribeRSS.tooltip   "Subscribe to RSS/ATOM feed in Omea">
+<!ENTITY omeaconnector.toolbar.annotateURL.label      "Annotate">
+<!ENTITY omeaconnector.toolbar.annotateURL.tooltip    "Annotate and Categorize This Page in Omea">
+
+<!ENTITY omeaconnector.toolbar.createAndEditClipping.label   "Clip and Edit">
+<!ENTITY omeaconnector.toolbar.createAndEditClipping.key     "e">
+<!ENTITY omeaconnector.toolbar.createAndEditClipping.tooltip "Create Clipping from the selection in Omea and edit it now">
+<!ENTITY omeaconnector.toolbar.createAndSaveClipping.label   "Clip and Save">
+<!ENTITY omeaconnector.toolbar.createAndSaveClipping.key     "s">
+<!ENTITY omeaconnector.toolbar.createAndSaveClipping.tooltip "Create Clipping from the selection in Omea">

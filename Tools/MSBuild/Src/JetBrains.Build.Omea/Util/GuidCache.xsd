@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+
+SPDX-License-Identifier: GPL-2.0-only
+-->
+<xs:schema targetNamespace="urn:shemas-jetbrains-com:guid-cache" elementFormDefault="qualified" xmlns="urn:shemas-jetbrains-com:guid-cache" xmlns:mstns="urn:shemas-jetbrains-com:guid-cache" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:complexType name="GuidCacheXml">
+		<xs:sequence minOccurs="0" maxOccurs="unbounded">
+			<xs:element name="Strict" type="StrictGuidXml" minOccurs="0" maxOccurs="1" />
+			<xs:element name="Loose" type="LooseGuidXml" minOccurs="0" maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="GuidIdXml">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="MsiComponent_RegistryData_Hklm">
+				<xs:annotation>
+					<xs:documentation>MSI Component GUID for the RegistryData HKLM hive generated in a WiX source.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="MsiComponent_RegistryData_Hkcu">
+				<xs:annotation>
+					<xs:documentation>MSI Component GUID for the RegistryData HKCU hive generated in a WiX source.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="MsiComponent_RegistryData_Hkmu">
+				<xs:annotation>
+					<xs:documentation>MSI Component GUID for the RegistryData HKLM-or-HKCU-denepding-on-ALLUSERS hive generated in a WiX source.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="MsiComponent_RegistryData_Hkcr">
+				<xs:annotation>
+					<xs:documentation>MSI Component GUID for the RegistryData HKCR hive generated in a WiX source.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="MsiComponent_ProductBinaries_Registry_Hkmu">
+				<xs:annotation>
+					<xs:documentation>MSI Component GUID for the RegistryData HKLM-or-HKCU-denepding-on-ALLUSERS hive generated in a WiX source while processing the Product Binaries.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="StrictGuidXml">
+		<xs:annotation>
+			<xs:documentation>A GUID that is identified by a strictly-typed ID.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+		</xs:sequence>
+		<xs:attribute name="Id" type="GuidIdXml" use="required" />
+		<xs:attribute name="Value" type="GuidXml" use="required" />
+	</xs:complexType>
+	<xs:complexType name="LooseGuidXml">
+		<xs:annotation>
+			<xs:documentation>A GUID that is identified by a loosely-typed name. Introduced for extensibility.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+		</xs:sequence>
+		<xs:attribute name="Name" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>A freehand name of the item.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="Value" type="GuidXml" use="required" />
+	</xs:complexType>
+	<xs:simpleType name="GuidXml">
+		<xs:annotation>
+			<xs:documentation>An all-uppercase curlies-enclosed GUID.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="\{[0-9A-Z]{8}-[0-9A-Z]{4}-[0-9A-Z]{4}-[0-9A-Z]{4}-[0-9A-Z]{12}\}" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="GuidCache" type="GuidCacheXml">
+	</xs:element>
+	<xs:simpleType name="GuidNameXml">
+		<xs:annotation>
+			<xs:documentation>Defines a GUID name so that it were directly mappable into a programming language identifier.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[A-Za-z_][A-Za-z_0-9]*" />
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

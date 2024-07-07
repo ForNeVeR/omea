@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+
+SPDX-License-Identifier: GPL-2.0-only
+-->
+<VisualStudioProject>
+	<CSHARP ProjectType="Local" ProductVersion="7.10.3077" SchemaVersion="2.0" ProjectGuid="{CBFC77D9-FFAF-418A-B16C-655E2E9B3B17}" SccProjectName="&quot;Perforce Project&quot;" SccLocalPath="." SccProvider="MSSCCI:Perforce SCM">
+		<Build>
+			<Settings ApplicationIcon="" AssemblyKeyContainerName="" AssemblyName="Post2OneNotePlugin" AssemblyOriginatorKeyFile="" DefaultClientScript="JScript" DefaultHTMLPageLayout="Grid" DefaultTargetSchema="IE50" DelaySign="false" OutputType="Library" PreBuildEvent="" PostBuildEvent="" RootNamespace="Post2OneNotePlugin" RunPostBuildEvent="OnBuildSuccess" StartupObject="">
+				<Config Name="Debug" AllowUnsafeBlocks="false" BaseAddress="285212672" CheckForOverflowUnderflow="false" ConfigurationOverrideFile="" DefineConstants="DEBUG;TRACE" DocumentationFile="" DebugSymbols="true" FileAlignment="4096" IncrementalBuild="false" NoStdLib="false" NoWarn="" Optimize="false" OutputPath="bin\Debug\" RegisterForComInterop="false" RemoveIntegerChecks="false" TreatWarningsAsErrors="false" WarningLevel="4" />
+				<Config Name="Release" AllowUnsafeBlocks="false" BaseAddress="285212672" CheckForOverflowUnderflow="false" ConfigurationOverrideFile="" DefineConstants="TRACE" DocumentationFile="" DebugSymbols="false" FileAlignment="4096" IncrementalBuild="false" NoStdLib="false" NoWarn="" Optimize="true" OutputPath="bin\Release\" RegisterForComInterop="false" RemoveIntegerChecks="false" TreatWarningsAsErrors="false" WarningLevel="4" />
+			</Settings>
+			<References>
+				<Reference Name="System" AssemblyName="System" HintPath="..\..\..\..\..\..\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.dll" />
+				<Reference Name="System.Data" AssemblyName="System.Data" HintPath="..\..\..\..\..\..\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Data.dll" />
+				<Reference Name="System.XML" AssemblyName="System.Xml" HintPath="..\..\..\..\..\..\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.XML.dll" />
+				<Reference Name="OpenAPI" AssemblyName="OpenAPI" HintPath="..\..\OpenAPI\bin\Debug\OpenAPI.dll" />
+				<Reference Name="OneNoteImporter" AssemblyName="OneNoteImporter" HintPath="..\..\References\OneNoteImporter.dll" />
+				<Reference Name="System.Web" AssemblyName="System.Web" HintPath="..\..\..\..\..\..\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Web.dll" />
+				<Reference Name="System.Windows.Forms" AssemblyName="System.Windows.Forms" HintPath="..\..\..\..\..\..\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Windows.Forms.dll" />
+			</References>
+		</Build>
+		<Files>
+			<Include>
+				<File RelPath="AssemblyInfo.cs" SubType="Code" BuildAction="Compile" />
+				<File RelPath="Post2OneNotePlugin.cs" SubType="Code" BuildAction="Compile" />
+			</Include>
+		</Files>
+	</CSHARP>
+</VisualStudioProject>

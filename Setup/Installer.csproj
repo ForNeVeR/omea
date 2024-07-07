@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+
+SPDX-License-Identifier: GPL-2.0-only
+-->
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+	<PropertyGroup>
+		<!-- Define the Product Home Dir for all the relative paths. -->
+		<ProductHomeDir>$(MSBuildProjectDirectory)\..</ProductHomeDir>
+		<MSBuildExtensionsPath>$(ProductHomeDir)\Tools\MSBuild\</MSBuildExtensionsPath>
+		<WixToolPath>$(ProductHomeDir)\Tools\WiX3</WixToolPath>
+	</PropertyGroup>
+	<!-- Common Tasks. -->
+	<Import Project="$(ProductHomeDir)/Build/Product.Common.Targets" />
+	<!-- Project settings -->
+	<PropertyGroup>
+		<Configuration Condition=" '$(Configuration)' == '' ">Release</Configuration>
+		<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+		<ProjectGuid>{20610A36-CA98-460D-9443-C3E871E1A47E}</ProjectGuid>
+		<OutputType>Package</OutputType>
+		<Cultures>en-us</Cultures>
+		<!-- Output paths. -->
+		<OutputName Condition="'$(OutputName)'==''">OmeaSetup</OutputName>
+		<ProductBinariesDir Condition="'$(ProductBinariesDir)'=='' And '$(Configuration)'=='Release'">$(ProductHomeDir)\BinRelease</ProductBinariesDir>
+		<ProductBinariesDir Condition="'$(ProductBinariesDir)'==''">$(ProductHomeDir)\Bin</ProductBinariesDir>
+		<OutputPath>$(ProductBinariesDir)\</OutputPath>
+		<IntermediateOutputPath>$(ProductHomeDir)\Obj\$(MSBuildProjectName)\$(Configuration)\</IntermediateOutputPath>
+		<SuppressSpecificWarnings></SuppressSpecificWarnings>
+		<LinkerSuppressSpecificWarnings>1076</LinkerSuppressSpecificWarnings>
+	</PropertyGroup>
+	<!-- Static source files -->
+	<ItemGroup>
+		<Compile Include="Main.wxs" />
+		<Compile Include="Property.wxs" />
+		<Compile Include="Files.wxs" />
+	</ItemGroup>
+	<ItemGroup>
+		<WixExtension Include="WixUIExtension" />
+	</ItemGroup>
+	<!-- Implementations -->
+	<Import Project="Installer.Before.Wix.Targets" />
+	<Import Project="$(MSBuildExtensionsPath)\Microsoft\WiX\v3.0\wix.targets" />
+	<Import Project="Installer.After.Wix.Targets" />
+	<ItemGroup>
+		<Content Include="StdAfx.wxi" />
+	</ItemGroup>
+</Project>

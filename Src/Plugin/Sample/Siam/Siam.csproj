@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+
+SPDX-License-Identifier: GPL-2.0-only
+-->
+<VisualStudioProject>
+	<CSHARP ProjectType="Local" ProductVersion="7.10.3077" SchemaVersion="2.0" ProjectGuid="{83CA6CA0-3D44-4C9C-B475-844C285818F8}" SccProjectName="Perforce Project" SccLocalPath="." SccProvider="MSSCCI:Perforce SCM">
+		<Build>
+			<Settings ApplicationIcon="" AssemblyKeyContainerName="" AssemblyName="SiamPlugin" AssemblyOriginatorKeyFile="" DefaultClientScript="JScript" DefaultHTMLPageLayout="Grid" DefaultTargetSchema="IE50" DelaySign="false" OutputType="Library" PreBuildEvent="" PostBuildEvent="" RootNamespace="JetBrains.Omea.SamplePlugins.Siam" RunPostBuildEvent="OnBuildSuccess" StartupObject="">
+				<Config Name="Debug" AllowUnsafeBlocks="false" BaseAddress="285212672" CheckForOverflowUnderflow="false" ConfigurationOverrideFile="" DefineConstants="DEBUG;TRACE" DocumentationFile="" DebugSymbols="true" FileAlignment="4096" IncrementalBuild="false" NoStdLib="false" NoWarn="" Optimize="false" OutputPath="bin\Debug\" RegisterForComInterop="false" RemoveIntegerChecks="false" TreatWarningsAsErrors="false" WarningLevel="4" />
+				<Config Name="Release" AllowUnsafeBlocks="false" BaseAddress="285212672" CheckForOverflowUnderflow="false" ConfigurationOverrideFile="" DefineConstants="TRACE" DocumentationFile="" DebugSymbols="false" FileAlignment="4096" IncrementalBuild="false" NoStdLib="false" NoWarn="" Optimize="true" OutputPath="bin\Release\" RegisterForComInterop="false" RemoveIntegerChecks="false" TreatWarningsAsErrors="false" WarningLevel="4" />
+			</Settings>
+			<References>
+				<Reference Name="System" AssemblyName="System" HintPath="..\..\..\..\..\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.dll" />
+				<Reference Name="System.Data" AssemblyName="System.Data" HintPath="..\..\..\..\..\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Data.dll" />
+				<Reference Name="System.XML" AssemblyName="System.Xml" HintPath="..\..\..\..\..\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.XML.dll" />
+				<Reference Name="System.Windows.Forms" AssemblyName="System.Windows.Forms" HintPath="..\..\..\..\..\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Windows.Forms.dll" />
+				<Reference Name="System.Drawing" AssemblyName="System.Drawing" HintPath="..\..\..\..\..\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Drawing.dll" />
+				<Reference Name="FtpClient" Project="{A7F4C3DE-527F-4C31-8A84-267C6E798A2F}" Package="{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}" />
+				<Reference Name="RSSPlugin" AssemblyName="RSSPlugin" HintPath="..\..\RSSPlugin\bin\Debug\RSSPlugin.dll" />
+				<Reference Name="OpenAPI" AssemblyName="OpenAPI" HintPath="..\..\OpenAPI\bin\Debug\OpenAPI.dll" />
+			</References>
+		</Build>
+		<Files>
+			<Include>
+				<File RelPath="Actions.cs" SubType="Code" BuildAction="Compile" />
+				<File RelPath="AssemblyInfo.cs" SubType="Code" BuildAction="Compile" />
+				<File RelPath="HttpDownload.cs" SubType="Code" BuildAction="Compile" />
+				<File RelPath="Plugin.cs" SubType="Code" BuildAction="Compile" />
+				<File RelPath="PrimaryOptionsPage.cs" SubType="UserControl" BuildAction="Compile" />
+				<File RelPath="PrimaryOptionsPage.resx" DependentUpon="PrimaryOptionsPage.cs" BuildAction="EmbeddedResource" />
+			</Include>
+		</Files>
+	</CSHARP>
+</VisualStudioProject>

@@ -1,9 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<!--
-SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
-
-SPDX-License-Identifier: GPL-2.0-only
--->
-<Include>
-	<?define OmeaUpgradeCode={F319DBB1-A952-4786-BEC7-A3AD35697D6C}?>
-</Include>

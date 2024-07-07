@@ -1,0 +1,272 @@
+// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+//
+// SPDX-License-Identifier: GPL-2.0-only
+
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "winres.h"
+#include "..\CommonResource.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Russian resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_RUS)
+#ifdef _WIN32
+LANGUAGE LANG_RUSSIAN, SUBLANG_DEFAULT
+#pragma code_page(1251)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""winres.h""\r\n"
+    "#include ""..\\CommonResource.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#include ""..\\CommonResource.rc""  // Common resources for all the JetIe family plugins\r\n"
+    "#include ""AssemblyVersion.rc""  // Version information\r\n"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+#endif    // Russian resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// REGISTRY
+//
+
+IDR_IEXPLOREJETPLUGIN   REGISTRY                "res\\IexploreOmea.rgs"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_JETIE               ICON                    "Res\\IexploreOmea.ico"
+IDI_SYNDICATE_HOT       ICON                    "Res\\Syndicate.Hot.ico"
+IDI_SYNDICATE_NORMAL    ICON                    "Res\\Syndicate.Normal.ico"
+IDI_SYNDICATE_DISABLED  ICON                    "Res\\Syndicate.Disabled.ico"
+IDI_ANNOTATE_DISABLED   ICON                    "Res\\Annotate.Disabled.ico"
+IDI_ANNOTATE_HOT        ICON                    "Res\\Annotate.Hot.ico"
+IDI_ANNOTATE_NORMAL     ICON                    "Res\\Annotate.Normal.ico"
+IDI_CLIP_DISABLED       ICON                    "Res\\Clip.Disabled.ico"
+IDI_CLIP_HOT            ICON                    "Res\\Clip.Hot.ico"
+IDI_CLIP_NORMAL         ICON                    "Res\\Clip.Normal.ico"
+IDI_CLIPSILENT_DISABLED ICON                    "Res\\ClipSilent.Disabled.ico"
+IDI_CLIPSILENT_HOT      ICON                    "Res\\ClipSilent.Hot.ico"
+IDI_CLIPSILENT_NORMAL   ICON                    "Res\\ClipSilent.Normal.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// HTML
+//
+
+IDR_CMAH_1000           HTML                    "res\\IDR_CMAH_1000.html"
+IDR_CMAH_1001           HTML                    "res\\IDR_CMAH_1001.html"
+IDR_CMAH_1002           HTML                    "res\\IDR_CMAH_1002.html"
+IDR_CMAH_1003           HTML                    "res\\IDR_CMAH_1003.html"
+IDR_CMAH_1004           HTML                    "res\\IDR_CMAH_1004.html"
+IDR_CMAH_1005           HTML                    "res\\IDR_CMAH_1005.html"
+IDR_CMAH_1006           HTML                    "res\\IDR_CMAH_1006.html"
+IDR_CMAH_1007           HTML                    "res\\IDR_CMAH_1007.html"
+IDR_CMAH_1008           HTML                    "res\\IDR_CMAH_1008.html"
+IDR_CMAH_1009           HTML                    "res\\IDR_CMAH_1009.html"
+IDR_CMAH_1010           HTML                    "res\\IDR_CMAH_1010.html"
+IDR_CMAH_1011           HTML                    "res\\IDR_CMAH_1011.html"
+IDR_CMAH_1012           HTML                    "res\\IDR_CMAH_1012.html"
+IDR_CMAH_1013           HTML                    "res\\IDR_CMAH_1013.html"
+IDR_CMAH_1014           HTML                    "res\\IDR_CMAH_1014.html"
+IDR_CMAH_1015           HTML                    "res\\IDR_CMAH_1015.html"
+UIACTIONS.XML           HTML                    "res\\OmeaUIActions.xml"
+UICONTROLS.XML          HTML                    "res\\OmeaUIControls.xml"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_OMEAOPTIONSDIALOG DIALOGEX 0, 0, 228, 126
+STYLE DS_SETFONT | DS_MODALFRAME | DS_3DLOOK | DS_FIXEDSYS | WS_POPUP | 
+    WS_CAPTION | WS_SYSMENU
+CAPTION "Omea Add-on Options"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    GROUPBOX        "Pending Requests",IDC_STATIC,7,7,213,87
+    LTEXT           "If Omea is not running when a browser sends it a request",
+                    IDC_STATIC,19,24,200,8
+    CONTROL         "&Store the request for later processing",IDC_ENQUEUE,
+                    "Button",BS_AUTORADIOBUTTON | WS_GROUP,19,41,200,10
+    CONTROL         "Automatically &retry the request every minute",
+                    IDC_AUTOSUBMIT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,32,
+                    55,186,10
+    CONTROL         "Start &Omea and retry the request",IDC_RUNOMEA,"Button",
+                    BS_AUTORADIOBUTTON,19,73,197,10
+    DEFPUSHBUTTON   "OK",IDOK,111,105,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,170,105,50,14
+    PUSHBUTTON      "&About …",IDC_ABOUT,7,105,50,14
+END
+
+IDD_ABOUT DIALOGEX 0, 0, 212, 89
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About – Omea Add-on for Internet Explorer"
+FONT 8, "MS Sans Serif", 0, 0, 0x0
+BEGIN
+    PUSHBUTTON      "Close",IDCANCEL,151,66,50,16
+    LTEXT           "Omea Add-on for Internet Explorer",IDC_STATIC,48,16,108,
+                    8
+    LTEXT           "Version",IDC_STATIC,48,46,24,8
+    EDITTEXT        IDC_VERSION,79,46,95,12,ES_AUTOHSCROLL | ES_READONLY | 
+                    NOT WS_BORDER
+    LTEXT           "Copyright © JetBrains Inc, 2004—2005",IDC_STATIC,16,71,
+                    121,8
+    CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDFRAME,7,39,198,1
+    ICON            IDI_JETIE,IDC_STATIC,15,10,21,20
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_OMEAOPTIONSDIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 220
+        VERTGUIDE, 19
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 119
+    END
+
+    IDD_ABOUT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 205
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 82
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// RT_MANIFEST
+//
+
+2                       RT_MANIFEST             "Res\\Manifest.xml"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_TITLE               "Omea IE Add-On"
+    IDS_PLUGIN_NAME         "IexploreOmea"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_QUEUE_SUBMITTED_OK  "All of the queued requests have been submitted OK."
+    IDS_QUEUE_DROPPED       "The queued requests have been dropped because you have disabled the requests queue."
+    IDS_SYNDICATE_OK        "Subscribed to feed."
+    IDS_REQUEST_QUEUED      "Your request could not be completed immediately and was queued to be executed when Omea starts."
+    IDS_NO_OMEA_QUEUE       "Could not connect to Omea. Ensure that Omea is running or enable queueing the requests."
+    IDS_CLIP_OK             "Created a clipping."
+    IDS_SYNDICATE_NO_URI    "No URL suitable for subscription could be located."
+    IDS_CLIP_NO_TEXT        "There is no text in the document to create a clipping from."
+    IDS_NO_URL              "Could not retrieve the URL of this document or Web page."
+    IDS_NO_OMEA             "Could not connect to Omea."
+    IDS_INVALID_OMEA_REPLY  "Your request was rejected by the Omea Remoting service."
+    IDS_ANNOTATION_OK       "Opened for annotation in Omea."
+    IDS_OMEA_EXCEPTION      "Omea has failed to process the remote request."
+    IDS_OMEA_INVALID_FORMAT "Omea reply was in an invalid format."
+    IDS_FAIL_OMEA           "A remote request to Omea could not be completed."
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_OMEACAT_OK          "Opened for assigning a category in Omea."
+    IDS_E_OMEA_REGISTRY     "Could not open the Omea Registry key for reading."
+    IDS_E_OMEA_SECURITY_KEY "Could not read the remote control security key setting."
+    IDS_E_INVALIDARG_SILENT "The optional Silent parameter cannot be coerced to a boolean value. Specify either True or False (default)."
+    IDS_E_OMEAQUEUEFILE     "Cannot open the requests queue file."
+    IDS_E_QUEUEINGFAILED    "Your request could not reach Omea at this time and was intended for storing. However, the storing did not succeed and the request was lost."
+    IDS_REQUESTQUEUED_OMEARUNOK "Omea was started to complete your request."
+    IDS_REQUESTQUEUED_OMEARUNFAILED 
+                            "Could not run Omea to complete your request. The request will be executed when you start Omea."
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#include "..\CommonResource.rc"  // Common resources for all the JetIe family plugins
+#include "AssemblyVersion.rc"  // Version information
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
