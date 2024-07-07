@@ -12,7 +12,7 @@ using namespace System::Runtime::InteropServices;
 namespace DBIndex
 {
 
-void Win32Heaps::Dump( String* filename )
+void Win32Heaps::Dump( String ^filename )
 {
 	if( _walker == 0 )
 	{

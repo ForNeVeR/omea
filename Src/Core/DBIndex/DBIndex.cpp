@@ -12,7 +12,7 @@ using namespace JetBrains::Omea::Containers;
 
 namespace DBIndex
 {
-	OmniaMeaBTree::OmniaMeaBTree( String* filename, IFixedLengthKey* factoryKey )
+	OmniaMeaBTree::OmniaMeaBTree( String ^filename, IFixedLengthKey ^factoryKey )
 	{
 		Trace::Write( "OmeaBTree(" );
 		Trace::Write( System::IO::Path::GetFileName( filename ) );
@@ -21,9 +21,9 @@ namespace DBIndex
 		_filename = filename;
 		_factoryKey = factoryKey->FactoryMethod();
 		_pagesCache = BTreePagesCache::Create( 16 );
-		_searchForRangeEnumerable = new SearchForRangeEnumerable( this );
-		_freeOffsets = new IntArrayList();
-		_oneItemList = new ArrayList( 1 );
+		_searchForRangeEnumerable = gcnew SearchForRangeEnumerable( this );
+		_freeOffsets = gcnew IntArrayList();
+		_oneItemList = gcnew ArrayList( 1 );
 		_keysInIndex = 0;
 		_keyType = unknown_Key;
 		_page = 0;
@@ -37,78 +37,78 @@ namespace DBIndex
 		_numberOfPages = 0;
         _loadedPages = 0;
 
-		Object* key = factoryKey->Key;
-		Type* keyType = key->GetType();
-		if( keyType->Equals( __typeof( Int32 ) ) )
+		Object ^key = factoryKey->Key;
+		Type ^keyType = key->GetType();
+		if( keyType->Equals(Int32::typeid) )
 		{
 			_keyType = int_Key;
 		}
-		else if( keyType->Equals( __typeof( Int64 ) ) )
+		else if( keyType->Equals(Int64::typeid) )
 		{
 			_keyType = long_Key;
 		}
-		else if( keyType->Equals( __typeof( DateTime ) ) )
+		else if( keyType->Equals(DateTime::typeid) )
 		{
 			_keyType = datetime_Key;
 		}
-		else if( keyType->Equals( __typeof( Double ) ) )
+		else if( keyType->Equals(Double::typeid) )
 		{
 			_keyType = double_Key;
 		}
-		else if( keyType->Equals( __typeof( Compound ) ) )
+		else if( keyType->Equals(Compound::typeid) )
 		{
-			Compound* compound = dynamic_cast< Compound* >( key );
-			Type* type1 = compound->_key1->GetType();
-			Type* type2 = compound->_key2->GetType();
-			if( type1->Equals( __typeof( Int32 ) ) )
+			Compound ^compound = dynamic_cast<Compound^>( key );
+			Type ^type1 = compound->_key1->GetType();
+			Type ^type2 = compound->_key2->GetType();
+			if( type1->Equals(Int32::typeid) )
 			{
-				if( type2->Equals( __typeof( Int32 ) ) )
+				if( type2->Equals( Int32::typeid ) )
 				{
 					_keyType = int_int_Key;
 				}
-				else if( type2->Equals( __typeof( DateTime ) ) )
+				else if( type2->Equals( DateTime::typeid ) )
 				{
 					_keyType = int_datetime_Key;
 				}
-				else if( type2->Equals( __typeof( Int64 ) ) )
+				else if( type2->Equals( Int64::typeid ) )
 				{
 					_keyType = int_long_Key;
 				}
 			}
-			else if( type1->Equals( __typeof( Int64 ) ) )
+			else if( type1->Equals( Int64::typeid ) )
 			{
-				if( type2->Equals( __typeof( Int32 ) ) )
+				if( type2->Equals( Int32::typeid ) )
 				{
 					_keyType = long_int_Key;
 				}
-				else if( type2->Equals( __typeof( Int64 ) ) )
+				else if( type2->Equals( Int64::typeid ) )
 				{
 					_keyType = long_long_Key;
 				}
 			}
 		}
-		else if( keyType->Equals( __typeof( CompoundAndValue ) ) )
+		else if( keyType->Equals( CompoundAndValue::typeid ) )
 		{
-			CompoundAndValue* compound = dynamic_cast< CompoundAndValue* >( key );
-			Type* type1 = compound->_key1->GetType();
-			Type* type2 = compound->_key2->GetType();
-			Type* valueType = compound->_value->GetType();
-			if( type1->Equals( __typeof( Int32 ) ) )
+			CompoundAndValue ^compound = dynamic_cast< CompoundAndValue^ >( key );
+			Type ^type1 = compound->_key1->GetType();
+			Type ^type2 = compound->_key2->GetType();
+			Type ^valueType = compound->_value->GetType();
+			if( type1->Equals( Int32::typeid ) )
 			{
-				if( type2->Equals( __typeof( Int32 ) ) )
+				if( type2->Equals( Int32::typeid ) )
 				{
-					if( valueType->Equals( __typeof( Int32 ) ) )
+					if( valueType->Equals( Int32::typeid ) )
 					{
 						_keyType = int_int_int_Key;
 					}
-					else if( valueType->Equals( __typeof( DateTime ) ) )
+					else if( valueType->Equals( DateTime::typeid ) )
 					{
 						_keyType = int_int_datetime_Key;
 					}
 				}
-				else if( type2->Equals( __typeof( DateTime ) ) )
+				else if( type2->Equals( DateTime::typeid ) )
 				{
-					if( valueType->Equals( __typeof( Int32 ) ) )
+					if( valueType->Equals( Int32::typeid ) )
 					{
 						_keyType = int_datetime_int_Key;
 					}
@@ -117,7 +117,7 @@ namespace DBIndex
 		}
 	}
 
-	void OmniaMeaBTree::Dispose()
+	OmniaMeaBTree::~OmniaMeaBTree()
 	{
 		Trace::Write( "OmeaBTree(" );
 		Trace::Write( System::IO::Path::GetFileName( _filename ) );
@@ -170,7 +170,7 @@ namespace DBIndex
 	{
 		InstantiateTypes();
 
-		_btreeFile = new FileStream( _filename, FileMode::OpenOrCreate, FileAccess::ReadWrite, FileShare::Read, 8 );
+		_btreeFile = gcnew FileStream( _filename, FileMode::OpenOrCreate, FileAccess::ReadWrite, FileShare::Read, 8 );
 		int fileHandle = _btreeFile->Handle.ToInt32();
 		_page->SetFileHandle( fileHandle );
 		if( _freePage )
@@ -194,13 +194,13 @@ namespace DBIndex
 		}
 		else
 		{
-			BinaryReader* reader = new BinaryReader( _btreeFile );
+			BinaryReader ^reader = gcnew BinaryReader( _btreeFile );
 			_keysInIndex = reader->ReadInt32();
 			int size = reader->ReadInt32();
 			_btreeFile->Position = size;
 			if( !_btreeHeader->Load( fileHandle ) )
 			{
-				throw new System::IO::IOException( "Failed to load BTree header" );
+				throw gcnew System::IO::IOException( "Failed to load BTree header" );
 			}
 			else
 			{
@@ -224,10 +224,10 @@ namespace DBIndex
 		 */
 		try
 		{
-			_btreeFile = new FileStream( _filename, FileMode::OpenOrCreate, FileAccess::ReadWrite, FileShare::None, 8 );
-			if( _btreeFile->get_CanRead() && _btreeFile->get_CanWrite() )
+			_btreeFile = gcnew FileStream( _filename, FileMode::OpenOrCreate, FileAccess::ReadWrite, FileShare::None, 8 );
+			if( _btreeFile->CanRead && _btreeFile->CanWrite )
 			{
-				BinaryWriter* writer = new BinaryWriter( _btreeFile );
+				BinaryWriter ^writer = gcnew BinaryWriter( _btreeFile );
 				_btreeFile->WriteByte( 0 );
 				writer->Write( _keysInIndex );
 				writer->Write( (int) _btreeFile->Length );
@@ -250,7 +250,7 @@ namespace DBIndex
 
 	void OmniaMeaBTree::CloseFile()
 	{
-		if( _btreeFile != 0 )
+		if( _btreeFile != nullptr )
 		{
 			_btreeFile->Close();
 		}
@@ -284,7 +284,7 @@ namespace DBIndex
 		}
 	}
 
-	void OmniaMeaBTree::GetAllKeys( IntArrayList* offsets )
+	void OmniaMeaBTree::GetAllKeys( IntArrayList ^offsets )
 	{
 		const BTreeKeyBase* temp_keys[ MAX_KEYS_IN_PAGE ];
 
@@ -295,14 +295,14 @@ namespace DBIndex
 			unsigned keyCount = page->GetAllKeys( temp_keys );
 			if( keyCount > MAX_KEYS_IN_PAGE )
 			{
-				throw new BadIndexesException( "BTree contains cycles. Possible memory corruption." );
+				throw gcnew BadIndexesException( "BTree contains cycles. Possible memory corruption." );
 			}
 			CopyOffsets( temp_keys, keyCount, offsets );
 			_btreeHeaderIterator->MoveNextPage();
 		}
 	}
 
-    void OmniaMeaBTree::GetAllKeys( ArrayList* keys_offsets )
+    void OmniaMeaBTree::GetAllKeys( ArrayList ^keys_offsets )
 	{
 		const BTreeKeyBase* temp_keys[ MAX_KEYS_IN_PAGE ];
 
@@ -313,49 +313,49 @@ namespace DBIndex
 			unsigned keyCount = page->GetAllKeys( temp_keys );
 			if( keyCount > MAX_KEYS_IN_PAGE )
 			{
-				throw new BadIndexesException( "BTree contains cycles. Possible memory corruption." );
+				throw gcnew BadIndexesException( "BTree contains cycles. Possible memory corruption." );
 			}
 			CopyKeys( temp_keys, keyCount, keys_offsets );
 			_btreeHeaderIterator->MoveNextPage();
 		}
 	}
 
-	IEnumerable* OmniaMeaBTree::GetAllKeys()
+	IEnumerable ^OmniaMeaBTree::GetAllKeys()
 	{
-		return new GetAllKeysEnumerable( this );
+		return gcnew GetAllKeysEnumerable( this );
 	}
 
-	KeyPair* OmniaMeaBTree::GetMinimum()
+	KeyPair ^OmniaMeaBTree::GetMinimum()
 	{
 		_btreeHeader->GetMinimumPage( *_btreeHeaderIterator );
 		if( _btreeHeaderIterator->Exhausted() )
 		{
-			return 0;
+			return nullptr;
 		}
 		_oneItemList->Clear();
 		BTreePageBase* page = GetPageByOffset( _btreeHeaderIterator->GetCurrentOffset() );
 		const BTreeKeyBase* oneKey[ 1 ];
 		oneKey[ 0 ] = &page->GetMinimum();
 		CopyKeys( oneKey, 1, _oneItemList );
-		return dynamic_cast<KeyPair*>( _oneItemList->get_Item( 0 ) );
+		return dynamic_cast<KeyPair^>(_oneItemList[0]);
 	}
 
-	KeyPair* OmniaMeaBTree::GetMaximum()
+	KeyPair ^OmniaMeaBTree::GetMaximum()
 	{
 		_btreeHeader->GetMaximumPage( *_btreeHeaderIterator );
 		if( _btreeHeaderIterator->Exhausted() )
 		{
-			return 0;
+			return nullptr;
 		}
 		_oneItemList->Clear();
 		BTreePageBase* page = GetPageByOffset( _btreeHeaderIterator->GetCurrentOffset() );
 		const BTreeKeyBase* oneKey[ 1 ];
 		oneKey[ 0 ] = &page->GetMaximum();
 		CopyKeys( oneKey, 1, _oneItemList );
-		return dynamic_cast<KeyPair*>( _oneItemList->get_Item( 0 ) );
+		return dynamic_cast<KeyPair^>(_oneItemList[0]);
 	}
 
-	void OmniaMeaBTree::SearchForRange( IFixedLengthKey* beginKey, IFixedLengthKey* endKey, IntArrayList* offsets )
+	void OmniaMeaBTree::SearchForRange( IFixedLengthKey ^beginKey, IFixedLengthKey ^endKey, IntArrayList ^offsets )
 	{
 		SetFirstAndLastKeys( beginKey, endKey );
 
@@ -376,14 +376,14 @@ namespace DBIndex
 			unsigned keyCount = page->SearchForRange( firstKey, lastKey, temp_keys );
 			if( keyCount > MAX_KEYS_IN_PAGE )
 			{
-				throw new BadIndexesException( "BTree contains cycles. Possible memory corruption." );
+				throw gcnew BadIndexesException( "BTree contains cycles. Possible memory corruption." );
 			}
 			CopyOffsets( temp_keys, keyCount, offsets );
 			_btreeHeaderIterator->MoveNextPage();
 		}
 	}
 
-	void OmniaMeaBTree::SearchForRange( IFixedLengthKey* beginKey, IFixedLengthKey* endKey, ArrayList* keys_offsets )
+	void OmniaMeaBTree::SearchForRange( IFixedLengthKey ^beginKey, IFixedLengthKey ^endKey, ArrayList ^keys_offsets )
 	{
 		SetFirstAndLastKeys( beginKey, endKey );
 
@@ -404,20 +404,20 @@ namespace DBIndex
 			unsigned keyCount = page->SearchForRange( firstKey, lastKey, temp_keys );
 			if( keyCount > MAX_KEYS_IN_PAGE )
 			{
-				throw new BadIndexesException( "BTree contains cycles. Possible memory corruption." );
+				throw gcnew BadIndexesException( "BTree contains cycles. Possible memory corruption." );
 			}
 			CopyKeys( temp_keys, keyCount, keys_offsets );
 			_btreeHeaderIterator->MoveNextPage();
 		}
 	}
 
-	IEnumerable* OmniaMeaBTree::SearchForRange( IFixedLengthKey* beginKey, IFixedLengthKey* endKey )
+	IEnumerable ^OmniaMeaBTree::SearchForRange( IFixedLengthKey ^beginKey, IFixedLengthKey ^endKey )
 	{
-		dynamic_cast<SearchForRangeEnumerable*>( _searchForRangeEnumerable )->Init( beginKey, endKey );
+		dynamic_cast<SearchForRangeEnumerable^>( _searchForRangeEnumerable )->Init( beginKey, endKey );
 		return _searchForRangeEnumerable;
 	}
 
-    void OmniaMeaBTree::DeleteKey( IFixedLengthKey* akey, int offset )
+    void OmniaMeaBTree::DeleteKey( IFixedLengthKey^ akey, int offset )
 	{
 		SetFirstKey( akey );
 		_firstKey->SetOffset( offset );
@@ -453,7 +453,7 @@ namespace DBIndex
 		}
 	}
 
-    void OmniaMeaBTree::InsertKey( IFixedLengthKey* akey, int offset )
+    void OmniaMeaBTree::InsertKey( IFixedLengthKey ^akey, int offset )
 	{
 		SetFirstKey( akey );
 		_firstKey->SetOffset( offset );
@@ -513,12 +513,9 @@ namespace DBIndex
 		}
 	}
 
-    int OmniaMeaBTree::get_MaxCount()
-	{
-		return MAX_KEYS_IN_PAGE;
-	}
+    int OmniaMeaBTree::MaxCount::get() { return MAX_KEYS_IN_PAGE; }
 
-    int OmniaMeaBTree::get_Count()
+    int OmniaMeaBTree::Count::get()
 	{
 		return _keysInIndex;
 	}
@@ -556,7 +553,7 @@ namespace DBIndex
 		int type = _keyType;
 		if( type == unknown_Key )
 		{
-			throw new System::Exception( "Key type is not supported!" );
+			throw gcnew System::Exception( "Key type is not supported!" );
 		}
 		if( !_page )
 		{
@@ -588,142 +585,142 @@ namespace DBIndex
 		}
 	}
 
-	void OmniaMeaBTree::SetFirstKey( IFixedLengthKey* akey )
+	void OmniaMeaBTree::SetFirstKey( IFixedLengthKey ^akey )
 	{
 		switch( _keyType )
 		{
 			case int_Key:
 			{
-				int theKey = *dynamic_cast<Int32*>( akey->Key );
+				int theKey = *dynamic_cast<Int32^>( akey->Key );
 				static_cast< BTreeKey<int>* >( _firstKey )->SetKey( theKey );
 				break;
 			}
 			case int_int_Key:
 			{
-				Compound* compound = dynamic_cast<Compound*>( akey->Key );
+				Compound ^compound = dynamic_cast<Compound^>( akey->Key );
 				CompoundKey<int,int> theKey;
-				theKey._first = *dynamic_cast<Int32*>( compound->_key1 );
-				theKey._second = *dynamic_cast<Int32*>( compound->_key2 );
+				theKey._first = *dynamic_cast<Int32^>( compound->_key1 );
+				theKey._second = *dynamic_cast<Int32^>( compound->_key2 );
 				static_cast< BTreeKey< CompoundKey<int,int> >* >( _firstKey )->SetKey( theKey );
 				break;
 			}
 			case int_datetime_Key:
 			{
-				Compound* compound = dynamic_cast<Compound*>( akey->Key );
+				Compound ^compound = dynamic_cast<Compound^>( akey->Key );
 				CompoundKey<int,long> theKey;
-				theKey._first = *dynamic_cast<Int32*>( compound->_key1 );
-				theKey._second = dynamic_cast<__box DateTime*>( compound->_key2 )->Ticks;
+				theKey._first = *dynamic_cast<Int32^>( compound->_key1 );
+				theKey._second = dynamic_cast<DateTime^>( compound->_key2 )->Ticks;
 				static_cast< BTreeKey< CompoundKey<int,long> >* >( _firstKey )->SetKey( theKey );
 				break;
 			}
 			case int_int_int_Key:
 			{
-				CompoundAndValue* compound = dynamic_cast<CompoundAndValue*>( akey->Key );
+				CompoundAndValue ^compound = dynamic_cast<CompoundAndValue^>( akey->Key );
 				CompoundKeyWithValue<int,int,int> theKey;
-				theKey._first = *dynamic_cast<Int32*>( compound->_key1 );
-				theKey._second = *dynamic_cast<Int32*>( compound->_key2 );
-				int value = *dynamic_cast<Int32*>( compound->_value );
+				theKey._first = *dynamic_cast<Int32^>( compound->_key1 );
+				theKey._second = *dynamic_cast<Int32^>( compound->_key2 );
+				int value = *dynamic_cast<Int32^>( compound->_value );
 				theKey.SetValue( value );
 				static_cast< BTreeKey< CompoundKeyWithValue<int,int,int> >* >( _firstKey )->SetKey( theKey );
 				break;
 			}
 			case int_int_datetime_Key:
 			{
-				CompoundAndValue* compound = dynamic_cast<CompoundAndValue*>( akey->Key );
+				CompoundAndValue ^compound = dynamic_cast<CompoundAndValue^>( akey->Key );
 				CompoundKeyWithValue<int,int,long> theKey;
-				theKey._first = *dynamic_cast<Int32*>( compound->_key1 );
-				theKey._second = *dynamic_cast<Int32*>( compound->_key2 );
-				long value = dynamic_cast<__box DateTime*>( compound->_value )->Ticks;
+				theKey._first = *dynamic_cast<Int32^>( compound->_key1 );
+				theKey._second = *dynamic_cast<Int32^>( compound->_key2 );
+				long value = dynamic_cast<DateTime^>( compound->_value )->Ticks;
 				theKey.SetValue( value );
 				static_cast< BTreeKey< CompoundKeyWithValue<int,int,long> >* >( _firstKey )->SetKey( theKey );
 				break;
 			}
 			case int_datetime_int_Key:
 			{
-				CompoundAndValue* compound = dynamic_cast<CompoundAndValue*>( akey->Key );
+				CompoundAndValue ^compound = dynamic_cast<CompoundAndValue^>( akey->Key );
 				CompoundKeyWithValue<int,long,int> theKey;
-				theKey._first = *dynamic_cast<Int32*>( compound->_key1 );
-				theKey._second = dynamic_cast<__box DateTime*>( compound->_key2 )->Ticks;
-				int value = *dynamic_cast<Int32*>( compound->_value );
+				theKey._first = *dynamic_cast<Int32^>( compound->_key1 );
+				theKey._second = dynamic_cast<DateTime^>( compound->_key2 )->Ticks;
+				int value = *dynamic_cast<Int32^>( compound->_value );
 				theKey.SetValue( value );
 				static_cast< BTreeKey< CompoundKeyWithValue<int,long,int> >* >( _firstKey )->SetKey( theKey );
 				break;
 			}
 			case long_Key:
 			{
-				long theKey = *dynamic_cast<Int64*>( akey->Key );
+				long theKey = *dynamic_cast<Int64^>( akey->Key );
 				static_cast< BTreeKey<long>* >( _firstKey )->SetKey( theKey );
 				break;
 			}
 			case datetime_Key:
 			{
-				long theKey = dynamic_cast<__box DateTime*>( akey->Key )->Ticks;
+				long theKey = dynamic_cast<DateTime^>( akey->Key )->Ticks;
 				static_cast< BTreeKey<long>* >( _firstKey )->SetKey( theKey );
 				break;
 			}
 			case double_Key:
 			{
-				double theKey = *dynamic_cast<Double*>( akey->Key );
+				double theKey = *dynamic_cast<Double^>( akey->Key );
 				static_cast< BTreeKey<double>* >( _firstKey )->SetKey( theKey );
 				break;
 			}
-			default: throw new System::Exception( "Key type is not supported!" );
+			default: throw gcnew System::Exception( "Key type is not supported!" );
 		}
 	}
 
-	void OmniaMeaBTree::SetFirstAndLastKeys( IFixedLengthKey* beginKey, IFixedLengthKey* endKey )
+	void OmniaMeaBTree::SetFirstAndLastKeys( IFixedLengthKey ^beginKey, IFixedLengthKey ^endKey )
 	{
 		switch( _keyType )
 		{
 			case int_Key:
 			{
-				int firstKey = *dynamic_cast<Int32*>( beginKey->Key );
-				int lastKey = *dynamic_cast<Int32*>( endKey->Key );
+				int firstKey = *dynamic_cast<Int32^>( beginKey->Key );
+				int lastKey = *dynamic_cast<Int32^>( endKey->Key );
 				static_cast< BTreeKey<int>* >( _firstKey )->SetKey( firstKey );
 				static_cast< BTreeKey<int>* >( _lastKey )->SetKey( lastKey );
 				break;
 			}
 			case int_int_Key:
 			{
-				Compound* compound1 = dynamic_cast<Compound*>( beginKey->Key );
-				Compound* compound2 = dynamic_cast<Compound*>( endKey->Key );
+				Compound ^compound1 = dynamic_cast<Compound^>( beginKey->Key );
+				Compound ^compound2 = dynamic_cast<Compound^>( endKey->Key );
 				CompoundKey<int,int> firstKey;
 				CompoundKey<int,int> lastKey;
-				firstKey._first = *dynamic_cast<Int32*>( compound1->_key1 );
-				firstKey._second = *dynamic_cast<Int32*>( compound1->_key2 );
-				lastKey._first = *dynamic_cast<Int32*>( compound2->_key1 );
-				lastKey._second = *dynamic_cast<Int32*>( compound2->_key2 );
+				firstKey._first = *dynamic_cast<Int32^>( compound1->_key1 );
+				firstKey._second = *dynamic_cast<Int32^>( compound1->_key2 );
+				lastKey._first = *dynamic_cast<Int32^>( compound2->_key1 );
+				lastKey._second = *dynamic_cast<Int32^>( compound2->_key2 );
 				static_cast< BTreeKey< CompoundKey<int,int> >* >( _firstKey )->SetKey( firstKey );
 				static_cast< BTreeKey< CompoundKey<int,int> >* >( _lastKey )->SetKey( lastKey );
 				break;
 			}
 			case int_datetime_Key:
 			{
-				Compound* compound1 = dynamic_cast<Compound*>( beginKey->Key );
-				Compound* compound2 = dynamic_cast<Compound*>( endKey->Key );
+				Compound ^compound1 = dynamic_cast<Compound^>( beginKey->Key );
+				Compound ^compound2 = dynamic_cast<Compound^>( endKey->Key );
 				CompoundKey<int,long> firstKey;
 				CompoundKey<int,long> lastKey;
-				firstKey._first = *dynamic_cast<Int32*>( compound1->_key1 );
-				firstKey._second = dynamic_cast<__box DateTime*>( compound1->_key2 )->Ticks;
-				lastKey._first = *dynamic_cast<Int32*>( compound2->_key1 );
-				lastKey._second = dynamic_cast<__box DateTime*>( compound2->_key2 )->Ticks;
+				firstKey._first = *dynamic_cast<Int32^>( compound1->_key1 );
+				firstKey._second = dynamic_cast<DateTime^>( compound1->_key2 )->Ticks;
+				lastKey._first = *dynamic_cast<Int32^>( compound2->_key1 );
+				lastKey._second = dynamic_cast<DateTime^>( compound2->_key2 )->Ticks;
 				static_cast< BTreeKey< CompoundKey<int,long> >* >( _firstKey )->SetKey( firstKey );
 				static_cast< BTreeKey< CompoundKey<int,long> >* >( _lastKey )->SetKey( lastKey );
 				break;
 			}
 			case int_int_int_Key:
 			{
-				CompoundAndValue* compound1 = dynamic_cast<CompoundAndValue*>( beginKey->Key );
-				CompoundAndValue* compound2 = dynamic_cast<CompoundAndValue*>( endKey->Key );
+				CompoundAndValue ^compound1 = dynamic_cast<CompoundAndValue^>( beginKey->Key );
+				CompoundAndValue ^compound2 = dynamic_cast<CompoundAndValue^>( endKey->Key );
 				CompoundKeyWithValue<int,int,int> firstKey;
 				CompoundKeyWithValue<int,int,int> lastKey;
-				firstKey._first = *dynamic_cast<Int32*>( compound1->_key1 );
-				firstKey._second = *dynamic_cast<Int32*>( compound1->_key2 );
-				int value = *dynamic_cast<Int32*>( compound1->_value );
+				firstKey._first = *dynamic_cast<Int32^>( compound1->_key1 );
+				firstKey._second = *dynamic_cast<Int32^>( compound1->_key2 );
+				int value = *dynamic_cast<Int32^>( compound1->_value );
 				firstKey.SetValue( value );
-				lastKey._first = *dynamic_cast<Int32*>( compound2->_key1 );
-				lastKey._second = *dynamic_cast<Int32*>( compound2->_key2 );
-				value = *dynamic_cast<Int32*>( compound2->_value );
+				lastKey._first = *dynamic_cast<Int32^>( compound2->_key1 );
+				lastKey._second = *dynamic_cast<Int32^>( compound2->_key2 );
+				value = *dynamic_cast<Int32^>( compound2->_value );
 				lastKey.SetValue( value );
 				static_cast< BTreeKey< CompoundKeyWithValue<int,int,int> >* >( _firstKey )->SetKey( firstKey );
 				static_cast< BTreeKey< CompoundKeyWithValue<int,int,int> >* >( _lastKey )->SetKey( lastKey );
@@ -731,17 +728,17 @@ namespace DBIndex
 			}
 			case int_int_datetime_Key:
 			{
-				CompoundAndValue* compound1 = dynamic_cast<CompoundAndValue*>( beginKey->Key );
-				CompoundAndValue* compound2 = dynamic_cast<CompoundAndValue*>( endKey->Key );
+				CompoundAndValue ^compound1 = dynamic_cast<CompoundAndValue^>( beginKey->Key );
+				CompoundAndValue ^compound2 = dynamic_cast<CompoundAndValue^>( endKey->Key );
 				CompoundKeyWithValue<int,int,long> firstKey;
 				CompoundKeyWithValue<int,int,long> lastKey;
-				firstKey._first = *dynamic_cast<Int32*>( compound1->_key1 );
-				firstKey._second = *dynamic_cast<Int32*>( compound1->_key2 );
-				long value = dynamic_cast<__box DateTime*>( compound1->_value )->Ticks;
+				firstKey._first = *dynamic_cast<Int32^>( compound1->_key1 );
+				firstKey._second = *dynamic_cast<Int32^>( compound1->_key2 );
+				long value = dynamic_cast<DateTime^>( compound1->_value )->Ticks;
 				firstKey.SetValue( value );
-				lastKey._first = *dynamic_cast<Int32*>( compound2->_key1 );
-				lastKey._second = *dynamic_cast<Int32*>( compound2->_key2 );
-				value = dynamic_cast<__box DateTime*>( compound2->_value )->Ticks;
+				lastKey._first = *dynamic_cast<Int32^>( compound2->_key1 );
+				lastKey._second = *dynamic_cast<Int32^>( compound2->_key2 );
+				value = dynamic_cast<DateTime^>( compound2->_value )->Ticks;
 				lastKey.SetValue( value );
 				static_cast< BTreeKey< CompoundKeyWithValue<int,int,long> >* >( _firstKey )->SetKey( firstKey );
 				static_cast< BTreeKey< CompoundKeyWithValue<int,int,long> >* >( _lastKey )->SetKey( lastKey );
@@ -749,17 +746,17 @@ namespace DBIndex
 			}
 			case int_datetime_int_Key:
 			{
-				CompoundAndValue* compound1 = dynamic_cast<CompoundAndValue*>( beginKey->Key );
-				CompoundAndValue* compound2 = dynamic_cast<CompoundAndValue*>( endKey->Key );
+				CompoundAndValue ^compound1 = dynamic_cast<CompoundAndValue^>( beginKey->Key );
+				CompoundAndValue ^compound2 = dynamic_cast<CompoundAndValue^>( endKey->Key );
 				CompoundKeyWithValue<int,long,int> firstKey;
 				CompoundKeyWithValue<int,long,int> lastKey;
-				firstKey._first = *dynamic_cast<Int32*>( compound1->_key1 );
-				firstKey._second = dynamic_cast<__box DateTime*>( compound1->_key2 )->Ticks;
-				int value = *dynamic_cast<Int32*>( compound1->_value );
+				firstKey._first = *dynamic_cast<Int32^>( compound1->_key1 );
+				firstKey._second = dynamic_cast<DateTime^>( compound1->_key2 )->Ticks;
+				int value = *dynamic_cast<Int32^>( compound1->_value );
 				firstKey.SetValue( value );
-				lastKey._first = *dynamic_cast<Int32*>( compound2->_key1 );
-				lastKey._second = dynamic_cast<__box DateTime*>( compound2->_key2 )->Ticks;
-				value = *dynamic_cast<Int32*>( compound2->_value );
+				lastKey._first = *dynamic_cast<Int32^>( compound2->_key1 );
+				lastKey._second = dynamic_cast<DateTime^>( compound2->_key2 )->Ticks;
+				value = *dynamic_cast<Int32^>( compound2->_value );
 				lastKey.SetValue( value );
 				static_cast< BTreeKey< CompoundKeyWithValue<int,long,int> >* >( _firstKey )->SetKey( firstKey );
 				static_cast< BTreeKey< CompoundKeyWithValue<int,long,int> >* >( _lastKey )->SetKey( lastKey );
@@ -767,29 +764,29 @@ namespace DBIndex
 			}
 			case long_Key:
 			{
-				long firstKey = *dynamic_cast<Int64*>( beginKey->Key );
-				long lastKey = *dynamic_cast<Int64*>( endKey->Key );
+				long firstKey = *dynamic_cast<Int64^>( beginKey->Key );
+				long lastKey = *dynamic_cast<Int64^>( endKey->Key );
 				static_cast< BTreeKey<long>* >( _firstKey )->SetKey( firstKey );
 				static_cast< BTreeKey<long>* >( _lastKey )->SetKey( lastKey );
 				break;
 			}
 			case datetime_Key:
 			{
-				long firstKey = dynamic_cast<__box DateTime*>( beginKey->Key )->Ticks;
-				long lastKey = dynamic_cast<__box DateTime*>( endKey->Key )->Ticks;
+				long firstKey = dynamic_cast<DateTime^>( beginKey->Key )->Ticks;
+				long lastKey = dynamic_cast<DateTime^>( endKey->Key )->Ticks;
 				static_cast< BTreeKey<long>* >( _firstKey )->SetKey( firstKey );
 				static_cast< BTreeKey<long>* >( _lastKey )->SetKey( lastKey );
 				break;
 			}
 			case double_Key:
 			{
-				double firstKey = *dynamic_cast<Double*>( beginKey->Key );
-				double lastKey = *dynamic_cast<Double*>( endKey->Key );
+				double firstKey = *dynamic_cast<Double^>( beginKey->Key );
+				double lastKey = *dynamic_cast<Double^>( endKey->Key );
 				static_cast< BTreeKey<double>* >( _firstKey )->SetKey( firstKey );
 				static_cast< BTreeKey<double>* >( _lastKey )->SetKey( lastKey );
 				break;
 			}
-			default: throw new System::Exception( "Key type is not supported!" );
+			default: throw gcnew System::Exception( "Key type is not supported!" );
 		}
 		_firstKey->SetOffset( 0 );
 		_lastKey->SetOffset( MAX_OFFSET );
@@ -823,7 +820,7 @@ namespace DBIndex
 		}
 		else
 		{
-			newOffset = _freeOffsets->get_Item( freeOffsetsCount - 1 );
+			newOffset = _freeOffsets[freeOffsetsCount - 1];
 			_freeOffsets->RemoveAt( freeOffsetsCount - 1 );
 			page = PrepareNewPage( newOffset );
 			page->Clear();
@@ -843,7 +840,7 @@ namespace DBIndex
 		return page;
 	}
 
-	void OmniaMeaBTree::CopyOffsets( const BTreeKeyBase** temp_keys, unsigned count, IntArrayList* offsets )
+	void OmniaMeaBTree::CopyOffsets( const BTreeKeyBase** temp_keys, unsigned count, IntArrayList ^offsets )
 	{
 		for( unsigned i = 0; i < count; ++i )
 		{
@@ -851,42 +848,42 @@ namespace DBIndex
 		}
 	}
 
-	static void CopyLongKeys( const BTreeKeyBase** temp_keys, int count, ArrayList* keys_offsets, IFixedLengthKey* factoryKey )
+	static void CopyLongKeys( const BTreeKeyBase** temp_keys, int count, ArrayList ^keys_offsets, IFixedLengthKey ^factoryKey )
 	{
 		for( int i = 0; i < count; ++i )
 		{
 			const BTreeKeyBase* key = temp_keys[ i ];
-			KeyPair* keyPair = new KeyPair();
+			KeyPair ^keyPair = gcnew KeyPair();
 			keyPair->_offset = key->GetOffset();
 			keyPair->_key = factoryKey->FactoryMethod();
 			const BTreeKey< long >* cKey =  static_cast< const BTreeKey< long >* >( key );
 			Int64 theKey( cKey->GetKey() );
-			keyPair->_key->Key = dynamic_cast< System::IComparable* >( __box( theKey ) );
+			keyPair->_key->Key = theKey;
 			keys_offsets->Add( keyPair );
 		}
 	}
 
-	static void CopyIntKeys( const BTreeKeyBase** temp_keys, int count, ArrayList* keys_offsets, IFixedLengthKey* factoryKey )
+	static void CopyIntKeys( const BTreeKeyBase** temp_keys, int count, ArrayList ^keys_offsets, IFixedLengthKey ^factoryKey )
 	{
 		for( int i = 0; i < count; ++i )
 		{
 			const BTreeKeyBase* key = temp_keys[ i ];
-			KeyPair* keyPair = new KeyPair();
+			KeyPair ^keyPair = gcnew KeyPair();
 			keyPair->_offset = key->GetOffset();
 			keyPair->_key = factoryKey->FactoryMethod();
 			const BTreeKey< int >* cKey =  static_cast< const BTreeKey< int >* >( key );
 			Int32 theKey( cKey->GetKey() );
-			keyPair->_key->Key = dynamic_cast< System::IComparable* >( __box( theKey ) );
+			keyPair->_key->Key = theKey;
 			keys_offsets->Add( keyPair );
 		}
 	}
 
-	static void CopyIntIntIntKeys( const BTreeKeyBase** temp_keys, int count, ArrayList* keys_offsets, IFixedLengthKey* factoryKey )
+	static void CopyIntIntIntKeys( const BTreeKeyBase** temp_keys, int count, ArrayList ^keys_offsets, IFixedLengthKey ^factoryKey )
 	{
 		for( int i = 0; i < count; ++i )
 		{
 			const BTreeKeyBase* key = temp_keys[ i ];
-			KeyPair* keyPair = new KeyPair();
+			KeyPair ^keyPair = gcnew KeyPair();
 			keyPair->_offset = key->GetOffset();
 			keyPair->_key = factoryKey->FactoryMethod();
 			const BTreeKey< CompoundKeyWithValue<int,int,int> >* cKey =
@@ -894,21 +891,21 @@ namespace DBIndex
 			Int32 key1( cKey->GetKey()._first );
 			Int32 key2( cKey->GetKey()._second );
 			Int32 value( cKey->GetKey().GetValue() );
-			CompoundAndValue* theKey = dynamic_cast< CompoundAndValue* >( keyPair->_key->Key );
-			theKey->_key1 = __box( key1 );
-			theKey->_key2 = __box( key2 );
-			theKey->_value = __box( value );
-			keyPair->_key->Key = dynamic_cast< System::IComparable* >( theKey );
+			CompoundAndValue ^theKey = dynamic_cast<CompoundAndValue^>( keyPair->_key->Key );
+			theKey->_key1 = key1;
+			theKey->_key2 = key2;
+			theKey->_value = value;
+			keyPair->_key->Key = theKey;
 			keys_offsets->Add( keyPair );
 		}
 	}
 
-	static void CopyIntIntDateTimeKeys( const BTreeKeyBase** temp_keys, int count, ArrayList* keys_offsets, IFixedLengthKey* factoryKey )
+	static void CopyIntIntDateTimeKeys( const BTreeKeyBase** temp_keys, int count, ArrayList ^keys_offsets, IFixedLengthKey ^factoryKey )
 	{
 		for( int i = 0; i < count; ++i )
 		{
 			const BTreeKeyBase* key = temp_keys[ i ];
-			KeyPair* keyPair = new KeyPair();
+			KeyPair ^keyPair = gcnew KeyPair();
 			keyPair->_offset = key->GetOffset();
 			keyPair->_key = factoryKey->FactoryMethod();
 			const BTreeKey< CompoundKeyWithValue<int,int,long> >* cKey =
@@ -916,21 +913,21 @@ namespace DBIndex
 			Int32 key1( cKey->GetKey()._first );
 			Int32 key2( cKey->GetKey()._second );
 			DateTime value( cKey->GetKey().GetValue() );
-			CompoundAndValue* theKey = dynamic_cast< CompoundAndValue* >( keyPair->_key->Key );
-			theKey->_key1 = __box( key1 );
-			theKey->_key2 = __box( key2 );
-			theKey->_value = __box( value );
-			keyPair->_key->Key = dynamic_cast< System::IComparable* >( theKey );
+			CompoundAndValue ^theKey = dynamic_cast< CompoundAndValue^ >( keyPair->_key->Key );
+			theKey->_key1 = key1;
+			theKey->_key2 = key2;
+			theKey->_value = value;
+			keyPair->_key->Key = theKey;
 			keys_offsets->Add( keyPair );
 		}
 	}
 
-	static void CopyIntDateTimeIntKeys( const BTreeKeyBase** temp_keys, int count, ArrayList* keys_offsets, IFixedLengthKey* factoryKey )
+	static void CopyIntDateTimeIntKeys( const BTreeKeyBase** temp_keys, int count, ArrayList ^keys_offsets, IFixedLengthKey ^factoryKey )
 	{
 		for( int i = 0; i < count; ++i )
 		{
 			const BTreeKeyBase* key = temp_keys[ i ];
-			KeyPair* keyPair = new KeyPair();
+			KeyPair ^keyPair = gcnew KeyPair();
 			keyPair->_offset = key->GetOffset();
 			keyPair->_key = factoryKey->FactoryMethod();
 			const BTreeKey< CompoundKeyWithValue<int,long,int> >* cKey =
@@ -938,16 +935,16 @@ namespace DBIndex
 			Int32 key1( cKey->GetKey()._first );
 			DateTime key2( cKey->GetKey()._second );
 			Int32 value( cKey->GetKey().GetValue() );
-			CompoundAndValue* theKey = dynamic_cast< CompoundAndValue* >( keyPair->_key->Key );
-			theKey->_key1 = __box( key1 );
-			theKey->_key2 = __box( key2 );
-			theKey->_value = __box( value );
-			keyPair->_key->Key = dynamic_cast< System::IComparable* >( theKey );
+			CompoundAndValue ^theKey = dynamic_cast< CompoundAndValue^ >( keyPair->_key->Key );
+			theKey->_key1 = key1;
+			theKey->_key2 = key2;
+			theKey->_value = value;
+			keyPair->_key->Key = theKey;
 			keys_offsets->Add( keyPair );
 		}
 	}
 
-	void OmniaMeaBTree::CopyKeys( const BTreeKeyBase** temp_keys, int count, ArrayList* keys_offsets )
+	void OmniaMeaBTree::CopyKeys( const BTreeKeyBase** temp_keys, int count, ArrayList ^keys_offsets )
 	{
 		switch( _keyType )
 		{
@@ -987,7 +984,7 @@ namespace DBIndex
 		{
 			char s[ 100 ];
 			sprintf( s, "Page handle(%d) is not equal to btree file handle(%d).", pageHandle, fileHandle );
-			throw new System::IO::IOException( s );
+			throw gcnew System::IO::IOException(gcnew String(s));
 		}
 		int loadedBytes = page->Load();
 		int pageSize = page->GetSize();
@@ -995,7 +992,7 @@ namespace DBIndex
 		{
 			char s[ 200 ];
 			sprintf( s, "BTreePageBase.Load() returned %d, pageSize = %d, last error = %d.", loadedBytes, pageSize, ::GetLastError() );
-			throw new System::IO::IOException( s );
+			throw gcnew System::IO::IOException(gcnew String(s));
 		}
         _loadedPages++;
 	}
@@ -1008,7 +1005,7 @@ namespace DBIndex
 		{
 			char s[ 100 ];
 			sprintf( s, "Page handle(%d) is not equal to btree file handle(%d).", pageHandle, fileHandle );
-			throw new System::IO::IOException( s );
+			throw gcnew System::IO::IOException(gcnew String(s));
 		}
 		int savedBytes = page->Save();
 		int pageSize = page->GetSize();
@@ -1016,7 +1013,7 @@ namespace DBIndex
 		{
 			char s[ 200 ];
 			sprintf( s, "BTreePageBase.Save() returned %d, pageSize = %d, last error = %d.", savedBytes, pageSize, ::GetLastError() );
-			throw new System::IO::IOException( s );
+			throw gcnew System::IO::IOException(gcnew String(s));
 		}
 	}
 

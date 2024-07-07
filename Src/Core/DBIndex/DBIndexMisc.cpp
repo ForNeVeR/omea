@@ -18,7 +18,7 @@ namespace DBIndex
 	static uint32 HashiString32Impl( LPCWSTR s );
 	static uint64 HashiString64Impl( LPCWSTR s );
 
-	Int32 HashFunctions::HashiString32( String* s )
+	Int32 HashFunctions::HashiString32( String ^s )
 	{
 		IntPtr ptr = Marshal::StringToHGlobalUni( s );
 		Int32 result = HashiString32Impl( (LPCWSTR) ptr.ToPointer() );
@@ -26,7 +26,7 @@ namespace DBIndex
 		return result;
 	}
 
-	Int64 HashFunctions::HashiString64( String* s )
+	Int64 HashFunctions::HashiString64( String ^s )
 	{
 		IntPtr ptr = Marshal::StringToHGlobalUni( s );
 		Int64 result = HashiString64Impl( (LPCWSTR) ptr.ToPointer() );
@@ -34,7 +34,7 @@ namespace DBIndex
 		return result;
 	}
 
-	System::String* InternetCookies::Get( System::String* url )
+	System::String ^InternetCookies::Get( System::String ^url )
 	{
 		IntPtr ptr = Marshal::StringToHGlobalAnsi( url );
 		char data[ 256 ];
@@ -51,9 +51,9 @@ namespace DBIndex
 					lpszData = new char[ dwSize ];
 					continue;
 				}
-				return NULL;
+				return nullptr;
 			}
-			return new System::String( lpszData );
+			return gcnew System::String( lpszData );
 		}
 		__finally
 		{
@@ -65,7 +65,7 @@ namespace DBIndex
 		}
 	}
 
-	void InternetCookies::Set( System::String* url, System::String* cookies )
+	void InternetCookies::Set( System::String ^url, System::String ^cookies )
 	{
 		IntPtr ansiUrl = Marshal::StringToHGlobalAnsi( url );
 		IntPtr ansiCookies = Marshal::StringToHGlobalAnsi( cookies );

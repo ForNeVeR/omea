@@ -9,7 +9,7 @@ using namespace JetBrains::Omea::Containers;
 
 namespace DBIndex
 {
-	static void TranslateNativeKey2ManagedKey( int type, const BTreeKeyBase* nativeKey, KeyPair* managedKey )
+	static void TranslateNativeKey2ManagedKey( int type, const BTreeKeyBase* nativeKey, KeyPair ^managedKey )
 	{
 		switch( type )
 		{
@@ -22,51 +22,51 @@ namespace DBIndex
 			case long_Key:
 			{
 				const BTreeKey<long>* longKey = static_cast< const BTreeKey<long>* >( nativeKey );
-				managedKey->_key->Key = dynamic_cast< System::IComparable* >( __box( longKey->GetKey() ) );
+				managedKey->_key->Key = longKey->GetKey();
 				break;
 			}
             case int_int_Key:
             {
 				const BTreeKey< CompoundKey<int,int> >* cKey =
                     static_cast< const BTreeKey< CompoundKey<int,int> >* >( nativeKey );
-				Compound* compound = dynamic_cast<Compound*>( managedKey->_key->Key );
-				compound->_key1 = dynamic_cast<IComparable*>( IntInternalizer::Intern( cKey->GetKey()._first ) );
-                compound->_key2 = dynamic_cast<IComparable*>( IntInternalizer::Intern( cKey->GetKey()._second ) );
+				Compound ^compound = dynamic_cast<Compound^>( managedKey->_key->Key );
+				compound->_key1 = dynamic_cast<IComparable^>( IntInternalizer::Intern( cKey->GetKey()._first ) );
+                compound->_key2 = dynamic_cast<IComparable^>( IntInternalizer::Intern( cKey->GetKey()._second ) );
 				break;
             }
 			case int_int_int_Key:
 			{
 				const BTreeKey< CompoundKeyWithValue<int,int,int> >* cKey =
 					static_cast< const BTreeKey< CompoundKeyWithValue<int,int,int> >* >( nativeKey );
-				CompoundAndValue* theKey = dynamic_cast< CompoundAndValue* >( managedKey->_key->Key );
-				theKey->_key1 = dynamic_cast<IComparable*>( IntInternalizer::Intern( cKey->GetKey()._first ) );
-                theKey->_key2 = dynamic_cast<IComparable*>( IntInternalizer::Intern( cKey->GetKey()._second ) );
-				theKey->_value = dynamic_cast<IComparable*>( IntInternalizer::Intern( cKey->GetKey().GetValue() ) );
+				CompoundAndValue ^theKey = dynamic_cast< CompoundAndValue^ >( managedKey->_key->Key );
+				theKey->_key1 = dynamic_cast<IComparable^>( IntInternalizer::Intern( cKey->GetKey()._first ) );
+                theKey->_key2 = dynamic_cast<IComparable^>( IntInternalizer::Intern( cKey->GetKey()._second ) );
+				theKey->_value = dynamic_cast<IComparable^>( IntInternalizer::Intern( cKey->GetKey().GetValue() ) );
 				break;
 			}
 			case int_int_datetime_Key:
 			{
 				const BTreeKey< CompoundKeyWithValue<int,int,long> >* cKey =
 					static_cast< const BTreeKey< CompoundKeyWithValue<int,int,long> >* >( nativeKey );
-				CompoundAndValue* theKey = dynamic_cast< CompoundAndValue* >( managedKey->_key->Key );
-				theKey->_key1 = dynamic_cast<IComparable*>( IntInternalizer::Intern( cKey->GetKey()._first ) );
-                theKey->_key2 = dynamic_cast<IComparable*>( IntInternalizer::Intern( cKey->GetKey()._second ) );
-				theKey->_value = __box( DateTime( cKey->GetKey().GetValue() ) );
+				CompoundAndValue ^theKey = dynamic_cast< CompoundAndValue^ >( managedKey->_key->Key );
+				theKey->_key1 = dynamic_cast<IComparable^>( IntInternalizer::Intern( cKey->GetKey()._first ) );
+                theKey->_key2 = dynamic_cast<IComparable^>( IntInternalizer::Intern( cKey->GetKey()._second ) );
+				theKey->_value = DateTime( cKey->GetKey().GetValue() );
 				break;
 			}
 			case int_datetime_int_Key:
 			{
 				const BTreeKey< CompoundKeyWithValue<int,long,int> >* cKey =
 					static_cast< const BTreeKey< CompoundKeyWithValue<int,long,int> >* >( nativeKey );
-				CompoundAndValue* theKey = dynamic_cast< CompoundAndValue* >( managedKey->_key->Key );
-				theKey->_key1 = dynamic_cast<IComparable*>( IntInternalizer::Intern( cKey->GetKey()._first ) );
-				theKey->_key2 = __box( DateTime( cKey->GetKey()._second ) );
-				theKey->_value = dynamic_cast<IComparable*>( IntInternalizer::Intern( cKey->GetKey().GetValue() ) );
+				CompoundAndValue ^theKey = dynamic_cast< CompoundAndValue^ >( managedKey->_key->Key );
+				theKey->_key1 = dynamic_cast<IComparable^>( IntInternalizer::Intern( cKey->GetKey()._first ) );
+				theKey->_key2 = DateTime( cKey->GetKey()._second );
+				theKey->_value = dynamic_cast<IComparable^>( IntInternalizer::Intern( cKey->GetKey().GetValue() ) );
 				break;
 			}
 			default:
 			{
-                throw new System::Exception( String::Format( "Key type {0} is not supported!", __box( type ) ) );
+                throw gcnew System::Exception( String::Format( "Key type {0} is not supported!", type) );
 			}
 		}
 		managedKey->_offset = nativeKey->GetOffset();
@@ -77,18 +77,18 @@ namespace DBIndex
 	// GetAllKeysEnumerator implementation
 	///////////////////////////////////////////////////////////////////////////
 
-	GetAllKeysEnumerator::GetAllKeysEnumerator( OmniaMeaBTree* bTree )
+	GetAllKeysEnumerator::GetAllKeysEnumerator( OmniaMeaBTree ^bTree )
 	{
 		_bTree = bTree;
 		_btreeHeaderIterator = bTree->_btreeHeaderIterator;
-		_current = new KeyPair();
+		_current = gcnew KeyPair();
 		_current->_key = _bTree->_factoryKey;
 		_currentPageKeys = (const BTreeKeyBase**)
 			DBIndexHeapObject::operator new( MAX_KEYS_IN_PAGE * sizeof( const BTreeKeyBase* ) );
 		Reset();
 	}
 
-	Object* GetAllKeysEnumerator::get_Current()
+	Object ^GetAllKeysEnumerator::Current::get()
 	{
 		TranslateNativeKey2ManagedKey( _bTree->_keyType, _currentPageKeys[ _currentPageIndex ] , _current );
 		return _current;
@@ -106,7 +106,7 @@ namespace DBIndex
 			_currentPageCount = (short) page->GetAllKeys( _currentPageKeys );
 			if( _currentPageCount > MAX_KEYS_IN_PAGE )
 			{
-				throw new BadIndexesException( "BTree contains cycles. Possible memory corruption." );
+				throw gcnew BadIndexesException( "BTree contains cycles. Possible memory corruption." );
 			}
 			_currentPageIndex = -1;
 			_btreeHeaderIterator->MoveNextPage();
@@ -121,7 +121,7 @@ namespace DBIndex
 		_currentPageCount = 0;
 	}
 
-	void GetAllKeysEnumerator::Dispose()
+	GetAllKeysEnumerator::~GetAllKeysEnumerator()
 	{
 		if( _currentPageKeys )
 		{
@@ -130,7 +130,7 @@ namespace DBIndex
 		}
 		else
 		{
-			throw new System::ObjectDisposedException( "GetAllKeysEnumerator.Dispose(): object is already disposed." );
+			throw gcnew System::ObjectDisposedException( "GetAllKeysEnumerator.Dispose(): object is already disposed." );
 		}
 	}
 
@@ -141,12 +141,12 @@ namespace DBIndex
 
 	SearchForRangeEnumerator::SearchForRangeEnumerator()
 	{
-		_current = new KeyPair();
+		_current = gcnew KeyPair();
 		_currentPageKeys = (const BTreeKeyBase**)
 			DBIndexHeapObject::operator new( MAX_KEYS_IN_PAGE * sizeof( const BTreeKeyBase*) );
 	}
 
-	void SearchForRangeEnumerator::Init( OmniaMeaBTree* bTree, IFixedLengthKey* beginKey, IFixedLengthKey* endKey )
+	void SearchForRangeEnumerator::Init( OmniaMeaBTree ^bTree, IFixedLengthKey ^beginKey, IFixedLengthKey ^endKey )
 	{
 		_bTree = bTree;
 		_beginKey = beginKey;
@@ -156,7 +156,7 @@ namespace DBIndex
 		Reset();
 	}
 
-	Object* SearchForRangeEnumerator::get_Current()
+	Object ^SearchForRangeEnumerator::Current::get()
 	{
 		TranslateNativeKey2ManagedKey( _bTree->_keyType, _currentPageKeys[ _currentPageIndex ] , _current );
 		return _current;
@@ -182,7 +182,7 @@ namespace DBIndex
 				(short) page->SearchForRange( *( _bTree->_firstKey ), lastKey, _currentPageKeys );
 			if( _currentPageCount > MAX_KEYS_IN_PAGE )
 			{
-				throw new BadIndexesException( "BTree contains cycles. Possible memory corruption." );
+				throw gcnew BadIndexesException( "BTree contains cycles. Possible memory corruption." );
 			}
 			_currentPageIndex = -1;
 			_btreeHeaderIterator->MoveNextPage();
@@ -198,7 +198,7 @@ namespace DBIndex
 		_currentPageCount = 0;
 	}
 
-	void SearchForRangeEnumerator::Dispose()
+	SearchForRangeEnumerator::~SearchForRangeEnumerator()
 	{
 		SearchForRangeEnumerable::_enumeratorPool->Dispose( this );
 	}
@@ -208,25 +208,25 @@ namespace DBIndex
 	// SearchForRangeEnumerable implementation
 	///////////////////////////////////////////////////////////////////////////
 
-	void SearchForRangeEnumerable::Init( IFixedLengthKey* beginKey, IFixedLengthKey* endKey )
+	void SearchForRangeEnumerable::Init( IFixedLengthKey ^beginKey, IFixedLengthKey ^endKey )
 	{
-		if( _enumeratorPool == 0 )
+		if(_enumeratorPool == nullptr)
 		{
-			_enumeratorPool = new ObjectPool(
-				64, new ObjectPool::CreateObjectDelegate( 0, &SearchForRangeEnumerable::CreateNewEnumerator ), 0, 0 );
+			_enumeratorPool = gcnew ObjectPool(
+				64, gcnew ObjectPool::CreateObjectDelegate( &SearchForRangeEnumerable::CreateNewEnumerator ), nullptr, nullptr );
 		}
 		_beginKey = beginKey;
 		_endKey = endKey;
 	}
 
-	System::Object* SearchForRangeEnumerable::CreateNewEnumerator()
+	System::Object ^SearchForRangeEnumerable::CreateNewEnumerator()
 	{
-		return new SearchForRangeEnumerator();
+		return gcnew SearchForRangeEnumerator();
 	}
 
-	IEnumerator* SearchForRangeEnumerable::GetEnumerator()
+	IEnumerator ^SearchForRangeEnumerable::GetEnumerator()
 	{
-		SearchForRangeEnumerator* result = dynamic_cast<SearchForRangeEnumerator*> ( _enumeratorPool->Alloc() );
+		SearchForRangeEnumerator ^result = dynamic_cast<SearchForRangeEnumerator^> ( _enumeratorPool->Alloc() );
 		result->Init( _bTree, _beginKey, _endKey );
 		return result;
 	}
