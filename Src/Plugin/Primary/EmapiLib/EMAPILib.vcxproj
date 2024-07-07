@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>17.0</VCProjectVersion>
+    <ProjectGuid>{DE273A0B-CAD2-4292-B7B5-14E8A0131EC1}</ProjectGuid>
+    <RootNamespace>EMAPILib</RootNamespace>
+    <Keyword>ManagedCProj</Keyword>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+    <CLRSupport>OldSyntax</CLRSupport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+    <CLRSupport>OldSyntax</CLRSupport>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>17.0.34714.143</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(ProjectDir)..\..\..\..\Bin\</OutDir>
+    <IntDir>$(ProjectDir)..\..\..\..\Obj\$(ProjectName)\$(Configuration)\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(ProjectDir)..\..\..\..\BinRelease\</OutDir>
+    <IntDir>$(ProjectDir)..\..\..\..\Obj\$(ProjectName)\$(Configuration)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+    <LinkKeyFile>$(ProjectDir)..\..\..\..\Lib\Key.Snk</LinkKeyFile>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <SmallerTypeCheck>false</SmallerTypeCheck>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <PrecompiledHeader />
+      <WarningLevel>Level4</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalOptions>/noentry
+ %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>mscoree.lib;mapi32.lib;msvcrtd.lib;Delayimp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(ProjectName).dll</OutputFile>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <ForceSymbolReferences>__DllMainCRTStartup%4012;%(ForceSymbolReferences)</ForceSymbolReferences>
+      <DelayLoadDLLs>mapi32.dll;%(DelayLoadDLLs)</DelayLoadDLLs>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AssemblyDebug>true</AssemblyDebug>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention />
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
+      <WholeProgramOptimization>true</WholeProgramOptimization>
+      <PreprocessorDefinitions>WIN32;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <PrecompiledHeader />
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalOptions>/noentry %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>mscoree.lib;mapi32.lib;msvcrt.lib;Delayimp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(ProjectName).dll</OutputFile>
+      <ForceSymbolReferences>__DllMainCRTStartup%4012;%(ForceSymbolReferences)</ForceSymbolReferences>
+      <DelayLoadDLLs>mapi32.dll;%(DelayLoadDLLs)</DelayLoadDLLs>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences />
+      <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
+      <RandomizedBaseAddress>true</RandomizedBaseAddress>
+      <DataExecutionPrevention>true</DataExecutionPrevention>
+      <CLRThreadAttribute>STAThreadingAttribute</CLRThreadAttribute>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <Reference Include="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+      <CopyLocalSatelliteAssemblies>true</CopyLocalSatelliteAssemblies>
+      <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+    </Reference>
+    <Reference Include="System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+      <CopyLocalSatelliteAssemblies>true</CopyLocalSatelliteAssemblies>
+      <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+    </Reference>
+    <Reference Include="System.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+      <CopyLocalSatelliteAssemblies>true</CopyLocalSatelliteAssemblies>
+      <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+    </Reference>
+    <Reference Include="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+      <CopyLocalSatelliteAssemblies>true</CopyLocalSatelliteAssemblies>
+      <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="AddrBook.cpp" />
+    <ClCompile Include="AddrBookImpl.cpp" />
+    <ClCompile Include="AssemblyInfo.cpp" />
+    <ClCompile Include="AttachImpl.cpp" />
+    <ClCompile Include="CharBuffer.cpp" />
+    <ClCompile Include="CharsStorage.cpp" />
+    <ClCompile Include="EAttach.cpp" />
+    <ClCompile Include="emapi.cpp" />
+    <ClCompile Include="EMAPIFolder.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="EMAPILib.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="EMessage.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="EntryID.cpp" />
+    <ClCompile Include="ESPropValue.cpp" />
+    <ClCompile Include="ETable.cpp" />
+    <ClCompile Include="ETableImpl.cpp" />
+    <ClCompile Include="FolderImpl.cpp" />
+    <ClCompile Include="FormManager.cpp" />
+    <ClCompile Include="FormViewer.cpp" />
+    <ClCompile Include="Guard.cpp" />
+    <ClCompile Include="helpers.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="MailUser.cpp" />
+    <ClCompile Include="MAPIProp.cpp" />
+    <ClCompile Include="MAPIPropImpl.cpp" />
+    <ClCompile Include="MAPISession.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="MessageImpl.cpp" />
+    <ClCompile Include="Messages.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="MsgStore.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="MsgStoreAdviseSink.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="MsgStoresImpl.cpp" />
+    <ClCompile Include="MsgStoresPreloaded.cpp" />
+    <ClCompile Include="RCObject.cpp" />
+    <ClCompile Include="RowSetImpl.cpp" />
+    <ClCompile Include="Stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="StringConvertion.cpp" />
+    <ClCompile Include="StringStream.cpp" />
+    <ClCompile Include="Temp.cpp" />
+    <ClCompile Include="TypeFactory.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AddrBook.h" />
+    <ClInclude Include="AddrBookImpl.h" />
+    <ClInclude Include="AttachImpl.h" />
+    <ClInclude Include="CharBuffer.h" />
+    <ClInclude Include="CharsStorage.h" />
+    <ClInclude Include="EAttach.h" />
+    <ClInclude Include="emapi.h" />
+    <ClInclude Include="EMAPIFolder.h" />
+    <ClInclude Include="EMAPILib.h" />
+    <ClInclude Include="EMessage.h" />
+    <ClInclude Include="EntryID.h" />
+    <ClInclude Include="ESPropValue.h" />
+    <ClInclude Include="ETable.h" />
+    <ClInclude Include="ETableImpl.h" />
+    <ClInclude Include="FolderImpl.h" />
+    <ClInclude Include="FormManager.h" />
+    <ClInclude Include="FormViewer.h" />
+    <ClInclude Include="Guard.h" />
+    <ClInclude Include="helpers.h" />
+    <ClInclude Include="MailUser.h" />
+    <ClInclude Include="MAPIProp.h" />
+    <ClInclude Include="MAPIPropImpl.h" />
+    <ClInclude Include="MAPISession.h" />
+    <ClInclude Include="MessageImpl.h" />
+    <ClInclude Include="Messages.h" />
+    <ClInclude Include="MsgStore.h" />
+    <ClInclude Include="MsgStoreAdviseSink.h" />
+    <ClInclude Include="MsgStoresImpl.h" />
+    <ClInclude Include="MsgStoresPreloaded.h" />
+    <ClInclude Include="RCObject.h" />
+    <ClInclude Include="RCPtr.h" />
+    <ClInclude Include="RCPtrDef.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="RowSetImpl.h" />
+    <ClInclude Include="Stdafx.h" />
+    <ClInclude Include="StringConvertion.h" />
+    <ClInclude Include="StringStream.h" />
+    <ClInclude Include="Temp.h" />
+    <ClInclude Include="TypeFactory.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="app.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="app.rc" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties RESOURCE_FILE="app.rc" />
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

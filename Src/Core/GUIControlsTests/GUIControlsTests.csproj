@@ -4,149 +4,153 @@ SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
 
 SPDX-License-Identifier: GPL-2.0-only
 -->
-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
-	<PropertyGroup>
-		<ProjectType>Local</ProjectType>
-		<ProductVersion>8.0.50727</ProductVersion>
-		<SchemaVersion>2.0</SchemaVersion>
-		<ProjectGuid>{F10B898C-A1F3-40B5-A498-DDFBBEDC5280}</ProjectGuid>
-		<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-		<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-		<AssemblyName>GUIControlsTests</AssemblyName>
-		<DefaultClientScript>JScript</DefaultClientScript>
-		<DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
-		<DefaultTargetSchema>IE50</DefaultTargetSchema>
-		<DelaySign>false</DelaySign>
-		<OutputType>Library</OutputType>
-		<RootNamespace>GUIControlsTests</RootNamespace>
-		<RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
-		<OldToolsVersion>2.0</OldToolsVersion>
-		<ProductHomeDir>$(MSBuildProjectDirectory)/../../..</ProductHomeDir>
-		<TargetFrameworkVersion>v3.0</TargetFrameworkVersion>
-	</PropertyGroup>
-	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-		<AllowUnsafeBlocks>false</AllowUnsafeBlocks>
-		<BaseAddress>285212672</BaseAddress>
-		<CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
-		<DefineConstants>DEBUG;TRACE</DefineConstants>
-		<DebugSymbols>true</DebugSymbols>
-		<FileAlignment>4096</FileAlignment>
-		<NoStdLib>false</NoStdLib>
-		<Optimize>false</Optimize>
-		<RegisterForComInterop>false</RegisterForComInterop>
-		<RemoveIntegerChecks>false</RemoveIntegerChecks>
-		<TreatWarningsAsErrors>false</TreatWarningsAsErrors>
-		<WarningLevel>4</WarningLevel>
-		<DebugType>full</DebugType>
-		<ErrorReport>prompt</ErrorReport>
-	</PropertyGroup>
-	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-		<AllowUnsafeBlocks>false</AllowUnsafeBlocks>
-		<BaseAddress>285212672</BaseAddress>
-		<CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
-		<DefineConstants>TRACE</DefineConstants>
-		<DebugSymbols>false</DebugSymbols>
-		<FileAlignment>4096</FileAlignment>
-		<NoStdLib>false</NoStdLib>
-		<Optimize>true</Optimize>
-		<RegisterForComInterop>false</RegisterForComInterop>
-		<RemoveIntegerChecks>false</RemoveIntegerChecks>
-		<TreatWarningsAsErrors>false</TreatWarningsAsErrors>
-		<WarningLevel>4</WarningLevel>
-		<DebugType>none</DebugType>
-		<ErrorReport>prompt</ErrorReport>
-	</PropertyGroup>
-	<ItemGroup>
-		<Reference Include="nunit.framework">
-			<Name>nunit.framework</Name>
-			<HintPath>../../../Lib/References/nunit.framework.dll</HintPath>
-		</Reference>
-		<Reference Include="System">
-			<Name>System</Name>
-		</Reference>
-		<Reference Include="System.Data">
-			<Name>System.Data</Name>
-		</Reference>
-		<Reference Include="System.Drawing">
-			<Name>System.Drawing</Name>
-		</Reference>
-		<Reference Include="System.Windows.Forms">
-			<Name>System.Windows.Forms</Name>
-		</Reference>
-		<Reference Include="System.Xml">
-			<Name>System.XML</Name>
-		</Reference>
-		<ProjectReference Include="../CommonTests/CommonTests.csproj">
-			<Name>CommonTests</Name>
-			<Project>{BF1D5FAA-EA49-4416-95CD-F5752E7DA797}</Project>
-			<Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
-		</ProjectReference>
-		<ProjectReference Include="../GUIControls/GUIControls.csproj">
-			<Name>GUIControls</Name>
-			<Project>{C9CBAAE5-F8D4-4BD2-BDF0-026B85122106}</Project>
-			<Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
-		</ProjectReference>
-		<ProjectReference Include="../JetBrainsShared/JetBrainsShared.csproj">
-			<Project>{5133BE57-1BE8-4C82-BA5E-ADA6CFA0AA8B}</Project>
-			<Name>JetBrainsShared</Name>
-		</ProjectReference>
-		<ProjectReference Include="../JetListView/JetListView.csproj">
-			<Name>JetListView</Name>
-			<Project>{F143C8CF-F540-4CEE-9D6B-48F583A3B955}</Project>
-			<Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
-		</ProjectReference>
-		<ProjectReference Include="../OmniaMeaBase/OmniaMeaBase.csproj">
-			<Name>OmniaMeaBase</Name>
-			<Project>{C77A02EC-E116-44B9-8FF2-85637FA405B7}</Project>
-			<Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
-		</ProjectReference>
-		<ProjectReference Include="../OpenAPI/OpenAPI.csproj">
-			<Name>OpenAPI</Name>
-			<Project>{BC8E1E30-A063-463A-9213-A159C7FA4AAC}</Project>
-			<Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
-		</ProjectReference>
-		<ProjectReference Include="../PicoCore/PicoCore.csproj">
-			<Name>PicoCore</Name>
-			<Project>{4D08EA48-F2BE-418B-AE1C-4925A7647F37}</Project>
-			<Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
-		</ProjectReference>
-		<ProjectReference Include="../ResourceStore/ResourceStore.csproj">
-			<Name>ResourceStore</Name>
-			<Project>{D022CCB6-4958-44DD-8175-E9AA181E6F41}</Project>
-			<Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
-		</ProjectReference>
-		<ProjectReference Include="../ResourceTools/ResourceTools.csproj">
-			<Project>{3866FB99-0922-4062-8880-B39DA0F1C15E}</Project>
-			<Name>ResourceTools</Name>
-		</ProjectReference>
-	</ItemGroup>
-	<ItemGroup>
-		<Compile Include="AssemblyInfo.cs">
-			<SubType>Code</SubType>
-		</Compile>
-		<Compile Include="ChevronBarTests.cs">
-			<SubType>Code</SubType>
-		</Compile>
-		<Compile Include="ConversationDataProviderTests.cs">
-			<SubType>Code</SubType>
-		</Compile>
-		<Compile Include="ResourceTreeDataProviderTests.cs">
-			<SubType>Code</SubType>
-		</Compile>
-		<Compile Include="ResourceTreePaneTests.cs">
-			<SubType>Code</SubType>
-		</Compile>
-		<Compile Include="ResourceTreeViewTests.cs">
-			<SubType>Code</SubType>
-		</Compile>
-		<Compile Include="ToolbarActionManagerTests.cs">
-			<SubType>Code</SubType>
-		</Compile>
-		<Compile Include="ViewsCategoriesPaneTests.cs">
-			<SubType>Code</SubType>
-		</Compile>
-	</ItemGroup>
-	<Import Project="$(ProductHomeDir)/Build/Product.BeforeMicrosoftCommon.Targets" />
-	<Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-	<Import Project="$(ProductHomeDir)/Build/Product.AfterMicrosoftCommon.Targets" />
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="Current">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F10B898C-A1F3-40B5-A498-DDFBBEDC5280}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <AssemblyName>GUIControlsTests</AssemblyName>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>Library</OutputType>
+    <RootNamespace>GUIControlsTests</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <ProductHomeDir>$(MSBuildProjectDirectory)/../../..</ProductHomeDir>
+    <TargetFrameworkVersion>v3.0</TargetFrameworkVersion>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <DefineConstants>TRACE</DefineConstants>
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="nunit.framework">
+      <Name>nunit.framework</Name>
+      <HintPath>../../../Lib/References/nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Name>System.Drawing</Name>
+    </Reference>
+    <Reference Include="System.Windows.Forms">
+      <Name>System.Windows.Forms</Name>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+    <ProjectReference Include="../CommonTests/CommonTests.csproj">
+      <Name>CommonTests</Name>
+      <Project>{BF1D5FAA-EA49-4416-95CD-F5752E7DA797}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="../GUIControls/GUIControls.csproj">
+      <Name>GUIControls</Name>
+      <Project>{C9CBAAE5-F8D4-4BD2-BDF0-026B85122106}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="../JetBrainsShared/JetBrainsShared.csproj">
+      <Project>{5133BE57-1BE8-4C82-BA5E-ADA6CFA0AA8B}</Project>
+      <Name>JetBrainsShared</Name>
+    </ProjectReference>
+    <ProjectReference Include="../JetListView/JetListView.csproj">
+      <Name>JetListView</Name>
+      <Project>{F143C8CF-F540-4CEE-9D6B-48F583A3B955}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="../OmniaMeaBase/OmniaMeaBase.csproj">
+      <Name>OmniaMeaBase</Name>
+      <Project>{C77A02EC-E116-44B9-8FF2-85637FA405B7}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="../OpenAPI/OpenAPI.csproj">
+      <Name>OpenAPI</Name>
+      <Project>{BC8E1E30-A063-463A-9213-A159C7FA4AAC}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="../PicoCore/PicoCore.csproj">
+      <Name>PicoCore</Name>
+      <Project>{4D08EA48-F2BE-418B-AE1C-4925A7647F37}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="../ResourceStore/ResourceStore.csproj">
+      <Name>ResourceStore</Name>
+      <Project>{D022CCB6-4958-44DD-8175-E9AA181E6F41}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="../ResourceTools/ResourceTools.csproj">
+      <Project>{3866FB99-0922-4062-8880-B39DA0F1C15E}</Project>
+      <Name>ResourceTools</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ChevronBarTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ConversationDataProviderTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ResourceTreeDataProviderTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ResourceTreePaneTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ResourceTreeViewTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ToolbarActionManagerTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ViewsCategoriesPaneTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <Import Project="$(ProductHomeDir)/Build/Product.BeforeMicrosoftCommon.Targets" />
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(ProductHomeDir)/Build/Product.AfterMicrosoftCommon.Targets" />
 </Project>

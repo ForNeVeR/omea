@@ -4,86 +4,91 @@ SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
 
 SPDX-License-Identifier: GPL-2.0-only
 -->
-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
-	<PropertyGroup>
-		<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-		<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-		<ProjectGuid>{50C73F54-92BA-41F5-9D7B-1505298E34E3}</ProjectGuid>
-		<OutputType>Library</OutputType>
-		<RootNamespace>JetBrains.Omea.GUIControls.MshtmlBrowser</RootNamespace>
-		<AssemblyName>MshtmlBrowserControl</AssemblyName>
-		<Fast>True</Fast>
-		<ProductHomeDir>$(MSBuildProjectDirectory)/../../..</ProductHomeDir>
-		<IsJscript>True</IsJscript>
-		<TargetFrameworkVersion>v3.0</TargetFrameworkVersion>
-		<UseHostCompilerIfAvailable>False</UseHostCompilerIfAvailable>
-	</PropertyGroup>
-	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-		<DebugSymbols>true</DebugSymbols>
-		<DebugType>full</DebugType>
-		<Optimize>false</Optimize>
-		<DefineConstants>DEBUG;TRACE</DefineConstants>
-		<ErrorReport>prompt</ErrorReport>
-		<WarningLevel>4</WarningLevel>
-	</PropertyGroup>
-	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-		<DebugType>pdbonly</DebugType>
-		<Optimize>true</Optimize>
-		<DefineConstants>TRACE</DefineConstants>
-		<ErrorReport>prompt</ErrorReport>
-		<WarningLevel>4</WarningLevel>
-	</PropertyGroup>
-	<ItemGroup>
-		<!--    <Reference Include="System" /> -->
-	</ItemGroup>
-	<ItemGroup>
-		<Compile Include="AssemblyInfo.js" />
-	</ItemGroup>
-	<ItemGroup>
-		<Compile Include="Declarations.js" />
-		<Compile Include="HtmlDom.js" />
-		<Compile Include="MshtmlBrowserControl.js" />
-		<Compile Include="MshtmlBrowserNest.js" />
-		<Compile Include="MshtmlEdit.js" />
-		<Compile Include="Tests.js" />
-	</ItemGroup>
-	<ItemGroup>
-		<ProjectReference Include="../GUIControls/GUIControls.csproj">
-			<Project>{C9CBAAE5-F8D4-4BD2-BDF0-026B85122106}</Project>
-			<Name>GUIControls</Name>
-		</ProjectReference>
-		<ProjectReference Include="../JetBrainsShared/JetBrainsShared.csproj">
-			<Project>{5133BE57-1BE8-4C82-BA5E-ADA6CFA0AA8B}</Project>
-			<Name>JetBrainsShared</Name>
-		</ProjectReference>
-		<ProjectReference Include="../OmniaMeaBase/OmniaMeaBase.csproj">
-			<Project>{C77A02EC-E116-44B9-8FF2-85637FA405B7}</Project>
-			<Name>OmniaMeaBase</Name>
-		</ProjectReference>
-		<ProjectReference Include="../OpenAPI/OpenAPI.csproj">
-			<Project>{BC8E1E30-A063-463A-9213-A159C7FA4AAC}</Project>
-			<Name>OpenAPI</Name>
-		</ProjectReference>
-		<ProjectReference Include="..\Interop.WinApi\Interop.WinApi.csproj">
-			<Project>{3F0FF59D-9EEB-407E-8DD5-7DE159ABBC35}</Project>
-			<Name>Interop.WinApi</Name>
-		</ProjectReference>
-	</ItemGroup>
-	<ItemGroup>
-		<Reference Include="Accessibility" />
-		<Reference Include="MshtmlSite.Net, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-			<SpecificVersion>False</SpecificVersion>
-			<HintPath>..\..\..\Lib\References\MshtmlSite.Net.dll</HintPath>
-		</Reference>
-		<Reference Include="nunit.framework, Version=2.2.8.0, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
-			<SpecificVersion>False</SpecificVersion>
-			<HintPath>../../../Lib/References/nunit.framework.dll</HintPath>
-		</Reference>
-	</ItemGroup>
-	<Import Project="$(ProductHomeDir)/Build/Product.BeforeMicrosoftCommon.Targets" />
-	<Import Project="$(ProductHomeDir)/Tools/MSBuild/JetBrains/JScript.targets" />
-	<Import Project="$(ProductHomeDir)/Build/Product.AfterMicrosoftCommon.Targets" />
-	<!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="Current">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{50C73F54-92BA-41F5-9D7B-1505298E34E3}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>JetBrains.Omea.GUIControls.MshtmlBrowser</RootNamespace>
+    <AssemblyName>MshtmlBrowserControl</AssemblyName>
+    <Fast>True</Fast>
+    <ProductHomeDir>$(MSBuildProjectDirectory)/../../..</ProductHomeDir>
+    <IsJscript>True</IsJscript>
+    <TargetFrameworkVersion>v3.0</TargetFrameworkVersion>
+    <UseHostCompilerIfAvailable>False</UseHostCompilerIfAvailable>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <!--    <Reference Include="System" /> -->
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Declarations.js" />
+    <Compile Include="HtmlDom.js" />
+    <Compile Include="MshtmlBrowserControl.js" />
+    <Compile Include="MshtmlBrowserNest.js" />
+    <Compile Include="MshtmlEdit.js" />
+    <Compile Include="Tests.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="../GUIControls/GUIControls.csproj">
+      <Project>{C9CBAAE5-F8D4-4BD2-BDF0-026B85122106}</Project>
+      <Name>GUIControls</Name>
+    </ProjectReference>
+    <ProjectReference Include="../JetBrainsShared/JetBrainsShared.csproj">
+      <Project>{5133BE57-1BE8-4C82-BA5E-ADA6CFA0AA8B}</Project>
+      <Name>JetBrainsShared</Name>
+    </ProjectReference>
+    <ProjectReference Include="../OmniaMeaBase/OmniaMeaBase.csproj">
+      <Project>{C77A02EC-E116-44B9-8FF2-85637FA405B7}</Project>
+      <Name>OmniaMeaBase</Name>
+    </ProjectReference>
+    <ProjectReference Include="../OpenAPI/OpenAPI.csproj">
+      <Project>{BC8E1E30-A063-463A-9213-A159C7FA4AAC}</Project>
+      <Name>OpenAPI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Interop.WinApi\Interop.WinApi.csproj">
+      <Project>{3F0FF59D-9EEB-407E-8DD5-7DE159ABBC35}</Project>
+      <Name>Interop.WinApi</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Accessibility" />
+    <Reference Include="MshtmlSite.Net, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Lib\References\MshtmlSite.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework, Version=2.2.8.0, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>../../../Lib/References/nunit.framework.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <Import Project="$(ProductHomeDir)/Build/Product.BeforeMicrosoftCommon.Targets" />
+  <Import Project="$(ProductHomeDir)/Tools/MSBuild/JetBrains/JScript.targets" />
+  <Import Project="$(ProductHomeDir)/Build/Product.AfterMicrosoftCommon.Targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>

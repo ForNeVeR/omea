@@ -4,133 +4,137 @@ SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
 
 SPDX-License-Identifier: GPL-2.0-only
 -->
-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
-	<PropertyGroup>
-		<ProjectType>Local</ProjectType>
-		<ProductVersion>8.0.50727</ProductVersion>
-		<SchemaVersion>2.0</SchemaVersion>
-		<ProjectGuid>{C566FC33-8FD9-482F-9E2C-6E87DB0B5BF7}</ProjectGuid>
-		<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-		<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-		<ApplicationIcon>App.ico</ApplicationIcon>
-		<AssemblyName>DBUtil</AssemblyName>
-		<DefaultClientScript>JScript</DefaultClientScript>
-		<DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
-		<DefaultTargetSchema>IE50</DefaultTargetSchema>
-		<DelaySign>false</DelaySign>
-		<OutputType>Exe</OutputType>
-		<RootNamespace>DBUtil</RootNamespace>
-		<RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
-		<OldToolsVersion>2.0</OldToolsVersion>
-		<ProductHomeDir>$(MSBuildProjectDirectory)/../../..</ProductHomeDir>
-		<TargetFrameworkVersion>v3.0</TargetFrameworkVersion>
-	</PropertyGroup>
-	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-		<AllowUnsafeBlocks>false</AllowUnsafeBlocks>
-		<BaseAddress>285212672</BaseAddress>
-		<CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
-		<DefineConstants>DEBUG;TRACE</DefineConstants>
-		<DebugSymbols>true</DebugSymbols>
-		<FileAlignment>4096</FileAlignment>
-		<NoStdLib>false</NoStdLib>
-		<Optimize>false</Optimize>
-		<RegisterForComInterop>false</RegisterForComInterop>
-		<RemoveIntegerChecks>false</RemoveIntegerChecks>
-		<TreatWarningsAsErrors>false</TreatWarningsAsErrors>
-		<WarningLevel>4</WarningLevel>
-		<DebugType>full</DebugType>
-		<ErrorReport>prompt</ErrorReport>
-	</PropertyGroup>
-	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-		<AllowUnsafeBlocks>false</AllowUnsafeBlocks>
-		<BaseAddress>285212672</BaseAddress>
-		<CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
-		<DefineConstants>TRACE</DefineConstants>
-		<DebugSymbols>false</DebugSymbols>
-		<FileAlignment>4096</FileAlignment>
-		<NoStdLib>false</NoStdLib>
-		<Optimize>true</Optimize>
-		<RegisterForComInterop>false</RegisterForComInterop>
-		<RemoveIntegerChecks>false</RemoveIntegerChecks>
-		<TreatWarningsAsErrors>false</TreatWarningsAsErrors>
-		<WarningLevel>4</WarningLevel>
-		<DebugType>none</DebugType>
-		<ErrorReport>prompt</ErrorReport>
-	</PropertyGroup>
-	<ItemGroup>
-		<Reference Include="nunit.framework">
-			<Name>nunit.framework</Name>
-			<HintPath>../../../Lib/References/nunit.framework.dll</HintPath>
-		</Reference>
-		<Reference Include="System">
-			<Name>System</Name>
-		</Reference>
-		<Reference Include="System.Data">
-			<Name>System.Data</Name>
-		</Reference>
-		<Reference Include="System.Windows.Forms">
-			<Name>System.Windows.Forms</Name>
-		</Reference>
-		<Reference Include="System.Xml">
-			<Name>System.XML</Name>
-		</Reference>
-		<ProjectReference Include="../DBUtils/DBUtils.csproj">
-			<Name>DBUtils</Name>
-			<Project>{14CD54EF-C6BA-4A9D-A742-2A431DC7E641}</Project>
-			<Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
-		</ProjectReference>
-		<ProjectReference Include="../OmniaMeaBase/OmniaMeaBase.csproj">
-			<Name>OmniaMeaBase</Name>
-			<Project>{C77A02EC-E116-44B9-8FF2-85637FA405B7}</Project>
-			<Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
-		</ProjectReference>
-	</ItemGroup>
-	<ItemGroup>
-		<Content Include="App.ico" />
-		<Compile Include="AssemblyInfo.cs">
-			<SubType>Code</SubType>
-		</Compile>
-		<Compile Include="CheckBLOBTypeTest.cs">
-			<SubType>Code</SubType>
-		</Compile>
-		<Compile Include="CheckDBStructureTest.cs">
-			<SubType>Code</SubType>
-		</Compile>
-		<Compile Include="CheckFloatTypeTest.cs">
-			<SubType>Code</SubType>
-		</Compile>
-		<Compile Include="CheckIndexTest.cs">
-			<SubType>Code</SubType>
-		</Compile>
-		<Compile Include="CheckSelectionsTest.cs">
-			<SubType>Code</SubType>
-		</Compile>
-		<Compile Include="Class1.cs">
-			<SubType>Code</SubType>
-		</Compile>
-		<Compile Include="CrashProofTest.cs">
-			<SubType>Code</SubType>
-		</Compile>
-		<Compile Include="DataSaveLoadTest.cs">
-			<SubType>Code</SubType>
-		</Compile>
-		<Compile Include="DBUtilsTest.cs">
-			<SubType>Code</SubType>
-		</Compile>
-		<Compile Include="DeletingRecordTest.cs">
-			<SubType>Code</SubType>
-		</Compile>
-		<Compile Include="IndexCheckingTest.cs">
-			<SubType>Code</SubType>
-		</Compile>
-		<Compile Include="IndexWithValuesTests.cs">
-			<SubType>Code</SubType>
-		</Compile>
-		<Compile Include="MovingToTrieTest.cs">
-			<SubType>Code</SubType>
-		</Compile>
-	</ItemGroup>
-	<Import Project="$(ProductHomeDir)/Build/Product.BeforeMicrosoftCommon.Targets" />
-	<Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-	<Import Project="$(ProductHomeDir)/Build/Product.AfterMicrosoftCommon.Targets" />
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="Current">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{C566FC33-8FD9-482F-9E2C-6E87DB0B5BF7}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>App.ico</ApplicationIcon>
+    <AssemblyName>DBUtil</AssemblyName>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>DBUtil</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <ProductHomeDir>$(MSBuildProjectDirectory)/../../..</ProductHomeDir>
+    <TargetFrameworkVersion>v3.0</TargetFrameworkVersion>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <DefineConstants>TRACE</DefineConstants>
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="nunit.framework">
+      <Name>nunit.framework</Name>
+      <HintPath>../../../Lib/References/nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Windows.Forms">
+      <Name>System.Windows.Forms</Name>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+    <ProjectReference Include="../DBUtils/DBUtils.csproj">
+      <Name>DBUtils</Name>
+      <Project>{14CD54EF-C6BA-4A9D-A742-2A431DC7E641}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="../OmniaMeaBase/OmniaMeaBase.csproj">
+      <Name>OmniaMeaBase</Name>
+      <Project>{C77A02EC-E116-44B9-8FF2-85637FA405B7}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App.ico" />
+    <Compile Include="AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CheckBLOBTypeTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CheckDBStructureTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CheckFloatTypeTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CheckIndexTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CheckSelectionsTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Class1.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CrashProofTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataSaveLoadTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DBUtilsTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DeletingRecordTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IndexCheckingTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IndexWithValuesTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MovingToTrieTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <Import Project="$(ProductHomeDir)/Build/Product.BeforeMicrosoftCommon.Targets" />
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(ProductHomeDir)/Build/Product.AfterMicrosoftCommon.Targets" />
 </Project>
