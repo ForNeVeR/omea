@@ -1,0 +1,3 @@
+[submodule "third-party/MAPIStubLibrary"]
+	path = third-party/MAPIStubLibrary
+	url = https://github.com/microsoft/MAPIStubLibrary.git
