@@ -9,42 +9,39 @@
 
 namespace EMAPILib
 {
-    public __gc class ABContainerImpl : public IEABContainer, public MAPIPropImpl
+    public ref class ABContainerImpl : public IEABContainer, public MAPIPropImpl
     {
     private:
         ABContainerSPtr* _abCont;
     public:
         ABContainerImpl( const ABContainerSPtr& abCont );
+        virtual IETable^ GetTable();
+        virtual IERowSet^ GetRowSet();
+        virtual IEMailUser^ OpenMailUser( String^ entryID );
+        virtual IEMailUser^ CreateMailUser();
         virtual ~ABContainerImpl();
-        virtual IETable* GetTable();
-        virtual IERowSet* GetRowSet();
-        virtual IEMailUser* OpenMailUser( String* entryID );
-        virtual IEMailUser* CreateMailUser();
-        virtual void Dispose();
     };
 
-    public __gc class AddrBookImpl : public IEAddrBook, public MAPIPropImpl
+    public ref class AddrBookImpl : public IEAddrBook, public MAPIPropImpl
     {
     private:
         AddrBookSPtr* _addrBook;
         ELPSRowSetSPtr* _rows;
     public:
         AddrBookImpl( const AddrBookSPtr& addrBook );
-        virtual ~AddrBookImpl();
         virtual int GetCount();
-        virtual IEABContainer* OpenAB( int index );
-        virtual IEABContainer* OpenAB( String* entryId );
-        virtual String* FindBinProp( int index, int tag );
-        virtual IEMailUser* OpenMailUser( String* entryID );
-        virtual void Dispose();
+        virtual IEABContainer^ OpenAB( int index );
+        virtual IEABContainer^ OpenAB( String^ entryId );
+        virtual String^ FindBinProp( int index, int tag );
+        virtual IEMailUser^ OpenMailUser( String^ entryID );
+        virtual ~AddrBookImpl();
     };
-    public __gc class MailUserImpl : public IEMailUser, public MAPIPropImpl
+    public ref class MailUserImpl : public IEMailUser, public MAPIPropImpl
     {
     private:
         MailUserSPtr* _mailUser;
     public:
         MailUserImpl( const MailUserSPtr& mailUser );
         virtual ~MailUserImpl();
-        virtual void Dispose();
     };
 }

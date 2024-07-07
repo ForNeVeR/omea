@@ -15,85 +15,85 @@
 using namespace System::Text;
 using namespace System::Runtime::InteropServices;
 
-ANSIStringSPtr Temp::GetANSIString( String* str )
+ANSIStringSPtr Temp::GetANSIString( String ^str )
 {
-    if ( str == NULL )
+    if ( str == nullptr )
     {
         return ANSIStringSPtr( new ANSIString( NULL ) );
     }
     return ANSIStringSPtr( new ANSIString( GetLPSTR( str ) ));
 }
-UNIStringSPtr Temp::GetUNIString( String* str )
+UNIStringSPtr Temp::GetUNIString( String ^str )
 {
-    if ( str == NULL )
+    if ( str == nullptr )
     {
         return UNIStringSPtr( new UNIString( NULL ) );
     }
     return UNIStringSPtr( new UNIString( GetLPWSTR( str ) ));
 }
 
-LPSTR Temp::GetLPSTR( String* str )
+LPSTR Temp::GetLPSTR( String ^str )
 {
-    if ( str == NULL )
+    if ( str == nullptr )
     {
         return NULL;
     }
     return static_cast<LPSTR>(static_cast<void*>(Marshal::StringToCoTaskMemAnsi(str)));
 }
-LPWSTR Temp::GetLPWSTR( String* str )
+LPWSTR Temp::GetLPWSTR( String ^str )
 {
-    if ( str == NULL )
+    if ( str == nullptr )
     {
         return NULL;
     }
     return static_cast<LPWSTR>(static_cast<void*>(Marshal::StringToCoTaskMemUni(str)));
 }
 
-void Temp::SetANSIString( ANSIString* ansi, String* str )
+void Temp::SetANSIString( ANSIString* ansi, String ^str )
 {
     ansi->operator =( Temp::GetLPSTR( str ) );
 }
 
-void Temp::AddRecipients( const EMessageSPtr& msg, const MsgStoreSPtr& msgStore, ArrayList* recipients, int recType )
+void Temp::AddRecipients( const EMessageSPtr& msg, const MsgStoreSPtr& msgStore, ArrayList ^recipients, int recType )
 {
-    if ( recipients != NULL )
+    if ( recipients != nullptr )
     {
         for ( int i = 0; i < recipients->Count; i++ )
         {
-            EMAPILib::RecipInfo* recipInfo =
-                (dynamic_cast<EMAPILib::RecipInfo*>( recipients->get_Item( i ) ));
+            EMAPILib::RecipInfo ^recipInfo =
+                (dynamic_cast<EMAPILib::RecipInfo^>( recipients[i] ));
 
             msgStore->AddRecipient( msg,
-                Temp::GetUNIString( recipInfo->get_DisplayName() )->GetChars(),
-                Temp::GetUNIString( recipInfo->get_Email() )->GetChars(),
-                Temp::GetANSIString( recipInfo->get_DisplayName() )->GetChars(),
-                Temp::GetANSIString( recipInfo->get_Email() )->GetChars(),
+                Temp::GetUNIString( recipInfo->DisplayName )->GetChars(),
+                Temp::GetUNIString( recipInfo->Email )->GetChars(),
+                Temp::GetANSIString( recipInfo->DisplayName )->GetChars(),
+                Temp::GetANSIString( recipInfo->Email )->GetChars(),
                 recType );
         }
     }
 }
 
-void Temp::AttachFiles( const EMessageSPtr& msg, ArrayList* attachments )
+void Temp::AttachFiles( const EMessageSPtr& msg, ArrayList ^attachments )
 {
-    if ( attachments != NULL )
+    if ( attachments != nullptr )
     {
         for ( int i = 0; i < attachments->Count; i++ )
         {
-            EMAPILib::AttachInfo* attachInfo =
-                (dynamic_cast<EMAPILib::AttachInfo*>( attachments->get_Item( i ) ));
+            EMAPILib::AttachInfo ^attachInfo =
+                (dynamic_cast<EMAPILib::AttachInfo^>( attachments[i] ));
 
             msg->AttachFile(
-                Temp::GetANSIString( attachInfo->get_Path() )->GetChars(),
-                Temp::GetANSIString( attachInfo->get_FileName() )->GetChars() );
+                Temp::GetANSIString( attachInfo->Path )->GetChars(),
+                Temp::GetANSIString( attachInfo->FileName )->GetChars() );
         }
     }
 }
 
-EMAPILib::MessageBody* Temp::GetRawBodyAsRTF( const EMessageSPtr& msg )
+EMAPILib::MessageBody ^Temp::GetRawBodyAsRTF( const EMessageSPtr& msg )
 {
     int cpid = msg->GetInternetCPID();
 
-    StringBuilder* rtfBody = new StringBuilder();
+    StringBuilder ^rtfBody = gcnew StringBuilder();
 
     msg->RTFSyncBody();
 
@@ -112,11 +112,11 @@ EMAPILib::MessageBody* Temp::GetRawBodyAsRTF( const EMessageSPtr& msg )
                 if ( !prHTML.IsNull() )
                 {
                     int charCount = prHTML->Length();
-                    unsigned char destination __gc[] = new unsigned char __gc[charCount];
+                    array<unsigned char> ^destination = gcnew array<unsigned char>(charCount);
                     Helper::MarshalCopy( (byte*)prHTML->GetRawChars(), destination, 0, charCount );
-                    Encoding* enc = Encoding::GetEncoding( cpid );
+                    Encoding ^enc = Encoding::GetEncoding( cpid );
                     rtfBody->Append( enc->GetString( destination ) );
-                    return new EMAPILib::MessageBody( rtfBody->ToString(), EMAPILib::MailBodyFormat::HTML, msg->GetInternetCPID() );
+                    return gcnew EMAPILib::MessageBody( rtfBody->ToString(), EMAPILib::MailBodyFormat::HTML, msg->GetInternetCPID() );
                 }
             }
             if ( !bodyIsRead )
@@ -133,29 +133,29 @@ EMAPILib::MessageBody* Temp::GetRawBodyAsRTF( const EMessageSPtr& msg )
                 }
 
                 CharBufferSPtr buffer = stream->DecodeRTF2HTML();
-                unsigned char destination __gc[] = new unsigned char __gc[buffer->Length()];
+                array<unsigned char> ^destination = gcnew array<unsigned char>(buffer->Length());
                 Helper::MarshalCopy( (byte*)buffer->GetRawChars(), destination, 0, buffer->Length() );
-                Encoding* enc = Encoding::GetEncoding( cpid );
-                String* result = enc->GetString( destination );
+                Encoding ^enc = Encoding::GetEncoding( cpid );
+                String ^result = enc->GetString( destination );
                 rtfBody->Append( result );
-                return new EMAPILib::MessageBody( rtfBody->ToString(), EMAPILib::MailBodyFormat::HTML, cpid );
+                return gcnew EMAPILib::MessageBody( rtfBody->ToString(), EMAPILib::MailBodyFormat::HTML, cpid );
             }
 
             CharBufferSPtr buffer = stream->GetBuffer();
-            String* str = new String( buffer->GetRawChars(), 0, buffer->Length() );
+            String ^str = gcnew String( buffer->GetRawChars(), 0, buffer->Length() );
 
             if ( format == StringStream::Format::PlainText )
             {
-                return new EMAPILib::MessageBody( str, EMAPILib::MailBodyFormat::PlainTextInRTF, cpid );
+                return gcnew EMAPILib::MessageBody( str, EMAPILib::MailBodyFormat::PlainTextInRTF, cpid );
             }
             if ( format == StringStream::Format::RTF )
             {
-                return new EMAPILib::MessageBody( str, EMAPILib::MailBodyFormat::RTF, cpid );
+                return gcnew EMAPILib::MessageBody( str, EMAPILib::MailBodyFormat::RTF, cpid );
             }
         }
     }
     {
-        Encoding* enc = Encoding::GetEncoding( cpid );
+        Encoding ^enc = Encoding::GetEncoding( cpid );
 
         StringStreamSPtr bodyStream = msg->openStreamProperty( (int)0x10130102 );
         if ( !bodyStream.IsNull() )
@@ -164,9 +164,9 @@ EMAPILib::MessageBody* Temp::GetRawBodyAsRTF( const EMessageSPtr& msg )
 
             CharBufferSPtr buffer = bodyStream->GetBuffer();
             int charCount = buffer->Length();
-            unsigned char destination __gc[] = new unsigned char __gc[charCount];
+            array<unsigned char> ^destination = gcnew array<unsigned char>(charCount);
             Helper::MarshalCopy( (byte*)buffer->GetRawChars(), destination, 0, charCount );
-            return new EMAPILib::MessageBody( enc->GetString( destination ), EMAPILib::MailBodyFormat::HTML, cpid );
+            return gcnew EMAPILib::MessageBody( enc->GetString( destination ), EMAPILib::MailBodyFormat::HTML, cpid );
         }
         bodyStream = msg->openStreamProperty( (int)0x1013001E );
         if ( !bodyStream.IsNull() )
@@ -175,18 +175,18 @@ EMAPILib::MessageBody* Temp::GetRawBodyAsRTF( const EMessageSPtr& msg )
 
             CharBufferSPtr buffer = bodyStream->GetBuffer();
             int charCount = buffer->Length();
-            unsigned char destination __gc[] = new unsigned char __gc[charCount];
+            array<unsigned char> ^destination = gcnew array<unsigned char>(charCount);
             Helper::MarshalCopy( (byte*)buffer->GetRawChars(), destination, 0, charCount );
-            return new EMAPILib::MessageBody( enc->GetString( destination ), EMAPILib::MailBodyFormat::HTML, cpid );
+            return gcnew EMAPILib::MessageBody( enc->GetString( destination ), EMAPILib::MailBodyFormat::HTML, cpid );
         }
         bodyStream = msg->openStreamProperty( (int)PR_BODY );
         if ( !bodyStream.IsNull() )
         {
             bodyStream->ReadToEnd();
             CharBufferSPtr buffer = bodyStream->GetBuffer();
-            return new EMAPILib::MessageBody( buffer->GetRawChars(), EMAPILib::MailBodyFormat::PlainText, cpid );
+            return gcnew EMAPILib::MessageBody(gcnew String(buffer->GetRawChars()), EMAPILib::MailBodyFormat::PlainText, cpid );
         }
     }
 
-    return new EMAPILib::MessageBody( String::Empty, EMAPILib::MailBodyFormat::PlainText, cpid );
+    return gcnew EMAPILib::MessageBody( String::Empty, EMAPILib::MailBodyFormat::PlainText, cpid );
 }

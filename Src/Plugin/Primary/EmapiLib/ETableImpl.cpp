@@ -19,9 +19,6 @@ EMAPILib::ETableImpl::ETableImpl( const ETableSPtr& mapiTable )
 
 EMAPILib::ETableImpl::~ETableImpl()
 {
-}
-void EMAPILib::ETableImpl::Dispose()
-{
     Disposable::DisposeImpl();
     TypeFactory::Delete( _mapiTable );
     _mapiTable = NULL;
@@ -37,18 +34,18 @@ int EMAPILib::ETableImpl::GetRowCount()
     CheckDisposed();
     return (*_mapiTable)->GetRowCount();
 }
-EMAPILib::IERowSet* EMAPILib::ETableImpl::GetNextRow()
+EMAPILib::IERowSet ^EMAPILib::ETableImpl::GetNextRow()
 {
     CheckDisposed();
     return GetNextRows( 1 );
 }
-EMAPILib::IERowSet* EMAPILib::ETableImpl::GetNextRows( int count )
+EMAPILib::IERowSet ^EMAPILib::ETableImpl::GetNextRows( int count )
 {
     CheckDisposed();
     ELPSRowSetSPtr rowSet = (*_mapiTable)->GetNextRows( count );
     if ( !rowSet.IsNull() && rowSet->GetCount() > 0 )
     {
-        return new EMAPILib::RowSetImpl( rowSet );
+        return gcnew EMAPILib::RowSetImpl( rowSet );
     }
-    return NULL;
+    return nullptr;
 }

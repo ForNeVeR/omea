@@ -18,9 +18,6 @@ EMAPILib::RowSetImpl::RowSetImpl( const ELPSRowSetSPtr& rowSet )
 }
 EMAPILib::RowSetImpl::~RowSetImpl()
 {
-}
-void EMAPILib::RowSetImpl::Dispose()
-{
     Disposable::DisposeImpl();
     TypeFactory::Delete( _rowSet );
     _rowSet = NULL;
@@ -30,7 +27,7 @@ int EMAPILib::RowSetImpl::GetRowCount( )
     return (*_rowSet)->GetCount();
 }
 
-String* EMAPILib::RowSetImpl::FindBinProp( int tag )
+String ^EMAPILib::RowSetImpl::FindBinProp( int tag )
 {
     CheckDisposed();
     ESPropValueSPtr prop = (*_rowSet)->FindProp( tag );
@@ -38,42 +35,42 @@ String* EMAPILib::RowSetImpl::FindBinProp( int tag )
     {
         return Helper::EntryIDToHex( prop->GetBinLPBYTE(), prop->GetBinCB() );
     }
-    return NULL;
+    return nullptr;
 }
 
-String* EMAPILib::RowSetImpl::GetBinProp( int index )
+String ^EMAPILib::RowSetImpl::GetBinProp( int index )
 {
     CheckDisposed();
     return GetBinProp( index, 0 );
 }
-String* EMAPILib::RowSetImpl::GetBinProp( int index, int rowNum )
+String ^EMAPILib::RowSetImpl::GetBinProp( int index, int rowNum )
 {
     CheckDisposed();
     LPSPropValue lpsPropVal = (*_rowSet)->GetProp( index, rowNum );
     if ( lpsPropVal != NULL )
     {
-        String* ret = NULL;
+        String ^ret = nullptr;
         if ( lpsPropVal->Value.bin.lpb != NULL )
         {
             ret = Helper::EntryIDToHex( lpsPropVal->Value.bin.lpb, lpsPropVal->Value.bin.cb );
         }
         return ret;
     }
-    return NULL;
+    return nullptr;
 }
-String* EMAPILib::RowSetImpl::GetStringProp( int index )
+String ^EMAPILib::RowSetImpl::GetStringProp( int index )
 {
     CheckDisposed();
     return GetStringProp( index, 0 );
 }
-String* EMAPILib::RowSetImpl::GetStringProp( int index, int rowNum )
+String ^EMAPILib::RowSetImpl::GetStringProp( int index, int rowNum )
 {
     CheckDisposed();
     LPSPropValue lpsPropVal = (*_rowSet)->GetProp( index, rowNum );
-	String* ret = NULL;
+	String ^ret = nullptr;
     if( lpsPropVal != NULL && lpsPropVal->Value.err != (int)MAPI_E_NOT_FOUND && lpsPropVal->Value.lpszA != NULL )
     {
-        ret = new String( lpsPropVal->Value.lpszA );
+        ret = gcnew String( lpsPropVal->Value.lpszA );
 	}
 	return ret;
 }
@@ -111,15 +108,15 @@ int EMAPILib::RowSetImpl::GetLongProp( int index, int rowNum )
     return 0;
 }
 
-String* EMAPILib::RowSetImpl::FindStringProp( int tag )
+String ^EMAPILib::RowSetImpl::FindStringProp( int tag )
 {
     CheckDisposed();
     ESPropValueSPtr prop = (*_rowSet)->FindProp( tag );
     if ( !prop.IsNull() && prop->GetLPSTR() != NULL )
     {
-        return new String( prop->GetLPSTR() );
+        return gcnew String( prop->GetLPSTR() );
     }
-    return NULL;
+    return nullptr;
 }
 int EMAPILib::RowSetImpl::FindLongProp( int tag )
 {

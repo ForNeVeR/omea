@@ -11,7 +11,7 @@ class MAPIProp;
 
 namespace EMAPILib
 {
-    public __gc class MAPIPropImpl : public Disposable, public IEMAPIProp
+    public ref class MAPIPropImpl : public Disposable, public IEMAPIProp
     {
     private:
         MAPIProp* _eMAPIProp;
@@ -19,27 +19,27 @@ namespace EMAPILib
         MAPIPropImpl( MAPIProp* eMAPIProp );
         virtual ~MAPIPropImpl();
 
-        String* GetBinProp( int tag );
-        ArrayList* GetBinArray( int tag );
-        ArrayList* GetStringArray( int tag );
-        DateTime GetDateTimeProp( int tag );
-        int GetLongProp( int tag );
-        int GetLongProp( int tag, bool retError );
-        bool GetBoolProp( int tag );
-        String* GetStringProp( int tag );
-        void SetStringArray( int tag, ArrayList* value );
+        virtual String^ GetBinProp( int tag );
+        virtual ArrayList^ GetBinArray( int tag );
+        virtual ArrayList^ GetStringArray( int tag );
+        virtual DateTime GetDateTimeProp( int tag );
+        virtual int GetLongProp( int tag );
+        virtual int GetLongProp( int tag, bool retError );
+        virtual bool GetBoolProp( int tag );
+        virtual String^ GetStringProp( int tag );
+        virtual void SetStringArray( int tag, ArrayList^ value );
 
-        int GetIDsFromNames( System::Guid* gcGUID, String* name, int propType );
-        int GetIDsFromNames( System::Guid* gcGUID, int lID, int propType );
+        virtual int GetIDsFromNames( System::Guid* gcGUID, String^ name, int propType );
+        virtual int GetIDsFromNames( System::Guid* gcGUID, int lID, int propType );
 
-        void SetDateTimeProp( int tag, DateTime value );
-        void SetStringProp( int tag, String* value );
-        void SetLongProp( int tag, int value );
-        void SetBoolProp( int tag, bool value );
-        void WriteStringStreamProp( int tag, String* propValue );
-        void SaveChanges();
-        void DeleteProp( int tag );
+        virtual void SetDateTimeProp( int tag, DateTime value );
+        virtual void SetStringProp( int tag, String^ value );
+        virtual void SetLongProp( int tag, int value );
+        virtual void SetBoolProp( int tag, bool value );
+        virtual void WriteStringStreamProp( int tag, String^ propValue );
+        virtual void SaveChanges();
+        virtual void DeleteProp( int tag );
     protected:
-        void CopyTo( LPCIID lpInterface, IEMAPIProp* destMAPIObj );
+        virtual void CopyTo( LPCIID lpInterface, IEMAPIProp^ destMAPIObj );
     };
 }

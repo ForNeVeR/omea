@@ -27,16 +27,13 @@ EMAPILib::MessageImpl::MessageImpl( const EMessageSPtr& eMessage ) : MAPIPropImp
 }
 EMAPILib::MessageImpl::~MessageImpl()
 {
-}
-void EMAPILib::MessageImpl::Dispose()
-{
     MAPIPropImpl::DisposeImpl();
     TypeFactory::Delete( _eMessage );
     _eMessage = NULL;
 }
-void EMAPILib::MessageImpl::SaveToMSG( String* path )
+void EMAPILib::MessageImpl::SaveToMSG( String ^path )
 {
-    if ( path == NULL )
+    if ( path == nullptr )
     {
         Guard::ThrowArgumentNullException( "path" );
     }
@@ -45,38 +42,38 @@ void EMAPILib::MessageImpl::SaveToMSG( String* path )
     Guard::CheckHR( hr );
 }
 
-EMAPILib::IEAttach* EMAPILib::MessageImpl::OpenAttach( int num )
+EMAPILib::IEAttach ^EMAPILib::MessageImpl::OpenAttach( int num )
 {
     CheckDisposed();
     EAttachSPtr attach = (*_eMessage)->OpenAttach( num );
     if ( !attach.IsNull() )
     {
-        return new AttachImpl( attach );
+        return gcnew AttachImpl( attach );
     }
-    return NULL;
+    return nullptr;
 }
-void EMAPILib::MessageImpl::CopyTo( IEMessage* destMessage )
+void EMAPILib::MessageImpl::CopyTo( IEMessage ^destMessage )
 {
     CheckDisposed();
-    MessageImpl* destMessageImpl = dynamic_cast<MessageImpl*>(destMessage);
+    MessageImpl ^destMessageImpl = dynamic_cast<MessageImpl^>(destMessage);
     (*_eMessage)->CopyTo( *(destMessageImpl->_eMessage ) );
 }
-EMAPILib::MessageBody* EMAPILib::MessageImpl::GetRawBodyAsRTF()
+EMAPILib::MessageBody ^EMAPILib::MessageImpl::GetRawBodyAsRTF()
 {
     CheckDisposed();
     return Temp::GetRawBodyAsRTF( *_eMessage );
 }
 
-String* EMAPILib::MessageImpl::GetPlainBody()
+String ^EMAPILib::MessageImpl::GetPlainBody()
 {
     return GetPlainBody( -1 );
 }
-String* EMAPILib::MessageImpl::GetPlainBody( int sizeToRead )
+String ^EMAPILib::MessageImpl::GetPlainBody( int sizeToRead )
 {
     CheckDisposed();
     CharBufferSPtr buffer = (*_eMessage)->openStringProperty( (int)PR_BODY, sizeToRead );
-    if ( buffer.IsNull() ) return NULL;
-    return buffer->GetRawChars();
+    if ( buffer.IsNull() ) return nullptr;
+    return gcnew String(buffer->GetRawChars());
 }
 void EMAPILib::MessageImpl::SetUnRead( bool unread )
 {
@@ -88,25 +85,25 @@ bool EMAPILib::MessageImpl::IsUnread()
     CheckDisposed();
     return (*_eMessage)->Unread();
 }
-EMAPILib::IETable* EMAPILib::MessageImpl::GetRecipients()
+EMAPILib::IETable ^EMAPILib::MessageImpl::GetRecipients()
 {
     CheckDisposed();
     ETableSPtr recipients = (*_eMessage)->GetRecipientsTable();
     if ( !recipients.IsNull() )
     {
-        return new EMAPILib::ETableImpl( recipients );
+        return gcnew EMAPILib::ETableImpl( recipients );
     }
-    return NULL;
+    return nullptr;
 }
-EMAPILib::IETable* EMAPILib::MessageImpl::GetAttachments()
+EMAPILib::IETable ^EMAPILib::MessageImpl::GetAttachments()
 {
     CheckDisposed();
     ETableSPtr table = (*_eMessage)->GetAttachmentTable();
     if ( !table.IsNull() )
     {
-        return new EMAPILib::ETableImpl( table );
+        return gcnew EMAPILib::ETableImpl( table );
     }
-    return NULL;
+    return nullptr;
 }
 EMAPILib::MessagesImpl::MessagesImpl( const MessagesSPtr& eMessages )
 {
@@ -118,9 +115,6 @@ EMAPILib::MessagesImpl::MessagesImpl( const MessagesSPtr& eMessages )
 }
 EMAPILib::MessagesImpl::~MessagesImpl()
 {
-}
-void EMAPILib::MessagesImpl::Dispose()
-{
     Disposable::DisposeImpl();
     TypeFactory::Delete( _eMessages );
     _eMessages = NULL;
@@ -130,13 +124,13 @@ int EMAPILib::MessagesImpl::GetCount()
     CheckDisposed();
     return (*_eMessages)->GetCount();
 }
-EMAPILib::IEMessage* EMAPILib::MessagesImpl::OpenMessage( int index )
+EMAPILib::IEMessage ^EMAPILib::MessagesImpl::OpenMessage( int index )
 {
     CheckDisposed();
     EMessageSPtr message = (*_eMessages)->GetMessage( index );
     if ( !message.IsNull() )
     {
-        return new MessageImpl( message );
+        return gcnew MessageImpl( message );
     }
-    return NULL;
+    return nullptr;
 }

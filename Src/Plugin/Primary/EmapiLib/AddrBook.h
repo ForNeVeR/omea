@@ -6,7 +6,7 @@
 #include "typefactory.h"
 #include "mapiprop.h"
 
-__nogc class ABContainer : public MAPIProp
+class ABContainer : public MAPIProp
 {
 private:
     IABContainer* _lpABContainer;
@@ -20,7 +20,7 @@ public:
     ELPSRowSetSPtr GetRowSet() const;
 };
 
-__nogc class AddrBook : public MAPIProp
+class AddrBook : public MAPIProp
 {
 private:
     LPADRBOOK _lpAdrBook;

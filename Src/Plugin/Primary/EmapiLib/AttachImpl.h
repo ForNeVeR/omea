@@ -9,16 +9,15 @@
 
 namespace EMAPILib
 {
-    public __gc class AttachImpl : public EMAPILib::IEAttach, public MAPIPropImpl
+    public ref class AttachImpl : public EMAPILib::IEAttach, public MAPIPropImpl
     {
     private:
         EAttachSPtr* _eAttach;
     public:
         AttachImpl( const EAttachSPtr& eAttach );
-        virtual System::Byte ReadToEnd()[];
+        virtual array<System::Byte>^ ReadToEnd();
         virtual void InsertOLEIntoRTF( int hwnd, int pos );
+        virtual IEMessage^ OpenMessage();
         virtual ~AttachImpl();
-        virtual IEMessage* OpenMessage();
-        virtual void Dispose();
     };
 }

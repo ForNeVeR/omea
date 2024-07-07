@@ -15,10 +15,10 @@ class  MsgStoreAdviseSink : public IMAPIAdviseSink
 private :
     LONG _cRef;
     int _storeID_idx;
-    gcroot<EMAPILib::IMAPIListener*> _listener;
+    gcroot<EMAPILib::IMAPIListener^> _listener;
 public :
     MsgStoreAdviseSink();
-    void SetListener( EMAPILib::IMAPIListener* listener );
+    void SetListener( EMAPILib::IMAPIListener ^listener );
     static MsgStoreAdviseSink* Create();
 
     void OnNotifyImpl( ULONG cNotif, LPNOTIFICATION pNotifications );

@@ -24,50 +24,47 @@ EMAPILib::ABContainerImpl::ABContainerImpl( const ABContainerSPtr& abCont ) : MA
 
 EMAPILib::ABContainerImpl::~ABContainerImpl()
 {
-}
-void EMAPILib::ABContainerImpl::Dispose()
-{
     MAPIPropImpl::DisposeImpl();
     TypeFactory::Delete( _abCont );
     _abCont = NULL;
 }
-EMAPILib::IERowSet* EMAPILib::ABContainerImpl::GetRowSet()
+EMAPILib::IERowSet^ EMAPILib::ABContainerImpl::GetRowSet()
 {
     CheckDisposed();
     ELPSRowSetSPtr rowset = (*_abCont)->GetRowSet();
     if ( !rowset.IsNull() )
     {
-        return new RowSetImpl( rowset );
+        return gcnew RowSetImpl( rowset );
     }
-    return NULL;
+    return nullptr;
 }
-EMAPILib::IETable* EMAPILib::ABContainerImpl::GetTable()
+EMAPILib::IETable^ EMAPILib::ABContainerImpl::GetTable()
 {
     CheckDisposed();
     ETableSPtr table = (*_abCont)->GetTable();
     if ( !table.IsNull() )
     {
-        return new ETableImpl( table );
+        return gcnew ETableImpl( table );
     }
-    return NULL;
+    return nullptr;
 }
-EMAPILib::IEMailUser* EMAPILib::ABContainerImpl::CreateMailUser()
+EMAPILib::IEMailUser^ EMAPILib::ABContainerImpl::CreateMailUser()
 {
     CheckDisposed();
 
     MailUserSPtr mailUser = (*_abCont)->CreateEntry();
     if ( mailUser.IsNull() )
     {
-        return NULL;
+        return nullptr;
     }
 
-    return new MailUserImpl( mailUser );
+    return gcnew MailUserImpl( mailUser );
 }
 
-EMAPILib::IEMailUser* EMAPILib::ABContainerImpl::OpenMailUser( String* entryID )
+EMAPILib::IEMailUser^ EMAPILib::ABContainerImpl::OpenMailUser( String^ entryID )
 {
     CheckDisposed();
-    if ( entryID == NULL )
+    if ( entryID == nullptr )
     {
         Guard::ThrowArgumentNullException( "entryID" );
     }
@@ -76,10 +73,10 @@ EMAPILib::IEMailUser* EMAPILib::ABContainerImpl::OpenMailUser( String* entryID )
     MailUserSPtr mailUser = (*_abCont)->OpenEntry( (LPBYTE)entryId->getLPENTRYID(), entryId->GetLength() );
     if ( mailUser.IsNull() )
     {
-        return NULL;
+        return nullptr;
     }
 
-    return new MailUserImpl( mailUser );
+    return gcnew MailUserImpl( mailUser );
 }
 
 EMAPILib::AddrBookImpl::AddrBookImpl( const AddrBookSPtr& addrBook ) : MAPIPropImpl( addrBook.get() )
@@ -94,9 +91,6 @@ EMAPILib::AddrBookImpl::AddrBookImpl( const AddrBookSPtr& addrBook ) : MAPIPropI
 }
 
 EMAPILib::AddrBookImpl::~AddrBookImpl()
-{
-}
-void EMAPILib::AddrBookImpl::Dispose()
 {
     MAPIPropImpl::DisposeImpl();
     TypeFactory::Delete( _addrBook );
@@ -113,34 +107,34 @@ int EMAPILib::AddrBookImpl::GetCount()
     }
     return 0;
 }
-EMAPILib::IEABContainer* EMAPILib::AddrBookImpl::OpenAB( int index )
+EMAPILib::IEABContainer^ EMAPILib::AddrBookImpl::OpenAB( int index )
 {
     CheckDisposed();
     if ( !(*_rows).IsNull() )
     {
         ESPropValueSPtr prop = (*_rows)->FindProp( (int)PR_ENTRYID, index );
-        if ( prop.IsNull() ) return NULL;
+        if ( prop.IsNull() ) return nullptr;
         ABContainerSPtr ABCont = (*_addrBook)->OpenEntry( prop->GetBinLPBYTE(), prop->GetBinCB() );
-        if ( ABCont.IsNull() ) return NULL;
-        return new ABContainerImpl( ABCont );
+        if ( ABCont.IsNull() ) return nullptr;
+        return gcnew ABContainerImpl( ABCont );
     }
-    return NULL;
+    return nullptr;
 }
-String* EMAPILib::AddrBookImpl::FindBinProp( int index, int tag )
+String^ EMAPILib::AddrBookImpl::FindBinProp( int index, int tag )
 {
     CheckDisposed();
     if ( !(*_rows).IsNull() )
     {
         ESPropValueSPtr prop = (*_rows)->FindProp( tag, index );
-        if ( prop.IsNull() ) return NULL;
+        if ( prop.IsNull() ) return nullptr;
         return Helper::BinPropToString( prop );
     }
-    return NULL;
+    return nullptr;
 }
-EMAPILib::IEABContainer* EMAPILib::AddrBookImpl::OpenAB( String* entryId )
+EMAPILib::IEABContainer^ EMAPILib::AddrBookImpl::OpenAB( String^ entryId )
 {
     CheckDisposed();
-    if ( entryId == NULL || entryId->Length == 0 )
+    if ( entryId == nullptr || entryId->Length == 0 )
     {
         Guard::ThrowArgumentNullException( "entryId" );
     }
@@ -150,16 +144,16 @@ EMAPILib::IEABContainer* EMAPILib::AddrBookImpl::OpenAB( String* entryId )
         ABContainerSPtr ABCont = (*_addrBook)->OpenEntry( (LPBYTE)entryIDSPtr->getLPENTRYID(), entryIDSPtr->GetLength() );
         if ( !ABCont.IsNull() )
         {
-            return new ABContainerImpl( ABCont );
+            return gcnew ABContainerImpl( ABCont );
         }
     }
-    return NULL;
+    return nullptr;
 }
 
-EMAPILib::IEMailUser* EMAPILib::AddrBookImpl::OpenMailUser( String* entryID )
+EMAPILib::IEMailUser^ EMAPILib::AddrBookImpl::OpenMailUser( String^ entryID )
 {
     CheckDisposed();
-    if ( entryID == NULL )
+    if ( entryID == nullptr )
     {
         Guard::ThrowArgumentNullException( "entryID" );
     }
@@ -168,10 +162,10 @@ EMAPILib::IEMailUser* EMAPILib::AddrBookImpl::OpenMailUser( String* entryID )
     MailUserSPtr mailUser = (*_addrBook)->OpenMailUser( (LPBYTE)entryId->getLPENTRYID(), entryId->GetLength() );
     if ( mailUser.IsNull() )
     {
-        return NULL;
+        return nullptr;
     }
 
-    return new MailUserImpl( mailUser );
+    return gcnew MailUserImpl( mailUser );
 }
 EMAPILib::MailUserImpl::MailUserImpl( const MailUserSPtr& mailUser ) : MAPIPropImpl( mailUser.get() )
 {
@@ -183,9 +177,6 @@ EMAPILib::MailUserImpl::MailUserImpl( const MailUserSPtr& mailUser ) : MAPIPropI
 }
 
 EMAPILib::MailUserImpl::~MailUserImpl()
-{
-}
-void EMAPILib::MailUserImpl::Dispose()
 {
     MAPIPropImpl::DisposeImpl();
     TypeFactory::Delete( _mailUser );
