@@ -8,12 +8,8 @@ using System.ComponentModel;
 using System.Reflection;
 using System.Windows.Documents;
 using System.Windows.Media;
-
-using System35;
-
 using JetBrains.Annotations;
 using JetBrains.Omea.OpenAPI;
-
 using OmniaMea;
 
 namespace JetBrains.Omea.Plugins

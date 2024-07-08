@@ -97,6 +97,7 @@ SPDX-License-Identifier: GPL-2.0-only
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
+      <Reference Include="System.Xaml" />
     <Reference Include="PresentationFramework">
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
     </Reference>

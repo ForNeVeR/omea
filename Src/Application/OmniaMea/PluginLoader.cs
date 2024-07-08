@@ -3,7 +3,6 @@
 // SPDX-License-Identifier: GPL-2.0-only
 
 using System;
-using System.Collection.Generic;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -13,15 +12,11 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using System.Xml;
-
-using System35;
-
 using JetBrains.Annotations;
 using JetBrains.Omea.OpenAPI;
 using JetBrains.Omea.ResourceStore;
 using JetBrains.UI.Util;
 using JetBrains.Util;
-
 using OmniaMea;
 
 namespace JetBrains.Omea.Plugins

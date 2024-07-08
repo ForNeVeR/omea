@@ -12,16 +12,12 @@ using System.IO;
 using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
-
-using System35;
-
 using DBIndex;
-
 using JetBrains.Annotations;
-using JetBrains.Omea.Base;
-using JetBrains.Omea.GUIControls;
 using JetBrains.DataStructures;
+using JetBrains.Omea.Base;
 using JetBrains.Omea.Categories;
+using JetBrains.Omea.GUIControls;
 using JetBrains.Omea.OpenAPI;
 using JetBrains.UI.Interop;
 using Microsoft.Win32;
