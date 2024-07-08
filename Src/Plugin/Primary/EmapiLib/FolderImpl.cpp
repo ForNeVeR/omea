@@ -112,7 +112,7 @@ EMAPILib::IETable ^EMAPILib::FolderImpl::GetEnumTableForOwnEmail( )
 int EMAPILib::FolderImpl::GetTag()
 {
     System::Guid set1( "{00062008-0000-0000-C000-000000000046}" );
-    return GetIDsFromNames( &set1, 0x8578, PT_LONG );
+    return GetIDsFromNames( set1, 0x8578, PT_LONG );
 }
 
 SizedSPropTagArray(8, _Props8);

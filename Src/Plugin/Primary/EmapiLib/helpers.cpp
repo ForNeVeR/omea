@@ -110,9 +110,9 @@ EMAPILib::MAPIFullNtf ^Helper::GetMAPIFullNtf( _NOTIFICATION notification )
 }
 
 
-void Helper::SetGUID( LPGUID lpGUID, System::Guid* gcGUID )
+void Helper::SetGUID( LPGUID lpGUID, System::Guid% gcGUID )
 {
-    array<unsigned char> ^bytes = gcGUID->ToByteArray();
+    array<unsigned char> ^bytes = gcGUID.ToByteArray();
     for ( int i = 0; i < 16; i++ )
     {
         ((BYTE*)lpGUID)[i] = bytes[i];
