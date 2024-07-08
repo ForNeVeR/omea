@@ -3,7 +3,6 @@
 // SPDX-License-Identifier: GPL-2.0-only
 
 using System;
-using System.Collection.Generic;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
@@ -17,16 +16,12 @@ using System.Windows.Forms;
 using System.Windows.Forms.Integration;
 using System.Windows.Input;
 using System.Windows.Media;
-
 using GUIControls.RichText;
-
 using JetBrains.Annotations;
 using JetBrains.Omea.Base;
 using JetBrains.Omea.OpenAPI;
 using JetBrains.UI.Avalon;
-
 using OmniaMea;
-
 using Binding=System.Windows.Data.Binding;
 using Button=System.Windows.Controls.Button;
 using CheckBox=System.Windows.Controls.CheckBox;

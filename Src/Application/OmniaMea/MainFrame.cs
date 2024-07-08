@@ -15,12 +15,8 @@ using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Threading;
 using System.Xml;
-
-using System35;
-
 using DBIndex;
 using Ini;
-
 using JetBrains.Annotations;
 using JetBrains.Interop.WinApi;
 using JetBrains.Interop.WinApi.Wrappers;
@@ -45,7 +41,6 @@ using JetBrains.UI.Hooks;
 using JetBrains.UI.Interop;
 using Microsoft.Win32;
 using PicoContainer.Defaults;
-
 using Application=System.Windows.Forms.Application;
 using ContextMenu=System.Windows.Forms.ContextMenu;
 using HorizontalAlignment=System.Windows.Forms.HorizontalAlignment;
