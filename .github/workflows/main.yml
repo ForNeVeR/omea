@@ -14,6 +14,24 @@ on:
   - cron: 0 0 * * 6
   workflow_dispatch:
 jobs:
+  build:
+    runs-on: windows-2022
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+      - name: Set up Visual Studio environment
+        uses: ilammy/msvc-dev-cmd@v1
+      - name: Build
+        shell: pwsh
+        run: msbuild /t:Build Src\Omea.sln
+      - name: Upload the artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: omea.zip
+          path: Bin/*
+
   licenses:
     runs-on: ubuntu-22.04
     steps:
