@@ -911,10 +911,6 @@ Global
 		{F87D3F76-E805-4576-B040-D9BBB1DADF47}.CruiseControl|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{F87D3F76-E805-4576-B040-D9BBB1DADF47}.CruiseControl|Mixed Platforms.Build.0 = Release|Any CPU
 		{F87D3F76-E805-4576-B040-D9BBB1DADF47}.CruiseControl|Win32.ActiveCfg = Release|Any CPU
-		{F87D3F76-E805-4576-B040-D9BBB1DADF47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F87D3F76-E805-4576-B040-D9BBB1DADF47}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F87D3F76-E805-4576-B040-D9BBB1DADF47}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{F87D3F76-E805-4576-B040-D9BBB1DADF47}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
 		{F87D3F76-E805-4576-B040-D9BBB1DADF47}.Debug|Win32.ActiveCfg = Debug|Any CPU
 		{F87D3F76-E805-4576-B040-D9BBB1DADF47}.Reader Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F87D3F76-E805-4576-B040-D9BBB1DADF47}.Reader Debug|Any CPU.Build.0 = Debug|Any CPU
@@ -926,6 +922,10 @@ Global
 		{F87D3F76-E805-4576-B040-D9BBB1DADF47}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{F87D3F76-E805-4576-B040-D9BBB1DADF47}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{F87D3F76-E805-4576-B040-D9BBB1DADF47}.Release|Win32.ActiveCfg = Release|Any CPU
+		{F87D3F76-E805-4576-B040-D9BBB1DADF47}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{F87D3F76-E805-4576-B040-D9BBB1DADF47}.Debug|Any CPU.Build.0 = Debug|x86
+		{F87D3F76-E805-4576-B040-D9BBB1DADF47}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{F87D3F76-E805-4576-B040-D9BBB1DADF47}.Debug|Mixed Platforms.Build.0 = Debug|x86
 		{1302A80F-8FE9-48DD-903F-90BCCA0FDB78}.CruiseControl|Any CPU.ActiveCfg = Release|Any CPU
 		{1302A80F-8FE9-48DD-903F-90BCCA0FDB78}.CruiseControl|Any CPU.Build.0 = Release|Any CPU
 		{1302A80F-8FE9-48DD-903F-90BCCA0FDB78}.CruiseControl|Mixed Platforms.ActiveCfg = Release|Any CPU
