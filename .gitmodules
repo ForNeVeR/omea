@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2024 Friedrich von Never <friedrich@fornever.me>
+#
+# SPDX-License-Identifier: GPL-2.0-only
+
 [submodule "third-party/MAPIStubLibrary"]
 	path = third-party/MAPIStubLibrary
 	url = https://github.com/microsoft/MAPIStubLibrary.git
