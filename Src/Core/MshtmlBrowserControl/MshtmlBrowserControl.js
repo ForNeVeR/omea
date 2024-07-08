@@ -251,7 +251,7 @@ package JetBrains.Omea.GUIControls.MshtmlBrowser
 					bCanShowHtmlNow = false;	// Will try to resurrect the control
 
 @if(@DEBUG)
-					var sDiagnosticMessage = String.Format("The MSHTML Browser Site ActiveX control has deceased. Its IsComObject is {0}, Window handle is {1}, HandleCreated is {2}.\n{3}", Marshal.IsComObject(_ocx), Handle, IsHandleCreated, ex.Message);
+					var sDiagnosticMessage = String.Format("The MSHTML Browser Site ActiveX control has deceased. Its IsComObject is {0}, Window handle is {1}, HandleCreated is {2}.\n{3}", [Marshal.IsComObject(_ocx), Handle, IsHandleCreated, ex.Message]);
 					Core.ReportException(new Exception(sDiagnosticMessage, ex), ExceptionReportFlags.AttachLog);
 @end
 
@@ -266,7 +266,7 @@ package JetBrains.Omea.GUIControls.MshtmlBrowser
 					bCanShowHtmlNow = false;	// Will try to resurrect the control
 
 @if(@DEBUG)
-					var sDiagnosticMessage = String.Format("The MSHTML ActiveX control has drifted off its MshtmlSite cradle. Our IsComObject is {0}, Window handle is {1}, HandleCreated is {2}.\n{3}", Marshal.IsComObject(_ocx), Handle, IsHandleCreated, ex.Message);
+					var sDiagnosticMessage = String.Format("The MSHTML ActiveX control has drifted off its MshtmlSite cradle. Our IsComObject is {0}, Window handle is {1}, HandleCreated is {2}.\n{3}", [Marshal.IsComObject(_ocx), Handle, IsHandleCreated, ex.Message]);
 					Core.ReportException(new Exception(sDiagnosticMessage, ex), ExceptionReportFlags.AttachLog);
 @end
 
@@ -1080,10 +1080,10 @@ System.Windows.Forms.MessageBox.Show("[OMEA.MSHTML] The control has not been cre
 					wordsSearchHits.Add(wordSearchHit);	// Record
 
 					// Submit the opening tag for highlighting
-					writer.Append( String.Format("<span id=\"{3}\" style=\"color: {0}; background-color: {1};\" title=\"Search result for {2}\">", color.ForeColor, color.BackColor, word.Original, wordSearchHit.Section) );	// Start hilite tag
+					writer.Append( String.Format("<span id=\"{3}\" style=\"color: {0}; background-color: {1};\" title=\"Search result for {2}\">", [color.ForeColor, color.BackColor, word.Original, wordSearchHit.Section]) );	// Start hilite tag
 
 @if(@DEBUG)	// Length check
-					nIntroducedLength += String.Format("<span id=\"{3}\" style=\"color: {0}; background-color: {1};\" title=\"Search result for {2}\">", color.ForeColor, color.BackColor, word.Original, wordSearchHit.Section).Length;
+					nIntroducedLength += String.Format("<span id=\"{3}\" style=\"color: {0}; background-color: {1};\" title=\"Search result for {2}\">", [color.ForeColor, color.BackColor, word.Original, wordSearchHit.Section]).Length;
 @end
 
 					// Write the matched word (introduced length is zero)
@@ -1429,7 +1429,7 @@ System.Windows.Forms.MessageBox.Show("[OMEA.MSHTML] The control has not been cre
 			var nCode : UInt32 = code >= 0 ? code : uint(0xFFFFFFFF) - uint(-code) + 1;
 			var nErrorCode : NavigateErrorCodes = nCode;
 			var sError : System.String = nErrorCode.ToString();
-			var sMessage = String.Format("[OMEA.MSHTML] OnNavigateError for {0}, {1}, {2}: {3}", Object(uri), Object(frame), Object(code), Object(sError) );
+			var sMessage = String.Format("[OMEA.MSHTML] OnNavigateError for {0}, {1}, {2}: {3}", [Object(uri), Object(frame), Object(code), Object(sError)]);
 			Trace.WriteLine( sMessage );
 			return false;
 		}
