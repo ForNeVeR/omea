@@ -27,7 +27,7 @@ namespace EMAPILib
         property String^ StoreID { String^ get() { return _storeID; } }
         property String^ EntryID { String^ get() { return _entryID; } }
     };
-    public enum MailBodyFormat
+    public enum class MailBodyFormat
     {
         PlainText,
         PlainTextInRTF,
@@ -77,8 +77,8 @@ namespace EMAPILib
         virtual String^ GetStringProp( int tag );
         virtual void SetStringArray( int tag, ArrayList^ value );
 
-        virtual int GetIDsFromNames( System::Guid* gcGUID, String^ name, int propType );
-        virtual int GetIDsFromNames( System::Guid* gcGUID, int lID, int propType );
+        virtual int GetIDsFromNames( System::Guid% gcGUID, String^ name, int propType );
+        virtual int GetIDsFromNames( System::Guid% gcGUID, int lID, int propType );
 
         virtual void SetDateTimeProp( int tag, DateTime value );
         virtual void SetStringProp( int tag, String^ value );
@@ -365,7 +365,7 @@ public:
     static EMAPILib::MAPINtf^ GetNewMailNtf( _NOTIFICATION notification );
     static EMAPILib::MAPINtf^ GetMAPINtf( _NOTIFICATION notification );
     static EMAPILib::MAPIFullNtf^ GetMAPIFullNtf( _NOTIFICATION notification );
-    static void SetGUID( LPGUID lpGUID, System::Guid* gcGUID );
+    static void SetGUID( LPGUID lpGUID, System::Guid% gcGUID );
     static void MarshalCopy( byte* bytes, array<unsigned char> ^destination, int startIndex, int count );
     static String^ BinPropToString( const ESPropValueSPtr& prop );
 };

@@ -208,7 +208,7 @@ void EMAPILib::MAPIPropImpl::SaveChanges()
     _eMAPIProp->SaveChanges( (int)KEEP_OPEN_READWRITE );
 }
 
-int EMAPILib::MAPIPropImpl::GetIDsFromNames( System::Guid* gcGUID, String ^name, int propType )
+int EMAPILib::MAPIPropImpl::GetIDsFromNames( System::Guid% gcGUID, String ^name, int propType )
 {
     CheckDisposed();
     GUID guid;
@@ -216,7 +216,7 @@ int EMAPILib::MAPIPropImpl::GetIDsFromNames( System::Guid* gcGUID, String ^name,
     return _eMAPIProp->getIDsFromNames( &guid, Temp::GetUNIString( name )->GetChars(), propType );
 }
 
-int EMAPILib::MAPIPropImpl::GetIDsFromNames( System::Guid* gcGUID, int lID, int propType )
+int EMAPILib::MAPIPropImpl::GetIDsFromNames( System::Guid% gcGUID, int lID, int propType )
 {
     CheckDisposed();
     GUID guid;

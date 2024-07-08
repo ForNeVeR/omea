@@ -29,8 +29,8 @@ namespace EMAPILib
         virtual String^ GetStringProp( int tag );
         virtual void SetStringArray( int tag, ArrayList^ value );
 
-        virtual int GetIDsFromNames( System::Guid* gcGUID, String^ name, int propType );
-        virtual int GetIDsFromNames( System::Guid* gcGUID, int lID, int propType );
+        virtual int GetIDsFromNames( System::Guid% gcGUID, String^ name, int propType );
+        virtual int GetIDsFromNames( System::Guid% gcGUID, int lID, int propType );
 
         virtual void SetDateTimeProp( int tag, DateTime value );
         virtual void SetStringProp( int tag, String^ value );
