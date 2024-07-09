@@ -6,7 +6,7 @@
 /Obj/
 /Src/Core/MshtmlSite/_MsHtmlSite*
 /Src/Core/MshtmlSite/dlldata.c
-/Src/Core/OmniaMeaBase/Install/JetBrains.Build.InstallationData.cs
+/Src/Core/OmniaMeaBase/JetBrains.Build.InstallationData.cs
 
 .idea/
 .vs/
