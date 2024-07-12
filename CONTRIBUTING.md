@@ -25,6 +25,8 @@ $ msbuild /t:Build /property:Platform="Mixed Platforms" Omea.sln
 
 This will build Omea and generate the artifacts in the `Bin` directory.
 
+Add `/property:Configuration=Release` parameter for `msbuild` to build a release version.
+
 License Automation
 ------------------
 If the CI asks you to update the file licenses, follow one of these:
