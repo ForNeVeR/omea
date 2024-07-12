@@ -1,7 +1,7 @@
 /*
  *   Mentalis.org Security Library
  *
- *     Copyright � 2002-2005, The KPD-Team
+ *     Copyright © 2002-2005, The KPD-Team
  *     All rights reserved.
  *     http://www.mentalis.org/
  *
@@ -44,7 +44,7 @@ using System.Security.Permissions;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("The Mentalis.org Team")]
 [assembly: AssemblyProduct("Mentalis.org Security Library")]
-[assembly: AssemblyCopyright("Copyright � 2002-2005, The Mentalis.org Team")]
+[assembly: AssemblyCopyright("Copyright © 2002-2005, The Mentalis.org Team")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: CLSCompliant(true)]
