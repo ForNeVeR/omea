@@ -58,7 +58,7 @@ SPDX-License-Identifier: GPL-2.0-only
     <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>$(ProjectDir)..\..\..\BinRelease\</OutDir>
+    <OutDir>$(ProjectDir)..\..\..\Bin\</OutDir>
     <IntDir>$(ProjectDir)..\..\..\Obj\$(ProjectName)\$(Configuration)\</IntDir>
     <IgnoreImportLibrary>true</IgnoreImportLibrary>
     <LinkIncremental>false</LinkIncremental>

@@ -12,7 +12,7 @@ SPDX-License-Identifier: GPL-2.0-only
 	<PropertyGroup>
 		<IntermediateOutputPath>$(ProductHomeDir)\Obj\$(MSBuildProjectName)\$(Configuration)\</IntermediateOutputPath>
 		<OutputPath>$(ProductHomeDir)\Bin\</OutputPath>
-		<OutputPath Condition="'$(Configuration)'=='Release'">$(ProductHomeDir)\BinRelease\</OutputPath>
+		<OutputPath Condition="'$(Configuration)'=='Release'">$(ProductHomeDir)\Bin\</OutputPath>
 	</PropertyGroup>
 	<!-- Generic settings. -->
 	<PropertyGroup>
