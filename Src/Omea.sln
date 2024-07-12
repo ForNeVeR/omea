@@ -19,10 +19,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		..\Build\Product.AfterMicrosoftCommon.Targets = ..\Build\Product.AfterMicrosoftCommon.Targets
 		..\Build\Product.BeforeMicrosoftCommon.Targets = ..\Build\Product.BeforeMicrosoftCommon.Targets
 		..\Build\Product.Common.Targets = ..\Build\Product.Common.Targets
-		..\Build\Server.BootstrapBuildNumber.Targets = ..\Build\Server.BootstrapBuildNumber.Targets
-		..\Build\Server.proj = ..\Build\Server.proj
-		..\Build\Server.Publish.Targets = ..\Build\Server.Publish.Targets
 		..\Build\ToolProject.Targets = ..\Build\ToolProject.Targets
+		Omea.sln.license = Omea.sln.license
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonTests", "Core\CommonTests\CommonTests.csproj", "{BF1D5FAA-EA49-4416-95CD-F5752E7DA797}"
