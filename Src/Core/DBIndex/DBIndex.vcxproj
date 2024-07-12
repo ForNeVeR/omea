@@ -61,7 +61,6 @@ SPDX-License-Identifier: GPL-2.0-only
     <OutDir>$(ProjectDir)..\..\..\BinRelease\</OutDir>
     <IntDir>$(ProjectDir)..\..\..\Obj\$(ProjectName)\$(Configuration)\</IntDir>
     <LinkIncremental>false</LinkIncremental>
-    <LinkKeyFile>$(ProjectDir)..\..\..\Lib\Key.Snk</LinkKeyFile>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

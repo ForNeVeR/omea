@@ -11,6 +11,5 @@ import System.Runtime.CompilerServices;
 // Strong name (cannot apply as compiler params, only assembly-info syntax is supported)
 @if(!@DEBUG)
 [assembly: AssemblyDelaySign(false)]
-[assembly: AssemblyKeyFile("..\\..\\..\\Lib\\Key.snk")]
 [assembly: AssemblyKeyName("")]
 @end

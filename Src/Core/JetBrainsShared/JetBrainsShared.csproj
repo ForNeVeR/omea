@@ -119,9 +119,6 @@ SPDX-License-Identifier: GPL-2.0-only
     <Compile Include="AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <!--    <Compile Include="AssemblyKeyFile.cs">
-      <SubType>Code</SubType>
-    </Compile> -->
     <Compile Include="Components\Colors.cs">
       <SubType>Code</SubType>
     </Compile>

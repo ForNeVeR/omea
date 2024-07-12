@@ -8,12 +8,6 @@ SPDX-License-Identifier: GPL-2.0-only
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
 	<!-- Include the product settings. -->
 	<Import Project="$(ProductHomeDir)/Build/Product.Settings.Targets" Condition="'$(PragmaOnce_Product_Settings_Targets)'==''" />
-	<!-- Strong name in Release builds. -->
-	<!-- Note: you must generate the key pair locally and place it at Lib/Key.Snk. -->
-	<PropertyGroup>
-		<SignAssembly Condition="'$(Configuration)'=='Release'">True</SignAssembly>
-		<AssemblyOriginatorKeyFile Condition="'$(Configuration)'=='Release'">$(ProductHomeDir)/Lib/Key.Snk</AssemblyOriginatorKeyFile>
-	</PropertyGroup>
 	<!-- Set the OBJ and BIN dir path. -->
 	<PropertyGroup>
 		<IntermediateOutputPath>$(ProductHomeDir)\Obj\$(MSBuildProjectName)\$(Configuration)\</IntermediateOutputPath>
