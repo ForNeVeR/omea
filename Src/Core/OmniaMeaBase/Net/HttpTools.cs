@@ -1,12 +1,13 @@
 ﻿// SPDX-FileCopyrightText: 2003-2008 JetBrains s.r.o.
+// SPDX-FileCopyrightText: 2024 Friedrich von Never
 //
 // SPDX-License-Identifier: GPL-2.0-only
 
 using System;
-using System.Collections.Specialized;
+using System.Diagnostics;
 using System.IO;
 using System.Net;
-using System.Diagnostics;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading;
 using ICSharpCode.SharpZipLib.GZip;
@@ -14,12 +15,16 @@ using ICSharpCode.SharpZipLib.Zip.Compression.Streams;
 using JetBrains.Omea.Base;
 using JetBrains.Omea.Diagnostics;
 using JetBrains.Omea.OpenAPI;
-using System.Security.Cryptography.X509Certificates;
 
 namespace JetBrains.Omea.HttpTools
 {
     public class HttpReader : AbstractJob
     {
+        static HttpReader()
+        {
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+        }
+
         /**
          * size of byte buffer for async reading of http stream
          */
