@@ -49,7 +49,6 @@ namespace JetBrains.Omea.RSSPlugin
 
         private static readonly PlaneListProvider   _feedsPlaneListProvider = new PlaneListProvider();
         private static readonly FeedUpdateQueue _updateQueue = new FeedUpdateQueue();
-        private BlogExtensionManager _blogExtensionManager;
         private CommentThreadingHandler _commentThreadingHandler;
 
         private readonly IntHashTableOfInt _selectionMap = new IntHashTableOfInt(); // feed ID -> item ID
@@ -216,9 +215,6 @@ namespace JetBrains.Omea.RSSPlugin
 
             Core.ResourceBrowser.RegisterLinksPaneFilter( "RSSItem", new ItemRecipientsFilter() );
             Core.ResourceBrowser.RegisterLinksPaneFilter( "RSSItem", new WeblogFromFilter() );
-
-            _blogExtensionManager = new BlogExtensionManager();
-            _blogExtensionManager.LoadExtensions();
 
             _updateQueue.FeedUpdated += _updateQueue_OnFeedUpdated;
 			_updateQueue.QueueGotEmpty += OnFeedUpdateQueueGotEmpty;
@@ -528,8 +524,6 @@ namespace JetBrains.Omea.RSSPlugin
         internal static IResource RootFeedGroup { get { return _thePlugin._feedRoot; } }
 
         internal static IResourceTreePane   RSSTreePane { get { return _thePlugin._rssTreePane; } }
-
-        internal static BlogExtensionManager ExtensionManager { get { return _thePlugin._blogExtensionManager; } }
 
         internal Hashtable FeedImporters { get { return _feedImporters; } }
 

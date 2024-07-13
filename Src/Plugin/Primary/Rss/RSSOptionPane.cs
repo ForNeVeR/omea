@@ -3,7 +3,7 @@
 // SPDX-License-Identifier: GPL-2.0-only
 
 using System;
-using System.IO;
+using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 using JetBrains.Omea.GUIControls;
@@ -17,54 +17,45 @@ namespace JetBrains.Omea.RSSPlugin
     /// </summary>
     public class RSSOptionPane: AbstractOptionsPane
     {
-        private System.Windows.Forms.GroupBox _grpUpdateSettings;
-        private System.Windows.Forms.Label label1;
+        private GroupBox _grpUpdateSettings;
+        private Label label1;
         private PeriodComboBox _cmbUpdatePeriod;
         private NumericUpDownSettingEditor _udUpdateFrequency;
-        private System.Windows.Forms.Label label2;
+        private Label label2;
         private PeriodComboBox _cmbStopUpdatePeriod;
         private NumericUpDownSettingEditor _udStopUpdatePeriod;
         private string _oldUpdatePeriod;
 
-        private JetBrains.Omea.GUIControls.CookieProviderSelector _cookieProviderSelector;
+        private CookieProviderSelector _cookieProviderSelector;
 
         private CheckBoxSettingEditor         _chkRememberSelection;
-        private System.Windows.Forms.CheckBox _chkShowDesktopAlert;
-		private System.Windows.Forms.CheckBox _checkNewspaperAllowHoverSelection;
-		private System.Windows.Forms.CheckBox _checkPropagateFavIconToItems;
-        private System.Windows.Forms.CheckBox _checkUseDetailedURLs;
-        private System.Windows.Forms.CheckBox _checkShowSummary;
+        private CheckBox _chkShowDesktopAlert;
+		private CheckBox _checkNewspaperAllowHoverSelection;
+		private CheckBox _checkPropagateFavIconToItems;
+        private CheckBox _checkUseDetailedURLs;
+        private CheckBox _checkShowSummary;
         private bool _wasDesktopAlertChecked;
 
-        private System.Windows.Forms.GroupBox _grpFontChars;
-        private System.Windows.Forms.CheckBox _chkOverrideFont;
-        private System.Windows.Forms.Label _lblFontFamily;
-        private System.Windows.Forms.Button _btnChangeFont;
-        private System.Windows.Forms.TextBox _txtFont;
-
-        private System.Windows.Forms.GroupBox _grpExtensions;
-        private System.Windows.Forms.ListView _lvExtensions;
-        private System.Windows.Forms.ColumnHeader columnHeader1;
-        private System.Windows.Forms.ColumnHeader columnHeader2;
-        private System.Windows.Forms.Button _btnConfigure;
-        private System.Windows.Forms.Button _btnInstall;
-        private System.Windows.Forms.OpenFileDialog _dlgBrowseForExtension;
-        private System.Windows.Forms.Button _btnUninstall;
+        private GroupBox _grpFontChars;
+        private CheckBox _chkOverrideFont;
+        private Label _lblFontFamily;
+        private Button _btnChangeFont;
+        private TextBox _txtFont;
 
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.Container components = null;
+        private Container components = null;
 
-        private JetBrains.Omea.GUIControls.NumericUpDownSettingEditor _updateTimeOut;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.GroupBox groupExpRules;
-        private System.Windows.Forms.Button buttonEditDefExpRule;
-        private System.Windows.Forms.Label labelDefaultExpRule;
-        private System.Windows.Forms.Label labelExpRuleForDeleted;
-        private System.Windows.Forms.Button buttonEditExpRuleForDeleted;
-        private System.Windows.Forms.Button buttonClearDefault;
-        private System.Windows.Forms.Button buttonClearDeleted;
+        private NumericUpDownSettingEditor _updateTimeOut;
+        private Label label3;
+        private GroupBox groupExpRules;
+        private Button buttonEditDefExpRule;
+        private Label labelDefaultExpRule;
+        private Label labelExpRuleForDeleted;
+        private Button buttonEditExpRuleForDeleted;
+        private Button buttonClearDefault;
+        private Button buttonClearDeleted;
         private int _oldUpdateFrequency;
 
         private string          _currFont;
@@ -75,7 +66,6 @@ namespace JetBrains.Omea.RSSPlugin
         public RSSOptionPane()
         {
             InitializeComponent();
-            _lvExtensions.Columns [0].Width = _lvExtensions.ClientSize.Width - _lvExtensions.Columns [1].Width - 4;
         }
 
         private void  ReadFontCharacteristics()
@@ -158,15 +148,6 @@ namespace JetBrains.Omea.RSSPlugin
             this._txtFont = new System.Windows.Forms.TextBox();
             this._btnChangeFont = new System.Windows.Forms.Button();
 
-			this._grpExtensions = new System.Windows.Forms.GroupBox();
-			this._btnUninstall = new System.Windows.Forms.Button();
-			this._btnInstall = new System.Windows.Forms.Button();
-			this._btnConfigure = new System.Windows.Forms.Button();
-			this._lvExtensions = new System.Windows.Forms.ListView();
-			this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
-			this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
-			this._dlgBrowseForExtension = new System.Windows.Forms.OpenFileDialog();
-
 			this.groupExpRules = new System.Windows.Forms.GroupBox();
 			this.labelDefaultExpRule = new System.Windows.Forms.Label();
 			this.buttonEditExpRuleForDeleted = new System.Windows.Forms.Button();
@@ -175,7 +156,6 @@ namespace JetBrains.Omea.RSSPlugin
 			this.buttonEditDefExpRule = new System.Windows.Forms.Button();
 			this.buttonClearDeleted = new System.Windows.Forms.Button();
             this._grpUpdateSettings.SuspendLayout();
-			this._grpExtensions.SuspendLayout();
 			this.groupExpRules.SuspendLayout();
 			this.SuspendLayout();
 
@@ -423,87 +403,6 @@ namespace JetBrains.Omea.RSSPlugin
 			this._btnChangeFont.Click += new EventHandler(_btnChangeFont_Click);
             #endregion Group Font Attributes
 
-            #region Group Extensions
-			//
-			// _grpExtensions
-			//
-			this._grpExtensions.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-				| System.Windows.Forms.AnchorStyles.Right)));
-			this._grpExtensions.Controls.Add(this._btnUninstall);
-			this._grpExtensions.Controls.Add(this._btnInstall);
-			this._grpExtensions.Controls.Add(this._btnConfigure);
-			this._grpExtensions.Controls.Add(this._lvExtensions);
-			this._grpExtensions.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this._grpExtensions.Location = new System.Drawing.Point(0, 373);
-			this._grpExtensions.Name = "_grpExtensions";
-			this._grpExtensions.Size = new System.Drawing.Size(464, 140);
-			this._grpExtensions.TabIndex = 12;
-			this._grpExtensions.TabStop = false;
-			this._grpExtensions.Text = "&Weblog Posting Extensions";
-			//
-			// _btnUninstall
-			//
-			this._btnUninstall.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this._btnUninstall.Enabled = false;
-			this._btnUninstall.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this._btnUninstall.Location = new System.Drawing.Point(376, 108);
-			this._btnUninstall.Name = "_btnUninstall";
-			this._btnUninstall.TabIndex = 3;
-			this._btnUninstall.Text = "Uninstall";
-			this._btnUninstall.Click += new System.EventHandler(this._btnUninstall_Click);
-			//
-			// _btnInstall
-			//
-			this._btnInstall.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this._btnInstall.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this._btnInstall.Location = new System.Drawing.Point(200, 108);
-			this._btnInstall.Name = "_btnInstall";
-			this._btnInstall.TabIndex = 1;
-			this._btnInstall.Text = "&Install...";
-			this._btnInstall.Click += new System.EventHandler(this._btnInstall_Click);
-			//
-			// _btnConfigure
-			//
-			this._btnConfigure.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this._btnConfigure.Enabled = false;
-			this._btnConfigure.FlatStyle = System.Windows.Forms.FlatStyle.System;
-			this._btnConfigure.Location = new System.Drawing.Point(288, 108);
-			this._btnConfigure.Name = "_btnConfigure";
-			this._btnConfigure.TabIndex = 2;
-			this._btnConfigure.Text = "Configure...";
-			this._btnConfigure.Click += new System.EventHandler(this._btnConfigure_Click);
-			//
-			// _lvExtensions
-			//
-			this._lvExtensions.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-				| System.Windows.Forms.AnchorStyles.Right)));
-			this._lvExtensions.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-																							this.columnHeader1,
-																							this.columnHeader2});
-			this._lvExtensions.FullRowSelect = true;
-			this._lvExtensions.Location = new System.Drawing.Point(4, 16);
-			this._lvExtensions.MultiSelect = false;
-			this._lvExtensions.Name = "_lvExtensions";
-			this._lvExtensions.Size = new System.Drawing.Size(456, 88);
-			this._lvExtensions.TabIndex = 0;
-			this._lvExtensions.View = System.Windows.Forms.View.Details;
-			this._lvExtensions.SelectedIndexChanged += new System.EventHandler(this._lvExtensions_SelectedIndexChanged);
-			//
-			// columnHeader1
-			//
-			this.columnHeader1.Text = "Title";
-			this.columnHeader1.Width = 150;
-			//
-			// columnHeader2
-			//
-			this.columnHeader2.Text = "File Name";
-			this.columnHeader2.Width = 150;
-			//
-			// _dlgBrowseForExtension
-			//
-			this._dlgBrowseForExtension.Filter = "DLL files (*.dll)|*.dll|All files|*.*";
-			this._dlgBrowseForExtension.Title = "Select a Plugin DLL";
-            #endregion Group Extensions
 
             #region GroupExpRules
             //
@@ -594,7 +493,6 @@ namespace JetBrains.Omea.RSSPlugin
 			this.Controls.Add(this.groupExpRules);
 			this.Controls.Add(this._chkShowDesktopAlert);
 			this.Controls.Add(this._chkRememberSelection);
-			this.Controls.Add(this._grpExtensions);
 			this.Controls.Add(this._checkNewspaperAllowHoverSelection);
 			this.Controls.Add(this._checkPropagateFavIconToItems);
             this.Controls.Add(this._checkUseDetailedURLs);
@@ -602,7 +500,6 @@ namespace JetBrains.Omea.RSSPlugin
 			this.Name = "RSSOptionPane";
 			this.Size = new System.Drawing.Size(464, 460);
             this._grpUpdateSettings.ResumeLayout(false);
-			this._grpExtensions.ResumeLayout(false);
 			this.groupExpRules.ResumeLayout(false);
 			this.ResumeLayout(false);
 
@@ -632,16 +529,10 @@ namespace JetBrains.Omea.RSSPlugin
             if ( IsStartupPane )
             {
                 _grpFontChars.Visible = false;
-                _grpExtensions.Visible = false;
                 groupExpRules.Visible = false;
             }
             else
             {
-                foreach( BlogExtensionData extData in RSSPlugin.ExtensionManager.BlogExtensions )
-                {
-                    AddExtensionDataToList( extData );
-                }
-
                 ReadFontCharacteristics();
                 ReadItemFormattingOptions();
                 _txtFont.Text = _currFont + ", " + _currFontSize;
@@ -658,23 +549,6 @@ namespace JetBrains.Omea.RSSPlugin
         private static IResourceList FindDesktopAlertRules()
         {
             return Core.ResourceStore.FindResourcesWithProp( "FilterRule", Props.DefaultDesktopAlertRule );
-        }
-
-        private void AddExtensionDataToList( BlogExtensionData extData )
-        {
-            ListViewItem lvItem = _lvExtensions.Items.Add( extData.BlogExtension.DisplayName );
-            lvItem.SubItems.Add( Path.GetFileName( extData.FileName ) );
-            lvItem.Tag = extData;
-            if ( _lvExtensions.Items.Count == 1 )
-            {
-                lvItem.Selected = true;
-            }
-        }
-
-        protected override void OnSizeChanged( EventArgs e )
-        {
-            base.OnSizeChanged( e );
-            _lvExtensions.Columns [0].Width = _lvExtensions.ClientSize.Width - _lvExtensions.Columns [1].Width - 4;
         }
 
         private bool _isOKProcessing = false;
@@ -752,81 +626,8 @@ namespace JetBrains.Omea.RSSPlugin
             return "/reference/feeds.html";
         }
 
-        #region Extensions Processing
-        private void _lvExtensions_SelectedIndexChanged( object sender, System.EventArgs e )
-        {
-            if ( _lvExtensions.SelectedItems.Count > 0 )
-            {
-                BlogExtensionData extData = (BlogExtensionData) _lvExtensions.SelectedItems [0].Tag;
-                _btnConfigure.Enabled = extData.BlogExtension.HasConfiguration;
-                _btnUninstall.Enabled = true;
-            }
-            else
-            {
-                _btnConfigure.Enabled = false;
-                _btnUninstall.Enabled = false;
-            }
-        }
-
-        private void _btnConfigure_Click( object sender, System.EventArgs e )
-        {
-            if ( _lvExtensions.SelectedItems.Count > 0 )
-            {
-                BlogExtensionData extData = (BlogExtensionData) _lvExtensions.SelectedItems [0].Tag;
-                try
-                {
-                    extData.BlogExtension.Configure( this );
-                }
-                catch( Exception ex )
-                {
-                    MessageBox.Show( this, "Error configuring extension: " + ex.Message,
-                                     "Configure Extension", MessageBoxButtons.OK, MessageBoxIcon.Error );
-                }
-            }
-        }
-
-        private void _btnInstall_Click( object sender, System.EventArgs e )
-        {
-            if ( _dlgBrowseForExtension.ShowDialog() == DialogResult.OK )
-            {
-                foreach( BlogExtensionData data in RSSPlugin.ExtensionManager.BlogExtensions )
-                {
-                    if ( String.Compare( data.FileName, _dlgBrowseForExtension.FileName, true ) == 0 )
-                    {
-                        MessageBox.Show( this,
-                            "The extension '" + _dlgBrowseForExtension.FileName + "' is already installed",
-                            "Install Extension" );
-                        return;
-                    }
-                }
-
-                BlogExtensionData extData = RSSPlugin.ExtensionManager.InstallExtension( _dlgBrowseForExtension.FileName );
-                if ( extData == null )
-                {
-                    MessageBox.Show( this, "The file you selected is not a weblog client extension", "Install Extension" );
-                }
-                else
-                {
-                    AddExtensionDataToList( extData );
-                }
-            }
-        }
-
-        private void _btnUninstall_Click( object sender, System.EventArgs e )
-        {
-            BlogExtensionData extData = (BlogExtensionData) _lvExtensions.SelectedItems [0].Tag;
-            if ( MessageBox.Show( this, "Do you really want to uninstall the extension '" +
-                extData.BlogExtension.DisplayName + "'?",
-                "Uninstall Extension", MessageBoxButtons.YesNo ) == DialogResult.Yes )
-            {
-                RSSPlugin.ExtensionManager.UninstallExtension( extData );
-                _lvExtensions.Items.RemoveAt( _lvExtensions.SelectedIndices [0] );
-            }
-        }
-        #endregion Extensions Processing
-
         #region Expiration Rules
-        private void buttonEditDefExpRule_Click(object sender, System.EventArgs e)
+        private void buttonEditDefExpRule_Click(object sender, EventArgs e)
         {
             IResource resType = Core.ResourceStore.FindUniqueResource( "ResourceType", "Name", "RSSFeed" );
             IResource linkedExpRule = resType.GetLinkProp( "ExpirationRuleLink" );
@@ -835,7 +636,7 @@ namespace JetBrains.Omea.RSSPlugin
             buttonClearDefault.Enabled = resType.HasProp( "ExpirationRuleLink" );
         }
 
-        private void buttonClearDefault_Click(object sender, System.EventArgs e)
+        private void buttonClearDefault_Click(object sender, EventArgs e)
         {
             IResource resType = Core.ResourceStore.FindUniqueResource( "ResourceType", "Name", "RSSFeed" );
             IResource rule = resType.GetLinkProp( "ExpirationRuleLink" );
@@ -844,7 +645,7 @@ namespace JetBrains.Omea.RSSPlugin
             buttonClearDefault.Enabled = resType.HasProp( "ExpirationRuleLink" );
         }
 
-        private void buttonEditExpRuleForDeleted_Click(object sender, System.EventArgs e)
+        private void buttonEditExpRuleForDeleted_Click(object sender, EventArgs e)
         {
             IResource resType = Core.ResourceStore.FindUniqueResource( "ResourceType", "Name", "RSSItem" );
             IResource linkedExpRule = resType.GetLinkProp( "ExpirationRuleOnDeletedLink" );
@@ -853,7 +654,7 @@ namespace JetBrains.Omea.RSSPlugin
             buttonClearDeleted.Enabled = resType.HasProp( "ExpirationRuleOnDeletedLink" );
         }
 
-        private void buttonClearDeleted_Click(object sender, System.EventArgs e)
+        private void buttonClearDeleted_Click(object sender, EventArgs e)
         {
             IResource resType = Core.ResourceStore.FindUniqueResource( "ResourceType", "Name", "RSSItem" );
             IResource rule = resType.GetLinkProp( "ExpirationRuleOnDeletedLink" );

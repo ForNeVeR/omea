@@ -61,10 +61,6 @@ SPDX-License-Identifier: GPL-2.0-only
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="blogExtension">
-      <Name>blogExtension</Name>
-      <HintPath>../../../../Lib/References/blogExtension.dll</HintPath>
-    </Reference>
     <Reference Include="CookComputing.XmlRpc">
       <Name>CookComputing.XmlRpc</Name>
       <HintPath>../../../../Lib/References/CookComputing.XmlRpc.dll</HintPath>
@@ -147,12 +143,6 @@ SPDX-License-Identifier: GPL-2.0-only
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="BlogExtensionComposer.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="BlogExtensionManager.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="EnclosureDownloadManager.cs">
@@ -306,10 +296,6 @@ SPDX-License-Identifier: GPL-2.0-only
     <Compile Include="XmlPreparer.cs">
       <SubType>Code</SubType>
     </Compile>
-    <EmbeddedResource Include="BlogExtensionComposer.resx">
-      <DependentUpon>BlogExtensionComposer.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="Default.css">
       <LogicalName>RSSPlugin.Styles.Default.css</LogicalName>
     </EmbeddedResource>

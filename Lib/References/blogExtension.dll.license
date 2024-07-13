@@ -1,7 +1,0 @@
-SPDX-FileCopyrightText: 2003 Simon Fell
-
-SPDX-License-Identifier: GPL-2.0-only
-
-IBlogExtension is an .NET RSS aggregator extension discussed here: https://www.pocketsoap.com/weblog/stories/2003/04/0023.html
-
-The original publication contains source code but no license information, so hereby I, Friedrich von Never, a maintainer of the Omea project (https://github.com/ForNeVeR/omea), decide on 2024-06-23 that it's possible to distribute this artifact under GPL-2.0-only. It doesn't seem to be against the initial purpose of its publication.
