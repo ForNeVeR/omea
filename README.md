@@ -8,6 +8,8 @@ Omea
 ====
 Omea is the integrated information environment, developed in JetBrains during 2003–2008, and [eventually open-sourced][jetbrains.omea.open-source]. Read more on [the official site][jetbrains.omea]. Originally, it was produced in two flavors: Omea Reader and Omea Pro, the latter having all the features of the former and more. The open-source version is based on Omea Pro.
 
+Read more on the project history and restoration [in the blog post][blog.restoration].
+
 Documentation
 -------------
 - [Contributor Guide][docs.contributing]
@@ -108,6 +110,7 @@ The project uses the following third-party libraries:
   - **Copyright**: 2018 Microsoft
   - **License:** MIT License
 
+[blog.restoration]: https://fornever.me/en/posts/2024-07-16.omea-restoration.html
 [docs.contributing]: CONTRIBUTING.md
 [docs.license]: LICENSES/GPL-2.0-only.txt
 [jetbrains.omea.open-source]: https://web.archive.org/web/20080704062010/http://www.jetbrains.net/confluence/display/OMEA/this+link
