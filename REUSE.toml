@@ -1,0 +1,52 @@
+# SPDX-FileCopyrightText: 2024 Friedrich von Never <friedrich@fornever.me>
+#
+# SPDX-License-Identifier: GPL-2.0-only
+
+version = 1
+SPDX-PackageName = "omea"
+SPDX-PackageSupplier = "Friedrich von Never <friedrich@fornever.me>"
+SPDX-PackageDownloadLocation = "https://github.com/ForNeVeR/omea"
+
+[[annotations]]
+path = "Lib/Distribution/xpdf-3.00-win32/**"
+precedence = "aggregate"
+SPDX-FileCopyrightText = "1996-2004 Glyph & Cog, LLC."
+SPDX-License-Identifier = "GPL-2.0-only"
+
+[[annotations]]
+path = "Src/Plugin/Primary/wvWare/**"
+precedence = "aggregate"
+SPDX-FileCopyrightText = ["wvWare contributors", "2003-2008 JetBrains s.r.o."]
+SPDX-License-Identifier = "GPL-2.0-only"
+
+[[annotations]]
+path = "Src/Plugin/Primary/xlhtml/**"
+precedence = "aggregate"
+SPDX-FileCopyrightText = ["1998–2002 xlhtml contributors", "2003-2008 JetBrains s.r.o."]
+SPDX-License-Identifier = "GPL-2.0-or-later"
+
+[[annotations]]
+path = "Src/Plugin/Primary/xpdf/**"
+precedence = "aggregate"
+SPDX-FileCopyrightText = ["Xpdf contributors", "2005 JetBrains s.r.o"]
+SPDX-License-Identifier = "GPL-1.0-only"
+
+[[annotations]]
+path = "Src/Plugin/Sample/Jiffa/Web References/JiraSoap/**"
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2003-2008 JetBrains s.r.o."
+SPDX-License-Identifier = "GPL-2.0-only"
+SPDX-FileComment = "These are files generated from Jira web service. They were generated at JetBrains, so the copyright is owned\n by JetBrains. Though these files don't have any copyrightable content actually I'd assume."
+
+[[annotations]]
+path = "Src/Plugin/Sample/PostToConfluence/Web References/**"
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2003-2008 JetBrains s.r.o."
+SPDX-License-Identifier = "GPL-2.0-only"
+SPDX-FileComment = "These are files generated from Confluence web service. They were generated at JetBrains, so the copyright is owned\n by JetBrains. Though these files don't have any copyrightable content actually I'd assume."
+
+[[annotations]]
+path = "Src/Core/SecureLib/**"
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2002-2005, The KPD-Team"
+SPDX-License-Identifier = "LicenseRef-Mentalis.org-BSD"
