@@ -39,10 +39,10 @@ If the CI asks you to update the file licenses, follow one of these:
    (accommodate to the file's comment style if required).
 2. Alternately, use [REUSE][reuse] tool:
    ```console
-   $ reuse annotate --license MIT --copyright '%your name% <%your contact info, e.g. email%>' %file names to annotate%
+   $ reuse annotate --license GPL-2.0-only --copyright "%your name% <%your contact info, e.g. email%>" %file names to annotate%
    ```
 
-(Feel free to attribute the changes to "Omea authors <https://github.com/ForNeVeR/omea>" instead of your name in a multi-author file, or if you don't want your name to be mentioned in the project's source: this doesn't mean you'll lose the copyright.)
+(Feel free to attribute the changes to "Omea contributors <https://github.com/ForNeVeR/omea>" instead of your name in a multi-author file, or if you don't want your name to be mentioned in the project's source: this doesn't mean you'll lose the copyright.)
 
 [reuse]: https://reuse.software/
 [visual-studio]: https://visualstudio.microsoft.com/vs/
