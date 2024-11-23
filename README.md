@@ -6,7 +6,7 @@ SPDX-License-Identifier: GPL-2.0-only
 
 Omea
 ====
-Omea is the integrated information environment, developed in JetBrains during 2003–2008, and [eventually open-sourced][jetbrains.omea.open-source]. Read more on [the official site][jetbrains.omea]. Originally, it was produced in two flavors: Omea Reader and Omea Pro, the latter having all the features of the former and more. The open-source version is based on Omea Pro.
+Omea is the integrated information environment, developed in JetBrains during 2003–2008, and [eventually open-sourced][jetbrains.omea.open-source]. Read more on [the official site][jetbrains.omea.archive]. Originally, it was produced in two flavors: Omea Reader and Omea Pro, the latter having all the features of the former and more. The open-source version is based on Omea Pro.
 
 Read more on the project history and restoration [in the blog post][blog.restoration].
 
@@ -114,6 +114,6 @@ The project uses the following third-party libraries:
 [docs.contributing]: CONTRIBUTING.md
 [docs.license]: LICENSES/GPL-2.0-only.txt
 [jetbrains.omea.open-source]: https://web.archive.org/web/20080704062010/http://www.jetbrains.net/confluence/display/OMEA/this+link
-[jetbrains.omea]: https://www.jetbrains.com/omea/
+[jetbrains.omea.archive]: https://web.archive.org/web/20240724040117/https://www.jetbrains.com/omea/
 [libs.mapi-stub-library]: https://github.com/microsoft/MAPIStubLibrary
 [reuse.spec]: https://reuse.software/spec-3.3/
