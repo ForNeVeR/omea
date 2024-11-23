@@ -101,7 +101,7 @@ License
 The project is distributed under the terms of [the GPL v2 license][docs.license]
 (unless a particular file states otherwise).
 
-The license indication in the project's sources is compliant with the [REUSE specification v3.2][reuse.spec].
+The license indication in the project's sources is compliant with the [REUSE specification v3.3][reuse.spec].
 
 Third-Party Libraries
 ---------------------
@@ -116,4 +116,4 @@ The project uses the following third-party libraries:
 [jetbrains.omea.open-source]: https://web.archive.org/web/20080704062010/http://www.jetbrains.net/confluence/display/OMEA/this+link
 [jetbrains.omea]: https://www.jetbrains.com/omea/
 [libs.mapi-stub-library]: https://github.com/microsoft/MAPIStubLibrary
-[reuse.spec]: https://reuse.software/spec-3.2/
+[reuse.spec]: https://reuse.software/spec-3.3/
