@@ -3,7 +3,7 @@
   "isRoot": true,
   "tools": {
     "dotnet-xscgen": {
-      "version": "2.1.1181",
+      "version": "2.1.1182",
       "commands": [
         "xscgen"
       ]
