@@ -338,10 +338,10 @@ Global
 		{C9B5EED0-F276-42F6-AA99-F8907BD0F955}.Debug|Mixed Platforms.Build.0 = Debug|Win32
 		{C9B5EED0-F276-42F6-AA99-F8907BD0F955}.Release|Mixed Platforms.ActiveCfg = Release|Win32
 		{C9B5EED0-F276-42F6-AA99-F8907BD0F955}.Release|Mixed Platforms.Build.0 = Release|Win32
-		{EC52B2F1-BFB3-43AF-87B2-7803D608158C}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{EC52B2F1-BFB3-43AF-87B2-7803D608158C}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{EC52B2F1-BFB3-43AF-87B2-7803D608158C}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{EC52B2F1-BFB3-43AF-87B2-7803D608158C}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{EC52B2F1-BFB3-43AF-87B2-7803D608158C}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{EC52B2F1-BFB3-43AF-87B2-7803D608158C}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{EC52B2F1-BFB3-43AF-87B2-7803D608158C}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{EC52B2F1-BFB3-43AF-87B2-7803D608158C}.Release|Mixed Platforms.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
