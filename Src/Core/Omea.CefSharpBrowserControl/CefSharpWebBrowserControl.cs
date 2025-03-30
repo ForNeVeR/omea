@@ -1,11 +1,21 @@
 ﻿using System;
 using System.Windows.Forms;
+using CefSharp.WinForms;
 using JetBrains.Omea.OpenAPI;
 
 namespace CefSharpBrowserControl;
 
 public class CefSharpWebBrowser : AbstractWebBrowser
 {
+    private readonly ChromiumWebBrowser _control = new();
+    public CefSharpWebBrowser()
+    {
+        SuspendLayout();
+        _control.Dock = DockStyle.Fill;
+        Controls.Add(_control);
+        ResumeLayout();
+    }
+
     public override void Navigate(string url)
     {
         throw new NotImplementedException();
@@ -54,8 +64,8 @@ public class CefSharpWebBrowser : AbstractWebBrowser
 
     public override string CurrentUrl
     {
-        get => throw new NotImplementedException();
-        set => throw new NotImplementedException();
+        get => _control.Address;
+        set => _control.Load(value);
     }
 
     public override string SelectedHtml => throw new NotImplementedException();
