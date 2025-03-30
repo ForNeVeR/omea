@@ -187,7 +187,7 @@ SPDX-License-Identifier: GPL-2.0-only
       <Project>{5133BE57-1BE8-4C82-BA5E-ADA6CFA0AA8B}</Project>
       <Name>JetBrainsShared</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Omea.CefSharpBrowserControl\Omea.CefSharpBrowserControl.csproj">
+    <ProjectReference Include="..\..\Core\Omea.CefSharpBrowserControl\Omea.CefSharpBrowserControl.csproj">
       <Project>{ec52b2f1-bfb3-43af-87b2-7803d608158c}</Project>
       <Name>Omea.CefSharpBrowserControl</Name>
     </ProjectReference>

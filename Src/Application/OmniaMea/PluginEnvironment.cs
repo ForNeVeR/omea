@@ -4,17 +4,17 @@
 
 using System;
 using System.Diagnostics;
+using System.Drawing;
 using System.Net;
 using System.Windows.Forms;
-using JetBrains.DataStructures;
+using CefSharpBrowserControl;
 using JetBrains.Interop.WinApi;
-using JetBrains.Omea.GUIControls.MshtmlBrowser;
+using JetBrains.Omea.AsyncProcessing;
+using JetBrains.Omea.Base;
 using JetBrains.Omea.HttpTools;
 using JetBrains.Omea.OpenAPI;
+using JetBrains.Omea.Plugins;
 using JetBrains.Omea.ResourceStore;
-using System.Drawing;
-using JetBrains.Omea.Base;
-using JetBrains.Omea.AsyncProcessing;
 
 namespace JetBrains.Omea
 {
@@ -41,7 +41,7 @@ namespace JetBrains.Omea
 		{
 		    theInstance = this;
             RegisterComponentImplementation( typeof(ResourceTabProvider) );
-            RegisterComponentImplementation( typeof(Plugins.PluginInterfaces) );
+            RegisterComponentImplementation( typeof(PluginInterfaces) );
             RegisterComponentImplementation( typeof(DisplayColumnManager) );
         }
 
@@ -83,31 +83,14 @@ namespace JetBrains.Omea
             _mainWindow = mainFrame;
         }
 
-        public override AbstractWebBrowser WebBrowser
-        {
-        	[DebuggerStepThrough]
-        	get
-        	{
-        		if( _webBrowser == null )
-        		{
-        			// Create a new Web browser instance
-        			MshtmlBrowserNest nest = new MshtmlBrowserNest();
-
-        			// Suppress some keys (if they're not handled by editor / event-handler / omea-actions)
-        			IntHashSet hashSuppressed = new IntHashSet();
-        			hashSuppressed.Add( (int)Keys.F5 ); // Refresh
-        			hashSuppressed.Add( (int)(Keys.Control | Keys.N) ); // New window
-        			hashSuppressed.Add( (int)(Keys.Escape) ); // Stop
-        			hashSuppressed.Add( (int)(Keys.F11) ); // Theater mode
-        			//nest.BrowserControl.SuppressedUnhandledKeys = hashSuppressed;	// TODO:Convert: use the proper hash
-
-        			// Use it
-        			_webBrowser = nest;
-        			(Core.ResourceBrowser as ResourceBrowser).AttachToWebBrowser();
-        		}
-        		return _webBrowser;
-        	}
-        }
+        public override AbstractWebBrowser WebBrowser => _webBrowser ??= new CefSharpWebBrowser();
+        // TODO:
+        // // Suppress some keys (if they're not handled by editor / event-handler / omea-actions)
+        // IntHashSet hashSuppressed = new IntHashSet();
+        // hashSuppressed.Add( (int)Keys.F5 ); // Refresh
+        // hashSuppressed.Add( (int)(Keys.Control | Keys.N) ); // New window
+        // hashSuppressed.Add( (int)(Keys.Escape) ); // Stop
+        // hashSuppressed.Add( (int)(Keys.F11) ); // Theater mode
 
     	public override IAsyncProcessor ResourceAP
         {

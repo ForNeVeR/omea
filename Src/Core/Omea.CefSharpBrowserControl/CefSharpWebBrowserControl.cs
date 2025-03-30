@@ -46,31 +46,95 @@ public class CefSharpWebBrowser : AbstractWebBrowser
         throw new NotImplementedException();
     }
 
-    public override bool ShowImages { get; set; }
-    public override string CurrentUrl { get; set; }
-    public override string SelectedHtml { get; }
-    public override string SelectedText { get; }
-    public override string Title { get; }
-    public override event EventHandler TitleChanged;
-    public override WebSecurityContext SecurityContext { get; set; }
-    public override IContextProvider ContextProvider { get; set; }
-    public override string Html { get; set; }
+    public override bool ShowImages
+    {
+        get => throw new NotImplementedException();
+        set => throw new NotImplementedException();
+    }
+
+    public override string CurrentUrl
+    {
+        get => throw new NotImplementedException();
+        set => throw new NotImplementedException();
+    }
+
+    public override string SelectedHtml => throw new NotImplementedException();
+
+    public override string SelectedText => throw new NotImplementedException();
+
+    public override string Title => throw new NotImplementedException();
+
+    public override event EventHandler TitleChanged
+    {
+        add => throw new NotImplementedException();
+        remove => throw new NotImplementedException();
+    }
+
+    public override WebSecurityContext SecurityContext
+    {
+        get => throw new NotImplementedException();
+        set => throw new NotImplementedException();
+    }
+
+    public override IContextProvider ContextProvider
+    {
+        get => throw new NotImplementedException();
+        set => throw new NotImplementedException();
+    }
+
+    public override string Html
+    {
+        get => throw new NotImplementedException();
+        set => throw new NotImplementedException();
+    }
+
     public override AbstractWebBrowser NewInstance()
     {
         throw new NotImplementedException();
     }
 
-    public override BorderStyle BorderStyle { get; set; }
-    public override IHtmlDomDocument HtmlDocument { get; }
-    public override event KeyEventHandler KeyDown;
-    public override event ContextMenuEventHandler ContextMenu;
-    public override BrowserReadyState ReadyState { get; }
-    public override event DocumentCompleteEventHandler DocumentComplete;
+    public override BorderStyle BorderStyle
+    {
+        get => throw new NotImplementedException();
+        set => throw new NotImplementedException();
+    }
+
+    public override IHtmlDomDocument HtmlDocument => throw new NotImplementedException();
+
+    public override event KeyEventHandler KeyDown
+    {
+        add => throw new NotImplementedException();
+        remove => throw new NotImplementedException();
+    }
+
+    public override event ContextMenuEventHandler ContextMenu
+    {
+        add => throw new NotImplementedException();
+        remove => throw new NotImplementedException();
+    }
+
+    public override BrowserReadyState ReadyState => throw new NotImplementedException();
+
+    public override event DocumentCompleteEventHandler DocumentComplete
+    {
+        add => throw new NotImplementedException();
+        remove => throw new NotImplementedException();
+    }
+
     public override void Stop()
     {
         throw new NotImplementedException();
     }
 
-    public override event BeforeNavigateEventHandler BeforeNavigate;
-    public override event BeforeShowHtmlEventHandler BeforeShowHtml;
+    public override event BeforeNavigateEventHandler BeforeNavigate
+    {
+        add => throw new NotImplementedException();
+        remove => throw new NotImplementedException();
+    }
+
+    public override event BeforeShowHtmlEventHandler BeforeShowHtml
+    {
+        add => throw new NotImplementedException();
+        remove => throw new NotImplementedException();
+    }
 }
