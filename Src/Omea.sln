@@ -126,6 +126,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Interop.WinApi", "Core\Inte
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "NetfxBootstrap", "Application\NetfxBootstrap\NetfxBootstrap.vcxproj", "{C9B5EED0-F276-42F6-AA99-F8907BD0F955}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Omea.CefSharpBrowserControl", "Core\Omea.CefSharpBrowserControl\Omea.CefSharpBrowserControl.csproj", "{EC52B2F1-BFB3-43AF-87B2-7803D608158C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Mixed Platforms = Debug|Mixed Platforms
@@ -336,6 +338,10 @@ Global
 		{C9B5EED0-F276-42F6-AA99-F8907BD0F955}.Debug|Mixed Platforms.Build.0 = Debug|Win32
 		{C9B5EED0-F276-42F6-AA99-F8907BD0F955}.Release|Mixed Platforms.ActiveCfg = Release|Win32
 		{C9B5EED0-F276-42F6-AA99-F8907BD0F955}.Release|Mixed Platforms.Build.0 = Release|Win32
+		{EC52B2F1-BFB3-43AF-87B2-7803D608158C}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{EC52B2F1-BFB3-43AF-87B2-7803D608158C}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{EC52B2F1-BFB3-43AF-87B2-7803D608158C}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{EC52B2F1-BFB3-43AF-87B2-7803D608158C}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -393,6 +399,7 @@ Global
 		{45561619-1C61-4293-B8B1-88A76A8190DC} = {55BEDBD7-9B04-4D90-9A80-9ACBB98D5371}
 		{3F0FF59D-9EEB-407E-8DD5-7DE159ABBC35} = {CC43F7AE-2C4B-471A-85B0-1E158AC981E9}
 		{C9B5EED0-F276-42F6-AA99-F8907BD0F955} = {55BEDBD7-9B04-4D90-9A80-9ACBB98D5371}
+		{EC52B2F1-BFB3-43AF-87B2-7803D608158C} = {CC43F7AE-2C4B-471A-85B0-1E158AC981E9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {AC6B2D82-4CCE-43DA-9758-144659866E9F}
