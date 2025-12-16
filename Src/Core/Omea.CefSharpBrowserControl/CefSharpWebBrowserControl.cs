@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using CefSharp;
 using CefSharp.WinForms;
 using JetBrains.Omea.OpenAPI;
 
@@ -26,19 +27,24 @@ public class CefSharpWebBrowser : AbstractWebBrowser
         throw new NotImplementedException();
     }
 
+    [Obsolete("Use another overload of the ShowHtml method that allows to supply the WebSecurityContext.", false)]
     public override void ShowHtml(string html)
     {
-        throw new NotImplementedException();
+        ShowHtml(html, null);
     }
 
-    public override void ShowHtml(string html, WebSecurityContext ctx)
+    public override void ShowHtml(string html, WebSecurityContext? ctx)
     {
-        throw new NotImplementedException();
+        ShowHtml(html, ctx, null);
     }
 
-    public override void ShowHtml(string html, WebSecurityContext ctx, WordPtr[] wordsToHighlight)
+    public override void ShowHtml(string html, WebSecurityContext? ctx, WordPtr[]? wordsToHighlight)
     {
-        throw new NotImplementedException();
+        if ((wordsToHighlight?.Length ?? 0) > 0)
+            throw new NotImplementedException("Word highlighting is not implemented, yet.");
+
+        // TODO: Think about the WebSecurityContext
+        _control.LoadHtml(html);
     }
 
     public override void HighlightWords(WordPtr[] words, int startOffset)
@@ -86,11 +92,7 @@ public class CefSharpWebBrowser : AbstractWebBrowser
         set => throw new NotImplementedException();
     }
 
-    public override IContextProvider ContextProvider
-    {
-        get => throw new NotImplementedException();
-        set => throw new NotImplementedException();
-    }
+    public override IContextProvider ContextProvider { get; set; }
 
     public override string Html
     {
