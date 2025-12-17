@@ -31,7 +31,7 @@ jobs:
         shell: pwsh
         run: msbuild /t:Build /property:Platform="Mixed Platforms" /property:Configuration=Release Src\Omea.sln
       - name: Upload the artifacts
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: omea
           path: Bin/*
