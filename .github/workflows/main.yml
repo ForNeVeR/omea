@@ -19,7 +19,7 @@ jobs:
     runs-on: windows-2025
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           submodules: true
       - name: Restore tools
@@ -41,6 +41,6 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
     - name: Check out the sources
-      uses: actions/checkout@v6
+      uses: actions/checkout@v7
     - name: REUSE license check
       uses: fsfe/reuse-action@v6
